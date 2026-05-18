@@ -47,9 +47,9 @@ namespace draw2d_gpu
 
 
       bool from(::draw2d::graphics * pgraphics);
-      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, ::size sz);
 
-      bool to(::draw2d::graphics * pgraphics, const ::int_point & point, ::size size, point ptSrc);
+      bool to(::draw2d::graphics * pgraphics, const ::i32_point & point, ::size size, point ptSrc);
 
 
       void SetIconMask(::image::icon * picon, int cx, int cy);

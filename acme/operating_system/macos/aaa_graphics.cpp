@@ -122,7 +122,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return false;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::int_size * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::i32_size * psize)
 //{
 //   return false;
 //}
@@ -262,7 +262,7 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //
 //   // Create a copy of the original font with the aaa_primitive_new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
-//   // Pass in 0.0 and nullptr for int_size and matrix to preserve the values from
+//   // Pass in 0.0 and nullptr for i32_size and matrix to preserve the values from
 //   // the original font.
 //   return CTFontCreateCopyWithFamily(iFont, 0.0, nullptr, iFamily);
 //
@@ -333,11 +333,11 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //
 //
 //
-//void FillSolidRect_dup(HDC hdc, const ::int_rectangle & rectangle, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::i32_rectangle & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
-//   CGRect int_rectangle;
+//   CGRect i32_rectangle;
 //   rectangle.origin.x = prectangle->left;
 
 //   rectangle.origin.y = prectangle->top;
@@ -390,12 +390,12 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrF
 //   // convert nPointSize to logical units based on pgraphics
 //   LOGFONT logFont = *pLogFont;
 //
-//   ::int_point point;
-//   // 72 points/inch, 10 decipoints/int_point
+//   ::i32_point point;
+//   // 72 points/inch, 10 decipoints/i32_point
 //   point.y = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x = 0;
 //   ::DPtoLP(hDC, &point, 1);
-//   const int_point & pointOrg = { 0, 0 };
+//   const i32_point & pointOrg = { 0, 0 };
 //   ::DPtoLP(hDC, &pointOrg, 1);
 //   logFont.lfHeight = -abs_dup(point.y - pointOrg.y);
 //
@@ -695,7 +695,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // }
 
 
-//int_bool this->rectangle(oswindow hwnd, ::int_rectangle * prectangle)
+//int_bool this->rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
 //
 //{
 //   /*   XWindowAttributes attrs;
@@ -731,7 +731,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //}
 
 //
-//int_bool window_rectangle(oswindow hwnd, ::int_rectangle * prectangle)
+//int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -773,11 +773,11 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 
 /*
- int FillRect(HDC hdc, const ::int_rectangle & prc, HBRUSH hbr)
+ int FillRect(HDC hdc, const ::i32_rectangle & prc, HBRUSH hbr)
 
  {
 
- CGRect int_rectangle;
+ CGRect i32_rectangle;
 
  rectangle.origin.x     = prc->left;
 
@@ -878,7 +878,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return false;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::int_size * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::i32_size * psize)
 // {
 //     return false;
 // }
@@ -1018,7 +1018,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //
 //   // Create a copy of the original font with the aaa_primitive_new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
-//   // Pass in 0.0 and nullptr for int_size and matrix to preserve the values from
+//   // Pass in 0.0 and nullptr for i32_size and matrix to preserve the values from
 //   // the original font.
 //   return CTFontCreateCopyWithFamily(iFont, 0.0, nullptr, iFamily);
 //
@@ -1088,11 +1088,11 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 
 
-// void FillSolidRect_dup(HDC hdc, const ::int_rectangle & rectangle, color32_t clr)
+// void FillSolidRect_dup(HDC hdc, const ::i32_rectangle & rectangle, color32_t clr)
 
 // {
 //    CGColorRef color = cg_create_color(clr);
-//    CGRect int_rectangle;
+//    CGRect i32_rectangle;
 //    rectangle.origin.x = prectangle->left;
 
 //    rectangle.origin.y = prectangle->top;
@@ -1201,7 +1201,7 @@ void os_term_imaging()
 
 
 
-//int_bool window_rectangle(oswindow hwnd, ::int_rectangle * prectangle)
+//int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
 //
 //{
 //   /* XWindowAttributes attrs;

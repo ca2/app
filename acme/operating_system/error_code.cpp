@@ -91,7 +91,7 @@ bool error_code::is_set() const
    else if(m_etype == e_error_code_type_last_error)
    {
       
-      ::last_error lasterror((::u32) m_iOsError);
+      ::windows::last_error lasterror((::u32) m_iOsError);
       
       strErrorMessage = ::windows::last_error_message(lasterror);
       
@@ -131,10 +131,10 @@ bool error_code::is_set() const
    {
       
       
-      ::last_error lasterror((::u32) m_iOsError);
+      ::windows::last_error lasterror((::u32) m_iOsError);
       // ERROR_CANCELLED
       
-      estatus = strErrorMessage = ::windows::last_error_e_status(lasterror);
+      estatus = lasterror.as_estatus();
       
    }
 #endif

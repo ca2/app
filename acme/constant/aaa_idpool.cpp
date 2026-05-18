@@ -124,8 +124,8 @@
 //   de_de = "de-de";
 //
 //   br = "br";
-//   pt_br = "int_point-br";
-//   pt = "int_point";
+//   pt_br = "i32_point-br";
+//   pt = "i32_point";
 //
 //   es = "es";
 //
@@ -222,7 +222,7 @@
 //   html_h3 = "h3";
 //   html_h4 = "h4";
 //   html_h5 = "h5";
-//   html_p = "int_point";
+//   html_p = "i32_point";
 //   html_table = "table";
 //   html_tbody = "tbody";
 //   html_tr = "tr";

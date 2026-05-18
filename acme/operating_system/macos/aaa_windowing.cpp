@@ -586,7 +586,7 @@ void ns_main_async(dispatch_block_t block);
 //#include <CoreFoundation/CoreFoundation.h>
 //
 //
-//int_bool set_need_redraw(oswindow hWnd, const ::int_rectangle * pcrect, HRGN hrgnUpdate, unsigned int flags)
+//int_bool set_need_redraw(oswindow hWnd, const ::i32_rectangle * pcrect, HRGN hrgnUpdate, unsigned int flags)
 //{
 //
 //   return true;
@@ -674,7 +674,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenAboveWindow, windowid);
 //
-//   ::int_rectangle rMainScreen;
+//   ::i32_rectangle rMainScreen;
 //
 //   get_main_screen_rectangle(rMainScreen);
 //
@@ -729,14 +729,14 @@ void ns_main_async(dispatch_block_t block);
 //      if(dictRect)
 //      {
 //
-//      CGRect int_rectangle= {};
+//      CGRect i32_rectangle= {};
 //
 //      CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
 //      if(rectangle.size.width > 0 && rectangle.size.height > 0)
 //      {
 //
-//         ::int_rectangle rectangleCopy;
+//         ::i32_rectangle rectangleCopy;
 //
 //         rectangleCopy.left = rectangle.origin.x;
 //         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
@@ -817,7 +817,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   CGRect rect1 = {};
 //
-//   //int_rectangle rMainScreen;
+//   //i32_rectangle rMainScreen;
 //
 //   //get_main_screen_rectangle(rMainScreen);
 //
@@ -984,7 +984,7 @@ void ns_main_async(dispatch_block_t block);
 //      if(dictRect)
 //      {
 //
-//         CGRect int_rectangle= {};
+//         CGRect i32_rectangle= {};
 //
 //         CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
@@ -1013,7 +1013,7 @@ void ns_main_async(dispatch_block_t block);
 //               if(CGRectIntersectsRect(rect1, rectangle))
 //               {
 //
-//                  ::int_rectangle rectangleCopy;
+//                  ::i32_rectangle rectangleCopy;
 //
 //                  rectangleCopy.left = rectangle.origin.x;
 //                  rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
@@ -1086,7 +1086,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   CGRect rect1={};
 //
-//   //int_rectangle rMainScreen;
+//   //i32_rectangle rMainScreen;
 //
 //   string strName;
 //
@@ -1219,11 +1219,11 @@ void ns_main_async(dispatch_block_t block);
 //      if(dictRect)
 //      {
 //
-//         CGRect int_rectangle= {};
+//         CGRect i32_rectangle= {};
 //
 //         CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
-//         ::int_rectangle rectangleCopy;
+//         ::i32_rectangle rectangleCopy;
 //
 //         //rectangleCopy.left = rectangle.origin.x;
 //         //rectangleCopy.top = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
@@ -1298,11 +1298,11 @@ void ns_main_async(dispatch_block_t block);
 //
 //   return true;
 //
-////   ::int_rectangle rectangle;
+////   ::i32_rectangle rectangle;
 ////
 ////   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rectangle();
 ////
-////   ::int_rectangle rectangleTest;
+////   ::i32_rectangle rectangleTest;
 ////
 ////   for(int i = 0; i < recta.get_size(); i++)
 ////   {
@@ -1325,7 +1325,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //void cg_get_window_rect_list(int_rectangle_array & recta, array < CGWindowID > & windowida);
 //
-//int_bool point_is_window_origin(::int_point pointHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(::i32_point pointHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   CGWindowID windowidExclude = get_os_window_window_number(oswindowExclude);
@@ -1336,7 +1336,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   cg_get_window_rect_list(recta, windowida);
 //
-//   ::int_rectangle rectangleTest;
+//   ::i32_rectangle rectangleTest;
 //
 //   for(::collection::index i = 0; i < recta.get_size(); i++)
 //   {
@@ -1352,7 +1352,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      auto rectangle = recta[i];
 //
-//      ::int_rectangle rectangleHitTest;
+//      ::i32_rectangle rectangleHitTest;
 //
 //      rectangleHitTest.set(rectangle.origin(), ::size());
 //

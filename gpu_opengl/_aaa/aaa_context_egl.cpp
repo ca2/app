@@ -203,7 +203,7 @@
 //    }
 //
 //
-// //   void context_egl::_create_offscreen_buffer(const ::int_size & size)
+// //   void context_egl::_create_offscreen_buffer(const ::i32_size & size)
 // //   {
 // //
 // //      auto psystem = system();
@@ -347,7 +347,7 @@
 //
 //
 //
-//    void context_egl::_create_offscreen_buffer(const ::int_size & size)
+//    void context_egl::_create_offscreen_buffer(const ::i32_size & size)
 //    {
 //
 //       auto psystem = system();
@@ -515,7 +515,7 @@
 //    }
 //
 //
-//    void context_egl::resize_offscreen_buffer(const ::int_size& size)
+//    void context_egl::resize_offscreen_buffer(const ::i32_size& size)
 //    {
 //
 //       //auto estatus =

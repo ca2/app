@@ -1154,7 +1154,7 @@ namespace user
          bSubItemHover  = bItemHover;
       }
 
-      ::int_point point = rectangleX.top_left();
+      ::i32_point point = rectangleX.top_left();
       point += ::size(1, 1);
 
       if(bSubItemHover)

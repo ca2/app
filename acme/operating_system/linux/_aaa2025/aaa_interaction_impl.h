@@ -29,7 +29,7 @@ namespace linux
       ::rect64                      m_rectangleLastPos;
       ::duration m_durationLastPos;
 
-      ::int_point                       m_pointLastMove;
+      ::i32_point                       m_pointLastMove;
       bool                          m_bMoveEvent;
       ::size                        m_sizeLastSize;
       bool                          m_bSizeEvent;
@@ -176,7 +176,7 @@ namespace linux
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
-//      bool DragDetect(const ::int_point & point) const;
+//      bool DragDetect(const ::i32_point & point) const;
 
 
 
@@ -224,7 +224,7 @@ namespace linux
       virtual bool has_focus() override;
       virtual bool is_active() override;
 
-      //virtual ::int_point client_screen_top_left() override;
+      //virtual ::i32_point client_screen_top_left() override;
 
 //      virtual bool client_to_screen(RECT32 * prect);
 

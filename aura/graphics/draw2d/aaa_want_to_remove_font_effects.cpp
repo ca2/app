@@ -53,7 +53,7 @@ namespace draw2d
 //      SelectFont();
 //
 //      ::double_rectangle rectangleOffset(rectangle);
-//      const ::int_point & pointOffset(rectangleOffset.top_left());
+//      const ::i32_point & pointOffset(rectangleOffset.top_left());
 //
 //      glyph * pglyph;
 
@@ -109,7 +109,7 @@ namespace draw2d
 //      SelectFont();
 //
 //      const ::double_rectangle rectangleOffset(rectangle);
-//      const ::int_point & pointOffset;
+//      const ::i32_point & pointOffset;
 //
 //
 //      glyph * pglyph;

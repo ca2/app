@@ -29,18 +29,18 @@ namespace account
       spa_login            m_login;
       simple_graphics      m_graphics;
       simple_bitmap        m_bitmap;
-      ::int_size                 m_size;
-      ::int_point                m_point;
+      ::i32_size                 m_size;
+      ::i32_point                m_point;
       bool                 m_bLButtonDown;
-      ::int_point                m_pointLButtonDown;
-      ::int_point                m_pointLButtonDownPos;
+      ::i32_point                m_pointLButtonDown;
+      ::i32_point                m_pointLButtonDownPos;
 
       oswindow             m_pacmewindowingwindow;
 
       bool                 m_bShiftKey;
 
       bool                 m_bDrag;
-      ::int_rectangle               m_rectangleDesktop;
+      ::i32_rectangle               m_rectangleDesktop;
 
       manual_reset_happening   m_happeningReady;
 
@@ -52,17 +52,17 @@ namespace account
 
       virtual ~account();
 
-      virtual string show_auth_window(::int_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string show_auth_window(::i32_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
       virtual bool prepare_window(bool bShow);
 
-      virtual void client_to_screen(::int_point * ppt);
+      virtual void client_to_screen(::i32_point * ppt);
 
-      virtual void screen_to_client(::int_point * ppt);
+      virtual void screen_to_client(::i32_point * ppt);
 
-      virtual void window_rectangle(::int_rectangle * prectangle);
+      virtual void window_rectangle(::i32_rectangle * prectangle);
 
-      virtual void this->rectangle(::int_rectangle * prectangle);
+      virtual void this->rectangle(::i32_rectangle * prectangle);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -113,24 +113,24 @@ namespace account
    void account::draw_auth_box(simple_graphics & g)
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       this->rectangle(rectangle);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       // front
-      int_point pa[4];  //  0       1
+      i32_point pa[4];  //  0       1
       //
       //
       //  3       2
 
       // back
-      int_point pb[4];
+      i32_point pb[4];
 
 
       // guards
-      int_point pc[4];
+      i32_point pc[4];
 
 
       pa[0].x = rectangle.left;
@@ -314,7 +314,7 @@ namespace account
    void account::draw_pestana(simple_graphics & g)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -370,7 +370,7 @@ namespace account
    {
    }
 
-   string account::show_auth_window(::int_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string account::show_auth_window(::i32_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == nullptr)
@@ -448,7 +448,7 @@ namespace account
    bool account::prepare_window(bool bShow)
    {
 
-      int_rectangle & rectangleDesktop = m_rectangleDesktop;
+      i32_rectangle & rectangleDesktop = m_rectangleDesktop;
 
       CGRect rectangleFontopus;
 
@@ -535,12 +535,12 @@ namespace account
 
 
 
-   void account::client_to_screen(::int_point * ppt)
+   void account::client_to_screen(::i32_point * ppt)
    {
       ::client_to_screen(m_pacmewindowingwindow, ppt);
    }
 
-   void account::screen_to_client(::int_point * ppt)
+   void account::screen_to_client(::i32_point * ppt)
    {
       ::screen_to_client(m_pacmewindowingwindow, ppt);
    }
@@ -571,11 +571,11 @@ namespace account
          return true;
 
 
-      ::int_rectangle rectangleLogin;
+      ::i32_rectangle rectangleLogin;
 
       m_login.window_rectangle(rectangleLogin);
 
-      ::int_point point(x, y);
+      ::i32_point point(x, y);
 
       if (rectangleLogin.is_empty().contains(point))
       {
@@ -585,9 +585,9 @@ namespace account
 
 
             {
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
       m_login.window_rectangle(&rectangleWindow);
-      ::int_point pointCursor;
+      ::i32_point pointCursor;
       ::GetCursorPos(&pointCursor);
       if (rectangleWindow.is_empty().contains(pointCursor))
       DestroyWindow(hWnd);
@@ -606,7 +606,7 @@ namespace account
          if (!m_bDrag)
          {
             m_bDrag = true;
-            ::int_point ptNow;
+            ::i32_point ptNow;
             ::GetCursorPos(&ptNow);
             m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
             m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
@@ -624,11 +624,11 @@ namespace account
    }
 
 
-   void account::window_rectangle(::int_rectangle * prectangle)
+   void account::window_rectangle(::i32_rectangle * prectangle)
    {
       ::window_rectangle(m_pacmewindowingwindow, prectangle);
    }
-   void account::this->rectangle(::int_rectangle * prectangle)
+   void account::this->rectangle(::i32_rectangle * prectangle)
    {
 
       ::this->rectangle(m_pacmewindowingwindow, prectangle);
@@ -638,7 +638,7 @@ namespace account
    void account::draw_dark_glass(simple_graphics & g)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -663,7 +663,7 @@ namespace account
    void account::draw_fuzzy_color_spread(simple_graphics & g)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -787,7 +787,7 @@ namespace account
 
    account account::s_account;
 
-   string CLASS_DECL_BOOT show_auth_window(::int_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BOOT show_auth_window(::i32_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       return ::account::account::s_account.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);

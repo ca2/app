@@ -363,11 +363,11 @@ namespace linux
                           | CWOverrideRedirect
                                           , &attr);
 
-            m_puserinteraction->layout().window() = ::int_point(INT_MIN, INT_MIN);
+            m_puserinteraction->layout().window() = ::i32_point(INT_MIN, INT_MIN);
 
             m_puserinteraction->layout().window() = ::size(INT_MIN, INT_MIN);
 
-            m_puserinteraction->screen_origin() = ::int_point(INT_MIN, INT_MIN);
+            m_puserinteraction->screen_origin() = ::i32_point(INT_MIN, INT_MIN);
 
    //         {
    //
@@ -383,11 +383,11 @@ namespace linux
    //
             {
 
-               m_puserinteraction->layout().sketch() = ::int_point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+               m_puserinteraction->layout().sketch() = ::i32_point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
 
                m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-               m_puserinteraction->screen_origin() = ::int_point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+               m_puserinteraction->screen_origin() = ::i32_point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
 
             }
 
@@ -2565,7 +2565,7 @@ send(pmessageboxpayload);
 //      if(!(nFlags & SWP_NOMOVE))
 //      {
 //
-//         m_puserinteraction->m_pointRequest = ::int_point(x, y);
+//         m_puserinteraction->m_pointRequest = ::i32_point(x, y);
 //
 //      }
 //
@@ -2599,7 +2599,7 @@ send(pmessageboxpayload);
 //   }
 
 
-//   ::int_point interaction_impl::client_screen_top_left()
+//   ::i32_point interaction_impl::client_screen_top_left()
 //   {
 //
 //      ::rect64 rectangleWindow;
@@ -3164,7 +3164,7 @@ send(pmessageboxpayload);
    }
 
 
-//   bool interaction_impl::DragDetect(const ::int_point & point) const
+//   bool interaction_impl::DragDetect(const ::i32_point & point) const
 //   {
 //
 //      throw ::not_implemented();
@@ -4006,7 +4006,7 @@ send(pmessageboxpayload);
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::int_point & point)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::i32_point & point)
 //   {
 //
 //
@@ -4016,7 +4016,7 @@ send(pmessageboxpayload);
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::i32_point & point, unsigned int nFlags)
 //   {
 //
 //      throw ::not_implemented();
@@ -4069,7 +4069,7 @@ send(pmessageboxpayload);
 //   }
 //
 //
-//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::int_point & point)
+//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::i32_point & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4146,13 +4146,13 @@ send(pmessageboxpayload);
 //   {
 //
 //      __s_throw(not_implemented());
-////      const ::int_point & point;
+////      const ::i32_point & point;
 ////      ::GetcaretPos((POINT32 *)&point); return point;
 //
 //   }
 //
 //
-//   void PASCAL interaction_impl::SetCaretPos(const ::int_point & point)
+//   void PASCAL interaction_impl::SetCaretPos(const ::i32_point & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4705,7 +4705,7 @@ send(pmessageboxpayload);
    void interaction_impl::set_context_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->set_origin(::int_point());
+      pgraphics->set_origin(::i32_point());
 
    }
 

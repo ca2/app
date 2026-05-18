@@ -159,7 +159,7 @@
 //
 //         auto pointCursor = get_cursor_position();
 //
-//         ::int_rectangle rectangleWindow;
+//         ::i32_rectangle rectangleWindow;
 //
 //         window_rectangle(rectangleWindow);
 //

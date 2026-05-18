@@ -54,7 +54,7 @@ namespace draw2d_gpu
 
       //g_z = -0.5;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (!m_puserinteraction && m_papplication->m_bUseSwapChainWindow)
       {
@@ -192,7 +192,7 @@ namespace draw2d_gpu
 
             //VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->currentImageIndex];
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             if (!m_puserinteraction->host_rectangle().size().is_empty())
             {

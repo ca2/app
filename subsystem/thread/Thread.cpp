@@ -212,7 +212,7 @@ bool Thread::suspendThread()
    m_manualresethappeningLetRun.clear();
 //return   m_pthreadimplementation->suspendThread();
    //m_pthreadimplementation->m_suspended = true;
-    //return true;
+    return true;
 }
 
 
@@ -232,7 +232,7 @@ bool Thread::resumeThread()
 //    pthread_mutex_unlock(
 //        &m_pthreadimplementation->m_suspendMutex);
 //
-//    return true;
+    return true;
 }
 
 

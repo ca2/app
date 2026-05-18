@@ -43,7 +43,7 @@ namespace gpu
          defer_constructø(m_ptexture);
          //m_ptexture->m_pgpucontext = m_pgpucontext->m_pgpurenderer;
 
-         ::gpu::texture_attributes textureattributes(int_rectangle{API_CHANGED_ARGUMENT, width, height});
+         ::gpu::texture_attributes textureattributes(i32_rectangle{API_CHANGED_ARGUMENT, width, height});
          textureattributes.m_iBitsPerChannel = 16;
          textureattributes.m_iChannelCount = 2;
          textureattributes.m_iFloat = 1;

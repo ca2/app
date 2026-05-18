@@ -31,7 +31,7 @@ typedef unsigned long long uptr;
 #else
 
 
-#error "OSBIT should be defined with system default pointer int_size in bit count."
+#error "OSBIT should be defined with system default pointer i32_size in bit count."
 
 
 #endif

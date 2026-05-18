@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void prototype_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::int_rectangle * prectParam, const int_rectangle & rectangleX, bool bStretch)
+   //void prototype_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::i32_rectangle * prectParam, const i32_rectangle & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -355,14 +355,14 @@ namespace user
    }
 
 
-   void prototype_impl::on_configure(const ::int_rectangle & rectangle)
+   void prototype_impl::on_configure(const ::i32_rectangle & rectangle)
    {
 
 
    }
 
 
-//   void prototype_impl::on_resize(const ::int_size & size)
+//   void prototype_impl::on_resize(const ::i32_size & size)
 //   {
 //
 //
@@ -517,7 +517,7 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_client_to_screen(::int_rectangle & rectangle)
+   void prototype_impl::viewport_client_to_screen(::i32_rectangle & rectangle)
    {
 
       viewport_client_to_screen(rectangle.top_left());
@@ -527,11 +527,11 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_screen_to_client(::int_rectangle & rectangle)
+   void prototype_impl::viewport_screen_to_client(::i32_rectangle & rectangle)
    {
 
-      viewport_screen_to_client((::int_point &)rectangle.left);
-      viewport_screen_to_client((::int_point &)rectangle.right);
+      viewport_screen_to_client((::i32_point &)rectangle.left);
+      viewport_screen_to_client((::i32_point &)rectangle.right);
 
    }
 
@@ -770,7 +770,7 @@ namespace user
    }
 
 
-   lresult prototype_impl::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult prototype_impl::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::i32_point& point)
    {
 
       return message_call(emessage, wparam, lparam, point);
@@ -1025,7 +1025,7 @@ namespace user
 
          pmessage->m_nType = static_cast <unsigned int> (wparam);
 
-         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
+         pmessage->m_size = ::i32_size(lparam_int_x(lparam), lparam_int_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -1177,7 +1177,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::int_point& point)
+   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::i32_point& point)
    {
 
       return nullptr;
@@ -1185,7 +1185,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags)
+   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::i32_point& point, unsigned int nFlags)
    {
 
       return nullptr;
@@ -1414,7 +1414,7 @@ namespace user
    }
 
 
-   void prototype_impl::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void prototype_impl::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       if (!m_puserinteraction)
@@ -1990,7 +1990,7 @@ namespace user
    }
 
 
-   lresult prototype_impl::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult prototype_impl::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::i32_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -2126,7 +2126,7 @@ namespace user
    //}
 
 
-   void prototype_impl::get_rect_normal(::int_rectangle * prectangle)
+   void prototype_impl::get_rect_normal(::i32_rectangle * prectangle)
    {
 
       *prectangle = m_puserinteraction->screen_rectangle();
@@ -2923,7 +2923,7 @@ namespace user
    //}
 
 
-   //void prototype_impl::InvalidateRect(::int_rectangle const &,bool)
+   //void prototype_impl::InvalidateRect(::i32_rectangle const &,bool)
    //{
 
 
@@ -2937,7 +2937,7 @@ namespace user
    //}
 
 
-   //void prototype_impl::ValidateRect(::int_rectangle const &)
+   //void prototype_impl::ValidateRect(::i32_rectangle const &)
    //{
 
 
@@ -3058,14 +3058,14 @@ namespace user
 
    //}
 
-   void prototype_impl::_raw_client_to_screen(::int_point & point)
+   void prototype_impl::_raw_client_to_screen(::i32_point & point)
    {
 
       m_puserinteraction->client_to_screen(e_layout_design)(point);
 
    }
 
-   void prototype_impl::_raw_screen_to_client(::int_point& point)
+   void prototype_impl::_raw_screen_to_client(::i32_point& point)
    {
 
       m_puserinteraction->screen_to_client(e_layout_design)(point);

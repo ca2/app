@@ -80,7 +80,7 @@
 //	}
 //
 //
-//	::int_size container::size()
+//	::i32_size container::size()
 //	{
 //
 //		return {};

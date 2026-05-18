@@ -46,7 +46,7 @@ namespace innate_subsystem
 //    }
 //
 //    //void PaintWindow::onPaint(DeviceContextInterface *dc, PAINTSTRUCT *paintStruct)
-//     void PaintWindow::onPaint(DeviceContextInterface *pdevicecontext,const ::int_rectangle & rectangle)
+//     void PaintWindow::onPaint(DeviceContextInterface *pdevicecontext,const ::i32_rectangle & rectangle)
 //     {
 //
 //        m_pparticleThis->onPaint(pdevicecontext, rectangle);

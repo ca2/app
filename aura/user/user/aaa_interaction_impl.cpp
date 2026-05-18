@@ -59,7 +59,7 @@ bool is_ubunt() { return false; }
 #define MORE_LOG
 
 
-int_point g_pointLastBottomRight;
+i32_point g_pointLastBottomRight;
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
@@ -424,8 +424,8 @@ namespace user
    //   return false;
    //}
 
-   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::int_point * pptDst,::int_size * psize,
-   //      ::draw2d::graphics * pDCSrc,::int_point * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,unsigned int dwFlags)
+   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::i32_point * pptDst,::i32_size * psize,
+   //      ::draw2d::graphics * pDCSrc,::i32_point * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,unsigned int dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(pDCDst);
    //   __UNREFERENCED_PARAMETER(pptDst);
@@ -1349,7 +1349,7 @@ namespace user
 #endif
       {
 
-         ::int_point pointInvalid; // For long future hope still : Invalid
+         ::i32_point pointInvalid; // For long future hope still : Invalid
 
          minimum(pointInvalid.x);
          minimum(pointInvalid.y);
@@ -1358,7 +1358,7 @@ namespace user
 
          //::pointer<::user::interaction>pinteraction;
 
-         //::int_rectangle rectangleUi;
+         //::i32_rectangle rectangleUi;
 
          //
 
@@ -1738,7 +1738,7 @@ namespace user
    }
 
 
-   void interaction_impl::_on_mouse_move_step(const ::int_point &pointCursor, bool bMouseLeave)
+   void interaction_impl::_on_mouse_move_step(const ::i32_point &pointCursor, bool bMouseLeave)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1780,7 +1780,7 @@ namespace user
    }
 
 
-   //   void interaction_impl::mouse_hover_step(const __status < ::int_point > & statusPointCursor)
+   //   void interaction_impl::mouse_hover_step(const __status < ::i32_point > & statusPointCursor)
    //   {
    //
    //      decltype(m_uiptraMouseHover) uia;
@@ -2652,13 +2652,13 @@ namespace user
       //   if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
       //   {
       //      pmouse->m_bTranslated = true;
-      //      ::int_rectangle rectWindow;
+      //      ::i32_rectangle rectWindow;
       //      //            if(m_bScreenRelativeMouseMessagePosition)
       //      //            {
       //      //
       //      //               INFO("Screen Relative Mouse Message Position");
       //      //
-      //      //               ::int_rectangle rectWindow32;
+      //      //               ::i32_rectangle rectWindow32;
       //      //
       //      //               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
       //      //
@@ -2677,7 +2677,7 @@ namespace user
       //      //if (pdisplay->get_monitor_count() > 0)
       //      //{
 
-      //      //   ::int_rectangle rcMonitor;
+      //      //   ::i32_rectangle rcMonitor;
 
       //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
@@ -3350,7 +3350,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::ScrollWindow(int xAmount,int yAmount, const ::int_rectangle * pcrect, const ::int_rectangle * pcrectClip)
+   //void interaction_impl::ScrollWindow(int xAmount,int yAmount, const ::i32_rectangle * pcrect, const ::i32_rectangle * pcrectClip)
    //{
 
    //   __UNREFERENCED_PARAMETER(xAmount);
@@ -3363,7 +3363,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::CalcWindowRect(::int_rectangle * pClientRect,unsigned int nAdjustType)
+   //void interaction_impl::CalcWindowRect(::i32_rectangle * pClientRect,unsigned int nAdjustType)
    //{
 
    //   __UNREFERENCED_PARAMETER(pClientRect);
@@ -3918,7 +3918,7 @@ namespace user
    }
 
 
-   lresult interaction_impl::send_message(const ::atom &atom, wparam wparam, lparam lparam, const ::int_point &point)
+   lresult interaction_impl::send_message(const ::atom &atom, wparam wparam, lparam lparam, const ::i32_point &point)
    {
 
       auto pmessage = m_puserinteraction->get_message(emessage, wparam, lparam);
@@ -4059,7 +4059,7 @@ namespace user
    }
 
 
-   //void interaction_impl::DragDetect(const ::int_point & point) const
+   //void interaction_impl::DragDetect(const ::i32_point & point) const
    //{
    //   __UNREFERENCED_PARAMETER(point);
    //   throw ::interface_only();
@@ -4167,7 +4167,7 @@ namespace user
 
 
    void
-   interaction_impl::MapWindowPoints(::windowing::window *puserinteractionTo, ::int_point *pPoint, unsigned int nCount)
+   interaction_impl::MapWindowPoints(::windowing::window *puserinteractionTo, ::i32_point *pPoint, unsigned int nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -4179,7 +4179,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::windowing::window *puserinteractionTo, ::int_rectangle *prectangle)
+   void interaction_impl::MapWindowPoints(::windowing::window *puserinteractionTo, ::i32_rectangle *prectangle)
    {
       __UNREFERENCED_PARAMETER(puserinteractionTo);
       __UNREFERENCED_PARAMETER(prectangle);
@@ -4198,7 +4198,7 @@ namespace user
    //   throw ::interface_only();
    //}
 
-   //void interaction_impl::GetUpdateRect(::int_rectangle * prectangle,bool bErase)
+   //void interaction_impl::GetUpdateRect(::i32_rectangle * prectangle,bool bErase)
 
    //{
    //   __UNREFERENCED_PARAMETER(prectangle);
@@ -4229,7 +4229,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::InvalidateRect(const ::int_rectangle & rectangle, bool bErase)
+   //void interaction_impl::InvalidateRect(const ::i32_rectangle & rectangle, bool bErase)
    //{
 
    //   __UNREFERENCED_PARAMETER(rectangle);
@@ -4248,7 +4248,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::ValidateRect(const ::int_rectangle & rectangle)
+   //void interaction_impl::ValidateRect(const ::i32_rectangle & rectangle)
    //{
 
    //   __UNREFERENCED_PARAMETER(rectangle);
@@ -4523,7 +4523,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::needs_to_draw(const ::int_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics)
+   //bool interaction_impl::needs_to_draw(const ::i32_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics)
    //{
 
    //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4588,7 +4588,7 @@ namespace user
 
 
    void
-   interaction_impl::RedrawWindow(const ::int_rectangle &rectangleUpdate, ::draw2d::region *prgnUpdate, unsigned int flags)
+   interaction_impl::RedrawWindow(const ::i32_rectangle &rectangleUpdate, ::draw2d::region *prgnUpdate, unsigned int flags)
    {
 
       m_puserinteraction->set_need_redraw();
@@ -4612,7 +4612,7 @@ namespace user
    //}
 
 
-   //::int_point interaction_impl::get_cursor_position() const
+   //::i32_point interaction_impl::get_cursor_position() const
    //{
 
    //   
@@ -4620,7 +4620,7 @@ namespace user
    //   if (!psession)
    //   {
 
-   //      return ::int_point();
+   //      return ::i32_point();
 
    //   }
 
@@ -4685,7 +4685,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const int_rectangle & prc,unsigned int uFlags)
+   //void interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & prc,unsigned int uFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -4902,9 +4902,9 @@ namespace user
 
 
    //int interaction_impl::ScrollWindowEx(int Δx,int Δy,
-   //                                     const ::int_rectangle * prectScroll,
-   //                                       const ::int_rectangle * prectClip,
-   //                                     ::draw2d::region* prgnUpdate,::int_rectangle * pRectUpdate,unsigned int flags)
+   //                                     const ::i32_rectangle * prectScroll,
+   //                                       const ::i32_rectangle * prectClip,
+   //                                     ::draw2d::region* prgnUpdate,::i32_rectangle * pRectUpdate,unsigned int flags)
    //{
 
    //   __UNREFERENCED_PARAMETER(Δx);
@@ -4933,7 +4933,7 @@ namespace user
    //}
 
 
-   ::user::interaction *interaction_impl::ChildWindowFromPoint(const ::int_point &point)
+   ::user::interaction *interaction_impl::ChildWindowFromPoint(const ::i32_point &point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -4945,7 +4945,7 @@ namespace user
    }
 
 
-   ::user::interaction *interaction_impl::ChildWindowFromPoint(const ::int_point &point, unsigned int nFlags)
+   ::user::interaction *interaction_impl::ChildWindowFromPoint(const ::i32_point &point, unsigned int nFlags)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -5638,7 +5638,7 @@ namespace user
 
 #endif
 
-      //::int_rectangle rectangleWindow;
+      //::i32_rectangle rectangleWindow;
 
       //m_puserinteraction->window_rectangle(rectangleWindow);
 
@@ -5864,7 +5864,7 @@ namespace user
       }
 
 
-      //::int_size sizeDrawn;
+      //::i32_size sizeDrawn;
 
       //single_lock synchronouslockObjects(system()->draw2d()->get_object_list_mutex());
 
@@ -7004,7 +7004,7 @@ namespace user
    }
 
 
-   //CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::int_rectangle & rectangle)
+   //CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::i32_rectangle & rectangle)
    //{
 
    //   ASSERT(::is_set(pinteraction));
@@ -7013,7 +7013,7 @@ namespace user
 
    //   ASSERT(puiParent != nullptr);
 
-   //   ::int_rectangle rectangleOld;
+   //   ::i32_rectangle rectangleOld;
 
    //   pinteraction->window_rectangle(rectangleOld);
 
@@ -8361,7 +8361,7 @@ namespace user
 //         //}
 //         // END Commented on Windows
 //
-//         ::int_point pointBottomRight = pointOutput + sizeOutput;
+//         ::i32_point pointBottomRight = pointOutput + sizeOutput;
 //
 //         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
 //
@@ -8739,7 +8739,7 @@ namespace user
 //             && !m_puserinteraction->is_window_docking())
 
 
-   void interaction_impl::on_configure(const ::int_rectangle &rectangle)
+   void interaction_impl::on_configure(const ::i32_rectangle &rectangle)
    {
 
       if (!m_puserinteraction->is_window_repositioning()
@@ -8759,7 +8759,7 @@ namespace user
    }
 
 
-   void interaction_impl::_on_configure(const ::int_rectangle &rectangle)
+   void interaction_impl::_on_configure(const ::i32_rectangle &rectangle)
    {
 
       if (m_puserinteraction->const_layout().sketch().display() !=
@@ -8834,7 +8834,7 @@ namespace user
 
    }
 
-//   void interaction_impl::on_resize(const ::int_size & size)
+//   void interaction_impl::on_resize(const ::i32_size & size)
 //   {
 //
 //      if (m_puserinteraction->const_layout().sketch().display() != e_display_iconic)
@@ -9198,11 +9198,11 @@ namespace user
 
       non_top_most_upper_window_rects(recta);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       m_puserinteraction->window_rectangle(rectangle);
 
-      ::int_rectangle rTest;
+      ::i32_rectangle rTest;
 
       for (auto &rHigher: recta)
       {
@@ -9237,14 +9237,14 @@ namespace user
 
       }
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       m_puserinteraction->window_rectangle(rectangle);
 
       for (auto &rHigher: ra)
       {
 
-         ::int_rectangle rTest;
+         ::i32_rectangle rTest;
 
          if (rTest.intersect(rHigher, rectangle))
          {
@@ -9295,7 +9295,7 @@ namespace user
       }
 
       // Second Remove Partial Intersections which:
-      // Intersection area is less than third the area of the int_rectangle with bigger area.
+      // Intersection area is less than third the area of the i32_rectangle with bigger area.
 
       restartPartialIntersectionExclusionEx:
 
@@ -9349,7 +9349,7 @@ namespace user
    }
 
 
-   long long interaction_impl::opaque_area(const ::int_rectangle &rect)
+   long long interaction_impl::opaque_area(const ::i32_rectangle &rect)
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
@@ -9358,7 +9358,7 @@ namespace user
 
       ::color::color colorTransparent(0);
 
-      ::int_rectangle rectangle(rect);
+      ::i32_rectangle rectangle(rect);
 
       m_puserinteraction->screen_to_client()(rectangle);
 
@@ -9367,10 +9367,10 @@ namespace user
    }
 
 
-   long long interaction_impl::_001GetRectTopLeftWeightedArea(const ::int_rectangle &rect)
+   long long interaction_impl::_001GetRectTopLeftWeightedArea(const ::i32_rectangle &rect)
    {
 
-      ::int_rectangle rectangle(rect);
+      ::i32_rectangle rectangle(rect);
 
       m_puserinteraction->screen_to_client()(rectangle);
 
@@ -9388,7 +9388,7 @@ namespace user
 
       ::color::color colorTransparent(0);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       m_puserinteraction->window_rectangle(rectangle);
 
@@ -9406,7 +9406,7 @@ namespace user
 
       ::color::color colorTransparent(0);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       m_puserinteraction->window_rectangle(rectangle);
 

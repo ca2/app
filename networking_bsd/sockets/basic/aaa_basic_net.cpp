@@ -538,7 +538,7 @@
 //      {
 //         struct sockaddr_in *point = (struct sockaddr_in *)sa;
 //         ::networking_bsd::address_pointer addr;
-//         addr(aaa_primitive_new ::networking_bsd::ipv4_address(get_app(), *int_point));
+//         addr(aaa_primitive_new ::networking_bsd::ipv4_address(get_app(), *i32_point));
 //         return addr;
 //      }
 //      break;
@@ -547,7 +547,7 @@
 //      {
 //         struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
 //         ::networking_bsd::address_pointer addr;
-//         addr(aaa_primitive_new ::networking_bsd::ipv6_address(get_app(), *int_point));
+//         addr(aaa_primitive_new ::networking_bsd::ipv6_address(get_app(), *i32_point));
 //         return addr;
 //      }
 //      break;

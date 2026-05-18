@@ -111,7 +111,7 @@
 //{
 //   return ::rect_TEMPLATE((const ::long_long_rectangle&)* this);
 //}
-//TEMPLATE bool long_long_rectangle::contains(::long_long_point int_point) const noexcept
+//TEMPLATE bool long_long_rectangle::contains(::long_long_point i32_point) const noexcept
 //{
 //   return ::contains(this, point);
 //}
@@ -195,7 +195,7 @@
 //{
 //   move_to_x(x); move_to_y(y);
 //}
-//TEMPLATE void long_long_rectangle::move_to(::long_long_point int_point) noexcept
+//TEMPLATE void long_long_rectangle::move_to(::long_long_point i32_point) noexcept
 //{
 //   move_to_x(point.x); move_to_y(point.y);
 //}
@@ -259,11 +259,11 @@
 //{
 //   ::unite(this, this, &long_long_rectangle);
 //}
-//long_long_rectangle long_long_rectangle::operator +(::long_long_point int_point) const noexcept
+//long_long_rectangle long_long_rectangle::operator +(::long_long_point i32_point) const noexcept
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, point.x, point.y); return long_long_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator-(::long_long_point int_point) const noexcept
+//long_long_rectangle long_long_rectangle::operator-(::long_long_point i32_point) const noexcept
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -point.x, -point.y); return long_long_rectangle;
 //}
@@ -388,9 +388,9 @@
 //   {
 //      return (const double_rectangle&)this;
 //   }
-//  TEMPLATE bool double_rectangle::contains(::double_point int_point) const noexcept
+//  TEMPLATE bool double_rectangle::contains(::double_point i32_point) const noexcept
 //   {
-//      return ::contains((const double_rectangle&)this, int_point) != false;
+//      return ::contains((const double_rectangle&)this, i32_point) != false;
 //   }
 //  TEMPLATE void double_rectangle::set(double x1, double y1, double x2, double y2) noexcept
 //   {
@@ -433,7 +433,7 @@
 //   {
 //      ::inflate(this, x, y);
 //   }
-//  TEMPLATE void double_rectangle::inflate(::double_size int_size) noexcept
+//  TEMPLATE void double_rectangle::inflate(::double_size i32_size) noexcept
 //   {
 //      ::inflate(this, size.cx, size.cy);
 //   }
@@ -441,7 +441,7 @@
 //   {
 //      ::inflate(this, -x, -y);
 //   }
-//  TEMPLATE void double_rectangle::deflate(::double_size int_size) noexcept
+//  TEMPLATE void double_rectangle::deflate(::double_size i32_size) noexcept
 //   {
 //      ::inflate(this, -size.cx, -size.cy);
 //   }
@@ -449,11 +449,11 @@
 //   {
 //      ::offset(this, x, y);
 //   }
-//  TEMPLATE void double_rectangle::offset(::double_point int_point) noexcept
+//  TEMPLATE void double_rectangle::offset(::double_point i32_point) noexcept
 //   {
 //      ::offset(this, point.x, point.y);
 //   }
-//  TEMPLATE void double_rectangle::offset(::double_size int_size) noexcept
+//  TEMPLATE void double_rectangle::offset(::double_size i32_size) noexcept
 //   {
 //      ::offset(this, size.cx, size.cy);
 //   }
@@ -469,7 +469,7 @@
 //   {
 //      move_to_x(x); move_to_y(y);
 //   }
-//  TEMPLATE void double_rectangle::move_to(::double_point int_point) noexcept
+//  TEMPLATE void double_rectangle::move_to(::double_point i32_point) noexcept
 //   {
 //      move_to_x(point.x); move_to_y(point.y);
 //   }
@@ -517,11 +517,11 @@
 //   {
 //      return !::is_equal((const double_rectangle&)this, (const double_rectangle&)& double_rectangle) != false;
 //   }
-//  TEMPLATE void double_rectangle::operator +=(::double_point int_point) noexcept
+//  TEMPLATE void double_rectangle::operator +=(::double_point i32_point) noexcept
 //   {
 //      ::offset(this, point.x, point.y);
 //   }
-//  TEMPLATE void double_rectangle::operator +=(::double_size int_size) noexcept
+//  TEMPLATE void double_rectangle::operator +=(::double_size i32_size) noexcept
 //   {
 //      ::offset(this, size.cx, size.cy);
 //   }
@@ -531,11 +531,11 @@
 //      inflate(RECT_TEMPLATE);
 //   }
 //
-//  TEMPLATE void double_rectangle::operator-=(::double_point int_point) noexcept
+//  TEMPLATE void double_rectangle::operator-=(::double_point i32_point) noexcept
 //   {
 //      ::offset(this, -point.x, -point.y);
 //   }
-//  TEMPLATE void double_rectangle::operator-=(::double_size int_size) noexcept
+//  TEMPLATE void double_rectangle::operator-=(::double_size i32_size) noexcept
 //   {
 //      ::offset(this, -size.cx, -size.cy);
 //   }
@@ -553,19 +553,19 @@
 //   {
 //      ::unite(this, this, (const double_rectangle&)& double_rectangle);
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator +(::double_point int_point) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator +(::double_point i32_point) const noexcept
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, point.x, point.y); return double_rectangle;
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator-(::double_point int_point) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator-(::double_point i32_point) const noexcept
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, -point.x, -point.y); return double_rectangle;
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator +(::double_size int_size) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator +(::double_size i32_size) const noexcept
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, size.cx, size.cy); return double_rectangle;
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator-(::double_size int_size) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator-(::double_size i32_size) const noexcept
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, -size.cx, -size.cy); return double_rectangle;
 //   }
@@ -675,7 +675,7 @@
 //
 //   }
 //
-//  TEMPLATE void double_rectangle::CenterOf(const double_rectangle & RECT_TEMPLATE, ::double_size int_size)
+//  TEMPLATE void double_rectangle::CenterOf(const double_rectangle & RECT_TEMPLATE, ::double_size i32_size)
 //
 //   {
 //      double cx = size.cx;

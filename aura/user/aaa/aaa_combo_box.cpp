@@ -170,7 +170,7 @@ namespace user
 
       int cy = cx * 2 / 3;
 
-      ::int_point pointCenter = rectangleDropDown.center();
+      ::i32_point pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer combo_box::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       ::double_rectangle rectangleElement;

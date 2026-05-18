@@ -14,10 +14,10 @@
 //template < prototype_size SIZE >
 //inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 //
-//inline int_point& top_left(const ::int_rectangle* prectangle) { return *(int_point*)prectangle; }
-//inline int_point& bottom_right(const ::int_rectangle* prectangle) { return *(int_point*)& prectangle->right; }
-//inline int_point& top_left(const ::int_rectangle& rectangle) { return top_left(&rectangle); }
-//inline int_point& bottom_right(const ::int_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline i32_point& top_left(const ::i32_rectangle* prectangle) { return *(i32_point*)prectangle; }
+//inline i32_point& bottom_right(const ::i32_rectangle* prectangle) { return *(i32_point*)& prectangle->right; }
+//inline i32_point& top_left(const ::i32_rectangle& rectangle) { return top_left(&rectangle); }
+//inline i32_point& bottom_right(const ::i32_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
 //inline long_long_point& top_left(const ::long_long_rectangle* prectangle) { return *(long_long_point*)prectangle; }
@@ -85,7 +85,7 @@
 //
 //
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-////inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)int_point) {}
+////inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)i32_point) {}
 ////
 ////
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

@@ -166,10 +166,10 @@ namespace subsystem_bsd_sockets
    //protected:
       // Returns a SOCKET object with performed accept operation.
       // Throws SocketException on an error.
-      virtual int getAcceptedSocket(struct sockaddr_in *addr);
+      virtual socket_t getAcceptedSocket(struct sockaddr_in *addr);
 
       // Closes old socket and sets handler to new one
-      virtual void set(int socket);
+      virtual void set(socket_t socket);
 
       /**
        * Mutex for thread-safety.

@@ -17,13 +17,13 @@ namespace menu
 
 //      ::pointer<::menu::menu>                 m_pmenuParent;
 //      ::pointer<::menu::item>                 m_pmenuitem;
-//      ::int_size                             m_sizeMinimum;
+//      ::i32_size                             m_sizeMinimum;
 //      ::pointer<::menu::item>                   m_pmenuitemShowSubMenu2;
 //      bool                                   m_bHideSubMenu2;
 //      ::pointer<::channel>                   m_pchannelNotify;
 //      bool                                   m_bCloseParentOnClose;
 //      bool                                   m_bOwnItem;
-//      ::int_size                             m_size;
+//      ::i32_size                             m_size;
 //      double                                 m_dCheckBoxSize;
 //      bool                                   m_bAutoDelete;
 //      double                                 m_dHeaderHeight;
@@ -31,9 +31,9 @@ namespace menu
 //      int                                    m_iHoverSubMenu;
 //      unsigned int                                    m_dwOut;
 //      ::pointer<menu>                        m_pmenuSubMenu;
-//      int_point                              m_pointTrack;
+//      i32_point                              m_pointTrack;
 //      bool                                   m_bUsePositionHint;
-//      int_point                              m_pointPositionHint;
+//      i32_point                              m_pointPositionHint;
 //      int                                    m_iFlags;
 //      bool                                   m_bPositionHint;
 //      bool                                   m_bInline;
@@ -47,7 +47,7 @@ namespace menu
       menu();
       ~menu() override;
 //
-//      ::int_size get_window_minimum_size() override;
+//      ::i32_size get_window_minimum_size() override;
 //
 //      bool is_menu() const override;
 //
@@ -63,8 +63,8 @@ namespace menu
 //      virtual bool contains_menu_item(::menu::item * pitem, bool bRecursive = true) const;
 //
 //      virtual void update_flags(int iFlags);
-//      virtual void update_position(const ::int_point & point);
-//      virtual void hints(int iFlags, const ::int_point & point);
+//      virtual void update_position(const ::i32_point & point);
+//      virtual void hints(int iFlags, const ::i32_point & point);
 //
 //      virtual bool create_menu(::channel * pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
 //      virtual bool create_inline_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
@@ -126,7 +126,7 @@ namespace menu
 //      virtual void update_command(::menu::item * pitemParent);
 //
 //      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
-//      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::int_rectangle * prectangle, const ::int_rectangle & lpcrectBound);
+//      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 //
 //
 //

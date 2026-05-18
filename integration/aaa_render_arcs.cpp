@@ -14,7 +14,7 @@ namespace app_integration
 {
 
 
-   void render::draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle& r, angle angleStart, angle angleAngle, bool bPath)
+   void render::draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle& r, angle angleStart, angle angleAngle, bool bPath)
    {
 
       auto psystem = system();
@@ -57,11 +57,11 @@ namespace app_integration
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_size size;
+      ::i32_size size;
 
       size = size1.maximum(size2);
 
-      ::int_rectangle rectangleBack(r);
+      ::i32_rectangle rectangleBack(r);
 
       rectangleBack.deflate(2, 2);
 
@@ -205,7 +205,7 @@ namespace app_integration
       angleaStart.add(45.0_degree);
       angleaAngle.add(-100.0_degree);
 
-      ::int_rectangle rClient(m_rectangle);
+      ::i32_rectangle rClient(m_rectangle);
 
       if (__bool(get_app()->application_properties().m_echeckSimple))
       {
@@ -222,7 +222,7 @@ namespace app_integration
 
       int iColumnCount = 8;
 
-      int_rectangle r;
+      i32_rectangle r;
 
       r.top = 0;
 

@@ -795,7 +795,7 @@ namespace windows
 
       HWND hwndCapture = nullptr;
 
-      if (GetGUIThreadInfo((DWORD)itask.m_i32, &info))
+      if (GetGUIThreadInfo((DWORD)itask.m_i, &info))
       {
 
          hwndCapture = info.hwndCapture;
@@ -821,7 +821,7 @@ namespace windows
 
       info.cbSize = sizeof(GUITHREADINFO);
 
-      if (::GetGUIThreadInfo((DWORD)itask.m_i32, &info))
+      if (::GetGUIThreadInfo((DWORD)itask.m_i, &info))
       {
 
          if (info.hwndCapture == hwnd)
@@ -833,19 +833,19 @@ namespace windows
 
          DWORD currentThreadId = ::GetCurrentThreadId();
 
-         if ((DWORD)itask.m_i32 != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, TRUE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, TRUE);
 
          }
 
          ::SetCapture(hwnd);
 
-         if ((DWORD)itask.m_i32 != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, FALSE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, FALSE);
 
          }
 
@@ -878,7 +878,7 @@ namespace windows
 
       info.cbSize = sizeof(GUITHREADINFO);
 
-      if (::GetGUIThreadInfo((DWORD)itask.m_i32, &info))
+      if (::GetGUIThreadInfo((DWORD)itask.m_i, &info))
       {
 
          if (info.hwndCapture != hwnd)
@@ -890,19 +890,19 @@ namespace windows
 
          DWORD currentThreadId = ::GetCurrentThreadId();
 
-         if ((DWORD)itask.m_i32 != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, TRUE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, TRUE);
 
          }
 
          ::ReleaseCapture();
 
-         if ((DWORD)itask.m_i32 != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, FALSE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, FALSE);
 
          }
 
@@ -1150,11 +1150,12 @@ namespace operating_system
    const character_count nameLength = sizeof(consoleClassName) / sizeof(WCHAR) + 1;
    WCHAR className[nameLength];
    GetClassNameW(hwnd, className, nameLength);
+   ::i32_rectangle rectangle;
    if (wcscmp(consoleClassName, className) == 0)
    {
-      RECT rectangle;
-      GetWindowRect(hwnd, &rectangle);
-      rectangle = rectangle;
+      RECT rect;
+      GetWindowRect(hwnd, &rect);
+      rectangle = rect;
    }
    return rectangle;
    

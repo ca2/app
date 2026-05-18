@@ -20,22 +20,20 @@ c_errno::c_errno() :
 #ifdef WINDOWS
 
 
-c_errno::c_errno(errno_t iErrNo) :
+c_errno::c_errno(c_errno_t, errno_t iErrNo) :
    m_iErrNo(iErrNo)
 {
 
 
 }
 
+#else
+
+c_errno::c_errno(c_errno_t, int iErrorNumber) : m_iErrNo(iErrorNumber) {}
 
 #endif
 
-c_errno::c_errno(c_errno_t, int iErrorNumber) :
-   m_iErrNo(iErrorNumber)
-{
 
-
-}
 
 
 c_errno::c_errno(const c_errno & errornumber) :

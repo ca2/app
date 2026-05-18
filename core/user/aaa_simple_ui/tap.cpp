@@ -170,7 +170,7 @@ namespace simple_ui
    bool tap::is_hover()
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
@@ -215,7 +215,7 @@ auto pwindowing = windowing();
 
 #endif
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 
@@ -245,7 +245,7 @@ auto pwindowing = windowing();
 
          color32_t crBorderIn;
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 
@@ -384,13 +384,13 @@ auto pwindowing = windowing();
 
          auto pbrush = createø < ::draw2d::brush > ();
 
-         pbrush->CreateLinearGradientBrush(int_point(rectangleX.left, rectangleX.top - 1), int_point(rectangleX.left, rectangleX.top + iBorderH + 2), crOut, crIn);
+         pbrush->CreateLinearGradientBrush(i32_point(rectangleX.left, rectangleX.top - 1), i32_point(rectangleX.left, rectangleX.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rectangle(::int_rectangle(rectangleX.left + 1, rectangleX.top + 1, (int)rectangleX.width(), iBorderH), br);
+         pgraphics->fill_rectangle(::i32_rectangle(rectangleX.left + 1, rectangleX.top + 1, (int)rectangleX.width(), iBorderH), br);
 
-         pbrush->CreateLinearGradientBrush(int_point(rectangleX.left, rectangleX.top + iBorderH - 1), int_point(rectangleX.left, rectangleX.top + iBorderH * 2 + 2), crIn, crOut);
+         pbrush->CreateLinearGradientBrush(i32_point(rectangleX.left, rectangleX.top + iBorderH - 1), i32_point(rectangleX.left, rectangleX.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rectangle(::int_rectangle(rectangleX.left + 1, rectangleX.top + iBorderH, rectangleX.left + (int)rectangleX.width(), rectangleX.top + iBorderH + iBorderH), br);
+         pgraphics->fill_rectangle(::i32_rectangle(rectangleX.left + 1, rectangleX.top + iBorderH, rectangleX.left + (int)rectangleX.width(), rectangleX.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen ppen1(crBorderOut);
 
@@ -400,7 +400,7 @@ auto pwindowing = windowing();
 
          ppen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rectangle(::int_rectangle(rectangleX.left + 1, rectangleX.top + 1, rectangleX.left + (int)rectangleX.width() - 2, rectangleX.top + iBorderH * 2 - 2), ppen);
+         pgraphics->draw_rectangle(::i32_rectangle(rectangleX.left + 1, rectangleX.top + 1, rectangleX.left + (int)rectangleX.width() - 2, rectangleX.top + iBorderH * 2 - 2), ppen);
 
       }
 
@@ -417,7 +417,7 @@ auto pwindowing = windowing();
    void tap::simple_ui_draw_text(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -518,7 +518,7 @@ auto pwindowing = windowing();
    void tap::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 

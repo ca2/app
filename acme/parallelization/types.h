@@ -95,25 +95,25 @@ public:
 
 #ifdef PARALLELIZATION_PTHREAD
 
-	hthread_t	m_i32;
+	hthread_t	m_i;
 	
-	itask(hthread_t i):m_i32(i) {}
+	itask(hthread_t i):m_i(i) {}
 	
 #else
 
-	iptr		m_i32;
+	iptr		m_i;
 	
-	itask(iptr i):m_i32(i) {}
+	itask(iptr i):m_i(i) {}
 	
 #endif
 
-	itask():m_i32{} {}
+	itask():m_i{} {}
 	
-	itask(nullptr_t):m_i32{} {}
+	itask(nullptr_t):m_i{} {}
 
-	itask(const itask & i):m_i32(i.m_i32) {}	
+	itask(const itask & i):m_i(i.m_i) {}	
 	
-	itask & operator = (const itask & i) {m_i32 = i.m_i32; return *this;}
+	itask & operator = (const itask & i) {m_i = i.m_i; return *this;}
 
 	bool operator == (const itask & i) const;
 	
@@ -123,7 +123,7 @@ public:
 	
 	bool operator !() const { return is_null(); }
 
-	operator ::iptr() const { return *(::iptr*)&m_i32; }
+	operator ::iptr() const { return *(::iptr*)&m_i; }
 	
 };
 

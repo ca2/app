@@ -146,7 +146,7 @@ namespace coding
 
       auto rectangleClient = this->rectangle();
 
-      ::int_point p;
+      ::i32_point p;
 
       p.x = m_iLeftMargin + m_iLeftWidth + 10;
 

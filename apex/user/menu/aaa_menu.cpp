@@ -46,7 +46,7 @@ menu::~menu()
 //   }
 //
 //
-//   void menu::update_position(const ::int_point & point)
+//   void menu::update_position(const ::i32_point & point)
 //   {
 //
 //      m_bPositionHint = true;
@@ -56,7 +56,7 @@ menu::~menu()
 //   }
 //
 //
-//   void menu::hints(int iFlags, const ::int_point & point)
+//   void menu::hints(int iFlags, const ::i32_point & point)
 //   {
 //
 //      update_flags(iFlags);
@@ -664,7 +664,7 @@ menu::~menu()
 //   //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
 //   //{
 //
-//   //   ::int_point point = m_pointTrack;
+//   //   ::i32_point point = m_pointTrack;
 //
 //   //   if (get_parent() != nullptr)
 //   //   {
@@ -822,14 +822,14 @@ menu::~menu()
 //
 //   //   }
 //
-//   //   ::int_rectangle rectangleWindow;
+//   //   ::i32_rectangle rectangleWindow;
 //
 //   //   rectangleWindow.left = point.x;
 //   //   rectangleWindow.top = point.y;
 //   //   rectangleWindow.right = rectangleWindow.left + m_size.cx;
 //   //   rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 //
-//   //   ::int_rectangle rectangleMonitor;
+//   //   ::i32_rectangle rectangleMonitor;
 //
 //   //   auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 //   //
@@ -1012,7 +1012,7 @@ menu::~menu()
 //      ////
 //      ////                           m_psubmenu->m_pmenuParent = this;
 //      ////
-//      ////                           ::int_rectangle rectangle;
+//      ////                           ::i32_rectangle rectangle;
 //      ////
 //      ////                           ptopic->user_interaction()->window_rectangle(rectangle);
 //      ////
@@ -1186,7 +1186,7 @@ menu::~menu()
 //
 //      m_pmenuSubMenu = __initialize(allocateø ::user::menu(pmenuitem));
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      pmenuitem->m_puserinteraction->window_rectangle(rectangle);
 //
@@ -1340,7 +1340,7 @@ menu::~menu()
 //
 //            //   m_psubmenu->initialize(this);
 //
-//            //   ::int_rectangle rectangle;
+//            //   ::i32_rectangle rectangle;
 //
 //            //   pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
 //
@@ -1530,7 +1530,7 @@ menu::~menu()
 //      }
 //
 //
-//      int_size menu::get_window_minimum_size()
+//      i32_size menu::get_window_minimum_size()
 //      {
 //
 //         return m_sizeMinimum;
@@ -1565,7 +1565,7 @@ menu::~menu()
 //         //else
 //         //{
 //
-//         //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
+//         //   ::i32_rectangle * prectangle = (::i32_rectangle *)pusermessage->m_lparam.m_lparam;
 //
 //         //   prectangle->left = m_pointTrack.x;
 //
@@ -1884,7 +1884,7 @@ menu::~menu()
 //
 //         }
 //
-//         ::int_point point;
+//         ::i32_point point;
 //
 //         if (get_parent() == nullptr)
 //         {
@@ -1960,7 +1960,7 @@ menu::~menu()
 //
 //         //calcsize.m_pgraphics = pgraphics;
 //
-//         ::int_size size;
+//         ::i32_size size;
 //
 //         if (m_bCloseButton)
 //         {
@@ -2103,7 +2103,7 @@ menu::~menu()
 //
 //         }
 //
-//         //::int_size sizeSeparator;
+//         //::i32_size sizeSeparator;
 //
 //         //for (int i = 0; i < pmenuitema->get_size(); i++)
 //         //{
@@ -2234,14 +2234,14 @@ menu::~menu()
 //         if (get_parent() == nullptr)
 //         {
 //
-//            ::int_rectangle rectangleWindow;
+//            ::i32_rectangle rectangleWindow;
 //
 //            rectangleWindow.left = point.x;
 //            rectangleWindow.top = point.y;
 //            rectangleWindow.right = rectangleWindow.left + m_size.cx;
 //            rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 //
-//            ::int_rectangle rectangleMonitor;
+//            ::i32_rectangle rectangleMonitor;
 //
 //            auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 //

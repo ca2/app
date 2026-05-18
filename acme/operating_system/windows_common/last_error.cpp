@@ -19,6 +19,38 @@ namespace windows
 
    }
 
+   
+
+      ::string last_error::get_error_description() const { ::string strError;
+
+            LPVOID lpMsgBuf;
+            DWORD dwFormatFlags =
+               FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS;
+            FormatMessageW(dwFormatFlags, nullptr, m_uLastError, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+                           (LPWSTR)&lpMsgBuf, 0, nullptr);
+            strError = (LPCWSTR)lpMsgBuf;
+            LocalFree(lpMsgBuf);
+         return strError;
+
+   }
+
+      ::e_status last_error::as_estatus() const
+      {
+
+         if (m_uLastError == ERROR_CANCELLED)
+         {
+            return error_cancelled;
+         }
+         else if (m_uLastError == ERROR_SUCCESS)
+         {
+            return ::success;
+         }
+         else
+         {
+            return error_failed;
+         }
+
+   }
 
 }
 

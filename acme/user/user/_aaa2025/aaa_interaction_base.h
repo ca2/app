@@ -131,7 +131,7 @@
 //   virtual void create_drawing_objects();
 //   virtual void update_drawing_objects();
 //
-//   virtual ::int_point origin();
+//   virtual ::i32_point origin();
 //
 //   //virtual bool defer_perform_entire_reposition_process();
 //
@@ -153,12 +153,12 @@
 //   virtual ::shift_int absolute_to_client();
 //   virtual ::shift_int client_to_absolute();
 //
-//   virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+//   virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 //
 //      // drag_client
 //   void drag_set_capture() override;
-//   bool on_drag_start(::int_point & point, ::item * pitem) override;
-//   ::int_point drag_mouse_cursor_position(::item* pitem, const ::int_point & point) override;
+//   bool on_drag_start(::i32_point & point, ::item * pitem) override;
+//   ::i32_point drag_mouse_cursor_position(::item* pitem, const ::i32_point & point) override;
 //   bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
 //   bool drag_hover(::item * pitem) override;
 //   void drag_release_capture() override;
@@ -166,7 +166,7 @@
 //
 //
 //   // virtual ::micro::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-//   // virtual ::micro::child * nano_user_on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+//   // virtual ::micro::child * nano_user_on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
 //   // virtual void nano_user_add_child(::micro::child * pchild);
 //
 //   virtual ::payload get_result();
@@ -182,14 +182,14 @@
 //
 //   //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 //
-//   void set_position(const ::int_point & point) override;
+//   void set_position(const ::i32_point & point) override;
 //
 //   void destroy() override;
 //
 //   void redraw() override;
 //
-//   virtual void get_client_rectangle(::int_rectangle & rectangle);
-//   ::int_rectangle get_window_rectangle() override;
+//   virtual void get_client_rectangle(::i32_rectangle & rectangle);
+//   ::i32_rectangle get_window_rectangle() override;
 //
 //   void set_capture() override;
 //

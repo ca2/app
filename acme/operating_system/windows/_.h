@@ -25,8 +25,6 @@ namespace windows
       const ::scoped_string & scopedstrCaption,
       ::u32 uType);
 
-   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult &lresult, const ::operating_system::window & operatingsystemwindow, ::u32 message, ::wparam wparam,
-                                                     ::lparam lparam);
 
 
 } // namespace windows

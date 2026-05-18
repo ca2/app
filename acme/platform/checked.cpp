@@ -21,7 +21,7 @@ namespace acme
       if (iErrNo)
       {
 
-         throw ::runtime_check_exception(error_failed, { c_errno(iErrNo) }, "get_errno (error getting error)");
+         throw ::runtime_check_exception(error_failed, {c_errno(c_errno_t{}, iErrNo)}, "get_errno (error getting error)");
 
       }
 
@@ -37,7 +37,8 @@ namespace acme
       if (iErrNo)
       {
 
-         throw ::runtime_check_exception(error_failed, { c_errno(iErrNo) }, "set_errno (error setting error)");
+         throw ::runtime_check_exception(error_failed, {c_errno(c_errno_t {} ,iErrNo)},
+                                         "set_errno (error setting error)");
 
       }
 

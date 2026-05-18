@@ -208,7 +208,7 @@ namespace universal_windows
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
       rStatus.m_attribute = (unsigned char)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
 
-      // get just the low unsigned int of the native_buffer int_size
+      // get just the low unsigned int of the native_buffer i32_size
       ASSERT(findnative_bufferData.nnative_bufferSizeHigh == 0);
       rStatus.m_size = (int)findnative_bufferData.nnative_bufferSizeLow;
 

@@ -23,8 +23,8 @@ int IsChild(oswindow oswindowParent, ::oswindow oswindowCandidateChildOrDescenda
 int show_window(::::acme::windowing::window * pacmewindowingwindow, int nCmdShow);
 //int GetWindowLongA(::::acme::windowing::window * pacmewindowingwindow, int nIndex);
 //int SetWindowLongA(::::acme::windowing::window * pacmewindowingwindow, int nIndex, int l);
-int client_to_screen(::::acme::windowing::window * pacmewindowingwindow, ::int_point * lppoint);
-int screen_to_client(::::acme::windowing::window * pacmewindowingwindow, ::int_point * lppoint);
+int client_to_screen(::::acme::windowing::window * pacmewindowingwindow, ::i32_point * lppoint);
+int screen_to_client(::::acme::windowing::window * pacmewindowingwindow, ::i32_point * lppoint);
 int IsIconic(::::acme::windowing::window * pacmewindowingwindow);
 int IsWindowVisible(::::acme::windowing::window * pacmewindowingwindow);
 

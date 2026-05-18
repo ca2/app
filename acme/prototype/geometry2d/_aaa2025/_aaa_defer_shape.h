@@ -3,7 +3,7 @@
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_box(::int_rectangle & rectangle) const
+inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_box(::i32_rectangle & rectangle) const
 {
 
    return ::get_bounding_box(rectangle, m_shape);
@@ -41,10 +41,10 @@ bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(::double_rectangle &
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(::int_rectangle & rectangle) const
+bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(::i32_rectangle & rectangle) const
 {
 
-   ::int_rectangle r;
+   ::i32_rectangle r;
 
    if (!this->get_bounding_box(r))
    {
@@ -61,7 +61,7 @@ bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(::int_rectangle & re
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-inline bool _shape < SHAPE, ESHAPE, HOLDEE >::contains(const ::int_point & point) const
+inline bool _shape < SHAPE, ESHAPE, HOLDEE >::contains(const ::i32_point & point) const
 {
 
    return ::shape_contains(m_shape, point);

@@ -65,7 +65,7 @@ namespace graphics3d
 		virtual bool is_absolute_mouse_position();
 
 		virtual bool shouldClose();
-		virtual ::int_size size();
+		virtual ::i32_size size();
 		virtual bool wasWindowResized();
 		virtual void resetWindowResizedFlag();
 

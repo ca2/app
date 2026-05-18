@@ -125,7 +125,7 @@ void processInput(GLFWwindow* window)
       glfwSetWindowShouldClose(window, true);
 }
 
-// glfw: whenever the window int_size changed (by OS or user resize) this callback function executes
+// glfw: whenever the window i32_size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {

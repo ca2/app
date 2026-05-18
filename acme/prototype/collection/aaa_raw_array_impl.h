@@ -379,7 +379,7 @@
 ////      throw ::exception(error_bad_argument);
 ////
 ////   if (nGrowBy >= 0)
-////      m_nGrowBy = nGrowBy;  // set aaa_primitive_new int_size
+////      m_nGrowBy = nGrowBy;  // set aaa_primitive_new i32_size
 ////
 ////   if (nNewSize == 0)
 ////   {
@@ -490,7 +490,7 @@
 ////
 ////   if (m_nSize != m_nMaxSize)
 ////   {
-////      // shrink to desired int_size
+////      // shrink to desired i32_size
 ////#ifdef SIZE_T_MAX
 ////      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 ////#endif

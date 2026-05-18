@@ -36,7 +36,7 @@ void button::on_draw(::nano::graphics::device * pnanodevice)
 
    wstring wstrText(m_strText);
 
-   int_rectangle rectangleText(m_rectangle);
+   i32_rectangle rectangleText(m_rectangle);
 
    rectangleText.deflate(4);
 

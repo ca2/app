@@ -21,8 +21,9 @@ public:
    c_errno();
 #ifdef WINDOWS
    c_errno(c_errno_t, errno_t iErrNo);
-#endif
+#else
    c_errno(c_errno_t, int iErrNo);
+#endif
    c_errno(const c_errno & cerrno);
 
 

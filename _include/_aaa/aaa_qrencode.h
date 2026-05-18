@@ -188,7 +188,7 @@ extern QRinput *QRinput_newMQR(int version, QRecLevel level);
  * The data is copied and appended to the input object.
  * @param input input object.
  * @param mode encoding mode.
- * @param int_size size of data (unsigned char).
+ * @param i32_size size of data (unsigned char).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
@@ -267,7 +267,7 @@ extern void QRinput_free(QRinput *input);
 /**
  * Validate the input data.
  * @param mode encoding mode.
- * @param int_size size of data (unsigned char).
+ * @param i32_size size of data (unsigned char).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 invalid arguments.
@@ -446,7 +446,7 @@ extern QRcode *QRcode_encodeString8bitMQR(const ::scoped_string & scopedstring, 
 /**
  * Encode unsigned char stream (may include '\0') in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
- * @param int_size size of the input data.
+ * @param i32_size size of the input data.
  * @param data input data.
  * @param version version of the symbol. If 0, the library chooses the minimum
  *                version for the given input data.
@@ -508,7 +508,7 @@ extern QRcode_List *QRcode_encodeString8bitStructured(const ::scoped_string & sc
  * Create structured symbols from unsigned char stream (may include '\0'). Wholde data
  * are encoded in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
- * @param int_size size of the input data.
+ * @param i32_size size of the input data.
  * @param data input dat.
  * @param version version of the symbol.
  * @param level error correction level.

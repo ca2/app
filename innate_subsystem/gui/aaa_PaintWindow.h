@@ -46,13 +46,13 @@ namespace innate_subsystem
 
    //protected:
       //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
-      virtual void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) = 0;
+      virtual void onPaint(DeviceContextInterface *pdevicecontext, const ::i32_rectangle & rectangle) = 0;
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
       //bool m_bIsDraw;
       //PAINTSTRUCT m_paintStruct;
-      //::int_rectangle m_rectangle;
+      //::i32_rectangle m_rectangle;
       //::pointer < DeviceContext > m_pdevicecontext;
       //HDC m_hdc;
 
@@ -82,13 +82,13 @@ namespace innate_subsystem
 
    //protected:
       //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
-      void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) {  }
+      void onPaint(DeviceContextInterface *pdevicecontext, const ::i32_rectangle & rectangle) {  }
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
       //bool m_bIsDraw;
       //PAINTSTRUCT m_paintStruct;
-      //::int_rectangle m_rectangle;
+      //::i32_rectangle m_rectangle;
       //::pointer < DeviceContext > m_pdevicecontext;
       //HDC m_hdc;
 

@@ -186,7 +186,7 @@ public:
       for(auto point : *this)
       {
 
-         delete int_point;
+         delete i32_point;
 
       }
 

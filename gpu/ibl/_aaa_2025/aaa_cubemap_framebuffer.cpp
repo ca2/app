@@ -41,7 +41,7 @@ namespace gpu
 
          auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         ::int_rectangle rectangleTarget;
+         ::i32_rectangle rectangleTarget;
 
          rectangleTarget.set(0, 0, width, height);
          

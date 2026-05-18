@@ -57,7 +57,7 @@ void message_box::on_draw(::nano::graphics::device * pnanodevice)
 
 
 
-   int_rectangle rectangleText;
+   i32_rectangle rectangleText;
 
    get_client_rectangle(rectangleText);
 

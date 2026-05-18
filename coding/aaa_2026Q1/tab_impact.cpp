@@ -106,14 +106,14 @@ namespace coding
       }
 
       if (pimpactdata->id().m_etype == ::atom::e_type_impact
-         && (pimpactdata->id().as_long_long() & e_impact_multitasking))
+         && (pimpactdata->id().as_i64() & e_impact_multitasking))
       {
 
          auto plogimpact = create_impact < ::coding::log_impact >(pimpactdata);
 
          auto pintegration = get_document()->m_pintegration;
 
-         auto etaskOrdinal = (enum_task)(pimpactdata->id().as_long_long() & 7);
+         auto etaskOrdinal = (enum_task)(pimpactdata->id().as_i64() & 7);
 
          plogimpact->m_etaskOrdinal = etaskOrdinal;
 
@@ -121,7 +121,7 @@ namespace coding
       else
       {
 
-         switch (pimpactdata->id().as_long_long())
+         switch (pimpactdata->id().as_i64())
          {
          case MAIN_IMPACT:
          {

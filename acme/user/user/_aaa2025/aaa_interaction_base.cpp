@@ -445,7 +445,7 @@
 //   }
 //
 //
-//   ::int_point interaction_base::origin()
+//   ::i32_point interaction_base::origin()
 //   {
 //
 //      throw ::exception(error_wrong_state);
@@ -496,7 +496,7 @@
 //   }
 //
 //
-//   ::int_point interaction_base::try_absolute_mouse_position(const ::int_point& point)
+//   ::i32_point interaction_base::try_absolute_mouse_position(const ::i32_point& point)
 //   {
 //
 //      auto p = point;
@@ -516,7 +516,7 @@
 //   }
 //
 //
-//   bool interaction_base::on_drag_start(::int_point& point, ::item* pitem)
+//   bool interaction_base::on_drag_start(::i32_point& point, ::item* pitem)
 //   {
 //
 //      if (pitem->m_item.m_eelement == e_element_client)
@@ -542,7 +542,7 @@
 //   }
 //
 //
-//   ::int_point interaction_base::drag_mouse_cursor_position(::item* pitem, const ::int_point& point)
+//   ::i32_point interaction_base::drag_mouse_cursor_position(::item* pitem, const ::i32_point& point)
 //   {
 //
 //      auto p = try_absolute_mouse_position(point);
@@ -671,7 +671,7 @@
 //   }
 //
 //
-//   void interaction_base::set_position(const ::int_point& point)
+//   void interaction_base::set_position(const ::i32_point& point)
 //   {
 //
 //      m_pwindowbase->set_position(point);
@@ -750,14 +750,14 @@
 //   }
 //
 //
-//   void interaction_base::get_client_rectangle(::int_rectangle& rectangle)
+//   void interaction_base::get_client_rectangle(::i32_rectangle& rectangle)
 //   {
 //
 //
 //   }
 //
 //
-//   int_rectangle interaction_base::get_window_rectangle()
+//   i32_rectangle interaction_base::get_window_rectangle()
 //   {
 //
 //      return {};

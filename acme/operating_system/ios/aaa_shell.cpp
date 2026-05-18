@@ -537,7 +537,7 @@ namespace ios
 ////            nullptr,
 ////            lpiextractimage)))
 ////         {
-////            ::int_size s;
+////            ::i32_size s;
 ////            s.cx = 48;
 ////            s.cy = 48;
 ////            unsigned int dwDepth = 32;
@@ -1343,7 +1343,7 @@ pdirectorysystem->is(strPath))
    //int ios::run()
    //{
 
-   //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the int_size can be customized by the user.
+   //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the i32_size can be customized by the user.
 
    //   return 0;
 
@@ -1884,7 +1884,7 @@ pdirectorysystem->is(strPath))
 //            pimage->Fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//            m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::int_point(), 0);
+//            m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::i32_point(), 0);
 //            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //            m_pimagelistHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
 //            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1894,15 +1894,15 @@ pdirectorysystem->is(strPath))
 //         {
 //
 //            ::image::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
-//            int_size s = m_pimagelist[iSize]->m_pimage->get_size();
+//            i32_size s = m_pimagelist[iSize]->m_pimage->get_size();
 //            ::image::image_pointer pimage;
 //            pimage = create_image(s);
 //            pimage->Fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-//            pimage->get_graphics()->draw(::int_point(), d.size(), d.get_graphics());
+//            pimage->get_graphics()->draw(::i32_point(), d.size(), d.get_graphics());
 //            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//            m_pimagelist[iSize]->m_pimage->g()->draw(::int_point(), d->size(), pimage->get_graphics());
+//            m_pimagelist[iSize]->m_pimage->g()->draw(::i32_point(), d->size(), pimage->get_graphics());
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //         }

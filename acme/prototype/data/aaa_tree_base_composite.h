@@ -60,7 +60,7 @@ namespace data
       virtual void _001OnItemExpand(tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnOpenItem(tree_item * pitem, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(tree_item * pitem, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point);
+      virtual void _001OnItemContextMenu(tree_item * pitem, const ::action_context & action_context, ::user::element * ptree, const ::i32_point & point);
 
       void _erase(::data::tree_item_ptr_array & itemptra);
       void _erase(tree_item * pitem);
@@ -839,7 +839,7 @@ namespace data
    //}
 
    //template < prototype_item ::item * >
-   //void tree < ::item * >::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
+   //void tree < ::item * >::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::element * ptree, const ::i32_point & point)
    //{
 
 

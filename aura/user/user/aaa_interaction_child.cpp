@@ -247,13 +247,13 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::i32_rectangle & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
 //   {
 //
 //      auto pusersystem = allocateø ::user::system();
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      rectangle.set(pinteraction->screen_rect());
 //
@@ -351,7 +351,7 @@ namespace user
    }
 
 
-   //void interaction_child::CalcWindowRect(::int_rectangle * pClientRect, unsigned int nAdjustType)
+   //void interaction_child::CalcWindowRect(::i32_rectangle * pClientRect, unsigned int nAdjustType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pClientRect);
@@ -833,7 +833,7 @@ namespace user
 
          }
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          m_puserinteraction->window_rectangle(rectangleWindow, ::user::e_layout_design);
 
@@ -857,7 +857,7 @@ namespace user
    }
 
 
-   void interaction_child::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void interaction_child::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();

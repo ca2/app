@@ -191,7 +191,7 @@ namespace graphics3d
 
    //   //auto scanCubeMap = pimageCubeMap->m_iScan;
 
-   //   ::int_point point;
+   //   ::i32_point point;
 
    //   ::pointer_array < ::image::image > imagea;
 

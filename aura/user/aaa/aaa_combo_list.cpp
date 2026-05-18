@@ -906,7 +906,7 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer list_box::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       if (m_pcombo == nullptr)

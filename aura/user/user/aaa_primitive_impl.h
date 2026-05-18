@@ -47,7 +47,7 @@ namespace user
       unsigned int                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::int_rectangle                           m_rectangle;
+      ::i32_rectangle                           m_rectangle;
 
 
 
@@ -113,13 +113,13 @@ namespace user
       
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom nIdLeftOver, unsigned int nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom nIdLeftOver, unsigned int nFlag = reposDefault, ::i32_rectangle * prectParam = nullptr, const ::i32_rectangle & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(int x, int y);
 
 
-      virtual void on_configure(const ::int_rectangle & rectangle);
-      //\virtual void on_resize(const ::int_size & size);
+      virtual void on_configure(const ::i32_rectangle & rectangle);
+      //\virtual void on_resize(const ::i32_size & size);
 
 
       
@@ -183,7 +183,7 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::const ::wparam & wparam = {}, ::const ::lparam & lparam = {}, const ::int_point & point = {});
+      virtual ::lresult send_message(const ::atom& atom, ::const ::wparam & wparam = {}, ::const ::lparam & lparam = {}, const ::i32_point & point = {});
 
       virtual ::lresult send_message(::message::message * pmessage);
 
@@ -220,8 +220,8 @@ namespace user
       virtual void set_mouse_cursor(::windowing::cursor* pcursor);
 
 
-      virtual ::user::interaction* ChildWindowFromPoint(const ::int_point& point);
-      virtual ::user::interaction* ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::i32_point& point);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::i32_point& point, unsigned int nFlags);
 
 
       virtual ::user::interaction* GetLastActivePopup();
@@ -299,15 +299,15 @@ namespace user
       virtual void set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
-      virtual void RedrawWindow(const ::int_rectangle& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0);
+      virtual void RedrawWindow(const ::i32_rectangle& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0);
 
 
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
-      //virtual void InvalidateRect(const ::int_rectangle& rectangle, bool bErase = true);
+      //virtual void InvalidateRect(const ::i32_rectangle& rectangle, bool bErase = true);
 
       //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      //virtual void ValidateRect(const ::int_rectangle& rectangle);
+      //virtual void ValidateRect(const ::i32_rectangle& rectangle);
 
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual void ShowOwnedPopups(bool bShow = true);
@@ -336,8 +336,8 @@ namespace user
 
       virtual void viewport_screen_to_client(::int_sequence2 & sequence);
       virtual void viewport_client_to_screen(::int_sequence2 & sequence);
-      virtual void viewport_client_to_screen(::int_rectangle & rectangle);
-      virtual void viewport_screen_to_client(::int_rectangle & rectangle);
+      virtual void viewport_client_to_screen(::i32_rectangle & rectangle);
+      virtual void viewport_screen_to_client(::i32_rectangle & rectangle);
 
 
       //virtual unsigned int GetStyle() const;
@@ -397,7 +397,7 @@ namespace user
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {});
+      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
       virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {},bool bDeep = true,bool bOnlyPerm = false);
@@ -420,7 +420,7 @@ namespace user
 
 
 
-      virtual void get_rect_normal(::int_rectangle * prectangle);
+      virtual void get_rect_normal(::i32_rectangle * prectangle);
 
 
       virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
@@ -489,8 +489,8 @@ namespace user
 #endif
 
 
-      virtual void _raw_client_to_screen(::int_point & point);
-      virtual void _raw_screen_to_client(::int_point& point);
+      virtual void _raw_client_to_screen(::i32_point & point);
+      virtual void _raw_screen_to_client(::i32_point& point);
 
 
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;

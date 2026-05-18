@@ -84,8 +84,8 @@ namespace user
       //virtual bool _get_client_rect(RECT32 * prect) = 0;
       //virtual bool _get_window_rect(RECT32 * prect) = 0;
 
-      //virtual ::int_point _client_parent_top_left() = 0;
-      //virtual ::int_point _client_screen_top_left() = 0;
+      //virtual ::i32_point _client_parent_top_left() = 0;
+      //virtual ::i32_point _client_screen_top_left() = 0;
 
 
       //mutable size      m_sizeClient;
@@ -121,11 +121,11 @@ namespace user
 
 
 
-      //inline ::int_point window_parent_top_left() { return m_pointParentWindow; }
-      //inline ::int_point window_screen_top_left() { return m_pointScreenWindow; }
-      //inline ::int_point client_parent_top_left() { return m_pointParentClient; }
-      //inline ::int_point client_screen_top_left() { return m_pointScreenClient; }
-      //inline ::int_point client_top_left() { return m_pointClient; }
+      //inline ::i32_point window_parent_top_left() { return m_pointParentWindow; }
+      //inline ::i32_point window_screen_top_left() { return m_pointScreenWindow; }
+      //inline ::i32_point client_parent_top_left() { return m_pointParentClient; }
+      //inline ::i32_point client_screen_top_left() { return m_pointScreenClient; }
+      //inline ::i32_point client_top_left() { return m_pointClient; }
 
       //inline ::size client_size() { return m_sizeClient; }
       //inline ::size window_size() { return m_sizeScreen; }
@@ -208,19 +208,19 @@ namespace user
       inline bool is_window_screen_visible() const noexcept;
 
 
-      virtual void set_initial_dim(const ::int_point & p, const ::size & s);
-      //inline void move_to(const ::int_point& point) { m_pointRequest = point; visual_setup(); }
+      virtual void set_initial_dim(const ::i32_point & p, const ::size & s);
+      //inline void move_to(const ::i32_point& point) { m_pointRequest = point; visual_setup(); }
       //inline void set_size(const ::size & size) { m_sizeRequest = size; visual_setup(); }
       //inline void move_to(int x, int y) { m_pointRequest.set(x, y); visual_setup(); }
       //inline void set_size(int cx, int cy) { m_sizeRequest.set(cx, cy); visual_setup(); }
-      //inline void set_dim(const ::int_point& point, const ::size& size) { m_pointRequest = point; m_sizeRequest = size; visual_setup(); }
-      inline void move_to(const ::int_point & point) { request_state().m_point = point; m_bRequestReady = false; }
+      //inline void set_dim(const ::i32_point& point, const ::size& size) { m_pointRequest = point; m_sizeRequest = size; visual_setup(); }
+      inline void move_to(const ::i32_point & point) { request_state().m_point = point; m_bRequestReady = false; }
       inline void set_size(const ::size & size) { request_state().m_size = size; m_bRequestReady = false; }
       inline void move_to(int x, int y) { request_state().m_point.set(x, y); m_bRequestReady = false; }
       inline void set_size(int cx, int cy) { request_state().m_size.set(cx, cy); m_bRequestReady = false; }
-      inline void set_dim(const ::int_point & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
+      inline void set_dim(const ::i32_point & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
       inline void place(const ::double_rectangle & rectangle) { set_dim(rectangle.origin(), rectangle.size()); }
-      inline void set_dim(int x, int y, int cx, int cy) { set_dim(::int_point(x, y), ::size(cx, cy)); }
+      inline void set_dim(int x, int y, int cx, int cy) { set_dim(::i32_point(x, y), ::size(cx, cy)); }
       inline layout & operator =(const ::double_rectangle& rectangle) { place(rectangle); return *this; }
 
 
@@ -279,11 +279,11 @@ namespace user
       {
          set_dim(x, y, cx, cy); display(edisplay, useractivation); set_need_redraw(); return true;
       }
-      inline bool set_window_position(::zorder zorder, const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
+      inline bool set_window_position(::zorder zorder, const ::i32_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
          return set_window_position(zorder, point.x, point.y, size.cx, size.cy, edisplay, useractivation);
       }
-      inline bool window_move(const ::int_point & point)
+      inline bool window_move(const ::i32_point & point)
       {
          return window_move(point.x, point.y);
       }
@@ -291,7 +291,7 @@ namespace user
       {
          return window_size(size.cx, size.cy, edisplay, useractivation);
       }
-      inline bool window_place(const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
+      inline bool window_place(const ::i32_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
          return window_place(point.x, point.y, size.cx, size.cy, edisplay, useractivation);
       }
@@ -311,7 +311,7 @@ namespace user
 
       //virtual bool place(const ::double_rectangle & rectangle);
 
-      virtual ::int_point get_parent_accumulated_scroll() const;
+      virtual ::i32_point get_parent_accumulated_scroll() const;
 
       virtual void on_add_layout(::user::layout * playout);
 
@@ -321,11 +321,11 @@ namespace user
       virtual string get_full_style();
       virtual void load_style(string strStyle);
 
-      inline ::int_point top_left() { return ui_state().m_point; }
+      inline ::i32_point top_left() { return ui_state().m_point; }
       inline ::size size() { return ui_state().m_size; }
 
-      inline ::int_point origin() { return top_left(); }
-      inline ::int_point screen_top_left() { return ui_state().m_pointScreen; }
+      inline ::i32_point origin() { return top_left(); }
+      inline ::i32_point screen_top_left() { return ui_state().m_pointScreen; }
 
       inline int area() { return size().area(); }
 

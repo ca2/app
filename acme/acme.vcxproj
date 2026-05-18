@@ -3481,7 +3481,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\aaa_array_memory_allocate.h" />
     <ClInclude Include="operating_system\posix\time.h" />
-    <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
+    <ClInclude Include="operating_system\shared_posix\c_errno.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="parallelization\retry.h" />
@@ -3876,7 +3876,7 @@
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
-    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\c_errno.cpp" />
     <ClCompile Include="operating_system\shared_posix\debug.cpp" />
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
     <ClCompile Include="operating_system\shared_posix\errno.cpp" />

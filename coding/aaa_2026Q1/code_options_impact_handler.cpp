@@ -95,7 +95,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonNewReleasePrefix->create_control(pline, "button_new_release_prefix");
-//         m_pbuttonNewReleasePrefix->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonNewReleasePrefix->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillNewReleasePrefix->create_control(pline, "still_new_release_prefix");
 //         m_pstillNewReleasePrefix->m_bAutoResize = true;
 //
@@ -106,7 +106,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonCheckout->create_control(pline, "button_checkout");
-//         m_pbuttonCheckout->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonCheckout->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillCheckout->create_control(pline, "still_checkout");
 //         m_pstillCheckout->m_bAutoResize = true;
 //
@@ -117,7 +117,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonApplicationList->create_control(pline, "button_application_list");
-//         m_pbuttonApplicationList->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonApplicationList->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillApplicationList->create_control(pline, "still_application_list");
 //         m_pstillApplicationList->m_bAutoResize = true;
 //
@@ -129,7 +129,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonPrepareApplications->create_control(pline, "button_prepare_applications");
-//         m_pbuttonPrepareApplications->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonPrepareApplications->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillPrepareApplications->create_control(pline, "still_prepare_applications");
 //         m_pstillPrepareApplications->m_bAutoResize = true;
 //
@@ -140,7 +140,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonProjectList->create_control(pline, "button_project_list");
-//         m_pbuttonProjectList->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonProjectList->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillProjectList->create_control(pline, "still_project_list");
 //         m_pstillProjectList->m_bAutoResize = true;
 //
@@ -151,7 +151,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonPrepareProjects->create_control(pline, "button_prepare_projects");
-//         m_pbuttonPrepareProjects->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonPrepareProjects->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillPrepareProjects->create_control(pline, "still_prepare_projects");
 //         m_pstillPrepareProjects->m_bAutoResize = true;
 //
@@ -162,7 +162,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonCmake->create_control(pline, "button_cmake");
-//         m_pbuttonCmake->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonCmake->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillCmake->create_control(pline, "still_cmake");
 //         m_pstillCmake->m_bAutoResize = true;
 //
@@ -173,7 +173,7 @@ namespace coding
 //         auto pline = create_line_layout(pinteraction, e_orientation_horizontal);
 //
 //         m_pbuttonClean->create_control(pline, "button_clean");
-//         m_pbuttonClean->set_size(::int_size(widthButton, controlHeight));
+//         m_pbuttonClean->set_size(::i32_size(widthButton, controlHeight));
 //         m_pstillClean->create_control(pline, "still_clean");
 //         m_pstillClean->m_bAutoResize = true;
 //

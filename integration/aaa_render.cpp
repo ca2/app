@@ -117,7 +117,7 @@ namespace app_integration
       if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
       {
 
-         ::int_rectangle rectangle(m_rectangle);
+         ::i32_rectangle rectangle(m_rectangle);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -239,7 +239,7 @@ namespace app_integration
    {
       //Text
 
-      int_rectangle rectangle;
+      i32_rectangle rectangle;
 
       int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
@@ -322,7 +322,7 @@ namespace app_integration
 
          size = pgraphics->get_text_extent(strTitle);
 
-         ::int_rectangle rectangleText;
+         ::i32_rectangle rectangleText;
 
          rectangleText.set_size(size);
 

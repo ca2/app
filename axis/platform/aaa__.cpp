@@ -48,7 +48,7 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //            rString.empty();        // return is_empty string as well
 //            return false;
 //         }
-//         pszFullString++;       // int_point past the separator
+//         pszFullString++;       // i32_point past the separator
 //
 //      }
 //

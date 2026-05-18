@@ -9,6 +9,11 @@
 namespace windows
 {
 
+      CLASS_DECL_ACME bool pre_process_window_procedure(::lresult &lresult,
+                                                     HWND hwnd,
+                                                     ::u32 message, ::wparam wparam, ::lparam lparam);
+
+
 
    extern windowing * g_pwindowing;
 
@@ -839,8 +844,7 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, const ::operating_system::widnow & operatingsystemwindow, ::u32 message,
-      ::wparam wparam, ::lparam lparam)
+   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, HWND hwnd, ::u32 message, ::wparam wparam, ::lparam lparam)
    {
 
       if (message == (WM_APP + 876))

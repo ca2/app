@@ -3309,7 +3309,7 @@
     <ClInclude Include="operating_system\shared_posix\stdio_file.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\shared_posix\c_error_number.h">
+    <ClInclude Include="operating_system\shared_posix\c_errno.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
     <ClInclude Include="prototype\collection\array_2d.h">
@@ -5846,7 +5846,7 @@
     <ClCompile Include="platform\url_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
+    <ClCompile Include="operating_system\shared_posix\c_errno.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">

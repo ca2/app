@@ -51,13 +51,13 @@ public:
 
    virtual bool expand_bounding_rect(::double_rectangle & rectangle) const;
 
-   virtual bool expand_bounding_rect(::int_rectangle & rectangle) const;
+   virtual bool expand_bounding_rect(::i32_rectangle & rectangle) const;
 
    virtual bool get_bounding_box(::double_rectangle & rectangle) const;
 
-   virtual bool get_bounding_box(::int_rectangle & prectangle) const;
+   virtual bool get_bounding_box(::i32_rectangle & prectangle) const;
 
-   virtual bool contains(const ::int_point & point) const;
+   virtual bool contains(const ::i32_point & point) const;
 
    virtual bool contains(const ::double_point & point) const;
 
@@ -187,16 +187,16 @@ public:
    bool expand_bounding_rect(::double_rectangle & prectangle) const override;
 
 
-   bool expand_bounding_rect(::int_rectangle & prectangle) const override;
+   bool expand_bounding_rect(::i32_rectangle & prectangle) const override;
 
 
    bool get_bounding_box(::double_rectangle & prectangle) const override;
 
 
-   bool get_bounding_box(::int_rectangle & prectangle) const override;
+   bool get_bounding_box(::i32_rectangle & prectangle) const override;
 
 
-   bool contains(const ::int_point & point) const override;
+   bool contains(const ::i32_point & point) const override;
 
 
    bool contains(const ::double_point & point) const override;
@@ -275,7 +275,7 @@ bool ___shape <HOLDEE>::expand_bounding_rect(::double_rectangle & rectangle) con
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::expand_bounding_rect(::int_rectangle & rectangle) const
+bool ___shape<HOLDEE>::expand_bounding_rect(::i32_rectangle & rectangle) const
 {
 
    double_rectangle r;
@@ -306,7 +306,7 @@ bool ___shape<HOLDEE>::get_bounding_box(::double_rectangle & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::get_bounding_box(::int_rectangle & rectangle) const
+bool ___shape<HOLDEE>::get_bounding_box(::i32_rectangle & rectangle) const
 {
 
    ::null(rectangle);
@@ -317,12 +317,12 @@ bool ___shape<HOLDEE>::get_bounding_box(::int_rectangle & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::contains(const ::int_point & point) const
+bool ___shape<HOLDEE>::contains(const ::i32_point & point) const
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::int_rectangle r;
+   ::i32_rectangle r;
 
    if (!get_bounding_box(r))
    {

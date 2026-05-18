@@ -76,7 +76,7 @@ namespace graphics3d
       //::pointer < ::graphics3d::skybox >              m_pskybox;
       //::pointer < ::gpu::model_buffer >               m_pmodelCube;
       //::pointer < ::gpu::texture >                    m_ptextureCubeMap;
-      //::int_size                                      m_sizeSquare;
+      //::i32_size                                      m_sizeSquare;
 
       //cube                                            m_cube;
       ////::pointer<::gpu::shader>            m_pshader;

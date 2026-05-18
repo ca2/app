@@ -364,7 +364,7 @@ namespace data
    }
 
 
-   void tree_base_composite::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
+   void tree_base_composite::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::element * ptree, const ::i32_point & point)
    {
 
 

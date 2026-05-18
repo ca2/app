@@ -15,17 +15,17 @@ namespace lightui
 enum enum_notification
 {
    e_notification_default = 0, // WM_COMMAND wparam.hiword
-   CBN_SELENDOK = 9, // WM_COMMAND wparam.hiword
-   CBN_DROPDOWN = 7, // WM_COMMAND wparam.hiword
+   e_CBN_SELENDOK = 9, // WM_COMMAND wparam.hiword
+   e_CBN_DROPDOWN = 7, // WM_COMMAND wparam.hiword
 };
 
 
 enum enum_SWP
 {
-SWP_NOSIZE =      0x0001,
-SWP_NOMOVE  =     0x0002,
-SWP_NOZORDER =    0x0004,
-SWP_NOACTIVATE =  0x0010,
+e_SWP_NOSIZE =      0x0001,
+e_SWP_NOMOVE  =     0x0002,
+e_SWP_NOZORDER =    0x0004,
+e_SWP_NOACTIVATE =  0x0010,
    
 };
 

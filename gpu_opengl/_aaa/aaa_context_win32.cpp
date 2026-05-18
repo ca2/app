@@ -96,7 +96,7 @@ namespace gpu_opengl
    }
 
    
-   void context_win32::_create_offscreen_window(const ::int_size & size)
+   void context_win32::_create_offscreen_window(const ::i32_size & size)
    {
 
       if (::IsWindow(m_hwnd))
@@ -502,7 +502,7 @@ namespace gpu_opengl
 
       ::GetClientRect(m_hwnd, &rectClient);
 
-      ::int_size sizeNew = { rectClient.right - rectClient.left,
+      ::i32_size sizeNew = { rectClient.right - rectClient.left,
    rectClient.bottom - rectClient.top };
       
       if (m_size != sizeNew)
@@ -546,7 +546,7 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_create_offscreen_buffer(const ::int_size& size)
+   void context_win32::_create_offscreen_buffer(const ::i32_size& size)
    {
 
       _create_offscreen_window(size);
@@ -579,7 +579,7 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::resize_offscreen_buffer(const ::int_size& sizeParam)
+   void context_win32::resize_offscreen_buffer(const ::i32_size& sizeParam)
    {
 
        if (m_papplication->m_bUseSwapChainWindow)

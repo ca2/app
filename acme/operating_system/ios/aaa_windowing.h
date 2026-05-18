@@ -16,13 +16,13 @@ struct UIWindow;
 UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow);
 
 
-int get_main_screen_rectangle(::int_rectangle * lprect);
+int get_main_screen_rectangle(::i32_rectangle * lprect);
 
-int GetScreenRect(::int_rectangle * lprect, int iMonitor);
+int GetScreenRect(::i32_rectangle * lprect, int iMonitor);
 
 int GetScreenCount();
 
-int GetWorkspaceRect(::int_rectangle * lprect, int iMonitor);
+int GetWorkspaceRect(::i32_rectangle * lprect, int iMonitor);
 
 int GetWorkspaceCount();
 
@@ -45,7 +45,7 @@ int GetWorkspaceCount();
 //oswindow set_active_window(oswindow window);
 
 
-//void get_main_screen_rectangle(::int_rectangle * lprect);
+//void get_main_screen_rectangle(::i32_rectangle * lprect);
 
 int_bool set_foreground_window(oswindow window);
 int_bool BringWindowToTop(oswindow window);

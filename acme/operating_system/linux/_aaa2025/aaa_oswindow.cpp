@@ -567,7 +567,7 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    d1->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-   d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), int_point->get_graphics(), 0, 0, point.width(), point.height());
+   d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), i32_point->get_graphics(), 0, 0, point.width(), point.height());
 
    image d2(w->m_pimpl->m_puserinteraction->create_new, this);
 
@@ -580,7 +580,7 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    d2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-   d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), int_point->get_graphics(), 0, 0, point.width(), point.height());
+   d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), i32_point->get_graphics(), 0, 0, point.width(), point.height());
 
    memory m(w->m_pimpl->m_puserinteraction->get_app());
 
@@ -914,10 +914,10 @@ bool oswindow_data::show_window(const ::e_display & edisplay, const ::user::e_ac
 }
 
 
-void oswindow_data::full_screen(const ::int_rectangle & rectangle)
+void oswindow_data::full_screen(const ::i32_rectangle & rectangle)
 {
 
-   ::int_rectangle rBest;
+   ::i32_rectangle rBest;
 
    int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
 
@@ -947,7 +947,7 @@ void oswindow_data::full_screen(const ::int_rectangle & rectangle)
 
    }
 
-   ::int_rectangle rWindow;
+   ::i32_rectangle rWindow;
 
    rWindow.left      = attr.x;
    rWindow.top       = attr.y;
@@ -1133,7 +1133,7 @@ iptr oswindow_data::set_window_long_ptr(int nIndex, iptr i)
 }
 
 
-bool oswindow_data::client_to_screen(::int_point * ppoint)
+bool oswindow_data::client_to_screen(::i32_point * ppoint)
 {
 
    return true;
@@ -1141,7 +1141,7 @@ bool oswindow_data::client_to_screen(::int_point * ppoint)
 }
 
 
-bool oswindow_data::screen_to_client(::int_point * ppoint)
+bool oswindow_data::screen_to_client(::i32_point * ppoint)
 {
 
    return true;
@@ -1189,10 +1189,10 @@ long oswindow_data::get_state()
 
       long lStatus = -1;
 
-      if(int_point!= nullptr)
+      if(i32_point!= nullptr)
       {
 
-         lStatus = (long)*int_point;
+         lStatus = (long)*i32_point;
 
       }
 

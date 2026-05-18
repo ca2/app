@@ -71,9 +71,9 @@
 // int    top;
 // int    right;
 // int    bottom;
-// } const int_rectangle &, *PRECT, *NPRECT, *::int_rectangle *;
+// } const i32_rectangle &, *PRECT, *NPRECT, *::i32_rectangle *;
 // 
-// typedef const int_rectangle & * const int_rectangle &;
+// typedef const i32_rectangle & * const i32_rectangle &;
 // 
 // 
 // 
@@ -83,7 +83,7 @@
 ////CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 ////
 ////
-////int_bool get_nswindow_rect(oswindow hwnd,::int_rectangle * prectangle);
+////int_bool get_nswindow_rect(oswindow hwnd,::i32_rectangle * prectangle);
 ////
 //
 //
@@ -168,7 +168,7 @@
 ////   
 ////   bool IsFullySpecified() const { return x != wxDefaultCoord && y != wxDefaultCoord; }
 ////   
-////   // combine this int_size with the other one replacing the default (i.e. equal
+////   // combine this i32_size with the other one replacing the default (i.e. equal
 ////   // to wxDefaultCoord) components of this matter with those of the other
 ////   void SetDefaults(const wxSize& size)
 ////   {
@@ -331,7 +331,7 @@
 ////  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/30/11.
 ////  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //////
-////int_bool set_nswindow_frame(oswindow hwnd, const ::int_rectangle * prectangle, int iDisplay);
+////int_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle * prectangle, int iDisplay);
 ////int_bool move_nswindow(oswindow hwnd,int x,int y);
 ////int_bool make_key_and_order_front_nswindow(oswindow hwnd);
 ////int_bool order_front_nswindow(oswindow hwnd);

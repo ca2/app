@@ -46,7 +46,7 @@ namespace simple_ui
          pprinttask = nullptr;*/
 
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
       this->rectangle(rectangleX);
 
  /*     if(pprinttask != nullptr)
@@ -74,7 +74,7 @@ namespace simple_ui
 
       pgraphics->blur(true, 4, rectangleX);
       //class imaging & imaging = psystem->imaging();
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
       //         window_rectangle(rectangleX);
       //       rectangleX.offset(rectangleX.top_left());
       if(rectangleX.size() != m_pimage->size())
@@ -175,7 +175,7 @@ namespace simple_ui
       character_count iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));
-      //int_size size3;
+      //i32_size size3;
       ::write_text::text_metric metric;
        pgraphics->get_text_metrics(&metric);
       double dLineHeight = metric.get_line_spacing();

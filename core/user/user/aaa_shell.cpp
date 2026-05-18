@@ -816,7 +816,7 @@ namespace user
 
    //      {
    //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
-   //         int_size s = m_pimagelist[iSize]->m_pimage->get_size();
+   //         i32_size s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
@@ -879,7 +879,7 @@ namespace user
 
          {
             ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
-            //int_size s = m_pimagelist[iSize]->m_pimage->get_size();
+            //i32_size s = m_pimagelist[iSize]->m_pimage->get_size();
             ::image::image_pointer pimage(this);
             pimage->create(d->size());
             pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));

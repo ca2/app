@@ -538,7 +538,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          struct sockaddr_in *point = (struct sockaddr_in *)sa;
          ::sockets::address_pointer addr;
-         addr(aaa_primitive_new ::sockets::ipv4_address(get_app(), *int_point));
+         addr(aaa_primitive_new ::sockets::ipv4_address(get_app(), *i32_point));
          return addr;
       }
       break;
@@ -547,7 +547,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
          ::sockets::address_pointer addr;
-         addr(aaa_primitive_new ::sockets::ipv6_address(get_app(), *int_point));
+         addr(aaa_primitive_new ::sockets::ipv6_address(get_app(), *i32_point));
          return addr;
       }
       break;

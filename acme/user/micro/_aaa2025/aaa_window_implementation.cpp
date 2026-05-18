@@ -225,7 +225,7 @@
 //
 //
 //
-// ::int_point window_implementation::try_absolute_mouse_position(const ::int_point & point)
+// ::i32_point window_implementation::try_absolute_mouse_position(const ::i32_point & point)
 // {
 //
 //    return window_interface::try_absolute_mouse_position(point);
@@ -264,7 +264,7 @@
 // }
 //
 //
-// ::int_size window_implementation::get_main_screen_size()
+// ::i32_size window_implementation::get_main_screen_size()
 // {
 //
 //    auto pdisplay = get_display();

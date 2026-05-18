@@ -882,10 +882,10 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-int_bool GetCursorPos(::int_point * lppointCursor)
+int_bool GetCursorPos(::i32_point * lppointCursor)
 {
 
-   /*   HIPoint int_point;
+   /*   HIPoint i32_point;
 
    HICoordinateSpace space = kHICoordSpaceScreenPixel;
 

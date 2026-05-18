@@ -187,7 +187,7 @@ namespace typeface_freetype
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::int_point & point, ::size size, point ptSrc)
+   bool image::to(::draw2d::graphics * pgraphics, const ::i32_point & point, ::size size, point ptSrc)
    {
 
       return pgraphics->BitBlt(point, size, get_graphics(), ptSrc);
@@ -239,7 +239,7 @@ namespace typeface_freetype
    }
 
 
-   bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::size sz)
+   bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, ::size sz)
    {
 
       if (m_spgraphics.is_null())
@@ -2632,12 +2632,12 @@ namespace typeface_freetype
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics-> set_origin(::int_point());
+//         m_spgraphics-> set_origin(::i32_point());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
-//         m_spgraphics->set_origin(::int_point());
+//         m_spgraphics->set_origin(::i32_point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics->set_origin(::int_point());
+//         m_spgraphics->set_origin(::i32_point());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,

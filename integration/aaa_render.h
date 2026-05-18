@@ -35,7 +35,7 @@ namespace app_integration
    public:
 
 
-      int_rectangle                       m_rectangle;
+      i32_rectangle                       m_rectangle;
       ::user::impact *                    m_pimpact;
       string                              m_strFont1;
       string                              m_strHoverFont;
@@ -71,7 +71,7 @@ namespace app_integration
 
       virtual void _001OnDrawCirclePath(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle & r, angle angleStart, angle angleAngle, bool bPath);
+      virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, angle angleStart, angle angleAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

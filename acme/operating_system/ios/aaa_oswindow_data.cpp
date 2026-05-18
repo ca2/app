@@ -36,10 +36,10 @@ bool oswindow_data::show_window(enum_display edisplay)
 }
 
 
-bool oswindow_data::client_to_screen(::int_point *lppoint)
+bool oswindow_data::client_to_screen(::i32_point *lppoint)
 {
 
-   ::int_rectangle int_rectangle;
+   ::i32_rectangle i32_rectangle;
    
    get_uiwindow_rect(this, &rectangle);
    
@@ -52,10 +52,10 @@ bool oswindow_data::client_to_screen(::int_point *lppoint)
 }
 
 
-bool oswindow_data::screen_to_client(::int_point *lppoint)
+bool oswindow_data::screen_to_client(::i32_point *lppoint)
 {
    
-   ::int_rectangle int_rectangle;
+   ::i32_rectangle i32_rectangle;
    
    get_uiwindow_rect(this, &rectangle);
    

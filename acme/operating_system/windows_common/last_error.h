@@ -21,6 +21,10 @@ namespace windows
       bool operator == (const last_error & lasterror) const {return m_uLastError == lasterror.m_uLastError; }
       bool operator == (::u32 uLastError) const {return m_uLastError == uLastError; }
 
+      ::string get_error_description() const;
+
+      ::e_status as_estatus() const;
+
    };
 
 

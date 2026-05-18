@@ -20,7 +20,7 @@ extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactor
 
    //pfactory->add_factory_item < ::micro::user >();
 
-   //::int_rectangle rectangleMainScreen;
+   //::i32_rectangle rectangleMainScreen;
 
    //rectangleMainScreen.left = 0;
    //rectangleMainScreen.top = 0; 

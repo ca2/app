@@ -878,7 +878,7 @@
 //   inline TYPE takeFirst(::collection::index i = 0);
 //   inline TYPE takeLast(::collection::index i = -1);
 //
-//   virtual ::collection::count append(const base_array_quantum & src); // return old int_size
+//   virtual ::collection::count append(const base_array_quantum & src); // return old i32_size
 //   virtual void copy(const base_array_quantum & src);
 //
 //
@@ -1821,7 +1821,7 @@ public:
 ////      // inserting in the middle of the array
 ////      ::collection::count nOldSize = (::collection::count) this->size();
 ////
-////      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new int_size
+////      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new i32_size
 ////      // destroy intial data before copying over it
 ////      // shift old data up to fill gap
 ////      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1936,7 +1936,7 @@ public:
 ////      throw_exception(error_bad_argument);
 ////
 ////   if(nGrowBy >= 0)
-////      m_countAddUp = nGrowBy;  // set ___new int_size
+////      m_countAddUp = nGrowBy;  // set ___new i32_size
 ////
 ////   if(nNewSize == 0)
 ////   {

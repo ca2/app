@@ -10,7 +10,7 @@
 namespace draw2d
 {
 
-   void region::item::translate(const ::int_point & point)
+   void region::item::translate(const ::i32_point & point)
    {
 
 
@@ -30,7 +30,7 @@ namespace draw2d
 
 
 
-   void region::rectangle_item::translate(const ::int_point & point)
+   void region::rectangle_item::translate(const ::i32_point & point)
    {
 
       m_rectangle.offset(point);
@@ -54,7 +54,7 @@ namespace draw2d
    }
 
 
-   void region::ellipse_item::translate(const ::int_point & point)
+   void region::ellipse_item::translate(const ::i32_point & point)
    {
 
       m_rectangle.offset(point);
@@ -116,7 +116,7 @@ namespace draw2d
 
    }
 
-   void region::polygon_item::translate(const ::int_point & point)
+   void region::polygon_item::translate(const ::i32_point & point)
    {
 
       for (auto & pointVertex : m_polygon)
@@ -145,7 +145,7 @@ namespace draw2d
    }
 
 
-   void region::poly_polygon_item::translate(const ::int_point & point)
+   void region::poly_polygon_item::translate(const ::i32_point & point)
    {
 
       for (auto & ppolygon : m_polygona)
@@ -201,7 +201,7 @@ namespace draw2d
    }
 
 
-   void region::combine_item::translate(const ::int_point & point)
+   void region::combine_item::translate(const ::i32_point & point)
    {
 
       m_pregion1->translate(point);
@@ -326,7 +326,7 @@ namespace draw2d
 
 
 
-   void region::round_rectangle_item::translate(const ::int_point & point)
+   void region::round_rectangle_item::translate(const ::i32_point & point)
    {
 
       m_rectangle.offset(point);

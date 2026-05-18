@@ -78,7 +78,7 @@ namespace cairo
          }
 
 
-         void device::_draw_text(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
+         void device::_draw_text(const ::scoped_string & scopedstr, const ::i32_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
          {
 
             cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
@@ -130,7 +130,7 @@ namespace cairo
          }
 
 
-         ::int_size device::get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont)
+         ::i32_size device::get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont)
          {
 
             cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
@@ -148,7 +148,7 @@ namespace cairo
          }
 
 
-         void device::rectangle(const ::int_rectangle & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen)
+         void device::rectangle(const ::i32_rectangle & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen)
          {
 
             cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_NONE);

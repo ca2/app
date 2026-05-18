@@ -221,7 +221,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::int_point point = pmouse->m_point;
+   //   ::i32_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -251,7 +251,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::int_point point = pmouse->m_point;
+   //   ::i32_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -285,7 +285,7 @@ namespace user
 
    //   //enum_element eelement;
 
-   //   //::int_point point = pmouse->m_point;
+   //   //::i32_point point = pmouse->m_point;
 
    //   //screen_to_client()(point);
 
@@ -412,7 +412,7 @@ namespace user
 
    //}
 
-   //::item_pointer still::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   //::item_pointer still::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    //{
 
    //   return control::hit_test(pmouse);

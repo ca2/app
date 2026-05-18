@@ -57,8 +57,8 @@ concept prototype_size = requires(SIZE size)
 };
 
 
-template < typename ::int_size >
-concept prototype_Dimension = requires(::int_size dimension)
+template < typename ::i32_size >
+concept prototype_Dimension = requires(::i32_size dimension)
 {
    dimension.Width;
    dimension.Height;

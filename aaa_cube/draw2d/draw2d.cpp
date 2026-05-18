@@ -43,7 +43,7 @@ namespace draw2d_gpu
       }
       else
       {
-         iPixelSize = pfont->m_fontsize.as_int();
+         iPixelSize = pfont->m_fontsize.as_i32();
       }
 
       ::string strFontFamilyName = pfont->m_pfontfamily->family_name(this);

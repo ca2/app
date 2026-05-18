@@ -1794,7 +1794,7 @@ namespace jwt {
 		};
 
 		template<typename traits_type>
-		using as_integer_function = decltype(traits_type::as_int);
+		using as_integer_function = decltype(traits_type::as_i32);
 
 		template<typename traits_type, typename value_type, typename integer_type>
 		using is_as_integer_signature =
@@ -1841,7 +1841,7 @@ namespace jwt {
 						  "traits must provide `number_type as_number(const value_type&)`");
 			static_assert(
 				supports_as_integer<traits, typename traits::value_type, typename traits::integer_type>::value,
-				"traits must provide `integer_type as_int(const value_type&)`");
+				"traits must provide `integer_type as_i32(const value_type&)`");
 			static_assert(
 				supports_as_boolean<traits, typename traits::value_type, typename traits::boolean_type>::value,
 				"traits must provide `boolean_type as_bool(const value_type&)`");
@@ -2116,7 +2116,7 @@ namespace jwt {
 		 * \return content as date
 		 * \throw std::bad_cast Content was not a date
 		 */
-		date as_date() const { return std::chrono::system_clock::from_time_t(as_int()); }
+		date as_date() const { return std::chrono::system_clock::from_time_t(as_i32()); }
 
 		/**
 		 * Get the contained JSON value as an array
@@ -2143,7 +2143,7 @@ namespace jwt {
 		 * \return content as int
 		 * \throw std::bad_cast Content was not an int
 		 */
-		typename json_traits::integer_type as_int() const { return json_traits::as_int(val); }
+		typename json_traits::integer_type as_i32() const { return json_traits::as_i32(val); }
 
 		/**
 		 * Get the contained JSON value as a bool
@@ -2847,7 +2847,7 @@ namespace jwt {
 				const bool matches = [&]() {
 					switch (expected.get_type()) {
 					case json::platform::type::boolean: return expected.as_bool() == jc.as_bool();
-					case json::platform::type::integer: return expected.as_int() == jc.as_int();
+					case json::platform::type::integer: return expected.as_i32() == jc.as_i32();
 					case json::platform::type::number::number: return expected.as_number() == jc.as_number();
 					case json::platform::type::string: return expected.as_string() == jc.as_string();
 					case json::platform::type::array:
@@ -3556,7 +3556,7 @@ namespace jwt {
 			return val.get<picojson::array>();
 		}
 
-		static long long as_int(const picojson::value& val) {
+		static long long as_i32(const picojson::value& val) {
 			if (!val.is<long long>()) throw std::bad_cast();
 			return val.get<long long>();
 		}

@@ -1281,7 +1281,7 @@
 //
 //      //}
 //
-//      //return i <= options()["version"].as_int();
+//      //return i <= options()["version"].as_i32();
 //
 //   }
 //

@@ -1939,8 +1939,8 @@ list(APPEND library_source
         operating_system/process.cpp
         operating_system/security_attributes.cpp
         operating_system/security_attributes.h
-        operating_system/shared_posix/c_error_number.cpp
-        operating_system/shared_posix/c_error_number.h
+        operating_system/shared_posix/c_errno.cpp
+        operating_system/shared_posix/c_errno.h
         operating_system/shared_posix/debug.cpp
         operating_system/shared_posix/earth_time_shift.cpp
         operating_system/shared_posix/errno.cpp
@@ -2537,6 +2537,8 @@ if (${LINUX})
             operating_system/linux/
             operating_system/linux/_.cpp
             operating_system/linux/_.h
+
+       operating_system/linux/_linux.h
             operating_system/linux/_.h
             operating_system/linux/_c.h
             operating_system/linux/_factory.cpp
@@ -3225,8 +3227,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/linux/_linux.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

@@ -47,7 +47,7 @@ namespace innate_subsystem
       //virtual ~BitmapInterface() =0;
 
       // Creates empty bitmap with specified size.
-      virtual void initialize_bitmap(const ::i32_size & size, bool bOpaque) = 0;
+      virtual void initialize_bitmap(const ::i32_size & size) = 0;
       // Creates compatible with dc bitmap with specified size.
       virtual void initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::i32_size & size) = 0;
       // Creates bitmap from HBITMAP object.
@@ -92,10 +92,10 @@ namespace innate_subsystem
       //void * _HGDIOBJ() override;
 
       // Creates empty bitmap with specified size.
-         void initialize_bitmap(const ::i32_size& size, bool bOpaque) override
+         void initialize_bitmap(const ::i32_size& size) override
       {
 
-         m_pbitmap->initialize_bitmap(size, bOpaque);
+         m_pbitmap->initialize_bitmap(size);
       }
       // Creates compatible with dc bitmap with specified size.
       void initialize_bitmap(DeviceContextInterface* pdevicecontext, const ::i32_size& size) override

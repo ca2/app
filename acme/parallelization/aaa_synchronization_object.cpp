@@ -159,7 +159,7 @@ void synchronization::_wait()
 
       }
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return error_failed;
@@ -247,7 +247,7 @@ void synchronization::_wait()
 
       }
 
-      if(!ptask->task_get_run())
+      if(!ptask->should_run())
       {
 
          return error_failed;

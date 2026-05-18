@@ -4149,7 +4149,7 @@ namespace user
 
       auto ptask = ::get_task();
 
-      while (ptask->task_get_run())
+      while (ptask->should_run())
       {
 
          ptask->task_sleep(100_ms);

@@ -446,7 +446,7 @@ namespace interprocess_channel
 
    //   single_lock singlelock(m_pmutexDispatch);
 
-   //   while (ptask->task_get_run())
+   //   while (ptask->should_run())
    //   {
 
    //      if (m_happeningDispatchItemNew._wait(1_s))
@@ -455,7 +455,7 @@ namespace interprocess_channel
    //         singlelock.lock();
 
    //         while (m_dispatchitema.has_element()
-   //            && ptask->task_get_run())
+   //            && ptask->should_run())
    //         {
 
    //            {

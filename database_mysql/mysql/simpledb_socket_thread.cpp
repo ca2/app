@@ -91,7 +91,7 @@ namespace simpledb
       if(pusermessage->m_wparam == 0)
       {
 
-         while(m_pservice->task_get_run())
+         while(m_pservice->should_run())
          {
             try
             {
@@ -121,7 +121,7 @@ namespace simpledb
                      if(!m_pservice-task_get_run())
                         break;
                   }
-                  if(!m_pservice->task_get_run())
+                  if(!m_pservice->should_run())
                      break;
                }
             }

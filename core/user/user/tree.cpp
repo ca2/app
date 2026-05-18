@@ -173,7 +173,7 @@ namespace user
 
                   auto pthread = ::get_task();
 
-                  while (pthread->task_get_run())
+                  while (pthread->should_run())
                   {
 
                      m_happeningExpand.wait(500_ms);
@@ -212,7 +212,7 @@ namespace user
 
             auto pthread = ::get_task();
 
-            while (pthread->task_get_run())
+            while (pthread->should_run())
             {
 
                m_happeningOpen.wait(500_ms);

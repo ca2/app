@@ -1347,7 +1347,7 @@ pdirectorysystem->is(strPath))
 
    //   return 0;
 
-   //   while (this->task_get_run())
+   //   while (this->should_run())
    //   {
 
    //      if (!do_call())

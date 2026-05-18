@@ -671,7 +671,7 @@ repeat:
 
    string_array_base stra2;
 
-   ::int_array iaPid2;
+   ::i32_array iaPid2;
 
    auto psystem = system();
 
@@ -762,7 +762,7 @@ void interprocess_intercommunication::defer_add_module(const ::scoped_string & s
 
    string_array_base stra2;
 
-   ::int_array iaPid2;
+   ::i32_array iaPid2;
 
    for (::collection::index i = 0; i < m_straModule.get_count();)
    {

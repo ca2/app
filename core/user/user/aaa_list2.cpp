@@ -6307,7 +6307,7 @@ namespace user
       }
    }
 
-   void list2::FilterInclude(::int_array& array)
+   void list2::FilterInclude(::i32_array& array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       for (::collection::index i = 0; i < array.get_size(); i++)

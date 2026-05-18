@@ -1949,7 +1949,7 @@ namespace user
       bool is_host_top_level() override;
 
 
-      bool task_get_run() const override;
+      bool should_run() const override;
 
       ::user::element * get_parent_primitive() override;
 

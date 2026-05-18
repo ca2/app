@@ -10,30 +10,31 @@
 
 
 class shared_memory :
-virtual public ::particle
+public MEMORY,
+virtual public ::subparticle
 {
 public:
    
    
-   void*  m_data = nullptr;
-   memsize m_size = 0;
+//    void*  m_data = nullptr;
+//    memsize m_size = 0;
 
-#if defined(WINDOWS)
-   void* m_mapping = nullptr;
-#else
-   int m_fd = -1;
-#endif
+// #if defined(WINDOWS)
+//    void* m_mapping = nullptr;
+// #else
+//    int m_fd = -1;
+// #endif
    
    shared_memory();
    ~shared_memory();
 
-    bool Create(const char* name, size_t size);
-    bool Open(const char* name, size_t size);
+   virtual bool CreateSharedMemory(const char* name, memsize size);
+   virtual bool OpenSharedMemory(const char* name, memsize size);
 
-    void* Data() const { return m_data; }
-    memsize Size() const { return m_size; }
+   //virtual void* Data() const ;
+   //virtual memsize Size() const ;
 
-    void Close();
+   virtual void Close();
 
     
 

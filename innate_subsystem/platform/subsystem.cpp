@@ -241,20 +241,19 @@ s_p = this;
        ::user::key_happening keyhappening;
        
        keyhappening.m_emessage = emessage;
-       keyhappening.m_euserkey = (::user::enum_key) wparam.m_wparam;
        keyhappening.m_bDown = emessage == ::user::e_message_key_down ||emessage == ::user::e_message_sys_key_down;
       
 #ifdef WINDOWS
       
-      unsigned short virtualKey = static_cast<unsigned short>(wParam);
-      ::u32 additionalInfo = static_cast<::u32>(lParam);
+      unsigned short virtualKey = static_cast<unsigned short>(wparam.m_wparam);
+      ::u32 additionalInfo = static_cast<::u32>(lparam.m_lparam);
       static const ::u32 DOWN_FLAG = 0x80000000;
       bool isDown = (additionalInfo & DOWN_FLAG) == 0;
 
       if (virtualKey == VK_PROCESSKEY)
       {
-          bool extended = HIWORD(lParam) & KF_EXTENDED;
-          ::u32 scancode = HIWORD(lParam) & 0xFF;
+          bool extended = HIWORD(lparam.m_lparam) & KF_EXTENDED;
+          ::u32 scancode = HIWORD(lparam.m_lparam) & 0xFF;
           if (extended)
           {
               scancode += 0xE000;
@@ -262,18 +261,24 @@ s_p = this;
           virtualKey = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
       }
 
-      if (virtualKey == VK_CONTROL)
-      {
-          m_ctrlDown = isDown;
-      }
-
-      if (virtualKey == VK_MENU)
-      {
-          m_altDown = isDown;
-      }
+      // if (virtualKey == VK_CONTROL)
+      // {
+      //     m_ctrlDown = isDown;
+      // }
+      //
+      // if (virtualKey == VK_MENU)
+      // {
+      //     m_altDown = isDown;
+      // }
 
       //m_rfbKeySym->processKeyEvent(virtualKey, additionalInfo);
-      m_rfbKeySym->processKeyEvent(keyhappening?!?!);
+      //m_rfbKeySym->processKeyEvent(keyhappening?!?!);
+      keyhappening.m_euserkey = virtual_key_code_to_user_key(virtualKey);
+
+#else
+
+      keyhappening.m_euserkey = (::user::enum_key) wparam.m_wparam;
+
 #endif
        
        

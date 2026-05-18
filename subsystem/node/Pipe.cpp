@@ -95,9 +95,9 @@ namespace subsystem
 //    //    }
 //    //
 //    //    if (!success) {
-//    //       int errCode = GetLastError();
+//    //       auto lasterror = ::windows::last_error();
 //    //
-//    //       if (errCode == ERROR_IO_PENDING) {
+//    //       if (lasterror == ERROR_IO_PENDING) {
 //    //          m_writeEvent.waitForEvent();
 //    //          DWORD cbRet;
 //    //          AutoLock al(&m_hPipeMutex);
@@ -155,9 +155,9 @@ namespace subsystem
 //    //                          != 0;
 //    //    }
 //    //    if (!success) {
-//    //       DWORD errCode = GetLastError();
+//    //       auto lasterror = ::windows::last_error();
 //    //
-//    //       if (errCode == ERROR_IO_PENDING) {
+//    //       if (lasterror == ERROR_IO_PENDING) {
 //    //          m_readEvent.waitForEvent();
 //    //          DWORD cbRet = 0;
 //    //          AutoLock al(&m_hPipeMutex);

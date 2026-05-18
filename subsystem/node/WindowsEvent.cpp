@@ -33,7 +33,7 @@
 //    {
 //       m_hEvent = CreateEvent(0, FALSE, FALSE, ::wstring(scopedstrName));
 //       if (m_hEvent == 0) {
-//          int errCode = GetLastError();
+//          auto lasterror = ::windows::last_error();
 //          ::string errMess;
 //          errMess.formatf("Cannot create windows event with error = {}", errCode);
 //          throw ::subsystem::Exception(errMess);

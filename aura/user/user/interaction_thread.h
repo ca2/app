@@ -112,7 +112,7 @@ namespace user
 
       //void destroy() override;
 
-      bool task_get_run() const override;
+      bool should_run() const override;
 
       virtual void enumerate_composite(matter_array& a);
 

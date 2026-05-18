@@ -115,7 +115,7 @@
 //
 //                RECT r;
 //
-//                auto hwnd = (HWND) _HWND();
+//                auto hwnd = ::as_HWND(this->operating_system_window());
 //
 //                GetWindowRect(hwnd, &r);
 //
@@ -134,7 +134,7 @@
 //
 //             {
 //
-//                auto hwnd = (HWND) _HWND();
+//                auto hwnd = ::as_HWND(this->operating_system_window());
 //
 //                POINT pointCursor{};
 //                RECT r{};
@@ -163,7 +163,7 @@
 //
 //                //GetWindowRect(m_hwnd, &r);
 //                m_bMovingNow = true;
-//                auto hwnd =(HWND) _HWND();
+//                auto hwnd =::as_HWND(this->operating_system_window());
 //
 //
 //                SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -256,7 +256,7 @@
 //
 //       }
 //
-//       auto hwnd = (HWND) _HWND();
+//       auto hwnd = ::as_HWND(this->operating_system_window());
 //
 //       hmenuSystem = hmenu;
 //
@@ -386,7 +386,7 @@
 //       {
 //          m_dVelocity = 0.;
 //
-//          auto hwnd = (HWND) _HWND();
+//          auto hwnd = ::as_HWND(this->operating_system_window());
 //
 //          ::SetCapture(hwnd);
 //          POINT pointCursor{};
@@ -406,7 +406,7 @@
 //       else if (wmId == SC_CLOSE)
 //       {
 //
-//          auto hwnd = (HWND) _HWND();
+//          auto hwnd = ::as_HWND(this->operating_system_window());
 //
 //          SendMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
 //          lresult = 0;
@@ -422,7 +422,7 @@
 //    void window::_defer_show_system_menu(::user::mouse * pmouse)
 //    {
 //
-//       auto hwnd = (HWND) _HWND();
+//       auto hwnd = ::as_HWND(this->operating_system_window());
 //
 //       auto hmenu = GetSystemMenu(hwnd, true);
 //       m_hmenuSystem = GetSystemMenu(hwnd, false);

@@ -12,6 +12,8 @@
 #include <Shlobj.h>
 #include <Shellapi.h>
 
+#include "shared_memory.h"
+
 
 CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 {
@@ -1140,7 +1142,7 @@ int message_box(
 namespace operating_system
 {
 
-::i32_rectangle get_console_rect()
+CLASS_DECL_ACME ::i32_rectangle get_console_rect()
 {
    
    auto hwnd = ::GetForegroundWindow();
@@ -1165,3 +1167,11 @@ namespace operating_system
 
 
 } // namespace operating_system
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item< ::windows::shared_memory, ::shared_memory>();
+
+}

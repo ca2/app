@@ -38,6 +38,8 @@ public:
    
    ::string get_error_message() const;
    
+   ::e_status as_status() const;
+   
 };
 
 namespace operating_system

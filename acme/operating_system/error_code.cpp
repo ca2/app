@@ -113,3 +113,44 @@ bool error_code::is_set() const
    return strErrorMessage;
    
 }
+
+
+::e_status error_code::as_status() const
+{
+   
+   ::e_status estatus = error_failed;
+ 
+   if(m_etype == e_error_code_type_none)
+   {
+      
+      //strErrorMessage.formatf("{%lld}", m_iOsError);
+      
+   }
+#ifdef WINDOWS
+   else if(m_etype == e_error_code_type_last_error)
+   {
+      
+      
+      ::last_error lasterror((::u32) m_iOsError);
+      // ERROR_CANCELLED
+      
+      estatus = strErrorMessage = ::windows::last_error_e_status(lasterror);
+      
+   }
+#endif
+   else if(m_etype == e_error_code_type_errno)
+   {
+      
+      //strErrorMessage = strerror((int) m_iOsError);
+      
+   }
+   else
+   {
+      
+      //strErrorMessage.format("(unknown error %lld)", m_iOsError);
+      
+   }
+
+   return estatus;
+   
+}

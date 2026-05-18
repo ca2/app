@@ -226,6 +226,7 @@ namespace platform
 
       bool m_bPostedCommandLineFileOpen;
       bool m_bApplicationStartFileOpenRequest = false;
+      bool m_bPostedApplicationDefaultStartOrFileOpenRequest = false;
       ::pointer<::request> m_prequestApplicationStartFileOpen;
 
 

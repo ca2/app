@@ -15,7 +15,7 @@ namespace platform
 {
 
 
-   static ProfileLogger * g_pprofilerlogger = nullptr;
+   static ::pointer<ProfileLogger > g_pprofilerlogger;
 
 
    ProfileLogger::ProfileLogger()
@@ -202,7 +202,7 @@ CLASS_DECL_ACME void deferProfileLogger()
 
    if (!::platform::g_pprofilerlogger)
    {
-      ::platform::g_pprofilerlogger = new platform::ProfileLogger;
+      ::platform::g_pprofilerlogger = allocateø platform::ProfileLogger;
    }
 
 }

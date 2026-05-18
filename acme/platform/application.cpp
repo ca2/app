@@ -960,6 +960,8 @@ namespace platform
          ///papplication->property_set().merge(prequest->property_set());
 
          prequest->m_bPreferSync = true;
+         
+         m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
 
          // call_request(prequest);
 

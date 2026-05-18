@@ -29,7 +29,8 @@ namespace subsystem
    SocketException::SocketException()
    : ::subsystem::Exception()
    {
-      setErrorCode(MainSubsystem().get_last_socket_error());
+      auto lastSocketError = MainSubsystem().get_last_socket_error();
+      setErrorCode(lastSocketError);
    }
 
    SocketException::SocketException(int iErrorCode)

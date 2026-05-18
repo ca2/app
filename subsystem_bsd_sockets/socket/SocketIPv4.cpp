@@ -152,7 +152,11 @@ namespace subsystem_bsd_sockets
       struct sockaddr_in bindSockaddr = paddressBsd->_getSockAddr();
 
       if (::bind(m_socket, (const sockaddr *)&bindSockaddr, paddressBsd->_getAddrLen()) == _SOCKET_ERROR) {
-         throw ::subsystem::SocketException();
+         auto e= ::subsystem::SocketException();
+         ::string strMessage = e.get_message();
+         auto pszMessage = strMessage.c_str();
+         information(strMessage);
+         throw e;
       }
 
       critical_section_lock l(&m_mutex);
@@ -192,10 +196,10 @@ namespace subsystem_bsd_sockets
 
       socket_t result = getAcceptedSocket(&addr);
 
-      SocketIPv4 *accepted;
+      ::pointer < SocketIPv4 > accepted;
 
       try {
-         accepted = new SocketIPv4();
+         accepted = allocateø SocketIPv4();
          accepted->close();
       } catch(...) {
          // Cleanup and throw further
@@ -397,9 +401,11 @@ namespace subsystem_bsd_sockets
    void SocketIPv4::setSndTimeO(const class ::time& timeTimeout)
    {
 
-      auto timeout = (int)timeTimeout.integral_millisecond();
+      struct timeval tv;
+      tv.tv_sec = timeTimeout.m_iSecond;
+      tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
 
-      setSocketOptions(SOL_SOCKET, SO_SNDTIMEO, (char *)&timeout, sizeof(timeout));
+      setSocketOptions(SOL_SOCKET, SO_SNDTIMEO,  (char*)&tv, sizeof tv);
 
    }
 

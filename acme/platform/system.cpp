@@ -3883,7 +3883,19 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    void system::on_open_untitled_file()
    {
-
+      
+      if(!m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest)
+      {
+         
+         auto prequest = create_newø < ::request >();
+         
+         prequest->m_ecommand = ::e_command_default_start;
+         
+         m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
+         
+         m_papplication->post_request(prequest);
+         
+      }
       //if (!m_bPostedInitialRequest)
       //{
 

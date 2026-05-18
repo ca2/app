@@ -190,6 +190,8 @@ namespace subsystem
 
    class OperatingSystemApplicationInterface;
 
+   class GlobalMutexInterface;
+
 } // namespace subsystem
 
 

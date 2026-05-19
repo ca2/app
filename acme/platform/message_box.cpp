@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "message_box.h"
 #include "acme/handler/sequence.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 //#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/icon.h"
@@ -192,7 +193,10 @@ void dialog_payload::display(::dialog * pdialog)
 void dialog_payload::on_dialog_result(const ::payload & payloadResult)
 {
 
-   m_functionOnDialogResult(payloadResult);
+   if (m_functionOnDialogResult2)
+   {
+      m_functionOnDialogResult2(payloadResult);
+   }
 
 }
 
@@ -229,7 +233,30 @@ class ::time dialog_payload::dialog_timeout() const
 }
 
 
+void message_box_payload::run()
+{
 
+   m_papplication->run_message_box(this);
+
+}
+
+
+void message_box_payload::on_dialog_result(const ::payload &payloadResult) 
+{
+
+   m_payloadResult = payloadResult;
+
+   if (m_functionOnMessageBoxResult)
+   {
+
+      m_functionOnMessageBoxResult(this);
+
+   }
+   else if (m_functionOnDialogResult2)
+   {
+      m_functionOnDialogResult2(payloadResult);
+   }
+}
 
 
 dialog_reifier::dialog_reifier()

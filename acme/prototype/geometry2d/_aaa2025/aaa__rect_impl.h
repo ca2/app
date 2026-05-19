@@ -61,11 +61,11 @@
 //
 //
 //
-//long long long_long_rectangle::width() const noexcept
+//long long i64_rectangle::width() const noexcept
 //{
 //   return right - left;
 //}
-//long long long_long_rectangle::height() const noexcept
+//long long i64_rectangle::height() const noexcept
 //{
 //   return bottom - top;
 //}
@@ -73,236 +73,236 @@
 //{
 //   return i64_size(right - left, bottom - top);
 //}
-//long_long_point& long_long_rectangle::top_left() noexcept
+//long_long_point& i64_rectangle::top_left() noexcept
 //{
 //   return *((long_long_point*)this);
 //}
-//long_long_point& long_long_rectangle::bottom_right() noexcept
+//long_long_point& i64_rectangle::bottom_right() noexcept
 //{
 //   return *((long_long_point*)this + 1);
 //}
-//const long_long_point& long_long_rectangle::top_left() const noexcept
+//const long_long_point& i64_rectangle::top_left() const noexcept
 //{
 //   return *((long_long_point*)this);
 //}
-//const long_long_point& long_long_rectangle::bottom_right() const noexcept
+//const long_long_point& i64_rectangle::bottom_right() const noexcept
 //{
 //   return *((long_long_point*)this + 1);
 //}
-//TEMPLATE void long_long_rectangle::swap_left_right() noexcept
+//TEMPLATE void i64_rectangle::swap_left_right() noexcept
 //{
-//   swap_left_right((::long_long_rectangle*)(this));
+//   swap_left_right((::i64_rectangle*)(this));
 //}
-//void WINAPI long_long_rectangle::swap_left_right(::long_long_rectangle * RECT_TEMPLATE) noexcept
+//void WINAPI i64_rectangle::swap_left_right(::i64_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   long long temp = RECT_TEMPLATE.left; RECT_TEMPLATE.left = RECT_TEMPLATE.right; RECT_TEMPLATE.right = temp;
 //}
 //
-//long_long_rectangle::operator ::long_long_rectangle* () noexcept
+//i64_rectangle::operator ::i64_rectangle* () noexcept
 //{
 //   return this;
 //}
-//long_long_rectangle::operator const ::long_long_rectangle* () const noexcept
+//i64_rectangle::operator const ::i64_rectangle* () const noexcept
 //{
 //   return this;
 //}
-//long_long_rectangle::operator RECT_TEMPLATE() const
+//i64_rectangle::operator RECT_TEMPLATE() const
 //{
-//   return ::rect_TEMPLATE((const ::long_long_rectangle&)* this);
+//   return ::rect_TEMPLATE((const ::i64_rectangle&)* this);
 //}
-//TEMPLATE bool long_long_rectangle::contains(::long_long_point i32_point) const noexcept
+//TEMPLATE bool i64_rectangle::contains(::long_long_point i32_point) const noexcept
 //{
 //   return ::contains(this, point);
 //}
-//TEMPLATE void long_long_rectangle::set(long long x1, long long y1, long long x2, long long y2) noexcept
+//TEMPLATE void i64_rectangle::set(long long x1, long long y1, long long x2, long long y2) noexcept
 //{
 //   ::set_rect(this, x1, y1, x2, y2);
 //}
-//TEMPLATE void long_long_rectangle::set(::long_long_point topLeft, ::long_long_point bottomRight) noexcept
+//TEMPLATE void i64_rectangle::set(::long_long_point topLeft, ::long_long_point bottomRight) noexcept
 //{
 //   ::set_rect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
 //}
-//TEMPLATE void long_long_rectangle::null() noexcept
+//TEMPLATE void i64_rectangle::null() noexcept
 //{
 //   ::null(this);
 //}
-//TEMPLATE void rect64copy(const ::long_long_rectangle * pSrcRect) noexcept
+//TEMPLATE void rect64copy(const ::i64_rectangle * pSrcRect) noexcept
 //
 //{
 //   ::copy(this, pSrcRect);
 //}
 //
-//TEMPLATE bool long_long_rectangle::is_equal(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
+//TEMPLATE bool i64_rectangle::is_equal(const ::i64_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
 //   return ::is_equal(this, RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void long_long_rectangle::inflate(long long x, long long y) noexcept
+//TEMPLATE void i64_rectangle::inflate(long long x, long long y) noexcept
 //{
 //   ::inflate(this, x, y);
 //}
-//TEMPLATE void long_long_rectangle::inflate(::i64_size i64_size) noexcept
+//TEMPLATE void i64_rectangle::inflate(::i64_size i64_size) noexcept
 //{
 //   ::inflate(this, i64_size.cx, i64_size.cy);
 //}
-//TEMPLATE void long_long_rectangle::deflate(long long x, long long y) noexcept
+//TEMPLATE void i64_rectangle::deflate(long long x, long long y) noexcept
 //{
 //   ::inflate(this, -x, -y);
 //}
-//TEMPLATE void long_long_rectangle::deflate(::i64_size i64_size) noexcept
+//TEMPLATE void i64_rectangle::deflate(::i64_size i64_size) noexcept
 //{
 //   ::inflate(this, -i64_size.cx, -i64_size.cy);
 //}
-//TEMPLATE void long_long_rectangle::offset(long long x, long long y) noexcept
+//TEMPLATE void i64_rectangle::offset(long long x, long long y) noexcept
 //{
 //   ::offset(this, x, y);
 //}
-//TEMPLATE void long_long_rectangle::offset(::long_long_point long_long_point) noexcept
+//TEMPLATE void i64_rectangle::offset(::long_long_point long_long_point) noexcept
 //{
 //   ::offset(this, long_long_point.x, long_long_point.y);
 //}
-//TEMPLATE void long_long_rectangle::set_size(::i64_size s) noexcept
+//TEMPLATE void i64_rectangle::set_size(::i64_size s) noexcept
 //{
 //   this->set_size(s.cx, s.cy);
 //}
-//TEMPLATE void long_long_rectangle::rsize(::i64_size s) noexcept
+//TEMPLATE void i64_rectangle::rsize(::i64_size s) noexcept
 //{
 //   this->rsize(s.cx, s.cy);
 //}
-//TEMPLATE void long_long_rectangle::set_size(long long cx, long long cy) noexcept
+//TEMPLATE void i64_rectangle::set_size(long long cx, long long cy) noexcept
 //{
 //   ::resize(this, cx, cy);
 //}
-//TEMPLATE void long_long_rectangle::rsize(long long cx, long long cy) noexcept
+//TEMPLATE void i64_rectangle::rsize(long long cx, long long cy) noexcept
 //{
 //   ::reverse_size(this, cx, cy);
 //}
-//TEMPLATE void long_long_rectangle::offset(::i64_size i64_size) noexcept
+//TEMPLATE void i64_rectangle::offset(::i64_size i64_size) noexcept
 //{
 //   ::offset(this, i64_size.cx, i64_size.cy);
 //}
-//TEMPLATE void long_long_rectangle::move_to_y(long long y) noexcept
+//TEMPLATE void i64_rectangle::move_to_y(long long y) noexcept
 //{
 //   bottom = height() + y; top = y;
 //}
-//TEMPLATE void long_long_rectangle::move_to_x(long long x) noexcept
+//TEMPLATE void i64_rectangle::move_to_x(long long x) noexcept
 //{
 //   right = width() + x; left = x;
 //}
-//TEMPLATE void long_long_rectangle::move_to(long long x, long long y) noexcept
+//TEMPLATE void i64_rectangle::move_to(long long x, long long y) noexcept
 //{
 //   move_to_x(x); move_to_y(y);
 //}
-//TEMPLATE void long_long_rectangle::move_to(::long_long_point i32_point) noexcept
+//TEMPLATE void i64_rectangle::move_to(::long_long_point i32_point) noexcept
 //{
 //   move_to_x(point.x); move_to_y(point.y);
 //}
-//TEMPLATE bool long_long_rectangle::intersect(const ::long_long_rectangle * rect1, const ::long_long_rectangle * rect2) noexcept
+//TEMPLATE bool i64_rectangle::intersect(const ::i64_rectangle * rect1, const ::i64_rectangle * rect2) noexcept
 //
 //{
 //   return ::intersect(this, rect1, rect2);
 //}
 //
-//TEMPLATE bool long_long_rectangle::unite(const ::long_long_rectangle * rect1, const ::long_long_rectangle * rect2) noexcept
+//TEMPLATE bool i64_rectangle::unite(const ::i64_rectangle * rect1, const ::i64_rectangle * rect2) noexcept
 //
 //{
 //   return ::unite(this, rect1, rect2);
 //}
 //
-//TEMPLATE void long_long_rectangle::operator=(const ::long_long_rectangle & rectangleSource) noexcept
+//TEMPLATE void i64_rectangle::operator=(const ::i64_rectangle & rectangleSource) noexcept
 //{
 //   ::copy(this, &rectangleSource);
 //}
-//TEMPLATE bool long_long_rectangle::operator==(const ::long_long_rectangle & long_long_rectangle) const noexcept
+//TEMPLATE bool i64_rectangle::operator==(const ::i64_rectangle & i64_rectangle) const noexcept
 //{
-//   return ::is_equal(this, &long_long_rectangle);
+//   return ::is_equal(this, &i64_rectangle);
 //}
-//TEMPLATE bool long_long_rectangle::operator!=(const ::long_long_rectangle & long_long_rectangle) const noexcept
+//TEMPLATE bool i64_rectangle::operator!=(const ::i64_rectangle & i64_rectangle) const noexcept
 //{
-//   return !::is_equal(this, &long_long_rectangle);
+//   return !::is_equal(this, &i64_rectangle);
 //}
-//TEMPLATE void long_long_rectangle::operator +=(::long_long_point long_long_point) noexcept
+//TEMPLATE void i64_rectangle::operator +=(::long_long_point long_long_point) noexcept
 //{
 //   ::offset(this, long_long_point.x, long_long_point.y);
 //}
-//TEMPLATE void long_long_rectangle::operator +=(::i64_size i64_size) noexcept
+//TEMPLATE void i64_rectangle::operator +=(::i64_size i64_size) noexcept
 //{
 //   ::offset(this, i64_size.cx, i64_size.cy);
 //}
-//TEMPLATE void long_long_rectangle::operator +=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void i64_rectangle::operator +=(const ::i64_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   inflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void long_long_rectangle::operator-=(::long_long_point long_long_point) noexcept
+//TEMPLATE void i64_rectangle::operator-=(::long_long_point long_long_point) noexcept
 //{
 //   ::offset(this, -long_long_point.x, -long_long_point.y);
 //}
-//TEMPLATE void long_long_rectangle::operator-=(::i64_size i64_size) noexcept
+//TEMPLATE void i64_rectangle::operator-=(::i64_size i64_size) noexcept
 //{
 //   ::offset(this, -i64_size.cx, -i64_size.cy);
 //}
-//TEMPLATE void long_long_rectangle::operator-=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void i64_rectangle::operator-=(const ::i64_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   deflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void long_long_rectangle::operator&=(const ::long_long_rectangle & long_long_rectangle) noexcept
+//TEMPLATE void i64_rectangle::operator&=(const ::i64_rectangle & i64_rectangle) noexcept
 //{
-//   ::intersect(this, this, &long_long_rectangle);
+//   ::intersect(this, this, &i64_rectangle);
 //}
-//TEMPLATE void long_long_rectangle::operator|=(const ::long_long_rectangle & long_long_rectangle) noexcept
+//TEMPLATE void i64_rectangle::operator|=(const ::i64_rectangle & i64_rectangle) noexcept
 //{
-//   ::unite(this, this, &long_long_rectangle);
+//   ::unite(this, this, &i64_rectangle);
 //}
-//long_long_rectangle long_long_rectangle::operator +(::long_long_point i32_point) const noexcept
+//i64_rectangle i64_rectangle::operator +(::long_long_point i32_point) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, point.x, point.y); return long_long_rectangle;
+//   i64_rectangle i64_rectangle(*this); ::offset(&i64_rectangle, point.x, point.y); return i64_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator-(::long_long_point i32_point) const noexcept
+//i64_rectangle i64_rectangle::operator-(::long_long_point i32_point) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -point.x, -point.y); return long_long_rectangle;
+//   i64_rectangle i64_rectangle(*this); ::offset(&i64_rectangle, -point.x, -point.y); return i64_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator +(::i64_size i64_size) const noexcept
+//i64_rectangle i64_rectangle::operator +(::i64_size i64_size) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, i64_size.cx, i64_size.cy); return long_long_rectangle;
+//   i64_rectangle i64_rectangle(*this); ::offset(&i64_rectangle, i64_size.cx, i64_size.cy); return i64_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator-(::i64_size i64_size) const noexcept
+//i64_rectangle i64_rectangle::operator-(::i64_size i64_size) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -i64_size.cx, -i64_size.cy); return long_long_rectangle;
+//   i64_rectangle i64_rectangle(*this); ::offset(&i64_rectangle, -i64_size.cx, -i64_size.cy); return i64_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator +(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
+//i64_rectangle i64_rectangle::operator +(const ::i64_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
-//   long_long_rectangle long_long_rectangle(this); long_long_rectangle.inflate(RECT_TEMPLATE); return long_long_rectangle;
+//   i64_rectangle i64_rectangle(this); i64_rectangle.inflate(RECT_TEMPLATE); return i64_rectangle;
 //}
 //
-//long_long_rectangle long_long_rectangle::operator-(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
+//i64_rectangle i64_rectangle::operator-(const ::i64_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
-//   long_long_rectangle long_long_rectangle(this); long_long_rectangle.deflate(RECT_TEMPLATE); return long_long_rectangle;
+//   i64_rectangle i64_rectangle(this); i64_rectangle.deflate(RECT_TEMPLATE); return i64_rectangle;
 //}
 //
-//long_long_rectangle long_long_rectangle::operator&(const ::long_long_rectangle & rect2) const noexcept
+//i64_rectangle i64_rectangle::operator&(const ::i64_rectangle & rect2) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle; ::intersect(&long_long_rectangle, this, &rect2);
-//   return long_long_rectangle;
+//   i64_rectangle i64_rectangle; ::intersect(&i64_rectangle, this, &rect2);
+//   return i64_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator|(const ::long_long_rectangle & rect2) const noexcept
+//i64_rectangle i64_rectangle::operator|(const ::i64_rectangle & rect2) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle; ::unite(&long_long_rectangle, this, &rect2);
-//   return long_long_rectangle;
+//   i64_rectangle i64_rectangle; ::unite(&i64_rectangle, this, &rect2);
+//   return i64_rectangle;
 //}
-////TEMPLATE bool long_long_rectangle::subtract(const ::long_long_rectangle * pRectSrc1, const ::long_long_rectangle * lpRectSrc2) noexcept
+////TEMPLATE bool i64_rectangle::subtract(const ::i64_rectangle * pRectSrc1, const ::i64_rectangle * lpRectSrc2) noexcept
 //
 ////   { return ::subtract(this, pRectSrc1, lpRectSrc2); }
 //
 //
-//TEMPLATE void long_long_rectangle::normalize() noexcept
+//TEMPLATE void i64_rectangle::normalize() noexcept
 //{
 //   long long nTemp;
 //   if (left > right)
@@ -319,7 +319,7 @@
 //   }
 //}
 //
-//TEMPLATE void long_long_rectangle::inflate(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void i64_rectangle::inflate(const ::i64_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   left -= RECT_TEMPLATE.left;      top -= RECT_TEMPLATE.top;
@@ -328,13 +328,13 @@
 //
 //}
 //
-//TEMPLATE void long_long_rectangle::inflate(long long l, long long t, long long r, long long b) noexcept
+//TEMPLATE void i64_rectangle::inflate(long long l, long long t, long long r, long long b) noexcept
 //{
 //   left -= l;         top -= t;
 //   right += r;         bottom += b;
 //}
 //
-//TEMPLATE void long_long_rectangle::deflate(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void i64_rectangle::deflate(const ::i64_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   left += RECT_TEMPLATE.left;   top += RECT_TEMPLATE.top;
@@ -343,15 +343,15 @@
 //
 //}
 //
-//TEMPLATE void long_long_rectangle::deflate(long long l, long long t, long long r, long long b) noexcept
+//TEMPLATE void i64_rectangle::deflate(long long l, long long t, long long r, long long b) noexcept
 //{
 //   left += l;      top += t;
 //   right -= r;      bottom -= b;
 //}
 //
-//long_long_rectangle long_long_rectangle::MulDiv(long long nMultiplier, long long nDivisor) const noexcept
+//i64_rectangle i64_rectangle::MulDiv(long long nMultiplier, long long nDivisor) const noexcept
 //{
-//   return long_long_rectangle(
+//   return i64_rectangle(
 //      ::MulDiv(left, nMultiplier, nDivisor),
 //      ::MulDiv(top, nMultiplier, nDivisor),
 //      ::MulDiv(right, nMultiplier, nDivisor),
@@ -359,7 +359,7 @@
 //}
 //
 //
-//long long long_long_rectangle::area() const
+//long long i64_rectangle::area() const
 //{
 //
 //   return size().area();

@@ -569,6 +569,14 @@ namespace micro
 
       }
 
+
+      //void user::post_message_box_payload(::message_box_payload * pmessageboxpayload)
+      //{
+
+      //   micro_theme()->post_message_box_payload(pmessageboxpayload);
+
+      //}
+
    
 } // namespace micro
 

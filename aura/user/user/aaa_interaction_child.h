@@ -120,8 +120,8 @@ namespace user
       ::user::interaction_base * set_owner(::user::interaction_base * pinteraction) override;
       ::user::interaction * get_owner() override;
 
-      //bool _get_client_rect(::long_long_rectangle * prectangle) override;
-      //bool _get_window_rect(::long_long_rectangle * prectangle) override;
+      //bool _get_client_rect(::i64_rectangle * prectangle) override;
+      //bool _get_window_rect(::i64_rectangle * prectangle) override;
 
       //virtual i32_point client_screen_top_left() override;
 
@@ -129,7 +129,7 @@ namespace user
 
       //virtual bool client_to_screen(::i32_rectangle * prectangle) override;
 
-      //virtual bool client_to_screen(::long_long_rectangle * prectangle) override;
+      //virtual bool client_to_screen(::i64_rectangle * prectangle) override;
 
       //virtual bool client_to_screen(::double_point * ppoint) override;
 
@@ -141,7 +141,7 @@ namespace user
 
       //virtual bool screen_to_client(::i32_rectangle * prectangle) override;
 
-      //virtual bool screen_to_client(::long_long_rectangle * prectangle) override;
+      //virtual bool screen_to_client(::i64_rectangle * prectangle) override;
 
       //virtual bool screen_to_client(::double_point * ppoint) override;
 

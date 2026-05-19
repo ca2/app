@@ -91,7 +91,7 @@ public:
    ::string                                           m_strTitle;
    ::payload                                          m_payloadResult;
    ::function<void(dialog *)>                         m_functionOnTimeOut;
-   ::function<void(const ::payload &)>                m_functionOnDialogResult;
+   ::function<void(const ::payload &)>                m_functionOnDialogResult2;
    class ::time                                       m_timeShowStart;
    class ::time                                       m_timeTimeout;
    class ::time                                       m_timeCancelledTimeout;
@@ -162,6 +162,7 @@ public:
    string                                             m_strDetails;
    ::pointer < ::nano::graphics::icon >               m_picon;
    ::pointer < ::user::activation_token >             m_puseractivationtoken;
+   ::function<void(::message_box_payload *)>          m_functionOnMessageBoxResult;
 
 
    message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
@@ -197,8 +198,12 @@ public:
 
    /// shows the message box
    /// override in the topper implementation to display the message box (run the message box)
-   //void run() override;
-   //void complete_aggregation(sequence * psequence) override;   
+   void run() override;
+   //void complete_aggregation(sequence * psequence) override;  
+   // 
+
+   void on_dialog_result(const ::payload &payloadResult) override;
+   
 };
 
 

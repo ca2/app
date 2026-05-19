@@ -90,6 +90,8 @@ namespace micro
    void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
    {
 
+      m_pdialog = message_box(scopedstrText);
+
       m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;
 
       calculate_size_and_position(x, y);

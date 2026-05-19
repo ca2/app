@@ -72,7 +72,7 @@ namespace app_message_box
       auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       
-      pmessageboxpayload->m_functionOnDialogResult= [this, pmessageboxpayload](const ::payload & payloadResult)
+      pmessageboxpayload->m_functionOnDialogResult2= [this, pmessageboxpayload](const ::payload & payloadResult)
          {
 
             if (payloadResult == e_dialog_result_yes)
@@ -165,7 +165,7 @@ namespace app_message_box
 
       auto pmessageboxpayload = __initialize_new ::message_box_payload("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
-      pmessageboxpayload->m_functionOnDialogResult = [this, pmessageboxpayload](const ::payload & payloadResult)
+      pmessageboxpayload->m_functionOnDialogResult2 = [this, pmessageboxpayload](const ::payload & payloadResult)
          {
 
             if (payloadResult == e_dialog_result_yes)

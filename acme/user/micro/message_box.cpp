@@ -205,9 +205,13 @@ namespace micro
 
       ::cast < ::message_box_payload > pmessageboxpayload = pdialog;
 
+      m_pdialog = pmessageboxpayload;
+
       calculate_size();
 
       ::acme::user::message_box::display(pmessageboxpayload);
+
+      create_window();
 
       set_icon(pmessageboxpayload->m_picon);
 
@@ -259,6 +263,8 @@ namespace micro
          printf_line("234");
 
       }
+
+      show();
 
    }
 
@@ -486,6 +492,7 @@ namespace micro
       rectanglePointTo.bottom = rectanglePointTo.top + 2;
 
       ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
+
 #ifdef APPLE_IOS
       ppopupbutton->initialize_popup_button(
          "Dump to Clipboard...",
@@ -498,28 +505,30 @@ namespace micro
          this);
 #endif
 
-
       auto pmessageboxpayload =ppopupbutton->get_message_box_payload();
 
-      pmessageboxpayload->m_functionOnDialogResult = [this,  pmessageboxpayload](const::payload & payloadResult)
+      pmessageboxpayload->m_functionOnDialogResult2= [this ](const::payload & payloadResult)
          {
 
             //auto result = ppopupbutton->m_payloadPopupButtonResult;
 
+            ::cast<::message_box_payload> pmessageboxpayloadParent = m_pdialog;
+            
             if (payloadResult == e_dialog_result_yes)
             {
 
+               ::string strBody =
+                  pmessageboxpayloadParent->m_strMessage + "\n\n" + pmessageboxpayloadParent->m_strDetails;
+
+               auto pszBody = strBody.c_str();
+
 #ifdef APPLE_IOS
 
-               system()->acme_windowing()->set_clipboard_text(
-                  pmessageboxpayload->m_strMessage + "\n\n"
-                  + pmessageboxpayload->m_strDetails);
+               system()->acme_windowing()->set_clipboard_text(strBody);
                
 #else
 
-               display_temporary_file_with_text(
-                  pmessageboxpayload->m_strMessage + "\n\n"
-                  + pmessageboxpayload->m_strDetails);
+               display_temporary_file_with_text(strBody);
 
 #endif
 

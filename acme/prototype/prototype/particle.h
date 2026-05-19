@@ -583,10 +583,25 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
+      [[nodiscard]] virtual ::pointer<::message_box_payload>
+   message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = nullptr,
+                    const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+                    ::nano::graphics::icon *picon = nullptr);
+   [[nodiscard]] virtual ::pointer<::message_box_payload>
+   message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage = nullptr,
+                    const ::scoped_string &scopedstrTitle = nullptr, const ::user::e_message_box &emessagebox = {},
+                    const ::scoped_string &scopedstrDetails = nullptr, ::nano::graphics::icon *picon = nullptr);
 
-   [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
+   [[nodiscard]] virtual ::pointer < ::message_box_payload > send_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box_payload > send_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+   virtual void post_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+                      const ::user::e_message_box &emessagebox = {},
+                         const ::function<void(::message_box_payload *)>  & functionOnResult = {},
+                         const ::scoped_string &scopedstrDetails = nullptr, ::nano::graphics::icon *picon = nullptr);
+
+   //virtual void post_message_box_payload(::message_box_payload *pmessageboxpayload);
 
    //virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    //virtual ::pointer < ::message_box_payload > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
@@ -747,6 +762,9 @@ public:
    //virtual void  post(const ::procedure & procedure);
    //inline sequence_continuation async();
    inline dispatch_arrayø postø();
+
+
+
 
 
    virtual void handle(bool bSynchronously, const ::procedure & procedure);

@@ -25,6 +25,7 @@
 #include "acme/prototype/string/_str.h"
 #include "acme/prototype/text/context.h"
 #include "acme/nano/nano.h"
+#include "acme/user/micro/message_box.h"
 #include "acme/user/micro/user.h"
 #include "acme/user/user/activation_token.h"
 #include "acme/nano/graphics/icon.h"
@@ -263,6 +264,124 @@ namespace platform
 
 
    }
+
+//
+//   ::pointer<::message_box_payload> application::send_message_box(const ::scoped_string & scopedstrMessage,
+//                                               const ::scoped_string & scopedstrTitle,
+//                                               const ::user::e_message_box & emessagebox,
+//                                               const ::scoped_string & scopedstrDetails,
+//                                               ::nano::graphics::icon * picon)
+//   {
+//
+//      auto pmessageboxpayload =
+//         __initialize_new ::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+//
+//      auto pmanualresetevent = create_newø<manual_reset_happening>();
+//
+//      pmessageboxpayload->m_functionOnMessageBoxResult =
+//         [this, pmessageboxpayload, pmanualresetevent](message_box_payload *pmessageboxpayloadOnResult)
+//      {
+//         if (pmessageboxpayloadOnResult != pmessageboxpayload)
+//         {
+//
+//            throw ::exception(error_wrong_state);
+//         }
+//         pmanualresetevent->set_happening();
+//      };
+//
+//      post(pmessageboxpayload);
+//
+//      pmanualresetevent->wait();
+//
+//      return pmessageboxpayload;
+//
+//      
+//
+//      /*auto predicate = [this](::message_box_payload *)
+//      {
+//         post_message_box(scopedstrMessage, scopedstrTitle, functionOnResult, emessagebox, scopedstrDetails, picon);
+//      }*/
+//
+//}
+//
+//
+//      ::pointer<::message_box_payload> application::send_message_box(const ::exception & exception,
+//         const ::scoped_string &scopedstrMessage,
+//                                                               const ::scoped_string &scopedstrTitle,
+//                                                               const ::user::e_message_box &emessagebox,
+//                                                               const ::scoped_string &scopedstrDetails,
+//                                                               ::nano::graphics::icon *picon)
+//{
+//
+//   auto pmessageboxpayload =
+//      __initialize_new ::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+//
+//   auto pmanualresetevent = create_newø<manual_reset_happening>();
+//
+//   pmessageboxpayload->m_functionOnMessageBoxResult =
+//      [this, pmessageboxpayload, pmanualresetevent](message_box_payload *pmessageboxpayloadOnResult)
+//   {
+//      if (pmessageboxpayloadOnResult != pmessageboxpayload)
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//      }
+//      pmanualresetevent->set_happening();
+//   };
+//
+//   post(pmessageboxpayload);
+//
+//   pmanualresetevent->wait();
+//
+//   return pmessageboxpayload;
+//
+//
+//   /*auto predicate = [this](::message_box_payload *)
+//   {
+//      post_message_box(scopedstrMessage, scopedstrTitle, functionOnResult, emessagebox, scopedstrDetails, picon);
+//   }*/
+//}
+//
+//
+//   void application::post_message_box(const ::scoped_string &scopedstrMessage,
+//                                           const ::scoped_string &scopedstrTitle,
+//                                           const ::user::e_message_box &emessagebox,
+//                                           const ::function<void(::message_box_payload *)> & functionOnResult,
+//                                           const ::scoped_string &scopedstrDetails, ::nano::graphics::icon *picon)
+//   {
+//
+//   //   m_papplication->post_message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, functionOnResult,
+//   //                                            scopedstrDetails, picon);
+//      auto pmessageboxpayload =
+//         __initialize_new ::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+//
+//      pmessageboxpayload->m_functionOnMessageBoxResult = functionOnResult;
+//
+//      post(pmessageboxpayload);
+//
+//
+//
+//   }
+
+
+   void application::run_message_box(::message_box_payload * pmessageboxpayload)
+   {
+
+      auto pmicromessagebox = create_newø<::micro::message_box>();
+
+      //pmicromessagebox->m_pdialog = pmessageboxpayload;
+
+      pmicromessagebox->display(pmessageboxpayload);
+
+   }
+
+
+   //void application::post_message_box_payload(::message_box_payload *pmessageboxpayload) 
+   //{
+   //
+   //   ::system()->micro_user()->post_message_box_payload(pmessageboxpayload);
+   //
+   //}
 
 
    //int application::application_main()
@@ -1511,27 +1630,45 @@ namespace platform
    void application::user_confirm_close_application()
    {
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
+      post_message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no,
 
-      pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
-         {
+                       [this](message_box_payload * pmessageboxpayload)
+                       {
+                          if (pmessageboxpayload->m_payloadResult == e_dialog_result_yes)
+                          {
 
-            if (payloadResult == e_dialog_result_yes)
-            {
+                             auto papp = get_app();
 
-               auto papp = get_app();
+                             papp->_001PostTryCloseApplication();
+                          }
+                          else if (pmessageboxpayload->m_payloadResult == e_dialog_result_cancel)
+                          {
+                          }
+                       }
 
-               papp->_001PostTryCloseApplication();
+      );
+   
+      //auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
-            }
-            else if (payloadResult == e_dialog_result_cancel)
-            {
+      //pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
+      //   {
 
-            }
+      //      if (payloadResult == e_dialog_result_yes)
+      //      {
 
-         };
+      //         auto papp = get_app();
 
-      post(pmessageboxpayload);
+      //         papp->_001PostTryCloseApplication();
+
+      //      }
+      //      else if (payloadResult == e_dialog_result_cancel)
+      //      {
+
+      //      }
+
+      //   };
+
+      //post(pmessageboxpayload);
 
    }
 

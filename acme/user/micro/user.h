@@ -151,6 +151,8 @@ namespace micro
 
       ///virtual void display(::message_box_payload * pmessageboxpayload);
 
+      //void post_message_box_payload(::message_box_payload * pmessageboxpayload) override;
+
 
    };
 

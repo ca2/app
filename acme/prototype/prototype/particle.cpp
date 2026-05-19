@@ -2185,22 +2185,87 @@ bool particle::should_run_async() const
 
 }
 
-
-
-::pointer < ::message_box_payload > particle::message_box(const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+::pointer<::message_box_payload> particle::message_box(const ::scoped_string &scopedstrMessage,
+                                                            const ::scoped_string &scopedstrTitle,
+                                                            const ::user::e_message_box &emessagebox,
+                                                            const ::scoped_string &scopedstrDetails,
+                                                            ::nano::graphics::icon *picon)
 {
 
-   return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+    return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
+    picon);
+}
+
+
+::pointer<::message_box_payload>
+particle::message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage,
+                           const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox,
+                           const ::scoped_string &scopedstrDetails, ::nano::graphics::icon *picon)
+{
+
+    return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox,
+    scopedstrDetails, picon);
+}
+
+
+::pointer < ::message_box_payload > particle::send_message_box(const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+{
+
+   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+
+   main_send(pmessagebox);
+
+   return pmessagebox;
+
+   //return m_papplication->send_message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   //return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
 }
 
 
-::pointer < ::message_box_payload > particle::message_box(const ::exception& exception, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+::pointer < ::message_box_payload > particle::send_message_box(const ::exception& exception, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
 {
 
-   return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   auto pmessagebox = message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+
+   main_send(pmessagebox);
+
+   return pmessagebox;
+   //return m_papplication->send_message_box(exception,scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   //return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
 }
+
+
+void particle::post_message_box(const ::scoped_string &scopedstrMessage,
+                                                            const ::scoped_string &scopedstrTitle,
+                                                            const ::user::e_message_box &emessagebox,
+                                const ::function < void(::message_box_payload *) > & functionOnResult, 
+                                                            const ::scoped_string &scopedstrDetails,
+                                                            ::nano::graphics::icon *picon)
+{
+
+
+   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+
+   pmessagebox->m_functionOnMessageBoxResult = functionOnResult;
+
+   main_post(pmessagebox);
+
+   //m_papplication->post_message_box(scopedstrMessage, scopedstrTitle,
+   //   emessagebox,
+   //    functionOnResult, scopedstrDetails, picon);
+   //// return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
+   //// picon);
+}
+
+
+//void particle::post_message_box_payload(::message_box_payload * pmessageboxpayload)
+//{
+//
+//   m_papplication->post_message_box_payload(pmessageboxpayload);
+//
+//}
 
 
 ::pointer < particle > particle::__call__create_by_type(const ::platform::type& type, ::factory::factory* pfactory)
@@ -3013,6 +3078,28 @@ void particle::send(const ::procedure& procedure)
    m_papplication->send(procedure);
 
 }
+
+//
+//void particle::post_message_box_payload(const ::scoped_string & scopedstrMessage,
+//                                     const ::scoped_string & scopedstrTitle,
+//                           const ::user::e_message_box & emessagebox,
+//                           const ::function<void(const ::payload &)> functionOnResult,
+//                           const ::scoped_string & scopedstrDetails,
+//                           ::nano::graphics::icon * picon)
+//{
+//
+//   m_papplication->post_message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, functionOnResult,
+//                                            scopedstrDetails, picon);       
+//
+//}
+//
+
+//void particle::post_message_box_payload(message_box_payload * pmessageboxpayload)
+//{
+//
+//   m_papplication->post_message_box_payload(pmessageboxpayload);
+//
+//}
 
 
 void particle::dispatch_procedure(enum_dispatch edispatch, const procedure& procedure)

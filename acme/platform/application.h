@@ -608,6 +608,32 @@ namespace platform
       virtual ::gpu::approach* gpu_approach();
       virtual void create_gpu_approach();
 
+      //::pointer< ::message_box_payload > send_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+      //                      const ::user::e_message_box &emessagebox = {},
+      //                      const ::scoped_string &scopedstrDetails = {},
+      //                      ::nano::graphics::icon *picon = nullptr) override;
+
+      //::pointer<::message_box_payload>
+      //send_message_box(const ::exception &exception, 
+      //   const ::scoped_string &scopedstrMessage,
+      //                                                  const ::scoped_string &scopedstrTitle = {},
+      //                                                  const ::user::e_message_box &emessagebox = {},
+      //                                                  const ::scoped_string &scopedstrDetails = {},
+      //                                                  ::nano::graphics::icon *picon = nullptr) override;
+
+      //void post_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+      //                      const ::user::e_message_box &emessagebox = {},
+      //                      const ::function<void(::message_box_payload *)> & functionOnResult = {},
+      //                      const ::scoped_string &scopedstrDetails = {},
+      //                      ::nano::graphics::icon *picon = nullptr) override;
+
+
+      /// @brief  please now display it
+      /// @param pmessageboxpayload 
+      virtual void run_message_box(::message_box_payload *pmessageboxpayload);
+
+      //void post_message_box_payload(::message_box_payload * pmessageboxpayload) override;
+
 
       //void initialize(::particle * pparticle) override;
 

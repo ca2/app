@@ -34,8 +34,8 @@
 
 //inline auto left(const ::i32_rectangle& rectangle) { return rectangle.left; }
 //inline auto top(const ::i32_rectangle& rectangle) { return rectangle.top; }
-//inline auto left(const ::long_long_rectangle& rectangle) { return rectangle.left; }
-//inline auto top(const ::long_long_rectangle& rectangle) { return rectangle.top; }
+//inline auto left(const ::i64_rectangle& rectangle) { return rectangle.left; }
+//inline auto top(const ::i64_rectangle& rectangle) { return rectangle.top; }
 //inline auto left(const ::float_rectangle& rectangle) { return rectangle.left; }
 //inline auto top(const ::float_rectangle& rectangle) { return rectangle.top; }
 //inline auto left(const ::double_rectangle& rectangle) { return rectangle.left; }

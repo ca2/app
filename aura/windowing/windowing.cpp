@@ -873,7 +873,7 @@ namespace windowing
    }
 
 
-   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, ::u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter)
+   wstring windowing::_windows_calc_icon_window_class(::acme::user::interaction* pacmeuserinteraction, ::u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter)
    {
    
       return "windows_interaction_impl";
@@ -881,10 +881,10 @@ namespace windowing
    }
 
    
-   wstring windowing::_windows_get_user_interaction_window_class(::user::interaction* pinteraction)
+   wstring windowing::_windows_get_user_interaction_window_class(::acme::user::interaction* pacmeuserinteraction)
    {
 
-      ::string strClassName = pinteraction->payload("class_name").as_string();
+      ::string strClassName = pacmeuserinteraction->payload("class_name").as_string();
 
       if(strClassName.has_character())
       {

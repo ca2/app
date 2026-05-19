@@ -1282,7 +1282,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    void window::destroy_window()
    {
 
-      auto strType = ::platform::type(user_interaction()).name();
+      auto strType = ::platform::type(m_pacmeuserinteraction).name();
 
       if (strType.contains("main_frame"))
       {
@@ -1291,13 +1291,13 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       }
 
-      if (user_interaction())
+      if (m_pacmeuserinteraction)
       {
 
-         if (!user_interaction()->has_destroying_flag())
+         if (!m_pacmeuserinteraction->has_destroying_flag())
          {
 
-            user_interaction()->set_flag(e_flag_destroying);
+            m_pacmeuserinteraction->set_flag(e_flag_destroying);
 
          }
 

@@ -235,8 +235,8 @@ namespace windowing
 #endif
 
 
-      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, ::u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter);
-      virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
+      virtual wstring _windows_calc_icon_window_class(::acme::user::interaction* pinteraction, ::u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter);
+      virtual wstring _windows_get_user_interaction_window_class(::acme::user::interaction* pinteraction);
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >

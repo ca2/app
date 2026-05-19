@@ -67,15 +67,20 @@ namespace subsystem
 
 
 
+
+      virtual void onOperatingSystemApplicationMain() = 0;
+
+
+
       virtual void doDefaultMainLoop() = 0;
       //virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) = 0;
 
-      /**
-       * Runs windows application.
-       * @remark really it creates main window and starts windows scopedstrMessage loop.
-       * return application exit code in member m_iExitCoe.
-       */
-      virtual void run() = 0;
+      ///**
+      // * Runs windows application.
+      // * @remark really it creates main window and starts windows scopedstrMessage loop.
+      // * return application exit code in member m_iExitCoe.
+      // */
+      //virtual void run() = 0;
 
       /**
        * Posts close and destroy scopedstrMessage to main window.
@@ -199,6 +204,14 @@ namespace subsystem
       }
 
 
+      void onOperatingSystemApplicationMain() override
+      {
+
+         doDefaultMainLoop();
+
+      }
+
+
              void doDefaultMainLoop() override { m_poperatingsystemapplication->doDefaultMainLoop(); }
 
 
@@ -208,17 +221,17 @@ namespace subsystem
       //void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) override;
       //void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) override;
 
-      /**
-       * Runs windows application.
-       * @remark really it creates main window and starts windows scopedstrMessage loop.
-       * return application exit code in m_iExitCode member.
-       */
-      void run() override
-      {
+      ///**
+      // * Runs windows application.
+      // * @remark really it creates main window and starts windows scopedstrMessage loop.
+      // * return application exit code in m_iExitCode member.
+      // */
+      //void run() override
+      //{
 
-         m_poperatingsystemapplication->run();
+      //   m_poperatingsystemapplication->run();
 
-      }
+      //}
 
       /**
        * Posts close and destroy scopedstrMessage to main window.

@@ -51,7 +51,7 @@ namespace platform
       //m_psession = nullptr;
       //m_psystem = nullptr;
       //m_pnode = nullptr;
-      m_bKeepRunningPostedProcedures = true;
+      m_bRunMainLoop = true;
 
    }
 

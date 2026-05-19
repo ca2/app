@@ -88,7 +88,7 @@ namespace subsystem
       /**
        * Starts service execution.
        */
-      virtual void run() = 0;
+      virtual void onServiceMain() = 0;
 
    ////protected:
    //   /**
@@ -194,7 +194,7 @@ namespace subsystem
       /**
        * Starts service execution.
        */
-       void run() override
+       void onServiceMain() override
        {
 
           

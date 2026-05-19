@@ -28,7 +28,7 @@ namespace platform
       // m_pbasesession = nullptr;
       // m_pbredsession = nullptr;
       // m_pcoresession = nullptr;
-      m_bKeepRunningPostedProcedures = true;
+      m_bRunMainLoop = true;
 
    }
 

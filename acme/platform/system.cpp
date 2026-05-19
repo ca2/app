@@ -264,7 +264,7 @@ namespace platform
       m_bGraphicsAndWindowingFactory = false;
 
 
-      m_bKeepRunningPostedProcedures = true;
+      m_bRunMainLoop = true;
 
       operating_system_factory(factory());
 

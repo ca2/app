@@ -29,6 +29,44 @@
 
 //#include "DesktopSelector.h"
 
+template<typename THREAD>
+class scoped_thread
+{
+public:
+
+   ::pointer<THREAD> m_ptask;
+
+   scoped_thread() :
+      scoped_thread(allocateø THREAD)
+   {
+   }
+
+   scoped_thread(THREAD *ptask) : m_ptask(ptask)
+   {
+      if (!m_ptask->is_set())
+      {
+
+         m_ptask->branch_synchronously();
+      }
+      
+   }
+
+   ~scoped_thread()
+   {
+
+      m_ptask->set_finish();
+
+      m_ptask->wait();
+
+   }
+
+   THREAD*operator->()
+   {
+      return m_ptask;
+   }
+
+};
+
 namespace subsystem
 {
 

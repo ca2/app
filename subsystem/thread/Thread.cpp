@@ -37,10 +37,17 @@ namespace subsystem
    {
 
       //::get_task()->add_task(this);
-      
+
       m_manualresethappeningLetRun.clear();
       
       auto ptaskParent = ::get_task();
+
+      if (::is_null(ptaskParent))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
       
       initialize(ptaskParent);
       

@@ -46,6 +46,13 @@ namespace windows
 
    }
 
+
+   last_error::last_error() :
+      m_uLastError(::GetLastError())
+   {
+
+
+   }
    
 
       ::string last_error::get_error_description() const { ::string strError;

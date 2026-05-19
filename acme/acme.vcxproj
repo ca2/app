@@ -2574,8 +2574,11 @@
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="operating_system\environment.cpp" />
     <ClCompile Include="operating_system\GetCPUtime.cpp" />
+    <ClCompile Include="operating_system\performance_counter.cpp" />
+    <ClCompile Include="operating_system\shared_memory.cpp" />
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
+    <ClCompile Include="operating_system\windows\shared_memory.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />

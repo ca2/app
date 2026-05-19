@@ -111,7 +111,7 @@ task::task()
    m_htask = nullptr;
    m_itask = nullptr;
    m_taskindex = 0;
-   m_bKeepRunningPostedProcedures = false;
+   m_bRunMainLoop = false;
 
 }
 
@@ -1145,15 +1145,18 @@ void task::run_loop()
 void task::run()
 {
 
-   run_main_loop();
+   if (m_bRunMainLoop)
+   {
+
+      run_main_loop();
+
+   }
 
 }
 
 
 void task::run_main_loop()
 {
-
-   
 
    at_end_of_scope { m_eflagElement -= e_flag_running; };
 
@@ -1162,21 +1165,21 @@ void task::run_main_loop()
    try
    {
 
-      task_iteration();
+      //task_iteration();
 
-      bool b = m_bKeepRunningPostedProcedures;
+      //bool b = m_bKeepRunningPostedProcedures;
 
-      if (defer_implement(m_papplication))
-      {
+      //if (defer_implement(m_papplication))
+      //{
 
-         return;
-      }
+        // return;
+      //}
 
-      if (b)
-      {
+      //if (b)
+      //{
 
          run_loop();
-      }
+      //}
    }
    catch (const ::exit_exception &e)
    {

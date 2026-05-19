@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "acme/operating_system/message_box.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/windows/windows.h"
 
 
 
@@ -61,3 +62,18 @@
 
 
 
+
+
+namespace operating_system
+{
+
+   CLASS_DECL_ACME void message_beep(::user::enum_message_box emessagebox)
+   {
+
+      auto nType = ::windows::message_box_to_windows_message_box(emessagebox);
+
+      ::MessageBeep(nType);
+
+   }
+
+} // namespace operating_system

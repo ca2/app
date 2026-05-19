@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "icon.h"
 #include "innate_ui.h"
+#include "menu.h"
 #include "window.h"
 #include "acme/nano/nano.h"
 #include "acme/windowing/windowing.h"
@@ -75,6 +76,25 @@ namespace innate_ui
       //pparticle->increment_reference_count();
 
       //PostThreadMessage(m_dwThread, WM_APP + 123, 0, (LPARAM)pparticle);
+
+   }
+
+
+   //void innate_ui::track_popup_menu(int iMenuResourceId, const ::function<void(int)> &functionOnActionId)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
+
+   ::pointer<::innate_ui::menu> innate_ui::load_menu_from_resource(int iMenuResourceId)
+   {
+
+      auto pmenu = createø<::innate_ui::menu>();
+
+      pmenu->load_menu_from_resource(iMenuResourceId);
+
+      return pmenu;
 
    }
 

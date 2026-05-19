@@ -2431,6 +2431,7 @@
     <ClCompile Include="innate_ui\dialog.cpp" />
     <ClCompile Include="innate_ui\icon.cpp" />
     <ClCompile Include="innate_ui\innate_ui.cpp" />
+    <ClCompile Include="innate_ui\menu.cpp" />
     <ClCompile Include="innate_ui\still.cpp" />
     <ClCompile Include="innate_ui\window.cpp" />
     <ClCompile Include="input\input.cpp" />
@@ -2626,6 +2627,7 @@
     <ClInclude Include="innate_ui\dialog.h" />
     <ClInclude Include="innate_ui\icon.h" />
     <ClInclude Include="innate_ui\innate_ui.h" />
+    <ClInclude Include="innate_ui\menu.h" />
     <ClInclude Include="innate_ui\still.h" />
     <ClInclude Include="innate_ui\window.h" />
     <ClInclude Include="innate_ui\_.h" />

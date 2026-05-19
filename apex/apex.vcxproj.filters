@@ -1082,6 +1082,9 @@
     <ClInclude Include="networking\sockets\http\http_callback.h">
       <Filter>Header Files\networking\sockets\http</Filter>
     </ClInclude>
+    <ClInclude Include="innate_ui\menu.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1566,6 +1569,9 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\http\http_callback.cpp">
       <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\menu.cpp">
+      <Filter>Source Files\innate_ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

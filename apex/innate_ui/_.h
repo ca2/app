@@ -17,6 +17,8 @@ namespace innate_ui
 
    class innate_ui;
 
+   class menu;
+
 
 } //  namespace innate_ui
 

@@ -27,7 +27,7 @@ namespace micro
 
    void button::on_draw(::nano::graphics::device * pmicrodevice)
    {
-
+      //return;
       //::SelectObject(hdc, m_pinterchange->m_hbrushWindow);
 
       ::pointer<::nano::graphics::pen>ppenBorder;

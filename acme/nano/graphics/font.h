@@ -21,6 +21,7 @@ public:
    string      m_strFontName;
    int         m_iFontSize;
    bool        m_bBold;
+   bool        m_bUnderline;
 
 
    font();

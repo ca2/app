@@ -40,6 +40,7 @@ namespace micro
 
 
 
+      bool m_bBorder = true;
       ///::pointer < ::micro::elemental >        m_pelementalParent;
       //pointer_array < ::micro::elemental >    m_elementalaChildren;
 

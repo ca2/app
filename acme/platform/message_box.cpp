@@ -304,13 +304,17 @@ void dialog_reifier::display(::dialog * pdialog)
 void dialog_reifier::set_dialog_result(const ::payload & payloadResult)
 {
 
+   auto pdialog = m_pdialog;
+
+   on_dialog_result(payloadResult);
+
    try
    {
 
-      if (m_pdialog)
+      if (pdialog)
       {
 
-         m_pdialog->on_dialog_result(payloadResult);
+         pdialog->on_dialog_result(payloadResult);
 
       }
 
@@ -320,8 +324,6 @@ void dialog_reifier::set_dialog_result(const ::payload & payloadResult)
 
 
    }
-
-   on_dialog_result(payloadResult);
 
 }
 

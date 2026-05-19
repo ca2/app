@@ -52,6 +52,29 @@ namespace micro
 
          }
 
+         if (!m_pfontHyperlink)
+         {
+
+            constructø(m_pfontHyperlink);
+
+            m_pfontHyperlink->m_iFontSize = m_iFontSize;
+
+            m_pfontHyperlink->m_strFontName = node()->font_name(m_efont);
+         }
+
+
+         if (!m_pfontHyperlinkHover)
+         {
+
+            constructø(m_pfontHyperlinkHover);
+
+            m_pfontHyperlinkHover->m_iFontSize = m_iFontSize;
+
+            m_pfontHyperlinkHover->m_bUnderline = true;
+
+            m_pfontHyperlinkHover->m_strFontName = node()->font_name(m_efont);
+         }
+
          bool bDarkMode = system()->dark_mode();
 
          if (bDarkMode)

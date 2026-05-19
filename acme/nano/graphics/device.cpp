@@ -95,14 +95,29 @@ namespace nano
 
             auto r = rectangleText;
 
+            int iLastCy = 0;
+
             for (auto & strLine: straLines)
             {
 
-               _draw_text(strLine, r, ealign, edrawtext, pnanobrushBack, pnanobrushText, pnanofont);
+               if (strLine.is_empty())
+               {
 
-               auto size = get_text_extents(strLine, pnanofont);
+                  r.top += iLastCy;
 
-               r.top += size.cy;
+               }
+               else
+               {
+
+                  _draw_text(strLine, r, ealign, edrawtext, pnanobrushBack, pnanobrushText, pnanofont);
+
+                  auto size = get_text_extents(strLine, pnanofont);
+
+                  r.top += size.cy;
+
+                  iLastCy = size.cy;
+
+               }
 
                if (r.top > rectangleText.bottom)
                {

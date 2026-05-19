@@ -16,6 +16,7 @@ font::font()
 {
 
    m_bBold = false;
+   m_bUnderline = false;
 
 }
 

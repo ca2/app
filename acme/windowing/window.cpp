@@ -988,6 +988,22 @@ namespace acme
             }
 
          }
+         else
+         {
+
+            if (acme_windowing_window()->m_pacmeuserinteractionHover)
+            {
+
+               auto pacmeuserinteractionWasHover = acme_windowing_window()->m_pacmeuserinteractionHover;
+
+               acme_windowing_window()->m_pacmeuserinteractionHover = nullptr;
+
+               pacmeuserinteractionWasHover->on_mouse_leave();
+
+            }
+
+
+         }
 
       }
 

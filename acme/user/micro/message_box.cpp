@@ -154,6 +154,8 @@ namespace micro
 
          m_pstillDetails->m_bHyperlink = true;
 
+         m_pstillDetails->m_bBorder = false;
+
          add_child(m_pstillDetails);
 
       }
@@ -211,11 +213,18 @@ namespace micro
 
       ::acme::user::message_box::display(pmessageboxpayload);
 
-      create_window();
+      if (pmessageboxpayload->m_strDetailsTitle.has_character())
+      {
 
-      set_icon(pmessageboxpayload->m_picon);
+         m_strLabelDetails = pmessageboxpayload->m_strDetailsTitle;
+
+      }
 
       defer_create_details_still();
+
+//      create_window();
+
+      set_icon(pmessageboxpayload->m_picon);
 
       if (pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask)
       {
@@ -263,6 +272,8 @@ namespace micro
          printf_line("234");
 
       }
+
+      create_window();
 
       show();
 
@@ -372,7 +383,11 @@ namespace micro
 
          m_pstillDetails->resize_to_fit();
 
-         m_pstillDetails->m_rectangle.move_bottom_to(micro_button_at(0)->m_rectangle.bottom);
+         auto r = micro_button_at(0)->m_rectangle;
+
+         auto iBottom = r.bottom;
+
+         m_pstillDetails->m_rectangle.move_bottom_to(iBottom);
 
          m_pstillDetails->m_rectangle.move_left_to(x);
 
@@ -435,7 +450,8 @@ namespace micro
 
          pmessageboxDetails->m_bDetails = true;
 
-         send(pmessageboxDetails);
+         //send(pmessageboxDetails);
+         main_post(pmessageboxDetails);
 
          pmouse->m_bRet = true;
 
@@ -453,7 +469,12 @@ namespace micro
 
       set_dialog_result(payload);
 
-      pmouse->m_bRet = true;
+      if (pmouse)
+      {
+
+         pmouse->m_bRet = true;
+
+      }
 
    }
 

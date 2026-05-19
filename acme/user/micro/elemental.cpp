@@ -192,26 +192,34 @@ namespace micro
    void elemental::draw_background(::nano::graphics::device * pmicrodevice)
    {
 
-      ::pointer<::nano::graphics::pen> pmicropenBorder;
-
-      if (acme_windowing_window()->is_active_window())
+      if (m_bBorder)
       {
 
-         pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+         ::pointer<::nano::graphics::pen> pmicropenBorder;
 
+         if (acme_windowing_window()->is_active_window())
+         {
+
+            pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+         }
+         else
+         {
+
+            pmicropenBorder = micro_theme()->m_ppenBorder;
+         }
+
+         ::i32_rectangle rectangleX;
+
+         rectangleX = get_client_rectangle();
+
+         pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
       }
       else
       {
 
-         pmicropenBorder = micro_theme()->m_ppenBorder;
+         //information("not drawing border");
 
       }
-
-      ::i32_rectangle rectangleX;
-
-      rectangleX = get_client_rectangle();
-
-      pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
 
    }
 

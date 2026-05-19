@@ -23,6 +23,18 @@ namespace micro
    void still::on_draw(::nano::graphics::device * pmicrodevice)
    {
 
+            wstring wstrText(m_strText);
+
+
+            if (m_strText.contains("Operating"))
+            {
+
+               information("Operating1");
+               //return;
+
+            }
+
+
       if (m_picon)
       {
 
@@ -33,27 +45,64 @@ namespace micro
 
       }
 
-      ::pointer<::nano::graphics::pen>ppenBorder;
+      //::pointer<::nano::graphics::pen>ppenBorder;
 
-      if (acme_windowing_window()->m_pacmeuserinteractionHover == this
-         || has_keyboard_focus())
+      //if (acme_windowing_window()->m_pacmeuserinteractionHover == this
+      //   || has_keyboard_focus())
+      //{
+
+      //   ppenBorder = micro_theme()->m_ppenBorderFocus;
+
+      //}
+      //else
+      //{
+
+      //   ppenBorder = micro_theme()->m_ppenBorder;
+
+      //}
+
+      ::pointer<::nano::graphics::brush> pbrushText;
+      ::pointer<::nano::graphics::font> pfontText;
+
+      if (m_bHyperlink)
       {
 
-         ppenBorder = micro_theme()->m_ppenBorderFocus;
+         if (acme_windowing_window()->m_pacmeuserinteractionHover == this)
+         {
+
+            pbrushText = micro_theme()->m_pbrushHyperlinkHover;
+
+            pfontText = micro_theme()->m_pfontHyperlinkHover;
+
+            information("still hyperlink hover");
+
+         }
+         else
+         {
+
+            pbrushText = micro_theme()->m_pbrushHyperlink;
+
+            pfontText = micro_theme()->m_pfontHyperlink;
+
+            information("still hyperlink");
+
+         }
 
       }
       else
       {
 
-         ppenBorder = micro_theme()->m_ppenBorder;
+         pbrushText = micro_theme()->m_pbrushText;
+
+         pfontText = micro_theme()->m_pfont;
 
       }
 
-      wstring wstrText(m_strText);
-
-      i32_rectangle rectangleText(m_rectangle);
+      i32_rectangle rectangleText(m_rectangle.size());
 
       rectangleText.inflate(1);
+
+
 
       pmicrodevice->draw_text123(
          m_strText,
@@ -61,10 +110,8 @@ namespace micro
          e_align_center,
          e_draw_text_single_line,
          micro_theme()->m_pbrushWindow,
-         m_bHyperlink ? (has_mouse_capture() ?
-            micro_theme()->m_pbrushHyperlinkHover :
-            micro_theme()->m_pbrushHyperlink) : micro_theme()->m_pbrushText,
-         micro_theme()->m_pfont);
+         pbrushText,
+         pfontText);
 
    }
 
@@ -99,42 +146,106 @@ namespace micro
    }
 
 
-   void still::fore_on_mouse_move(::user::mouse * pmouse)
+   void still::on_mouse_enter()
    {
 
-      if (m_bHyperlink)
-      {
+      //if (m_bHyperlink)
+      //{
 
-         if (acme_windowing_window()->m_pacmeuserinteractionHover == this)
-         {
+      //   if (acme_windowing_window()->m_pacmeuserinteractionHover == this)
+      //   {
 
-            auto r = m_rectangle;
+      //      auto r = m_rectangle;
 
-            r += acme_windowing_window()->m_rectangle.top_left();
+      //      r += acme_windowing_window()->m_rectangle.top_left();
 
-            if (!r.contains(pmouse->m_pointAbsolute))
-            {
+      //      if (!r.contains(pmouse->m_pointAbsolute))
+      //      {
 
-               acme_windowing_window()->m_pacmeuserinteractionHover = nullptr;
+      //         acme_windowing_window()->m_pacmeuserinteractionHover = nullptr;
 
-               acme_windowing_window()->redraw();
+      //         acme_windowing_window()->redraw();
 
-            }
+      //      }
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            acme_windowing_window()->m_pacmeuserinteractionHover = this;
+      //      acme_windowing_window()->m_pacmeuserinteractionHover = this;
 
+      information("still::on_mouse_enter");
             acme_windowing_window()->redraw();
 
-         }
+      //   }
 
-      }
+      //}
       
    }
 
+   //   void still::fore_on_mouse_move(::user::mouse *pmouse)
+   //{
+
+   //   if (m_bHyperlink)
+   //   {
+
+   //      if (acme_windowing_window()->m_pacmeuserinteractionHover == this)
+   //      {
+
+   //         auto r = m_rectangle;
+
+   //         r += acme_windowing_window()->m_rectangle.top_left();
+
+   //         if (!r.contains(pmouse->m_pointAbsolute))
+   //         {
+
+   //            acme_windowing_window()->m_pacmeuserinteractionHover = nullptr;
+
+   //            acme_windowing_window()->redraw();
+   //         }
+   //      }
+   //      else
+   //      {
+
+   //         acme_windowing_window()->m_pacmeuserinteractionHover = this;
+
+   //         acme_windowing_window()->redraw();
+   //      }
+   //   }
+   //}
+
+
+   void still::on_mouse_leave()
+   {
+
+      //if (m_bHyperlink)
+      //{
+
+      //   if (acme_windowing_window()->m_pacmeuserinteractionHover == this)
+      //   {
+
+      //      auto r = m_rectangle;
+
+      //      r += acme_windowing_window()->m_rectangle.top_left();
+
+      //      if (!r.contains(pmouse->m_pointAbsolute))
+      //      {
+
+      //         acme_windowing_window()->m_pacmeuserinteractionHover = nullptr;
+
+      //         acme_windowing_window()->redraw();
+      //      }
+      //   }
+      //   else
+      //   {
+
+      //      acme_windowing_window()->m_pacmeuserinteractionHover = this;
+
+      information("still::on_mouse_leave");
+            acme_windowing_window()->redraw();
+         //}
+      //}
+   }
 
    bool still::is_keyboard_focusable()
    {

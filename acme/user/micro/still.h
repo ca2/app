@@ -20,6 +20,8 @@ namespace micro
 
       bool        m_bHyperlink;
       ::pointer < ::nano::graphics::icon > m_picon;
+      //bool m_bBorder = true;
+      
 
       virtual ~still();
 
@@ -29,7 +31,9 @@ namespace micro
 
       virtual void set_icon(::nano::graphics::icon * picon);
 
-      void fore_on_mouse_move(::user::mouse * pmouse) override;
+      //void fore_on_mouse_move(::user::mouse * pmouse) override;
+      void on_mouse_enter() override;
+      void on_mouse_leave() override;
 
       bool is_keyboard_focusable() override;
 

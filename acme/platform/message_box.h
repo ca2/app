@@ -160,6 +160,7 @@ public:
    string                                             m_strTitle;
    ::user::e_message_box                              m_emessagebox;
    string                                             m_strDetails;
+   ::string                                           m_strDetailsTitle;
    ::pointer < ::nano::graphics::icon >               m_picon;
    ::pointer < ::user::activation_token >             m_puseractivationtoken;
    ::function<void(::message_box_payload *)>          m_functionOnMessageBoxResult;

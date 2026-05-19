@@ -2875,7 +2875,17 @@ namespace platform
 
       picon->load_image_from_file(pfile);
 
-      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, "", picon);
+      auto linesOperatingSystem = get_operating_system_information_lines();
+
+      ::string strDetails = linesOperatingSystem.implode("\n");
+
+      strDetails.find_replace("<br />", "\n");
+      strDetails.find_replace("-#", "");
+      strDetails.find_replace("#", "");
+
+      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, strDetails, picon);
+
+      paboutbox->m_strDetailsTitle = "Operating System Information ...";
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {
@@ -2898,7 +2908,7 @@ namespace platform
 
       paboutbox->m_puseractivationtoken = puseractivationtoken;
 
-      post(paboutbox);
+      main_post(paboutbox);
 
 
 

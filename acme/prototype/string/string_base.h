@@ -3499,3 +3499,11 @@ CLASS_DECL_ACME wstring wformat_arguments(const scoped_wstring & scopedstrFormat
 
 
 
+template<typename ITERATOR_TYPE, prototype_character CHARACTER>
+inline ::string_base<ITERATOR_TYPE> &operator<<(::string_base<ITERATOR_TYPE> &str, const CHARACTER *psz)
+{
+
+   str.append(psz);
+
+   return str;
+}

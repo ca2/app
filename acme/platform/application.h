@@ -88,6 +88,7 @@ namespace platform
       };
 
       bool                                            m_bUserApplication;
+      bool m_bIsService;
       //bool                                            m_bTransferToContainer;
       //bool                                            m_bTransferredToContainer;
 #if REFERENCING_DEBUGGING

@@ -36,6 +36,8 @@ namespace subsystem
    Thread::Thread()
    {
 
+      m_bMessageThread = false;
+
       //::get_task()->add_task(this);
 
       m_manualresethappeningLetRun.clear();

@@ -74,6 +74,7 @@ namespace platform
    application::application()
    {
 
+      m_bIsService = false;
       m_bUseCloudStorageForAppData = true;
       m_gpu.m_bUseSwapChainWindow = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;

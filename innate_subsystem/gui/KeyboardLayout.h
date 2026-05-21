@@ -1,5 +1,5 @@
 // Created by camilo on 2026-04-17 17:40 <3ThomasBorregaardSørensen!!
-// Using HKL (Windows Keyboard Layout) code from TightVNC.
+// Using HKL (Windows Keyboard Layout) code from Remoting.
 #pragma once
 // #ifndef _BASE_WINDOW_H_
 // #define _BASE_WINDOW_H_

@@ -170,6 +170,8 @@ public:
 
 //   virtual void delete_this();
 
+   virtual bool check_pipe_node_client_executable_paths(const ::file::path & pathNode, const ::file::path & pathClient);
+
    inline ::particle * trace_this() const { return (::particle *) this; }
 
    virtual enum_trace_level main_trace_level() const;
@@ -854,14 +856,14 @@ public:
    // inline void __call__forward_construct(::pointer < T > &p, Args &&... args);
 
    template < typename T, typename ...Args >
-   inline void __call__raw_construct_new(::pointer < T > &p, Args &&... args)
+   inline void __call__emplace_new(::pointer < T > &p, Args &&... args)
    {
 
       p = ::transfer(allocateø T(::std::forward<Args>(args)...));
 
    }
    template < typename T, typename ...Args >
-   inline void __call__raw_construct_new(::auto_pointer < T > &p, Args &&... args)
+   inline void __call__emplace_new(::auto_pointer < T > &p, Args &&... args)
    {
 
       p = new T(::std::forward<Args>(args)...);

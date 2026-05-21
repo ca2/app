@@ -12,6 +12,8 @@ machine_event_central::machine_event_central()
 
    m_bInitialized = false;
 
+   m_bMessageThread = false;
+
 }
 
 

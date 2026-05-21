@@ -79,6 +79,8 @@ namespace platform
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
+      m_bUserApplication = true;
+
 #ifdef _DEBUG
       int cx = 204;
 

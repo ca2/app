@@ -387,28 +387,37 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
    //};
 
 
-#define ImplementDefaultø(MAIN_CLASS)            \
+#define Implement1Defaultø(MAIN_CLASS)            \
 ::Particle * _get_implementation1()           \
 {           \
    \
              return this;           \
 \
+}
+
+
+
+#define Implement1Callbackø(MAIN_CLASS)            \
+::Particle * _get_implementation1()           \
+{           \
+\
+return this;           \
+\
 }           \
 \
 ::Particle * _get_callback()  override          \
 {           \
-   \
-   return MAIN_CLASS::_get_callback();           \
+\
+return MAIN_CLASS::_get_callback();           \
 \
 }           \
 \
 ::Particle * _get_callback1()           \
 {           \
-   \
-   return MAIN_CLASS::_get_callback1();           \
+\
+return MAIN_CLASS::_get_callback1();           \
 \
 }
-
 
    template < typename PARTICLE_SLICE, typename BASE >
    class Implementation :
@@ -447,7 +456,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
       }
 
 
-      ImplementDefaultø(PARTICLE_SLICE)
+      Implement1Callbackø(PARTICLE_SLICE)
 
    };
 

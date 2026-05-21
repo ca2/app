@@ -29,6 +29,8 @@ namespace networking
 
       ::string_array m_straDisabledIpv6Addresses;
 
+      bool m_bChecked_IP6_IP4_connectability;
+
       //string         m_host; ///< local hostname
       //in_addr        m_ip; ///< local ip address
       //string         m_addr; ///< local ip address in string format
@@ -98,6 +100,9 @@ namespace networking
 
       virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
+
+
+      void defer_check_ip6_ip4_connectability(bool bForceAsUserApplication = false);
 
 
       //virtual bool convert(string& str, const struct ::in_addr& inaddr);

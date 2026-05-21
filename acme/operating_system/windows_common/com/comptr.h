@@ -71,21 +71,21 @@ public:
    ~comptr()
    {
 
-      Release();
+      release();
 
    }
 
    HRESULT CoCreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter = nullptr, ::u32 dwClsContext = CLSCTX_ALL)
    {
 
-      Release();
+      release();
 
       return ::CoCreateInstance(rclsid, pUnkOuter, dwClsContext, __uuidof(TYPE), (void **)&m_p);
 
    }
 
    template < class IFACE >
-   HRESULT as(comptr < IFACE > & iface)
+   HRESULT as(comptr < IFACE > & iface) const
    {
 
       if (m_p == nullptr)
@@ -100,7 +100,7 @@ public:
    }
 
    template < class IFACE >
-   comptr < IFACE > as()
+   comptr < IFACE > as() const
    {
 
       comptr < IFACE > pointer;
@@ -161,7 +161,7 @@ public:
 
    TYPE ** operator & ()
    {
-      Release();
+      release();
       return &(TYPE * &)m_p;
 
    }
@@ -234,7 +234,7 @@ public:
    }
 
 
-   ULONG Release()
+   ULONG release()
    {
 
       ULONG ul = 0;

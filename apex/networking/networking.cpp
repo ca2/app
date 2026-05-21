@@ -48,6 +48,7 @@ namespace networking
    networking::networking()
    {
 
+      m_bChecked_IP6_IP4_connectability = false;
       m_p2 = nullptr;
       defer_create_synchronization();
 
@@ -67,7 +68,7 @@ namespace networking
    }
 
 
-   void     networking::initialize(::particle * pparticle)
+   void networking::initialize(::particle * pparticle)
    {
 
       //if (m_bInitialized)
@@ -106,6 +107,29 @@ namespace networking
 
       }
 
+      defer_check_ip6_ip4_connectability();
+
+
+      //return estatus;
+
+   }
+
+
+   void networking::defer_check_ip6_ip4_connectability(bool bForceAsUserApplication)
+   {
+
+      if (!m_papplication->m_bUserApplication)
+      {
+
+         if (!bForceAsUserApplication)
+         {
+
+            return;
+
+         }
+
+      }
+
       if (has_ip6_internet())
       {
 
@@ -124,8 +148,6 @@ namespace networking
          m_eaddresstypePreferred = e_address_type_ipv4;
 
       }
-
-      //return estatus;
 
    }
 

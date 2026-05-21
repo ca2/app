@@ -2,9 +2,9 @@
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
-// This file is part of the TightVNC software.  Please visit our Web site:
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
 //
-//                       http://www.tightvnc.com/
+//                       http://www.t i g h t v n c.com/
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ void BufferedOutputStream::_initialize_buffered_output_stream(OutputStream *pout
     }
     m_memoryBuffer.set_size(iBufferSize);
 
-    raw_construct_newø(m_pdataoutputstream, poutputstream);
+    emplace_newø(m_pdataoutputstream, poutputstream);
 
     //m_pdataoutputstream->initialize_data_output_stream(poutputstream);
 

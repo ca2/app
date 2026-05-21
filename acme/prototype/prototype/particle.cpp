@@ -788,6 +788,14 @@ bool particle::on_command_final(const ::atom& atom, ::user::activation_token* pu
 }
 
 
+bool particle::check_pipe_node_client_executable_paths(const file::path& pathNode, const file::path& pathClient)
+{
+
+   return pathNode == pathClient;
+
+}
+
+
 void particle::delete_this()
 {
 

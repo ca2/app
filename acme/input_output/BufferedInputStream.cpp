@@ -58,7 +58,7 @@ void BufferedInputStream::_initialize_buffered_input_stream(InputStream * pinput
 
       m_buffer.set_size(m_iInitialBufferSize);
 
-      raw_construct_newø(m_pdatainputstream, pinputstream);
+      emplace_newø(m_pdatainputstream, pinputstream);
 
       //m_pdatainputstream->initialize_data_input_stream(pinputstream);
 

@@ -710,6 +710,15 @@ namespace platform
    void system::application_main(::platform::application* papplication)
    {
 
+      if (!papplication->m_bUserApplication)
+      {
+
+         m_bMessageThread = false;
+
+         papplication->m_bMessageThread = false;
+
+      }
+
       papplication->initialize_application();
 
 
@@ -2866,6 +2875,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       øraw_construct(psession);
 
       //psession->set_platform();
+
+      if (!m_papplicationMain->m_bUserApplication)
+      {
+
+         psession->m_bMessageThread = false;
+
+      }
 
       psession->initialize(this);
 

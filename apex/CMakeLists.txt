@@ -161,6 +161,8 @@ list(APPEND apex_source
    innate_ui/icon.h
    innate_ui/innate_ui.cpp
    innate_ui/innate_ui.h
+   innate_ui/menu.cpp
+   innate_ui/menu.h
    innate_ui/still.cpp
    innate_ui/still.h
    innate_ui/window.cpp

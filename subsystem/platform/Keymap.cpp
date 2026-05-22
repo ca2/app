@@ -34,7 +34,7 @@
 #define XK_MISCELLANY
 #define XK_CYRILLIC
 
-#include "remoting/remoting/rfb/keysymdef.h"
+#include "remoting/remoting_rfb/rfb/keysymdef.h"
 
 
 namespace subsystem

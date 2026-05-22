@@ -2639,6 +2639,7 @@
     <ClInclude Include="operating_system\windows_common\com\hresult_exception.h" />
     <ClInclude Include="operating_system\windows_common\com\prop_variant.h" />
     <ClInclude Include="operating_system\windows_common\com\variant.h" />
+    <ClInclude Include="operating_system\windows_common\com\_.h" />
     <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="parallelization\_platform.h" />

@@ -130,4 +130,6 @@ namespace windows
 } // namespace windows
 
 
+CLASS_DECL_ACME RECT as_RECT(const ::i32_rectangle & rectangle);
+
 

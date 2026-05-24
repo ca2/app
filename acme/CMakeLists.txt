@@ -3233,7 +3233,10 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/windows_common/apartment_thread.cpp
+   operating_system/windows_common/apartment_thread.h
+   operating_system/windows/_window_class.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

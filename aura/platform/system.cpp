@@ -2085,7 +2085,7 @@ namespace aura
       //      //if (!estatus)
       //      //{
       //
-      //      //   fatal() <<"axis::application::process_init .2";
+      //      //   fatal() <<"aura::application::process_init .2";
       //
       //      //   return false;
       //
@@ -7343,37 +7343,37 @@ if(!m_pimaging)
    }
 
 
-   void system::do_graphics_and_windowing_factory()
+   void system::do_graphics_factory()
    {
 
-      if(!m_bGraphicsAndWindowingFactory)
+      if(!m_bGraphicsFactory)
       {
 
-         ::aqua::system::do_graphics_and_windowing_factory();
+         ::aqua::system::do_graphics_factory();
 
-         ::string strUserToolkit = this->get_user_toolkit_id();
-
-         if (strUserToolkit.has_character())
-         {
-            
-            if(strUserToolkit == "appkit")
-            {
-             
-               strUserToolkit = "macos";
-               
-            }
-            else if(strUserToolkit == "uikit")
-            {
-             
-               strUserToolkit = "ios";
-               
-            }
-
-            auto pfactory = factory("windowing", strUserToolkit);
-
-            pfactory->merge_to_global_factory();
-
-         }
+         // ::string strUserToolkit = this->get_user_toolkit_id();
+         //
+         // if (strUserToolkit.has_character())
+         // {
+         //
+         //    if(strUserToolkit == "appkit")
+         //    {
+         //
+         //       strUserToolkit = "macos";
+         //
+         //    }
+         //    else if(strUserToolkit == "uikit")
+         //    {
+         //
+         //       strUserToolkit = "ios";
+         //
+         //    }
+         //
+         //    auto pfactory = factory("windowing", strUserToolkit);
+         //
+         //    pfactory->merge_to_global_factory();
+         //
+         // }
          
 
          //user()->create_windowing();
@@ -7383,6 +7383,44 @@ if(!m_pimaging)
    }
 
 
+   void system::do_windowing_factory()
+   {
+
+      if(!m_bWindowingFactory)
+      {
+
+         ::aqua::system::do_windowing_factory();
+
+         ::string strUserToolkit = this->get_user_toolkit_id();
+
+         if (strUserToolkit.has_character())
+         {
+
+            if(strUserToolkit == "appkit")
+            {
+
+               strUserToolkit = "macos";
+
+            }
+            else if(strUserToolkit == "uikit")
+            {
+
+               strUserToolkit = "ios";
+
+            }
+
+            auto pfactory = factory("windowing", strUserToolkit);
+
+            pfactory->merge_to_global_factory();
+
+         }
+
+
+         //user()->create_windowing();
+
+      }
+
+   }
 } // namespace aura
 
 

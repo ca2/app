@@ -374,7 +374,9 @@ namespace platform
 
       //pmicromessagebox->m_pdialog = pmessageboxpayload;
 
-      pmicromessagebox->display(pmessageboxpayload);
+      system()->do_graphics_factory();
+
+      pmicromessagebox->show_modal(pmessageboxpayload);
 
    }
 
@@ -454,9 +456,55 @@ namespace platform
 
          m_papplicationmenu->m_bPopup = true;
 
+         on_update_application_menu();
+
       }
 
       return m_papplicationmenu;
+
+   }
+
+
+   void application::on_update_application_menu()
+   {
+
+      auto papplicationmenu = application_menu();
+
+      papplicationmenu->erase_all();
+
+      using namespace ::apex;
+
+      {
+
+         auto ppopupApp = papplicationmenu->defer_add_popup(application_title());
+
+         //pmenuMain->add(pmenuApp);
+
+         ppopupApp->defer_add_item("About " + application_title(), "show_about_box", "", "");
+
+         ppopupApp->add_separator();
+
+         ppopupApp->defer_add_item("Quit " + application_title(), "try_close_application", "", "");
+
+      }
+
+      //      {
+      //
+      //         auto ppopupView = papplicationmenu->popup("View");
+      //
+      //         //ppopupView->add(pmenuView);
+      //
+      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+      //
+      //      }
+      //
+      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+      //
+      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+      ////
+      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+
+      application_menu_update();
 
    }
 
@@ -1001,8 +1049,7 @@ namespace platform
       if (strCommandLineSystemNative.has_character())
       {
 
-         information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***"
-                       << strCommandLineSystemNative << "***";
+         information() << "system::defer_post_initial_request command line: \"" << strCommandLineSystemNative << "\"";
 
          setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
       }
@@ -1432,46 +1479,10 @@ namespace platform
    void application::init()
    {
 
-      if (!system()->m_bConsole)
-      {
-         auto papplicationmenu = application_menu();
-
-         papplicationmenu->erase_all();
-
-         using namespace ::apex;
-
-         {
-
-            auto ppopupApp = papplicationmenu->defer_add_popup(application_title());
-
-            //pmenuMain->add(pmenuApp);
-
-            ppopupApp->defer_add_item("About " + application_title(), "show_about_box", "", "");
-
-            ppopupApp->add_separator();
-
-            ppopupApp->defer_add_item("Quit " + application_title(), "try_close_application", "", "");
-
-         }
-
-         //      {
-         //
-         //         auto ppopupView = papplicationmenu->popup("View");
-         //
-         //         //ppopupView->add(pmenuView);
-         //
-         //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-         //
-         //      }
-         //
-         //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-         //
-         ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-         ////
-         ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
-
-         application_menu_update();
-      }
+      //if (!system()->m_bConsole)
+      //{
+//            application_menu();
+  //    }
 
    }
 
@@ -2690,6 +2701,13 @@ namespace platform
 
    }
 
+   void application::set_finish()
+   {
+
+      ::task::set_finish();
+
+   }
+
 
 
 
@@ -3064,7 +3082,7 @@ namespace platform
    void application::on_system_main()
    {
 
-      information() << "platform::application::on_system_main";
+      debug() << "platform::application::on_system_main";
 
       if (system()->m_bBranchMainThread)
       {

@@ -1105,7 +1105,7 @@ pdirectorysystem->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   FATAL("axis::application::process_init .2");
+      //   FATAL("apex::application::process_init .2");
 
       //   return false;
 
@@ -5039,6 +5039,14 @@ namespace apex
       ::platform::system::system_construct(papplication);
 
       //main::system_construct(papplication);
+
+   }
+
+
+   void system::branch(enum_parallelization eparallelization, const create_task_attributes_t& createtaskattributes)
+   {
+
+      ::thread::branch(eparallelization, createtaskattributes);
 
    }
 

@@ -928,6 +928,14 @@ void file_context::as_memory(const ::payload & payloadFile, memory_base & mem)
 
    pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
 
+
+   if (!pfile->is_ok())
+   {
+
+      throw ::exception(error_io);
+
+   }
+
    //      if (!pfile)
    //      {
    //

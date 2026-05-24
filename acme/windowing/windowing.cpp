@@ -421,7 +421,7 @@ namespace acme
          if (!m_pacmedisplay)
          {
 
-            system()->do_graphics_and_windowing_factory();
+            system()->do_windowing_factory();
 
             defer_constructø(m_pacmedisplay);
 
@@ -1039,6 +1039,42 @@ namespace acme
 
       }
 
+
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+      ::windows::window_class windowing::_default_window_class()
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      ::windows::window_class windowing::_acme_nano_window_class()
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      ::windows::window_class windowing::_com_host_window_class()
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+#endif
 
 //      void windowing::enable_wallpaper_change_notification()
 //      {

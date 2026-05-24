@@ -50,6 +50,9 @@ namespace windows
    };
 
 
+   void dump_child_window_hierarchy(const ::operating_system::window & operatingsystemwindow);
+
+
 } // namespace windows
 
 

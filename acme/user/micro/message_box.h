@@ -29,6 +29,7 @@ namespace micro
          //::pointer<::micro::still>               m_pstillIcon;
          ::pointer<::nano::graphics::icon>         m_picon;
          //::pointer < ::message_box_payload >               m_pmessagebox;
+         ::manual_reset_happening                  m_manualresethappeningDialogResult;
 
 
          message_box();
@@ -44,6 +45,9 @@ namespace micro
          //virtual void set(::message_box_payload * pmessageboxpayload);
 
          void display(::dialog * pdialog) override;
+
+
+         void show_modal(::dialog * pdialog) override;
          
          
          void on_context_menu(::user::mouse * pmouse) override;

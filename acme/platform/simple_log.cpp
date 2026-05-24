@@ -219,7 +219,7 @@ simple_log::simple_log()
 
    m_bReallySimple = true;
    m_bWithTimePrefix = true;
-   m_bDisplayRelativeTime = true;
+   m_bDisplayRelativeTime = false;
 
    ::file::path pathTrace;
 
@@ -251,6 +251,8 @@ simple_log::~simple_log()
 }
 
 
+
+
 void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 {
 
@@ -261,45 +263,95 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
    }
 
-   if(tracestatement.m_etracelevel <= m_etracelevelMinimum)
+   if(tracestatement.m_etracelevel > m_etracelevelMinimum)
    {
 
-      string str;
+      return;
 
-      auto sPrefix = tracestatement.prefix();
+   }
 
-      if (sPrefix == "task")
+   string str;
+
+   auto sPrefix = tracestatement.prefix();
+
+   if (sPrefix == "task")
+   {
+
+      auto sPrefix2 = tracestatement.prefix();
+
+      sPrefix = sPrefix2;
+
+   }
+
+   auto s = tracestatement.as_string();
+
+   if (m_bReallySimple)
+   {
+
+      if (sPrefix.begins_eat("\r"))
       {
 
-         auto sPrefix2 = tracestatement.prefix();
+         str += "\r";
 
-         sPrefix = sPrefix2;
+         str += sPrefix + "> ";
+
+         str += s;
+
+      }
+      else
+      {
+
+         str += sPrefix + "> ";
+
+         str += s;
+
+         str += "\n";
 
       }
 
-      auto s = tracestatement.as_string();
+   }
+   else
+   {
 
-      if (m_bReallySimple)
+      str.formatf("%s> %c %s %d %s\n", sPrefix.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, s.c_str());
+
+   }
+
+   if(m_bWithTimePrefix)
+   {
+
+      ::string strTime;
+
+      class ::time timeNow;
+
+      timeNow.Now();
+
+      if(m_bDisplayRelativeTime)
       {
 
-         if (sPrefix.begins_eat("\r"))
+         auto Δtime = timeNow - ::acme::get()->m_timeStart;
+
+         ::earth::time_span earthtimepan(Δtime);
+
+         if(earthtimepan.days() <= 0)
          {
-            
-            str += "\r";
 
-            str += sPrefix + "> ";
-
-            str += s;
+            strTime.formatf("%02d:%02d:%02d %03d ",
+                           earthtimepan.hours(),
+                           earthtimepan.minute(),
+                           earthtimepan.second(),
+                           Δtime.millisecond());
 
          }
          else
          {
 
-            str += sPrefix + "> ";
-
-            str += s;
-
-            str += "\n";
+            strTime.formatf("%3d %02d:%02d:%02d %03d ",
+                           earthtimepan.days(),
+                           earthtimepan.hour(),
+                           earthtimepan.minute(),
+                           earthtimepan.second(),
+                           Δtime.millisecond());
 
          }
 
@@ -307,135 +359,74 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       else
       {
 
-         str.formatf("%s> %c %s %d %s\n", sPrefix.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, s.c_str());
+         ::earth::time earthtime(timeNow);
+
+         strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d ",
+                        earthtime.year(),
+                        earthtime.month(),
+                        earthtime.day(),
+                        earthtime.hour(),
+                        earthtime.minute(),
+                        earthtime.second(),
+                        timeNow.millisecond());
 
       }
 
-      if(m_bWithTimePrefix)
+      if (str.begins_eat("\r"))
       {
 
-         ::string strTime;
 
-         class ::time timeNow;
+         str = "\r"+strTime + str;
 
-         timeNow.Now();
+      }
+      else
+      {
 
-         if(m_bDisplayRelativeTime)
+         if (str.is_empty())
          {
 
-            auto Δtime = timeNow - ::acme::get()->m_timeStart;
-
-            ::earth::time_span earthtimepan(Δtime);
-
-            if(earthtimepan.days() <= 0)
-            {
-
-               strTime.formatf("%02d:%02d:%02d %03d ",
-                              earthtimepan.hours(),
-                              earthtimepan.minute(),
-                              earthtimepan.second(),
-                              Δtime.millisecond());
-
-            }
-            else
-            {
-
-               strTime.formatf("%3d %02d:%02d:%02d %03d ",
-                              earthtimepan.days(),
-                              earthtimepan.hour(),
-                              earthtimepan.minute(),
-                              earthtimepan.second(),
-                              Δtime.millisecond());
-
-            }
+            output_debug_string("WHAT?!?!(2)");
 
          }
-         else
+         else if (str.begins("\n"))
          {
 
-            ::earth::time earthtime(timeNow);
-
-            strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d ",
-                           earthtime.year(),
-                           earthtime.month(),
-                           earthtime.day(),
-                           earthtime.hour(),
-                           earthtime.minute(),
-                           earthtime.second(),
-                           timeNow.millisecond());
+            output_debug_string("WHAT?!?!");
 
          }
 
-         if (str.begins_eat("\r"))
+         str = strTime + str;
+
+      }
+
+   }
+
+   auto pplatform = ::platform::get();
+
+   if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+   {
+
+      if (tracestatement.m_pparticleLogging)
+      {
+
+         if (tracestatement.m_pparticleLogging->has_flag(e_flag_no_stdout))
          {
 
-
-            str = "\r"+strTime + str;
-
-         }
-         else
-         {
-
-            if (str.is_empty())
-            {
-
-               output_debug_string("WHAT?!?!(2)");
-
-            }
-            else if (str.begins("\n"))
-            {
-
-               output_debug_string("WHAT?!?!");
-
-            }
-
-            str = strTime + str;
+            return;
 
          }
 
       }
 
-      auto pplatform = ::platform::get();
-
-      if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+      if (tracestatement.m_etracelevel <= e_trace_level_information)
       {
 
-         if (tracestatement.m_pparticleLogging)
+         fwrite(str.c_str(), 1, str.size(), stdout);
+
+         if(bFlush)
          {
 
-            if (tracestatement.m_pparticleLogging->has_flag(e_flag_no_stdout))
-            {
-
-               return;
-
-            }
-
-         }
-
-         if (tracestatement.m_etracelevel <= e_trace_level_information)
-         {
-
-            fwrite(str.c_str(), 1, str.size(), stdout);
-
-            if(bFlush)
-            {
-
-               fflush(stdout);
-
-            }
-
-         }
-         else
-         {
-
-            fprintf(stderr, "%s", str.c_str());
-
-            if(bFlush)
-            {
-
-               fflush(stderr);
-
-            }
+            fflush(stdout);
 
          }
 
@@ -443,11 +434,24 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       else
       {
 
-         ::output_debug_string(str);
+         fprintf(stderr, "%s", str.c_str());
 
-         ::output_debug_string_flush();
+         if(bFlush)
+         {
+
+            fflush(stderr);
+
+         }
 
       }
+
+   }
+   else
+   {
+
+      ::output_debug_string(str);
+
+      ::output_debug_string_flush();
 
    }
 

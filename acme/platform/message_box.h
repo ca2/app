@@ -62,6 +62,7 @@ public:
 
    virtual void display_dialog();
    virtual void display(::dialog * pdialog);
+   virtual void show_modal(::dialog * pdialog);
 
 
    virtual void set_dialog_result(const ::payload & payloadResult);

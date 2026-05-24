@@ -11,7 +11,10 @@
 #include "acme/platform/application.h"
 #include "acme/_operating_system.h"
 
+
 #pragma comment(lib, "shlwapi.lib")
+
+
 namespace windows
 {
 
@@ -563,7 +566,7 @@ namespace windows
       if (::is_null(plibrary))
       {
 
-         strMessage = "node_library_open Failed opening " + strPath;
+         strMessage = "LoadLibraryW Failed opening " + strPath;
 
          throw library_not_loaded(strMessage, strError);
 
@@ -571,7 +574,7 @@ namespace windows
 
       }
 
-      strMessage = "node_library_open Success opening " + path;
+      strMessage = "LoadLibraryW Success opening " + path;
 
       information() << strMessage;
 

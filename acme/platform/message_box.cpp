@@ -103,6 +103,14 @@ void dialog::display(::dialog * pdialog)
 }
 
 
+void dialog::show_modal(::dialog * pdialog)
+{
+
+   throw ::interface_only();
+
+}
+
+
 void dialog::set_dialog_result(const ::payload & payloadResult)
 {
 

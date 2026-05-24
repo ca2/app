@@ -976,8 +976,6 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       application_start_file_open_request();
 
-      information() << "apex::application::init_application .1";
-
       bool bHandled = false;
 
       if (!::system()->is_sandboxed())
@@ -1028,13 +1026,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          }
       }
 
-      information() << "apex::application::init_application .2";
-
       if (m_bInterprocessCommunication)
       {
 
          if (m_pinterprocesscommunication2)
          {
+
+            information() << "apex::application::on_prepare_application interprocess communication";
 
             auto pathModule = file()->module();
 
@@ -1045,7 +1043,6 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          }
 
       }
-
 
       ::platform::application::on_prepare_application();
 
@@ -1097,7 +1094,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       // m_bAxisInitializeInstanceResult = true;
 
-      information() << "axis::application::init_instance success";
+      //information() << "apex::application::on_prepare_application going to create_impact_system";
 
       // auto estatus =
       create_impact_system();
@@ -1512,37 +1509,37 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
          m_bAttendedFirstRequest = true;
 
-         if(!m_bGUIReady)
-         {
-            
-            m_bGUIReady = true;
-          
-            fork([this]()
-                 {
-               
-               while(m_usermessagea.has_element())
-               {
-                  
-                  preempt(5_s);
-                  
-                  auto pop = m_usermessagea.pop_first();
-                  
-                  if(pop)
-                  {
-                     
-                     application_on_status(pop->m_estatus,
-                                           pop->m_pparticle,
-                                           pop->m_hi,
-                                           pop->m_p);
-                     
-                     
-                  }
-                  
-               }
-               
-            });
-            
-         }
+         // if(!m_bGUIReady)
+         // {
+         //
+         //    m_bGUIReady = true;
+         //
+         //    fork([this]()
+         //         {
+         //
+         //       while(m_usermessagea.has_element())
+         //       {
+         //
+         //          preempt(5_s);
+         //
+         //          auto pop = m_usermessagea.pop_first();
+         //
+         //          if(pop)
+         //          {
+         //
+         //             application_on_status(pop->m_estatus,
+         //                                   pop->m_pparticle,
+         //                                   pop->m_hi,
+         //                                   pop->m_p);
+         //
+         //
+         //          }
+         //
+         //       }
+         //
+         //    });
+         //
+         // }
 
          //::pointer<::apex::session>pbergedge = pcreate->payload("bergedge_callback").cast < ::apex::session >();
          // todobergedge
@@ -3086,7 +3083,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //}
 
-      information() << "apex::application::process_init";
+      //information() << "apex::application::process_init";
 
       if(psystem)
       {
@@ -3131,7 +3128,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //      m_bAuraProcessInitializeResult = true;
 
-      information() << "apex::application::process_init success";
+      //information() << "apex::application::process_init success";
 
       //add_factory_item < ::database::field_array >();
       //add_factory_item < ::database::row >();
@@ -3144,7 +3141,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //}
 
-      information() << "axis::application::process_init";
+      //information() << "apex::application::process_init";
 
       //m_bAxisProcessInitialize = true;
 
@@ -3160,7 +3157,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //if (!::application::process_init())
       //{
 
-      //   fatal() <<"axis::application::process_init .1";
+      //   fatal() <<"apex::application::process_init .1";
 
       //   return false;
 
@@ -3169,7 +3166,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //m_bAxisProcessInitializeResult = true;
 
-      information() << "axis::application::process_init success";
+      //information() << "apex::application::process_init success";
 
       //return true;
 
@@ -3186,7 +3183,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //
       //}
 
-      information() << "success";
+      debug() << "apex::application::process_init end";
 
       //return true;
 
@@ -3518,7 +3515,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //}
 
-      information() << "apex::application::init1 end";
+      debug() << "apex::application::init1 end";
 
       ping();
 
@@ -3893,124 +3890,139 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       }
 
-      bool bResourceException = false;
-
-      auto psystem = system();
-
-      auto pnode = psystem->node();
-
-      memory memorySecurityAttributes;
-
-      auto psecurityattributes = pnode->get_application_exclusivity_security_attributes();
-      
-      if(m_eexclusiveinstance == e_exclusive_instance_global)
-      {
-         
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psecurityattributes);
-         
-         if (bGlobalExclusiveFail)
-         {
-            
-            information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this ___new instance.";
-            
-            try
-            {
-
-               auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
-               
-               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global,
-                                              "");
-               
-            }
-            catch (...)
-            {
-               
-            }
-            
-            return false;
-            
-         }
-         
-      }
-
-      if (m_eexclusiveinstance == e_exclusive_instance_global_id)
+      if (m_eexclusiveinstance != e_exclusive_instance_none)
       {
 
-         bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psecurityattributes);
+         information() << "apex::application::check_exclusive";
 
-         if (bGlobalIdExclusiveFail)
+         bool bResourceException = false;
+
+         auto psystem = system();
+
+         auto pnode = psystem->node();
+
+         memory memorySecurityAttributes;
+
+         auto psecurityattributes = pnode->get_application_exclusivity_security_attributes();
+
+         if(m_eexclusiveinstance == e_exclusive_instance_global)
          {
 
-            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this ___new instance.";
+            bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psecurityattributes);
 
-            try
+            if (bGlobalExclusiveFail)
             {
 
-               auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+               information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this ___new instance.";
 
-               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
+               try
+               {
 
-            }
-            catch (...)
-            {
+                  auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+
+                  on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global,
+                                                 "");
+
+               }
+               catch (...)
+               {
+
+               }
 
                return false;
 
             }
 
          }
-
-      }
-      
-      if(m_eexclusiveinstance == e_exclusive_instance_local)
-      {
-         
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psecurityattributes);
-         
-         if (bLocalExclusiveFail)
-         {
-            
-            information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
-
-            auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
-            
-            on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
-            
-            return false;
-            
-         }
-         
-      }
-
-      if (m_eexclusiveinstance == e_exclusive_instance_local_id)
-      {
-
-         bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psecurityattributes);
-
-         if (bLocalIdExclusiveFail)
+         else if (m_eexclusiveinstance == e_exclusive_instance_global_id)
          {
 
-            try
+            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psecurityattributes);
+
+            if (bGlobalIdExclusiveFail)
             {
 
-               // Should in some way activate the other instance
-               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this ___new instance.";
+               information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this ___new instance.";
+
+               try
+               {
+
+                  auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+
+                  on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
+
+               }
+               catch (...)
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+         else if(m_eexclusiveinstance == e_exclusive_instance_local)
+         {
+
+            bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psecurityattributes);
+
+            if (bLocalExclusiveFail)
+            {
+
+               information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
 
                auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
 
-               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
-               //if(!)
-               //{
-
-               //   return false;
-
-               //}
-
-            }
-            catch (...)
-            {
+               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
 
                return false;
+
+            }
+
+         }
+         else if (m_eexclusiveinstance == e_exclusive_instance_local_id)
+         {
+
+            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psecurityattributes);
+
+            if (bLocalIdExclusiveFail)
+            {
+
+               try
+               {
+
+                  // Should in some way activate the other instance
+                  information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this ___new instance.";
+
+                  auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+
+                  on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
+                  //if(!)
+                  //{
+
+                  //   return false;
+
+                  //}
+
+               }
+               catch (...)
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            if (m_eexclusiveinstance != e_exclusive_instance_none)
+            {
+
+               throw ::exception(error_wrong_state);
 
             }
 
@@ -6300,7 +6312,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   //}
 
-   //   information() << "axis::application::process_init";
+   //   information() << "apex::application::process_init";
 
    //   //m_bAxisProcessInitialize = true;
 
@@ -6316,7 +6328,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //   if (!::application::process_init())
    //   {
 
-   //      fatal() <<"axis::application::process_init .1";
+   //      fatal() <<"apex::application::process_init .1";
 
    //      return false;
 
@@ -6325,7 +6337,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   //m_bAxisProcessInitializeResult = true;
 
-   //   fatal() <<"axis::application::process_init success";
+   //   fatal() <<"apex::application::process_init success";
 
    //   return true;
 
@@ -6342,7 +6354,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   //}
 
-   //   information() << "axis::application::init_instance .1";
+   //   information() << "apex::application::init_instance .1";
 
    //   //m_bAxisInitializeInstance = true;
 
@@ -6351,7 +6363,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //   if (!::application::init_instance())
    //   {
 
-   //      fatal() <<"axis::application::init_instance .2";
+   //      fatal() <<"apex::application::init_instance .2";
 
    //      return false;
 
@@ -6402,7 +6414,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   //m_bAxisInitializeInstanceResult = true;
 
-   //   information() << "axis::application::init_instance success";
+   //   information() << "apex::application::init_instance success";
 
    //   return true;
 
@@ -6548,7 +6560,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       ensure_app_interest();
 
-      information() << "apex::application .2";
+      ///information() << "apex::application .2";
 
       if (is_true("install"))
       {
@@ -6561,11 +6573,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       }
 
-      error() << "1.1";
-
-      information() << "success";
-
-      //return true;
+      debug() << "apex::application::init end";
 
    }
 

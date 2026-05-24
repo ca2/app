@@ -70,12 +70,11 @@ namespace platform
 
       virtual ::text::context* text_context();
 
-
       virtual class ::user::user * user() override;
 
+      void main() override;
 
       void on_request(::request* prequest) override;
-
 
       virtual void init_task() override;
 
@@ -101,8 +100,7 @@ namespace platform
 
       virtual void term_session();
 
-      void main() override;
-
+      void set_finish() override;
 
    };
 

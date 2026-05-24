@@ -104,7 +104,18 @@ namespace innate_ui
 
       auto picon = createø < ::innate_ui::icon >();
 
-      picon->create(payloadFile, size);
+      try
+      {
+
+         picon->create(payloadFile, size);
+
+      }
+      catch (...)
+      {
+
+         return {};
+
+      }
 
       return picon;
 

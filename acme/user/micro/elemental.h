@@ -48,6 +48,7 @@ namespace micro
       //::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
       //pointer_array < ::acme::user::interaction >  m_nanouserinteractionaChildren;
 
+      bool m_bMouseOn;
 
       string                                    m_strText;
       //::atom                                    id();
@@ -338,6 +339,9 @@ namespace micro
 
 
       void display_temporary_file_with_text(const ::scoped_string & scopedstr) override;
+
+
+      bool on_window_mouse_move(const i32_point &point, const i32_point &pointAbsolute) override;
 
       void back_on_mouse_move(::user::mouse * pmouse) override;
       void fore_on_mouse_move(::user::mouse * pmouse) override;

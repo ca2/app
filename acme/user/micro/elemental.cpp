@@ -55,6 +55,9 @@ namespace micro
    elemental::elemental()
    {
 
+      m_bMouseOn = false;
+
+
       m_efont = e_font_sans;
 
    }
@@ -922,6 +925,61 @@ namespace micro
       //   }
 
       //}
+
+   }
+
+
+   bool elemental::on_window_mouse_move(const i32_point &point, const i32_point &pointAbsolute)
+   {
+
+
+      if (!m_bMouseOn)
+      {
+
+         m_bMouseOn = true;
+
+         auto hwnd = ::as_HWND(this->operating_system_window());
+
+         TRACKMOUSEEVENT trackmouseevent = { sizeof(TRACKMOUSEEVENT) };
+         trackmouseevent.dwFlags = TME_LEAVE;
+         trackmouseevent.hwndTrack = hwnd;
+         ::TrackMouseEvent(&trackmouseevent);
+
+         on_mouse_enter();
+
+      }
+
+      auto pmouse = create_newø < ::user::mouse >();
+
+      pmouse->m_pointHost = point;
+
+      pmouse->m_pointAbsolute = pointAbsolute;
+
+      fore_on_mouse_move(pmouse);
+
+      //::cast < ::micro::elemental > pelemental = m_pacmeuserinteraction;
+
+      //if (pelemental)
+      //{
+
+      //   pelemental->fore_on_mouse_move(pmouse);
+
+      //}
+
+      if (!pmouse->m_bRet)
+      {
+
+
+         //if (pelemental)
+         //{
+
+         back_on_mouse_move(pmouse);
+
+         //}
+
+      }
+
+      return pmouse->m_bRet;
 
    }
 

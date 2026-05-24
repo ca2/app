@@ -542,44 +542,49 @@ namespace apex
    void node::defer_create_app_shortcut(::platform::application* papplication)
    {
 
-information() << "defer_create_app_shortcut";
-
       auto pathShortcut = app_shortcut_path(papplication);
 
-      auto path = file_system()->module();
-
-      ::file::path pathTarget;
-
-      ::file::path pathIcon;
-
-      int iIcon = -1;
-
-      auto plink = path_system()->resolve_link(pathShortcut);
-
-      // Enough condition to create shortcut
-      bool bEnoughCondition1 = !plink;
-      bool bEnoughCondition2 = bEnoughCondition1 || !(plink->m_elink & ::file::e_link_target);
-      bool bEnoughCondition3 = bEnoughCondition2 || !path_system()->real_path_is_same(plink->m_pathTarget, path);
-      bool bEnoughCondition4 = bEnoughCondition3 || !(plink->m_elink & ::file::e_link_icon);
-      bool bEnoughCondition5 = bEnoughCondition4 || (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
-
-      //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
-
-      bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = false;
-
-      bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
-
-      //if (!file_system()->exists(pathCreatedShortcut)
-      if (bEnoughCondition1
-         || bEnoughCondition2
-         || bEnoughCondition3
-         || bEnoughCondition4
-         || bEnoughCondition5
-         || bEnoughCondition6
-         )
+      if (!file()->exists(pathShortcut))
       {
 
-         create_app_shortcut(papplication);
+         information() << "defer_create_app_shortcut";
+
+         auto path = file_system()->module();
+
+         ::file::path pathTarget;
+
+         ::file::path pathIcon;
+
+         int iIcon = -1;
+
+         auto plink = path_system()->resolve_link(pathShortcut);
+
+         // Enough condition to create shortcut
+         bool bEnoughCondition1 = !plink;
+         bool bEnoughCondition2 = bEnoughCondition1 || !(plink->m_elink & ::file::e_link_target);
+         bool bEnoughCondition3 = bEnoughCondition2 || !path_system()->real_path_is_same(plink->m_pathTarget, path);
+         bool bEnoughCondition4 = bEnoughCondition3 || !(plink->m_elink & ::file::e_link_icon);
+         bool bEnoughCondition5 = bEnoughCondition4 || (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
+
+         //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
+
+         bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = false;
+
+         bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
+
+         //if (!file_system()->exists(pathCreatedShortcut)
+         if (bEnoughCondition1
+            || bEnoughCondition2
+            || bEnoughCondition3
+            || bEnoughCondition4
+            || bEnoughCondition5
+            || bEnoughCondition6
+            )
+         {
+
+            create_app_shortcut(papplication);
+
+         }
 
       }
 

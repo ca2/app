@@ -214,14 +214,25 @@ namespace windows
 
       virtual void postMessage(::user::enum_message emessage, ::wparam wparam = 0, ::lparam lparam = 0);
 
+      void show_window(int iShowFlags) override;
+      void window_invalidate_rect(const i32_rectangle *prectangle, bool bErase) override;
+      void update_window() override;
+      void redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags) override;
+      void window_set_focus() override;
+      ::i32_rectangle window_get_client_rect() override;
+      ::i32_rectangle get_window_rect() override;
+      void dump_operating_system_child_window_hierarchy() override;
+
    };
 
 
    //CLASS_DECL_ACME LRESULT CALLBACK window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 
-
 } // namespace windows
+
+
+
 
 
 

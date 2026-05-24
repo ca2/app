@@ -69,7 +69,8 @@ namespace platform
 
       ::pointer<ProfileLogger>                        m_pprofilelogger;
       bool                                            m_bOperatingAmbientFactory;
-      bool                                            m_bGraphicsAndWindowingFactory;
+      bool                                            m_bGraphicsFactory;
+      bool                                            m_bWindowingFactory;
 
 
       ::pointer < manual_reset_happening >                m_pmanualresethappeningSystemTaskFinished;
@@ -231,8 +232,9 @@ namespace platform
 
       virtual void do_operating_ambient_factory();
 
+      virtual void do_graphics_factory();
 
-      virtual void do_graphics_and_windowing_factory();
+      virtual void do_windowing_factory();
 
 
       void initialize_layer();

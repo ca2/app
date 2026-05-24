@@ -17,7 +17,6 @@
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
 
-
 namespace user
 {
 

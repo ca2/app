@@ -11,6 +11,8 @@
 #include "acme/operating_system/windows/windows.h"
 #include "acme/platform/user_interaction_sink.h"
 
+BOOL CALLBACK windows_dump_child_window_hierarchy_EnumChildProc(HWND hwnd, LPARAM);
+
 
 namespace windows
 {
@@ -111,6 +113,34 @@ namespace windows
 
 
 
+
+
+
+   void _dump_child_window_hierarchy(HWND hwnd)
+   {
+
+      OutputDebugString(L"\n=== WINDOW HIERARCHY ===\n");
+
+      EnumChildWindows(
+          hwnd,
+          &::windows_dump_child_window_hierarchy_EnumChildProc,
+          0);
+
+      OutputDebugString(L"========================\n");
+
+   }
+
+
+   void dump_child_window_hierarchy(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      _dump_child_window_hierarchy(hwnd);
+
+   }
+
+
 } // namespace windows
 
 
@@ -208,5 +238,35 @@ CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
 }
 
 
+BOOL CALLBACK windows_dump_child_window_hierarchy_EnumChildProc(HWND hwnd, LPARAM)
+{
+   wchar_t className[256] = {};
+   wchar_t windowText[256] = {};
 
+   GetClassName(hwnd, className, 256);
+   GetWindowText(hwnd, windowText, 256);
+
+   RECT rc;
+   GetWindowRect(hwnd, &rc);
+
+   wchar_t buffer[1024];
+
+   swprintf_s(
+       buffer,
+       L"HWND=%p\nClass=%s\nText=%s\nRect=(%ld,%ld)-(%ld,%ld)\nVisible=%d\n\n",
+       hwnd,
+       className,
+       windowText,
+       rc.left,
+       rc.top,
+       rc.right,
+       rc.bottom,
+       IsWindowVisible(hwnd));
+
+   OutputDebugString(buffer);
+
+   ::windows::_dump_child_window_hierarchy(hwnd);
+
+   return TRUE;
+}
 

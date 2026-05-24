@@ -804,7 +804,10 @@ namespace aura
 
       void do_operating_ambient_factory() override;
 
-      void do_graphics_and_windowing_factory() override;
+
+      void do_graphics_factory() override;
+
+      void do_windowing_factory() override;
 
 
    };

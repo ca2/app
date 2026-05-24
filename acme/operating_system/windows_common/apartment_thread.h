@@ -1,14 +1,22 @@
 //
-// Created by camilo on 5/23/2026.
+// Created by camilo on 2026-05-23 19:53 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 //
-
-#ifndef MAIN_APARTMENT_THREAD_H
-#define MAIN_APARTMENT_THREAD_H
+#pragma once
 
 
-class apartment_thread
+
+namespace windows
 {
-};
+   class CLASS_DECL_ACME apartment_thread :
+   virtual public ::task
+   {
+   public:
+
+      apartment_thread();
+      ~apartment_thread() override;
 
 
-#endif // MAIN_APARTMENT_THREAD_H
+
+
+   };
+} // namespace windows

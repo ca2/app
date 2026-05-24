@@ -55,8 +55,6 @@ namespace acme
 
    namespace user
    {
-
-
       interaction::interaction()
       {
          //m_bMinimizeBox = true;
@@ -65,6 +63,7 @@ namespace acme
          //m_bTopMost = false;
          //m_bStartCentered = false;
          //m_bArbitraryPositioning = false;
+         m_bCustomPaint = true;
 
          //m_efont = e_font_sans;
          m_uFlagsAcmeUserInteraction = 0;
@@ -208,6 +207,14 @@ namespace acme
       }
 
 
+      bool interaction::on_window_mouse_move(const i32_point &point, const i32_point &pointAbsolute)
+      {
+
+         return false;
+
+      }
+
+
       void interaction::on_mouse_enter()
       {
 
@@ -231,32 +238,32 @@ namespace acme
 
       }
 
-   
-//   void interaction::discard_all_cursor_rectangles()
-//   {
-//   
-//   
-//   }
-//
-//
-//   
-//      void interaction::add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor)
-//      {
-//      
-//      
-//      }
-//   
-//   
-//      void interaction::on_set_cursor_rectangles()
-//   {
-//         
-//         
-//      }
-//   void interaction::invalidate_cursor_rectangles()
-//   {
-//      
-//      
-//   }
+
+      //   void interaction::discard_all_cursor_rectangles()
+      //   {
+      //
+      //
+      //   }
+      //
+      //
+      //
+      //      void interaction::add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor)
+      //      {
+      //
+      //
+      //      }
+      //
+      //
+      //      void interaction::on_set_cursor_rectangles()
+      //   {
+      //
+      //
+      //      }
+      //   void interaction::invalidate_cursor_rectangles()
+      //   {
+      //
+      //
+      //   }
 
 
       void interaction::on_mouse_leave()
@@ -362,19 +369,19 @@ namespace acme
             {
 
                ::cast<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
-               
+
                if(::is_set(pelemental))
                {
-                  
+
                   auto rectangle = pelemental->m_rectangle;
-                  
+
                   if (rectangle.contains(point))
                   {
-                     
+
                      return pelemental;
-                     
+
                   }
-                  
+
                }
 
             }
@@ -413,414 +420,519 @@ namespace acme
 
       //}
 
-//      //
-//// Created by camilo on 2024-09-26 18:52 Odense Time <3ThomasBorregaardSorensen!!
-////
-//// acme::user::interaction Created by camilo on 31/01/2022 22:42 <3ThomasBorregaardSorensen!!
-//// From acme::user::interaction merged at ::user::interaction by
-////    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
-////
-//#include "framework.h"
-//#include "drag.h"
-//#include "interaction.h"
-//#include "acme/constant/id.h"
-//#include "acme/handler/topic.h"
-//#include "acme/operating_system/a_system_menu.h"
-//#include "acme/platform/application.h"
-//#include "acme/platform/system.h"
-//#include "acme/windowing/window_base.h"
-//#include "platform/node.h"
-//
-//
-//      namespace user
-//      {
+      //      //
+      //// Created by camilo on 2024-09-26 18:52 Odense Time <3ThomasBorregaardSorensen!!
+      ////
+      //// acme::user::interaction Created by camilo on 31/01/2022 22:42 <3ThomasBorregaardSorensen!!
+      //// From acme::user::interaction merged at ::user::interaction by
+      ////    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
+      ////
+      //#include "framework.h"
+      //#include "drag.h"
+      //#include "interaction.h"
+      //#include "acme/constant/id.h"
+      //#include "acme/handler/topic.h"
+      //#include "acme/operating_system/a_system_menu.h"
+      //#include "acme/platform/application.h"
+      //#include "acme/platform/system.h"
+      //#include "acme/windowing/window_base.h"
+      //#include "platform/node.h"
+      //
+      //
+      //      namespace user
+      //      {
 
 
-         //interaction::interaction()
+      //interaction::interaction()
+      //{
+
+      //   m_bMinimizeBox = true;
+      //   m_bMaximizeBox = true;
+      //   m_bResizeable = true;
+      //   m_bTopMost = false;
+      //   m_bStartCentered = false;
+      //   m_bArbitraryPositioning = false;
+
+      //}
+
+
+      /*      interaction::~interaction()
+            {
+
+
+            }*/
+
+
+      bool interaction::is_window_zoomed()
+      {
+
+         if (!m_pacmewindowingwindow)
+         {
+
+            return false;
+
+         }
+
+         bool bIsWindowZoomed = acme_windowing_window()->is_window_zoomed();
+
+         if (!bIsWindowZoomed)
+         {
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
+
+      //void interaction::window_minimize()
+      //{
+
+      //   if (!acme_windowing_window())
+      //   {
+
+      //      throw ::exception(error_wrong_state);
+
+      //   }
+
+      //   acme_windowing_window()->window_minimize();
+
+      //}
+
+
+      //void interaction::window_maximize()
+      //{
+
+      //   if (!acme_windowing_window())
+      //   {
+
+      //      throw ::exception(error_wrong_state);
+
+      //   }
+
+      //   acme_windowing_window()->window_maximize();
+
+      //}
+
+
+      //void interaction::window_full_screen()
+      //{
+
+      //   if (!acme_windowing_window())
+      //   {
+
+      //      throw ::exception(error_wrong_state);
+
+      //   }
+
+      //   acme_windowing_window()->window_full_screen();
+
+      //}
+
+
+      //void interaction::window_restore()
+      //{
+
+      //   if (!acme_windowing_window())
+      //   {
+
+      //      throw ::exception(error_wrong_state);
+
+      //   }
+
+      //   acme_windowing_window()->window_restore();
+
+      //}
+
+
+      //void interaction::window_close()
+      //{
+
+      //   if (!acme_windowing_window())
+      //   {
+
+      //      throw ::exception(error_wrong_state);
+
+      //   }
+
+      //   acme_windowing_window()->window_close();
+
+      //}
+
+
+      void interaction::_on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken)
+      {
+
+         ::string strActionName(pszActionName);
+
+         if (strActionName == "minimize")
+         {
+
+            //display(e_display_iconic);
+
+            window_minimize();
+
+         }
+         else if (strActionName == "maximize")
+         {
+
+            window_maximize();
+
+         }
+         else if (strActionName == "restore")
+         {
+
+            display(e_display_normal);
+
+         }
+         else if (strActionName == "about_box")
+         {
+
+            application()->show_about_box(puseractivationtoken);
+
+         }
+         else if (strActionName == "close")
+         {
+
+            window_close();
+
+         }
+         //else if (strActionName == "***move")
          //{
 
-         //   m_bMinimizeBox = true;
-         //   m_bMaximizeBox = true;
-         //   m_bResizeable = true;
-         //   m_bTopMost = false;
-         //   m_bStartCentered = false;
-         //   m_bArbitraryPositioning = false;
+         //   print_line("reaching here?!");
+         //   //defer_perform_entire_reposition_process(nullptr);
+
+         //   acme_windowing_window()->set_mouse_capture();
+         //   acme_windowing_window()->m_bRepositioningWindowFromCenter = true;
+
+         //}
+         //else if (strActionName == "***size")
+         //{
+
+         //   print_line("also here");
+
+         //   acme_windowing_window()->set_mouse_capture();
+         //   acme_windowing_window()->m_bResizingWindowFromBottomRight = true;
+
+         //   //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
 
          //}
 
+      }
 
-   /*      interaction::~interaction()
+
+      void interaction::on_window_size()
+      {
+
+         information("::acme::user::interaction::on_window_size()");
+
+
+      }
+
+
+
+      void interaction::on_window_set_focus()
+      {
+
+         information("::acme::user::interaction::on_window_set_focus()");
+
+      }
+
+
+      bool interaction::on_window_activate(int iActivate, bool bMinimized,
+                                           const operating_system::window &operatingsystemwindow)
+      {
+
+         return false;
+
+      }
+
+
+      bool interaction::on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
+   int iHitTest, int iMessage)
+      {
+
+         information("::acme::user::interaction::on_window_mouse_activate");
+
+         return false;
+
+      }
+
+
+      void interaction::show_window(int iShowFlags)
+      {
+
+         m_pacmewindowingwindow->show_window(iShowFlags);
+
+      }
+
+
+      void interaction::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
+      {
+
+         m_pacmewindowingwindow->window_invalidate_rect(prectangle, bErase);
+
+      }
+
+
+      void interaction::update_window()
+      {
+
+         m_pacmewindowingwindow->update_window();
+
+      }
+
+
+      void interaction::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+      {
+
+         m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);
+
+      }
+
+
+      void interaction::window_set_focus()
+      {
+
+         m_pacmewindowingwindow->window_set_focus();
+
+      }
+
+
+
+      ::i32_rectangle interaction::window_get_client_rect()
+      {
+
+         return m_pacmewindowingwindow->window_get_client_rect();
+
+      }
+
+
+      ::i32_rectangle interaction::get_window_rect()
+      {
+
+         return m_pacmewindowingwindow->get_window_rect();
+
+      }
+
+
+
+      void interaction::dump_operating_system_child_window_hierarchy()
+      {
+
+         m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
+
+      }
+
+
+
+      ::pointer < ::operating_system::a_system_menu > interaction::create_system_menu(bool bContextual)
+      {
+
+         return nullptr;
+
+      }
+
+
+      // void interaction::set_mouse_capture()
+      // {
+
+      //    if (!acme_windowing_window())
+      //    {
+
+      //       throw ::exception(error_wrong_state);
+
+      //    }
+
+      //    acme_windowing_window()->set_mouse_capture();
+
+      // }
+
+
+      bool interaction::is_mouse_captured()
+      {
+
+         if (!acme_windowing_window())
          {
 
-
-         }*/
-
-
-         bool interaction::is_window_zoomed()
-         {
-
-            if (!m_pacmewindowingwindow)
-            {
-
-               return false;
-
-            }
-
-            bool bIsWindowZoomed = acme_windowing_window()->is_window_zoomed();
-
-            if (!bIsWindowZoomed)
-            {
-
-               return false;
-
-            }
-
-            return true;
+            throw ::exception(error_wrong_state);
 
          }
 
+         return acme_windowing_window()->is_mouse_captured();
 
-         //void interaction::window_minimize()
-         //{
-
-         //   if (!acme_windowing_window())
-         //   {
-
-         //      throw ::exception(error_wrong_state);
-
-         //   }
-
-         //   acme_windowing_window()->window_minimize();
-
-         //}
+      }
 
 
-         //void interaction::window_maximize()
-         //{
+      // bool interaction::has_mouse_capture()
+      // {
 
-         //   if (!acme_windowing_window())
-         //   {
+      //    if (!acme_windowing_window())
+      //    {
 
-         //      throw ::exception(error_wrong_state);
+      //       throw ::exception(error_wrong_state);
 
-         //   }
+      //    }
 
-         //   acme_windowing_window()->window_maximize();
+      //    return acme_windowing_window()->has_mouse_capture();
 
-         //}
-
-
-         //void interaction::window_full_screen()
-         //{
-
-         //   if (!acme_windowing_window())
-         //   {
-
-         //      throw ::exception(error_wrong_state);
-
-         //   }
-
-         //   acme_windowing_window()->window_full_screen();
-
-         //}
+      // }
 
 
-         //void interaction::window_restore()
-         //{
+      // void interaction::release_mouse_capture()
+      // {
 
-         //   if (!acme_windowing_window())
-         //   {
+      //    if (!acme_windowing_window())
+      //    {
 
-         //      throw ::exception(error_wrong_state);
+      //       throw ::exception(error_wrong_state);
 
-         //   }
+      //    }
 
-         //   acme_windowing_window()->window_restore();
+      //    acme_windowing_window()->release_mouse_capture();
 
-         //}
-
-
-         //void interaction::window_close()
-         //{
-
-         //   if (!acme_windowing_window())
-         //   {
-
-         //      throw ::exception(error_wrong_state);
-
-         //   }
-
-         //   acme_windowing_window()->window_close();
-
-         //}
+      // }
 
 
-         void interaction::_on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken)
+
+      void interaction::on_initialize_particle()
+      {
+
+
+      }
+
+
+      void interaction::create_window()
+      {
+
+         auto pwindowHost = system()->acme_windowing()->get_application_host_window();
+
+         if(pwindowHost)
          {
 
-            ::string strActionName(pszActionName);
+            ::cast <::micro::elemental > pelemental = pwindowHost->m_pacmeuserinteraction;
 
-            if (strActionName == "minimize")
+            ::cast <::micro::elemental > pelementalThis = this;
+
+            if(pelemental && pelementalThis)
             {
 
-               //display(e_display_iconic);
+               pelementalThis->m_bChild = true;
 
-               window_minimize();
+               pelemental->add_child(pelementalThis);
 
-            }
-            else if (strActionName == "maximize")
-            {
+               redraw();
 
-               window_maximize();
-
-            }
-            else if (strActionName == "restore")
-            {
-
-               display(e_display_normal);
-
-            }
-            else if (strActionName == "about_box")
-            {
-
-               application()->show_about_box(puseractivationtoken);
-
-            }
-            else if (strActionName == "close")
-            {
-
-               window_close();
-
-            }
-            //else if (strActionName == "***move")
-            //{
-
-            //   print_line("reaching here?!");
-            //   //defer_perform_entire_reposition_process(nullptr);
-
-            //   acme_windowing_window()->set_mouse_capture();
-            //   acme_windowing_window()->m_bRepositioningWindowFromCenter = true;
-
-            //}
-            //else if (strActionName == "***size")
-            //{
-
-            //   print_line("also here");
-
-            //   acme_windowing_window()->set_mouse_capture();
-            //   acme_windowing_window()->m_bResizingWindowFromBottomRight = true;
-
-            //   //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
-
-            //}
-
-         }
-
-
-         ::pointer < ::operating_system::a_system_menu > interaction::create_system_menu(bool bContextual)
-         {
-
-            return nullptr;
-
-         }
-
-
-         // void interaction::set_mouse_capture()
-         // {
-
-         //    if (!acme_windowing_window())
-         //    {
-
-         //       throw ::exception(error_wrong_state);
-
-         //    }
-
-         //    acme_windowing_window()->set_mouse_capture();
-
-         // }
-
-
-         bool interaction::is_mouse_captured()
-         {
-
-            if (!acme_windowing_window())
-            {
-
-               throw ::exception(error_wrong_state);
-
-            }
-
-            return acme_windowing_window()->is_mouse_captured();
-
-         }
-
-
-         // bool interaction::has_mouse_capture()
-         // {
-
-         //    if (!acme_windowing_window())
-         //    {
-
-         //       throw ::exception(error_wrong_state);
-
-         //    }
-
-         //    return acme_windowing_window()->has_mouse_capture();
-
-         // }
-
-
-         // void interaction::release_mouse_capture()
-         // {
-
-         //    if (!acme_windowing_window())
-         //    {
-
-         //       throw ::exception(error_wrong_state);
-
-         //    }
-
-         //    acme_windowing_window()->release_mouse_capture();
-
-         // }
-
-
-
-         void interaction::on_initialize_particle()
-         {
-
-
-         }
-
-
-         void interaction::create_window()
-         {
-            
-            auto pwindowHost = system()->acme_windowing()->get_application_host_window();
-            
-            if(pwindowHost)
-            {
-               
-               ::cast <::micro::elemental > pelemental = pwindowHost->m_pacmeuserinteraction;
-               
-               ::cast <::micro::elemental > pelementalThis = this;
-               
-               if(pelemental && pelementalThis)
-               {
-                  
-                  pelementalThis->m_bChild = true;
-                  
-                  pelemental->add_child(pelementalThis);
-                  
-                  redraw();
-                  
-               }
-               
-            }
-            else
-            {
-               
-               auto pwindow = acme_windowing_window();
-               
-               pwindow->create_window();
-               
             }
 
          }
-
-
-         void interaction::_create_window()
+         else
          {
 
+            auto pwindow = acme_windowing_window();
+
+            pwindow->create_window();
 
          }
 
+      }
 
-         void interaction::destroy_window()
+
+      void interaction::_create_window()
+      {
+
+
+      }
+
+
+      void interaction::destroy_window()
+      {
+
+         if(m_pacmewindowingwindow)
          {
-            
-            if(m_pacmewindowingwindow)
-            {
-
-               __check_refdbg
-
-               m_pacmewindowingwindow->destroy_window();
-
-               __check_refdbg
-
-            }
 
             __check_refdbg
 
-            auto pchildren = ::transfer(m_pacmeuserinteractionaChildren);
+            m_pacmewindowingwindow->destroy_window();
 
             __check_refdbg
 
-            if (pchildren)
+         }
+
+         __check_refdbg
+
+         auto pchildren = ::transfer(m_pacmeuserinteractionaChildren);
+
+         __check_refdbg
+
+         if (pchildren)
+         {
+
+            __check_refdbg
+
+            auto pchildrena = ::transfer(pchildren);
+
+            __check_refdbg
+
+            for (auto & pchild : *pchildrena)
             {
 
-               __check_refdbg
-
-               auto pchildrena = ::transfer(pchildren);
-
-               __check_refdbg
-
-               for (auto & pchild : *pchildrena)
+               if (pchild)
                {
 
-                  if (pchild)
+                  try
                   {
 
-                     try
-                     {
+                     __check_refdbg
 
-                        __check_refdbg
+                     pchild->destroy_window();
 
-                        pchild->destroy_window();
+                     __check_refdbg
 
-                        __check_refdbg
-
-                     }
-                     catch (...)
-                     {
+                  }
+                  catch (...)
+                  {
 
 
-                     }
+                  }
 
-                     try
-                     {
+                  try
+                  {
 
-                        pchild.release();
+                     pchild.release();
 
-                     }
-                     catch (...)
-                     {
+                  }
+                  catch (...)
+                  {
 
-
-                     }
 
                   }
 
                }
 
-
-            }
-            
-            if(m_pacmeuserinteractionParent)
-            {
-               
-               if(m_pacmeuserinteractionParent->m_pacmeuserinteractionaChildren)
-               {
-                
-                  m_pacmeuserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
-                  
-               }
-               
             }
 
-//            destroy();
 
          }
+
+         if(m_pacmeuserinteractionParent)
+         {
+
+            if(m_pacmeuserinteractionParent->m_pacmeuserinteractionaChildren)
+            {
+
+               m_pacmeuserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
+
+            }
+
+         }
+
+         //            destroy();
+
+      }
 
 
       void interaction::set_children_to_destroy_unlocked()
@@ -844,805 +956,806 @@ namespace acme
 
 
 
-         
-         bool interaction::is_host_top_level()
+
+      bool interaction::is_host_top_level()
+      {
+
+         return m_pacmewindowingwindow.is_set();
+
+      }
+
+
+      void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
+      {
+
+         if (timeEllapse < 500_ms)
          {
-            
-            return m_pacmewindowingwindow.is_set();
-            
+
+            //         string str;
+            //
+            //         str.formatf("creating fast timer: %d\n", nEllapse);
+            //
+            //         ::information(str);
+
          }
 
-
-         void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
+         if (m_ptimerarray.is_null())
          {
 
-            if (timeEllapse < 500_ms)
+            construct_newø(m_ptimerarray);
+
+            m_ptimerarray->m_pcallback = this;
+
+            //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+
+         }
+
+         m_ptimerarray->create_timer(this, uEvent, timeEllapse, procedure, bPeriodic);
+
+      }
+
+
+      void interaction::kill_timer(uptr uEvent)
+      {
+
+         if (m_ptimerarray.is_null())
+         {
+
+            return;
+
+         }
+
+         m_ptimerarray->delete_timer(uEvent);
+
+      }
+
+
+      void interaction::show()
+      {
+
+         m_pacmewindowingwindow->show_window();
+
+      }
+
+
+      void interaction::hide()
+      {
+
+
+      }
+
+
+      //void interaction::create()
+      //{
+
+
+      //}
+
+
+      //void interaction::show_window()
+      //{
+
+
+      //}
+
+
+      /*      void interaction::hide_window()
             {
 
-               //         string str;
-               //
-               //         str.formatf("creating fast timer: %d\n", nEllapse);
-               //
-               //         ::information(str);
 
-            }
+            }*/
 
-            if (m_ptimerarray.is_null())
-            {
 
-               construct_newø(m_ptimerarray);
+      //void interaction::message_loop()
+      //{
 
-               m_ptimerarray->m_pcallback = this;
 
-               //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+      //}
 
-            }
 
-            m_ptimerarray->create_timer(this, uEvent, timeEllapse, procedure, bPeriodic);
+      void interaction::implementation_message_loop_step()
+      {
 
-         }
 
+      }
 
-         void interaction::kill_timer(uptr uEvent)
-         {
 
-            if (m_ptimerarray.is_null())
-            {
+      //::payload interaction::do_synchronously(const class time & timeWait)
+      //{
 
-               return;
+      //   do_asynchronously();
 
-            }
+      //   auto pmanualresethappening = allocateø manual_reset_happening();
 
-            m_ptimerarray->delete_timer(uEvent);
+      //   if (m_psequencer)
+      //   {
 
-         }
+      //      m_psequencer->then([pmanualresethappening](auto psequencer)
+      //      {
 
+      //            pmanualresethappening->set_happening();
 
-         void interaction::show()
-         {
+      //      });
 
+      //   }
+      //   else
+      //   {
 
-         }
+      //      auto pwindow = acme_windowing_window();
 
+      //      auto functionCloseExisting = pwindow->m_functionClose;
 
-         void interaction::hide()
-         {
+      //      pwindow->m_functionClose = [pmanualresethappening, functionCloseExisting](auto pinterchange)
+      //         {
 
+      //            if (functionCloseExisting)
+      //            {
 
-         }
+      //               functionCloseExisting(pinterchange);
 
+      //            }
 
-         //void interaction::create()
-         //{
+      //            pmanualresethappening->set_happening();
 
+      //         };
 
-         //}
+      //   }
 
+      //   if (m_payloadResult.is_new())
+      //   {
 
-         //void interaction::show_window()
-         //{
+      //      pmanualresethappening->wait();
 
+      //   }
 
-         //}
+      //   return m_payloadResult;
 
+      //}
 
-   /*      void interaction::hide_window()
-         {
 
+      //void interaction::draw(::nano::graphics::device * pnanodevice)
+      //{
 
-         }*/
 
+      //}
 
-         //void interaction::message_loop()
-         //{
 
+      //void interaction::on_draw(::nano::graphics::device * pnanodevice)
+      //{
 
-         //}
 
+      //}
 
-         void interaction::implementation_message_loop_step()
-         {
 
+      //void interaction::on_char(int iChar)
+      //{
 
-         }
+      //   if (iChar == '\t' && m_nanouserinteractionaChildren.has_element())
+      //   {
 
+      //      auto iFind = m_nanouserinteractionaChildren.find_first(acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus);
 
-         //::payload interaction::do_synchronously(const class time & timeWait)
-         //{
+      //      iFind++;
 
-         //   do_asynchronously();
+      //      acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus = m_nanouserinteractionaChildren % iFind;
 
-         //   auto pmanualresethappening = allocateø manual_reset_happening();
+      //      redraw();
 
-         //   if (m_psequencer)
-         //   {
+      //   }
+      //   else if (acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus)
+      //   {
 
-         //      m_psequencer->then([pmanualresethappening](auto psequencer)
-         //      {
+      //      acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus->on_char(iChar);
 
-         //            pmanualresethappening->set_happening();
+      //   }
 
-         //      });
+      //}
 
-         //   }
-         //   else
-         //   {
 
-         //      auto pwindow = acme_windowing_window();
+      //::acme::user::interaction * interaction::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+      //{
 
-         //      auto functionCloseExisting = pwindow->m_functionClose;
+      //   auto point = pmouse->m_pointHost;
 
-         //      pwindow->m_functionClose = [pmanualresethappening, functionCloseExisting](auto pinterchange)
-         //         {
+      //   host_to_client()(point);
 
-         //            if (functionCloseExisting)
-         //            {
+      //   return on_hit_test(point, ezorder);
 
-         //               functionCloseExisting(pinterchange);
+      //}
 
-         //            }
 
-         //            pmanualresethappening->set_happening();
 
-         //         };
+      //::acme::user::interaction * interaction::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
+      //{
 
-         //   }
+      //   for (auto & pchild : m_nanouserinteractionaChildren)
+      //   {
 
-         //   if (m_payloadResult.is_new())
-         //   {
+      //      if (pchild->m_rectangle.contains(point))
+      //      {
 
-         //      pmanualresethappening->wait();
+      //         return pchild;
 
-         //   }
+      //      }
 
-         //   return m_payloadResult;
+      //   }
 
-         //}
+      //   return nullptr;
 
+      //}
 
-         //void interaction::draw(::nano::graphics::device * pnanodevice)
-         //{
 
+      //void interaction::add_child(::acme::user::interaction * pinteractionChild)
+      //{
 
-         //}
+      //   pinteractionChild->m_pacmeuserinteractionParent = this;
 
+      //   m_nanouserinteractionaChildren.add(pinteractionChild);
 
-         //void interaction::on_draw(::nano::graphics::device * pnanodevice)
-         //{
+      //}
 
 
-         //}
+      //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+      //{
 
+      //   auto pbutton = allocateø ::micro::button();
 
-         //void interaction::on_char(int iChar)
-         //{
+      //   pbutton->m_strText = scopedstrText;
+      //   pbutton->id() = edialogresult;
+      //   pbutton->m_edialogresult1 = edialogresult;
+      //   pbutton->m_chLetter = chLetter;
+      //   //pbutton->m_bDefault = bDefault;
 
-         //   if (iChar == '\t' && m_nanouserinteractionaChildren.has_element())
-         //   {
+      //   m_nanouserinteractionaChildren.add(pbutton);
 
-         //      auto iFind = m_nanouserinteractionaChildren.find_first(acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus);
+      //   add_child(pbutton);
 
-         //      iFind++;
+      //}
 
-         //      acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus = m_nanouserinteractionaChildren % iFind;
 
-         //      redraw();
 
-         //   }
-         //   else if (acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus)
-         //   {
+      //::acme::user::interaction * interaction::get_child_by_id(const ::atom & atom)
+      //{
 
-         //      acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus->on_char(iChar);
+      //   for (auto & pchild : m_nanouserinteractionaChildren)
+      //   {
 
-         //   }
+      //      if (pchild->id() == atom)
+      //      {
 
-         //}
+      //         return pchild;
 
+      //      }
 
-         //::acme::user::interaction * interaction::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
-         //{
+      //   }
 
-         //   auto point = pmouse->m_pointHost;
+      //   return nullptr;
 
-         //   host_to_client()(point);
+      //}
 
-         //   return on_hit_test(point, ezorder);
 
-         //}
+      //::payload interaction::get_result()
+      //{
 
+      //   return m_payloadResult;
 
+      //}
 
-         //::acme::user::interaction * interaction::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
-         //{
 
-         //   for (auto & pchild : m_nanouserinteractionaChildren)
-         //   {
+      //void interaction::on_mouse_move(::user::mouse * pmouse)
+      //{
 
-         //      if (pchild->m_rectangle.contains(point))
-         //      {
+      //   if (acme_windowing_window()->m_pacmeuserinteractionHover)
+      //   {
 
-         //         return pchild;
+      //      acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_move(pmouse);
 
-         //      }
+      //      return;
 
-         //   }
+      //   }
 
-         //   return nullptr;
+      //   if (acme_windowing_window()->m_pacmeuserinteractionCapture)
+      //   {
 
-         //}
+      //      acme_windowing_window()->m_pacmeuserinteractionCapture->on_mouse_move(pmouse);
 
+      //      return;
 
-         //void interaction::add_child(::acme::user::interaction * pinteractionChild)
-         //{
+      //   }
 
-         //   pinteractionChild->m_pacmeuserinteractionParent = this;
+      //   if (drag_on_mouse_move(pmouse))
+      //   {
 
-         //   m_nanouserinteractionaChildren.add(pinteractionChild);
+      //      return;
 
-         //}
+      //   }
 
+      //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
-         //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
-         //{
+      //   if (pchild)
+      //   {
 
-         //   auto pbutton = allocateø ::micro::button();
+      //      pchild->on_mouse_move(pmouse);
 
-         //   pbutton->m_strText = scopedstrText;
-         //   pbutton->id() = edialogresult;
-         //   pbutton->m_edialogresult1 = edialogresult;
-         //   pbutton->m_chLetter = chLetter;
-         //   //pbutton->m_bDefault = bDefault;
+      //   }
 
-         //   m_nanouserinteractionaChildren.add(pbutton);
+      //}
 
-         //   add_child(pbutton);
 
-         //}
+      //void interaction::on_left_button_down(::user::mouse * pmouse)
+      //{
 
+      //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
+      //   if (pchild)
+      //   {
 
-         //::acme::user::interaction * interaction::get_child_by_id(const ::atom & atom)
-         //{
+      //      m_atomLeftButtonDown = pchild->id();
 
-         //   for (auto & pchild : m_nanouserinteractionaChildren)
-         //   {
+      //   }
+      //   else
+      //   {
 
-         //      if (pchild->id() == atom)
-         //      {
+      //      m_atomLeftButtonDown = e_dialog_result_none;
 
-         //         return pchild;
+      //   }
 
-         //      }
+      //   auto pitemClient = tool().defer_item(e_element_client);
 
-         //   }
+      //   auto pdragClient = drag(pitemClient);
 
-         //   return nullptr;
+      //   if (pdragClient && !pchild)
+      //   {
 
-         //}
+      //      if (drag_on_button_down(pitemClient, pmouse))
+      //      {
 
+      //         return;
 
-         //::payload interaction::get_result()
-         //{
+      //      }
 
-         //   return m_payloadResult;
+      //   }
 
-         //}
+      //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
+      //   {
 
+      //      pchild->set_keyboard_focus();
 
-         //void interaction::on_mouse_move(::user::mouse * pmouse)
-         //{
+      //   }
 
-         //   if (acme_windowing_window()->m_pacmeuserinteractionHover)
-         //   {
+      //}
 
-         //      acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_move(pmouse);
 
-         //      return;
+      //void interaction::on_left_button_up(::user::mouse * pmouse)
+      //{
 
-         //   }
+      //   release_mouse_capture();
 
-         //   if (acme_windowing_window()->m_pacmeuserinteractionCapture)
-         //   {
+      //   if (drag_on_button_up(pmouse))
+      //   {
 
-         //      acme_windowing_window()->m_pacmeuserinteractionCapture->on_mouse_move(pmouse);
+      //      return;
 
-         //      return;
+      //   }
 
-         //   }
+      //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
-         //   if (drag_on_mouse_move(pmouse))
-         //   {
+      //   if (pchild)
+      //   {
 
-         //      return;
+      //      m_atomLeftButtonUp = pchild->id();
 
-         //   }
+      //   }
+      //   else
+      //   {
 
-         //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      //      m_atomLeftButtonUp = e_dialog_result_none;
 
-         //   if (pchild)
-         //   {
+      //   }
 
-         //      pchild->on_mouse_move(pmouse);
+      //   if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
+      //   {
 
-         //   }
+      //      m_payloadResult = m_atomLeftButtonUp;
 
-         //}
+      //      on_click(m_payloadResult, pmouse);
 
+      //   }
 
-         //void interaction::on_left_button_down(::user::mouse * pmouse)
-         //{
+      //   if (drag_on_button_up(pmouse))
+      //   {
 
-         //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      //      return;
 
-         //   if (pchild)
-         //   {
+      //   }
 
-         //      m_atomLeftButtonDown = pchild->id();
+      //}
 
-         //   }
-         //   else
-         //   {
 
-         //      m_atomLeftButtonDown = e_dialog_result_none;
+      //void interaction::on_right_button_down(::user::mouse * pmouse)
+      //{
 
-         //   }
+      //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
-         //   auto pitemClient = tool().defer_item(e_element_client);
+      //   if (pchild)
+      //   {
 
-         //   auto pdragClient = drag(pitemClient);
+      //      m_atomRightButtonDown = pchild->id();
 
-         //   if (pdragClient && !pchild)
-         //   {
+      //   }
+      //   else
+      //   {
 
-         //      if (drag_on_button_down(pitemClient, pmouse))
-         //      {
+      //      m_atomRightButtonDown = e_dialog_result_none;
 
-         //         return;
+      //   }
 
-         //      }
 
-         //   }
+      //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
+      //   {
 
-         //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
-         //   {
+      //      pchild->set_keyboard_focus();
 
-         //      pchild->set_keyboard_focus();
+      //   }
 
-         //   }
+      //}
 
-         //}
 
+      //void interaction::on_right_button_up(::user::mouse * pmouse)
+      //{
 
-         //void interaction::on_left_button_up(::user::mouse * pmouse)
-         //{
+      //   release_mouse_capture();
 
-         //   release_mouse_capture();
+      //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
-         //   if (drag_on_button_up(pmouse))
-         //   {
+      //   if (pchild)
+      //   {
 
-         //      return;
+      //      m_atomRightButtonUp = pchild->id();
 
-         //   }
+      //   }
+      //   else
+      //   {
 
-         //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      //      m_atomRightButtonUp = e_dialog_result_none;
 
-         //   if (pchild)
-         //   {
+      //   }
 
-         //      m_atomLeftButtonUp = pchild->id();
+      //   if (m_atomRightButtonUp == m_atomRightButtonDown)
+      //   {
 
-         //   }
-         //   else
-         //   {
+      //      on_right_click(m_atomLeftButtonUp, pmouse);
 
-         //      m_atomLeftButtonUp = e_dialog_result_none;
+      //   }
 
-         //   }
+      //}
 
-         //   if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
-         //   {
 
-         //      m_payloadResult = m_atomLeftButtonUp;
+      //void interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
+      //{
 
-         //      on_click(m_payloadResult, pmouse);
 
-         //   }
+      //}
 
-         //   if (drag_on_button_up(pmouse))
-         //   {
 
-         //      return;
+      //void interaction::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
+      //{
 
-         //   }
 
-         //}
+      //}
 
 
-         //void interaction::on_right_button_down(::user::mouse * pmouse)
-         //{
+      //bool interaction::is_active()
+      //{
 
-         //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      //   return false;
 
-         //   if (pchild)
-         //   {
+      //}
 
-         //      m_atomRightButtonDown = pchild->id();
 
-         //   }
-         //   else
-         //   {
+      //void interaction::set_active()
+      //{
 
-         //      m_atomRightButtonDown = e_dialog_result_none;
 
-         //   }
+      //}
 
 
-         //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
-         //   {
+      //void interaction::draw_children(::nano::graphics::device * pnanodevice)
+      //{
 
-         //      pchild->set_keyboard_focus();
 
-         //   }
+      //}
 
-         //}
 
+      //void interaction::delete_drawing_objects()
+      //{
 
-         //void interaction::on_right_button_up(::user::mouse * pmouse)
-         //{
 
-         //   release_mouse_capture();
+      //}
 
-         //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
-         //   if (pchild)
-         //   {
+      //bool interaction::get_dark_mode()
+      //{
 
-         //      m_atomRightButtonUp = pchild->id();
+      //   return false;
 
-         //   }
-         //   else
-         //   {
+      //}
 
-         //      m_atomRightButtonUp = e_dialog_result_none;
 
-         //   }
+      /*       void interaction::create_drawing_objects()
+             {
 
-         //   if (m_atomRightButtonUp == m_atomRightButtonDown)
-         //   {
 
-         //      on_right_click(m_atomLeftButtonUp, pmouse);
+             }*/
 
-         //   }
 
-         //}
+      //void interaction::update_drawing_objects()
+      //{
 
 
-         //void interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
-         //{
+      //}
 
 
-         //}
+      //::i32_point interaction::origin()
+      //{
 
+      //   throw ::exception(error_wrong_state);
 
-         //void interaction::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
-         //{
+      //   return {};
 
+      //}
 
-         //}
 
+      ::shift_int interaction::host_to_client()
+      {
 
-         //bool interaction::is_active()
-         //{
+         return -client_to_host();
 
-         //   return false;
+      }
 
-         //}
 
+      ::shift_int interaction::client_to_host()
+      {
 
-         //void interaction::set_active()
-         //{
+         return {};
 
+      }
 
-         //}
 
+      ::shift_int interaction::absolute_to_client()
+      {
 
-         //void interaction::draw_children(::nano::graphics::device * pnanodevice)
-         //{
+         return -client_to_host();
 
+      }
 
-         //}
 
+      ::shift_int interaction::client_to_absolute()
+      {
 
-         //void interaction::delete_drawing_objects()
-         //{
-
-
-         //}
-
-
-         //bool interaction::get_dark_mode()
-         //{
-
-         //   return false;
-
-         //}
-
-
-  /*       void interaction::create_drawing_objects()
-         {
-
-
-         }*/
-
-
-         //void interaction::update_drawing_objects()
-         //{
-
-
-         //}
-
-
-         //::i32_point interaction::origin()
-         //{
-
-         //   throw ::exception(error_wrong_state);
-
-         //   return {};
-
-         //}
-
-
-         ::shift_int interaction::host_to_client()
-         {
-
-            return -client_to_host();
-
-         }
-
-
-         ::shift_int interaction::client_to_host()
+         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return {};
 
          }
 
+         auto r = get_window_rectangle();
 
-         ::shift_int interaction::absolute_to_client()
-         {
+         return r.top_left();
 
-            return -client_to_host();
+      }
 
-         }
 
+      ::i32_point interaction::origin()
+      {
+         auto r = get_window_rectangle();
 
-         ::shift_int interaction::client_to_absolute()
-         {
+         return r.top_left();
 
-            if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
-            {
+      }
 
-               return {};
 
-            }
 
-            auto r = get_window_rectangle();
+      ::i32_rectangle interaction::get_client_rectangle()
+      {
+         auto r = get_window_rectangle();
 
-            return r.top_left();
+         r.offset(-r.top_left());
 
-         }
+         return r;
 
+      }
 
-         ::i32_point interaction::origin()
-         {
-            auto r = get_window_rectangle();
 
-            return r.top_left();
+      ::i32_size interaction::get_window_minimum_size()
+      {
 
-         }
+         return { 250, 250 };
 
+      }
 
 
-         ::i32_rectangle interaction::get_client_rectangle()
-         {
-            auto r = get_window_rectangle();
+      //::collection::count interaction::nano_user_button_count()
+      //{
 
-            r.offset(-r.top_left());
+      //   ::collection::count c = 0;
 
-            return r;
+      //   for (auto & pnanouserinteraction : m_nanouserinteractionaChildren)
+      //   {
 
-         }
+      //      auto pbutton = pnanouserinteraction.cast < ::micro::button >();
 
+      //      if (pbutton)
+      //      {
 
-         ::i32_size interaction::get_window_minimum_size()
-         {
+      //         c++;
 
-            return { 250, 250 };
+      //      }
 
-         }
+      //   }
 
+      //   return c;
 
-         //::collection::count interaction::nano_user_button_count()
-         //{
+      //}
 
-         //   ::collection::count c = 0;
+      //::acme::user::interaction * interaction::nano_user_parent()
+      //{
 
-         //   for (auto & pnanouserinteraction : m_nanouserinteractionaChildren)
-         //   {
+      //   return m_pacmeuserinteractionParent;
 
-         //      auto pbutton = pnanouserinteraction.cast < ::micro::button >();
+      //}
 
-         //      if (pbutton)
-         //      {
+      //::micro::button * interaction::nano_user_button_at(::collection::index i)
+      //{
 
-         //         c++;
+      //   ::collection::count c = 0;
 
-         //      }
+      //   for (auto & pnanouserinteraction : m_nanouserinteractionaChildren)
+      //   {
 
-         //   }
+      //      auto pbutton = pnanouserinteraction.cast < ::micro::button >();
 
-         //   return c;
+      //      if (pbutton)
+      //      {
 
-         //}
+      //         if (i == c)
+      //         {
 
-         //::acme::user::interaction * interaction::nano_user_parent()
-         //{
+      //            return pbutton;
 
-         //   return m_pacmeuserinteractionParent;
+      //         }
 
-         //}
+      //         c++;
 
-         //::micro::button * interaction::nano_user_button_at(::collection::index i)
-         //{
+      //      }
 
-         //   ::collection::count c = 0;
+      //   }
 
-         //   for (auto & pnanouserinteraction : m_nanouserinteractionaChildren)
-         //   {
+      //   return nullptr;
 
-         //      auto pbutton = pnanouserinteraction.cast < ::micro::button >();
+      //}
 
-         //      if (pbutton)
-         //      {
 
-         //         if (i == c)
-         //         {
 
-         //            return pbutton;
+      //::i32_point interaction::try_absolute_mouse_position(const ::i32_point & point)
+      //{
+      //acme_windowing_window()
+      //   auto p = point;
 
-         //         }
+      //   client_to_absolute()(p);
 
-         //         c++;
+      //   return p;
 
-         //      }
+      //}
 
-         //   }
 
-         //   return nullptr;
+      void interaction::drag_set_capture()
+      {
 
-         //}
+         set_mouse_capture();
 
+      }
 
 
-         //::i32_point interaction::try_absolute_mouse_position(const ::i32_point & point)
-         //{
-         //acme_windowing_window()
-         //   auto p = point;
+      bool interaction::on_drag_start(::i32_point & point, ::user::mouse * pmouse, ::item * pitem)
+      {
 
-         //   client_to_absolute()(p);
-
-         //   return p;
-
-         //}
-
-
-         void interaction::drag_set_capture()
-         {
-
-            set_mouse_capture();
-
-         }
-
-
-         bool interaction::on_drag_start(::i32_point & point, ::user::mouse * pmouse, ::item * pitem)
-         {
-
-            if (pitem->m_item.m_eelement == e_element_client)
-            {
-
-               auto pdrag = drag(pitem);
-
-               if (acme_windowing_window()->defer_perform_entire_reposition_process(pmouse))
-               {
-
-                  return false;
-
-               }
-
-               point = origin();
-
-               return true;
-
-            }
-
-            return false;
-
-         }
-
-
-         ::i32_point interaction::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
-         {
-
-            //auto p = try_absolute_mouse_position(point);
-
-            //return p;
-
-            return point;
-
-         }
-
-
-         bool interaction::drag_shift(::item * pitem, ::user::mouse * pmouse)
-         {
-
-            if (pitem->m_item.m_eelement == e_element_client)
-            {
-
-               auto point = drag_point(pitem, pmouse);
-
-               set_position(point);
-
-               return true;
-
-            }
-
-            return false;
-
-         }
-
-
-         bool interaction::drag_hover(::item * pitem)
-         {
-
-            if (pitem->m_item.m_eelement == e_element_client)
-            {
-
-               set_cursor(e_cursor_hand);
-
-               return true;
-
-            }
-            else if (pitem->m_item.m_eelement == e_element_resize)
-            {
-
-               set_cursor(e_cursor_size_bottom_right);
-
-               return true;
-
-            }
-
-            return false;
-
-         }
-
-
-         void interaction::drag_release_capture()
-         {
-
-            release_mouse_capture();
-
-         }
-
-
-         void interaction::drag_set_cursor(::item * pitem, ::user::mouse * pmouse)
+         if (pitem->m_item.m_eelement == e_element_client)
          {
 
             auto pdrag = drag(pitem);
 
-            set_cursor(pdrag->m_ecursor);
+            if (acme_windowing_window()->defer_perform_entire_reposition_process(pmouse))
+            {
+
+               return false;
+
+            }
+
+            point = origin();
+
+            return true;
 
          }
+
+         return false;
+
+      }
+
+
+      ::i32_point interaction::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
+      {
+
+         //auto p = try_absolute_mouse_position(point);
+
+         //return p;
+
+         return point;
+
+      }
+
+
+      bool interaction::drag_shift(::item * pitem, ::user::mouse * pmouse)
+      {
+
+         if (pitem->m_item.m_eelement == e_element_client)
+         {
+
+            auto point = drag_point(pitem, pmouse);
+
+            set_position(point);
+
+            return true;
+
+         }
+
+         return false;
+
+      }
+
+
+      bool interaction::drag_hover(::item * pitem)
+      {
+
+         if (pitem->m_item.m_eelement == e_element_client)
+         {
+
+            set_cursor(e_cursor_hand);
+
+            return true;
+
+         }
+         else if (pitem->m_item.m_eelement == e_element_resize)
+         {
+
+            set_cursor(e_cursor_size_bottom_right);
+
+            return true;
+
+         }
+
+         return false;
+
+      }
+
+
+      void interaction::drag_release_capture()
+      {
+
+         release_mouse_capture();
+
+      }
+
+
+      void interaction::drag_set_cursor(::item * pitem, ::user::mouse * pmouse)
+      {
+
+         auto pdrag = drag(pitem);
+
+         set_cursor(pdrag->m_ecursor);
+
+      }
 
 
       /*   ::payload interaction::get_result()
@@ -1653,157 +1766,193 @@ namespace acme
          }*/
 
 
-         //void interaction::on_mouse_move(::user::mouse * pmouse)
-         //{
+      //void interaction::on_mouse_move(::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         //void interaction::on_left_button_down(::user::mouse * pmouse)
-         //{
+      //void interaction::on_left_button_down(::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         //void interaction::on_left_button_up(::user::mouse * pmouse)
-         //{
+      //void interaction::on_left_button_up(::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         //void interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
-         //{
+      //void interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         //void interaction::on_right_button_down(::user::mouse * pmouse)
-         //{
+      //void interaction::on_right_button_down(::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         //void interaction::on_right_button_up(::user::mouse * pmouse)
-         //{
+      //void interaction::on_right_button_up(::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         //void interaction::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
-         //{
+      //void interaction::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
+      //{
 
 
-         //}
+      //}
 
 
-         void interaction::set_position(const ::i32_point & point)
-         {
-
-            acme_windowing_window()->set_position(point);
-
-         }
-
-
-         void interaction::display_temporary_file_with_text(const ::scoped_string & scopedstr)
-         {
-
-            string strAppId;
-
-            strAppId = application()->m_strAppId;
-
-            ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
-
-            auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", scopedstr);
-
-            node()->shell_open(pathDetails, "");
-
-         }
-
-
-
-         void interaction::destroy()
-         {
-
-            ::user::element::destroy();
-
-            ::user::drag_client::destroy();
-
-            ::source::destroy();
-
-            //system()->erase_signal_handler(this);
-
-            m_pacmeuserinteractionParent.release();
-
-            m_pacmeuserinteractionOwner.release();
-
-            m_pacmeuserinteractionaChildren.release();
-
-            m_pacmewindowingwindow.release();
-
-         }
-
-
-
-         //void interaction::on_position_window()
-         //{
-
-
-         //}
-
-
-         /*void interaction::on_size_window()
-         {
-
-
-         }*/
-
-
-         void interaction::redraw()
-         {
-            
-            auto pwindow = acme_windowing_window();
-
-            if (pwindow)
-            {
-
-               pwindow->redraw();
-
-            }
-
-         }
-
-   
-   bool interaction::on_add_child(::acme::user::interaction *pacmeuserinteractionChild)
-   {
-      
-      defer_construct_newø(m_pacmeuserinteractionaChildren);
-      
-      auto &pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
-
-      if(pacmeuserinteractionaChildren->contains(pacmeuserinteractionChild))
+      void interaction::set_position(const ::i32_point & point)
       {
-         
-         return false;
-         
+
+         acme_windowing_window()->set_position(point);
+
       }
-      
-      pacmeuserinteractionChild->m_pacmeuserinteractionParent = this;
 
 
-      
+      void interaction::display_temporary_file_with_text(const ::scoped_string & scopedstr)
+      {
+
+         string strAppId;
+
+         strAppId = application()->m_strAppId;
+
+         ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
+
+         auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", scopedstr);
+
+         node()->shell_open(pathDetails, "");
+
+      }
+
+
+
+      void interaction::destroy()
+      {
+
+         ::user::element::destroy();
+
+         ::user::drag_client::destroy();
+
+         ::source::destroy();
+
+         //system()->erase_signal_handler(this);
+
+         m_pacmeuserinteractionParent.release();
+
+         m_pacmeuserinteractionOwner.release();
+
+         m_pacmeuserinteractionaChildren.release();
+
+         m_pacmewindowingwindow.release();
+
+      }
+
+
+
+      //void interaction::on_position_window()
+      //{
+
+
+      //}
+
+
+      /*void interaction::on_size_window()
+      {
+
+
+      }*/
+
+
+      void interaction::redraw()
+      {
+
+         auto pwindow = acme_windowing_window();
+
+         if (pwindow)
+         {
+
+            pwindow->redraw();
+
+         }
+
+      }
+
+
+      i64 interaction::get_style_for_creating_window()
+      {
+
+         return -1;
+
+      }
+
+
+      bool interaction::on_add_child(::acme::user::interaction *pacmeuserinteractionChild)
+      {
+
+         defer_construct_newø(m_pacmeuserinteractionaChildren);
+
+         auto &pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
+
+         if(pacmeuserinteractionaChildren->contains(pacmeuserinteractionChild))
+         {
+
+            return false;
+
+         }
+
+         pacmeuserinteractionChild->m_pacmeuserinteractionParent = this;
+
+
+
          __refdbg_add_referer
-         
+
          pacmeuserinteractionaChildren->add(pacmeuserinteractionChild);
 
-      return true;
-      
-   }
+         return true;
+
+      }
+
+
+#ifdef WINDOWS_DESKTOP
+
+      bool interaction::_on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam)
+      {
+
+         return false;
+
+      }
+
+      ::windows::window_class interaction::_get_window_class()
+      {
+
+         auto pacmewindowing = system()->m_pacmewindowing;
+
+         if (pacmewindowing)
+         {
+
+
+            return pacmewindowing->_default_window_class();
+
+         }
+
+         return {};
+
+      }
+#endif
 
          //void interaction::get_client_rectangle(::i32_rectangle & rectangle)
          //{

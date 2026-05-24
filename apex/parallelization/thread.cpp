@@ -3075,6 +3075,8 @@ void thread::__priority_and_affinity()
 void thread::__task_init()
 {
 
+   auto iTaskObjectSerialId = m_iTaskObjectSerialId;
+
    ::task::__task_init();
 
 #ifdef WINDOWS_DESKTOP

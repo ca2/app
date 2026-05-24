@@ -3,6 +3,7 @@
 #include "window.h"
 #include "windowing.h"
 #include "acme/platform/application.h"
+#include "acme/user/user/interaction.h"
 #include "acme/user/user/mouse.h"
 
 
@@ -45,6 +46,18 @@ namespace windows
    bool window::call_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam)
    {
 
+      if (m_pacmeuserinteraction)
+      {
+
+         if (m_pacmeuserinteraction->_on_window_procedure(lresult, message, wparam, lparam))
+         {
+
+            return true;
+
+         }
+
+      }
+
       if (on_window_procedure(lresult, message, wparam, lparam))
       {
 
@@ -76,7 +89,61 @@ namespace windows
 
       }
 
-      if (message == WM_ENTERSIZEMOVE)
+      if (message == WM_CREATE)
+      {
+
+            on_create_window();
+         lresult = 0;
+         return true;
+      }
+      else if (message == WM_SIZE)
+      {
+
+         on_window_size();
+         lresult = 0;
+         return true;
+
+      }
+      // else
+      // {
+      //
+      //    auto hwnd = ::as_HWND(this->operating_system_window());
+      //
+      //    lresult = DefWindowProcW(hwnd, message, wparam, lparam);
+      //
+      //    return true;
+      // }
+
+
+      else if (message == WM_MOUSEACTIVATE)
+      {
+         int iResult = 0;
+
+         if (on_window_mouse_activate(iResult, ::as_operating_system_window(wparam.raw_cast<HWND>()),
+            lparam.loword(), lparam.hiword()))
+         {
+
+            lresult = iResult;
+
+            return true;
+
+         }
+
+      }
+      else if (message == WM_ACTIVATE)
+      {
+
+         if (on_window_activate(wparam.loword(), wparam.hiword(), ::as_operating_system_window(lparam.raw_cast<HWND>())))
+         {
+
+            lresult = 0;
+
+            return true;
+
+         }
+
+      }
+      else if (message == WM_ENTERSIZEMOVE)
       {
          m_bSizeMoveMode = true;
       }
@@ -622,19 +689,19 @@ namespace windows
       if (msg == (WM_WINDOWPOSCHANGING))
       {
 
-         ::information() << "WM_WINDOWPOSCHANGING";
+         //::information() << "WM_WINDOWPOSCHANGING";
 
       }
       else if (msg == (WM_USER + 123))
       {
 
-         ::information() << "::windows::window_procedure WM_USER + 123";
+         //::information() << "::windows::window_procedure WM_USER + 123";
 
       }
       else if (msg == (WM_APP + 123))
       {
 
-         ::information() << "::windows::window_procedure WM_APP + 123";
+         //::information() << "::windows::window_procedure WM_APP + 123";
 
       }
 
@@ -738,6 +805,141 @@ namespace windows
 
    }
 
+
+
+   void window::show_window(int iShowFlags)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::ShowWindow(hwnd, iShowFlags);
+
+   }
+
+
+   void window::window_invalidate_rect(const i32_rectangle *prectangle, bool bErase)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      if (::is_null(prectangle))
+      {
+
+         ::InvalidateRect(hwnd, nullptr,  bErase ? TRUE : FALSE);
+
+      }
+      else
+      {
+
+         RECT rect;
+
+         copy(rect, *prectangle);
+
+         ::InvalidateRect(hwnd, &rect,  bErase ? TRUE : FALSE);
+
+      }
+
+   }
+
+   void window::update_window()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::UpdateWindow(hwnd);
+
+   }
+
+
+   void window::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+   {
+
+      RECT rect;
+
+      HRGN hrgn = nullptr;
+
+      const RECT * prect = nullptr;
+
+      if (::is_set(prectangle))
+      {
+
+         prect = &rect;
+
+         ::copy(rect, *prectangle);
+
+      }
+
+      if (::is_set(pHRGN))
+      {
+
+         hrgn = (HRGN) pHRGN;
+
+      }
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::RedrawWindow(hwnd, prect, hrgn, iRedrawFlags);
+
+   }
+
+
+   void window::window_set_focus()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::SetFocus(hwnd);
+
+   }
+
+
+   ::i32_rectangle window::window_get_client_rect()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      RECT rect;
+
+      if (!::GetClientRect(hwnd, &rect))
+      {
+
+         return {};
+
+      }
+
+      return rect;
+
+   }
+
+
+   ::i32_rectangle window::get_window_rect()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      RECT rect;
+
+      if (!::GetWindowRect(hwnd, &rect))
+      {
+
+         return {};
+
+      }
+
+      return rect;
+
+   }
+
+
+   void window::dump_operating_system_child_window_hierarchy()
+   {
+
+      auto operatingsystemwindow = m_windowswindow.as_operating_system_window();
+
+      ::windows::dump_child_window_hierarchy(operatingsystemwindow);
+
+   }
+
 } // namespace windows
 
 
@@ -754,6 +956,14 @@ CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window& operatingsystemwi
    ::operating_system::windows_window window(operatingsystemwindow);
 
    return window.as_HWND();
+
+}
+
+
+CLASS_DECL_ACME RECT as_RECT(const ::i32_rectangle & rectangle)
+{
+
+   return {rectangle.left, rectangle.top, rectangle.right, rectangle.bottom};
 
 }
 
@@ -887,5 +1097,76 @@ namespace windows
 } // namespace windows
  
 
+HWND g_hwndMain;
 
 
+CLASS_DECL_ACME HWND get_hwnd_main()
+{
+
+   return g_hwndMain;
+
+}
+
+
+
+WNDPROC g_pwndprocMain;
+
+CLASS_DECL_ACME void set_main_wndproc(void *p)
+{
+
+   g_pwndprocMain = (WNDPROC)p;
+
+}
+
+CLASS_DECL_ACME LRESULT CALLBACK RDP_HOST2_WndProc(
+    HWND hwnd,
+    UINT msg,
+    WPARAM wParam,
+    LPARAM lParam)
+{
+   return g_pwndprocMain(hwnd, msg, wParam, lParam);
+   // switch (msg)
+   // {
+   //    case WM_CREATE:
+   //    {
+   //       g_hwndMain = hwnd;
+   //
+   //       HRESULT hr = CreateRdpControl(hwnd);
+   //
+   //       if (FAILED(hr))
+   //       {
+   //          MessageBoxW(
+   //              hwnd,
+   //              L"Failed to create RDP ActiveX control",
+   //              L"Error",
+   //              MB_ICONERROR);
+   //
+   //          return -1;
+   //       }
+   //
+   //       ConnectRdp();
+   //
+   //       return 0;
+   //    }
+   //
+   //    case WM_SIZE:
+   //    {
+   //       ResizeActiveX();
+   //       return 0;
+   //    }
+   //
+   //    case WM_DESTROY:
+   //    {
+   //       CleanupRdp();
+   //
+   //       PostQuitMessage(0);
+   //       return 0;
+   //    }
+   // }
+   //
+   // return DefWindowProc(
+   //     hwnd,
+   //     msg,
+   //     wParam,
+   //     lParam);
+}

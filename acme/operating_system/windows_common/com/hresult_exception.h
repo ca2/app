@@ -48,3 +48,5 @@ inline error_code hresult_error_code(HRESULT hresult)
 
 
 
+CLASS_DECL_ACME ::string hresult_to_string(HRESULT hr);
+

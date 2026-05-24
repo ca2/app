@@ -170,6 +170,14 @@ namespace innate_ui
    }
 
 
+   void window::on_size()
+   {
+
+
+
+   }
+
+
 } // namespace innate_ui
 
 

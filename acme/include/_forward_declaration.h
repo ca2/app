@@ -1101,7 +1101,6 @@ using tchar = char;
 
 
 
-
 namespace desktop_environment_kde
 {
 

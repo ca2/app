@@ -23,7 +23,9 @@
 //#include "acme/operating_system/window.h"
 
 #include "acme/user/user/element.h"
-
+#ifdef WINDOWS_DESKTOP
+#include "acme/operating_system/windows/_window_class.h"
+#endif
 
 namespace acme
 {
@@ -56,11 +58,9 @@ namespace acme
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
 
-
          class ::time                              m_timeHoverNoiseSuppression;
 
 
-         bool m_bMouseOn;
 
 
          i32_rectangle                             m_rectangle;
@@ -190,11 +190,33 @@ namespace acme
 
          ::pointer<::nano::graphics::device>create_device();
 
+
+         virtual bool on_window_mouse_move(const ::i32_point & point, const ::i32_point & pointAbsolute);
+
          virtual void on_mouse_enter();
          virtual void fore_on_mouse_move(::user::mouse * pmouse);
          virtual void back_on_mouse_move(::user::mouse * pmouse);
          virtual void on_mouse_leave();
 
+#ifdef WINDOWS_DESKTOP
+         virtual ::windows::window_class _get_window_class();
+#endif
+
+         virtual void on_window_size();
+         virtual void on_window_set_focus();
+         virtual bool on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
+         virtual bool on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
+            int iHitTest, int iMessage);
+
+
+         virtual void show_window(int iShowFlags);
+         virtual void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase);
+         virtual void update_window();
+         virtual void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags);
+         virtual void window_set_focus();
+         virtual ::i32_rectangle window_get_client_rect();
+         virtual ::i32_rectangle get_window_rect();
+         virtual void dump_operating_system_child_window_hierarchy();
 
          virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();
          //void run_modal_loop() override;

@@ -11,8 +11,9 @@
 #include "acme/platform/system_aura.h"
 #include "acme/platform/system_axis.h"
 #include "acme/platform/system_core.h"
-
-
+#ifdef WINDOWS
+#include "acme/operating_system/windows_common/apartment_thread.h"
+#endif
 namespace platform
 {
 
@@ -61,6 +62,9 @@ namespace platform
       ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
       //::pointer<::particle>                  m_pparticleSubsystem;
+#ifdef WINDOWS
+      ::pointer<::windows::apartment_thread>m_papartmentthread;
+#endif
 
       system();
       ~system() override;
@@ -96,6 +100,9 @@ namespace platform
 
       ::thread_storage * thread_storage(const ::task_index & taskindex) override;
       ::thread_storage * _thread_storage_unlocked(const ::task_index & taskindex) override;
+#ifdef WINDOWS
+      virtual ::windows::apartment_thread * apartment_thread();
+#endif
 
 
       void on_initialize_particle() override;
@@ -120,7 +127,9 @@ namespace platform
 
       void do_operating_ambient_factory() override;
 
-      void do_graphics_and_windowing_factory() override;
+      void do_graphics_factory() override;
+
+      void do_windowing_factory() override;
 
       virtual void application_main(::platform::application * papplication);
 
@@ -249,7 +258,6 @@ namespace platform
 
       //virtual void defer_post_application_start_file_open_request();
 
-
       virtual void defer_audio() override;
 
       virtual bool has_audio() override;
@@ -313,6 +321,12 @@ namespace platform
       virtual ::u32 crc32(::u32 uCrc, const ::block & block) override;
 
 
+      using ::task::branch;
+
+      void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {}) override;
+
+
+
       virtual void create_session(::collection::index iEdge = 0) override;
 
       virtual ::pointer<::platform::session>on_create_session(::collection::index iEdge) override;
@@ -324,6 +338,7 @@ namespace platform
       virtual void on_add_session(::platform::session * psession) override;
       virtual void erase_session(::collection::index iEdge) override;
 
+      void set_finish() override;
 
       void on_request(::request * prequest) override;
 

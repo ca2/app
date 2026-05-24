@@ -648,6 +648,8 @@ namespace platform
 
       virtual class ::application_menu* application_menu() override;
 
+      virtual void on_update_application_menu();
+
       //      using ::platform::context::factory;
 
       //      virtual ::factory::factory_pointer& factory() const override;
@@ -714,6 +716,7 @@ namespace platform
       virtual void term2();
       virtual void term1();
 
+      void set_finish() override;
 
       virtual void do_install() override;
       virtual void do_uninstall() override;

@@ -2615,7 +2615,7 @@ public:
 
 #endif
 
-
+::i64 m_iTaskObjectSerialId;
    class ::time                                    m_timeSample;
    
    class finishing :

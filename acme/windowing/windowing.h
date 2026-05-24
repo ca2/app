@@ -23,6 +23,10 @@
 #include "acme/operating_system/window.h"
 #include "acme/constant/lightui.h"
 
+#ifdef WINDOWS_DESKTOP
+#include "acme/operating_system/windows/_window_class.h"
+#endif
+
 
 namespace acme
 {
@@ -147,6 +151,15 @@ namespace acme
          virtual ::pointer < ::user::activation_token > get_user_activation_token();
          //
 
+
+#ifdef WINDOWS_DESKTOP
+
+
+         virtual ::windows::window_class _default_window_class();
+         virtual ::windows::window_class _acme_nano_window_class();
+         virtual ::windows::window_class _com_host_window_class();
+
+#endif
          //windowing_base();
 
          //~windowing_base() override;

@@ -2,6 +2,10 @@
 #pragma once
 
 
+
+#include "acme/windowing/window.h"
+
+
 namespace innate_ui
 {
 
@@ -11,16 +15,16 @@ namespace innate_ui
 
 
    class CLASS_DECL_APEX window :
-      virtual public ::particle
+      virtual public ::acme::windowing::window
    {
    public:
 
 
       window *                         m_pwindowParent;
       ::pointer_array < window >       m_childa;
-      procedure_array                  m_procedureaLayoutChildSize;
-      procedure_array                  m_procedureaLayoutChildPosition;
-      procedure_array                  m_procedureaLayoutParent;
+      ::procedure_array                m_procedureaLayoutChildSize;
+      ::procedure_array                m_procedureaLayoutChildPosition;
+      ::procedure_array                m_procedureaLayoutParent;
 
 
       window();
@@ -53,6 +57,8 @@ namespace innate_ui
 
       virtual void defer_show_system_menu(::user::mouse * pmouse);
 
+
+      virtual void on_size();
    
    };
 

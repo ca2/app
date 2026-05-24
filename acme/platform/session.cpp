@@ -194,10 +194,15 @@ namespace platform
    void session::init1()
    {
 
-      if (system()->acme_windowing()->m_ewindowingbias == ::windowing::e_bias_unknown)
+      if (system()->m_pacmewindowing)
       {
 
-         system()->acme_windowing()->m_ewindowingbias = system()->acme_windowing()->calculate_windowing_bias();
+         if (system()->acme_windowing()->m_ewindowingbias == ::windowing::e_bias_unknown)
+         {
+
+            system()->acme_windowing()->m_ewindowingbias = system()->acme_windowing()->calculate_windowing_bias();
+
+         }
 
       }
 
@@ -329,10 +334,15 @@ namespace platform
 
       }
 
-
-
    }
 
+
+   void session::set_finish()
+   {
+
+      ::task::set_finish();
+
+   }
 
 
    void session::term2()

@@ -2,13 +2,14 @@
 #pragma once
 
 #include "comptr.h"
+#include "hresult_exception.h"
 
 #define øDECL_INTERFACE_MAP()                                                                                          \
    HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void **ppv);                                                  \
-   ULONG STDMETHODCALLTYPE AddRef() { return this->increment_reference_count(); }                                      \
-   ULONG STDMETHODCALLTYPE Release() { return this->release(); }
+   ULONG STDMETHODCALLTYPE AddRef() { return InternalAddRef(); }                                      \
+   ULONG STDMETHODCALLTYPE Release() { return InternalRelease(); }
 
-#define øBEGIN_INTERFACE_MAP(class_name) \
+#define øBEGIN_INTERFACE_MAP(class_name, default_interface) \
 HRESULT STDMETHODCALLTYPE class_name::QueryInterface(REFIID riid, void **ppv)                                       \
    { \
    if (!ppv) \
@@ -18,14 +19,14 @@ HRESULT STDMETHODCALLTYPE class_name::QueryInterface(REFIID riid, void **ppv)   
    if (riid == IID_IUnknown) \
    { \
  \
-      *ppv = (IUnknown *)this; \
+      *ppv = (IUnknown *)(default_interface *)this; \
       this->AddRef(); \
 return S_OK; \
    }
 
 
 #define øINTERFACE_MAP_ITEM(interface)                                                                                 \
-   else if (riid == IID_##interface)                                                                                   \
+   else if (riid == __uuidof(interface))                                                                                  \
    {                                                                                                                   \
       *ppv = (interface *)this;                                                                                        \
       AddRef();                                                                                                        \

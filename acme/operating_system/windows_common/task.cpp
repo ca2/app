@@ -8,13 +8,6 @@
 bool task::_defer_co_initialize_ex(bool bMultiThread)
 {
 
-   if (!m_bCoInitialize)
-   {
-
-      return false;
-
-   }
-
    if (m_bCoInitialized)
    {
 
@@ -24,10 +17,20 @@ bool task::_defer_co_initialize_ex(bool bMultiThread)
 
    m_bCoInitialized = true;
 
-
    m_errorcodeHresultCoInitialize.m_etype = e_error_code_type_hresult;
 
-   m_errorcodeHresultCoInitialize.m_iOsError = (::iptr)::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
+   if (bMultiThread)
+   {
+
+      m_errorcodeHresultCoInitialize.m_iOsError = (::iptr)::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
+
+   }
+   else
+   {
+
+      m_errorcodeHresultCoInitialize.m_iOsError = (::iptr)::CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+
+   }
 
     if (FAILED((HRESULT)m_errorcodeHresultCoInitialize.m_iOsError))
     {
@@ -39,7 +42,18 @@ bool task::_defer_co_initialize_ex(bool bMultiThread)
 
        }
 
-       informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+       if (bMultiThread)
+       {
+
+          informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+
+       }
+       else
+       {
+
+          informationf("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init");
+
+       }
 
        return false;
 

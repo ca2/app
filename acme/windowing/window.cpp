@@ -55,13 +55,12 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
-         m_bMouseOn = false;
          m_bPerformingEntireRepositionProcess = false;
          m_bPerformingEntireResizingProcess = false;
          //m_ebias = e_bias_unknown;
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;
-
+         //m_bCustomPaint = true;
          //}
          //{
 
@@ -236,8 +235,12 @@ namespace acme
 
          //update_drawing_objects();
 
-         m_pacmeuserinteraction->on_create_window();
+         if (m_pacmeuserinteraction)
+         {
 
+            m_pacmeuserinteraction->on_create_window();
+
+         }
 
       }
 
@@ -930,6 +933,21 @@ namespace acme
       }
 
 
+      bool window::on_window_mouse_move(const i32_point &point, const i32_point &pointAbsolute)
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            return m_pacmeuserinteraction->on_window_mouse_move(point, pointAbsolute);
+
+         }
+
+         return false;
+
+      }
+
+
       void window::fore_on_mouse_move(::user::mouse * pmouse)
       {
          
@@ -1081,6 +1099,136 @@ namespace acme
             m_pacmeuserinteractionHover = nullptr;
 
          }
+
+      }
+#ifdef WINDOWS
+
+      ::windows::window_class window::_get_window_class()
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            return m_pacmeuserinteraction->_get_window_class();
+
+         }
+
+         return system()->acme_windowing()->_default_window_class();
+
+      }
+
+#endif
+
+      void window::on_window_size()
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_size();
+
+         }
+
+      }
+
+
+      void window::on_window_set_focus()
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_set_focus();
+
+         }
+
+      }
+
+
+      bool window::on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow)
+      {
+
+         if (::is_null(m_pacmeuserinteraction))
+         {
+
+            return false;
+
+         }
+
+         return m_pacmeuserinteraction->on_window_activate(iActivate, bMinimized, operatingsystemwindow);
+
+      }
+
+
+      bool window::on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
+   int iHitTest, int iMessage)
+      {
+
+         if (::is_null(m_pacmeuserinteraction))
+         {
+
+            return false;
+
+         }
+
+         return m_pacmeuserinteraction->on_window_mouse_activate(iResult, operatingsystemwindowTop, iHitTest, iMessage);
+
+      }
+
+
+      void window::show_window(int iShowFlags)
+      {
+
+
+      }
+
+
+      void window::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
+      {
+
+
+      }
+
+
+      void window::update_window()
+      {
+
+
+      }
+
+
+      void window::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+      {
+
+      }
+
+
+      void window::window_set_focus()
+      {
+
+
+      }
+
+
+      void window::dump_operating_system_child_window_hierarchy()
+      {
+
+
+      }
+
+
+      ::i32_rectangle window::window_get_client_rect()
+      {
+
+         return{};
+
+      }
+
+
+      ::i32_rectangle window::get_window_rect()
+      {
+
+         return {};
 
       }
 

@@ -2332,7 +2332,7 @@ retry_license:
       //}
 
 
-      information() << "axis::application::process_init";
+      information() << "aura::application::process_init";
 
 
       information() << "aura::application::process_init success";
@@ -2536,7 +2536,7 @@ retry_license:
       // }
 
 
-      information() << "apex::application::init1 end";
+      information() << "aura::application::init1 end";
 
       ping();
 

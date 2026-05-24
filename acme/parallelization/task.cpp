@@ -72,10 +72,13 @@ extern bool g_bIntermediateThreadReferencingDebugging;
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
+::interlocked_long_long g_iTaskObjectSerialId;
 
 task::task()
 {
 
+
+   m_iTaskObjectSerialId = g_iTaskObjectSerialId++;
    m_timeSample = 1_s;
    //m_bAutoRelease = false;
 
@@ -1020,7 +1023,6 @@ void task::unset_task()
 }
 
 
-
 void task::main()
 {
 
@@ -1847,6 +1849,9 @@ int task::call_main()
 
       // ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
 
+
+      auto taskindex = m_taskindex;
+
       try
       {
 
@@ -2459,16 +2464,7 @@ void task::call_init_task()
 void task::init_task()
 {
 
-   #ifdef WINDOWS
-
-   if (m_bCoInitialize)
-   {
-
-      _defer_co_initialize_ex(m_bCoInitializeMultithreaded);
-
-   }
-
-   #endif
+   auto iTaskObjectSerialId = m_iTaskObjectSerialId;
 
    string strTaskName;
 
@@ -2478,6 +2474,17 @@ void task::init_task()
       task_set_name(strTaskName);
 
    }
+
+#ifdef WINDOWS
+
+   if (m_bCoInitialize)
+   {
+
+      _defer_co_initialize_ex(m_bCoInitializeMultithreaded);
+
+   }
+
+#endif
 
    if (::platform::type(this).name().contains("synth_thread"))
    {

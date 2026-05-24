@@ -97,6 +97,12 @@ namespace apex
       void system_construct(::platform::application* papplication) override;
 
 
+      using ::task::branch;
+
+
+      void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {}) override;
+
+
       void init_task() override;
 
 

@@ -269,13 +269,23 @@ namespace micro
 
          iRight = pmicrobutton->m_rectangle.left - wSpacing;
 
-         printf_line("234");
+         //printf_line("234");
 
       }
 
       create_window();
 
       show();
+
+   }
+
+
+   void message_box::show_modal(::dialog * pdialog)
+   {
+
+      display(pdialog);
+
+      m_manualresethappeningDialogResult.wait();
 
    }
 
@@ -345,6 +355,8 @@ namespace micro
 
       ::dialog_reifier::set_dialog_result(payloadResult);
 
+
+      m_manualresethappeningDialogResult.set_happening();
 //      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
 
   //    pmessageboxpayload->m_payloadResult = payloadResult;

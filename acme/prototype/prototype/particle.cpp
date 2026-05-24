@@ -23,6 +23,7 @@
 #include "acme/user/micro/user.h"
 //#include "acme/prototype/prototype/payload.h"
 #include "acme/filesystem/filesystem/path_system.h"
+#include "acme/windowing/windowing.h"
 
 
 #if defined(__BSD__) || defined(__APPLE__)
@@ -2634,7 +2635,29 @@ void particle::task_post(const ::procedure& procedure)
 void particle::user_send(const ::procedure& procedure)
 {
 
-   node()->user_send(procedure);
+   auto psystem = ::system();
+
+   if (::is_null(psystem))
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   auto pacmewindowing = psystem->m_pacmewindowing;
+
+   if (::is_set(pacmewindowing))
+   {
+
+      pacmewindowing->user_send(procedure);
+
+      return;
+
+   }
+
+   auto pnode = node();
+
+   pnode->user_send(procedure);
 
 }
 

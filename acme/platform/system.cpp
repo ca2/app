@@ -162,6 +162,27 @@ CLASS_DECL_ACME bool is_wayland();
 }
 
 
+CLASS_DECL_ACME ::string international_date_time_with_milliseconds(const class ::time & time)
+{
+
+   ::string strTime;
+
+   ::earth::time earthtime(time);
+
+   strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d",
+                  earthtime.year(),
+                  earthtime.month(),
+                  earthtime.day(),
+                  earthtime.hour(),
+                  earthtime.minute(),
+                  earthtime.second(),
+                  time.millisecond());
+
+
+   return strTime;
+
+}
+
 //static ::platform::system * g_psystem = nullptr;
 
 
@@ -261,7 +282,8 @@ namespace platform
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
       m_bOperatingAmbientFactory = false;
-      m_bGraphicsAndWindowingFactory = false;
+      m_bGraphicsFactory = false;
+      m_bWindowingFactory = false;
 
 
       m_bRunMainLoop = true;
@@ -606,7 +628,6 @@ namespace platform
 
    void system::on_initialize_particle()
    {
-
       ::platform::platform::on_initialize_particle();
 
       ::task::on_initialize_particle();
@@ -616,6 +637,16 @@ namespace platform
       //m_plogger = create_newø < ::simple_log >();
 
       constructø(m_plogger);
+
+      {
+
+         ::trace_statement tracestatmentStartTime(this);
+
+         tracestatmentStartTime.m_etracelevel = e_trace_level_none;
+
+         tracestatmentStartTime << "Start Time: " << international_date_time_with_milliseconds(m_timeStart);
+
+      }
 
       //constructø(m_pmutexTask);
 
@@ -1376,13 +1407,13 @@ namespace platform
                if (!wcsncmp(thisEnv, L"Path=", 5))
                {
 
-                  output_debug_string("aaa");
+                  //output_debug_line("Environment Variables : Found PATH");
 
                }
                else if (!wcsncmp(thisEnv, L"VsPer", 5))
                {
 
-                  output_debug_string("aaa");
+                  //output_debug_line("Environment Variables : Found VSPER*");
 
                }
 
@@ -2002,6 +2033,15 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::term_task()
    {
 
+      if (m_pacmewindowing)
+      {
+
+         m_pacmewindowing->set_finish();
+
+         m_pacmewindowing->kick_idle();
+
+      }
+
       term_system();
 
       task::term_task();
@@ -2354,7 +2394,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       m_pparticleHttpTextSynchronization = node()->create_mutex();
 
-      initialize_matter();
+      //initialize_matter();
 
       if (application()->m_bSession)
       {
@@ -2839,6 +2879,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   void system::branch(enum_parallelization eparallelization, const create_task_attributes_t& createtaskattributes)
+   {
+
+      ::task::branch(eparallelization, createtaskattributes);
+
+   }
+
+
    void system::create_session(::collection::index iEdge)
    {
 
@@ -3017,6 +3065,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //
       //   }
       //
+   }
+
+
+   void system::set_finish()
+   {
+
+      ::task::set_finish();
+
    }
 
 
@@ -5272,7 +5328,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_pacmewindowing)
       {
 
-         do_graphics_and_windowing_factory();
+         do_windowing_factory();
 
          constructø(m_pacmewindowing);
 
@@ -5507,19 +5563,43 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-
-   void system::do_graphics_and_windowing_factory()
+   void system::do_graphics_factory()
    {
 
-      if (!m_bGraphicsAndWindowingFactory)
+      if (!m_bGraphicsFactory)
       {
 
-         m_bGraphicsAndWindowingFactory = true;
+         m_bGraphicsFactory = true;
 
          //if(!is_sandboxed())
          {
 
             nano()->graphics();
+
+            // ::string strToolkit = get_acme_windowing_toolkit_id();
+            //
+            // m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
+            //
+            // m_pfactoryAcmeWindowing->merge_to_global_factory();
+
+         }
+
+      }
+
+   }
+
+   void system::do_windowing_factory()
+   {
+
+      if (!m_bWindowingFactory)
+      {
+
+         m_bWindowingFactory = true;
+
+         //if(!is_sandboxed())
+         {
+
+            //nano()->graphics();
 
             ::string strToolkit = get_acme_windowing_toolkit_id();
 

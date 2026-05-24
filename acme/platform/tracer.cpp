@@ -8,6 +8,8 @@
 
 namespace platform
 {
+
+
    tracer::tracer()
    {
 
@@ -214,7 +216,7 @@ namespace platform
          if (tracestatement.m_etracelevel <= ::system()->m_etracelevelMinimum)
          {
 
-            ::output_debug_string("OutDebStr:"+ tracestatement.as_string() + "\n");
+            ::output_debug_string("output_debug_string: "+ tracestatement.as_string() + "\n");
 
             ::output_debug_string_flush();
 

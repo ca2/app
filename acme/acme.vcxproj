@@ -2579,6 +2579,7 @@
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
     <ClCompile Include="operating_system\windows\shared_memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\apartment_thread.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />

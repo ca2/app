@@ -473,7 +473,18 @@ namespace platform
          else
          {
 
-            system()->branch_synchronously({.m_ptaskhandler = system()->acme_windowing()});
+            // if (system()->m_pacmewindowing)
+            // {
+            //
+            //    system()->branch_synchronously({.m_ptaskhandler = ::system()->m_pacmewindowing});
+            //
+            // }
+            // else
+            {
+
+               system()->branch_synchronously();
+
+            }
 
          }
 
@@ -1083,7 +1094,7 @@ namespace platform
 
       //const ::file::path & pathFile = pathFile;
 
-      information() << "node::get_last_run_application_path_file pathFile:" << pathFile;
+      debug() << "node::get_last_run_application_path_file pathFile: " << pathFile;
 
       return pathFile;
 
@@ -1109,7 +1120,7 @@ namespace platform
 
       ::file::path pathFile = get_last_run_application_path_file(scopedstrAppId);
 
-      information() << "node::set_last_run_application_path_file path:" << path;
+      debug() << "node::set_last_run_application_path path: " << path;
 
       return file_system()->put_contents(pathFile, path);
 

@@ -5195,6 +5195,14 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
       }
 
 
+      void element::set_foreground_window(::user::activation_token *puseractivationtoken)
+      {
+
+
+
+      }
+
+
       bool element::on_window_activate(int iActivate, bool bMinimized,
                                            const operating_system::window &operatingsystemwindow)
       {
@@ -5299,6 +5307,14 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
       {
 
          return {};
+
+      }
+
+
+      void element::set_active_window()
+      {
+
+
 
       }
 

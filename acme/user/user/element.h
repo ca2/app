@@ -945,6 +945,7 @@ namespace user
       virtual ::i32_rectangle window_client_to_screen(const ::i32_rectangle & rectangle);
 
 
+      virtual void set_active_window();
       virtual void set_window_text(const ::scoped_string & scopedstr);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
       virtual void set_window_style(int iStyle);
@@ -955,6 +956,7 @@ namespace user
       virtual void update_window();
       virtual void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags);
       virtual void window_set_focus();
+      virtual void set_foreground_window(::user::activation_token *puseractivationtoken);
       virtual ::i32_rectangle window_get_client_rect();
       virtual ::i32_rectangle get_window_rect();
       virtual bool defer_update_system_menu();

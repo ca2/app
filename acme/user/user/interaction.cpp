@@ -2456,6 +2456,22 @@ namespace acme
       }
 
 
+      void interaction::post_message(::user::enum_message eusermessage, wparam wparam, lparam lparam)
+      {
+
+         m_pacmewindowingwindow->post_message(eusermessage, wparam, lparam);
+
+      }
+
+
+      void interaction::set_active_window()
+      {
+
+         m_pacmewindowingwindow->set_active_window();
+
+      }
+
+
       void interaction::set_window_text(const ::scoped_string & scopedstrString)
       {
 
@@ -2526,6 +2542,14 @@ namespace acme
 
       }
 
+
+
+      void interaction::set_foreground_window(::user::activation_token *puseractivationtoken)
+      {
+         
+         m_pacmewindowingwindow->set_foreground_window(puseractivationtoken); 
+      
+      }
 
 
       ::i32_rectangle interaction::window_get_client_rect()

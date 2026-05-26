@@ -536,7 +536,9 @@ namespace acme
          ::i32_point window_client_to_screen(const ::i32_point & point) override;
          ::i32_rectangle window_client_to_screen(const ::i32_rectangle & rectangle) override;
 
+         void post_message(::user::enum_message eusermessage, wparam wparam = {}, lparam lparam = {}) override;
 
+         void set_active_window() override;
          void set_window_text(const ::scoped_string & scopedstrString) override;
          void set_window_style(int iStyle) override;
          ::i64 get_window_style() override;
@@ -546,6 +548,7 @@ namespace acme
          void update_window() override;
          void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags) override;
          void window_set_focus() override;
+         void set_foreground_window(::user::activation_token * puseractivationtoken) override;
          ::i32_rectangle window_get_client_rect() override;
          ::i32_rectangle get_window_rect() override;
          bool defer_update_system_menu() override;

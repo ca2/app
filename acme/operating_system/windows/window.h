@@ -216,12 +216,17 @@ namespace windows
       void show_window(int iShowFlags) override;
       void set_window_style(int iStyle) override;
       ::i64 get_window_style() override;
+
+      void post_message(user::enum_message eusermessage, wparam wparam = {}, lparam lparam = {}) override;
+
+      void set_active_window() override;
       void set_window_text(const scoped_string &scopedstr) override;
       void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags) override;
       void window_invalidate_rect(const i32_rectangle *prectangle, bool bErase) override;
       void update_window() override;
       void redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags) override;
       void window_set_focus() override;
+      void set_foreground_window(::user::activation_token *puseractivationtoken) override;
       ::i32_rectangle window_get_client_rect() override;
       ::i32_rectangle get_window_rect() override;
       bool defer_update_system_menu() override;

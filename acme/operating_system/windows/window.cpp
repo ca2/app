@@ -143,9 +143,9 @@ namespace windows
 
          if(message == WM_NCHITTEST || message == WM_NCLBUTTONDOWN || message == WM_LBUTTONDOWN)
          {
-            
+
             auto hwnd = ::as_HWND(this->operating_system_window());
-            
+
             auto point = lparam.point();
 
             if (message == WM_LBUTTONDOWN)
@@ -155,19 +155,30 @@ namespace windows
 
             }
 
-            auto iHitTest = _on_non_client_hit_test(point);
+            ::lparam lparamNcHitTest(point);
+
+            int iHitTest = DefWindowProcW(hwnd, WM_NCHITTEST, 0, lparamNcHitTest);
+
+            if (iHitTest == HTCLIENT)
+            {
+
+               iHitTest = _on_non_client_hit_test(point);
+
+            }
 
             //pt.x = GET_X_LPARAM(lparam);
             //pt.y = GET_Y_LPARAM(lparam);
 
-            lresult = iHitTest;
-
             if (message == WM_NCHITTEST)
             {
+
+               lresult = iHitTest;
 
                return true;
 
             }
+
+            lresult = 0;
 
             if (message == HTCAPTION)
             {
@@ -1121,6 +1132,37 @@ namespace windows
    }
 
 
+   void window::post_message(user::enum_message eusermessage, wparam wparam, lparam lparam)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::PostMessage(hwnd, eusermessage, wparam, lparam);
+
+   }
+
+
+   void window::set_active_window()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      auto hwndOld = ::SetActiveWindow(hwnd);
+
+      ::string strType;
+
+      if (m_pacmeuserinteraction)
+      {
+
+         strType = typeid(*m_pacmeuserinteraction).name();
+
+      }
+
+      information("windows::window SetActiveWindow hwndOld={:#08x} {}", (::u64)hwndOld, strType);
+
+   }
+
+
    void window::set_window_text(const scoped_string &scopedstr)
    {
 
@@ -1218,7 +1260,39 @@ namespace windows
 
       auto hwnd = m_windowswindow.as_HWND();
 
-      ::SetFocus(hwnd);
+      auto hwndOld = ::SetFocus(hwnd);
+
+      ::string strType;
+
+      if (m_pacmeuserinteraction)
+      {
+
+         strType = typeid(*m_pacmeuserinteraction).name();
+
+      }
+
+      information("windows::window SetFocus hwndOld={:#08x} {}", (::i64)hwndOld, strType);
+
+   }
+
+
+   void window::set_foreground_window(::user::activation_token *puseractivationtoken)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      auto bResult = ::SetForegroundWindow(hwnd);
+
+      ::string strType;
+
+      if (m_pacmeuserinteraction)
+      {
+
+         strType = typeid(*m_pacmeuserinteraction).name();
+
+      }
+
+      information("windows::window SetForegroundWindow {} {}", bResult, strType);
 
    }
 

@@ -57,6 +57,15 @@ namespace acme
    {
       interaction::interaction()
       {
+
+         m_bDefaultNcHitTest = true;
+#ifdef WINDOWS_DESKTOP
+//          m_iStyle=0;
+//          m_iExStyle = 0;
+         m_pHICON_Big = nullptr;
+         m_pHICON_Small = nullptr;
+#endif
+
          //m_bMinimizeBox = true;
          //m_bMaximizeBox = true;
          //m_bResizeable = true;
@@ -324,6 +333,13 @@ namespace acme
 
 
       void interaction::_on_draw(::nano::graphics::device * pnanodevice)
+      {
+
+
+      }
+
+
+      void interaction::on_window_paint(nano::graphics::device *pnanographicsdevice)
       {
 
 
@@ -624,108 +640,6 @@ namespace acme
       }
 
 
-      void interaction::on_window_size()
-      {
-
-         information("::acme::user::interaction::on_window_size()");
-
-
-      }
-
-
-
-      void interaction::on_window_set_focus()
-      {
-
-         information("::acme::user::interaction::on_window_set_focus()");
-
-      }
-
-
-      bool interaction::on_window_activate(int iActivate, bool bMinimized,
-                                           const operating_system::window &operatingsystemwindow)
-      {
-
-         return false;
-
-      }
-
-
-      bool interaction::on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
-   int iHitTest, int iMessage)
-      {
-
-         information("::acme::user::interaction::on_window_mouse_activate");
-
-         return false;
-
-      }
-
-
-      void interaction::show_window(int iShowFlags)
-      {
-
-         m_pacmewindowingwindow->show_window(iShowFlags);
-
-      }
-
-
-      void interaction::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
-      {
-
-         m_pacmewindowingwindow->window_invalidate_rect(prectangle, bErase);
-
-      }
-
-
-      void interaction::update_window()
-      {
-
-         m_pacmewindowingwindow->update_window();
-
-      }
-
-
-      void interaction::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
-      {
-
-         m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);
-
-      }
-
-
-      void interaction::window_set_focus()
-      {
-
-         m_pacmewindowingwindow->window_set_focus();
-
-      }
-
-
-
-      ::i32_rectangle interaction::window_get_client_rect()
-      {
-
-         return m_pacmewindowingwindow->window_get_client_rect();
-
-      }
-
-
-      ::i32_rectangle interaction::get_window_rect()
-      {
-
-         return m_pacmewindowingwindow->get_window_rect();
-
-      }
-
-
-
-      void interaction::dump_operating_system_child_window_hierarchy()
-      {
-
-         m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
-
-      }
 
 
 
@@ -1900,6 +1814,14 @@ namespace acme
       }
 
 
+      i64 interaction::get_ex_style_for_creating_window()
+      {
+
+         return -1;
+
+      }
+
+
       bool interaction::on_add_child(::acme::user::interaction *pacmeuserinteractionChild)
       {
 
@@ -1944,8 +1866,20 @@ namespace acme
          if (pacmewindowing)
          {
 
+            if (m_pHICON_Big || m_pHICON_Small)
+            {
 
-            return pacmewindowing->_default_window_class();
+               m_windowclassThis = pacmewindowing->_custom_window_class(typeid(*this).name(), m_pHICON_Big, m_pHICON_Small);
+
+               return m_windowclassThis;
+
+            }
+            else
+            {
+
+               return pacmewindowing->_default_window_class();
+
+            }
 
          }
 
@@ -2163,10 +2097,15 @@ namespace acme
             if (!m_pacmewindowingwindow)
             {
 
-               if (m_pacmeuserinteractionParent)
+               if (!m_bHasOwnWindow)
                {
 
-                  return m_pacmeuserinteractionParent->acme_windowing_window();
+                  if (m_pacmeuserinteractionParent)
+                  {
+
+                     return m_pacmeuserinteractionParent->acme_windowing_window();
+
+                  }
 
                }
                
@@ -2423,6 +2362,202 @@ namespace acme
    }
    
    
+      void interaction::on_window_size()
+      {
+
+         information("::acme::user::interaction::on_window_size()");
+
+
+      }
+
+
+
+      void interaction::on_window_set_focus()
+      {
+
+         information("::acme::user::interaction::on_window_set_focus()");
+
+      }
+
+
+      bool interaction::on_window_activate(int iActivate, bool bMinimized,
+                                           const operating_system::window &operatingsystemwindow)
+      {
+
+         return false;
+
+      }
+
+
+      bool interaction::on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
+   int iHitTest, int iMessage)
+      {
+
+         information("::acme::user::interaction::on_window_mouse_activate");
+
+         return false;
+
+      }
+
+
+      bool interaction::is_window_visible()
+      {
+
+         return m_pacmewindowingwindow->is_window_visible();
+
+      }
+
+
+      bool interaction::is_window_iconic()
+      {
+
+         return m_pacmewindowingwindow->is_window_iconic();
+
+      }
+
+
+      float interaction::get_window_scale()
+      {
+
+         return m_pacmewindowingwindow->get_window_scale();
+
+      }
+
+
+      ::i32_point interaction::screen_to_window_client(const ::i32_point & point)
+      {
+
+         return m_pacmewindowingwindow->screen_to_window_client(point);
+
+      }
+
+
+      ::i32_rectangle interaction::screen_to_window_client(const ::i32_rectangle & rectangle)
+      {
+
+         return m_pacmewindowingwindow->screen_to_window_client(rectangle);
+
+      }
+
+
+      ::i32_point interaction::window_client_to_screen(const ::i32_point & point)
+      {
+
+         return m_pacmewindowingwindow->window_client_to_screen(point);
+
+      }
+
+
+      ::i32_rectangle interaction::window_client_to_screen(const ::i32_rectangle & rectangle)
+      {
+
+         return m_pacmewindowingwindow->window_client_to_screen(rectangle);
+
+      }
+
+
+      void interaction::set_window_text(const ::scoped_string & scopedstrString)
+      {
+
+         m_pacmewindowingwindow->set_window_text(scopedstrString);
+
+      }
+
+
+      void interaction::set_window_style(int iStyle)
+      {
+
+         m_pacmewindowingwindow->set_window_style(iStyle);
+
+      }
+
+
+      ::i64 interaction::get_window_style()
+      {
+
+         return m_pacmewindowingwindow->get_window_style();
+
+      }
+
+
+      void interaction::show_window(int iShowFlags)
+      {
+
+         m_pacmewindowingwindow->show_window(iShowFlags);
+
+      }
+
+
+      void interaction::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags)
+      {
+
+         m_pacmewindowingwindow->set_window_position(operatingsystemwindow, point, size, iSetWindowPosFlags);
+
+      }
+
+      void interaction::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
+      {
+
+         m_pacmewindowingwindow->window_invalidate_rect(prectangle, bErase);
+
+      }
+
+
+      void interaction::update_window()
+      {
+
+         m_pacmewindowingwindow->update_window();
+
+      }
+
+
+      void interaction::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+      {
+
+         m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);
+
+      }
+
+
+      void interaction::window_set_focus()
+      {
+
+         m_pacmewindowingwindow->window_set_focus();
+
+      }
+
+
+
+      ::i32_rectangle interaction::window_get_client_rect()
+      {
+
+         return m_pacmewindowingwindow->window_get_client_rect();
+
+      }
+
+
+      ::i32_rectangle interaction::get_window_rect()
+      {
+
+         return m_pacmewindowingwindow->get_window_rect();
+
+      }
+
+
+      bool interaction::defer_update_system_menu()
+      {
+
+         return m_pacmewindowingwindow->defer_update_system_menu();
+
+      }
+
+
+      void interaction::dump_operating_system_child_window_hierarchy()
+      {
+
+         m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
+
+      }
 
 
    } // namespace user

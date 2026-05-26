@@ -122,5 +122,13 @@ namespace innate_ui
    }
 
 
+   ::pointer<::innate_ui::icon> innate_ui::try_get_application_icon_from_main_window()
+   {
+
+      return {};
+
+   }
+
+
 } // namespace innate_ui
 

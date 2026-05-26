@@ -1045,6 +1045,17 @@ namespace acme
 #ifdef WINDOWS_DESKTOP
 
 
+      windows::window_class windowing::_custom_window_class(const scoped_string &scopedstrClassName, void *pHICON_Big,
+                                                            void *pHICON_Small)
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
       ::windows::window_class windowing::_default_window_class()
       {
 
@@ -1144,6 +1155,15 @@ namespace acme
          on_activate();
 
       }
+
+
+      void windowing::run_loop2(::task* ptask)
+      {
+
+         run_loop1(ptask);
+
+      }
+
    
    void windowing::on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
    

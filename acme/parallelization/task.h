@@ -2588,6 +2588,7 @@ public:
          bool                                            m_bCoInitializeMultithreaded : 1;
 #endif
          bool                                            m_bMessageThread : 1;
+         bool                                            m_bMessageThread2 : 1;
          bool                                            m_bHandleRequest : 1;
          bool                                            m_bHandleProcedure : 1;
          bool                                            m_bHandleHappening : 1;
@@ -2660,7 +2661,6 @@ public:
       }
       
    };
-   
    ::pointer < finishing > m_pfinishing;
    //bool m_bDetectedHasFinishingFlag = false;
    
@@ -2735,7 +2735,10 @@ public:
 
    ::block_array<synchronous_lock_description_t, 64>
       m_synchronouslockdescriptiona;
-
+private:
+      critical_section m_criticalsectionMsgTranslator;
+   ::comparable_array<::function<bool(MSG *)>> m_msgtranslatora;
+   public:
 
    task();
    ~task() override;
@@ -2744,6 +2747,10 @@ public:
    void on_initialize_particle() override;
 
    
+   virtual void add_msg_translator(::function<bool(MSG *)> msgtranslator);
+   virtual void erase_msg_translator(::function<bool(MSG *)> msgtranslator);
+
+   virtual bool msg_translator_handlers(MSG *pmsg);
    //virtual void on_pre_run_task();
 
    
@@ -2942,6 +2949,10 @@ public:
 
 
    virtual void run_loop();
+   virtual void run_loop1(::task *ptask);
+   virtual void run_loop2(::task *ptask);
+
+   virtual void run_default_loop1();
 
    virtual bool task_run(const class ::time & time = 0_s);
 

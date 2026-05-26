@@ -16,8 +16,6 @@ namespace innate_ui
 
       int m_iLayoutWidth = 0;
       int m_iLayoutHeight = 0;
-      double m_dFontSizeEm = 1.0;
-      int m_iFontWeight = 400;
 
 
 

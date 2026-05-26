@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "element.h"
 #include "item.h"
+#include "interaction.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
@@ -11,7 +12,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/user/user/interaction.h"
+#include "acme/user/user/element.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
 
@@ -99,16 +100,16 @@ namespace user
    //
    //    return nullptr;
    //
-   //    //auto puserinteraction = get_wnd();
+   //    //auto puserelement = get_wnd();
    //
-   //    //if (::is_null(puserinteraction))
+   //    //if (::is_null(puserelement))
    //    //{
    //
    //    //   return get_app();
    //
    //    //}
    //
-   //    //return puserinteraction->m_pthreadUserInteraction;
+   //    //return puserelement->m_pthreadUserInteraction;
    //
    // }
    //
@@ -117,16 +118,16 @@ namespace user
    //::windowing::window * element::get_impl() const
    //{
 
-   //   ::user::interaction * pinteraction = get_wnd();
+   //   ::user::element * pelement = get_wnd();
 
-   //   if (pinteraction == nullptr)
+   //   if (pelement == nullptr)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   if (pinteraction->m_pimpl.is_null())
+   //   if (pelement->m_pimpl.is_null())
    //   {
 
    //      return nullptr;
@@ -136,7 +137,7 @@ namespace user
    //   try
    //   {
 
-   //      return pinteraction->m_pimpl->get_impl();
+   //      return pelement->m_pimpl->get_impl();
 
    //   }
    //   catch (...)
@@ -197,10 +198,10 @@ namespace user
 
       //}
 
-      //if (get_session()->m_puserinteractionHost)
+      //if (get_session()->m_puserelementHost)
       //{
 
-      //   return __user_interaction(get_session()->m_puserinteractionHost);
+      //   return __user_element(get_session()->m_puserelementHost);
 
       //}
       //else
@@ -1125,7 +1126,7 @@ namespace user
    // }
 
 
-   //::user::frame_interaction * element::top_level_frame() const
+   //::user::frame_element * element::top_level_frame() const
    //{
 
    //   throw ::interface_only();
@@ -1191,7 +1192,7 @@ namespace user
    // }
 
 
-   void element::create_child(::user::interaction * puserinteractionParent)
+   void element::create_child(::user::interaction * puserelementParent)
    {
 
       //throw ::interface_only();
@@ -1203,8 +1204,6 @@ namespace user
    }
 
 
-
-
    enum_control_type element::get_control_type()
    {
 
@@ -1213,7 +1212,7 @@ namespace user
    }
 
 
-   //bool element::create_interaction(::user::interaction * puiParent, ::request * prequest, ::u32 uExStyle, ::u32 uStyle)
+   //bool element::create_element(::user::element * puiParent, ::request * prequest, ::u32 uExStyle, ::u32 uStyle)
    //{
 
    //   throw ::interface_only();
@@ -1239,7 +1238,7 @@ namespace user
 
 
 
-   ////bool element::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
+   ////bool element::create_window_ex(::pointer<::user::system>pcs, ::user::element * puiParent, const ::atom & atom)
    ////void element::create_host(enum_parallelization eparallelization)
    //void element::create_host()
    //{
@@ -1333,7 +1332,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::next_sibling(::user::interaction * pinteraction)
+   ::user::interaction * element::next_sibling(::user::interaction * puserinteraction)
    {
 
       return nullptr;
@@ -1341,7 +1340,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::previous_sibling(::user::interaction * pinteraction)
+   ::user::interaction * element::previous_sibling(::user::interaction * puserinteraction)
    {
 
       return nullptr;
@@ -1398,7 +1397,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::above_sibling(::user::interaction * pinteraction)
+   ::user::interaction * element::above_sibling(::user::interaction * puserinteraction)
    {
 
       return nullptr;
@@ -1406,7 +1405,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::under_sibling(::user::interaction * pinteraction)
+   ::user::interaction * element::under_sibling(::user::interaction * puserinteraction)
    {
 
       return nullptr;
@@ -1515,7 +1514,7 @@ namespace user
    ///}
 
 
-//   ::user::interaction * element::get_next_window(bool bIgnoreChildren)
+//   ::user::element * element::get_next_window(bool bIgnoreChildren)
 //   {
 //
 //      throw ::interface_only();
@@ -1555,19 +1554,19 @@ namespace user
    //}
 
 
-   //::user::interaction * element::GetActiveWindow()
+   //::user::element * element::GetActiveWindow()
    //{
 
-   //   ::user::interaction * pinteraction = get_wnd();
+   //   ::user::element * pelement = get_wnd();
 
-   //   if(pinteraction == nullptr)
+   //   if(pelement == nullptr)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return pinteraction->GetActiveWindow();
+   //   return pelement->GetActiveWindow();
 
    //}
 
@@ -1575,9 +1574,9 @@ namespace user
    //bool element::XXXSetFocus()
    //{
 
-   //   ::pointer<::user::interaction>pinteraction = get_wnd();
+   //   ::pointer<::user::element>pelement = get_wnd();
 
-   //   if(pinteraction.is_null())
+   //   if(pelement.is_null())
    //   {
 
    //      return false;
@@ -1589,7 +1588,7 @@ namespace user
    //}
 
 
-   //interaction * element::set_active_window()
+   //element * element::set_active_window()
    //{
 
    //   //throw ::interface_only();
@@ -1676,33 +1675,20 @@ namespace user
 
 
 
-   void element::edit_on_set_focus(::user::interaction * pinteraction)
+   void element::edit_on_set_focus(::user::interaction * puserinteraction)
    {
 
 
    }
 
 
-   void element::edit_on_kill_focus(::user::interaction * pinteraction)
-   {
-
-   }
-
-
-   void element::set_window_text(const ::scoped_string & scopedstrString)
-   {
-
-   }
-
-
-   void element::set_window_text_source(const ::a_string_function & astringfunction)
+   void element::edit_on_kill_focus(::user::interaction * puserinteraction)
    {
 
    }
 
 
    character_count element::get_window_text(char * pszStringBuf, character_count nMaxCount)
-
    {
 
       throw ::interface_only();
@@ -1715,7 +1701,7 @@ namespace user
    string element::get_window_text()
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
       return "";
 
@@ -1740,7 +1726,7 @@ namespace user
    }
 
 
-   //::user::interaction * element::EnsureTopLevel()
+   //::user::element * element::EnsureTopLevel()
    //{
 
    //   throw ::interface_only();
@@ -1750,7 +1736,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::EnsureParentTopLevel()
+   //::user::element * element::EnsureParentTopLevel()
    //{
 
    //   throw ::interface_only();
@@ -1760,7 +1746,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::GetParentTopLevel() const
+   //::user::element * element::GetParentTopLevel() const
    //{
 
    //   throw ::interface_only();
@@ -1770,7 +1756,7 @@ namespace user
    //}
 
 
-   //::user::frame_interaction * element::GetParentTopLevelFrame() const
+   //::user::frame_element * element::GetParentTopLevelFrame() const
    //{
 
    //   throw ::interface_only();
@@ -1780,7 +1766,7 @@ namespace user
    //}
 
 
-   //::user::frame_interaction * element::EnsureParentFrame()
+   //::user::frame_element * element::EnsureParentFrame()
    //{
 
    //   throw ::interface_only();
@@ -1854,7 +1840,7 @@ namespace user
    }
 
 
-   //::user::frame_interaction * element::get_parent_frame() const
+   //::user::frame_element * element::get_parent_frame() const
    //{
 
    //   throw ::interface_only();
@@ -1881,7 +1867,7 @@ namespace user
    }
 
 
-   ::user::element * element::set_owner(::user::element * pinteraction)
+   ::user::element * element::set_owner(::user::element * pelement)
    {
 
       //throw ::interface_only();
@@ -1891,7 +1877,7 @@ namespace user
    }
 
 
-   ::user::element * element::set_parent(::user::element * pinteraction)
+   ::user::element * element::set_parent(::user::element * pelement)
    {
 
       throw ::interface_only();
@@ -1911,7 +1897,7 @@ namespace user
    }
 
 
-   /*::user::frame_interaction * element::get_owner_frame() const
+   /*::user::frame_element * element::get_owner_frame() const
    {
 
       throw ::interface_only();
@@ -1929,7 +1915,7 @@ namespace user
    }
 
 
-   //interaction * element::get_parent() const
+   //element * element::get_parent() const
    //{
 
    //   throw ::interface_only();
@@ -1939,7 +1925,7 @@ namespace user
    //}
 
 
-   //::user::frame_interaction * element::frame() const
+   //::user::frame_element * element::frame() const
    //{
 
    //   throw ::interface_only();
@@ -2119,7 +2105,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool element::GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl)
+//   bool element::GetWindowPlacement(WINDOWPLACEMENT* puserelementpl)
 //
 //   {
 //
@@ -2130,7 +2116,7 @@ namespace user
 //   }
 //
 //
-//   bool element::SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl)
+//   bool element::SetWindowPlacement(const WINDOWPLACEMENT* puserelementpl)
 //
 //   {
 //
@@ -2157,7 +2143,7 @@ namespace user
    //bool element::IsTopParentActive()
    //{
 
-   //   ::user::interaction * puiTopLevel = get_top_level();
+   //   ::user::element * puiTopLevel = get_top_level();
 
    //   if (puiTopLevel == nullptr)
    //   {
@@ -2166,7 +2152,7 @@ namespace user
 
    //   }
 
-   //   //::user::interaction * puiActive = puiTopLevel->GetActiveWindow();
+   //   //::user::element * puiActive = puiTopLevel->GetActiveWindow();
 
    //   return puiTopLevel->is_active_window();
 
@@ -2354,7 +2340,7 @@ namespace user
    }
 
 
-   //atom element::run_modal_loop(::user::interaction * pinteraction, ::u32 dwFlags)
+   //atom element::run_modal_loop(::user::element * pelement, ::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -2457,7 +2443,7 @@ namespace user
    //}
 
 
-   //bool element::set_mouse_capture(::user::interaction * pinteraction)
+   //bool element::set_mouse_capture(::user::element * pelement)
    //{
 
    //   return false;
@@ -2465,7 +2451,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::get_capture() const
+   //::user::element * element::get_capture() const
    //{
 
    //   return nullptr;
@@ -2474,7 +2460,7 @@ namespace user
 
 
 
-   //bool element::set_keyboard_focus(::user::interaction * pinteraction)
+   //bool element::set_keyboard_focus(::user::element * pelement)
    //{
 
    //   return false;
@@ -2482,7 +2468,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::get_keyboard_focus() const
+   //::user::element * element::get_keyboard_focus() const
    //{
 
    //   return nullptr;
@@ -2620,7 +2606,7 @@ namespace user
    //void element::set_config_per_second(::frequency dConfigFps)
    //{
 
-   //   //get_host_user_interaction()->m_pimpl->set_config_per_second(dConfigFps);
+   //   //get_host_user_element()->m_pimpl->set_config_per_second(dConfigFps);
 
    //}
 
@@ -2628,7 +2614,7 @@ namespace user
    //::frequency element::get_config_per_second()
    //{
 
-   //   //return get_host_user_interaction()->m_pimpl->get_config_per_second();
+   //   //return get_host_user_element()->m_pimpl->get_config_per_second();
 
    //}
 
@@ -2636,16 +2622,16 @@ namespace user
    //::frequency element::get_output_per_second()
    //{
 
-   //   //auto pinteraction = get_host_user_interaction();
+   //   //auto pelement = get_host_user_element();
 
-   //   //if (pinteraction == nullptr)
+   //   //if (pelement == nullptr)
    //   //{
 
    //   //   return 0.0;
 
    //   //}
 
-   //   //auto pimpl = pinteraction->m_pimpl;
+   //   //auto pimpl = pelement->m_pimpl;
 
    //   //if (pimpl.is_null())
    //   //{
@@ -2735,7 +2721,7 @@ namespace user
 
    }
 
-   //::user::interaction_base * element::user_prototype()
+   //::user::element_base * element::user_prototype()
    //{
 
    //   return nullptr;
@@ -2743,7 +2729,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::user_interaction()
+   //::user::element * element::user_element()
    //{
 
    //   return nullptr;
@@ -2838,7 +2824,7 @@ namespace user
    //}
 
 
-   //bool element::can_merge(::user::interaction * pinteraction)
+   //bool element::can_merge(::user::element * pelement)
    //{
 
    //   throw ::interface_only();
@@ -2848,7 +2834,7 @@ namespace user
    //}
 
 
-   //bool element::merge(::user::interaction * pinteraction)
+   //bool element::merge(::user::element * pelement)
    //{
 
    //   throw ::interface_only();
@@ -2858,7 +2844,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::top_child()
+   //::user::element * element::top_child()
    //{
 
    //   return last_child();
@@ -2866,7 +2852,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::bottom_child()
+   //::user::element * element::bottom_child()
    //{
 
    //   return first_child();
@@ -2874,15 +2860,15 @@ namespace user
    //}
 
 
-   //::user::interaction * element::above_sibling(::user::interaction * pinteraction)
+   //::user::element * element::above_sibling(::user::element * pelement)
    //{
 
-   //   return next_sibling(pinteraction);
+   //   return next_sibling(pelement);
 
    //}
 
 
-   //::user::interaction * element::above_sibling()
+   //::user::element * element::above_sibling()
    //{
 
    //   return next_sibling();
@@ -2890,22 +2876,22 @@ namespace user
    //}
 
 
-   //::user::interaction * element::under_sibling(::user::interaction * pinteraction)
+   //::user::element * element::under_sibling(::user::element * pelement)
    //{
 
-   //   return previous_sibling(pinteraction);
+   //   return previous_sibling(pelement);
 
    //}
 
 
-   //::user::interaction * element::under_sibling()
+   //::user::element * element::under_sibling()
    //{
 
    //   return previous_sibling();
 
    //}
 
-   //::user::interaction * element::top_sibling()
+   //::user::element * element::top_sibling()
    //{
 
    //   return last_sibling();
@@ -2913,7 +2899,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::bottom_sibling()
+   //::user::element * element::bottom_sibling()
    //{
 
    //   return first_sibling();
@@ -2922,7 +2908,7 @@ namespace user
 
    //}
 
-   //::user::interaction * element::first_child()
+   //::user::element * element::first_child()
    //{
 
    //   throw ::interface_only();
@@ -2932,7 +2918,7 @@ namespace user
    //}
 
 
-   //::user::interaction * element::last_child()
+   //::user::element * element::last_child()
    //{
 
    //   throw ::interface_only();
@@ -2941,17 +2927,7 @@ namespace user
 
    //}
 
-   //::user::interaction * element::first_sibling()
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::user::interaction * element::last_sibling()
+   //::user::element * element::first_sibling()
    //{
 
    //   throw ::interface_only();
@@ -2961,40 +2937,50 @@ namespace user
    //}
 
 
-   //::user::interaction * element::previous_sibling()
+   //::user::element * element::last_sibling()
    //{
 
-   //   return nullptr;
-
-   //}
-
-   //::user::interaction * element::previous_sibling(::user::interaction * pinteraction)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(pinteraction);
-
-   //   return nullptr;
-
-   //}
-
-   //::user::interaction * element::next_sibling()
-   //{
-
-   //   return nullptr;
-
-   //}
-
-   //::user::interaction * element::next_sibling(::user::interaction * pinteraction)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(pinteraction);
+   //   throw ::interface_only();
 
    //   return nullptr;
 
    //}
 
 
-   //void element::mouse_hover_add(::user::interaction * pinterface)
+   //::user::element * element::previous_sibling()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+   //::user::element * element::previous_sibling(::user::element * pelement)
+   //{
+
+   //   __UNREFERENCED_PARAMETER(pelement);
+
+   //   return nullptr;
+
+   //}
+
+   //::user::element * element::next_sibling()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+   //::user::element * element::next_sibling(::user::element * pelement)
+   //{
+
+   //   __UNREFERENCED_PARAMETER(pelement);
+
+   //   return nullptr;
+
+   //}
+
+
+   //void element::mouse_hover_add(::user::element * pinterface)
    //{
 
    //   throw ::interface_only();
@@ -3002,7 +2988,7 @@ namespace user
    //}
 
 
-   //bool element::mouse_hover_erase(::user::interaction * pinterface)
+   //bool element::mouse_hover_erase(::user::element * pinterface)
    //{
 
    //   throw ::interface_only();
@@ -3039,20 +3025,6 @@ namespace user
    }
 
 
-   bool element::is_window_visible()
-   {
-
-      return false;
-
-   }
-
-
-   bool element::is_window_stored_iconic()
-   {
-
-      return false;
-
-   }
 
 
    void element::window_minimize()
@@ -3273,16 +3245,16 @@ namespace user
    //::user::element * element::get_keyboard_focus()
    //{
 
-   //   auto puserinteractionHost = get_host_user_interaction();
+   //   auto puserelementHost = get_host_user_element();
 
-   //   if (::is_null(puserinteractionHost))
+   //   if (::is_null(puserelementHost))
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   ::user::element * pprimitive = puserinteractionHost->get_keyboard_focus();
+   //   ::user::element * pprimitive = puserelementHost->get_keyboard_focus();
 
    //   if(pprimitive == nullptr)
    //   {
@@ -3291,12 +3263,12 @@ namespace user
 
    //   }
 
-   //   return dynamic_cast < ::user::interaction * > (pprimitive);
+   //   return dynamic_cast < ::user::element * > (pprimitive);
 
    //}
 
 
-   int element::get_descendant_level(::user::element * pinteraction)
+   int element::get_descendant_level(::user::element * pelement)
    {
 
       throw ::interface_only();
@@ -3306,7 +3278,7 @@ namespace user
    }
 
 
-   //bool element::is_descendant(const ::user::element * pinteraction,bool bIncludeSelf) const
+   //bool element::is_descendant(const ::user::element * pelement,bool bIncludeSelf) const
    //{
 
    //   throw ::interface_only();
@@ -3481,28 +3453,7 @@ namespace user
    }
 
 
-   bool element::is_window_active()
-   {
 
-      return true;
-
-   }
-
-
-   bool element::is_window_zoomed()
-   {
-
-      return false;
-
-   }
-
-
-   bool element::is_window_full_screen()
-   {
-
-      return false;
-
-   }
 
 
    bool element::_001OnBeforeEnterIconic()
@@ -4186,11 +4137,11 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
 
-//bool element::GetWindowPlacement(WINDOWPLACEMENT * puserinteractionpl)
+//bool element::GetWindowPlacement(WINDOWPLACEMENT * puserelementpl)
 
 //{
 
-//   __UNREFERENCED_PARAMETER(puserinteractionpl);
+//   __UNREFERENCED_PARAMETER(puserelementpl);
 
 
 //   return false;
@@ -4545,7 +4496,7 @@ namespace user
       if (::is_null(pacmeuserinteractionFocus))
       {
 
-         throw ::exception(error_wrong_state, "element should be at least a acme::user::interaction to get focus");
+         throw ::exception(error_wrong_state, "element should be at least a acme::user::element to get focus");
 
       }
 
@@ -4566,12 +4517,12 @@ namespace user
 
    //   }
 
-   //   ::cast < ::acme::user::interaction > pacmeuserinteractionFocus = this;
+   //   ::cast < ::acme::user::element > pacmeuserinteractionFocus = this;
 
    //   if (::is_null(pacmeuserinteractionFocus))
    //   {
 
-   //      throw ::exception(error_wrong_state, "element should be at least a acme::user::interaction to get focus (and then to loose it)");
+   //      throw ::exception(error_wrong_state, "element should be at least a acme::user::element to get focus (and then to loose it)");
 
    //   }
 
@@ -5225,6 +5176,246 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
 
 
    // }
+
+         void element::on_window_size()
+      {
+
+         information("::acme::user::element::on_window_size()");
+
+
+      }
+
+
+
+      void element::on_window_set_focus()
+      {
+
+         information("::acme::user::element::on_window_set_focus()");
+
+      }
+
+
+      bool element::on_window_activate(int iActivate, bool bMinimized,
+                                           const operating_system::window &operatingsystemwindow)
+      {
+
+         return false;
+
+      }
+
+
+      bool element::on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
+   int iHitTest, int iMessage)
+      {
+
+         information("::acme::user::element::on_window_mouse_activate");
+
+         return false;
+
+      }
+
+
+      bool element::is_window_active()
+      {
+
+         return true;
+
+      }
+
+
+      bool element::is_window_zoomed()
+      {
+
+         return false;
+
+      }
+
+
+      bool element::is_window_full_screen()
+      {
+
+         return false;
+
+      }
+
+
+      bool element::is_window_visible()
+      {
+
+         return false;
+
+      }
+
+
+      bool element::is_window_stored_iconic()
+      {
+
+         return false;
+
+      }
+
+
+      bool element::is_window_iconic()
+      {
+
+         return false;
+
+      }
+
+
+      float element::get_window_scale()
+      {
+
+         return 1.0f;
+
+      }
+
+
+      ::i32_point element::screen_to_window_client(const ::i32_point & point)
+      {
+
+         return {};
+
+      }
+
+
+      ::i32_rectangle element::screen_to_window_client(const ::i32_rectangle & rectangle)
+      {
+
+         return {};
+
+      }
+
+
+      ::i32_point element::window_client_to_screen(const ::i32_point & point)
+      {
+
+         return {};
+
+      }
+
+
+      ::i32_rectangle element::window_client_to_screen(const ::i32_rectangle & rectangle)
+      {
+
+         return {};
+
+      }
+
+
+      void element::set_window_text(const ::scoped_string & scopedstrString)
+      {
+
+         //m_pacmewindowingwindow->set_window_text(scopedstrString);
+
+      }
+
+
+      void element::set_window_text_source(const ::a_string_function & astringfunction)
+      {
+
+      }
+
+
+      void element::set_window_style(int iStyle)
+      {
+
+         //m_pacmewindowingwindow->set_window_style(iStyle);
+
+      }
+
+
+      ::i64 element::get_window_style()
+      {
+
+         return -1;
+
+      }
+
+
+      void element::show_window(int iShowFlags)
+      {
+
+         //m_pacmewindowingwindow->show_window(iShowFlags);
+
+      }
+
+
+      void element::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags)
+      {
+
+         //m_pacmewindowingwindow->set_window_position(operatingsystemwindow, point, size, iSetWindowPosFlags);
+
+      }
+
+      void element::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
+      {
+
+         //m_pacmewindowingwindow->window_invalidate_rect(prectangle, bErase);
+
+      }
+
+
+      void element::update_window()
+      {
+
+         //m_pacmewindowingwindow->update_window();
+
+      }
+
+
+      void element::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+      {
+
+         //m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);
+
+      }
+
+
+      void element::window_set_focus()
+      {
+
+         //m_pacmewindowingwindow->window_set_focus();
+
+      }
+
+
+
+      ::i32_rectangle element::window_get_client_rect()
+      {
+
+         //return m_pacmewindowingwindow->window_get_client_rect();
+
+      return {};
+
+      }
+
+
+      ::i32_rectangle element::get_window_rect()
+      {
+
+         //return m_pacmewindowingwindow->get_window_rect();
+      return {};
+
+      }
+
+
+      bool element::defer_update_system_menu()
+      {
+
+         return false;
+
+      }
+
+
+      void element::dump_operating_system_child_window_hierarchy()
+      {
+
+         //m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
+
+      }
+
+   
 
    
 

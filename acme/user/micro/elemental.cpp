@@ -192,6 +192,17 @@ namespace micro
    }
 
 
+   void elemental::on_window_paint(nano::graphics::device *pnanographicsdevice)
+   {
+
+      draw_background(pnanographicsdevice);
+
+      draw_foreground(pnanographicsdevice);
+
+   }
+
+
+
    void elemental::draw_background(::nano::graphics::device * pmicrodevice)
    {
 

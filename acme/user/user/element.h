@@ -185,11 +185,6 @@ namespace user
       virtual bool GetFocusRect(::i32_rectangle & rectangle);
 
 
-      virtual bool is_window_visible();
-      virtual bool is_window_active();
-      virtual bool is_window_stored_iconic(); // m_pwindow->m_puserinteraction->const_layout().window().display() == e_display_iconic
-      virtual bool is_window_zoomed();
-      virtual bool is_window_full_screen();
       virtual void window_minimize();
       virtual void window_maximize(); // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
       virtual void window_full_screen(); // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
@@ -495,8 +490,6 @@ namespace user
       virtual ::i32_rectangle get_rectangle();
       virtual ::i32_rectangle get_window_rectangle();
 
-      virtual void set_window_text(const ::scoped_string & scopedstr);
-      virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
       virtual character_count get_window_text(char * pszStringBuf, character_count nMaxCount);
 
@@ -928,6 +921,45 @@ namespace user
 
       virtual ::trace_statement & raw_trace_statement_prefix(::trace_statement & statement) const;
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
+
+
+      virtual void on_window_size();
+      virtual void on_window_set_focus();
+      virtual bool on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
+      virtual bool on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
+         int iHitTest, int iMessage);
+
+
+      virtual bool is_window_visible();
+      virtual bool is_window_active();
+      virtual bool is_window_stored_iconic(); // m_pwindow->m_puserinteraction->const_layout().window().display() == e_display_iconic
+      virtual bool is_window_zoomed();
+      virtual bool is_window_full_screen();
+      virtual bool is_window_iconic();
+      virtual float get_window_scale();
+
+
+      virtual ::i32_point screen_to_window_client(const ::i32_point & point);
+      virtual ::i32_rectangle screen_to_window_client(const ::i32_rectangle & rectangle);
+      virtual ::i32_point window_client_to_screen(const ::i32_point & point);
+      virtual ::i32_rectangle window_client_to_screen(const ::i32_rectangle & rectangle);
+
+
+      virtual void set_window_text(const ::scoped_string & scopedstr);
+      virtual void set_window_text_source(const ::a_string_function & astringfunction);
+      virtual void set_window_style(int iStyle);
+      virtual ::i64 get_window_style();
+      virtual void show_window(int iShowFlags);
+      virtual void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags);
+      virtual void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase);
+      virtual void update_window();
+      virtual void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags);
+      virtual void window_set_focus();
+      virtual ::i32_rectangle window_get_client_rect();
+      virtual ::i32_rectangle get_window_rect();
+      virtual bool defer_update_system_menu();
+      virtual void dump_operating_system_child_window_hierarchy();
+
 
 
    };

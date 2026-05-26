@@ -57,6 +57,7 @@ namespace acme
                bool     m_bChild : 1;
                bool     m_bMessageOnlyWindow : 1;
                bool     m_bHover : 1;
+               bool     m_bHasOwnWindow : 1;
             };
             ::u32 m_uFlagsAcmeUserInteraction;
          };
@@ -73,8 +74,16 @@ namespace acme
          ////enum_font                                 m_efont;
          ::pointer<::acme::timer_array>               m_ptimerarray;
 
-
+         bool m_bDefaultNcHitTest;
          bool m_bCustomPaint;
+
+#ifdef WINDOWS_DESKTOP
+//          int m_iStyle;
+//          int m_iExStyle;
+         void * m_pHICON_Big;
+         void * m_pHICON_Small;
+         ::windows::window_class m_windowclassThis;
+#endif
 
          //bool                                      m_bMinimizeBox;
          //bool                                      m_bMaximizeBox;
@@ -120,6 +129,7 @@ namespace acme
          virtual void kill_timer(uptr uEvent);
 
          virtual ::i64 get_style_for_creating_window();
+         virtual ::i64 get_ex_style_for_creating_window();
          
          virtual bool on_add_child(::acme::user::interaction * pacmeuserinteractionChild);
 
@@ -144,6 +154,8 @@ namespace acme
          //void draw(::nano::graphics::device * pnanodevice);
 
          virtual void _on_draw(::nano::graphics::device * pnanodevice);
+
+         virtual void on_window_paint(::nano::graphics::device * pnanographicsdevice);
 
          //virtual void on_char(int iChar);
 
@@ -269,24 +281,6 @@ namespace acme
 
             //   interaction_base();
           /*     ~interaction_base() override;*/
-
-
-         virtual void on_window_size();
-         virtual void on_window_set_focus();
-         virtual bool on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
-         virtual bool on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
-            int iHitTest, int iMessage);
-
-
-         virtual void show_window(int iShowFlags);
-         virtual void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase);
-         virtual void update_window();
-         virtual void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags);
-         virtual void window_set_focus();
-         virtual ::i32_rectangle window_get_client_rect();
-         virtual ::i32_rectangle get_window_rect();
-         virtual void dump_operating_system_child_window_hierarchy();
-
 
                virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
 
@@ -521,6 +515,42 @@ namespace acme
          virtual void on_control_box_close();
          virtual void on_control_box_minimize();
          virtual void on_control_box_zoom();
+
+
+
+
+
+         void on_window_size() override;
+         void on_window_set_focus() override;
+         bool on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;
+         bool on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop, int iHitTest, int iMessage) override;
+
+
+         bool is_window_visible() override;
+         bool is_window_iconic() override;
+         float get_window_scale() override;
+
+
+         ::i32_point screen_to_window_client(const ::i32_point & point) override;
+         ::i32_rectangle screen_to_window_client(const ::i32_rectangle & rectangle) override;
+         ::i32_point window_client_to_screen(const ::i32_point & point) override;
+         ::i32_rectangle window_client_to_screen(const ::i32_rectangle & rectangle) override;
+
+
+         void set_window_text(const ::scoped_string & scopedstrString) override;
+         void set_window_style(int iStyle) override;
+         ::i64 get_window_style() override;
+         void show_window(int iShowFlags) override;
+         void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags) override;
+         void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
+         void update_window() override;
+         void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags) override;
+         void window_set_focus() override;
+         ::i32_rectangle window_get_client_rect() override;
+         ::i32_rectangle get_window_rect() override;
+         bool defer_update_system_menu() override;
+         void dump_operating_system_child_window_hierarchy() override;
+
 
 
       };

@@ -202,6 +202,7 @@ namespace acme
          virtual ::windows::window_class _get_window_class();
 #endif
 
+         virtual void on_window_paint(::nano::graphics::device * pnanographicsdevice);
          virtual void on_window_size();
          virtual void on_window_set_focus();
          virtual bool on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
@@ -209,14 +210,21 @@ namespace acme
             int iHitTest, int iMessage);
 
 
+         virtual bool is_window_iconic();
+         virtual float get_window_scale();
+
+
          virtual void show_window(int iShowFlags);
-         virtual void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase);
-         virtual void update_window();
-         virtual void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags);
-         virtual void window_set_focus();
-         virtual ::i32_rectangle window_get_client_rect();
-         virtual ::i32_rectangle get_window_rect();
-         virtual void dump_operating_system_child_window_hierarchy();
+         virtual void set_window_style(int iStyle);
+         ::i64 get_window_style() override;
+         void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags) override;
+         void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
+         void update_window() override;
+         void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags) override;
+         void window_set_focus() override;
+         ::i32_rectangle window_get_client_rect() override;
+         ::i32_rectangle get_window_rect() override;
+         void dump_operating_system_child_window_hierarchy() override;
 
          virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();
          //void run_modal_loop() override;

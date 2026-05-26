@@ -103,6 +103,8 @@ namespace micro
 
       void _on_draw(::nano::graphics::device * pnanodevice) override;
 
+      void on_window_paint(nano::graphics::device *pnanographicsdevice) override;
+
       virtual void on_draw(::nano::graphics::device * pnanodevice);
 
       virtual void draw_background(::nano::graphics::device * pnanodevice);

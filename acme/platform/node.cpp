@@ -5255,6 +5255,15 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
    }
 
+
+   void node::run_loop1(::task* ptask)
+   {
+
+      ptask->run_default_loop1();
+
+   }
+
+
 } // namespace platform
 
 

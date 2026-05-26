@@ -46,6 +46,7 @@ namespace windows
 
       ::operating_system::window operating_system_window(const ::lparam &lparam) override;
 
+      void run_loop2(::task *ptask);
 
    };
 

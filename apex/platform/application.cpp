@@ -1559,7 +1559,19 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       auto pfile = file()->get_reader("matter://main/icon.png");
 
-      return system()->innate_ui()->innate_ui_icon(pfile, size);
+      auto pinnateui = system()->innate_ui();
+
+      auto piconMatter = pinnateui->innate_ui_icon(pfile, size);
+
+      if (piconMatter)
+      {
+
+         return piconMatter;
+
+      }
+
+      return pinnateui->try_get_application_icon_from_main_window();
+
 
    }
 
@@ -10478,17 +10490,17 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          auto stra = get_about_box_lines();
          
-         int y = 30;
+         int y = 30 * pdialog->get_window_scale();
          
          auto pstillIcon = createø < ::innate_ui::still>();
          
          pstillIcon->create_icon_still(pdialog);
          
-         pstillIcon->set_size({48, 48});
+         pstillIcon->set_size({48 * pdialog->get_window_scale(), 48 * pdialog->get_window_scale()});
          
-         pstillIcon->set_position({30, 30});
+         pstillIcon->set_position({30 * pdialog->get_window_scale(), 30 * pdialog->get_window_scale()});
          
-         auto piconApplication = innate_ui_icon({48, 48});
+         auto piconApplication = innate_ui_icon({48 * pdialog->get_window_scale(), 48 * pdialog->get_window_scale()});
          
          pstillIcon->set_icon(piconApplication);
          
@@ -10505,15 +10517,16 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             pstill->set(psimpledialogboxline);
             
-            pstill->set_position({30 + 48+10, y});
+            pstill->set_position({(30 + 48+10) * pdialog->get_window_scale(), y});
             
-            pstill->set_size({minimum(400, pstill->layout_width()), pstill->layout_height()});
+            pstill->set_size(
+               {minimum(400 * pdialog->get_window_scale(), pstill->layout_width()), pstill->layout_height()});
             
             y += pstill->layout_height();
             
          }
          
-         y += 30;
+         y += 30 * pdialog->get_window_scale();
          
          auto pbutton = createø < ::innate_ui::button>();
          
@@ -10521,9 +10534,10 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          pbutton->set_text("OK");
          
-         pbutton->set_size({100, 35});
+         pbutton->set_size({100 * pdialog->get_window_scale(), 35 * pdialog->get_window_scale()});
          
-         pbutton->set_position({minimum(520,max_width) - 100 -30, y});
+         pbutton->set_position(
+            {minimum(520 * pdialog->get_window_scale(), max_width) - (100 + 30) * pdialog->get_window_scale(), y});
 
          auto pbuttonOperatingSystemInformation = createø<::innate_ui::button>();
 
@@ -10531,13 +10545,16 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
          pbuttonOperatingSystemInformation->set_text("Operating System Information");
 
-         pbuttonOperatingSystemInformation->set_size({minimum(520, max_width) - 100 - 30 - 30, 35});
+         pbuttonOperatingSystemInformation->set_size(
+            {minimum(520 * pdialog->get_window_scale(), max_width) - (100 + 30 + 30) * pdialog->get_window_scale(),
+             35 * pdialog->get_window_scale()});
 
-         pbuttonOperatingSystemInformation->set_position({30, y});
+         pbuttonOperatingSystemInformation->set_position({30 * pdialog->get_window_scale(), y});
         
-         y += 35;
+         y += 35 * pdialog->get_window_scale();
          
-         pdialog->adjust_for_client_size({minimum(520,max_width), y+30});
+         pdialog->adjust_for_client_size(
+            {minimum(520 * pdialog->get_window_scale(), max_width), y + 30 * pdialog->get_window_scale()});
          
          pdialog->center();
          
@@ -10595,9 +10612,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             auto stra = straLines;
 
-            int y_text = 30;
+            int y_text = 30 * pdialog->get_window_scale();
 
-            int y_icon = 30;
+            int y_icon = 30 * pdialog->get_window_scale();
 
             if (straIconUrl.size() >= 1)
             {
@@ -10609,15 +10626,16 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
                   pstillIcon->create_icon_still(pdialog);
 
-                  pstillIcon->set_size({48, 48});
+                  pstillIcon->set_size({48 * pdialog->get_window_scale(), 48 * pdialog->get_window_scale()});
 
-                  pstillIcon->set_position({30, y_icon});
+                  pstillIcon->set_position({30 * pdialog->get_window_scale(), y_icon});
 
                   auto strSystemIconUrl = straIconUrl[0];
 
                   //auto piconApplication = innate_ui_icon(strSystemIconUrl, {48, 48});
 
-                  pstillIcon->set_icon_path(strSystemIconUrl, {48, 48});
+                  pstillIcon->set_icon_path(strSystemIconUrl,
+                                            {48 * pdialog->get_window_scale(), 48 * pdialog->get_window_scale()});
 
                }
                catch (...)
@@ -10628,7 +10646,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             }
 
-            y_icon += 48 + 5;
+            y_icon += (48 + 5) * pdialog->get_window_scale();
 
             if (straIconUrl.size() >= 2)
             {
@@ -10639,13 +10657,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
                   pstillIcon->create_icon_still(pdialog);
 
-                  pstillIcon->set_size({32, 32});
+                  pstillIcon->set_size({32 * pdialog->get_window_scale(), 32 * pdialog->get_window_scale()});
 
-                  pstillIcon->set_position({30 + 48 - 32, y_icon});
+                  pstillIcon->set_position({(30 + 48 - 32) * pdialog->get_window_scale(), y_icon});
 
                   auto strAmbientIconUrl = straIconUrl[1];
 
-                  pstillIcon->set_icon_path(strAmbientIconUrl, {32, 32});
+                  pstillIcon->set_icon_path(strAmbientIconUrl, {32 * pdialog->get_window_scale(), 32 * pdialog->get_window_scale()});
 
                }
                catch (...)
@@ -10653,7 +10671,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
                }
             }
 
-            y_icon += 32 + 5;
+            y_icon += (32 + 5) * pdialog->get_window_scale()   ;
 
             for (auto str: stra)
             {
@@ -10668,15 +10686,16 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
                pstill->set(psimpledialogboxline);
 
-               pstill->set_position({30 + 48 + 10, y_text});
+               pstill->set_position({(30 + 48 + 10) * pdialog->get_window_scale(), y_text});
 
-               pstill->set_size({minimum(400, pstill->layout_width()), pstill->layout_height()});
+               pstill->set_size(
+                  {minimum(400 * pdialog->get_window_scale(), pstill->layout_width()), pstill->layout_height()});
 
                y_text += pstill->layout_height();
 
             }
 
-            y_text += 5;
+            y_text += 5 * pdialog->get_window_scale();
 
             auto y = maximum(y_icon, y_text);
 
@@ -10686,13 +10705,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             pbutton->set_text("OK");
 
-            pbutton->set_size({100, 35});
+            pbutton->set_size({100 * pdialog->get_window_scale(), 35 * pdialog->get_window_scale()});
 
-            pbutton->set_position({minimum(520, max_width) - 100 - 30, y});
+            pbutton->set_position(
+               {minimum(520 * pdialog->get_window_scale(), max_width) - (100 + 30) * pdialog->get_window_scale(), y});
 
-            y += 35;
+            y += 35 * pdialog->get_window_scale();
 
-            pdialog->adjust_for_client_size({minimum(520, max_width), y + 30});
+            pdialog->adjust_for_client_size(
+               {minimum(520 * pdialog->get_window_scale(), max_width), y + 30 * pdialog->get_window_scale()});
 
             pdialog->center();
 

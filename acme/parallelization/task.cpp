@@ -602,6 +602,59 @@ void task::set_finish()
 }
 
 
+void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
+{
+
+   critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
+
+   m_msgtranslatora.add(msgtranslator);
+
+}
+
+
+void task::erase_msg_translator(::function<bool(MSG *)> msgtranslator)
+{
+
+   critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
+
+   m_msgtranslatora.erase(msgtranslator);
+
+}
+
+
+bool task::msg_translator_handlers(MSG* pmsg)
+{
+
+    // if (m_pmainwindow->m_pclientsite->m_pinplacesite->m_pinplaceframe->m_pinplaceactiveobject)
+   // {
+   //
+   //    HRESULT hr =
+   for (int i = 0; i < m_msgtranslatora.size(); i++)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
+
+      if (i < m_msgtranslatora.size())
+      {
+
+         auto ptranslator = m_msgtranslatora[i];
+
+         criticalsectionlock.unlock();
+
+         if ((*ptranslator)(pmsg))
+         {
+
+            return true;
+         }
+      }
+   }
+
+   return false;
+
+}
+
+
+void erase_msg_translator(::function<bool(MSG *)> msgtranslator);
 
 
 void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
@@ -1103,45 +1156,89 @@ void task::main()
 }
 
 
-void task::run_loop()
+void task::run_loop1(::task * ptask)
+{
+   
+   node()->run_loop1(ptask);
+
+}
+
+
+void task::run_loop2(::task * ptask)
 {
 
-   while (task_get_run())
+   auto pacmewindowing = system()->m_pacmewindowing;
+
+   if (::is_null(pacmewindowing))
    {
 
-      task_run(m_timeSample);
-      
-      if(m_pfinishing)
-      {
-         
-         if(has_child_task())
-         {
-            
-            if(m_pfinishing->has_finishing_timed_out(30_minute))
-            {
-               
-               break;
-               
-            }
-            
-         }
-         else
-         {
-            
-            if(m_pfinishing->has_finishing_timed_out(1_s))
-            {
-               
-               break;
-               
-            }
+      run_loop1(ptask);
 
-         }
-         
-      }
+   }
+   else
+   {
+
+      pacmewindowing->run_loop2(this);
 
    }
 
 }
+
+
+
+void task::run_loop()
+{
+
+   if (m_bMessageThread2)
+   {
+
+      run_loop2(this);
+
+   }
+   else
+   {
+
+      run_loop1(this);
+
+   }
+   
+}
+
+
+void task::run_default_loop1()
+{
+   
+   while (task_get_run())
+   {
+
+      task_run(m_timeSample);
+
+      if (m_pfinishing)
+      {
+
+         if (has_child_task())
+         {
+
+            if (m_pfinishing->has_finishing_timed_out(30_minute))
+            {
+
+               break;
+            }
+         }
+         else
+         {
+
+            if (m_pfinishing->has_finishing_timed_out(1_s))
+            {
+
+               break;
+            }
+         }
+      }
+   }
+
+}
+
 
 
 void task::run()
@@ -1352,6 +1449,15 @@ bool task::task_wait(const class ::time & timeRemaining)
 
 bool task::handle_messages()
 {
+
+   auto pacmewindowing = system()->m_pacmewindowing;
+
+   if (pacmewindowing)
+   {
+      
+      return pacmewindowing->handle_messages();
+
+   }
 
    return true;
 
@@ -2083,7 +2189,7 @@ void task::post(const ::procedure & procedure)
 
       m_procedurea2.add(procedure);
 
-      new_main_loop_happening()->set_happening();
+      kick_idle();
 
       //update_new_main_loop_happening();
 
@@ -3498,7 +3604,20 @@ bool task::task_sleep(const class time & timeWait)
 void task::kick_idle()
 {
 
-   post([]() {});
+   if (m_bMessageThread2)
+   {
+
+      ::PostThreadMessage(m_itask, ::user::e_message_kick_idle, 0, 0);
+
+   }
+   else
+   {
+
+      new_main_loop_happening()->set_happening();
+
+   }
+
+   //post([]() {});
 
 }
 

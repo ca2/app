@@ -112,6 +112,49 @@ namespace windows
    }
 
 
+   void windowing::run_loop2(::task* ptask)
+   {
+
+      MSG msg;
+
+      while (GetMessage(&msg, nullptr, 0, 0))
+      {
+
+         BOOL handled = ptask->msg_translator_handlers(&msg);
+
+         if (msg.message == ::user::e_message_kick_idle)
+         {
+
+            information("::user::e_message_kick_idle");
+
+        }
+
+         //m_pmainwindow->m_pclientsite->m_pinplacesite->m_pinplaceframe->m_pinplaceactiveobject->TranslateAccelerator(&msg);
+         //
+         //    handled = (hr == S_OK);
+         //
+         // }
+
+         if (!handled)
+         {
+
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+
+         }
+         //next:
+
+         if (!PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE))
+         {
+
+            ptask->task_iteration();
+
+         }
+
+      }
+
+
+   }
 
 
 

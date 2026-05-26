@@ -1041,7 +1041,7 @@ namespace platform
       virtual bool _windows_isVistaOrLater();
       virtual bool _windows_isWin7();
 
-
+      virtual void run_loop1(::task *ptask);
 
    };
 

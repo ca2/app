@@ -79,6 +79,55 @@ namespace windows
    }
 
 
+   int window::_on_non_client_hit_test(const ::i32_point& point)
+   {
+
+      auto rc = get_window_rectangle();
+
+      const int grip = 8;
+
+      bool left = point.x < rc.left + grip;
+      bool right = point.x >= rc.right - grip;
+      bool top = point.y < rc.top + grip;
+      bool bottom = point.y >= rc.bottom - grip;
+
+      if (top && left)
+         return HTTOPLEFT;
+      if (top && right)
+         return HTTOPRIGHT;
+      if (bottom && left)
+         return HTBOTTOMLEFT;
+      if (bottom && right)
+         return HTBOTTOMRIGHT;
+
+      if (left)
+         return HTLEFT;
+      if (right)
+         return HTRIGHT;
+      if (top)
+         return HTTOP;
+      if (bottom)
+         return HTBOTTOM;
+      RECT rcWindow;
+      copy(rcWindow, rc);
+
+      auto hwnd = ::as_HWND(this->operating_system_window());
+      MapWindowPoints(nullptr, hwnd, (POINT *)&rcWindow, 2);
+
+      ::i32_rectangle rectangleWindow2 = rcWindow;
+
+      information("main_window WM_SIZE MapWindowPoints {}", rectangleWindow2);
+
+
+      if (point.y < rc.top + abs(rectangleWindow2.top))
+         return HTCAPTION;
+
+      return HTCLIENT;
+
+
+   }
+
+
    bool window::on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam)
    {
 
@@ -89,6 +138,90 @@ namespace windows
 
       }
 
+      if (m_pacmeuserinteraction && m_pacmeuserinteraction->m_bDefaultNcHitTest)
+      {
+
+         if(message == WM_NCHITTEST || message == WM_NCLBUTTONDOWN || message == WM_LBUTTONDOWN)
+         {
+            
+            auto hwnd = ::as_HWND(this->operating_system_window());
+            
+            auto point = lparam.point();
+
+            if (message == WM_LBUTTONDOWN)
+            {
+
+               ClientToScreen(hwnd, (POINT*) & point);
+
+            }
+
+            auto iHitTest = _on_non_client_hit_test(point);
+
+            //pt.x = GET_X_LPARAM(lparam);
+            //pt.y = GET_Y_LPARAM(lparam);
+
+            lresult = iHitTest;
+
+            if (message == WM_NCHITTEST)
+            {
+
+               return true;
+
+            }
+
+            if (message == HTCAPTION)
+            {
+
+
+            }
+            else if (message == HTCLIENT)
+            {
+
+            }
+            else
+            {
+               int iEdge = 0;
+               switch (iHitTest)
+               {
+                  case HTBOTTOM:
+                     iEdge= WMSZ_BOTTOM;
+                     break;
+                  case HTTOP:
+                     iEdge = WMSZ_TOP;
+                     break;
+                  case HTLEFT:
+                     iEdge = WMSZ_LEFT;
+                     break;
+                  case HTRIGHT:
+                     iEdge = WMSZ_RIGHT;
+                     break;
+
+                  case HTBOTTOMRIGHT:
+                     iEdge = WMSZ_BOTTOMRIGHT;
+                     break;
+                  case HTTOPRIGHT:
+                     iEdge = WMSZ_TOPRIGHT;
+                     break;
+                  case HTBOTTOMLEFT:
+                     iEdge = WMSZ_BOTTOMLEFT;
+                     break;
+                  case HTTOPLEFT:
+                     iEdge = WMSZ_TOPLEFT;
+                     break;
+               }
+               if (iEdge != 0)
+               {
+                  SendMessage(hwnd, WM_SYSCOMMAND, SC_SIZE | iEdge, 0);
+               }
+            }
+
+            
+
+         }
+
+
+      }
+      
       if (message == WM_CREATE)
       {
 
@@ -96,8 +229,53 @@ namespace windows
          lresult = 0;
          return true;
       }
+      else if (message == WM_SHOWWINDOW)
+      {
+
+         if (wparam)
+         {
+
+            if (defer_update_system_menu())
+            {
+
+               lresult = 1;
+
+               return true;
+
+            }
+
+         }
+
+      }
       else if (message == WM_SIZE)
       {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            HICON hiconBig = (HICON)m_pacmeuserinteraction->m_pHICON_Big;
+
+            HICON hiconSmall = (HICON)m_pacmeuserinteraction->m_pHICON_Small;
+
+            if (hiconBig)
+            {
+
+               auto hwnd = ::as_HWND(this->operating_system_window());
+
+               ::SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hiconBig);
+            }
+
+
+            if (hiconSmall)
+            {
+
+               auto hwnd = ::as_HWND(this->operating_system_window());
+
+               ::SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hiconSmall);
+            }
+
+         }
+
 
          on_window_size();
          lresult = 0;
@@ -146,9 +324,22 @@ namespace windows
       else if (message == WM_ENTERSIZEMOVE)
       {
          m_bSizeMoveMode = true;
+         if (get_window_style() & WS_POPUP)
+         {
+
+            information("WM_ENTERSIZEMOVE window style has WS_POPUP");
+
+         }
+         else
+         {
+
+            information("WM_ENTERSIZEMOVE window style doesn't have WS_POPUP");
+         }
       }
       if (m_bSizeMoveMode)
       {
+
+         bool bRet = false;
 
          lresult = 1;
          double Δx = 0.;
@@ -160,7 +351,7 @@ namespace windows
          {
             m_bSizeMoveMode = false;
             ::ReleaseCapture();
-
+            bRet = true;
          }
          else if (message == WM_KEYDOWN)
          {
@@ -230,7 +421,7 @@ namespace windows
 
                auto y = (int)(r.top + Δy);
 
-               SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+               SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
                m_bMovingNow = false;
                m_timeLastSizeMove.Now();
 
@@ -248,7 +439,7 @@ namespace windows
                pointCursor.y = r.top + m_pointSizeMoveStart.y;
                ::SetCursorPos(pointCursor.x, pointCursor.y);
             }
-
+            bRet = true;
 
          }
          else if (message == WM_MOUSEMOVE)
@@ -271,45 +462,54 @@ namespace windows
                auto hwnd = ::as_HWND(this->operating_system_window());
 
 
-               SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+               SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
                //m_timeLastSizeMove.Now();
                m_bMovingNow = false;
             }
-
-
-         }
-
-
-         if (message == WM_WINDOWPOSCHANGED || message == WM_MOUSEMOVE)
-         {
-
-         }
-         else if (message == WM_WINDOWPOSCHANGING)
-         {
-
-         }
-         else
-         {
-
-            //lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+            bRet = true;
 
          }
 
-         if (message == WM_MOVE || message == WM_SIZE || message==WM_WINDOWPOSCHANGED)
-         {
 
-            return false;
-
-         }
+         // if (message == WM_WINDOWPOSCHANGED || message == WM_MOUSEMOVE)
+         // {
+         //
+         // }
+         // else if (message == WM_WINDOWPOSCHANGING)
+         // {
+         //
+         // }
+         // else
+         // {
+         //
+         //    //lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+         //
+         // }
+         //
+         // if (message == WM_MOVE || message == WM_SIZE
+         //    || message==WM_WINDOWPOSCHANGED
+         //    || message==WM_WINDOWPOSCHANGING
+         //    || message==WM_NCCALCSIZE
+         //    || message==WM_NCPAINT
+         //    || message==WM_NCACTIVATE)
+         //    {
+         //
+         //    return false;
+         //
+         // }
 
          if (message == WM_EXITSIZEMOVE)
          {
 
             m_bSizeMoveMode = false;
 
+            bRet = true;
          }
 
-         return true;
+         if (bRet)
+         {
+            return true;
+         }
 
 
       }
@@ -328,7 +528,7 @@ namespace windows
             }
 
          }
-         else if (message == WM_COMMAND)
+         else if (message == WM_COMMAND || message == WM_SYSCOMMAND)
          {
 
             if (_on_default_system_menu_command(lresult, wparam, lparam))
@@ -423,7 +623,7 @@ namespace windows
 
             //menu_item_info.hSubMenu = submenu.handle();
 
-            menu_item_info.wID = 123;
+            menu_item_info.wID = ID_SHOW_ABOUT_BOX;
             menu_item_info.dwTypeData = const_cast<wchar_t *>(L"About...");
             menu_item_info.cch = (UINT)wcslen(const_cast<wchar_t *>(menu_item_info.dwTypeData));
 
@@ -476,7 +676,7 @@ namespace windows
 
       int wmId = LOWORD(wparam);
 
-      if (wmId == 123)
+      if (wmId == ID_SHOW_ABOUT_BOX)
       {
 
          auto puseractiovationtoken = system()->acme_windowing()->get_user_activation_token();
@@ -514,7 +714,7 @@ namespace windows
 
          auto hwnd = ::as_HWND(this->operating_system_window());
 
-         SendMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
+         PostMessage(hwnd, WM_CLOSE, 0, 0);
          lresult = 0;
          return true;
 
@@ -679,6 +879,13 @@ namespace windows
 
       ::lresult lresult = 0;
 
+      if (msg == WM_NCCALCSIZE)
+      {
+
+         ::information("windows::window::s_window_procedure WM_NCCALCSIZE");
+
+      }
+
       if (::windows::pre_process_window_procedure(lresult, hwnd, msg, wParam, lParam))
       {
 
@@ -806,6 +1013,81 @@ namespace windows
    }
 
 
+   bool window::is_window_visible()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      return ::IsWindowVisible(hwnd);
+
+   }
+
+
+   bool window::is_window_iconic()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      return ::IsIconic(hwnd);
+
+   }
+
+
+   float window::get_window_scale()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      UINT dpi = GetDpiForWindow(hwnd);
+
+      return (float)dpi / 96.0f;
+
+
+   }
+
+
+   ::i32_point window::screen_to_window_client(const ::i32_point & point)
+   {
+
+      POINT p{point.x, point.y};
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::ScreenToClient(hwnd, &p);
+
+      return {p.x, p.y};
+
+   }
+
+
+   ::i32_rectangle window::screen_to_window_client(const ::i32_rectangle & rectangle)
+   {
+
+      return {screen_to_window_client(rectangle.top_left()), screen_to_window_client(rectangle.bottom_right())};
+
+   }
+
+
+   ::i32_point window::window_client_to_screen(const ::i32_point & point)
+   {
+
+      POINT p{point.x, point.y};
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::ClientToScreen(hwnd, &p);
+
+      return {p.x, p.y};
+
+   }
+
+
+   ::i32_rectangle window::window_client_to_screen(const ::i32_rectangle & rectangle)
+   {
+
+      return {window_client_to_screen(rectangle.top_left()), window_client_to_screen(rectangle.bottom_right())};
+
+   }
 
    void window::show_window(int iShowFlags)
    {
@@ -813,6 +1095,54 @@ namespace windows
       auto hwnd = m_windowswindow.as_HWND();
 
       ::ShowWindow(hwnd, iShowFlags);
+
+   }
+
+
+   void window::set_window_style(int iShowFlags)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::SetWindowLongPtrW(hwnd, GWL_STYLE, iShowFlags);
+
+   }
+
+
+   ::i64 window::get_window_style()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      LONG_PTR i = ::GetWindowLongPtrW(hwnd, GWL_STYLE);
+
+      return i;
+
+   }
+
+
+   void window::set_window_text(const scoped_string &scopedstr)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      ::string strText(scopedstr);
+
+      ::wstring wstrText(strText);
+
+      ::SetWindowTextW(hwnd,wstrText);
+
+   }
+
+
+   void window::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags)
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      auto hwndAfter = ::as_HWND(operatingsystemwindow);
+
+      ::SetWindowPos(hwnd, hwndAfter, point.x, point.y, size.cx, size.cy, iSetWindowPosFlags);
 
    }
 
@@ -931,6 +1261,37 @@ namespace windows
    }
 
 
+   bool window::defer_update_system_menu()
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      if (!m_hmenuSystem || m_hmenuSystem != ::GetSystemMenu(hwnd, false))
+      {
+         //auto hmenu = GetSystemMenu(hwnd, true);
+
+         auto hwnd =(HWND)  _HWND();
+
+         m_hmenuSystem = GetSystemMenu(hwnd, false);
+
+         WPARAM wparamHere = (WPARAM) m_hmenuSystem;
+
+         LRESULT lresultHere = 1;
+
+         if (_on_default_system_menu_init_menu(lresultHere, wparamHere))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    void window::dump_operating_system_child_window_hierarchy()
    {
 
@@ -970,13 +1331,6 @@ CLASS_DECL_ACME RECT as_RECT(const ::i32_rectangle & rectangle)
 
 CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd)
 {
-
-   if (::is_null(hwnd) || hwnd == INVALID_HANDLE_VALUE)
-   {
-
-      return nullptr;
-
-   }
 
    ::operating_system::windows_window window(hwnd);
 

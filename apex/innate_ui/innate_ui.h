@@ -31,7 +31,7 @@ namespace innate_ui
 
 
       virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size);
-
+      virtual ::pointer<::innate_ui::icon> try_get_application_icon_from_main_window();
 
    };
 

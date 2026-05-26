@@ -1119,6 +1119,20 @@ namespace acme
 
 #endif
 
+
+      void window::on_window_paint(nano::graphics::device *pnanographicsdevice)
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_paint(pnanographicsdevice);
+
+         }
+
+      }
+
+
       void window::on_window_size()
       {
 
@@ -1176,8 +1190,47 @@ namespace acme
       }
 
 
+      bool window::is_window_iconic()
+      {
+
+         return false;
+
+      }
+
+
+      float window::get_window_scale()
+      {
+
+         return 1.0f;
+
+      }
+
+
       void window::show_window(int iShowFlags)
       {
+
+
+      }
+
+
+      void window::set_window_style(int iShowFlags)
+      {
+
+
+      }
+
+
+      ::i64 window::get_window_style()
+      {
+
+         return -1;
+
+      }
+
+
+      void window::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags)
+      {
+
 
 
       }

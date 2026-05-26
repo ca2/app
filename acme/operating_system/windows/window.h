@@ -51,13 +51,6 @@ namespace operating_system
          if(this->m_eoperatingambient == ::windowing::e_operating_ambient_windows)
          {
 
-            if (!this->m_window.m_hwndWindowsWindow)
-            {
-
-               throw ::exception(error_wrong_state);
-
-            }
-
             return this->m_window.m_hwndWindowsWindow;
 
          }
@@ -82,19 +75,9 @@ namespace operating_system
       windows_window & operator=(HWND hwnd)
       {
 
-         if (hwnd == nullptr || hwnd == INVALID_HANDLE_VALUE)
-         {
+         this->m_eoperatingambient = ::windowing::e_operating_ambient_windows;
 
-            this->Null();
-
-         }
-         else
-         {
-
-            this->m_eoperatingambient = ::windowing::e_operating_ambient_windows;
-            this->m_window.m_hwndWindowsWindow = hwnd;
-
-         }
+         this->m_window.m_hwndWindowsWindow = hwnd;
 
          return *this;
 
@@ -116,6 +99,9 @@ namespace windows
       virtual public ::acme::windowing::window
    {
    public:
+
+
+      static const int ID_SHOW_ABOUT_BOX = 64800;
 
 
       ::operating_system::windows_window m_windowswindow;
@@ -214,14 +200,36 @@ namespace windows
 
       virtual void postMessage(::user::enum_message emessage, ::wparam wparam = 0, ::lparam lparam = 0);
 
+
+      bool is_window_visible() override;
+      bool is_window_iconic() override;
+      float get_window_scale() override;
+
+
+      ::i32_point screen_to_window_client(const ::i32_point & point);
+      ::i32_rectangle screen_to_window_client(const ::i32_rectangle & rectangle);
+      ::i32_point window_client_to_screen(const ::i32_point & point);
+      ::i32_rectangle window_client_to_screen(const ::i32_rectangle & rectangle);
+
+
+
       void show_window(int iShowFlags) override;
+      void set_window_style(int iStyle) override;
+      ::i64 get_window_style() override;
+      void set_window_text(const scoped_string &scopedstr) override;
+      void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags) override;
       void window_invalidate_rect(const i32_rectangle *prectangle, bool bErase) override;
       void update_window() override;
       void redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags) override;
       void window_set_focus() override;
       ::i32_rectangle window_get_client_rect() override;
       ::i32_rectangle get_window_rect() override;
+      bool defer_update_system_menu() override;
       void dump_operating_system_child_window_hierarchy() override;
+
+
+      virtual int _on_non_client_hit_test(const ::i32_point &point);
+
 
    };
 

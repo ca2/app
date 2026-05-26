@@ -155,6 +155,7 @@ namespace acme
 #ifdef WINDOWS_DESKTOP
 
 
+         virtual ::windows::window_class _custom_window_class(const ::scoped_string & scopedstrClassName, void * pHICON_Big, void * pHICON_Small);
          virtual ::windows::window_class _default_window_class();
          virtual ::windows::window_class _acme_nano_window_class();
          virtual ::windows::window_class _com_host_window_class();
@@ -282,6 +283,9 @@ namespace acme
 
 
          virtual void on_application_activate();
+
+
+         void run_loop2(::task *ptask) override;
 
 
       };

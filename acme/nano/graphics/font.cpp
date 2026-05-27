@@ -8,49 +8,52 @@
 
 namespace nano
 {
-   
+
    namespace graphics
    {
+
+      font::font()
+      {
+
+         // m_bBold = false;
+         // m_bUnderline = false;
+      }
+
+
+      font::~font() {}
+
+
+      void font::create_point_font(enum_font efont, ::f64 fPointSize, bool bBold, bool bUnderline)
+      {
+
+         throw ::interface_only();
+
+         //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
+
+         // pfont->m_iFontSize = iPoint;
+         // pfont->m_strFontName = pparticle->node()->font_name(efont);
+         // pfont->m_bBold = bBold;
+
+         //  return pfont;
+      }
+
+
       
-font::font()
-{
+      void font::create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold, bool bUnderline)
+      {
 
-   //m_bBold = false;
-   //m_bUnderline = false;
+         throw ::interface_only();
 
-}
+         //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
 
+         // pfont->m_iFontSize = iPoint;
+         // pfont->m_strFontName = pparticle->node()->font_name(efont);
+         // pfont->m_bBold = bBold;
 
-font::~font()
-{
-
-
-
-}
-
-
-
-   void font::create_point_font(enum_font efont, ::f64 fPoint,
-                                                                                  bool bBold, bool bUnderline)
-   {
-
-      throw ::interface_only();
-
-      //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
-
-      //pfont->m_iFontSize = iPoint;
-      //pfont->m_strFontName = pparticle->node()->font_name(efont);
-      //pfont->m_bBold = bBold;
-
-    //  return pfont;
-
-   }
-
-
+         //  return pfont;
+      }
 
    } // namespace graphics
 
 
 } // namespace nano
-
-

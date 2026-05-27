@@ -1,197 +1,220 @@
 // Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "brush.h"
-#include "font.h"
 #include "graphics.h"
-#include "pen.h"
-#include "acme/windowing/window.h"
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/node.h"
 #include "acme/platform/department.h"
+#include "acme/platform/node.h"
+#include "acme/windowing/window.h"
+#include "brush.h"
+#include "font.h"
+#include "pen.h"
 
 
 namespace nano
 {
-    namespace graphics
-    {
-        graphics::graphics()
-        {
-        }
 
 
-        graphics::~graphics()
-        {
-        }
+   namespace graphics
+   {
 
 
-        //::pointer < ::subparticle > graphics::nano()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
-        //{
-
-        //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
-
-        //   return psequencer;
-
-        //}
+      graphics::graphics() {}
 
 
-        //::pointer < ::subparticle > graphics::nano()->message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
-        //{
-
-        //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
-
-        //   return psequencer;
-
-        //}
-//
-//        ::pointer < ::subparticle > user::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-//                                                               const ::user::e_message_box& emessagebox,
-//                                                               const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
-//        {
-//            auto pnode = node();
-//
-//            auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
-//
-//            return psequencer;
-//        }
-//
-//
-//        ::pointer < ::subparticle > user::exception_message_box(
-//            const ::exception& exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitleParam,
-//            const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
-//        {
-//            string strExceptionDetails = exception.get_consolidated_details(this);
-//
-//            string strMessage(strMessageParam);
-//
-//            if (strMessage.is_empty())
-//            {
-//                strMessage = exception.get_message();
-//            }
-//
-//            string strTitle(strTitleParam);
-//
-//            if (strTitle.is_empty())
-//            {
-//                strTitle = exception.get_title();
-//            }
-//
-//            string strDetails(strDetailsParam);
-//
-//            if (strExceptionDetails.has_character())
-//            {
-//                if (strDetails.has_character())
-//                {
-//                    strDetails += "\n";
-//                }
-//
-//                strDetails += strExceptionDetails;
-//            }
-//
-//            auto psequencer = node()->create_message_box_sequencer(
-//                strMessage,
-//                strTitle,
-//                emessagebox,
-//                strDetails,
-//                picon);
-//
-//            return psequencer;
-//        }
-//
-//
-//        ::pointer < ::subparticle > user::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-//                                                                   const ::user::e_message_box& emessagebox,
-//                                                                   const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
-//        {
-//            auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
-//
-//            return psequencer;
-//        }
-//
-//
-//        ::pointer < ::subparticle > user::exception_message_console(
-//            const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-//            const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
-//        {
-//            string strExceptionDetails = exception.get_consolidated_details(this);
-//
-//            auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
-//                                                               strDetails + "\n" + strExceptionDetails, picon);
-//
-//            return psequencer;
-//        }
-//
-
-        void graphics::handle(::topic * ptopic, ::handler_context * phandlercontext)
-        {
-////            if (ptopic->id() == id_set_application_dark_mode)
-////            {
-////                for (auto& pinterchange : m_interchangea)
-////                {
-////                    pinterchange->handle(ptopic, phandlercontext);
-////                }
-////            }
-        }
-
-//
-//        void user::sync(const ::procedure& procedure)
-//        {
-//        }
-//
-//
-//        void user::async(const ::procedure& procedure)
-//        {
-//        }
-//
-//void user::process_messages()
-//{
-//
-//
-//}
-//
-//         bool user::init_threads()
-//         {
-//
-//           return true;
-//
-//         }
-//
+      graphics::~graphics() {}
 
 
-        ::pointer<brush> graphics::create_solid_brush(const ::color::color& color)
-        {
+      //::pointer < ::subparticle > graphics::nano()->message_box(const ::scoped_string & scopedstrMessage, const
+      //:::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string &
+      //:scopedstrDetails)
+      //{
 
-           auto pbrush = createø<brush>();
+      //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 
-           pbrush->create_solid_brush(color);
+      //   return psequencer;
 
-           return pbrush;
-
-        }
-
-
-        ::pointer<pen> graphics::create_pen(const ::color::color &color, ::f64 fWidth)
-        {
-
-           auto ppen = createø<pen>();
-
-           ppen->create_pen(color, fWidth);
-
-           return ppen;
-
-        }
+      //}
 
 
-        ::pointer<font> graphics::create_point_font(enum_font efont, ::f64 fPoint, bool bBold, bool bUnderline)
-        {
+      //::pointer < ::subparticle > graphics::nano()->message_console(const ::scoped_string & scopedstrMessage, const
+      //:::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string &
+      //:scopedstrDetails)
+      //{
 
-              auto pfont = createø<font>();
+      //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
 
-              pfont->create_point_font(efont, fPoint, bBold, bUnderline);
+      //   return psequencer;
 
-              return pfont;
-           }
+      //}
+      //
+      //        ::pointer < ::subparticle > user::message_box(const ::scoped_string & scopedstrMessage, const
+      //        ::scoped_string & scopedstrTitle,
+      //                                                               const ::user::e_message_box& emessagebox,
+      //                                                               const ::scoped_string & scopedstrDetails,
+      //                                                               ::nano::graphics::icon * picon)
+      //        {
+      //            auto pnode = node();
+      //
+      //            auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails,
+      //            picon);
+      //
+      //            return psequencer;
+      //        }
+      //
+      //
+      //        ::pointer < ::subparticle > user::exception_message_box(
+      //            const ::exception& exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string &
+      //            scopedstrTitleParam, const ::user::e_message_box& emessagebox, const ::scoped_string &
+      //            scopedstrDetailsParam, ::nano::graphics::icon * picon)
+      //        {
+      //            string strExceptionDetails = exception.get_consolidated_details(this);
+      //
+      //            string strMessage(strMessageParam);
+      //
+      //            if (strMessage.is_empty())
+      //            {
+      //                strMessage = exception.get_message();
+      //            }
+      //
+      //            string strTitle(strTitleParam);
+      //
+      //            if (strTitle.is_empty())
+      //            {
+      //                strTitle = exception.get_title();
+      //            }
+      //
+      //            string strDetails(strDetailsParam);
+      //
+      //            if (strExceptionDetails.has_character())
+      //            {
+      //                if (strDetails.has_character())
+      //                {
+      //                    strDetails += "\n";
+      //                }
+      //
+      //                strDetails += strExceptionDetails;
+      //            }
+      //
+      //            auto psequencer = node()->create_message_box_sequencer(
+      //                strMessage,
+      //                strTitle,
+      //                emessagebox,
+      //                strDetails,
+      //                picon);
+      //
+      //            return psequencer;
+      //        }
+      //
+      //
+      //        ::pointer < ::subparticle > user::message_console(const ::scoped_string & scopedstrMessage, const
+      //        ::scoped_string & scopedstrTitle,
+      //                                                                   const ::user::e_message_box& emessagebox,
+      //                                                                   const ::scoped_string & scopedstrDetails,
+      //                                                                   ::nano::graphics::icon * picon)
+      //        {
+      //            auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails,
+      //            picon);
+      //
+      //            return psequencer;
+      //        }
+      //
+      //
+      //        ::pointer < ::subparticle > user::exception_message_console(
+      //            const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string &
+      //            scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails,
+      //            ::nano::graphics::icon * picon)
+      //        {
+      //            string strExceptionDetails = exception.get_consolidated_details(this);
+      //
+      //            auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
+      //                                                               strDetails + "\n" + strExceptionDetails, picon);
+      //
+      //            return psequencer;
+      //        }
+      //
+
+      void graphics::handle(::topic *ptopic, ::handler_context *phandlercontext)
+      {
+         ////            if (ptopic->id() == id_set_application_dark_mode)
+         ////            {
+         ////                for (auto& pinterchange : m_interchangea)
+         ////                {
+         ////                    pinterchange->handle(ptopic, phandlercontext);
+         ////                }
+         ////            }
+      }
+
+      //
+      //        void user::sync(const ::procedure& procedure)
+      //        {
+      //        }
+      //
+      //
+      //        void user::async(const ::procedure& procedure)
+      //        {
+      //        }
+      //
+      // void user::process_messages()
+      //{
+      //
+      //
+      //}
+      //
+      //         bool user::init_threads()
+      //         {
+      //
+      //           return true;
+      //
+      //         }
+      //
 
 
-    } // namespace user
+      ::pointer<brush> graphics::create_solid_brush(const ::color::color &color)
+      {
+
+         auto pbrush = createø<brush>();
+
+         pbrush->create_solid_brush(color);
+
+         return pbrush;
+      }
+
+
+      ::pointer<pen> graphics::create_pen(const ::color::color &color, ::f64 fWidth)
+      {
+
+         auto ppen = createø<pen>();
+
+         ppen->create_pen(color, fWidth);
+
+         return ppen;
+      }
+
+
+      ::pointer<font> graphics::create_point_font(enum_font efont, ::f64 fPointSize, bool bBold, bool bUnderline)
+      {
+
+         auto pfont = createø<font>();
+
+         pfont->create_point_font(efont, fPointSize, bBold, bUnderline);
+
+         return pfont;
+      }
+
+      ::pointer<font> graphics::create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold, bool bUnderline)
+      {
+
+         auto pfont = createø<font>();
+
+         pfont->create_pixel_font(efont, fPixelSize, bBold, bUnderline);
+
+         return pfont;
+
+      }
+
+   
+} // namespace graphics
+
+
 } // namespace nano

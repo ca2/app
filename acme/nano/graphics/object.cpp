@@ -9,46 +9,47 @@
 namespace nano
 {
 
-namespace graphics
-{
+
+   namespace graphics
+   {
 
 
-object::object()
-{
+      object::object()
+      {
 
-   m_bModified = true;
-   m_pthis = nullptr;
+         //m_bModified = true;
+         //m_pthis = nullptr;
 
-}
-
-
-object::~object()
-{
+      }
 
 
-}
+      object::~object()
+      {
 
 
-void object::destroy()
-{
+      }
 
 
-}
+      void object::destroy()
+      {
 
 
-void * object::operating_system_data()
-{
-
-   return nullptr;
-
-}
+      }
 
 
-void object::update(::nano::graphics::context * pnanodevice)
-{
+      //void * object::operating_system_data()
+      //{
+
+      //   return nullptr;
+
+      //}
 
 
-}
+      //void object::update(::nano::graphics::context * pnanodevice)
+      //{
+
+
+      //}
 
 
 

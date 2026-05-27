@@ -10,7 +10,7 @@
 //#include "context.h"
 #include "acme/handler/handler.h"
 #include "application_container.h"
-#include "acme/user/user/key_state.h"
+#include "acme/user/user/keyboard_state.h"
 
 #include "session_acme.h"
 #include "session_apex.h"
@@ -27,7 +27,7 @@ namespace platform
       virtual public ::task,
       virtual public ::handler::handler,
       virtual public ::platform::application_container,
-      virtual public ::user::key_state,
+      virtual public ::user::keyboard_state,
       virtual public ::platform::acme_session_layer_t,
       virtual public ::platform::apex_session_layer_t,
       virtual public ::platform::aqua_session_layer_t,

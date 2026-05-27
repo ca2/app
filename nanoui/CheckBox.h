@@ -95,7 +95,7 @@ namespace nanoui
       void set_callback(const ::function<void(bool)> & callback) { m_callback = callback; }
 
       /// Mouse button happening processing for this check box
-      virtual bool mouse_button_event(const i32_point & p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, ::user::e_key_state ekeystate) override;
 
       /// The preferred size of this CheckBox.
       virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;

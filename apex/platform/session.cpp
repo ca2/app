@@ -820,33 +820,33 @@ class ::fs::data * session::fs()
    }
 
 
-   ::user::e_key session::key_modifiers()
+   ::user::e_key_state session::key_state()
    {
 
-      ::user::e_key ekeyModifiers = ::user::e_key_none;
+      ::user::e_key_state ekeystate = ::user::e_key_state_none;
 
       if (is_key_pressed(::user::e_key_left_shift))
       {
 
-         ekeyModifiers |= ::user::e_key_left_shift;
+         ekeystate |= ::user::e_key_state_left_shift;
 
       }
 
       if (is_key_pressed(::user::e_key_right_shift))
       {
 
-         ekeyModifiers |= ::user::e_key_right_shift;
+         ekeystate |= ::user::e_key_state_right_shift;
 
       }
 
       if (is_key_pressed(::user::e_key_left_control))
       {
 
-         ekeyModifiers |= ::user::e_key_left_control;
+         ekeystate |= ::user::e_key_state_left_control;
 
 //#if !defined(__APPLE__)
 //
-//         ekeyModifiers |= ::user::e_key_system_left_command;
+//         ekeystate |= ::user::e_key_system_left_command;
 //
 //#endif
 
@@ -855,11 +855,11 @@ class ::fs::data * session::fs()
       if (is_key_pressed(::user::e_key_right_control))
       {
 
-         ekeyModifiers |= ::user::e_key_right_control;
+         ekeystate |= ::user::e_key_state_right_control;
 
 //#if !defined(__APPLE__)
 //
-//         ekeyModifiers |= ::user::e_key_system_right_command;
+//         ekeystate |= ::user::e_key_system_right_command;
 //
 //#endif
 
@@ -868,25 +868,25 @@ class ::fs::data * session::fs()
       if (is_key_pressed(::user::e_key_left_alt))
       {
 
-         ekeyModifiers |= ::user::e_key_left_alt;
+         ekeystate |= ::user::e_key_state_left_alt;
 
       }
 
       if (is_key_pressed(::user::e_key_right_alt))
       {
 
-         ekeyModifiers |= ::user::e_key_right_alt;
+         ekeystate |= ::user::e_key_state_right_alt;
 
       }
 
       if (is_key_pressed(::user::e_key_left_command))
       {
 
-         ekeyModifiers |= ::user::e_key_left_command;
+         ekeystate |= ::user::e_key_state_left_command;
 
 #if defined(__APPLE__)
 
-         ekeyModifiers |= ::user::e_key_system_left_command;
+         ekeystate |= ::user::e_key_state_system_left_command;
 
 #endif
 
@@ -895,40 +895,67 @@ class ::fs::data * session::fs()
       if (is_key_pressed(::user::e_key_right_command))
       {
 
-         ekeyModifiers |= ::user::e_key_right_command;
+         ekeystate |= ::user::e_key_state_right_command;
 
 #if defined(__APPLE__)
 
-         ekeyModifiers |= ::user::e_key_system_right_command;
+         ekeystate |= ::user::e_key_state_system_right_command;
 
 #endif
 
       }
 
-      if (is_key_pressed(::user::e_key_left_button))
+        if (is_key_pressed(::user::e_key_left_button))
       {
 
-         ekeyModifiers |= ::user::e_key_left_button;
-
+         ekeystate |= ::user::e_key_state_left;
       }
 
       if (is_key_pressed(::user::e_key_middle_button))
       {
 
-         ekeyModifiers |= ::user::e_key_middle_button;
-
+         ekeystate |= ::user::e_key_state_middle;
       }
 
       if (is_key_pressed(::user::e_key_right_button))
       {
 
-         ekeyModifiers |= ::user::e_key_right_button;
-
+         ekeystate |= ::user::e_key_state_right;
       }
 
-      return ekeyModifiers;
+
+      return ekeystate;
 
    }
+
+   /*
+   ::user::e_button_state session::button_state()
+   {
+
+      ::user::e_button_state ebuttontate = ::user::e_key_state_none;
+
+      if (is_key_pressed(::user::e_key_left_button))
+      {
+
+         ebuttontate |= ::user::e_key_state_left;
+      }
+
+      if (is_key_pressed(::user::e_key_middle_button))
+      {
+
+         ebuttontate |= ::user::e_key_state_middle;
+      }
+
+      if (is_key_pressed(::user::e_key_right_button))
+      {
+
+         ebuttontate |= ::user::e_key_state_right;
+      }
+
+   
+      return ebuttontate;
+
+   }*/
 
 
    bool session::is_key_pressed(::user::enum_key ekey)

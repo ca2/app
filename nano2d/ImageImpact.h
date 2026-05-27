@@ -74,8 +74,8 @@ NAMESPACE_BEGIN(nanoui)
       f32_sequence2 pixel_to_pos(const f32_sequence2 & p) const;
 
       // Widget implementation
-      bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText) override;
-      bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
+      bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) override;
+      bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, ::user::e_key_state ekeystate) override;
       bool scroll_event(const i32_point & p, const ::f32_size & rel) override;
       void draw(::nano2d::context  * pcontext) override;
       void draw_contents(::nano2d::context  * pcontext) override;

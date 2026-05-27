@@ -126,12 +126,12 @@ namespace nanoui
       /// Sets the callback to execute when the value of this TextBox has changed.
       void set_callback(const ::function<bool(const ::scoped_string& str)>& callback) { m_callback = callback; }
 
-      bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeystate) override;
+      bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate) override;
+      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, ::user::e_key_state ekeystate) override;
       bool focus_event(bool focused) override;
-      bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
+      bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText) override;
       bool keyboard_character_event(::u32 codepoint) override;
 
       virtual bool on_command(const ::atom& atom);

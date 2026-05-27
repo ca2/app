@@ -119,7 +119,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate)
    {
 
       m_pointCurrentLocalCursor = p;
@@ -151,18 +151,18 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
+      return Widget::mouse_motion_event(p, rel, bDown, ekeystate);
 
    }
 
 
-   bool VScrollPanel::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
    {
 
       m_pointCurrentLocalCursor = p;
 
       if (down
-         && ebuttonstate == ::user::e_button_state_left
+         && ebuttonstate == ::user::e_key_state_left
          && !m_children.empty() 
          && m_fTotalHeight > m_size.cy 
          && p.x > m_pos.x + m_size.cx - 13 
@@ -204,7 +204,7 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
+      return Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeystate);
 
    }
 

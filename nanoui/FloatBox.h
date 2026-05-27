@@ -86,7 +86,7 @@ namespace nanoui
       }
 
 
-      bool mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate) override
       {
 
          if ((m_bEditable || m_bSpinnable) && down)
@@ -132,16 +132,16 @@ namespace nanoui
 
          }
 
-         return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+         return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeystate);
 
       }
 
 
-      //bool mouse_drag_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
-      bool mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, const ::user::e_key & ekeyModifiers) override
+      //bool mouse_drag_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate) override
+      bool mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, ::user::e_key_state ekeystate) override
       {
 
-         if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
+         if (TextBox::mouse_motion_event(p, rel, bDown, ekeystate))
          {
 
             return true;
@@ -151,7 +151,7 @@ namespace nanoui
          if (bDown)
          {
 
-            if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_pointMouseDown.x != -1)
+            if (m_bSpinnable && !focused() && ekeystate & ::user::e_key_right_button && m_pointMouseDown.x != -1)
             {
 
                ::i32 value_delta = static_cast<::i32>((p.x - m_pointMouseDown.x) / ::f32(10));

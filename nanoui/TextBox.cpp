@@ -377,20 +377,20 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeystate)
    {
 
-      Widget::mouse_enter_event(p, enter, ekeyModifiers);
+      Widget::mouse_enter_event(p, enter, ekeystate);
 
       return true;
 
    }
 
 
-   bool TextBox::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
    {
 
-      if (ebuttonstate == ::user::e_button_state_left && down && !focused())
+      if (ebuttonstate == ::user::e_key_state_left && down && !focused())
       {
          
          if (!m_bSpinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
@@ -452,7 +452,7 @@ namespace nanoui
 
             m_pointMouseDown = p;
 
-            m_ekeyMouseDownModifier = ekeyModifiers;
+            m_ekeyMouseDownModifier = ekeystate;
 
             m_bCommitted = false;
 
@@ -478,7 +478,7 @@ namespace nanoui
 
                m_pointMouseDown = p;
 
-               m_ekeyMouseDownModifier = ekeyModifiers;
+               m_ekeyMouseDownModifier = ekeystate;
 
                if (bDoubleClick)
                {
@@ -533,7 +533,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_motion_event(const i32_point& p, const i32_size& /* rel */, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_motion_event(const i32_point& p, const i32_size& /* rel */, bool bDown, const ::user::e_key& ekeystate)
    {
 
       m_mouse_pos = p;
@@ -577,7 +577,7 @@ namespace nanoui
 
 
 
-   //bool TextBox::mouse_drag_event(const i32_point& p, const i32_size&/* rel */, const ::user::e_key& ekeyModifiers)
+   //bool TextBox::mouse_drag_event(const i32_point& p, const i32_size&/* rel */, const ::user::e_key& ekeystate)
    //{
    // 
    // 
@@ -840,7 +840,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
+   bool TextBox::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText)
    {
 
       if (m_bEditable && focused())
@@ -870,7 +870,7 @@ namespace nanoui
 
                }
 
-               if (!(ekeyModifiers & ::user::e_key_shift))
+               if (!(ekeystate & ::user::e_key_shift))
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -888,7 +888,7 @@ namespace nanoui
 
                }
 
-               if (!(ekeyModifiers & ::user::e_key_shift))
+               if (!(ekeystate & ::user::e_key_shift))
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -901,7 +901,7 @@ namespace nanoui
 
                m_iSelectionEnd = 0;
 
-               if (!(ekeyModifiers & ::user::e_key_shift))
+               if (!(ekeystate & ::user::e_key_shift))
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -914,7 +914,7 @@ namespace nanoui
 
                m_iSelectionEnd = (::i32)m_strValueEdit.size();
 
-               if (!(ekeyModifiers & ::user::e_key_shift))
+               if (!(ekeystate & ::user::e_key_shift))
                {
 
                   m_iSelectionStart = m_iSelectionEnd;

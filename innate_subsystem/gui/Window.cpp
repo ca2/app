@@ -31,7 +31,7 @@ namespace innate_subsystem
 {
 
 
-::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_button_state ebuttonstate);
+::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_key_state ekeystate);
 
 
 } // namespace innate_subsystem
@@ -58,7 +58,7 @@ namespace innate_subsystem
       
       bool bDoDefaultProcessing = false;
       
-      auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ebuttonstate);
+      auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ekeystate);
       
       if(onMouseEx(pmouse->m_eusermessage, emouseButtons, 0, pmouse->m_pointHost, bDoDefaultProcessing))
       {
@@ -77,7 +77,7 @@ void WindowComposite::back_on_left_button_down(::user::mouse * pmouse)
    
    bool bDoDefaultProcessing = false;
    
-   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ebuttonstate);
+   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ekeystate);
 
    if(onMouseEx(pmouse->m_eusermessage, emouseButtons, 0, pmouse->m_pointHost, bDoDefaultProcessing))
    {
@@ -96,7 +96,7 @@ void WindowComposite::back_on_left_button_up(::user::mouse * pmouse)
    
    bool bDoDefaultProcessing = false;
 
-   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ebuttonstate);
+   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ekeystate);
 
    if(onMouseEx(pmouse->m_eusermessage, emouseButtons, 0, pmouse->m_pointHost, bDoDefaultProcessing))
    {
@@ -115,7 +115,7 @@ void WindowComposite::back_on_right_button_down(::user::mouse * pmouse)
    
    bool bDoDefaultProcessing = false;
    
-   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ebuttonstate);
+   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ekeystate);
    
    if(onMouseEx(pmouse->m_eusermessage, emouseButtons, 0, pmouse->m_pointHost, bDoDefaultProcessing))
    {
@@ -134,7 +134,7 @@ void WindowComposite::back_on_right_button_up(::user::mouse * pmouse)
    
    bool bDoDefaultProcessing = false;
    
-   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ebuttonstate);
+   auto emouseButtons = ::innate_subsystem::e_button_state_state_to_e_mouse(pmouse->m_ekeystate);
    
    if(onMouseEx(pmouse->m_eusermessage, emouseButtons, 0, pmouse->m_pointHost, bDoDefaultProcessing))
    {
@@ -195,14 +195,14 @@ void WindowComposite::on_key_up(::user::key * pkey)
 namespace innate_subsystem
 {
 
-::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_button_state ebuttonstate)
+::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_key_state ekeystate)
 {
    
    ::i32 mouseButtons = 0;
    
-   mouseButtons |= ebuttonstate & ::user::e_button_state_right ? innate_subsystem::e_mouse_right : 0;
-   mouseButtons |= ebuttonstate & ::user::e_button_state_middle ? innate_subsystem::e_mouse_middle : 0;
-   mouseButtons |= ebuttonstate & ::user::e_button_state_left ? innate_subsystem::e_mouse_left : 0;
+   mouseButtons |= ebuttonstate & ::user::e_key_state_right ? innate_subsystem::e_mouse_right : 0;
+   mouseButtons |= ebuttonstate & ::user::e_key_state_middle ? innate_subsystem::e_mouse_middle : 0;
+   mouseButtons |= ebuttonstate & ::user::e_key_state_left ? innate_subsystem::e_mouse_left : 0;
    
    return (::innate_subsystem::enum_mouse) mouseButtons;
    

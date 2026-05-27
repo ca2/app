@@ -808,7 +808,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_uiLButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
+      m_uiLButtonUpFlags = (::u32)pmouse->m_ekeystate;
 
       m_pointLButtonUp = pmouse->m_pointHost;
 
@@ -923,7 +923,7 @@ namespace user
 
       host_to_client()(point);
 
-      perform_right_click(pmouse->m_ebuttonstate, point);
+      perform_right_click(pmouse->m_ekeystate, point);
 
       pmessage->m_bRet = true;
 

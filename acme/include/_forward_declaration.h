@@ -2550,7 +2550,7 @@ namespace user
 {
 
 
-   class key_state;
+   class keyboard_state;
 
 
 } // namespace user

@@ -146,7 +146,7 @@ void ImageImpact::reset()
 }
 
 
-bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key & /* ekeyModifiers */, const ::scoped_string & scopedstrText) 
+bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key & /* ekeystate */, const ::scoped_string & scopedstrText) 
 {
 
    if (!m_bEnabled || !m_pimage)

@@ -398,7 +398,7 @@ namespace aura
 
       //virtual bool is_session() const override;
 
-      bool is_mouse_button_pressed(::user::e_button_state ebuttonstate) override;
+      //bool is_mouse_button_pressed(::user::e_key_state ekeystate) override;
 
       virtual bool is_remote_session() override;
 

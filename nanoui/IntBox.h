@@ -105,7 +105,7 @@ namespace nanoui
 
       ::i32 m_iIncrementStep;
 
-      virtual bool mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate) override
       {
 
          if ((m_bEditable || m_bSpinnable) && down)
@@ -300,22 +300,22 @@ namespace nanoui
 
    }
 
-   return TextBox::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
+   return TextBox::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeystate);
 
 }
 
 
-virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate) override
 {
 
-   if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
+   if (TextBox::mouse_motion_event(p, rel, bDown, ekeystate))
    {
 
       return true;
 
    }
 
-   if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
+   if (bDown && m_bSpinnable && !focused() && ekeystate & ::user::e_key_right_button && is_mouse_down())
    {
 
       ::i32 value_delta = static_cast<::i32>((p.x - m_pointMouseDown.x) / ::f32(10));

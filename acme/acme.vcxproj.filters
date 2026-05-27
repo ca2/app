@@ -2670,7 +2670,7 @@
     <ClInclude Include="constant\activate.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="constant\button_state.h">
+    <ClInclude Include="constant\aaa_button_state.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\character_set.h">
@@ -3459,7 +3459,7 @@
     <ClInclude Include="handler\source.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\key_state.h">
+    <ClInclude Include="user\user\keyboard_state.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\controller.h">
@@ -5603,7 +5603,7 @@
     <ClCompile Include="handler\source.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\key_state.cpp">
+    <ClCompile Include="user\user\keyboard_state.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\controller.cpp">

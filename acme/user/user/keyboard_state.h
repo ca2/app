@@ -1,4 +1,5 @@
 // Created by camilo on 2023-11-14 14:37 <3ThomasBorregaardSorensen!!
+// To keyboard_state.h by camilo on 2023-11-14 18:10 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 #pragma once
 
 
@@ -6,7 +7,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ACME key_state :
+   class CLASS_DECL_ACME keyboard_state :
       virtual public ::particle
    {
    public:

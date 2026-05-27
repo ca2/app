@@ -2936,7 +2936,7 @@ namespace user
             m_bDrag = false;
 
          }
-         else if (pmouse->m_ebuttonstate == ::user::e_button_state_none)
+         else if (pmouse->m_ekeystate == ::user::e_key_state_none)
          {
 
             m_bLButtonDown = false;
@@ -3001,7 +3001,7 @@ namespace user
                   && !m_rangeSelection.has_item((::collection::index) iItemEnter))
             {
 
-               m_iMouseFlagEnter = pmouse->m_ebuttonstate;
+               m_iMouseFlagEnter = pmouse->m_ekeystate;
 
                m_iItemEnter = iItemEnter;
 
@@ -3212,7 +3212,7 @@ namespace user
 
                   _001DisplayHitTest(point, m_iDisplayItemLButtonDown1);
 
-                  m_uiLButtonDownFlags = pmouse->m_ebuttonstate;
+                  m_uiLButtonDownFlags = pmouse->m_ekeystate;
 
                   m_pointLButtonDown1 = point;
 
@@ -3325,7 +3325,7 @@ namespace user
 
                       pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
 
-                      pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
+                      pmessage->m_ekeystate = pmouse->m_ekeystate;
 
                       pmessage->m_pointHost = pmouse->m_pointHost;
 
@@ -3419,7 +3419,7 @@ namespace user
 
       }
 
-      _001OnRightClick(pmouse->m_ebuttonstate, point);
+      _001OnRightClick(pmouse->m_ekeystate, point);
 
       pmessage->m_bRet = true;
 

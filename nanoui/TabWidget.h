@@ -143,9 +143,9 @@ namespace nanoui
       
       void draw(::nano2d::context * pcontext) override;
 
-      bool mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate) override;
+      bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeystate) override;
+      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate) override;
 
       ::item_pointer hit_test(const i32_point & p, bool test_vertical = true) const;
 

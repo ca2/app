@@ -39,20 +39,19 @@ namespace appearance
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_mouse_enter(const ::i32_point & point, const ::user::e_key & ekeyModifiers);
+      virtual void on_mouse_enter(const ::i32_point & point, ::user::e_key_state ekeystate);
       virtual void on_mouse_leave();
 
-      virtual bool on_button_down(::user::e_button_state ebuttonstate, const ::i32_point & point, const ::user::e_key_state & ekeystate, bool bDoubleClick);
-      virtual bool on_button_up(::user::e_button_state ebuttonstate, const ::i32_point &point,
-                                const ::user::e_key &ekeyModifiers);
+      virtual bool on_button_down(::user::e_key_state ekeystate, const ::i32_point & point, bool bDoubleClick);
+      virtual bool on_button_up(::user::e_key_state ekeystate, const ::i32_point &point);
 
-      virtual bool on_mouse_move(const ::i32_point & point, bool bDown, const ::user::e_key & ekeyModifiers);
-      //virtual bool on_mouse_drag(const ::i32_point & point, const ::user::e_key & ekeyModifiers);
+      virtual bool on_mouse_move(const ::i32_point & point, bool bDown, ::user::e_key_state ekeystate);
+      //virtual bool on_mouse_drag(const ::i32_point & point, ::user::e_key_state ekeystate);
 
       virtual bool on_scroll_event(const ::i32_point & point, ::f64 x, ::f64 y);
 
-      virtual bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText);
-      virtual bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers);
+      virtual bool on_key_down(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText);
+      virtual bool on_key_up(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate);
 
       virtual void on_character(::i32 iCharacter);
 

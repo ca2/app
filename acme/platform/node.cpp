@@ -295,7 +295,7 @@ namespace platform
    }
 
 
-   ::enum_id node::key_command(::user::enum_key ekey, ::user::key_state* pkeystate)
+   ::enum_id node::key_command(::user::enum_key ekey, ::user::keyboard_state * pkeyboardstate)
    {
 
       return ::id_none;

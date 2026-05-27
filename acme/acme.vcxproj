@@ -2677,7 +2677,7 @@
     <ClInclude Include="constant\aaa_topic.h" />
     <ClInclude Include="constant\activate.h" />
     <ClInclude Include="constant\application_capability.h" />
-    <ClInclude Include="constant\button_state.h" />
+    <ClInclude Include="constant\aaa_button_state.h" />
     <ClInclude Include="constant\character_set.h" />
     <ClInclude Include="constant\check.h" />
     <ClInclude Include="constant\code_page.h" />
@@ -3424,7 +3424,7 @@
     <ClInclude Include="user\user\interaction.h" />
     <ClInclude Include="user\user\item.h" />
     <ClInclude Include="user\user\key.h" />
-    <ClInclude Include="user\user\key_state.h" />
+    <ClInclude Include="user\user\keyboard_state.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\property.h" />
     <ClInclude Include="user\user\text.h" />
@@ -5041,7 +5041,7 @@
     <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
-    <ClCompile Include="user\user\key_state.cpp" />
+    <ClCompile Include="user\user\keyboard_state.cpp" />
     <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />

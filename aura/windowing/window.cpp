@@ -17487,12 +17487,12 @@ slGraphics.unlock();
    //      case ::user::e_message_prototype_mouse:
    //      {
    //         _NEW_MESSAGE(::message::mouse);
-   //         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
+   //         pmessage->m_ekeystate = (::user::enum_button_state)wparam.m_number;
    //
-   //         //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
+   //         //         if ((pmessage->m_ekeystate & I32_MINIMUM) == (I32_MINIMUM))
    //         //         {
    //         //
-   //         //            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+   //         //            informationf("(m_ekeystate & I32_MINIMUM) == (I32_MINIMUM)");
    //         //
    //         //         }
    //
@@ -17525,7 +17525,7 @@ slGraphics.unlock();
    //      {
    //         _NEW_MESSAGE(::message::mouse_wheel);
    //
-   //         pmessage->m_ebuttonstate = (::user::enum_button_state)lower_unsigned_short(wparam);
+   //         pmessage->m_ekeystate = (::user::enum_button_state)lower_unsigned_short(wparam);
    //
    //         pmessage->m_pointAbsolute = lparam.point();
    //

@@ -435,7 +435,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -455,12 +455,12 @@ namespace nanoui
             if (pchild->contains(pointChildClient))
             {
 
-               if (pchild->mouse_button_event(pointChildClient, ebuttonstate, down, bDoubleClick, ekeyModifiers))
+               if (pchild->mouse_button_event(pointChildClient, ebuttonstate, down, bDoubleClick, ekeystate))
                {
 
                   bool bChildFocused = pchild->focused();
 
-                  if (ebuttonstate == ::user::e_button_state_left && down && !bChildFocused)
+                  if (ebuttonstate == ::user::e_key_state_left && down && !bChildFocused)
                   {
 
                      pchild->request_focus();
@@ -482,7 +482,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate)
    {
 
       bool bHandled = false;
@@ -537,14 +537,14 @@ namespace nanoui
 
             pchild->m_bHoverCache = bHover;
 
-            bHandled |= pchild->mouse_enter_event(pointChildClient, bHover, ekeyModifiers);
+            bHandled |= pchild->mouse_enter_event(pointChildClient, bHover, ekeystate);
 
          }
 
          if (bHover || bHoverOld)
          {
 
-            bHandled |= pchild->mouse_motion_event(pointChildClient, rel, bDown, ekeyModifiers);
+            bHandled |= pchild->mouse_motion_event(pointChildClient, rel, bDown, ekeystate);
 
          }
 
@@ -596,7 +596,7 @@ namespace nanoui
    //}
 
 
-   bool Widget::mouse_enter_event(const i32_point&, bool bEnter, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_enter_event(const i32_point&, bool bEnter, const ::user::e_key& ekeystate)
    {
 
       m_bMouseHover = bEnter;

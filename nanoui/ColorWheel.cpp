@@ -172,10 +172,10 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
    {
       
-      if (!m_bEnabled || ebuttonstate != ::user::e_button_state_left)
+      if (!m_bEnabled || ebuttonstate != ::user::e_key_state_left)
       {
 
          return false;
@@ -221,13 +221,13 @@ namespace nanoui
       }
 
          return false;
-      //Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      //Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeystate);
 
 
    }
 
 
-   bool ColorWheel::mouse_motion_event(const i32_point& p, const i32_size& shift, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_motion_event(const i32_point& p, const i32_size& shift, bool bDown, const ::user::e_key& ekeystate)
    {
 
       //if (m_regionDrag)
@@ -246,7 +246,7 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_motion_event(p, shift, bDown, ekeyModifiers);
+      return Widget::mouse_motion_event(p, shift, bDown, ekeystate);
 
    }
 

@@ -200,10 +200,10 @@ namespace keyboard
 //   }
 //
 ////
-//   ::user::e_key string_key_modifiers_groups(::string& strWillKeyWithNoModifiers)
+//   ::user::e_key string_key_state_groups(::string& strWillKeyWithNoModifiers)
 //   {
 //
-//      ::user::e_key ekeyModifiers = ::user::e_key_none;
+//      ::user::e_key ekeystate = ::user::e_key_none;
 //
 //      auto puserkeytextModifiers = (user_key_text*)s_userkeytextaModifiers;
 //
@@ -213,7 +213,7 @@ namespace keyboard
 //         if (strWillKeyWithNoModifiers.contains_erase(puserkeytextModifiers->m_psz))
 //         {
 //
-//            ekeyModifiers |= puserkeytextModifiers->m_ekey;
+//            ekeystate |= puserkeytextModifiers->m_ekey;
 //
 //         }
 //
@@ -221,17 +221,17 @@ namespace keyboard
 //
 //      }
 //
-//      return ekeyModifiers;
+//      return ekeystate;
 //
 //   }
 
 
-//   ::user::e_key string_key(const ::scoped_string& scopedstrWithNoModifiers, ::user::e_key ekeyModifiers)
+//   ::user::e_key string_key(const ::scoped_string& scopedstrWithNoModifiers, ::user::e_key ekeystate)
 //   {
 //
 //      auto ekeyWithNoModifiers = string_key_with_no_modifier(scopedstrWithNoModifiers);
 //
-//      return ekeyWithNoModifiers | ekeyModifiers;
+//      return ekeyWithNoModifiers | ekeystate;
 //
 //   }
 
@@ -241,11 +241,11 @@ namespace keyboard
 //
 //      ::string strWillKeyWithNoModifiers(scopedstr);
 //
-//      auto ekeyModifiers = string_key_modifiers_groups(strWillKeyWithNoModifiers);
+//      auto ekeystate = string_key_state_groups(strWillKeyWithNoModifiers);
 //
 //      auto ekeyWithNoModifiers = string_key_with_no_modifier(strWillKeyWithNoModifiers);
 //
-//      return ekeyWithNoModifiers | ekeyModifiers;
+//      return ekeyWithNoModifiers | ekeystate;
 //
 //   }
 
@@ -335,11 +335,11 @@ namespace keyboard
 //
 //      }
 //
-//      auto ekeyModifiersGroups1 = modifiers_groups(ekey1);
+//      auto ekeystateGroups1 = modifiers_groups(ekey1);
 //
-//      auto ekeyModifiersGroups2 = modifiers_groups(ekey2);
+//      auto ekeystateGroups2 = modifiers_groups(ekey2);
 //
-//      if (ekeyModifiersGroups1 != ekeyModifiersGroups2)
+//      if (ekeystateGroups1 != ekeystateGroups2)
 //      {
 //
 //         return false;
@@ -354,7 +354,7 @@ namespace keyboard
 //   ::user::e_key modifiers_groups(::user::e_key ekey)
 //   {
 //
-//      ::user::e_key ekeyModifiers = ::user::e_key_none;
+//      ::user::e_key ekeystate = ::user::e_key_none;
 //
 //      auto puserkeyuserkeyModifiersGroups = (user_key_user_key*)s_userkeyuserkeyModifiersGroups;
 //
@@ -364,7 +364,7 @@ namespace keyboard
 //         if (ekey & puserkeyuserkeyModifiersGroups->m_ekey1)
 //         {
 //
-//            ekeyModifiers |= puserkeyuserkeyModifiersGroups->m_ekey2;
+//            ekeystate |= puserkeyuserkeyModifiersGroups->m_ekey2;
 //
 //         }
 //
@@ -372,7 +372,7 @@ namespace keyboard
 //
 //      }
 //
-//      return ekeyModifiers;
+//      return ekeystate;
 //
 //   }
 

@@ -103,7 +103,7 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_button_event(const i32_point & p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool ImagePanel::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
    {
 
       ::collection::index iIndex = index_for_position(p);

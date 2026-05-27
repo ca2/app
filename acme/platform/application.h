@@ -699,7 +699,7 @@ namespace platform
 
       void main() override;
 
-      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate) override;
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::keyboard_state * pkeyboardstate) override;
 
       virtual void on_before_launching() override;
       //virtual void os_native_bergedge_start() override;

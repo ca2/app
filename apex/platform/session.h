@@ -285,7 +285,9 @@ namespace apex
 
       //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
-      virtual ::user::e_key key_modifiers() override;
+      ::user::e_key_state key_state() override;
+
+      //::user::e_button_state button_state() override;
       
       bool is_key_pressed(::user::enum_key ekey) override;
 

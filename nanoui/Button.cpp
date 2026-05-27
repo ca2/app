@@ -67,20 +67,20 @@ namespace nanoui
    }
 
    //
-   //bool Button::mouse_enter_event(const i32_point & p, bool enter, const ::user::e_key & ekeyModifiers)
+   //bool Button::mouse_enter_event(const i32_point & p, bool enter, ::user::e_key_state ekeystate)
    //{
    //   
-   //   Widget::mouse_enter_event(p, enter, ekeyModifiers);
+   //   Widget::mouse_enter_event(p, enter, ekeystate);
    //
    //   return true;
    //
    //}
 
 
-   bool Button::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
    {
 
-      Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
+      Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeystate);
       /* Temporarily increase the reference count of the button in case the
          button causes the parent window to be destructed */
       ::pointer<Button> self = this;
@@ -88,8 +88,8 @@ namespace nanoui
       if (m_bEnabled &&
          (
 
-            (ebuttonstate == ::user::e_button_state_left && !(m_flags & ContextMenuButton)) ||
-            (ebuttonstate == ::user::e_button_state_right && (m_flags & ContextMenuButton))
+            (ebuttonstate == ::user::e_key_state_left && !(m_flags & ContextMenuButton)) ||
+            (ebuttonstate == ::user::e_key_state_right && (m_flags & ContextMenuButton))
 
             )
          )
@@ -311,10 +311,10 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const i32_point& p, bool bEnter, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_enter_event(const i32_point& p, bool bEnter, const ::user::e_key& ekeystate)
    {
 
-      Widget::mouse_enter_event(p, bEnter, ekeyModifiers);
+      Widget::mouse_enter_event(p, bEnter, ekeystate);
 
       set_need_redraw();
 

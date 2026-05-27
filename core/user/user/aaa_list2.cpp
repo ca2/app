@@ -3600,7 +3600,7 @@ namespace user
                && !m_rangeSelection.has_item(iItemEnter))
             {
 
-               m_iMouseFlagEnter = pmouse->m_ebuttonstate;
+               m_iMouseFlagEnter = pmouse->m_ekeystate;
 
                m_iItemEnter = iItemEnter;
 
@@ -4141,7 +4141,7 @@ namespace user
 
                      pmessage->m_emessage = ::user::e_message_left_button_double_click;
 
-                     pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
+                     pmessage->m_ekeystate = pmouse->m_ekeystate;
 
                      pmessage->m_point = point;
 
@@ -4237,7 +4237,7 @@ namespace user
 
          }
 
-         m_uiRButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
+         m_uiRButtonUpFlags = (::u32)pmouse->m_ekeystate;
 
          m_pointRButtonUp = pmouse->m_point;
 

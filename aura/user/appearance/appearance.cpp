@@ -71,7 +71,7 @@ namespace appearance
    }
 
 
-   void appearance::on_mouse_enter(const ::i32_point & point, const ::user::e_key & ekeyModifiers)
+   void appearance::on_mouse_enter(const ::i32_point & point, ::user::e_key_state ekeystate)
    {
 
 
@@ -85,7 +85,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_button_down(::user::e_key ekeyButton, const ::i32_point & point, const ::user::e_key & ekeyModifiers, bool bDoubleClick)
+   bool appearance::on_button_down(::user::e_key_state ekeystate, const ::i32_point & point, bool bDoubleClick)
    {
 
       return false;
@@ -93,7 +93,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_button_up(::user::e_key ekeyButton, const ::i32_point & point, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_button_up(::user::e_key_state ekeystate, const ::i32_point & point)
    {
 
       return false;
@@ -101,7 +101,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_mouse_move(const ::i32_point & point, bool bDown, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_mouse_move(const ::i32_point & point, bool bDown, ::user::e_key_state ekeystate)
    {
 
       return false;
@@ -109,7 +109,7 @@ namespace appearance
    }
 
 
-   //bool appearance::on_mouse_drag(const ::i32_point & point, const ::user::e_key & ekeyModifiers)
+   //bool appearance::on_mouse_drag(const ::i32_point & point, ::user::e_key_state ekeystate)
    //{
 
    //   return false;
@@ -125,7 +125,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText)
+   bool appearance::on_key_down(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
    {
 
       return false;
@@ -133,7 +133,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_key_up(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate)
    {
 
       return false;

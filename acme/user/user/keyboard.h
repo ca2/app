@@ -29,7 +29,7 @@ namespace keyboard
 
    CLASS_DECL_ACME ::user::e_key string_key_with_no_modifier(const ::scoped_string& scopedstr);
 
-   CLASS_DECL_ACME ::user::e_key string_key_modifiers_groups(::string & strWillKeyWithNoModifiers);
+   CLASS_DECL_ACME ::user::e_key string_key_state_groups(::string & strWillKeyWithNoModifiers);
 
    CLASS_DECL_ACME ::user::e_key string_key(const ::scoped_string & scopedstrWithNoModifiers, ::user::e_key ekeyModifier);
 

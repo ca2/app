@@ -2345,35 +2345,35 @@ namespace aura
    }
 
 
-   bool session::is_mouse_button_pressed(::user::e_button_state ebuttonstate)
-   {
+   //bool session::is_mouse_button_pressed(::user::e_key_state ekeystate)
+   //{
 
-      if (ebuttonstate == ::user::e_button_state_left)
-      {
+   //   if (ebuttonstate == ::user::e_key_state_left)
+   //   {
 
-         return is_key_pressed(::user::e_key_left_button);
+   //      return is_key_pressed(::user::e_key_left_button);
 
-      }
-      else if (ebuttonstate == ::user::e_button_state_right)
-      {
+   //   }
+   //   else if (ebuttonstate == ::user::e_key_state_right)
+   //   {
 
-         return is_key_pressed(::user::e_key_right_button);
+   //      return is_key_pressed(::user::e_key_right_button);
 
-      }
-      else if (ebuttonstate == ::user::e_button_state_middle)
-      {
+   //   }
+   //   else if (ebuttonstate == ::user::e_key_state_middle)
+   //   {
 
-         return is_key_pressed(::user::e_key_middle_button);
+   //      return is_key_pressed(::user::e_key_middle_button);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         throw unexpected_situation(error_failed, "not expected enum_mouse value");
+   //      throw unexpected_situation(error_failed, "not expected enum_mouse value");
 
-      }
+   //   }
 
-   }
+   //}
 
 
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)

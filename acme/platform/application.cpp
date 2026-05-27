@@ -2119,10 +2119,10 @@ namespace platform
    }
 
 
-   ::enum_id application::key_command(::user::enum_key ekey, ::user::key_state* pkeystate)
+   ::enum_id application::key_command(::user::enum_key ekey, ::user::keyboard_state * pkeyboardstate)
    {
 
-      return node()->key_command(ekey, pkeystate);
+      return node()->key_command(ekey, pkeyboardstate);
 
    }
 

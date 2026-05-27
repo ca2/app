@@ -10490,7 +10490,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          auto stra = get_about_box_lines();
          
-         ::i32 y = 30 * pdialog->get_window_scale();
+         auto y = 30. * pdialog->get_window_scale();
          
          auto pstillIcon = createø < ::innate_ui::still>();
          
@@ -10695,7 +10695,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             }
 
-            y_text += 5 * pdialog->get_window_scale();
+            y_text += 5.f * pdialog->get_window_scale();
 
             auto y = maximum(y_icon, y_text);
 
@@ -10710,7 +10710,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             pbutton->set_position(
                {minimum(520 * pdialog->get_window_scale(), max_width) - (100 + 30) * pdialog->get_window_scale(), y});
 
-            y += 35 * pdialog->get_window_scale();
+            y += 35.f * pdialog->get_window_scale();
 
             pdialog->adjust_for_client_size(
                {minimum(520 * pdialog->get_window_scale(), max_width), y + 30 * pdialog->get_window_scale()});

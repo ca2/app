@@ -9347,9 +9347,9 @@ if(get_parent())
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         auto ekeystate = psession->key_state();
 
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers,
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeystate,
             pmessage->m_union.m_pkey->m_strText))
          {
 
@@ -9416,9 +9416,9 @@ if(get_parent())
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         auto ekeystate = psession->key_state();
 
-         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
+         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeystate))
          {
 
             pmessage->m_bRet = true;
@@ -18936,12 +18936,12 @@ if(get_parent())
       case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_wparam;
+         pmessage->m_ekeystate = (::user::enum_button_state)wparam.m_wparam;
 
-         //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
+         //         if ((pmessage->m_ekeystate & I32_MINIMUM) == (I32_MINIMUM))
          //         {
          //
-         //            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+         //            informationf("(m_ekeystate & I32_MINIMUM) == (I32_MINIMUM)");
          //
          //         }
 
@@ -18974,7 +18974,7 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ebuttonstate = (::user::enum_button_state)lower_unsigned_short(wparam);
+         pmessage->m_ekeystate = (::user::enum_button_state)lower_unsigned_short(wparam);
 
          pmessage->m_pointAbsolute = lparam.point();
 
@@ -25831,11 +25831,11 @@ void interaction::on_control_box_zoom(){
       //
       //            screen_to_client()(pointClient);
       //
-      //            auto ekeyModifiers = psession->key_modifiers();
+      //            auto ekeystate = psession->key_state();
       //
       //            bool bDoubleClick = false;
       //
-      //            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+      //            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeystate, bDoubleClick))
       //            {
       //
       //               pmouse->m_bRet = true;
@@ -26178,9 +26178,9 @@ void interaction::on_control_box_zoom(){
 
       //   auto psession = session();
 
-      //   auto ekeyModifiers = psession->key_modifiers();
+      //   auto ekeystate = psession->key_state();
 
-      //   if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
+      //   if (pappearance->on_button_up(e_key_left_button, pointClient, ekeystate))
       //   {
 
       //      pmessage->m_bRet = true;
@@ -26454,9 +26454,9 @@ void interaction::on_control_box_zoom(){
 //
 //               //   auto psession = session();
 //
-//               //   auto ekeyModifiers = psession->key_modifiers();
+//               //   auto ekeystate = psession->key_state();
 //
-//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+//               //   pappearance->on_mouse_enter(pointClient, ekeystate);
 //
 //               //}
 //
@@ -26485,18 +26485,18 @@ void interaction::on_control_box_zoom(){
 
       //      auto psession = session();
 
-      //      auto ekeyModifiers = psession->key_modifiers();
+      //      auto ekeystate = psession->key_state();
 
-      //      bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+      //      bool bDown = pmouse->m_ekeystate & e_button_state_left;
       //      /*{
 
-      //         bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+      //         bRet = pappearance->on_mouse_drag(pointClient, ekeystate);
 
       //      }
       //      else
       //      {*/
 
-      //      bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+      //      bRet = pappearance->on_mouse_move(pointClient, bDown, ekeystate);
 
       //      if (get_wnd()->windowing_window())
       //      {
@@ -26732,11 +26732,11 @@ void interaction::on_control_box_zoom(){
 
             auto psession = session();
 
-            auto ekeyModifiers = psession->key_modifiers();
+            auto ekeystate = psession->key_state();
 
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+            if (pappearance->on_button_down(e_button_state_left, pointClient, ekeystate, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -27172,9 +27172,9 @@ void interaction::on_control_box_zoom(){
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         auto ekeystate = psession->key_state();
 
-         if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
+         if (pappearance->on_button_up(e_button_state_left, pointClient, ekeystate))
          {
 
             pmessage->m_bRet = true;
@@ -27524,9 +27524,9 @@ __check_refdbg;
 
             //      //   auto psession = session();
 
-            //      //   auto ekeyModifiers = psession->key_modifiers();
+            //      //   auto ekeystate = psession->key_state();
 
-            //      //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+            //      //   pappearance->on_mouse_enter(pointClient, ekeystate);
 
             //      //}
 
@@ -27559,12 +27559,12 @@ __check_refdbg;
 
             auto psession = session();
 
-            auto ekeyModifiers = psession->key_modifiers();
+            auto ekeystate = psession->key_state();
 
-            bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+            bool bDown = pmouse->m_ekeystate & e_button_state_left;
             /*{
 
-               bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+               bRet = pappearance->on_mouse_drag(pointClient, ekeystate);
 
             }
             else
@@ -27572,7 +27572,7 @@ __check_refdbg;
 
             pappearance->m_pmessage = pmessage;
 
-            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeystate);
 
             if (get_wnd()->windowing_window())
             {
@@ -27832,11 +27832,11 @@ __check_refdbg;
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         auto ekeystate = psession->key_state();
 
          bool bDoubleClick = true;
 
-         if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+         if (pappearance->on_button_down(e_key_left_button, pointClient, ekeystate, bDoubleClick))
          {
 
             pmessage->m_bRet = true;
@@ -27886,11 +27886,11 @@ __check_refdbg;
 
             auto psession = session();
 
-            auto ekeyModifiers = psession->key_modifiers();
+            auto ekeystate = psession->key_state();
 
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeyModifiers, true))
+            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeystate, true))
             {
 
                pmouse->m_bRet = true;
@@ -27945,9 +27945,9 @@ __check_refdbg;
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         auto ekeystate = psession->key_state();
 
-         if (pappearance->on_button_up(e_key_right_button, pointClient, ekeyModifiers))
+         if (pappearance->on_button_up(e_key_right_button, pointClient, ekeystate))
          {
 
             pmessage->m_bRet = true;
@@ -28058,7 +28058,7 @@ __check_refdbg;
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         auto ekeystate = psession->key_state();
 
          bRet = pappearance->on_scroll_event(pointClient, 0., y);
 

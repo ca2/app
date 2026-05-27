@@ -37,7 +37,7 @@ namespace gpu
 
 
          //::array_base<::gpu::gltf::vertex> m_vertexa;
-         //unsigned_int_array m_indexa;
+         //u32_array m_indexa;
          ::gpu::model_data<::gpu::gltf::vertex> m_modeldata;
          ::pointer<::gpu::model_buffer> m_pmodelbuffer;
          ::pointer<::gpu::gltf::material> m_pmaterial;
@@ -52,7 +52,7 @@ namespace gpu
          ~mesh() override;
 
 
-         //virtual void initialize_gpu_gltf_mesh(const ::raw_array_base<gltf::vertex> &vertexa, const ::unsigned_int_array &indexa,
+         //virtual void initialize_gpu_gltf_mesh(const ::raw_array_base<gltf::vertex> &vertexa, const ::u32_array &indexa,
            //                        ::gpu::gltf::material *pmaterial);
           virtual void initialize_gpu_gltf_mesh(
              //const ::gpu::model_data<gltf::vertex> & modeldata,

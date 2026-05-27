@@ -217,7 +217,7 @@ namespace mathematics
          while(s > 4)
          {
 
-            *pu = m_randomnumbergenerator.get_unsigned_int();
+            *pu = m_randomnumbergenerator.get_u32();
 
             s-=4;
 
@@ -383,7 +383,7 @@ namespace mathematics
       //::u32 u = 0;
       //random({ e_as_block,u });
 
-      return m_posdata->m_randomnumbergenerator.get_unsigned_int();
+      return m_posdata->m_randomnumbergenerator.get_u32();
       //#endif
       //
    }

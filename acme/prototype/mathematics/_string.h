@@ -235,7 +235,7 @@ inline ::i8 consume_char(::string_range < BASE_RANGE > & range, ::i32 iBase = 10
 template < typename BASE_RANGE >
 inline ::u64 consume_u64(::string_range < BASE_RANGE >& range, ::i32 iBase = 10) { return consume_integral < ::u64 >(range, iBase); }
 template < typename BASE_RANGE >
-inline ::u32 consume_unsigned_int(::string_range < BASE_RANGE >& range, ::i32 iBase = 10) { return consume_integral < ::u32 >(range, iBase); }
+inline ::u32 consume_u32(::string_range < BASE_RANGE >& range, ::i32 iBase = 10) { return consume_integral < ::u32 >(range, iBase); }
 template < typename BASE_RANGE >
 inline ::u16 consume_unsigned_short(::string_range < BASE_RANGE >& range, ::i32 iBase = 10) { return consume_integral < ::u16 >(range, iBase); }
 template < typename BASE_RANGE >
@@ -256,7 +256,7 @@ inline ::i8 as_i8(const ::scoped_string& scopedstr, ::i32 iBase = 10) { auto r =
 
 
 inline ::u64 as_u64(const ::scoped_string& scopedstr, ::i32 iBase = 10) { auto r = scopedstr(); return consume_u64(r, iBase); }
-inline ::u32 as_u32(const ::scoped_string& scopedstr, ::i32 iBase = 10) { auto r = scopedstr(); return consume_unsigned_int(r, iBase); }
+inline ::u32 as_u32(const ::scoped_string& scopedstr, ::i32 iBase = 10) { auto r = scopedstr(); return consume_u32(r, iBase); }
 inline ::u32 as_u16(const ::scoped_string& scopedstr, ::i32 iBase = 10) { auto r = scopedstr(); return consume_unsigned_short(r, iBase); }
 inline ::u8 as_u8(const ::scoped_string& scopedstr, ::i32 iBase = 10) { auto r = scopedstr(); return consume_unsigned_char(r, iBase); }
 

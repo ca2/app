@@ -165,7 +165,7 @@ public:
 
    ::i32 get_int(const ::atom & atom, ::i32 iDefault = 0) const;
 
-   ::u32 get_unsigned_int(const ::atom & atom, ::u32 uDefault = 0) const;
+   ::u32 get_u32(const ::atom & atom, ::u32 uDefault = 0) const;
 
    //template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 

@@ -80,7 +80,7 @@ namespace nanoui
    bool Button::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
-      Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
       /* Temporarily increase the reference count of the button in case the
          button causes the parent window to be destructed */
       ::pointer<Button> self = this;
@@ -88,8 +88,8 @@ namespace nanoui
       if (m_bEnabled &&
          (
 
-            (emouse == ::user::e_mouse_left_button && !(m_flags & ContextMenuButton)) ||
-            (emouse == ::user::e_mouse_right_button && (m_flags & ContextMenuButton))
+            (ebuttonstate == ::user::e_button_state_left && !(m_flags & ContextMenuButton)) ||
+            (ebuttonstate == ::user::e_button_state_right && (m_flags & ContextMenuButton))
 
             )
          )

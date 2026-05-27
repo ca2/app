@@ -104,7 +104,7 @@ CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *pp
 
 
 
-CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u32 ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 {
 
 #ifdef WINDOWS

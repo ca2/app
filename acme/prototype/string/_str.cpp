@@ -3017,7 +3017,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-::u32 str::to_unsigned_int(const ::scoped_string & scopedstr)
+::u32 str::to_u32(const ::scoped_string & scopedstr)
 {
 
    return (::u32)ansi_to_i64(scopedstr);

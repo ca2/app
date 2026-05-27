@@ -394,7 +394,7 @@
 //
 //
 //template<prototype_character CHARACTER>
-//inline ::hash32 _string_unsigned_int_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
+//inline ::hash32 _string_u32_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 //{
 //
 //   if (scopedstr.is_empty()) 

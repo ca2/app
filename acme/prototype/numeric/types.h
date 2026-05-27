@@ -49,7 +49,7 @@ typedef u64 uptr;
 //DO(::i16, ::i16, sh, SHORT); \
 //DO(::u16, unsigned_short, ush, UNSIGNED_SHORT); \
 //DO(::i32, ::i32, i, INT); \
-//DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
+//DO(::u32, u32, ui, UNSIGNED_INT); \
 //DO(long, long, l, LONG); \
 //DO(ulong, unsigned_long, ul, UNSIGNED_LONG); \
 //DO(::i64, ::i64, hi, HUGE_INTEGER); \

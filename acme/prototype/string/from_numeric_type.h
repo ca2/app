@@ -11,7 +11,7 @@ namespace str
 
    
    template < typename T >
-   inline ::string from_unsigned_integer(const T & t);
+   inline ::string from_u32eger(const T & t);
 
 
 } // namespace str

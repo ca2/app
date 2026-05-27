@@ -111,7 +111,7 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 //::i32 u16_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_short, iBase); }
 //
 //::i32 i32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
-//::i32 u32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_int, iBase); }
+//::i32 u32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_u32, iBase); }
 //
 //::i32 i64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }
 //::i32 u64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_u64, iBase); }

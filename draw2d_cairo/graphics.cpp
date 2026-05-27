@@ -4527,7 +4527,7 @@ namespace draw2d_cairo
 
       }
 
-      string str(lpszString, minimum(iIndex, nCount));
+      string str(pszString, minimum(iIndex, nCount));
 
       str = ::str::q_valid(str);
 

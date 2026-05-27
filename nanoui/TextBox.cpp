@@ -390,7 +390,7 @@ namespace nanoui
    bool TextBox::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
-      if (emouse == ::user::e_mouse_left_button && down && !focused())
+      if (ebuttonstate == ::user::e_button_state_left && down && !focused())
       {
          
          if (!m_bSpinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */

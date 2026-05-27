@@ -150,7 +150,7 @@ void mul64(::i64 v1, ::i64 v2, ::i64 & hi, ::u64 & lo)
 
 
 /** the two 32 bit parts of an 64 bit integer */
-struct  u64_unsigned_int {
+struct  u64_u32 {
    ::u32 l : 32;
    ::u32 h : 32;
 };

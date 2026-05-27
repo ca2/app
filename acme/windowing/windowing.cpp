@@ -1201,7 +1201,7 @@ void user_on_command(::uptr u, ::lightui::enum_notification enotification, ::upt
    
    ::wparam wparam;
    
-   wparam = make_unsigned_int(uControl, enotification);
+   wparam = make_u32(uControl, enotification);
    
    ::system()->acme_windowing()->on_user_command(u,enotification, wparam);
 }

@@ -60,17 +60,17 @@ namespace html
 
             if(ptag->get_attr_value("border").has_character())
             {
-               m_iBorder         = (::f32) ::str::to_unsigned_int(ptag->get_attr_value("border"));
+               m_iBorder         = (::f32) ::str::to_u32(ptag->get_attr_value("border"));
             }
 
             if(ptag->get_attr_value("cellspacing").has_character())
             {
-               m_iCellSpacing    = (::f32) ::str::to_unsigned_int(ptag->get_attr_value("cellspacing"));
+               m_iCellSpacing    = (::f32) ::str::to_u32(ptag->get_attr_value("cellspacing"));
             }
 
             if(ptag->get_attr_value("cellpadding").has_character())
             {
-               m_iCellPadding    = (::f32) ::str::to_unsigned_int(ptag->get_attr_value("cellpadding"));
+               m_iCellPadding    = (::f32) ::str::to_u32(ptag->get_attr_value("cellpadding"));
             }
 
          }

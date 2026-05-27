@@ -142,7 +142,7 @@ bool str::to(::u32 & u, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   ::i64 uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd);
+   ::i64 uiConversion = ::ansi_to_u32(scopedstr, &pszEnd);
 
    if (pszEnd == scopedstr.data())
    {
@@ -205,7 +205,7 @@ bool str::to(::u32 & u, ::i32 iBase, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   ::u32 uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd, iBase);
+   ::u32 uiConversion = ::ansi_to_u32(scopedstr, &pszEnd, iBase);
 
    if (pszEnd == scopedstr.as_string().c_str())
    {

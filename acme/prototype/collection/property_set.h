@@ -239,7 +239,7 @@ public:
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
    ::i32 get_int(const ::atom & atom, ::i32 iDefault = 0) const;
-   ::u32 get_unsigned_int(const ::atom & atom, ::u32 uDefault = 0) const;
+   ::u32 get_u32(const ::atom & atom, ::u32 uDefault = 0) const;
    ::string get_string(const ::atom & atom, const ::scoped_string & scopedstrDefault = nullptr) const;
    ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;
 

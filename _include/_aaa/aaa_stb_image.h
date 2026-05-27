@@ -2376,7 +2376,7 @@ static void stbi__idct_simd(stbi_uc * out, ::i32 out_stride, ::i16 data[64])
       // again, these can translate into one instruction, but often don't.
 #define dct_trn8_8(x, y) { uint8x8x2_t t = vtrn_unsigned_char(x, y); x = t.val[0]; y = t.val[1]; }
 #define dct_trn8_16(x, y) { uint16x4x2_t t = vtrn_unsigned_short(vreinterpret_u16_unsigned_char(x), vreinterpret_u16_unsigned_char(y)); x = vreinterpret_byte_unsigned_short(t.val[0]); y = vreinterpret_byte_unsigned_short(t.val[1]); }
-#define dct_trn8_32(x, y) { uint32x2x2_t t = vtrn_unsigned_int(vreinterpret_u32_unsigned_char(x), vreinterpret_u32_unsigned_char(y)); x = vreinterpret_byte_unsigned_int(t.val[0]); y = vreinterpret_byte_unsigned_int(t.val[1]); }
+#define dct_trn8_32(x, y) { uint32x2x2_t t = vtrn_u32(vreinterpret_u32_unsigned_char(x), vreinterpret_u32_unsigned_char(y)); x = vreinterpret_byte_u32(t.val[0]); y = vreinterpret_byte_u32(t.val[1]); }
 
       // sadly can't use interleaved stores here since we only write
       // 8 bytes to each scan line!

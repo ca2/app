@@ -786,7 +786,7 @@ CLASS_DECL_ACME ::i32 wd32_to_int(const ::wd32_character * psz, const ::wd32_cha
 }
 
 
-CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
    return __wd32tou32(psz, (::wd32_character **) ppszEnd, iBase);
@@ -845,7 +845,7 @@ CLASS_DECL_ACME ::i32 wd32_to_int(const ::wd32_character * psz, const ::wd32_cha
 }
 
 
-CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
 #ifdef WINDOWS

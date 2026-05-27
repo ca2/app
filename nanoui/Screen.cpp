@@ -1084,7 +1084,7 @@ namespace nanoui
 
          }
 
-         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, emouse, down, bDoubleClick, ekeyModifiers);
+         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, ebuttonstate, down, bDoubleClick, ekeyModifiers);
 
          if (!down)
          {
@@ -1157,7 +1157,7 @@ namespace nanoui
            }*/
 
            //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
-      bool btn12 = emouse == ::user::e_mouse_left_button || emouse == ::user::e_mouse_right_button;
+      bool btn12 = ebuttonstate == ::user::e_button_state_left || ebuttonstate == ::user::e_button_state_right;
 
       if (btn12)
       {

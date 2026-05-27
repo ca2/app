@@ -40,7 +40,7 @@ namespace number
       number(::i16 i) { m_i16 = i; m_enumber = e_number_short; }
       number(::u16 u) { m_u16 = u; m_enumber = e_number_unsigned_short; }
       number(::i32 i) { m_i32 = i; m_enumber = e_number_int; }
-      number(::u32 u) { m_u32 = u; m_enumber = e_number_unsigned_int; }
+      number(::u32 u) { m_u32 = u; m_enumber = e_number_u32; }
       number(::i64 i) { m_hi = i; m_enumber = e_number_i64; }
       number(::u64 u) { m_hn = u; m_enumber = e_number_u64; }
       number(::f32 f) { m_f32 = f; m_enumber = e_number_f32; }
@@ -74,7 +74,7 @@ namespace number
                return (T)m_u16;
             case e_number_int:
                return(T)m_i32;
-            case e_number_unsigned_int:
+            case e_number_u32:
                return (T)m_u32;
             case e_number_i64:
                return(T)m_hi;
@@ -111,7 +111,7 @@ namespace number
             case e_number_int:
                m_i32 = (::i32)t;
                break;
-            case e_number_unsigned_int:
+            case e_number_u32:
                m_u32 = (::u32)t;
                break;
             case e_number_i64:
@@ -135,7 +135,7 @@ namespace number
       ::i16 get_short() const { return get < ::i16>(); }
       ::u16 get_unsigned_short() const { return get < ::u16>(); }
       ::i32 get_int() const { return get < ::i32>(); }
-      ::u32 get_unsigned_int() const { return get < ::u32>(); }
+      ::u32 get_u32() const { return get < ::u32>(); }
       ::i64 get_i64() const { return get < ::i64>(); }
       ::u64 get_u64() const { return get < ::u64>(); }
       ::f32 get_f32() const { return get < ::f32>(); }

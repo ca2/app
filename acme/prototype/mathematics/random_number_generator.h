@@ -34,7 +34,7 @@ namespace mathematics
 
 
       void seed(::i32 iTwistLen, ::u32 seed);
-      ::u32 get_unsigned_int();
+      ::u32 get_u32();
       ::u8 get_unsigned_char();
 
    private:

@@ -463,7 +463,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
+//inline ::u32 ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //#ifdef WINDOWS

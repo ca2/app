@@ -126,7 +126,7 @@ public:
 
    ::u32 as_u32() const noexcept { return as_u32(this->cx, this->cy); }
    ::u64 as_u64() const noexcept { return as_u64(this->cx, this->cy); }
-   class lparam lparam() const noexcept { return make_unsigned_int(this->cx, this->cy); }
+   class lparam lparam() const noexcept { return make_u32(this->cx, this->cy); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx; }
    inline UNIT_TYPE height() const noexcept { return this->cy; }

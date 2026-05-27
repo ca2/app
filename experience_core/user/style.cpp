@@ -2017,7 +2017,7 @@ namespace experience_core
 
          auto periodFadeOut = 490_ms;
 
-         ::f64 dRate = maximum(0u, minimum(1.0, pbar->get_unsigned_int("tracking_alpha") / 255.0));
+         ::f64 dRate = maximum(0u, minimum(1.0, pbar->get_u32("tracking_alpha") / 255.0));
 
          if (pbar->m_bTracking)
          {

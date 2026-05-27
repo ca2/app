@@ -136,7 +136,7 @@ CLASS_DECL_ACME void from_string(::i64 & i, ::i32 iBase, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::u8 & u, const_char_pointer psz)
 {
 
-   u = (::u8)ansi_to_unsigned_int(psz, nullptr, 10);
+   u = (::u8)ansi_to_u32(psz, nullptr, 10);
 
 }
 
@@ -144,7 +144,7 @@ CLASS_DECL_ACME void from_string(::u8 & u, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::u16 & u, const_char_pointer psz)
 {
 
-   u = (::u16)ansi_to_unsigned_int(psz, nullptr, 10);
+   u = (::u16)ansi_to_u32(psz, nullptr, 10);
 
 }
 
@@ -152,7 +152,7 @@ CLASS_DECL_ACME void from_string(::u16 & u, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::u32 & u, const_char_pointer psz)
 {
 
-   u = ansi_to_unsigned_int(psz, nullptr, 10);
+   u = ansi_to_u32(psz, nullptr, 10);
 
 }
 
@@ -168,7 +168,7 @@ CLASS_DECL_ACME void from_string(::u64 & u, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::u32 & u, ::i32 iBase, const_char_pointer psz)
 {
 
-   u = ansi_to_unsigned_int(psz, nullptr, iBase);
+   u = ansi_to_u32(psz, nullptr, iBase);
 
 }
 

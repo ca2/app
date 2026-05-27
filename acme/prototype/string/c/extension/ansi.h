@@ -64,7 +64,7 @@ CLASS_DECL_ACME ::u64                    ansi_to_u64(const_char_pointer psz, con
 CLASS_DECL_ACME ::i64                    ansi_count_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen);
 
 CLASS_DECL_ACME ::i32                    ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
-CLASS_DECL_ACME ::u32                    ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::u32                    ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
 CLASS_DECL_ACME ::i32                    ansi_count_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen);
 
 

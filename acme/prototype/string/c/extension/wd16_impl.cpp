@@ -785,7 +785,7 @@ CLASS_DECL_ACME ::i32 wd16_to_int(const ::wd16_character * psz, const ::wd16_cha
 }
 
 
-CLASS_DECL_ACME ::u32 wd16_to_unsigned_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u32 wd16_to_u32(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
 {
 
    return wcstoul(psz, (::wd16_character **) ppszEnd, iBase);
@@ -821,7 +821,7 @@ CLASS_DECL_ACME ::i32 wd16_to_int(const ::wd16_character * psz, const ::wd16_cha
 }
 
 
-CLASS_DECL_ACME ::u32 wd16_to_unsigned_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u32 wd16_to_u32(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
 {
 
    return __wd16tou32(psz, (::wd16_character **) ppszEnd, iBase);

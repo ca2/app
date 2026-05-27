@@ -469,14 +469,14 @@ void Window::on_destroy_window()
    bool Window::mouse_button_event(const i32_point& pointCursor, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
-      if (Widget::mouse_button_event(pointCursor, emouse, down, bDoubleClick, ekeyModifiers))
+      if (Widget::mouse_button_event(pointCursor, ebuttonstate, down, bDoubleClick, ekeyModifiers))
       {
 
          return true;
 
       }
 
-      if (emouse == ::user::e_mouse_left_button)
+      if (ebuttonstate == ::user::e_button_state_left)
       {
 
          if (down)

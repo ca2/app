@@ -300,7 +300,7 @@ namespace nanoui
 
    }
 
-   return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+   return TextBox::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
 
 }
 

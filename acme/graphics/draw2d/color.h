@@ -50,7 +50,7 @@ constexpr ::color32_t argb32_color32(
    ::iptr u8Blue)
 {
 
-   return { make_unsigned_int(u8Red, u8Green, u8Blue, u8Opacity) };
+   return { make_u32(u8Red, u8Green, u8Blue, u8Opacity) };
 
 }
 
@@ -569,7 +569,7 @@ constexpr ::color::color opaque_color(enum_plain_color ecolor);
 
 constexpr rgba_t argb_rgba(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
 {
-   return { make_unsigned_int(u8Red, u8Green, u8Blue, u8Opacity) };
+   return { make_u32(u8Red, u8Green, u8Blue, u8Opacity) };
 }
 
 //constexpr ::u8 rgba_u8_red(::rgba_t rgba) { return lower_byte(rgba.m_u32); }
@@ -586,7 +586,7 @@ constexpr rgba_t argb_rgba(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue
 
 constexpr bgra_t argb_bgra(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
 {
-   return { make_unsigned_int(u8Blue, u8Green, u8Red, u8Opacity) };
+   return { make_u32(u8Blue, u8Green, u8Red, u8Opacity) };
 }
 
 

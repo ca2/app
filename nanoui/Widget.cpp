@@ -455,12 +455,12 @@ namespace nanoui
             if (pchild->contains(pointChildClient))
             {
 
-               if (pchild->mouse_button_event(pointChildClient, emouse, down, bDoubleClick, ekeyModifiers))
+               if (pchild->mouse_button_event(pointChildClient, ebuttonstate, down, bDoubleClick, ekeyModifiers))
                {
 
                   bool bChildFocused = pchild->focused();
 
-                  if (emouse == ::user::e_mouse_left_button && down && !bChildFocused)
+                  if (ebuttonstate == ::user::e_button_state_left && down && !bChildFocused)
                   {
 
                      pchild->request_focus();

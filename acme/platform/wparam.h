@@ -23,7 +23,7 @@ public:
    template < prototype_point POINT >
    constexpr wparam(const POINT & point);
    constexpr wparam(const lparam& lparam) { m_wparam = lparam.m_lparam; }
-   wparam(::i32 x, ::i32 y) { m_wparam = make_unsigned_int(x, y); }
+   wparam(::i32 x, ::i32 y) { m_wparam = make_u32(x, y); }
 
 
    /// catching/receiving subparticle

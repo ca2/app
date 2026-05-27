@@ -285,7 +285,7 @@ public:
 
    static iptr         to_iptr(const ::scoped_string & scopedstr);
    static ::i32          to_int(const ::scoped_string & scopedstr);
-   static ::u32          to_unsigned_int(const ::scoped_string & scopedstr);
+   static ::u32          to_u32(const ::scoped_string & scopedstr);
 
 
    static ::i64           to_i64(const ::scoped_string & scopedstr);

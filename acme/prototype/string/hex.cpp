@@ -63,7 +63,7 @@ namespace hex
       return num;
    }
 
-   ::u32 to_unsigned_int(const ::scoped_string & scopedstr)
+   ::u32 to_u32(const ::scoped_string & scopedstr)
    {
       ::u32 r = 0;
       for (::i32 i = 0; i < scopedstr.length(); i++)
@@ -144,7 +144,7 @@ namespace hex
 
       }
 
-      return ::hex::to_unsigned_int(strUni);
+      return ::hex::to_u32(strUni);
 
    }
 

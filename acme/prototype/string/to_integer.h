@@ -4,9 +4,9 @@
 //CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer sz, const_char_pointer *pszEnd);
 //CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer sz, ::i32 iOnNull = 0);
 
-//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd, ::i32 iBase);
-//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd);
-//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz);
+//CLASS_DECL_ACME ::u32 ansi_to_u32(const_char_pointer sz, const_char_pointer *pszEnd, ::i32 iBase);
+//CLASS_DECL_ACME ::u32 ansi_to_u32(const_char_pointer sz, const_char_pointer *pszEnd);
+//CLASS_DECL_ACME ::u32 ansi_to_u32(const_char_pointer sz);
 
 //CLASS_DECL_ACME ::i32 ansi_count_to_i64(const_char_pointer sz, const_char_pointer *pszEnd, ::i32 iBase, size_t iLen);
 //CLASS_DECL_ACME ::i32 ansi_count_to_i64(const_char_pointer sz, const_char_pointer *pszEnd, size_t iLen);
@@ -14,7 +14,7 @@
 
 
 //#define atoint_dup(...) ansi_to_int(__VA_ARGS__)
-//#define atouint_dup(...) ansi_to_unsigned_int(__VA_ARGS__)
+//#define atouint_dup(...) ansi_to_u32(__VA_ARGS__)
 //#define ntouint_dup(...) ntoui_dup(__VA_ARGS__)
 
 
@@ -60,11 +60,11 @@
 
 #ifdef __cplusplus
 
-inline void ansi_to(::u32 & u, const_char_pointer psz) { u = ansi_to_unsigned_int(scopedstr); }
+inline void ansi_to(::u32 & u, const_char_pointer psz) { u = ansi_to_u32(scopedstr); }
 inline void ansi_to(::u64 & u, const_char_pointer psz) { u = ansi_to_u64(scopedstr); }
 //inline void ansi_to(uptr & u, const_char_pointer psz) { u = ansi_to_uptr(scopedstr); }
 
-inline void wide_to(::u32 & u, const ::wide_character * psz) { u = wide_to_unsigned_int(scopedstr); }
+inline void wide_to(::u32 & u, const ::wide_character * psz) { u = wide_to_u32(scopedstr); }
 inline void wide_to(::u64 & u, const ::wide_character * psz) { u = wide_to_u64(scopedstr); }
 //inline void wide_to(uptr & u, const ::wide_character * psz) { u = wide_to_uptr(scopedstr); }
 

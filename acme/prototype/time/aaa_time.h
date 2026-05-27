@@ -114,7 +114,7 @@ public:
    constexpr integral_millisecond integral_milliseconds() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000;}
 
 
-   constexpr ::u32 ::u32() const { return constrain_unsigned_int(integral_milliseconds().m_i); }
+   constexpr ::u32 ::u32() const { return constrain_u32(integral_milliseconds().m_i); }
 
    constexpr operator ::u32() const { return this->::u32(); }
 

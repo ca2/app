@@ -31,7 +31,7 @@ namespace nanoui
    bool CheckBox::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
-      Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
 
       if (!m_bEnabled)
       {
@@ -40,7 +40,7 @@ namespace nanoui
 
       }
 
-      if (emouse == ::user::e_mouse_left_button) 
+      if (ebuttonstate == ::user::e_button_state_left) 
       {
 
          auto pscreen = screen();

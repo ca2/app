@@ -277,7 +277,7 @@ namespace linux
 
    bool os_context::get_pid_by_path(const_char_pointer pszName, ::u32 & dwPid)
    {
-      unsigned_int_array dwa;
+      u32_array dwa;
       get_all_processes(dwa);
       for(::i32 i = 0; i < dwa.get_count(); i++)
       {
@@ -294,7 +294,7 @@ namespace linux
    bool os_context::get_pid_by_title(const_char_pointer pszName, ::u32 & dwPid)
    {
 
-      unsigned_int_array dwa;
+      u32_array dwa;
 
       get_all_processes(dwa);
 
@@ -324,7 +324,7 @@ namespace linux
 
    }
 
-   void os_context::get_all_processes(unsigned_int_array & dwa )
+   void os_context::get_all_processes(u32_array & dwa )
    {
 
       throw ::not_implemented();
@@ -1089,7 +1089,7 @@ namespace linux
    }
 
 
-   void os_context::list_process(::file::path_array & patha, unsigned_int_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
    {
 
       informationf("linux::os_context::list_process");

@@ -957,7 +957,7 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    //payload & assign_short           (::i16             sh)   { return __assign_primitive( m_i16 , e_type_i16   , i ); }
    //payload & assign_unsigned_short  (::u16   ush)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
    //payload & assign_int             (::i32                i)   { return __assign_primitive(  m_i32 , e_type_i32   , i ); }
-   //payload & assign_unsigned_int    (::u32       u)   { return __assign_primitive( m_u32 , e_type_u32   , u ); }
+   //payload & assign_u32    (::u32       u)   { return __assign_primitive( m_u32 , e_type_u32   , u ); }
    //payload & assign_i64    (::i64      ll)   { return __assign_primitive( m_i64 , e_type_i64   , i ); }
    //payload & assign_u64    (::u64      ull)   { return __assign_primitive( m_u64 , e_type_u64   , u ); }
    //payload & assign_f32             (::f32              f)   { return __assign_primitive(  m_f32 , e_type_f32   , f ); }
@@ -1092,7 +1092,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < same_as < ::i16 > I16 > payload & operator=(I16 i) { return assign_short(i); }
    //template < same_as < ::u16 > U16 > payload & operator=(U16 u) { return assign_unsigned_short(u); }
    //template < same_as < ::i32 > I32 > payload & operator=(I32 i) { return assign_int(i); }
-   //template < same_as < ::u32 > U32 > payload & operator=(U32 u) { return assign_unsigned_int(u); }
+   //template < same_as < ::u32 > U32 > payload & operator=(U32 u) { return assign_u32(u); }
    //template < same_as < ::i64 > I64 > payload & operator=(I64 i) { return assign_i64(i); }
    //template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
    //template < same_as < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }

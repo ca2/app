@@ -723,7 +723,7 @@ inline ::i32 maximum_digits(::i32 iBase)
    else if constexpr (sizeof(UNSIGNED) == 4)
    {
 
-      return type_maximum_digits(e_integer_type_unsigned_int, iBase);
+      return type_maximum_digits(e_integer_type_u32, iBase);
 
    }
    else if constexpr (sizeof(UNSIGNED) == 8)

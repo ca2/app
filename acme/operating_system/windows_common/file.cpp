@@ -455,7 +455,7 @@ namespace windows
    void file::lock_file(::i64 iOffset, ::i64 iCount)
    {
 
-      if (!::LockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
+      if (!::LockFile((HANDLE)m_u, lower_u32(iOffset), upper_u32(iOffset), lower_u32(iCount), upper_u32(iCount)))
       {
 
          throw_last_error_exception();
@@ -468,7 +468,7 @@ namespace windows
    void file::unlock_file(::i64 iOffset, ::i64 iCount)
    {
 
-      if (!::UnlockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
+      if (!::UnlockFile((HANDLE)m_u, lower_u32(iOffset), upper_u32(iOffset), lower_u32(iCount), upper_u32(iCount)))
       {
 
          throw_last_error_exception();

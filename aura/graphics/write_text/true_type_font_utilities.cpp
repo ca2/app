@@ -103,8 +103,8 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
       if (csTemp.case_insensitive_order("name") == 0)
       {
          bFound = true;
-         tblDir.uLength = swap_unsigned_int(tblDir.uLength);
-         tblDir.uOffset = swap_unsigned_int(tblDir.uOffset);
+         tblDir.uLength = swap_u32(tblDir.uLength);
+         tblDir.uOffset = swap_u32(tblDir.uOffset);
          break;
       }
    }

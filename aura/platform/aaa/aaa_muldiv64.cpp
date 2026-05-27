@@ -153,7 +153,7 @@
 // typedef struct  {
 //     ::u32 l : 32;
 //     ::u32 h : 32;
-// } ::u64_unsigned_int;
+// } ::u64_u32;
 
 // /**
 //  * determine the msb of a value in O(log log n)

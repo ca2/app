@@ -30,7 +30,7 @@
 
       virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid);
       virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid);
-      virtual void get_all_processes(unsigned_int_array & dwa);
+      virtual void get_all_processes(u32_array & dwa);
       virtual ::file::path get_process_path(::u32 dwPid);
 
       virtual ::i32 get_pid();
@@ -129,7 +129,7 @@
       virtual bool browse_file_or_folder(::user::interaction* pinteraction, ::property_set & set);
 
 
-      virtual void list_process(::file::path_array & patha, unsigned_int_array & uaPid);
+      virtual void list_process(::file::path_array & patha, u32_array & uaPid);
 
 
       ::file::path_array list_process_path();

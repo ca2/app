@@ -62,7 +62,7 @@ CLASS_DECL_ACME ::u64                    wd32_to_u64(const ::wd32_character * ps
 CLASS_DECL_ACME ::i64                    wd32_count_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase, character_count srclen);
 
 CLASS_DECL_ACME ::i32                    wd32_to_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd = nullptr, ::i32 iBase = 10);
-CLASS_DECL_ACME ::u32                    wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::u32                    wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd = nullptr, ::i32 iBase = 10);
 CLASS_DECL_ACME ::i32                    wd32_count_to_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase, character_count srclen);
 
 
@@ -87,7 +87,7 @@ CLASS_DECL_ACME void          wd32_parse_command_line(::wd32_character * cmdstar
 CLASS_DECL_ACME ::i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase);
 CLASS_DECL_ACME ::u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase);
 CLASS_DECL_ACME ::i32 wd32_to_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase);
-CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase);
 
 
 

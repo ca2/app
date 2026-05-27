@@ -202,16 +202,16 @@ extern CLASS_DECL_APEX ::i32 g_bApex;
 //
 //#define lower_unsigned_short(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
 //#define upper_unsigned_short(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-//#define lower_unsigned_int(u)                                     ((::u32)(u))
-//#define upper_unsigned_int(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+//#define lower_u32(u)                                     ((::u32)(u))
+//#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 //
 //#define u32_x(u)                                     ((::i16)lower_unsigned_short(u))
 //#define u32_y(u)                                     ((::i16)upper_unsigned_short(u))
 //
 //#define __u32xy(u)                                    u32_x(u), u32_y(u)
 //
-//#define u64_x(u)                                     ((::i32)lower_unsigned_int(u))
-//#define u64_y(u)                                     ((::i32)upper_unsigned_int(u))
+//#define u64_x(u)                                     ((::i32)lower_u32(u))
+//#define u64_y(u)                                     ((::i32)upper_u32(u))
 //
 //#define __u64xy(u)                                    u64_x(u), u64_y(u)
 //
@@ -225,8 +225,8 @@ extern CLASS_DECL_APEX ::i32 g_bApex;
 //#define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 //#endif
 //
-//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_unsigned_int(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_unsigned_int(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_u32(lparam))
 //
 //
 //

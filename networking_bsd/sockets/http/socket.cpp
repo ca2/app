@@ -125,7 +125,7 @@ namespace sockets
 
                      string size_str = pa.getword();
 
-                     m_chunk_size = ::hex::to_unsigned_int(size_str);
+                     m_chunk_size = ::hex::to_u32(size_str);
 
                      if (!m_chunk_size)
                      {

@@ -920,7 +920,7 @@ string property_object::get_string(const ::atom & atom, const ::scoped_string & 
 }
 
 
-::u32 property_object::get_unsigned_int(const ::atom & atom, ::u32 uDefault) const
+::u32 property_object::get_u32(const ::atom & atom, ::u32 uDefault) const
 {
 
    if (!m_ppropertyset)
@@ -930,7 +930,7 @@ string property_object::get_string(const ::atom & atom, const ::scoped_string & 
 
    }
 
-   return m_ppropertyset->get_unsigned_int(atom, uDefault);
+   return m_ppropertyset->get_u32(atom, uDefault);
 
 }
 

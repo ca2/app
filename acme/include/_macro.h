@@ -129,22 +129,22 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 // #define lower_unsigned_short(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
 // #define upper_unsigned_short(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-// #define lower_unsigned_int(u)                                     ((::u32)(u))
-// #define upper_unsigned_int(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+// #define lower_u32(u)                                     ((::u32)(u))
+// #define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 
 // #define u32_x(u)                                     ((::i16)lower_unsigned_short(u))
 // #define u32_y(u)                                     ((::i16)upper_unsigned_short(u))
 
 // #define __u32xy(u)                                    u32_x(u), u32_y(u)
 
-// #define u64_x(u)                                     ((::i32)lower_unsigned_int(u))
-// #define u64_y(u)                                     ((::i32)upper_unsigned_int(u))
+// #define u64_x(u)                                     ((::i32)lower_u32(u))
+// #define u64_y(u)                                     ((::i32)upper_u32(u))
 
 // #define __u64xy(u)                                    u64_x(u), u64_y(u)
 
 
-//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_unsigned_int(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_unsigned_int(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_u32(lparam))
 
 
 
@@ -153,7 +153,7 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 // #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
-// #define make_unsigned_int(l, h)         ((::uptr)(::u32)make_int(l, h))
+// #define make_u32(l, h)         ((::uptr)(::u32)make_int(l, h))
 
 //#define lower_byte(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
 
@@ -376,11 +376,11 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 // #endif
 
 
-// #ifndef lower_unsigned_int
-// #define lower_unsigned_int(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
+// #ifndef lower_u32
+// #define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
 // #endif
-// #ifndef upper_unsigned_int
-// #define upper_unsigned_int(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
+// #ifndef upper_u32
+// #define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
 // #endif
 
 

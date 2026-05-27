@@ -64,7 +64,7 @@ struct CLASS_DECL_ACME image32_t
 
    constexpr bool operator == (const image32_t & image) const { return m_u32 == image.m_u32; }
 
-   constexpr rgba_t rgb(color_indexes indexes) const { return { make_unsigned_int(u8_red(indexes), u8_green(indexes), u8_blue(indexes), 0) }; }
+   constexpr rgba_t rgb(color_indexes indexes) const { return { make_u32(u8_red(indexes), u8_green(indexes), u8_blue(indexes), 0) }; }
 
 
 
@@ -138,7 +138,7 @@ struct CLASS_DECL_ACME image32_t
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//constexpr ::u32 argb_image32_unsigned_int(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
+//constexpr ::u32 argb_image32_u32(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
 //{
 //
 //   return u8Blue
@@ -158,7 +158,7 @@ struct CLASS_DECL_ACME image32_t
 //#else
 //
 //
-//constexpr ::u32 argb_image32_unsigned_int(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
+//constexpr ::u32 argb_image32_u32(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
 //{
 //
 //   return u8Red

@@ -2510,7 +2510,7 @@ bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 }
 
 
-::u32 property_set_base::get_unsigned_int(const atom & atom, ::u32 uDefault) const
+::u32 property_set_base::get_u32(const atom & atom, ::u32 uDefault) const
 {
 
    auto pproperty = find(atom);

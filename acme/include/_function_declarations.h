@@ -21,7 +21,7 @@ CLASS_DECL_ACME ::u64 ansi_to_u64(const_char_pointer psz, const_char_pointer *pp
 CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
-CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u32 ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
 CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
@@ -277,7 +277,7 @@ inline bool exists(const ::file::enum_type& etype);
 CLASS_DECL_ACME ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 CLASS_DECL_ACME ::u64 ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
-CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u32 ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
 CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::ansi_character * & end);

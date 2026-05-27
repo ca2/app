@@ -47,7 +47,7 @@ namespace mathematics
 
 /* generates a random number on [0,0xffffffff]-interval */
 
-   ::u32 random_number_generator::get_unsigned_int()
+   ::u32 random_number_generator::get_u32()
    {
       return m_distributionU32(m_generator);
    }

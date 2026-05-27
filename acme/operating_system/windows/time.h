@@ -23,8 +23,8 @@ inline ::file_time as_file_time(const FILETIME &filetime)
 inline FILETIME as_FILETIME(const ::file_time &filetime)
 {
 
-   return {.dwLowDateTime = ::lower_unsigned_int(filetime.m_uFileTime),
-           .dwHighDateTime = ::upper_unsigned_int(filetime.m_uFileTime)};
+   return {.dwLowDateTime = ::lower_u32(filetime.m_uFileTime),
+           .dwHighDateTime = ::upper_u32(filetime.m_uFileTime)};
 }
 
 

@@ -595,7 +595,7 @@ pdirectorysystem->create(path.folder());
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
+      ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
       ////       WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
@@ -604,7 +604,7 @@ pdirectorysystem->create(path.folder());
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
+      ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
       ////   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 

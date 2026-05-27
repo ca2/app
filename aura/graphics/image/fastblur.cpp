@@ -85,22 +85,22 @@ inline f3232x4_t loadRGBA8AsFloat(::u32* source)
 
    ::u32x2_t temporary1 = {0, 0};
 
-   temporary1 = vset_lane_unsigned_int(*source,temporary1,0);
+   temporary1 = vset_lane_u32(*source,temporary1,0);
 
-   ::u3216x4_t temporary2 = vget_low_unsigned_short(vmovl_unsigned_char(vreinterpret_byte_unsigned_int(temporary1)));
+   ::u3216x4_t temporary2 = vget_low_unsigned_short(vmovl_unsigned_char(vreinterpret_byte_u32(temporary1)));
 
-   return vcvtq_f32_unsigned_int(vmovl_unsigned_short(temporary2));
+   return vcvtq_f32_u32(vmovl_unsigned_short(temporary2));
 
 }
 
 inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
 {
 
-   ::u3216x4_t temporary1 = vmovn_unsigned_int(vcvtq_u32_f32(data));
+   ::u3216x4_t temporary1 = vmovn_u32(vcvtq_u32_f32(data));
 
    ::u328x8_t temporary2 = vmovn_unsigned_short(vcombine_unsigned_short(temporary1,temporary1));
 
-   *destination = vget_lane_unsigned_int(vreinterpret_u32_unsigned_char(temporary2),0);
+   *destination = vget_lane_u32(vreinterpret_u32_unsigned_char(temporary2),0);
 
 }
 

@@ -162,7 +162,7 @@ namespace nanoui
       m_pointCurrentLocalCursor = p;
 
       if (down
-         && emouse == ::user::e_mouse_left_button
+         && ebuttonstate == ::user::e_button_state_left
          && !m_children.empty() 
          && m_fTotalHeight > m_size.cy 
          && p.x > m_pos.x + m_size.cx - 13 
@@ -204,7 +204,7 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      return Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeyModifiers);
 
    }
 

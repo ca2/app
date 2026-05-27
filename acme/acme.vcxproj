@@ -2607,6 +2607,7 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
+    <ClInclude Include="constant\key_state.h" />
     <ClInclude Include="constant\message.h" />
     <ClInclude Include="constant\read_file.h" />
     <ClInclude Include="constant\user_message.h" />

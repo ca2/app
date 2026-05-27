@@ -8,6 +8,7 @@
 
 
 #include "acme/constant/button_state.h"
+#include "acme/constant/key_state.h"
 #include "acme/constant/user.h"
 #include "acme/prototype/prototype/enumeration.h"
 
@@ -20,6 +21,7 @@ namespace user
 
    //DECLARE_ENUMERATION(e_mouse, enum_mouse);
    DECLARE_ENUMERATION(e_button_state, enum_button_state);
+   DECLARE_ENUMERATION(e_key_state, enum_key_state);
    DECLARE_ENUMERATION(e_key, enum_key);
    DECLARE_ENUMERATION(e_zorder, enum_zorder);
 

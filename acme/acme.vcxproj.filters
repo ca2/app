@@ -4431,6 +4431,9 @@
     <ClInclude Include="prototype\mathematics\integer_biunique.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
+    <ClInclude Include="constant\key_state.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

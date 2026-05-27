@@ -1216,7 +1216,7 @@ namespace nanoui
 
                   auto pointClient = m_mouse_pos - m_pwidgetDrag->absolute_position();
 
-                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, emouse, false, bDoubleClick, ekeyModifiers);
+                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, ebuttonstate, false, bDoubleClick, ekeyModifiers);
 
                }
 
@@ -1230,7 +1230,7 @@ namespace nanoui
 
       }
 
-      bool bRet = Widget::mouse_button_event(m_mouse_pos, emouse, down, bDoubleClick, m_modifiers);
+      bool bRet = Widget::mouse_button_event(m_mouse_pos, ebuttonstate, down, bDoubleClick, m_modifiers);
 
       bHandled |= bRet;
       //   action == GLFW_PRESS, m_modifiers);
@@ -1726,7 +1726,7 @@ namespace nanoui
 
       p += m_pos;
 
-      auto ebutton = user_key_to_user_mouse(ekeyButton);
+      auto ebutton = user_key_to_e_button_state(ekeyButton);
 
       bool bRet = mouse_button_event(p, ebutton, 1, bDoubleClick, ekeyModifiers);
 

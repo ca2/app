@@ -31,9 +31,9 @@ public:
 
    iterator add(const ::scoped_string & scopedstr);
 
-   iterator add(const unichar * pwsz);
+   iterator add(const wide_character * pwsz);
 
-   iterator add(char ch);
+   iterator add(::i8 ch);
 
    iterator add(unichar wch);
 
@@ -88,7 +88,7 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 template < typename ITERABLE >
-typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const unichar * pwsz)
+typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const wide_character * pwsz)
 {
    ::collection::index nIndex = this->m_nSize;
    set_at_grow(nIndex, (Type) unicode_to_utf8(pwsz));
@@ -98,13 +98,13 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 template < typename ITERABLE >
-typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(char ch)
+typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(::i8 ch)
 {
    if (ch == '\0')
       return add("");
    else
    {
-      char str[16];
+      ::i8 str[16];
       str[0] = ch;
       str[1] = '\0';
       return add(str);
@@ -200,14 +200,14 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
    }
    else if (payload.get_type() == ::type_vara)
    {
-      for (int i = 0; i < payload.payloada().get_count(); i++)
+      for (::i32 i = 0; i < payload.payloada().get_count(); i++)
       {
          add((Type) payload.payloada()[i].get_string());
       }
    }
    else if (payload.get_type() == ::e_type_int_array)
    {
-      for (int i = 0; i < payload.inta().get_count(); i++)
+      for (::i32 i = 0; i < payload.inta().get_count(); i++)
       {
          add((Type) as_string(payload.inta()[i]));
       }

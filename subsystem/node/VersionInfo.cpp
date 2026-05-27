@@ -48,8 +48,8 @@ namespace subsystem
    ////     throw SystemException();
    ////   }
    ////
-   ////   ::array_base<char> charBuff(verInfoSize);
-   ////   char *verInfo = charBuff.data();
+   ////   ::array_base<::i8> charBuff(verInfoSize);
+   ////   char_pointer verInfo = charBuff.data();
    ////
    ////   if (GetFileVersionInfo(pathToFile.windows_path(), handle, verInfoSize, verInfo) == 0) {
    ////     throw SystemException();
@@ -63,10 +63,10 @@ namespace subsystem
    ////     throw SystemException();
    ////   }
    ////
-   ////   unsigned short a = ((unsigned short *)&fixedInfo->dwProductVersionMS)[1];
-   ////   unsigned short b = ((unsigned short *)&fixedInfo->dwProductVersionMS)[0];
-   ////   unsigned short c = ((unsigned short *)&fixedInfo->dwProductVersionLS)[1];
-   ////   unsigned short d = ((unsigned short *)&fixedInfo->dwProductVersionLS)[0];
+   ////   ::u16 a = ((::u16 *)&fixedInfo->dwProductVersionMS)[1];
+   ////   ::u16 b = ((::u16 *)&fixedInfo->dwProductVersionMS)[0];
+   ////   ::u16 c = ((::u16 *)&fixedInfo->dwProductVersionLS)[1];
+   ////   ::u16 d = ((::u16 *)&fixedInfo->dwProductVersionLS)[0];
    ////
    ////   // Convert special numbers used for beta versions (third number > 100).
    ////   // 2.0.105.0 should be considered a beta version and convert to 2.1beta5,
@@ -82,13 +82,13 @@ namespace subsystem
    ////   }
    ////
    ////   if (c == 0 && d == 0) {
-   ////     m_productVersionString.formatf("{}.{}", (int)a, (int)b);
+   ////     m_productVersionString.formatf("{}.{}", (::i32)a, (::i32)b);
    ////   } else if (d == 0) {
-   ////     m_productVersionString.formatf("{}.{}{}{}", (int)a, (int)b,
-   ////                                   secondDelimiter, (int)c);
+   ////     m_productVersionString.formatf("{}.{}{}{}", (::i32)a, (::i32)b,
+   ////                                   secondDelimiter, (::i32)c);
    ////   } else {
-   ////     m_productVersionString.formatf("{}.{}{}{}.{}", (int)a, (int)b,
-   ////                                   secondDelimiter, (int)c, (int)d);
+   ////     m_productVersionString.formatf("{}.{}{}{}.{}", (::i32)a, (::i32)b,
+   ////                                   secondDelimiter, (::i32)c, (::i32)d);
    ////   }
    //// }
 

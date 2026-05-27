@@ -40,7 +40,7 @@ namespace user
 
 
          virtual void on_after_change(const ::atom & atom) override;
-         virtual double get_rotate() override;
+         virtual ::f64 get_rotate() override;
 
 
          void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
@@ -61,7 +61,7 @@ namespace user
 
          virtual bool get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement) override;
 
-         virtual ::double_size get_size() override;
+         virtual ::f64_size get_size() override;
 
          // void assert_ok() const override;
          // void dump(dump_context & dumpcontext) const override;
@@ -98,7 +98,7 @@ namespace user
 
          void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-         ::double_point get_point_transform() override;
+         ::f64_point get_point_transform() override;
 
          void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -36,7 +36,7 @@ namespace gpu_opengl
 
       void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block) override;
       void initialize_with_image_data(::gpu::context *pcontext, const ::i32_rectangle &rectangleTarget,
-                                      int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
+                                      ::i32 numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
       // void initialize_image_texture(::gpu::renderer* prenderer,
       //    const ::i32_rectangle & rectangleTarget, bool bWithDepth,
       //    const ::pointer_array < ::image::image > *pimagea, enum_type etype) override;
@@ -80,14 +80,14 @@ namespace gpu_opengl
 
             virtual void KtxLoadCubemapFrom_ktxTexture(const ::scoped_string &name, void *p_ktxTexture, bool b32);
 
-      //void set_cube_face(int iFace, ::gpu::shader * pgpushader) override;
+      //void set_cube_face(::i32 iFace, ::gpu::shader * pgpushader) override;
 
       void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer) override;
 
-      void set_current_mip(int level) override;
+      void set_current_mip(::i32 level) override;
 
 
-      virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
+      virtual void set_cube_face(::i32 iFace, ::gpu::shader *pgpushader);
 
 
       void defer_fence() override;

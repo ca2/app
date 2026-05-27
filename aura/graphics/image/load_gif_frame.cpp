@@ -22,14 +22,14 @@
 namespace image
 {
 
-   bool draw2d_gif_detect_8bit_borders(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & cra, int transparentIndex);
+   bool draw2d_gif_detect_8bit_borders(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & cra, ::i32 transparentIndex);
 
-   bool draw2d_gif_antialias_8bit(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & cra, int transparentIndex);
+   bool draw2d_gif_antialias_8bit(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & cra, ::i32 transparentIndex);
 
-   bool draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & cra, int transparentIndex);
+   bool draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & cra, ::i32 transparentIndex);
 
 
-   //CLASS_DECL_AURA bool draw2d_gif_load_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, colorref_array & cra, int transparentIndex)
+   //CLASS_DECL_AURA bool draw2d_gif_load_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, colorref_array & cra, ::i32 transparentIndex)
    //{
    //
    //   if (::is_null(pimageCanvas))
@@ -75,7 +75,7 @@ namespace image
    //
    //   //      ::color::color crBack = pframea->m_colorBack;
    //
-   //   //      unsigned char bAlpha = color32_byte_opacity(crBack);
+   //   //      ::u8 bAlpha = color32_byte_opacity(crBack);
    //
    //   //      if (bAlpha == 0)
    //   //      {
@@ -125,9 +125,9 @@ namespace image
    //
    //   //      i32_size s = pframe->m_pimage->get_size();
    //
-   //   //      int cx = s.cx;
+   //   //      ::i32 cx = s.cx;
    //
-   //   //      int cy = s.cy;
+   //   //      ::i32 cy = s.cy;
    //
    //   //      if (pframe->m_rectangle.size() == pframea.m_size)
    //   //      {
@@ -241,7 +241,7 @@ namespace image
    //
    //         ::color::color crBack = pframea->m_colorBack;
    //
-   //         unsigned char bAlpha = color32_byte_opacity(crBack);
+   //         ::u8 bAlpha = color32_byte_opacity(crBack);
    //
    //         if (bAlpha == 0)
    //         {
@@ -290,12 +290,12 @@ namespace image
    //}
    //
 
-   bool imaging::draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & colora, int transparentIndex)
+   bool imaging::draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & colora, ::i32 transparentIndex)
    {
 
       auto pimage32 = pframe->m_pimage->image32();
 
-      int w = pframe->m_pimage->scan_size() / sizeof(::color32_t);
+      ::i32 w = pframe->m_pimage->scan_size() / sizeof(::color32_t);
 
       for (::collection::index y = 0; y < pframe->m_rectangle.height(); y++)
       {
@@ -325,25 +325,25 @@ namespace image
 
             auto color = colora[iIndex];
 
-            unsigned char bA = color.byte_opacity();
+            ::u8 bA = color.u8_opacity();
 
             //#if defined(__APPLE__) || (defined(__ANDROID__) && defined(__arm__))
             //#if defined(__APPLE__) || defined(__ANDROID__)
             // __ANDROID__ -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
             //#if defined(__APPLE__) || defined(__ANDROID__)
             //
-            //         //unsigned char bR = color32_byte_red(color32);
-            //         //unsigned char bG = color32_byte_green(color32);
-            //         //unsigned char bB = color32_byte_blue(color32);
+            //         //::u8 bR = color32_byte_red(color32);
+            //         //::u8 bG = color32_byte_green(color32);
+            //         //::u8 bB = color32_byte_blue(color32);
             //
             //         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
             //
             //         pframe->m_pimage->m_pcolorref[y*w + x] = ((color32 << 16) & 0xff0000) | ((color32 >> 16) & 0xff) | (color32 & 0xff00ff00);
             //
             //#else
-            unsigned char bR = color.byte_red();
-            unsigned char bG = color.byte_green();
-            unsigned char bB = color.byte_blue();
+            ::u8 bR = color.u8_red();
+            ::u8 bG = color.u8_green();
+            ::u8 bB = color.u8_blue();
             if (bA != 255)
             {
 

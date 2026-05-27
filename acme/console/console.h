@@ -30,12 +30,12 @@
 //
 //       virtual void start_input();
 //
-//       virtual int getch(void);
+//       virtual ::i32 getch(void);
 //
-//       virtual int get_thoughtful_character();
+//       virtual ::i32 get_thoughtful_character();
 //
-//       virtual enum_response yes_no(const char * pszPrompt);
-//       virtual enum_response yes_no_default_yes(const char * pszPrompt);
+//       virtual enum_response yes_no(const_char_pointer pszPrompt);
+//       virtual enum_response yes_no_default_yes(const_char_pointer pszPrompt);
 //
 //
 //    };

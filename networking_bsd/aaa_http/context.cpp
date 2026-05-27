@@ -381,7 +381,7 @@ namespace http
 
       string str;
 
-      //      int iAttempt = 0;
+      //      ::i32 iAttempt = 0;
 
       string strUrl(scopedstrUrl);
 
@@ -416,7 +416,7 @@ namespace http
 
       string str;
 
-      //      int iAttempt = 0;
+      //      ::i32 iAttempt = 0;
       //
       //      ::property_set set;
       //
@@ -497,7 +497,7 @@ namespace http
    }
 
 
-   int context::auto_config_proxy_count()
+   ::i32 context::auto_config_proxy_count()
    {
 
       return 4;
@@ -505,7 +505,7 @@ namespace http
    }
 
 
-   void context::auto_config_proxy(int i)
+   void context::auto_config_proxy(::i32 i)
    {
 
       return;
@@ -759,7 +759,7 @@ namespace http
 
       strHost = purl->get_server(scopedstrUrl);
 
-      int port = purl->get_port(scopedstrUrl);
+      ::i32 port = purl->get_port(scopedstrUrl);
 
       ::networking::address ad(strHost, port);
 
@@ -897,10 +897,10 @@ namespace http
 
       //string strHost = purl->get_server(scopedstrUrl);
 
-      //int iHostPort = purl->get_port(scopedstrUrl);
+      //::i32 iHostPort = purl->get_port(scopedstrUrl);
 
       //::networking::address ipHost(strHost, iHostPort);
-      //for (int iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
+      //for (::i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
       //{
       //   ::pointer<::xml::node>pnode = doc.root()->child_at(iNode);
       //   if (pnode->get_name() == "proxy")
@@ -1081,7 +1081,7 @@ namespace http
 
       ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
-      int iPort;
+      ::i32 iPort;
 
       if (strProtocol == "https")
       {
@@ -1187,9 +1187,9 @@ namespace http
 
       bool bSeemsOk;
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
-      int iTryCount;
+      ::i32 iTryCount;
 
       if (set.has_property("try"))
       {
@@ -1384,7 +1384,7 @@ namespace http
 
          set["http_body_size_downloaded"] = &psession->m_body_size_downloaded;
 
-         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
+         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::f64_scalar_source::listener >();
 
          psession->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 
@@ -1440,7 +1440,7 @@ namespace http
 
          psession->m_psockethandler->restart_socket(psession->GetSocket());
 
-         int iIteration = 0;
+         ::i32 iIteration = 0;
 
          //::apex::live_signal keeplive;
 
@@ -1487,11 +1487,11 @@ namespace http
 
             }
 
-            double dRateDownloaded = 0.0;
+            ::f64 dRateDownloaded = 0.0;
 
-            long long iContentLength = set["http_content_length"].long_long;
+            ::i64 iContentLength = set["http_content_length"].long_long;
 
-            long long iBodySizeDownloaded = set["http_body_size_downloaded"].long_long;
+            ::i64 iBodySizeDownloaded = set["http_body_size_downloaded"].long_long;
 
             if (iContentLength > 0)
             {
@@ -1499,7 +1499,7 @@ namespace http
                if (iBodySizeDownloaded > 0.0)
                {
 
-                  dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
+                  dRateDownloaded = (::f64)iBodySizeDownloaded / (::f64)iContentLength;
 
                }
 
@@ -1537,7 +1537,7 @@ namespace http
 
          set[__id(cookie)] = strCookie;
 
-         int iStatusCode;
+         ::i32 iStatusCode;
 
          psession->outattr("http_status_code").as(iStatusCode);
 
@@ -1658,7 +1658,7 @@ namespace http
          if (set.has_property("get_response"))
          {
 
-            set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
+            set["get_response"] = string((const_char_pointer )psession->GetDataPtr(), psession->GetContentLength());
 
          }
 
@@ -1697,7 +1697,7 @@ namespace http
       if (bOk)
       {
 
-         const ::scoped_string & scopedstrData = (const char *)session.m_psocket->GetDataPtr();
+         const ::scoped_string & scopedstrData = (const_char_pointer )session.m_psocket->GetDataPtr();
 
          character_count iSize = session.m_psocket->GetContentLength();
 
@@ -1739,7 +1739,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      long long iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
+      ::i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
       //informationf("");
       //informationf("");
@@ -1747,9 +1747,9 @@ namespace http
 
       auto tickStart = ::duration::now();
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
-      int iTryCount;
+      ::i32 iTryCount;
 
       if (set.has_property("try"))
       {
@@ -1822,7 +1822,7 @@ namespace http
 
       ::pointer<::apex::application>pappAgent = papp;
 
-      int iPort;
+      ::i32 iPort;
 
       if (strProtocol == "https")
       {
@@ -1858,7 +1858,7 @@ namespace http
 
       string strSessId;
 
-      int iRetrySession = 0;
+      ::i32 iRetrySession = 0;
 
    //retry_session:
 
@@ -2094,7 +2094,7 @@ namespace http
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
-      psocket->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
+      psocket->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::f64_scalar_source::listener >();
 
       psocket->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 
@@ -2126,7 +2126,7 @@ namespace http
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
 
-            set["get_status"] = (long long)error_http;
+            set["get_status"] = (::i64)error_http;
 
             auto tick2 = ::duration::now();
 
@@ -2140,7 +2140,7 @@ namespace http
       else if (!psocket->open(bConfigProxy))
       {
 
-         set["get_status"] = (long long)error_http;
+         set["get_status"] = (::i64)error_http;
 
          information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::platform::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
 
@@ -2152,7 +2152,7 @@ namespace http
 
       psockethandler->add2(psocket);
 
-      int iIteration = 1;
+      ::i32 iIteration = 1;
 
       //::apex::live_signal keeplive;
 
@@ -2192,11 +2192,11 @@ namespace http
 
       }
 
-      long long iContentLength = -1;
+      ::i64 iContentLength = -1;
 
-      long long iBodySizeDownloaded = -1;
+      ::i64 iBodySizeDownloaded = -1;
 
-      int iEnteredLoop = 0;
+      ::i32 iEnteredLoop = 0;
 
       tick1 = ::duration::now();
 
@@ -2222,13 +2222,13 @@ namespace http
 
          iContentLength = psocket->m_content_length;
 
-         psocket->m_psockethandler->select((int)iSelectTimeoutSeconds, 0);
+         psocket->m_psockethandler->select((::i32)iSelectTimeoutSeconds, 0);
 
          set["http_content_length"] = iContentLength;
 
-         double dRateDownloaded = 0.0;
+         ::f64 dRateDownloaded = 0.0;
 
-         long long iBodySizeDownloadedNow = set["http_body_size_downloaded"].long_long;
+         ::i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].long_long;
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2259,7 +2259,7 @@ namespace http
             if (iBodySizeDownloaded > 0.0)
             {
 
-               dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
+               dRateDownloaded = (::f64)iBodySizeDownloaded / (::f64)iContentLength;
 
             }
 
@@ -2329,7 +2329,7 @@ namespace http
 
       ::e_status estatus = error_failed;
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
       psocket->outattr("http_status_code").as(iStatusCode);
 
@@ -2511,7 +2511,7 @@ namespace http
       if (set.has_property("get_response"))
       {
 
-         const ::scoped_string & scopedstrData = (const char *)psocket->GetDataPtr();
+         const ::scoped_string & scopedstrData = (const_char_pointer )psocket->GetDataPtr();
 
          character_count iSize = psocket->GetContentLength();
 
@@ -2645,7 +2645,7 @@ namespace http
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
       psocket->outattr("http_status_code").as(iStatusCode);
 
@@ -2729,7 +2729,7 @@ namespace http
 
       single_lock synchronouslock(m_pmutexDownload, true);
 
-      int iStatusCode = 0;
+      ::i32 iStatusCode = 0;
 
       try
       {
@@ -2831,7 +2831,7 @@ namespace http
 
       }
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
       psocket->outattr("http_status_code").as(iStatusCode);
 
@@ -2873,15 +2873,15 @@ namespace http
 
 #endif
 
-      const char * days[7] = { "Sunday", "Monday",
+      const_char_pointer days[7] = { "Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
       };
 
-      const char * months[12] = { "Jan", "Feb", "Mar", "Apr", "May",
+      const_char_pointer months[12] = { "Jan", "Feb", "Mar", "Apr", "May",
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
       };
 
-      char strDateTime[1024];
+      ::i8 strDateTime[1024];
 
       sprintf(strDateTime, "%s, %02d-%s-%04d %02d:%02d:%02d GMT",
          days[tp.tm_wday],

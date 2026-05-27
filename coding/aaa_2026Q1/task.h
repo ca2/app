@@ -31,7 +31,7 @@ namespace coding
 
 
 
-      int m_iExitCode;
+      ::i32 m_iExitCode;
       task(task_group * ptaskgroup,
          const ::scoped_string & scopedstrLabel,
          const ::scoped_string& scopedstrSpeechLabel,
@@ -48,7 +48,7 @@ namespace coding
 
       virtual void on_start();
 
-      virtual void on_finished(int iExitCode);
+      virtual void on_finished(::i32 iExitCode);
 
       class ::time elapsed() const { return m_timeEnd - m_timeStart; }
 

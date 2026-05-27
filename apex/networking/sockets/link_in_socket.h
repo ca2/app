@@ -30,7 +30,7 @@ namespace sockets
 
 
       using ::sockets::tcp_socket::OnRead;
-      void OnRead( char *buf, memsize n );
+      void OnRead( char_pointer buf, memsize n );
       void link_write(void * p, memsize size);
 
 

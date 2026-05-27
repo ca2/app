@@ -34,7 +34,7 @@ public:
    // DECLARE_REUSABLE(manual_reset_happening);
 
 
-   manual_reset_happening(char * sz = nullptr, bool bInitiallyOwn = false);
+   manual_reset_happening(char_pointer sz = nullptr, bool bInitiallyOwn = false);
    ~manual_reset_happening() override;
 
    //void reuse() { reset_happening(); }

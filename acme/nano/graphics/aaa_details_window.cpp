@@ -41,8 +41,8 @@ void details_window::calculate_size()
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-   //int wScreen = 1280;
-   //int hScreen = 768;
+   //::i32 wScreen = 1280;
+   //::i32 hScreen = 768;
 
    auto sizeScreen = m_pwindowbase->get_main_screen_size();
 
@@ -52,10 +52,10 @@ void details_window::calculate_size()
 
    auto hScreen = sizeScreen.cy;
 
-   int w = wScreen / 2;
-   int h = (w /8) * 5;
-   int x = (wScreen - w) / 2;
-   int y = (hScreen - h) / 2;
+   ::i32 w = wScreen / 2;
+   ::i32 h = (w /8) * 5;
+   ::i32 x = (wScreen - w) / 2;
+   ::i32 y = (hScreen - h) / 2;
 
    m_rectangle.set_dimension(x, y, w, h);
 

@@ -54,9 +54,9 @@ typedef struct _Button Button;
 
 struct _Button {
 	FloatBar* floatbar;
-	int type;
-	int x, y, h, w;
-	int active;
+	::i32 type;
+	::i32 x, y, h, w;
+	::i32 active;
 	HBITMAP bmp;
 	HBITMAP bmp_act;
 
@@ -71,8 +71,8 @@ struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
 	::i32_rectangle i32_rectangle;
-	int width;
-	int height;
+	::i32 width;
+	::i32 height;
 	wfContext* wfc;
 	Button* buttons[BTN_MAX];
 	BOOL shown;
@@ -81,7 +81,7 @@ struct _FloatBar {
 	HBITMAP background;
 };
 
-static int button_hit(Button* button)
+static ::i32 button_hit(Button* button)
 {
 	FloatBar* floatbar = button->floatbar;
 
@@ -123,7 +123,7 @@ static int button_hit(Button* button)
 	return 0;
 }
 
-static int button_paint(Button* button, HDC hdc)
+static ::i32 button_paint(Button* button, HDC hdc)
 {
 	FloatBar* floatbar = button->floatbar;
 
@@ -133,7 +133,7 @@ static int button_paint(Button* button, HDC hdc)
 	return 0;
 }
 
-static Button* floatbar_create_button(FloatBar* floatbar, int type, int resid, int resid_act, int x, int y, int h, int w)
+static Button* floatbar_create_button(FloatBar* floatbar, ::i32 type, ::i32 resid, ::i32 resid_act, ::i32 x, ::i32 y, ::i32 h, ::i32 w)
 {
 	Button *button;
 
@@ -157,9 +157,9 @@ static Button* floatbar_create_button(FloatBar* floatbar, int type, int resid, i
 }
 
 static Button* floatbar_create_lock_button(FloatBar* floatbar,
-									int unlock_resid, int unlock_resid_act,
-									int lock_resid, int lock_resid_act,
-									int x, int y, int h, int w)
+									::i32 unlock_resid, ::i32 unlock_resid_act,
+									::i32 lock_resid, ::i32 lock_resid_act,
+									::i32 x, ::i32 y, ::i32 h, ::i32 w)
 {
 	Button* button;
 
@@ -176,9 +176,9 @@ static Button* floatbar_create_lock_button(FloatBar* floatbar,
 	return button;
 }
 
-static Button* floatbar_get_button(FloatBar* floatbar, int x, int y)
+static Button* floatbar_get_button(FloatBar* floatbar, ::i32 x, ::i32 y)
 {
-	int i;
+	::i32 i;
 
 	if (y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
 		for (i = 0; i < BTN_MAX; i++)
@@ -188,9 +188,9 @@ static Button* floatbar_get_button(FloatBar* floatbar, int x, int y)
 	return nullptr;
 }
 
-static int floatbar_paint(FloatBar* floatbar, HDC hdc)
+static ::i32 floatbar_paint(FloatBar* floatbar, HDC hdc)
 {
-	int i;
+	::i32 i;
 
 	/* paint background */
 	SelectObject(floatbar->hdcmem, floatbar->background);
@@ -203,7 +203,7 @@ static int floatbar_paint(FloatBar* floatbar, HDC hdc)
 	return 0;
 }
 
-static int floatbar_animation(FloatBar* floatbar, BOOL show)
+static ::i32 floatbar_animation(FloatBar* floatbar, BOOL show)
 {
 	set_timer(floatbar->hwnd, show ? TIMER_ANIMAT_SHOW : TIMER_ANIMAT_HIDE, 10, nullptr);
 	floatbar->shown = show;
@@ -212,19 +212,19 @@ static int floatbar_animation(FloatBar* floatbar, BOOL show)
 
 LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 {
-	static int dragging = false;
-	static int lbtn_dwn = false;
-	static int btn_dwn_x = 0;
+	static ::i32 dragging = false;
+	static ::i32 lbtn_dwn = false;
+	static ::i32 btn_dwn_x = 0;
 	static FloatBar* floatbar;
 	static TRACKMOUSEEVENT tme;
 
 	PAINTSTRUCT ps;
 	Button* button;
 	HDC hdc;
-	int pos_x;
-	int pos_y;
+	::i32 pos_x;
+	::i32 pos_y;
 
-	int xScreen = GetSystemMetrics(SM_CXSCREEN);
+	::i32 xScreen = GetSystemMetrics(SM_CXSCREEN);
 
 	switch(Msg)
 	{
@@ -308,7 +308,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			}
 			else
 			{
-				int i;
+				::i32 i;
 
 				for (i = 0; i < BTN_MAX; i++)
 					floatbar->buttons[i]->active = false;
@@ -330,7 +330,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 
 		case ::user::e_message_mouse_leave:
 		{
-			int i;
+			::i32 i;
 
 			for (i = 0; i < BTN_MAX; i++)
 				floatbar->buttons[i]->active = false;
@@ -353,7 +353,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				}
 				case TIMER_ANIMAT_SHOW:
 				{
-					static int y = 0;
+					static ::i32 y = 0;
 
 					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, (y++ - floatbar->height), floatbar->width, floatbar->height, true);
 					if (y == floatbar->height)
@@ -365,7 +365,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				}
 				case TIMER_ANIMAT_HIDE:
 				{
-					static int y = 0;
+					static ::i32 y = 0;
 
 					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -y++, floatbar->width, floatbar->height, true);
 					if (y == floatbar->height)
@@ -416,14 +416,14 @@ static FloatBar* floatbar_create(wfContext* wfc)
 	return floatbar;
 }
 
-int floatbar_hide(FloatBar* floatbar)
+::i32 floatbar_hide(FloatBar* floatbar)
 {
 	kill_timer(floatbar->hwnd, TIMER_HIDE);
 	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -floatbar->height, floatbar->width, floatbar->height, true);
 	return 0;
 }
 
-int floatbar_show(FloatBar* floatbar)
+::i32 floatbar_show(FloatBar* floatbar)
 {
 	set_timer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
 	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
@@ -434,7 +434,7 @@ int floatbar_show(FloatBar* floatbar)
 //{
 //	WNDCLASSEX wnd_cls;
 //	HWND barWnd;
-//	int x = (GetSystemMetrics(SM_CXSCREEN) - BACKGROUND_W) / 2;
+//	::i32 x = (GetSystemMetrics(SM_CXSCREEN) - BACKGROUND_W) / 2;
 //
 //	wnd_cls.cbSize        = sizeof(WNDCLASSEX);
 //	wnd_cls.style         = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;

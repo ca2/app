@@ -251,7 +251,7 @@ void file_time::set_file_time(::u64 uFileTime) noexcept
 //const file_time_t file_time::Week = Day * static_cast<file_time_t>(7);
 
 
-CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds)
+CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, ::i32 iSeconds)
 {
 
    auto file_time = ::get_file_time_set(path);
@@ -320,7 +320,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //   }
 //
 //
-//   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, int nDST)
+//   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, ::i32 nDST)
 //   {
 //
 //      system_time systemtime;
@@ -443,7 +443,7 @@ void copy(payload * ppayload, const file_time * pfiletime)
 }
 
 
-bool file_time_set::modified_timeout(int iSeconds) const
+bool file_time_set::modified_timeout(::i32 iSeconds) const
 {
 
    //auto filetimeNow = now_as_file_time();

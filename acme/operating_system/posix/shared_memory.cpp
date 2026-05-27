@@ -32,7 +32,7 @@ shared_memory::~shared_memory()
 }
 
 
-bool shared_memory::Create(const char* name, size_t size)
+bool shared_memory::Create(const_char_pointer pszName, size_t size)
 {
     m_size = size;
 
@@ -55,7 +55,7 @@ bool shared_memory::Create(const char* name, size_t size)
     return m_data != MAP_FAILED;
 }
 
-bool shared_memory::Open(const char* name, size_t size)
+bool shared_memory::Open(const_char_pointer pszName, size_t size)
 {
     m_size = size;
 

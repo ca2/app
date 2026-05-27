@@ -10,8 +10,8 @@ namespace earth
    public:
 
 
-      int m_iMonth;
-      int m_iYear;
+      ::i32 m_iMonth;
+      ::i32 m_iYear;
       bool m_bConstraintMonth;
 
 

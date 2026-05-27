@@ -71,7 +71,7 @@ namespace user
    }
 
 
-   void plus_minus::set_value(int iValue, const ::action_context & context)
+   void plus_minus::set_value(::i32 iValue, const ::action_context & context)
    {
 
       m_i32 = iValue;
@@ -92,7 +92,7 @@ namespace user
    void plus_minus::on_update()
    {
 
-      int i = m_i32;
+      ::i32 i = m_i32;
 
       __sort(m_iMin, m_iMax);
 
@@ -199,11 +199,11 @@ namespace user
    void plus_minus::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      int wPadding = 10;
+      ::i32 wPadding = 10;
 
       auto rectangleX = this->rectangle();
 
-      int iM = rectangleX.center().x;
+      ::i32 iM = rectangleX.center().x;
 
       ::i32_rectangle rectangleL(rectangleX);
 
@@ -237,7 +237,7 @@ namespace user
          if (ptopic->user_interaction() == m_pbuttonMinus || ptopic->user_interaction() == m_pbuttonPlus)
          {
 
-            int i = m_i32;
+            ::i32 i = m_i32;
 
             if (m_iStep <= 0)
             {

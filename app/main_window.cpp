@@ -112,19 +112,19 @@ namespace app_app
 
       }
 
-      auto dMinimumDimension = (double)rectangleX.minimum_signed_absolute_dimension();
+      auto dMinimumDimension = (::f64)rectangleX.minimum_signed_absolute_dimension();
 
-      double dBase = dMinimumDimension / 17.0;
+      ::f64 dBase = dMinimumDimension / 17.0;
 
-      double x = dBase * 3;
+      ::f64 x = dBase * 3;
 
-      double y = dBase * 3;
+      ::f64 y = dBase * 3;
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb(127, 255, 110, 150));
 
       if (m_dDrawOnlyMainRectangles)
       {
@@ -133,7 +133,7 @@ namespace app_app
 
       }
 
-      rectangleX.deflate((int)dBase);
+      rectangleX.deflate((::i32)dBase);
 
       ::color::color colorInset;
 
@@ -170,7 +170,7 @@ namespace app_app
 
             bool bHover = ::is_element(m_pitemHover, ::e_element_close_button);
 
-            double dSourcePeriod;
+            ::f64 dSourcePeriod;
 
             if (bHover)
             {
@@ -185,19 +185,19 @@ namespace app_app
 
             }
 
-            double time = m_timeStart.elapsed().floating_second();
+            ::f64 time = m_timeStart.elapsed().floating_second();
 
-            double dFrequency = 1.0 / m_dBreathPeriod;
+            ::f64 dFrequency = 1.0 / m_dBreathPeriod;
 
             //auto pmathematics = mathematics();
 
-            double omega = 2.0 * π * dFrequency;
+            ::f64 omega = 2.0 * π * dFrequency;
 
-            double angle = omega * time;
+            ::f64 angle = omega * time;
 
             angle += m_dPhaseShift;
 
-            double dNewPeriod = m_dBreathPeriod;
+            ::f64 dNewPeriod = m_dBreathPeriod;
 
             if (dSourcePeriod < dNewPeriod)
             {
@@ -223,7 +223,7 @@ namespace app_app
 
                omega = 2.0 * π * dFrequency;
 
-               double angleNew = omega * time;
+               ::f64 angleNew = omega * time;
 
                m_dPhaseShift = angle - angleNew;
 
@@ -231,7 +231,7 @@ namespace app_app
 
             }
 
-            int iSize = (int)(::sin(angle) * 25.0 + 64.0);
+            ::i32 iSize = (::i32)(::sin(angle) * 25.0 + 64.0);
 
             pitemClose->m_rectangle2 = this->rectangle();
 

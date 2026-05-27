@@ -89,9 +89,9 @@ namespace axis
       if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
       {
 
-         int w = rectangle.width();
+         ::i32 w = rectangle.width();
 
-         int h = rectangle.height();
+         ::i32 h = rectangle.height();
 
          auto ppen = createø < ::draw2d::pen >();
 
@@ -208,7 +208,7 @@ namespace axis
 
       //::i32_rectangle rectangleX = pinteraction->rectangle();
 
-      //double dRotate = pinteraction->get_rotate();
+      //::f64 dRotate = pinteraction->get_rotate();
 
       //if (dRotate != 0.)
       //{
@@ -233,7 +233,7 @@ namespace axis
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //int iStyle = 1;
+      //::i32 iStyle = 1;
 
       ////rectangleX.left--;
 
@@ -678,7 +678,7 @@ namespace axis
    //}
 
 
-  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::scoped_string & scopedstrFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::scoped_string & scopedstrFamilyName, ::f64 dFontSize, ::i32 iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())
@@ -749,7 +749,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, ::u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, ::u64 u)
    //{
 
    //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
@@ -798,7 +798,7 @@ namespace axis
    //}
 
 
-   //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
+   //bool style::create_pixel_rect_coord(e_rect erect, ::f64 l, ::f64 t, ::f64 r, ::f64 b)
    //{
 
    //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_pixel);
@@ -806,7 +806,7 @@ namespace axis
    //}
 
 
-   //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
+   //bool style::create_pixel_rect_dim(e_rect erect, ::f64 l, ::f64 t, ::f64 w, ::f64 h)
    //{
 
    //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_pixel);
@@ -814,7 +814,7 @@ namespace axis
    //}
 
 
-   //bool style::create_pixel_rect(e_rect erect, double_rectangle r)
+   //bool style::create_pixel_rect(e_rect erect, ::f64_rectangle r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
@@ -822,7 +822,7 @@ namespace axis
    //}
 
 
-   //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
+   //bool style::create_point_rect_coord(e_rect erect, ::f64 l, ::f64 t, ::f64 r, ::f64 b)
    //{
 
    //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_point);
@@ -830,7 +830,7 @@ namespace axis
    //}
 
 
-   //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
+   //bool style::create_point_rect_dim(e_rect erect, ::f64 l, ::f64 t, ::f64 w, ::f64 h)
    //{
 
    //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_point);
@@ -838,7 +838,7 @@ namespace axis
    //}
 
 
-   //bool style::create_point_rect(e_rect erect, double_rectangle r)
+   //bool style::create_point_rect(e_rect erect, ::f64_rectangle r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::e_unit_point);
@@ -846,7 +846,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::enum_unit eunit)
+   //bool style::create_rect_coord(e_rect erect, ::f64 l, ::f64 t, ::f64 r, ::f64 b, ::draw2d::enum_unit eunit)
    //{
 
    //   if (userstyle()->m_mapRect.is_null())
@@ -863,7 +863,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::enum_unit eunit)
+   //bool style::create_rect_dim(e_rect erect, ::f64 l, ::f64 t, ::f64 w, ::f64 h, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
@@ -871,7 +871,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::double_rectangle rectangle, ::draw2d::enum_unit eunit)
+   //bool style::create_rect(e_rect erect, ::f64_rectangle rectangle, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
@@ -879,7 +879,7 @@ namespace axis
    //}
 
 
-   //bool style::create_int(e_int eint, int i)
+   //bool style::create_int(e_int eint, ::i32 i)
    //{
 
    //   if (userstyle()->m_mapInt.is_null())
@@ -896,13 +896,13 @@ namespace axis
    //}
 
 
-   //bool style::create_double(e_double edouble, double d)
+   //bool style::create_double(e_double edouble, ::f64 d)
    //{
 
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = allocateø ::user::double_map();
+   //      userstyle()->m_mapDouble = allocateø ::user::f64_map();
 
    //   }
 
@@ -1289,7 +1289,7 @@ namespace axis
    //}
 
 
-  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::scoped_string & scopedstrFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::scoped_string & scopedstrFamilyName, ::f64 dFontSize, ::i32 iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())
@@ -1360,7 +1360,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, ::u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, ::u64 u)
    //{
 
    //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
@@ -1409,7 +1409,7 @@ namespace axis
    //}
 
 
-   //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
+   //bool style::create_pixel_rect_coord(e_rect erect, ::f64 l, ::f64 t, ::f64 r, ::f64 b)
    //{
 
    //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_pixel);
@@ -1417,7 +1417,7 @@ namespace axis
    //}
 
 
-   //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
+   //bool style::create_pixel_rect_dim(e_rect erect, ::f64 l, ::f64 t, ::f64 w, ::f64 h)
    //{
 
    //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_pixel);
@@ -1425,7 +1425,7 @@ namespace axis
    //}
 
 
-   //bool style::create_pixel_rect(e_rect erect, double_rectangle r)
+   //bool style::create_pixel_rect(e_rect erect, ::f64_rectangle r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
@@ -1433,7 +1433,7 @@ namespace axis
    //}
 
 
-   //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
+   //bool style::create_point_rect_coord(e_rect erect, ::f64 l, ::f64 t, ::f64 r, ::f64 b)
    //{
 
    //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_point);
@@ -1441,7 +1441,7 @@ namespace axis
    //}
 
 
-   //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
+   //bool style::create_point_rect_dim(e_rect erect, ::f64 l, ::f64 t, ::f64 w, ::f64 h)
    //{
 
    //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_point);
@@ -1449,7 +1449,7 @@ namespace axis
    //}
 
 
-   //bool style::create_point_rect(e_rect erect, double_rectangle r)
+   //bool style::create_point_rect(e_rect erect, ::f64_rectangle r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::e_unit_point);
@@ -1457,7 +1457,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::enum_unit eunit)
+   //bool style::create_rect_coord(e_rect erect, ::f64 l, ::f64 t, ::f64 r, ::f64 b, ::draw2d::enum_unit eunit)
    //{
 
    //   if (userstyle()->m_mapRect.is_null())
@@ -1474,7 +1474,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::enum_unit eunit)
+   //bool style::create_rect_dim(e_rect erect, ::f64 l, ::f64 t, ::f64 w, ::f64 h, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
@@ -1482,7 +1482,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::double_rectangle rectangle, ::draw2d::enum_unit eunit)
+   //bool style::create_rect(e_rect erect, ::f64_rectangle rectangle, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
@@ -1490,7 +1490,7 @@ namespace axis
    //}
 
 
-   //bool style::create_int(e_int eint, int i)
+   //bool style::create_int(e_int eint, ::i32 i)
    //{
 
    //   if (userstyle()->m_mapInt.is_null())
@@ -1507,13 +1507,13 @@ namespace axis
    //}
 
 
-   //bool style::create_double(e_double edouble, double d)
+   //bool style::create_double(e_double edouble, ::f64 d)
    //{
 
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = allocateø ::user::double_map();
+   //      userstyle()->m_mapDouble = allocateø ::user::f64_map();
 
    //   }
 

@@ -82,7 +82,7 @@ using text_changed = ::function < void(text_change & textchange) >;
 
 
       //virtual character_count get_text_length();
-      //virtual void get_text(char * psz, character_count len);
+      //virtual void get_text(char_pointer psz, character_count len);
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 

@@ -88,7 +88,7 @@ namespace regular_expression_pcre2
 //   bool result::matches(const ::scoped_string & scopedstr)
 //   {
 //
-//      int c = pcre2_match(m_pc, (PCRE2_SPTR)(const ::string &)str, str.length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
+//      ::i32 c = pcre2_match(m_pc, (PCRE2_SPTR)(const ::string &)str, str.length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
 //
 //      return c > 0;
 //
@@ -98,7 +98,7 @@ namespace regular_expression_pcre2
 //   bool result::matches(const ::scoped_string & scopedstr, character_count len)
 //   {
 //
-//      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
+//      ::i32 c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
 //
 //      return c > 0;
 //
@@ -116,7 +116,7 @@ namespace regular_expression_pcre2
 //   ::collection::count result::match_count(const ::scoped_string & scopedstr, character_count len)
 //   {
 //
-//      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
+//      ::i32 c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
 //
 //      return c;
 //

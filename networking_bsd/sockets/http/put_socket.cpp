@@ -108,7 +108,7 @@ namespace sockets
       if(m_file.is_set())
       {
          memsize n;
-         char buf[32768];
+         ::i8 buf[32768];
          m_file->seek_to_begin();
          while ((n = m_file->read(buf, 32768)) > 0)
          {
@@ -121,7 +121,7 @@ namespace sockets
          if (fil)
          {
             memsize n;
-            char buf[32768];
+            ::i8 buf[32768];
             while ((n = fread(buf, 1, 32768, fil)) > 0)
             {
                write(buf, n);

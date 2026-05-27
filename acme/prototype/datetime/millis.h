@@ -18,7 +18,7 @@ class time;
 class millis;
 
 
-inline double __double(const ::millis & millis);
+inline ::f64 __double(const ::millis & millis);
 
 
 // milliseconds
@@ -82,7 +82,7 @@ public:
    }
 
 
-   inline double sawtooth(const ::millis & tickPeriod)
+   inline ::f64 sawtooth(const ::millis & tickPeriod)
    {
 
       return __double(elapsed() % tickPeriod) / __double(tickPeriod);
@@ -90,7 +90,7 @@ public:
    }
 
 
-   inline double period_rate(const ::millis & tickPeriod)
+   inline ::f64 period_rate(const ::millis & tickPeriod)
    {
 
       return __double(elapsed()) / __double(tickPeriod);
@@ -140,7 +140,7 @@ public:
    }
 
 
-   inline bool on_off(const ::millis & period, double dRate) const
+   inline bool on_off(const ::millis & period, ::f64 dRate) const
    {
 
       return (elapsed().m_i32 % period.m_i32) < period.m_i32 * dRate;
@@ -184,14 +184,14 @@ public:
    //inline millis& operator += (::i64 i) { m_i32 += i; return *this; }
 
 
-   inline millis& operator *= (double d) { m_i32 = (::i64)(m_i32 * d); return *this; }
+   inline millis& operator *= (::f64 d) { m_i32 = (::i64)(m_i32 * d); return *this; }
 
    inline ::i64 operator / (const millis& millis) const { return m_i32 / millis.m_i32; }
    inline millis& operator /= (::i64 i)  { m_i32 /= i; return *this; }
    inline millis& operator %= (const millis & millis) { m_i32 %= millis.m_i32; return *this; }
 
 
-   inline millis operator % (int i) const { return m_i32 % i; }
+   inline millis operator % (::i32 i) const { return m_i32 % i; }
    inline millis operator % (::i64 i) const { return m_i32 % i; }
    inline millis operator % (const ::millis & millis) const { return m_i32 % millis.m_i32; }
 
@@ -202,7 +202,7 @@ public:
 };
 
 
-inline millis operator * (double d, const millis & millis) { return (::i64)(d * millis.m_i32); }
+inline millis operator * (::f64 d, const millis & millis) { return (::i64)(d * millis.m_i32); }
 
 
 namespace acme
@@ -243,7 +243,7 @@ namespace acme
 #define U32_INFINITE_TIMEOUT ((::u32)0xffffffffu)
 
 
-inline double __double(const ::millis & millis) { return (double) millis.m_i32; }
+inline ::f64 __double(const ::millis & millis) { return (::f64) millis.m_i32; }
 
 
 inline auto __pr(const ::millis & millis) { return millis.m_i32; }
@@ -273,16 +273,16 @@ inline ::u32 __os(const ::millis & millis)
 
 }
 
-inline int __int(const ::millis & millis) { return (int) millis.m_i32; }
+inline ::i32 __int(const ::millis & millis) { return (::i32) millis.m_i32; }
 
 
 inline ::i64 __long_long(const ::millis & millis) { return (::i64) millis.m_i32; }
 
 
-inline unsigned char as_byte(const ::millis & millis) { return (unsigned char) minimummax(millis.m_i32, 0, 255); }
+inline ::u8 as_byte(const ::millis & millis) { return (::u8) minimummax(millis.m_i32, 0, 255); }
 
 
-inline millis __tick(double d) { return (::i64) d; }
+inline millis __tick(::f64 d) { return (::i64) d; }
 
 
 inline millis operator""_tick(::u64 u) { return u; }
@@ -345,7 +345,7 @@ inline millis operator /(const ::millis& millis, const NUMBER& number)
 
 inline ::i64 _first_milli();
 inline ::i64 _get_millis();
-inline double _millis() { return _get_nanos() / 1'000'000.0; }
+inline ::f64 _millis() { return _get_nanos() / 1'000'000.0; }
 
 
 inline ::millis first_milli() { return _first_milli(); }

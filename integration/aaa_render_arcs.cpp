@@ -220,7 +220,7 @@ namespace app_integration
 
       }
 
-      int iColumnCount = 8;
+      ::i32 iColumnCount = 8;
 
       i32_rectangle r;
 
@@ -230,9 +230,9 @@ namespace app_integration
 
       r.bottom = rClient.center().y;
 
-      int i = 0;
+      ::i32 i = 0;
 
-      int iColumnWidth = rClient.width() / iColumnCount;
+      ::i32 iColumnWidth = rClient.width() / iColumnCount;
 
       for (i = 0; i < iColumnCount && i < angleaStart.get_size(); i++)
       {

@@ -102,7 +102,7 @@ void install_impact_interface::update_title()
    }
 
    
-   void install_impact_interface::start_installation(int iTryCount)
+   void install_impact_interface::start_installation(::i32 iTryCount)
    {
 
 

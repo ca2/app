@@ -40,7 +40,7 @@ namespace experience
       string                                 m_strFrameSchema;
       ::i32_rectangle                        m_rectangleCaption;
       ::i32_rectangle                        m_rectangleWindowText;
-      int                                    m_iControlBoxPosition;
+      ::i32                                    m_iControlBoxPosition;
       //::i32_rectangle                      m_rectangleControlBoxFullScreen;
       //::i32_rectangle                      m_rectangleControlBoxZoomed;
       //::i32_rectangle                      m_rectangleControlBoxNormal;
@@ -56,8 +56,8 @@ namespace experience
 
       ::pointer<control_box>              m_pcontrolbox;
 
-      int                                    m_iCaptionHeight;
-      int                                    m_iTitleBottom;
+      ::i32                                    m_iCaptionHeight;
+      ::i32                                    m_iTitleBottom;
 
       ::i32_rectangle                        m_rectangleMarginFullScreen;
       ::i32_rectangle                        m_rectangleMarginZoomed;
@@ -74,7 +74,7 @@ namespace experience
       bool                                   m_bControlBoxAlignRight;
       bool                                   m_bInitialControlBoxPosition;
       bool                                   m_bPendingStyleChange;
-      //int                                    m_iCaptionHeight;
+      //::i32                                    m_iCaptionHeight;
 
 
 
@@ -99,8 +99,8 @@ namespace experience
       // ::berg::user * user();
 
 
-      virtual int adjust_client_height(int iHeight);
-      virtual int adjust_client_width(int iWidth);
+      virtual ::i32 adjust_client_height(::i32 iHeight);
+      virtual ::i32 adjust_client_width(::i32 iWidth);
 
       //virtual void set_style(const ::scoped_string & scopedstrStyle);
       virtual void on_initialize_experience_frame();
@@ -152,7 +152,7 @@ namespace experience
 
       virtual i32_rectangle get_margin_rectangle();
       virtual i32_rectangle get_caption_text_padding();
-      virtual int get_caption_height();
+      virtual ::i32 get_caption_height();
       virtual void calculate_caption_height(::draw2d::graphics_pointer & pgraphics);
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
@@ -203,8 +203,8 @@ namespace experience
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);
       virtual bool _001OnNcHitTest(const ::i32_point & point, enum_hit_test & ehittest);
       virtual bool on_timer(::u32 uEvent);
-      //virtual bool on_message_size(::u32 nType, int cx, int cy);
-      //virtual bool on_message_move(int x, int y);
+      //virtual bool on_message_size(::u32 nType, ::i32 cx, ::i32 cy);
+      //virtual bool on_message_move(::i32 x, ::i32 y);
       //virtual bool _001OnCommand(wparam wparam, lparam lparam, lresult & lresult);
 
 

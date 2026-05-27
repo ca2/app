@@ -29,16 +29,16 @@ typedef enum {
   eNotMe = 2        //negative answer
 } nsProbingState;
 
-#define SHORTCUT_THRESHOLD      (float)0.95
+#define SHORTCUT_THRESHOLD      (::f32)0.95
 
 class nsCharSetProber {
 public:
   virtual ~nsCharSetProber() {};
   virtual const_char_pointer GetCharSetName() = 0;
-  virtual nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen) = 0;
+  virtual nsProbingState HandleData(const ::string & aBuf, PRunsigned ::i32 aLen) = 0;
   virtual nsProbingState GetState(void) = 0;
   virtual void      Reset(void)  = 0;
-  virtual float     GetConfidence(void) = 0;
+  virtual ::f32     GetConfidence(void) = 0;
   virtual void      SetOpion() = 0;
 
 #ifdef DEBUG_chardet

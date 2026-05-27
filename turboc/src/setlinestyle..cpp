@@ -31,11 +31,11 @@
 //----------------------------------------------------------------------------
 
 void
-setlinestyle (int linestyle, unsigned upattern, int thickness)
+setlinestyle (::i32 linestyle, ::u32 upattern, ::i32 thickness)
 {
   gint line_style, dash_offset = 0, n, i, j, k;
-  unsigned OrigUpattern;
-  char dash_list[18];
+  ::u32 OrigUpattern;
+  ::i8 dash_list[18];
   OrigUpattern = upattern;
  // switch (linestyle)
  //   {

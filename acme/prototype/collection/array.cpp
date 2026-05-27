@@ -21,10 +21,10 @@ void _123abc_debug_gen_array_randomize(::particle * pparticle)
 
 void unit_test___arrayStdSortTest()
 {
-   array<int, int> ia;
+   array<::i32, ::i32> ia;
    /*::acme::_sort::quick_sort(
       ia,
-      sort::CompareAscending < int >);*/
+      sort::CompareAscending < ::i32 >);*/
 
 }
 
@@ -52,7 +52,7 @@ namespace acme
     string x1_encode_ida(const string_array_base & stra)
 	{
 		string str;
-      for(int i = 0 ; i < stra.get_count(); i++)
+      for(::i32 i = 0 ; i < stra.get_count(); i++)
 		{
 			str += "<" + stra[i] + ">";
 		}

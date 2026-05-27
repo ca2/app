@@ -20,20 +20,20 @@ void color_array::create_web_palette()
 
    // Do nothing
    const ::u32 STANDARD_PALETTE[] = {00,51,102,153,204,255};
-   const int STANDARD_COLOR_SIZE = 6;
-//   const int STANDARD_PALETTE_VAL_DIF = 51;
+   const ::i32 STANDARD_COLOR_SIZE = 6;
+//   const ::i32 STANDARD_PALETTE_VAL_DIF = 51;
    set_size(216);
 //   ::u32 dwColorMapTable[216] = {0};
-   int nColorMapIdx = 0;
-   for(int nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)
+   ::i32 nColorMapIdx = 0;
+   for(::i32 nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)
    {
-      for(int nGreenIdx = 0; nGreenIdx < STANDARD_COLOR_SIZE; ++nGreenIdx)
+      for(::i32 nGreenIdx = 0; nGreenIdx < STANDARD_COLOR_SIZE; ++nGreenIdx)
       {
-         for(int nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
+         for(::i32 nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
          {
-            this->element_at(nColorMapIdx) = argb(255, (unsigned char) STANDARD_PALETTE[nRedIdx],
-             (unsigned char) STANDARD_PALETTE[nGreenIdx],
-               (unsigned char) STANDARD_PALETTE[nBlueIdx]);
+            this->element_at(nColorMapIdx) = argb(255, (::u8) STANDARD_PALETTE[nRedIdx],
+             (::u8) STANDARD_PALETTE[nGreenIdx],
+               (::u8) STANDARD_PALETTE[nBlueIdx]);
             ++nColorMapIdx;
 
          }
@@ -50,7 +50,7 @@ namespace draw2d
 
 
 
-   CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount)
+   CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, ::i32 iCount)
    {
 
       colora.set_size(iCount);

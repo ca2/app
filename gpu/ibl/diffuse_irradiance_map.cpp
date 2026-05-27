@@ -134,9 +134,9 @@ namespace gpu
 
           auto ptextureSkybox = pskybox->m_ptexture;
 
-          int iIrradianceMapWidth = m_udiffuse_irradiance_mapWidth;
+          ::i32 iIrradianceMapWidth = m_udiffuse_irradiance_mapWidth;
 
-          int iIrradianceMapHeight = m_udiffuse_irradiance_mapHeight;
+          ::i32 iIrradianceMapHeight = m_udiffuse_irradiance_mapHeight;
 
           m_ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
 
@@ -168,9 +168,9 @@ namespace gpu
 
              m_pshaderDiffuseIrradiance->set_matrix4("mvp", mvp);
 
-             m_pshaderDiffuseIrradiance->set_float("deltaPhi", (2.0f * float(this->mathematics()->π())) / 180.0f);
+             m_pshaderDiffuseIrradiance->set_float("deltaPhi", (2.0f * ::f32(this->mathematics()->π())) / 180.0f);
 
-             m_pshaderDiffuseIrradiance->set_float("deltaTheta", (0.5f * float(this->mathematics()->π())) / 64.0f);
+             m_pshaderDiffuseIrradiance->set_float("deltaTheta", (0.5f * ::f32(this->mathematics()->π())) / 64.0f);
 
              m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
 
@@ -203,8 +203,8 @@ BEGIN_GPU_PROPERTIES(::gpu::ibl::diffuse_irradiance_map::push_constants)
 GPU_PROPERTY("mvp", ::gpu::e_type_mat4)
 //GPU_PROPERTY("view", ::gpu::e_type_mat4)
 //GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-GPU_PROPERTY("deltaPhi", ::gpu::e_type_float)
-GPU_PROPERTY("deltaTheta", ::gpu::e_type_float)
+GPU_PROPERTY("deltaPhi", ::gpu::e_type_f32)
+GPU_PROPERTY("deltaTheta", ::gpu::e_type_f32)
 END_GPU_PROPERTIES()
 
 

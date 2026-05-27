@@ -18,17 +18,17 @@
 //#ifdef UNIVERSAL_WINDOWS
 //void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::future & future);
 //#else
-//int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox);
+//::i32 _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox);
 //#endif
 
 
 //#endif
 
 
-CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileName, ::i32 iLineNumber);
 
 
-CLASS_DECL_ACME string message_box_result_to_string(int iResult);
+CLASS_DECL_ACME string message_box_result_to_string(::i32 iResult);
 
 
 #ifndef UNIVERSAL_WINDOWS
@@ -73,7 +73,7 @@ namespace acme
 //   ::payload message_box_synchronous::realize()
 //   {
 //
-//      int iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);
+//      ::i32 iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);
 //
 //      return iResult;
 //
@@ -117,7 +117,7 @@ namespace acme
 //::platform::system * system();
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int iLineNumber)
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, ::i32 iLineNumber)
 {
 
 #ifdef LINUX
@@ -155,10 +155,10 @@ CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int iL
 }
 
 
-CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileName, ::i32 iLineNumber)
 {
 
-   char szMessage[1024*4];
+   ::i8 szMessage[1024*4];
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 

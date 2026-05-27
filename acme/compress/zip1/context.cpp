@@ -162,14 +162,14 @@ namespace str
       if(pf != nullptr)
       {
 
-         int iLastZip;
+         ::i32 iLastZip;
 
-         iLastZip = int( ::file::path(strLastZip + ":").length());
+         iLastZip = ::i32( ::file::path(strLastZip + ":").length());
 
          while(true)
          {
 
-            char szTitle[_MAX_PATH];
+            ::i8 szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,
@@ -375,7 +375,7 @@ namespace str
          while(true)
          {
 
-            char szTitle[_MAX_PATH];
+            ::i8 szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,

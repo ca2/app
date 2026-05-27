@@ -31,7 +31,7 @@ namespace helloaxis
          ::user::document *                     m_pdocMenu;
 
          ::pointer < ::mutex >                                  m_pmutexAiFont;
-         int                                m_iErrorAiFont;
+         ::i32                                m_iErrorAiFont;
          bool                                   m_bLoadAiFont;
          void *                                 m_faceAi; // FT_Face m_faceAi;
 
@@ -42,7 +42,7 @@ namespace helloaxis
 
 
          virtual void init_instance() override;
-         virtual int  exit_application() override;
+         virtual ::i32  exit_application() override;
 
          virtual void on_request(::request * prequest) override;
 

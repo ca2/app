@@ -27,10 +27,10 @@
 #include <ctype.h>
 #include "conio.h"
 
-int
+::i32
 getche (void)
 {
-  int KeyCode;
+  ::i32 KeyCode;
   if (!ConioInitialized)
     textmode (LASTMODE);
   KeyCode = getchTurbo ();

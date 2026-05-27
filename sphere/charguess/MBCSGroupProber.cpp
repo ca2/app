@@ -22,7 +22,7 @@
 #include "MBCSGroupProber.h"
 
 #ifdef DEBUG_chardet
-char *ProberName[] = 
+char_pointer ProberName[] = 
 {
   "UTF8",
   "SJIS",
@@ -49,7 +49,7 @@ nsMBCSGroupProber::nsMBCSGroupProber()
 
 nsMBCSGroupProber::~nsMBCSGroupProber()
 {
-  for (PRunsigned int i = 0; i < NUM_OF_PROBERS; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_PROBERS; i++)
   {
     delete mProbers[i];
   }
@@ -68,7 +68,7 @@ const_char_pointer nsMBCSGroupProber::GetCharSetName()
 
 void  nsMBCSGroupProber::Reset(void)
 {
-  for (PRunsigned int i = 0; i < NUM_OF_PROBERS; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_PROBERS; i++)
   {
     mProbers[i]->Reset();
     mIsActive[i] = PR_TRUE;
@@ -78,16 +78,16 @@ void  nsMBCSGroupProber::Reset(void)
   mState = eDetecting;
 }
 
-nsProbingState nsMBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsMBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsProbingState st;
-  PRunsigned int i;
+  PRunsigned ::i32 i;
 
   //do filtering to reduce load to probers
-  char *highbyteBuf;
-  char *hptr;
+  char_pointer highbyteBuf;
+  char_pointer hptr;
   PRBool keepNext = PR_TRUE;   //assume previous is not ascii, it will do not harm except add some noise
-  hptr = highbyteBuf = (char*)PR_MALLOC(aLen);
+  hptr = highbyteBuf = (char_pointer )PR_MALLOC(aLen);
   for (i = 0; i < aLen; i++)
   {
     if (aBuf[i] & 0x80)
@@ -110,7 +110,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned i
   {
      if (!mIsActive[i])
        continue;
-     st = mProbers[i]->HandleData(highbyteBuf, (PRunsigned int)(hptr - highbyteBuf));
+     st = mProbers[i]->HandleData(highbyteBuf, (PRunsigned ::i32)(hptr - highbyteBuf));
      if (st == eFoundIt)
      {
        mBestGuess = i;
@@ -134,17 +134,17 @@ nsProbingState nsMBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned i
   return mState;
 }
 
-float nsMBCSGroupProber::GetConfidence(void)
+::f32 nsMBCSGroupProber::GetConfidence(void)
 {
-  PRunsigned int i;
-  float bestConf = 0.0, cf;
+  PRunsigned ::i32 i;
+  ::f32 bestConf = 0.0, cf;
 
   switch (mState)
   {
   case eFoundIt:
-    return (float)0.99;
+    return (::f32)0.99;
   case eNotMe:
-    return (float)0.01;
+    return (::f32)0.01;
   default:
     for (i = 0; i < NUM_OF_PROBERS; i++)
     {
@@ -165,8 +165,8 @@ float nsMBCSGroupProber::GetConfidence(void)
 void 
 nsMBCSGroupProber::DumpStatus()
 {
-  PRunsigned int i;
-  float cf;
+  PRunsigned ::i32 i;
+  ::f32 cf;
   
   GetConfidence();
   for (i = 0; i < NUM_OF_PROBERS; i++)

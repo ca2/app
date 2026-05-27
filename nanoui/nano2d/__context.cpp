@@ -44,7 +44,7 @@ namespace nano2d
    }
 
 
-   void context::path_winding(int dir)
+   void context::path_winding(::i32 dir)
    {
 
 
@@ -58,7 +58,7 @@ namespace nano2d
    }
 
 
-   void context::translate(float x, float y)
+   void context::translate(::f32 x, ::f32 y)
    {
 
 
@@ -66,7 +66,7 @@ namespace nano2d
    }
 
 
-   void context::rotate(float angle)
+   void context::rotate(::f32 angle)
    {
 
 
@@ -74,7 +74,7 @@ namespace nano2d
    }
 
 
-   void context::rounded_rect(float x, float y, float w, float h, float r)
+   void context::rounded_rect(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r)
    {
 
 
@@ -96,7 +96,7 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint context::linear_gradient(float sx, float sy, float ex, float ey,
+   ::nano2d::paint context::linear_gradient(::f32 sx, ::f32 sy, ::f32 ex, ::f32 ey,
       ::nano2d::color icol, ::nano2d::color ocol)
    {
 
@@ -105,7 +105,7 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint context::box_gradient(float x, float y, float w, float h, float r, float f,
+   ::nano2d::paint context::box_gradient(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r, ::f32 f,
       ::nano2d::color icol, ::nano2d::color ocol)
    {
 
@@ -114,7 +114,7 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint context::radial_gradient(float cx, float cy, float inr, float outr,
+   ::nano2d::paint context::radial_gradient(::f32 cx, ::f32 cy, ::f32 inr, ::f32 outr,
       ::nano2d::color icol, ::nano2d::color ocol)
    {
 
@@ -123,8 +123,8 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint context::image_pattern(float cx, float cy, float w, float h, float angle,
-      int image, float alpha)
+   ::nano2d::paint context::image_pattern(::f32 cx, ::f32 cy, ::f32 w, ::f32 h, ::f32 angle,
+      ::i32 image, ::f32 alpha)
    {
 
       return {};
@@ -140,7 +140,7 @@ namespace nano2d
    }
 
 
-   void context::font_size(float size)
+   void context::font_size(::f32 size)
    {
 
 
@@ -148,7 +148,7 @@ namespace nano2d
    }
 
 
-   void context::font_blur(float blur)
+   void context::font_blur(::f32 blur)
    {
 
 
@@ -156,7 +156,7 @@ namespace nano2d
    }
 
 
-//   ::write_text::font_pointer context::create_font(const_char_pointer face, float size)
+//   ::write_text::font_pointer context::create_font(const_char_pointer face, ::f32 size)
 //   {
 //      
 //      return nullptr;
@@ -183,13 +183,13 @@ namespace nano2d
    }
 
 
-   void context::scissor(float x, float y, float w, float h)
+   void context::scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h)
    {
 
    }
 
 
-   void context::intersect_scissor(float x, float y, float w, float h)
+   void context::intersect_scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h)
    {
 
 
@@ -211,13 +211,13 @@ namespace nano2d
    }
 
 
-   void context::global_alpha(float alpha)
+   void context::global_alpha(::f32 alpha)
    {
 
    }
 
 
-   void context::stroke_width(float width)
+   void context::stroke_width(::f32 width)
    {
 
 
@@ -225,14 +225,14 @@ namespace nano2d
    }
 
 
-   void context::text_align(int align)
+   void context::text_align(::i32 align)
    {
 
 
    }
 
 
-   float context::text(float x, float y, const_char_pointer string, const_char_pointer end)
+   ::f32 context::text(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end)
    {
 
       return 0.f;
@@ -240,7 +240,7 @@ namespace nano2d
    }
 
 
-   int context::text_glyph_positions(float x, float y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, int maxPositions)
+   ::i32 context::text_glyph_positions(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, ::i32 maxPositions)
    {
 
       return 0;
@@ -248,7 +248,7 @@ namespace nano2d
    }
 
 
-   float context::text_bounds(float x, float y, const_char_pointer string, const_char_pointer end, float * bounds)
+   ::f32 context::text_bounds(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end, ::f32 * bounds)
    {
 
       bounds[0] = 0.f;
@@ -261,42 +261,42 @@ namespace nano2d
    }
 
 
-   void context::text_line_height(float lineHeight)
+   void context::text_line_height(::f32 lineHeight)
    {
 
 
    }
 
 
-   void context::move_to(float x, float y)
+   void context::move_to(::f32 x, ::f32 y)
    {
 
 
    }
 
 
-   void context::line_to(float x, float y)
+   void context::line_to(::f32 x, ::f32 y)
    {
 
 
    }
 
 
-   void context::rect(float x, float y, float w, float h)
+   void context::rect(::f32 x, ::f32 y, ::f32 w, ::f32 h)
    {
 
 
    }
 
 
-   void context::double_ellipse(float cx, float cy, float rx, float ry)
+   void context::f64_ellipse(::f32 cx, ::f32 cy, ::f32 rx, ::f32 ry)
    {
 
 
    }
 
 
-   void context::circle(float cx, float cy, float r)
+   void context::circle(::f32 cx, ::f32 cy, ::f32 r)
    {
 
       ellipse(cx, cy, r, r);
@@ -304,22 +304,14 @@ namespace nano2d
    }
 
 
-   void context::arc(float cx, float cy, float r, float a0, float a1, int dir)
+   void context::arc(::f32 cx, ::f32 cy, ::f32 r, ::f32 a0, ::f32 a1, ::i32 dir)
    {
 
 
    }
 
 
-   int context::create_image(const_char_pointer filename, int imageFlags)
-   {
-
-      return -1;
-
-   }
-
-
-   int context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
+   ::i32 context::create_image(const_char_pointer pszFilename, ::i32 imageFlags)
    {
 
       return -1;
@@ -327,21 +319,29 @@ namespace nano2d
    }
 
 
-   void context::image_size(int image, int * w, int * h)
+   ::i32 context::create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan)
+   {
+
+      return -1;
+
+   }
+
+
+   void context::image_size(::i32 image, ::i32 * w, ::i32 * h)
    {
 
 
    }
 
 
-   void context::update_image(int image, const void * data)
+   void context::update_image(::i32 image, const void * data)
    {
 
 
    }
 
 
-   void context::_draw_image(float x, float y, float w, float h, ::image::image *pimage)
+   void context::_draw_image(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::image::image *pimage)
    {
 
 

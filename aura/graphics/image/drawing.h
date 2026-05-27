@@ -25,15 +25,15 @@ namespace image
 
       enum_image_selection    m_eimageselection;
       ::image::enum_placement m_eplacement;
-      double_point               m_pointAlign;
-      ::double_rectangle         m_rectangleTarget;
+      ::f64_point               m_pointAlign;
+      ::f64_rectangle         m_rectangleTarget;
       bool                    m_bIntegerPlacement = false;
 
 
       image_drawing_options();
       image_drawing_options(const ::image::image_drawing_options & imagedrawingoptions);
 
-      explicit image_drawing_options(const ::double_rectangle & rectangleTarget, const ::image::enum_placement & eplacement = e_placement_stretch, const ::double_point & pointAlign = ::double_point(0., 0.), enum_image_selection eimageselection = e_image_selection_default);
+      explicit image_drawing_options(const ::f64_rectangle & rectangleTarget, const ::image::enum_placement & eplacement = e_placement_stretch, const ::f64_point & pointAlign = ::f64_point(0., 0.), enum_image_selection eimageselection = e_image_selection_default);
 
 
    };
@@ -61,9 +61,9 @@ namespace image
 
       image_drawing(const ::image::image_source & imagesource);
 
-      ::double_rectangle source_rectangle() const;
+      ::f64_rectangle source_rectangle() const;
 
-      ::double_rectangle target_rectangle() const;
+      ::f64_rectangle target_rectangle() const;
 
 
       ::image::image_pointer image() const;

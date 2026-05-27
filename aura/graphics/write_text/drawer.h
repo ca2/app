@@ -37,22 +37,22 @@ namespace write_text
       virtual void draw(const ::write_text::text_out_array& textouta);
 
 
-      virtual ::double_size get_text_extent(const ::scoped_string & scopedstr);
+      virtual ::f64_size get_text_extent(const ::scoped_string & scopedstr);
 
 
       virtual ::write_text::text_metric get_text_metrics();
       virtual void get_text_metrics(::write_text::text_metric* pmetrics);
 
 
-      virtual void TextOutRaw(double x, double y, const ::scoped_string & scopedstr);
+      virtual void TextOutRaw(::f64 x, ::f64 y, const ::scoped_string & scopedstr);
 
 
       virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const ::scoped_string & scopedstr, const ::i32_rectangle& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap);
-      virtual void split_text(string_array_base & stra, double w, enum_text_wrap etextwrap);
-      virtual ::collection::count _split_text(string_array_base & stra, ::collection::index i, double w, enum_text_wrap etextwrap);
-      virtual ::collection::count _split_text_word(string_array_base & stra, ::collection::index i, double w);
-      virtual ::collection::count _split_text_word_then_character(string_array_base & stra, ::collection::index i, double w);
-      virtual ::collection::count _split_text_character(string_array_base & stra, ::collection::index i, double w);
+      virtual void split_text(string_array_base & stra, ::f64 w, enum_text_wrap etextwrap);
+      virtual ::collection::count _split_text(string_array_base & stra, ::collection::index i, ::f64 w, enum_text_wrap etextwrap);
+      virtual ::collection::count _split_text_word(string_array_base & stra, ::collection::index i, ::f64 w);
+      virtual ::collection::count _split_text_word_then_character(string_array_base & stra, ::collection::index i, ::f64 w);
+      virtual ::collection::count _split_text_character(string_array_base & stra, ::collection::index i, ::f64 w);
 
 
 

@@ -19,10 +19,10 @@ namespace user
       public:
 
 
-         double   m_dLeft;
-         double   m_dLeftDevice;
+         ::f64   m_dLeft;
+         ::f64   m_dLeftDevice;
 
-         double   m_xOffset;
+         ::f64   m_xOffset;
 
 
          line();

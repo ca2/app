@@ -39,7 +39,7 @@ namespace innate_ui
    }
 
 
-   void still::set_font_size(double dSizeEm)
+   void still::set_font_size(::f64 dSizeEm)
    {
 
       m_dFontSizeEm = dSizeEm;
@@ -48,14 +48,14 @@ namespace innate_ui
    }
 
 
-   void still::set_font_weight(int iWeight)
+   void still::set_font_weight(::i32 iWeight)
    {
 
       m_iFontWeight = iWeight;
    }
 
 
-   int still::layout_width()
+   ::i32 still::layout_width()
    {
 
       return m_iLayoutWidth;
@@ -63,7 +63,7 @@ namespace innate_ui
    }
 
 
-   int still::layout_height()
+   ::i32 still::layout_height()
    {
 
       return m_iLayoutHeight;

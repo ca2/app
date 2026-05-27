@@ -11,10 +11,10 @@
 #undef user
 
 
-//int get_current_process_affinity_order()
+//::i32 get_current_process_affinity_order()
 //{
 //
-//   int numCPU = (int) (sysconf(_SC_NPROCESSORS_ONLN));
+//   ::i32 numCPU = (::i32) (sysconf(_SC_NPROCESSORS_ONLN));
 //
 //   return numCPU;
 //}
@@ -42,7 +42,7 @@ bool __os_term_thread()
 
 }
 
-void _ns_do_tasks(double dSeconds);
+void _ns_do_tasks(::f64 dSeconds);
 
 void _do_tasks()
 {

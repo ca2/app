@@ -48,7 +48,7 @@ timer::~timer()
 }
 
 
-bool timer::start(int ::duration, bool bPeriodic)
+bool timer::start(::i32 ::duration, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -563,7 +563,7 @@ bool timer::impl_restart()
 void timer::run()
 {
 
-   while (task_sleep(::duration((long long) m_dwMillis)))
+   while (task_sleep(::duration((::i64) m_dwMillis)))
    {
 
       try

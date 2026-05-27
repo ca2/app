@@ -48,7 +48,7 @@ bool string& str
 #include <cxxabi.h>
 
 
-thread_local char * t_pszDemangle;
+thread_local char_pointer t_pszDemangle;
 thread_local size_t t_sizeDemangle;
 //extern critical_section * g_pcsDemangle;
 
@@ -58,7 +58,7 @@ bool demangle (string & str, const ::scoped_string & scopedstrType)
 
    //cslock cs(g_pcsDemangle);
 
-   int status = -4;
+   ::i32 status = -4;
 
    t_pszDemangle = abi::__cxa_demangle(scopedstrType, t_pszDemangle, &t_sizeDemangle, &status);
 

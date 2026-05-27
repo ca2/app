@@ -42,29 +42,29 @@ namespace subsystem
       ~VncPassCrypt() override;
 
 
-      static constexpr int VNC_PASSWORD_SIZE = 8;
+      static constexpr ::i32 VNC_PASSWORD_SIZE = 8;
 
-      void updatePlain(const unsigned char cryptedPass[VNC_PASSWORD_SIZE]);
+      void updatePlain(const ::u8 cryptedPass[VNC_PASSWORD_SIZE]);
 
       // Encrypt the plain password and fills by encrypted values the
       // encryptedPass[8] array.
-      static void getEncryptedPass(unsigned char encryptedPass[VNC_PASSWORD_SIZE],
-                                   const unsigned char plainPassword[VNC_PASSWORD_SIZE]);
+      static void getEncryptedPass(::u8 encryptedPass[VNC_PASSWORD_SIZE],
+                                   const ::u8 plainPassword[VNC_PASSWORD_SIZE]);
 
       // Decrypt the encrypted password and fills by decrypted values the
       // plainPassword[8] array.
-      static void getPlainPass(unsigned char plainPassword[VNC_PASSWORD_SIZE],
-                               const unsigned char encryptedPass[VNC_PASSWORD_SIZE]);
+      static void getPlainPass(::u8 plainPassword[VNC_PASSWORD_SIZE],
+                               const ::u8 encryptedPass[VNC_PASSWORD_SIZE]);
 
       // Returns true if it's matched.
-      bool challengeAndResponseIsValid(const unsigned char challenge[16], const unsigned char response[16]);
+      bool challengeAndResponseIsValid(const ::u8 challenge[16], const ::u8 response[16]);
       void clearPlainPass();
 
    private:
-      static const unsigned char m_key[];
+      static const ::u8 m_key[];
       // The ::array_base uses to protect a password from containing in the stack
       // because the stack available for a public on a bug.
-      ::array_base<unsigned char> m_plainPassword;
+      ::array_base<::u8> m_plainPassword;
    };
 
 

@@ -27,7 +27,7 @@
 //
 //
 //   virtual character_count get_length() const;
-//   virtual void get_string(char * psz) const;
+//   virtual void get_string(char_pointer psz) const;
 //   virtual void set_string(const ::scoped_string & scopedstr, const ::action_context & action_context);
 //
 //
@@ -46,7 +46,7 @@
 //}
 //
 //
-//inline void string_composite::get_string(char * psz) const
+//inline void string_composite::get_string(char_pointer psz) const
 //{
 //   if(m_pstring != nullptr)
 //      m_pstring->get_string(scopedstr);

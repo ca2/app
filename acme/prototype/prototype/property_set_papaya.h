@@ -181,9 +181,9 @@ namespace acme
 
       //   character_count iPos;
 
-      //   char ch;
+      //   ::i8 ch;
 
-      //   char chNext;
+      //   ::i8 chNext;
 
       //   for (iPos = 0; iPos < str.length(); iPos++)
       //   {

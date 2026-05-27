@@ -17,7 +17,7 @@
 //void axis_factory(::factory::factory * pfactory);
 
 
-//int get_main_screen_rectangle(::i32_rectangle * lprect);
+//::i32 get_main_screen_rectangle(::i32_rectangle * lprect);
 
 //
 //const_char_pointer g_pszMultimediaLibraryName = nullptr;
@@ -53,7 +53,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::particle * 
 extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr);
 
 
 #ifdef WINDOWS
@@ -481,7 +481,7 @@ namespace axis
 //
 //      operating_system_driver::get()->m_bGetUserWallpaper = true;
 //
-//      for(int i = 0; i < 10; i++)
+//      for(::i32 i = 0; i < 10; i++)
 //      {
 //
 //         if (!operating_system_driver::get()->m_bGetUserWallpaper)
@@ -529,7 +529,7 @@ namespace axis
 //   }
 //
 //
-//   ::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount)
+//   ::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount)
 //   {
 //
 //      string strStyle(scopedstrStyle);
@@ -559,7 +559,7 @@ namespace axis
 
 
 
-   //CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, ::u32 dwTemp);
+   //CLASS_DECL_AXIS void black_body(::f32* r, ::f32* g, ::f32* b, ::u32 dwTemp);
 
 
    

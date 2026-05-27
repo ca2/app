@@ -42,11 +42,11 @@ namespace innate_subsystem
    //    m_pparticleThis->showTooltip(control);
    // }
    //
-   // void Tooltip::setText(const char *text)
+   // void Tooltip::setText(const_char_pointer text)
    // {
    //    m_pparticleThis->setText(text);
    // }
-   // void Tooltip::setTitle(const char *caption)
+   // void Tooltip::setTitle(const_char_pointer caption)
    // {
    //    m_pparticleThis->setTitle(caption);
    // }
@@ -60,11 +60,11 @@ namespace innate_subsystem
    //    return m_pparticleThis->getTitle();
    // }
    //
-   // void Tooltip::setIconType(int iconType)
+   // void Tooltip::setIconType(::i32 iconType)
    // {
    //    m_pparticleThis->setIconType(iconType);
    // }
-   // int Tooltip::getIconType() const
+   // ::i32 Tooltip::getIconType() const
    // {
    //    return m_pparticleThis->getIconType();
    // }

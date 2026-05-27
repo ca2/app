@@ -30,8 +30,8 @@
 
 //#include "host_interaction.h"
 
-//CLASS_DECL_ACME void __trace_message(const_char_pointer lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_ACME void __trace_message(const_char_pointer lpszPrefix, MESSAGE * lpmsg);
+//CLASS_DECL_ACME void __trace_message(const_char_pointer pszPrefix, ::message::message * pmessage);
+//CLASS_DECL_ACME void __trace_message(const_char_pointer pszPrefix, MESSAGE * lpmsg);
 
 CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessage);
 
@@ -55,10 +55,10 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessag
 
 
 
-int CLASS_DECL_ACME __android_main(int argc, char* argv[]);
+::i32 CLASS_DECL_ACME __android_main(::i32 argc, char_pointer argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const_char_pointer lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
 
 
 #include "internal.h"

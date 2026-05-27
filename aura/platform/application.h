@@ -106,7 +106,7 @@ namespace aura
 //
 //       //string                                          m_strLicense;
 //
-//       //int                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+//       //::i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 //
 //       //::pointer<::simpledb::server>                  m_psimpledb;
 //
@@ -140,7 +140,7 @@ namespace aura
 // //
 // //      string                                          m_strId;
 //
-// //      int                                             m_iResourceId;
+// //      ::i32                                             m_iResourceId;
 //
 //       //::pointer<::experience::department>          m_pexperience;
 //       ::pointer<::aura::theme>                       m_ptheme;
@@ -149,7 +149,7 @@ namespace aura
 //       //string_array_base                                    m_straAppInterest;
 //       //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 //
-//       //int                                             m_iGcomBackgroundUpdateMillis;
+//       //::i32                                             m_iGcomBackgroundUpdateMillis;
 //
 //
 
@@ -323,11 +323,11 @@ namespace aura
       //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual void process_message_filter(int code, ::message::message * pmessage) override;
+      virtual void process_message_filter(::i32 code, ::message::message * pmessage) override;
 
 
 
-      virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
+      virtual void DoWaitCursor(::i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       // virtual void _001PostTryCloseApplication() override;
 
@@ -363,8 +363,8 @@ namespace aura
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      //virtual int hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      //virtual int hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual ::i32 hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual ::i32 hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
@@ -388,9 +388,9 @@ namespace aura
       //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
 
       ///virtual bool compress_ungz(memory_base & mem) override;
-      //virtual bool compress_gz(const ::stream& os, const ::stream& is, int iLevel = 6) override;
+      //virtual bool compress_gz(const ::stream& os, const ::stream& is, ::i32 iLevel = 6) override;
 
-      //virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6) override;
+      //virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, ::i32 iLevel = 6) override;
 
 
       //virtual bool is_local_data() override;
@@ -526,14 +526,14 @@ namespace aura
       //virtual ::file::path defer_process_path(::file::path path);
       //virtual ::file::path full_process_path(::file::path path);
 
-      //virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(::i32 nCode); // 0 => restore, 1=> begin, -1=> end
       //virtual void show_wait_cursor(bool bShow = true) override;
 
 
 
-      //virtual void process_message_filter(int code,::message::message * pmessage) override;
+      //virtual void process_message_filter(::i32 code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread,int lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread,::i32 lCount) override;
 
 
       //virtual bool app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override;
@@ -673,7 +673,7 @@ namespace aura
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      //virtual void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
+      //virtual void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;
 
       //virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override;
 
@@ -691,7 +691,7 @@ namespace aura
       //virtual bool check_exclusive(bool & bHandled) override;
       //virtual bool release_exclusive() override;
 
-      //virtual void on_set_scalar(e_scalar escalar,::i64 iValue,int iFlags) override;
+      //virtual void on_set_scalar(e_scalar escalar,::i64 iValue,::i32 iFlags) override;
       //virtual void get_scalar_minimum(e_scalar escalar,::i64 & i) override;
       //virtual void get_scalar(e_scalar escalar,::i64 & i) override;
       //virtual void get_scalar_maximum(e_scalar escalar,::i64 & i) override;
@@ -793,7 +793,7 @@ namespace aura
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
-      //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel = 6);
+      //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6);
 
       //virtual void interactive_credentials(::account::credentials * pcredentials) override;
 
@@ -810,7 +810,7 @@ namespace aura
 
 
       //virtual void install_trace(const ::scoped_string & scopedstr) override;
-      //virtual void install_trace(double dRate) override;
+      //virtual void install_trace(::f64 dRate) override;
       //virtual bool register_spa_file_type() override;
 
       //virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
@@ -919,7 +919,7 @@ void initialize_context() override;
 
       //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override;
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override;
+      //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 
@@ -940,7 +940,7 @@ void initialize_context() override;
       DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 
 
-      virtual bool on_idle(int lCount) override; // return true if more idle processing
+      virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
@@ -1016,7 +1016,7 @@ void initialize_context() override;
 
 
 
-      virtual int track_popup_menu(::menu::track_popup* ptrackpopup) override;
+      virtual ::i32 track_popup_menu(::menu::track_popup* ptrackpopup) override;
 
       virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
       virtual bool get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
@@ -1038,13 +1038,13 @@ void initialize_context() override;
       void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override;
 
 
-      virtual int GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept) override;
-      virtual int GetVisibleFrameCount() override;
+      virtual ::i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept) override;
+      virtual ::i32 GetVisibleFrameCount() override;
 
       virtual void prepare_form(atom atom, ::form_document* pformdocument) override;
 
 
-      void report_error(const ::exception & exception, int iMessageFlags, const ::scoped_string & scopedstrTopic) override;
+      void report_error(const ::exception & exception, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override;
 
 
       bool can_close_application() override;
@@ -1080,7 +1080,7 @@ void initialize_context() override;
       string imaging_get_default_implementation_name() override;
 
 
-      void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
+      void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;
 
 
       // ::user::user * aurauser() override;
@@ -1112,7 +1112,7 @@ void initialize_context() override;
 
       //virtual void run_application();
 
-      //virtual void on_layout_cube(int cx, int cy);
+      //virtual void on_layout_cube(::i32 cx, ::i32 cy);
 
       //::string draw2d_get_default_implementation_name() override;
 
@@ -1138,7 +1138,7 @@ void initialize_context() override;
 
 //#ifdef WINDOWS_DESKTOP
 //
-//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const ::scoped_string & scopedstrProcess, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
+//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const ::scoped_string & scopedstrProcess, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, ::i32 iSession = -1);
 //
 //CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const ::scoped_string & scopedstrProcess, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
 //

@@ -94,7 +94,7 @@ public:
    virtual ::file::path module();
 
    
-   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time(const ::file::path & pathBasePath, ::i32 iDepth = 0, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, bool bTryDelete = false);
    ::file::path time_square(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
    ::file::path time_log(const ::scoped_string & scopedstr);
 
@@ -162,7 +162,7 @@ public:
    //}
 
 
-   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & stra);
+   virtual ::i32 filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
@@ -215,7 +215,7 @@ public:
    virtual file_pointer resource_get_file(const ::file::path & path);
 
    virtual ::file::path sys_temp(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
-   virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
+   virtual ::file::path sys_temp_unique(const ::file::path & pszName);
 
 
    virtual ::file::path replace_with_extension(const ::scoped_string & scopedstrExtension,  const ::file::path & pathFile);
@@ -321,7 +321,7 @@ public:
   // virtual ::payload length(const ::file::path & path);
 
 
-   //::file::path time(const ::file::path & pathBasePath, int iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
+   //::file::path time(const ::file::path & pathBasePath, ::i32 iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
 
 
    //virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
@@ -387,7 +387,7 @@ public:
    //virtual bool add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   string sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
+   string sys_temp(const_char_pointer pszName, const ::scoped_string & scopedstrExtension);
 
 
    //virtual ::file_pointer get_file(const ::payload & payloadFile, ::u32 nOpenFlags);

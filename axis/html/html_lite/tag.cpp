@@ -74,9 +74,9 @@ lite_html_tag::~lite_html_tag()
    ::u32            nRetVal = 0U,
                    nTemp = 0U;
 
-   const_char_pointer           pszBegin = &scopedstrString[iPos];
+   const_char_pointer pszBegin = &scopedstrString[iPos];
 
-   const_char_pointer           pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
 
    // skip leading white-space characters

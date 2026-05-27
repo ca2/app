@@ -135,7 +135,7 @@ namespace database
    }
 
 
-   void database_impl::set_error_code(int iErrorCode)
+   void database_impl::set_error_code(::i32 iErrorCode)
    {
 
       m_iLastError = iErrorCode;

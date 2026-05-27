@@ -14,7 +14,7 @@ namespace dynamic_source
    public:
 
 
-      int                                          m_iCa2FetchMode;
+      ::i32                                          m_iCa2FetchMode;
 
       string                                       m_strLocale;
 

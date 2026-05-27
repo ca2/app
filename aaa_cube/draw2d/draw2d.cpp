@@ -35,11 +35,11 @@ namespace draw2d_gpu
    face* draw2d::get_face(::write_text::font* pfont)
    {
 
-      int iPixelSize = 0;
+      ::i32 iPixelSize = 0;
 
       if (pfont->m_fontsize.eunit() == e_unit_point)
       {
-         iPixelSize = (int) system()->acme_windowing()->default_screen_points_to_pixels(pfont->m_fontsize.as_float());
+         iPixelSize = (::i32) system()->acme_windowing()->default_screen_points_to_pixels(pfont->m_fontsize.as_f32());
       }
       else
       {
@@ -185,7 +185,7 @@ namespace draw2d_gpu
 
    ////      pfont->m_familya.set_size(iFamilyCount);
 
-   ////      for (int iFamily = 0; iFamily < iFamilyCount; iFamily++)
+   ////      for (::i32 iFamily = 0; iFamily < iFamilyCount; iFamily++)
    ////      {
 
    ////         if (pfont->m_familya[iFamily].GetLastStatus() != Gdiplus::Ok)
@@ -210,7 +210,7 @@ namespace draw2d_gpu
    //}
 
 
-   //int  draw2d::opengl_init()
+   //::i32  draw2d::opengl_init()
    //{
 
    //   //constructø(m_popenglcontext);

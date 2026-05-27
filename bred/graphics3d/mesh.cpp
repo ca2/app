@@ -15,7 +15,7 @@ namespace graphics3d
 
 
    mesh::mesh()/*
-   {const ::array<float>& vertexes, const ::array<::u32>& indexes,
+   {const ::array<::f32>& vertexes, const ::array<::u32>& indexes,
       ::u32 vertexOffset, ::u32 indexOffset, ::u32 indexCount)
       : m_Vertices(vertexes), m_Indices(indexes), m_VertexOffset(vertexOffset),
       m_IndexOffset(indexOffset), m_IndexCount(indexCount) */
@@ -133,22 +133,22 @@ namespace graphics3d
 
       //// Setup the vertex buffer (VBO)
       //glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-      //glBufferData(GL_ARRAY_BUFFER, m_Vertices.size() * sizeof(float), m_Vertices.data(), GL_STATIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, m_Vertices.size() * sizeof(::f32), m_Vertices.data(), GL_STATIC_DRAW);
 
       //// Setup the index buffer (EBO)
       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
       //glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Indices.size() * sizeof(::u32), m_Indices.data(), GL_STATIC_DRAW);
 
       //// Position attribute
-      //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(m_VertexOffset * 8 * sizeof(float)));
+      //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(::f32), (void*)(m_VertexOffset * 8 * sizeof(::f32)));
       //glEnableVertexAttribArray(0);
 
       //// Color attribute
-      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(m_VertexOffset * 8 * sizeof(float) + 3 * sizeof(float)));
+      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(::f32), (void*)(m_VertexOffset * 8 * sizeof(::f32) + 3 * sizeof(::f32)));
       //glEnableVertexAttribArray(1);
 
       //// texture coord attribute
-      //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(m_VertexOffset * 8 * sizeof(float) + 6 * sizeof(float)));
+      //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(::f32), (void*)(m_VertexOffset * 8 * sizeof(::f32) + 6 * sizeof(::f32)));
       //glEnableVertexAttribArray(2);
 
 

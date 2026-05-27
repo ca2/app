@@ -1486,7 +1486,7 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 
 
 template < prototype_container CONTAINER >
-inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
+inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, ::i32 nLine)
 {
 
    if (pcontainer == nullptr)

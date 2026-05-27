@@ -31,7 +31,7 @@ class system_time;
 //inline int32_t days_from_1970(int32_t year)
 //{
 //
-//  static const int days_from_0_to_1970 = days_from_0(1970);
+//  static const ::i32 days_from_0_to_1970 = days_from_0(1970);
 //
 //  return days_from_0(year) - days_from_0_to_1970;
 //
@@ -57,9 +57,9 @@ class system_time;
 //inline posix_time make_utc_time(struct tm const *t)
 //{
 //
-//   int year = t->tm_year + 1900;
+//   ::i32 year = t->tm_year + 1900;
 //
-//   int month = t->tm_mon;
+//   ::i32 month = t->tm_mon;
 //
 //   if(month > 11)
 //   {
@@ -72,7 +72,7 @@ class system_time;
 //   else if(month < 0)
 //   {
 //
-//      int years_diff = (-month + 11)/12;
+//      ::i32 years_diff = (-month + 11)/12;
 //
 //      year -= years_diff;
 //
@@ -82,11 +82,11 @@ class system_time;
 //
 //   month++;
 //
-//   int day = t->tm_mday;
+//   ::i32 day = t->tm_mday;
 //
-//   int day_of_year = days_from_1jan(year,month,day);
+//   ::i32 day_of_year = days_from_1jan(year,month,day);
 //
-//   int days_since_epoch = days_from_1970(year) + day_of_year;
+//   ::i32 days_since_epoch = days_from_1970(year) + day_of_year;
 //
 //   posix_time seconds_in_day = 3600 * 24;
 //
@@ -146,7 +146,7 @@ namespace earth
 //#endif
 
 
-extern "C" CLASS_DECL_ACME int c_localtime_offset();
+extern "C" CLASS_DECL_ACME ::i32 c_localtime_offset();
 
 
 
@@ -180,7 +180,7 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 //#endif
 //
 //
-//extern "C" CLASS_DECL_ACME int c_localtime_offset();
+//extern "C" CLASS_DECL_ACME ::i32 c_localtime_offset();
 //
 //
 //#include "micro_time.h"

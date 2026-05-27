@@ -16,13 +16,13 @@ namespace aura
       }
 
 
-      void rx::receiver::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+      void rx::receiver::on_ipc_receive(rx * prx, ::i32 message, void * pdata, memsize len)
       {
 
       }
 
 
-      void rx::receiver::on_ipc_post(rx * prx, long long a, long long b)
+      void rx::receiver::on_ipc_post(rx * prx, ::i64 a, ::i64 b)
       {
 
       }
@@ -82,7 +82,7 @@ namespace aura
       }
 
 
-      bool ipc::ensure_tx(int message, void * pdata, int len, duration durationTimeout)
+      bool ipc::ensure_tx(::i32 message, void * pdata, ::i32 len, duration durationTimeout)
       {
 
          if(message == WM_APP + WM_USER)

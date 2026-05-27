@@ -24,8 +24,8 @@ namespace jwt {
 		 * \brief valid list of characted when working with [Base64](https://tools.ietf.org/html/rfc3548)
 		 */
 		struct base64 {
-			static const std::array<char, 64>& data() {
-				static constexpr std::array<char, 64> data{
+			static const std::array<::i8, 64>& data() {
+				static constexpr std::array<::i8, 64> data{
 					{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
 					 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
 					 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -41,8 +41,8 @@ namespace jwt {
 		 * \brief valid list of characted when working with [Base64URL](https://tools.ietf.org/html/rfc4648)
 		 */
 		struct base64url {
-			static const std::array<char, 64>& data() {
-				static constexpr std::array<char, 64> data{
+			static const std::array<::i8, 64>& data() {
+				static constexpr std::array<::i8, 64> data{
 					{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
 					 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
 					 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -79,7 +79,7 @@ namespace jwt {
 		}
 
 	private:
-		static std::string encode(const std::string& bin, const std::array<char, 64>& alphabet,
+		static std::string encode(const std::string& bin, const std::array<::i8, 64>& alphabet,
 								  const std::string& fill) {
 			size_t size = bin.size();
 			std::string res;
@@ -87,9 +87,9 @@ namespace jwt {
 			// clear incomplete bytes
 			size_t fast_size = size - size % 3;
 			for (size_t i = 0; i < fast_size;) {
-				uint32_t octet_a = static_cast<unsigned char>(bin[i++]);
-				uint32_t octet_b = static_cast<unsigned char>(bin[i++]);
-				uint32_t octet_c = static_cast<unsigned char>(bin[i++]);
+				uint32_t octet_a = static_cast<::u8>(bin[i++]);
+				uint32_t octet_b = static_cast<::u8>(bin[i++]);
+				uint32_t octet_c = static_cast<::u8>(bin[i++]);
 
 				uint32_t triple = (octet_a << 0x10) + (octet_b << 0x08) + octet_c;
 
@@ -103,9 +103,9 @@ namespace jwt {
 
 			size_t mod = size % 3;
 
-			uint32_t octet_a = fast_size < size ? static_cast<unsigned char>(bin[fast_size++]) : 0;
-			uint32_t octet_b = fast_size < size ? static_cast<unsigned char>(bin[fast_size++]) : 0;
-			uint32_t octet_c = fast_size < size ? static_cast<unsigned char>(bin[fast_size++]) : 0;
+			uint32_t octet_a = fast_size < size ? static_cast<::u8>(bin[fast_size++]) : 0;
+			uint32_t octet_b = fast_size < size ? static_cast<::u8>(bin[fast_size++]) : 0;
+			uint32_t octet_c = fast_size < size ? static_cast<::u8>(bin[fast_size++]) : 0;
 
 			uint32_t triple = (octet_a << 0x10) + (octet_b << 0x08) + octet_c;
 
@@ -128,7 +128,7 @@ namespace jwt {
 			return res;
 		}
 
-		static std::string decode(const std::string& base, const std::array<char, 64>& alphabet,
+		static std::string decode(const std::string& base, const std::array<::i8, 64>& alphabet,
 								  const std::string& fill) {
 			size_t size = base.size();
 
@@ -164,9 +164,9 @@ namespace jwt {
 
 				uint32_t triple = (sextet_a << 3 * 6) + (sextet_b << 2 * 6) + (sextet_c << 1 * 6) + (sextet_d << 0 * 6);
 
-				res += static_cast<char>((triple >> 2 * 8) & 0xFFU);
-				res += static_cast<char>((triple >> 1 * 8) & 0xFFU);
-				res += static_cast<char>((triple >> 0 * 8) & 0xFFU);
+				res += static_cast<::i8>((triple >> 2 * 8) & 0xFFU);
+				res += static_cast<::i8>((triple >> 1 * 8) & 0xFFU);
+				res += static_cast<::i8>((triple >> 0 * 8) & 0xFFU);
 			}
 
 			if (fill_cnt == 0) return res;
@@ -176,10 +176,10 @@ namespace jwt {
 			switch (fill_cnt) {
 			case 1:
 				triple |= (get_sextet(fast_size + 2) << 1 * 6);
-				res += static_cast<char>((triple >> 2 * 8) & 0xFFU);
-				res += static_cast<char>((triple >> 1 * 8) & 0xFFU);
+				res += static_cast<::i8>((triple >> 2 * 8) & 0xFFU);
+				res += static_cast<::i8>((triple >> 1 * 8) & 0xFFU);
 				break;
-			case 2: res += static_cast<char>((triple >> 2 * 8) & 0xFFU); break;
+			case 2: res += static_cast<::i8>((triple >> 2 * 8) & 0xFFU); break;
 			default: break;
 			}
 

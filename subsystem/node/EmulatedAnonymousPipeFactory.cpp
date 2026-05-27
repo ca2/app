@@ -92,9 +92,9 @@ namespace subsystem
 //   {
 //      return m_pparticleThis->getUniqPipeName();
 //      // ::string result;
-//      // srand((unsigned)::time(0));
-//      // for (int i = 0; i < 20; i++) {
-//      //    result += (char) ('a' + rand() % ('z' - 'a'));
+//      // srand((::u32)::time(0));
+//      // for (::i32 i = 0; i < 20; i++) {
+//      //    result += (::i8) ('a' + rand() % ('z' - 'a'));
 //      // }
 //      // return result;
 //   }

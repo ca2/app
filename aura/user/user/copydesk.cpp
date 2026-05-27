@@ -448,7 +448,7 @@ namespace user
 
                      pimage->g()->set(pfont);
 
-                     double_size s = pimage->g()->get_text_extent(str);
+                     ::f64_size s = pimage->g()->get_text_extent(str);
 
                      if (s.area() > 0.)
                      {
@@ -458,7 +458,7 @@ namespace user
                         //if(estatus.succeeded())
                         {
 
-                           pimage->create({ (int)ceil(s.cx), (int)ceil(s.cy) });
+                           pimage->create({ (::i32)ceil(s.cx), (::i32)ceil(s.cy) });
 
                            //if (is_status_ok())
                            //{

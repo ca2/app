@@ -142,7 +142,7 @@ namespace mysql
          m_strName,
          atoi(m_strPort),
          m_strSckt,
-         (unsigned long)m_uConnectionFlags) == nullptr)
+         (ulong)m_uConnectionFlags) == nullptr)
       {
 
          trace_error1("mysql_real_connect() failed\n");
@@ -179,7 +179,7 @@ namespace mysql
 
             /*
 
-            for(int i = 0; i < m_resultptra.get_count(); i++)
+            for(::i32 i = 0; i < m_resultptra.get_count(); i++)
             {
                if(m_resultptra(i)->m_bAutoDelete)
                {
@@ -429,7 +429,7 @@ namespace mysql
    }
 
 
-   unsigned long* database::_mysql_fetch_lengths(MYSQL_RES* pres)
+   ulong* database::_mysql_fetch_lengths(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -439,7 +439,7 @@ namespace mysql
 
       }
 
-      unsigned long* lengths = mysql_fetch_lengths((MYSQL_RES*)pres);
+      ulong* lengths = mysql_fetch_lengths((MYSQL_RES*)pres);
 
       if (lengths == nullptr)
       {
@@ -657,7 +657,7 @@ namespace mysql
       else
       {
 
-         unsigned long* pul = _mysql_fetch_lengths(pres);
+         ulong* pul = _mysql_fetch_lengths(pres);
 
          if (pul == nullptr)
          {
@@ -850,7 +850,7 @@ namespace mysql
 
       string strEscaped;
 
-      char* pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
+      char_pointer pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
 
       if (scopedstr == nullptr)
       {
@@ -859,7 +859,7 @@ namespace mysql
 
       }
 
-      mysql_real_escape_string((MYSQL*)m_pmysql, pszEscaped, psz, (unsigned long)iLen);
+      mysql_real_escape_string((MYSQL*)m_pmysql, pszEscaped, psz, (ulong)iLen);
 
       strEscaped.release_buffer();
 

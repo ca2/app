@@ -12,10 +12,10 @@ namespace colorertake5
  */
 class StyledRegion : public RegionDefine{
 public:
-  static const int RD_BOLD;
-  static const int RD_ITALIC;
-  static const int RD_UNDERLINE;
-  static const int RD_STRIKEOUT;
+  static const ::i32 RD_BOLD;
+  static const ::i32 RD_ITALIC;
+  static const ::i32 RD_UNDERLINE;
+  static const ::i32 RD_STRIKEOUT;
 
   /** Is foreground value assigned? */
   bool bfore;

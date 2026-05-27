@@ -53,7 +53,7 @@ public:
    }
 
 
-   random_access_iterator operator ++(int)
+   random_access_iterator operator ++(::i32)
    {
 
       random_access_iterator it = *this;
@@ -65,7 +65,7 @@ public:
    }
 
 
-   random_access_iterator operator --(int)
+   random_access_iterator operator --(::i32)
    {
 
       random_access_iterator it = *this;
@@ -199,7 +199,7 @@ public:
    }
 
 
-   const_random_access_iterator operator ++(int)
+   const_random_access_iterator operator ++(::i32)
    {
 
       const_random_access_iterator it = *this;
@@ -211,7 +211,7 @@ public:
    }
 
 
-   const_random_access_iterator operator --(int)
+   const_random_access_iterator operator --(::i32)
    {
 
       const_random_access_iterator it = *this;

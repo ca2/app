@@ -37,23 +37,23 @@ namespace image
       // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      int * vxmin;
-      int * vymin;
+      ::i32 * vxmin;
+      ::i32 * vymin;
 
 
       vector4 * m_stack;
 
-      void stackblur(vector4* colorbuffer,const int w,const int h,const int radius, int wj);
+      void stackblur(vector4* colorbuffer,const ::i32 w,const ::i32 h,const ::i32 radius, ::i32 wj);
 
 #endif // VECTOR3_SSE
 
       ::i32_size           m_size;
-      int                  m_iRadius;
-      byte_array           m_uchaR;
-      byte_array           m_uchaG;
-      byte_array           m_uchaB;
-      byte_array           m_uchaA;
-      byte_array           m_uchaDiv;
+      ::i32                  m_iRadius;
+      byte_array           m_u8aR;
+      byte_array           m_u8aG;
+      byte_array           m_u8aB;
+      byte_array           m_u8aA;
+      byte_array           m_u8aDiv;
       ::array < rgba_t >   m_rgbaa;
       i64_array_base            m_iaVmin;
       i64_array_base            m_iaVmax;
@@ -63,8 +63,8 @@ namespace image
       ~fastblur();
 
       using ::particle::initialize;
-      void initialize(int cx, int cy, int iRadius);
-      void initialize(::i32_size sz, int iRadius);
+      void initialize(::i32 cx, ::i32 cy, ::i32 iRadius);
+      void initialize(::i32_size sz, ::i32 iRadius);
 
 
       virtual void blur(::image::image *pimage, const ::i32_rectangle & rectangle);
@@ -73,11 +73,11 @@ namespace image
       virtual void blur(::image::image *pimage);
 
 
-      void do_fastblur(image32_t * pdata,int w,int h,unsigned char * rectangle,unsigned char * g,unsigned char * b,unsigned char * a,unsigned char * dv,int stride,int * vmin,int * vmax,int cx,int cy,int bottomup);
-      void do_fastblur(image32_t * pdata,int w,int h,rgba_t * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
+      void do_fastblur(image32_t * pdata,::i32 w,::i32 h,::u8 * rectangle,::u8 * g,::u8 * b,::u8 * a,::u8 * dv,::i32 stride,::i32 * vmin,::i32 * vmax,::i32 cx,::i32 cy,::i32 bottomup);
+      void do_fastblur(image32_t * pdata,::i32 w,::i32 h,rgba_t * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup);
 #if VECTOR3_SSE
-      void do_boxblur(vector4 * pdata,int w,int h,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
-      void do_stackblur(vector4 * pdata,int w,int h,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
+      void do_boxblur(vector4 * pdata,::i32 w,::i32 h,::u32 * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup);
+      void do_stackblur(vector4 * pdata,::i32 w,::i32 h,::u32 * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup);
 #endif // VECTOR3_SSE
 
 

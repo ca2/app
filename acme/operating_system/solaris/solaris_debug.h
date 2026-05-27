@@ -3,8 +3,8 @@
 
 // http://stackoverflow.com/questions/3596781/detect-if-gdb-is-running
 
-int gdb_check();
+::i32 gdb_check();
 
 // alias
-int is_gdb_present();
+::i32 is_gdb_present();
 

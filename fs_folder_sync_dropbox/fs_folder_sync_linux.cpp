@@ -24,7 +24,7 @@ namespace fs_folder_sync_dropbox
 
       ::string str;
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
       while (true)
       {
@@ -227,7 +227,7 @@ namespace fs_folder_sync_dropbox
 
 
    void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName,
-                                                int iMinimumSize,
+                                                ::i32 iMinimumSize,
                                                 const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
@@ -279,7 +279,7 @@ namespace fs_folder_sync_dropbox
 
             auto pszLine = line.c_str();
 
-            int iFind = lines.case_insensitive_find_first_begins(line + ":");
+            ::i32 iFind = lines.case_insensitive_find_first_begins(line + ":");
 
             if (iFind < 0)
             {
@@ -445,7 +445,7 @@ namespace fs_folder_sync_dropbox
          for (auto& line : lines)
          {
 
-            int iFind = stra.case_insensitive_find_first_begins(line + ":");
+            ::i32 iFind = stra.case_insensitive_find_first_begins(line + ":");
 
             if (iFind < 0)
             {
@@ -492,7 +492,7 @@ namespace fs_folder_sync_dropbox
 
    ::file::path folder_sync::_cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
       const ::file::path& pathCloudFile, const ::scoped_string& scopedstrFileExtension,
-      int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+      ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       ::string_array_base lines;
@@ -560,7 +560,7 @@ namespace fs_folder_sync_dropbox
 
    void folder_sync::_cloud_ensure_files_are_up_to_date_and_present(
    const ::file::path& pathFolder, const ::string_array_base & stra,
-   int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       if(stra.is_empty())
@@ -594,7 +594,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            int iFind = lines.case_insensitive_find_first_begins(str + ":");
+            ::i32 iFind = lines.case_insensitive_find_first_begins(str + ":");
 
             if (iFind < 0)
             {
@@ -710,7 +710,7 @@ namespace fs_folder_sync_dropbox
 
       ::string_array_base stra(straExclude);
 
-      stra.predicate_each([](auto& str) { str.double_quote(); });
+      stra.predicate_each([](auto& str) { str.f64_quote(); });
 
       auto strExclude = stra.implode(" ");
 
@@ -724,7 +724,7 @@ namespace fs_folder_sync_dropbox
 
       ::string_array_base stra(straInclude);
 
-      stra.predicate_each([](auto& str) { str.double_quote(); });
+      stra.predicate_each([](auto& str) { str.f64_quote(); });
 
       auto strInclude = stra.implode(" ");
 

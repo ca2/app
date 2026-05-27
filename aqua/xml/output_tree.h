@@ -29,7 +29,7 @@ namespace xml
 
       //void set_bool_attr(const ::scoped_string & scopedstrName, bool bValue, bool bOptional = true);
 
-      //void set_double_attr(const ::scoped_string & scopedstrName, double dValue);
+      //void set_f64_attr(const ::scoped_string & scopedstrName, ::f64 dValue);
 
       void set_value(const ::scoped_string & scopedstrValue);
 

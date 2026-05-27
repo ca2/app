@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-double prototype_color_round(double d);
+::f64 prototype_color_round(::f64 d);
 
 
 namespace color
@@ -49,7 +49,7 @@ namespace color
 
 
 
-   //color::color::color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+   //color::color::color(::u8 r, ::u8 g, ::u8 b, ::u8 a)
    //{
 
    //   set(r, g, b, a);
@@ -57,22 +57,22 @@ namespace color
    //}
 
 
-   color::color::color(const hls & hls, unsigned char a)
+   color::color::color(const hls & hls, ::u8 a)
    {
 
       operator = (hls);
 
-      m_uchOpacity = a;
+      m_u8Opacity = a;
 
    }
 
 
-   color::color::color(const hsv & hsv, unsigned char a)
+   color::color::color(const hsv & hsv, ::u8 a)
    {
 
       operator = (hsv);
 
-      m_uchOpacity = a;
+      m_u8Opacity = a;
 
    }
 
@@ -83,9 +83,9 @@ namespace color
    proc hls2rgb {h l s} {
        # Posted by frederic.bonnet@ciril.fr
        # h, l and s are floats between 0.0 and 1.0, ditto for rectangle, g and b
-       # h = 0   => m_uchRed
-       # h = 1/3 => m_uchGreen
-       # h = 2/3 => m_uchBlue
+       # h = 0   => m_u8Red
+       # h = 1/3 => m_u8Green
+       # h = 2/3 => m_u8Blue
 
        set h6 [expr {($h-floor($h))*6}]
        set rectangle [expr {  $h6 <= 3 ? 2-$h6
@@ -96,9 +96,9 @@ namespace color
    1    set b [expr {  $h6 <= 1 ? -$h6
                                : $h6 <= 4 ? $h6-2
                                : 6-$h6}]
-       set rectangle [expr {$i32_rectangle < 0.0 ? 0.0 : $i32_rectangle > 1.0 ? 1.0 : double($i32_rectangle)}]
-       set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : double($g)}]
-       set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : double($b)}]
+       set rectangle [expr {$i32_rectangle < 0.0 ? 0.0 : $i32_rectangle > 1.0 ? 1.0 : ::f64($i32_rectangle)}]
+       set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : ::f64($g)}]
+       set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : ::f64($b)}]
 
        set rectangle [expr {(($i32_rectangle-1)*$s+1)*$l}]
        set g [expr {(($g-1)*$s+1)*$l}]
@@ -125,9 +125,9 @@ namespace color
       else
       {
 
-         double dDiff = (hsv.m_dV - m_dL);
+         ::f64 dDiff = (hsv.m_dV - m_dL);
 
-         double dMin = minimum(m_dL, 1.0 - m_dL);;
+         ::f64 dMin = minimum(m_dL, 1.0 - m_dL);;
 
          m_dS = dDiff / dMin;
 
@@ -168,21 +168,21 @@ namespace color
 
    }
 
-   void color::get_hls(double & h, double & l, double & s) const
+   void color::get_hls(::f64 & h, ::f64 & l, ::f64 & s) const
    {
 
-         double rf = f64_red();
-         double gf = f64_green();
-         double bf = f64_blue();
+         ::f64 rf = f64_red();
+         ::f64 gf = f64_green();
+         ::f64 bf = f64_blue();
 
-         double max_val = f64_maximum_rgb();
-         double min_val = f64_minimum_rgb();
+         ::f64 max_val = f64_maximum_rgb();
+         ::f64 min_val = f64_minimum_rgb();
          l = (max_val + min_val) / 2.0;
          s = 0.0;
          h = 0.0;
 
          if (max_val != min_val) {
-            double d = max_val - min_val;
+            ::f64 d = max_val - min_val;
             s = (l > 0.5) ? (d / (2.0 - max_val - min_val)) : (d / (max_val + min_val));
 
             if (max_val == rf) {
@@ -200,15 +200,15 @@ namespace color
          //return { h, l, s };
       //}
 
-      //double r = m_uchRed / 255.0;
-      //double g = m_uchGreen / 255.0;
-      //double b = m_uchBlue / 255.0;
+      //::f64 r = m_u8Red / 255.0;
+      //::f64 g = m_u8Green / 255.0;
+      //::f64 b = m_u8Blue / 255.0;
 
-      //double v;
-      //double m;
-      //double vm;
+      //::f64 v;
+      //::f64 m;
+      //::f64 vm;
 
-      //double r2, g2, b2;
+      //::f64 r2, g2, b2;
 
       //h = 0; // default to black
       //s = 0;
@@ -275,14 +275,14 @@ namespace color
 
       //h /= 6.0;
 
-      ///*double dCMin = minimum(dR, minimum(dG, dB));;
-      //double dCMax = maximum(dR, maximum(dG, dB));
-      //double dA;
+      ///*::f64 dCMin = minimum(dR, minimum(dG, dB));;
+      //::f64 dCMax = maximum(dR, maximum(dG, dB));
+      //::f64 dA;
 
       //if(dR > dB)
       //{
       //   // Red component intensity is
-      //   // greater than m_uchBlue component intensity.
+      //   // greater than m_u8Blue component intensity.
       //   if(dG > dB)
       //   {
       //      // Blue component intensity is minimum.
@@ -290,7 +290,7 @@ namespace color
       //      if(dR > dG)
       //      {
       //         // Red component intensity is maximum.
-      //         // The hue goes from m_uchRed to yellow.
+      //         // The hue goes from m_u8Red to yellow.
       //         // The hue must be between (0 / 6) and (1 / 6)
       //         dA = (dG - dB) / (dR - dB);
       //         dHParam = dA / 6.0;
@@ -298,7 +298,7 @@ namespace color
       //      else if(dG > dR)
       //      {
       //         // Green component intensity is maximum.
-      //         // The hue goes from yellow to m_uchGreen.
+      //         // The hue goes from yellow to m_u8Green.
       //         // The hue must be between (1 / 6) and (2 / 6)
       //         dA = (dR - dB) / (dG - dB);
       //         dHParam = (dA + 1.0) / 6.0;
@@ -306,8 +306,8 @@ namespace color
       //      else // if(dG == dR)
       //      {
       //         // Green component intensity is equal
-      //         // m_uchRed component intensity.
-      //         // The m_uchBlue component is minimum.
+      //         // m_u8Red component intensity.
+      //         // The m_u8Blue component is minimum.
       //         // The color is yellow-ish
       //         dHParam = 1.0 / 6.0;
       //      }
@@ -315,15 +315,15 @@ namespace color
       //   else if(dG == dB)
       //   {
       //      // Green component intensity is equal
-      //      // m_uchBlue component intensity.
-      //      // The color is m_uchRed-ish
+      //      // m_u8Blue component intensity.
+      //      // The color is m_u8Red-ish
       //      dHParam = 0.0 / 6.0;
       //   }
       //   else // if(dB > dG)
       //   {
       //      // Green component intensity is minimum.
       //      // Red component intensity is maximum.
-      //      // The color go from magenta to m_uchRed.
+      //      // The color go from magenta to m_u8Red.
       //      // The hue must be between (5 / 6) and (6 / 6)
       //      dA = (dB - dG) / (dR - dG);
       //      dHParam = (dA + 5.0) / 6.0;
@@ -332,12 +332,12 @@ namespace color
       //else if(dB > dR)
       //{
       //   // Blue component intensity is
-      //   // greater than m_uchRed component intensity.
+      //   // greater than m_u8Red component intensity.
       //   if(dG > dB)
       //   {
       //      // Red component intensity is minimum.
       //      // Green component intensity is maximum.
-      //      // The color go from m_uchGreen to cyan.
+      //      // The color go from m_u8Green to cyan.
       //      // The hue must be between (2 / 6) and (3 / 6)
       //      dA = (dB - dR) / (dG - dR);
       //      dHParam = (dA + 2.0) / 6.0;
@@ -348,7 +348,7 @@ namespace color
       //      if(dG > dR)
       //      {
       //         // Red component intensity is mimimum.
-      //         // The hue goes from cyan to m_uchBlue.
+      //         // The hue goes from cyan to m_u8Blue.
       //         // The hue must be between (3 / 6) and (4 / 6)
       //         dA = (dG - dR) / (dB - dR);
       //         dHParam = (dA + 3.0) / 6.0;
@@ -356,7 +356,7 @@ namespace color
       //      else if(dR > dG)
       //      {
       //         // Green component intensity is minimum.
-      //         // The hue goes from m_uchBlue to magenta.
+      //         // The hue goes from m_u8Blue to magenta.
       //         // The hue must be between (4 / 6) and (5 / 6)
       //         dA = (dR - dG) / (dB - dG);
       //         dHParam = (dA + 4.0) / 6.0;
@@ -364,8 +364,8 @@ namespace color
       //      else // if(dG == dR)
       //      {
       //         // Green component intensity is equal
-      //         // m_uchRed component intensity.
-      //         // The color is m_uchBlue-ish
+      //         // m_u8Red component intensity.
+      //         // The color is m_u8Blue-ish
       //         dHParam = 4.0 / 6.0;
       //         return;
       //      }
@@ -373,8 +373,8 @@ namespace color
       //   else // if(dG == dB)
       //   {
       //      // Green component intensity is equal
-      //      // m_uchBlue component intensity.
-      //      // The m_uchRed component intensity is minimum.
+      //      // m_u8Blue component intensity.
+      //      // The m_u8Red component intensity is minimum.
       //      // The color is cyan-ish
       //      dHParam = 3.0 / 6.0;
       //      return;
@@ -382,10 +382,10 @@ namespace color
       //}
       //else // if(dR == dB)
       //{
-      //   // Red and m_uchBlue components have equal intensity
+      //   // Red and m_u8Blue components have equal intensity
       //   if(dG > dR)
       //   {
-      //      // The color is m_uchGreen-ish
+      //      // The color is m_u8Green-ish
       //      dHParam = 2.0 / 6.0;
       //   }
       //   else if(dG < dR)
@@ -403,8 +403,8 @@ namespace color
       //   }
       //}
 
-      //double dCDiff = dCMax - dCMin;
-      //double dCSum = dCMax + dCMin;
+      //::f64 dCDiff = dCMax - dCMin;
+      //::f64 dCSum = dCMax + dCMin;
       //dLParam = dCSum / 2.0;
       //dSParam = dLParam < 0.5 ?
       //           dCDiff / dCSum :
@@ -428,21 +428,21 @@ namespace color
    }
 
 
-   void color::get_hsv(double & dHue, double & dBlack, double & dWhite) const
+   void color::get_hsv(::f64 & dHue, ::f64 & dBlack, ::f64 & dWhite) const
    {
 
       auto r = this->f64_red();
       auto g = this->f64_green();
       auto b = this->f64_blue();
 
-      double M = this->f64_maximum_rgb();
+      ::f64 M = this->f64_maximum_rgb();
 
-      double m = this->f64_minimum_rgb();
+      ::f64 m = this->f64_minimum_rgb();
 
       if (M == m)
       {
 
-         double l = 0.5 * (M + m);
+         ::f64 l = 0.5 * (M + m);
          dHue = 0.;
          dBlack = 1. - l;
          dWhite = l;
@@ -451,7 +451,7 @@ namespace color
       else
       {
 
-         double d = M - m, h;
+         ::f64 d = M - m, h;
 
          if (fabs(M- r) < 0.001)
          {
@@ -492,12 +492,12 @@ namespace color
    }
 
 
-   double prototype_color_round(double d)
+   ::f64 prototype_color_round(::f64 d)
    {
 
-      double n;
+      ::f64 n;
 
-      double f;
+      ::f64 f;
 
       f = modf(d, &n);
 
@@ -525,21 +525,21 @@ namespace color
 
 #define dsin(x) (sin(((x) *2.0 * 3.1415) / 360.0))
 
-   ::color::color color::from_hue(double h)
+   ::color::color color::from_hue(::f64 h)
    {
 
-      double s = 1.f;
-      double v = 1.f;
+      ::f64 s = 1.f;
+      ::f64 v = 1.f;
 
       if (h < 0) h += 1;
 
-      int i = int(h * 6);
-      double f = h * 6 - i;
-      double p = v * (1 - s);
-      double q = v * (1 - f * s);
-      double t = v * (1 - (1 - f) * s);
+      ::i32 i = ::i32(h * 6);
+      ::f64 f = h * 6 - i;
+      ::f64 p = v * (1 - s);
+      ::f64 q = v * (1 - f * s);
+      ::f64 t = v * (1 - (1 - f) * s);
 
-      double r = 0, g = 0, b = 0;
+      ::f64 r = 0, g = 0, b = 0;
       switch (i % 6) {
       case 0:
       {
@@ -593,7 +593,7 @@ namespace color
    }
 
 
-   void color::set_hls(double dH, double dL, double dS)
+   void color::set_hls(::f64 dH, ::f64 dL, ::f64 dS)
    {
 
       //ASSERT(dH >= 0.0);
@@ -612,7 +612,7 @@ namespace color
 
       }
 
-      double dR, dG, dB;
+      ::f64 dR, dG, dB;
 
       if (dH >= 1.0)
          dH = 0.0;
@@ -631,7 +631,7 @@ namespace color
 
       dH *= 6.0;
 
-      double dA = dH - (double)((int)dH);
+      ::f64 dA = dH - (::f64)((::i32)dH);
 
       if (dH >= 3.0)
       {
@@ -640,7 +640,7 @@ namespace color
             if (dH >= 5.0)
             {
                // 5.0
-               // magenta to m_uchRed
+               // magenta to m_u8Red
                dR = 1.0;
                dG = 0.0;
                dB = 1.0 - dA;
@@ -648,7 +648,7 @@ namespace color
             else
             {
                // 4.0
-               // m_uchBlue to magenta
+               // m_u8Blue to magenta
                dR = dA;
                dG = 0.0;
                dB = 1.0;
@@ -657,7 +657,7 @@ namespace color
          else
          {
             // 3.0
-            // cyan to m_uchBlue
+            // cyan to m_u8Blue
             dR = 0.0;
             dG = 1.0 - dA;
             dB = 1.0;
@@ -668,7 +668,7 @@ namespace color
          if (dH >= 2.0)
          {
             // 2
-            // m_uchGreen to cyan
+            // m_u8Green to cyan
             dR = 0.0;
             dG = 1.0;
             dB = dA;
@@ -678,7 +678,7 @@ namespace color
             if (dH >= 1.0)
             {
                // 1
-               // yellow to m_uchGreen
+               // yellow to m_u8Green
                dR = 1.0 - dA;
                dG = 1.0;
                dB = 0.0;
@@ -686,7 +686,7 @@ namespace color
             else // if(dh >= 0 && dH < 1.0);
             {
                // 0
-               // m_uchRed to yellow
+               // m_u8Red to yellow
                dR = 1.0;
                dG = dA;
                dB = 0.0;
@@ -694,9 +694,9 @@ namespace color
          }
       }
 
-      double dCMin;
-      double dCAdd;
-      double dSL = dS * dL;
+      ::f64 dCMin;
+      ::f64 dCAdd;
+      ::f64 dSL = dS * dL;
       if (dL >= 0.5)
       {
          dCMin = dL - dS + dSL;
@@ -709,45 +709,45 @@ namespace color
       }
 
 
-      double dFinalR = (dCMin + dR * dCAdd);
-      double dFinalG = (dCMin + dG * dCAdd);
-      double dFinalB = (dCMin + dB * dCAdd);
+      ::f64 dFinalR = (dCMin + dR * dCAdd);
+      ::f64 dFinalG = (dCMin + dG * dCAdd);
+      ::f64 dFinalB = (dCMin + dB * dCAdd);
 
-      m_uchRed = (unsigned char)prototype_color_round(dFinalR * 255.0);
-      m_uchGreen = (unsigned char)prototype_color_round(dFinalG * 255.0);
-      m_uchBlue = (unsigned char)prototype_color_round(dFinalB * 255.0);
+      m_u8Red = (::u8)prototype_color_round(dFinalR * 255.0);
+      m_u8Green = (::u8)prototype_color_round(dFinalG * 255.0);
+      m_u8Blue = (::u8)prototype_color_round(dFinalB * 255.0);
 
-      /*   double H = dH * 360.0;
+      /*   ::f64 H = dH * 360.0;
 
 
-         double d360 = dsin(360.0);
+         ::f64 d360 = dsin(360.0);
 
-         double R1 = dsin(H) * dL;
-         double G1 = dsin(H + 120.0) * dL;
-         double B1 = dsin(H + 240.0) * dL;
+         ::f64 R1 = dsin(H) * dL;
+         ::f64 G1 = dsin(H + 120.0) * dL;
+         ::f64 B1 = dsin(H + 240.0) * dL;
 
-         double AVERAGE = (R1 + G1 + B1) / 3;
+         ::f64 AVERAGE = (R1 + G1 + B1) / 3;
 
          m_dR = ((R1 - AVERAGE) * dS) + AVERAGE;
          m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
          m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-         m_iR      = (unsigned char)prototype_color_round(m_dR * 255.0);
-         m_iG      = (unsigned char)prototype_color_round(m_dG * 255.0);
-         m_iB      = (unsigned char)prototype_color_round(m_dB * 255.0);*/
+         m_iR      = (::u8)prototype_color_round(m_dR * 255.0);
+         m_iG      = (::u8)prototype_color_round(m_dG * 255.0);
+         m_iB      = (::u8)prototype_color_round(m_dB * 255.0);*/
 
    }
 
 
-   void color::set_hsv(double h, double s, double v)
+   void color::set_hsv(::f64 h, ::f64 s, ::f64 v)
    {
 
-      double r, g, b;
-      int i = static_cast<int>(h * 6);
-      double f = (h * 6) - i;
-      double p = v * (1 - s);
-      double q = v * (1 - f * s);
-      double t = v * (1 - (1 - f) * s);
+      ::f64 r, g, b;
+      ::i32 i = static_cast<::i32>(h * 6);
+      ::f64 f = (h * 6) - i;
+      ::f64 p = v * (1 - s);
+      ::f64 q = v * (1 - f * s);
+      ::f64 t = v * (1 - (1 - f) * s);
 
       switch (i % 6) {
          case 0: r = v; g = t; b = p; break;
@@ -758,23 +758,23 @@ namespace color
          case 5: r = v; g = p; b = q; break;
       }
 
-      m_uchRed = static_cast<int>(r * 255);
-      m_uchGreen = static_cast<int>(g * 255);
-      m_uchBlue = static_cast<int>(b * 255);
+      m_u8Red = static_cast<::i32>(r * 255);
+      m_u8Green = static_cast<::i32>(g * 255);
+      m_u8Blue = static_cast<::i32>(b * 255);
    
       //auto rgb = from_hue(dHue);
       //::color::color black = ::color::black;
       //::color::color white = ::color::white;
 
-      //double luminanceComplement = 1.0 - dWhite - dBlack;
+      //::f64 luminanceComplement = 1.0 - dWhite - dBlack;
 
-      //double dFinalR = rgb.f64_red() * luminanceComplement + dBlack * black.f64_red() + dWhite * white.f64_red();
-      //double dFinalG = rgb.f64_green() * luminanceComplement + dBlack * black.f64_green() + dWhite * white.f64_green();
-      //double dFinalB = rgb.f64_blue() * luminanceComplement + dBlack * black.f64_blue() + dWhite * white.f64_blue();
+      //::f64 dFinalR = rgb.f64_red() * luminanceComplement + dBlack * black.f64_red() + dWhite * white.f64_red();
+      //::f64 dFinalG = rgb.f64_green() * luminanceComplement + dBlack * black.f64_green() + dWhite * white.f64_green();
+      //::f64 dFinalB = rgb.f64_blue() * luminanceComplement + dBlack * black.f64_blue() + dWhite * white.f64_blue();
 
-      //m_uchRed = (unsigned char)prototype_color_round(dFinalR * 255.0);
-      //m_uchGreen = (unsigned char)prototype_color_round(dFinalG * 255.0);
-      //m_uchBlue = (unsigned char)prototype_color_round(dFinalB * 255.0);
+      //m_u8Red = (::u8)prototype_color_round(dFinalR * 255.0);
+      //m_u8Green = (::u8)prototype_color_round(dFinalG * 255.0);
+      //m_u8Blue = (::u8)prototype_color_round(dFinalB * 255.0);
 
    }
 
@@ -798,7 +798,7 @@ namespace color
    //}
 
 
-   void color::hue_offset(double dRadians)
+   void color::hue_offset(::f64 dRadians)
    {
 
       if (dRadians >= 0.0)
@@ -816,19 +816,19 @@ namespace color
 
       //http://stackoverflow.com/questions/8507885/shift-hue-of-an-rgb-color
       //http://stackoverflow.com/users/630989/jacob-eggers
-      double U = ::cos(dRadians);
-      double W = ::sin(dRadians);
+      ::f64 U = ::cos(dRadians);
+      ::f64 W = ::sin(dRadians);
 
-      double oldr = m_uchRed;
-      double oldg = m_uchGreen;
-      double oldb = m_uchBlue;
-      m_uchRed = clampAndConvert((.299 + .701 * U + .168 * W) * oldr
+      ::f64 oldr = m_u8Red;
+      ::f64 oldg = m_u8Green;
+      ::f64 oldb = m_u8Blue;
+      m_u8Red = clampAndConvert((.299 + .701 * U + .168 * W) * oldr
                              + (.587 - .587 * U + .330 * W) * oldg
                              + (.114 - .114 * U - .497 * W) * oldb);
-      m_uchGreen = clampAndConvert((.299 - .299 * U - .328 * W) * oldr
+      m_u8Green = clampAndConvert((.299 - .299 * U - .328 * W) * oldr
                              + (.587 + .413 * U + .035 * W) * oldg
                              + (.114 - .114 * U + .292 * W) * oldb);
-      m_uchBlue = clampAndConvert((.299 - .3 * U + 1.25 * W) * oldr
+      m_u8Blue = clampAndConvert((.299 - .3 * U + 1.25 * W) * oldr
                              + (.587 - .588 * U - 1.05 * W) * oldg
                              + (.114 + .886 * U - .203 * W) * oldb);
 
@@ -838,17 +838,17 @@ namespace color
    //void color::set_bgr(::u32 bgr)
    //{
 
-   //   m_uchRed   = bgr_byte_red(bgr);
-   //   m_uchGreen = bgr_byte_green(bgr);
-   //   m_uchBlue  = bgr_byte_blue(bgr);
-   //   m_uchOpacity = bgr_byte_opacity(bgr);
+   //   m_u8Red   = bgr_byte_red(bgr);
+   //   m_u8Green = bgr_byte_green(bgr);
+   //   m_u8Blue  = bgr_byte_blue(bgr);
+   //   m_u8Opacity = bgr_byte_opacity(bgr);
 
    //}
 
 
-   void color::hls_rate(double dRateH, double dRateL, double dRateS)
+   void color::hls_rate(::f64 dRateH, ::f64 dRateL, ::f64 dRateS)
    {
-      double dH, dL, dS;
+      ::f64 dH, dL, dS;
 
       get_hls(dH, dL, dS);
 
@@ -882,10 +882,10 @@ namespace color
    }
 
 
-   void color::hue_rate(double dRateH)
+   void color::hue_rate(::f64 dRateH)
    {
 
-      double dH, dL, dS;
+      ::f64 dH, dL, dS;
 
       get_hls(dH, dL, dS);
 
@@ -903,10 +903,10 @@ namespace color
    }
 
 
-   void color::lightness_rate(double dRateL)
+   void color::lightness_rate(::f64 dRateL)
    {
 
-      double dH, dL, dS;
+      ::f64 dH, dL, dS;
 
       get_hls(dH, dL, dS);
 
@@ -924,10 +924,10 @@ namespace color
    }
 
 
-   void color::saturation_rate(double dRateS)
+   void color::saturation_rate(::f64 dRateS)
    {
 
-      double dH, dL, dS;
+      ::f64 dH, dL, dS;
 
       get_hls(dH, dL, dS);
 
@@ -955,10 +955,10 @@ namespace color
    }
 
 
-   void color::hls_mult(double dMultH, double dMultL, double dMultS)
+   void color::hls_mult(::f64 dMultH, ::f64 dMultL, ::f64 dMultS)
    {
 
-      double dH, dL, dS;
+      ::f64 dH, dL, dS;
 
       get_hls(dH, dL, dS);
 
@@ -1034,21 +1034,21 @@ namespace color
    }
 
    /*
-   void CColor::get_hls(unsigned char * H, unsigned char * L, unsigned char * S)
+   void CColor::get_hls(::u8 * H, ::u8 * L, ::u8 * S)
    {
-      double dHue, dLightness, dSaturation;
+      ::f64 dHue, dLightness, dSaturation;
       // input rgb values
-      double dRed = m_bRed;
-      double dGreen = m_bGreen;
-      double dBlue = m_bBlue;
+      ::f64 dRed = m_bRed;
+      ::f64 dGreen = m_bGreen;
+      ::f64 dBlue = m_bBlue;
       // maximum and minimum rgb values
-      double dMax, dMin;
+      ::f64 dMax, dMin;
       // intermediate value: % of spread from maximum
-      double dRedDelta, dGreenDelta, dBlueDelta;
+      ::f64 dRedDelta, dGreenDelta, dBlueDelta;
       // calculate lightness
       dMax = maximum(maximum(dRed, dGreen), dBlue);
       dMin = minimum(minimum(dRed, dGreen), dBlue);
-      dLightness = (unsigned char) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
+      dLightness = (::u8) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
       if(dMax == dMin)
       {
          // rectangle=g=b --> achromatic case
@@ -1082,18 +1082,18 @@ namespace color
          if (dHue > HLSMAX)
             dHue -= HLSMAX;
       }
-      *H = (unsigned char) dHue;
-      *L = (unsigned char) dLightness;
-      *S = (unsigned char) dSaturation;
+      *H = (::u8) dHue;
+      *L = (::u8) dLightness;
+      *S = (::u8) dSaturation;
    }*/
 
    /*
    // utility routine for HLStoRGB
 
-   double HueToRGB(
-      double d1,
-      double d2,
-      double dHue)
+   ::f64 HueToRGB(
+      ::f64 d1,
+      ::f64 d2,
+      ::f64 dHue)
    {
       // range check: note values passed add/subtract thirds of range
       if (dHue < 0.0)
@@ -1112,12 +1112,12 @@ namespace color
    }
 
    void CColor::set_hls(
-      double dHue,
-      double dLightness,
-      double dSaturation)
+      ::f64 dHue,
+      ::f64 dLightness,
+      ::f64 dSaturation)
    {
-      double dRed, dGreen, dBlue;        // rgb component values
-      double dMagic1, dMagic2;       // calculated magic numbers (really!)
+      ::f64 dRed, dGreen, dBlue;        // rgb component values
+      ::f64 dMagic1, dMagic2;       // calculated magic numbers (really!)
 
       if (dSaturation == 0.0)
       {
@@ -1145,9 +1145,9 @@ namespace color
          dBlue   = (HueToRGB(dMagic1, dMagic2, dHue-(HLSMAX/3.0))*RGBMAX +
             (HLSMAX/2))/HLSMAX;
       }
-      m_bBlue      = (unsigned char) dBlue;
-      m_bGreen   = (unsigned char) dGreen;
-      m_bRed      = (unsigned char) dRed;
+      m_bBlue      = (::u8) dBlue;
+      m_bGreen   = (::u8) dGreen;
+      m_bRed      = (::u8) dRed;
 
 
    }
@@ -1201,14 +1201,14 @@ namespace color
       {
          if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
          {
-            int iA, iR, iG, iB;
+            ::i32 iA, iR, iG, iB;
             sscanf(str.c_str(), "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
             set(argb(iA, iR, iG, iB));
             return true;
          }
          else if (!ishexdigit(str[7]))
          {
-            int iR, iG, iB;
+            ::i32 iR, iG, iB;
             sscanf(str.c_str(), "#%02x%02x%02x", &iR, &iG, &iB);
             set(argb(255, iR, iG, iB));
             return true;
@@ -1218,7 +1218,7 @@ namespace color
       {
          if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
          {
-            int iA, iR, iG, iB;
+            ::i32 iA, iR, iG, iB;
             sscanf(str.c_str(), "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
             set(argb(
                duplicate_color_nible(iA),
@@ -1229,7 +1229,7 @@ namespace color
          }
          else if (!ishexdigit(str[4]))
          {
-            int iR, iG, iB;
+            ::i32 iR, iG, iB;
             sscanf(str.c_str(), "#%1x%1x%1x", &iR, &iG, &iB);
             set(argb(255,
                duplicate_color_nible(iR),
@@ -1269,13 +1269,13 @@ namespace color
    }
 
 
-   //void color::set(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+   //void color::set(::u8 r, ::u8 g, ::u8 b, ::u8 a)
    //{
 
-   //   m_uchRed      = r;
-   //   m_uchGreen    = g;
-   //   m_uchBlue     = b;
-   //   m_uchOpacity    = a;
+   //   m_u8Red      = r;
+   //   m_u8Green    = g;
+   //   m_u8Blue     = b;
+   //   m_u8Opacity    = a;
 
    //}
 
@@ -1286,18 +1286,18 @@ namespace color
       //hls_rate(0.0, 0.0, -1.0);
       //saturation_rate(-1.0);
 
-      m_uchRed = m_uchGreen = m_uchBlue = (m_uchRed + m_uchGreen + m_uchBlue) / 3;
+      m_u8Red = m_u8Green = m_u8Blue = (m_u8Red + m_u8Green + m_u8Blue) / 3;
 
    }
 
 
-   //void color::set(double r, double g, double b, double a)
+   //void color::set(::f64 r, ::f64 g, ::f64 b, ::f64 a)
    //{
 
-   //   m_uchRed      = (int)(r * 255.);
-   //   m_uchGreen    = (int)(g * 255.);
-   //   m_uchBlue     = (int)(b * 255.);
-   //   m_uchOpacity    = (int)(a * 255.);
+   //   m_u8Red      = (::i32)(r * 255.);
+   //   m_u8Green    = (::i32)(g * 255.);
+   //   m_u8Blue     = (::i32)(b * 255.);
+   //   m_u8Opacity    = (::i32)(a * 255.);
 
    //}
 
@@ -1312,10 +1312,10 @@ namespace color
 ::payload & assign(::payload & payload, const ::color::color & color32)
 {
 
-   payload["rec"] = color32.m_uchRed;
-   payload["m_uchGreen"] = color32.m_uchGreen;
-   payload["m_uchBlue"] = color32.m_uchBlue;
-   payload["m_uchOpacity"] = color32.m_uchOpacity;
+   payload["rec"] = color32.m_u8Red;
+   payload["m_u8Green"] = color32.m_u8Green;
+   payload["m_u8Blue"] = color32.m_u8Blue;
+   payload["m_u8Opacity"] = color32.m_u8Opacity;
 
    return payload;
 
@@ -1326,10 +1326,10 @@ namespace color
 //void __exchange(::stream & s, ::color::color & color32)
 //{
 //
-//   s.exchange("m_uchRed", color32.m_uchRed);
-//   s.exchange("m_uchGreen", color32.m_uchGreen);
-//   s.exchange("m_uchBlue", color32.m_uchBlue);
-//   s.exchange("m_uchOpacity", color32.m_uchOpacity);
+//   s.exchange("m_u8Red", color32.m_u8Red);
+//   s.exchange("m_u8Green", color32.m_u8Green);
+//   s.exchange("m_u8Blue", color32.m_u8Blue);
+//   s.exchange("m_u8Opacity", color32.m_u8Opacity);
 //
 //}
 
@@ -1341,10 +1341,10 @@ namespace color
    ::color::color & color::operator =(const ::payload & payload)
    {
 
-      m_uchRed = payload["m_uchRed"].as_u8();
-      m_uchGreen = payload["m_uchGreen"].as_u8();
-      m_uchBlue = payload["m_uchBlue"].as_u8();
-      m_uchOpacity = payload["m_uchOpacity"].as_u8();
+      m_u8Red = payload["m_u8Red"].as_u8();
+      m_u8Green = payload["m_u8Green"].as_u8();
+      m_u8Blue = payload["m_u8Blue"].as_u8();
+      m_u8Opacity = payload["m_u8Opacity"].as_u8();
 
       return *this;
 
@@ -1363,9 +1363,9 @@ namespace color
       else if (payload.m_etype == e_type_property_set)
       {
 
-         m_dH = payload["hue"].as_double();
-         m_dL = payload["lightness"].as_double();
-         m_dS = payload["saturation"].as_double();
+         m_dH = payload["hue"].as_f64();
+         m_dL = payload["lightness"].as_f64();
+         m_dS = payload["saturation"].as_f64();
 
       }
 
@@ -1377,22 +1377,22 @@ namespace color
    //{
 
 
-      ////::color::color context::RGB(unsigned char r, unsigned char g, unsigned char b)
-      //::color::color RGB_color(unsigned char r, unsigned char g, unsigned char b)
+      ////::color::color context::RGB(::u8 r, ::u8 g, ::u8 b)
+      //::color::color RGB_color(::u8 r, ::u8 g, ::u8 b)
       //{
       //   ///return context::RGBA)(r, g, b, 255);
       //   return { r / 255.f, g / 255.f, b / 255.f, 1.0f };
       //}
 
-      ////::color::color context::RGBf)(float r, float g, float b)
-      //::color::color RGBf_color(float r, float g, float b)
+      ////::color::color context::RGBf)(::f32 r, ::f32 g, ::f32 b)
+      //::color::color RGBf_color(::f32 r, ::f32 g, ::f32 b)
       //{
       //   //return context::RGBAf)(r, g, b, 1.0f);
       //   return { r , g, b, 1.0f };
       //}
 
-      ////::color::color context::RGBA)(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
-      //::color::color RGBA_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+      ////::color::color context::RGBA)(::u8 r, ::u8 g, ::u8 b, ::u8 a)
+      //::color::color RGBA_color(::u8 r, ::u8 g, ::u8 b, ::u8 a)
       //{
       //   ::color::color color;
       //   // Use longer initialization to suppress warning.
@@ -1403,8 +1403,8 @@ namespace color
       //   return color;
       //}
 
-      ////::color::color context::RGBAf)(float r, float g, float b, float a)
-      //::color::color RGBAf_color(float r, float g, float b, float a)
+      ////::color::color context::RGBAf)(::f32 r, ::f32 g, ::f32 b, ::f32 a)
+      //::color::color RGBAf_color(::f32 r, ::f32 g, ::f32 b, ::f32 a)
       //{
       //   ::color::color color;
       //   // Use longer initialization to suppress warning.
@@ -1415,24 +1415,24 @@ namespace color
       //   return color;
       //}
 
-      //::color::color context::TransRGBA)(::color::color c, unsigned char a)
-   ::color::color TransRGBA_color(::color::color c, unsigned char a)
+      //::color::color context::TransRGBA)(::color::color c, ::u8 a)
+   ::color::color TransRGBA_color(::color::color c, ::u8 a)
    {
       c.set_opacity(a);
       return c;
    }
 
-   //::color::color context::TransRGBAf)(::color::color c, float a)
-   ::color::color TransRGBAf_color(::color::color c, double a)
+   //::color::color context::TransRGBAf)(::color::color c, ::f32 a)
+   ::color::color TransRGBAf_color(::color::color c, ::f64 a)
    {
       c.set_opacity(a);
       return c;
    }
 
-   //::color::color context::LerpRGBA)(::color::color c0, ::color::color c1, float u)
+   //::color::color context::LerpRGBA)(::color::color c0, ::color::color c1, ::f32 u)
    //{
-   //   int i;
-   //   float oneminu;
+   //   ::i32 i;
+   //   ::f32 oneminu;
    //   ::color::color cint = { {{0}} };
    //
    //   u = context::__clampf)(u, 0.0f, 1.0f);
@@ -1445,8 +1445,8 @@ namespace color
    //   return cint;
    //}
 
-   //::color::color context::HSL)(float h, float s, float l)
-   ::color::color HSL_color(double h, double s, double l)
+   //::color::color context::HSL)(::f32 h, ::f32 s, ::f32 l)
+   ::color::color HSL_color(::f64 h, ::f64 s, ::f64 l)
    {
       //return context::HSLA)(h, s, l, 255);
       ::color::color color;
@@ -1457,7 +1457,7 @@ namespace color
 
    }
 
-   //static float context::__hue)(float h, float m1, float m2)
+   //static ::f32 context::__hue)(::f32 h, ::f32 m1, ::f32 m2)
    //{
    //   if (h < 0) h += 1;
    //   if (h > 1) h -= 1;
@@ -1470,10 +1470,10 @@ namespace color
    //   return m1;
    //}
 
-   //::color::color context::HSLA)(float h, float s, float l, unsigned char a)
-   ::color::color HSLA_color(double h, double s, double l, unsigned char a)
+   //::color::color context::HSLA)(::f32 h, ::f32 s, ::f32 l, ::u8 a)
+   ::color::color HSLA_color(::f64 h, ::f64 s, ::f64 l, ::u8 a)
    {
-      //float m1, m2;
+      //::f32 m1, m2;
       //::color::color col;
       //h = context::__modf)(h, 1.0f);
       //if (h < 0.0f) h += 1.0f;
@@ -1488,7 +1488,7 @@ namespace color
 
       color.set_hls(h, l, s);
 
-      color.m_uchOpacity = a;
+      color.m_u8Opacity = a;
 
       return color;
 
@@ -1563,32 +1563,32 @@ CLASS_DECL_ACME::color::color as_color(const ::scoped_string & scopedstr)
    if (scopedstr.size() == 6)
    {
 
-      int r = 255;
-      int g = 255;
-      int b = 255;
+      ::i32 r = 255;
+      ::i32 g = 255;
+      ::i32 b = 255;
 
       sscanf(scopedstr, "%02x%02x%02x", &r, &g, &b);
 
-      return rgba((unsigned char)r, (unsigned char)g, (unsigned char)b, 255);
+      return rgba((::u8)r, (::u8)g, (::u8)b, 255);
 
    }
    else if (scopedstr.size() == 8)
    {
 
-      int r = 255;
-      int g = 255;
-      int b = 255;
-      int a = 255;
+      ::i32 r = 255;
+      ::i32 g = 255;
+      ::i32 b = 255;
+      ::i32 a = 255;
 
       sscanf(scopedstr, "%02x%02x%02x%02x", &r, &g, &b, &a);
 
-      return rgba((unsigned char)r, (unsigned char)g, (unsigned char)b, (unsigned char)a);
+      return rgba((::u8)r, (::u8)g, (::u8)b, (::u8)a);
 
    }
    else
    {
 
-      float r = 1.0, g = 1.0, b = 1.0, a = 1.0;
+      ::f32 r = 1.0, g = 1.0, b = 1.0, a = 1.0;
 
       sscanf(scopedstr, "%f %f %f %f", &r, &g, &b, &a);
 
@@ -1670,7 +1670,7 @@ namespace color
       ::hex::to(g, strResult.substr(2, 2));
       ::hex::to(b, strResult.substr(4, 2));
 
-      return ::rgba((int)r, (int)g, (int) b, 255);
+      return ::rgba((::i32)r, (::i32)g, (::i32) b, 255);
 
    }
 

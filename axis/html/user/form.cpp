@@ -216,7 +216,7 @@ void html_form::install_message_routing(::channel * pchannel)
 }
 
 
-void html_form::GetClientBox(::float_rectangle & box)
+void html_form::GetClientBox(::f32_rectangle & box)
 {
 
    ::i32_rectangle rectangleX;

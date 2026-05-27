@@ -9,7 +9,7 @@ namespace simple_shader
 {
 
 
-   void render::draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle& r, double dStart, double dAngle, bool bPath)
+   void render::draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle& r, ::f64 dStart, ::f64 dAngle, bool bPath)
    {
 
       auto pfont = createø < ::write_text::font > ();
@@ -140,9 +140,9 @@ namespace simple_shader
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double_array daStart;
+      f64_array daStart;
 
-      double_array daAngle;
+      f64_array daAngle;
 
       daStart.add(0.0);
       daAngle.add(100.0);
@@ -208,7 +208,7 @@ namespace simple_shader
 
       }
 
-      int iColumnCount = 8;
+      ::i32 iColumnCount = 8;
 
       i32_rectangle r;
 
@@ -218,9 +218,9 @@ namespace simple_shader
 
       r.bottom = rClient.center().y;
 
-      int i = 0;
+      ::i32 i = 0;
 
-      int iColumnWidth = rClient.width() / iColumnCount;
+      ::i32 iColumnWidth = rClient.width() / iColumnCount;
 
       for (i = 0; i < iColumnCount && i < daStart.get_size(); i++)
       {

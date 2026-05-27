@@ -33,19 +33,19 @@
 // ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
 // : m_size(0), m_max(max), m_ownMemory(true)
 // {
-//    m_buffer = new char[m_max];
+//    m_buffer = new ::i8[m_max];
 // }
 //
 //    ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
 //    : m_size(0), m_max(max), m_ownMemory(true)
 //    {
-//       m_buffer = new char[m_max];
+//       m_buffer = new ::i8[m_max];
 //    }
    //
    // ByteArrayOutputStream::ByteArrayOutputStream()
    // : m_size(0), m_buffer(0), m_max(DEFAULT_INNER_BUFFER_CAPACITY), m_ownMemory(true)
    // {
-   //    m_buffer = new char[m_max];
+   //    m_buffer = new ::i8[m_max];
    // }
 ByteArrayOutputStream::ByteArrayOutputStream()
 : m_size(0), m_buffer(0), m_max(0), m_bOwnMemory(false)
@@ -66,7 +66,7 @@ ByteArrayOutputStream::ByteArrayOutputStream(::particle * pparticle, void *alien
 }
 
    // ByteArrayOutputStream::ByteArrayOutputStream(void *alienMemory)
-   // : m_size(0), m_buffer((char *)alienMemory), m_max(0xFFFFFF), m_ownMemory(false)
+   // : m_size(0), m_buffer((char_pointer )alienMemory), m_max(0xFFFFFF), m_ownMemory(false)
    // {
    // }
 ByteArrayOutputStream::~ByteArrayOutputStream()
@@ -88,7 +88,7 @@ initialize(pparticle);
    m_size = 0;
    m_max = max;
    m_bOwnMemory = true;
-   m_buffer = new char[m_max];
+   m_buffer = new ::i8[m_max];
 }
 
 
@@ -98,7 +98,7 @@ void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pp
    m_size = 0;
    m_max = size;
    m_bOwnMemory = false;
-   m_buffer = (char*) alienMemory;
+   m_buffer = (char_pointer ) alienMemory;
 
 }
 
@@ -115,7 +115,7 @@ void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pp
          {
             memsize reserve = DEFAULT_INNER_BUFFER_CAPACITY;
             // Create new buffer with some reserve
-            char *newBuffer = new char[m_size + len + reserve];
+            char_pointer newBuffer = new ::i8[m_size + len + reserve];
             // Copy old buffer content to new
             memcpy(newBuffer, m_buffer, m_size);
             // Cleanup
@@ -137,7 +137,7 @@ void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pp
       // Write data to buffer
       //
 
-      memcpy(&m_buffer[m_size], (const char *)buffer, len);
+      memcpy(&m_buffer[m_size], (const_char_pointer )buffer, len);
       m_size += len;
 
       return len;
@@ -148,7 +148,7 @@ void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pp
       return m_size;
    }
 
-   const char *ByteArrayOutputStream::toByteArray() const
+   const_char_pointer ByteArrayOutputStream::toByteArray() const
    {
       return m_buffer;
    }

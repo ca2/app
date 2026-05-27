@@ -147,8 +147,8 @@ public:
 
 //#ifdef OS64BIT
 //
-//   inline ::property & operator[](int iIndex) { return payload(iIndex); }
-//   inline const ::property & operator[](int iIndex) const { return payload(iIndex); }
+//   inline ::property & operator[](::i32 iIndex) { return payload(iIndex); }
+//   inline const ::property & operator[](::i32 iIndex) const { return payload(iIndex); }
 //
 //#endif
 
@@ -229,16 +229,16 @@ public:
 
    const ::payload & get(const ::atom & atom) const;
 
-   ::float_array_base get(const ::atom & atom, const ::float_array_base & floata) const;
-   ::double_array_base get(const ::atom& atom, const ::double_array_base& doublea) const;
+   ::f32_array_base get(const ::atom & atom, const ::f32_array_base & floata) const;
+   ::f64_array_base get(const ::atom& atom, const ::f64_array_base& doublea) const;
    ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
-   int get(const ::atom& atom, const int & i) const;
+   ::i32 get(const ::atom& atom, const ::i32 & i) const;
    ::i64 get(const ::atom& atom, const ::i64 & ll) const;
-   float get(const ::atom& atom, const float & f) const;
-   double get(const ::atom& atom, const double & d) const;
+   ::f32 get(const ::atom& atom, const ::f32 & f) const;
+   ::f64 get(const ::atom& atom, const ::f64 & d) const;
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
-   int get_int(const ::atom & atom, int iDefault = 0) const;
+   ::i32 get_int(const ::atom & atom, ::i32 iDefault = 0) const;
    ::u32 get_unsigned_int(const ::atom & atom, ::u32 uDefault = 0) const;
    ::string get_string(const ::atom & atom, const ::scoped_string & scopedstrDefault = nullptr) const;
    ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;

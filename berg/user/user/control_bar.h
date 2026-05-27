@@ -50,9 +50,9 @@ public:
    ::user::control_bar * m_pBar;    // bar which this refers to (transient)
 
    //   void Serialize(CArchive& ar, BaseDockState* pDockState);
-   bool LoadState(const ::scoped_string & scopedstrProfileName, int nIndex, BaseDockState* pDockState);
+   bool LoadState(const ::scoped_string & scopedstrProfileName, ::i32 nIndex, BaseDockState* pDockState);
 
-   bool SaveState(const ::scoped_string & scopedstrProfileName, int nIndex);
+   bool SaveState(const ::scoped_string & scopedstrProfileName, ::i32 nIndex);
 
 };
 
@@ -68,10 +68,10 @@ namespace user
 
 
       // info about bar (for status bar and toolbar)
-//      int m_rectangleBorder.left, m_rectangleBorder.right;
-  //    int m_rectangleBorder.top, m_rectangleBorder.bottom;
+//      ::i32 m_rectangleBorder.left, m_rectangleBorder.right;
+  //    ::i32 m_rectangleBorder.top, m_rectangleBorder.bottom;
       ::i32_rectangle                           m_rectangleBorder;
-      int                                       m_cxDefaultGap;         // default gap value
+      ::i32                                       m_cxDefaultGap;         // default gap value
       ::u32                                     m_nMRUWidth;   // For dynamic resizing.
       bool                                      m_bDockTrack;
       bool                                      m_bFullScreenBar;
@@ -103,13 +103,13 @@ namespace user
 
       // getting and setting border space
       void SetBorders(const ::i32_rectangle & rectangle);
-      void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
+      void SetBorders(::i32 cxLeft = 0, ::i32 cyTop = 0, ::i32 cxRight = 0, ::i32 cyBottom = 0);
       ::i32_rectangle GetBorders();
 
       ::pointer<::user::frame_window>GetDockingFrame();
       bool IsFloating();
       virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
-      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 nMode);
+      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 nMode);
 
       
       void EnableDocking(::u32 dwDockStyle);
@@ -143,8 +143,8 @@ namespace user
 
       // implementation helpers
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz) const; // adjusts borders etc
-      //bool AllocElements(int nElements, int cbElement);
-      virtual bool SetStatusText(int nHit);
+      //bool AllocElements(::i32 nElements, ::i32 cbElement);
+      virtual bool SetStatusText(::i32 nHit);
       void ResetTimer(::u32 nEvent, const class time & time);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);

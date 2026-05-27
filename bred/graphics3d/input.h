@@ -34,9 +34,9 @@ namespace graphics3d
          // KeyMappings keys{};
          bool m_bMouseAbsolute;
 
-         //double m_dMouseLastY = 0.0;
-         //double m_Δx = 0.;
-         //double m_Δy = 0.;
+         //::f64 m_dMouseLastY = 0.0;
+         //::f64 m_Δx = 0.;
+         //::f64 m_Δy = 0.;
 
          bool m_bWasLeft = false;
          ::floating_sequence2 m_sequence2MouseLast;
@@ -46,23 +46,23 @@ namespace graphics3d
          ::floating_sequence2 m_sequence2MouseLastDragΔ{0.f};
 
 
-         double m_dCursorX;
-         double m_dCursorY;
+         ::f64 m_dCursorX;
+         ::f64 m_dCursorY;
          bool m_bFirstMouse;
          bool m_bLastMouse;
 
-         float m_fMoveSpeed{3.f};
-         float m_fLookSpeed{1.5f};
+         ::f32 m_fMoveSpeed{3.f};
+         ::f32 m_fLookSpeed{1.5f};
 
               ::graphics3d::mouse_state m_mousestate;
 
 
-                    float m_smoothing = 15.f;
+                    ::f32 m_smoothing = 15.f;
 
          bool m_b_001AbsoluteMousePosition;
-         float_angle m_angleCursorPixel; // Sensitivity factor for mouse movement
-         //float_angle m_angleYaw; // Camera yaw (horizontal rotation)
-         //float_angle m_anglePitch; // Camera pitch (vertical rotation)
+         f32_angle m_angleCursorPixel; // Sensitivity factor for mouse movement
+         //f32_angle m_angleYaw; // Camera yaw (horizontal rotation)
+         //f32_angle m_anglePitch; // Camera pitch (vertical rotation)
          floating_sequence3 _cameraDirection; // Camera direction vector
          floating_sequence3 _cameraPosition;
         // ::block as_block() { return as_memory_block(*this); }
@@ -70,14 +70,14 @@ namespace graphics3d
 
                bool m_bMouseOut = true;
 
-               //float m_moveSpeed;
+               //::f32 m_moveSpeed;
 
 
       input();
       ~input() override;
 
 
-      virtual void initialize_input(float moveSpeed = 7.f, const floating_angle &angleCursorPixel = 0.1_f_degree);
+      virtual void initialize_input(::f32 moveSpeed = 7.f, const floating_angle &angleCursorPixel = 0.1_f_degree);
 
 
       virtual ::user::enum_key_state key(::graphics3d::enum_key ekey);
@@ -112,7 +112,7 @@ namespace graphics3d
       virtual void _001PrepareMouseInput();
       virtual void process_mouse_input_updateLook();
 
-      virtual void _017Update(float dt, ::graphics3d::transform &transform);
+      virtual void _017Update(::f32 dt, ::graphics3d::transform &transform);
 
 
    };

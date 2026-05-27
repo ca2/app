@@ -38,23 +38,23 @@ namespace innate_subsystem
         //Tab();
 
        //virtual ~TabInterface() =0;
-        //Tab(BaseDialog *dialog, const char *caption);
+        //Tab(BaseDialog *dialog, const_char_pointer caption);
 
         //
         // Access methods to protected members
         //
 
-       virtual void initialize_tab(WindowInterface *dialog, const char *caption) = 0;
+       virtual void initialize_tab(WindowInterface *dialog, const_char_pointer caption) = 0;
 
-        //void setCaption(const char *caption) = 0; { m_caption->setString(caption); }
+        //void setCaption(const_char_pointer caption) = 0; { m_caption->setString(caption); }
 
-       virtual void setCaption(const char *caption) = 0;
+       virtual void setCaption(const_char_pointer caption) = 0;
 
-        // const char *getCaption() {
+        // const_char_pointer getCaption() {
         //     return m_caption.getString();
         // }
 
-       virtual const char *getCaption() = 0;
+       virtual const_char_pointer getCaption() = 0;
 
         //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
         //BaseDialog *getDialog() { return m_dialog; }
@@ -93,28 +93,28 @@ namespace innate_subsystem
       //Tab();
 
       //~Tab() override;
-      //Tab(BaseDialog *dialog, const char *caption);
+      //Tab(BaseDialog *dialog, const_char_pointer caption);
 
       //
       // Access methods to protected members
       //
 
-      void initialize_tab(WindowInterface * pwindow, const char* caption) override
+      void initialize_tab(WindowInterface * pwindow, const_char_pointer caption) override
       {
 
          m_ptab->initialize_tab(pwindow, caption);
       }
 
-      //void setCaption(const char *caption) override; { m_caption->setString(caption); }
+      //void setCaption(const_char_pointer caption) override; { m_caption->setString(caption); }
 
-      void setCaption(const char* caption) override { m_ptab->setCaption(caption);
+      void setCaption(const_char_pointer caption) override { m_ptab->setCaption(caption);
       }
 
-      // const char *getCaption() {
+      // const_char_pointer getCaption() {
       //     return m_caption.getString();
       // }
 
-      const char* getCaption() override { return m_ptab->getCaption();
+      const_char_pointer getCaption() override { return m_ptab->getCaption();
       }
 
       //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }

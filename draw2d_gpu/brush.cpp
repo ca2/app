@@ -32,7 +32,7 @@ namespace draw2d_gpu
    //      
    //}
 
-   // bool brush::CreateHatchBrush(int nIndex, color32_t crColor)
+   // bool brush::CreateHatchBrush(::i32 nIndex, color32_t crColor)
    // { 
    //    //return attach(::CreateHatchBrush(nIndex, crColor));
    //    return false;
@@ -52,13 +52,13 @@ namespace draw2d_gpu
     //   //return attach(::CreateDIBPatternBrushPt(lpPackedDIB, nUsage));
     //   return false;
     //}
-    //bool brush::CreateSysColorBrush(int nIndex)
+    //bool brush::CreateSysColorBrush(::i32 nIndex)
     //{ 
     //   //return attach(::GetSysColorBrush(nIndex));
     //   return false;
 
     //}
-/*    int brush::GetLogBrush(LOGBRUSH* pLogBrush)
+/*    ::i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
     { 
        //ASSERT(get_os_data() != nullptr);
        //return ::GetObject(get_os_data(), sizeof(LOGBRUSH), pLogBrush); 
@@ -72,7 +72,7 @@ namespace draw2d_gpu
 //  //       throw ::exception(error_resource);
 //   }
 //
-//   void brush::construct(int nIndex, color32_t crColor)
+//   void brush::construct(::i32 nIndex, color32_t crColor)
 //   {
 //    //  if (!attach(::CreateHatchBrush(nIndex, crColor)))
 //      //   throw ::exception(error_resource);
@@ -160,7 +160,7 @@ namespace draw2d_gpu
    //   //         plusplus::Color c1(color32_byte_opacity(m_color1),color32_byte_red(m_color1),color32_byte_green(m_color1),color32_byte_blue(m_color1));
    //   //         plusplus::Color c2(color32_byte_opacity(m_color2),color32_byte_red(m_color2),color32_byte_green(m_color2),color32_byte_blue(m_color2));
 
-   //   //            int c = 1;
+   //   //            ::i32 c = 1;
 
    //   //            pgb->SetCenterPoint(plusplus::PointF((plusplus::REAL) m_point.x,(plusplus::REAL) m_point.y));
    //   //         pgb->SetCenterColor(c1);

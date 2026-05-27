@@ -66,7 +66,7 @@
 //   void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(lpszName);
+//      __UNREFERENCED_PARAMETER(pszName);
 //
 //      throw ::interface_only("this is an interface");
 //
@@ -402,7 +402,7 @@
 //
 ////#ifdef WINDOWS
 ////
-////   DECLSPEC_NO_RETURN void os_context::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+////   DECLSPEC_NO_RETURN void os_context::raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags)
 ////   {
 ////
 ////
@@ -443,7 +443,7 @@
 //   //}
 //
 //
-//   //void os_context::edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink)
+//   //void os_context::edit_link_icon(const ::file::path& path, ::i32 iIcon, const ::file::path& pathLink)
 //   //{
 //
 //   //   throw ::exception(error_interface_only);
@@ -529,7 +529,7 @@
 ////
 ////
 ////
-////      char* pszRealPath = ::realpath(scopedstr, NULL);
+////      char_pointer pszRealPath = ::realpath(scopedstr, NULL);
 ////
 ////      if (scopedstrRealPath == NULL)
 ////      {
@@ -570,9 +570,9 @@
 ////
 ////         string strLink;
 ////
-////         char * psz = strLink.get_buffer(4096);
+////         char_pointer psz = strLink.get_buffer(4096);
 ////
-////         int count = (int) readlink(path, psz, 4096);
+////         ::i32 count = (::i32) readlink(path, psz, 4096);
 ////
 ////         if (count < 0)
 ////         {
@@ -880,7 +880,7 @@
 //   void os_context::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
 //   {
 //
-//      ASSERT(sizeof(unsigned int) == sizeof(unsigned int));
+//      ASSERT(sizeof(::u32) == sizeof(::u32));
 //
 //      uaPid = this->processes_identifiers();
 //

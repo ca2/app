@@ -25,7 +25,7 @@ namespace graphics3d
 	struct PushConstantData {
 		floating_matrix4 modelMatrix{ 1.f };
 		floating_matrix4 normalMatrix{ 1.f };
-		//int textureIndex;
+		//::i32 textureIndex;
 	};
 
 	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)

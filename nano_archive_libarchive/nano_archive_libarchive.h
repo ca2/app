@@ -21,7 +21,7 @@ namespace libarchive
                 ~archive() override;
 
 
-                void untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback) override;
+                void untar(const ::file::path & pathFolder, const ::payload & payloadTar, ::i32 iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback) override;
 
 
             };

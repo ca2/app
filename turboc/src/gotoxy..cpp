@@ -28,7 +28,7 @@
 //----------------------------------------------------------------------
 
 void
-gotoxy (int x, int y)
+gotoxy (::i32 x, ::i32 y)
 {
   //if (!ConioInitialized)
   //  textmode (LASTMODE);

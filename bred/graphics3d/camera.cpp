@@ -82,7 +82,7 @@ namespace graphics3d
    {
 
       m_fAspectRatio =
-         (float)m_pengine->gpu_context()->m_rectangle.width() / (float)m_pengine->gpu_context()->m_rectangle.height();
+         (::f32)m_pengine->gpu_context()->m_rectangle.width() / (::f32)m_pengine->gpu_context()->m_rectangle.height();
 
       m_pengine->calculate_projection(matrixProjection, *this);
 

@@ -20,7 +20,7 @@ namespace universal_windows
       virtual void Uninitialize() = 0;
 
       virtual ::winrt::Windows::Foundation::Rect window_rectangle() = 0;
-      virtual ::winrt::Windows::Foundation::::i32_point get_cursor_position() = 0;
+      virtual ::winrt::Windows::Foundation::i32_point get_cursor_position() = 0;
 
 
       virtual ::winrt::Windows::Foundation::Rect get_input_content_rect() = 0;
@@ -85,7 +85,7 @@ namespace universal_windows
 
       // Replace the text in the specified range.
       void ReplaceText(::winrt::Windows::UI::Text::Core::CoreTextRange modifiedRange, String^ text);
-      void SetText(String^ text, int iBeg, int iEnd);
+      void SetText(String^ text, ::i32 iBeg, ::i32 iEnd);
       bool HasSelection();
 
       // Change the selection without notifying CoreTextEditContext of the aaa_primitive_new selection.
@@ -118,7 +118,7 @@ namespace universal_windows
 
       void CoreWindow_KeyDown(::winrt::Windows::UI::Core::CoreWindow^ sender, ::winrt::Windows::UI::Core::KeyEventArgs^ args);
       // Adjust the active endpoint of the selection in the specified direction.
-      void AdjustSelectionEndpoint(int direction);
+      void AdjustSelectionEndpoint(::i32 direction);
 
       // Helper function to put a zero-width non-breaking space at the end of a string.
       // This prevents TextBlock from trimming trailing spaces.

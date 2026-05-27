@@ -22,7 +22,7 @@
   Purpose:	A Turbo C conio function.
   Mod history:	01/31/02 RSB	Created.
   		03/16/02 RSB	Added various special characters -- mainly
-			        for line-drawing.  Because no double-line
+			        for line-drawing.  Because no ::f64-line
 				characters are defined, I arbitrarily make
 				them the same as the single-line characters.
 		03/23/02 RSB	Added _wscroll.				
@@ -32,8 +32,8 @@
 
 //------------------------------------------------------------------------------------
 
-int
-putch (int c)
+::i32
+putch (::i32 c)
 {
  // if (!ConioInitialized)
  //   textmode (LASTMODE);

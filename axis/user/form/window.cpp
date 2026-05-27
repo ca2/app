@@ -227,7 +227,7 @@ namespace user
       //case BN_CLICKED:
       //{
       //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->id());
-      //            int i = pbutton->get_check() != 0;
+      //            ::i32 i = pbutton->get_check() != 0;
       //            VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
       //}
       //break;
@@ -263,11 +263,11 @@ namespace user
       //case CBN_SELCHANGE:
       //{
       //   /* linux         ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->id());
-      //            int iSel = pcombo->current_item();
+      //            ::i32 iSel = pcombo->current_item();
       //            if(iSel != CB_ERR)
       //            {
       //               ::u32 dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
-      //               VmsDataSet(pinteraction->m_dataid, 0, 0, (int) dwData);
+      //               VmsDataSet(pinteraction->m_dataid, 0, 0, (::i32) dwData);
       //            }*/
       //}
       //break;
@@ -410,7 +410,7 @@ namespace user
       __UNREFERENCED_PARAMETER(ptopic);
 
 
-      //for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+      //for(::i32 i = 0; i < m_controldescriptorset.get_size(); i++)
       //{
       //   ::user::interaction * pinteraction = m_controldescriptorset[i]->m_pcontrol;
       //   if(pinteraction == nullptr)
@@ -603,7 +603,7 @@ namespace user
       if(pinteraction == nullptr)
          return;
       ASSERT(pinteraction->get_control_type() == e_control_type_check_box);
-      //int i;
+      //::i32 i;
       //if(datastream()->get(pinteraction->m_strDataKey, i))
       //{
       //   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->id());
@@ -617,7 +617,7 @@ namespace user
       if(pinteraction == nullptr)
          return;
       /* linux   ASSERT(pinteraction->get_control_type() == e_control_type_combo_box);
-         int i;
+         ::i32 i;
          if(VmsDataGet(pinteraction->m_dataid, 0, 0, i))
          {
             iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((::u32) i);
@@ -750,7 +750,7 @@ throw_todo();
 
       }
 
-      //int i;
+      //::i32 i;
 
       //if(!datastream()->get(pinteraction->m_strDataKey, i))
       //   return false;
@@ -774,7 +774,7 @@ throw_todo();
 
       }
 
-      //int i = bData ? 1 : 0;
+      //::i32 i = bData ? 1 : 0;
       //datastream()->set(pinteraction->m_strDataKey, i);
       return true;
 
@@ -788,7 +788,7 @@ throw_todo();
       }
       else
       {
-         //for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+         //for(::i32 i = 0; i < m_controldescriptorset.get_size(); i++)
          //{
          //   ::pointer<control>pinteraction = m_controldescriptorset[i]->m_pcontrol;
          //   if(pinteraction == nullptr)
@@ -894,7 +894,7 @@ throw_todo();
 
       }
 
-      //for(int iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
+      //for(::i32 iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
       //{
 
       //   auto pdescriptor = m_controldescriptorset[iControl];
@@ -1078,7 +1078,7 @@ throw_todo();
                ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>pinteraction->m_puserinteraction;
                pcombo->reset_content();
                string str;
-               for(int i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
+               for(::i32 i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
                {
                   str = pinteraction->GetComboBox()->m_wstra[i];
                   pcombo->AddString(str);
@@ -1092,7 +1092,7 @@ throw_todo();
    void form_window::_017OnAppLanguage()
    {
 
-//      for(int i = 0; i < m_controldescriptorset.get_size() ; i++)
+//      for(::i32 i = 0; i < m_controldescriptorset.get_size() ; i++)
 //      {
 //         class control_descriptor & descriptor = m_controldescriptorset(i);
 //         if(descriptor.m_type)

@@ -41,7 +41,7 @@ namespace colorertak5
        message += msg;
      }
 
-     ParseException(const string &msg, int line, int pos)
+     ParseException(const string &msg, ::i32 line, ::i32 pos)
      {
        message += "ParseException: " + msg;
        if (line > -1)
@@ -143,7 +143,7 @@ namespace colorertak5
      /**
       * Parses input bytes in specified encoding and creates DOM tree.
       */
-     Document *parse(const unsigned char *bytes, int get_length, const ::string &codepage = 0);
+     Document *parse(const ::u8 *bytes, ::i32 get_length, const ::string &codepage = 0);
 
      /**
       * Deletes all DOM tree structure.
@@ -156,15 +156,15 @@ namespace colorertak5
 //     Hashtable<const string*> entitiesHash;
   //   Hashtable<const string*> extEntitiesHash;
    private:
-     int ppos, opos;
+     ::i32 ppos, opos;
      string src;
-     int src_length;
+     ::i32 src_length;
      string *src_overflow;
      Document *doc;
      EntityResolver *er;
      input_source *inputSource;
 
-     static bool getXMLNumber(const ::scoped_string & scopedstr, int *res);
+     static bool getXMLNumber(const ::scoped_string & scopedstr, ::i32 *res);
 
      void consumeDocument();
      void consumeXmlDecl();
@@ -182,7 +182,7 @@ namespace colorertak5
      bool isEntityRef();
      string *consumeEntityRef(bool useExtEnt);
 
-     void consumeSpaces(int mins = 0);
+     void consumeSpaces(::i32 mins = 0);
      string *consumeQoutedValue();
      string *consumeAttributeValue();
      string *consumeNCName();
@@ -193,12 +193,12 @@ namespace colorertak5
      void consumePI(::pointer<::xml::node>oot);
      void consumeMisc(::pointer<::xml::node>oot);
      void consume(string &s);
-     void consume(char *s, int len = -1);
+     void consume(char_pointer s, ::i32 len = -1);
      void incDocumentLine();
-     void setDocumentPos(int pos);
+     void setDocumentPos(::i32 pos);
      void incDocumentPos();
 
-     inline int peek(int offset = 0){
+     inline ::i32 peek(::i32 offset = 0){
        if (src_overflow){
          if (opos+offset < src_overflow->get_length()){
            return (*src_overflow)[opos+offset];
@@ -243,11 +243,11 @@ namespace colorertak5
    class xml::node
    {
    public:
-     static const short COMMENT_NODE;
-     static const short DOCUMENT_NODE;
-     static const short ELEMENT_NODE;
-     static const short PROCESSING_INSTRUCTION_NODE;
-     static const short TEXT_NODE;
+     static const ::i16 COMMENT_NODE;
+     static const ::i16 DOCUMENT_NODE;
+     static const ::i16 ELEMENT_NODE;
+     static const ::i16 PROCESSING_INSTRUCTION_NODE;
+     static const ::i16 TEXT_NODE;
 
      bool hasChildNodes()
      {
@@ -295,7 +295,7 @@ namespace colorertak5
        return nullptr;
      };
 
-     short getNodeType()
+     ::i16 getNodeType()
      {
        return type;
      }
@@ -314,12 +314,12 @@ namespace colorertak5
        delete name;
      };
    protected:
-     int type;
+     ::i32 type;
      ::pointer<::xml::node>ext, *prev;
      ::pointer<::xml::node>arent, *firstChild;
      const string *name;
      Document *ownerDocument;
-     xml::node(int _type, const string *_name): type(_type), name(_name),
+     xml::node(::i32 _type, const string *_name): type(_type), name(_name),
           next(nullptr), prev(nullptr), parent(nullptr), firstChild(nullptr) {};
    };
 
@@ -355,7 +355,7 @@ namespace colorertak5
      ProcessingInstruction *createProcessingInstruction(const string *target, const string *data);
 
    protected:
-     int line, pos;
+     ::i32 line, pos;
      ::pointer<::xml::node>ocumentElement;
      Document() : xml::node(xml::node::DOCUMENT_NODE, allocateø< string("#document")), documentElement >(nullptr) {};
      friend class DocumentBuilder;
@@ -395,7 +395,7 @@ namespace colorertak5
 
      ~xml::node()
      {
-       for(int idx = 0; idx < attributes.size(); idx++)
+       for(::i32 idx = 0; idx < attributes.size(); idx++)
        {
          delete attributes.elementAt(idx);
        }
@@ -455,7 +455,7 @@ namespace colorertak5
        return data;
      }
 
-     int getLength()
+     ::i32 getLength()
      {
        return data->get_length();
      }
@@ -464,7 +464,7 @@ namespace colorertak5
 
      const string *data;
 
-     CharacterData(int type, const string *_data): xml::node(type, allocateø< string("#cdata")), data >(_data) {};
+     CharacterData(::i32 type, const string *_data): xml::node(type, allocateø< string("#cdata")), data >(_data) {};
      ~CharacterData(){ delete data; };
      friend class Document;
    };

@@ -23,19 +23,19 @@ namespace draw2d_gpu
       }*/
    }
 
-   /*bool pen::CreatePen(int nPenStyle, int nWidth, color32_t crColor)
+   /*bool pen::CreatePen(::i32 nPenStyle, ::i32 nWidth, color32_t crColor)
    { return attach(::CreatePen(nPenStyle, nWidth, crColor)); }
    bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return attach(::CreatePenIndirect(lpLogPen)); }
-   bool pen::CreatePen(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-      int nStyleCount, const ::u32* lpStyle)
+   bool pen::CreatePen(::i32 nPenStyle, ::i32 nWidth, const LOGBRUSH* pLogBrush,
+      ::i32 nStyleCount, const ::u32* lpStyle)
    { return attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
    lpStyle)); }
-   int pen::GetExtLogPen(EXTLOGPEN* pLogPen)
+   ::i32 pen::GetExtLogPen(EXTLOGPEN* pLogPen)
    { ASSERT(get_handle() != nullptr);
    return ::GetObject(get_handle(), sizeof(EXTLOGPEN), pLogPen); }
    
-   int pen::GetLogPen(LOGPEN* pLogPen)
+   ::i32 pen::GetLogPen(LOGPEN* pLogPen)
    { 
       if(get_handle() == nullptr)
          return 0;
@@ -43,7 +43,7 @@ namespace draw2d_gpu
    }
 
 
-   void pen::construct(int nPenStyle, double dWidth, color32_t crColor)
+   void pen::construct(::i32 nPenStyle, ::f64 dWidth, color32_t crColor)
    {
       
       if(m_ppen == nullptr)
@@ -56,8 +56,8 @@ namespace draw2d_gpu
 
    }
 
-   void pen::construct(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-      int nStyleCount, const ::u32* lpStyle)
+   void pen::construct(::i32 nPenStyle, ::i32 nWidth, const LOGBRUSH* pLogBrush,
+      ::i32 nStyleCount, const ::u32* lpStyle)
    {
       if (!attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))
@@ -175,7 +175,7 @@ namespace draw2d_gpu
       }
    }
 
-   void __draw_gray_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, int x, int y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
+   void __draw_gray_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, ::i32 x, ::i32 y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
@@ -234,7 +234,7 @@ namespace draw2d_gpu
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush pbrushChecker;
-      static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+      static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->create_compatible_graphics(nullptr) &&
          graphicsMask->create_compatible_graphics(nullptr) &&
@@ -292,7 +292,7 @@ namespace draw2d_gpu
       }
    }
 
-   void __draw_dithered_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, int x, int y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
+   void __draw_dithered_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, ::i32 x, ::i32 y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
@@ -303,7 +303,7 @@ namespace draw2d_gpu
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush pbrushChecker;
-      static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+      static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->create_compatible_graphics(pgraphics) &&
          graphicsMask->create_compatible_graphics(pgraphics) &&

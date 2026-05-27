@@ -16,12 +16,12 @@ namespace calculator
          mode_polar_degree,
       };
 
-      double      m_dR; // real part
-      double      m_dI; // imaginary part
+      ::f64      m_dR; // real part
+      ::f64      m_dI; // imaginary part
 
 
-      double arg() const;
-      double mod() const;
+      ::f64 arg() const;
+      ::f64 mod() const;
 
 
       value();
@@ -33,7 +33,7 @@ namespace calculator
    };
 
 
-   CLASS_DECL_CA2_MATH double pi();
+   CLASS_DECL_CA2_MATH ::f64 pi();
 
    CLASS_DECL_CA2_MATH calculator::value operator + (const calculator::value & val1, const calculator::value & val2);
    CLASS_DECL_CA2_MATH calculator::value operator - (const calculator::value & val1, const calculator::value & val2);

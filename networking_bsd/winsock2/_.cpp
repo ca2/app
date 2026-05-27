@@ -3,7 +3,7 @@
 #include "networking_bsd/networking.h"
 
 
-static int g_iWsaStartupError;
+static ::i32 g_iWsaStartupError;
 static WSADATA g_wsadata = {};
 static bool g_bWsaStartup = false;
 
@@ -13,15 +13,15 @@ namespace networking_bsd
    bool networking::defer_initialize_operating_system_networking()
    {
 
-      unsigned char byteHi = 2;
+      ::u8 byteHi = 2;
 
-      unsigned char byteLo = 2;
+      ::u8 byteLo = 2;
 
       if (!g_bWsaStartup)
       {
 
          /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
-         unsigned short wVersionRequested = MAKEWORD(byteHi, byteLo);
+         ::u16 wVersionRequested = MAKEWORD(byteHi, byteLo);
 
          g_iWsaStartupError = WSAStartup(wVersionRequested, &g_wsadata);
 
@@ -87,7 +87,7 @@ namespace networking_bsd
    string networking::_last_error_message(::i64 llError)
    {
 
-      return bsd_socket_error((int) llError);
+      return bsd_socket_error((::i32) llError);
 
    }
 
@@ -105,7 +105,7 @@ namespace networking_bsd
 
 
 
-int networking_last_error()
+::i32 networking_last_error()
 {
 
    return WSAGetLastError();
@@ -116,9 +116,9 @@ int networking_last_error()
 
 
 // only to be included in win32 projects
-CLASS_DECL_NETWORKING_BSD string bsd_socket_error(int x)
+CLASS_DECL_NETWORKING_BSD string bsd_socket_error(::i32 x)
 {
-   static   char tmp[100];
+   static   ::i8 tmp[100];
    switch (x)
    {
    case 10004: return "Interrupted function call.";

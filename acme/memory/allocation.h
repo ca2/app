@@ -31,14 +31,14 @@
 struct heap_memory_header
 {
 
-   unsigned char                    m_back;
+   ::u8                    m_back;
    ::heap::enum_memory     m_ememory;
-   unsigned char                    m_blockuse;
-   unsigned char                    m_align;
+   ::u8                    m_blockuse;
+   ::u8                    m_align;
 #if MEMORY_ANNOTATION
-   const_char_pointer           m_pszAnnotation;
+   const_char_pointer m_pszAnnotation;
 #else
-   const_char_pointer           m_pszMemoryAnnotationPadding;
+   const_char_pointer m_pszMemoryAnnotationPadding;
 #endif
    ::u32                   m_size;
 
@@ -50,7 +50,7 @@ struct  heap_memory :
 
 #if HEAP_PADDING_SIZE > 0
 
-   unsigned char                    m_padding[HEAP_PADDING_SIZE];
+   ::u8                    m_padding[HEAP_PADDING_SIZE];
 
 #endif
 
@@ -68,7 +68,7 @@ inline static struct heap_memory * heap_memory_get(void * pmemory)
 }
 
 
-inline static memsize heap_memory_aligned_provision_get_size(memsize size, int iAlignByteCount)
+inline static memsize heap_memory_aligned_provision_get_size(memsize size, ::i32 iAlignByteCount)
 {
 
    return size + sizeof(struct heap_memory) + HEAP_PADDING_SIZE + iAlignByteCount - 1;
@@ -84,14 +84,14 @@ inline static memsize heap_memory_unaligned_provision_get_size(memsize size)
 }
 
 
-inline static void * heap_memory_unaligned(void * p, memsize size, int blockuse, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
+inline static void * heap_memory_unaligned(void * p, memsize size, ::i32 blockuse, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
 {
 
    void * pmemory = (void *)((iptr)p + sizeof(struct heap_memory));
 
    struct heap_memory * pheap = heap_memory_get(pmemory);
 
-   pheap->m_back = (int)(((iptr)pmemory) - ((iptr)p));
+   pheap->m_back = (::i32)(((iptr)pmemory) - ((iptr)p));
 
    pheap->m_blockuse = blockuse;
 
@@ -106,14 +106,14 @@ inline static void * heap_memory_unaligned(void * p, memsize size, int blockuse,
 }
 
 
-inline static void * heap_memory_aligned(void * p, memsize size, int blockuse, int iAlignByteCount, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
+inline static void * heap_memory_aligned(void * p, memsize size, ::i32 blockuse, ::i32 iAlignByteCount, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
 {
 
    void * pmemory = (void *)((((iptr)p) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
 
    struct heap_memory * pheap = heap_memory_get(pmemory);
 
-   pheap->m_back = (int)(((iptr)pmemory) - ((iptr)p));
+   pheap->m_back = (::i32)(((iptr)pmemory) - ((iptr)p));
 
    pheap->m_blockuse = blockuse;
 
@@ -142,7 +142,7 @@ inline static void * heap_memory_base_get(void * pmemory)
 }
 
 
-inline static int heap_memory_get_block_use(void * pmemory)
+inline static ::i32 heap_memory_get_block_use(void * pmemory)
 {
 
    return heap_memory_get(pmemory)->m_blockuse;
@@ -150,7 +150,7 @@ inline static int heap_memory_get_block_use(void * pmemory)
 }
 
 
-inline static unsigned char heap_memory_get_align(void * pmemory)
+inline static ::u8 heap_memory_get_align(void * pmemory)
 {
 
    return heap_memory_get(pmemory)->m_align;

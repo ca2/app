@@ -30,7 +30,7 @@
 
 //----------------------------------------------------------------------------
 
-extern int
+extern ::i32
 getmaxcolor (void)
 {
   switch (TcPaletteNum)
@@ -56,7 +56,7 @@ getmaxcolor (void)
 
 //----------------------------------------------------------------------------
 
-extern int
+extern ::i32
 getpalettesize (void)
 {
   return (getmaxcolor () + 1);

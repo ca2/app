@@ -40,7 +40,7 @@ namespace regular_expression_pcre2
 
       m_str = scopedstr;
 
-      int e;
+      ::i32 e;
 
       PCRE2_SIZE eo;
 
@@ -117,7 +117,7 @@ namespace regular_expression_pcre2
 
       size_t s = maximum(256, str.length() + scopedstrPrefix.length() * 3);
 
-      int err;
+      ::i32 err;
 
       while (true)
       {

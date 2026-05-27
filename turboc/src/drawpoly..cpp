@@ -37,9 +37,9 @@
 // adapting it makes a more efficient version (the second on) of drawpoly.
 
 void
-drawpoly (int numpoints, int *polypoints)
+drawpoly (::i32 numpoints, ::i32 *polypoints)
 {
-  int i;
+  ::i32 i;
   for (i = 1; i < numpoints; i++)
     line (polypoints[2 * i - 2], polypoints[2 * i - 1],
 	  polypoints[2 * i], polypoints[2 * i + 1]);
@@ -48,9 +48,9 @@ drawpoly (int numpoints, int *polypoints)
 #else // 0
 
 void
-drawpoly (int numpoints, int *polypoints)
+drawpoly (::i32 numpoints, ::i32 *polypoints)
 {
-  //int i;
+  //::i32 i;
   //XPoint *Points;
   //Points = malloc (numpoints * sizeof (XPoint));
   //if (Points == NULL)
@@ -83,9 +83,9 @@ drawpoly (int numpoints, int *polypoints)
 //----------------------------------------------------------------------------
 
 void
-fillpoly (int numpoints, int *polypoints)
+fillpoly (::i32 numpoints, ::i32 *polypoints)
 {
-  //int i;
+  //::i32 i;
   //XPoint *Points;
   //Points = malloc (numpoints * sizeof (XPoint));
   //if (Points == NULL)

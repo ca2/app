@@ -296,7 +296,7 @@ namespace windows
 
       memsize totalRead = 0;
 
-      auto data = (unsigned char *)p;
+      auto data = (::u8 *)p;
 
       while (s > 0)
       {
@@ -593,7 +593,7 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 }
 
 
-bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, int csidl, bool fCreate)
+bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, ::i32 csidl, bool fCreate)
 {
 
    return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;

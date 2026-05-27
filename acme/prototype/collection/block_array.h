@@ -1,7 +1,7 @@
 #pragma once
 
 
-template<typename TYPE, int t_iSize, enum_array t_earray, typename ARG_TYPE>
+template<typename TYPE, ::i32 t_iSize, enum_array t_earray, typename ARG_TYPE>
 class block_array : 
    public ::array_range < TYPE, ARG_TYPE >
 {

@@ -13,7 +13,7 @@ namespace posix
 {
    
 
-   CLASS_DECL_ACME string get_errno_string(int iErrNo)
+   CLASS_DECL_ACME string get_errno_string(::i32 iErrNo)
    {
       
       if(iErrNo == 0)

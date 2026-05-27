@@ -19,7 +19,7 @@ namespace nanoui
 {
 
 
-   PopupButton::PopupButton(Widget* parent, const ::scoped_string& caption, int button_icon)
+   PopupButton::PopupButton(Widget* parent, const ::scoped_string& caption, ::i32 button_icon)
       : Button(parent, caption, button_icon) 
    {
 
@@ -76,8 +76,8 @@ namespace nanoui
          pcontext->fill_color(m_bEnabled ? text_color : ::color::color(m_ptheme->m_colorDisableText));
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
-         float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
-         float_point icon_pos(0, m_pos.y + m_size.cy * 0.5f - 1);
+         ::f32 iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
+         ::f32_point icon_pos(0, m_pos.y + m_size.cy * 0.5f - 1);
 
          if (m_ppopup->side() == Popup::Right)
             icon_pos[0] = m_pos.x + m_size.cx - iw - 8.f;
@@ -99,12 +99,12 @@ namespace nanoui
       if (m_ppopup)
       {
 
-         int anchor_size = m_ppopup->anchor_size();
+         ::i32 anchor_size = m_ppopup->anchor_size();
 
          if (parent_window)
          {
 
-            int pos_y = absolute_position().y - parent_window->position().y + m_size.cy / 2;
+            ::i32 pos_y = absolute_position().y - parent_window->position().y + m_size.cy / 2;
 
             if (m_ppopup->side() == Popup::Right)
             {

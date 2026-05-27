@@ -367,7 +367,7 @@ namespace graphics
 
             //}
 
-      //      int debug = 1;
+      //      ::i32 debug = 1;
       //
       //      if (debug)
       //      {
@@ -385,15 +385,15 @@ namespace graphics
       //
       //         auto pdata = pimageScreen->get_data();
       //
-      //         unsigned char * p = (unsigned char *)pdata;
+      //         ::u8 * p = (::u8 *)pdata;
       //
-      //         unsigned char r = p[0];
+      //         ::u8 r = p[0];
       //
-      //         unsigned char g = p[1];
+      //         ::u8 g = p[1];
       //
-      //         unsigned char b = p[2];
+      //         ::u8 b = p[2];
       //
-      //         unsigned char a = p[3];
+      //         ::u8 a = p[3];
       //
       //         //informationf("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
       //

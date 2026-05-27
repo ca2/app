@@ -2,7 +2,7 @@
 
 
 
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //{
 //
 //   class acme_acme acme_acme;
@@ -37,7 +37,7 @@
 //
 //#ifdef ANDROID_LAUNCHER
 //
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //{
 //
 //   class acme_acme acme_acme;

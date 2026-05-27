@@ -20,8 +20,8 @@ namespace innate_ui
    public:
 
 
-      double m_dFontSizeEm = 1.0;
-      int m_iFontWeight = 400;
+      ::f64 m_dFontSizeEm = 1.0;
+      ::i32 m_iFontWeight = 400;
       window *                         m_pwindowParent;
       ::pointer_array < window >       m_childa;
       ::procedure_array                m_procedureaLayoutChildSize;
@@ -45,7 +45,7 @@ namespace innate_ui
       virtual void set_text(const ::scoped_string & scopedstr);
 
       virtual void fit();
-      virtual double get_scale_factor();
+      virtual ::f64 get_scale_factor();
       virtual void set_position(const ::i32_point & point);
       virtual void set_size(const ::i32_size & size);
       virtual void adjust_for_client_size(const ::i32_size & size);

@@ -323,7 +323,7 @@ namespace experience_core
 
       constructø(m_pregion);
       
-      ::double_ellipse ellipse;
+      ::f64_ellipse ellipse;
       
       ellipse.set(rectangleX);
 

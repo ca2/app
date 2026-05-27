@@ -72,7 +72,7 @@ void debug_context_object(::particle * pparticle);
 #ifdef __APPLE__
 
 
-char * ns_get_bundle_identifier();
+char_pointer ns_get_bundle_identifier();
 
 
 string apple_get_bundle_identifier();
@@ -355,7 +355,7 @@ send(pmessageboxpayload);
       else
       {
 
-         int iErr = errno;
+         ::i32 iErr = errno;
 
          string strError;
 
@@ -434,9 +434,9 @@ send(pmessageboxpayload);
 //   const ::scoped_string & scopedstr = nullptr;
 //   const ::scoped_string & scopedstr2 = nullptr;
 //
-//   int iRef1 = -1;
-//   int iRef2 = -1;
-//   int iRef3 = -1;
+//   ::i32 iRef1 = -1;
+//   ::i32 iRef2 = -1;
+//   ::i32 iRef3 = -1;
 //
 //   string strX;
 //
@@ -740,13 +740,13 @@ void app_core::system_end()
    if (m_bShowApplicationInformation)
    {
 
-      char szEllapsed[MAX_PATH * 2];
+      ::i8 szEllapsed[MAX_PATH * 2];
 
       ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
 
       auto tickEnd = ::duration::now();
 
-      char szTimeMessage[2108];
+      ::i8 szTimeMessage[2108];
 
       ::posix_time timet = ::time(nullptr);
 
@@ -765,7 +765,7 @@ void app_core::system_end()
       if (is_verbose())
       {
 
-         char szTime[2048];
+         ::i8 szTime[2048];
 
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
@@ -779,14 +779,14 @@ void app_core::system_end()
          ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
-         int i::durations = i::durationsTotal.m_i % 1000;
-         int iSecondsTotal = (int)(i::durationsTotal.m_i / 1000);
-         int iSeconds = iSecondsTotal % 60;
-         int iMinutesTotal = iSecondsTotal / 60;
-         int iMinutes = iMinutesTotal % 60;
-         int iHoursTotal = iMinutesTotal / 60;
-         int iHours = iHoursTotal % 24;
-         int iDays = iHoursTotal / 24;
+         ::i32 i::durations = i::durationsTotal.m_i % 1000;
+         ::i32 iSecondsTotal = (::i32)(i::durationsTotal.m_i / 1000);
+         ::i32 iSeconds = iSecondsTotal % 60;
+         ::i32 iMinutesTotal = iSecondsTotal / 60;
+         ::i32 iMinutes = iMinutesTotal % 60;
+         ::i32 iHoursTotal = iMinutesTotal / 60;
+         ::i32 iHours = iHoursTotal % 24;
+         ::i32 iDays = iHoursTotal / 24;
 
          if (iDays > 0)
          {
@@ -855,7 +855,7 @@ void app_core::system_end()
          if (file_exists_raw(szEllapsed))
          {
 
-            char szUTCTime[2048];
+            ::i8 szUTCTime[2048];
 
             posix_time rawtime;
 
@@ -867,7 +867,7 @@ void app_core::system_end()
 
             sprintf(szUTCTime, "%04d-%02d-%02d %02d:%02d:%02d UTC", g->tm_year + 1900, g->tm_mon, g->tm_mday, g->tm_hour, g->tm_min, g->tm_sec);
 
-            char szTimeMessage1[2048];
+            ::i8 szTimeMessage1[2048];
 
             sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 
@@ -884,7 +884,7 @@ void app_core::system_end()
 
             file_add_contents_raw(szEllapsed, "\n");
 
-            char szTimeMessage2[2048];
+            ::i8 szTimeMessage2[2048];
 
             sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_durationStart).m_i);
 
@@ -915,10 +915,10 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const ::scoped_string & scopedstrMainAppId)
+//CLASS_DECL_AURA ::i32 aura_entry_point(::i32 argc, char_pointer argv[], const ::scoped_string & scopedstrMainAppId)
 //{
 //
-//   int iResult = 0;
+//   ::i32 iResult = 0;
 //
 //   {
 //
@@ -935,7 +935,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //
 //      psystem->m_XstrAppId = pszMainAppId;
 //
-//      iResult = (int) ::aura_aura(psystem);
+//      iResult = (::i32) ::aura_aura(psystem);
 //
 //   }
 //
@@ -1020,7 +1020,7 @@ struct heap_test_struct :
    virtual public object
 {
 
-   unsigned char m_ucha[1024];
+   ::u8 m_u8a[1024];
 
 };
 
@@ -1048,7 +1048,7 @@ string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 
    string str;
 
-   int i = 0;
+   ::i32 i = 0;
 
    bool bColon = false;
 
@@ -1170,7 +1170,7 @@ string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 
    string str;
 
-   int i = 0;
+   ::i32 i = 0;
 
    bool bColon = false;
 
@@ -1357,7 +1357,7 @@ string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array_base get_c_args(int argc, char ** argv)
+string_array_base get_c_args(::i32 argc, char_pointer * argv)
 {
 
    string_array_base straBeforeColon;
@@ -1373,7 +1373,7 @@ string_array_base get_c_args(int argc, char ** argv)
 
    bool bColon = false;
 
-   for(int i = 1; i < argc; i++)
+   for(::i32 i = 1; i < argc; i++)
    {
 
       if(strcmp(argv[i], ":") == 0)
@@ -1417,7 +1417,7 @@ string_array_base get_c_args(int argc, char ** argv)
 }
 
 
-typedef size_t FN_GET_STRING(char * psz, size_t s);
+typedef size_t FN_GET_STRING(char_pointer psz, size_t s);
 
 
 typedef FN_GET_STRING * PFN_GET_STRING;
@@ -1444,7 +1444,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
    const ::scoped_string & scopedstrParse = psz;
 
-   char chQuote = '\0';
+   ::i8 chQuote = '\0';
 
    while(*pszParse)
    {
@@ -1479,7 +1479,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
       }
       else if(unicode_is_whitespace(scopedstrParse)
-         || character_isspace((unsigned char) *pszParse)
+         || character_isspace((::u8) *pszParse)
               || *pszParse == ':')
       {
 
@@ -1779,7 +1779,7 @@ bool app_core::has_aura_application_factory() const
 #else
 
 
-//unsigned int app_core::system_main()
+//::u32 app_core::system_main()
 //{
 //
 //   ::e_status estatus = ::auraacmesystem()->__thread_procedure();
@@ -2014,7 +2014,7 @@ bool app_core::has_aura_application_factory() const
 
    WCHAR wsz[1024];
 
-   unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
+   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 
    GetUserNameW(wsz, &dwSize);
 
@@ -2304,10 +2304,10 @@ void set_apex_system_as_thread()
 ::app_core * g_pappcore = nullptr;
 
 
-static const char * g_pszCubeAppId = nullptr;
+static const_char_pointer g_pszCubeAppId = nullptr;
 
 
-const char * get_cube_app_id()
+const_char_pointer get_cube_app_id()
 {
 
    return g_pszCubeAppId;

@@ -196,19 +196,19 @@ namespace account
    }
 
 
-//   string department::get_server(::file::path pathUrl, int iRetry)
+//   string department::get_server(::file::path pathUrl, ::i32 iRetry)
 //   {
 //
 //   }
 //
 //
-//   string department::_get_server(::file::path pathUrl, int iRetry)
+//   string department::_get_server(::file::path pathUrl, ::i32 iRetry)
 //   {
 //
 //   }
 
 
-//   string department::get_account_server(::file::path pathUrl, int iRetry)
+//   string department::get_account_server(::file::path pathUrl, ::i32 iRetry)
 //   {
 //
 //      string strRequestingServer = purl->get_server(pathUrl);

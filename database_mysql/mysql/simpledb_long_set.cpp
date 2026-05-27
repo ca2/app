@@ -106,7 +106,7 @@ public:
 
 
 
-   virtual int run();
+   virtual ::i32 run();
 
 
    void queue(const ::scoped_string & scopedstrKey,::i64 l);
@@ -114,7 +114,7 @@ public:
 };
 
 
-int db_long_sync_queue::run()
+::i32 db_long_sync_queue::run()
 {
 
    while(true)
@@ -132,7 +132,7 @@ repeat:;
              goto repeat;
           }
 
-          for(int i = 1; i < m_itema.get_size(); i++)
+          for(::i32 i = 1; i < m_itema.get_size(); i++)
           {
              if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
              {
@@ -731,11 +731,11 @@ bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::windowing::window
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!load(strKey, (int &) wp.showCmd))
+   if(!load(strKey, (::i32 &) wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!load(strKey, (int &) wp.flags))
+   if(!load(strKey, (::i32 &) wp.flags))
       return false;
    pwindow->SetWindowPlacement(&wp);
    return true;
@@ -768,11 +768,11 @@ bool db_long_set::SaveWindowPlacement(const ::string & lpKey, ::windowing::windo
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!save(strKey, (int) wp.showCmd))
+   if(!save(strKey, (::i32) wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!save(strKey, (int) wp.flags))
+   if(!save(strKey, (::i32) wp.flags))
       return false;
 
    return true;
@@ -805,11 +805,11 @@ bool db_long_set::save(const ::string & lpKey, WINDOWPLACEMENT & wp)
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!save(strKey, (int) wp.showCmd))
+   if(!save(strKey, (::i32) wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!save(strKey, (int) wp.flags))
+   if(!save(strKey, (::i32) wp.flags))
       return false;
 
    return true;
@@ -830,10 +830,10 @@ bool db_long_set::load(const ::string & lpKey, WINDOWPLACEMENT & wp)
    load(strKey, &wp.ptMaxPosition);
    strKey = lpKey;
    strKey += ".showCmd";
-   load(strKey, (int &) wp.showCmd);
+   load(strKey, (::i32 &) wp.showCmd);
    strKey = lpKey;
    strKey += ".flags";
-   load(strKey, (int &) wp.flags);
+   load(strKey, (::i32 &) wp.flags);
 
    return true;
 }

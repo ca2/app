@@ -21,17 +21,17 @@ namespace graphics3d
       ::floating_sequence3 m_sequence3Position;
       //::floating_quaternion m_quaternionRotation;
       floating_rotation m_rotation;
-      //      void calculateMouseOffset(float xoffset, float yoffset);
+      //      void calculateMouseOffset(::f32 xoffset, ::f32 yoffset);
       // private:
       floating_matrix4 m_matrixProjection{1.f};
       floating_matrix4 m_matrixImpact{1.f};
       floating_matrix4 m_matrixInversedImpact{1.f};
 
-      // float m_LastX; // Last mouse x position
-      // float m_LastY; // Last mouse y position
-      float m_angleCursorPixel = 0.1_f_degree; // Sensitivity factor for mouse input
+      // ::f32 m_LastX; // Last mouse x position
+      // ::f32 m_LastY; // Last mouse y position
+      ::f32 m_angleCursorPixel = 0.1_f_degree; // Sensitivity factor for mouse input
       // Deadzone
-      float m_MouseDeadZone;
+      ::f32 m_MouseDeadZone;
       // Inertia
       floating_sequence3 m_sequence3Velocity;
       // Camera attributes
@@ -42,17 +42,17 @@ namespace graphics3d
       floating_sequence3 m_sequence3WorldUp;
 
       // Euler angles
-      //float_angle m_angleYaw = 0.0_degree;
-      //float_angle m_anglePitch = -90.0_degree;
+      //f32_angle m_angleYaw = 0.0_degree;
+      //f32_angle m_anglePitch = -90.0_degree;
 
       // Camera options
-      //float m_fZoom;
-      float                m_fMovementSpeed; // Added movement speed
+      //::f32 m_fZoom;
+      ::f32                m_fMovementSpeed; // Added movement speed
       
-      float_angle          m_angleFovY;
-      float                m_fAspectRatio;
-      float                m_fNearZ;
-      float                m_fFarZ;
+      f32_angle          m_angleFovY;
+      ::f32                m_fAspectRatio;
+      ::f32                m_fNearZ;
+      ::f32                m_fFarZ;
 
 
 
@@ -76,8 +76,8 @@ namespace graphics3d
       inline const floating_sequence3 & up() const { return m_sequence3Up; }
       inline const floating_sequence3 & world_up() const { return m_sequence3WorldUp; }
 
-      //inline float_angle yaw() const { return m_quaternionRotation.yaw(); }
-      //inline float_angle pitch() const { return m_quaternionRotation.pitch(); }
+      //inline f32_angle yaw() const { return m_quaternionRotation.yaw(); }
+      //inline f32_angle pitch() const { return m_quaternionRotation.pitch(); }
 
 
       inline const floating_matrix4 & projection() const { return m_matrixProjection; }

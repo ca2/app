@@ -45,7 +45,7 @@ namespace platform
    }
 
 
-   ProcessorTimes ProfileLogger::checkPoint(const char *description)
+   ProcessorTimes ProfileLogger::checkPoint(const_char_pointer description)
    {
       critical_section_lock al(&m_criticalsection);
 
@@ -80,8 +80,8 @@ namespace platform
    }
 
 
-   typedef ::pair<ProcessorTimes, const char *> CHECKPPOINTPAIR;
-   typedef ::pair<const char *, const char *> STRINGPAIR;
+   typedef ::pair<ProcessorTimes, const_char_pointer > CHECKPPOINTPAIR;
+   typedef ::pair<const_char_pointer , const_char_pointer > STRINGPAIR;
    // helper function for std::sort
    bool pairCompare(const CHECKPPOINTPAIR &firstElem, const CHECKPPOINTPAIR &secondElem)
    {
@@ -89,16 +89,16 @@ namespace platform
    }
 
 
-   ::string printVectorStats(const char *header, const char *tag1, const char *tag2, const double_array &da)
+   ::string printVectorStats(const_char_pointer header, const_char_pointer tag1, const_char_pointer tag2, const f64_array &da)
    {
-      double min = da.get_minimum_value();
-      double max = da.get_maximum_value();
+      ::f64 min = da.get_minimum_value();
+      ::f64 max = da.get_maximum_value();
       auto num = da.size();
-      double avg = da.get_sum() / (double)num;
+      ::f64 avg = da.get_sum() / (::f64)num;
       ::string str;
       str.formatf("%s for %s - %s distance: avg: %f, min: %f, max: %f, executed %d times\n",
                   header, tag1, tag2, avg, min, max, num);
-      //int count = );
+      //::i32 count = );
       //count++;
       //std::vector<TCHAR> formattedString(count);
       //_stprintf_s(&formattedString.front(), count, fmt, header, tag1, tag2, avg, min, max, num);
@@ -145,9 +145,9 @@ namespace platform
       // calc deltas for consequent points
       struct ProcessorTimesDeltas
       {
-         double_array deltac; // CPU cycles deltas
-         double_array deltap; // Process time deltas
-         double_array deltak; // Kernel time deltas
+         f64_array deltac; // CPU cycles deltas
+         f64_array deltap; // Process time deltas
+         f64_array deltak; // Kernel time deltas
       };
       ::map<STRINGPAIR, ProcessorTimesDeltas> deltas;
       auto p = checkPointPairs.begin();
@@ -161,7 +161,7 @@ namespace platform
          ProcessorTimes pt2 = (*p).m_element1;
          auto tag2 = (*p).m_element2;
          STRINGPAIR sp = STRINGPAIR(tag1, tag2);
-         deltas[sp].deltac.add(double(pt2.m_cycle - pt1.m_cycle) / 1000000.);
+         deltas[sp].deltac.add(::f64(pt2.m_cycle - pt1.m_cycle) / 1000000.);
          deltas[sp].deltap.add(pt2.m_process - pt1.m_process);
          deltas[sp].deltak.add(pt2.m_kernel - pt1.m_kernel);
       }

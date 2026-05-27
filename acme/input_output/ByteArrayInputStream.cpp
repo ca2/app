@@ -28,7 +28,7 @@
 
 //namespace subsystem
 //{
-   //ByteArrayInputStream::ByteArrayInputStream(const char *buffer, memsize bufferSize)
+   //ByteArrayInputStream::ByteArrayInputStream(const_char_pointer pszBuffer, memsize bufferSize)
    // : m_buffer(buffer), m_bufferSize(bufferSize), m_left(bufferSize)
    // {
    // }
@@ -57,7 +57,7 @@ ByteArrayInputStream::ByteArrayInputStream(::particle * pparticle, const ::block
    void ByteArrayInputStream::_initialize_byte_array_input_stream(::particle * pparticle, const void *buffer, memsize bufferSize)
    {
 initialize(pparticle);
-      m_buffer = (const char *) buffer;
+      m_buffer = (const_char_pointer ) buffer;
       m_bufferSize = bufferSize;
       m_left = bufferSize;
 
@@ -74,8 +74,8 @@ initialize(pparticle);
          throw ::io_exception(error_io, "Negative data length value");
       }
 
-      char *out = (char *)buffer;
-      char *in = (char *)m_buffer;
+      char_pointer out = (char_pointer )buffer;
+      char_pointer in = (char_pointer )m_buffer;
 
       memsize bytesToCopy = ::minimum(m_left, len);
       memsize outOffset = 0;

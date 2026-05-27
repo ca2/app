@@ -221,7 +221,7 @@ namespace application_build_helper
 
 #if defined(FREEBSD) || defined(OPENBSD)|| defined(LINUX)
 
-//         int iCreateLinuxMatterObject = string(getenv("DISTRO")) == "raspbian";
+//         ::i32 iCreateLinuxMatterObject = string(getenv("DISTRO")) == "raspbian";
 
   //       iCreateLinuxMatterObject = 1;
 

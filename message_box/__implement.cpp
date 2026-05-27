@@ -3,12 +3,12 @@
 #include "__implement.h"
 
 
-int __implement()
+::i32 __implement()
 {
 
    auto papp = ___new app_message_box::application ();
 
-   int iExitCode = papp->__implement();
+   ::i32 iExitCode = papp->__implement();
 
    return iExitCode;
 

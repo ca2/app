@@ -389,7 +389,7 @@ xmpp_ctx_t* xmpp_conn_get_context(xmpp_conn_t * const conn)
  */
 int xmpp_connect_client(xmpp_conn_t * const conn, 
 			  const char * const altdomain,
-			  unsigned short altport,
+			  ::u16 altport,
 			  xmpp_conn_handler callback,
 			  void * const userdata)
 {
@@ -463,7 +463,7 @@ int xmpp_connect_client(xmpp_conn_t * const conn,
  *  @ingroup Connections
  */
 int xmpp_connect_component(xmpp_conn_t * const conn, const char * const server,
-                           unsigned short port, xmpp_conn_handler callback,
+                           ::u16 port, xmpp_conn_handler callback,
                            void * const userdata)
 {
     int connectport;

@@ -13,7 +13,7 @@ inline UNIT_TYPE linear_rate(const UNIT_TYPE & t1, const UNIT_TYPE & t2, NUMBER 
 
    }
 
-   return (UNIT_TYPE)(((double)(t2 - t1) * (double)numerator / (double)denominator) + (double)t1);
+   return (UNIT_TYPE)(((::f64)(t2 - t1) * (::f64)numerator / (::f64)denominator) + (::f64)t1);
 
 }
 
@@ -30,10 +30,10 @@ namespace mathematics
    private:
 
 
-      static double           s_π;
-      static float            s_fπ;
+      static ::f64           s_π;
+      static ::f32            s_fπ;
       ::u32            dwMode;
-      unsigned char           pbData[16];
+      ::u8           pbData[16];
 
    public:
 
@@ -49,18 +49,18 @@ namespace mathematics
       virtual void destroy() override;
 
 
-      int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
+      ::i32 LinearMap(::i32 iMin, ::i32 iMax, ::i32 iValue, ::i32 iValueMin, ::i32 iValueMax);
 
-      double LinearMap(double dMin, double dMax, double dValue, double dValueMin, double dValueMax);
-      static inline double π() { return s_π; }
-      static inline float πf() { return s_fπ; }
+      ::f64 LinearMap(::f64 dMin, ::f64 dMax, ::f64 dValue, ::f64 dValueMin, ::f64 dValueMax);
+      static inline ::f64 π() { return s_π; }
+      static inline ::f32 πf() { return s_fπ; }
 
       static bool IsPowerOfTwo(::u64 uiValue);
       static ::u32 ReverseBits(::u32 index, ::u32 NumBits);
-      static inline void MaxClip(double * pnClipValue, double nMaxValue);
-      static inline void MinClip(double * pnClipValue, double nMinValue);
+      static inline void MaxClip(::f64 * pnClipValue, ::f64 nMaxValue);
+      static inline void MinClip(::f64 * pnClipValue, ::f64 nMinValue);
 
-      int RangeRate(int iMin, int iMax, double dRate);
+      ::i32 RangeRate(::i32 iMin, ::i32 iMax, ::f64 dRate);
 
 
 
@@ -206,12 +206,12 @@ namespace mathematics
       //TYPE random();
 
 
-      //float random(float f1, float f2);
-      //double random(double d1, double d2);
+      //::f32 random(::f32 f1, ::f32 f2);
+      //::f64 random(::f64 d1, ::f64 d2);
       //::i64 random(::i64 i1, ::i64 i2);
-      //int random(int i1, int i2);
-      //template < typename int >
-      //int __random_int(int i1, int i2);
+      //::i32 random(::i32 i1, ::i32 i2);
+      //template < typename ::i32 >
+      //::i32 __random_int(::i32 i1, ::i32 i2);
 
 
       //#include "acme/prototype/prototype/matter.h"
@@ -221,16 +221,16 @@ namespace mathematics
 //void RandomBytes(void * buf, memsize dwLen);
 //void gen_rand(void * buf, memsize dwLen);
 
-      void random_alphanumeric(char * buf, memsize dwLen);
+      void random_alphanumeric(char_pointer buf, memsize dwLen);
       //string gen_rand_alnum(character_count s);
       string random_alphanumeric(character_count s);
 
-      char random_char();
-      unsigned char random_uch();
+      ::i8 random_char();
+      ::u8 random_u8();
       ::u32 random_ui();
       ::u64 random_unsigned_long_long();
 
-      int rand_max();
+      ::i32 rand_max();
 
 
       //template < typename TYPE >
@@ -323,7 +323,7 @@ namespace mathematics
    };
 
 
-   inline void mathematics::MaxClip(double * pnClipValue, double nMaxValue)
+   inline void mathematics::MaxClip(::f64 * pnClipValue, ::f64 nMaxValue)
    {
 
       if (*pnClipValue > nMaxValue)
@@ -336,7 +336,7 @@ namespace mathematics
    }
 
 
-   inline void mathematics::MinClip(double * pnClipValue, double nMinValue)
+   inline void mathematics::MinClip(::f64 * pnClipValue, ::f64 nMinValue)
    {
    
       if (*pnClipValue < nMinValue)

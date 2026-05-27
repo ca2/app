@@ -57,7 +57,7 @@ namespace subsystem
    {
       //memsize avaliableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
       memsize avaliableOutput = m_unpackedSize;
-      unsigned long prevTotalOut = m_zlibStream.total_out;
+      ulong prevTotalOut = m_zlibStream.total_out;
 
       // Check to overflow.
       ::u32 constrainedValue = (::u32)avaliableOutput;
@@ -73,7 +73,7 @@ namespace subsystem
       m_zlibStream.next_out = (Bytef *)m_output.data();
       m_zlibStream.avail_out = (::u32)avaliableOutput;
 
-      int r = ::inflate(&m_zlibStream, Z_SYNC_FLUSH);
+      ::i32 r = ::inflate(&m_zlibStream, Z_SYNC_FLUSH);
       informationf(
           "inflate total_out=%lu avail_out=%u ret=%d",
                   m_zlibStream.total_out,

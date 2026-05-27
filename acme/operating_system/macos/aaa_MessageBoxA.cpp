@@ -9,16 +9,16 @@
 #include "framework.h"
 
 
-void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::future future)
+void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::future future)
 {
 
-   //convert the strings from char* to CFStringRef
+   //convert the strings from char_pointer to CFStringRef
    CFStringRef title_ref   = CFStringCreateWithCString(kCFAllocatorDefault, pszTitle, kCFStringEncodingUTF8);
    CFStringRef message_ref  = CFStringCreateWithCString(kCFAllocatorDefault, pszMessage, kCFStringEncodingUTF8);
 
    CFOptionFlags result;  //result code from the message box
 
-   unsigned int uiType = (int) emessagebox & MB_TYPEMASK;
+   ::u32 uiType = (::i32) emessagebox & MB_TYPEMASK;
 
    string strButton1;
    string strButton2;
@@ -165,12 +165,12 @@ void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_st
 }
 
 
-CLASS_DECL_ACME string message_box_result_to_string(int iResult);
+CLASS_DECL_ACME string message_box_result_to_string(::i32 iResult);
 
 
-void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::future future);
+void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::future future);
 
-void message_box_synchronous(oswindow window, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::future future)
+void message_box_synchronous(oswindow window, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::future future)
 {
    
    

@@ -11,39 +11,39 @@ utf8_character::utf8_character(::i64 i)
    this->m_begin = out;
    if (i <= 0x7F) {
       // Plain ASCII
-      out[0] = (char)i;
+      out[0] = (::i8)i;
       out[1] = 0;
       this->m_end = this->m_begin + 1;
    }
    else if (i <= 0x07FF) {
-      // 2-unsigned char unicode
-      out[0] = (char)(((i >> 6) & 0x1F) | 0xC0);
-      out[1] = (char)(((i >> 0) & 0x3F) | 0x80);
+      // 2-::u8 unicode
+      out[0] = (::i8)(((i >> 6) & 0x1F) | 0xC0);
+      out[1] = (::i8)(((i >> 0) & 0x3F) | 0x80);
       out[2] = 0;
       this->m_end = this->m_begin + 2;
    }
    else if (i <= 0xFFFF) {
-      // 3-unsigned char unicode
-      out[0] = (char)(((i >> 12) & 0x0F) | 0xE0);
-      out[1] = (char)(((i >> 6) & 0x3F) | 0x80);
-      out[2] = (char)(((i >> 0) & 0x3F) | 0x80);
+      // 3-::u8 unicode
+      out[0] = (::i8)(((i >> 12) & 0x0F) | 0xE0);
+      out[1] = (::i8)(((i >> 6) & 0x3F) | 0x80);
+      out[2] = (::i8)(((i >> 0) & 0x3F) | 0x80);
       out[3] = 0;
       this->m_end = this->m_begin + 3;
    }
    else if (i <= 0x10FFFF) {
-      // 4-unsigned char unicode
-      out[0] = (char)(((i >> 18) & 0x07) | 0xF0);
-      out[1] = (char)(((i >> 12) & 0x3F) | 0x80);
-      out[2] = (char)(((i >> 6) & 0x3F) | 0x80);
-      out[3] = (char)(((i >> 0) & 0x3F) | 0x80);
+      // 4-::u8 unicode
+      out[0] = (::i8)(((i >> 18) & 0x07) | 0xF0);
+      out[1] = (::i8)(((i >> 12) & 0x3F) | 0x80);
+      out[2] = (::i8)(((i >> 6) & 0x3F) | 0x80);
+      out[3] = (::i8)(((i >> 0) & 0x3F) | 0x80);
       out[4] = 0;
       this->m_end = this->m_begin + 4;
    }
    else {
       // error - use replacement character
-      out[0] = (char)0xEF;
-      out[1] = (char)0xBF;
-      out[2] = (char)0xBD;
+      out[0] = (::i8)0xEF;
+      out[1] = (::i8)0xBF;
+      out[2] = (::i8)0xBD;
       out[3] = 0;
       this->m_end = this->m_begin + 3;
    }

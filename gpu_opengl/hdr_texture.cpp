@@ -26,10 +26,10 @@
 //    void hdr_texture::initialize_hdr_texture(const ::file::path & path)
 //    {
 //
-//       int width, height, numChannels;
+//       ::i32 width, height, numChannels;
 //
 //       auto memory = file()->as_memory(path);
-//       float *data = stbi_loadf_from_memory(memory.data(), memory.size(), &width, &height, &numChannels, 0);
+//       ::f32 *data = stbi_loadf_from_memory(memory.data(), memory.size(), &width, &height, &numChannels, 0);
 //
 //       if (!data) {
 //          std::cout << "Failed to load texture data" << std::endl;

@@ -98,13 +98,13 @@ void freerdp_client_context_free(rdpContext* context)
 	}
 }
 
-int freerdp_client_start(rdpContext* context)
+::i32 freerdp_client_start(rdpContext* context)
 {
 	RDP_CLIENT_ENTRY_POINTS* pEntryPoints = context->instance->pClientEntryPoints;
 	return pEntryPoints->ClientStart(context);
 }
 
-int freerdp_client_stop(rdpContext* context)
+::i32 freerdp_client_stop(rdpContext* context)
 {
 	RDP_CLIENT_ENTRY_POINTS* pEntryPoints = context->instance->pClientEntryPoints;
 	return pEntryPoints->ClientStop(context);
@@ -177,10 +177,10 @@ out_error:
 }
 
 
-int freerdp_client_settings_parse_command_line(rdpSettings* settings, int argc,
-	char** argv, BOOL allowUnknown)
+::i32 freerdp_client_settings_parse_command_line(rdpSettings* settings, ::i32 argc,
+	char_pointer * argv, BOOL allowUnknown)
 {
-	int status;
+	::i32 status;
 
 	if (argc < 1)
 		return 0;
@@ -212,10 +212,10 @@ int freerdp_client_settings_parse_command_line(rdpSettings* settings, int argc,
 	return status;
 }
 
-int freerdp_client_settings_parse_connection_file(rdpSettings* settings, const ::string & filename)
+::i32 freerdp_client_settings_parse_connection_file(rdpSettings* settings, const ::string & filename)
 {
 	rdpFile* file;
-	int ret = -1;
+	::i32 ret = -1;
 
 	file = freerdp_client_rdp_file_new();
 	if (!file)
@@ -231,10 +231,10 @@ out:
 	return ret;
 }
 
-int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, const unsigned char* buffer, size_t size)
+::i32 freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, const ::u8* buffer, size_t size)
 {
 	rdpFile* file;
-	int status = -1;
+	::i32 status = -1;
 
 	file = freerdp_client_rdp_file_new();
 	if (!file)
@@ -251,10 +251,10 @@ int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, 
 	return status;
 }
 
-int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const ::string & filename, BOOL unicode)
+::i32 freerdp_client_settings_write_connection_file(const rdpSettings* settings, const ::string & filename, BOOL unicode)
 {
 	rdpFile* file;
-	int ret = -1;
+	::i32 ret = -1;
 
 	file = freerdp_client_rdp_file_new();
 	if (!file)
@@ -273,9 +273,9 @@ out:
 	return ret;
 }
 
-int freerdp_client_settings_parse_assistance_file(rdpSettings* settings, const ::string & filename)
+::i32 freerdp_client_settings_parse_assistance_file(rdpSettings* settings, const ::string & filename)
 {
-	int status;
+	::i32 status;
 	rdpAssistanceFile* file;
 
 	file = freerdp_assistance_file_new();

@@ -1,14 +1,14 @@
 #include "framework.h"
 #include <memory.h>
 
-CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array_base & stra)
+CLASS_DECL_ACME char_pointer const * alloc_c_string_array(const string_array_base & stra)
 {
    
    auto iCount = stra.get_count();
    
-   char ** p = (char**) malloc(iCount * sizeof(char**));
+   char_pointer * p = (char_pointer *) malloc(iCount * sizeof(char_pointer *));
    
-   for(int i = 0; i < iCount; i++)
+   for(::i32 i = 0; i < iCount; i++)
    {
       
       p[i] = strdup(stra[i]);
@@ -20,7 +20,7 @@ CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array_base & st
 }
 
 
-CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
+CLASS_DECL_ACME void free_c_string_array(char_pointer const * ppszList, ::i32 iCount)
 {
    
    if(::is_null(ppszList))
@@ -30,7 +30,7 @@ CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
       
    }
    
-   for(int i = 0; i < iCount; i++)
+   for(::i32 i = 0; i < iCount; i++)
    {
       
       if(::is_set(ppszList[i]))

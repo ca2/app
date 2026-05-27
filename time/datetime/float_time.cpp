@@ -3,13 +3,13 @@
 //#include <math.h>
 #include <time.h>
 
-#include "float_time.h"
+#include "f32_time.h"
 
 namespace datetime
 {
 
 
-   const double float_time_span::FLOAT_TIME_HALF_SECOND = 1.0 / (2.0 * (60.0 * 60.0 * 24.0));
+   const ::f64 f32_time_span::FLOAT_TIME_HALF_SECOND = 1.0 / (2.0 * (60.0 * 60.0 * 24.0));
 
 
 } // namespace datetime
@@ -30,7 +30,7 @@ namespace datetime
 /* Determine if a day is valid in a given month of a given year */
 static ::i32_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
 {
-  static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
   if (day && month && month < 13)
   {
@@ -75,7 +75,7 @@ static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offse
  *  Success: true. *pDateOut contains the converted value.
  *  Failure: false, if lpSt cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CA2_TIME int SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
+CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, ::f64 *pDateOut)
 {
   UDATE ud;
 
@@ -104,7 +104,7 @@ CLASS_DECL_CA2_TIME int SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOu
 *  Success: true. *lpSt contains the converted value.
 *  Failure: false, if dateIn is too large or small.
 */
-int WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
+::i32 WINAPI FloatTimeToSystemTime(::f64 dateIn, LPSYSTEMTIME lpSt)
 {
   UDATE ud;
 
@@ -123,7 +123,7 @@ int WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
 /* Roll a date forwards or backwards to correct it */
 static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
 {
-  static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   int16_t iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */
@@ -218,7 +218,7 @@ static inline int32_t FLOATTIME_DateFromJulian(int32_t dateIn)
 }*/
 
 /* Convert Day/Month/Year to a Julian date - from PostgreSQL */
-static inline double FLOATTIME_JulianFromDMY(unsigned short year, unsigned short month, unsigned short day)
+static inline ::f64 FLOATTIME_JulianFromDMY(::u16 year, ::u16 month, ::u16 day)
 {
   int32_t m12 = (month - 14) / 12;
 
@@ -270,7 +270,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ::u32 dwFlags, D
 CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ::u32 dwFlags, DATE *pDateOut)
 {
   UDATE ud;
-  double dateVal, dateSign;
+  ::f64 dateVal, dateSign;
 
 /*  informationf("(%p->%d/%d/%d %d:%d:%d:%d %d %d,0x%08x,0x%08x,%p)\n", pUdateIn,
         pUdateIn->st.wMonth, pUdateIn->st.wDay, pUdateIn->st.wYear,
@@ -333,7 +333,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ::u
  */
 CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid, ::u32 dwFlags, DATE* pdateOut)
 {
-  static const unsigned short ParseDateTokens[] =
+  static const ::u16 ParseDateTokens[] =
   {
     LOCALE_SMONTHNAME1, LOCALE_SMONTHNAME2, LOCALE_SMONTHNAME3, LOCALE_SMONTHNAME4,
     LOCALE_SMONTHNAME5, LOCALE_SMONTHNAME6, LOCALE_SMONTHNAME7, LOCALE_SMONTHNAME8,
@@ -352,7 +352,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
     LOCALE_S1159, LOCALE_S2359,
     LOCALE_SDATE
   };
-  static const unsigned char ParseDateMonths[] =
+  static const ::u8 ParseDateMonths[] =
   {
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
@@ -547,8 +547,8 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
         hRet = DISP_E_TYPEMISMATCH;
       else if (dp.dwCount != 2 && dp.dwCount != 4 && dp.dwCount != 5)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour = (unsigned short) dp.dwValues[0];
-      st.wMinute  = (unsigned short) dp.dwValues[1];
+      st.wHour = (::u16) dp.dwValues[0];
+      st.wMinute  = (::u16) dp.dwValues[1];
       dp.dwCount -= 2;
       dwOffset = 2;
       break;
@@ -560,9 +560,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
         hRet = DISP_E_TYPEMISMATCH;
       else if (dp.dwCount != 3 && dp.dwCount != 5 && dp.dwCount != 6)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (unsigned short) dp.dwValues[0];
-      st.wMinute = (unsigned short) dp.dwValues[1];
-      st.wSecond = (unsigned short) dp.dwValues[2];
+      st.wHour   = (::u16) dp.dwValues[0];
+      st.wMinute = (::u16) dp.dwValues[1];
+      st.wSecond = (::u16) dp.dwValues[2];
       dwOffset = 3;
       dp.dwCount -= 3;
       break;
@@ -572,15 +572,15 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
           (dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
 
-      st.wHour = (unsigned short) dp.dwValues[2];
-      st.wMinute  = (unsigned short) dp.dwValues[3];
+      st.wHour = (::u16) dp.dwValues[2];
+      st.wMinute  = (::u16) dp.dwValues[3];
       dp.dwCount -= 2;
       break;
 
    case 0x0: /* T DD DDD TDDD TDDD */
       if (dp.dwCount == 1 && (dp.dwParseFlags & (DP_AM|DP_PM)))
       {
-        st.wHour = (unsigned short) dp.dwValues[0]; /* T */
+        st.wHour = (::u16) dp.dwValues[0]; /* T */
         dp.dwCount = 0;
         break;
       }
@@ -593,14 +593,14 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
         if (dp.dwFlags[0] & (DP_AM|DP_PM)) /* TDD */
         {
           dp.dwCount = 2;
-          st.wHour = (unsigned short) dp.dwValues[0];
+          st.wHour = (::u16) dp.dwValues[0];
           dwOffset = 1;
           break;
         }
         if (dp.dwFlags[2] & (DP_AM|DP_PM)) /* DDT */
         {
           dp.dwCount = 2;
-          st.wHour = (unsigned short) dp.dwValues[2];
+          st.wHour = (::u16) dp.dwValues[2];
           break;
         }
         else if (dp.dwParseFlags & (DP_AM|DP_PM))
@@ -611,12 +611,12 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
         dp.dwCount = 3;
         if (dp.dwFlags[0] & (DP_AM|DP_PM)) /* TDDD */
         {
-          st.wHour = (unsigned short) dp.dwValues[0];
+          st.wHour = (::u16) dp.dwValues[0];
           dwOffset = 1;
         }
         else if (dp.dwFlags[3] & (DP_AM|DP_PM)) /* DDDT */
         {
-          st.wHour = (unsigned short) dp.dwValues[3];
+          st.wHour = (::u16) dp.dwValues[3];
         }
         else
           hRet = DISP_E_TYPEMISMATCH;
@@ -630,8 +630,8 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
            (dp.dwFlags[1] & (DP_AM|DP_PM)) || (dp.dwFlags[2] & (DP_AM|DP_PM)))) ||
            dp.dwCount == 4 || dp.dwCount == 6)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (unsigned short) dp.dwValues[3];
-      st.wMinute = (unsigned short) dp.dwValues[4];
+      st.wHour   = (::u16) dp.dwValues[3];
+      st.wMinute = (::u16) dp.dwValues[4];
       if (dp.dwCount == 5)
         dp.dwCount -= 2;
       break;
@@ -640,9 +640,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
       if (dp.dwCount != 5 ||
           (dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (unsigned short) dp.dwValues[2];
-      st.wMinute = (unsigned short) dp.dwValues[3];
-      st.wSecond = (unsigned short) dp.dwValues[4];
+      st.wHour   = (::u16) dp.dwValues[2];
+      st.wMinute = (::u16) dp.dwValues[3];
+      st.wSecond = (::u16) dp.dwValues[4];
       dp.dwCount -= 3;
       break;
 
@@ -650,9 +650,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
       if ((dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)) ||
           (dp.dwFlags[2] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (unsigned short) dp.dwValues[3];
-      st.wMinute = (unsigned short) dp.dwValues[4];
-      st.wSecond = (unsigned short) dp.dwValues[5];
+      st.wHour   = (::u16) dp.dwValues[3];
+      st.wMinute = (::u16) dp.dwValues[4];
+      st.wSecond = (::u16) dp.dwValues[5];
       dp.dwCount -= 3;
       break;
 
@@ -858,14 +858,14 @@ VARIANT_MakeDate_OK:
     st->wHour = 0;
 //xxx  informationf("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
 
-  st->wDay = (unsigned short) v1;
-  st->wMonth = (unsigned short) v2;
+  st->wDay = (::u16) v1;
+  st->wMonth = (::u16) v2;
   /* FIXME: For 2 digit dates, I'm not sure if 30 is hard coded or not. It may
    * be retrieved from:
    * HKCU\Control Panel\International\Calendars\TwoDigitYearMax
    * But Wine doesn't have/use that key as at the time of writing.
    */
-  st->wYear = (unsigned short) (v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3);
+  st->wYear = (::u16) (v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3);
 //xxx  informationf("Returning date %d/%d/%d\n", v1, v2, st->wYear);
   return S_OK;
 }
@@ -873,14 +873,14 @@ VARIANT_MakeDate_OK:
 
 #ifndef WINDOWS
 
-static inline int VARIANT_JulianFromDate(int dateIn);
-static inline void VARIANT_DMYFromJulian(int jd, unsigned short *year, unsigned short *month, unsigned short *day);
+static inline ::i32 VARIANT_JulianFromDate(::i32 dateIn);
+static inline void VARIANT_DMYFromJulian(::i32 jd, ::u16 *year, ::u16 *month, ::u16 *day);
 static HRESULT VARIANT_RollUdate(UDATE *lpUd);
 
 /* Convert a VT_DATE value to a Julian Date */
-static inline int VARIANT_JulianFromDate(int dateIn)
+static inline ::i32 VARIANT_JulianFromDate(::i32 dateIn)
 {
-  int julianDays = dateIn;
+  ::i32 julianDays = dateIn;
 
   julianDays -= DATE_MIN; /* Convert to + days from 1 Jan 100 AD */
   julianDays += 1757585;  /* Convert to + days from 23 Nov 4713 BC (Julian) */
@@ -891,9 +891,9 @@ static inline int VARIANT_JulianFromDate(int dateIn)
 
 
 /* Convert a Julian date to Day/Month/Year - from PostgreSQL */
-static inline void VARIANT_DMYFromJulian(int jd, unsigned short *year, unsigned short *month, unsigned short *day)
+static inline void VARIANT_DMYFromJulian(::i32 jd, ::u16 *year, ::u16 *month, ::u16 *day)
 {
-  int j, i, l, n;
+  ::i32 j, i, l, n;
 
   l = jd + 68569;
   n = l * 4 / 146097;
@@ -911,8 +911,8 @@ static inline void VARIANT_DMYFromJulian(int jd, unsigned short *year, unsigned 
 /* Roll a date forwards or backwards to correct it */
 static HRESULT VARIANT_RollUdate(UDATE *lpUd)
 {
-  static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-  short iYear, iMonth, iDay, iHour, iMinute, iSecond;
+  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  ::i16 iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */
   iYear   = lpUd->st.wYear;
@@ -994,11 +994,11 @@ static HRESULT VARIANT_RollUdate(UDATE *lpUd)
 HRESULT WINAPI VarUdateFromDate(DATE dateIn, ::u32 dwFlags, UDATE *lpUdate)
 {
   /* Cumulative totals of days per month */
-  static const unsigned short cumulativeDays[] =
+  static const ::u16 cumulativeDays[] =
   {
     0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334
   };
-  double datePart, timePart;
+  ::f64 datePart, timePart;
   int32_t julianDays;
 
 //xxx  informationf("(%g,0x%08x,%p)\n", dateIn, dwFlags, lpUdate);
@@ -1078,7 +1078,7 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, ::u32 dwFlags, UDATE *lpUdate)
 #else
 
 
-int32_t __cdecl FloatTimeToSystemTime(double vtime, struct _SYSTEMTIME * pst)
+int32_t __cdecl FloatTimeToSystemTime(::f64 vtime, struct _SYSTEMTIME * pst)
 {
 
 
@@ -1094,7 +1094,7 @@ namespace datetime
 {
 
 
-   float_time &float_time::operator=(const FILETIME &file_timeSrc) RELEASENOTHROW
+   f32_time &f32_time::operator=(const FILETIME &file_timeSrc) RELEASENOTHROW
    {
       
       FILETIME ftl;
@@ -1108,16 +1108,16 @@ namespace datetime
    }
 
 
-   float_time WINAPI float_time::GetCurrentTime() RELEASENOTHROW
+   f32_time WINAPI f32_time::GetCurrentTime() RELEASENOTHROW
    {
 
 #ifdef WINDOWS
 
-      return float_time(posix_time({ posix_time_t{ }, ::_time64(NULL)}));
+      return f32_time(posix_time({ posix_time_t{ }, ::_time64(NULL)}));
         
 #else
         
-        return float_time(::time(NULL));
+        return f32_time(::time(NULL));
         
 #endif
         
@@ -1155,13 +1155,13 @@ inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDes
     
 #endif
     
-    timeDest.wYear = (unsigned short) (1900 + ttm.tm_year);
-    timeDest.wMonth = (unsigned short) (1 + ttm.tm_mon);
-    timeDest.wDayOfWeek = (unsigned short) ttm.tm_wday;
-    timeDest.wDay = (unsigned short) ttm.tm_mday;
-    timeDest.wHour = (unsigned short) ttm.tm_hour;
-    timeDest.wMinute = (unsigned short) ttm.tm_min;
-    timeDest.wSecond = (unsigned short) ttm.tm_sec;
+    timeDest.wYear = (::u16) (1900 + ttm.tm_year);
+    timeDest.wMonth = (::u16) (1 + ttm.tm_mon);
+    timeDest.wDayOfWeek = (::u16) ttm.tm_wday;
+    timeDest.wDay = (::u16) ttm.tm_mday;
+    timeDest.wHour = (::u16) ttm.tm_hour;
+    timeDest.wMinute = (::u16) ttm.tm_min;
+    timeDest.wSecond = (::u16) ttm.tm_sec;
     timeDest.wMilliseconds = 0;
     
     return true;

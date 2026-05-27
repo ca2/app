@@ -44,7 +44,7 @@ namespace gpu
          struct UniformBlock {
             floating_matrix4 matrix;
             floating_matrix4 jointMatrix[64]{};
-            float jointcount{ 0 };
+            ::f32 jointcount{ 0 };
          } uniformBlock;
 
 
@@ -65,7 +65,7 @@ namespace gpu
 
          // private:
          //    // OpenGL data structures
-         //    unsigned int mVAO, mVBO, mEBO;
+         //    ::u32 mVAO, mVBO, mEBO;
       };
 
 

@@ -39,7 +39,7 @@ namespace user
       bool                                m_bPermanent;
       i32_size                            m_size;
       string_array_base                        m_straTitle;
-      ::double_size_array                    m_sizeaText;
+      ::f64_size_array                    m_sizeaText;
       i32_point                           m_point;
       e_flag                              m_eflag;
       bool                                m_bNeedLayout;

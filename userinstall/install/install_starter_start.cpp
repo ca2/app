@@ -85,7 +85,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       keep_true keepStarting(m_bStarting);
 
-      int i = 0;
+      ::i32 i = 0;
 
       string strBuild;
 

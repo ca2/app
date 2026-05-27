@@ -19,7 +19,7 @@ namespace ansios
 
       virtual bool has_exited() override;
 
-      virtual bool synch_elevated(const ::scoped_string & scopedstrCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut) override;
+      virtual bool synch_elevated(const ::scoped_string & scopedstrCmdLine,::i32 iShow,const ::duration & durationTimeOut,bool * pbTimeOut) override;
 
    };
 

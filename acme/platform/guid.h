@@ -11,10 +11,10 @@ namespace acme
 
    struct guid_t
    {
-      unsigned long Data1;
-      unsigned short Data2;
-      unsigned short Data3;
-      unsigned char Data4[8];
+      ulong Data1;
+      ::u16 Data2;
+      ::u16 Data3;
+      ::u8 Data4[8];
    };
 
 #pragma pack(pop, guid)
@@ -32,7 +32,7 @@ namespace acme
          guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7] } }
       {
       }
-//      guid(const char * psz) noexcept
+//      guid(const_char_pointer psz) noexcept
   //       {}
 
       guid(const string & str) noexcept;

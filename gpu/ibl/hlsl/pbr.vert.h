@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_pbr_vert[] = R"vert_text(// pbr1.vert
+const ::i8 g_psz_pbr_vert[] = R"vert_text(// pbr1.vert
 // Converted from Vulkan GLSL to HLSL
 // Matches the PBR fragment shader above
 // by Camilo <3ThomasBorregaardSorensen!!
@@ -46,10 +46,10 @@ cbuffer GlobalUbo : register(b0)
     float4 ambientLightColor;
     float4 cameraPosition;
     PointLight pointLights[10];
-    int numLights;
-    int padding1;
-    int padding2;
-    int padding3;
+    ::i32 numLights;
+    ::i32 padding1;
+    ::i32 padding2;
+    ::i32 padding3;
 };
 
 // ---------- Push constants (model transforms) ----------
@@ -59,20 +59,20 @@ cbuffer PushConsts : register(b1)
     float4x4 modelMatrix;
     float4x4 normalMatrix; // inverse-transpose of model
 
-    int useTextureAlbedo;
-    int useTextureMetallicRoughness;
-    int useTextureNormal;
-    int useTextureAmbientOcclusion;
-    int useTextureEmissive;
+    ::i32 useTextureAlbedo;
+    ::i32 useTextureMetallicRoughness;
+    ::i32 useTextureNormal;
+    ::i32 useTextureAmbientOcclusion;
+    ::i32 useTextureEmissive;
 
     float3 albedo;
-    float metallic;
-    float roughness;
-    float ambientOcclusion;
+    ::f32 metallic;
+    ::f32 roughness;
+    ::f32 ambientOcclusion;
     float3 emissive;
 
 //    float3 cameraPosition;
-    float bloomBrightnessCutoff;
+    ::f32 bloomBrightnessCutoff;
     float3 multiplier;
 };
 

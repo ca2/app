@@ -38,7 +38,7 @@ namespace unistd
 m_iFile(file.m_iFile)
    {
    }
-   file::file(int iFile):
+   file::file(::i32 iFile):
 m_iFile(iFile)
    {
    }
@@ -49,9 +49,9 @@ close();
 
    }
 
-   int file::close()
+   ::i32 file::close()
    {
-      int res = 0;
+      ::i32 res = 0;
       if(m_iFile >= 0)
       {
 
@@ -82,7 +82,7 @@ close();
 
 
 
-      int file::set_cloexec_or_close()
+      ::i32 file::set_cloexec_or_close()
       {
          long flags;
 
@@ -104,7 +104,7 @@ close();
       }
 
 
-      int file::create_tmpfile_cloexec(char * tmpname)
+      ::i32 file::create_tmpfile_cloexec(char_pointer tmpname)
       {
 
 #ifdef HAVE_MKOSTEMP
@@ -138,11 +138,11 @@ close();
        * transmitting the file descriptor over Unix sockets using the
        * ServiceControlManager_RIGHTS methods.
        */
-      int    file::create_anonymous_file(memsize size)
+      ::i32    file::create_anonymous_file(memsize size)
       {
-         static const char pszTemplate[] = "/weston-shared-XXXXXX";
-         const_char_pointer path;
-         char * name;
+         static const ::i8 pszTemplate[] = "/weston-shared-XXXXXX";
+         const_char_pointer pszPath;
+         char_pointer name;
 
          path = getenv("XDG_RUNTIME_DIR");
          if (!path)
@@ -178,7 +178,7 @@ close();
 
 }//namespace unistd
 
-char * malloc_get_current_dir_name()
+char_pointer malloc_get_current_dir_name()
 {
    
    auto size = pathconf(".", _PC_PATH_MAX);
@@ -190,7 +190,7 @@ char * malloc_get_current_dir_name()
       
    }
    
-   char * buf = (char *) malloc(size + 1);
+   char_pointer buf = (char_pointer ) malloc(size + 1);
    
    if(buf == nullptr)
    {
@@ -240,7 +240,7 @@ char * malloc_get_current_dir_name()
 ////void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 //
 //
-//::i32_bool set_file_size_fd(int fd, size_t iSize)
+//::i32_bool set_file_size_fd(::i32 fd, size_t iSize)
 //{
 //
 //   if (ftruncate(fd, iSize) == -1)
@@ -251,7 +251,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//::i64 get_file_size(int fd)
+//::i64 get_file_size(::i32 fd)
 //{
 //
 //   struct stat st;
@@ -271,10 +271,10 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//::i32_bool set_file_size(const_char_pointer lpszName, size_t iSize)
+//::i32_bool set_file_size(const_char_pointer pszName, size_t iSize)
 //{
 //
-//   int fd = ::open(lpszName, O_RDONLY);
+//   ::i32 fd = ::open(pszName, O_RDONLY);
 //
 //   ::i32_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
 //
@@ -424,7 +424,7 @@ char * malloc_get_current_dir_name()
 //
 //   iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 //
-//   char * psz = str.get_buffer(iReadAtMostByteCount);
+//   char_pointer psz = str.get_buffer(iReadAtMostByteCount);
 //
 //
 //   ::collection::count iRead = fread(scopedstr, 1, iReadAtMostByteCount, f);
@@ -481,12 +481,12 @@ char * malloc_get_current_dir_name()
 //
 //      mem.set_size(1024 * 16);
 //
-//      int iRead;
+//      ::i32 iRead;
 //
 //      if (iReadAtMostByteCount >= 0)
 //      {
 //
-//         while ((iRead = (int)fread(mem.get_data(), 1, minimum(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
+//         while ((iRead = (::i32)fread(mem.get_data(), 1, minimum(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
 //         {
 //
 //            memory.append(mem.get_data(), iRead);
@@ -497,7 +497,7 @@ char * malloc_get_current_dir_name()
 //      else
 //      {
 //
-//         while ((iRead = (int)fread(mem.get_data(), 1, mem.get_size(), f)) > 0)
+//         while ((iRead = (::i32)fread(mem.get_data(), 1, mem.get_size(), f)) > 0)
 //         {
 //
 //            memory.append(mem.get_data(), iRead);
@@ -576,7 +576,7 @@ char * malloc_get_current_dir_name()
 ////
 ////   ::file::path path;
 ////
-////   char * pszModule = nullptr;
+////   char_pointer pszModule = nullptr;
 ////
 ////   if((scopedstrModule = br_find_exe(nullptr)) == nullptr)
 ////   {
@@ -584,9 +584,9 @@ char * malloc_get_current_dir_name()
 ////      if (!br_init_lib(nullptr))
 ////      {
 ////
-////         char path[PATH_MAX * 4];
+////         ::i8 path[PATH_MAX * 4];
 ////
-////         char dest[PATH_MAX * 4];
+////         ::i8 dest[PATH_MAX * 4];
 ////
 ////         pid_t pid = getpid();
 ////
@@ -640,12 +640,12 @@ char * malloc_get_current_dir_name()
 //::i32_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, ::i32_bool bOverwrite)
 //{
 //
-//   int input, output;
+//   ::i32 input, output;
 //   size_t filesize;
 //   void * source, * target;
 //
 //
-//   int flags = O_RDWR | O_CREAT | O_TRUNC;
+//   ::i32 flags = O_RDWR | O_CREAT | O_TRUNC;
 //   if (!bOverwrite)
 //      flags |= O_EXCL;
 //   if ((output = open(scopedstrNew, flags, 0666)) == -1)
@@ -737,14 +737,14 @@ char * malloc_get_current_dir_name()
 //::i32_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
-//   const int iBufSize = MAX_PATH * 8;
+//   const ::i32 iBufSize = MAX_PATH * 8;
 //   wstring pwsz1 = utf8_to_unicode(scopedstr1);
 //   wstring pwsz2 = utf8_to_unicode(scopedstr2);
-//   //   unichar * pwszFile1;
-//      // unichar * pwszFile2;
+//   //   wide_character * pwszFile1;
+//      // wide_character * pwszFile2;
 //   ::wide_character * pwszPath1 = ___new ::wide_character[iBufSize];
 //   ::wide_character * pwszPath2 = ___new ::wide_character[iBufSize];
-//   int iCmp = -1;
+//   ::i32 iCmp = -1;
 //   //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //      // {
 //      //  if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
@@ -761,14 +761,14 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int ansi_open(const ::scoped_string & scopedstr, int i)
+//::i32 ansi_open(const ::scoped_string & scopedstr, ::i32 i)
 //{
 //
 //   return open(scopedstr, i);
 //
 //}
 //
-//void ansi_get_errno(int * perrno)
+//void ansi_get_errno(::i32 * perrno)
 //{
 //   *perrno = errno;
 //}
@@ -781,10 +781,10 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int ansi_file_flag(int iFlag)
+//::i32 ansi_file_flag(::i32 iFlag)
 //{
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //
 //   if (iFlag & ::file::e_open_binary)
 //   {
@@ -872,7 +872,7 @@ char * malloc_get_current_dir_name()
 //   try
 //   {
 //
-//      int c;
+//      ::i32 c;
 //
 //      do
 //      {
@@ -883,7 +883,7 @@ char * malloc_get_current_dir_name()
 //
 //         if (c == '\r') break;
 //
-//         line += (char)c;
+//         line += (::i8)c;
 //
 //      } while (c != EOF);
 //
@@ -1564,7 +1564,7 @@ CLASS_DECL_ACME ::file::path get_home_folder_path()
 {
 
    // 1) HOME environment variable (preferred)
-   if (const char* home = std::getenv("HOME"))
+   if (const_char_pointer home = std::getenv("HOME"))
    {
       if (*home)
          return ::file::path(home);
@@ -1631,10 +1631,10 @@ CLASS_DECL_ACME void set_modified_file_time(
 
 
 
-int fgetch(FILE * pfile)
+::i32 fgetch(FILE * pfile)
 {
    struct termios oldt, newt;
-   int ch;
+   ::i32 ch;
 
    auto iFileNo = fileno(pfile);
 
@@ -1654,10 +1654,10 @@ int fgetch(FILE * pfile)
 
 
 
-int current_getch()
+::i32 current_getch()
 {
 
-   int i = -1;
+   ::i32 i = -1;
 
    if (raw_stdin() == nullptr)
    {

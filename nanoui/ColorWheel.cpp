@@ -54,17 +54,17 @@ namespace nanoui
 
       }
 
-      m_rectangle.left = (float) m_pos.x;
-      m_rectangle.top = (float)m_pos.y;
-      m_rectangle.right = (float)(m_pos.x + m_size.cx);
-      m_rectangle.bottom = (float)(m_pos.y + m_size.cy);
+      m_rectangle.left = (::f32) m_pos.x;
+      m_rectangle.top = (::f32)m_pos.y;
+      m_rectangle.right = (::f32)(m_pos.x + m_size.cx);
+      m_rectangle.bottom = (::f32)(m_pos.y + m_size.cy);
 
       ::graphics::color_wheel::_on_draw(pcontext);
 
-      //float x = (float)m_pos.x, y = (float)m_pos.y,
-      //   w = (float)m_size.cx, h = (float)m_size.cy;
+      //::f32 x = (::f32)m_pos.x, y = (::f32)m_pos.y,
+      //   w = (::f32)m_size.cx, h = (::f32)m_size.cy;
 
-      //float hue = m_hue;
+      //::f32 hue = m_hue;
       //::nano2d::paint paint;
 
       //{
@@ -73,24 +73,24 @@ namespace nanoui
 
       //   //      pcontext->save();
 
-      //   float cx = x + w * 0.5f;
-      //   float cy = y + h * 0.5f;
-      //   float r1 = (w < h ? w : h) * 0.5f - 5.0f;
-      //   float r0 = r1 * .75f;
+      //   ::f32 cx = x + w * 0.5f;
+      //   ::f32 cy = y + h * 0.5f;
+      //   ::f32 r1 = (w < h ? w : h) * 0.5f - 5.0f;
+      //   ::f32 r0 = r1 * .75f;
 
-      //   float aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
+      //   ::f32 aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
 
-      //   for (int i = 0; i < 6; i++) {
-      //      auto a0 = radians((float)i / 6.0f * ::nano2d::f_pi * 2.0f - aeps);
-      //      auto a1 = radians((float)(i + 1.0f) / 6.0f * ::nano2d::f_pi * 2.0f + aeps);
+      //   for (::i32 i = 0; i < 6; i++) {
+      //      auto a0 = radians((::f32)i / 6.0f * ::nano2d::f_pi * 2.0f - aeps);
+      //      auto a1 = radians((::f32)(i + 1.0f) / 6.0f * ::nano2d::f_pi * 2.0f + aeps);
       //      pcontext->begin_path();
       //      pcontext->arc(cx, cy, r0, a0, a1, ::nano2d::e_winding_cw);
       //      pcontext->arc(cx, cy, r1, a1, a0, ::nano2d::e_winding_ccw);
       //      pcontext->close_path();
-      //      float ax = (float)cx + cosf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-      //      float ay = (float)cy + sinf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-      //      float bx = (float)cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-      //      float by = (float)cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      //      ::f32 ax = (::f32)cx + cosf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      //      ::f32 ay = (::f32)cy + sinf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      //      ::f32 bx = (::f32)cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      //      ::f32 by = (::f32)cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
       //      paint = pcontext->linear_gradient(ax, ay, bx, by,
       //         ::color::HSLA_color(a0 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255),
       //         ::color::HSLA_color(a1 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255));
@@ -113,7 +113,7 @@ namespace nanoui
       //      pcontext->rotate(hue * ::nano2d::f_pi * 2);
 
       //      // Marker on
-      //      float u = ::maximum(r1 / 50, 1.5f);
+      //      ::f32 u = ::maximum(r1 / 50, 1.5f);
       //      u = ::minimum(u, 4.f);
       //      pcontext->stroke_width(u);
       //      pcontext->begin_path();
@@ -130,11 +130,11 @@ namespace nanoui
       //      pcontext->fill();
 
       //      //// Center triangle
-      //      float r = r0 - 6;
-      //      float ax = -0.5f * r;
-      //      float ay = 0.5f * ::sqrt(3.f) * r;
-      //      float bx = -0.5f * r;
-      //      float by = -0.5f * ::sqrt(3.f) * r;
+      //      ::f32 r = r0 - 6;
+      //      ::f32 ax = -0.5f * r;
+      //      ::f32 ay = 0.5f * ::sqrt(3.f) * r;
+      //      ::f32 bx = -0.5f * r;
+      //      ::f32 by = -0.5f * ::sqrt(3.f) * r;
       //      pcontext->begin_path();
       //      pcontext->move_to(r, 0);
       //      pcontext->line_to(ax, ay);
@@ -150,10 +150,10 @@ namespace nanoui
       //      pcontext->stroke();
 
       //      // Select circle on triangle
-      //      //float sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
-      //      //float sy = ay * m_white + by * m_black;
-      //      float sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
-      //      float sy = m_hls.dS * ay;
+      //      //::f32 sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
+      //      //::f32 sy = ay * m_white + by * m_black;
+      //      ::f32 sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
+      //      ::f32 sy = m_hls.dS * ay;
 
       //      pcontext->stroke_width(u);
       //      pcontext->begin_path();
@@ -254,29 +254,29 @@ namespace nanoui
    //ColorWheel::Region ColorWheel::adjust_position(const i32_point& p)
    //{
 
-   //   float x = (float) p.x;
+   //   ::f32 x = (::f32) p.x;
    //   
-   //   float y = (float) p.y;
+   //   ::f32 y = (::f32) p.y;
    //   
-   //   float pwidget = (float)m_size.cx;
+   //   ::f32 pwidget = (::f32)m_size.cx;
    //   
-   //   float h = (float)m_size.cy;
+   //   ::f32 h = (::f32)m_size.cy;
 
-   //   float cx = pwidget / 2.f;
+   //   ::f32 cx = pwidget / 2.f;
 
-   //   float cy = h / 2.f;
+   //   ::f32 cy = h / 2.f;
 
-   //   float smallest_dimension = minimum(cx, cy);
+   //   ::f32 smallest_dimension = minimum(cx, cy);
 
-   //   float r1 = smallest_dimension - 5.0f;
+   //   ::f32 r1 = smallest_dimension - 5.0f;
 
-   //   float r0 = r1 * .75f;
+   //   ::f32 r0 = r1 * .75f;
 
    //   x -= cx;
 
    //   y -= cy;
 
-   //   float mr = ::sqrt(x * x + y * y);
+   //   ::f32 mr = ::sqrt(x * x + y * y);
 
    //   if ((m_regionDrag & OuterCircle) || (!m_regionDrag && (mr >= r0 && mr <= r1))) 
    //   {
@@ -305,17 +305,17 @@ namespace nanoui
 
    //   }
 
-   //   float a = -m_hue * 2 * ::nano2d::f_pi;
-   //   float sin_a = ::sinf(a);
-   //   float cos_a = ::cosf(a);
+   //   ::f32 a = -m_hue * 2 * ::nano2d::f_pi;
+   //   ::f32 sin_a = ::sinf(a);
+   //   ::f32 cos_a = ::cosf(a);
    //   
-   //   float_point xy(cos_a * x - sin_a * y,
+   //   ::f32_point xy(cos_a * x - sin_a * y,
    //      sin_a * x + cos_a * y);
 
-   //   float r = r0 - 6;
-   //   float l0 = (float)(r - xy.x + ::sqrt(3.f) * xy.y) / (3.f * r);
-   //   float l1 = (float)(r - xy.x - ::sqrt(3.f) * xy.y) / (3.f * r);
-   //   float l2 = 1 - l0 - l1;
+   //   ::f32 r = r0 - 6;
+   //   ::f32 l0 = (::f32)(r - xy.x + ::sqrt(3.f) * xy.y) / (3.f * r);
+   //   ::f32 l1 = (::f32)(r - xy.x - ::sqrt(3.f) * xy.y) / (3.f * r);
+   //   ::f32 l2 = 1 - l0 - l1;
    //   bool triangle_test = l0 >= 0 && l0 <= 1.f && l1 >= 0.f && l1 <= 1.f &&
    //      l2 >= 0.f && l2 <= 1.f;
 
@@ -325,7 +325,7 @@ namespace nanoui
    //      l0 = ::minimum(::maximum(0.f, l0), 1.f);
    //      l1 = ::minimum(::maximum(0.f, l1), 1.f);
    //      l2 = ::minimum(::maximum(0.f, l2), 1.f);
-   //      float sum = l0 + l1 + l2;
+   //      ::f32 sum = l0 + l1 + l2;
    //      l0 /= sum;
    //      l1 /= sum;
    //      m_white = l0;
@@ -340,19 +340,19 @@ namespace nanoui
    //}
 
 
-   //::color::color ColorWheel::hue2rgb(float h) const {
-   //   float s = 1.f;
-   //   float v = 1.f;
+   //::color::color ColorWheel::hue2rgb(::f32 h) const {
+   //   ::f32 s = 1.f;
+   //   ::f32 v = 1.f;
 
    //   if (h < 0) h += 1;
 
-   //   int i = int(h * 6);
-   //   float f = h * 6 - i;
-   //   float p = v * (1 - s);
-   //   float q = v * (1 - f * s);
-   //   float t = v * (1 - (1 - f) * s);
+   //   ::i32 i = ::i32(h * 6);
+   //   ::f32 f = h * 6 - i;
+   //   ::f32 p = v * (1 - s);
+   //   ::f32 q = v * (1 - f * s);
+   //   ::f32 t = v * (1 - (1 - f) * s);
 
-   //   float r = 0, g = 0, b = 0;
+   //   ::f32 r = 0, g = 0, b = 0;
    //   switch (i % 6) {
    //   case 0:
    //   {
@@ -417,7 +417,7 @@ namespace nanoui
 
    //   ::color::color color;
 
-   //   float luminanceComplement = 1.0f - m_white - m_black;
+   //   ::f32 luminanceComplement = 1.0f - m_white - m_black;
 
    //   color.set_red(rgb.f64_red() * luminanceComplement + m_black * black.f64_red() + m_white * white.f64_red());
    //   color.set_green(rgb.f64_green() * luminanceComplement + m_black * black.f64_green() + m_white * white.f64_green());
@@ -439,14 +439,14 @@ namespace nanoui
    //   auto g = color.f32_green();
    //   auto b = color.f32_blue();
 
-   //   float M = color.f32_maximum_rgb();
+   //   ::f32 M = color.f32_maximum_rgb();
 
-   //   float m = color.f32_minimum_rgb();
+   //   ::f32 m = color.f32_minimum_rgb();
 
    //   if (M == m) 
    //   {
 
-   //      float l = 0.5f * (M + m);
+   //      ::f32 l = 0.5f * (M + m);
    //      m_hue = 0.f;
    //      m_black = 1.f - l;
    //      m_white = l;
@@ -455,7 +455,7 @@ namespace nanoui
    //   else 
    //   {
 
-   //      float d = M - m, h;
+   //      ::f32 d = M - m, h;
 
    //      if (M == r)
    //      {
@@ -480,9 +480,9 @@ namespace nanoui
 
    //      ::color::color ch = hue2rgb(m_hue);
 
-   //      float M2 = ch.f32_maximum_rgb();
+   //      ::f32 M2 = ch.f32_maximum_rgb();
 
-   //      float m2 = ch.f32_minimum_rgb();
+   //      ::f32 m2 = ch.f32_minimum_rgb();
 
    //      m_white = (M * m2 - m * M2) / (m2 - M2);
 

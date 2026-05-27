@@ -136,7 +136,7 @@ namespace userex
 
       auto preferredDensity = preferred_density();
 
-      set_position(0, (int) (24.f * preferredDensity));
+      set_position(0, (::i32) (24.f * preferredDensity));
 
       initialize_split_layout();
 

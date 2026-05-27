@@ -57,15 +57,15 @@ namespace innate_subsystem
       // Methods for multiline textboxes
       //
 
-      virtual int getCurrentLineIndex() = 0;
-      virtual int getLineCount() = 0;
+      virtual ::i32 getCurrentLineIndex() = 0;
+      virtual ::i32 getLineCount() = 0;
 
       //
       // Get / set caret position
       //
 
-      virtual int getCaretPos() = 0;
-      virtual void setCaretPos(int h, int v) = 0;
+      virtual ::i32 getCaretPos() = 0;
+      virtual void setCaretPos(::i32 h, ::i32 v) = 0;
 
       //
       // Text selection
@@ -104,15 +104,15 @@ namespace innate_subsystem
         // Methods for multiline textboxes
         //
 
-        virtual int getCurrentLineIndex() override { return m_ptextbox->getCurrentLineIndex(); }
-        virtual int getLineCount()  override{ return m_ptextbox->getLineCount(); }
+        virtual ::i32 getCurrentLineIndex() override { return m_ptextbox->getCurrentLineIndex(); }
+        virtual ::i32 getLineCount()  override{ return m_ptextbox->getLineCount(); }
 
         //
         // Get / set caret position
         //
 
-        virtual int getCaretPos()  override{ return m_ptextbox->getCaretPos(); }
-        virtual void setCaretPos(int h, int v)  override{ m_ptextbox->setCaretPos(h, v); }
+        virtual ::i32 getCaretPos()  override{ return m_ptextbox->getCaretPos(); }
+        virtual void setCaretPos(::i32 h, ::i32 v)  override{ m_ptextbox->setCaretPos(h, v); }
 
         //
         // Text selection

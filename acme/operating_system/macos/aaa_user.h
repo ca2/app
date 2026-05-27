@@ -23,7 +23,7 @@
 //#include "window_impl.h"
 //
 //
-//int axis_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
+//::i32 axis_main_command_line(const ::scoped_string & scopedstrParams, ::i32 argc, char_pointer argv[]);
 //
 //
 //#ifdef cplusplus
@@ -63,14 +63,14 @@
 // 
 // typedef LPWINDOW oswindow;
 // 
-// typedef int int;
+// typedef ::i32 ::i32;
 // 
 // typedef struct tagRECT
 // {
-// int    left;
-// int    top;
-// int    right;
-// int    bottom;
+// ::i32    left;
+// ::i32    top;
+// ::i32    right;
+// ::i32    bottom;
 // } const i32_rectangle &, *PRECT, *NPRECT, *::i32_rectangle *;
 // 
 // typedef const i32_rectangle & * const i32_rectangle &;
@@ -87,12 +87,12 @@
 ////
 //
 //
-////inline int wxRound(double x)
+////inline ::i32 wxRound(::f64 x)
 ////{
 ////#if defined(HAVE_ROUND)
-////   return int(round(x));
+////   return ::i32(round(x));
 ////#else
-////   return (int)(x < 0 ? x - 0.5 : x + 0.5);
+////   return (::i32)(x < 0 ? x - 0.5 : x + 0.5);
 ////#endif
 ////}
 //
@@ -104,7 +104,7 @@
 ///*  ---------------------------------------------------------------------------- */
 //
 ///*  the type for screen and DC coordinates */
-//typedef int wxCoord;
+//typedef ::i32 wxCoord;
 //
 //
 ////enum { wxDefaultCoord = -1 };
@@ -114,11 +114,11 @@
 ////{
 ////public:
 ////   // members are public for compatibility, don't use them directly.
-////   int x,y;
+////   ::i32 x,y;
 ////   
 ////   // constructors
 ////   wxSize(): x(0),y(0) { }
-////   wxSize(int xx,int yy): x(xx),y(yy) { }
+////   wxSize(::i32 xx,::i32 yy): x(xx),y(yy) { }
 ////   
 ////   // no copy ctor or assignment operator - the defaults are ok
 ////   
@@ -127,13 +127,13 @@
 ////   
 ////   wxSize operator +(const wxSize& sz) const { return wxSize(x + sz.x,y + sz.y); }
 ////   wxSize operator-(const wxSize& sz) const { return wxSize(x - sz.x,y - sz.y); }
-////   wxSize operator/(int i) const { return wxSize(x / i,y / i); }
-////   wxSize operator*(int i) const { return wxSize(x * i,y * i); }
+////   wxSize operator/(::i32 i) const { return wxSize(x / i,y / i); }
+////   wxSize operator*(::i32 i) const { return wxSize(x * i,y * i); }
 ////   
 ////   wxSize& operator +=(const wxSize& sz) { x += sz.x; y += sz.y; return *this; }
 ////   wxSize& operator-=(const wxSize& sz) { x -= sz.x; y -= sz.y; return *this; }
-////   wxSize& operator/=(const int i) { x /= i; y /= i; return *this; }
-////   wxSize& operator*=(const int i) { x *= i; y *= i; return *this; }
+////   wxSize& operator/=(const ::i32 i) { x /= i; y /= i; return *this; }
+////   wxSize& operator*=(const ::i32 i) { x *= i; y *= i; return *this; }
 ////   
 ////   void IncTo(const wxSize& sz)
 ////   {
@@ -144,27 +144,27 @@
 ////      if(sz.x < x) x = sz.x; if(sz.y < y) y = sz.y;
 ////   }
 ////   
-////   void IncBy(int Δx,int Δy) { x += Δx; y += Δy; }
+////   void IncBy(::i32 Δx,::i32 Δy) { x += Δx; y += Δy; }
 ////   void IncBy(const wxSize& sz) { IncBy(sz.x,sz.y); }
-////   void IncBy(int d) { IncBy(d,d); }
+////   void IncBy(::i32 d) { IncBy(d,d); }
 ////   
-////   void DecBy(int Δx,int Δy) { IncBy(-Δx,-Δy); }
+////   void DecBy(::i32 Δx,::i32 Δy) { IncBy(-Δx,-Δy); }
 ////   void DecBy(const wxSize& sz) { DecBy(sz.x,sz.y); }
-////   void DecBy(int d) { DecBy(d,d); }
+////   void DecBy(::i32 d) { DecBy(d,d); }
 ////   
 ////   
-////   wxSize& Scale(float xscale,float yscale)
+////   wxSize& Scale(::f32 xscale,::f32 yscale)
 ////   {
-////      x = (int)(x*xscale); y = (int)(y*yscale); return *this;
+////      x = (::i32)(x*xscale); y = (::i32)(y*yscale); return *this;
 ////   }
 ////   
 ////   // accessors
-////   void Set(int xx,int yy) { x = xx; y = yy; }
-////   void SetWidth(int w) { x = w; }
-////   void SetHeight(int h) { y = h; }
+////   void Set(::i32 xx,::i32 yy) { x = xx; y = yy; }
+////   void SetWidth(::i32 w) { x = w; }
+////   void SetHeight(::i32 h) { y = h; }
 ////   
-////   int GetWidth() const { return x; }
-////   int GetHeight() const { return y; }
+////   ::i32 GetWidth() const { return x; }
+////   ::i32 GetHeight() const { return y; }
 ////   
 ////   bool IsFullySpecified() const { return x != wxDefaultCoord && y != wxDefaultCoord; }
 ////   
@@ -179,18 +179,18 @@
 ////   }
 ////   
 ////   // compatibility
-////   int GetX() const { return x; }
-////   int GetY() const { return y; }
+////   ::i32 GetX() const { return x; }
+////   ::i32 GetY() const { return y; }
 ////};
 ////
 ////
 ////class CLASS_DECL_ACME wxPoint
 ////{
 ////public:
-////   int x,y;
+////   ::i32 x,y;
 ////   
 ////   wxPoint(): x(0),y(0) { }
-////   wxPoint(int xx,int yy): x(xx),y(yy) { }
+////   wxPoint(::i32 xx,::i32 yy): x(xx),y(yy) { }
 ////   
 ////   // no copy ctor or assignment operator - the defaults are ok
 ////   
@@ -236,17 +236,17 @@
 ////   
 ////   // coordinate system variables
 ////   
-////   // TODO short descriptions of what exactly they are would be nice...
+////   // TODO ::i16 descriptions of what exactly they are would be nice...
 ////   
 ////   wxCoord m_logicalOriginX,m_logicalOriginY;
 ////   wxCoord m_deviceOriginX,m_deviceOriginY;
 ////   
-////   double m_logicalScaleX,m_logicalScaleY;
-////   double m_userScaleX,m_userScaleY;
-////   double m_scaleX,m_scaleY;
+////   ::f64 m_logicalScaleX,m_logicalScaleY;
+////   ::f64 m_userScaleX,m_userScaleY;
+////   ::f64 m_scaleX,m_scaleY;
 ////   
 ////   // Used by SetAxisOrientation() to invert the axes
-////   int m_signX,m_signY;
+////   ::i32 m_signX,m_signY;
 ////   
 ////   // bounding and clipping boxes
 ////   wxCoord m_minX,m_minY,m_maxX,m_maxY;
@@ -273,45 +273,45 @@
 ////   
 ////   wxCoord XDEV2LOG(wxCoord x) const
 ////   {
-////      return wxRound((double)(x - m_deviceOriginX) / m_scaleX) * m_signX + m_logicalOriginX;
+////      return wxRound((::f64)(x - m_deviceOriginX) / m_scaleX) * m_signX + m_logicalOriginX;
 ////   }
 ////   wxCoord XDEV2LOGREL(wxCoord x) const
 ////   {
-////      return wxRound((double)(x) / m_scaleX);
+////      return wxRound((::f64)(x) / m_scaleX);
 ////   }
 ////   wxCoord YDEV2LOG(wxCoord y) const
 ////   {
-////      return wxRound((double)(y - m_deviceOriginY) / m_scaleY) * m_signY + m_logicalOriginY;
+////      return wxRound((::f64)(y - m_deviceOriginY) / m_scaleY) * m_signY + m_logicalOriginY;
 ////   }
 ////   wxCoord YDEV2LOGREL(wxCoord y) const
 ////   {
-////      return wxRound((double)(y) / m_scaleY);
+////      return wxRound((::f64)(y) / m_scaleY);
 ////   }
 ////   wxCoord XLOG2DEV(wxCoord x) const
 ////   {
-////      return wxRound((double)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX;
+////      return wxRound((::f64)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX;
 ////   }
 ////   wxCoord XLOG2DEVREL(wxCoord x) const
 ////   {
-////      return wxRound((double)(x)* m_scaleX);
+////      return wxRound((::f64)(x)* m_scaleX);
 ////   }
 ////   wxCoord YLOG2DEV(wxCoord y) const
 ////   {
-////      return wxRound((double)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY;
+////      return wxRound((::f64)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY;
 ////   }
 ////   wxCoord YLOG2DEVREL(wxCoord y) const
 ////   {
-////      return wxRound((double)(y)* m_scaleY);
+////      return wxRound((::f64)(y)* m_scaleY);
 ////   }
 ////   
 ////   wxCoord XLOG2DEVMAC(wxCoord x) const
 ////   {
-////      return wxRound((double)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX + m_macLocalOrigin.x;
+////      return wxRound((::f64)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX + m_macLocalOrigin.x;
 ////   }
 ////   
 ////   wxCoord YLOG2DEVMAC(wxCoord y) const
 ////   {
-////      return wxRound((double)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY + m_macLocalOrigin.y;
+////      return wxRound((::f64)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY + m_macLocalOrigin.y;
 ////   }
 ////   
 ////   
@@ -331,8 +331,8 @@
 ////  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/30/11.
 ////  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //////
-////int_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle * prectangle, int iDisplay);
-////int_bool move_nswindow(oswindow hwnd,int x,int y);
+////int_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle * prectangle, ::i32 iDisplay);
+////int_bool move_nswindow(oswindow hwnd,::i32 x,::i32 y);
 ////int_bool make_key_and_order_front_nswindow(oswindow hwnd);
 ////int_bool order_front_nswindow(oswindow hwnd);
 ////int_bool nswindow_set_level_normal(oswindow hwnd);

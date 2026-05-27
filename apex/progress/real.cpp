@@ -28,7 +28,7 @@ namespace progress
    }
 
 
-   bool real::on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags)
+   bool real::on_set_scalar(enum_scalar escalar, ::number::number number, ::i32 iFlags)
    {
 
       return false;
@@ -47,7 +47,7 @@ namespace progress
    ::number::number real::get_scalar(enum_scalar escalar)
    {
 
-      return (double)m_iStep / (double)m_iStepCount;
+      return (::f64)m_iStep / (::f64)m_iStepCount;
 
    }
 

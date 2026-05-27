@@ -156,7 +156,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstrName, float & f)
+   style * style_sheet::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstrName, ::f32 & f)
    {
 
       for(::collection::index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -177,7 +177,7 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstrName, float & f) const
+   const style * style_sheet::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstrName, ::f32 & f) const
    {
 
       return ((style_sheet *) this)->rfind_border_width(etag, scopedstrClass, scopedstrSubClass, scopedstrName, f);

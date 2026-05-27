@@ -60,7 +60,7 @@ void trace_category_static_init()
    };
 
 
-   int iCategory = 0;
+   ::i32 iCategory = 0;
 
    auto p = psza;
 

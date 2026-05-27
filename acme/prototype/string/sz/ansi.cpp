@@ -19,7 +19,7 @@ CLASS_DECL_ACME ::u64 as_u64(const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME double string_to_floating(const_char_pointer psz)
+CLASS_DECL_ACME ::f64 string_to_floating(const_char_pointer psz)
 {
 
    return strtod(psz, nullptr);

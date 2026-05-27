@@ -32,7 +32,7 @@ namespace innate_subsystem
 
 //
 //
-////Pen::Pen(int type, int width, const ::color::color & color)
+////Pen::Pen(::i32 type, ::i32 width, const ::color::color & color)
 //   Font::Font()
 ////: m_pen(NULL)
 //{
@@ -52,7 +52,7 @@ namespace innate_subsystem
 //   // }
 //
 //
-//   void Font::initialize_font(const char *pszFamily, int iPixelHeight, int iFontWeight, bool bItalic)
+//   void Font::initialize_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight, bool bItalic)
 //   {
 //
 //      m_pparticleThis->initialize_font(pszFamily, iPixelHeight, iFontWeight, bItalic);

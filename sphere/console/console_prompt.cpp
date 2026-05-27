@@ -58,14 +58,14 @@ namespace console
    }
 
 
-   int prompt::getch()
+   ::i32 prompt::getch()
    {
 
       return impact().getch();
 
    }
 
-   void prompt::ungetch(int c)
+   void prompt::ungetch(::i32 c)
    {
 
       impact().ungetch(c);

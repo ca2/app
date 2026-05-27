@@ -4,10 +4,10 @@
 
 
 
-CLASS_DECL_AURA int framework_is_basis(void);
+CLASS_DECL_AURA ::i32 framework_is_basis(void);
 
 
-CLASS_DECL_AURA int framework_is_stage(void);
+CLASS_DECL_AURA ::i32 framework_is_stage(void);
 
 
 

@@ -115,9 +115,9 @@ namespace browser
       if(get_impact_id() == MENU_IMPACT
             || get_impact_id() == MAIN_IMPACT
             || get_impact_id() == MAIN_SWITCHER_IMPACT
-            || stra.contains(as_string((int)MENU_IMPACT))
-            || stra.contains(as_string((int)MAIN_IMPACT))
-            || stra.contains(as_string((int)MAIN_SWITCHER_IMPACT)))
+            || stra.contains(as_string((::i32)MENU_IMPACT))
+            || stra.contains(as_string((::i32)MAIN_IMPACT))
+            || stra.contains(as_string((::i32)MAIN_SWITCHER_IMPACT)))
       {
 
 
@@ -173,8 +173,8 @@ namespace browser
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
 
          }
-         else if (stra.contains(as_string((int)MAIN_IMPACT))
-                  && stra.contains(as_string((int)MAIN_SWITCHER_IMPACT)))
+         else if (stra.contains(as_string((::i32)MAIN_IMPACT))
+                  && stra.contains(as_string((::i32)MAIN_SWITCHER_IMPACT)))
          {
 
             {
@@ -230,7 +230,7 @@ namespace browser
          if (m_pimpactLastBilbo == m_pimpactLast)
          {
 
-            int i = 1;
+            ::i32 i = 1;
 
             for (auto & pslide : m_pimpactLastBilbo->m_prender->slideshow())
             {
@@ -355,7 +355,7 @@ namespace browser
                try
                {
                   string str;
-                  double d = m_prollfps->get_ex_value()["real"];
+                  ::f64 d = m_prollfps->get_ex_value()["real"];
                   if(m_pimpactLast != nullptr)
                   {
 
@@ -407,7 +407,7 @@ namespace browser
             //   {
             //      string str;
             //      m_prollspf->get_text(str);
-            //      double d = atof(str);
+            //      ::f64 d = atof(str);
             //      if(fabs(d) < 0.0000000001)
             //      {
             //         m_prollfps->set_text("",::e_source_initialize);
@@ -440,7 +440,7 @@ namespace browser
                      && !ptopic->m_context.is(::e_source_sync))
                {
 
-                  int iCheck = atoi(strCheck);
+                  ::i32 iCheck = atoi(strCheck);
 
                   ::pointer<::user::check>pcheck = ptopic->user_interaction();
 
@@ -564,7 +564,7 @@ namespace browser
       if (m_pimpactLastBilbo == m_pimpactLast)
       {
 
-         int i = 1;
+         ::i32 i = 1;
 
          for (auto & pslide : m_pimpactLastBilbo->m_prender->slideshow())
          {

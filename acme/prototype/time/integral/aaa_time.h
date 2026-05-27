@@ -54,18 +54,18 @@
 //   }
 //
 //
-//   inline double sawtooth(const integral_time & period)
+//   inline ::f64 sawtooth(const integral_time & period)
 //   {
 //
-//      return (double)(elapsed().m_i % period.m_i) / (double)period.m_i;
+//      return (::f64)(elapsed().m_i % period.m_i) / (::f64)period.m_i;
 //
 //   }
 //
 //
-//   inline double period_rate(const integral_time & period)
+//   inline ::f64 period_rate(const integral_time & period)
 //   {
 //
-//      return (double)(elapsed().m_i) / (double)period.m_i;
+//      return (::f64)(elapsed().m_i) / (::f64)period.m_i;
 //
 //   }
 //
@@ -78,7 +78,7 @@
 //   }
 //
 //
-//   inline bool on_off(const integral_time & period, double dRate) const
+//   inline bool on_off(const integral_time & period, ::f64 dRate) const
 //   {
 //
 //      return (elapsed().m_i % period.m_i) < period.m_i * dRate;
@@ -108,7 +108,7 @@
 //
 //
 //   integral_time operator %(const BASE_TYPE & time) const { return BASE_TYPE(this->m_i % time.m_i); }
-//   double operator /(const BASE_TYPE & time) const { return (double)this->m_i / (double)time.m_i; }
+//   ::f64 operator /(const BASE_TYPE & time) const { return (::f64)this->m_i / (::f64)time.m_i; }
 //   //integral_time operator *(const BASE_TYPE & time) const { return BASE_TYPE(this->m_i * time.m_i); }
 //   integral_time operator +(const BASE_TYPE & time) const { return BASE_TYPE(this->m_i + time.m_i); }
 //   integral_time operator -(const BASE_TYPE & time) const { return BASE_TYPE(this->m_i - time.m_i); }
@@ -171,7 +171,7 @@
 ////floating_frequency operator * (FLOATING floating, const integral_time < INTEGRAL_TIME_TYPE > & integraltime)
 ////{
 ////
-////   return (double)(floating / integraltime.m_i);
+////   return (::f64)(floating / integraltime.m_i);
 ////
 ////}
 //

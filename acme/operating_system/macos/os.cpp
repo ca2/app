@@ -9,7 +9,7 @@
 
 
 
-CLASS_DECL_ACME bool _istlead(int ch)
+CLASS_DECL_ACME bool _istlead(::i32 ch)
 {
 
    return false;
@@ -49,7 +49,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-//char * mm_browse_folder(const_char_pointer pszStartDir, bool bCanCreateDirectories);
+//char_pointer mm_browse_folder(const_char_pointer pszStartDir, bool bCanCreateDirectories);
 
 
 //string apple_browse_folder(const_char_pointer pszStartDir, bool bCanCreateDirectories)
@@ -61,7 +61,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 //
 
 
-//char** mm_browse_file_open(const_char_pointer *pszStartDir, bool bMulti);
+//char_pointer * mm_browse_file_open(const_char_pointer *pszStartDir, bool bMulti);
 //
 //
 //

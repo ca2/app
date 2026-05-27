@@ -127,7 +127,7 @@ namespace networking_bsd
 
       ::pointer<::sockets_bsd::SSLInitializer>           m_psslinit;
 
-      unsigned char                                      m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+      ::u8                                      m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
 #if defined(BSD_STYLE_SOCKETS)
       ::sockets_bsd::ssl_client_context_map              m_clientcontextmap;
@@ -186,12 +186,12 @@ namespace networking_bsd
 
       bool is_ip6(const ::scoped_string & scopedstr) override;
 
-      virtual bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
-      virtual bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
+      virtual bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags = 0);
+      virtual bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags = 0);
       virtual bool convert(string& str, const struct ::in_addr& inaddr);
       virtual bool convert(string& str, const struct ::in6_addr& inaddr6);
 
-      virtual int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
+      virtual ::i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
       virtual void ResolveLocal();
 
@@ -216,11 +216,11 @@ namespace networking_bsd
       bool reverse(string& hostname, const ::scoped_string & scopedstrNumber) override;
 
 
-      bool u2service(const string& name, int& service, int ai_flags) override;
+      bool u2service(const string& name, ::i32& service, ::i32 ai_flags) override;
 
-      int service_port(const ::scoped_string & scopedstr, int flags = 0) override;
+      ::i32 service_port(const ::scoped_string & scopedstr, ::i32 flags = 0) override;
 
-      string  service_name(int iPort, int flags = 0) override;
+      string  service_name(::i32 iPort, ::i32 flags = 0) override;
 
 
       string canonical_name(::networking::address * address) override;
@@ -229,7 +229,7 @@ namespace networking_bsd
 
       string reverse_name(::networking::address * address) override;
       
-      //int _select(::sockets::socket_handler * psockethandler, const class time & timeWait) override;
+      //::i32 _select(::sockets::socket_handler * psockethandler, const class time & timeWait) override;
 
       ::pointer<::networking::address> create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred = ::networking::e_address_type_none, ::networking::port_t port = 0) override;
 

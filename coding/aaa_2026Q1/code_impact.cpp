@@ -741,11 +741,11 @@ namespace coding
 
       bool bCanStartInstalling = m_papp->can_start_installing();
 
-      printf_line("bCanStartInstalling %d", (int) bCanStartInstalling);
+      printf_line("bCanStartInstalling %d", (::i32) bCanStartInstalling);
 
       bool bInstalling = m_papp->is_installing();
 
-      printf_line("bInstalling %d", (int) bInstalling);
+      printf_line("bInstalling %d", (::i32) bInstalling);
 
       m_pbuttonStart->enable_window(bCanStartInstalling && !bInstalling);
 
@@ -772,11 +772,11 @@ namespace coding
 
       //}
 
-      //double dStdH = 1080.0;
+      //::f64 dStdH = 1080.0;
 
-      //double dH = this->height();
+      //::f64 dH = this->height();
 
-      //double rate = dH / dStdH;
+      //::f64 rate = dH / dStdH;
 
       //::rectangle_i32 rectangle;
 
@@ -808,13 +808,13 @@ namespace coding
 
       //pgraphics->set(m_pfont);
 
-      //int iGroupCount = 6;
+      //::i32 iGroupCount = 6;
 
-      //double x = 20.0;
+      //::f64 x = 20.0;
 
-      //double y = m_pstillCodeTitle->bottom();
+      //::f64 y = m_pstillCodeTitle->bottom();
 
-      //double Δ = (dStdH - 80.0 - (double)m_iAllButtonsHeight / rate) / (double) iGroupCount;
+      //::f64 Δ = (dStdH - 80.0 - (::f64)m_iAllButtonsHeight / rate) / (::f64) iGroupCount;
 
       //pgraphics->text_out({ x, y }, papp->m_strMainStatus + papp->m_strMainStatus2
       //+ papp->m_strMayNeedRestartStatus);
@@ -927,7 +927,7 @@ namespace coding
 
       }
 
-      int iButtonCount;
+      ::i32 iButtonCount;
 
       ::file::path path;
 

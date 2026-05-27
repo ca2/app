@@ -229,16 +229,16 @@ namespace user
    }
 
 
-   void combo_box::get_simple_drop_down_open_arrow_polygon(double_point_array& pointa)
+   void combo_box::get_simple_drop_down_open_arrow_polygon(f64_point_array& pointa)
    {
 
       ::i32_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      int cx = rectangleDropDown.width() / 3;
+      ::i32 cx = rectangleDropDown.width() / 3;
 
-      int cy = cx * 2 / 3;
+      ::i32 cy = cx * 2 / 3;
 
       ::i32_point pointCenter = rectangleDropDown.center();
 
@@ -377,7 +377,7 @@ namespace user
 
       auto ppath = createø < ::draw2d::path > ();
 
-      double_point_array pointa;
+      f64_point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
@@ -1169,7 +1169,7 @@ namespace user
 //   { ASSERT(false); }
 //   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
 //   { ASSERT(false); }
-//   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+//   ::i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
 //   { ASSERT(false); return 0; }
 //   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
 //   { /* default to nothing */ }
@@ -1299,7 +1299,7 @@ namespace user
 
    }
 
-   ::collection::index combo_box::GetLBText(::collection::index nIndex, char * pszText)
+   ::collection::index combo_box::GetLBText(::collection::index nIndex, char_pointer pszText)
 
    {
 
@@ -1347,7 +1347,7 @@ namespace user
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
+      //return (::i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
       auto iIndex= m_plistbox->insert_item_at(nIndex, scopedstrString);
       return iIndex;
@@ -1424,24 +1424,24 @@ namespace user
    }
 
 
-   int combo_box::SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight)
+   ::i32 combo_box::SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight)
    {
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
+      //return (::i32)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
 
       return -1;
 
    }
 
 
-   int combo_box::GetItemHeight(::collection::index nIndex)
+   ::i32 combo_box::GetItemHeight(::collection::index nIndex)
    {
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
+      //return (::i32)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
 
       return -1;
 
@@ -1461,12 +1461,12 @@ namespace user
    }
 
 
-   int combo_box::SetExtendedUI(bool bExtended)
+   ::i32 combo_box::SetExtendedUI(bool bExtended)
    {
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
+      //return (::i32)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
 
       return -1;
 
@@ -1588,24 +1588,24 @@ namespace user
    }
 
 
-   int combo_box::SetDroppedWidth(::u32 nWidth)
+   ::i32 combo_box::SetDroppedWidth(::u32 nWidth)
    {
 
 //      ASSERT(is_window());
 
-//      return (int)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
+//      return (::i32)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
 
       return -1;
 
    }
 
 
-   int combo_box::GetDroppedWidth()
+   ::i32 combo_box::GetDroppedWidth()
    {
 
 //      ASSERT(is_window());
 
-//      return (int)send_message( CB_GETDROPPEDWIDTH, 0, 0);
+//      return (::i32)send_message( CB_GETDROPPEDWIDTH, 0, 0);
 
       return -1;
 

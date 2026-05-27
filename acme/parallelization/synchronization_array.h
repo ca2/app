@@ -58,7 +58,7 @@ protected:
    ::pointer_array < subparticle >                             m_subparticlea;
 
    hsynchronization_array                                                 m_hsynchronizationa;
-   fixed_raw_array < unsigned char, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
+   fixed_raw_array < ::u8, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
 
 public:
 
@@ -89,7 +89,7 @@ public:
 
    virtual void unlock_item(::collection::index index);
 
-   virtual void unlock_item(::collection::index index, int lCount, int * pPrevCount = nullptr);
+   virtual void unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount = nullptr);
 
    virtual void contains(const ::e_status & result) const;
 

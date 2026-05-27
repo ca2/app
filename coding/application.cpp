@@ -106,7 +106,7 @@ namespace coding
    }
 
 
-   void application::micro_preempt(const char * pszMessage)
+   void application::micro_preempt(const_char_pointer pszMessage)
    {
 
       print_line(pszMessage);
@@ -114,7 +114,7 @@ namespace coding
 
    }
 
-   void application::preempt_message(const char * pszMessage)
+   void application::preempt_message(const_char_pointer pszMessage)
    {
 
       print_line("");
@@ -745,7 +745,7 @@ namespace coding
 
    //   //::property_set set;
 
-   //   //int iResult = call_sync(m_pathSvn, "--version", dir::home(), ::e_display_none, 15_s, set);
+   //   //::i32 iResult = call_sync(m_pathSvn, "--version", dir::home(), ::e_display_none, 15_s, set);
 
    //   //if (iResult != 0)
    //   //{
@@ -1387,7 +1387,7 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -1428,7 +1428,7 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -1731,7 +1731,7 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -1776,7 +1776,7 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -1800,7 +1800,7 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -2146,7 +2146,7 @@ namespace coding
 
       ::string strError;
 
-      int iExitCode = -1;
+      ::i32 iExitCode = -1;
 
       micro_preempt("Checking if ssh-agent is running with user's git email address");
 
@@ -2321,7 +2321,7 @@ namespace coding
 
       ::string strError1;
 
-      int iExitCode1 = -1;
+      ::i32 iExitCode1 = -1;
 
       ::string strOutput1 = node()->get_posix_shell_command_output(
          strCommand1,
@@ -2366,7 +2366,7 @@ namespace coding
 
       ::string strError2;
 
-      int iExitCode2 = -1;
+      ::i32 iExitCode2 = -1;
 
       ::string strOutput2 = node()->get_posix_shell_command_output(
          strCommand2,
@@ -3221,7 +3221,7 @@ namespace coding
 
       ::string strError;
 
-      int iExitCode = -1;
+      ::i32 iExitCode = -1;
 
       ::string strConfig = node()->get_posix_shell_command_output(
          strCommand,
@@ -3254,7 +3254,7 @@ namespace coding
 
       ::string strError;
 
-      int iExitCode = -1;
+      ::i32 iExitCode = -1;
 
       ::string strOutput = node()->get_posix_shell_command_output(
          strCommand,

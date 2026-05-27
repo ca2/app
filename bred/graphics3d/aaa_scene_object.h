@@ -23,7 +23,7 @@ namespace graphics3d
 	//
 	// struct CLASS_DECL_BRED PointLightComponent
 	// {
-	// 	float lightIntensity = 1.0f;
+	// 	::f32 lightIntensity = 1.0f;
 	// };
 
 	//
@@ -86,12 +86,12 @@ namespace graphics3d
 	// 	//    struct point_light_component
 	// 	//    {
 	// 	//
-	// 	        float m_fLightIntensity = 1.0f;
+	// 	        ::f32 m_fLightIntensity = 1.0f;
 	// 	//
 	// 	//    };
 	// 	//
 	//
-	// 	point_light(float intensity = 10.f, float radius = 0.1f, floating_sequence3 color = floating_sequence3(1.f));
+	// 	point_light(::f32 intensity = 10.f, ::f32 radius = 0.1f, floating_sequence3 color = floating_sequence3(1.f));
 	// 	~point_light() override;
 	//
 	// };
@@ -116,10 +116,10 @@ namespace graphics3d
 //	DirectX::XMMATRIX invView;
 //	DirectX::XMFLOAT4 ambientLightColor;
 //	PointLight pointLights[10];
-//	int numLights;
-//	int padding1;
-//	int padding2;
-//	int padding3;
+//	::i32 numLights;
+//	::i32 padding1;
+//	::i32 padding2;
+//	::i32 padding3;
 //};
 //
 //struct alignas(16) ObjectMatrices {

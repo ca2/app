@@ -93,7 +93,7 @@ payload::payload(bool * pb)
 }
 
 
-payload::payload(int i)
+payload::payload(::i32 i)
 {
 
    m_etype = e_type_new;
@@ -148,7 +148,7 @@ payload::payload(long l)
 #endif
 
 
-payload::payload(int * pi)
+payload::payload(::i32 * pi)
 {
 
    m_etype = e_type_new;
@@ -184,20 +184,20 @@ payload::payload(::u64 * pinteraction)
 }
 
 
-payload::payload(float float)
+payload::payload(::f32 ::f32)
 {
 
    m_etype = e_type_new;
-   operator = (float);
+   operator = (::f32);
 
 }
 
 
-payload::payload(double d)
+payload::payload(::f64 d)
 {
 
    m_etype = e_type_new;
-   operator = (double);
+   operator = (::f64);
 
 }
 
@@ -429,7 +429,7 @@ bool payload::convert(const ::payload & payload)
    else if(m_etype == e_type_i8)
    {
 
-      m_i8 = payload.char();
+      m_i8 = payload.::i8();
 
    }
    else if(m_etype == e_type_enum_check)
@@ -537,7 +537,7 @@ void payload::as(::atom & atom) const
 }
 
 
-class ::payload & payload::operator ++(int)
+class ::payload & payload::operator ++(::i32)
 {
 
    switch(get_type())
@@ -572,8 +572,8 @@ class ::payload & payload::operator ++(int)
 
    }
       break;
-   case e_type_double:
-      m_d += 1.0;
+   case e_type_f64:
+      m_f64 += 1.0;
       break;
    case e_type_i32:
       m_i32++;
@@ -647,19 +647,19 @@ void payload::set_type(enum_type etype, bool bConvert)
          switch (etype)
          {
          case e_type_i8:
-            m_i32 = this->char();
+            m_i32 = this->::i8();
             break;
          case e_type_u8:
-            m_u32 = this->unsigned char();
+            m_u32 = this->::u8();
             break;
          case e_type_i16:
-            m_i32 = this->short();
+            m_i32 = this->::i16();
             break;
          case e_type_u16:
-            m_u32 = this->unsigned short();
+            m_u32 = this->::u16();
             break;
          case e_type_i32:
-            m_i32 = this->int();
+            m_i32 = this->::i32();
             break;
          case e_type_u32:
             m_u32 = this->::u32();
@@ -670,8 +670,8 @@ void payload::set_type(enum_type etype, bool bConvert)
          case e_type_u64:
             m_hn = this->unsigned_long_long;
             break;
-         case e_type_double:
-            m_d = this->double();
+         case e_type_f64:
+            m_f64 = this->::f64();
             break;
          case e_type_string:
             m_str = ::transfer(this->string());
@@ -855,7 +855,7 @@ class ::payload & payload::operator = (bool * pb)
 }
 
 
-class ::payload & payload::operator = (int i)
+class ::payload & payload::operator = (::i32 i)
 {
 
     if(get_type() == e_type_pi32)
@@ -890,7 +890,7 @@ class ::payload & payload::operator = (int i)
 }
 
 
-class ::payload & payload::operator = (int * pi)
+class ::payload & payload::operator = (::i32 * pi)
 {
 
    set_type(e_type_pi32, false);
@@ -1080,17 +1080,17 @@ class ::payload & payload::operator = (long l)
    }
 #endif
 
-class ::payload & payload::operator = (float float)
+class ::payload & payload::operator = (::f32 ::f32)
 {
-   set_type(e_type_float, false);
-   m_f = float;
+   set_type(e_type_f32, false);
+   m_f32 = ::f32;
    return *this;
 }
 
-class ::payload & payload::operator = (double d)
+class ::payload & payload::operator = (::f64 d)
 {
-   set_type(e_type_double, false);
-   m_d = double;
+   set_type(e_type_f64, false);
+   m_f64 = ::f64;
    return *this;
 }
 
@@ -1286,16 +1286,16 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_u64:
             m_hn = payload.m_hn;
             break;
-         case e_type_pchar:
+         case e_type_pi8:
             m_pi8 = payload.m_pi8;
             break;
-         case e_type_punsigned_char:
+         case e_type_pu8:
             m_pu8 = payload.m_pu8;
             break;
-         case e_type_pshort:
+         case e_type_pi16:
             m_pi16 = payload.m_pi16;
             break;
-         case e_type_punsigned_short:
+         case e_type_pu16:
             m_pu16 = payload.m_pu16;
             break;
          case e_type_pi32:
@@ -1310,11 +1310,11 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_pu64:
             m_phn = payload.m_phn;
             break;
-         case e_type_float:
-            m_f = payload.m_f;
+         case e_type_f32:
+            m_f32 = payload.m_f32;
             break;
-         case e_type_double:
-            m_d = payload.m_d;
+         case e_type_f64:
+            m_f64 = payload.m_f64;
             break;
          case e_type_string:
             m_str = payload.m_str;
@@ -1609,8 +1609,8 @@ bool payload::is_true(const ::payload & payload, bool bDefault) const
             return m_hi != 0;
          case e_type_u64:
             return m_hn != 0;
-         case e_type_double:
-            return m_d != 0;
+         case e_type_f64:
+            return m_f64 != 0;
          case e_type_bool:
             return m_b;
          case e_type_payload_pointer:
@@ -1672,7 +1672,7 @@ bool payload::is_empty() const
       return false;
    case e_type_u64:
       return false;
-   case e_type_double:
+   case e_type_f64:
       return false;
    case e_type_payload_pointer:
       return m_ppayload->is_empty();
@@ -1765,7 +1765,7 @@ bool payload::is_new_or_null() const
 
 
 
-int payload::case_insensitive_order(const class ::payload & payload) const
+::i32 payload::case_insensitive_order(const class ::payload & payload) const
 {
    if(m_etype == ::e_type_int_array)
    {
@@ -1805,21 +1805,21 @@ int payload::case_insensitive_order(const class ::payload & payload) const
    }
    else if(is_double() || payload.is_double())
    {
-      double d = this->double() - payload.as_double();
+      ::f64 d = this->::f64() - payload.as_f64();
       if(d == 0.0)
          return 0;
-      else if(double > 0.0)
+      else if(::f64 > 0.0)
          return 1;
-      else if(double < 0.0)
+      else if(::f64 < 0.0)
          return -1;
    }
    else if(is_integer() || payload.is_integer())
    {
-      return int() - payload.as_i32();
+      return ::i32() - payload.as_i32();
    }
    else if(is_natural() || payload.is_natural())
    {
-      return (int) (::u32() - payload.::u32());
+      return (::i32) (::u32() - payload.::u32());
    }
    else
    {
@@ -1828,14 +1828,14 @@ int payload::case_insensitive_order(const class ::payload & payload) const
    return -2;
 }
 
-int payload::case_insensitive_order(const ::scoped_string & scopedstr) const
+::i32 payload::case_insensitive_order(const ::scoped_string & scopedstr) const
 {
    ::payload payload(scopedstr);
    return case_insensitive_order(payload);
 }
 
 
-int payload::compare(const class ::payload & payload) const
+::i32 payload::compare(const class ::payload & payload) const
 {
    if(m_etype == ::e_type_int_array)
    {
@@ -1875,21 +1875,21 @@ int payload::compare(const class ::payload & payload) const
    }
    else if(is_double() || payload.is_double())
    {
-      double d = this->double() - payload.as_double();
+      ::f64 d = this->::f64() - payload.as_f64();
       if(d == 0.0)
          return 0;
-      else if(double > 0.0)
+      else if(::f64 > 0.0)
          return 1;
-      else if(double < 0.0)
+      else if(::f64 < 0.0)
          return -1;
    }
    else if(is_integer() || payload.is_integer())
    {
-      return int() - payload.as_i32();
+      return ::i32() - payload.as_i32();
    }
    else if(is_natural() || payload.is_natural())
    {
-      return (int) (::u32() - payload.::u32());
+      return (::i32) (::u32() - payload.::u32());
    }
    else
    {
@@ -1898,7 +1898,7 @@ int payload::compare(const class ::payload & payload) const
    return -2;
 }
 
-int payload::compare(const ::scoped_string & scopedstr) const
+::i32 payload::compare(const ::scoped_string & scopedstr) const
 {
    ::payload payload(scopedstr);
    return compare(payload);
@@ -1996,32 +1996,32 @@ bool payload::operator > (const ::scoped_string & scopedstr) const
    return string() > str;
 }
 
-bool payload::operator == (int i) const
+bool payload::operator == (::i32 i) const
 {
-   return int() == i;
+   return ::i32() == i;
 }
 
-bool payload::operator != (int i) const
+bool payload::operator != (::i32 i) const
 {
-   return int() != i;
+   return ::i32() != i;
 }
 
-bool payload::operator < (int i) const
+bool payload::operator < (::i32 i) const
 {
    return long_long < i;
 }
 
-bool payload::operator <= (int i) const
+bool payload::operator <= (::i32 i) const
 {
    return long_long <= i;
 }
 
-bool payload::operator >= (int i) const
+bool payload::operator >= (::i32 i) const
 {
    return long_long >= i;
 }
 
-bool payload::operator > (int i) const
+bool payload::operator > (::i32 i) const
 {
    return long_long > i;
 }
@@ -2063,7 +2063,7 @@ bool payload::operator >= (::i64 i) const
 
 bool payload::operator > (::i64 i) const
 {
-   return int() > i;
+   return ::i32() > i;
 }
 
 
@@ -2136,12 +2136,12 @@ bool payload::operator > (bool b) const
 //   return m_etype == e_type_string && m_str == str;
 //}
 //
-//bool payload::strictly_equal(double d) const
+//bool payload::strictly_equal(::f64 d) const
 //{
-//   return m_etype == e_type_double && m_d == double;
+//   return m_etype == e_type_f64 && m_f64 == ::f64;
 //}
 //
-//bool payload::strictly_equal(int i) const
+//bool payload::strictly_equal(::i32 i) const
 //{
 //   return m_etype == e_type_i32 && m_i32 == i;
 //}
@@ -2166,12 +2166,12 @@ bool payload::operator > (bool b) const
 //   return m_etype != e_type_string || m_str != str;
 //}
 //
-//bool payload::strictly_different(double d) const
+//bool payload::strictly_different(::f64 d) const
 //{
-//   return m_etype != e_type_double || m_d != double;
+//   return m_etype != e_type_f64 || m_f64 != ::f64;
 //}
 //
-//bool payload::strictly_different(int i) const
+//bool payload::strictly_different(::i32 i) const
 //{
 //   return m_etype != e_type_i32 || m_i32 != i;
 //}
@@ -2192,7 +2192,7 @@ string payload::get_recursive_string() const
 
       str += "array (";
 
-      for(int i = 0; i < array_get_count(); i++)
+      for(::i32 i = 0; i < array_get_count(); i++)
       {
          if(i > 0)
             str += " ";
@@ -2248,9 +2248,9 @@ string payload::string(const ::scoped_string & scopedstrOnNull) const
       {
          str = as_string(m_hn);
       }
-      else if(m_etype == ::e_type_double)
+      else if(m_etype == ::e_type_f64)
       {
-         str = as_string(m_d);
+         str = as_string(m_f64);
       }
       else if(m_etype == ::e_type_id)
       {
@@ -2266,7 +2266,7 @@ string payload::string(const ::scoped_string & scopedstrOnNull) const
       }
       else if(m_etype == ::e_type_bool)
       {
-         str = as_string((int)m_b);
+         str = as_string((::i32)m_b);
       }
       else if (is_element_set())
       {
@@ -2411,22 +2411,22 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
          atom = (::collection::index) m_hn;
 
       }
-      else if (m_etype == ::e_type_float)
+      else if (m_etype == ::e_type_f32)
       {
 
          ::string str;
 
-         str.formatf("%f", m_f);
+         str.formatf("%f", m_f32);
 
          atom = str;
 
       }
-      else if(m_etype == ::e_type_double)
+      else if(m_etype == ::e_type_f64)
       {
 
          ::string str;
 
-         str.formatf("%f", m_d);
+         str.formatf("%f", m_f64);
 
          atom = str;
 
@@ -2501,7 +2501,7 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 
 
 
-int payloadint(int iDefault) const
+::i32 payloadint(::i32 iDefault) const
 {
    switch(m_etype)
    {
@@ -2511,60 +2511,60 @@ int payloadint(int iDefault) const
       return iDefault;
    case e_type_string:
       return atoi(m_str);
-   case e_type_double:
-      return (int) m_d;
-   case e_type_pchar:
-      return (int)*m_pi8;
-   case e_type_pshort:
-      return (int)*m_pi16;
+   case e_type_f64:
+      return (::i32) m_f64;
+   case e_type_pi8:
+      return (::i32)*m_pi8;
+   case e_type_pi16:
+      return (::i32)*m_pi16;
    case e_type_pi32:
-      return (int)*m_pi32;
+      return (::i32)*m_pi32;
    case e_type_pi64:
-      return (int)*m_phi;
-   case e_type_punsigned_char:
-      return (int)*m_pu8;
-   case e_type_punsigned_short:
-      return (int)*m_pu16;
+      return (::i32)*m_phi;
+   case e_type_pu8:
+      return (::i32)*m_pu8;
+   case e_type_pu16:
+      return (::i32)*m_pu16;
    case e_type_pu32:
-      return (int)*m_pu32;
+      return (::i32)*m_pu32;
    case e_type_pu64:
-      return (int)*m_phn;
+      return (::i32)*m_phn;
    case e_type_i8:
-      return (int) m_i8;
+      return (::i32) m_i8;
    case e_type_i16:
-      return (int) m_i32;
+      return (::i32) m_i32;
    case e_type_i32:
       return m_u32;
    case e_type_i64:
-      return (int) m_hi;
+      return (::i32) m_hi;
    case e_type_u8:
-      return (int)m_u8;
+      return (::i32)m_u8;
    case e_type_u16:
-      return (int)m_u16;
+      return (::i32)m_u16;
    case e_type_u32:
-      return (int)m_u32;
+      return (::i32)m_u32;
    case e_type_u64:
-      return (int) m_hn;
+      return (::i32) m_hn;
    case e_type_element:
    case e_type_path:
       return iDefault;
    case e_type_payload_pointer:
-      return m_ppayload->int(iDefault);
+      return m_ppayload->::i32(iDefault);
    case e_type_property:
-      return m_pproperty->int(iDefault);
+      return m_pproperty->::i32(iDefault);
    case e_type_pstring:
       return atoi(*m_pstr);
    case e_type_id:
    {
       if(!fits_int(id().long_long))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (int) (::i64) id();
+      return (::i32) (::i64) id();
    }
    case e_type_pid:
    {
       if(!fits_int(m_pid->long_long))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (int) (::i64) *m_pid;
+      return (::i32) (::i64) *m_pid;
    }
    default:
       return iDefault;
@@ -2572,7 +2572,7 @@ int payloadint(int iDefault) const
 }
 
 //
-//int & payload::as_i32()
+//::i32 & payload::as_i32()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -2590,7 +2590,7 @@ int payloadint(int iDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      int i = this->int();
+//      ::i32 i = this->::i32();
 //
 //      set_type(e_type_i32, false);
 //
@@ -2604,7 +2604,7 @@ int payloadint(int iDefault) const
 //
 
 
-::u32 payloadunsigned int(::u32 uiDefault) const
+::u32 payloadunsigned ::i32(::u32 uiDefault) const
 {
    switch(m_etype)
    {
@@ -2697,16 +2697,16 @@ int payloadint(int iDefault) const
          return m_hi;
       case e_type_u64:
          return m_hn;
-      case e_type_pchar:
+      case e_type_pi8:
          if (::is_null(m_p)) return iDefault;
          return *m_pi8;
-      case e_type_punsigned_char:
+      case e_type_pu8:
          if (::is_null(m_p)) return iDefault;
          return *m_pu8;
-      case e_type_pshort:
+      case e_type_pi16:
          if (::is_null(m_p)) return iDefault;
          return *m_pi16;
-      case e_type_punsigned_short:
+      case e_type_pu16:
          if (::is_null(m_p)) return iDefault;
          return *m_pu16;
       case e_type_pi32:
@@ -2763,10 +2763,10 @@ long payload::get_long(long lDefault) const
 }
 
 
-unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
+ulong payload::get_unsigned_long(ulong ulDefault) const
 {
    
-   return (unsigned long) this->unsigned_long_long(ulDefault);
+   return (ulong) this->unsigned_long_long(ulDefault);
    
 }
 
@@ -2824,10 +2824,10 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
       return m_hi;
    case e_type_u64:
       return m_hn;
-   case e_type_float:
-      return (::u64) m_f;
-   case e_type_double:
-      return (::u64) m_d;
+   case e_type_f32:
+      return (::u64) m_f32;
+   case e_type_f64:
+      return (::u64) m_f64;
    case e_type_element:
    case e_type_path:
       return uiDefault;
@@ -2945,7 +2945,7 @@ bool & payload::bool_reference()
 
 
 
-char payloadchar(char iDefault) const
+::i8 payloadchar(::i8 iDefault) const
 {
    switch (m_etype)
    {
@@ -2954,27 +2954,27 @@ char payloadchar(char iDefault) const
    case e_type_empty:
       return iDefault;
    case e_type_i32:
-      return (char)m_i32;
+      return (::i8)m_i32;
    case e_type_u32:
-      return (char)m_u32;
+      return (::i8)m_u32;
    case e_type_i64:
-      return (char)m_hi;
+      return (::i8)m_hi;
    case e_type_u64:
-      return (char)m_hn;
-   case e_type_float:
-      return (char) m_f;
-   case e_type_double:
-      return (char)m_d;
+      return (::i8)m_hn;
+   case e_type_f32:
+      return (::i8) m_f32;
+   case e_type_f64:
+      return (::i8)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
-      return (char)atof(m_str);
+      return (::i8)atof(m_str);
 #else
-      return (char)_atof_l(m_str, ::acme::get_c_locale());
+      return (::i8)_atof_l(m_str, ::acme::get_c_locale());
 #endif
    case e_type_payload_pointer:
-      return m_ppayload->char(iDefault);
+      return m_ppayload->::i8(iDefault);
    case e_type_property:
-      return m_pproperty->char(iDefault);
+      return m_pproperty->::i8(iDefault);
    default:
       return iDefault;
    }
@@ -2987,7 +2987,7 @@ char payloadchar(char iDefault) const
 
 
 
-unsigned char payloadunsigned char(unsigned char uDefault) const
+::u8 payload::u8(::u8 uDefault) const
 {
    switch (m_etype)
    {
@@ -2996,27 +2996,27 @@ unsigned char payloadunsigned char(unsigned char uDefault) const
    case e_type_empty:
       return uDefault;
    case e_type_i32:
-      return (unsigned char)m_i32;
+      return (::u8)m_i32;
    case e_type_u32:
-      return (unsigned char)m_u32;
+      return (::u8)m_u32;
    case e_type_i64:
-      return (unsigned char)m_hi;
+      return (::u8)m_hi;
    case e_type_u64:
-      return (unsigned char)m_hn;
-   case e_type_float:
-      return (unsigned char)m_f;
-   case e_type_double:
-      return (unsigned char)m_d;
+      return (::u8)m_hn;
+   case e_type_f32:
+      return (::u8)m_f32;
+   case e_type_f64:
+      return (::u8)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
-      return (unsigned char)atof(m_str);
+      return (::u8)atof(m_str);
 #else
-      return (unsigned char)_atof_l(m_str, ::acme::get_c_locale());
+      return (::u8)_atof_l(m_str, ::acme::get_c_locale());
 #endif
    case e_type_payload_pointer:
-      return m_ppayload->unsigned char(uDefault);
+      return m_ppayload->::u8(uDefault);
    case e_type_property:
-      return m_pproperty->unsigned char(uDefault);
+      return m_pproperty->::u8(uDefault);
    default:
       return uDefault;
    }
@@ -3024,7 +3024,7 @@ unsigned char payloadunsigned char(unsigned char uDefault) const
 }
 
 
-//unsigned char & payload::as_u8()
+//::u8 & payload::as_u8()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -3042,7 +3042,7 @@ unsigned char payloadunsigned char(unsigned char uDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      unsigned char i = this->unsigned char();
+//      ::u8 i = this->::u8();
 //
 //      set_type(e_type_u8, false);
 //
@@ -3056,7 +3056,7 @@ unsigned char payloadunsigned char(unsigned char uDefault) const
 
 
 
-short payloadshort(short iDefault) const
+::i16 payloadshort(::i16 iDefault) const
 {
    switch (m_etype)
    {
@@ -3065,27 +3065,27 @@ short payloadshort(short iDefault) const
    case e_type_empty:
       return iDefault;
    case e_type_i32:
-      return (short)m_i32;
+      return (::i16)m_i32;
    case e_type_u32:
-      return (short)m_u32;
+      return (::i16)m_u32;
    case e_type_i64:
-      return (short)m_hi;
+      return (::i16)m_hi;
    case e_type_u64:
-      return (short)m_hn;
-   case e_type_float:
-      return (short)m_f;
-   case e_type_double:
-      return (short)m_d;
+      return (::i16)m_hn;
+   case e_type_f32:
+      return (::i16)m_f32;
+   case e_type_f64:
+      return (::i16)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
-      return (short)atof(m_str);
+      return (::i16)atof(m_str);
 #else
-      return (short)_atof_l(m_str, ::acme::get_c_locale());
+      return (::i16)_atof_l(m_str, ::acme::get_c_locale());
 #endif
    case e_type_payload_pointer:
-      return m_ppayload->short(iDefault);
+      return m_ppayload->::i16(iDefault);
    case e_type_property:
-      return m_pproperty->short(iDefault);
+      return m_pproperty->::i16(iDefault);
    default:
       return iDefault;
    }
@@ -3094,7 +3094,7 @@ short payloadshort(short iDefault) const
 
 
 
-//short & payload::as_i16()
+//::i16 & payload::as_i16()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -3112,7 +3112,7 @@ short payloadshort(short iDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      short i = this->short();
+//      ::i16 i = this->::i16();
 //
 //      set_type(e_type_i16, false);
 //
@@ -3126,7 +3126,7 @@ short payloadshort(short iDefault) const
 
 
 
-unsigned short payloadunsigned short(unsigned short uDefault) const
+::u16 payloadunsigned ::i16(::u16 uDefault) const
 {
    switch (m_etype)
    {
@@ -3135,27 +3135,27 @@ unsigned short payloadunsigned short(unsigned short uDefault) const
    case e_type_empty:
       return uDefault;
    case e_type_i32:
-      return (unsigned short)m_i32;
+      return (::u16)m_i32;
    case e_type_u32:
-      return (unsigned short)m_u32;
+      return (::u16)m_u32;
    case e_type_i64:
-      return (unsigned short)m_hi;
+      return (::u16)m_hi;
    case e_type_u64:
-      return (unsigned short)m_hn;
-   case e_type_float:
-      return (unsigned short)m_f;
-   case e_type_double:
-      return (unsigned short)m_d;
+      return (::u16)m_hn;
+   case e_type_f32:
+      return (::u16)m_f32;
+   case e_type_f64:
+      return (::u16)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
-      return (unsigned short)atof(m_str);
+      return (::u16)atof(m_str);
 #else
-      return (unsigned short)_atof_l(m_str, ::acme::get_c_locale());
+      return (::u16)_atof_l(m_str, ::acme::get_c_locale());
 #endif
    case e_type_payload_pointer:
-      return m_ppayload->unsigned short(uDefault);
+      return m_ppayload->::u16(uDefault);
    case e_type_property:
-      return m_pproperty->unsigned short(uDefault);
+      return m_pproperty->::u16(uDefault);
    default:
       return uDefault;
    }
@@ -3164,7 +3164,7 @@ unsigned short payloadunsigned short(unsigned short uDefault) const
 
 
 //
-//unsigned short & payload::as_u16()
+//::u16 & payload::as_u16()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -3182,7 +3182,7 @@ unsigned short payloadunsigned short(unsigned short uDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      unsigned short i = this->unsigned short();
+//      ::u16 i = this->::u16();
 //
 //      set_type(e_type_u16, false);
 //
@@ -3196,7 +3196,7 @@ unsigned short payloadunsigned short(unsigned short uDefault) const
 //
 
 
-float payloadfloat(float fDefault) const
+::f32 payloadfloat(::f32 fDefault) const
 {
    switch(m_etype)
    {
@@ -3205,60 +3205,60 @@ float payloadfloat(float fDefault) const
    case e_type_empty:
       return fDefault;
    case e_type_i32:
-      return (float) m_i32;
+      return (::f32) m_i32;
    case e_type_u32:
-      return (float) m_u32;
+      return (::f32) m_u32;
    case e_type_i64:
-      return (float) m_hi;
+      return (::f32) m_hi;
    case e_type_u64:
-      return (float) m_hn;
-   case e_type_float:
-      return m_f;
-   case e_type_double:
-      return (float) m_d;
+      return (::f32) m_hn;
+   case e_type_f32:
+      return m_f32;
+   case e_type_f64:
+      return (::f32) m_f64;
    case e_type_string:
    #if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
-      return (float) atof(m_str);
+      return (::f32) atof(m_str);
    #else
-      return (float) _atof_l(m_str, ::acme::get_c_locale());
+      return (::f32) _atof_l(m_str, ::acme::get_c_locale());
    #endif
    case e_type_payload_pointer:
-      return m_ppayload->float(fDefault);
+      return m_ppayload->::f32(fDefault);
    case e_type_property:
-      return m_pproperty->float(fDefault);
+      return m_pproperty->::f32(fDefault);
    default:
       return fDefault;
    }
 
 }
 //
-//float & payload::as_float()
+//::f32 & payload::as_f32()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      return m_ppayload->as_float();
+//      return m_ppayload->as_f32();
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      return m_pproperty->as_float();
+//      return m_pproperty->as_f32();
 //
 //   }
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      float i = this->float();
+//      ::f32 i = this->::f32();
 //
-//      set_type(e_type_float, false);
+//      set_type(e_type_f32, false);
 //
-//      m_f = i;
+//      m_f32 = i;
 //
 //   }
 //
-//   return m_f;
+//   return m_f32;
 //
 //}
 //
@@ -3280,9 +3280,9 @@ float payloadfloat(float fDefault) const
 //}
 
 
-double payloaddouble(double dDefault) const
+::f64 payloaddouble(::f64 dDefault) const
 {
-   double d;
+   ::f64 d;
    if(m_etype == e_type_null)
    {
       return dDefault;
@@ -3293,36 +3293,36 @@ double payloaddouble(double dDefault) const
    }
    else if(m_etype == ::e_type_i32)
    {
-      d = (double) m_i32;
+      d = (::f64) m_i32;
    }
    else if(m_etype == ::e_type_u32)
    {
 
-      d = (double) m_u32;
+      d = (::f64) m_u32;
 
    }
    else if(m_etype == ::e_type_i64)
    {
 
-      d = (double) m_hi;
+      d = (::f64) m_hi;
 
    }
    else if(m_etype == ::e_type_u64)
    {
 
-      d = (double) m_hn;
+      d = (::f64) m_hn;
 
    }
-   else if(m_etype == ::e_type_float)
+   else if(m_etype == ::e_type_f32)
    {
 
-      d = (double) m_f;
+      d = (::f64) m_f32;
 
    }
-   else if(m_etype == ::e_type_double)
+   else if(m_etype == ::e_type_f64)
    {
 
-      d = m_d;
+      d = m_f64;
 
    }
    else if(m_etype == ::e_type_string)
@@ -3342,13 +3342,13 @@ double payloaddouble(double dDefault) const
    else if(m_etype == ::e_type_payload_pointer)
    {
 
-      d = m_ppayload->double(dDefault);
+      d = m_ppayload->::f64(dDefault);
 
    }
    else if (m_etype == ::e_type_property)
    {
 
-      d = m_pproperty->double(dDefault);
+      d = m_pproperty->::f64(dDefault);
 
    }
    else
@@ -3358,38 +3358,38 @@ double payloaddouble(double dDefault) const
 
    }
 
-   return double;
+   return ::f64;
 
 }
 
 //
-//double & payload::as_double()
+//::f64 & payload::as_f64()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      return m_ppayload->as_double();
+//      return m_ppayload->as_f64();
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      return m_pproperty->as_double();
+//      return m_pproperty->as_f64();
 //
 //   }
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      double i = this->double();
+//      ::f64 i = this->::f64();
 //
-//      set_type(e_type_double, false);
+//      set_type(e_type_f64, false);
 //
-//      m_d = i;
+//      m_f64 = i;
 //
 //   }
 //
-//   return m_d;
+//   return m_f64;
 //
 //}
 //
@@ -3915,13 +3915,13 @@ time payload::time() const
    else if (is_floating())
    {
 
-      return floating_second(double());
+      return floating_second(::f64());
 
    }
    else
    {
 
-      return floating_second(double());
+      return floating_second(::f64());
 
    }
 
@@ -4051,7 +4051,7 @@ payload_array payload::payloada() const
          else
          {
 
-            for (int i = 0; i < array_get_count(); i++)
+            for (::i32 i = 0; i < array_get_count(); i++)
             {
 
                payloada.add(at(i));
@@ -4117,7 +4117,7 @@ payload_array & payload::payloada_reference()
          else
          {
 
-            for (int i = 0; i < array_get_count(); i++)
+            for (::i32 i = 0; i < array_get_count(); i++)
             {
 
                pvara->add(at(i));
@@ -4176,7 +4176,7 @@ payload_array & payload::payloada_reference()
       else
       {
 
-         for (int i = 0; i < array_get_count(); i++)
+         for (::i32 i = 0; i < array_get_count(); i++)
          {
 
             set.set_at(i, at(i));
@@ -4233,7 +4233,7 @@ payload_array & payload::payloada_reference()
       else
       {
 
-         for (int i = 0; i < array_get_count(); i++)
+         for (::i32 i = 0; i < array_get_count(); i++)
          {
 
             pset->set_at(i, at(i));
@@ -4604,9 +4604,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 
-//::payload payload::operator / (int i) const
+//::payload payload::operator / (::i32 i) const
 //{
-//   return int() / i;
+//   return ::i32() / i;
 //}
 //
 //::payload payload::operator / (::u32 user) const
@@ -4636,15 +4636,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return m_hi / (::i64) ul;
 //   case ::e_type_u64:
 //      return m_hn / (::u64) ul;
-//   case ::e_type_float:
-//      return m_f / (float) ul;
-//   case ::e_type_double:
-//      return m_d / (double) ul;
+//   case ::e_type_f32:
+//      return m_f32 / (::f32) ul;
+//   case ::e_type_f64:
+//      return m_f64 / (::f64) ul;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
-//      return atof(m_str) / (double) ul;
+//      return atof(m_str) / (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::acme::get_c_locale()) / (double) ul;
+//      return _atof_l(m_str, ::acme::get_c_locale()) / (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator / (ul);
@@ -4656,12 +4656,12 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //}
 //
-//::payload payload::operator / (double d) const
+//::payload payload::operator / (::f64 d) const
 //{
-//   return double() / double;
+//   return ::f64() / ::f64;
 //}
 //
-//::payload operator / (int i, const class ::payload & payload)
+//::payload operator / (::i32 i, const class ::payload & payload)
 //{
 //   return i / payload.as_i32();
 //}
@@ -4693,15 +4693,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return (::i64) ul / payload.m_hi;
 //   case ::e_type_u64:
 //      return (::u64) ul / payload.m_hn;
-//   case ::e_type_float:
-//      return (float) ul / payload.m_f;
-//   case ::e_type_double:
-//      return (double) ul / payload.m_d;
+//   case ::e_type_f32:
+//      return (::f32) ul / payload.m_f32;
+//   case ::e_type_f64:
+//      return (::f64) ul / payload.m_f64;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
-//      return (double) ul / atof(payload.m_str);
+//      return (::f64) ul / atof(payload.m_str);
 //#else
-//      return (double) ul / _atof_l(payload.m_str, ::acme::get_c_locale());
+//      return (::f64) ul / _atof_l(payload.m_str, ::acme::get_c_locale());
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator / (ul, *payload.m_ppayload);
@@ -4712,15 +4712,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   }
 //
 //}
-//::payload operator / (double d, const class ::payload & payload)
+//::payload operator / (::f64 d, const class ::payload & payload)
 //{
-//   return double / payload.as_double();
+//   return ::f64 / payload.as_f64();
 //}
 //
 //
-//::payload payload::operator * (int i) const
+//::payload payload::operator * (::i32 i) const
 //{
-//   return int() * i;
+//   return ::i32() * i;
 //}
 //
 //::payload payload::operator * (::u32 user) const
@@ -4749,16 +4749,16 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return m_hi * (::i64) ul;
 //   case ::e_type_u64:
 //      return m_hn * (::u64) ul;
-//   case ::e_type_float:
-//      return m_f * (float) ul;
-//   case ::e_type_double:
-//      return m_d * (double) ul;
+//   case ::e_type_f32:
+//      return m_f32 * (::f32) ul;
+//   case ::e_type_f64:
+//      return m_f64 * (::f64) ul;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
 //
-//      return atof(m_str) * (double) ul;
+//      return atof(m_str) * (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::acme::get_c_locale()) * (double) ul;
+//      return _atof_l(m_str, ::acme::get_c_locale()) * (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator * (ul);
@@ -4770,12 +4770,12 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //}
 //
-//::payload payload::operator * (double d) const
+//::payload payload::operator * (::f64 d) const
 //{
-//   return double() * double;
+//   return ::f64() * ::f64;
 //}
 //
-//::payload operator * (int i, const class ::payload & payload)
+//::payload operator * (::i32 i, const class ::payload & payload)
 //{
 //   return i * payload.as_i32();
 //}
@@ -4807,15 +4807,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return (::i64) ul * payload.m_hi;
 //   case ::e_type_u64:
 //      return (::u64) ul * payload.m_hn;
-//   case ::e_type_float:
-//      return (float) ul * payload.m_f;
-//   case ::e_type_double:
-//      return (double) ul * payload.m_d;
+//   case ::e_type_f32:
+//      return (::f32) ul * payload.m_f32;
+//   case ::e_type_f64:
+//      return (::f64) ul * payload.m_f64;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
-//      return (double) ul * atof(payload.m_str);
+//      return (::f64) ul * atof(payload.m_str);
 //#else
-//      return (double) ul * _atof_l(payload.m_str, ::acme::get_c_locale());
+//      return (::f64) ul * _atof_l(payload.m_str, ::acme::get_c_locale());
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator * (ul, *payload.m_ppayload);
@@ -4828,9 +4828,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //}
 //
 //
-//::payload operator * (double d, const class ::payload & payload)
+//::payload operator * (::f64 d, const class ::payload & payload)
 //{
-//   return double * payload.as_double();
+//   return ::f64 * payload.as_f64();
 //}
 //
 
@@ -4854,7 +4854,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 //
-//class ::payload & payload::operator -= (int i)
+//class ::payload & payload::operator -= (::i32 i)
 //{
 //   operator =(*this - i);
 //   return *this;
@@ -4878,9 +4878,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator -= (double d)
+//class ::payload & payload::operator -= (::f64 d)
 //{
-//   operator =(*this - double);
+//   operator =(*this - ::f64);
 //   return *this;
 //}
 //
@@ -4895,7 +4895,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //
 //
-//class ::payload & payload::operator += (int i)
+//class ::payload & payload::operator += (::i32 i)
 //{
 //   operator =(*this + i);
 //   return *this;
@@ -4919,9 +4919,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator += (double d)
+//class ::payload & payload::operator += (::f64 d)
 //{
-//   operator =(*this + double);
+//   operator =(*this + ::f64);
 //   return *this;
 //}
 //
@@ -4950,7 +4950,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 //
-//class ::payload & payload::operator /= (int i)
+//class ::payload & payload::operator /= (::i32 i)
 //{
 //   operator =(*this / i);
 //   return *this;
@@ -4974,9 +4974,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator /= (double d)
+//class ::payload & payload::operator /= (::f64 d)
 //{
-//   operator =(*this / double);
+//   operator =(*this / ::f64);
 //   return *this;
 //}
 //
@@ -5005,7 +5005,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //
 //
-//class ::payload & payload::operator *= (int i)
+//class ::payload & payload::operator *= (::i32 i)
 //{
 //   operator =(*this * i);
 //   return *this;
@@ -5029,9 +5029,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator *= (double d)
+//class ::payload & payload::operator *= (::f64 d)
 //{
-//   operator =(*this * double);
+//   operator =(*this * ::f64);
 //   return *this;
 //}
 //
@@ -5083,7 +5083,7 @@ bool payload::is_scalar() const
            || m_etype == e_type_i32
            || m_etype == e_type_u32
            || m_etype == e_type_bool
-           || m_etype == e_type_double)
+           || m_etype == e_type_f64)
    {
       return true;
    }
@@ -5116,7 +5116,7 @@ bool payload::is_scalar() const
 bool payload::is_floating() const
 {
 
-   if(m_etype == e_type_double || m_etype == e_type_float)
+   if(m_etype == e_type_f64 || m_etype == e_type_f32)
    {
 
       return true;
@@ -5147,7 +5147,7 @@ bool payload::is_floating() const
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
-            int i;
+            ::i32 i;
             for(i = 1; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
@@ -5239,7 +5239,7 @@ dot2:
 
 bool payload::is_boolean() const
 {
-   if (m_etype == e_type_double)
+   if (m_etype == e_type_f64)
    {
       return true;
    }
@@ -5248,7 +5248,7 @@ bool payload::is_boolean() const
 
 bool payload::is_double() const
 {
-   if(m_etype == e_type_double)
+   if(m_etype == e_type_f64)
    {
       return true;
    }
@@ -5277,7 +5277,7 @@ bool payload::is_double() const
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
-            int i;
+            ::i32 i;
             for(i = 1; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
@@ -5573,16 +5573,16 @@ bool payload::is_natural() const
 //      return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::papaya::is_true(m_pstra->element_at(0))));
 //
 //   }
-//   else if (m_etype == e_type_float)
+//   else if (m_etype == e_type_f32)
 //   {
 //
-//      return m_f != 0.0f;
+//      return m_f32 != 0.0f;
 //
 //   }
-//   else if (m_etype == e_type_double)
+//   else if (m_etype == e_type_f64)
 //   {
 //
-//      return m_d != 0.0;
+//      return m_f64 != 0.0;
 //
 //   }
 //   else if (m_etype == e_type_payload_pointer)
@@ -5756,7 +5756,7 @@ block payload::block () const
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{
-//      //   return cast < property >()->name().case_insensitive_order(lpszName) == 0;
+//      //   return cast < property >()->name().case_insensitive_order(pszName) == 0;
 //      //}
 //      else
 //      {
@@ -5918,15 +5918,15 @@ end:
 
 #if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
 
-      double d = atof(strNumber);
+      ::f64 d = atof(strNumber);
 
 #else
 
-      double d = _atof_l(strNumber, ::acme::get_c_locale());
+      ::f64 d = _atof_l(strNumber, ::acme::get_c_locale());
 
 #endif
 
-      operator = (double);
+      operator = (::f64);
 
    }
    else
@@ -6170,11 +6170,11 @@ void payload::parse_network_payload(const_char_pointer &pszJson, const_char_poin
          if(stra.get_count() == 3)
          {
 
-            double dH = atof(stra[0]);
+            ::f64 dH = atof(stra[0]);
 
-            double dL = atof(stra[1]);
+            ::f64 dL = atof(stra[1]);
 
-            double dS = atof(stra[2]);
+            ::f64 dS = atof(stra[2]);
 
             if(dH >= 0.0 && dH <= 1.0
             && dL >= 0.0 && dL <= 1.0
@@ -6469,13 +6469,13 @@ bool payload::is_numeric() const
       return false;
 
    case e_type_i8:
-   case e_type_pchar:
+   case e_type_pi8:
    case e_type_u8:
-   case e_type_punsigned_char:
+   case e_type_pu8:
    case e_type_i16:
-   case e_type_pshort:
+   case e_type_pi16:
    case e_type_u16:
-   case e_type_punsigned_short:
+   case e_type_pu16:
    case e_type_i32:
    case e_type_pi32:
    case e_type_u32:
@@ -6500,7 +6500,7 @@ bool payload::is_numeric() const
    case e_type_pbool:
       return false;
 
-   case e_type_double:
+   case e_type_f64:
       return true;
 
    case e_type_string_array:
@@ -6545,7 +6545,7 @@ bool payload::is_numeric() const
 
 bool is_return_ok(para_return eret)
 {
-   return ((int)eret) >= 0;
+   return ((::i32)eret) >= 0;
 }
 
 
@@ -6625,7 +6625,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       ::string strHls;
 
-      strHls.formatf("\"hls://%float:%float:%float\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
+      strHls.formatf("\"hls://%::f32:%::f32:%::f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
 
       str += strHls;
 
@@ -6838,19 +6838,19 @@ bool payload::is_false() const
       return !*m_pb;
    case e_type_i8:
       return !m_i8;
-   case e_type_pchar:
+   case e_type_pi8:
       return !m_pi8 || !*m_pi8;
    case e_type_u8:
       return !m_u8;
-   case e_type_punsigned_char:
+   case e_type_pu8:
       return !m_pu8 || !*m_pu8;
    case e_type_i16:
       return !m_i16;
-   case e_type_pshort:
+   case e_type_pi16:
       return !m_pi16 || !*m_pi16;
    case e_type_u16:
       return !m_u16;
-   case e_type_punsigned_short:
+   case e_type_pu16:
       return !m_pu16 || !*m_pu16;
    case e_type_i32:
       return !m_i32;
@@ -6870,14 +6870,14 @@ bool payload::is_false() const
       return !m_phn || !*m_phn;
 
    // floating i32_point
-   case e_type_pfloat:
-      return !*m_pf;
-   case e_type_float:
-      return !m_f;
-   case e_type_pdouble:
-      return !*m_pd;
-   case e_type_double:
-      return !m_d;
+   case e_type_pf32:
+      return !*m_pf32;
+   case e_type_f32:
+      return !m_f32;
+   case e_type_pf64:
+      return !*m_pf64;
+   case e_type_f64:
+      return !m_f64;
 
    // simple classes
    case e_type_string:
@@ -6957,33 +6957,33 @@ bool payload::is_false() const
       case e_type_pintegral_day:
          return !m_pintegralday || !m_pintegralday->m_i32;
       case e_type_floating_nanosecond:
-         return !m_fingnanosecond.m_d;
-      case e_type_pfloating_nanosecond:
-         return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+         return !m_fingnanosecond.m_f64;
+      case e_type_pf32ing_nanosecond:
+         return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
          case e_type_floating_microsecond:
-            return !m_fingmicrosecond.m_d;
-         case e_type_pfloating_microsecond:
-            return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+            return !m_fingmicrosecond.m_f64;
+         case e_type_pf32ing_microsecond:
+            return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
          case e_type_floating_millisecond:
-            return !m_fingmillisecond.m_d;
-         case e_type_pfloating_millisecond:
-            return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+            return !m_fingmillisecond.m_f64;
+         case e_type_pf32ing_millisecond:
+            return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
          case e_type_floating_second:
-            return !m_fingsecond.m_d;
-         case e_type_pfloating_second:
-            return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+            return !m_fingsecond.m_f64;
+         case e_type_pf32ing_second:
+            return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
          case e_type_floating_minute:
-            return !m_fingminute.m_d;
-         case e_type_pfloating_minute:
-            return !m_pfloatingminute || !m_pfloatingminute->m_d;
+            return !m_fingminute.m_f64;
+         case e_type_pf32ing_minute:
+            return !m_pfloatingminute || !m_pfloatingminute->m_f64;
          case e_type_floating_hour:
-            return !m_finghour.m_d;
-         case e_type_pfloating_hour:
-            return !m_pfloatinghour || !m_pfloatinghour->m_d;
+            return !m_finghour.m_f64;
+         case e_type_pf32ing_hour:
+            return !m_pfloatinghour || !m_pfloatinghour->m_f64;
          case e_type_floating_day:
-            return !m_fingday.m_d;
-         case e_type_pfloating_day:
-            return !m_pfloatingday || !m_pfloatingday->m_d;
+            return !m_fingday.m_f64;
+         case e_type_pf32ing_day:
+            return !m_pfloatingday || !m_pfloatingday->m_f64;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
@@ -7026,19 +7026,19 @@ bool payload::is_set_false() const
       return !*m_pb;
    case e_type_i8:
       return !m_i8;
-   case e_type_pchar:
+   case e_type_pi8:
       return !m_pi8 || !*m_pi8;
    case e_type_u8:
       return !m_u8;
-   case e_type_punsigned_char:
+   case e_type_pu8:
       return !m_pu8 || !*m_pu8;
    case e_type_i16:
       return !m_i16;
-   case e_type_pshort:
+   case e_type_pi16:
       return !m_pi16 || !*m_pi16;
    case e_type_u16:
       return !m_u16;
-   case e_type_punsigned_short:
+   case e_type_pu16:
       return !m_pu16 || !*m_pu16;
    case e_type_i32:
       return !m_i32;
@@ -7057,14 +7057,14 @@ bool payload::is_set_false() const
    case e_type_pu64:
       return !m_phn || !*m_phn;
    // floating i32_point
-   case e_type_pfloat:
-      return !*m_pf;
-   case e_type_float:
-      return !m_f;
-   case e_type_pdouble:
-      return !*m_pd;
-   case e_type_double:
-      return !m_d;
+   case e_type_pf32:
+      return !*m_pf32;
+   case e_type_f32:
+      return !m_f32;
+   case e_type_pf64:
+      return !*m_pf64;
+   case e_type_f64:
+      return !m_f64;
    // simple classes
    case e_type_string:
       return m_str.is_empty() || !m_str.case_insensitive_order("false")  || !m_str.case_insensitive_order("no");
@@ -7143,33 +7143,33 @@ bool payload::is_set_false() const
          case e_type_pintegral_day:
             return !m_pintegralday || !m_pintegralday->m_i32;
          case e_type_floating_nanosecond:
-            return !m_fingnanosecond.m_d;
-         case e_type_pfloating_nanosecond:
-            return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+            return !m_fingnanosecond.m_f64;
+         case e_type_pf32ing_nanosecond:
+            return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
             case e_type_floating_microsecond:
-               return !m_fingmicrosecond.m_d;
-            case e_type_pfloating_microsecond:
-               return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+               return !m_fingmicrosecond.m_f64;
+            case e_type_pf32ing_microsecond:
+               return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
             case e_type_floating_millisecond:
-               return !m_fingmillisecond.m_d;
-            case e_type_pfloating_millisecond:
-               return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+               return !m_fingmillisecond.m_f64;
+            case e_type_pf32ing_millisecond:
+               return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
             case e_type_floating_second:
-               return !m_fingsecond.m_d;
-            case e_type_pfloating_second:
-               return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+               return !m_fingsecond.m_f64;
+            case e_type_pf32ing_second:
+               return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
             case e_type_floating_minute:
-               return !m_fingminute.m_d;
-            case e_type_pfloating_minute:
-               return !m_pfloatingminute || !m_pfloatingminute->m_d;
+               return !m_fingminute.m_f64;
+            case e_type_pf32ing_minute:
+               return !m_pfloatingminute || !m_pfloatingminute->m_f64;
             case e_type_floating_hour:
-               return !m_finghour.m_d;
-            case e_type_pfloating_hour:
-               return !m_pfloatinghour || !m_pfloatinghour->m_d;
+               return !m_finghour.m_f64;
+            case e_type_pf32ing_hour:
+               return !m_pfloatinghour || !m_pfloatinghour->m_f64;
             case e_type_floating_day:
-               return !m_fingday.m_d;
-            case e_type_pfloating_day:
-               return !m_pfloatingday || !m_pfloatingday->m_d;
+               return !m_fingday.m_f64;
+            case e_type_pf32ing_day:
+               return !m_pfloatingday || !m_pfloatingday->m_f64;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
@@ -7277,7 +7277,7 @@ namespace user
       bool                       m_bIconic = false;
       i32_rectangle                       m_rectangleRestored = nullptr;
       i32_rectangle                       m_rectangleWindow = nullptr;
-      int                        m_iControlBoxRightToLeft = 0;
+      ::i32                        m_iControlBoxRightToLeft = 0;
       edisplay                   m_edisplay = e_display_default;
       edisplay                   m_edisplayPrevious = e_display_none;
 
@@ -7364,7 +7364,7 @@ void unit_test_primitive_var_acme_block()
 //}
 
 
-//char & payload::as_i8()
+//::i8 & payload::as_i8()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -7382,7 +7382,7 @@ void unit_test_primitive_var_acme_block()
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      char i = this->char();
+//      ::i8 i = this->::i8();
 //
 //      set_type(e_type_i8, false);
 //
@@ -7425,16 +7425,16 @@ void unit_test_primitive_var_acme_block()
    return m_ ## NUMBER_TYPE;                              \
                                                          \
 }                                                
-IMPLEMENT_PAYLOAD_NUMBER(char);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned char);
-IMPLEMENT_PAYLOAD_NUMBER(short);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned short);
-IMPLEMENT_PAYLOAD_NUMBER(int);
+IMPLEMENT_PAYLOAD_NUMBER(::i8);
+IMPLEMENT_PAYLOAD_NUMBER(::u8);
+IMPLEMENT_PAYLOAD_NUMBER(::i16);
+IMPLEMENT_PAYLOAD_NUMBER(::u16);
+IMPLEMENT_PAYLOAD_NUMBER(::i32);
 IMPLEMENT_PAYLOAD_NUMBER(::u32);
 IMPLEMENT_PAYLOAD_NUMBER(::i64);
 IMPLEMENT_PAYLOAD_NUMBER(::u64);
-IMPLEMENT_PAYLOAD_NUMBER(float);
-IMPLEMENT_PAYLOAD_NUMBER(double);
+IMPLEMENT_PAYLOAD_NUMBER(::f32);
+IMPLEMENT_PAYLOAD_NUMBER(::f64);
 #undef IMPLEMENT_PAYLOAD_NUMBER
 
 
@@ -7600,7 +7600,7 @@ void payload::receive_response(const ::payload & payload)
 void number_operator_payload_test()
 {
 
-   int l = 9457;
+   ::i32 l = 9457;
 
    payload payload("2948572345");
 
@@ -7643,19 +7643,19 @@ long & payload::long_reference()
 }
 
 
-unsigned long & payload::unsigned_long_reference()
+ulong & payload::unsigned_long_reference()
 {
 
    if(m_etype == e_type_u64)
    {
       
-      return (unsigned long &) m_hn;
+      return (ulong &) m_hn;
       
    }
    else if(m_etype == e_type_pu64)
    {
       
-      return (unsigned long &)*m_phn;
+      return (ulong &)*m_phn;
       
    }
    else
@@ -7663,7 +7663,7 @@ unsigned long & payload::unsigned_long_reference()
    
       set_type(e_type_u64);
    
-      return (unsigned long &) m_hn;
+      return (ulong &) m_hn;
       
    }
 

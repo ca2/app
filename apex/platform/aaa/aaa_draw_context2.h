@@ -79,8 +79,8 @@ namespace apex
    public:
 
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::double_rectangle                        m_rectangleX;
-      ::double_rectangle                        m_rectangleWindow;
+      ::f64_rectangle                        m_rectangleX;
+      ::f64_rectangle                        m_rectangleWindow;
       bool                          m_bListItemHover;
       bool                          m_bListSubItemHover;
       bool                          m_bListItemSelected;

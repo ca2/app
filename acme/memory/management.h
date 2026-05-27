@@ -325,7 +325,7 @@ namespace heap
 
 
 
-//typedef ::heap::heap < char > hstring_base;
+//typedef ::heap::heap < ::i8 > hstring_base;
 //
 //class CLASS_DECL_ACME hstring:
 //   public hstring_base

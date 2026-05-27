@@ -114,7 +114,7 @@ public:
 };
 
 
-int oswindow_find(UIWindow * window);
+::i32 oswindow_find(UIWindow * window);
 oswindow_data * oswindow_get(UIWindow * window);
 bool oswindow_erase(UIWindow * window);
 

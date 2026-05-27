@@ -25,21 +25,21 @@ namespace graphics
       ::image::image_pointer                           m_pimage;
       ::i32_size                                m_sizeTile;
       ::i32_size                                m_sizeWindow;
-      int                                       m_x;
-      int                                       m_y;
-      int                                       m_iColor;
+      ::i32                                       m_x;
+      ::i32                                       m_y;
+      ::i32                                       m_iColor;
       enum_dos_color                            m_edoscolor;
-      int                                       m_iBorder;
+      ::i32                                       m_iBorder;
       string_array_base                              m_stra;
       array < ::i32_array_base >                     m_i2aColor;
       i32_map < ::draw2d::pen_pointer >         m_mappen2;
       i32_map < ::draw2d::pen_pointer >         m_mappen1;
-      //int                                     m_iColorPointer;
+      //::i32                                     m_iColorPointer;
       ::user::interaction *                     m_puserinteraction;
 
       
-      int                                       m_iLastPenColor;
-      int                                       m_iLastPen;
+      ::i32                                       m_iLastPenColor;
+      ::i32                                       m_iLastPen;
 
 
       console(::user::interaction * pinteraction, ::i32_size sizeTile);
@@ -57,27 +57,27 @@ namespace graphics
       virtual ::draw2d::pen_pointer & get_pen1(enum_dos_color edoscolor);
 
 
-      void SetWindowSize(int iHeight, int iWidth) override;
+      void SetWindowSize(::i32 iHeight, ::i32 iWidth) override;
       void SetCursorVisibility(bool show) override;
-      void SetCursorPosition(int y, int x) override;
-      void SetTextColor(int color) override;
-      void SetScreenColor(::enum_dos_color color, int iLineStart = 0, int iLineCount = -1) override;
+      void SetCursorPosition(::i32 y, ::i32 x) override;
+      void SetTextColor(::i32 color) override;
+      void SetScreenColor(::enum_dos_color color, ::i32 iLineStart = 0, ::i32 iLineCount = -1) override;
       void write(const ::scoped_string & scopedstr) override;
 
 
       using ::string_buffer::write;
       void write(const void * p, ::memsize s) override;
 
-      ::i32_rectangle get_position_rectangle(int y, int x) override;
-      virtual ::i32_rectangle _get_position_rectangle(int y, int x);
-      virtual bool defer_write(char ch, const ::i32_rectangle & r, int iColor);
+      ::i32_rectangle get_position_rectangle(::i32 y, ::i32 x) override;
+      virtual ::i32_rectangle _get_position_rectangle(::i32 y, ::i32 x);
+      virtual bool defer_write(::i8 ch, const ::i32_rectangle & r, ::i32 iColor);
 
       static ::color::color console_dos_color(enum_dos_color edoscolor);
 
-      void get_cursor_position(int & x, int & y, filesize & iPointer);
+      void get_cursor_position(::i32 & x, ::i32 & y, filesize & iPointer);
 
       virtual void update_image();
-      virtual void draw_write(char ch, int x, int y, enum_dos_color edoscolor);
+      virtual void draw_write(::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor);
 
       string right_string(::memsize iReadAtMostByteCount) override;
 

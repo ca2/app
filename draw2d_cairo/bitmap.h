@@ -28,24 +28,24 @@ namespace draw2d_cairo
       bool LoadBitmap(::u32 nIDResource);
       bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
    
-      bool CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, int iStride);
+      bool CreateBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, ::i32 iStride);
 //      bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
-      void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight) override;
-      void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight) override;
-      void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void **ppvBits, int * stride) override;
-      void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage) override;
+      void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight) override;
+      void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight) override;
+      void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void **ppvBits, ::i32 * stride) override;
+      void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage) override;
 
       bool host_bitmap(::draw2d::graphics * pgraphics, ::pixmap * ppixmap) override;
 
 
-      int stride_for_width(int iWidth) override;
+      ::i32 stride_for_width(::i32 iWidth) override;
 
-      //int GetBitmap(BITMAP* pBitMap);
+      //::i32 GetBitmap(BITMAP* pBitMap);
 
 
       ::u32 SetBitmapBits(::u32 dwCount, const void * lpBits) override;
       ::u32 GetBitmapBits(::u32 dwCount, void * lpBits) const override;
-      ::i32_size SetBitmapDimension(int nWidth, int nHeight);
+      ::i32_size SetBitmapDimension(::i32 nWidth, ::i32 nHeight);
       ::i32_size GetBitmapDimension() const override;
 
       // void dump(dump_context & dumpcontext) const override;

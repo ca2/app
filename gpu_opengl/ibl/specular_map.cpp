@@ -147,7 +147,7 @@ namespace gpu_opengl
 //             glViewport(0, 0, mipWidth, mipHeight);
 //             ::opengl::check_error("");
 //             // each mip level has increasing roughness
-//             float roughness = (float)iCurrentMip / (float)(mipCount - 1);
+//             ::f32 roughness = (::f32)iCurrentMip / (::f32)(mipCount - 1);
 //             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
 //
 //             // render to each side of the cubemap
@@ -166,7 +166,7 @@ namespace gpu_opengl
 // //               glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //   //             ::opengl::check_error("");
 //
-//                int iTextureId = ptextureSkybox->m_gluTextureID;
+//                ::i32 iTextureId = ptextureSkybox->m_gluTextureID;
 //
 //                glBindTexture(GL_TEXTURE_CUBE_MAP, iTextureId);
 //                ::opengl::check_error("");

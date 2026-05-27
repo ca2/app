@@ -39,7 +39,7 @@ namespace gpu_opengl
       //::i32_size                        m_sizeNew;
       //::i32_size                        m_size;
       //HDC                           m_hdcGraphics;
-      //float                         m_z;
+      //::f32                         m_z;
       //i32_point                         m_pointTranslate;
       //::pointer<::opengl::buffer>  m_pbuffer;
       //::pointer<::opengl::program> m_pprogram;
@@ -59,7 +59,7 @@ namespace gpu_opengl
       //::pointer < ::gpu::context > _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::i32_rectangle& rectanglePlacement) override;
 
 
-      int fread(void * data, int c, int s ,::file::file* pfile);
+      ::i32 fread(void * data, ::i32 c, ::i32 s ,::file::file* pfile);
 
       virtual void defer_init_gpu_library() override;
 

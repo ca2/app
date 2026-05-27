@@ -52,10 +52,10 @@
 
 struct time
 {
-  unsigned char ti_min;
-  unsigned char ti_hour;
-  unsigned char ti_hund;
-  unsigned char ti_sec;
+  ::u8 ti_min;
+  ::u8 ti_hour;
+  ::u8 ti_hund;
+  ::u8 ti_sec;
 };
 
 //----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ __BEGIN_DECLS
 
 //
 CLASS_DECL_TURBOC void gettime (struct time *timep);
-CLASS_DECL_TURBOC void delay (gunsigned int gettime);
+CLASS_DECL_TURBOC void delay (gunsigned ::i32 gettime);
 
 __END_DECLS
 //--------------------------------------------------------------------------
@@ -85,9 +85,9 @@ __END_DECLS
 #define _S_DATE
   struct date
 {
-  short da_year;		/* current year */
-  char da_day;			/* day of the month */
-  char da_mon;			/* month (1=Jan) */
+  ::i16 da_year;		/* current year */
+  ::i8 da_day;			/* day of the month */
+  ::i8 da_mon;			/* month (1=Jan) */
 };
 #endif /* _S_DATE  */
 
@@ -126,7 +126,7 @@ __END_DECLS
 #define DAY_SIZE		3
 #define DAY_L_SIZE		7
 #if 0
-extern char *month[], *month_l[], *day[], *day_l[];
+extern char_pointer month[], *month_l[], *day[], *day_l[];
 #endif
 
 // (End Igor Bujna) --------------------------------------------------------

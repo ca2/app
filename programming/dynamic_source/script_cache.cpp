@@ -324,9 +324,9 @@ namespace dynamic_source
 
       critical_section_lock criticalsectionlock(&file_system()->m_criticalsectionaFileSystemItemSlot[m_pmanager->m_iFileSystemScriptSlotIndex]);
 
-      const char* pszReal = pfilesystemcacheitem->m_pathReal1.c_str();
+      const_char_pointer pszReal = pfilesystemcacheitem->m_pathReal1.c_str();
 
-      const char* pszLogical = pfilesystemcacheitem->m_pathLogical1.c_str();
+      const_char_pointer pszLogical = pfilesystemcacheitem->m_pathLogical1.c_str();
 
       if (pfilesystemcacheitem->m_pathReal1 == "H:/Users/camilo/netnode/netnodenet/net/front/ca2/_std/_std/doc/cpp/index.ds")
       {

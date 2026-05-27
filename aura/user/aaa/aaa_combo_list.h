@@ -16,9 +16,9 @@ namespace user
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
       ::pointer<combo_box>               m_pcombo;
-      int                                 m_iBorder;
-      int                                 m_iPadding;
-      int                                 m_iMinListItemCount;
+      ::i32                                 m_iBorder;
+      ::i32                                 m_iPadding;
+      ::i32                                 m_iMinListItemCount;
       ::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
@@ -49,7 +49,7 @@ namespace user
       virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 
-      virtual int _001GetItemHeight() const;
+      virtual ::i32 _001GetItemHeight() const;
 
       virtual void on_change_combo_sel(::collection::index iSel);
 
@@ -87,12 +87,12 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
 
 
-      //virtual bool display(int nCmdShow) override;
+      //virtual bool display(::i32 nCmdShow) override;
 
       virtual bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::double_rectangle & rectangleWindow, const ::size & sizeFull);
+      void on_drop_down(const ::f64_rectangle & rectangleWindow, const ::size & sizeFull);
 
 
       //virtual bool get_font(::write_text::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;

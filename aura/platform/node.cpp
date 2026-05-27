@@ -91,7 +91,7 @@ namespace aura
    }
 
 
-   ::image::image_pointer node::get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier)
+   ::image::image_pointer node::get_file_image_by_type_identifier(::i32 iSize, const ::scoped_string & scopedstrTypeIdentifier)
    {
       
       throw ::interface_only();
@@ -101,7 +101,7 @@ namespace aura
    }
 
 
-   ::image::image_pointer node::get_file_image(int iSize, const ::file::path & path)
+   ::image::image_pointer node::get_file_image(::i32 iSize, const ::file::path & path)
    {
       
       throw ::interface_only();

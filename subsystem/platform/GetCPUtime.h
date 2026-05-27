@@ -30,10 +30,10 @@
 #endif
 
 // returns current process time of work in seconds
-double getCPUTime();
+::f64 getCPUTime();
 
 // returns kernel time of work in seconds
-double getKernelTime();
+::f64 getKernelTime();
 
 // returns current processor tick number
 inline ::u64 rdtsc() {

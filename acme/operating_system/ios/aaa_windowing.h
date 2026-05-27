@@ -16,15 +16,15 @@ struct UIWindow;
 UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow);
 
 
-int get_main_screen_rectangle(::i32_rectangle * lprect);
+::i32 get_main_screen_rectangle(::i32_rectangle * lprect);
 
-int GetScreenRect(::i32_rectangle * lprect, int iMonitor);
+::i32 GetScreenRect(::i32_rectangle * lprect, ::i32 iMonitor);
 
-int GetScreenCount();
+::i32 GetScreenCount();
 
-int GetWorkspaceRect(::i32_rectangle * lprect, int iMonitor);
+::i32 GetWorkspaceRect(::i32_rectangle * lprect, ::i32 iMonitor);
 
-int GetWorkspaceCount();
+::i32 GetWorkspaceCount();
 
 
 //
@@ -64,7 +64,7 @@ void ns_redraw_window(oswindow window);
 void deactivate_window(oswindow window);
 
 
-//oswindow get_window(oswindow window, int iParentHood);
+//oswindow get_window(oswindow window, ::i32 iParentHood);
 
 
 

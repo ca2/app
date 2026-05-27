@@ -53,7 +53,7 @@ namespace aqua
       virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const ::scoped_string & scopedstrTitle);
 
 
-      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+      virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
       virtual void defer_initialize_audio_playback(::wave::enum_purpose epurpose = ::wave::e_purpose_playground);

@@ -25,10 +25,10 @@
 }
 
 
-void item::get_debug_title(char * sz, character_count c) const
+void item::get_debug_title(char_pointer sz, character_count c) const
 {
 
-   char sz1[256];
+   ::i8 sz1[256];
 
    particle::get_debug_title(sz1, 256);
 

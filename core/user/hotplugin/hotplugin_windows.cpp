@@ -8,13 +8,13 @@ namespace hotplugin
 {
 
    ::u32 g_entry_hall_windows_on_paint_dwSync = 0;
-   int g_entry_hall_windows_on_paint_iDelta = 5000;
+   ::i32 g_entry_hall_windows_on_paint_iDelta = 5000;
 
 
    //// Create a hatched bit pattern.
-   ////unsigned short HatchBits[8] ={0x55,0xAA,0x55,0xAA,0x55, 0xAA,0x55,0xAA};
-   ////unsigned short HatchBits[8] ={0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
-   //unsigned short HatchBits[8] ={0,0,0,0,0,0,0,0};
+   ////::u16 HatchBits[8] ={0x55,0xAA,0x55,0xAA,0x55, 0xAA,0x55,0xAA};
+   ////::u16 HatchBits[8] ={0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+   //::u16 HatchBits[8] ={0,0,0,0,0,0,0,0};
 
    //// Use the bit pattern to create a bitmap.
    //HBITMAP hbm = ::CreateBitmap(8,8,1,1,HatchBits);
@@ -61,7 +61,7 @@ namespace hotplugin
 
    ////rectangleBar.bottom++;
 
-   //int old = SetROP2(hdc,R2_MASKPEN);
+   //::i32 old = SetROP2(hdc,R2_MASKPEN);
 
    //
 
@@ -84,13 +84,13 @@ namespace hotplugin
 
    ////::SelectObject(hdc,hbrushNull);
 
-   //int v = ::GetTickCount() * 484 / 1000;
+   //::i32 v = ::GetTickCount() * 484 / 1000;
 
    //::SelectObject(hdc,hpen);
 
    //::SelectObject(hdc,hbrushGren);
 
-   //int x = v % rectangleBar.width();
+   //::i32 x = v % rectangleBar.width();
 
    //::i32_rectangle rectangleBrick(left + x,rectangleBar.top,left + x + w,rectangleBar.bottom);
    //::i32_rectangle rectangleDraw;
@@ -173,13 +173,13 @@ namespace hotplugin
 
 //      const ::i32_rectangle & rectangle;
 
-//int h = 33;
-//int m = 49 * 2;
+//::i32 h = 33;
+//::i32 m = 49 * 2;
 
-//int top;
-//int bottom;
-//int left;
-//int right;
+//::i32 top;
+//::i32 bottom;
+//::i32 left;
+//::i32 right;
 
 //if(height(rectangle) < h)
 //{

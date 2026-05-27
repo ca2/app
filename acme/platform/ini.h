@@ -20,8 +20,8 @@
 namespace acme
 {
 
-//typedef unsigned long DWORD;
-//typedef int BOOL;
+//typedef ulong DWORD;
+//typedef ::i32 BOOL;
 //typedef ::u32 UINT;
 
 //#ifndef TRUE
@@ -32,37 +32,37 @@ namespace acme
 //#define FALSE 0
 //#endif
 
-CLASS_DECL_ACME int WritePrivateProfileString(
-                                const char *lpAppName,
-                                const char *lpKeyName,
-                                const char *lpString,
-                                const char *lpFileName
+CLASS_DECL_ACME ::i32 WritePrivateProfileString(
+                                const_char_pointer lpAppName,
+                                const_char_pointer lpKeyName,
+                                const_char_pointer lpString,
+                                const_char_pointer lpFileName
                                 );
 
 CLASS_DECL_ACME ::u32 GetPrivateProfileString(
-                               const char *lpAppName,
-                               const char *lpKeyName,
-                               const char *lpDefault,
-                               char *lpReturnedString, ::u32 nSize,
-                               const char *lpFileName
+                               const_char_pointer lpAppName,
+                               const_char_pointer lpKeyName,
+                               const_char_pointer lpDefault,
+                               char_pointer lpReturnedString, ::u32 nSize,
+                               const_char_pointer lpFileName
                                );
 
 CLASS_DECL_ACME ::u32 GetPrivateProfileInt(
-                           const char *lpAppName,
-                           const char *lpKeyName,
-                           int nDefault,
-                           const char *lpFileName
+                           const_char_pointer lpAppName,
+                           const_char_pointer lpKeyName,
+                           ::i32 nDefault,
+                           const_char_pointer lpFileName
                            );
 
 CLASS_DECL_ACME ::u32 GetPrivateProfileSection(
-                                const char *lpAppName,
-                                char *lpReturnedString, ::u32 nSize,
-                                const char *lpFileName
+                                const_char_pointer lpAppName,
+                                char_pointer lpReturnedString, ::u32 nSize,
+                                const_char_pointer lpFileName
                                 );
 
 CLASS_DECL_ACME ::u32 GetPrivateProfileSectionNames(
-                                     char *lpszReturnBuffer, ::u32 nSize,
-                                     const char *lpFileName
+                                     char_pointer lpszReturnBuffer, ::u32 nSize,
+                                     const_char_pointer lpFileName
                                      );
 //
 //#ifndef WritePrivateProfileString

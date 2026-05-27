@@ -18,14 +18,17 @@ class CLASS_DECL_ACME font :
 public:
 
 
-   string      m_strFontName;
-   int         m_iFontSize;
-   bool        m_bBold;
-   bool        m_bUnderline;
+   //string      m_strFontName;
+   //::i32         m_iFontSize;
+   //bool        m_bBold;
+   //bool        m_bUnderline;
 
 
    font();
    ~font();
+
+
+   virtual void create_point_font(enum_font efont, ::f64 fPoint, bool bBold = false, bool bUnderline = false);
 
 
 };

@@ -120,7 +120,7 @@ namespace subsystem
 //   bool Thread::setPriority(THREAD_PRIORITY value)
 //   {
 //      return m_pparticleThis->setPriority(value);
-//      // int priority;
+//      // ::i32 priority;
 //      //
 //      // switch (value)
 //      // {

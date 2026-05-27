@@ -4,7 +4,7 @@
 
 //
 //encoding_type utf::detect_encoding(const string &input) {
-//  // look for 4-unsigned char BOM
+//  // look for 4-::u8 BOM
 //  if (input.size() >= 4) {
 //    // UTF32BE
 //    if ((uint8_t)input[0] == 0x00 &&
@@ -25,7 +25,7 @@
 //    }
 //  }
 //
-//  // look for 2-unsigned char BOM
+//  // look for 2-::u8 BOM
 //  if (input.size() >= 2) {
 //    // UTF16BE
 //    if ((uint8_t)input[0] == 0xFE &&
@@ -205,14 +205,14 @@
 //  // ASCII
 //  if (encoding == ENCODING_ASCII) {
 //    // make sure the code point is within the valid range
-//    if ((unsigned char)input[pos] <= 127)
+//    if ((::u8)input[pos] <= 127)
 //      return 1;
 //    return 0;
 //  }
 //
 //  // UTF8
 //  if (encoding == ENCODING_UTF8) {
-//    // one unsigned char
+//    // one ::u8
 //    if ((uint8_t)input[pos] < 0x80)
 //      return 1;
 //
@@ -377,7 +377,7 @@
 //    throw encode_error("index does not refer to a valid code point");
 //  // ASCII
 //  if (encoding == ENCODING_ASCII)
-//    return (unsigned char)input[pos];
+//    return (::u8)input[pos];
 //
 //  // UTF8
 //  if (encoding == ENCODING_UTF8) {
@@ -446,7 +446,7 @@
 //  // ASCII
 //  if (encoding == ENCODING_ASCII) {
 //    // make sure the code point is within the valid range
-//    if ((unsigned char)code_point > 127)
+//    if ((::u8)code_point > 127)
 //      throw encode_error("invalid code point for ASCII");
 //
 //    // add the code point
@@ -456,7 +456,7 @@
 //
 //  // UTF8
 //  if (encoding == ENCODING_UTF8) {
-//    // one unsigned char
+//    // one ::u8
 //    if (code_point <= 0x0000007F) {
 //      input.push_back(code_point);
 //      return;
@@ -635,7 +635,7 @@
 //  return false;
 //}
 
-int unicode_to_upper_case(int code_point) {
+::i32 unicode_to_upper_case(::i32 code_point) {
   // make sure the code point is within the valid range
   if (code_point > 0x10FFFF)
     throw encoding_exception("invalid code point");
@@ -651,7 +651,7 @@ int unicode_to_upper_case(int code_point) {
   return code_point;
 }
 
-int unicode_to_lower_case(int code_point) {
+::i32 unicode_to_lower_case(::i32 code_point) {
   // make sure the code point is within the valid range
   if (code_point > 0x10FFFF)
     throw encoding_exception("invalid code point");

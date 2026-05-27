@@ -59,7 +59,7 @@ namespace graphics3d
       //virtual void set_renderable(::graphics3d::renderable * prenderable);
 
 
-      //virtual void on_update(float deltaTime);
+      //virtual void on_update(::f32 deltaTime);
 
       //virtual ::color::color color();
       //virtual ::i64 getId();

@@ -1,9 +1,9 @@
 // http://stackoverflow.com/questions/11451618/how-do-you-read-the-mouse-button-state-from-dev-input-mice
 // http://stackoverflow.com/users/884434/justinb
-int main(int argc char ** argv)
+::i32 main(::i32 argc char_pointer * argv)
 {
-    int fd, bytes;
-    unsigned char data[3];
+    ::i32 fd, bytes;
+    ::u8 data[3];
 
     const_char_pointer pDevice = "/dev/input/mice";
 
@@ -15,9 +15,9 @@ int main(int argc char ** argv)
         return -1;
     }
 
-    int l, m, r;
-    signed char x, y;
-    int last_l=0, last_m=0, last_r=0;
+    ::i32 l, m, r;
+    signed ::i8 x, y;
+    ::i32 last_l=0, last_m=0, last_r=0;
     while(1)
     {
         // Read Mouse

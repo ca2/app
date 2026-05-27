@@ -228,11 +228,11 @@ namespace gpu_gpu
       }
       else
       {
-         int width, height, numChannels;
+         ::i32 width, height, numChannels;
          
          //stbi_set_flip_vertically_on_load(true);
 
-         unsigned char *data = stbi_load_from_memory(inputData, (int) inputSize, &width, &height, &numChannels, 0);
+         ::u8 *data = stbi_load_from_memory(inputData, (::i32) inputSize, &width, &height, &numChannels, 0);
 
          //stbi_set_flip_vertically_on_load(false);
 

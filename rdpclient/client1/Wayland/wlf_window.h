@@ -36,8 +36,8 @@ typedef struct wlf_buffer wlfBuffer;
 
 struct wlf_window
 {
-	int width;
-	int height;
+	::i32 width;
+	::i32 height;
 	struct wl_surface* surface;
 	struct wl_shell_surface* shell_surface;
 	struct wl_callback* callback;
@@ -47,12 +47,12 @@ struct wlf_window
 	BOOL fullscreen;
 };
 
-wlfWindow* wlf_CreateDesktopWindow(wlfContext* wlfc, char* name, int width, int height, BOOL decorations);
-void wlf_ResizeDesktopWindow(wlfContext* wlfc, wlfWindow* window, int width, int height);
-void wlf_SetWindowText(wlfContext* wlfc, wlfWindow* window, char* name);
+wlfWindow* wlf_CreateDesktopWindow(wlfContext* wlfc, char_pointer name, ::i32 width, ::i32 height, BOOL decorations);
+void wlf_ResizeDesktopWindow(wlfContext* wlfc, wlfWindow* window, ::i32 width, ::i32 height);
+void wlf_SetWindowText(wlfContext* wlfc, wlfWindow* window, char_pointer name);
 void wlf_SetWindowFullscreen(wlfContext* wlfc, wlfWindow* window, BOOL fullscree);
-void wlf_ShowWindow(wlfContext* wlfc, wlfWindow* window, unsigned char state);
-void wlf_UpdateWindowArea(wlfContext* wlfc, wlfWindow* window, int x, int y, int width, int height);
+void wlf_ShowWindow(wlfContext* wlfc, wlfWindow* window, ::u8 state);
+void wlf_UpdateWindowArea(wlfContext* wlfc, wlfWindow* window, ::i32 x, ::i32 y, ::i32 width, ::i32 height);
 void wlf_DestroyWindow(wlfContext* wlfc, wlfWindow* window);
 
 #endif /* __WLF_WINDOW_H */

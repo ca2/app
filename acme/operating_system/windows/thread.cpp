@@ -102,7 +102,7 @@ bool __os_init_thread()
 
 
 
-//void _on_os_htask_end(int iRet)
+//void _on_os_htask_end(::i32 iRet)
 //{
 //
 //   // allow C-runtime to cleanup, and exit the thread
@@ -135,7 +135,7 @@ bool __os_init_thread()
 // }
 
 
-// CLASS_DECL_ACME int thread_set_data(::u32 uiIndex, void * pvalue)
+// CLASS_DECL_ACME ::i32 thread_set_data(::u32 uiIndex, void * pvalue)
 // {
 
 //    return TlsSetValue((::u32)uiIndex, (LPVOID) pvalue);

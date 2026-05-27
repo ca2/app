@@ -9,7 +9,7 @@
 
 
 
-double pixels_to_points(double d)
+::f64 pixels_to_points(::f64 d)
 {
    
    
@@ -19,7 +19,7 @@ double pixels_to_points(double d)
 }
 
 
-double points_to_pixels(double d)
+::f64 points_to_pixels(::f64 d)
 {
    
    return d * [[UIScreen mainScreen] scale];
@@ -27,7 +27,7 @@ double points_to_pixels(double d)
 }
 
 
-double status_bar_height()
+::f64 status_bar_height()
 {
     CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
     return min(statusBarSize.width, statusBarSize.height);

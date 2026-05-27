@@ -886,11 +886,11 @@ namespace experience_tranquillum
 
       if (ptab->get_data()->m_bVertical)
       {
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         int cx;
-         int cy;
-         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         ::i32 iTabWidth = 16;
+         ::i32 iTabHeight = 8;
+         ::i32 cx;
+         ::i32 cy;
+         for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -906,7 +906,7 @@ namespace experience_tranquillum
 
             pane.do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -916,7 +916,7 @@ namespace experience_tranquillum
                size.cy = maximum(size.cy, pane.m_pimage->height());
             }
 
-            cx = (int)(size.cx + 2.0);
+            cx = (::i32)(size.cx + 2.0);
 
             if (!pane.m_bPermanent)
             {
@@ -927,7 +927,7 @@ namespace experience_tranquillum
             {
                iTabWidth = cx;
             }
-            cy = (int)(size.cy + 2.0);
+            cy = (::i32)(size.cy + 2.0);
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -977,16 +977,16 @@ namespace experience_tranquillum
       }
       else
       {
-         int iTabHeight = 16;
-         int cy;
+         ::i32 iTabHeight = 16;
+         ::i32 cy;
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::i32_rectangle rectangleX;
          rectangleX = ptab->rectangle(::user::e_layout_lading);
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
-         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         ::i32 ixAdd;
+         for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -1002,7 +1002,7 @@ namespace experience_tranquillum
 
             pane.do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1013,11 +1013,11 @@ namespace experience_tranquillum
             if (pane.m_pimage->is_set())
             {
 
-               size.cy = (int)maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_height());
+               size.cy = (::i32)maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_height());
 
             }
 
-            cy = (int)(size.cy + 2.0);
+            cy = (::i32)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -1048,12 +1048,12 @@ namespace experience_tranquillum
 
 
 
-            pane.m_size.cx = (int)(size.cx + ixAdd
+            pane.m_size.cx = (::i32)(size.cx + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
                + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
 
-            x += (int)(pane.m_size.cx);
+            x += (::i32)(pane.m_size.cx);
 
          }
 
@@ -1069,7 +1069,7 @@ namespace experience_tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
-         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -1109,7 +1109,7 @@ namespace experience_tranquillum
 
       }
 
-      for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())
@@ -1177,9 +1177,9 @@ namespace experience_tranquillum
 
       rcClient = ptab->get_data()->m_rectangleHosting;
 
-      int iTabHeight = ptab->get_data()->m_iTabHeight;
+      ::i32 iTabHeight = ptab->get_data()->m_iTabHeight;
 
-      //int iB = rcClient.top;
+      //::i32 iB = rcClient.top;
 
       rcTabs.bottom = rcTabs.top + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom;
 
@@ -1205,7 +1205,7 @@ namespace experience_tranquillum
 
       auto ppenBorder = createø < ::draw2d::pen >();
 
-      for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -1778,8 +1778,8 @@ namespace experience_tranquillum
       //   }
 
 
-      //   //int iOffsetX = 0;
-      //   //int iOffsetY = 0;
+      //   //::i32 iOffsetX = 0;
+      //   //::i32 iOffsetY = 0;
 
       //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 
@@ -2084,8 +2084,8 @@ namespace experience_tranquillum
       //   }
 
 
-      //   //int iOffsetX = 0;
-      //   //int iOffsetY = 0;
+      //   //::i32 iOffsetX = 0;
+      //   //::i32 iOffsetY = 0;
 
       //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 

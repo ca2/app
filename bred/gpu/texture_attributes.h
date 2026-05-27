@@ -10,25 +10,25 @@ namespace gpu
    public:
 
       ::i32_rectangle      m_rectangleTarget;
-      int                  m_iBitsPerChannel = -1;
-      int                  m_iChannelCount = -1;
-      int                  m_iSrgb = -1;
-      int                  m_iFloat = -1;
+      ::i32                  m_iBitsPerChannel = -1;
+      ::i32                  m_iChannelCount = -1;
+      ::i32                  m_iSrgb = -1;
+      ::i32                  m_iFloat = -1;
       enum_texture         m_etexture = e_texture_none;
-      int                  m_iLayerCount = -1;
-      int                  m_iMipCount = -1;
+      ::i32                  m_iLayerCount = -1;
+      ::i32                  m_iMipCount = -1;
 
       texture_attributes() = default;
       texture_attributes(const texture_attributes &texture_attributes) = default;
-      texture_attributes(const ::i32_rectangle &rectangle, int iBitsPerChannel = 8, int iChannelCount = 4, int iSrgb= 0,int iFloat = 0,
-                 enum_texture etexture = e_texture_image, int iLayerCount = 1, int iMipCount = 1) :
+      texture_attributes(const ::i32_rectangle &rectangle, ::i32 iBitsPerChannel = 8, ::i32 iChannelCount = 4, ::i32 iSrgb= 0,::i32 iFloat = 0,
+                 enum_texture etexture = e_texture_image, ::i32 iLayerCount = 1, ::i32 iMipCount = 1) :
           m_rectangleTarget(rectangle), m_iBitsPerChannel(iBitsPerChannel), m_iChannelCount(iChannelCount),
           m_iSrgb(iSrgb), m_iFloat(iFloat), m_etexture(etexture), m_iLayerCount(iLayerCount), m_iMipCount(iMipCount)
       {
       }
 
 
-      void set_cubemap(int iMipCount = 1)
+      void set_cubemap(::i32 iMipCount = 1)
       {
 
          m_etexture = e_texture_cube_map;
@@ -38,10 +38,10 @@ namespace gpu
       }
 
 
-      int maximum_mip_count() const
+      ::i32 maximum_mip_count() const
       {
 
-         return (int) floor(log2(m_rectangleTarget.size().maximum())) + 1;
+         return (::i32) floor(log2(m_rectangleTarget.size().maximum())) + 1;
 
       }
 

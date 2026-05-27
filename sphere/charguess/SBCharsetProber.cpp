@@ -21,13 +21,13 @@
 #include "SBCharsetProber.h"
 
 
-nsProbingState nsSingleByteCharSetProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsSingleByteCharSetProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
-  unsigned char order;
+  ::u8 order;
 
-  for (PRunsigned int i = 0; i < aLen; i++)
+  for (PRunsigned ::i32 i = 0; i < aLen; i++)
   {
-    order = mModel->charToOrderMap[(unsigned char)aBuf[i]];
+    order = mModel->charToOrderMap[(::u8)aBuf[i]];
 
     if (order < SYMBOL_CAT_ORDER)
       mTotalChar++;
@@ -47,7 +47,7 @@ nsProbingState nsSingleByteCharSetProber::HandleData(const ::string & aBuf, PRun
   if (mState == eDetecting)
     if (mTotalSeqs > SB_ENOUGH_REL_THRESHOLD)
     {
-      float cf = GetConfidence();
+      ::f32 cf = GetConfidence();
       if (cf > POSITIVE_SHORTCUT_THRESHOLD)
         mState = eFoundIt;
       else if (cf < NEGATIVE_SHORTCUT_THRESHOLD)
@@ -61,7 +61,7 @@ void  nsSingleByteCharSetProber::Reset(void)
 {
   mState = eDetecting;
   mLastOrder = 255;
-  for (PRunsigned int i = 0; i < NUMBER_OF_SEQ_CAT; i++)
+  for (PRunsigned ::i32 i = 0; i < NUMBER_OF_SEQ_CAT; i++)
     mSeqCounters[i] = 0;
   mTotalSeqs = 0;
   mTotalChar = 0;
@@ -70,24 +70,24 @@ void  nsSingleByteCharSetProber::Reset(void)
 
 //#define NEGATIVE_APPROACH 1
 
-float nsSingleByteCharSetProber::GetConfidence(void)
+::f32 nsSingleByteCharSetProber::GetConfidence(void)
 {
 #ifdef NEGATIVE_APPROACH
   if (mTotalSeqs > 0)
     if (mTotalSeqs > mSeqCounters[NEGATIVE_CAT]*10 )
-      return ((float)(mTotalSeqs - mSeqCounters[NEGATIVE_CAT]*10))/mTotalSeqs * mFreqChar / mTotalChar;
-  return (float)0.01;
+      return ((::f32)(mTotalSeqs - mSeqCounters[NEGATIVE_CAT]*10))/mTotalSeqs * mFreqChar / mTotalChar;
+  return (::f32)0.01;
 #else  //POSITIVE_APPROACH
-  float r;
+  ::f32 r;
 
   if (mTotalSeqs > 0) {
-    r = ((float)1.0) * mSeqCounters[POSITIVE_CAT] / mTotalSeqs / mModel->mTypicalPositiveRatio;
+    r = ((::f32)1.0) * mSeqCounters[POSITIVE_CAT] / mTotalSeqs / mModel->mTypicalPositiveRatio;
     r = r*mFreqChar/mTotalChar;
-    if (r >= (float)1.00)
-      r = (float)0.99;
+    if (r >= (::f32)1.00)
+      r = (::f32)0.99;
     return r;
   }
-  return (float)0.01;
+  return (::f32)0.01;
 #endif
 }
 

@@ -38,7 +38,7 @@
 
 
       // from arbitrary binary data to Base 64
-      void encode(::file::file * pfileOutput, unsigned char * pdata, memsize size, e_mode emode);
+      void encode(::file::file * pfileOutput, ::u8 * pdata, memsize size, e_mode emode);
       void encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode = mode_normal);
       //string encode(memory_base & memory, e_mode emode = mode_normal);
       string encode(const ::block & block, e_mode emode = mode_normal);
@@ -54,7 +54,7 @@
       string decode(const ::scoped_string & scopedstr);
       //bool decode(::matter & matter, const ::scoped_string & scopedstrBase64);
 
-      bool is(int iChar);
+      bool is(::i32 iChar);
 
    };
 

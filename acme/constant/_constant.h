@@ -3,11 +3,11 @@
 
 //#include "GLOBAL_ID.h"
 
-enum enum_digit_case : int
+enum enum_digit_case : ::i32
 {
 
-   e_digit_case_lower = (int) 'a',
-   e_digit_case_upper = (int) 'A',
+   e_digit_case_lower = (::i32) 'a',
+   e_digit_case_upper = (::i32) 'A',
 
 };
 
@@ -49,7 +49,7 @@ enum enum_factory : ::iptr
 #define OLDOK OK
 #undef OK
 
-enum ENUM_I32 : int
+enum ENUM_I32 : ::i32
 {
 
    SUCCESS = 1,
@@ -192,8 +192,8 @@ enum enum_type
 
 
    // floating i32_point
-   e_type_float = 2048,
-   e_type_double,
+   e_type_f32 = 2048,
+   e_type_f64,
 
    // simple classes
    e_type_string = 4096,
@@ -215,19 +215,19 @@ enum enum_type
    //e_type_integral_day,
    //e_type_pintegral_day,
    //e_type_floating_nanosecond,
-   //e_type_pfloating_nanosecond,
+   //e_type_pf32ing_nanosecond,
    //e_type_floating_microsecond,
-   //e_type_pfloating_microsecond,
+   //e_type_pf32ing_microsecond,
    //e_type_floating_millisecond,
-   //e_type_pfloating_millisecond,
+   //e_type_pf32ing_millisecond,
    //e_type_floating_second,
-   //e_type_pfloating_second,
+   //e_type_pf32ing_second,
    //e_type_floating_minute,
-   //e_type_pfloating_minute,
+   //e_type_pf32ing_minute,
    //e_type_floating_hour,
-   //e_type_pfloating_hour,
+   //e_type_pf32ing_hour,
    //e_type_floating_day,
-   //e_type_pfloating_day,
+   //e_type_pf32ing_day,
    e_type_time,
    e_type_ptime,
    e_type_atom,
@@ -249,8 +249,8 @@ enum enum_type
    e_type_i64_array,
    e_type_memory,
    e_type_path,
-   e_type_float_array,
-   e_type_double_array,
+   e_type_f32_array,
+   e_type_f64_array,
    e_type_last_element,
 
    // enum
@@ -262,16 +262,16 @@ enum enum_type
    e_type_primitive_mask = 65535,
    e_type_pointer_of = 65536,
    e_type_pbool = e_type_bool | e_type_pointer_of,
-   e_type_punsigned_char = e_type_u8 | e_type_pointer_of,
-   e_type_pchar = e_type_i8 | e_type_pointer_of,
-   e_type_punsigned_short = e_type_u16 | e_type_pointer_of,
-   e_type_pshort = e_type_i16 | e_type_pointer_of,
+   e_type_pu8 = e_type_u8 | e_type_pointer_of,
+   e_type_pi8 = e_type_i8 | e_type_pointer_of,
+   e_type_pu16 = e_type_u16 | e_type_pointer_of,
+   e_type_pi16 = e_type_i16 | e_type_pointer_of,
    e_type_pu32 = e_type_u32 | e_type_pointer_of,
    e_type_pi32 = e_type_i32 | e_type_pointer_of,
    e_type_pu64 = e_type_u64 | e_type_pointer_of,
    e_type_pi64 = e_type_i64 | e_type_pointer_of,
-   e_type_pfloat = e_type_float | e_type_pointer_of,
-   e_type_pdouble= e_type_double | e_type_pointer_of,
+   e_type_pf32 = e_type_f32 | e_type_pointer_of,
+   e_type_pf64 = e_type_f64 | e_type_pointer_of,
 
 
 
@@ -291,8 +291,8 @@ constexpr bool is_number(enum_type etype)
    || etype ==  e_type_i32
    || etype ==  e_type_u64
    || etype ==  e_type_i64
-   || etype == e_type_float
-   || etype == e_type_double;
+   || etype == e_type_f32
+   || etype == e_type_f64;
 
 }
 
@@ -347,13 +347,13 @@ enum enum_trace_category
 };
 
 // tight
-//   static const int LOG_INTERR = 0;
-//   static const int LOG_ERR = 1;
-//   static const int LOG_WARN = 2;
-//   static const int LOG_MSG = 3;
-//   static const int LOG_INFO = 4;
-//   static const int LOG_DETAIL = 5;
-//   static const int LOG_DEBUG = 9;
+//   static const ::i32 LOG_INTERR = 0;
+//   static const ::i32 LOG_ERR = 1;
+//   static const ::i32 LOG_WARN = 2;
+//   static const ::i32 LOG_MSG = 3;
+//   static const ::i32 LOG_INFO = 4;
+//   static const ::i32 LOG_DETAIL = 5;
+//   static const ::i32 LOG_DEBUG = 9;
 
 /// 2025
 // e_trace_level_undefined,
@@ -385,15 +385,15 @@ enum enum_trace_level
 };
 
 
-constexpr char trace_level_letter(enum_trace_level etracelevel)
+constexpr ::i8 trace_level_letter(enum_trace_level etracelevel)
 {
 
-   return etracelevel < 0|| etracelevel >= e_trace_level_count? ' ': " IWEF"[(int)etracelevel];
+   return etracelevel < 0|| etracelevel >= e_trace_level_count? ' ': " IWEF"[(::i32)etracelevel];
 
 }
 
 
-constexpr char line_feed_letter(bool bCarriage)
+constexpr ::i8 line_feed_letter(bool bCarriage)
 {
 
    return bCarriage ? '\r' : '\n';
@@ -898,7 +898,7 @@ enum enum_extract
 #pragma once
 
 
-//// very short name ([{c}])ontext (switchers, as it as action_context) enums
+//// very ::i16 name ([{c}])ontext (switchers, as it as action_context) enums
 
 
 struct default_initialization_t{};
@@ -1103,10 +1103,10 @@ namespace library
 
 
 enum enum_unit :
-   int
+   ::i32
 {
 
-   e_unit_rate = (int) - 1,
+   e_unit_rate = (::i32) - 1,
 
    e_unit_none = 0,
 
@@ -1122,7 +1122,7 @@ namespace user
 {
 
 
-   enum enum_key : int;
+   enum enum_key : ::i32;
 
 
 } // namespace user

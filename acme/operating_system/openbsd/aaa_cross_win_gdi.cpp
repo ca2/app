@@ -76,7 +76,7 @@
 ////    return true;
 //
 //// }
-//// int FillRect(HDC hdc, const ::i32_rectangle & prc, HBRUSH hbr)
+//// ::i32 FillRect(HDC hdc, const ::i32_rectangle & prc, HBRUSH hbr)
 //
 //// {
 //

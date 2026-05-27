@@ -115,7 +115,7 @@ namespace apex
       //
       //       string                                       m_strLicense;
       //
-      //       int                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      //       ::i32                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
       //
       //       //::pointer<::simpledb::server>              m_psimpledb;
       //
@@ -152,7 +152,7 @@ namespace apex
       //
       //       string                                       m_strId;
       //
-      //       int                                          m_iResourceId;
+      //       ::i32                                          m_iResourceId;
       //
       //       //::pointer<::experience::department>        m_pexperience;
       //       //::pointer<::apex::theme>                   m_ptheme;
@@ -402,10 +402,10 @@ namespace apex
       //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual void process_message_filter(int code, ::message::message * pmessage) override;
+      virtual void process_message_filter(::i32 code, ::message::message * pmessage) override;
 
 
-      virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
+      virtual void DoWaitCursor(::i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       void _001PostTryCloseApplication() override;
 
@@ -562,13 +562,13 @@ namespace apex
       //virtual ::file::path defer_process_path(::file::path path);
       //virtual ::file::path full_process_path(::file::path path);
 
-      //virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(::i32 nCode); // 0 => restore, 1=> begin, -1=> end
       //virtual void show_wait_cursor(bool bShow = true);
 
 
-      //virtual void process_message_filter(int code,::message::message * pmessage) override;
+      //virtual void process_message_filter(::i32 code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread, int lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
 
 
       virtual void app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override;
@@ -742,7 +742,7 @@ namespace apex
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      virtual void on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
+      virtual void on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;
 
 
       virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom& idPid) override;
@@ -784,7 +784,7 @@ namespace apex
       virtual void release_exclusive() override;
 
 
-      bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override;
+      bool on_set_scalar(enum_scalar escalar, ::number::number number, ::i32 iFlags) override;
 
 
       ::number::number get_scalar_minimum(enum_scalar escalar) override;
@@ -896,7 +896,7 @@ namespace apex
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
-      //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel = 6);
+      //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6);
 
       //virtual void interactive_credentials(::account::credentials * pcredentials) override;
 
@@ -921,7 +921,7 @@ namespace apex
       virtual void install_trace(const ::scoped_string & scopedstr) override;
 
 
-      virtual void install_trace(double dRate) override;
+      virtual void install_trace(::f64 dRate) override;
 
 
        virtual void register_application_as_spa_file_type_handler() override;
@@ -955,7 +955,7 @@ namespace apex
 
 
       // apex commented
-      //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+      //virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
       virtual string preferred_experience() override;
@@ -1028,7 +1028,7 @@ namespace apex
 
       //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr);
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override;
+      //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override;
 
 
       virtual void pre_translate_message(::message::message* pmessage) override;
@@ -1077,7 +1077,7 @@ namespace apex
       //virtual void on_request(::create* pcreate) override;
 
       //for implementation
-      virtual bool on_idle(int lCount) override; // return true if more idle processing
+      virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception& e, ::message::message* pmessage) override;
 
 
@@ -1096,7 +1096,7 @@ namespace apex
 
       //bool CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
-      //virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT GetPaintMsgProc(::i32 nCode, WPARAM wParam, LPARAM lParam);
 
 
       //void OnUpdateRecentFileMenu(::message::command* pcommand);
@@ -1112,8 +1112,8 @@ namespace apex
       //void EnableHtmlHelp();
 
 
-      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,::u32 fuStyle = ::user::e_message_box_ok) override;
-      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle = ::user::e_message_box_ok) override;
+      //virtual ::i32 sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,::u32 fuStyle = ::user::e_message_box_ok) override;
+      //virtual ::i32 sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle = ::user::e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;
@@ -1179,7 +1179,7 @@ namespace apex
       //virtual void close(::apex::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual int DoMessageBox(const ::scoped_string & scopedstrPrompt,::u32 nType,::u32 nIDPrompt);
+      //virtual ::i32 DoMessageBox(const ::scoped_string & scopedstrPrompt,::u32 nType,::u32 nIDPrompt);
 
 
       // Advanced: process async DDE request
@@ -1232,7 +1232,7 @@ namespace apex
                                 ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic) override;
+      virtual void report_error(const ::exception& e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override;
 
 
       virtual void create_impact_system() override;

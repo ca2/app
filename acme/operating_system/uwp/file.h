@@ -7,7 +7,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_ACME vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
+void CLASS_DECL_ACME vfxGetRoot(const wide_character * lpszPath, string& wstrRoot);
 void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
@@ -91,10 +91,10 @@ namespace universal_windows
    //namespace WinFileException
    //{
 
-   //   void OsErrorToException(int lOsError);
-   //   void ErrnoToException(int nErrno);
-   //   void ThrowOsError(::particle * pparticle, int lOsError, const_char_pointer lpszFileName = nullptr);
-   //   void ThrowErrno(::particle * pparticle, int nErrno, const_char_pointer lpszFileName = nullptr);
+   //   void OsErrorToException(::i32 lOsError);
+   //   void ErrnoToException(::i32 nErrno);
+   //   void ThrowOsError(::particle * pparticle, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
+   //   void ThrowErrno(::particle * pparticle, ::i32 nErrno, const_char_pointer pszFileName = nullptr);
 
    //}
 

@@ -31,7 +31,7 @@
 #define ASO    7        // accent small other
 #define CLASS_NUM   8    // total classes
 
-static unsigned char Latin1_CharToClass[] = 
+static ::u8 Latin1_CharToClass[] = 
 {
   OTH, OTH, OTH, OTH, OTH, OTH, OTH, OTH,   // 00 - 07
   OTH, OTH, OTH, OTH, OTH, OTH, OTH, OTH,   // 08 - 0F
@@ -73,7 +73,7 @@ static unsigned char Latin1_CharToClass[] =
    2 : normal 
    3 : very likely
 */
-static unsigned char Latin1ClassModel[] = 
+static ::u8 Latin1ClassModel[] = 
 {
 /*      UDF OTH ASC ASS ACV ACO ASV ASO  */
 /*UDF*/  0,  0,  0,  0,  0,  0,  0,  0,
@@ -90,22 +90,22 @@ void  nsLatin1Prober::Reset(void)
 {
   mState = eDetecting;
   mLastCharClass = OTH;
-  for (int i = 0; i < FREQ_CAT_NUM; i++)
+  for (::i32 i = 0; i < FREQ_CAT_NUM; i++)
     mFreqCounter[i] = 0;
 }
 
-PRBool nsLatin1Prober::FilterWithEnglishLetters(const ::string & aBuf, PRunsigned int aLen, char** newBuf, PRunsigned int& newLen)
+PRBool nsLatin1Prober::FilterWithEnglishLetters(const ::string & aBuf, PRunsigned ::i32 aLen, char_pointer * newBuf, PRunsigned ::i32& newLen)
 {
   //do filtering to reduce load to probers
-  char *newptr;
-  char *prevPtr, *curPtr;
+  char_pointer newptr;
+  char_pointer prevPtr, *curPtr;
   PRBool isInTag = PR_FALSE;
 
-  newptr = *newBuf = (char*)PR_MALLOC(aLen);
+  newptr = *newBuf = (char_pointer )PR_MALLOC(aLen);
   if (!newptr)
     return PR_FALSE;
 
-  for (curPtr = prevPtr = (char*)aBuf; curPtr < aBuf+aLen; curPtr++)
+  for (curPtr = prevPtr = (char_pointer )aBuf; curPtr < aBuf+aLen; curPtr++)
   {
 /*
     if (*curPtr == '>')
@@ -129,27 +129,27 @@ PRBool nsLatin1Prober::FilterWithEnglishLetters(const ::string & aBuf, PRunsigne
     }
   }
 
-  newLen = (PRunsigned int) (newptr - *newBuf);
+  newLen = (PRunsigned ::i32) (newptr - *newBuf);
 
   return PR_TRUE;
 }
 
 
-nsProbingState nsLatin1Prober::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsLatin1Prober::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
-  char *newBuf1;
-  PRunsigned int newLen1;
+  char_pointer newBuf1;
+  PRunsigned ::i32 newLen1;
 
   if (!FilterWithEnglishLetters(aBuf, aLen, &newBuf1, newLen1)) {
-    newBuf1 = (char*)aBuf;
+    newBuf1 = (char_pointer )aBuf;
     newLen1 = aLen;
   }
   
-  unsigned char charClass;
-  unsigned char freq;
-  for (PRunsigned int i = 0; i < newLen1; i++)
+  ::u8 charClass;
+  ::u8 freq;
+  for (PRunsigned ::i32 i = 0; i < newLen1; i++)
   {
-    charClass = Latin1_CharToClass[(unsigned char)newBuf1[i]];
+    charClass = Latin1_CharToClass[(::u8)newBuf1[i]];
     freq = Latin1ClassModel[mLastCharClass*CLASS_NUM + charClass];
     if (freq == 0) {
       mState = eNotMe;
@@ -165,13 +165,13 @@ nsProbingState nsLatin1Prober::HandleData(const ::string & aBuf, PRunsigned int 
   return mState;
 }
 
-float nsLatin1Prober::GetConfidence(void)
+::f32 nsLatin1Prober::GetConfidence(void)
 {
   if (mState == eNotMe)
     return 0.01f;
   
-  float confidence;
-  PRunsigned int total = 0;
+  ::f32 confidence;
+  PRunsigned ::i32 total = 0;
   for (PRInt32 i = 0; i < FREQ_CAT_NUM; i++)
     total += mFreqCounter[i];
 

@@ -88,7 +88,7 @@ namespace tc4
       return true;
    }
 
-   int application::exit_application()
+   ::i32 application::exit_application()
    {
 
       return ::aura::application::exit_application();

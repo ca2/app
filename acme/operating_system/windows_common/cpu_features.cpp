@@ -50,7 +50,7 @@ cpu_features::cpu_features()
 
 #if defined(CPU_X86_FAMILY)
 
-   int cpuInfo[4] = { 0 };
+   ::i32 cpuInfo[4] = { 0 };
 
    // -------- CPUID leaf 1 --------
    __cpuid(cpuInfo, 1);

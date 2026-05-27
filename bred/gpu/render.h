@@ -69,7 +69,7 @@ namespace gpu
 
       //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, double dStart, double dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

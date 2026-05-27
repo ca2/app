@@ -12,7 +12,7 @@
 #include <cmath>
 #include <iostream>
 
-// static const char* vs_src = R"(#version 330 core
+// static const_char_pointer vs_src = R"(#version 330 core
 // layout(location = 0) in vec3 aPos;
 // uniform mat4 mvp;
 // void main() {
@@ -20,14 +20,14 @@
 // }
 // )";
 //
-// static const char* fs_src = R"(#version 330 core
+// static const_char_pointer fs_src = R"(#version 330 core
 // out vec4 FragColor;
 // void main() {
 //     FragColor = vec4(0.7, 0.7, 0.2, 1.0);
 // }
 // )";
 //
-// GLuint compile(GLenum type, const char* src) {
+// GLuint compile(GLenum type, const_char_pointer src) {
 //     GLuint s = glCreateShader(type);
 //     glShaderSource(s, 1, &src, nullptr);
 //     glCompileShader(s);
@@ -46,18 +46,18 @@
 //     return p;
 // }
 //
-// void mat4_rotate_y(float* m, float a) {
-//     float c = cosf(a), s = sinf(a);
+// void mat4_rotate_y(::f32* m, ::f32 a) {
+//     ::f32 c = cosf(a), s = sinf(a);
 //     m[0]=c;  m[1]=0; m[2]=s;  m[3]=0;
 //     m[4]=0;  m[5]=1; m[6]=0;  m[7]=0;
 //     m[8]=-s; m[9]=0; m[10]=c; m[11]=0;
 //     m[12]=0; m[13]=0; m[14]=-5; m[15]=1;
 // }
-// void mat4_perspective(float* m, float fov_rad, float aspect, float zn, float zf)
+// void mat4_perspective(::f32* m, ::f32 fov_rad, ::f32 aspect, ::f32 zn, ::f32 zf)
 // {
-//     float f = 1.0f / tanf(fov_rad * 0.5f);
+//     ::f32 f = 1.0f / tanf(fov_rad * 0.5f);
 //
-//     memset(m, 0, 16 * sizeof(float));
+//     memset(m, 0, 16 * sizeof(::f32));
 //
 //     m[0]  = f / aspect;
 //     m[5]  = f;
@@ -67,10 +67,10 @@
 // }
 //
 //
-// void mat4_model(float* m, float angle)
+// void mat4_model(::f32* m, ::f32 angle)
 // {
-//     float c = cosf(angle);
-//     float s = sinf(angle);
+//     ::f32 c = cosf(angle);
+//     ::f32 s = sinf(angle);
 //
 //     m[0]= c;  m[4]=0; m[8]= s;  m[12]=0;
 //     m[1]= 0;  m[5]=1; m[9]= 0;  m[13]=0;
@@ -79,12 +79,12 @@
 // }
 //
 //
-// void mat4_mul(float* out, const float* a, const float* b)
+// void mat4_mul(::f32* out, const ::f32* a, const ::f32* b)
 // {
-//     float r[16];
+//     ::f32 r[16];
 //
-//     for (int c = 0; c < 4; ++c)
-//         for (int r0 = 0; r0 < 4; ++r0)
+//     for (::i32 c = 0; c < 4; ++c)
+//         for (::i32 r0 = 0; r0 < 4; ++r0)
 //             r[c*4 + r0] =
 //                 a[0*4 + r0] * b[c*4 + 0] +
 //                 a[1*4 + r0] * b[c*4 + 1] +
@@ -95,7 +95,7 @@
 // }
 //
 //
-// int rotating_cube() {
+// ::i32 rotating_cube() {
 //     Display* dpy = XOpenDisplay(nullptr);
 //     Window root = DefaultRootWindow(dpy);
 //
@@ -131,7 +131,7 @@
 //
 //     GLuint prog = createProgram();
 //
-//     float cube[] = {
+//     ::f32 cube[] = {
 //         // back
 //         -1,-1,-1,  1,-1,-1,  1, 1,-1,
 //         1, 1,-1, -1, 1,-1, -1,-1,-1,
@@ -178,19 +178,19 @@
 //         }
 //
 //         auto now = std::chrono::steady_clock::now();
-//         float t = std::chrono::duration<float>(now - start).count();
+//         ::f32 t = std::chrono::duration<::f32>(now - start).count();
 //
 //         // 1 rotation every 15 seconds
-//         float angle = (t / 15.0f) * 2.0f * 3.1415926f;
+//         ::f32 angle = (t / 15.0f) * 2.0f * 3.1415926f;
 //
-//         float mvp[16];
+//         ::f32 mvp[16];
 //         //mat4_rotate_y(mvp, angle);
-//         float model[16];
-//         float proj[16];
-//         //float mvp[16];
-//         float tmp[16];
+//         ::f32 model[16];
+//         ::f32 proj[16];
+//         //::f32 mvp[16];
+//         ::f32 tmp[16];
 //
-//         float aspect = 800.0f / 600.0f;
+//         ::f32 aspect = 800.0f / 600.0f;
 //
 //         mat4_model(model, angle);
 //         mat4_perspective(proj, 60.0f * 3.1415926f / 180.0f, aspect, 0.1f, 100.0f);

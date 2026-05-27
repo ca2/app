@@ -23,7 +23,7 @@
       case ::user::e_key_page_down:     str = "user::e_key_page_down"; break;
       case ::user::e_key_page_up:     str = "user::e_key_page_up"; break;
       default:
-         str.formatf("%d", (int)ekey);
+         str.formatf("%d", (::i32)ekey);
 
    }
 
@@ -32,34 +32,34 @@
 }
 
 
-int e_user_key_to_vkcode(::user::enum_key euserkey)
+::i32 e_user_key_to_vkcode(::user::enum_key euserkey)
 {
 
    if(euserkey >= ::user::e_key_0 && euserkey <= ::user::e_key_9)
    {
 
-      return 0x30 + (int)(euserkey - ::user::e_key_0);
+      return 0x30 + (::i32)(euserkey - ::user::e_key_0);
 
    }
 
    if(euserkey >= ::user::e_key_a && euserkey <= ::user::e_key_z)
    {
 
-      return 0x41 + (int)(euserkey - ::user::e_key_a);
+      return 0x41 + (::i32)(euserkey - ::user::e_key_a);
 
    }
 
    if(euserkey >= ::user::e_key_numpad_0 && euserkey <= ::user::e_key_numpad_9)
    {
 
-      return 0x60 + (int)(euserkey - ::user::e_key_numpad_0);
+      return 0x60 + (::i32)(euserkey - ::user::e_key_numpad_0);
 
    }
 
    if(euserkey >= ::user::e_key_f1 && euserkey <= ::user::e_key_f24)
    {
 
-      return 0x70 + (int)(euserkey - ::user::e_key_f1);
+      return 0x70 + (::i32)(euserkey - ::user::e_key_f1);
 
    }
 

@@ -60,7 +60,7 @@ namespace application_build_helper
 
          string_array_base straOutput;
 
-         int iExitCode = 0;
+         ::i32 iExitCode = 0;
 
          string_array_base straCommand;
 

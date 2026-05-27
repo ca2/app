@@ -22,7 +22,7 @@ typedef  uchar GZIP;
 typedef  GZIP* LPGZIP;
 
 
-//static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
+//static const ::i32 gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
 
 
 namespace compress_zlib
@@ -44,7 +44,7 @@ namespace compress_zlib
    }
 
 
-   void compress::set_level(int iLevel)
+   void compress::set_level(::i32 iLevel)
    {
 
       m_iLevel = iLevel;
@@ -57,7 +57,7 @@ namespace compress_zlib
    void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction)
    {
 
-      int iLevel = m_iLevel;
+      ::i32 iLevel = m_iLevel;
 
       if (iLevel < 0)
       {
@@ -81,7 +81,7 @@ namespace compress_zlib
 
       }
 
-      int status;
+      ::i32 status;
 
       class memory memIn;
 
@@ -93,7 +93,7 @@ namespace compress_zlib
 
       zero(zstream);
 
-      zstream.next_in = (unsigned char*)memIn.data();
+      zstream.next_in = (::u8*)memIn.data();
       zstream.avail_in = (::u32)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
@@ -115,7 +115,7 @@ namespace compress_zlib
 
       // use deflateSetHeader to set original file params
 
-      int iFlush = Z_NO_FLUSH;
+      ::i32 iFlush = Z_NO_FLUSH;
 
       while (true)
       {
@@ -140,8 +140,8 @@ namespace compress_zlib
                if (pfileOut->size() < size)
                {
 
-                  transferprogressfunction((double)pfileOut->size()
-                     / (double)size, pfileOut->size(), size);
+                  transferprogressfunction((::f64)pfileOut->size()
+                     / (::f64)size, pfileOut->size(), size);
 
                }
                else
@@ -175,7 +175,7 @@ namespace compress_zlib
 
             iFlush = Z_FINISH;
 
-            zstream.next_in = (unsigned char*) nullptr;
+            zstream.next_in = (::u8*) nullptr;
 
             zstream.avail_in = (::u32)0;
 
@@ -183,7 +183,7 @@ namespace compress_zlib
          else
          {
 
-            zstream.next_in = (unsigned char*)memIn.data();
+            zstream.next_in = (::u8*)memIn.data();
 
             zstream.avail_in = (::u32)uRead;
 

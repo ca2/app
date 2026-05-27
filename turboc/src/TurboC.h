@@ -117,15 +117,15 @@
 
 // Integer-type stuff that differs depending on whether the original
 // source code was for a 16-bit compiler (default) or 32-bit.
-typedef char gchar;
-typedef signed char gschar;
-typedef unsigned char guchar;
-typedef short gshort;
-typedef unsigned short gushort;
-typedef int gint;
-typedef ::u32 gunsigned int;
+typedef ::i8 gchar;
+typedef signed ::i8 gschar;
+typedef ::u8 guchar;
+typedef ::i16 gshort;
+typedef ::u16 gushort;
+typedef ::i32 gint;
+typedef ::u32 gunsigned ::i32;
 typedef long glong;
-typedef unsigned long gulong;
+typedef ulong gulong;
 
 #ifdef CLK_TCK
 #undef CLK_TCK
@@ -166,8 +166,8 @@ typedef unsigned long gulong;
 // GNU by macros that are screwed up by integer datatype conversion.
 
 #ifdef strcpy
-static inline char *
-strcpyTurbo (char *s1, const ::string &s2)
+static inline char_pointer 
+strcpyTurbo (char_pointer s1, const ::string &s2)
 {
    return (strcpy (s1, s2));
 }
@@ -177,8 +177,8 @@ strcpyTurbo (char *s1, const ::string &s2)
 #endif // strcpy
 
 #ifdef strncpy_dup
-static inline char *
-strncpyTurbo (char *s1, const ::string &s2, size_t n)
+static inline char_pointer 
+strncpyTurbo (char_pointer s1, const ::string &s2, size_t n)
 {
    return (strncpy_dup (s1, s2, n));
 }
@@ -188,7 +188,7 @@ strncpyTurbo (char *s1, const ::string &s2, size_t n)
 #endif // strncpy_dup
 
 #ifdef strcmp
-static inline short
+static inline ::i16
 strcmpTurbo (const ::string &s1, const ::string &s2)
 {
    return (strcmp (s1, s2));
@@ -199,12 +199,12 @@ strcmpTurbo (const ::string &s1, const ::string &s2)
 #endif // strcmp
 
 //#ifdef strcasecmp
-//static inline short
+//static inline ::i16
 //strcmpi (const ::string &s1, const ::string &s2)
 //{
 //  return (strcasecmp (s1, s2));
 //}
-//static inline short
+//static inline ::i16
 //stricmp (const ::string &s1, const ::string &s2)
 //{
 //  return (strcasecmp (s1, s2));
@@ -215,8 +215,8 @@ strcmpTurbo (const ::string &s1, const ::string &s2)
 //#endif // strcasecmp
 
 #ifdef strncmp_dup
-static inline short
-strncmpTurbo (const ::string &s1, const ::string &s2, short n)
+static inline ::i16
+strncmpTurbo (const ::string &s1, const ::string &s2, ::i16 n)
 {
    return (strncmp_dup (s1, s2, n));
 }
@@ -226,8 +226,8 @@ strncmpTurbo (const ::string &s1, const ::string &s2, short n)
 #endif // strcmp
 
 #ifdef strncasecmp
-static inline short
-strncmpi (const ::string &s1, const ::string &s2, short n)
+static inline ::i16
+strncmpi (const ::string &s1, const ::string &s2, ::i16 n)
 {
    return (strncasecmp (s1, s2, n));
 }
@@ -248,12 +248,12 @@ clockUnix (void)
 
 // Integer datatype conversions.  This particular choice of macros has the
 // happy property of handling the most commonly used integer datatype
-// specifications (except "unsigned char"), while generating a compiler
+// specifications (except "::u8"), while generating a compiler
 // error for all other combinations.
-#define short short
-#define int short
-#define unsigned unsigned short
-#define long int
+#define ::i16 ::i16
+#define ::i32 ::i16
+#define ::u32 ::u16
+#define long ::i32
 
 #endif // Compiler32
 
@@ -289,53 +289,53 @@ __BEGIN_DECLS
 // My custom version of "free".
 CLASS_DECL_TURBOC void freeTurbo (void *object);
 #ifdef WITH_X
-/*CLASS_DECL_TURBOC int AssociatePixmap (void *object, image handle);
+/*CLASS_DECL_TURBOC ::i32 AssociatePixmap (void *object, image handle);
 #endif
 
 // Stuff involved in gracefully exiting the program.
 void TurboTrap (void);
-int TurboX (int);
+::i32 TurboX (::i32);
 
 //// From string.h.
-//CLASS_DECL_TURBOC char *strupr (char *);
-//CLASS_DECL_TURBOC char *strlwr (char *);
+//CLASS_DECL_TURBOC char_pointer strupr (char_pointer );
+//CLASS_DECL_TURBOC char_pointer strlwr (char_pointer );
 
 // From stdio.h
 //CLASS_DECL_TURBOC gint fcloseall (void);
 
 // Wrappers for ctype.h macros.
-CLASS_DECL_TURBOC int isupperTurbo (int c);
-CLASS_DECL_TURBOC int islowerTurbo (int c);
-CLASS_DECL_TURBOC int isalphaTurbo (int c);
-CLASS_DECL_TURBOC int isdigitTurbo (int c);
-CLASS_DECL_TURBOC int isxdigitTurbo (int c);
-CLASS_DECL_TURBOC int isspaceTurbo (int c);
-CLASS_DECL_TURBOC int isprintTurbo (int c);
-CLASS_DECL_TURBOC int isgraphTurbo (int c);
-CLASS_DECL_TURBOC int iscntrlTurbo (int c);
-CLASS_DECL_TURBOC int ispunctTurbo (int c);
-CLASS_DECL_TURBOC int isalnumTurbo (int c);
+CLASS_DECL_TURBOC ::i32 isupperTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 islowerTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isalphaTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isdigitTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isxdigitTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isspaceTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isprintTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isgraphTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 iscntrlTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 ispunctTurbo (::i32 c);
+CLASS_DECL_TURBOC ::i32 isalnumTurbo (::i32 c);
 
 #define random(n) randomTurbo(n)
-CLASS_DECL_TURBOC short randomTurbo (short num);
+CLASS_DECL_TURBOC ::i16 randomTurbo (::i16 num);
 CLASS_DECL_TURBOC void randomize (void);
 CLASS_DECL_TURBOC clock_t clockTurbo (void);
 
 // Endian conversion functions.
-CLASS_DECL_TURBOC void FixLittle16 (unsigned short *);
+CLASS_DECL_TURBOC void FixLittle16 (::u16 *);
 CLASS_DECL_TURBOC void FixLittle32 (::u32 *);
-CLASS_DECL_TURBOC void FixBig16 (unsigned short *);
+CLASS_DECL_TURBOC void FixBig16 (::u16 *);
 CLASS_DECL_TURBOC void FixBig32 (::u32 *);
 
 // Endian file read/write functions.
-CLASS_DECL_TURBOC int ReadLittle16 (FILE * fp, unsigned short * Value);
-CLASS_DECL_TURBOC int ReadBig16 (FILE * fp, unsigned short * Value);
-CLASS_DECL_TURBOC int ReadLittle32 (FILE * fp, ::u32 * Value);
-CLASS_DECL_TURBOC int ReadBig32 (FILE * fp, ::u32 * Value);
-CLASS_DECL_TURBOC int WriteLittle16 (FILE * fp, unsigned short Value);
-CLASS_DECL_TURBOC int WriteBig16 (FILE * fp, unsigned short Value);
-CLASS_DECL_TURBOC int WriteLittle32 (FILE * fp, ::u32 Value);
-CLASS_DECL_TURBOC int WriteBig32 (FILE * fp, ::u32 Value);
+CLASS_DECL_TURBOC ::i32 ReadLittle16 (FILE * fp, ::u16 * Value);
+CLASS_DECL_TURBOC ::i32 ReadBig16 (FILE * fp, ::u16 * Value);
+CLASS_DECL_TURBOC ::i32 ReadLittle32 (FILE * fp, ::u32 * Value);
+CLASS_DECL_TURBOC ::i32 ReadBig32 (FILE * fp, ::u32 * Value);
+CLASS_DECL_TURBOC ::i32 WriteLittle16 (FILE * fp, ::u16 Value);
+CLASS_DECL_TURBOC ::i32 WriteBig16 (FILE * fp, ::u16 Value);
+CLASS_DECL_TURBOC ::i32 WriteLittle32 (FILE * fp, ::u32 Value);
+CLASS_DECL_TURBOC ::i32 WriteBig32 (FILE * fp, ::u32 Value);
 
 __END_DECLS
 //--------------------------------------------------------------------------
@@ -343,7 +343,7 @@ __END_DECLS
 #ifdef TURBOC_VARIABLES_C
 #else // TURBOC_VARIABLES_C
 extern gint TcVideoMode;
-extern const int TcUnicodeMappings[256];
+extern const ::i32 TcUnicodeMappings[256];
 #endif // TURBOC_VARIABLES_C
 
 

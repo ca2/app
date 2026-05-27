@@ -32,7 +32,7 @@ static const_char_pointer DriverNames[11] = {
 
 //-------------------------------------------------------------------------
 
-const_char_pointer  
+const_char_pointer 
 getdrivername (void)
 {
   if (TcDriver < 1 || TcDriver > 10)

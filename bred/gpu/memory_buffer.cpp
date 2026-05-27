@@ -392,7 +392,7 @@ namespace gpu
    }
 
 
-   void memory_buffer::_complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage* pgpuframestorage, int size)
+   void memory_buffer::_complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage* pgpuframestorage, ::i32 size)
    {
 
       m_pframestorage = pgpuframestorage;

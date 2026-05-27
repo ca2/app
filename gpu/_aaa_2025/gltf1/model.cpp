@@ -157,7 +157,7 @@ namespace gpu
       void model::processNode(aiNode *node, const aiScene *scene)
       {
          // process all of this node's meshes if it has any
-         for (unsigned int i = 0; i < node->mNumMeshes; i++)
+         for (::u32 i = 0; i < node->mNumMeshes; i++)
          {
             aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
             auto pmesh =processMesh(mesh, scene);
@@ -175,7 +175,7 @@ namespace gpu
          }
 
          // continue with children
-         for (unsigned int i = 0; i < node->mNumChildren; i++)
+         for (::u32 i = 0; i < node->mNumChildren; i++)
          {
             processNode(node->mChildren[i], scene);
          }
@@ -183,7 +183,7 @@ namespace gpu
 
 
          // Compute tangents from indexed mesh data
-      void computeTangents(::array_base<gltf::vertex> &vertices, const ::array_base<unsigned int> &indices) 
+      void computeTangents(::array_base<gltf::vertex> &vertices, const ::array_base<::u32> &indices) 
       {
          array_base<floating_sequence3> tan1;
          array_base<floating_sequence3> tan2;
@@ -208,15 +208,15 @@ namespace gpu
             floating_sequence3 e1 = v2 - v1;
             floating_sequence3 e2 = v3 - v1;
 
-            float s1 = w2.x - w1.x;
-            float s2 = w3.x - w1.x;
-            float t1 = w2.y - w1.y;
-            float t2 = w3.y - w1.y;
+            ::f32 s1 = w2.x - w1.x;
+            ::f32 s2 = w3.x - w1.x;
+            ::f32 t1 = w2.y - w1.y;
+            ::f32 t2 = w3.y - w1.y;
 
-            float det = s1 * t2 - s2 * t1;
+            ::f32 det = s1 * t2 - s2 * t1;
             if (fabs(det) < 1e-10f)
                continue;
-            float r = 1.0f / det;
+            ::f32 r = 1.0f / det;
 
             floating_sequence3 sdir = (e1 * t2 - e2 * t1) * r;
             floating_sequence3 tdir = (e2 * s1 - e1 * s2) * r;
@@ -235,7 +235,7 @@ namespace gpu
             const ::floating_sequence3 &t = tan1[i];
 
             auto tangent = (t - n * n.dotted(t)).normalized();
-            float sign = (n.crossed(t).dotted(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
+            ::f32 sign = (n.crossed(t).dotted(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
             vertices[i].tangent = floating_sequence4(tangent, sign);
          }
@@ -247,7 +247,7 @@ namespace gpu
          
          model_data<::gpu::gltf::vertex> modeldata;
          //::array_base<gltf::vertex> vertices;
-         //::array_base<unsigned int> indices;
+         //::array_base<::u32> indices;
          ::pointer < ::gpu::gltf::material> pmaterial;
 
          if (m_pmaterialOverride)
@@ -267,7 +267,7 @@ namespace gpu
          bool bHasTangentsAndBitangents = mesh->HasTangentsAndBitangents();
 
          // vertices
-         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+         for (::u32 i = 0; i < mesh->mNumVertices; i++)
          {
             ::gpu::gltf::vertex vertex;
 
@@ -345,12 +345,12 @@ namespace gpu
          }
 
          // indices
-         for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+         for (::u32 i = 0; i < mesh->mNumFaces; i++)
          {
 
             aiFace face = mesh->mFaces[i];
 
-            for (unsigned int j = 0; j < face.mNumIndices; j++)
+            for (::u32 j = 0; j < face.mNumIndices; j++)
             {
                modeldata.m_indexes.add(face.mIndices[j]);
 
@@ -445,7 +445,7 @@ namespace gpu
                         information() << "Alpha Mode: MASK";
                         // You can also retrieve the alphaCutoff value if needed:
                         pmaterial->alphaMode = material::ALPHAMODE_MASK;
-                        float alphaCutoff = 0.5f; // Default value
+                        ::f32 alphaCutoff = 0.5f; // Default value
                         if (aiMaterial->Get(AI_MATKEY_GLTF_ALPHACUTOFF, alphaCutoff) == AI_SUCCESS)
                         {
                            information() << "Alpha Cutoff: " << alphaCutoff;
@@ -470,7 +470,7 @@ namespace gpu
                   } 
                }
                {
-                  float fMetallic = 0.f;
+                  ::f32 fMetallic = 0.f;
                   // Attempt to get the glTF alphaMode property
                   if (aiMaterial->Get(AI_MATKEY_METALLIC_FACTOR, fMetallic) == AI_SUCCESS)
                   {
@@ -493,7 +493,7 @@ namespace gpu
 
                }
                {
-                  float fRoughness = 0.f;
+                  ::f32 fRoughness = 0.f;
                   // Attempt to get the glTF alphaMode property
                   if (aiMaterial->Get(AI_MATKEY_ROUGHNESS_FACTOR, fRoughness) == AI_SUCCESS)
                   {
@@ -513,7 +513,7 @@ namespace gpu
                   }
                }
                {
-                  float ambientOcclusionStrength = 1.f;
+                  ::f32 ambientOcclusionStrength = 1.f;
                   // Attempt to get the glTF alphaMode property
                   if (aiMaterial->Get(AI_MATKEY_GLTF_TEXTURE_STRENGTH(aiTextureType_AMBIENT_OCCLUSION, 0),
                                     ambientOcclusionStrength) == AI_SUCCESS)
@@ -657,16 +657,16 @@ namespace gpu
 
 
 
-      // ::pointer < ::gpu::texture> model::textureFromFile(const char *fileName, ::string directory, aiTextureType type)
+      // ::pointer < ::gpu::texture> model::textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType type)
       // {
       //
       //    return {};
-      //    // int width, height, numChannels;
+      //    // ::i32 width, height, numChannels;
       //    //
       //    // ::string relativePath = fileName;
       //    // ::string path = directory + '/' + relativePath;
       //    //
-      //    // unsigned char *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
+      //    // ::u8 *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
       //    //
       //    // if (!data)
       //    // {
@@ -708,7 +708,7 @@ namespace gpu
       //    //    }
       //    // }
       //    //
-      //    // unsigned int textureId;
+      //    // ::u32 textureId;
       //    // glGenTextures(1, &textureId);
       //    // glBindTexture(GL_TEXTURE_2D, textureId);
       //    //

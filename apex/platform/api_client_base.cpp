@@ -42,7 +42,7 @@ api_client_base::~api_client_base()
 
    ::file::path pathProfile;
 
-   int iProfile = 1;
+   ::i32 iProfile = 1;
 
    while (true)
    {
@@ -191,9 +191,9 @@ api_client_base::~api_client_base()
 //void api_client_base::api_get(::string & str, const ::scoped_string & scopedstrUrl, ::property_set & set)
 //{
 //
-//   int iTryCount = 3;
+//   ::i32 iTryCount = 3;
 //
-//   for (int iTry = 0; iTry < iTryCount; iTry++)
+//   for (::i32 iTry = 0; iTry < iTryCount; iTry++)
 //   {
 //
 //      defer_api();
@@ -207,7 +207,7 @@ api_client_base::~api_client_base()
 //
 //      m_papi->api_get(str, strUrl, set);
 //
-//      int iHttpStatusCode = set["http_status_code"];
+//      ::i32 iHttpStatusCode = set["http_status_code"];
 //
 //      ::string strStatus = set["http_status"];
 //

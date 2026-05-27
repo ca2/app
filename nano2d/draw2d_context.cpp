@@ -183,7 +183,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::path_winding(int dir)
+   void draw2d_context::path_winding(::i32 dir)
    {
       
       ::pointer < draw2d_state > pstate = m_pstate;
@@ -231,7 +231,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::translate(float x, float y)
+   void draw2d_context::translate(::f32 x, ::f32 y)
    {
 
       ::geometry2d::matrix matrix;
@@ -243,7 +243,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::rotate(float angle)
+   void draw2d_context::rotate(::f32 angle)
    {
 
       if (::std::isinf(angle))
@@ -262,14 +262,14 @@ namespace nano2d
    }
    
    
-   void draw2d_context::rounded_rectangle(float xParam, float yParam, float wParam, float hParam, float rParam)
+   void draw2d_context::rounded_rectangle(::f32 xParam, ::f32 yParam, ::f32 wParam, ::f32 hParam, ::f32 rParam)
    {
 
-      double x = xParam;
-      double y = yParam;
-      double w = wParam;
-      double h = hParam;
-      double r = rParam;
+      ::f64 x = xParam;
+      ::f64 y = yParam;
+      ::f64 w = wParam;
+      ::f64 h = hParam;
+      ::f64 r = rParam;
 
       auto r2 = r * 2.0;
 
@@ -317,7 +317,7 @@ namespace nano2d
 
             m_pgraphics->intersect_clip(pstate->m_ppath);
             
-            ::double_rectangle rect;
+            ::f64_rectangle rect;
             
             m_pgraphics->get_clip_box(rect);
 
@@ -362,7 +362,7 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint draw2d_context::linear_gradient(float sx, float sy, float ex, float ey,
+   ::nano2d::paint draw2d_context::linear_gradient(::f32 sx, ::f32 sy, ::f32 ex, ::f32 ey,
       ::color::color icol, ::color::color ocol)
    {
 
@@ -371,8 +371,8 @@ namespace nano2d
       m_pgraphics->constructø(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
-         ::double_point(sx, sy),
-         ::double_point(ex, ey),
+         ::f64_point(sx, sy),
+         ::f64_point(ex, ey),
          icol,
          ocol);
    
@@ -386,7 +386,7 @@ namespace nano2d
 
 
 
-   ::nano2d::paint draw2d_context::box_gradient(float x, float y, float w, float h, float r, float f,
+   ::nano2d::paint draw2d_context::box_gradient(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r, ::f32 f,
       ::color::color icol, ::color::color ocol)
    {
 
@@ -395,8 +395,8 @@ namespace nano2d
       m_pgraphics->constructø(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
-         ::double_point(x, y),
-         ::double_size(w, h),
+         ::f64_point(x, y),
+         ::f64_size(w, h),
          r,
          icol,
          ocol);
@@ -410,7 +410,7 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint draw2d_context::radial_gradient(float cx, float cy, float inr, float outr,
+   ::nano2d::paint draw2d_context::radial_gradient(::f32 cx, ::f32 cy, ::f32 inr, ::f32 outr,
       ::color::color icol, ::color::color ocol)
    {
 
@@ -419,8 +419,8 @@ namespace nano2d
       m_pgraphics->constructø(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
-         ::double_point(cx - inr, cy - outr),
-         ::double_size(inr * 2.0f, outr * 2.0f),
+         ::f64_point(cx - inr, cy - outr),
+         ::f64_size(inr * 2.0f, outr * 2.0f),
          icol,
          ocol);
 
@@ -434,7 +434,7 @@ namespace nano2d
 
 
 
-   ::nano2d::paint draw2d_context::image_pattern_from_index(float cx, float cy, float w, float h, float angle, float alpha, int iImage)
+   ::nano2d::paint draw2d_context::image_pattern_from_index(::f32 cx, ::f32 cy, ::f32 w, ::f32 h, ::f32 angle, ::f32 alpha, ::i32 iImage)
    {
 
       if (iImage <= 0)
@@ -451,12 +451,12 @@ namespace nano2d
    }
 
 
-   ::nano2d::paint draw2d_context::image_pattern_from_image(float cx, float cy, float w, float h, float angle, float alpha, ::image::image *pimage)
+   ::nano2d::paint draw2d_context::image_pattern_from_image(::f32 cx, ::f32 cy, ::f32 w, ::f32 h, ::f32 angle, ::f32 alpha, ::image::image *pimage)
    {
 
       auto& paintimage = _create_new_paint_image();
 
-      ::double_rectangle rectangleTarget(::double_point(cx, cy), ::double_size(w, h));
+      ::f64_rectangle rectangleTarget(::f64_point(cx, cy), ::f64_size(w, h));
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -490,7 +490,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::font_size(float size)
+   void draw2d_context::font_size(::f32 size)
    {
 
       m_pstate->m_fFontSize = size;
@@ -557,7 +557,7 @@ namespace nano2d
    }
 
 
-   void __font_size(::write_text::font * pfont, float size)
+   void __font_size(::write_text::font * pfont, ::f32 size)
    {
 
       pfont->m_fontsize = size * 0.8_px;
@@ -639,10 +639,10 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
    }
 
-   void draw2d_context::scissor(float x, float y, float w, float h)
+   void draw2d_context::scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h)
    {
 
-      auto r = double_rectangle_dimension(x, y, w, h);
+      auto r = f64_rectangle_dimension(x, y, w, h);
 
       m_pgraphics->reset_clip();
 
@@ -651,10 +651,10 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
    }
 
 
-   void draw2d_context::intersect_scissor(float x, float y, float w, float h)
+   void draw2d_context::intersect_scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h)
    {
 
-      auto r = double_rectangle_dimension(x, y, w, h);
+      auto r = f64_rectangle_dimension(x, y, w, h);
 
       m_pgraphics->intersect_clip(r);
 
@@ -682,7 +682,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   void draw2d_context::stroke_width(float width)
+   void draw2d_context::stroke_width(::f32 width)
    {
       ::pointer < draw2d_state > pstate = m_pstate;
 
@@ -695,7 +695,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   void draw2d_context::text_align(int align)
+   void draw2d_context::text_align(::i32 align)
    {
 
       m_pstate->m_ealignText = e_align_none;
@@ -743,7 +743,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   ::float_rectangle draw2d_context::text(float x, float y, const ::scoped_string& scopedstr)
+   ::f32_rectangle draw2d_context::text(::f32 x, ::f32 y, const ::scoped_string& scopedstr)
    {
       
       //::string strText(string, end ? end - string : string_safe_length(string));
@@ -754,9 +754,9 @@ pstate->m_ppen->m_color = color;
 
       m_pgraphics->set(pstate->m_pbrush);
 
-      double offsetx = 0.0;
+      ::f64 offsetx = 0.0;
 
-      double offsety = 0.0;
+      ::f64 offsety = 0.0;
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
@@ -789,10 +789,10 @@ pstate->m_ppen->m_color = color;
 
       }
 
-      ::float_rectangle r;
+      ::f32_rectangle r;
 
-      r.left = (float) ((double)x + offsetx);
-      r.top = (float) ((double)y + offsety);
+      r.left = (::f32) ((::f64)x + offsetx);
+      r.top = (::f32) ((::f64)y + offsety);
       r.set_size(size);
 
       auto ealignForDrawText = m_pstate->m_ealignText;
@@ -804,19 +804,19 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   int draw2d_context::text_glyph_positions(float x, float y, const ::scoped_string& scopedstr, ::nano2d::glyphPosition * positions, int maxPositions)
+   ::i32 draw2d_context::text_glyph_positions(::f32 x, ::f32 y, const ::scoped_string& scopedstr, ::nano2d::glyphPosition * positions, ::i32 maxPositions)
    {
 
-      double_array daLeft;
-      double_array daRight;
+      f64_array daLeft;
+      f64_array daRight;
 
       __set_current_font();
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
-      double offsetx = 0.0;
+      ::f64 offsetx = 0.0;
 
-      double offsety = 0.0;
+      ::f64 offsety = 0.0;
 
       if (m_pstate->m_ealignText & ::e_align_right)
       {
@@ -847,18 +847,18 @@ pstate->m_ppen->m_color = color;
 
       character_metric(daLeft, daRight, scopedstr);
 
-      const char * pszStart = scopedstr.begin();
+      const_char_pointer pszStart = scopedstr.begin();
 
-      const char * psz = pszStart;
+      const_char_pointer psz = pszStart;
        
-      const char * pszEnd = scopedstr.end();
+      const_char_pointer pszEnd = scopedstr.end();
 
-      int iChar = 0;
+      ::i32 iChar = 0;
 
       while (psz < pszEnd && iChar < maxPositions)
       {
 
-         int iLen = get_utf8_char_length(psz);
+         ::i32 iLen = get_utf8_char_length(psz);
          
          if(iLen < 0)
          {
@@ -877,11 +877,11 @@ pstate->m_ppen->m_color = color;
 
          position.str = psz;
 
-         position.x = (float) (x + offsetx + dLeft);
+         position.x = (::f32) (x + offsetx + dLeft);
 
-         position.minx = (float) (x + offsetx + dLeft);
+         position.minx = (::f32) (x + offsetx + dLeft);
 
-         position.maxx = (float) (x + offsetx + dRight);
+         position.maxx = (::f32) (x + offsetx + dRight);
 
          psz += iLen;
 
@@ -894,7 +894,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, ::float_rectangle * bounds)
+   ::f32 draw2d_context::text_bounds(::f32 x, ::f32 y, const ::scoped_string & scopedstr, ::f32_rectangle * bounds)
    {
 
       //::string strText(string, end ? end - string : string_safe_length(scopedstr));
@@ -912,9 +912,9 @@ pstate->m_ppen->m_color = color;
 
       //}
 
-      double offsetx = 0.0;
+      ::f64 offsetx = 0.0;
 
-      double offsety = 0.0;
+      ::f64 offsety = 0.0;
 
       if (m_pstate->m_ealignText & ::e_align_right)
       {
@@ -945,18 +945,18 @@ pstate->m_ppen->m_color = color;
       if (bounds)
       {
 
-         bounds->left = (float) (x + offsetx);
-         bounds->top = (float) (y + offsety);
+         bounds->left = (::f32) (x + offsetx);
+         bounds->top = (::f32) (y + offsety);
          bounds->set_size(size);
          
       }
 
-      return (float) (x + offsetx + size.cx);
+      return (::f32) (x + offsetx + size.cx);
 
    }
 
 
-void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float * pfLineHeight)
+void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32 * pfLineHeight)
 {
    
    __set_current_font();
@@ -966,28 +966,28 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    if(pfAscender)
    {
       
-      *pfAscender = (float) textmetrics.m_dAscent;
+      *pfAscender = (::f32) textmetrics.m_dAscent;
       
    }
    
    if(pfDescender)
    {
     
-      *pfDescender = (float) textmetrics.m_dAscent;
+      *pfDescender = (::f32) textmetrics.m_dAscent;
       
    }
    
    if(pfLineHeight)
    {
    
-      *pfLineHeight = (float) textmetrics.get_line_height();
+      *pfLineHeight = (::f32) textmetrics.get_line_height();
       
    }
 
 }
 
 
-   void draw2d_context::move_to(float x, float y)
+   void draw2d_context::move_to(::f32 x, ::f32 y)
    {
       
       ::pointer < draw2d_state > pstate = m_pstate;
@@ -996,7 +996,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->set_current_point(::double_point(x, y));
+         pstate->m_ppath->set_current_point(::f64_point(x, y));
 
       }
       else
@@ -1013,7 +1013,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::line_to(float x, float y)
+   void draw2d_context::line_to(::f32 x, ::f32 y)
    {
       
       ::pointer < draw2d_state > pstate = m_pstate;
@@ -1022,7 +1022,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->add_line(::double_point(x, y));
+         pstate->m_ppath->add_line(::f64_point(x, y));
 
       }
       else
@@ -1046,7 +1046,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::rectangle(float x, float y, float w, float h)
+   void draw2d_context::rectangle(::f32 x, ::f32 y, ::f32 w, ::f32 h)
    {
       
       ::pointer < draw2d_state > pstate = m_pstate;
@@ -1055,23 +1055,23 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->add_rectangle(double_rectangle_dimension(x, y, w, h));
+         pstate->m_ppath->add_rectangle(f64_rectangle_dimension(x, y, w, h));
 
       }
       else
       {
 
-         m_pgraphics->rectangle(double_rectangle_dimension(x, y, w, h));
+         m_pgraphics->rectangle(f64_rectangle_dimension(x, y, w, h));
 
       }
 
    }
 
 
-   void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
+   void draw2d_context::ellipse(::f32 cx, ::f32 cy, ::f32 rx, ::f32 ry)
    {
       
-      ::double_ellipse ellipse;
+      ::f64_ellipse ellipse;
       
       ellipse.left = cx - rx;
       ellipse.top = cy - ry;
@@ -1098,10 +1098,10 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::arc(float cx, float cy, float r, ::float_angle a0, ::float_angle a1, int dir)
+   void draw2d_context::arc(::f32 cx, ::f32 cy, ::f32 r, ::f32_angle a0, ::f32_angle a1, ::i32 dir)
    {
       
-      ::double_rectangle rectangle(cx - r, cy - r, cx + r, cy + r);
+      ::f64_rectangle rectangle(cx - r, cy - r, cx + r, cy + r);
 
       ::pointer < draw2d_state > pstate = m_pstate;
 
@@ -1122,7 +1122,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+   void draw2d_context::frame_pixel_perfect_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, const ::color::color& color, ::i32 width)
    {
 
       m_pgraphics->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
@@ -1130,7 +1130,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   int draw2d_context::create_image(const ::scoped_string& scopedstrFilename, int imageFlags)
+   ::i32 draw2d_context::create_image(const ::scoped_string& scopedstrFilename, ::i32 imageFlags)
    {
 
       return m_pgraphics->image()->image_integer(scopedstrFilename);
@@ -1138,7 +1138,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
+   ::i32 draw2d_context::create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan)
    {
 
       return m_pgraphics->m_papplication->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
@@ -1146,7 +1146,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::image_size(int image, int * w, int * h)
+   void draw2d_context::image_size(::i32 image, ::i32 * w, ::i32 * h)
    {
 
       if (image <= 0)
@@ -1179,7 +1179,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::update_image(int image, const void * data)
+   void draw2d_context::update_image(::i32 image, const void * data)
    {
 
       if (image <= 0)
@@ -1200,10 +1200,10 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::_draw_image(float x, float y, float w, float h, ::image::image *pimage)
+   void draw2d_context::_draw_image(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::image::image *pimage)
    {
 
-      ::double_rectangle rectangleTarget(x, y, x + w, y + h);
+      ::f64_rectangle rectangleTarget(x, y, x + w, y + h);
 
       ::image::image_source imagesource(pimage);
 
@@ -1219,7 +1219,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStart, character_count iEnd)
+   ::collection::count draw2d_context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::scoped_string & scopedstr, character_count iStart, character_count iEnd)
    {
 
       __set_current_font();

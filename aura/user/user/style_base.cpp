@@ -283,7 +283,7 @@ namespace user
    }
 
 
-   bool style_base::get_int(::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate)
+   bool style_base::get_int(::user::interaction * pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate)
    {
 
       return false;
@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   bool style_base::get_double(::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate)
+   bool style_base::get_double(::user::interaction* pinteraction, ::f64 & d, ::user::enum_double edouble, ::user::enum_state estate)
    {
 
       return false;

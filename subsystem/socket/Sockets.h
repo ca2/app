@@ -22,9 +22,9 @@ namespace subsystem
       // Throws exception if winsock already initialized or
       // if was error during winsock startup.
 
-      virtual void startSockets(int loVer = -1, int hiVer = -1);
+      virtual void startSockets(::i32 loVer = -1, ::i32 hiVer = -1);
 
-      virtual void _startSockets(int loVer = -1, int hiVer = -1);
+      virtual void _startSockets(::i32 loVer = -1, ::i32 hiVer = -1);
 
       //  Deinitializes Windows sockets subsystem.
       // Throws exception if winsock does not initialized or

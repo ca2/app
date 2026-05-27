@@ -27,15 +27,15 @@ namespace calculator
 
       void error(const ::scoped_string & scopedstrMessage);
       void syntax_error(const ::scoped_string & scopedstrMessage);
-      void expect(char ch);
+      void expect(::i8 ch);
 
 
       ::calculator::matter *new_node();
-      int precedence(token::enum_type next, token::enum_type current);
-      double parse(::calculator::matter *current_node);
-      double node_traverse(::calculator::matter *current_node, double value);
-      double apply_traverse_operator(::calculator::matter *current_node, double total);
-      double apply_operator(::calculator::matter *current_node, double total, double m_etype);
+      ::i32 precedence(token::enum_type next, token::enum_type current);
+      ::f64 parse(::calculator::matter *current_node);
+      ::f64 node_traverse(::calculator::matter *current_node, ::f64 value);
+      ::f64 apply_traverse_operator(::calculator::matter *current_node, ::f64 total);
+      ::f64 apply_operator(::calculator::matter *current_node, ::f64 total, ::f64 m_etype);
 
 
    };

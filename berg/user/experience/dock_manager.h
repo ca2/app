@@ -30,8 +30,8 @@ namespace experience
       ::i32_point                         m_pointMove;
       ::i32_map < i32_rectangle >         m_mapWorkspaceRect;
       bool                                m_bPendingCursorPos;
-      int                                 m_iDockMove;
-      int                                 m_iConsiderDockMove;
+      ::i32                                 m_iDockMove;
+      ::i32                                 m_iConsiderDockMove;
       ::i32_rectangle                     m_rectangleOnDockStart;
       ::i32_point                         m_pointLastRepositionCursorOrigin;
       ::i32_point                         m_pointLastRepositionWindowOrigin;

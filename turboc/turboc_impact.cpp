@@ -196,7 +196,7 @@ namespace turboc
          if(m_bNewLayout)
          {
 
-            float fHeight = 100.0;
+            ::f32 fHeight = 100.0;
 
 
 
@@ -209,7 +209,7 @@ namespace turboc
 
             ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
-            double ratey = fHeight * 0.84 / size.cy;
+            ::f64 ratey = fHeight * 0.84 / size.cy;
 
             m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
@@ -244,7 +244,7 @@ namespace turboc
 
          ::color::color ca;
 
-         double dPeriod = (500) * 11;
+         ::f64 dPeriod = (500) * 11;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.49,0.84);
 
@@ -343,7 +343,7 @@ namespace turboc
       if(m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         unsigned char uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
+         ::u8 uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
          ::i32_rectangle rectangleX;
 
@@ -423,7 +423,7 @@ namespace turboc
 
       ::draw2d::graphics_pointer & pgraphics = m_pimageFast->get_graphics();
 
-      float fHeight = 100.0;
+      ::f32 fHeight = 100.0;
 
       m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
@@ -433,7 +433,7 @@ namespace turboc
 
       ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
-      double ratey = fHeight * 0.84 / size.cy;
+      ::f64 ratey = fHeight * 0.84 / size.cy;
 
       m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
@@ -602,23 +602,23 @@ namespace turboc
       if(m_eeffect == effect_crt)
       {
 
-         int iFactor = 3;
-         int iMult = 1 << iFactor;
+         ::i32 iFactor = 3;
+         ::i32 iMult = 1 << iFactor;
 
 /*         pimage->g()->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pimage->g(),0,0,pimage->width(),pimage->height());
 /*         pimage->g()->StretchBlt(0,0,pimage->width(),pimage->height(),pimage->g(),0,0,pimage->width() / iMult,pimage->height() / iMult);
 
          color32_t color32;
 
-         unsigned char a,r,g,b,rm,gm,bm;
+         ::u8 a,r,g,b,rm,gm,bm;
 
-/*         int h = (pimage->height() / 3) * 3;
+/*         ::i32 h = (pimage->height() / 3) * 3;
 
-/*         int w = (pimage->width() / 3) * 3;
+/*         ::i32 w = (pimage->width() / 3) * 3;
 
-         for(int i = 0; i < h; i+=3)
+         for(::i32 i = 0; i < h; i+=3)
          {
-            for(int j = 0; j < w; j+=3)
+            for(::i32 j = 0; j < w; j+=3)
             {
 /*               color32 = pimage->get_data()[i * pimage->width() + j];
                a = color32_byte_opacity(color32);
@@ -646,7 +646,7 @@ namespace turboc
 
 /*         pimage->g()->SelectObject(pen);
 
-/*         for(int i = 0; i < pimage->height(); i+=3)
+/*         for(::i32 i = 0; i < pimage->height(); i+=3)
          {
 
 /*            pimage->g()->draw_line(0,i,pimage->width(),i);

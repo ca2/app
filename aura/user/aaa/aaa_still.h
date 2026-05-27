@@ -18,16 +18,16 @@ namespace user
       };
 
       ::image::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::double_rectangle                              m_rectangleMargin;
-      //::double_rectangle                              m_rectangleBorder;
-      //::double_rectangle                              m_rectanglePadding;
+      //::f64_rectangle                              m_rectangleMargin;
+      //::f64_rectangle                              m_rectangleBorder;
+      //::f64_rectangle                              m_rectanglePadding;
       ::e_align                             m_ealignText;
       e_style                             m_estyle;
-      ::double_rectangle                              m_rectangleText;
+      ::f64_rectangle                              m_rectangleText;
       ::collection::index                               m_iClick;
       e_stock_icon                        m_estockicon;
 
-      ::double_rectangle                              m_rectangleCheckBox;
+      ::f64_rectangle                              m_rectangleCheckBox;
       string                              m_strLink;
       ::write_text::font_pointer              m_pfont;
       
@@ -83,7 +83,7 @@ namespace user
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(RECT32 * prect);
 
-      virtual int BaseToolTipGetIndex();
+      virtual ::i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

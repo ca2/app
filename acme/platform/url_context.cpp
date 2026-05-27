@@ -922,7 +922,7 @@ namespace url
    //}
 
 
-   //int url::get_port(const ::scoped_string & scopedstrParam, int iDefault)
+   //::i32 url::get_port(const ::scoped_string & scopedstrParam, ::i32 iDefault)
    //{
 
    //   string strRoot = get_root(strParam);
@@ -1276,7 +1276,7 @@ namespace url
 //
 //      character_count i = 0;
 //
-//      char ch;
+//      ::i8 ch;
 //
 //      while(i < iLen)
 //      {
@@ -1445,7 +1445,7 @@ namespace url
 ////
 ////      string str;
 ////
-////      char * psz = str.get_buffer(iLenUrl + iLenKey + strValue.length() + 2);
+////      char_pointer psz = str.get_buffer(iLenUrl + iLenKey + strValue.length() + 2);
 ////
 ////      if(scopedstrQuery == nullptr)
 ////      {
@@ -1459,7 +1459,7 @@ namespace url
 ////      else
 ////      {
 ////         character_count iFinalLen = pszQuery - strUrlParam;
-//////         int pPos = 0;
+//////         ::i32 pPos = 0;
 ////         ansi_count_copy(scopedstr, strUrlParam, iFinalLen);
 ////         psz[iFinalLen] = '?';
 ////         iFinalLen++;
@@ -2464,7 +2464,7 @@ namespace url
 //   }
 //
 //
-//   inline bool character_isalnum(int i)
+//   inline bool character_isalnum(::i32 i)
 //   {
 //
 //      return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');
@@ -2660,7 +2660,7 @@ namespace url
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
+//         ::i8 ch = (::i8)strtol(str.substr(iFind + 1,2),nullptr,16);
 //
 //         if(ch != 0)
 //         {
@@ -2997,7 +2997,7 @@ namespace url
 //
 //void openURL(const string& url_str);
 //
-//int ui_open_url(const_char_pointer psz);
+//::i32 ui_open_url(const_char_pointer psz);
 //
 //void openURL(const string& url_str)
 //{
@@ -3025,7 +3025,7 @@ namespace url
 ////#define strdup _strdup
 ////#endif
 ////
-////CLASS_DECL_ACME ::i32_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
+////CLASS_DECL_ACME ::i32_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const_char_pointer pszServerName, ::i32 bInteractive)
 ////{
 ////
 ////   ::platform::application * papp = (::platform::application *) instance;
@@ -3141,7 +3141,7 @@ namespace url
 ////
 ////   character_count i = 0;
 ////
-////   char ch;
+////   ::i8 ch;
 ////
 ////   while (i < iLen)
 ////   {
@@ -3200,7 +3200,7 @@ namespace url
 ////      else
 ////      {
 ////
-////         char ch = (char)strtol(str.substr(iFind + 1, 2), nullptr, 16);
+////         ::i8 ch = (::i8)strtol(str.substr(iFind + 1, 2), nullptr, 16);
 ////
 ////         if (ch != 0)
 ////         {
@@ -3227,7 +3227,7 @@ namespace url
 ////
 ////   string strDecode;
 ////
-////   char* psz = strDecode.get_buffer(iLen * 4);
+////   char_pointer psz = strDecode.get_buffer(iLen * 4);
 ////
 ////   character_count i = 0;
 ////
@@ -3262,7 +3262,7 @@ namespace url
 ////         {
 ////            i++;
 ////            iLen--;
-////            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
+////            *psz = (::i8)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 ////
 ////            psz++;
 ////            pszUrl += 2;
@@ -3400,13 +3400,13 @@ namespace url
 //
 //   string str;
 //
-//   //char sz[256];
+//   //::i8 sz[256];
 //
 //   auto psz = scopedstr.m_begin;
 //
 //   auto pszEnd = scopedstr.m_end;
 //
-//   int len = 0;
+//   ::i32 len = 0;
 //
 //   while (scopedstr < pszEnd)
 //   {
@@ -3427,7 +3427,7 @@ namespace url
 //         || iCharacter == '_')
 //      {
 //
-//         str += (char)iCharacter;
+//         str += (::i8)iCharacter;
 //
 //      }
 //      else if (iCharacter == ' ')
@@ -3439,10 +3439,10 @@ namespace url
 //      else
 //      {
 //
-//         for (int i = 0; i < len; i++)
+//         for (::i32 i = 0; i < len; i++)
 //         {
 //
-//            int iChar = ((int)psz[i]) & 0x000000ff;
+//            ::i32 iChar = ((::i32)psz[i]) & 0x000000ff;
 //
 //            str.append_formatf("%%%02X", iChar);
 //
@@ -3540,7 +3540,7 @@ namespace url
 //
 //void openURL(const string& url_str);
 //
-//int ui_open_url(const_char_pointer psz);
+//::i32 ui_open_url(const_char_pointer psz);
 //
 ////void openURL(const string& url_str)
 ////{
@@ -3568,7 +3568,7 @@ namespace url
 ////#define strdup _strdup
 ////#endif
 ////
-////CLASS_DECL_ACME ::i32_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
+////CLASS_DECL_ACME ::i32_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const_char_pointer pszServerName, ::i32 bInteractive)
 ////{
 ////
 ////   ::application * papp = (::apex::application *) instance;

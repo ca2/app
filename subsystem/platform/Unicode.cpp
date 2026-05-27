@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Unicode.h"
 
-unsigned short Unicode::SIGNATURE = 0xFEFF;
+::u16 Unicode::SIGNATURE = 0xFEFF;
 
 bool Unicode::isEnabled()
 {

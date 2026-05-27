@@ -89,9 +89,9 @@ COMMAND_LINE_ARGUMENT_A old_args[] =
 	{ nullptr, 0, nullptr, nullptr, nullptr, -1, nullptr, nullptr }
 };
 
-BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* ServerPort)
+BOOL freerdp_client_old_parse_hostname(char_pointer str, char_pointer * ServerHostname, ::u32* ServerPort)
 {
-	char* p;
+	char_pointer p;
 
 	if (str[0] == '[' && (p = strchr(str, ']'))
 			&& (p[1] == 0 || (p[1] == ':' && !strchr(p + 2, ':'))))
@@ -100,7 +100,7 @@ BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* 
 		if (!(*ServerHostname = _strdup(str + 1)))
 			return false;
 
-		if ((p = strchr((char*) *ServerHostname, ']')))
+		if ((p = strchr((char_pointer ) *ServerHostname, ']')))
 		{
 			*p = 0;
 
@@ -114,7 +114,7 @@ BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* 
 		if (!(*ServerHostname = _strdup(str)))
 			return false;
 
-		if ((p = strchr((char*) *ServerHostname, ':')) && !strchr(p + 1, ':'))
+		if ((p = strchr((char_pointer ) *ServerHostname, ':')) && !strchr(p + 1, ':'))
 		{
 			*p = 0;
 			*ServerPort = atoi(p + 1);
@@ -123,9 +123,9 @@ BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* 
 	return true;
 }
 
-int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
+::i32 freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 {
-	int args_handled = 0;
+	::i32 args_handled = 0;
 	if (strcmp(args->argv[0], "cliprdr") == 0)
 	{
 		args_handled++;
@@ -197,7 +197,7 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 	return args_handled;
 }
 
-int freerdp_client_old_command_line_pre_filter(void* context, int index, int argc, const ::string &* argv)
+::i32 freerdp_client_old_command_line_pre_filter(void* context, ::i32 index, ::i32 argc, const ::string &* argv)
 {
 	rdpSettings* settings = (rdpSettings*) context;
 
@@ -215,7 +215,7 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 				return -1;
 			}
 
-			if (!freerdp_client_old_parse_hostname((char*) argv[index],
+			if (!freerdp_client_old_parse_hostname((char_pointer ) argv[index],
 					&settings->ServerHostname, &settings->ServerPort))
 				return -1;
 
@@ -229,11 +229,11 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 
 	if (strcmp("--plugin", argv[index]) == 0)
 	{
-		int args_handled = 0;
-		int length;
-		char *a, *p;
-		int i, j, t;
-		int old_index;
+		::i32 args_handled = 0;
+		::i32 length;
+		char_pointer a, *p;
+		::i32 i, j, t;
+		::i32 old_index;
 		ADDIN_ARGV* args;
 
 		old_index = index;
@@ -247,7 +247,7 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 		args = (ADDIN_ARGV*) malloc(sizeof(ADDIN_ARGV));
 		if (!args)
 			return -1;
-		args->argv = (char**) calloc(argc, sizeof(char*));
+		args->argv = (char_pointer *) calloc(argc, sizeof(char_pointer ));
 		if (!args->argv)
 		{
 			free(args);
@@ -271,7 +271,7 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 					return -1;
 				}
 
-				for (j = 0, p = (char*) argv[index]; (j < 4) && (p != nullptr); j++)
+				for (j = 0, p = (char_pointer ) argv[index]; (j < 4) && (p != nullptr); j++)
 				{
 					if (*p == '\'')
 					{
@@ -293,8 +293,8 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 					}
 					if (p != nullptr)
 					{
-						length = (int) (p - a);
-						if (!(args->argv[j + 1] = (char*) malloc(length + 1)))
+						length = (::i32) (p - a);
+						if (!(args->argv[j + 1] = (char_pointer ) malloc(length + 1)))
 						{
 							for (; j >= 0; --j)
 								free(args->argv[j]);
@@ -331,7 +331,7 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 
 				for (i = 0; i < args->argc; i++)
 					free(args->argv[i]);
-				memory_set(args->argv, 0, argc * sizeof(char*));
+				memory_set(args->argv, 0, argc * sizeof(char_pointer ));
 				index++;
 				i++;
 			}
@@ -360,16 +360,16 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 	return 0;
 }
 
-int freerdp_client_old_command_line_post_filter(void* context, COMMAND_LINE_ARGUMENT_A* arg)
+::i32 freerdp_client_old_command_line_post_filter(void* context, COMMAND_LINE_ARGUMENT_A* arg)
 {
 	return 0;
 }
 
-int freerdp_detect_old_command_line_syntax(int argc, char** argv, int* count)
+::i32 freerdp_detect_old_command_line_syntax(::i32 argc, char_pointer * argv, ::i32* count)
 {
-	int status;
+	::i32 status;
 	::u32 flags;
-	int detect_status;
+	::i32 detect_status;
 	rdpSettings* settings;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
@@ -440,11 +440,11 @@ int freerdp_detect_old_command_line_syntax(int argc, char** argv, int* count)
 	return detect_status;
 }
 
-int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSettings* settings)
+::i32 freerdp_client_parse_old_command_line_arguments(::i32 argc, char_pointer * argv, rdpSettings* settings)
 {
-	char* p;
-	char* str;
-	int status;
+	char_pointer p;
+	char_pointer str;
+	::i32 status;
 	::u32 flags;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
@@ -590,8 +590,8 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "x")
 		{
-			int type;
-			char* pEnd;
+			::i32 type;
+			char_pointer pEnd;
 
 			type = strtol(arg->Value, &pEnd, 16);
 

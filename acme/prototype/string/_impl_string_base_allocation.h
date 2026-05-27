@@ -172,7 +172,7 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
 
 
 //template < typename ITERATOR_TYPE >
-//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, ::i32 t_size >
 //inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < const OTHER_CHARACTER*, t_size >& a) :
 //   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
 //{

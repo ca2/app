@@ -41,20 +41,20 @@ SocketStream::~SocketStream()
 
 size_t SocketStream::read(void *buf, size_t wanted)
 {
-  if ((int)wanted < 0) {
+  if ((::i32)wanted < 0) {
     throw ::io_exception(error_io, "Wanted size too big.");
   }
 
-  return (size_t)m_socket->recv((char *)buf, (int)wanted);
+  return (size_t)m_socket->recv((char_pointer )buf, (::i32)wanted);
 }
 
 memsize SocketStream::defer_write(const void *buf, memsize size)
 {
-   if ((int)size < 0) {
+   if ((::i32)size < 0) {
       throw ::io_exception(error_io, _T("Size of buffer is too big."));
    }
 
-   return (size_t)m_socket->send((char *)buf, (int)size);
+   return (size_t)m_socket->send((char_pointer )buf, (::i32)size);
 
 }
 

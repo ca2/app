@@ -40,12 +40,12 @@ namespace innate_subsystem
       public:
 
       //public:
-         //Pen(int type, int width, const ::color::color & color);
+         //Pen(::i32 type, ::i32 width, const ::color::color & color);
          //Pen();
           //virtual ~FontInterface() = 0;
 
 
-         virtual void initialize_font(const char * pszFamily, int iPixelHeight, int iFontWeight = 400, bool bItalic = false) = 0;
+         virtual void initialize_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400, bool bItalic = false) = 0;
 
          //virtual void destroyGObject() = 0;
       // protected:
@@ -63,14 +63,14 @@ virtual public Composite<FontInterface>
       ImplementCompositeø(Font, font)
 
       //public:
-      //Pen(int type, int width, const ::color::color & color);
+      //Pen(::i32 type, ::i32 width, const ::color::color & color);
       //Font();
       //~Font() override;
 
 
       //void * _HGDIOBJ() override;
 
-         void initialize_font(const char* pszFamily, int iPixelHeight, int iFontWeight = 400, bool bItalic = false) override
+         void initialize_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400, bool bItalic = false) override
       {
          m_pfont->initialize_font(pszFamily, iPixelHeight, iFontWeight, bItalic);
       }

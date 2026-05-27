@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-int main(int argc, const_char_pointer argv[]) {
+::i32 main(::i32 argc, const_char_pointer argv[]) {
    // insert code here...
    std::cout << "Hello, World!\n";
    return 0;

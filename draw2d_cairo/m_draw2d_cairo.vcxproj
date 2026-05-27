@@ -2103,7 +2103,7 @@
     <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_f32_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="primitive\datetime\datetime_windows_filetime.cpp" />

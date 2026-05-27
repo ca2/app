@@ -78,8 +78,8 @@ namespace acme
          bool m_bCustomPaint;
 
 #ifdef WINDOWS_DESKTOP
-//          int m_iStyle;
-//          int m_iExStyle;
+//          ::i32 m_iStyle;
+//          ::i32 m_iExStyle;
          void * m_pHICON_Big;
          void * m_pHICON_Small;
          ::windows::window_class m_windowclassThis;
@@ -147,22 +147,22 @@ namespace acme
 
          //void message_loop() override;
 
-         //void draw(::nano::graphics::device * pnanodevice) override;
+         //void draw(::nano::graphics::context * pnanodevice) override;
 
-         //void on_draw(::nano::graphics::device * pnanodevice) override;
+         //void on_draw(::nano::graphics::context * pnanodevice) override;
 
-         //void draw(::nano::graphics::device * pnanodevice);
+         //void draw(::nano::graphics::context * pnanodevice);
 
-         virtual void _on_draw(::nano::graphics::device * pnanodevice);
+         virtual void _on_draw(::nano::graphics::context * pnanodevice);
 
-         virtual void on_window_paint(::nano::graphics::device * pnanographicsdevice);
+         virtual void on_window_paint(::nano::graphics::context * pgraphicscontext);
 
-         //virtual void on_char(int iChar);
+         //virtual void on_char(::i32 iChar);
 
          //bool is_active() override;
          //void set_active() override;
 
-         //virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
          //void delete_drawing_objects() override;
          //bool get_dark_mode() override;
@@ -200,8 +200,8 @@ namespace acme
 
          /// @brief  Child
          /// @param pnanodevice 
-         //virtual void on_draw(::nano::graphics::device * pnanodevice);
-         //virtual void on_char(int iChar);
+         //virtual void on_draw(::nano::graphics::context * pnanodevice);
+         //virtual void on_char(::i32 iChar);
          virtual void set_keyboard_focus() override;
          virtual bool is_keyboard_focusable();
          virtual bool has_keyboard_focus();
@@ -350,16 +350,16 @@ namespace acme
 
                virtual void implementation_message_loop_step();
 
-               //virtual void draw(::nano::graphics::device * pnanodevice);
+               //virtual void draw(::nano::graphics::context * pnanodevice);
 
-               //virtual void on_draw(::nano::graphics::device * pnanodevice);
+               //virtual void on_draw(::nano::graphics::context * pnanodevice);
 
-               //virtual void on_char(int iChar);
+               //virtual void on_char(::i32 iChar);
 
                //virtual bool is_active();
                //virtual void set_active();
 
-               //virtual void draw_children(::nano::graphics::device * pnanodevice);
+               //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
                //virtual void delete_drawing_objects();
                //virtual bool get_dark_mode();
@@ -406,7 +406,7 @@ namespace acme
                // virtual void nano_user_add_child(::micro::child * pchild);
 
                //virtual ::payload get_result();
-               //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+               //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
 
                virtual void display_temporary_file_with_text(const ::scoped_string & scopedstr);
@@ -452,11 +452,11 @@ namespace acme
                void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
                virtual void get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
                virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-               virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+               virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
                virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-               virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+               virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
                virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn);
-               virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
+               virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
                virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
 
 
@@ -522,13 +522,13 @@ namespace acme
 
          void on_window_size() override;
          void on_window_set_focus() override;
-         bool on_window_activate(int iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;
-         bool on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop, int iHitTest, int iMessage) override;
+         bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;
+         bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop, ::i32 iHitTest, ::i32 iMessage) override;
 
 
          bool is_window_visible() override;
          bool is_window_iconic() override;
-         float get_window_scale() override;
+         ::f32 get_window_scale() override;
 
 
          ::i32_point screen_to_window_client(const ::i32_point & point) override;
@@ -540,13 +540,13 @@ namespace acme
 
          void set_active_window() override;
          void set_window_text(const ::scoped_string & scopedstrString) override;
-         void set_window_style(int iStyle) override;
+         void set_window_style(::i32 iStyle) override;
          ::i64 get_window_style() override;
-         void show_window(int iShowFlags) override;
-         void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags) override;
+         void show_window(::i32 iShowFlags) override;
+         void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;
          void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
          void update_window() override;
-         void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, int iRedrawFlags) override;
+         void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, ::i32 iRedrawFlags) override;
          void window_set_focus() override;
          void set_foreground_window(::user::activation_token * puseractivationtoken) override;
          ::i32_rectangle window_get_client_rect() override;

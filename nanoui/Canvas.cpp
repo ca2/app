@@ -167,12 +167,12 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 
    }
 
-   pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimage);
+   pcontext->_draw_image((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, m_pimage);
 //   Screen * pscreen = screen();
 //   if (pscreen == nullptr)
 //      throw std::runtime_error("Canvas::draw(): could not find parent pscreen!");
 //
-//   float pixel_ratio = pscreen->pixel_ratio();
+//   ::f32 pixel_ratio = pscreen->pixel_ratio();
 //
 //   Widget::draw(pcontext);
 //
@@ -191,8 +191,8 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //   if (m_bDrawBorder)
 //      offset += int_sequence2(1, 1);
 //
-//   fbsize = int_sequence2(float_sequence2(fbsize) * pixel_ratio);
-//   offset = int_sequence2(float_sequence2(offset) * pixel_ratio);
+//   fbsize = int_sequence2(f32_sequence2(fbsize) * pixel_ratio);
+//   offset = int_sequence2(f32_sequence2(offset) * pixel_ratio);
 //
 //   if (m_render_to_texture) {
 //      m_render_pass->resize(fbsize);

@@ -49,7 +49,7 @@
 ////      m_var = pm;
 ////   }
 ////
-////   void payload_stream::write(char ch)
+////   void payload_stream::write(::i8 ch)
 ////   {
 ////      m_var = ch;
 ////   }
@@ -59,12 +59,12 @@
 ////      m_var = uch;
 ////   }
 ////
-////   void payload_stream::write(short sh)
+////   void payload_stream::write(::i16 sh)
 ////   {
 ////      m_var = sh;
 ////   }
 ////
-////   void payload_stream::write(unsigned short u)
+////   void payload_stream::write(::u16 u)
 ////   {
 ////      m_var = u;
 ////   }
@@ -79,7 +79,7 @@
 ////   {
 ////      m_var = b;
 ////   }
-////   void payload_stream::write(int i)
+////   void payload_stream::write(::i32 i)
 ////   {
 ////      m_var = i;
 ////   }
@@ -100,7 +100,7 @@
 ////
 ////   }
 ////#if defined(__APPLE__)
-////   void payload_stream::write(unsigned long u)
+////   void payload_stream::write(ulong u)
 ////   {
 ////
 ////      m_var = u;
@@ -108,13 +108,13 @@
 ////   }
 ////   //void write (::i64 hi);
 ////#endif
-////   void payload_stream::write(float f)
+////   void payload_stream::write(::f32 f)
 ////   {
 ////
 ////      m_var = f;
 ////
 ////   }
-////   void payload_stream::write(double d)
+////   void payload_stream::write(::f64 d)
 ////   {
 ////
 ////      m_var = d;
@@ -145,7 +145,7 @@
 ////      m_var = psz;
 ////   }
 ////#ifdef WINDOWS
-////   void payload_stream::write(const unichar * wch)
+////   void payload_stream::write(const wide_character * wch)
 ////   {
 ////      m_var = wch;
 ////   }
@@ -168,30 +168,30 @@
 ////
 ////
 ////
-////   //      virtual void read(int & i);
+////   //      virtual void read(::i32 & i);
 ////   //      virtual void read(::u32 & u);
 ////   //      virtual void read(::i64 & i);
 ////   //      virtual void read(::u64 & u);
 ////
 ////
 ////   void payload_stream::read(bool & b);
-////   void payload_stream::read(char & ch);
+////   void payload_stream::read(::i8 & ch);
 ////   void payload_stream::read(uchar & uch);
 ////#ifdef WINDOWS
 ////   void payload_stream::read(unichar & wch);
 ////#endif
-////   void payload_stream::read(short & sh);
-////   void payload_stream::read(unsigned short & u);
-////   void payload_stream::read(int & i);
+////   void payload_stream::read(::i16 & sh);
+////   void payload_stream::read(::u16 & u);
+////   void payload_stream::read(::i32 & i);
 ////   void payload_stream::read(::u32 & u);
 ////   void payload_stream::read(::i64 & i);
 ////   void payload_stream::read(::u64 & u);
 ////#ifdef __APPLE__
-////   void payload_stream::read(unsigned long & u);
+////   void payload_stream::read(ulong & u);
 ////   //virtual void read (::i64 & u);
 ////#endif
-////   void payload_stream::read(float & f);
-////   void payload_stream::read(double & d);
+////   void payload_stream::read(::f32 & f);
+////   void payload_stream::read(::f64 & d);
 ////   void payload_stream::read(::i32_rectangle * prectangle);
 //
 ////   void payload_stream::read(const i32_size & & size);
@@ -302,7 +302,7 @@
 //}
 //
 //
-//void payload_stream::exchange(const ::atom & atom, double & d)
+//void payload_stream::exchange(const ::atom & atom, ::f64 & d)
 //{
 //
 //   var_exchange(atom, d);

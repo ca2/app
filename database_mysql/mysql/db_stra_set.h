@@ -7,7 +7,7 @@ class CLASS_DECL_AURA db_stra_set :
 public:
 
 
-   int         m_iMaximumCount;
+   ::i32         m_iMaximumCount;
    ::database::key     id();
 
 

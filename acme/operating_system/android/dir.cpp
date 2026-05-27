@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-// static char * g_pszCacheDir;
+// static char_pointer g_pszCacheDir;
 
 
 // CLASS_DECL_EXPORT void nodeos_set_cache_dir(const ::scoped_string & scopedstrDir)
@@ -27,7 +27,7 @@
 // }
 
 
-// static char * g_pszHome;
+// static char_pointer g_pszHome;
 
 
 // CLASS_DECL_EXPORT void nodeos_set_home(const ::scoped_string & scopedstrDir)
@@ -53,7 +53,7 @@
 // }
 
 
-// static char * g_pszTemp = nullptr;
+// static char_pointer g_pszTemp = nullptr;
 
 
 // CLASS_DECL_EXPORT void nodeos_set_temp(const ::scoped_string & scopedstrDir)

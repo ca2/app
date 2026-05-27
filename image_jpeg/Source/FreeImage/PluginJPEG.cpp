@@ -59,7 +59,7 @@ extern "C" {
 // Plugin Interface
 // ==========================================================
 
-static int s_format_id;
+static ::i32 s_format_id;
 
 // ----------------------------------------------------------
 //   Constant declarations
@@ -128,7 +128,7 @@ typedef ErrorManager*		freeimage_error_ptr;
 
 /** Fatal errors (print message and exit) */
 static inline void
-JPEG_EXIT(j_common_ptr cinfo, int code)
+JPEG_EXIT(j_common_ptr cinfo, ::i32 code)
 {
    freeimage_error_ptr error_ptr = (freeimage_error_ptr)cinfo->err;
    error_ptr->pub.msg_code = code;
@@ -137,7 +137,7 @@ JPEG_EXIT(j_common_ptr cinfo, int code)
 
 /** Nonfatal errors (we can keep going, but the data is probably corrupt) */
 static inline void
-JPEG_WARNING(j_common_ptr cinfo, int code)
+JPEG_WARNING(j_common_ptr cinfo, ::i32 code)
 {
    freeimage_error_ptr error_ptr = (freeimage_error_ptr)cinfo->err;
    error_ptr->pub.msg_code = code;
@@ -177,7 +177,7 @@ jpeg_error_exit (j_common_ptr cinfo)
 METHODDEF(void)
 jpeg_output_message (j_common_ptr cinfo)
 {
-   char buffer[JMSG_LENGTH_MAX];
+   ::i8 buffer[JMSG_LENGTH_MAX];
    freeimage_error_ptr error_ptr = (freeimage_error_ptr)cinfo->err;
 
    // create the message
@@ -296,7 +296,7 @@ init_source (j_decompress_ptr cinfo)
 	bytes_in_buffer), reset the pointer & count to the start of the
 	buffer, and return true indicating that the buffer has been reloaded.
 	It is not necessary to fill the buffer entirely, only to obtain at
-	least one more unsigned char.  bytes_in_buffer MUST be set to a positive value
+	least one more ::u8.  bytes_in_buffer MUST be set to a positive value
 	if true is returned.  A false return should only be used when I/O
 	suspension is desired.
 */
@@ -460,13 +460,13 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 /**
 	Read JPEG_COM marker (comment)
 */
-/*static ::i32_bool jpeg_read_comment(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
+/*static ::i32_bool jpeg_read_comment(FIBITMAP * pimage, const ::u8 *dataptr, ::u32 datalen)
 {
    size_t length = datalen;
-   unsigned char *profile = (unsigned char*)dataptr;
+   ::u8 *profile = (::u8*)dataptr;
 
    // read the comment
-   char *value = (char*)malloc((length + 1) * sizeof(char));
+   char_pointer value = (char_pointer )malloc((length + 1) * sizeof(::i8));
    if(value == nullptr) return false;
    ::memory_copy(value, profile, length);
    value[length] = '\0';
@@ -507,7 +507,7 @@ static ::i32_bool
 marker_is_icc(jpeg_saved_marker_ptr marker)
 {
    // marker identifying string "ICC_PROFILE" (null-terminated)
-   const unsigned char icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
+   const ::u8 icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
 
    if(marker->marker == ICC_MARKER)
    {
@@ -543,18 +543,18 @@ marker_is_icc(jpeg_saved_marker_ptr marker)
   return false.  You might want to issue an error message instead.
 */
 static ::i32_bool
-jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *icc_data_len)
+jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, ::u32 *icc_data_len)
 {
    jpeg_saved_marker_ptr marker;
-   int num_markers = 0;
-   int seq_no;
+   ::i32 num_markers = 0;
+   ::i32 seq_no;
    JOCTET *icc_data;
-   unsigned total_length;
+   ::u32 total_length;
 
-   const int MAX_SEQ_NO = 255;			// sufficient since marker numbers are bytes
-   unsigned char marker_present[MAX_SEQ_NO+1];	// 1 if marker found
-   unsigned data_length[MAX_SEQ_NO+1];	// i32_size of profile data in marker
-   unsigned data_offset[MAX_SEQ_NO+1];	// offset for data in marker
+   const ::i32 MAX_SEQ_NO = 255;			// sufficient since marker numbers are bytes
+   ::u8 marker_present[MAX_SEQ_NO+1];	// 1 if marker found
+   ::u32 data_length[MAX_SEQ_NO+1];	// i32_size of profile data in marker
+   ::u32 data_offset[MAX_SEQ_NO+1];	// offset for data in marker
 
    *icc_data_ptr = nullptr;		// avoid confusion if false return
    *icc_data_len = 0;
@@ -628,7 +628,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
       {
          JOCTET *src_ptr;
          JOCTET *dst_ptr;
-         unsigned length;
+         ::u32 length;
          seq_no = GETJOCTET(marker->data[12]);
          dst_ptr = icc_data + data_offset[seq_no];
          src_ptr = marker->data + ICC_HEADER_SIZE;
@@ -650,7 +650,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
 	Read JPEG_APPD marker (IPTC or Adobe Photoshop profile)
 */
 static ::i32_bool
-/*jpeg_read_iptc_profile(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
+/*jpeg_read_iptc_profile(FIBITMAP * pimage, const ::u8 *dataptr, ::u32 datalen)
 {
 /*   return read_iptc_profile(pimage, dataptr, datalen);
 }
@@ -663,7 +663,7 @@ static ::i32_bool
 	@return Returns true if successful, false otherwise
 */
 static ::i32_bool
-/*jpeg_read_xmp_profile(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
+/*jpeg_read_xmp_profile(FIBITMAP * pimage, const ::u8 *dataptr, ::u32 datalen)
 {
    // marker identifying string for XMP (null terminated)
    const_char_pointer xmp_signature = "http://ns.adobe.com/xap/1.0/";
@@ -671,7 +671,7 @@ static ::i32_bool
    const size_t xmp_signature_size = strlen(xmp_signature) + 1;
 
    size_t length = datalen;
-   unsigned char *profile = (unsigned char*)dataptr;
+   ::u8 *profile = (::u8*)dataptr;
 
    if(length <= xmp_signature_size)
    {
@@ -720,18 +720,18 @@ static ::i32_bool
 	@return Returns true if successful, false otherwise
 */
 static ::i32_bool
-/*jpeg_read_jfxx(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
+/*jpeg_read_jfxx(FIBITMAP * pimage, const ::u8 *dataptr, ::u32 datalen)
 {
    if(datalen < 6)
    {
       return false;
    }
 
-   const int id_length = 5;
-   const unsigned char *data = dataptr + id_length;
-   unsigned remaining = datalen - id_length;
+   const ::i32 id_length = 5;
+   const ::u8 *data = dataptr + id_length;
+   ::u32 remaining = datalen - id_length;
 
-   const unsigned char type = *data;
+   const ::u8 type = *data;
    ++data;
    --remaining;
 
@@ -740,7 +740,7 @@ static ::i32_bool
    case JFXX_TYPE_JPEG:
    {
       // load the thumbnail
-      FIMEMORY* hmem = FreeImage_OpenMemory(const_cast<unsigned char*>(data), remaining);
+      FIMEMORY* hmem = FreeImage_OpenMemory(const_cast<::u8*>(data), remaining);
       FIBITMAP* thumbnail = FreeImage_LoadFromMemory(FreeImage_GetFIFFromFormat("JPEG"), hmem);
       FreeImage_CloseMemory(hmem);
       // store the thumbnail
@@ -809,8 +809,8 @@ static ::i32_bool
    }
 
    // ICC profile
-   unsigned char *icc_profile = nullptr;
-   unsigned icc_length = 0;
+   ::u8 *icc_profile = nullptr;
+   ::u32 icc_length = 0;
 
    if( jpeg_read_icc_profile(cinfo, &icc_profile, &icc_length) )
    {
@@ -839,13 +839,13 @@ static ::i32_bool
 /*   FreeImage_GetMetadata(FIMD_COMMENTS, pimage, "Comment", &tag);
    if(tag)
    {
-      const_char_pointer tag_value = (char*)FreeImage_GetTagValue(tag);
+      const_char_pointer tag_value = (char_pointer )FreeImage_GetTagValue(tag);
 
       if(nullptr != tag_value)
       {
          for(long i = 0; i < (long)strlen(tag_value); i+= MAX_BYTES_IN_MARKER)
          {
-            jpeg_write_marker(cinfo, JPEG_COM, (unsigned char*)tag_value + i, (::u32) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
+            jpeg_write_marker(cinfo, JPEG_COM, (::u8*)tag_value + i, (::u32) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
          }
          return true;
       }
@@ -860,7 +860,7 @@ static ::i32_bool
 /*jpeg_write_icc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string "ICC_PROFILE" (null-terminated)
-   unsigned char icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
+   ::u8 icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
 
 /*   FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(pimage);
 
@@ -868,19 +868,19 @@ static ::i32_bool
    {
       // ICC_HEADER_SIZE: ICC signature is 'ICC_PROFILE' + 2 bytes
 
-      unsigned char *profile = (unsigned char*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(unsigned char));
+      ::u8 *profile = (::u8*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(::u8));
       if(profile == nullptr) return false;
       ::memory_copy(profile, icc_signature, 12);
 
       for(long i = 0; i < (long)iccProfile->i32_size; i += MAX_DATA_BYTES_IN_MARKER)
       {
-         unsigned length = (unsigned) minimum((long)(iccProfile->size - i), MAX_DATA_BYTES_IN_MARKER);
+         ::u32 length = (::u32) minimum((long)(iccProfile->size - i), MAX_DATA_BYTES_IN_MARKER);
          // sequence number
-         profile[12] = (unsigned char) ((i / MAX_DATA_BYTES_IN_MARKER) + 1);
+         profile[12] = (::u8) ((i / MAX_DATA_BYTES_IN_MARKER) + 1);
          // number of markers
-         profile[13] = (unsigned char) (iccProfile->size / MAX_DATA_BYTES_IN_MARKER + 1);
+         profile[13] = (::u8) (iccProfile->size / MAX_DATA_BYTES_IN_MARKER + 1);
 
-         ::memory_copy(profile + ICC_HEADER_SIZE, (unsigned char*)iccProfile->data + i, length);
+         ::memory_copy(profile + ICC_HEADER_SIZE, (::u8*)iccProfile->data + i, length);
          jpeg_write_marker(cinfo, ICC_MARKER, profile, (length + ICC_HEADER_SIZE));
       }
 
@@ -900,12 +900,12 @@ static ::i32_bool
 /*jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    //const_char_pointer ps_header = "Photoshop 3.0\x08BIM\x04\x04\x0\x0\x0\x0";
-   const unsigned tag_length = 26;
+   const ::u32 tag_length = 26;
 
 /*   if(FreeImage_GetMetadataCount(FIMD_IPTC, pimage))
    {
-      unsigned char *profile = nullptr;
-      unsigned profile_size = 0;
+      ::u8 *profile = nullptr;
+      ::u32 profile_size = 0;
 
       // create a binary profile
 /*      if(write_iptc_profile(pimage, &profile, &profile_size))
@@ -914,17 +914,17 @@ static ::i32_bool
          // write the profile
          for(long i = 0; i < (long)profile_size; i += 65517L)
          {
-            unsigned length = (unsigned) minimum((long)profile_size - i, 65517L);
-            unsigned roundup = (unsigned) (length & 0x01);	// needed for Photoshop
-            unsigned char *iptc_profile = (unsigned char*)malloc(length + roundup + tag_length);
+            ::u32 length = (::u32) minimum((long)profile_size - i, 65517L);
+            ::u32 roundup = (::u32) (length & 0x01);	// needed for Photoshop
+            ::u8 *iptc_profile = (::u8*)malloc(length + roundup + tag_length);
             if(iptc_profile == nullptr) break;
             // Photoshop identification string
             ::memory_copy(&iptc_profile[0], "Photoshop 3.0\x0", 14);
             // 8BIM segment type
             ::memory_copy(&iptc_profile[14], "8BIM\x04\x04\x0\x0\x0\x0", 10);
             // segment i32_size
-            iptc_profile[24] = (unsigned char)(length >> 8);
-            iptc_profile[25] = (unsigned char)(length & 0xFF);
+            iptc_profile[24] = (::u8)(length >> 8);
+            iptc_profile[25] = (::u8)(length & 0xFF);
             // segment data
             ::memory_copy(&iptc_profile[tag_length], &profile[i], length);
             if(roundup)
@@ -958,7 +958,7 @@ static ::i32_bool
 
    if(tag_xmp)
    {
-      const unsigned char *tag_value = (unsigned char*)FreeImage_GetTagValue(tag_xmp);
+      const ::u8 *tag_value = (::u8*)FreeImage_GetTagValue(tag_xmp);
 
       if(nullptr != tag_value)
       {
@@ -967,13 +967,13 @@ static ::i32_bool
 
          ::u32 tag_length = FreeImage_GetTagLength(tag_xmp);
 
-         unsigned char *profile = (unsigned char*)malloc((tag_length + xmp_header_size) * sizeof(unsigned char));
+         ::u8 *profile = (::u8*)malloc((tag_length + xmp_header_size) * sizeof(::u8));
          if(profile == nullptr) return false;
          ::memory_copy(profile, xmp_signature, xmp_header_size);
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
          {
-            unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
+            ::u32 length = (::u32) minimum((long)(tag_length - i), 65504L);
 
             ::memory_copy(profile + xmp_header_size, tag_value + i, length);
             jpeg_write_marker(cinfo, EXIF_MARKER, profile, (length + xmp_header_size));
@@ -996,14 +996,14 @@ static ::i32_bool
 /*jpeg_write_exif_profile_raw(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string for Exif = "Exif\0\0"
-   unsigned char exif_signature[6] = { 0x45, 0x78, 0x69, 0x66, 0x00, 0x00 };
+   ::u8 exif_signature[6] = { 0x45, 0x78, 0x69, 0x66, 0x00, 0x00 };
 
    FITAG *tag_exif = nullptr;
 /*   FreeImage_GetMetadata(FIMD_EXIF_RAW, pimage, g_TagLib_ExifRawFieldName, &tag_exif);
 
    if(tag_exif)
    {
-      const unsigned char *tag_value = (unsigned char*)FreeImage_GetTagValue(tag_exif);
+      const ::u8 *tag_value = (::u8*)FreeImage_GetTagValue(tag_exif);
 
       // verify the identifying string
       if(memcmp(exif_signature, tag_value, sizeof(exif_signature)) != 0)
@@ -1016,12 +1016,12 @@ static ::i32_bool
       {
          ::u32 tag_length = FreeImage_GetTagLength(tag_exif);
 
-         unsigned char *profile = (unsigned char*)malloc(tag_length * sizeof(unsigned char));
+         ::u8 *profile = (::u8*)malloc(tag_length * sizeof(::u8));
          if(profile == nullptr) return false;
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
          {
-            unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
+            ::u32 length = (::u32) minimum((long)(tag_length - i), 65504L);
 
             ::memory_copy(profile, tag_value + i, length);
             jpeg_write_marker(cinfo, EXIF_MARKER, profile, length);
@@ -1077,13 +1077,13 @@ static ::i32_bool
       return false;
    }
 
-   unsigned char* thData = nullptr;
+   ::u8* thData = nullptr;
    ::u32 thSize = 0;
 
    FreeImage_AcquireMemory(stream, &thData, &thSize);
 
-   unsigned char id_length = 5; //< "JFXX"
-   unsigned char type = JFXX_TYPE_JPEG;
+   ::u8 id_length = 5; //< "JFXX"
+   ::u8 type = JFXX_TYPE_JPEG;
 
    ::u32 totalsize = id_length + sizeof(type) + thSize;
    jpeg_write_m_header(cinfo, JPEG_APP0, totalsize);
@@ -1101,10 +1101,10 @@ static ::i32_bool
 
    freeimage_dst_ptr dest = (freeimage_dst_ptr) cinfo->dest;
 
-   unsigned char* & out = dest->pub.next_output_byte;
+   ::u8* & out = dest->pub.next_output_byte;
    size_t & bufRemain = dest->pub.free_in_buffer;
 
-   const unsigned char *thData_end = thData + thSize;
+   const ::u8 *thData_end = thData + thSize;
 
    while(thData < thData_end)
    {
@@ -1157,14 +1157,14 @@ static ::i32_bool
 static void
 /*store_size_info(FIBITMAP * pimage, JDIMENSION width, JDIMENSION height)
 {
-   char buffer[256];
+   ::i8 buffer[256];
    // create a tag
    FITAG *tag = FreeImage_CreateTag();
    if(tag)
    {
       size_t length = 0;
       // set the original width
-      sprintf(buffer, "%d", (int)width);
+      sprintf(buffer, "%d", (::i32)width);
       length = strlen(buffer) + 1;	// include the nullptr/0 value
       FreeImage_SetTagKey(tag, "OriginalJPEGWidth");
       FreeImage_SetTagLength(tag, (::u32)length);
@@ -1173,7 +1173,7 @@ static void
       FreeImage_SetTagValue(tag, buffer);
 /*      FreeImage_SetMetadata(FIMD_COMMENTS, pimage, FreeImage_GetTagKey(tag), tag);
       // set the original height
-      sprintf(buffer, "%d", (int)height);
+      sprintf(buffer, "%d", (::i32)height);
       length = strlen(buffer) + 1;	// include the nullptr/0 value
       FreeImage_SetTagKey(tag, "OriginalJPEGHeight");
       FreeImage_SetTagLength(tag, (::u32)length);
@@ -1223,8 +1223,8 @@ MimeType()
 static ::i32_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
-   unsigned char jpeg_signature[] = { 0xFF, 0xD8 };
-   unsigned char signature[2] = { 0, 0 };
+   ::u8 jpeg_signature[] = { 0xFF, 0xD8 };
+   ::u8 signature[2] = { 0, 0 };
 
    io->read_proc(signature, 1, sizeof(jpeg_signature), handle);
 
@@ -1232,7 +1232,7 @@ Validate(FreeImageIO *io, fi_handle handle)
 }
 
 static ::i32_bool DLL_CALLCONV
-SupportsExportDepth(int depth)
+SupportsExportDepth(::i32 depth)
 {
    return (
           (depth == 8) ||
@@ -1261,7 +1261,7 @@ SupportsNoPixels()
 // ----------------------------------------------------------
 
 static FIBITMAP * DLL_CALLCONV
-Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
+Load(FreeImageIO *io, fi_handle handle, ::i32 page, ::i32 flags, void *data)
 {
    if (handle)
    {
@@ -1302,7 +1302,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          // step 2b: save special markers for later reading
 
          jpeg_save_markers(&cinfo, JPEG_COM, 0xFFFF);
-         for(int m = 0; m < 16; m++)
+         for(::i32 m = 0; m < 16; m++)
          {
             jpeg_save_markers(&cinfo, JPEG_APP0 + m, 0xFFFF);
          }
@@ -1314,12 +1314,12 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          // step 4: set parameters for decompression
 
          ::u32 scale_denom = 1;		// fraction by which to scale image
-         int	requested_size = flags >> 16;	// requested user i32_size in pixels
+         ::i32	requested_size = flags >> 16;	// requested user i32_size in pixels
          if(requested_size > 0)
          {
             // the JPEG codec can perform x2, x4 or x8 scaling on loading
             // try to find the more appropriate scaling according to user's need
-            double scale = maximum((double)cinfo.image_width, (double)cinfo.image_height) / (double)requested_size;
+            ::f64 scale = maximum((::f64)cinfo.image_width, (::f64)cinfo.image_height) / (::f64)requested_size;
             if(scale >= 8)
             {
                scale_denom = 8;
@@ -1382,11 +1382,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                // build a greyscale palette
 /*               RGBQUAD *colors = FreeImage_GetPalette(pimage);
 
-               for (int i = 0; i < 256; i++)
+               for (::i32 i = 0; i < 256; i++)
                {
-                  colors[i].rgbRed   = (unsigned char)i;
-                  colors[i].rgbGreen = (unsigned char)i;
-                  colors[i].rgbBlue  = (unsigned char)i;
+                  colors[i].rgbRed   = (::u8)i;
+                  colors[i].rgbGreen = (::u8)i;
+                  colors[i].rgbBlue  = (::u8)i;
                }
             }
          }
@@ -1401,14 +1401,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          if (cinfo.density_unit == 1)
          {
             // dots/inch
-/*            FreeImage_SetDotsPerMeterX(pimage, (unsigned) (((float)cinfo.X_density) / 0.0254000 + 0.5));
-/*            FreeImage_SetDotsPerMeterY(pimage, (unsigned) (((float)cinfo.Y_density) / 0.0254000 + 0.5));
+/*            FreeImage_SetDotsPerMeterX(pimage, (::u32) (((::f32)cinfo.X_density) / 0.0254000 + 0.5));
+/*            FreeImage_SetDotsPerMeterY(pimage, (::u32) (((::f32)cinfo.Y_density) / 0.0254000 + 0.5));
          }
          else if (cinfo.density_unit == 2)
          {
             // dots/cm
-/*            FreeImage_SetDotsPerMeterX(pimage, (unsigned) (cinfo.X_density * 100));
-/*            FreeImage_SetDotsPerMeterY(pimage, (unsigned) (cinfo.Y_density * 100));
+/*            FreeImage_SetDotsPerMeterX(pimage, (::u32) (cinfo.X_density * 100));
+/*            FreeImage_SetDotsPerMeterY(pimage, (::u32) (cinfo.Y_density * 100));
          }
 
          // step 6: read special markers
@@ -1432,7 +1432,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             // convert from CMYK to rgb
 
             JSAMPARRAY buffer;		// output row buffer
-            unsigned row_stride;	// physical row width in output buffer
+            ::u32 row_stride;	// physical row width in output buffer
 
             // JSAMPLEs per row in output buffer
             row_stride = cinfo.output_width * cinfo.output_components;
@@ -1446,12 +1446,12 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
                jpeg_read_scanlines(&cinfo, buffer, 1);
 
-               for(unsigned x = 0; x < cinfo.output_width; x++)
+               for(::u32 x = 0; x < cinfo.output_width; x++)
                {
-                  unsigned short K = (unsigned short)src[3];
-                  dst[FI_RGBA_RED]   = (unsigned char)((K * src[0]) / 255);	// C -> R
-                  dst[FI_RGBA_GREEN] = (unsigned char)((K * src[1]) / 255);	// M -> G
-                  dst[FI_RGBA_BLUE]  = (unsigned char)((K * src[2]) / 255);	// Y -> B
+                  ::u16 K = (::u16)src[3];
+                  dst[FI_RGBA_RED]   = (::u8)((K * src[0]) / 255);	// C -> R
+                  dst[FI_RGBA_GREEN] = (::u8)((K * src[1]) / 255);	// M -> G
+                  dst[FI_RGBA_BLUE]  = (::u8)((K * src[2]) / 255);	// Y -> B
                   src += 4;
                   dst += 3;
                }
@@ -1462,7 +1462,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             // convert from LibJPEG CMYK to standard CMYK
 
             JSAMPARRAY buffer;		// output row buffer
-            unsigned row_stride;	// physical row width in output buffer
+            ::u32 row_stride;	// physical row width in output buffer
 
             // JSAMPLEs per row in output buffer
             row_stride = cinfo.output_width * cinfo.output_components;
@@ -1476,7 +1476,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
                jpeg_read_scanlines(&cinfo, buffer, 1);
 
-               for(unsigned x = 0; x < cinfo.output_width; x++)
+               for(::u32 x = 0; x < cinfo.output_width; x++)
                {
                   // CMYK pixels are inverted
                   dst[0] = ~src[0];	// C
@@ -1548,7 +1548,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 // ----------------------------------------------------------
 
 static ::i32_bool DLL_CALLCONV
-/*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, int page, int flags, void *data)
+/*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, ::i32 page, ::i32 flags, void *data)
 {
 /*   if ((pimage) && (handle))
    {
@@ -1559,7 +1559,7 @@ static ::i32_bool DLL_CALLCONV
          const_char_pointer sError = "only 24-bit highcolor or 8-bit greyscale/palette bitmaps can be saved as JPEG";
 
 /*         FREE_IMAGE_COLOR_TYPE color_type = FreeImage_GetColorType(pimage);
-/*         unsigned short bpp = (unsigned short)FreeImage_GetBPP(pimage);
+/*         ::u16 bpp = (::u16)FreeImage_GetBPP(pimage);
 
          if ((bpp != 24) && (bpp != 8))
          {
@@ -1712,7 +1712,7 @@ static ::i32_bool DLL_CALLCONV
          // the first 7 bits are reserved for low level quality settings
          // the other bits are high level (i.e. enum-ish)
 
-         int quality;
+         ::i32 quality;
 
          if ((flags & JPEG_QUALITYBAD) == JPEG_QUALITYBAD)
          {
@@ -1764,8 +1764,8 @@ static ::i32_bool DLL_CALLCONV
          if(color_type == FIC_RGB)
          {
             // 24-bit rgb image : need to __swap red and blue channels
-/*            unsigned pitch = FreeImage_GetPitch(pimage);
-            unsigned char *target = (unsigned char*)malloc(pitch * sizeof(unsigned char));
+/*            ::u32 pitch = FreeImage_GetPitch(pimage);
+            ::u8 *target = (::u8*)malloc(pitch * sizeof(::u8));
             if (target == nullptr)
             {
                throw ::exception(FI_MSG_ERROR_MEMORY);
@@ -1777,8 +1777,8 @@ static ::i32_bool DLL_CALLCONV
 /*               ::memory_copy(target, FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1), pitch);
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
                // __swap R and B channels
-               unsigned char *target_p = target;
-               for(unsigned x = 0; x < cinfo.image_width; x++)
+               ::u8 *target_p = target;
+               for(::u32 x = 0; x < cinfo.image_width; x++)
                {
                   INPLACESWAP(target_p[0], target_p[2]);
                   target_p += 3;
@@ -1803,7 +1803,7 @@ static ::i32_bool DLL_CALLCONV
          {
             // 8-bit palettized images are converted to 24-bit images
 /*            RGBQUAD *palette = FreeImage_GetPalette(pimage);
-            unsigned char *target = (unsigned char*)malloc(cinfo.image_width * 3);
+            ::u8 *target = (::u8*)malloc(cinfo.image_width * 3);
             if (target == nullptr)
             {
                throw ::exception(FI_MSG_ERROR_MEMORY);
@@ -1811,13 +1811,13 @@ static ::i32_bool DLL_CALLCONV
 
             while (cinfo.next_scanline < cinfo.image_height)
             {
-/*               unsigned char *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
+/*               ::u8 *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
                FreeImage_ConvertLine8To24(target, source, cinfo.image_width, palette);
 
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
                // __swap R and B channels
-               unsigned char *target_p = target;
-               for(unsigned x = 0; x < cinfo.image_width; x++)
+               ::u8 *target_p = target;
+               for(::u32 x = 0; x < cinfo.image_width; x++)
                {
                   INPLACESWAP(target_p[0], target_p[2]);
                   target_p += 3;
@@ -1833,9 +1833,9 @@ static ::i32_bool DLL_CALLCONV
          else if(color_type == FIC_MINISWHITE)
          {
             // reverse 8-bit greyscale image, so reverse grey value on the fly
-            unsigned i;
-            unsigned char reverse[256];
-            unsigned char *target = (unsigned char *)malloc(cinfo.image_width);
+            ::u32 i;
+            ::u8 reverse[256];
+            ::u8 *target = (::u8 *)malloc(cinfo.image_width);
             if (target == nullptr)
             {
                throw ::exception(FI_MSG_ERROR_MEMORY);
@@ -1843,12 +1843,12 @@ static ::i32_bool DLL_CALLCONV
 
             for(i = 0; i < 256; i++)
             {
-               reverse[i] = (unsigned char)(255 - i);
+               reverse[i] = (::u8)(255 - i);
             }
 
             while(cinfo.next_scanline < cinfo.image_height)
             {
-/*               unsigned char *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
+/*               ::u8 *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
                for(i = 0; i < cinfo.image_width; i++)
                {
                   target[i] = reverse[ source[i] ];
@@ -1889,7 +1889,7 @@ extern "C"
 // ==========================================================
 //   Init
 // ==========================================================
-   void DLL_CALLCONV FreeImage_InitPlugin_image_decode_jpeg(Plugin *plugin,int format_id)
+   void DLL_CALLCONV FreeImage_InitPlugin_image_decode_jpeg(Plugin *plugin,::i32 format_id)
    {
       s_format_id = format_id;
 
@@ -1915,7 +1915,7 @@ extern "C"
 
 }
 
-void DLL_CALLCONV InitJPEG(Plugin *plugin, int format_id)
+void DLL_CALLCONV InitJPEG(Plugin *plugin, ::i32 format_id)
 {
    FreeImage_InitPlugin_image_decode_jpeg(plugin, format_id);
 }

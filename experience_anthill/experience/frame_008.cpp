@@ -279,9 +279,9 @@ namespace experience_anthill
       if (m_bHollow)
       {
 
-         int iR = 128;
-         int iG = 128;
-         int iB = 128;
+         ::i32 iR = 128;
+         ::i32 iG = 128;
+         ::i32 iB = 128;
 
          auto estyle = get_style();
 
@@ -337,7 +337,7 @@ namespace experience_anthill
 
             auto ppen = createø < ::draw2d::pen >();
 
-            ppen->create_solid(1.0, argb((unsigned char)((i + 1) * 10), iR, iG, iB));
+            ppen->create_solid(1.0, argb((::u8)((i + 1) * 10), iR, iG, iB));
 
             pgraphics->set(ppen);
 
@@ -363,7 +363,7 @@ namespace experience_anthill
          //   for (::collection::index i = 0; i < 9; i++)
          //   {
 
-         //      pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
+         //      pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
          //      rectangleA.deflate(1, 1, 1, 1);
 
@@ -552,7 +552,7 @@ namespace experience_anthill
 
       //         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 
-      //         pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
+      //         pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
       //         rectangleA.deflate(1, 1, 1, 1);
 

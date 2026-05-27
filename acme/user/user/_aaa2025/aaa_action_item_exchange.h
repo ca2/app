@@ -4,14 +4,14 @@
 struct CLASS_DECL_ACME action_item_exchange
 {
 
-   int m_iIndex;
-   char * m_pszName;
-   char * m_pszId;
-   char * m_pszLabel;
-   char * m_pszAccelerator;
-   char * m_pszDescription;
+   ::i32 m_iIndex;
+   char_pointer m_pszName;
+   char_pointer m_pszId;
+   char_pointer m_pszLabel;
+   char_pointer m_pszAccelerator;
+   char_pointer m_pszDescription;
 
-   action_item_exchange(int iIndex, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrLabel, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
+   action_item_exchange(::i32 iIndex, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrLabel, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
    {
 
       m_iIndex = iIndex;

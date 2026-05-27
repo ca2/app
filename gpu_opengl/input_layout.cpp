@@ -37,7 +37,7 @@ namespace gpu_opengl
 		glBindBuffer(GL_ARRAY_BUFFER, gluVBO);
 		::opengl::check_error("");
 
-		//for(int i = 0; i < m)
+		//for(::i32 i = 0; i < m)
 		//// vertex positions
 		//glEnableVertexAttribArray(0);
 		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::Vertex), (void*)offsetof(::gpu::Vertex, position));
@@ -51,14 +51,14 @@ namespace gpu_opengl
 		//glEnableVertexAttribArray(3);
 		//glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::Vertex), (void*)offsetof(::gpu::Vertex, uv));
 
-      int sizeVertex = (int) this->size(true);
+      ::i32 sizeVertex = (::i32) this->size(true);
 
 		auto countInputLayout = this->count();
 
       if (countInputLayout > 0)
       {
 
-         int iOffset = 0;
+         ::i32 iOffset = 0;
 
          for (::collection::index iInputLayout = 0; iInputLayout < countInputLayout; iInputLayout++)
          {

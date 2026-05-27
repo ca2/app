@@ -24,7 +24,7 @@ namespace image
    }
 
 
-   bool image_array::explode(::particle * pparticle, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+   bool image_array::explode(::particle * pparticle, ::payload payloadFile, ::i32 cols, ::i32 rows, bool bCache, bool bCreateHelperMaps)
    {
 
       return explode(pparticle, ::i32_size(-1, -1), payloadFile, cols, rows, bCache, bCreateHelperMaps);
@@ -32,7 +32,7 @@ namespace image
    }
 
 
-   bool image_array::explode(::particle * pparticle, const ::i32_size & sizeParam, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+   bool image_array::explode(::particle * pparticle, const ::i32_size & sizeParam, ::payload payloadFile, ::i32 cols, ::i32 rows, bool bCache, bool bCreateHelperMaps)
    {
 
       ::i32_size size(sizeParam);
@@ -69,17 +69,17 @@ namespace image
 
       }
 
-      for (int row = 0; row < rows; row++)
+      for (::i32 row = 0; row < rows; row++)
       {
 
-         for (int col = 0; col < cols; col++)
+         for (::i32 col = 0; col < cols; col++)
          {
 
             auto pimage = pparticle->image()->create_image(size);
 
             auto rectangleTarget = pimage->rectangle();
 
-            auto rectangleSource = ::int_rectangle_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
+            auto rectangleSource = ::i32_rectangle_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 
             ::image::image_source imagesource(pimageSource, rectangleSource);
 

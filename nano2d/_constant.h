@@ -26,19 +26,19 @@ namespace nano2d
 {
 
 
-	constexpr float f_pi = 3.14159265358979323846264338327f;
+	constexpr ::f32 f_pi = 3.14159265358979323846264338327f;
 
 
-	constexpr int INIT_FONTIMAGE_SIZE = 512;
-	constexpr int MAX_FONTIMAGE_SIZE = 2048;
+	constexpr ::i32 INIT_FONTIMAGE_SIZE = 512;
+	constexpr ::i32 MAX_FONTIMAGE_SIZE = 2048;
 
-	constexpr int INIT_COMMANDS_SIZE = 256;
-	constexpr int INIT_POINTS_SIZE = 128;
-	constexpr int INIT_PATHS_SIZE = 16;
-	constexpr int INIT_VERTS_SIZE = 256;
+	constexpr ::i32 INIT_COMMANDS_SIZE = 256;
+	constexpr ::i32 INIT_POINTS_SIZE = 128;
+	constexpr ::i32 INIT_PATHS_SIZE = 16;
+	constexpr ::i32 INIT_VERTS_SIZE = 256;
 
 
-	constexpr float KAPPA90 = 0.5522847493f;	// Length proportional to radius of a cubic bezier handle for 90deg arcs.
+	constexpr ::f32 KAPPA90 = 0.5522847493f;	// Length proportional to radius of a cubic bezier handle for 90deg arcs.
 
 	#define NANO2D_COUNTOF(arr) (sizeof(arr) / sizeof(0[arr]))
 
@@ -148,77 +148,77 @@ namespace nano2d
 	////
 	//// Color utils
 	////
-	//// Colors in NanoVG are stored as unsigned ints in ABGR format.
+	//// Colors in NanoVG are stored as ::u32 ints in ABGR format.
 
 	//// Returns a color value from red, green, blue values. Alpha will be set to 255 (1.0f).
-	//CLASS_DECL_NANO2D   color RGB(unsigned char r, unsigned char g, unsigned char b);
+	//CLASS_DECL_NANO2D   color RGB(::u8 r, ::u8 g, ::u8 b);
 
 	//// Returns a color value from red, green, blue values. Alpha will be set to 1.0f.
-	//CLASS_DECL_NANO2D  color RGBf(float r, float g, float b);
+	//CLASS_DECL_NANO2D  color RGBf(::f32 r, ::f32 g, ::f32 b);
 
 
 	//// Returns a color value from red, green, blue and alpha values.
-	//CLASS_DECL_NANO2D  color RGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+	//CLASS_DECL_NANO2D  color RGBA(::u8 r, ::u8 g, ::u8 b, ::u8 a);
 
 	//// Returns a color value from red, green, blue and alpha values.
-	//CLASS_DECL_NANO2D  color RGBAf(float r, float g, float b, float a);
+	//CLASS_DECL_NANO2D  color RGBAf(::f32 r, ::f32 g, ::f32 b, ::f32 a);
 
 
 	//// Linearly interpolates from color c0 to c1, and returns resulting color value.
-	//CLASS_DECL_NANO2D  color LerpRGBA(color c0, color c1, float u);
+	//CLASS_DECL_NANO2D  color LerpRGBA(color c0, color c1, ::f32 u);
 
 	//// Sets transparency of a color value.
-	//CLASS_DECL_NANO2D  color TransRGBA(color c0, unsigned char a);
+	//CLASS_DECL_NANO2D  color TransRGBA(color c0, ::u8 a);
 
 	//// Sets transparency of a color value.
-	//CLASS_DECL_NANO2D  color TransRGBAf(color c0, float a);
+	//CLASS_DECL_NANO2D  color TransRGBAf(color c0, ::f32 a);
 
 	//// Returns color value specified by hue, saturation and lightness.
 	//// HSL values are all in range [0..1], alpha will be set to 255.
-	//CLASS_DECL_NANO2D  color HSL(float h, float s, float l);
+	//CLASS_DECL_NANO2D  color HSL(::f32 h, ::f32 s, ::f32 l);
 
 	//// Returns color value specified by hue, saturation and lightness and alpha.
 	//// HSL values are all in range [0..1], alpha in range [0..255]
-	//CLASS_DECL_NANO2D  color HSLA(float h, float s, float l, unsigned char a);
+	//CLASS_DECL_NANO2D  color HSLA(::f32 h, ::f32 s, ::f32 l, ::u8 a);
 
 
 	//// The following functions can be used to make calculations on 2x3 transformation matrices.
-	//// A 2x3 matrix is represented as float[6].
+	//// A 2x3 matrix is represented as ::f32[6].
 
 	//// Sets the transform to identity matrix.
-	//CLASS_DECL_NANO2D void TransformIdentity(float* dst);
+	//CLASS_DECL_NANO2D void TransformIdentity(::f32* dst);
 
 	//// Sets the transform to translation matrix matrix.
-	//CLASS_DECL_NANO2D void TransformTranslate(float* dst, float tx, float ty);
+	//CLASS_DECL_NANO2D void TransformTranslate(::f32* dst, ::f32 tx, ::f32 ty);
 
 	//// Sets the transform to scale matrix.
-	//CLASS_DECL_NANO2D void TransformScale(float* dst, float sx, float sy);
+	//CLASS_DECL_NANO2D void TransformScale(::f32* dst, ::f32 sx, ::f32 sy);
 
 	//// Sets the transform to rotate matrix. Angle is specified in radians.
-	//CLASS_DECL_NANO2D void TransformRotate(float* dst, float a);
+	//CLASS_DECL_NANO2D void TransformRotate(::f32* dst, ::f32 a);
 
 	//// Sets the transform to skew-x matrix. Angle is specified in radians.
-	//CLASS_DECL_NANO2D void TransformSkewX(float* dst, float a);
+	//CLASS_DECL_NANO2D void TransformSkewX(::f32* dst, ::f32 a);
 
 	//// Sets the transform to skew-y matrix. Angle is specified in radians.
-	//CLASS_DECL_NANO2D void TransformSkewY(float* dst, float a);
+	//CLASS_DECL_NANO2D void TransformSkewY(::f32* dst, ::f32 a);
 
 	//// Sets the transform to the result of multiplication of two transforms, of A = A*B.
-	//CLASS_DECL_NANO2D void TransformMultiply(float* dst, const float* src);
+	//CLASS_DECL_NANO2D void TransformMultiply(::f32* dst, const ::f32* src);
 
 	//// Sets the transform to the result of multiplication of two transforms, of A = B*A.
-	//CLASS_DECL_NANO2D void TransformPremultiply(float* dst, const float* src);
+	//CLASS_DECL_NANO2D void TransformPremultiply(::f32* dst, const ::f32* src);
 
 	//// Sets the destination to inverse of specified transform.
 	//// Returns 1 if the inverse could be calculated, else 0.
-	//CLASS_DECL_NANO2D int TransformInverse(float* dst, const float* src);
+	//CLASS_DECL_NANO2D ::i32 TransformInverse(::f32* dst, const ::f32* src);
 
 	//// Transform a point by given transform.
-	//CLASS_DECL_NANO2D void TransformPoint(float* dstx, float* dsty, const float* xform, float srcx, float srcy);
+	//CLASS_DECL_NANO2D void TransformPoint(::f32* dstx, ::f32* dsty, const ::f32* xform, ::f32 srcx, ::f32 srcy);
 
 	//// Converts degrees to radians and vice versa.
-	//CLASS_DECL_NANO2D	float DegToRad(float deg);
-	//CLASS_DECL_NANO2D	float RadToDeg(float rad);
+	//CLASS_DECL_NANO2D	::f32 DegToRad(::f32 deg);
+	//CLASS_DECL_NANO2D	::f32 RadToDeg(::f32 rad);
 
 
 
@@ -231,44 +231,44 @@ namespace nano2d
 	};
 
 	//struct scissor {
-	//	float xform[6];
-	//	float extent[2];
+	//	::f32 xform[6];
+	//	::f32 extent[2];
 	//};
 	//typedef struct scissor scissor;
 
 	//struct vertex {
-	//	float x, y, u, v;
+	//	::f32 x, y, u, v;
 	//};
 	//typedef struct vertex vertex;
 
 	//struct path {
-	//	int first;
-	//	int count;
-	//	unsigned char closed;
-	//	int nbevel;
+	//	::i32 first;
+	//	::i32 count;
+	//	::u8 closed;
+	//	::i32 nbevel;
 	//	vertex* fill;
-	//	int nfill;
+	//	::i32 nfill;
 	//	vertex* stroke;
-	//	int nstroke;
-	//	int winding;
-	//	int convex;
+	//	::i32 nstroke;
+	//	::i32 winding;
+	//	::i32 convex;
 	//};
 	//typedef struct path path;
 
 	//struct params {
 	//	void* userPtr;
-	//	int edgeAntiAlias;
-	//	int (*renderCreate)(void* uptr);
-	//	int (*renderCreateTexture)(void* uptr, int type, int w, int h, int imageFlags, const unsigned char* data);
-	//	int (*renderDeleteTexture)(void* uptr, int image);
-	//	int (*renderUpdateTexture)(void* uptr, int image, int x, int y, int w, int h, const unsigned char* data);
-	//	int (*renderGetTextureSize)(void* uptr, int image, int* w, int* h);
-	//	void (*renderContext)(void* uptr, float width, float height, float devicePixelRatio);
+	//	::i32 edgeAntiAlias;
+	//	::i32 (*renderCreate)(void* uptr);
+	//	::i32 (*renderCreateTexture)(void* uptr, ::i32 type, ::i32 w, ::i32 h, ::i32 imageFlags, const ::u8* data);
+	//	::i32 (*renderDeleteTexture)(void* uptr, ::i32 image);
+	//	::i32 (*renderUpdateTexture)(void* uptr, ::i32 image, ::i32 x, ::i32 y, ::i32 w, ::i32 h, const ::u8* data);
+	//	::i32 (*renderGetTextureSize)(void* uptr, ::i32 image, ::i32* w, ::i32* h);
+	//	void (*renderContext)(void* uptr, ::f32 width, ::f32 height, ::f32 devicePixelRatio);
 	//	void (*renderCancel)(void* uptr);
 	//	void (*renderFlush)(void* uptr);
-	//	void (*renderFill)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, float fringe, const float* bounds, const path* paths, int npaths);
-	//	void (*renderStroke)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, float fringe, float strokeWidth, const path* paths, int npaths);
-	//	void (*renderTriangles)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, const vertex* verts, int nverts, float fringe);
+	//	void (*renderFill)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, ::f32 fringe, const ::f32* bounds, const path* paths, ::i32 npaths);
+	//	void (*renderStroke)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, ::f32 fringe, ::f32 strokeWidth, const path* paths, ::i32 npaths);
+	//	void (*renderTriangles)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, const vertex* verts, ::i32 nverts, ::f32 fringe);
 	//	void (*renderDelete)(void* uptr);
 	//};
 	//typedef struct params params;
@@ -280,75 +280,75 @@ namespace nano2d
 
 	//struct state {
 	//	compositeOperationState compositeOperation;
-	//	int shapeAntiAlias;
+	//	::i32 shapeAntiAlias;
 	//	paint fill;
 	//	paint stroke;
-	//	float strokeWidth;
-	//	float miterLimit;
-	//	int lineJoin;
-	//	int lineCap;
-	//	float alpha;
-	//	float xform[6];
+	//	::f32 strokeWidth;
+	//	::f32 miterLimit;
+	//	::i32 lineJoin;
+	//	::i32 lineCap;
+	//	::f32 alpha;
+	//	::f32 xform[6];
 	//	scissor scissor;
-	//	float fontSize;
-	//	float letterSpacing;
-	//	float lineHeight;
-	//	float fontBlur;
-	//	int textAlign;
-	//	int fontId;
+	//	::f32 fontSize;
+	//	::f32 letterSpacing;
+	//	::f32 lineHeight;
+	//	::f32 fontBlur;
+	//	::i32 textAlign;
+	//	::i32 fontId;
 	//};
 
 
 	//typedef struct state state;
 
 	//struct point {
-	//	float x, y;
-	//	float Δx, Δy;
-	//	float len;
-	//	float dmx, dmy;
-	//	unsigned char flags;
+	//	::f32 x, y;
+	//	::f32 Δx, Δy;
+	//	::f32 len;
+	//	::f32 dmx, dmy;
+	//	::u8 flags;
 	//};
 	//typedef struct point point;
 
 
 	//struct pathCache {
 	//	point* points;
-	//	int npoints;
-	//	int cpoints;
+	//	::i32 npoints;
+	//	::i32 cpoints;
 	//	path* paths;
-	//	int npaths;
-	//	int cpaths;
+	//	::i32 npaths;
+	//	::i32 cpaths;
 	//	vertex* verts;
-	//	int nverts;
-	//	int cverts;
-	//	float bounds[4];
+	//	::i32 nverts;
+	//	::i32 cverts;
+	//	::f32 bounds[4];
 	//};
 	//typedef struct pathCache pathCache;
-	constexpr int CONTEXT_MAX_STATES = 32;
-	constexpr int CONTEXT_MAX_FONT_IMAGES = 4;
+	constexpr ::i32 CONTEXT_MAX_STATES = 32;
+	constexpr ::i32 CONTEXT_MAX_FONT_IMAGES = 4;
 
 	//	struct CONTEXT
 	//	{
 	//
 	//		params params;
-	//		float* commands;
-	//		int ccommands;
-	//		int ncommands;
-	//		float commandx, commandy;
+	//		::f32* commands;
+	//		::i32 ccommands;
+	//		::i32 ncommands;
+	//		::f32 commandx, commandy;
 	//		state states[_MAX_STATES];
-	//		int nstates;
+	//		::i32 nstates;
 	//		pathCache* cache;
-	//		float tessTol;
-	//		float distTol;
-	//		float fringeWidth;
-	//		float devicePxRatio;
+	//		::f32 tessTol;
+	//		::f32 distTol;
+	//		::f32 fringeWidth;
+	//		::f32 devicePxRatio;
 	//		struct FONScontext* fs;
-	//		int fontImages[_MAX_FONTIMAGES];
-	//		int fontImageIdx;
-	//		int drawCallCount;
-	//		int fillTriCount;
-	//		int strokeTriCount;
-	//		int textTriCount;
+	//		::i32 fontImages[_MAX_FONTIMAGES];
+	//		::i32 fontImageIdx;
+	//		::i32 drawCallCount;
+	//		::i32 fillTriCount;
+	//		::i32 strokeTriCount;
+	//		::i32 textTriCount;
 	//		void* p;
 	//
 	//
@@ -371,7 +371,7 @@ namespace nano2d
 	//// For example, GLFW returns two dimension for an opened window: window size and
 	//// frame buffer size. In that case you would set windowWidth/Height to the window size
 	//// devicePixelRatio to: framebufferWidth / windowWidth.
-	//		void begin_frame(float windowWidth, float windowHeight, float devicePixelRatio);
+	//		void begin_frame(::f32 windowWidth, ::f32 windowHeight, ::f32 devicePixelRatio);
 	//
 	//		// Cancels drawing the current frame.
 	//		void cancel_frame();
@@ -387,13 +387,13 @@ namespace nano2d
 	//		// The colors in the blending state have premultiplied alpha.
 	//
 	//		// Sets the composite operation. The op parameter should be one of compositeOperation.
-	//		void global_composite_operation(int op);
+	//		void global_composite_operation(::i32 op);
 	//
 	//		// Sets the composite operation with custom pixel arithmetic. The parameters should be one of blendFactor.
-	//		void global_composite_blend_func(int sfactor, int dfactor);
+	//		void global_composite_blend_func(::i32 sfactor, ::i32 dfactor);
 	//
 	//		// Sets the composite operation with custom pixel arithmetic for RGB and alpha components separately. The parameters should be one of blendFactor.
-	//		void global_composite_blend_func_separate(int srcRGB, int dstRGB, int srcAlpha, int dstAlpha);
+	//		void global_composite_blend_func_separate(::i32 srcRGB, ::i32 dstRGB, ::i32 srcAlpha, ::i32 dstAlpha);
 	//
 	//		//
 	//		// State Handling
@@ -422,7 +422,7 @@ namespace nano2d
 	//		// Current render style can be saved and restored using Save() and Restore().
 	//
 	//		// Sets whether to draw antialias for Stroke() and Fill(). It's enabled by default.
-	//		void shape_anti_alias(int enabled);
+	//		void shape_anti_alias(::i32 enabled);
 	//
 	//		// Sets current stroke style to a solid color.
 	//		void stroke_color(  color color);
@@ -438,22 +438,22 @@ namespace nano2d
 	//
 	//		// Sets the miter limit of the stroke style.
 	//		// Miter limit controls when a sharp corner is beveled.
-	//		virtual void miter_limit(float limit);
+	//		virtual void miter_limit(::f32 limit);
 	//
 	//		// Sets the stroke width of the stroke style.
-	//		virtual void stroke_width(float size);
+	//		virtual void stroke_width(::f32 size);
 	//
 	//		// Sets how the end of the line (cap) is drawn,
 	//		// Can be one of: _BUTT (default), _ROUND, _SQUARE.
-	//		virtual void line_cap(int cap);
+	//		virtual void line_cap(::i32 cap);
 	//
 	//		// Sets how sharp path corners are drawn.
 	//		// Can be one of _MITER (default), _ROUND, _BEVEL.
-	//		virtual void line_join(int join);
+	//		virtual void line_join(::i32 join);
 	//
 	//		// Sets the transparency applied to all rendered shapes.
 	//		// Already transparent paths will get proportionally more transparent as well.
-	//		virtual void global_alpha(float alpha);
+	//		virtual void global_alpha(::f32 alpha);
 	//
 	//
 	//		//
@@ -481,30 +481,30 @@ namespace nano2d
 	//		//   [a c e]
 	//		//   [b d f]
 	//		//   [0 0 1]
-	//		void transform(float a, float b, float c, float d, float e, float f);
+	//		void transform(::f32 a, ::f32 b, ::f32 c, ::f32 d, ::f32 e, ::f32 f);
 	//
 	//		// Translates current coordinate system.
-	//		//void Translate(float x, float y);
-	//		virtual void translate(float x, float y);
+	//		//void Translate(::f32 x, ::f32 y);
+	//		virtual void translate(::f32 x, ::f32 y);
 	//
 	//		// Rotates current coordinate system. Angle is specified in radians.
-	//		void rotate(float angle);
+	//		void rotate(::f32 angle);
 	//
 	//		// Skews the current coordinate system along X axis. Angle is specified in radians.
-	//		void skew_x(float angle);
+	//		void skew_x(::f32 angle);
 	//
 	//		// Skews the current coordinate system along Y axis. Angle is specified in radians.
-	//		void skew_y(float angle);
+	//		void skew_y(::f32 angle);
 	//
 	//		// Scales the current coordinate system.
-	//		void scale(float x, float y);
+	//		void scale(::f32 x, ::f32 y);
 	//
 	//		// Stores the top part (a-f) of the current transformation matrix in to the specified buffer.
 	//		//   [a c e]
 	//		//   [b d f]
 	//		//   [0 0 1]
 	//		// There should be space for 6 floats in the return buffer for the values a-f.
-	//		void current_transform(float* xform);
+	//		void current_transform(::f32* xform);
 	//
 	//		//
 	//		// Images
@@ -515,24 +515,24 @@ namespace nano2d
 	//
 	//		// Creates image by loading it from the disk from specified file name.
 	//		// Returns handle to the image.
-	//		int create_image(const ::scoped_string& scopedstrFilename, int imageFlags);
+	//		::i32 create_image(const ::scoped_string& scopedstrFilename, ::i32 imageFlags);
 	//
 	//		// Creates image by loading it from the specified chunk of memory.
 	//		// Returns handle to the image.
-	//		int create_image_mem(int imageFlags, unsigned char* data, int ndata);
+	//		::i32 create_image_mem(::i32 imageFlags, ::u8* data, ::i32 ndata);
 	//
 	//		// Creates image from specified image data.
 	//		// Returns handle to the image.
-	//		int create_image_rgba(int w, int h, int imageFlags, const void* data, int iScan);
+	//		::i32 create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void* data, ::i32 iScan);
 	//
 	//		// Updates image data specified by image handle.
-	//		void update_image(int image, const void* data);
+	//		void update_image(::i32 image, const void* data);
 	//
 	//		// Returns the dimensions of a created image.
-	//		void image_size(int image, int* w, int* h);
+	//		void image_size(::i32 image, ::i32* w, ::i32* h);
 	//
 	//		// Deletes created image.
-	//		void delete_image(int image);
+	//		void delete_image(::i32 image);
 	//
 	//		//
 	//		// Paints
@@ -543,7 +543,7 @@ namespace nano2d
 	//		// Creates and returns a linear gradient. Parameters (sx,sy)-(ex,ey) specify the start and end coordinates
 	//		// of the linear gradient, icol specifies the start color and ocol the end color.
 	//		// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
-	//		  paint linear_gradient(float sx, float sy, float ex, float ey,
+	//		  paint linear_gradient(::f32 sx, ::f32 sy, ::f32 ex, ::f32 ey,
 	//			  color icol,   color ocol);
 	//
 	//		// Creates and returns a box gradient. Box gradient is a feathered rounded rectangle, it is useful for rendering
@@ -551,20 +551,20 @@ namespace nano2d
 	//		// (w,h) define the size of the rectangle, r defines the corner radius, and f feather. Feather defines how blurry
 	//		// the border of the rectangle is. Parameter icol specifies the inner color and ocol the outer color of the gradient.
 	//		// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
-	//		  paint box_gradient(float x, float y, float w, float h,
-	//			float r, float f,   color icol,   color ocol);
+	//		  paint box_gradient(::f32 x, ::f32 y, ::f32 w, ::f32 h,
+	//			::f32 r, ::f32 f,   color icol,   color ocol);
 	//
 	//		// Creates and returns a radial gradient. Parameters (cx,cy) specify the center, inr and outr specify
 	//		// the inner and outer radius of the gradient, icol specifies the start color and ocol the end color.
 	//		// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
-	//		  paint radial_gradient(float cx, float cy, float inr, float outr,
+	//		  paint radial_gradient(::f32 cx, ::f32 cy, ::f32 inr, ::f32 outr,
 	//			  color icol,   color ocol);
 	//
 	//		// Creates and returns an image pattern. Parameters (ox,oy) specify the left-top location of the image pattern,
 	//		// (ex,ey) the size of one image, angle rotation around the top-left corner, image is handle to the image to render.
 	//		// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
-	//		  paint image_pattern(float ox, float oy, float ex, float ey,
-	//			float angle, int image, float alpha);
+	//		  paint image_pattern(::f32 ox, ::f32 oy, ::f32 ex, ::f32 ey,
+	//			::f32 angle, ::i32 image, ::f32 alpha);
 	//
 	//		//
 	//		// Scissoring
@@ -574,7 +574,7 @@ namespace nano2d
 	//
 	//		// Sets the current scissor rectangle.
 	//		// The scissor rectangle is transformed by the current transform.
-	//		void scissor(float x, float y, float w, float h);
+	//		void scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h);
 	//
 	//		// Intersects current scissor rectangle with the specified rectangle.
 	//		// The scissor rectangle is transformed by the current transform.
@@ -582,7 +582,7 @@ namespace nano2d
 	//		// the current one, the intersection will be done between the specified
 	//		// rectangle and the previous scissor rectangle transformed in the current
 	//		// transform space. The resulting shape is always rectangle.
-	//		void intersect_scissor(float x, float y, float w, float h);
+	//		void intersect_scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h);
 	//
 	//		// Reset and disables scissoring.
 	//		void reset_scissor();
@@ -608,45 +608,45 @@ namespace nano2d
 	//		void begin_path();
 	//
 	//		// Starts ___new sub-path with specified point as first point.
-	//		void move_to(float x, float y);
+	//		void move_to(::f32 x, ::f32 y);
 	//
 	//		// Adds line segment from the last point in the path to the specified point.
-	//		void line_to(float x, float y);
+	//		void line_to(::f32 x, ::f32 y);
 	//
 	//		// Adds cubic bezier segment from last point in the path via two control points to the specified point.
-	//		void bezier_to(float c1x, float c1y, float c2x, float c2y, float x, float y);
+	//		void bezier_to(::f32 c1x, ::f32 c1y, ::f32 c2x, ::f32 c2y, ::f32 x, ::f32 y);
 	//
 	//		// Adds quadratic bezier segment from last point in the path via a control point to the specified point.
-	//		void quad_to(float cx, float cy, float x, float y);
+	//		void quad_to(::f32 cx, ::f32 cy, ::f32 x, ::f32 y);
 	//
 	//		// Adds an arc segment at the corner defined by the last path point, and two specified points.
-	//		void arc_to(float x1, float y1, float x2, float y2, float radius);
+	//		void arc_to(::f32 x1, ::f32 y1, ::f32 x2, ::f32 y2, ::f32 radius);
 	//
 	//		// Closes current sub-path with a line segment.
 	//		void close_path();
 	//
 	//		// Sets the current sub-path winding, see winding and solidity.
-	//		void path_winding(int dir);
+	//		void path_winding(::i32 dir);
 	//
 	//		// Creates ___new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
 	//		// and the arc is drawn from angle a0 to a1, and swept in direction dir (_CCW, or _CW).
 	//		// Angles are specified in radians.
-	//		void arc(float cx, float cy, float r, float a0, float a1, int dir);
+	//		void arc(::f32 cx, ::f32 cy, ::f32 r, ::f32 a0, ::f32 a1, ::i32 dir);
 	//
 	//		// Creates ___new rectangle shaped sub-path.
-	//		void rectangle(float x, float y, float w, float h);
+	//		void rectangle(::f32 x, ::f32 y, ::f32 w, ::f32 h);
 	//
 	//		// Creates ___new rounded rectangle shaped sub-path.
-	//		void rounded_rectangle(float x, float y, float w, float h, float r);
+	//		void rounded_rectangle(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r);
 	//
 	//		// Creates ___new rounded rectangle shaped sub-path with varying radii for each corner.
-	//		void rounded_rectangle_varying(float x, float y, float w, float h, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft);
+	//		void rounded_rectangle_varying(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 radTopLeft, ::f32 radTopRight, ::f32 radBottomRight, ::f32 radBottomLeft);
 	//
 	//		// Creates ___new ellipse shaped sub-path.
-	//		void ellipse(float cx, float cy, float rx, float ry);
+	//		void ellipse(::f32 cx, ::f32 cy, ::f32 rx, ::f32 ry);
 	//
 	//		// Creates ___new circle shaped sub-path.
-	//		void circle(float cx, float cy, float r);
+	//		void circle(::f32 cx, ::f32 cy, ::f32 r);
 	//
 	//		// Fills the current path with current fill style.
 	//		void fill();
@@ -689,87 +689,87 @@ namespace nano2d
 	//
 	//		// Creates font by loading it from the disk from specified file name.
 	//		// Returns handle to the font.
-	//		//int CreateFont(  CONTEXT * pcontext, const ::scoped_string & name, const ::scoped_string & filename);
+	//		//::i32 CreateFont(  CONTEXT * pcontext, const ::scoped_string & name, const ::scoped_string & filename);
 	//
 	//		// fontIndex specifies which font face to load from a .ttf/.ttc file.
-	//		int create_font_at_index(const ::scoped_string& name, const ::scoped_string& filename, const int fontIndex);
+	//		::i32 create_font_at_index(const ::scoped_string& name, const ::scoped_string& filename, const ::i32 fontIndex);
 	//
 	//		// Creates font by loading it from the specified memory chunk.
 	//		// Returns handle to the font.
-	//		int create_font_mem(const ::scoped_string& name, unsigned char* data, int ndata, int freeData);
+	//		::i32 create_font_mem(const ::scoped_string& name, ::u8* data, ::i32 ndata, ::i32 freeData);
 	//
 	//		// fontIndex specifies which font face to load from a .ttf/.ttc file.
-	//		int create_font_mem_at_index(const ::scoped_string& name, unsigned char* data, int ndata, int freeData, const int fontIndex);
+	//		::i32 create_font_mem_at_index(const ::scoped_string& name, ::u8* data, ::i32 ndata, ::i32 freeData, const ::i32 fontIndex);
 	//
 	//		// Finds a loaded font of specified name, and returns handle to it, or -1 if the font is not found.
-	//		int find_font(const ::scoped_string& name);
+	//		::i32 find_font(const ::scoped_string& name);
 	//
 	//		// Adds a fallback font by handle.
-	//		int add_fallback_font_id(int baseFont, int fallbackFont);
+	//		::i32 add_fallback_font_id(::i32 baseFont, ::i32 fallbackFont);
 	//
 	//		// Adds a fallback font by name.
-	//		int add_fallback_font(const ::scoped_string& baseFont, const ::scoped_string& fallbackFont);
+	//		::i32 add_fallback_font(const ::scoped_string& baseFont, const ::scoped_string& fallbackFont);
 	//
 	//		// Resets fallback fonts by handle.
-	//		void reset_fallback_fonts_id(int baseFont);
+	//		void reset_fallback_fonts_id(::i32 baseFont);
 	//
 	//		// Resets fallback fonts by name.
 	//		void reset_fallback_fonts(const ::scoped_string& baseFont);
 	//
 	//		// Sets the font size of current text style.
-	//		void font_size(float size);
+	//		void font_size(::f32 size);
 	//
 	//		// Sets the blur of current text style.
-	//		void font_blur(float blur);
+	//		void font_blur(::f32 blur);
 	//
 	//		// Sets the letter spacing of current text style.
-	//		void text_letter_spacing(float spacing);
+	//		void text_letter_spacing(::f32 spacing);
 	//
 	//		// Sets the proportional line height of current text style. The line height is specified as multiple of font size.
-	//		void text_line_height(float lineHeight);
+	//		void text_line_height(::f32 lineHeight);
 	//
 	//		// Sets the text align of current text style, see align for options.
-	//		void text_align(int align);
+	//		void text_align(::i32 align);
 	//
 	//		// Sets the font face based on specified id of current text style.
-	//		void font_face_id(int font);
+	//		void font_face_id(::i32 font);
 	//
 	//		// Sets the font face based on specified name of current text style.
 	//		void font_face(const ::scoped_string& font);
 	//
 	//		// Draws text string at specified location. If end is specified only the sub-string up to the end is drawn.
-	//		float text(float x, float y, const ::scoped_string& string, const ::scoped_string& end);
+	//		::f32 text(::f32 x, ::f32 y, const ::scoped_string& string, const ::scoped_string& end);
 	//
 	//		// Draws multi-line text string at specified location wrapped at the specified width. If end is specified only the sub-string up to the end is drawn.
 	//		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when ___new-line characters are encountered.
 	//		// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
-	//		void text_box(float x, float y, float breakRowWidth, const ::scoped_string& string, const ::scoped_string& end);
+	//		void text_box(::f32 x, ::f32 y, ::f32 breakRowWidth, const ::scoped_string& string, const ::scoped_string& end);
 	//
-	//		// Measures the specified text string. Parameter bounds should be a pointer to float[4],
+	//		// Measures the specified text string. Parameter bounds should be a pointer to ::f32[4],
 	//		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 	//		// Returns the horizontal advance of the measured text (i.e. where the next character should drawn).
 	//		// Measured values are returned in local coordinate space.
-	//		float text_bounds(float x, float y, const ::scoped_string& string, const ::scoped_string& end, float* bounds);
+	//		::f32 text_bounds(::f32 x, ::f32 y, const ::scoped_string& string, const ::scoped_string& end, ::f32* bounds);
 	//
-	//		// Measures the specified multi-text string. Parameter bounds should be a pointer to float[4],
+	//		// Measures the specified multi-text string. Parameter bounds should be a pointer to ::f32[4],
 	//		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 	//		// Measured values are returned in local coordinate space.
-	//		void text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& string, const ::scoped_string& end, float* bounds);
+	//		void text_box_bounds(::f32 x, ::f32 y, ::f32 breakRowWidth, const ::scoped_string& string, const ::scoped_string& end, ::f32* bounds);
 	//
 	//		// Calculates the glyph x positions of the specified text. If end is specified only the sub-string will be used.
 	//		// Measured values are returned in local coordinate space.
-	//		int text_glyph_positions(float x, float y, const ::scoped_string& string, const ::scoped_string& end, glyphPosition* positions, int maxPositions);
+	//		::i32 text_glyph_positions(::f32 x, ::f32 y, const ::scoped_string& string, const ::scoped_string& end, glyphPosition* positions, ::i32 maxPositions);
 	//
 	//		// Returns the vertical metrics based on the current text style.
 	//		// Measured values are returned in local coordinate space.
-	//		void text_metrics(float* ascender, float* descender, float* lineh);
+	//		void text_metrics(::f32* ascender, ::f32* descender, ::f32* lineh);
 	//
 	//		// Breaks the specified text into lines. If end is specified only the sub-string will be used.
 	//		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when ___new-line characters are encountered.
 	//		// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
-	//		int text_break_lines(const ::scoped_string& string, const ::scoped_string& end, float breakRowWidth, text_row* rows, int maxRows);
+	//		::i32 text_break_lines(const ::scoped_string& string, const ::scoped_string& end, ::f32 breakRowWidth, text_row* rows, ::i32 maxRows);
 	//
-	//		void __append_commands(float* vals, int nvals);
+	//		void __append_commands(::f32* vals, ::i32 nvals);
 	//
 	//	};
 	//

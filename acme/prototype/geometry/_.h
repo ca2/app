@@ -24,7 +24,7 @@ namespace geometry
 } // namespace geometry
 
 
-constexpr long double degrees_to_radians(long double degrees)
+constexpr ::f128 degrees_to_radians(::f128 degrees)
 { 
    
    return degrees * πl / 180.0l; 
@@ -32,7 +32,7 @@ constexpr long double degrees_to_radians(long double degrees)
 }
 
 
-constexpr double degrees_to_radians(double degrees)
+constexpr ::f64 degrees_to_radians(::f64 degrees)
 {
    
    return degrees * π / 180.0; 
@@ -40,7 +40,7 @@ constexpr double degrees_to_radians(double degrees)
 }
 
 
-constexpr float degrees_to_radians(float degrees)
+constexpr ::f32 degrees_to_radians(::f32 degrees)
 { 
    
    return degrees * πf / 180.0f; 
@@ -48,7 +48,7 @@ constexpr float degrees_to_radians(float degrees)
 }
 
 
-constexpr long double radians_to_degrees(long double radians)
+constexpr ::f128 radians_to_degrees(::f128 radians)
 {
    
    return radians * 180.0l / πl;  
@@ -56,7 +56,7 @@ constexpr long double radians_to_degrees(long double radians)
 }
 
 
-constexpr double radians_to_degrees(double radians)
+constexpr ::f64 radians_to_degrees(::f64 radians)
 {
    
    return radians * 180.0 / π; 
@@ -64,7 +64,7 @@ constexpr double radians_to_degrees(double radians)
 }
 
 
-constexpr float radians_to_degrees(float radians)
+constexpr ::f32 radians_to_degrees(::f32 radians)
 {
    
    return radians * 180.0f / πf; 

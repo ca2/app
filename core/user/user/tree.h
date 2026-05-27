@@ -34,7 +34,7 @@ namespace user
       i32_point                                                m_pointLButtonUp;
       ::pointer < ::data::tree_item_base >                     m_ptreeitemFirstVisible;
       ::collection::index                                      m_iFirstVisibleItemProperIndex;
-      int                                                      m_iCurrentImpactWidth;
+      ::i32                                                      m_iCurrentImpactWidth;
       ::i32_size                                               m_sizeItemMaximum;
       //::color::color                                         m_colorTextSelected;
       //::color::color                                         m_colorTextHighlight;
@@ -56,10 +56,10 @@ namespace user
 
       bool                                                     m_bHover;
       class ::time                                             m_timeHoverStart;
-      int                                                      m_iHoverAlpha;
-      int                                                      m_iHoverAlphaInit;
+      ::i32                                                      m_iHoverAlpha;
+      ::i32                                                      m_iHoverAlphaInit;
       class ::time                                             m_timeLeaveStart;
-      int                                                      m_iLeaveAlphaInit;
+      ::i32                                                      m_iLeaveAlphaInit;
 
       manual_reset_happening                                   m_happeningExpand;
       manual_reset_happening                                   m_happeningOpen;
@@ -98,9 +98,9 @@ namespace user
       void _001OnTreeDataChange();
       ::pointer<::data::tree_item_base>CalcFirstVisibleItem(::collection::index & iProperIndex);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual int _001CalcCurrentImpactWidth();
-      virtual int _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
-      virtual int _001CalcTotalImpactHeight();
+      virtual ::i32 _001CalcCurrentImpactWidth();
+      virtual ::i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32 _001CalcTotalImpactHeight();
       void _001SelectItem(::data::tree_item_base * ptreeitem);
       ::collection::count _001GetProperItemCount();
       ::collection::count _001GetVisibleItemCount();
@@ -118,7 +118,7 @@ namespace user
       virtual bool _001GetItemElementRect(::i32_rectangle * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       void install_message_routing(::channel * pchannel) override;
-      virtual double _001GetItemHeight();
+      virtual ::f64 _001GetItemHeight();
       virtual ::collection::index _001GetIndentation();
 
 
@@ -132,7 +132,7 @@ namespace user
 
       virtual void perform_right_click(uptr uFlags, const ::i32_point & point);
 
-      virtual int get_wheel_scroll_delta() override;
+      virtual ::i32 get_wheel_scroll_delta() override;
 
       //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -198,7 +198,7 @@ namespace user
 
       bool keyboard_focus_is_focusable() override;
 
-      //virtual ::double_size get_total_size() override;
+      //virtual ::f64_size get_total_size() override;
 
       //void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 

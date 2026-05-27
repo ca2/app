@@ -115,7 +115,7 @@ namespace platform
    //    //bool                                                m_bUserDarkMode;
    //
    //    //bool                                                  m_bOperatingSystemDarkMode;
-   //    //int                                                   m_iWeatherDarkness;
+   //    //::i32                                                   m_iWeatherDarkness;
    //    ::file::path                                          m_pathModule;
    //
    //
@@ -143,7 +143,7 @@ namespace platform
 
 
       virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr) override;
-      virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode) override;
+      virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, ::i32 * piExitCode) override;
 
 
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr) override;
@@ -271,7 +271,7 @@ namespace platform
 
 
 
-      virtual int node_init_check(int * pi, char *** ppz) override;
+      virtual ::i32 node_init_check(::i32 * pi, char_pointer ** ppz) override;
 
       virtual void start_node() override;
 
@@ -293,9 +293,9 @@ namespace platform
       //
       // virtual void _term_os_theme_colors();
 
-//      virtual int get_simple_ui_darkness();
+//      virtual ::i32 get_simple_ui_darkness();
 
-//      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+//      virtual void set_simple_ui_darkness(::i32 iWeatherDarkness);
 
       //virtual void set_dark_mode(bool bDark);
 
@@ -317,11 +317,11 @@ namespace platform
 
       //virtual void os_process_user_icon_theme(const ::scoped_string & scopedstrIconTheme);
 
-      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize) override;
+      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, ::i32 iSize) override;
 
       virtual string get_file_content_type(const ::scoped_string & scopedstrPath) override;
 
-      virtual int os_launch_uri(const ::scoped_string & scopedstrUri, char * pszError = NULL, int iBufferSize = 0) override;
+      virtual ::i32 os_launch_uri(const ::scoped_string & scopedstrUri, char_pointer pszError = NULL, ::i32 iBufferSize = 0) override;
 
       //virtual void enable_wallpaper_change_notification() override;
 
@@ -366,20 +366,20 @@ namespace platform
       virtual void browse_for_file(::file::path & path) override;
 
 
-      virtual double get_time_zone() override;
+      virtual ::f64 get_time_zone() override;
 
 
       virtual string font_name(enum_font efont) override;
 
 
-      //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
+      //virtual string font_name(enum_operating_system eoperatingsystem, ::i32 iVariant, enum_font efont);
 
 
       virtual string file_memory_map_path_from_name(const ::scoped_string & scopedstrName) override;
 
       virtual enum_operating_system get_operating_system() const override;
 
-      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags) override;
+      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags) override;
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion) override;
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutableVersion) override;
@@ -441,7 +441,7 @@ namespace platform
 
 
 
-      virtual void launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount) override;
+      virtual void launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, ::i32 iBitCount) override;
 
 
        virtual void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = {}) override;
@@ -449,10 +449,10 @@ namespace platform
 
 
       virtual void shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory = {}) override;
-      virtual int shell_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams, const class time& timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {}) override;
+      virtual ::i32 shell_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams, const class time& timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {}) override;
 
       virtual void root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory = {}) override;
-      virtual int root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {}) override;
+      virtual ::i32 root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {}) override;
 
 
       virtual void on_start_system() override;
@@ -493,17 +493,17 @@ namespace platform
 
       virtual void defer_update_call_stack() override;
 //#if defined(__ANDROID__)
-//      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
 //#else
-      int get_call_stack_default_frame_count() override;
-      void get_call_stack_frames(void ** stack, int & frame_count) override;
-      string get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1) override;
+      ::i32 get_call_stack_default_frame_count() override;
+      void get_call_stack_frames(void ** stack, ::i32 & frame_count) override;
+      string get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1) override;
 
-      string get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1) override;
+      string get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, ::i32 iCount = -1) override;
 //#endif
-      string _get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1) override;
+      string _get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1) override;
 
-      string _get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1) override;
+      string _get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, ::i32 iCount = -1) override;
 
 
 
@@ -514,20 +514,20 @@ namespace platform
       //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes = nullptr);
 
 
-      virtual int get_current_processor_index() override;
-      virtual int get_current_process_maximum_affinity() override;
-      virtual int get_current_process_affinity_order() override;
-      virtual ::u64 translate_processor_affinity(int i) override;
+      virtual ::i32 get_current_processor_index() override;
+      virtual ::i32 get_current_process_maximum_affinity() override;
+      virtual ::i32 get_current_process_affinity_order() override;
+      virtual ::u64 translate_processor_affinity(::i32 i) override;
 
       //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
       //CLASS_DECL_ACME string ca2_command_line();
 
 
-      //virtual int process_get_status();
-      //virtual void process_set_status(int iStatus);
-      //virtual int * process_get_pargc();
-      //virtual int process_get_argc();
+      //virtual ::i32 process_get_status();
+      //virtual void process_set_status(::i32 iStatus);
+      //virtual ::i32 * process_get_pargc();
+      //virtual ::i32 process_get_argc();
 
 
       virtual bool set_process_priority(::enum_priority epriority) override;
@@ -545,9 +545,9 @@ namespace platform
 //
 //#if !defined(UNIVERSAL_WINDOWS)
 //
-//      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
+//      //virtual ::i32 call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
 //
-//      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
+//      typedef ::i32 CALLSYNCONRETRY(::i32 iTry, uptr dwParam);
 //
 //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 //
@@ -559,11 +559,11 @@ namespace platform
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //
 //
-//      //virtual int get_current_processor_index();
+//      //virtual ::i32 get_current_processor_index();
 //
-//      //virtual int get_current_process_maximum_affinity();
+//      //virtual ::i32 get_current_process_maximum_affinity();
 //
-//      //virtual int get_current_process_affinity_order();
+//      //virtual ::i32 get_current_process_affinity_order();
 //
 //
 //#endif
@@ -597,7 +597,7 @@ namespace platform
       //virtual bool is_shared_library_busy(const string_array_base & stra);
 
 
-      // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount);
+      // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, ::i32 iBitCount);
 
 
 
@@ -625,10 +625,10 @@ namespace platform
 
 
 
-      virtual int is_debug_build() override;
+      virtual ::i32 is_debug_build() override;
 
 
-      virtual int is_release_build() override;
+      virtual ::i32 is_release_build() override;
 
 
       //virtual bool succeeded(const ::error_code& errorcode);
@@ -786,7 +786,7 @@ namespace platform
 
    //virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
    //virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);
-   //virtual void edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink);
+   //virtual void edit_link_icon(const ::file::path& path, ::i32 iIcon, const ::file::path& pathLink);
 //   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
    bool has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false) override;
    bool is_alias(const ::file::path & path) override;
@@ -892,7 +892,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      virtual platform_char** _get_envp(wcsdup_array& a);
+      virtual platform_char ** _get_envp(wcsdup_array& a);
 
       virtual void register_dll(const ::file::path& pathDll);
 
@@ -988,9 +988,9 @@ namespace platform
       ::string eol() override;
 
 
-      int building_core_count(bool bDedicatedBuilding) override;
-      int performance_core_count() override;
-      int efficiency_core_count() override;
+      ::i32 building_core_count(bool bDedicatedBuilding) override;
+      ::i32 performance_core_count() override;
+      ::i32 efficiency_core_count() override;
 
       bool defer_component_factory(const ::scoped_string & scopedstrComponent) override;
 
@@ -998,8 +998,8 @@ namespace platform
 
 //      virtual void * fetch_windowing_system_display();
 //      virtual void windowing_system_async(const ::procedure & procedure);
-//      virtual void windowing_system_display_error_trap_push(int i);
-//      virtual void windowing_system_display_error_trap_pop_ignored(int i);
+//      virtual void windowing_system_display_error_trap_push(::i32 i);
+//      virtual void windowing_system_display_error_trap_pop_ignored(::i32 i);
 
 
 

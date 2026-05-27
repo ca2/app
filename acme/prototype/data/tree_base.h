@@ -292,7 +292,7 @@ namespace data
    //void tree < ::item * >::erase(tree_item_ptr_array<::item *> & itemptra)
    //{
 
-   //   for (int i = 0; i < itemptra.get_count(); i++)
+   //   for (::i32 i = 0; i < itemptra.get_count(); i++)
    //   {
 
    //      erase(itemptra[i]);
@@ -403,7 +403,7 @@ namespace data
    //::collection::index tree < ::item * >::get_proper_item_index(::data::tree_item_base * pitemParam, ::collection::index * piLevel, ::collection::index * piCount)
    //{
 
-   //   int iIndex = 0;
+   //   ::i32 iIndex = 0;
 
    //   ::collection::count iCount = 0;
 

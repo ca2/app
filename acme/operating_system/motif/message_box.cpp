@@ -13,7 +13,7 @@ namespace motif
    ::atom message_box::do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //void message_box::do_modal(const_char_pointer pszMsg, bool bError)
    {
-      XmString xmString = XmStringCreateLocalized(const_cast<char *>(scopedstrMessage.as_string().c_str()));
+      XmString xmString = XmStringCreateLocalized(const_cast<char_pointer >(scopedstrMessage.as_string().c_str()));
       Arg args[6];
 
 // setup message box text
@@ -25,13 +25,13 @@ namespace motif
       switch(emessagebox & ::user::e_message_box_icon_mask)
       {
       case ::user::e_message_box_icon_error:
-         m_pwidgetMsgBox = XmCreateErrorDialog(m_pwidgetTop, (char *) "Error", args, 2);
+         m_pwidgetMsgBox = XmCreateErrorDialog(m_pwidgetTop, (char_pointer ) "Error", args, 2);
          break;
       case ::user::e_message_box_icon_warning:
-         m_pwidgetMsgBox = XmCreateWarningDialog(m_pwidgetTop, (char *) "Warning", args, 2);
+         m_pwidgetMsgBox = XmCreateWarningDialog(m_pwidgetTop, (char_pointer ) "Warning", args, 2);
          break;
       default:
-         m_pwidgetMsgBox = XmCreateMessageDialog(m_pwidgetTop, (char *) "Message", args, 2);
+         m_pwidgetMsgBox = XmCreateMessageDialog(m_pwidgetTop, (char_pointer ) "Message", args, 2);
          break;
       }
 // remove text resource

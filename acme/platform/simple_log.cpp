@@ -20,8 +20,8 @@ static bool g_bPrintfIfDebuggerIsNotAttached = false;
 string get_status_message(const ::e_status & estatus);
 
 
-CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, const ::scoped_string & scopedstr);
-CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
+CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, ::i32 iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args);
 
 
 //CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
@@ -34,7 +34,7 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer
 //}
 
 
-//CLASS_DECL_ACME void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags, const ::function_arg& function)
+//CLASS_DECL_ACME void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags, const ::function_arg& function)
 //{
 //
 //   ::os_message_box_w(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -70,7 +70,7 @@ void o_debug_string(const ::scoped_string & scopedstr)
 }
 
 
-CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, int iLine)
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, ::i32 iLine)
 {
 
    character_count iLen;
@@ -95,7 +95,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    string str;
 
-   char * psz = str.get_buffer(iLen + 8);
+   char_pointer psz = str.get_buffer(iLen + 8);
 
    ansi_ncpy(psz, scopedstrText, scopedstrText.size());
 
@@ -109,7 +109,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
       if (iLine >= 1)
       {
 
-         char pszNum[30];
+         ::i8 pszNum[30];
 
          ansi_from_long_long(pszNum, iLine, 10, e_digit_case_upper);
 
@@ -133,11 +133,11 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 
 
-//int g_iMemoryCounters = -1;
+//::i32 g_iMemoryCounters = -1;
 //
 //CLASS_DECL_ACME::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
 //
-//int g_iMemoryCountersStartable = 0;
+//::i32 g_iMemoryCountersStartable = 0;
 //
 //CLASS_DECL_ACME bool memory_counter_on()
 //{
@@ -467,7 +467,7 @@ CLASS_DECL_ACME const_char_pointer e_trace_level_name(enum_trace_level elevel);
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, int iLine, const ::scoped_string & scopedstr)
+CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, ::i32 iLine, const ::scoped_string & scopedstr)
 {
 
 #ifndef _DEBUG
@@ -544,7 +544,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, int iLine, const_char_pointer pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, ::i32 iLine, const_char_pointer pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

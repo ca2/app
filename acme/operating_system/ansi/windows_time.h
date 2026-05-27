@@ -10,12 +10,12 @@
 
 
 
-using WORD = unsigned short;
-using LONG = int;
+using WORD = ::u16;
+using LONG = ::i32;
 using WINULONG = ::u32;
 using LONGLONG = ::i64;
 using ULONGLONG = ::u64;
-using NTSTATUS = int;
+using NTSTATUS = ::i32;
 using DWORD = ::u32;
 using LPDWORD = ::DWORD *;
 

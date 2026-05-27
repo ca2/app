@@ -27,8 +27,8 @@ public:
    ::micro::elemental *   m_pinterchange;
 
 
-   virtual void on_draw(::nano::graphics::device * pnanodevice) = 0;
-   virtual void on_char(int iChar) = 0;
+   virtual void on_draw(::nano::graphics::context * pnanodevice) = 0;
+   virtual void on_char(::i32 iChar) = 0;
    virtual void set_focus();
    virtual bool is_focusable();
    virtual void on_mouse_move(::user::mouse * pmouse);

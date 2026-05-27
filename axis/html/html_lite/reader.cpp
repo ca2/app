@@ -145,8 +145,8 @@ character_count lite_html_reader::parseDocument()
    string   strT;               // temporary storage
    character_count   dwCharDataStart = 0L;   // starting position of character data
    character_count   dwCharDataLen = 0L;      // length of character data
-   int   lTemp = 0L;            // temporary storage
-   char   ch = 0;               // character at current buffer position
+   ::i32   lTemp = 0L;            // temporary storage
+   ::i8   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
 
    if(m_strBuffer.is_empty())
@@ -330,7 +330,7 @@ character_count lite_html_reader::read_form_document(const ::scoped_string & sco
 
 
 
-char lite_html_reader::UngetChar()
+::i8 lite_html_reader::UngetChar()
 {
    if(m_strBuffer.is_empty())
       return '\0';
@@ -350,7 +350,7 @@ bool lite_html_reader::getEventNotify(::u32 dwEvent) const
    return ((m_happeningMask & dwEvent) == dwEvent);
 }
 
-bool lite_html_reader::isWhiteSpace(char ch) const
+bool lite_html_reader::isWhiteSpace(::i8 ch) const
 {
    return ::character_isspace(ch) ? true : false;
 }
@@ -481,16 +481,16 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(pszBegin, int(pszEnd - pszBegin));
+   string   strComment(pszBegin, ::i32(pszEnd - pszBegin));
 
 
    // end of buffer?
-   if (pszEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
+   if (pszEnd + (sizeof(::i8) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
 
       return (false);
 
    // skip white-space characters after comment ending delimeter '--'
-   pszEnd += (sizeof(char) * 2);
+   pszEnd += (sizeof(::i8) * 2);
 
    while (::character_isspace(*pszEnd))
 

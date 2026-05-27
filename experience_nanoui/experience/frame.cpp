@@ -92,7 +92,7 @@ namespace experience_nanoui
       }
 
 
-      int iInflate = 5; // raio 2 pixels + centro 1 pixel
+      ::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       rectangleInflate = rectangleX;
 
@@ -124,11 +124,11 @@ namespace experience_nanoui
 
       {
 
-         double_rectangle rectangleSource(point, pimage1->get_size());
+         ::f64_rectangle rectangleSource(point, pimage1->get_size());
 
          ::image::image_source imagesource(pgraphics, rectangleSource);
 
-         double_rectangle rectangleTarget(pimage1->get_size());
+         ::f64_rectangle rectangleTarget(pimage1->get_size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -146,11 +146,11 @@ namespace experience_nanoui
 
       {
 
-         double_rectangle rectangleSource(pointInflate, rectangleX.size());
+         ::f64_rectangle rectangleSource(pointInflate, rectangleX.size());
 
          ::image::image_source imagesource(pimage2, rectangleSource);
 
-         double_rectangle rectangleTarget(rectangleX);
+         ::f64_rectangle rectangleTarget(rectangleX);
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -171,7 +171,7 @@ namespace experience_nanoui
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, unsigned char bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
       pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
@@ -289,10 +289,10 @@ namespace experience_nanoui
    //}
 
 
-   //frame::enum_element operator ++(frame::enum_element & eelement, int i)
+   //frame::enum_element operator ++(frame::enum_element & eelement, ::i32 i)
    //{
    //   __UNREFERENCED_PARAMETER(i);
-   //   return (frame::enum_element) (*((int*)&eelement))++;
+   //   return (frame::enum_element) (*((::i32*)&eelement))++;
    //}
 
    bool frame::get_element_rectangle(::i32_rectangle & rect, enum_element eelement)
@@ -548,10 +548,10 @@ namespace experience_nanoui
 
       ::i32_rectangle rectangle(rectangleParam);
 
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width();
-      int cy = rectangle.height();
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width();
+      ::i32 cy = rectangle.height();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -673,12 +673,12 @@ namespace experience_nanoui
          if(get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             while(i < rectangleGrip.width() - 5 + 1)
             {
 
-               ::double_rectangle rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               ::f64_rectangle rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
 

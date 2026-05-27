@@ -24,10 +24,10 @@ namespace draw2d
    public:
 
       
-      int                                 m_iTopic;
-      int                                 m_iTopicLines;
-      int                                 m_iClose;
-      ::double_point_array                   m_pointa;
+      ::i32                                 m_iTopic;
+      ::i32                                 m_iTopicLines;
+      ::i32                                 m_iClose;
+      ::f64_point_array                   m_pointa;
       ::pointer < ::geometry2d::item >    m_pitemTopic;
 
       

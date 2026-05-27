@@ -108,8 +108,8 @@ namespace innate_subsystem
       // HBITMAP m_hbmOld;
       // HBITMAP m_hbmDIB;
       // // Coordinates of the source dc can be negative.
-      // int m_srcOffsetX;
-      // int m_srcOffsetY;
+      // ::i32 m_srcOffsetX;
+      // ::i32 m_srcOffsetY;
       //
       // void *m_buffer;
       //
@@ -227,8 +227,8 @@ namespace innate_subsystem
       // HBITMAP m_hbmOld;
       // HBITMAP m_hbmDIB;
       // // Coordinates of the source dc can be negative.
-      // int m_srcOffsetX;
-      // int m_srcOffsetY;
+      // ::i32 m_srcOffsetX;
+      // ::i32 m_srcOffsetY;
       //
       // void* m_buffer;
       //

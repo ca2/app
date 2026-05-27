@@ -127,7 +127,7 @@ namespace html
 
          string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("ize");
 
-         int iSize = 20;
+         ::i32 iSize = 20;
 
          if (strSize.has_character())
          {

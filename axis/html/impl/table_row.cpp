@@ -79,10 +79,10 @@ namespace html
 
          }
 
-         for(int i = 0; i < get_table()->m_cellholdera.get_size(); i++)
+         for(::i32 i = 0; i < get_table()->m_cellholdera.get_size(); i++)
          {
 
-            for(int j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
+            for(::i32 j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
             {
 
                if(ptable->m_cellholdera[i][j].m_iRow == m_iRow)
@@ -102,7 +102,7 @@ namespace html
       void table_row::layout_phase0(html_data * pdata)
       {
 
-         float iTableBorder = get_table()->m_iBorder;
+         ::f32 iTableBorder = get_table()->m_iBorder;
 
          if(iTableBorder > 0)
          {
@@ -113,9 +113,9 @@ namespace html
 
          ::collection::index i;
 
-         float cxMax = 0.f;
+         ::f32 cxMax = 0.f;
 
-         float cxMin = 0.f;
+         ::f32 cxMin = 0.f;
 
          for(i = 0; i < m_cellholdera.get_size() && i < get_table()->m_columna.get_size(); i++)
          {
@@ -182,7 +182,7 @@ namespace html
       void table_row::layout_phase1_end(html_data * pdata)
       {
 
-         for (int i = 0; i < m_cellholdera.get_size(); i++)
+         for (::i32 i = 0; i < m_cellholdera.get_size(); i++)
          {
 
             cell * pcell = m_cellholdera[i].m_pcell;
@@ -193,14 +193,14 @@ namespace html
                if (pcell->height() > m_cyMax)
                {
 
-                  m_cyMax = (int) pcell->height();
+                  m_cyMax = (::i32) pcell->height();
 
                }
 
                if (pcell->height() < m_cyMin || m_cyMin < 0)
                {
 
-                  m_cyMin = (int)pcell->height();
+                  m_cyMin = (::i32)pcell->height();
 
                }
 
@@ -208,7 +208,7 @@ namespace html
 
          }
 
-         for (int i = 0; i < m_cellholdera.get_size(); i++)
+         for (::i32 i = 0; i < m_cellholdera.get_size(); i++)
          {
 
             cell * pcell = m_cellholdera[i].m_pcell;
@@ -216,19 +216,19 @@ namespace html
             if (pcell != nullptr)
             {
 
-               pcell->m_box.set_height((float) m_cyMax);
+               pcell->m_box.set_height((::f32) m_cyMax);
 
             }
 
          }
 
-         m_box.set_height((float)m_cyMax);
+         m_box.set_height((::f32)m_cyMax);
 
-         m_bound.set_height((float)m_cyMax);
+         m_bound.set_height((::f32)m_cyMax);
 
-         pdata->m_pcoredata->m_layoutstate1.m_cy = (float)m_cyMax;
+         pdata->m_pcoredata->m_layoutstate1.m_cy = (::f32)m_cyMax;
 
-         pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float)m_cyMax;
+         pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (::f32)m_cyMax;
 
       }
 

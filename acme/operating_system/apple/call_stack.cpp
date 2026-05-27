@@ -25,7 +25,7 @@
 //   }
 //
 //
-//   string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+//   string node::get_callstack(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
 //   {
 //
 //      const size_t iMaximumFramesToCapture = 64;
@@ -42,24 +42,24 @@
 //} // namespace acme
 //
 //
-//void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+//void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char_pointer pmessage, void * address)
 //{
 //   
-//   char * pszOrdinal = pmessage;
+//   char_pointer pszOrdinal = pmessage;
 //   
-//   char * pszModule = nullptr;
+//   char_pointer pszModule = nullptr;
 //   
-//   char * pszAddress = nullptr;
+//   char_pointer pszAddress = nullptr;
 //
-//   char * pszMangledName = nullptr;
+//   char_pointer pszMangledName = nullptr;
 //
-//   char * pszOffsetBegin = nullptr;
+//   char_pointer pszOffsetBegin = nullptr;
 //   
-//   int iSpace = 0;
+//   ::i32 iSpace = 0;
 //   
 //   bool bWhitespace = false;
 //
-//   for (char * psz = pmessage; *psz; ++psz)
+//   for (char_pointer psz = pmessage; *psz; ++psz)
 //   {
 //      
 //      if(!bWhitespace)
@@ -113,9 +113,9 @@
 //   if (scopedstrMangledName && pszAddress && pszMangledName > pszAddress)
 //   {
 //
-//      int status;
+//      ::i32 status;
 //
-//      acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
+//      acme::malloc < char_pointer > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 //
 //      if (status == 0)
 //      {
@@ -138,21 +138,21 @@
 
 
 
-void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char_pointer pmessage, void * address)
 {
 
-   char * pszMangledName = nullptr;
+   char_pointer pszMangledName = nullptr;
 
-   char * pszMangledNameEnd = nullptr;
+   char_pointer pszMangledNameEnd = nullptr;
 
-   char * pszOffsetBegin = nullptr;
+   char_pointer pszOffsetBegin = nullptr;
 
-   char * pszOffsetEnd = nullptr;
+   char_pointer pszOffsetEnd = nullptr;
 
-   int i = 0;
+   ::i32 i = 0;
 
    bool bWasSpace = false;
-   char * psz = pmessage;
+   char_pointer psz = pmessage;
 
    // find parantheses and +address offset surrounding mangled name
    for (; *psz; ++psz)
@@ -221,16 +221,16 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
       *pszMangledNameEnd = '\0';
 
-      int status;
+      ::i32 status;
 
-      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+      acme::malloc < char_pointer > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 
       const_char_pointer pszSymbolName;
 
       if (status == 0)
       {
 
-         strSymbolName = (const_char_pointer )(char *) pszRealName;
+         strSymbolName = (const_char_pointer )(char_pointer ) pszRealName;
 
       }
       else

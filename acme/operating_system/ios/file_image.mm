@@ -11,10 +11,10 @@
 #import <UniformTypeIdentifiers/UTType.h>
 
 
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
+bool GetImagePixelData(::u32 * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 
 
-bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+bool apple_get_file_image(::u32 * pcr, int cx, int cy, int iScan, const char * psz)
 {
    
    NSString * str = [NSString stringWithUTF8String:psz];
@@ -84,7 +84,7 @@ bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const c
 
 
 
-bool apple_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
+bool apple_get_file_image_by_type_identifier(::u32 * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
 {
 
    NSString * strTypeIdentifier = [NSString stringWithUTF8String:pszTypeIdentifier];

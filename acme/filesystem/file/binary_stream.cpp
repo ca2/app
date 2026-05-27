@@ -215,7 +215,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
 
    enum_type etype = payload.get_type();
 
-   int i = etype;
+   ::i32 i = etype;
 
    stream << i;
 
@@ -263,16 +263,16 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    case e_type_u64:
       stream << payload.m_u64;
       break;
-   case e_type_pchar:
+   case e_type_pi8:
       stream << *payload.m_pi8;
       break;
-   case e_type_pshort:
+   case e_type_pi16:
       stream << *payload.m_pi16;
       break;
-   case e_type_punsigned_char:
+   case e_type_pu8:
       stream << *payload.m_pu8;
       break;
-   case e_type_punsigned_short:
+   case e_type_pu16:
       stream << *payload.m_pu16;
       break;
    case e_type_pi32:
@@ -287,8 +287,8 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    case e_type_pu64:
       stream << *payload.m_pu64;
       break;
-   case e_type_double:
-      stream << payload.m_d;
+   case e_type_f64:
+      stream << payload.m_f64;
       break;
    case e_type_bool:
       stream << payload.m_b;
@@ -491,7 +491,7 @@ binary_stream & operator >>(binary_stream & stream, ::payload & payload)
 void binary_stream::read_payload_type(enum_type & etype)
 {
 
-   int i;
+   ::i32 i;
 
    *this >> i;
 
@@ -509,7 +509,7 @@ void binary_stream::read_payload_type(enum_type & etype)
 void binary_stream::save_payload_type(enum_type etype)
 {
 
-   int i((int)etype);
+   ::i32 i((::i32)etype);
 
    *this << i;
 
@@ -596,21 +596,21 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_double:
+   case e_type_f64:
    {
 
-      payload.set_type(::e_type_double, false);
+      payload.set_type(::e_type_f64, false);
 
-      *this >> payload.m_d;
+      *this >> payload.m_f64;
 
    }
    break;
-   case e_type_float:
+   case e_type_f32:
    {
 
-      payload.set_type(::e_type_float, false);
+      payload.set_type(::e_type_f32, false);
 
-      *this >> payload.m_d;
+      *this >> payload.m_f64;
 
    }
    break;
@@ -752,7 +752,7 @@ binary_stream & binary_stream::operator >>(block & block)
 }
 
 
-void binary_stream::getline(char * sz, character_count n)
+void binary_stream::getline(char_pointer sz, character_count n)
 {
 
    m_pfile->getline(sz, n);

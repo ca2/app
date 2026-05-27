@@ -134,18 +134,18 @@
 
 struct text_info
 {
-  ::u32 currmode;		// Is only a char in conio.
-  unsigned char winleft;
-  unsigned char wintop;
-  unsigned char winright;
-  unsigned char winbottom;
-  unsigned char attribute;
-  unsigned char normattr;
-  //unsigned char currmode;
-  unsigned char screenheight;
-  unsigned char screenwidth;
-  unsigned char curx;
-  unsigned char cury;
+  ::u32 currmode;		// Is only a ::i8 in conio.
+  ::u8 winleft;
+  ::u8 wintop;
+  ::u8 winright;
+  ::u8 winbottom;
+  ::u8 attribute;
+  ::u8 normattr;
+  //::u8 currmode;
+  ::u8 screenheight;
+  ::u8 screenwidth;
+  ::u8 curx;
+  ::u8 cury;
 };
 
 //----------------------------------------------------------------------------
@@ -158,24 +158,24 @@ __BEGIN_DECLS
 // function is optional in Turbo C, but must be used in all cases for us
 // because otherwise we can't guarantee that the necessary initialization
 // of ncurses has occurred.
-CLASS_DECL_TURBOC void textattr (int newattr);
-CLASS_DECL_TURBOC void textbackground (int newcolor);
-CLASS_DECL_TURBOC void textcolor (int newcolor);
+CLASS_DECL_TURBOC void textattr (::i32 newattr);
+CLASS_DECL_TURBOC void textbackground (::i32 newcolor);
+CLASS_DECL_TURBOC void textcolor (::i32 newcolor);
 CLASS_DECL_TURBOC void lowvideo (void);
 CLASS_DECL_TURBOC void highvideo (void);
 CLASS_DECL_TURBOC void normvideo (void);
 CLASS_DECL_TURBOC void gettextinfo (struct text_info *r);
-CLASS_DECL_TURBOC int wherex (void);
-CLASS_DECL_TURBOC int wherey (void);
-CLASS_DECL_TURBOC void gotoxy (int x, int y);
-CLASS_DECL_TURBOC void window (int left, int top, int right, int bottom);
+CLASS_DECL_TURBOC ::i32 wherex (void);
+CLASS_DECL_TURBOC ::i32 wherey (void);
+CLASS_DECL_TURBOC void gotoxy (::i32 x, ::i32 y);
+CLASS_DECL_TURBOC void window (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
 CLASS_DECL_TURBOC void clreol (void);
 CLASS_DECL_TURBOC void clrscr (void);
-CLASS_DECL_TURBOC void textmode (int newmode);
-CLASS_DECL_TURBOC int putch (int c);
-CLASS_DECL_TURBOC int getche (void);
-CLASS_DECL_TURBOC int cputs (const ::scoped_string & scopedstr);
-CLASS_DECL_TURBOC int cprintf (const ::string &format, ...);
+CLASS_DECL_TURBOC void textmode (::i32 newmode);
+CLASS_DECL_TURBOC ::i32 putch (::i32 c);
+CLASS_DECL_TURBOC ::i32 getche (void);
+CLASS_DECL_TURBOC ::i32 cputs (const ::scoped_string & scopedstr);
+CLASS_DECL_TURBOC ::i32 cprintf (const ::string &format, ...);
 CLASS_DECL_TURBOC void delline (void);
 CLASS_DECL_TURBOC void insline (void);
 
@@ -184,22 +184,22 @@ CLASS_DECL_TURBOC void insline (void);
 #ifdef gettext
 #undef gettext
 #endif
-static inline char *
+static inline char_pointer 
 gettextIntl (const ::string &msgid) { 
-  extern char *gettext (const ::string &msgid);
+  extern char_pointer gettext (const ::string &msgid);
   return (gettext (msgid)); 
 }
 // The following is used to access the TurboC-library's gettext.
-CLASS_DECL_TURBOC int gettextTurboC (int left, int top, int right, int bottom, void *destin);
+CLASS_DECL_TURBOC ::i32 gettextTurboC (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *destin);
 #define gettext gettextTurboC
 
-CLASS_DECL_TURBOC int puttext (int left, int top, int right, int bottom, void *destin);
-CLASS_DECL_TURBOC int movetext (int left, int top, int right, int bottom, int dleft,
-		     int dtop);
-CLASS_DECL_TURBOC int kbhit (void);
-CLASS_DECL_TURBOC char *cgets (char *s);
-CLASS_DECL_TURBOC char *getpass (const ::string &prompt);
-CLASS_DECL_TURBOC void _setcursortype (int cur_t);
+CLASS_DECL_TURBOC ::i32 puttext (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *destin);
+CLASS_DECL_TURBOC ::i32 movetext (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, ::i32 dleft,
+		     ::i32 dtop);
+CLASS_DECL_TURBOC ::i32 kbhit (void);
+CLASS_DECL_TURBOC char_pointer cgets (char_pointer s);
+CLASS_DECL_TURBOC char_pointer getpass (const ::string &prompt);
+CLASS_DECL_TURBOC void _setcursortype (::i32 cur_t);
 
 // Implementing getch/ungetch is a little tricky, since functions of the same
 // names, but slightly different behavior, are available in ncurses.  We
@@ -207,22 +207,22 @@ CLASS_DECL_TURBOC void _setcursortype (int cur_t);
 // So we want to use macros to redefine what they mean when encountered
 // in the Turbo C code.  However, we provide NEW functions (getchNcurses
 // and ungetchNcurses) to provide the ncurses functionality.
-static inline int
+static inline ::i32
 getchNcurses (void)
 {
   return (getch ());
 }
-CLASS_DECL_TURBOC int getchTurbo (void);
+CLASS_DECL_TURBOC ::i32 getchTurbo (void);
 #ifdef getch
 #undef getch
 #endif
 #define getch getchTurbo
 static inline void
-ungetchNcurses (int c)
+ungetchNcurses (::i32 c)
 {
   ungetch (c);
 }
-CLASS_DECL_TURBOC int ungetchTurbo (int c);
+CLASS_DECL_TURBOC ::i32 ungetchTurbo (::i32 c);
 #ifdef ungetch
 #undef ungetch
 #endif
@@ -235,35 +235,35 @@ CLASS_DECL_TURBOC void RawResizeTurboC (gint Rows, gint Columns);
 CLASS_DECL_TURBOC void ConioResizeCallback (void);
 
 // Graphics-window keyboard buffer.
-int TcAddKeybuf (char c);
-int TcExtractKeybuf (char *c);
+::i32 TcAddKeybuf (::i8 c);
+::i32 TcExtractKeybuf (char_pointer c);
 
 __END_DECLS
 //--------------------------------------------------------------------------
 // Variables.
 #ifdef TURBOC_VARIABLES_C
-//int directvideo = 1, _directvideo = 1, _wscroll = 1;
-//char TcKeybuf[TC_KEYBUF_SIZE];
+//::i32 directvideo = 1, _directvideo = 1, _wscroll = 1;
+//::i8 TcKeybuf[TC_KEYBUF_SIZE];
 //gint TcKeybufStart = 0, TcKeybufSize = 0;
 //pthread_mutex_t TcMutex = PTHREAD_MUTEX_INITIALIZER;
-//int ConioInitialized = 0;	// Becomes 1 after initialization.
+//::i32 ConioInitialized = 0;	// Becomes 1 after initialization.
 //struct text_info CurrentAttributes;
 //// CurrentWindow is NULL prior to initialization.  After initialization,
 //// it begins as the ncurses stdscr.  After the window function is used, it
 //// becomes something else.
 //WINDOW *CurrentWindow = NULL;
-//int ColorPairsUsed;
-//int ConioRefreshOkay = 1;
+//::i32 ColorPairsUsed;
+//::i32 ConioRefreshOkay = 1;
 #else // TURBOC_VARIABLES_C
-extern int directvideo, _directvideo, _wscroll;
-extern char TcKeybuf[TC_KEYBUF_SIZE];
+extern ::i32 directvideo, _directvideo, _wscroll;
+extern ::i8 TcKeybuf[TC_KEYBUF_SIZE];
 extern gint TcKeybufStart, TcKeybufSize;
 //extern pthread_mutex_t TcMutex;
-extern int ConioInitialized;
+extern ::i32 ConioInitialized;
 extern struct text_info CurrentAttributes;
 //extern WINDOW *CurrentWindow;
-extern int ColorPairsUsed;
-extern int ConioRefreshOkay;
+extern ::i32 ColorPairsUsed;
+extern ::i32 ConioRefreshOkay;
 #endif // TURBOC_VARIABLES_C
 
 #endif // _INCLUDED_CONIO_H

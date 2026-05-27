@@ -66,7 +66,7 @@ namespace gpu_opengl
 
          // loads the first texture of given type
          ::gpu::texture * loadMaterialTexture(aiMaterial *material, aiTextureType type);
-         unsigned int textureFromFile(const char *fileName, std::string directory, aiTextureType type);
+         ::u32 textureFromFile(const_char_pointer fileName, std::string directory, aiTextureType type);
 
       };
 

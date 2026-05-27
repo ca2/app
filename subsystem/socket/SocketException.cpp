@@ -33,7 +33,7 @@ namespace subsystem
       setErrorCode(lastSocketError);
    }
 
-   SocketException::SocketException(int iErrorCode)
+   SocketException::SocketException(::i32 iErrorCode)
    : ::subsystem::Exception()
    {
       setErrorCode(iErrorCode);
@@ -49,7 +49,7 @@ namespace subsystem
    }
 
 
-   void SocketException::setErrorCode(int iErrorCode)
+   void SocketException::setErrorCode(::i32 iErrorCode)
    {
 
       m_iErrorCode = iErrorCode;

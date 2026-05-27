@@ -23,8 +23,8 @@ namespace coding
 
 
       //::file::path                        m_path;
-      //int                                 m_iTry;
-      //int                                 m_iTryCount;
+      //::i32                                 m_iTry;
+      //::i32                                 m_iTryCount;
 
 
       //::string                            m_strStatus;
@@ -67,7 +67,7 @@ namespace coding
 
       virtual void on_finished();
 
-      virtual void start_installation(int iTryCount);
+      virtual void start_installation(::i32 iTryCount);
 
       virtual void defer_start_installation();
 

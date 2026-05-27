@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-extern "C" int APIENTRY
+extern "C" ::i32 APIENTRY
 DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
    // erase this if you use lpReserved

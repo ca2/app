@@ -30,22 +30,22 @@ public:
   nsEUCTWProber(void){mCodingSM = ___new nsCodingStateMachine(&EUCTWSMModel);
                       Reset();};
   virtual ~nsEUCTWProber(void){delete mCodingSM;};
-  nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
+  nsProbingState HandleData(const ::string & aBuf, PRunsigned ::i32 aLen);
   const_char_pointer GetCharSetName() {return "x-euc-tw";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
-  float     GetConfidence(void);
+  ::f32     GetConfidence(void);
   void      SetOpion() {};
 
 protected:
-  void      GetDistribution(PRunsigned int aCharLen, const ::string & aStr);
+  void      GetDistribution(PRunsigned ::i32 aCharLen, const ::string & aStr);
   
   nsCodingStateMachine* mCodingSM;
   nsProbingState mState;
 
   //EUCTWContextAnalysis mContextAnalyser;
   EUCTWDistributionAnalysis mDistributionAnalyser;
-  char mLastChar[2];
+  ::i8 mLastChar[2];
 
 };
 

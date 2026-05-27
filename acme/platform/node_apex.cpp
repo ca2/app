@@ -78,7 +78,7 @@ namespace platform
 
 
    void apex_node_layer::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco,
-                                  int iIcon)
+                                  ::i32 iIcon)
    {
    }
 
@@ -89,7 +89,7 @@ namespace platform
    }
 
 
-   bool apex_node_layer::shell_link_icon(::file::path& pathIcon, int& iIcon, const ::file::path& pathLnk)
+   bool apex_node_layer::shell_link_icon(::file::path& pathIcon, ::i32& iIcon, const ::file::path& pathLnk)
    {
       return false;
    }

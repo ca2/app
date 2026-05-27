@@ -100,7 +100,7 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
       if(path().is_empty())
       {
          Sess(papp).directory()->root_ones(straPath, straTitle);
-         for(int i = 0; i < straPath.get_size(); i++)
+         for(::i32 i = 0; i < straPath.get_size(); i++)
          {
             item item;
             item.m_bPending = true;
@@ -116,7 +116,7 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
       else
       {
          Sess(papp).directory()->ls(path(), &straPath, &straTitle, &baIsDir, &iaSize);
-         for(int i = 0; i < straTitle.get_size(); i++)
+         for(::i32 i = 0; i < straTitle.get_size(); i++)
          {
             item item;
             item.m_bPending = baIsDir[i];
@@ -202,7 +202,7 @@ void file_size_table::item::update_size(::particle * pparticle, ::collection::in
    {
       m_iSize = 0;
       m_bPending = false;
-      for(int i = 0; i < m_itema.get_size(); i++)
+      for(::i32 i = 0; i < m_itema.get_size(); i++)
       {
          m_iSize += m_itema[i]->m_iSize;
          if(m_itema[i]->m_bPending || m_itema[i]->m_bPendingLs)
@@ -220,7 +220,7 @@ void file_size_table::item::update_size_recursive(::particle * pparticle, ::coll
    {
       ls(papp, iIteration);
    }
-   for(int i = 0; i < m_itema.get_size(); i++)
+   for(::i32 i = 0; i < m_itema.get_size(); i++)
    {
       m_itema[i]->update_size_recursive(papp, iIteration);
       if(iIteration > 230)
@@ -565,7 +565,7 @@ void file_size_table::get_fs_size::write(::file::output_stream & ostream) const
 
 #ifdef WINDOWS_DESKTOP
 
-   ostream << (int) m_pacmewindowingwindow;
+   ostream << (::i32) m_pacmewindowingwindow;
 
 #else
 
@@ -585,7 +585,7 @@ void file_size_table::get_fs_size::read(::file::input_stream & istream)
 
 #ifdef WINDOWS
 
-   istream >> (int &) m_pacmewindowingwindow;
+   istream >> (::i32 &) m_pacmewindowingwindow;
 
 #else
 

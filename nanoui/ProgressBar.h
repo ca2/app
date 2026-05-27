@@ -29,13 +29,13 @@ namespace nanoui
    public:
       ProgressBar(Widget * parent);
 
-      float value() { return m_value; }
-      void set_value(float value) { m_value = value; }
+      ::f32 value() { return m_value; }
+      void set_value(::f32 value) { m_value = value; }
 
       virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
       virtual void draw(::nano2d::context  * pcontext) override;
    protected:
-      float m_value;
+      ::f32 m_value;
 };
 
 

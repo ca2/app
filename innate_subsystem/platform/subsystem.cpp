@@ -181,7 +181,7 @@ s_p = this;
 
    }
 
-   ::user::enum_key subsystem::virtual_key_code_to_user_key(int iVirtualKeyCode)
+   ::user::enum_key subsystem::virtual_key_code_to_user_key(::i32 iVirtualKeyCode)
    {
 
       throw ::interface_only();
@@ -245,7 +245,7 @@ s_p = this;
       
 #ifdef WINDOWS
       
-      unsigned short virtualKey = static_cast<unsigned short>(wparam.m_wparam);
+      ::u16 virtualKey = static_cast<::u16>(wparam.m_wparam);
       ::u32 additionalInfo = static_cast<::u32>(lparam.m_lparam);
       static const ::u32 DOWN_FLAG = 0x80000000;
       bool isDown = (additionalInfo & DOWN_FLAG) == 0;

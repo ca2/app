@@ -97,7 +97,7 @@ namespace user
       __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (int nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
+      for (::i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
       ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
@@ -155,8 +155,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      int lSize = _MAX_PATH * 2;
-      int lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      ::i32 lSize = _MAX_PATH * 2;
+      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -187,7 +187,7 @@ namespace user
       __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (int nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
+      for (::i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
       ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
@@ -310,8 +310,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      int lSize = _MAX_PATH * 2;
-      int lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      ::i32 lSize = _MAX_PATH * 2;
+      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -352,9 +352,9 @@ namespace user
    // add to filter
    filter += strFilterName;
    ASSERT(!filter.is_empty());  // must have a file type name
-   filter += (char)'\0';  // next string please
+   filter += (::i8)'\0';  // next string please
 
-   int iStart = 0;
+   ::i32 iStart = 0;
    do
    {
    string strExtension = strFilterExt.Tokenize( _T( ";" ), iStart );
@@ -377,14 +377,14 @@ namespace user
    {
    // set the default extension
    *pstrDefaultExt = strExtension.substr( 1 );  // skip the '.'
-   ofn.pstrDefExt = const_cast< char * >((const ::string &)(*pstrDefaultExt));
+   ofn.pstrDefExt = const_cast< char_pointer >((const ::string &)(*pstrDefaultExt));
 
    ofn.nFilterIndex = ofn.nMaxCustFilter + 1;  // 1 based number
    }
 
-   filter += (char)'*';
+   filter += (::i8)'*';
    filter += strExtension;
-   filter += (char)';';  // Always append a ';'.  The last ';' will get replaced with a '\0' later.
+   filter += (::i8)';';  // Always append a ';'.  The last ';' will get replaced with a '\0' later.
    }
    } while (iStart != -1);
 
@@ -578,7 +578,7 @@ namespace user
       else
       return false; // not a command we handle
 
-      int i = strCommand.find('"');
+      ::i32 i = strCommand.find('"');
       if (i == -1)
       return false; // illegally terminated
 
@@ -683,7 +683,7 @@ namespace user
       }
 
       // get document ::collection::count before opening it
-      int nOldCount; nOldCount = get_document_count();
+      ::i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
       pDoc = psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);
@@ -808,15 +808,15 @@ namespace user
 
       ::user::document * pOpenDocument = nullptr;
 
-      /*char szPath[_MAX_PATH];
+      /*::i8 szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));
-      char szTemp[_MAX_PATH];
+      ::i8 szTemp[_MAX_PATH];
       if (scopedstrFileName[0] == '\"')
 
       ++pszFileName;
 
       ::aura::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
-      char * pszLast = _tcsrchr(szTemp, '\"');
+      char_pointer pszLast = _tcsrchr(szTemp, '\"');
 
       if (scopedstrLast != nullptr)
 
@@ -830,7 +830,7 @@ namespace user
       // length < _MAX_PATH
       //}
 
-      /*   char szLinkName[_MAX_PATH];
+      /*   ::i8 szLinkName[_MAX_PATH];
       if (::aura::ResolveShortcut(psystem->m_puiMain, szPath, szLinkName, _MAX_PATH))
       ::aura::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */

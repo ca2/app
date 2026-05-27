@@ -23,7 +23,7 @@ public:
    static_array(::std::initializer_list < TYPE > list_base)
    {
 
-      int i = 0;
+      ::i32 i = 0;
 
       for (auto& item : list_base)
       {
@@ -136,7 +136,7 @@ public:
    static_array & operator = (std::initializer_list<TYPE > list_base)
    {
 
-      int i = 0;
+      ::i32 i = 0;
 
       for (auto& item : list_base)
       {

@@ -35,18 +35,18 @@ namespace subsystem
    {
    }
 
-   void ZLibBase::setInput(const char *input, memsize size)
+   void ZLibBase::setInput(const_char_pointer input, memsize size)
    {
       m_input = input;
       m_inputSize = size;
    }
 
-   const char *ZLibBase::getOutput() const
+   const_char_pointer ZLibBase::getOutput() const
    {
-      return (const char *) m_output.data();
+      return (const_char_pointer ) m_output.data();
    }
 
-   unsigned long ZLibBase::getOutputSize() const
+   ulong ZLibBase::getOutputSize() const
    {
       return m_outputSize;
    }

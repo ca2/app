@@ -6,7 +6,7 @@
 //{
 //
 //
-//   template < int m_iNodeNameIndex, class TYPE >
+//   template < ::i32 m_iNodeNameIndex, class TYPE >
 //   class pointer_array :
 //      public ::pointer_array < TYPE >,
 //      public exportable,
@@ -26,13 +26,13 @@
 //   };
 //
 //
-//   template < int m_iNodeNameIndex, class TYPE >
+//   template < ::i32 m_iNodeNameIndex, class TYPE >
 //   pointer_array<m_iNodeNameIndex, TYPE>::
 //      pointer_array()
 //   {
 //   }
 //
-//   template < int m_iNodeNameIndex, class TYPE >
+//   template < ::i32 m_iNodeNameIndex, class TYPE >
 //   pointer_array<m_iNodeNameIndex, TYPE>::
 //      pointer_array(const pointer_array & xmla)
 //   {
@@ -52,7 +52,7 @@ namespace xml
    class input_tree;
 
 
-   template < int m_iNodeNameIndex, class TYPE >
+   template < ::i32 m_iNodeNameIndex, class TYPE >
    class pointer_array :
       public ::pointer_array < TYPE >,
       public exportable,
@@ -74,13 +74,13 @@ namespace xml
    };
 
 
-   template < int m_iNodeNameIndex,class TYPE >
+   template < ::i32 m_iNodeNameIndex,class TYPE >
    pointer_array<m_iNodeNameIndex,TYPE>::
       pointer_array()
    {
       }
 
-   template < int m_iNodeNameIndex,class TYPE >
+   template < ::i32 m_iNodeNameIndex,class TYPE >
    pointer_array<m_iNodeNameIndex,TYPE>::
       pointer_array(const pointer_array & xmla)
    {
@@ -102,7 +102,7 @@ namespace xml
 //{
 //
 //
-//   template < int m_iNodeNameIndex,class TYPE >
+//   template < ::i32 m_iNodeNameIndex,class TYPE >
 //   class pointer_array:
 //      public ::pointer_array < TYPE >,
 //      public exportable,
@@ -122,13 +122,13 @@ namespace xml
 //   };
 //
 //
-//   template < int m_iNodeNameIndex,class TYPE >
+//   template < ::i32 m_iNodeNameIndex,class TYPE >
 //   pointer_array<m_iNodeNameIndex,TYPE>::
 //      pointer_array()
 //   {
 //   }
 //
-//   template < int m_iNodeNameIndex,class TYPE >
+//   template < ::i32 m_iNodeNameIndex,class TYPE >
 //   pointer_array<m_iNodeNameIndex,TYPE>::
 //      pointer_array(const pointer_array & xmla)
 //   {

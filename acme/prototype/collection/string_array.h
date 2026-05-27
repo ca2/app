@@ -446,7 +446,7 @@ public:
    string_base_array & _001Explode(const SCOPED_STRING & str);
 
    // csstidy: Same as explode, but not within a Type
-   //string_base_array & csstidy_explode_ws(char sep,const SCOPED_STRING &str);
+   //string_base_array & csstidy_explode_ws(::i8 sep,const SCOPED_STRING &str);
 
 
    //template < typename PRED >
@@ -484,7 +484,7 @@ public:
 
    //comparable_array < atom > get_comparable_ida() const;
 
-   //::collection::count explode_command_line(const SCOPED_STRING &str, address_array < char * > * argv = nullptr);
+   //::collection::count explode_command_line(const SCOPED_STRING &str, address_array < char_pointer > * argv = nullptr);
 
 
 
@@ -628,8 +628,8 @@ public:
    // c_get
    ::array_base < const_char_pointer >c_ansi_get(bool bMemoryAlloc = false) const;
    //::array < const ::wide_character * > c_wide_get(bool bMemoryAlloc = false) const;
-   void c_add(char ** ppsz, ::collection::count iCount, bool bMemoryAlloc = false);
-   void c_add(char ** ppsz, bool bMemoryAlloc = false);
+   void c_add(char_pointer * ppsz, ::collection::count iCount, bool bMemoryAlloc = false);
+   void c_add(char_pointer * ppsz, bool bMemoryAlloc = false);
    void c_add(wchar_t ** ppsz, ::collection::count iCount, bool bMemoryAlloc = false);
    void c_add(wchar_t ** ppsz, bool bMemoryAlloc = false);
 

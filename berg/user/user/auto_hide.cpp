@@ -267,7 +267,7 @@ namespace user
    }
 
 
-   int auto_hide::auto_hide_threshold_height()
+   ::i32 auto_hide::auto_hide_threshold_height()
    {
 
       return this->height();
@@ -307,7 +307,7 @@ namespace user
 
       //auto ptabdata = get_data();
 
-      int iAutoHideThresholdHeight = auto_hide_threshold_height();
+      ::i32 iAutoHideThresholdHeight = auto_hide_threshold_height();
 
       if (m_bEffectiveVisibleControl
          && m_bControlVisibilityChanging

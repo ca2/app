@@ -20,10 +20,10 @@ namespace user
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
       ::pointer<combo_box>               m_pcombo;
-      int                                 m_iScreenMargin;
-      int                                 m_iPadding;
+      ::i32                                 m_iScreenMargin;
+      ::i32                                 m_iPadding;
       ::i32_size                          m_sizeFull;
-      int                                 m_iMinListItemCount;
+      ::i32                                 m_iMinListItemCount;
       class ::time                        m_timeShowDropDown;
       class ::time                        m_timeHideDropDown;
       //::item                        m_itemLButtonDown;
@@ -58,7 +58,7 @@ namespace user
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
-      virtual int _001GetItemHeight() const;
+      virtual ::i32 _001GetItemHeight() const;
 
       virtual void on_change_combo_sel(::collection::index iSel);
 

@@ -107,19 +107,19 @@
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_ANGLE_DOUBLE_DOWN</code></td>
-  *              <td align="center"><span class="fa-angle-double-down"></span></td>
+  *              <td align="center"><span class="fa-angle-::f64-down"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_ANGLE_DOUBLE_LEFT</code></td>
-  *              <td align="center"><span class="fa-angle-double-left"></span></td>
+  *              <td align="center"><span class="fa-angle-::f64-left"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_ANGLE_DOUBLE_RIGHT</code></td>
-  *              <td align="center"><span class="fa-angle-double-right"></span></td>
+  *              <td align="center"><span class="fa-angle-::f64-right"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_ANGLE_DOUBLE_UP</code></td>
-  *              <td align="center"><span class="fa-angle-double-up"></span></td>
+  *              <td align="center"><span class="fa-angle-::f64-up"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_ANGLE_DOWN</code></td>
@@ -699,7 +699,7 @@
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_CHECK_DOUBLE</code></td>
-  *              <td align="center"><span class="fa-check-double"></span></td>
+  *              <td align="center"><span class="fa-check-::f64"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_CHECK_SQUARE</code></td>
@@ -2199,7 +2199,7 @@
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_MARS_DOUBLE</code></td>
-  *              <td align="center"><span class="fa-mars-double"></span></td>
+  *              <td align="center"><span class="fa-mars-::f64"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_MARS_STROKE</code></td>
@@ -3735,7 +3735,7 @@
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_VENUS_DOUBLE</code></td>
-  *              <td align="center"><span class="fa-venus-double"></span></td>
+  *              <td align="center"><span class="fa-venus-::f64"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_VENUS_MARS</code></td>
@@ -3894,7 +3894,7 @@
   // prevent individual pages from being generated for all of these
 #if !defined(DOXYGEN_SHOULD_SKIP_THIS)
 
-enum enum_font_awesome : int
+enum enum_font_awesome : ::i32
 {
    e_font_awesome_ad = 0xf641,
    e_font_awesome_address_book = 0xf2b9,
@@ -3909,10 +3909,10 @@ enum enum_font_awesome : int
    e_font_awesome_ambulance = 0xf0f9,
    e_font_awesome_american_sign_language_interpreting = 0xf2a3,
    e_font_awesome_anchor = 0xf13d,
-   e_font_awesome_angle_double_down = 0xf103,
-   e_font_awesome_angle_double_left = 0xf100,
-   e_font_awesome_angle_double_right = 0xf101,
-   e_font_awesome_angle_double_up = 0xf102,
+   e_font_awesome_angle_f64_down = 0xf103,
+   e_font_awesome_angle_f64_left = 0xf100,
+   e_font_awesome_angle_f64_right = 0xf101,
+   e_font_awesome_angle_f64_up = 0xf102,
    e_font_awesome_angle_down = 0xf107,
    e_font_awesome_angle_left = 0xf104,
    e_font_awesome_angle_right = 0xf105,
@@ -4012,7 +4012,7 @@ enum enum_font_awesome : int
    e_font_awesome_burn = 0xf46a,
    e_font_awesome_bus = 0xf207,
    e_font_awesome_bus_alt = 0xf55e,
-   e_font_awesome_business_time = 0xf64a,
+   e_font_awesome_business_time = 0xf64_a,
    e_font_awesome_calculator = 0xf1ec,
    e_font_awesome_calendar = 0xf133,
    e_font_awesome_calendar_alt = 0xf073,
@@ -4080,7 +4080,7 @@ enum enum_font_awesome : int
    e_font_awesome_church = 0xf51d,
    e_font_awesome_circle = 0xf111,
    e_font_awesome_circle_notch = 0xf1ce,
-   e_font_awesome_city = 0xf64f,
+   e_font_awesome_city = 0xf64_f,
    e_font_awesome_clinic_medical = 0xf7f2,
    e_font_awesome_clipboard = 0xf328,
    e_font_awesome_clipboard_check = 0xf46c,

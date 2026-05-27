@@ -24,7 +24,7 @@ inline void delptr(t *& p)
 
 
 template<typename T>
-inline int type_is_null(const T * p)
+inline ::i32 type_is_null(const T * p)
 {
 
    return (((uptr)(void *)p) < maximum(4096, sizeof(T)));

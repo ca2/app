@@ -26,10 +26,10 @@
 //inline long_long_point& bottom_right(const ::i64_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline double_point& top_left(const ::double_rectangle* prectangle) { return *(double_point*)prectangle; }
-//inline double_point& bottom_right(const ::double_rectangle* prectangle) { return *(double_point*)& prectangle->right; }
-//inline double_point& top_left(const ::double_rectangle& rectangle) { return top_left(&rectangle); }
-//inline double_point& bottom_right(const ::double_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline ::f64_point& top_left(const ::f64_rectangle* prectangle) { return *(::f64_point*)prectangle; }
+//inline ::f64_point& bottom_right(const ::f64_rectangle* prectangle) { return *(::f64_point*)& prectangle->right; }
+//inline ::f64_point& top_left(const ::f64_rectangle& rectangle) { return top_left(&rectangle); }
+//inline ::f64_point& bottom_right(const ::f64_rectangle& rectangle) { return bottom_right(&rectangle); }
 
 
 //template < typename X, typename Y >
@@ -102,28 +102,28 @@
 //
 //
 //template <  >
-//inline int __conv<int>(const ::scoped_string & scopedstr)
+//inline ::i32 __conv<::i32>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
 //
 //template <  >
-//inline long long __conv<long long>(const ::scoped_string & scopedstr)
+//inline ::i64 __conv<::i64>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
 //
 //template <  >
-//inline double __conv<double>(const ::scoped_string & scopedstr)
+//inline ::f64 __conv<::f64>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
@@ -138,7 +138,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<int>()
+//inline string __xmlpri<::i32>()
 //{
 //
 //   return "%" PRId32;
@@ -147,7 +147,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<long long>()
+//inline string __xmlpri<::i64>()
 //{
 //
 //   return "%" PRId64;
@@ -156,7 +156,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<double>()
+//inline string __xmlpri<::f64>()
 //{
 //
 //   return "%f";
@@ -212,7 +212,7 @@
 //   //
 //   //////////////////////////////////////////////////////////////////////
 //   template < prototype_rectangle RECTANGLE >
-//   inline void deflate(RECTANGLE* prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+//   inline void deflate(RECTANGLE* prectangle, ::f64 dLeftRate, ::f64 dRightRate, ::f64 dTopRate, ::f64 dBottomRate)
 //   {
 //
 //      auto rectangle = *prectangle;

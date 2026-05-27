@@ -34,7 +34,7 @@ namespace user
 
       e_style              m_estyle;
       ::duration                 m_durationAnimationStart;
-      double               m_dPosition;
+      ::f64               m_dPosition;
       ::duration                 m_durationAnimationPeriod;
 
 

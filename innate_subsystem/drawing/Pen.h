@@ -44,12 +44,12 @@ namespace innate_subsystem
       public:
 
       //public:
-         //Pen(int type, int width, const ::color::color & color);
+         //Pen(::i32 type, ::i32 width, const ::color::color & color);
          //Pen();
           //virtual ~PenInterface() = 0;
 
 
-         virtual void initialize_pen(enum_pen epen, int width, const ::color::color & color) = 0;
+         virtual void initialize_pen(enum_pen epen, ::i32 width, const ::color::color & color) = 0;
 
          //virtual void destroyGObject() = 0;
       // protected:
@@ -68,14 +68,14 @@ virtual public Composite<PenInterface>
       ImplementCompositeø(Pen, pen)
 
       //public:
-      //Pen(int type, int width, const ::color::color & color);
+      //Pen(::i32 type, ::i32 width, const ::color::color & color);
       //Pen();
       //~Pen() override;
 
 
       //void * _HGDIOBJ() override;
 
-         void initialize_pen(enum_pen epen, int width, const ::color::color& color) override
+         void initialize_pen(enum_pen epen, ::i32 width, const ::color::color& color) override
       {
 
          m_ppen->initialize_pen(epen, width, color);

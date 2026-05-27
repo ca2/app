@@ -33,7 +33,7 @@ namespace filemanager
 
       //string & str = rstrMessage;
 
-      //char * psz = str.get_buffer(1024);
+      //char_pointer psz = str.get_buffer(1024);
 
       //m_pcontextmenu->GetCommandString(
       //   nID - 0x1000,
@@ -64,13 +64,13 @@ namespace filemanager
 
       //string & str = rwstrMessage;
 
-      //char * psz = str.get_buffer(1024);
+      //char_pointer psz = str.get_buffer(1024);
 
       //m_pcontextmenu->GetCommandString(
       //   nID - 0x1000,
       //   GCS_VERBW,
       //   nullptr,
-      //   (char *) psz,
+      //   (char_pointer ) psz,
 
       //   1024);
 

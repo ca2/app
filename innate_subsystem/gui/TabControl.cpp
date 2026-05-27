@@ -31,14 +31,14 @@ namespace innate_subsystem
 {
 
 
-//    int TabControlInterface::getTabCount()
+//    ::i32 TabControlInterface::getTabCount()
 //    {
-//       return (int) getTabs().count();
+//       return (::i32) getTabs().count();
 //    }
 //
 //    void TabControlInterface::showTab(DialogInterface *pdialog)
 //    {
-//       for (int i = 0; i < getTabCount(); i++) {
+//       for (::i32 i = 0; i < getTabCount(); i++) {
 //          if (getTab(i)->getDialog() == pdialog) {
 //             showTab(i);
 //             return;
@@ -67,7 +67,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    TabInterface *TabControl::getTab(int index)
+//    TabInterface *TabControl::getTab(::i32 index)
 //    {
 //       // if ((index < 0) || ((size_t)index > m_tabContainer.size() - 1)) {
 //       //    return NULL;
@@ -76,7 +76,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getTab(index);
 //    }
 //
-//    void TabControl::addTab(DialogInterface *pdialog, const char *caption)
+//    void TabControl::addTab(DialogInterface *pdialog, const_char_pointer caption)
 //    {
 //
 //       m_pparticleThis->addTab(pdialog, caption);
@@ -84,7 +84,7 @@ namespace innate_subsystem
 //       // m_tabContainer.push_back(tab);
 //       // TCITEM tcitem = {0};
 //       // tcitem.mask = TCIF_TEXT;
-//       // char fixedCaption[255];
+//       // ::i8 fixedCaption[255];
 //       // _tcscpy(&fixedCaption[0], tab->getCaption());
 //       // tcitem.pszText = fixedCaption;
 //       // if (TabCtrl_InsertItem(getWindow(), m_tabContainer.size() - 1, &tcitem) == FALSE) {
@@ -95,9 +95,9 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    void TabControl::showTab(int index)
+//    void TabControl::showTab(::i32 index)
 //    {
-//       // int selectedIndex = getSelectedTabIndex();
+//       // ::i32 selectedIndex = getSelectedTabIndex();
 //       // if (selectedIndex >= 0) {
 //       //    getTab(selectedIndex)->setVisible(false);
 //       // }
@@ -111,7 +111,7 @@ namespace innate_subsystem
 //    // {
 //    //    for (size_t i = 0; i < m_tabContainer.size(); i++) {
 //    //        if (m_tabContainer.at(i)->getDialog() == dialog) {
-//    //           showTab((int)i);
+//    //           showTab((::i32)i);
 //    //           return;
 //    //        }
 //    //     }
@@ -131,10 +131,10 @@ namespace innate_subsystem
 //       // TabCtrl_DeleteAllItems(getWindow());
 //    }
 //
-//    void TabControl::removeTab(int index)
+//    void TabControl::removeTab(::i32 index)
 //    {
 //       m_pparticleThis->removeTab(index);
-//       // int i = 0;
+//       // ::i32 i = 0;
 //       // for (TabContainer::iterator it = m_tabContainer.begin(); it != m_tabContainer.end(); it++) {
 //       //    if (i == index) {
 //       //       delete *it;
@@ -146,9 +146,9 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    int TabControl::getSelectedTabIndex()
+//    ::i32 TabControl::getSelectedTabIndex()
 //    {
-//       // int page = TabCtrl_GetCurSel(getWindow());
+//       // ::i32 page = TabCtrl_GetCurSel(getWindow());
 //       // return page;
 //       return m_pparticleThis->getSelectedTabIndex();
 //    }

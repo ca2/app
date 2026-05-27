@@ -85,7 +85,7 @@ public:
    character_count                 m_iCharStartSource;
    character_count                 m_iCharEndSource;
 
-   int                     m_etype; 
+   ::i32                     m_etype; 
    enum_state              m_estate;
 
    

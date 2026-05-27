@@ -740,7 +740,7 @@ namespace bred
          //straDraw2dApiItem.add("vkvg");
          //straDraw2dApiName.add("vkvg");
 
-         //for (int i = 0; i < straDraw2dApiItem.size(); i++)
+         //for (::i32 i = 0; i < straDraw2dApiItem.size(); i++)
          for(auto &poption : m_optionaDraw2dApi)
          {
             //auto strDraw2dApiItem = straDraw2dApiItem[i];
@@ -790,7 +790,7 @@ namespace bred
          //straOutput.add("on_screen");
          //straOutputName.add("On-Screen (Swap Chain)");
 
-         //for (int i = 0; i < straOutput.size(); i++)
+         //for (::i32 i = 0; i < straOutput.size(); i++)
          for (auto & poption : m_optionaGraphics3dOutput)
          {
             //auto strOutputItem = straOutput[i];

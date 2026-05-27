@@ -87,8 +87,8 @@
 		<Unit filename="datetime/datetime_clock.h" />
 		<Unit filename="datetime/datetime_clock_interface.cpp" />
 		<Unit filename="datetime/datetime_clock_interface.h" />
-		<Unit filename="datetime/datetime_float_time.cpp" />
-		<Unit filename="datetime/datetime_float_time.h" />
+		<Unit filename="datetime/datetime_f32_time.cpp" />
+		<Unit filename="datetime/datetime_f32_time.h" />
 		<Unit filename="datetime/datetime_windows_filetime.cpp" />
 		<Unit filename="datetime/datetime_windows_filetime.h" />
 		<Unit filename="framework.cpp" />

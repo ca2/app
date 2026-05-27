@@ -7,17 +7,17 @@
 #include "acme/prototype/geometry/matrix.h"
 
 
-using floating_sequence2 = ::float_sequence2;
-using floating_sequence3 = ::float_sequence3;
-using floating_sequence4 = ::float_sequence4;
+using floating_sequence2 = ::f32_sequence2;
+using floating_sequence3 = ::f32_sequence3;
+using floating_sequence4 = ::f32_sequence4;
 
 
-using floating_matrix2 = ::float_matrix2;
-using floating_matrix3 = ::float_matrix3;
-using floating_matrix4 = ::float_matrix4;
+using floating_matrix2 = ::f32_matrix2;
+using floating_matrix3 = ::f32_matrix3;
+using floating_matrix4 = ::f32_matrix4;
 
-using floating_angle = float_angle;
-using floating_quaternion = ::float_quaternion;
+using floating_angle = f32_angle;
+using floating_quaternion = ::f32_quaternion;
 
 
 namespace gpu
@@ -39,7 +39,7 @@ namespace gpu
 
       floating_sequence4 position{}; // ignore w
       floating_sequence4 color{}; // w is intensity
-      float radius;
+      ::f32 radius;
    };
 
 

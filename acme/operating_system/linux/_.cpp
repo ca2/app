@@ -19,7 +19,7 @@
 //}
 
 
-//void sigfpe_handler(int iSignalNumber)
+//void sigfpe_handler(::i32 iSignalNumber)
 //{
 //
 //   throw standard_sigfpe();
@@ -90,12 +90,12 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 
 // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
 // http://stackoverflow.com/users/1275169/l3x
-int get_proc_cpuinfo_core_count()
+::i32 get_proc_cpuinfo_core_count()
 {
 
-   char str[256];
+   ::i8 str[256];
 
-   int procCount = 0;
+   ::i32 procCount = 0;
 
    FILE *fp;
 
@@ -128,7 +128,7 @@ int get_proc_cpuinfo_core_count()
 }
 
 
-int get_processor_count()
+::i32 get_processor_count()
 {
 
    return get_proc_cpuinfo_core_count();
@@ -136,7 +136,7 @@ int get_processor_count()
 }
 
 
-// int get_processor_count()
+// ::i32 get_processor_count()
 // {
 
 //    return sysconf(_SC_NPROCESSORS_ONLN);
@@ -181,7 +181,7 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
 //
 //#else
 //
-//   asm("int $3");
+//   asm("::i32 $3");
 //
 //#endif
 //

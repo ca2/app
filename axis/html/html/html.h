@@ -38,7 +38,7 @@ namespace html
 
 
       ::color::color                         m_clrInvalid;   // an invalid color
-      unsigned short                                    m_percentMax;   // maximum allowable percentage value
+      ::u16                                    m_percentMax;   // maximum allowable percentage value
       named_color                            m_namedcolor;   // collection of named colors
       ::pointer<LiteHTMLEntityResolver>      m_pentitysolver;
 
@@ -53,7 +53,7 @@ namespace html
       string special_chars(const ::scoped_string & scopedstr);
       string entities(const ::scoped_string & scopedstr);
       string htmlpre(const ::scoped_string & scopedstr);
-      int resolve_entity(const ::scoped_string & scopedstrEntity,string & strChar);
+      ::i32 resolve_entity(const ::scoped_string & scopedstrEntity,string & strChar);
 
       string resolve_entities(const ::scoped_string & scopedstr);
 

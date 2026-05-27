@@ -56,8 +56,8 @@ namespace subsystem
       virtual bool setString(const ::scoped_string & scopedstr) = 0;
 
       // //protected:
-      // static const char CR = '\r';
-      // static const char LF = '\n';
+      // static const ::i8 CR = '\r';
+      // static const ::i8 LF = '\n';
 
       //protected:
       // function removed CR before LF
@@ -114,8 +114,8 @@ namespace subsystem
        }
 
       // //protected:
-      // static const char CR = '\r';
-      // static const char LF = '\n';
+      // static const ::i8 CR = '\r';
+      // static const ::i8 LF = '\n';
 
       //protected:
       // function removed CR before LF

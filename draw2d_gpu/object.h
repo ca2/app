@@ -24,9 +24,9 @@ namespace draw2d_gpu
       bool delete_object();
 
 
-      int get_object(int nCount, void * lpObject) const;
+      ::i32 get_object(::i32 nCount, void * lpObject) const;
       ::u32 GetObjectType() const;
-      bool CreateStockObject(int nIndex);
+      bool CreateStockObject(::i32 nIndex);
       bool UnrealizeObject();
       bool operator==(const ::draw2d::object& obj) const;
       bool operator!=(const ::draw2d::object& obj) const;

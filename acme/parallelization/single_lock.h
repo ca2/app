@@ -10,11 +10,11 @@ public:
    ::subparticle *            m_psubparticleSynchronization;
    bool                       m_bLocked;
    ::task *                   m_ptask = nullptr;
-   const_char_pointer         m_pszFile;
-   int                        m_iLine;
+   const_char_pointer m_pszFile;
+   ::i32                        m_iLine;
 
 
-   explicit single_lock(subparticle * psubparticleSynchronization, bool bInitialLock = false, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1);
+   explicit single_lock(subparticle * psubparticleSynchronization, bool bInitialLock = false, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, ::i32 iLine = -1);
    ~single_lock();
 
 
@@ -25,7 +25,7 @@ public:
    void _lock();
    bool lock(const class ::time & wait = ::time::infinity());
    void unlock();
-   void unlock(int lCount, int * lPrevCount = nullptr);
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool is_locked() const;
    class ::time remaining_from_timeout() const;
 
@@ -48,11 +48,11 @@ public:
    ::subparticle *                  m_psubparticleSynchronization;
    bool                             m_bLocked;
    ::task *                         m_ptask = nullptr;
-   const_char_pointer               m_pszFile;
-   int                              m_iLine;
+   const_char_pointer m_pszFile;
+   ::i32                              m_iLine;
 
 
-   explicit _single_lock(::subparticle * psubparticle, bool bInitialLock = false, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1);
+   explicit _single_lock(::subparticle * psubparticle, bool bInitialLock = false, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, ::i32 iLine = -1);
    ~_single_lock();
 
 
@@ -61,7 +61,7 @@ public:
    void _lock();
 //   bool lock();
    void unlock();
-   void unlock(int lCount, int * lPrevCount = nullptr);
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool is_locked() const;
 
 
@@ -78,7 +78,7 @@ public:
 //
 //   CLASS_DECL_ACME void on_single_lock_lock(::subparticle *psubparticleSynchronization,
 //                                            const ::subparticle *psubparticleContext, const_char_pointer pszFile,
-//                                            int iLine);
+//                                            ::i32 iLine);
 //   CLASS_DECL_ACME void on_single_lock_unlock(::subparticle *psubparticleSynchronization);
 //
 //

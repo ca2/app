@@ -41,7 +41,7 @@ namespace coding
    //    return {};
    //
    // }
-//   int application::unix_shell_command(const ::scoped_string& scopedstrCommand)
+//   ::i32 application::unix_shell_command(const ::scoped_string& scopedstrCommand)
    //   {
    //
    //      try

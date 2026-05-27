@@ -36,73 +36,73 @@ namespace innate_subsystem
    //{
    //}
 
-   //int ComboBox::addItem(const char *text)
+   //::i32 ComboBox::addItem(const_char_pointer text)
    //{
    //   //return ComboBox_AddString(m_hwnd, text);
    //   return m_pparticleThis->addItem(text);
    //}
 
-   //int ComboBox::addItem(const char *text, void *tag)
+   //::i32 ComboBox::addItem(const_char_pointer text, void *tag)
    //{
-   //   // int index = addItem(text);
+   //   // ::i32 index = addItem(text);
    //   // setItemData(index, tag);
    //   // return index;
    //   return m_pparticleThis->addItem(text, tag);
    //}
 
-   //void ComboBox::insertItem(int index, const char *text)
+   //void ComboBox::insertItem(::i32 index, const_char_pointer text)
    //{
    //   //ComboBox_InsertString(m_hwnd, index, text);
    //   m_pparticleThis->insertItem(index, text);
    //}
 
-   //void ComboBox::insertItem(int index, const char *text, void *tag)
+   //void ComboBox::insertItem(::i32 index, const_char_pointer text, void *tag)
    //{
    //   // insertItem(index, text);
    //   //setItemData(index, tag);
    //   m_pparticleThis->insertItem(index, text, tag);
    //}
 
-   //int ComboBox::getItemsCount()
+   //::i32 ComboBox::getItemsCount()
    //{
    //   //return ComboBox_GetCount(m_hwnd);
    //   return m_pparticleThis->getItemsCount();
    //}
 
-   //void ComboBox::setItemData(int index, void *tag)
+   //void ComboBox::setItemData(::i32 index, void *tag)
    //{
    //   //ComboBox_SetItemData(m_hwnd, index, (::lparam)tag);
    //   m_pparticleThis->setItemData(index, tag);
    //}
 
-   //void *ComboBox::getItemData(int index)
+   //void *ComboBox::getItemData(::i32 index)
    //{
    //   //return (void *)ComboBox_GetItemData(m_hwnd, index);
    //   return m_pparticleThis->getItemData(index);
    //}
 
-   //::string  ComboBox::getItemText(int index)
+   //::string  ComboBox::getItemText(::i32 index)
    //{
    //   // size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
-   //   // std::vector<char> buf(length + 1);
+   //   // std::vector<::i8> buf(length + 1);
    //   // ComboBox_GetLBText(m_hwnd, index, &buf.front());
    //   // storage->setString(&buf.front());
    //   return m_pparticleThis->getItemText(index);
    //}
 
-   //int ComboBox::getSelectedItemIndex()
+   //::i32 ComboBox::getSelectedItemIndex()
    //{
    //   //return ComboBox_GetCurSel(m_hwnd);
    //   return m_pparticleThis->getSelectedItemIndex();
    //}
 
-   //void ComboBox::setSelectedItem(int index)
+   //void ComboBox::setSelectedItem(::i32 index)
    //{
    //   //ComboBox_SetCurSel(m_hwnd, index);
    //   m_pparticleThis->setSelectedItem(index);
    //}
 
-   //void ComboBox::deleteItem(int index)
+   //void ComboBox::deleteItem(::i32 index)
    //{
    //   //ComboBox_DeleteString(m_hwnd, index);
    //   m_pparticleThis->deleteItem(index);

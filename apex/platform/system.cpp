@@ -66,7 +66,7 @@
 #include "acme/prototype/string/base64.h"
 
 
-int file_put_contents(const ::file::path & path, const_char_pointer contents);;
+::i32 file_put_contents(const ::file::path & path, const_char_pointer contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
 
@@ -114,7 +114,7 @@ extern "C"
 #include <sys/time.h>
 #endif
 
-CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr);
 
 
 #ifdef WINDOWS
@@ -546,7 +546,7 @@ namespace apex
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
       factory()->add_factory_item < ::i64_array >();
-      factory()->add_factory_item < ::double_array >();
+      factory()->add_factory_item < ::f64_array >();
       factory()->add_factory_item < ::acme::library >();
 
       factory()->add_factory_item < ::file::path_object >();
@@ -558,7 +558,7 @@ namespace apex
 
       //factory()->add_factory_item < ::file::path_object >();
       //factory()->add_factory_item < ::i64_array_base >();
-      //factory()->add_factory_item < ::double_array >();
+      //factory()->add_factory_item < ::f64_array >();
       //factory()->add_factory_item < ::acme::library >();
 
       //factory()->add_factory_item < ::file::path_object >();
@@ -719,13 +719,13 @@ namespace apex
       //            if(i > 0)
       //            {
       //
-      //               int iSize = strLine.length();
+      //               ::i32 iSize = strLine.length();
       //
       //               iSize *= 2;
       //
       //               iSize = maximum(iSize, 4096);
       //
-      //               char * pszEnvLine = (char *) ::malloc(iSize);
+      //               char_pointer pszEnvLine = (char_pointer ) ::malloc(iSize);
       //
       //               ::zero(scopedstrEnvLine, iSize);
       //
@@ -2071,7 +2071,7 @@ pdirectorysystem->create("/ca2core");
    // }
 
 
-   int system::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1, int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3, va_list args)
+   ::i32 system::_001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1, ::i32 i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3, va_list args)
    {
 
       return _debug_logging_report(i1, scopedstr1, i2, scopedstr2, scopedstr3, args);
@@ -2079,7 +2079,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
+   ::i32 system::_debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFileName, ::i32 iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
@@ -2167,7 +2167,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
+   bool system::assert_failed_line(const ::scoped_string & scopedstrFileName, ::i32 iLine)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -2179,7 +2179,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
+   bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName, ::i32 iLine)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -2359,7 +2359,7 @@ pdirectorysystem->create("/ca2core");
 
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
 
-//      for(int i = 0; i < appptra().get_size(); i++)
+//      for(::i32 i = 0; i < appptra().get_size(); i++)
       //    {
       //     ::application * papp = appptra()(i);
       //   papp->load_string_table();
@@ -2376,7 +2376,7 @@ pdirectorysystem->create("/ca2core");
 
       rsl.wait(10_s);
 
-      //      for(int i = 0; i < appptra().get_size(); i++)
+      //      for(::i32 i = 0; i < appptra().get_size(); i++)
       //     {
             //       ::application * papp = appptra()(i);
             //       papp->set_locale(scopedstrLocale,context);
@@ -2393,7 +2393,7 @@ pdirectorysystem->create("/ca2core");
 
       rsl.wait(10_s);
 
-      //      for(int i = 0; i < appptra().get_size(); i++)
+      //      for(::i32 i = 0; i < appptra().get_size(); i++)
             //    {
             //       ::application * papp = appptra()(i);
             //       papp->set_schema(scopedstrStyle,context);
@@ -2598,7 +2598,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   void system::install_progress_add_up(int iAddUp)
+   void system::install_progress_add_up(::i32 iAddUp)
    {
 
       __UNREFERENCED_PARAMETER(iAddUp);
@@ -2670,7 +2670,7 @@ pdirectorysystem->create("/ca2core");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
-   ////      for(int i = 0; i < straTitle.get_count(); i++)
+   ////      for(::i32 i = 0; i < straTitle.get_count(); i++)
    ////      {
    ////
    ////         strLibraryId = straTitle[i];
@@ -2817,7 +2817,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      strRoot += "/";
    //
-   //      for(int i = 0; i < stra.get_count(); i++)
+   //      for(::i32 i = 0; i < stra.get_count(); i++)
    //      {
    //
    //         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
@@ -2873,7 +2873,7 @@ pdirectorysystem->create("/ca2core");
 //
 //      //operating_system_driver::get().m_bGetUserWallpaper = true;
 //
-//      //for(int i = 0; i < 10; i++)
+//      //for(::i32 i = 0; i < 10; i++)
 //      //{
 //
 //      //   if (!operating_system_driver::get().m_bGetUserWallpaper)
@@ -3153,7 +3153,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   //LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   //LPWAVEOUT system::waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
    //   for (auto & papp : psession->m_applicationa)
@@ -3199,7 +3199,7 @@ pdirectorysystem->create("/ca2core");
    //
    //
    //
-   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::double_rectangle * prectangle)
+   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::f64_rectangle * prectangle)
    //
    //   {
    //
@@ -3221,9 +3221,9 @@ pdirectorysystem->create("/ca2core");
    //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::i32_rectangle * prectangle)
    //   {
    //
-   //      ::double_rectangle rectangle;
+   //      ::f64_rectangle rectangle;
    //
-   //      if (!window_rectangle(pwindow, (::double_rectangle*)i32_rectangle))
+   //      if (!window_rectangle(pwindow, (::f64_rectangle*)i32_rectangle))
    //      {
    //
    //         return false;
@@ -3324,7 +3324,7 @@ pdirectorysystem->create("/ca2core");
          strParams.formatf("\"openvsproject://%s\"", strProj);
 
 
-         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
+         //::i32 iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
       }
 #elif defined MACOS
@@ -3340,7 +3340,7 @@ pdirectorysystem->create("/ca2core");
          if (strBase == "scheme")
          {
 
-            //         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
+            //         ::i32 iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
             ::file::path pathScript = directory_system()->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
@@ -3364,7 +3364,7 @@ pdirectorysystem->create("/ca2core");
 
 
 
-   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
+   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr)
    //{
 
    //   if (m_ptracelog.is_null())
@@ -3993,7 +3993,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       auto pnode = node();
 
-      int iExitCode = 0;
+      ::i32 iExitCode = 0;
 
       pnode->call_sync(pathFirefox, strParam, pathFolder, e_display_default, 3_minute, set, &iExitCode);
 
@@ -4315,7 +4315,7 @@ namespace apex
 {
 
 
-   CLASS_DECL_APEX void black_body(float * r, float * g, float * b, ::u32 dwTemp);
+   CLASS_DECL_APEX void black_body(::f32 * r, ::f32 * g, ::f32 * b, ::u32 dwTemp);
 
 
    void system::discard_to_factory(::pointer<object>pca)
@@ -4708,7 +4708,7 @@ namespace apex
 
    //   plibrary->get_create_impact_id_list(ida);
 
-   //   for (int i = 0; i < ida.get_count(); i++)
+   //   for (::i32 i = 0; i < ida.get_count(); i++)
    //   {
 
    //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
@@ -4840,7 +4840,7 @@ namespace apex
    }
 
 
-//   void system::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
+//   void system::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
 //   {
 //
 //      call((::enum_id)iUpdate, iPayload);
@@ -5011,10 +5011,10 @@ namespace apex
    }
 
 
-   int system::console_end(::e_status estatus)
+   ::i32 system::console_end(::e_status estatus)
    {
 
-      int iExitCode = estatus.exit_code();
+      ::i32 iExitCode = estatus.exit_code();
 
       if (iExitCode == 0)
       {
@@ -5116,11 +5116,11 @@ namespace apex
 
 
    //
-   //void apex_application_main(int argc, char* argv[], const ::scoped_string & scopedstrCommandLine);
+   //void apex_application_main(::i32 argc, char_pointer argv[], const ::scoped_string & scopedstrCommandLine);
 
 
 
-   void system::application_main(int argc, char * argv[], const ::scoped_string & scopedstrCommandLine)
+   void system::application_main(::i32 argc, char_pointer argv[], const ::scoped_string & scopedstrCommandLine)
    {
 
       //apex_application_main(argc, argv, pszCommandLine);

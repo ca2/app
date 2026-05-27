@@ -84,7 +84,7 @@ namespace comparison
 
 
 
-constexpr char __digit(int digit)
+constexpr ::i8 __digit(::i32 digit)
 {
 
    return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[digit];
@@ -96,7 +96,7 @@ constexpr ::i32_bool utf16_is_1st_surrogate(::wd16_character _1stSurrogateCandid
 constexpr ::i32_bool utf16_is_2nd_surrogate(::wd16_character _2ndSurrogateCandidate) { return (_2ndSurrogateCandidate & 0xfc00) == 0xdc00; } // Marginal Surro-G (Told Lo, but much more drunk)
 constexpr ::i32_bool utf16_is_surrogate(::wd16_character uc) { return utf16_is_1st_surrogate(uc) || utf16_is_2nd_surrogate(uc); }
 constexpr ::i32_bool utf32_is_surrogated(::u32 character) { return 0x10000 <= character && character <= 0x10FFFF; }
-constexpr ::u32 decode_utf16_pair(unsigned short* units)
+constexpr ::u32 decode_utf16_pair(::u16* units)
 {
    ::u32 code;
    ASSERT(utf16_is_1st_surrogate(units[0]));

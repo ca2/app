@@ -32,7 +32,7 @@ namespace micro
       ::color::color                            m_colorHover;
       ::color::color                            m_colorHoverAndFocus;
       ::color::color                            m_colorWindow;
-      int                                       m_iFontSize;
+      ::i32                                       m_iFontSize;
 
 
 

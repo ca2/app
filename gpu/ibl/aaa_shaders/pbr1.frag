@@ -61,13 +61,13 @@ cbuffer PushConsts : register(b1)
     int useTextureEmissive;
 
     float3 albedo;
-    float metallic;
-    float roughness;
-    float ambientOcclusion;
+    ::f32 metallic;
+    ::f32 roughness;
+    ::f32 ambientOcclusion;
     float3 emissive;
 
     float3 cameraPosition;
-    float bloomBrightnessCutoff;
+    ::f32 bloomBrightnessCutoff;
 };
 
 // ---------- Texture bindings ----------
@@ -98,7 +98,7 @@ float3 getAlbedo(float2 texCoord)
     return a;
 }
 
-void getMetallicRoughness(float2 texCoord, out float metallicOut, out float roughnessOut)
+void getMetallicRoughness(float2 texCoord, out ::f32 metallicOut, out ::f32 roughnessOut)
 {
     metallicOut = metallic;
     roughnessOut = roughness;
@@ -123,9 +123,9 @@ float3 getNormal(float3 interpNormal, float2 texCoord, float3 tangent, float3 bi
     return n;
 }
 
-float getAO(float2 texCoord)
+::f32 getAO(float2 texCoord)
 {
-    float ao = ambientOcclusion;
+    ::f32 ao = ambientOcclusion;
     if (useTextureAmbientOcclusion != 0)
     {
         ao = textureAmbientOcclusion.Sample(samplerMaterial, texCoord).r;
@@ -145,41 +145,41 @@ float3 getEmissive(float2 texCoord)
 
 // ---------- PBR helper functions ----------
 
-float3 fresnelSchlick(float cosTheta, float3 f0)
+float3 fresnelSchlick(::f32 cosTheta, float3 f0)
 {
     return f0 + (1.0 - f0) * pow(max(1.0 - cosTheta, 0.0), 5.0);
 }
 
-float3 fresnelSchlickRoughness(float cosTheta, float3 f0, float roughness)
+float3 fresnelSchlickRoughness(::f32 cosTheta, float3 f0, ::f32 roughness)
 {
     return f0 + (max(float3(1.0 - roughness, 1.0 - roughness, 1.0 - roughness), f0) - f0)
         * pow(saturate(1.0 - cosTheta), 5.0);
 }
 
-float ndfTrowbridgeReitzGGX(float3 n, float3 h, float roughness)
+::f32 ndfTrowbridgeReitzGGX(float3 n, float3 h, ::f32 roughness)
 {
-    float alpha = roughness * roughness;
-    float alphaSquared = alpha * alpha;
-    float nDotH = max(dot(n, h), 0.0);
-    float nDotHSquared = nDotH * nDotH;
-    float innerTerms = nDotHSquared * (alphaSquared - 1.0) + 1.0;
-    float numerator = alphaSquared;
-    float denominator = PI * innerTerms * innerTerms;
+    ::f32 alpha = roughness * roughness;
+    ::f32 alphaSquared = alpha * alpha;
+    ::f32 nDotH = max(dot(n, h), 0.0);
+    ::f32 nDotHSquared = nDotH * nDotH;
+    ::f32 innerTerms = nDotHSquared * (alphaSquared - 1.0) + 1.0;
+    ::f32 numerator = alphaSquared;
+    ::f32 denominator = PI * innerTerms * innerTerms;
     denominator = max(denominator, 0.0001);
     return numerator / denominator;
 }
 
-float geometrySchlickGGX(float3 n, float3 v, float k)
+::f32 geometrySchlickGGX(float3 n, float3 v, ::f32 k)
 {
-    float nDotV = max(dot(n, v), 0.0);
-    float numerator = nDotV;
-    float denominator = nDotV * (1.0 - k) + k;
+    ::f32 nDotV = max(dot(n, v), 0.0);
+    ::f32 numerator = nDotV;
+    ::f32 denominator = nDotV * (1.0 - k) + k;
     return numerator / denominator;
 }
 
-float geometrySmith(float3 n, float3 v, float3 l, float roughness)
+::f32 geometrySmith(float3 n, float3 v, float3 l, ::f32 roughness)
 {
-    float k = (roughness + 1.0) * (roughness + 1.0) / 8.0;
+    ::f32 k = (roughness + 1.0) * (roughness + 1.0) / 8.0;
     return geometrySchlickGGX(n, v, k) * geometrySchlickGGX(n, l, k);
 }
 
@@ -192,12 +192,12 @@ PSOutput main(PSInput input)
     float3 worldPos = input.worldCoordinates;
     float3 albedoVal = getAlbedo(input.textureCoordinates);
 
-    float metallicVal;
-    float roughnessVal;
+    ::f32 metallicVal;
+    ::f32 roughnessVal;
     getMetallicRoughness(input.textureCoordinates, metallicVal, roughnessVal);
 
     float3 n = getNormal(input.normal, input.textureCoordinates, input.tangent, input.bitangent, input.normal);
-    float ao = getAO(input.textureCoordinates);
+    ::f32 ao = getAO(input.textureCoordinates);
     float3 emissiveVal = getEmissive(input.textureCoordinates);
 
     // camera position: prefer push constant, fallback to globalUbo.viewPos.xyz
@@ -224,16 +224,16 @@ PSOutput main(PSInput input)
         float3 l = normalize(lightPos - worldPos);
         float3 h = normalize(v + l);
 
-        float distance = length(lightPos - worldPos);
-        float attenuation = 1.0 / max(distance * distance, 0.0001);
+        ::f32 distance = length(lightPos - worldPos);
+        ::f32 attenuation = 1.0 / max(distance * distance, 0.0001);
         float3 radiance = lightColor * attenuation;
 
-        float dTerm = ndfTrowbridgeReitzGGX(n, h, roughnessVal);
+        ::f32 dTerm = ndfTrowbridgeReitzGGX(n, h, roughnessVal);
         float3 fTerm = fresnelSchlick(max(dot(h, v), 0.0), f0);
-        float gTerm = geometrySmith(n, v, l, roughnessVal);
+        ::f32 gTerm = geometrySmith(n, v, l, roughnessVal);
 
         float3 numerator = dTerm * fTerm * gTerm;
-        float denominator = 4.0 * max(dot(v, n), 0.0) * max(dot(l, n), 0.0);
+        ::f32 denominator = 4.0 * max(dot(v, n), 0.0) * max(dot(l, n), 0.0);
         float3 specular = numerator / max(denominator, 0.001);
 
         float3 kSpecular = fTerm;
@@ -241,7 +241,7 @@ PSOutput main(PSInput input)
 
         float3 diffuse = kDiffuse * albedoVal / PI;
         float3 cookTorranceBrdf = diffuse + specular;
-        float nDotL = max(dot(n, l), 0.0);
+        ::f32 nDotL = max(dot(n, l), 0.0);
 
         Lo += cookTorranceBrdf * radiance * nDotL;
     }
@@ -254,7 +254,7 @@ PSOutput main(PSInput input)
     float3 diffuseIBL = irradiance * albedoVal;
 
     float3 prefilteredEnvMapColor = prefilteredEnvMap.SampleLevel(samplerIBL, r, roughnessVal * 4.0).rgb; // PREFILTERED_ENV_MAP_LOD = 4.0
-    float NdotV = max(dot(n, v), 0.0);
+    ::f32 NdotV = max(dot(n, v), 0.0);
     float2 brdf = brdfConvolutionMap.Sample(samplerIBL, float2(NdotV, roughnessVal)).rg;
     float3 specularIBL = prefilteredEnvMapColor * (kSpecular * brdf.x + brdf.y);
 
@@ -266,7 +266,7 @@ PSOutput main(PSInput input)
     //output.FragColor = float4(albedoVal, 1.0);
     //output.FragColor = float4(input.tangent * 0.5 + 0.5, 1.0); // visualize tangent
 
-    //float greyscaleBrightness = dot(output.FragColor.rgb, GREYSCALE_WEIGHT_VECTOR);
+    //::f32 greyscaleBrightness = dot(output.FragColor.rgb, GREYSCALE_WEIGHT_VECTOR);
     //output.BloomColor = greyscaleBrightness > bloomBrightnessCutoff ? output.FragColor : float4(0.0, 0.0, 0.0, 0.0);
 
     return output;

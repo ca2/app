@@ -22,7 +22,7 @@ namespace acme
 
 
 
-   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, int iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, ::i32 iSubString, ::i8 chSep)
    {
 
       auto pszFullString = scopedstrFullString.begin();
@@ -51,7 +51,7 @@ namespace acme
       const_char_pointer pchEnd = ansi_chr(scopedstrFullString, chSep);
 
 
-      character_count nLen = (pchEnd == nullptr) ? ansi_len(scopedstrFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? ansi_len(scopedstrFullString) : (::i32)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -88,10 +88,10 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0
 #endif
 
 
-void gen_CrtErrorCheck(int i);
+void gen_CrtErrorCheck(::i32 i);
 
 
-void gen_CrtErrorCheck(int i)
+void gen_CrtErrorCheck(::i32 i)
 {
    __UNREFERENCED_PARAMETER(i);
 }
@@ -100,7 +100,7 @@ void gen_CrtErrorCheck(int i)
 
 
 
-int g_iAuraRefCount = 0;
+::i32 g_iAuraRefCount = 0;
 
 
 //extern "C"
@@ -154,7 +154,7 @@ int g_iAuraRefCount = 0;
 
 
 
-CLASS_DECL_ACME int g_bAura = 0;
+CLASS_DECL_ACME ::i32 g_bAura = 0;
 
 
 
@@ -168,7 +168,7 @@ CLASS_DECL_ACME ::u32 g_tickStartTime = 0;
 //
 //
 //
-//void __post_quit_message(int nExitCode)
+//void __post_quit_message(::i32 nExitCode)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -184,7 +184,7 @@ CLASS_DECL_ACME ::u32 g_tickStartTime = 0;
 //}
 
 
-CLASS_DECL_ACME int get_acme_init()
+CLASS_DECL_ACME ::i32 get_acme_init()
 {
 
    return g_iAuraRefCount;
@@ -193,7 +193,7 @@ CLASS_DECL_ACME int get_acme_init()
 
 
 
-string get_debug_report_type_text(int iType)
+string get_debug_report_type_text(::i32 iType)
 {
 
    string strType;
@@ -216,7 +216,7 @@ string get_debug_report_type_text(int iType)
 }
 
 
-int __cdecl debug_report(int iType, const_char_pointer psz, int iLine, const_char_pointer pszModuleName, const_char_pointer pszFormat, ...)
+::i32 __cdecl debug_report(::i32 iType, const_char_pointer psz, ::i32 iLine, const_char_pointer pszModuleName, const_char_pointer pszFormat, ...)
 {
 
    string strExtra;
@@ -243,7 +243,7 @@ int __cdecl debug_report(int iType, const_char_pointer psz, int iLine, const_cha
 }
 
 
-int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
+::i32 __cdecl debug_report(::i32 iType, wchar_t const* pszFile, ::i32 iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
 {
 
 
@@ -274,7 +274,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 }
 
 
-CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
+CLASS_DECL_ACME ::i32 is_ptr_null(const void* p, size_t s)
 {
 
    return (((size_t)p) < s);
@@ -336,7 +336,7 @@ void this_type_term(const ::scoped_string & scopedstr)
 
 
 
-void __what__(int i)
+void __what__(::i32 i)
 {
 
    if (i == 1)

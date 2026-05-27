@@ -46,13 +46,13 @@ namespace innate_subsystem
 
 
       
-      //int m_iDivisor = 1;
+      //::i32 m_iDivisor = 1;
       Framebuffer(void);
       ~Framebuffer(void) override;
 
       virtual bool assignProperties(const Framebuffer * pframebufferSource);
       virtual bool clone(const Framebuffer * pframebufferSource);
-      virtual void setColor(unsigned char red, unsigned char green, unsigned char blue);
+      virtual void setColor(::u8 red, ::u8 green, ::u8 blue);
       virtual void fillRect(const ::i32_rectangle &  rectangleTarget, ::u32 color);
 
       // Return value: true - if equal
@@ -62,39 +62,39 @@ namespace innate_subsystem
       // Copy to self by specified destination rectangle from the specified
       // coordinates of pframebufferSource
       virtual bool copyFrom(const ::i32_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
-                    int srcX, int srcY);
+                    ::i32 srcX, ::i32 srcY);
       // The same as above but destination rect is m_size
       virtual bool copyFrom(const Framebuffer * pframebufferSource,
-                    int srcX, int srcY);
+                    ::i32 srcX, ::i32 srcY);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of pframebufferSource-> When source farmebuffer and source coordinates are
       // rotated with 90 degree.
       virtual bool copyFromRotated90(const ::i32_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
-                                     int srcX, int srcY);
+                                     ::i32 srcX, ::i32 srcY);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of pframebufferSource-> When source farmebuffer and source coordinates are
       // rotated with 180 degree.
       virtual bool copyFromRotated180(const ::i32_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
-                                      int srcX, int srcY);
+                                      ::i32 srcX, ::i32 srcY);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of pframebufferSource-> When source farmebuffer and source coordinates are
       // rotated with 270 degree.
       virtual bool copyFromRotated270(const ::i32_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
-                                      int srcX, int srcY);
+                                      ::i32 srcX, ::i32 srcY);
 
       // Overlays the source image to this with by the AND mask
       virtual bool overlay(const ::i32_rectangle &  rectangleTarget,
                    const Framebuffer * pframebufferSource,
-                   int srcX, int srcY,
-                   const char *andMask);
-      virtual void move(const ::i32_rectangle &  rectangleTarget, const int srcX, const int srcY);
+                   ::i32 srcX, ::i32 srcY,
+                   const_char_pointer andMask);
+      virtual void move(const ::i32_rectangle &  rectangleTarget, const ::i32 srcX, const ::i32 srcY);
       // Return value: true - if equal
       //               false - if PixelFormats or data differs
       virtual bool cmpFrom(const ::i32_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
-                   const int srcX, const int srcY);
+                   const ::i32 srcX, const ::i32 srcY);
 
       virtual bool setDimension(const ::i32_size & newDim);
       virtual bool setDimension(const ::i32_rectangle &  rect)
@@ -121,10 +121,10 @@ namespace innate_subsystem
       virtual bool setProperties(const ::i32_rectangle &  dimByRect, const ::innate_subsystem::PixelFormat & pixelFormat);
 
       // Return the number of bits occupied by one pixel (can be 8, 16 or 32).
-      virtual unsigned char getBitsPerPixel() const;
+      virtual ::u8 getBitsPerPixel() const;
 
       // Return the number of bytes occupied by one pixel (can be 1, 2 or 4).
-      //virtual unsigned char getBytesPerPixel() const;
+      //virtual ::u8 getBytesPerPixel() const;
 
       virtual void setBuffer(void *newBuffer) { m_buffer = newBuffer; }
       virtual void *getBuffer() const { return m_buffer; }
@@ -133,41 +133,41 @@ namespace innate_subsystem
       // pixel. getBufferPtr(0, 0) should be equivalent to getBuffer(). This
       // function does not check if the coordinates are within the frame buffer
       // boundaries.
-      //  virtual void *getBufferPtr(int x, int y) const;
+      //  virtual void *getBufferPtr(::i32 x, ::i32 y) const;
 
 
 
-      unsigned char getBytesPerPixel() const
+      ::u8 getBytesPerPixel() const
       {
-         return (unsigned char)(m_pixelformat.bitsPerPixel / 8);
+         return (::u8)(m_pixelformat.bitsPerPixel / 8);
       }
 
-      void* getBufferPtr(int x, int y) const
+      void* getBufferPtr(::i32 x, ::i32 y) const
       {
-         char* ptr = (char*)m_buffer;
+         char_pointer ptr = (char_pointer )m_buffer;
          ptr += (y * m_size.cx + x) * getBytesPerPixel();
 
          return (void*)ptr;
       }
 
 
-      virtual int getBufferSize() const;
-      virtual int getBytesPerRow() const { return m_size.cx *
+      virtual ::i32 getBufferSize() const;
+      virtual ::i32 getBytesPerRow() const { return m_size.cx *
                                                  m_pixelformat.bitsPerPixel / 8; }
 
       //protected:
       bool resizeBuffer();
       void clipRect(const ::i32_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
-                    const int srcX, const int srcY,
+                    const ::i32 srcX, const ::i32 srcY,
                     ::i32_rectangle & rectangleTargetClipped, ::i32_rectangle & rectangleSourceClipped);
       void clipRect(const ::i32_rectangle &  rectangleTarget,const ::i32_rectangle & srcBufferRect,
-                    const int srcX, const int srcY,
+                    const ::i32 srcX, const ::i32 srcY,
                     ::i32_rectangle & rectangleTargetClipped, ::i32_rectangle & rectangleSourceClipped);
 
       template<class PIXEL_T> bool overlayT(const ::i32_rectangle &  rectangleTarget,
                                             const Framebuffer * pframebufferSource,
-                                            int srcX, int srcY,
-                                            const char *andMask);
+                                            ::i32 srcX, ::i32 srcY,
+                                            const_char_pointer andMask);
 
    };
 

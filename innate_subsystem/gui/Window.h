@@ -26,7 +26,7 @@
 //#define _BASE_WINDOW_H_
 
 #include "innate_subsystem/_common_header.h"
-#define WINDOW_WIDTH_USE_DEFAULT       ((int)0x80000000)
+#define WINDOW_WIDTH_USE_DEFAULT       ((::i32)0x80000000)
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "subsystem/platform/Particle.h"
 #include "acme/user/micro/elemental.h"
@@ -110,8 +110,8 @@ namespace innate_subsystem
       // Create window with windowName and setted style
       // other parameters can by changed
       virtual bool createWindow(const ::scoped_string & scopedstrWindowName, ::u32 style, const ::operating_system::window & operatingsystemwindowParent = 0,
-                        int xPos = WINDOW_WIDTH_USE_DEFAULT, int yPos = WINDOW_WIDTH_USE_DEFAULT,
-                        int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) = 0;
+                        ::i32 xPos = WINDOW_WIDTH_USE_DEFAULT, ::i32 yPos = WINDOW_WIDTH_USE_DEFAULT,
+                        ::i32 width = WINDOW_WIDTH_USE_DEFAULT, ::i32 height = WINDOW_WIDTH_USE_DEFAULT) = 0;
       virtual bool destroyWindow() = 0;
 
       virtual void setClipboardViewerInterest() = 0;
@@ -223,7 +223,7 @@ namespace innate_subsystem
       virtual ::innate_subsystem::WindowInterface * getParent() = 0;
 
 
-      virtual ::operating_system::window dialog_item_operating_system_window(int iDlgItem) = 0;
+      virtual ::operating_system::window dialog_item_operating_system_window(::i32 iDlgItem) = 0;
 
 
       virtual void subclassControlById(::Particle * pWindowControl, ::u32 id) = 0;
@@ -289,14 +289,14 @@ namespace innate_subsystem
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
       virtual bool onCommand(::u32 controlID, ::u32 notificationID) = 0;
-   //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
+   //virtual bool onNotify(::i32 idCtrl, LPNMHDR pnmh) = 0;
    //virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
       virtual bool on_user_system_command(::user::enum_system_command esystemcommand) = 0;
    virtual bool onMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam) = 0;
-   virtual bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed, const ::i32_point &point,
+   virtual bool onMouseEx(::u32 uMessage, ::i32 iButtonMask, ::u16 wheelSpeed, const ::i32_point &point,
                           bool &bDoDefaultProcessing) = 0;
 
-   virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::i32_point & position) = 0;
+   virtual bool onMouse(::u8 mouseButtons, ::u16 wheelSpeed, const ::i32_point & position) = 0;
    virtual bool onKey(::user::enum_message eusermessage, ::user::enum_key euserkey) = 0;
 
 
@@ -310,7 +310,7 @@ namespace innate_subsystem
       virtual void onAfterFullScreen(bool bRestore) = 0;
       virtual void onBeforeUnFullScreen(bool bMinimizing) = 0;
       virtual void onAfterUnFullScreen(bool bMinimizing) = 0;
-      virtual bool onGetTooltip(int iControl, ::string & strTooltip) = 0;
+      virtual bool onGetTooltip(::i32 iControl, ::string & strTooltip) = 0;
       virtual bool onCalculateDefaultSize(::i32_rectangle & rectangleDefaultSize) = 0;
       virtual void onAdjustWindowSize() = 0;
       virtual void onSize() = 0;
@@ -368,8 +368,8 @@ namespace innate_subsystem
       // Create window with windowName and setted style
       // other parameters can by changed
       bool createWindow(const ::scoped_string & scopedstrWindowName, ::u32 style, const ::operating_system::window & operatingsystemwindowParent = {},
-                        int xPos = WINDOW_WIDTH_USE_DEFAULT, int yPos = WINDOW_WIDTH_USE_DEFAULT,
-                        int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) override
+                        ::i32 xPos = WINDOW_WIDTH_USE_DEFAULT, ::i32 yPos = WINDOW_WIDTH_USE_DEFAULT,
+                        ::i32 width = WINDOW_WIDTH_USE_DEFAULT, ::i32 height = WINDOW_WIDTH_USE_DEFAULT) override
       {
          return m_pwindow->createWindow(scopedstrWindowName, style, operatingsystemwindowParent, xPos, yPos, width, height);
 
@@ -519,7 +519,7 @@ namespace innate_subsystem
       ::innate_subsystem::WindowInterface*getParent() override {return m_pwindow->getParent();}
 
 
-      ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
+      ::operating_system::window dialog_item_operating_system_window(::i32 iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
       void subclassControlById(::Particle * pWindowControl, ::u32 id) override { m_pwindow->subclassControlById(pWindowControl, id); }
       void subclassWindow(const ::operating_system::window & operatingsystemwindow)override { m_pwindow->subclassWindow(operatingsystemwindow); }
       void unsubclassWindow() override { m_pwindow->unsubclassWindow(); }
@@ -588,22 +588,22 @@ namespace innate_subsystem
 //      void add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor) override {m_pwindow->add_cursor_rectangle(rectangle, ecursor);}
       //bool wndProc(::u32 message, ::wparam wparam, ::lparam lparam) override;
 
-      // static const int MOUSE_LDOWN  = 1;
-      // static const int MOUSE_MDOWN  = 2;
-      // static const int MOUSE_RDOWN  = 4;
-      // static const int MOUSE_WUP    = 8;
-      // static const int MOUSE_WDOWN  = 16;
+      // static const ::i32 MOUSE_LDOWN  = 1;
+      // static const ::i32 MOUSE_MDOWN  = 2;
+      // static const ::i32 MOUSE_RDOWN  = 4;
+      // static const ::i32 MOUSE_WUP    = 8;
+      // static const ::i32 MOUSE_WDOWN  = 16;
 
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
       bool onCommand(::u32 controlID, ::u32 notificationID) override { return false; }
-   //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
+   //    bool onNotify(::i32 idCtrl, LPNMHDR pnmh) override;
       //bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
       
       bool on_user_system_command(::user::enum_system_command esystemcommand) override { return false;}
       bool onMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam) override { return false; }
-      bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed,
+      bool onMouseEx(::u32 uMessage, ::i32 iButtonMask, ::u16 wheelSpeed,
           const ::i32_point& point, bool & bDoDefaultProcessing) override
 
       {
@@ -611,7 +611,7 @@ namespace innate_subsystem
 
       }
 
-      bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::i32_point &position) override
+      bool onMouse(::u8 mouseButtons, ::u16 wheelSpeed, const ::i32_point &position) override
       {
          return false;
       }
@@ -635,7 +635,7 @@ namespace innate_subsystem
       void onAfterFullScreen(bool bRestore) override {  }
       void onBeforeUnFullScreen(bool bMinimizing) override {  }
       void onAfterUnFullScreen(bool bMinimizing) override {  }
-      bool onGetTooltip(int iControl, ::string & strTooltip) override { return false; }
+      bool onGetTooltip(::i32 iControl, ::string & strTooltip) override { return false; }
       bool onCalculateDefaultSize(::i32_rectangle &rectangleDefaultSize) override { return false; }
       void onAdjustWindowSize() override { }
       void onSize() override {  }

@@ -29,7 +29,7 @@ c_errno::c_errno(c_errno_t, errno_t iErrNo) :
 
 #else
 
-c_errno::c_errno(c_errno_t, int iErrorNumber) : m_iErrNo(iErrorNumber) {}
+c_errno::c_errno(c_errno_t, ::i32 iErrorNumber) : m_iErrNo(iErrorNumber) {}
 
 #endif
 
@@ -192,7 +192,7 @@ void c_errno::s_throw_exception(c_errno cerrno)
 //::e_status c_errno::as_status()
 //{
 //
-//   int iErrorNumber = m_iErrNo;
+//   ::i32 iErrorNumber = m_iErrNo;
 //
 //   auto estatus = cerrno.estatus();
 //

@@ -35,21 +35,21 @@ class CLASS_DECL_ACME call_stack :
 public:
 
 
-   const_char_pointer     m_pszFormat;
-   const_char_pointer     m_pszCallStack;
-   int               m_iCount;
+   const_char_pointer m_pszFormat;
+   const_char_pointer m_pszCallStack;
+   ::i32               m_iCount;
 
    void *            m_caller_address;
 
 
-   call_stack(const ::scoped_string & scopedstrFormat = default_format(), int iSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+   call_stack(const ::scoped_string & scopedstrFormat = default_format(), ::i32 iSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1);
    virtual ~call_stack();
 
 
    //static void global_enable_stack_trace(bool bEnable = true);
    static const_char_pointer default_format() { return "%f(%l) %s\n"; }
 
-   const_char_pointer get_dup(const ::scoped_string & scopedstrFormat = default_format(), int uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+   const_char_pointer get_dup(const ::scoped_string & scopedstrFormat = default_format(), ::i32 uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
 
    const_char_pointer xxxstack_trace() const;
 

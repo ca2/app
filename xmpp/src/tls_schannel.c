@@ -35,17 +35,17 @@ struct _tls {
     SecPkgContext_StreamSizes spcss;
 
     unsigned char *recvbuffer;
-    unsigned int recvbuffermaxlen;
-    unsigned int recvbufferpos;
+    ::u32 recvbuffermaxlen;
+    ::u32 recvbufferpos;
 
     unsigned char *readybuffer;
-    unsigned int readybufferpos;
-    unsigned int readybufferlen;
+    ::u32 readybufferpos;
+    ::u32 readybufferlen;
 
     unsigned char *sendbuffer;
-    unsigned int sendbuffermaxlen;
-    unsigned int sendbufferlen;
-    unsigned int sendbufferpos;
+    ::u32 sendbuffermaxlen;
+    ::u32 sendbufferlen;
+    ::u32 sendbufferpos;
 
     SECURITY_STATUS lasterror;
 };
@@ -266,7 +266,7 @@ int tls_start(tls_t *tls)
 
 	if (sbdout.pBuffers[0].cbBuffer) {
 	    unsigned char *writebuff = sbdout.pBuffers[0].pvBuffer;
-	    unsigned int writelen = sbdout.pBuffers[0].cbBuffer;
+	    ::u32 writelen = sbdout.pBuffers[0].cbBuffer;
 
 	    sent = sock_write(tls->sock, writebuff, writelen);
 	    if (sent == -1) {
@@ -334,7 +334,7 @@ int tls_start(tls_t *tls)
     if (ret == SEC_E_OK) {
 	if (sbdout.pBuffers[0].cbBuffer) {
 	    unsigned char *writebuff = sbdout.pBuffers[0].pvBuffer;
-	    unsigned int writelen = sbdout.pBuffers[0].cbBuffer;
+	    ::u32 writelen = sbdout.pBuffers[0].cbBuffer;
 	    sent = sock_write(tls->sock, writebuff, writelen);
 	    if (sent == -1) {
 		tls->lasterror = sock_error();

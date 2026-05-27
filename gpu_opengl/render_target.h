@@ -36,9 +36,9 @@ namespace gpu_opengl
 
 
 
-      float extentAspectRatio() 
+      ::f32 extentAspectRatio() 
       {
-         return (float) width() / (float) height();
+         return (::f32) width() / (::f32) height();
       }
 
       void on_init() override;
@@ -50,7 +50,7 @@ namespace gpu_opengl
       virtual void createSyncObjects();
 
 
-      int get_frame_index() override;
+      ::i32 get_frame_index() override;
 
 
    };

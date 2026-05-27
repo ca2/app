@@ -84,7 +84,7 @@ namespace gpu
 
       ::string strType = ::type(pwindow->m_pacmeuserinteraction).name();
 
-      const char *pszType = strType.c_str();
+      const_char_pointer pszType = strType.c_str();
 
       information("initialize_swap_chain_window {}", pszType);
 
@@ -127,7 +127,7 @@ namespace gpu
    }
 
 
-   int swap_chain::swap_chain_frame_index()
+   ::i32 swap_chain::swap_chain_frame_index()
    {
 
       return m_iCurrentSwapChainFrame;
@@ -135,10 +135,10 @@ namespace gpu
    }
 
 
-      int swap_chain::swap_chain_image_index() { return m_iCurrentSwapChainImage; }
+      ::i32 swap_chain::swap_chain_image_index() { return m_iCurrentSwapChainImage; }
 
 
-   int swap_chain::swap_chain_frame_count()
+   ::i32 swap_chain::swap_chain_frame_count()
    {
 
       return -1;
@@ -157,7 +157,7 @@ namespace gpu
 
 
 
-void swap_chain::on_gpu_context_render_frame(int w, int h)
+void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 {
    
    

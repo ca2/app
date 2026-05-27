@@ -13,10 +13,10 @@ CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
 extern bool g_bDefaultEnableObjectReferenceCountDebug;
 
 
-int g_iDisableReferenceReferererReleaserBreakpoint = 0;
+::i32 g_iDisableReferenceReferererReleaserBreakpoint = 0;
 
 
-void set_reference_referer_releaser_breakpoint(int i)
+void set_reference_referer_releaser_breakpoint(::i32 i)
 {
 
    g_iDisableReferenceReferererReleaserBreakpoint = i ? 0 : 1;
@@ -606,8 +606,8 @@ namespace allocator
          ASSERT(!t_bStartConstructParticleAndHeapAllocation);
 
       }
-      else if (((unsigned char *)pparticle) >= t_pStartConstruct
-               && ((unsigned char *)pparticle) + pparticle->m_sType <= ((unsigned char *)t_pStartConstruct) + t_sStartConstruct)
+      else if (((::u8 *)pparticle) >= t_pStartConstruct
+               && ((::u8 *)pparticle) + pparticle->m_sType <= ((::u8 *)t_pStartConstruct) + t_sStartConstruct)
       {
 
          pparticle->m_pType = t_pStartConstruct;
@@ -871,7 +871,7 @@ namespace allocator
       if (psubparticle->m_preferenceitema)
       {
 
-         char sz[1024];
+         ::i8 sz[1024];
 
          psubparticle->get_debug_title(sz, 1024);
 

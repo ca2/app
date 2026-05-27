@@ -41,69 +41,69 @@
 namespace acme
 {
 
-static char *wp_strdup(const char *s) {
+static char_pointer wp_strdup(const_char_pointer s) {
     size_t n;
-    char *p;
+    char_pointer p;
     if (!s) return NULL;
     n = strlen(s);
-    p = (char *)::malloc(n + 1);
+    p = (char_pointer )::malloc(n + 1);
     if (!p) return NULL;
     memcpy(p, s, n + 1);
     return p;
 }
 
-static int wp_stricmp(const char *a, const char *b) {
-    unsigned char ca, cb;
+static ::i32 wp_stricmp(const_char_pointer a, const_char_pointer b) {
+    ::u8 ca, cb;
     while (*a && *b) {
-        ca = (unsigned char)tolower((unsigned char)*a);
-        cb = (unsigned char)tolower((unsigned char)*b);
-        if (ca != cb) return (int)ca - (int)cb;
+        ca = (::u8)tolower((::u8)*a);
+        cb = (::u8)tolower((::u8)*b);
+        if (ca != cb) return (::i32)ca - (::i32)cb;
         ++a;
         ++b;
     }
-    ca = (unsigned char)tolower((unsigned char)*a);
-    cb = (unsigned char)tolower((unsigned char)*b);
-    return (int)ca - (int)cb;
+    ca = (::u8)tolower((::u8)*a);
+    cb = (::u8)tolower((::u8)*b);
+    return (::i32)ca - (::i32)cb;
 }
 
-static char *wp_ltrim(char *s) {
-    while (*s && isspace((unsigned char)*s)) ++s;
+static char_pointer wp_ltrim(char_pointer s) {
+    while (*s && isspace((::u8)*s)) ++s;
     return s;
 }
 
-static void wp_rtrim_inplace(char *s) {
+static void wp_rtrim_inplace(char_pointer s) {
     size_t len = strlen(s);
-    while (len > 0 && isspace((unsigned char)s[len - 1])) {
+    while (len > 0 && isspace((::u8)s[len - 1])) {
         s[len - 1] = '\0';
         --len;
     }
 }
 
-static char *wp_trim(char *s) {
+static char_pointer wp_trim(char_pointer s) {
     s = wp_ltrim(s);
     wp_rtrim_inplace(s);
     return s;
 }
 
-static int wp_is_blank(const char *s) {
+static ::i32 wp_is_blank(const_char_pointer s) {
     while (*s) {
-        if (!isspace((unsigned char)*s)) return 0;
+        if (!isspace((::u8)*s)) return 0;
         ++s;
     }
     return 1;
 }
 
-static int wp_is_comment_line(const char *s) {
-    char buf[WP_MAX_LINE];
-    char *t;
+static ::i32 wp_is_comment_line(const_char_pointer s) {
+    ::i8 buf[WP_MAX_LINE];
+    char_pointer t;
     strncpy(buf, s ? s : "", sizeof(buf) - 1);
     buf[sizeof(buf) - 1] = '\0';
     t = wp_trim(buf);
     return (*t == ';' || *t == '#');
 }
 
-static int wp_starts_with_space(const char *s) {
-    return s && *s && isspace((unsigned char)*s);
+static ::i32 wp_starts_with_space(const_char_pointer s) {
+    return s && *s && isspace((::u8)*s);
 }
 
 /* ============================================================
@@ -111,7 +111,7 @@ static int wp_starts_with_space(const char *s) {
    ============================================================ */
 
 typedef struct {
-    char **items;
+    char_pointer *items;
     size_t count;
     size_t cap;
 } WpLines;
@@ -126,20 +126,20 @@ static void wp_lines_free(WpLines *a) {
     a->cap = 0;
 }
 
-static int wp_lines_reserve(WpLines *a, size_t need) {
-    char **p;
+static ::i32 wp_lines_reserve(WpLines *a, size_t need) {
+    char_pointer *p;
     size_t newcap;
     if (need <= a->cap) return 1;
     newcap = (a->cap == 0) ? 16 : a->cap;
     while (newcap < need) newcap *= 2;
-    p = (char **)realloc(a->items, newcap * sizeof(char *));
+    p = (char_pointer *)realloc(a->items, newcap * sizeof(char_pointer ));
     if (!p) return 0;
     a->items = p;
     a->cap = newcap;
     return 1;
 }
 
-static int wp_lines_push(WpLines *a, const char *line) {
+static ::i32 wp_lines_push(WpLines *a, const_char_pointer line) {
     if (!wp_lines_reserve(a, a->count + 1)) return 0;
     a->items[a->count] = wp_strdup(line ? line : "");
     if (!a->items[a->count]) return 0;
@@ -147,7 +147,7 @@ static int wp_lines_push(WpLines *a, const char *line) {
     return 1;
 }
 
-static int wp_lines_insert(WpLines *a, size_t pos, const char *line) {
+static ::i32 wp_lines_insert(WpLines *a, size_t pos, const_char_pointer line) {
     size_t i;
     if (pos > a->count) pos = a->count;
     if (!wp_lines_reserve(a, a->count + 1)) return 0;
@@ -170,12 +170,12 @@ static void wp_lines_remove_range(WpLines *a, size_t start, size_t end) {
     a->count -= n;
 }
 
-static int wp_read_all_lines(const char *filename, WpLines *out) {
+static ::i32 wp_read_all_lines(const_char_pointer pszFilename, WpLines *out) {
     FILE *fp;
-    char buf[WP_MAX_LINE];
+    ::i8 buf[WP_MAX_LINE];
     memset(out, 0, sizeof(*out));
 
-    fp = fopen(filename, "rb");
+    fp = fopen(pszFilename, "rb");
     if (!fp) return 1; /* treat missing file as empty */
 
     while (fgets(buf, sizeof(buf), fp)) {
@@ -195,10 +195,10 @@ static int wp_read_all_lines(const char *filename, WpLines *out) {
     return 1;
 }
 
-static int wp_write_all_lines(const char *filename, const WpLines *a) {
+static ::i32 wp_write_all_lines(const_char_pointer pszFilename, const WpLines *a) {
     FILE *fp;
     size_t i;
-    fp = fopen(filename, "wb");
+    fp = fopen(pszFilename, "wb");
     if (!fp) return 0;
     for (i = 0; i < a->count; ++i) {
         if (fputs(a->items[i], fp) == EOF || fputc('\n', fp) == EOF) {
@@ -214,9 +214,9 @@ static int wp_write_all_lines(const char *filename, const WpLines *a) {
    Parsing: sections
    ============================================================ */
 
-static int wp_parse_section_name(const char *line, char *out, size_t outsz) {
-    char buf[WP_MAX_LINE];
-    char *t, *start, *end;
+static ::i32 wp_parse_section_name(const_char_pointer line, char_pointer out, size_t outsz) {
+    ::i8 buf[WP_MAX_LINE];
+    char_pointer t, start, end;
     size_t len;
 
     if (!line) return 0;
@@ -242,7 +242,7 @@ static int wp_parse_section_name(const char *line, char *out, size_t outsz) {
    Parsing: escaped / quoted values
    ============================================================ */
 
-static void wp_append_char(char *dst, size_t dstsz, size_t *di, char c) {
+static void wp_append_char(char_pointer dst, size_t dstsz, size_t *di, ::i8 c) {
     if (*di + 1 < dstsz) {
         dst[*di] = c;
         ++(*di);
@@ -250,7 +250,7 @@ static void wp_append_char(char *dst, size_t dstsz, size_t *di, char c) {
     }
 }
 
-static void wp_unescape_string(const char *src, char *dst, size_t dstsz) {
+static void wp_unescape_string(const_char_pointer src, char_pointer dst, size_t dstsz) {
     size_t i = 0;
     size_t di = 0;
     dst[0] = '\0';
@@ -281,12 +281,12 @@ static void wp_unescape_string(const char *src, char *dst, size_t dstsz) {
     }
 }
 
-static void wp_escape_string(const char *src, char *dst, size_t dstsz) {
+static void wp_escape_string(const_char_pointer src, char_pointer dst, size_t dstsz) {
     size_t i = 0, di = 0;
     dst[0] = '\0';
 
     while (src[i]) {
-        char c = src[i++];
+        ::i8 c = src[i++];
         switch (c) {
             case '\n':
                 if (di + 2 < dstsz) { dst[di++]='\\'; dst[di++]='n'; }
@@ -311,9 +311,9 @@ static void wp_escape_string(const char *src, char *dst, size_t dstsz) {
     dst[di] = '\0';
 }
 
-static int wp_needs_quotes(const char *s) {
+static ::i32 wp_needs_quotes(const_char_pointer s) {
     if (!s || !*s) return 1;
-    if (isspace((unsigned char)s[0])) return 1;
+    if (isspace((::u8)s[0])) return 1;
     while (*s) {
         if (*s == ';' || *s == '#' || *s == '=' || *s == '"')
             return 1;
@@ -322,8 +322,8 @@ static int wp_needs_quotes(const char *s) {
     return 0;
 }
 
-static void wp_encode_value(const char *value, char *dst, size_t dstsz) {
-    char esc[WP_MAX_VALUE * 2];
+static void wp_encode_value(const_char_pointer value, char_pointer dst, size_t dstsz) {
+    ::i8 esc[WP_MAX_VALUE * 2];
     wp_escape_string(value ? value : "", esc, sizeof(esc));
 
     if (wp_needs_quotes(value ? value : "")) {
@@ -343,20 +343,20 @@ Preserves:
 
 Returns 1 if line is key/value.
 */
-static int wp_parse_key_value_line_ex(
-    const char *line,
-    char *out_key, size_t keysz,
-    char *out_value, size_t valsz,
-    char *out_inline_comment, size_t commentsz
+static ::i32 wp_parse_key_value_line_ex(
+    const_char_pointer line,
+    char_pointer out_key, size_t keysz,
+    char_pointer out_value, size_t valsz,
+    char_pointer out_inline_comment, size_t commentsz
 ) {
-    const char *p;
-    const char *eq;
-    char keybuf[WP_MAX_NAME];
-    char valbuf[WP_MAX_VALUE];
+    const_char_pointer p;
+    const_char_pointer eq;
+    ::i8 keybuf[WP_MAX_NAME];
+    ::i8 valbuf[WP_MAX_VALUE];
     size_t klen = 0, vlen = 0;
-    int in_quotes = 0;
-    int escaped = 0;
-    const char *comment_start = NULL;
+    ::i32 in_quotes = 0;
+    ::i32 escaped = 0;
+    const_char_pointer comment_start = NULL;
 
     out_key[0] = '\0';
     out_value[0] = '\0';
@@ -365,7 +365,7 @@ static int wp_parse_key_value_line_ex(
     if (!line) return 0;
 
     p = line;
-    while (*p && isspace((unsigned char)*p)) ++p;
+    while (*p && isspace((::u8)*p)) ++p;
     if (*p == '\0' || *p == ';' || *p == '#') return 0;
 
     eq = strchr(p, '=');
@@ -377,13 +377,13 @@ static int wp_parse_key_value_line_ex(
     }
     keybuf[klen] = '\0';
     {
-        char *tk = wp_trim(keybuf);
+        char_pointer tk = wp_trim(keybuf);
         memmove(keybuf, tk, strlen(tk) + 1);
     }
 
     /* value */
     p = eq + 1;
-    while (*p && isspace((unsigned char)*p)) ++p;
+    while (*p && isspace((::u8)*p)) ++p;
 
     if (*p == '"') {
         in_quotes = 1;
@@ -429,7 +429,7 @@ static int wp_parse_key_value_line_ex(
 
     /* after quoted value, allow spaces then inline comment */
     if (!comment_start) {
-        while (*p && isspace((unsigned char)*p)) ++p;
+        while (*p && isspace((::u8)*p)) ++p;
         if (*p == ';' || *p == '#') comment_start = p;
     }
 
@@ -451,11 +451,11 @@ static int wp_parse_key_value_line_ex(
    ============================================================ */
 
 typedef struct {
-    int found_section;
+    ::i32 found_section;
     size_t section_start;
     size_t section_end;      /* one past last line in section */
 
-    int found_key;
+    ::i32 found_key;
     size_t key_line;
 
     size_t key_block_start;  /* includes immediately preceding comments */
@@ -463,14 +463,14 @@ typedef struct {
 
 static WpLocation wp_find_section_and_key(
     const WpLines *lines,
-    const char *section,
-    const char *key
+    const_char_pointer section,
+    const_char_pointer key
 ) {
     WpLocation loc;
     size_t i;
-    int in_target = 0;
-    char sec[WP_MAX_NAME];
-    char k[WP_MAX_NAME], v[WP_MAX_VALUE], c[WP_MAX_VALUE];
+    ::i32 in_target = 0;
+    ::i8 sec[WP_MAX_NAME];
+    ::i8 k[WP_MAX_NAME], v[WP_MAX_VALUE], c[WP_MAX_VALUE];
 
     memset(&loc, 0, sizeof(loc));
     loc.section_start = (size_t)-1;
@@ -497,7 +497,7 @@ static WpLocation wp_find_section_and_key(
                 if (wp_stricmp(k, key) == 0) {
                     size_t start = i;
                     while (start > loc.section_start + 1) {
-                        const char *prev = lines->items[start - 1];
+                        const_char_pointer prev = lines->items[start - 1];
                         if (wp_is_comment_line(prev) || wp_is_blank(prev)) {
                             --start;
                         } else {
@@ -523,7 +523,7 @@ static WpLocation wp_find_section_and_key(
    Win32-style multi-string helpers
    ============================================================ */
 
-static ::u32 wp_copy_cstr(char *dst, ::u32 nSize, const char *src) {
+static ::u32 wp_copy_cstr(char_pointer dst, ::u32 nSize, const_char_pointer src) {
     size_t len;
     if (!dst || nSize == 0) return 0;
     if (!src) src = "";
@@ -533,7 +533,7 @@ static ::u32 wp_copy_cstr(char *dst, ::u32 nSize, const char *src) {
     return (::u32)len;
 }
 
-static ::u32 wp_multisz_append(char *dst, ::u32 nSize, ::u32 used, const char *s) {
+static ::u32 wp_multisz_append(char_pointer dst, ::u32 nSize, ::u32 used, const_char_pointer s) {
     size_t len;
     if (!dst || nSize == 0) return 0;
     if (!s) s = "";
@@ -556,17 +556,17 @@ static ::u32 wp_multisz_append(char *dst, ::u32 nSize, ::u32 used, const char *s
    Public API
    ============================================================ */
 
-int WritePrivateProfileString(
-    const char *lpAppName,
-    const char *lpKeyName,
-    const char *lpString,
-    const char *lpFileName
+::i32 WritePrivateProfileString(
+    const_char_pointer lpAppName,
+    const_char_pointer lpKeyName,
+    const_char_pointer lpString,
+    const_char_pointer lpFileName
 ) {
     WpLines lines;
     WpLocation loc;
-    char newline[WP_MAX_LINE];
-    char encoded[WP_MAX_VALUE * 2];
-    char k[WP_MAX_NAME], v[WP_MAX_VALUE], comment[WP_MAX_VALUE];
+    ::i8 newline[WP_MAX_LINE];
+    ::i8 encoded[WP_MAX_VALUE * 2];
+    ::i8 k[WP_MAX_NAME], v[WP_MAX_VALUE], comment[WP_MAX_VALUE];
 
     if (!lpAppName || !lpFileName) return FALSE;
 
@@ -666,18 +666,18 @@ int WritePrivateProfileString(
 }
 
 ::u32 GetPrivateProfileString(
-    const char *lpAppName,
-    const char *lpKeyName,
-    const char *lpDefault,
-    char *lpReturnedString,
+    const_char_pointer lpAppName,
+    const_char_pointer lpKeyName,
+    const_char_pointer lpDefault,
+    char_pointer lpReturnedString,
     ::u32 nSize,
-    const char *lpFileName
+    const_char_pointer lpFileName
 ) {
     WpLines lines;
     size_t i;
-    int in_target = 0;
-    char sec[WP_MAX_NAME];
-    char key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
+    ::i32 in_target = 0;
+    ::i8 sec[WP_MAX_NAME];
+    ::i8 key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
     ::u32 used = 0;
 
     if (!lpReturnedString || nSize == 0) return 0;
@@ -769,13 +769,13 @@ int WritePrivateProfileString(
 }
 
 ::u32 GetPrivateProfileInt(
-    const char *lpAppName,
-    const char *lpKeyName,
-    int nDefault,
-    const char *lpFileName
+    const_char_pointer lpAppName,
+    const_char_pointer lpKeyName,
+    ::i32 nDefault,
+    const_char_pointer lpFileName
 ) {
-    char buf[64];
-    char *endptr;
+    ::i8 buf[64];
+    char_pointer endptr;
     long v;
 
     GetPrivateProfileString(lpAppName, lpKeyName, "", buf, (::u32)sizeof(buf), lpFileName);
@@ -787,17 +787,17 @@ int WritePrivateProfileString(
 }
 
 ::u32 GetPrivateProfileSection(
-    const char *lpAppName,
-    char *lpReturnedString,
+    const_char_pointer lpAppName,
+    char_pointer lpReturnedString,
     ::u32 nSize,
-    const char *lpFileName
+    const_char_pointer lpFileName
 ) {
     WpLines lines;
     size_t i;
-    int in_target = 0;
-    char sec[WP_MAX_NAME];
-    char key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
-    char kv[WP_MAX_LINE];
+    ::i32 in_target = 0;
+    ::i8 sec[WP_MAX_NAME];
+    ::i8 key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
+    ::i8 kv[WP_MAX_LINE];
     ::u32 used = 0;
 
     if (!lpReturnedString || nSize == 0) return 0;
@@ -850,9 +850,9 @@ int WritePrivateProfileString(
 }
 
 ::u32 GetPrivateProfileSectionNames(
-    char *lpszReturnBuffer,
+    char_pointer lpszReturnBuffer,
     ::u32 nSize,
-    const char *lpFileName
+    const_char_pointer lpFileName
 ) {
     return GetPrivateProfileString(NULL, NULL, "", lpszReturnBuffer, nSize, lpFileName);
 }

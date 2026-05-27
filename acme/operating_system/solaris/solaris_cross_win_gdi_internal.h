@@ -41,7 +41,7 @@ public:
 
 
    Display *   m_display;
-   Drawable    m_d;
+   Drawable    m_f64;
    GC          m_gc;
    oswindow        m_hwnd;
 
@@ -80,7 +80,7 @@ struct tagLOGRGN :
    public gdi_object
 {
 	::u32        m_uiSize;
-	unsigned char *      m_puchData;
+	::u8 *      m_puchData;
 };
 
 

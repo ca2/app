@@ -52,9 +52,9 @@ namespace windowing
 
       void main_post(const ::procedure& procedure) override;
 
-      virtual void display_error_trap_push(int i);
+      virtual void display_error_trap_push(::i32 i);
 
-      virtual void display_error_trap_pop_ignored(int i);
+      virtual void display_error_trap_pop_ignored(::i32 i);
 
       virtual void* fetch_windowing_system_display();
 

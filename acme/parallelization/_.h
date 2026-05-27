@@ -44,7 +44,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure);
 
 
 
-CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep);
+CLASS_DECL_ACME bool predicate_Sleep(::i32 iTime, ::function < bool(void) > functionOkToSleep);
 
 CLASS_DECL_ACME void preempt();
 
@@ -99,7 +99,7 @@ namespace parallelization
    CLASS_DECL_ACME enum_priority get_priority(htask htask);
 
 
-   //inline int get_priority_none()
+   //inline ::i32 get_priority_none()
    //{
 
    //   return e_priority_none;
@@ -107,7 +107,7 @@ namespace parallelization
    //}
 
 
-   //inline int get_priority_normal()
+   //inline ::i32 get_priority_normal()
    //{
 
    //   return e_priority_normal;

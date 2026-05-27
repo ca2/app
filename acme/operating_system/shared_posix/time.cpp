@@ -107,7 +107,7 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 //}
 //
 //
-////void system_time_to_earth_time(posix_time* ptime, const system_time* psystemtime, int nDST)
+////void system_time_to_earth_time(posix_time* ptime, const system_time* psystemtime, ::i32 nDST)
 ////{
 ////
 ////   struct tm tm;
@@ -198,7 +198,7 @@ struct tm * tm_struct(struct tm * ptm, const ::posix_time & posixtime, const cla
 #ifdef HAVE_UNISTD_H
 
 
-bool microsecond_sleep::sleep(unsigned long usec)
+bool microsecond_sleep::sleep(ulong usec)
 {
 
    usleep((::u32)usec);
@@ -378,14 +378,14 @@ class ::time & time::Now()
 
 time_t portable_timegm_threadsafe(const struct tm *tm)
 {
-    static const int days_per_month[12] =
+    static const ::i32 days_per_month[12] =
         { 31,28,31,30,31,30,31,31,30,31,30,31 };
 
-    int year = tm->tm_year + 1900;
-    int month = tm->tm_mon;
+    ::i32 year = tm->tm_year + 1900;
+    ::i32 month = tm->tm_mon;
     if (month > 11) { year += month / 12; month %= 12; }
     else if (month < 0) {
-        int years_diff = (11 - month) / 12;
+        ::i32 years_diff = (11 - month) / 12;
         year -= years_diff;
         month += 12 * years_diff;
     }
@@ -396,7 +396,7 @@ time_t portable_timegm_threadsafe(const struct tm *tm)
               - (year - 1901) / 100  // remove century non-leaps
               + (year - 1601) / 400; // add back 400-year leaps
 
-    for (int m = 0; m < month; ++m)
+    for (::i32 m = 0; m < month; ++m)
         days += days_per_month[m];
     if (month > 1 && ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)))
         days++; // leap day in February

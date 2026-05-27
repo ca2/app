@@ -30,7 +30,7 @@ SocketException::SocketException()
   setErrno(WSAGetLastError());
 }
 
-SocketException::SocketException(int error)
+SocketException::SocketException(::i32 error)
 : ::subsystem::Exception()
 {
   setErrno(error);
@@ -46,7 +46,7 @@ SocketException::~SocketException()
 }
 
 
-void SocketException::setErrno(int error)
+void SocketException::setErrno(::i32 error)
 {
 
   m_errno = error;

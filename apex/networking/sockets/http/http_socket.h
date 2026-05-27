@@ -43,7 +43,7 @@ namespace sockets
       ::url::url           m_url;
       ::url::parts         m_urlparts;
       string               m_strProxy;
-      int                  m_iProxyPort;
+      ::i32                  m_iProxyPort;
 
       ::string m_strResponseLogMessage;
       ::http::request      m_request;
@@ -61,10 +61,10 @@ namespace sockets
       //bool               m_bExpectRequest;
       memsize              m_body_size_left;
       memsize              m_body_size_downloaded;
-      double                m_dDownloadRate;
+      ::f64                m_dDownloadRate;
       ::i64                m_iDownloaded;
       memsize              m_chunk_size;
-      int                  m_chunk_state;
+      ::i32                  m_chunk_state;
       string               m_chunk_line;
 
       class ::time              m_timeFirstTime;
@@ -91,11 +91,11 @@ namespace sockets
       virtual ::i64 get_request_serial();
       ::string get_request_url_string() override;
 
-      ::string get_short_debug_text(int i) const override;
+      ::string get_short_debug_text(::i32 i) const override;
 
       virtual void OnEndChunk();
 
-      void OnRawData(char *buf,memsize len) override;
+      void OnRawData(char_pointer buf,memsize len) override;
       void OnLine(const ::scoped_string & scopedstrLine) override;
 
       /** Callback executes when first line has been received.

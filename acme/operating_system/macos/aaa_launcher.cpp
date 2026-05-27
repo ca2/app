@@ -25,7 +25,7 @@ bool launcher::start()
    infoa.pDirectory    = strDir;*/
 
 
-    execlp(strPath, strPath, (char *) 0);
+    execlp(strPath, strPath, (char_pointer ) 0);
 
    return true;
 

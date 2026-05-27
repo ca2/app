@@ -25,11 +25,11 @@ namespace acme
       virtual bool has_command(const ::scoped_string& scopedstrCommand);
       virtual bool has_posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
-      virtual int posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default, const trace_function& tracefunction = nullptr);
+      virtual ::i32 posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default, const trace_function& tracefunction = nullptr);
 
-      virtual int posix_shell_command_memory(const ::scoped_string& scopedstrCommand, bool bInteractive = false, enum_posix_shell eposixshell = e_posix_shell_system_default, const memory_dump_function& memorydumpfunction = nullptr);
+      virtual ::i32 posix_shell_command_memory(const ::scoped_string& scopedstrCommand, bool bInteractive = false, enum_posix_shell eposixshell = e_posix_shell_system_default, const memory_dump_function& memorydumpfunction = nullptr);
 
-      //virtual int interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default);
+      //virtual ::i32 interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
       //virtual ::string posix_shell_string(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
@@ -41,39 +41,39 @@ namespace acme
 
       virtual ::string posix_shell_command_install_package(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
-      virtual int synchronous_posix_terminal(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default, const trace_function& tracefunction = nullptr);
+      virtual ::i32 synchronous_posix_terminal(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default, const trace_function& tracefunction = nullptr);
 
-      virtual void prepare_argc_argv(int& argc, char** argv, char* cmd_line);
-      virtual int command(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr);
-      virtual int command_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function & memorydumpfunction);
+      virtual void prepare_argc_argv(::i32& argc, char_pointer * argv, char_pointer cmd_line);
+      virtual ::i32 command(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr);
+      virtual ::i32 command_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function & memorydumpfunction);
 
 
 
-      //virtual void command_system(string_array_base & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
-//      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
-      virtual int command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
-      virtual int command_system_memory(const ::scoped_string& scopedstr, bool bInteractive = false, const memory_dump_function & memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
-      virtual int pty2(const ::string_array_base & stra);
-      //virtual int interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
-      //virtual int interactive_command_system_memory(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const memory_dump_function& memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
-      //      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
+      //virtual void command_system(string_array_base & straOutput, ::i32 & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+//      virtual ::i32 command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
+      virtual ::i32 command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+      virtual ::i32 command_system_memory(const ::scoped_string& scopedstr, bool bInteractive = false, const memory_dump_function & memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+      virtual ::i32 pty2(const ::string_array_base & stra);
+      //virtual ::i32 interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+      //virtual ::i32 interactive_command_system_memory(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const memory_dump_function& memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+      //      virtual ::i32 command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
             /// This version of command_system is originally meant for implementators
             /// to not use standard I/O redirection.
-            /// virtual int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
-      virtual int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+            /// virtual ::i32 command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+      virtual ::i32 command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       virtual ::string get_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
-      virtual ::string get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, ::string * pstrError = nullptr, int * piExitCode = nullptr);
+      virtual ::string get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, ::string * pstrError = nullptr, ::i32 * piExitCode = nullptr);
 
-      virtual ::memory get_command_output_memory(const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut = 15_min, ::memory * pmemoryError = nullptr, int * piExitCode = nullptr);
+      virtual ::memory get_command_output_memory(const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut = 15_min, ::memory * pmemoryError = nullptr, ::i32 * piExitCode = nullptr);
 
-      virtual int get_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+      virtual ::i32 get_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
-      virtual int get_command_output_memory(::memory & memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, bool bInteractive = false, const class ::time& timeOut = 15_min);
+      virtual ::i32 get_command_output_memory(::memory & memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, bool bInteractive = false, const class ::time& timeOut = 15_min);
 
-      virtual ::string get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, ::string * pstrError = nullptr, int * piExitCode = nullptr, const class ::time& timeOut = 15_min);
+      virtual ::string get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, ::string * pstrError = nullptr, ::i32 * piExitCode = nullptr, const class ::time& timeOut = 15_min);
 
-      virtual int get_posix_shell_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
+      virtual ::i32 get_posix_shell_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
 
 
 

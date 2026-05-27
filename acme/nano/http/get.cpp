@@ -219,7 +219,7 @@ void nano_http_get_transfer_progress(void * userdata, long done, long total)
    {
       
       function(
-               (double) done / (double) total,
+               (::f64) done / (::f64) total,
                done,
                total);
       

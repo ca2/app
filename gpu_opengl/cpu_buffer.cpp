@@ -166,7 +166,7 @@ namespace gpu_opengl
          ::opengl::check_error("");
 
       }
-      int iError = glGetError();
+      ::i32 iError = glGetError();
 
       if(iError != 0)
       {
@@ -181,14 +181,14 @@ namespace gpu_opengl
 
       //{
 
-      //   auto dst = (unsigned char *)data;
+      //   auto dst = (::u8 *)data;
       //   auto size = cx * cy;
 
       //   while (size > 0)
       //   {
-      //      dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
-      //      dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
-      //      dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
+      //      dst[0] = byte_clip(((::i32)dst[0] * (::i32)dst[3]) / 255);
+      //      dst[1] = byte_clip(((::i32)dst[1] * (::i32)dst[3]) / 255);
+      //      dst[2] = byte_clip(((::i32)dst[2] * (::i32)dst[3]) / 255);
       //      dst += 4;
       //      size--;
       //   }

@@ -250,7 +250,7 @@ namespace message
 
    //   m_nFlags = second_unsigned_short(lparam);
    //   
-   //   m_iVirtualKey = (int)wparam;
+   //   m_iVirtualKey = (::i32)wparam;
 
    //   m_nScanCode = ((lparam >> 16) & 0xff);
 
@@ -539,9 +539,9 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_ecommand = (enum_scroll_command) (short)first_unsigned_short(wparam);
+   //   m_ecommand = (enum_scroll_command) (::i16)first_unsigned_short(wparam);
 
-   //   m_nPos = (short)second_unsigned_short(wparam);
+   //   m_nPos = (::i16)second_unsigned_short(wparam);
 
    //}
 
@@ -665,7 +665,7 @@ namespace message
    }
 
 
-//   short mouse_wheel::GetDelta()
+//   ::i16 mouse_wheel::GetDelta()
 //   {
 //
 //      return second_short(m_wparam);
@@ -681,10 +681,10 @@ namespace message
    }
 
 
-   int notify::get_ctrl_id()
+   ::i32 notify::get_ctrl_id()
    {
 
-      return (int)m_wparam;
+      return (::i32)m_wparam;
 
    }
 

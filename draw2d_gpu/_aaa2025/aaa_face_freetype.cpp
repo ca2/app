@@ -103,7 +103,7 @@ namespace draw2d_gpu
       );
       ////sglPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture
-      //   //unsigned int texture;
+      //   //::u32 texture;
       //glGenTextures(1, &ch.TextureID);
       //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
       //glTexImage2D(
@@ -127,9 +127,9 @@ namespace draw2d_gpu
         //  texture,
       ch.Size = glm::ivec2(m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows);
       ch.Bearing = glm::ivec2(m_face->glyph->bitmap_left, m_face->glyph->bitmap_top);
-      ch.Advance = static_cast<unsigned int>(m_face->glyph->advance.x);
+      ch.Advance = static_cast<::u32>(m_face->glyph->advance.x);
       //};
-      //Characters.insert(std::pair<char, Character>(c, character));
+      //Characters.insert(std::pair<::i8, Character>(c, character));
    //}
       //glBindTexture(GL_TEXTURE_2D, 0);
       //}
@@ -157,7 +157,7 @@ namespace draw2d_gpu
       //   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
       //   // load first 128 characters of ASCII set
-      //   for (unsigned char c = 0; c < 128; c++)
+      //   for (::u8 c = 0; c < 128; c++)
       //   {
       //      // Load character glyph 
       //      if (FT_Load_Char(face, c, FT_LOAD_RENDER))
@@ -166,7 +166,7 @@ namespace draw2d_gpu
       //         continue;
       //      }
       //      // generate texture
-      //      unsigned int texture;
+      //      ::u32 texture;
       //      glGenTextures(1, &texture);
       //      glBindTexture(GL_TEXTURE_2D, texture);
       //      glTexImage2D(
@@ -190,9 +190,9 @@ namespace draw2d_gpu
       //          texture,
       //          glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
       //          glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-      //          static_cast<unsigned int>(face->glyph->advance.x)
+      //          static_cast<::u32>(face->glyph->advance.x)
       //      };
-      //      Characters.insert(std::pair<char, Character>(c, character));
+      //      Characters.insert(std::pair<::i8, Character>(c, character));
       //   }
       //   glBindTexture(GL_TEXTURE_2D, 0);
       //}

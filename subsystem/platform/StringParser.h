@@ -36,14 +36,14 @@ namespace subsystem
       virtual public ::particle
    {
    public:
-      virtual bool tryParseInt(const char *str);
-      virtual bool parseInt(const char *str, int *out);
+      virtual bool tryParseInt(const_char_pointer str);
+      virtual bool parseInt(const_char_pointer str, ::i32 *out);
       // FIXME: it returns true on values that greater then 0xFFFFFFFF.
-      virtual bool parseUInt(const char *str, ::u32 *out);
-      virtual bool parseUInt64(const char *str, ::u64 *out);
-      virtual bool parseHex(const char *str, ::u32 *out);
-      virtual bool parseByte(const char *str, unsigned char *out);
-      virtual bool parseByteHex(const char *str, unsigned char *out);
+      virtual bool parseUInt(const_char_pointer str, ::u32 *out);
+      virtual bool parseUInt64(const_char_pointer str, ::u64 *out);
+      virtual bool parseHex(const_char_pointer str, ::u32 *out);
+      virtual bool parseByte(const_char_pointer str, ::u8 *out);
+      virtual bool parseByteHex(const_char_pointer str, ::u8 *out);
    };
 
 

@@ -80,7 +80,7 @@ namespace datetime
 //      const ::scoped_string & scopedstr = str;
 //      string strNumber;
 //      string strText1;
-//      for(int i = 0; *psz; unicode_increment(psz))
+//      for(::i32 i = 0; *psz; unicode_increment(psz))
 //      {
 //         string strChar = ::str::get_utf8_char(scopedstr);
 //         if(unicode_is_whitespace(scopedstr))
@@ -152,11 +152,11 @@ namespace datetime
 //
 //            if(bAdd)
 //            {
-//               informationf("strtotime: invalid char +");
+//               informationf("strtotime: invalid ::i8 +");
 //            }
 //            else if(bMinus)
 //            {
-//               informationf("strtotime: invalid char + on Minus state");
+//               informationf("strtotime: invalid ::i8 + on Minus state");
 //            }
 //
 //#endif
@@ -172,11 +172,11 @@ namespace datetime
 //
 //            if(bAdd)
 //            {
-//               informationf("strtotime: invalid char - on add state");
+//               informationf("strtotime: invalid ::i8 - on add state");
 //            }
 //            else if(bMinus)
 //            {
-//               informationf("strtotime: invalid char - on Minus state");
+//               informationf("strtotime: invalid ::i8 - on Minus state");
 //            }
 //
 //#endif
@@ -264,7 +264,7 @@ namespace datetime
 //   }
 //
 //
-//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const ::scoped_string & scopedstr,int & iPath,int & iPathCount,bool bUTC)
+//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const ::scoped_string & scopedstr,::i32 & iPath,::i32 & iPathCount,bool bUTC)
 //   {
 //      ::earth::time time;
 //      string str(scopedstr);
@@ -272,7 +272,7 @@ namespace datetime
 //      str += " ";
 //      ::property_set set;
 //      bool bBaseTime = false;
-//      int iStart = 0;
+//      ::i32 iStart = 0;
 //
 //      // if is international date time 2009-04-31 21:45:59
 //      // or
@@ -404,9 +404,9 @@ namespace datetime
 //      if(!bBaseTime && pcre1->matches(stra, str) >= 5)
 //      {
 //         time = ::earth::time::now();
-//         int i1 = atoi(stra[2]);
-//         int i2 = atoi(stra[3]);
-//         int iCount = 0;
+//         ::i32 i1 = atoi(stra[2]);
+//         ::i32 i2 = atoi(stra[3]);
+//         ::i32 iCount = 0;
 //         bool bFirst = false;
 //         if(i1 != i2
 //               && i1 >= 1 && i1 <= 12
@@ -426,16 +426,16 @@ namespace datetime
 //         {
 //            if((iCount == 1 && bFirst) || (iCount == 2 && (iPath % iCount) == 0))
 //            {
-//               int iDay = i2;
-//               int iMonth = i1;
+//               ::i32 iDay = i2;
+//               ::i32 iMonth = i1;
 //               time = ::earth::time(time.GetYear(),iMonth,iDay,
 //                                       time.GetHour(),time.GetMinute(),time.GetSecond());
 //               time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //            }
 //            else if((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
 //            {
-//               int iDay = i1;
-//               int iMonth = i2;
+//               ::i32 iDay = i1;
+//               ::i32 iMonth = i2;
 //               time = ::earth::time(time.GetYear(),iMonth,iDay,
 //                                       time.GetHour(),time.GetMinute(),time.GetSecond());
 //               time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -629,7 +629,7 @@ CLASS_DECL_ACME ::u32 get_fast_tick_count()
 // http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc/32433950#32433950
 // http://stackoverflow.com/users/619295/trenki
 extern "C"
-CLASS_DECL_ACME int c_localtime_offset()
+CLASS_DECL_ACME ::i32 c_localtime_offset()
 {
 
    time_t rawtime = time(nullptr);
@@ -642,6 +642,6 @@ CLASS_DECL_ACME int c_localtime_offset()
 
    time_t gmt = mktime(ptm);
 
-   return (int)(rawtime - gmt);
+   return (::i32)(rawtime - gmt);
 
 }

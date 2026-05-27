@@ -177,7 +177,7 @@ namespace experience
    // }
 
 
-   int frame::adjust_client_height(int iHeight)
+   ::i32 frame::adjust_client_height(::i32 iHeight)
    {
 
       return iHeight + get_caption_height();
@@ -185,7 +185,7 @@ namespace experience
    }
 
 
-   int frame::adjust_client_width(int iWidth)
+   ::i32 frame::adjust_client_width(::i32 iWidth)
    {
 
       return iWidth + 20;
@@ -901,7 +901,7 @@ namespace experience
    }
 
 
-   //bool frame::on_message_size(::u32 nType,int cx,int cy)
+   //bool frame::on_message_size(::u32 nType,::i32 cx,::i32 cy)
    //{
 
    //   __UNREFERENCED_PARAMETER(cx);
@@ -912,7 +912,7 @@ namespace experience
    //}
 
 
-/*       bool frame::on_message_move(int x, int y)
+/*       bool frame::on_message_move(::i32 x, ::i32 y)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -923,7 +923,7 @@ namespace experience
    }*/
 
 
-   int frame::get_caption_height()
+   ::i32 frame::get_caption_height()
    {
 
       return m_iCaptionHeight;
@@ -1020,13 +1020,13 @@ namespace experience
 
       i32_rectangle rectangleCaptionTextPadding = get_caption_text_padding();
 
-      int iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
+      ::i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
 
       //information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
       //calculate_caption_height(pgraphics);
 
-      //int iCaptionHeight = m_iCap;
+      //::i32 iCaptionHeight = m_iCap;
       
       auto & rectangleCaption = m_rectangleCaption;
 
@@ -1216,17 +1216,17 @@ namespace experience
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.m_uchOpacity = 255;
+      m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
       color = colorParam;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderHilight.m_uchOpacity = 255;
+      m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
       color = colorParam;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.m_uchOpacity = 255;
+      m_colorMoveableBorderDkShadow.m_u8Opacity = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 

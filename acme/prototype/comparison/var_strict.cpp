@@ -37,12 +37,12 @@
 ////      return m_ppayload->strictly_equal(str);
 ////   }
 ////
-////   bool var_strict::operator == (double d) const
+////   bool var_strict::operator == (::f64 d) const
 ////   {
 ////      return m_ppayload->strictly_equal(d);
 ////   }
 ////
-////   bool var_strict::operator == (int i) const
+////   bool var_strict::operator == (::i32 i) const
 ////   {
 ////      return m_ppayload->strictly_equal(i);
 ////   }
@@ -67,12 +67,12 @@
 ////      return m_ppayload->strictly_different(str);
 ////   }
 ////
-////   bool var_strict::operator != (double d) const
+////   bool var_strict::operator != (::f64 d) const
 ////   {
 ////      return m_ppayload->strictly_different(d);
 ////   }
 ////
-////   bool var_strict::operator != (int i) const
+////   bool var_strict::operator != (::i32 i) const
 ////   {
 ////      return m_ppayload->strictly_different(i);
 ////   }
@@ -92,12 +92,12 @@
 ////      return strictly_equal(str, *payload.m_ppayload);
 ////   }
 ////
-////   bool operator == (double d, const var_strict & payload)
+////   bool operator == (::f64 d, const var_strict & payload)
 ////   {
 ////      return strictly_equal(d, *payload.m_ppayload);
 ////   }
 ////
-////   bool operator == (int i, const var_strict & payload)
+////   bool operator == (::i32 i, const var_strict & payload)
 ////   {
 ////      return strictly_equal(i, *payload.m_ppayload);
 ////   }
@@ -117,12 +117,12 @@
 ////      return strictly_different(str, *payload.m_ppayload);
 ////   }
 ////
-////   bool operator != (double d, const var_strict & payload)
+////   bool operator != (::f64 d, const var_strict & payload)
 ////   {
 ////      return strictly_different(d, *payload.m_ppayload);
 ////   }
 ////
-////   bool operator != (int i, const var_strict & payload)
+////   bool operator != (::i32 i, const var_strict & payload)
 ////   {
 ////      return strictly_different(i, *payload.m_ppayload);
 ////   }

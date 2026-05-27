@@ -24,28 +24,28 @@ namespace draw3d
          struct
          {
 
-            float a1;
-            float a2;
-            float a3;
-            float a4;
-            float b1;
-            float b2;
-            float b3;
-            float b4;
-            float c1;
-            float c2;
-            float c3;
-            float c4;
-            float d1;
-            float d2;
-            float d3;
-            float d4;
+            ::f32 a1;
+            ::f32 a2;
+            ::f32 a3;
+            ::f32 a4;
+            ::f32 b1;
+            ::f32 b2;
+            ::f32 b3;
+            ::f32 b4;
+            ::f32 c1;
+            ::f32 c2;
+            ::f32 c3;
+            ::f32 c4;
+            ::f32 d1;
+            ::f32 d2;
+            ::f32 d3;
+            ::f32 d4;
 
          };
 
-         float fa[16];
+         ::f32 fa[16];
 
-         float a[4][4];
+         ::f32 a[4][4];
 
       };
 
@@ -56,17 +56,17 @@ namespace draw3d
 
       //matrix & operator = (const matrix &) = default;
 
-      //static matrix translation(double_point point) { return translation(point.x, point.y); }
-      //static matrix translation(double x, double y);
-      //static matrix rotation(double dAngleRadians);
-      //static matrix scaling(double dRateX, double dRateY);
-      //static matrix scaling(double_point point) { return scaling(point.x, point.y); }
+      //static matrix translation(::f64_point point) { return translation(point.x, point.y); }
+      //static matrix translation(::f64 x, ::f64 y);
+      //static matrix rotation(::f64 dAngleRadians);
+      //static matrix scaling(::f64 dRateX, ::f64 dRateY);
+      //static matrix scaling(::f64_point point) { return scaling(point.x, point.y); }
 
 
-      //matrix & translate(double_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
-      //matrix & translate(double x, double y, e_mode emode = mode_append);
-      //matrix & rotate(double dAngleRadians, e_mode emode = mode_append);
-      //matrix & scale(double dRateX, double dRateY, e_mode emode = mode_append);
+      //matrix & translate(::f64_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
+      //matrix & translate(::f64 x, ::f64 y, e_mode emode = mode_append);
+      //matrix & rotate(::f64 dAngleRadians, e_mode emode = mode_append);
+      //matrix & scale(::f64 dRateX, ::f64 dRateY, e_mode emode = mode_append);
       //matrix & scale(const ::i32_point & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
 
 
@@ -74,7 +74,7 @@ namespace draw3d
       //matrix & append(const matrix & m);
 
 
-      //double determinant() const;
+      //::f64 determinant() const;
 
       //static bool invert(matrix & aDst, const matrix & aSrc);
 
@@ -97,12 +97,12 @@ namespace draw3d
       //matrix & operator * (const matrix & m);
 
       //// 6 (six) elements
-      //virtual void SetElements(float * fa);
+      //virtual void SetElements(::f32 * fa);
 
 
       //void transform(i32_point & point);
 
-      //void transform(double_point & point);
+      //void transform(::f64_point & point);
 
    };
 
@@ -125,28 +125,28 @@ namespace draw3d
    //      struct
    //      {
 
-   //         float a1;
-   //         float a2;
-   //         float a3;
-   //         float a4;
-   //         float b1;
-   //         float b2;
-   //         float b3;
-   //         float b4;
-   //         float c1;
-   //         float c2;
-   //         float c3;
-   //         float c4;
-   //         float d1;
-   //         float d2;
-   //         float d3;
-   //         float d4;
+   //         ::f32 a1;
+   //         ::f32 a2;
+   //         ::f32 a3;
+   //         ::f32 a4;
+   //         ::f32 b1;
+   //         ::f32 b2;
+   //         ::f32 b3;
+   //         ::f32 b4;
+   //         ::f32 c1;
+   //         ::f32 c2;
+   //         ::f32 c3;
+   //         ::f32 c4;
+   //         ::f32 d1;
+   //         ::f32 d2;
+   //         ::f32 d3;
+   //         ::f32 d4;
 
    //      };
 
-   //      float fa[16];
+   //      ::f32 fa[16];
 
-   //      float a[4][4];
+   //      ::f32 a[4][4];
 
    //   };
 
@@ -157,17 +157,17 @@ namespace draw3d
 
    //   //matrix & operator = (const matrix &) = default;
 
-   //   //static matrix translation(double_point point) { return translation(point.x, point.y); }
-   //   //static matrix translation(double x, double y);
-   //   //static matrix rotation(double dAngleRadians);
-   //   //static matrix scaling(double dRateX, double dRateY);
-   //   //static matrix scaling(double_point point) { return scaling(point.x, point.y); }
+   //   //static matrix translation(::f64_point point) { return translation(point.x, point.y); }
+   //   //static matrix translation(::f64 x, ::f64 y);
+   //   //static matrix rotation(::f64 dAngleRadians);
+   //   //static matrix scaling(::f64 dRateX, ::f64 dRateY);
+   //   //static matrix scaling(::f64_point point) { return scaling(point.x, point.y); }
 
 
-   //   //matrix & translate(double_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
-   //   //matrix & translate(double x, double y, e_mode emode = mode_append);
-   //   //matrix & rotate(double dAngleRadians, e_mode emode = mode_append);
-   //   //matrix & scale(double dRateX, double dRateY, e_mode emode = mode_append);
+   //   //matrix & translate(::f64_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
+   //   //matrix & translate(::f64 x, ::f64 y, e_mode emode = mode_append);
+   //   //matrix & rotate(::f64 dAngleRadians, e_mode emode = mode_append);
+   //   //matrix & scale(::f64 dRateX, ::f64 dRateY, e_mode emode = mode_append);
    //   //matrix & scale(const ::i32_point & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
 
 
@@ -175,7 +175,7 @@ namespace draw3d
    //   //matrix & append(const matrix & m);
 
 
-   //   //double determinant() const;
+   //   //::f64 determinant() const;
 
    //   //static bool invert(matrix & aDst, const matrix & aSrc);
 
@@ -198,12 +198,12 @@ namespace draw3d
    //   //matrix & operator * (const matrix & m);
 
    //   //// 6 (six) elements
-   //   //virtual void SetElements(float * fa);
+   //   //virtual void SetElements(::f32 * fa);
 
 
    //   //void transform(i32_point & point);
 
-   //   //void transform(double_point & point);
+   //   //void transform(::f64_point & point);
 
    //};
 

@@ -205,7 +205,7 @@ namespace experience_nanoui
 
       defer_constructø(m_pregion);
 
-      ::double_ellipse ellipse;
+      ::f64_ellipse ellipse;
 
       ellipse.set(rectangleX);
 

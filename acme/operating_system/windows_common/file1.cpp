@@ -540,16 +540,16 @@ namespace windows
 
       auto iLength = wstrPath.length();
 
-      unichar * pszRoot = wstrRoot.get_buffer(iLength);
+      wide_character * pszRoot = wstrRoot.get_buffer(iLength);
 
       wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
 
-      unichar * psz = pszRoot;
+      wide_character * psz = pszRoot;
 
       for (; *psz != '\0'; psz = _wcsinc(psz))
       {
 
-         // find first double slash and stop
+         // find first ::f64 slash and stop
          if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
          {
 

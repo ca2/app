@@ -136,7 +136,7 @@ namespace graphics3d
 
             auto pgpurendertarget = prenderer->render_target();
 
-            //int iFrameIndex = pgpurendertarget->get_image_index();
+            //::i32 iFrameIndex = pgpurendertarget->get_image_index();
 
             //if (iFrameIndex < 0)
             //{
@@ -183,7 +183,7 @@ namespace graphics3d
    //   if (iGlobalUboSize > 0)
    //   {
 
-   //      pgpucontext->create_global_ubo((int)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
+   //      pgpucontext->create_global_ubo((::i32)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
 
    //   }
 
@@ -331,7 +331,7 @@ namespace graphics3d
       //if (pcameraScene)
       //{
 
-      //   float aspect = m_pusergraphics3d->getAspectRatio();
+      //   ::f32 aspect = m_pusergraphics3d->getAspectRatio();
 
       //   pcameraScene->setPerspectiveProjection(::radians(50.f), aspect, 0.1f, 100.f);
 
@@ -396,7 +396,7 @@ namespace graphics3d
          // Rotation (Euler to Quaternion to Matrix)
          //;
          //;
-         //auto quaternion = float_quaternion(rotation);
+         //auto quaternion = f32_quaternion(rotation);
          auto R = rotation.as_rotation_matrix();
 
          // Translation
@@ -412,18 +412,18 @@ namespace graphics3d
 
          //return view;
       //}
-      //const float c3 = glm::cos(transformcomponent.rotation.z);
-      //const float s3 = glm::sin(transformcomponent.rotation.z);
-      //const float c2 = glm::cos(transformcomponent.rotation.x);
-      //const float s2 = glm::sin(transformcomponent.rotation.x);
-      //const float c1 = glm::cos(transformcomponent.rotation.y);
-      //const float s1 = glm::sin(transformcomponent.rotation.y);
-      //float scalex = transformcomponent.scale.x;
-      //float scaley = transformcomponent.scale.y;
-      //float scalez = m_fYScale * transformcomponent.scale.z;
-      //float translationx = transformcomponent.translation.x;
-      //float translationy = transformcomponent.translation.y;
-      //float translationz = transformcomponent.translation.z;
+      //const ::f32 c3 = glm::cos(transformcomponent.rotation.z);
+      //const ::f32 s3 = glm::sin(transformcomponent.rotation.z);
+      //const ::f32 c2 = glm::cos(transformcomponent.rotation.x);
+      //const ::f32 s2 = glm::sin(transformcomponent.rotation.x);
+      //const ::f32 c1 = glm::cos(transformcomponent.rotation.y);
+      //const ::f32 s1 = glm::sin(transformcomponent.rotation.y);
+      //::f32 scalex = transformcomponent.scale.x;
+      //::f32 scaley = transformcomponent.scale.y;
+      //::f32 scalez = m_fYScale * transformcomponent.scale.z;
+      //::f32 translationx = transformcomponent.translation.x;
+      //::f32 translationy = transformcomponent.translation.y;
+      //::f32 translationz = transformcomponent.translation.z;
       //return floating_matrix4{
       //   {
       //      scalex * (c1 * c3 + s1 * s2 * s3),
@@ -979,7 +979,7 @@ namespace graphics3d
 
       auto newTime = std::chrono::high_resolution_clock::now();
 
-      float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - m_stdtimepoint).count();
+      ::f32 frameTime = std::chrono::duration<::f32, std::chrono::seconds::period>(newTime - m_stdtimepoint).count();
 
       m_stdtimepoint = newTime;
 
@@ -1191,7 +1191,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_mouse_move(float x, float y)
+   void engine::on_mouse_move(::f32 x, ::f32 y)
    {
 
 
@@ -1240,7 +1240,7 @@ namespace graphics3d
    // }
 
    
-   //floating_matrix4 engine::ortho(float left, float right, float bottom, float top, float zNear, float zFar)
+   //floating_matrix4 engine::ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear, ::f32 zFar)
    //{
 
    //   throw ::interface_only();
@@ -1250,7 +1250,7 @@ namespace graphics3d
    //}
 
 
-   floating_matrix4 engine::perspective(const float_angle & angleFovY, float aspect, float zNear, float zFar)
+   floating_matrix4 engine::perspective(const f32_angle & angleFovY, ::f32 aspect, ::f32 zNear, ::f32 zFar)
    {
 
       throw ::interface_only();

@@ -39,7 +39,7 @@ public:
 
 };
 
-using int_origin_size = origin_size<int>;
+using int_origin_size = origin_size<::i32>;
 
 
 template < prototype_number NUMBER >
@@ -60,7 +60,7 @@ public:
    using UNIT_TYPE = NUMBER;
    using POINT_TYPE = point_type < NUMBER >;
    using SIZE_TYPE = size_type < NUMBER >;
-   //using POINT_ARRAY_TYPE = poi32_array_base < POINT_TYPE >;
+   //using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
 
    rectangle_type() { }
    rectangle_type(no_initialize_t) { }
@@ -211,40 +211,40 @@ public:
 
 
    template < prototype_point POINT >
-   inline ::double_point to_point_rate(const POINT & point) const
+   inline ::f64_point to_point_rate(const POINT & point) const
    {
 
-      return { ((double)point.x - (double)this->left) / (double)width(),
-         ((double)point.y - (double)this->top) / (double)height() };
+      return { ((::f64)point.x - (::f64)this->left) / (::f64)width(),
+         ((::f64)point.y - (::f64)this->top) / (::f64)height() };
 
    }
 
 
-   inline UNIT_TYPE x_rate(double xRate) const
+   inline UNIT_TYPE x_rate(::f64 xRate) const
    {
 
-      return (UNIT_TYPE)(xRate * (double)width() + (double)this->left);
+      return (UNIT_TYPE)(xRate * (::f64)width() + (::f64)this->left);
 
    }
 
 
-   inline UNIT_TYPE y_rate(double yRate) const
+   inline UNIT_TYPE y_rate(::f64 yRate) const
    {
 
-      return (UNIT_TYPE)(yRate * (double)height() + (double)this->top);
+      return (UNIT_TYPE)(yRate * (::f64)height() + (::f64)this->top);
 
 
    }
 
 
-   inline POINT_TYPE from_point_rate(const ::double_point & point) const
+   inline POINT_TYPE from_point_rate(const ::f64_point & point) const
    {
 
       return POINT_TYPE(x_rate(point.x), y_rate(point.y));
 
    }
 
-   //void align_outsize_rate(double x, double y, const rectangle_type& rectangle_type);
+   //void align_outsize_rate(::f64 x, ::f64 y, const rectangle_type& rectangle_type);
    inline POINT_TYPE top_right() const { return POINT_TYPE(this->right, this->top); }
    inline POINT_TYPE bottom_left() const { return POINT_TYPE(this->left, this->bottom); }
 
@@ -817,7 +817,7 @@ public:
    //void get_bounding_box(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_box(*this); }
 
 
-   void rate(double d)
+   void rate(::f64 d)
    {
 
       POINT_TYPE point = center();
@@ -837,7 +837,7 @@ public:
    }
 
 
-   rectangle_type operator * (double d) const
+   rectangle_type operator * (::f64 d) const
    {
 
       return rectangle_type(
@@ -849,12 +849,12 @@ public:
    }
 
 
-   void DeflateBottomRightSizeByRate(double dRate)
+   void DeflateBottomRightSizeByRate(::f64 dRate)
    {
-      double Δx = width();
-      double Δy = height();
-      double dxNew = Δx / dRate;
-      double dyNew = Δy / dRate;
+      ::f64 Δx = width();
+      ::f64 Δy = height();
+      ::f64 dxNew = Δx / dRate;
+      ::f64 dyNew = Δy / dRate;
       Δx = Δx - dxNew;
       Δy = Δy - dyNew;
       this->right -= (long)Δx;
@@ -879,9 +879,9 @@ public:
       UNIT_TYPE cx = width();
       UNIT_TYPE cy = height();
 
-      double Δx = ::width(rectangle);
-      double Δy = ::height(rectangle);
-      double dr = ::maximum(Δx / cx, Δy / cy);
+      ::f64 Δx = ::width(rectangle);
+      ::f64 Δy = ::height(rectangle);
+      ::f64 dr = ::maximum(Δx / cx, Δy / cy);
 
       UNIT_TYPE cw = (UNIT_TYPE)(cx * dr);
       UNIT_TYPE ch = (UNIT_TYPE)(cy * dr);
@@ -899,9 +899,9 @@ public:
       UNIT_TYPE cx = size.cx;
       UNIT_TYPE cy = size.cy;
 
-      double Δx = ::width(rectangle);
-      double Δy = ::height(rectangle);
-      double dr = ::minimum(cx == 0 ? 1 : Δx / cx, cy == 0 ? 1 : Δy / cy);
+      ::f64 Δx = ::width(rectangle);
+      ::f64 Δy = ::height(rectangle);
+      ::f64 dr = ::minimum(cx == 0 ? 1 : Δx / cx, cy == 0 ? 1 : Δy / cy);
 
       UNIT_TYPE cw = cx == 0 ? (UNIT_TYPE)Δx : ((UNIT_TYPE)(cx * dr));
       UNIT_TYPE ch = cy == 0 ? (UNIT_TYPE)Δy : ((UNIT_TYPE)(cy * dr));
@@ -944,7 +944,7 @@ public:
    }
 
 
-   void ScaleRect(double Δx, double Δy, UNIT_TYPE ix, UNIT_TYPE iy)
+   void ScaleRect(::f64 Δx, ::f64 Δy, UNIT_TYPE ix, UNIT_TYPE iy)
    {
 
       this->left = (UNIT_TYPE)(((this->left - ix) * Δx) + ix);
@@ -960,7 +960,7 @@ public:
       UNIT_TYPE iHeight = height();
       if (iHeight != 0)
       {
-         double d = (double)iNewHeight / iHeight;
+         ::f64 d = (::f64)iNewHeight / iHeight;
          ScaleRect(d, d, iCenterX, iCenterY);
       }
 
@@ -1015,7 +1015,7 @@ public:
    }
 
 
-   void _001Align(double x, double y, const rectangle_type & rectangle)
+   void _001Align(::f64 x, ::f64 y, const rectangle_type & rectangle)
    {
 
       _001AlignX(x, rectangle);
@@ -1025,7 +1025,7 @@ public:
    }
 
 
-   void _001AlignX(double dRate, const rectangle_type & rectangle)
+   void _001AlignX(::f64 dRate, const rectangle_type & rectangle)
    {
 
       if (fabs(dRate) < 1000.0)
@@ -1039,7 +1039,7 @@ public:
 
          dRate -= 1000.0;
 
-         double x = rectangle.right + width() * dRate;
+         ::f64 x = rectangle.right + width() * dRate;
 
          move_left_to((UNIT_TYPE)x);
 
@@ -1049,7 +1049,7 @@ public:
 
          dRate += 1000.0;
 
-         double x = rectangle.left + width() * dRate;
+         ::f64 x = rectangle.left + width() * dRate;
 
          move_left_to((UNIT_TYPE)(x - width()));
 
@@ -1058,7 +1058,7 @@ public:
    }
 
 
-   void _001AlignY(double dRate, const rectangle_type & rectangle)
+   void _001AlignY(::f64 dRate, const rectangle_type & rectangle)
    {
 
       if (fabs(dRate) < 1000.0)
@@ -1072,7 +1072,7 @@ public:
 
          dRate -= 1000.0;
 
-         double y = rectangle.bottom + height() * dRate;
+         ::f64 y = rectangle.bottom + height() * dRate;
 
          move_top_to((UNIT_TYPE)y);
 
@@ -1083,7 +1083,7 @@ public:
 
          dRate += 1000.0;
 
-         double y = rectangle.top + height() * dRate;
+         ::f64 y = rectangle.top + height() * dRate;
 
          move_top_to((UNIT_TYPE)(y - height()));
 
@@ -1093,16 +1093,16 @@ public:
    }
 
 
-   ::double_size aspect_size(const rectangle_type & rectangle) const
+   ::f64_size aspect_size(const rectangle_type & rectangle) const
    {
 
-      ::double_size size = { (double) width(), (double) height()};
+      ::f64_size size = { (::f64) width(), (::f64) height()};
 
-      double dW = (double)rectangle.width() / size.cx;
+      ::f64 dW = (::f64)rectangle.width() / size.cx;
 
-      double dH = (double)rectangle.height() / size.cy;
+      ::f64 dH = (::f64)rectangle.height() / size.cy;
 
-      double d = minimum(dW, dH);
+      ::f64 d = minimum(dW, dH);
 
       return { size.cx * d, size.cy * d };
 
@@ -1119,7 +1119,7 @@ public:
    }
 
 
-   void aspect_align_fit(double x, double y, const rectangle_type & rectangle)
+   void aspect_align_fit(::f64 x, ::f64 y, const rectangle_type & rectangle)
    {
 
       aspect_fit(rectangle);
@@ -1130,7 +1130,7 @@ public:
 
    }
 
-   void align_rate(double x, double y, const rectangle_type & rectangle)
+   void align_rate(::f64 x, ::f64 y, const rectangle_type & rectangle)
    {
 
       align_x(x, rectangle);
@@ -1139,7 +1139,7 @@ public:
 
    }
 
-   void align_x(double dRate, const rectangle_type & rectangle)
+   void align_x(::f64 dRate, const rectangle_type & rectangle)
    {
 
       UNIT_TYPE x;
@@ -1151,7 +1151,7 @@ public:
    }
 
 
-   void align_y(double dRate, const rectangle_type & rectangle)
+   void align_y(::f64 dRate, const rectangle_type & rectangle)
    {
 
       UNIT_TYPE y;
@@ -1666,24 +1666,24 @@ public:
          return a;
       }
 
-        void rotateOn90InsideDimension(int dimHeight)
+        void rotateOn90InsideDimension(::i32 dimHeight)
       {
          auto localCopy = *this;
          set_width(localCopy.height());
          set_height(localCopy.width());
-         int newLeft = dimHeight - localCopy.top - localCopy.height();
-         int newTop = localCopy.left;
+         ::i32 newLeft = dimHeight - localCopy.top - localCopy.height();
+         ::i32 newTop = localCopy.left;
          set_top_left(newLeft, newTop);
       }
 
-      void rotateOn180InsideDimension(int dimWidth, int dimHeight)
+      void rotateOn180InsideDimension(::i32 dimWidth, ::i32 dimHeight)
       {
-         int newLeft = dimWidth - this->left - this->width();
-         int newTop = dimHeight - this->top - this->height();
+         ::i32 newLeft = dimWidth - this->left - this->width();
+         ::i32 newTop = dimHeight - this->top - this->height();
          set_top_left(newLeft, newTop);
       }
 
-      void rotateOn270InsideDimension(int dimWidth)
+      void rotateOn270InsideDimension(::i32 dimWidth)
       {
          auto localCopy = *this;
          set_width(localCopy.height());
@@ -1702,7 +1702,7 @@ public:
 
 
 
-//using rectangle = ::double_rectangle;
+//using rectangle = ::f64_rectangle;
 
 
 
@@ -1734,7 +1734,7 @@ inline void rectangle_type < NUMBER >::normalize()
 
 
 template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
-inline i32_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
+inline i32_rectangle i32_rectangle_dimension(X x, Y y, W w, H h)
 {
 
    return i32_rectangle(x, y, x + w, y + h);
@@ -1752,29 +1752,29 @@ inline i64_rectangle i64_rectangle_dimension(X x, Y y, W w, H h)
 
 
 template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
-inline float_rectangle float_rectangle_dimension(X x, Y y, W w, H h)
+inline ::f32_rectangle f32_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return float_rectangle(x, y, x + w, y + h);
+   return ::f32_rectangle(x, y, x + w, y + h);
 
 }
 
 
 template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
-inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
+inline ::f64_rectangle f64_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return double_rectangle(x, y, x + w, y + h);
+   return ::f64_rectangle(x, y, x + w, y + h);
 
 }
 
 //
-//CLASS_DECL_ACME i32_rectangle & muldiv(i32_rectangle & rectangle, int numerator, int denominator);
+//CLASS_DECL_ACME i32_rectangle & muldiv(i32_rectangle & rectangle, ::i32 numerator, ::i32 denominator);
 //CLASS_DECL_ACME i64_rectangle & muldiv(i64_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //
 //
-//CLASS_DECL_ACME i32_rectangle & muldiv(i32_rectangle & rectangle, int numerator, int denominator);
+//CLASS_DECL_ACME i32_rectangle & muldiv(i32_rectangle & rectangle, ::i32 numerator, ::i32 denominator);
 //CLASS_DECL_ACME i64_rectangle & muldiv(i64_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //template < prototype_integral NUMERATOR, prototype_integral DENOMINATOR >

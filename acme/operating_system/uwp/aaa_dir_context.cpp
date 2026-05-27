@@ -176,7 +176,7 @@ pdirectorysystem->roaming() / "home";
 
             dira.ls_dir(listing.m_pathFinal);
 
-            for(int i = 0; i < dira.get_count(); i++)
+            for(::i32 i = 0; i < dira.get_count(); i++)
             {
 
                ::file::path directory_context = dira[i];
@@ -203,7 +203,7 @@ pdirectorysystem->roaming() / "home";
 
          ::dir::ls(stra, listing.m_pathFinal);
 
-         for(int i = 0; i < stra.get_count(); i++)
+         for(::i32 i = 0; i < stra.get_count(); i++)
          {
 
             ::file::path strPath = stra[i];
@@ -248,7 +248,7 @@ pdirectorysystem->roaming() / "home";
 
          ::dir::ls(stra,listing.m_pathFinal);
 
-         for(int i = 0; i < stra.get_count(); i++)
+         for(::i32 i = 0; i < stra.get_count(); i++)
          {
 
             ::file::path strPath = stra[i];
@@ -305,7 +305,7 @@ pdirectorysystem->roaming() / "home";
       }
 
       /*
-      unsigned int dwAttrib;
+      ::u32 dwAttrib;
       dwAttrib = windows_get_file_attributes(utf8_to_unicode(strPath));
       /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
       {
@@ -354,7 +354,7 @@ pdirectorysystem->roaming() / "home";
          return true; // assume empty string is root_ones directory
       }
 
-      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3 && !case_insensitive_ansi_count_compare(&((const char *)str)[iLast - 3],".zip",4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3 && !case_insensitive_ansi_count_compare(&((const_char_pointer )str)[iLast - 3],".zip",4))
       {
 
          return true;
@@ -449,7 +449,7 @@ pdirectorysystem->roaming() / "home";
 
       pcsz.ascendants_path(stra);
 
-      int i = stra.get_upper_bound();
+      ::i32 i = stra.get_upper_bound();
 
       for (; i >= 0; i--)
       {
@@ -480,7 +480,7 @@ pdirectorysystem->roaming() / "home";
          if (!::dir::mkdir(pathDir))
          {
 
-            unsigned int dwError = ::get_last_error();
+            ::u32 dwError = ::get_last_error();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {
@@ -576,7 +576,7 @@ try1:;
 
          straPath.ls(scopedstr);
 
-         for(int i = 0; i < straPath.get_count(); i++)
+         for(::i32 i = 0; i < straPath.get_count(); i++)
          {
 
             if(is(straPath[i]))

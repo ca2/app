@@ -36,11 +36,11 @@
 // If TIOCGWINSZ is a macro containing a cast (as it is in FreeBSD, but not
 // in Linux), we can't allow it to be directly used in the code after the
 // integer types have been redefined.
-static unsigned long tiocgwinsz = TIOCGWINSZ;
+static ulong tiocgwinsz = TIOCGWINSZ;
 
 #include "conio.h"
 
-extern char BypassResizeXterm;
+extern ::i8 BypassResizeXterm;
 
 //-----------------------------------------------------------------------
 // Resize the physical terminal.
@@ -68,8 +68,8 @@ RawResizeTurboC (gint Rows, gint Columns)
   // for the big loop.  There's some kind of intermittent timing
   // problem with the screen resize when running remotely, but
   // it's not the loop.
-  int i, MaxCount;
-  //char *display;
+  ::i32 i, MaxCount;
+  //char_pointer display;
   MaxCount = 16384;
   // Possibly detect a remote login.
   //display = getenv ("DISPLAY");

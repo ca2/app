@@ -79,7 +79,7 @@ namespace simpledb
       virtual void prev();
       virtual void next();
 
-      virtual bool find_first(char * fieldname, ::payload & value);
+      virtual bool find_first(char_pointer fieldname, ::payload & value);
       /* Go to record No (starting with 0) */
       virtual bool seek(index pos=0);
 
@@ -87,7 +87,7 @@ namespace simpledb
       virtual bool SetFieldValue(::collection::index iFieldIndex, const ::payload &value);
 
       virtual ::payload & FieldValueAt(::collection::index iFieldIndex);
-      virtual int GetFieldIndex(const ::string &f_name);
+      virtual ::i32 GetFieldIndex(const ::string &f_name);
 
       base * get_database();
 

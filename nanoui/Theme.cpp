@@ -15,7 +15,7 @@
 #include "acme/constant/_font_awesome.h"
 
 
-char * read_resource_string(const ::scoped_string & scopedstr);
+char_pointer read_resource_string(const ::scoped_string & scopedstr);
 void read_resource(void *& p, size_t & s, const ::scoped_string & scopedstr);
 
 namespace nanoui
@@ -142,17 +142,17 @@ Theme::Theme()
 
 //
 //
-//char * read_resource_string(const ::scoped_string & scopedstr)
+//char_pointer read_resource_string(const ::scoped_string & scopedstr)
 //{
 //
 //   /* declare a file pointer */
 //   FILE * infile;
-//   char * buffer;
+//   char_pointer buffer;
 //   long    numbytes;
 //
 //   ::string str(scopedstr);
 //
-//   char sz[2048];
+//   ::i8 sz[2048];
 //   GetModuleFileNameA(
 //      NULL,
 //      sz,
@@ -185,14 +185,14 @@ Theme::Theme()
 //
 //   /* grab sufficient memory for the
 //   buffer to hold the text */
-//   buffer = (char *)calloc(numbytes + 1, sizeof(char));
+//   buffer = (char_pointer )calloc(numbytes + 1, sizeof(::i8));
 //
 //   /* memory error */
 //   if (buffer == NULL)
 //      return 0;
 //
 //   /* copy all the text into the buffer */
-//   fread(buffer, sizeof(char), numbytes, infile);
+//   fread(buffer, sizeof(::i8), numbytes, infile);
 //   fclose(infile);
 //
 //   /* confirm we have read the file by
@@ -214,12 +214,12 @@ Theme::Theme()
 //
 //   /* declare a file pointer */
 //   FILE * infile;
-//   char * buffer;
+//   char_pointer buffer;
 //   long    numbytes;
 //
 //   ::string str(scopedstr);
 //
-//   char sz[2048];
+//   ::i8 sz[2048];
 //   GetModuleFileNameA(
 //      NULL,
 //      sz,
@@ -252,14 +252,14 @@ Theme::Theme()
 //
 //   /* grab sufficient memory for the
 //   buffer to hold the text */
-//   buffer = (char *)calloc(numbytes, sizeof(char));
+//   buffer = (char_pointer )calloc(numbytes, sizeof(::i8));
 //
 //   /* memory error */
 //   if (buffer == NULL)
 //      throw "error 2";
 //
 //   /* copy all the text into the buffer */
-//   fread(buffer, sizeof(char), numbytes, infile);
+//   fread(buffer, sizeof(::i8), numbytes, infile);
 //   fclose(infile);
 //
 //   /* confirm we have read the file by

@@ -53,7 +53,7 @@ namespace innate_subsystem
 //
 //    }
 //
-//    // bool PaintWindow::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
+//    // bool PaintWindow::wndProc(::u32 message, ::wparam wparam, ::lparam lparam)
 //    // {
 //    //     return m_pparticleThis->wndProc(message, wparam, lparam);
 //    //    // if (message == WM_PAINT) {

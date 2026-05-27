@@ -373,7 +373,7 @@ namespace linux
          //
          //         ::string strCommand = "application_build_helper --release-store-installer";
          //
-         //         int iExitCode = acmenode()->command_system(strCommand, tracefunction);
+         //         ::i32 iExitCode = acmenode()->command_system(strCommand, tracefunction);
          //
          //         if(iExitCode != 0)
          //         {

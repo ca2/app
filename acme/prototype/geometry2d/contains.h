@@ -43,7 +43,7 @@
 
 
 template < prototype_number NUMBER1, prototype_number NUMBER2, prototype_number NUMBER >
-bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2, const ::point_type < NUMBER > & point, const float epsilon = 0.001f)
+bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2, const ::point_type < NUMBER > & point, const ::f32 epsilon = 0.001f)
 {
 
    auto dx = point2.x - point1.x;

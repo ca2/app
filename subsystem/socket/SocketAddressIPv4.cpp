@@ -40,9 +40,9 @@ namespace subsystem
 
 //   ///critical_section SocketAddressIPv4::s_resolveMutex;
 //
-//   // void getLocalIPAddrString(char *buffer, int buflen)
+//   // void getLocalIPAddrString(char_pointer buffer, ::i32 buflen)
 //   // {
-//   //    char namebuf[256];
+//   //    ::i8 namebuf[256];
 //   //
 //   //    if (gethostname(namebuf, 256) != 0) {
 //   //       strncpy(buffer, "Host name unavailable", buflen);
@@ -56,10 +56,10 @@ namespace subsystem
 //   //    };
 //   //
 //   //    *buffer = '\0';
-//   //    char digtxt[5];
-//   //    for (int i = 0; ph->h_addr_list[i]; i++) {
-//   //       for (int j = 0; j < ph->h_length; j++) {
-//   //          sprintf(digtxt, "{}.", (unsigned char) ph->h_addr_list[i][j]);
+//   //    ::i8 digtxt[5];
+//   //    for (::i32 i = 0; ph->h_addr_list[i]; i++) {
+//   //       for (::i32 j = 0; j < ph->h_length; j++) {
+//   //          sprintf(digtxt, "{}.", (::u8) ph->h_addr_list[i][j]);
 //   //          strncat(buffer, digtxt, (buflen-1)-strlen(buffer));
 //   //       }
 //   //       buffer[strlen(buffer)-1] = '\0';
@@ -104,7 +104,7 @@ namespace subsystem
 //   //    m_port = ntohs(addr.sin_port);
 //   // };
 //
-//   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port)
+//   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, ::u16 port)
 //   //: m_wsaStartup(1, 2)
 //   {
 //      m_pparticleThis->initialize_socket_address_ipv4(scopedstrHost, port);
@@ -164,13 +164,13 @@ namespace subsystem
 //      // return ::format("{}.{}.{}.{}", b1, b2, b3, b4);
 //   }
 //
-//   unsigned short SocketAddressIPv4::getPort() const
+//   ::u16 SocketAddressIPv4::getPort() const
 //   {
 //      return m_pparticleThis->getPort();
 //      //return m_port;
 //   }
 //
-//   // SocketAddressIPv4 SocketAddressIPv4::resolve(const ::scoped_string & scopedstrHost, unsigned short m_port)
+//   // SocketAddressIPv4 SocketAddressIPv4::resolve(const ::scoped_string & scopedstrHost, ::u16 m_port)
 //   // {
 //   //    SocketAddressIPv4 resolvedAddress;
 //   //

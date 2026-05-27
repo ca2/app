@@ -51,9 +51,9 @@
 
 //#ifdef LINUX
 //static void
-//log_handler (const gchar   *log_domain,
+//log_handler (const gchar_pointer log_domain,
 //             GLogLevelFlags log_level,
-//             const gchar   *message,
+//             const gchar_pointer message,
 //             gpointer       user_data)
 //{
 //   g_log_default_handler (log_domain, log_level, message, user_data);
@@ -71,7 +71,7 @@ namespace aura
    // aura commented
 //#if OBJECT_TYPE_COUNTER
 //
-//   map < const char*, const ::string &, long long, long long >* g_pmapObjTypCtr;
+//   map < const_char_pointer , const ::string &, ::i64, ::i64 >* g_pmapObjTypCtr;
 //
 //#endif
 //
@@ -82,7 +82,7 @@ namespace aura
    // aura commented
 //#if OBJECT_TYPE_COUNTER
 //
-//   int g_iObjTypCtrInit;
+//   ::i32 g_iObjTypCtrInit;
 //
 //#endif
 
@@ -118,7 +118,7 @@ namespace aura
 //#else
 
    //DWORD_PTR g_tlsindexLastError;
-   char* g_pszDemangle;
+   char_pointer g_pszDemangle;
    critical_section* g_pcsDemangle;
 
 #endif
@@ -150,7 +150,7 @@ namespace aura
 //#include <mach/mach_time.h>
 //
 ////clock_serv_t   g_cclock;
-//   double g_machtime_conversion_factor;
+//   ::f64 g_machtime_conversion_factor;
 //   //   clock_get_time(cclock, &mts);
 //
 //#endif
@@ -193,12 +193,12 @@ namespace aura
 //#endif
 
    // aura commented
-   //long long g_iFirstNano;
+   //::i64 g_iFirstNano;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    // aura commented
-   //int g_iMemoryCountersStartable;
+   //::i32 g_iMemoryCountersStartable;
    //::pointer< ::mutex > g_pmutexTrait;
    //::pointer< ::mutex > g_pmutexFactory;
 
@@ -479,7 +479,7 @@ namespace aura
 ////
 ////         mach_timebase_info(&timebase);
 ////
-////         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
+////         g_machtime_conversion_factor = (::f64)timebase.numer / (::f64)timebase.denom;
 ////
 ////      }
 ////
@@ -513,7 +513,7 @@ namespace aura
 //
 //#if OBJECT_TYPE_COUNTER
 //
-//      g_pmapObjTypCtr = aaa_primitive_new map < const char*, const char *, long long, long long >;
+//      g_pmapObjTypCtr = aaa_primitive_new map < const_char_pointer , const_char_pointer , ::i64, ::i64 >;
 //
 //#endif
 //

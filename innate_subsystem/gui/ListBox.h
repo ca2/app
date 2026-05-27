@@ -35,21 +35,21 @@ public:
   //ListBox();
   //virtual ~ListBoxInterface() = 0;
 //public:
-  virtual void addString(const char *str) = 0;
-  virtual void addString(const char *str, void *tag) = 0;
-  virtual ::string getItemText(int index) = 0;
-  virtual void setItemText(int index, const char *str) = 0;
-  virtual void insertString(int index, const char *str) = 0;
-  virtual void insertString(int index, const char *str, ::lparam data) = 0;
-  virtual void appendString(const char *str, ::lparam data) = 0;
-  virtual void setItemData(int index, ::lparam data) = 0;
-  virtual void removeString(int index) = 0;
-  virtual int getSelectedIndex() = 0;
-  virtual int getTopIndex() = 0;
-  virtual void setTopIndex(int index) = 0;
-  virtual void setSelectedIndex(int index) = 0;
-  virtual ::lparam getItemData(int index) = 0;
-  virtual int getCount() = 0;
+  virtual void addString(const_char_pointer str) = 0;
+  virtual void addString(const_char_pointer str, void *tag) = 0;
+  virtual ::string getItemText(::i32 index) = 0;
+  virtual void setItemText(::i32 index, const_char_pointer str) = 0;
+  virtual void insertString(::i32 index, const_char_pointer str) = 0;
+  virtual void insertString(::i32 index, const_char_pointer str, ::lparam data) = 0;
+  virtual void appendString(const_char_pointer str, ::lparam data) = 0;
+  virtual void setItemData(::i32 index, ::lparam data) = 0;
+  virtual void removeString(::i32 index) = 0;
+  virtual ::i32 getSelectedIndex() = 0;
+  virtual ::i32 getTopIndex() = 0;
+  virtual void setTopIndex(::i32 index) = 0;
+  virtual void setSelectedIndex(::i32 index) = 0;
+  virtual ::lparam getItemData(::i32 index) = 0;
+  virtual ::i32 getCount() = 0;
   virtual void clear() = 0;
 };
 
@@ -66,21 +66,21 @@ public:
   //ListBox();
   //~ListBox() override;
 //public:
-   void addString(const char *str) override { m_plistbox->addString(str); }
-   void addString(const char *str, void *tag) override { m_plistbox->addString(str, tag); }
-   ::string getItemText(int index) override { return m_plistbox->getItemText(index); }
-   void setItemText(int index, const char *str) override { m_plistbox->setItemText(index, str); }
-   void insertString(int index, const char *str) override { m_plistbox->insertString(index, str); }
-   void insertString(int index, const char *str, ::lparam data) override { m_plistbox->insertString(index, str, data); }
-   void appendString(const char *str, ::lparam data) override { m_plistbox->appendString(str, data); }
-   void setItemData(int index, ::lparam data) override { m_plistbox->setItemData(index, data); }
-   void removeString(int index) override { m_plistbox->removeString(index); }
-   int getSelectedIndex() override { return m_plistbox->getSelectedIndex(); }
-   int getTopIndex() override { return m_plistbox->getTopIndex(); }
-   void setTopIndex(int index) override { m_plistbox->setTopIndex(index); }
-   void setSelectedIndex(int index) override { m_plistbox->setSelectedIndex(index); }
-   ::lparam getItemData(int index) override { return m_plistbox->getItemData(index); }
-   int getCount() override { return m_plistbox->getCount(); }
+   void addString(const_char_pointer str) override { m_plistbox->addString(str); }
+   void addString(const_char_pointer str, void *tag) override { m_plistbox->addString(str, tag); }
+   ::string getItemText(::i32 index) override { return m_plistbox->getItemText(index); }
+   void setItemText(::i32 index, const_char_pointer str) override { m_plistbox->setItemText(index, str); }
+   void insertString(::i32 index, const_char_pointer str) override { m_plistbox->insertString(index, str); }
+   void insertString(::i32 index, const_char_pointer str, ::lparam data) override { m_plistbox->insertString(index, str, data); }
+   void appendString(const_char_pointer str, ::lparam data) override { m_plistbox->appendString(str, data); }
+   void setItemData(::i32 index, ::lparam data) override { m_plistbox->setItemData(index, data); }
+   void removeString(::i32 index) override { m_plistbox->removeString(index); }
+   ::i32 getSelectedIndex() override { return m_plistbox->getSelectedIndex(); }
+   ::i32 getTopIndex() override { return m_plistbox->getTopIndex(); }
+   void setTopIndex(::i32 index) override { m_plistbox->setTopIndex(index); }
+   void setSelectedIndex(::i32 index) override { m_plistbox->setSelectedIndex(index); }
+   ::lparam getItemData(::i32 index) override { return m_plistbox->getItemData(index); }
+   ::i32 getCount() override { return m_plistbox->getCount(); }
    void clear() override { m_plistbox->clear(); }
 };
 

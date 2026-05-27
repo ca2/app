@@ -23,11 +23,11 @@ namespace gpu_opengl
 public:
 
 
-         // unsigned int width, height;
+         // ::u32 width, height;
 
-         // unsigned int m_uFramebufferId;
-         // unsigned int m_uDepthRenderbufferId;
-         // unsigned int m_uColorTextureId;
+         // ::u32 m_uFramebufferId;
+         // ::u32 m_uDepthRenderbufferId;
+         // ::u32 m_uColorTextureId;
 
 
          brdf_convolution_framebuffer();
@@ -36,7 +36,7 @@ public:
          ~brdf_convolution_framebuffer() override;
 
 
-         ///virtual void initialize_BrdfConvolutionFramebuffer(unsigned int width, unsigned int height);
+         ///virtual void initialize_BrdfConvolutionFramebuffer(::u32 width, ::u32 height);
 
          //void on_initialize_BrdfConvolutionFramebuffer() override;
          /**
@@ -49,21 +49,21 @@ public:
           * Get the width.
           * @return
           */
-         //unsigned int getWidth();
+         //::u32 getWidth();
 
 
          /**
           * Get the height.
           * @return
           */
-         //unsigned int getHeight();
+         //::u32 getHeight();
 
 
          /**
           * Get the GL color texture id.
           * @return
           */
-         unsigned int getColorTextureId();
+         ::u32 getColorTextureId();
 
 
       };

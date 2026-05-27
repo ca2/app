@@ -26,7 +26,7 @@ namespace crypto
    }
 
 
-   int rsa::public_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_encrypt(memory& out, const memory& in, string& strError)
    {
 
       return -1;
@@ -34,7 +34,7 @@ namespace crypto
    }
 
 
-   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
    {
 
       return -1;
@@ -42,7 +42,7 @@ namespace crypto
    }
 
 
-   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
    {
 
       return -1;
@@ -50,7 +50,7 @@ namespace crypto
    }
 
 
-   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
    {
 
       return -1;

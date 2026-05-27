@@ -19,8 +19,8 @@ namespace gpu_opengl
 	};
 
 	//struct FrameInfo {
-	//	int frameIndex;
-	//	float frameTime;
+	//	::i32 frameIndex;
+	//	::f32 frameTime;
 	//	//VkCommandBuffer commandBuffer;
 	//	::graphics3d::camera &camera;
 	//	//VkDescriptorSet globalDescriptorSet;

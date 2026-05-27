@@ -15,7 +15,7 @@ namespace image
 {
 
 
-inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
+inline void kernelPosition(::i32 boxBlur,::u32& std,::i32& dLeft,::i32& dRight)
 {
 
    switch(boxBlur)
@@ -89,7 +89,7 @@ inline float32x4_t loadRGBA8AsFloat(::u32* source)
 
    ::u3216x4_t temporary2 = vget_low_unsigned_short(vmovl_unsigned_char(vreinterpret_byte_unsigned_int(temporary1)));
 
-   return vcvtq_float_unsigned_int(vmovl_unsigned_short(temporary2));
+   return vcvtq_f32_unsigned_int(vmovl_unsigned_short(temporary2));
 
 }
 
@@ -169,7 +169,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
    }
 
 
-   void fastblur::initialize(int cx,int cy,int radius)
+   void fastblur::initialize(::i32 cx,::i32 cy,::i32 radius)
    {
 
       if (cx <= 0 || cy <= 0 || radius <= 0)
@@ -189,7 +189,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 
 #if VECTOR3_SSE
 
-      int div2 = (radius * 2) + 1;
+      ::i32 div2 = (radius * 2) + 1;
 
       if(m_stack != nullptr)
       {
@@ -207,14 +207,14 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
          timage = nullptr;
       }
 
-      int wj = cx;
+      ::i32 wj = cx;
 
       //if(wj % 16 > 0)
       //{
       //   wj = ((wj / 16) * 16) + 16;
       //}
 
-      const int wh = (wj)*(cy);
+      const ::i32 wh = (wj)*(cy);
 
       timage = ___new vector4[wh];
       // temporary output space for first pass.
@@ -239,32 +239,32 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
       // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      vxmin = ___new int[cx + 100 + div2];
-      vymin = ___new int[cy + 100 + div2];
+      vxmin = ___new ::i32[cx + 100 + div2];
+      vymin = ___new ::i32[cy + 100 + div2];
 
-      const int r1 = radius + 1;
+      const ::i32 r1 = radius + 1;
       
-      int wm = cx - 1;
+      ::i32 wm = cx - 1;
       
-      int c = cx + div2;
+      ::i32 c = cx + div2;
       
       for(::collection::index x = 0; x < c; x++)
       {
          
-         vxmin[x] = (int) minimum(x + r1,wm);
+         vxmin[x] = (::i32) minimum(x + r1,wm);
 
       }
 
-      int hm = cy - 1;
+      ::i32 hm = cy - 1;
       c = cy + div2;
-      int s = cx;
+      ::i32 s = cx;
       //if(s % 16 > 0)
       //{
       //   s = ((s / 16) * 16) + 16;
       //}
       for(::collection::index y = 0; y < c; y++)
       {
-         vymin[y] = (int)(minimum(y + r1,hm)*s);
+         vymin[y] = (::i32)(minimum(y + r1,hm)*s);
       }
 
 #endif // VECTOR3_SSE
@@ -272,17 +272,17 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 
 //      m_p->m_iHeight = cy;
 
-      //      int h         = cy;
-      //    int scan      = m_p->scan;
-      int div       = radius + radius + 1;
+      //      ::i32 h         = cy;
+      //    ::i32 scan      = m_p->scan;
+      ::i32 div       = radius + radius + 1;
       m_iRadius         = radius;
-      m_uchaDiv.set_size(256 * div);
-      unsigned char * dv         = m_uchaDiv.get_data();
+      m_u8aDiv.set_size(256 * div);
+      ::u8 * dv         = m_u8aDiv.get_data();
 
       m_size.cx         = cx;
       m_size.cy         = cy;
 
-      for(int i = 0; i < m_uchaDiv.get_count(); i++)
+      for(::i32 i = 0; i < m_u8aDiv.get_count(); i++)
       {
 
          dv[i]= minimum(255,i / div);
@@ -298,7 +298,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
    }
 
 
-   void fastblur::initialize(i32_size sz,int iRadius)
+   void fastblur::initialize(i32_size sz,::i32 iRadius)
    {
 
       return initialize(sz.cx,sz.cy,iRadius);
@@ -319,11 +319,11 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
    void fastblur::blur(::image::image *pimage)
    {
 
-      int cx = pimage->width();
+      ::i32 cx = pimage->width();
 
-      int cy = pimage->height();
+      ::i32 cy = pimage->height();
 
-      int iRadius = m_iRadius;
+      ::i32 iRadius = m_iRadius;
 
       if (cx <= 0 || cy <= 0 || iRadius <= 0)
       {
@@ -344,7 +344,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 
       bool b = false;
 
-      int bottomup;
+      ::i32 bottomup;
 
 #ifdef __APPLE__
       bottomup = 1;
@@ -359,13 +359,13 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 
       ::u32 * pimage32 = (::u32 *) m_p->get_data();
 
-      unsigned char * i32_point;
+      ::u8 * i32_point;
       vector4 * t = timage;
 
-      int w = m_size.cx;
-      int h = m_size.cy;
+      ::i32 w = m_size.cx;
+      ::i32 h = m_size.cy;
 
-      int s = m_p->m_iScan / 4;
+      ::i32 s = m_p->m_iScan / 4;
 
       {
 auto tickA0 = ::time::now();
@@ -374,7 +374,7 @@ auto tickA0 = ::time::now();
          {
             for(::collection::index x = 0; x < w; x++)
             {
-               p = (unsigned char *)&pimage32[y * s + x];
+               p = (::u8 *)&pimage32[y * s + x];
                t[y * w + x] = vector4(i32_point[0],i32_point[1],i32_point[2],i32_point[3]);
             }
          }
@@ -399,8 +399,8 @@ auto tick1 = ::time::now();
                 w,
                 h,
                 m_iRadius,
-                (::u32 *)m_ucha.get_data(),
-                m_uchaDiv.get_data(),
+                (::u32 *)m_u8a.get_data(),
+                m_u8aDiv.get_data(),
                 w * 4,
                 w,h,bottomup);
 
@@ -437,12 +437,12 @@ auto tickC0 = ::time::now();
          {
             for(::collection::index x = 0; x < w; x++)
             {
-               p = (unsigned char *)&pimage32[y * s + x];
+               p = (::u8 *)&pimage32[y * s + x];
                t = &timage[y * w + x];
-               i32_point[0] = (unsigned char)t->w;
-               i32_point[1] = (unsigned char)t->x;
-               i32_point[2] = (unsigned char)t->y;
-               i32_point[3] = (unsigned char)t->z;
+               i32_point[0] = (::u8)t->w;
+               i32_point[1] = (::u8)t->x;
+               i32_point[2] = (::u8)t->y;
+               i32_point[3] = (::u8)t->z;
             }
          }
 auto tickC1 = ::time::now();
@@ -456,19 +456,19 @@ auto tickC1 = ::time::now();
 
       vector4 * t = timage;
 
-      int w = m_size.cx;
-      int h = m_size.cy;
-      int wj = w; // w job
-      int hj = h; // h job
+      ::i32 w = m_size.cx;
+      ::i32 h = m_size.cy;
+      ::i32 wj = w; // w job
+      ::i32 hj = h; // h job
 
       //if(wj % 16 > 0)
       //{
       //   wj = ((wj / 16) * 16) + 16;
       //}
 
-      int s = pimage->scan_size() / 4;
+      ::i32 s = pimage->scan_size() / 4;
 
-      unsigned char * p;
+      ::u8 * p;
 
       {
          
@@ -480,7 +480,7 @@ auto tickC1 = ::time::now();
             for(::collection::index x = 0; x < wj; x++)
             {
 
-               p = (unsigned char *)&pimage32[y * s + x];
+               p = (::u8 *)&pimage32[y * s + x];
 
                t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
 
@@ -512,7 +512,7 @@ auto tickC1 = ::time::now();
                 h,
                 m_iRadius,
                 (::u32 *)m_rgbaa.get_data(),
-                m_uchaDiv.get_data(),
+                m_u8aDiv.get_data(),
                 wj,
                 w,h,bottomup);
 
@@ -560,12 +560,12 @@ auto tickC1 = ::time::now();
             for(::collection::index x = 0; x < w; x++)
             {
 
-               p = (unsigned char *)&pimage32[y * s + x];
+               p = (::u8 *)&pimage32[y * s + x];
                t = &timage[y * wj + x];
-               p[0] = (unsigned char)t->w;
-               p[1] = (unsigned char)t->x;
-               p[2] = (unsigned char)t->y;
-               p[3] = (unsigned char)t->z;
+               p[0] = (::u8)t->w;
+               p[1] = (::u8)t->x;
+               p[2] = (::u8)t->y;
+               p[3] = (::u8)t->z;
 
             }
 
@@ -607,7 +607,7 @@ auto tickC1 = ::time::now();
                 m_size.cx,
                 m_size.cy,
                 m_rgbaa.data(),
-                m_uchaDiv.get_data(),
+                m_u8aDiv.get_data(),
                 pimage->scan_size(),
                 cx,cy,bottomup);
 
@@ -655,39 +655,39 @@ auto tick2 = ::time::now();
 
 
    inline void boxBlurNEON(::u32* sourcePixel,::u32* destinationPixel,
-                           unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                           ::u32 Δx,::i32 dxLeft,::i32 dxRight,::i32 stride,::i32 strideLine,::i32 effectWidth,::i32 effectHeight)
    {
 
       float32x4_t deltaX = vdupq_n_float(1.0 / Δx);
 
-      int pixelLine = strideLine / 4;
+      ::i32 pixelLine = strideLine / 4;
 
-      int pixelStride = stride / 4;
+      ::i32 pixelStride = stride / 4;
 
-      int strideRight = dxRight * pixelStride;
+      ::i32 strideRight = dxRight * pixelStride;
 
-      int strideLeft = dxLeft * pixelStride;
+      ::i32 strideLeft = dxLeft * pixelStride;
 
-      int dxW = effectWidth - dxRight;
+      ::i32 dxW = effectWidth - dxRight;
 
-      int x;
+      ::i32 x;
 
-      int pixelOffset;
+      ::i32 pixelOffset;
 
       if(dxLeft > dxW)
       {
 
-         for(int y = 0; y < effectHeight; ++y)
+         for(::i32 y = 0; y < effectHeight; ++y)
          {
 
-            int line = y * pixelLine;
+            ::i32 line = y * pixelLine;
 
             float32x4_t sum = vdupq_n_float(0);
 
             // Fill the kernel
-            int maxKernelSize = minimum(dxRight,effectWidth);
+            ::i32 maxKernelSize = minimum(dxRight,effectWidth);
 
-            for(int i = 0; i < maxKernelSize; ++i)
+            for(::i32 i = 0; i < maxKernelSize; ++i)
             {
 
                float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
@@ -733,17 +733,17 @@ auto tick2 = ::time::now();
       else
       {
 
-         for(int y = 0; y < effectHeight; ++y)
+         for(::i32 y = 0; y < effectHeight; ++y)
          {
 
-            int line = y * pixelLine;
+            ::i32 line = y * pixelLine;
 
             float32x4_t sum = vdupq_n_float(0);
 
             // Fill the kernel
-            int maxKernelSize = minimum(dxRight,effectWidth);
+            ::i32 maxKernelSize = minimum(dxRight,effectWidth);
 
-            for(int i = 0; i < maxKernelSize; ++i)
+            for(::i32 i = 0; i < maxKernelSize; ++i)
             {
 
                float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
@@ -830,20 +830,20 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_fastblur(::u32 * pimage32,int w,int h,int radius,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(::u32 * pimage32,::i32 w,::i32 h,::i32 radius,::u32 * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup)
    {
 
-      //int stride = 4 * cx;
-      int dxLeft = 0;
-      int dxRight = 0;
-      int dyLeft = 0;
-      int dyRight = 0;
+      //::i32 stride = 4 * cx;
+      ::i32 dxLeft = 0;
+      ::i32 dxRight = 0;
+      ::i32 dyLeft = 0;
+      ::i32 dyRight = 0;
       ::u32* src = pimage32;
       ::u32* dst = m_pimage->m_pcolorref;
       ::u32 kernelSizeX = radius * 3 / 2 + 1;
       ::u32 kernelSizeY = radius * 3 / 2 + 1;
 
-      for(int i = 0; i < 3; ++i)
+      for(::i32 i = 0; i < 3; ++i)
       {
 
          if(kernelSizeX)
@@ -885,39 +885,39 @@ auto tick2 = ::time::now();
 #if VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
-                          unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                          ::u32 Δx,::i32 dxLeft,::i32 dxRight,::i32 stride,::i32 strideLine,::i32 effectWidth,::i32 effectHeight)
    {
 
       vector4 deltaX = vector4(1.0f / Δx,1.0f / Δx,1.0f / Δx,1.0f / Δx);
 
-      int pixelLine = strideLine / 4;
+      ::i32 pixelLine = strideLine / 4;
 
-      int pixelStride = stride / 4;
+      ::i32 pixelStride = stride / 4;
 
-      int strideRight = dxRight * pixelStride;
+      ::i32 strideRight = dxRight * pixelStride;
 
-      int strideLeft = dxLeft * pixelStride;
+      ::i32 strideLeft = dxLeft * pixelStride;
 
-      int dxW = effectWidth - dxRight;
+      ::i32 dxW = effectWidth - dxRight;
 
-      int x;
+      ::i32 x;
 
-      int pixelOffset;
+      ::i32 pixelOffset;
 
       if(dxLeft > dxW)
       {
 
-         for(int y = 0; y < effectHeight; ++y)
+         for(::i32 y = 0; y < effectHeight; ++y)
          {
 
-            int line = y * pixelLine;
+            ::i32 line = y * pixelLine;
 
             vector4 sum = vector4();
 
             // Fill the kernel
-            int maxKernelSize = minimum(dxRight,effectWidth);
+            ::i32 maxKernelSize = minimum(dxRight,effectWidth);
 
-            for(int i = 0; i < maxKernelSize; ++i)
+            for(::i32 i = 0; i < maxKernelSize; ++i)
             {
 
                sum += sourcePixel[line + i*pixelStride];
@@ -955,17 +955,17 @@ auto tick2 = ::time::now();
       else
       {
 
-         for(int y = 0; y < effectHeight; ++y)
+         for(::i32 y = 0; y < effectHeight; ++y)
          {
 
-            int line = y * pixelLine;
+            ::i32 line = y * pixelLine;
 
             vector4 sum = vector4();
 
             // Fill the kernel
-            int maxKernelSize = minimum(dxRight,effectWidth);
+            ::i32 maxKernelSize = minimum(dxRight,effectWidth);
 
-            for(int i = 0; i < maxKernelSize; ++i)
+            for(::i32 i = 0; i < maxKernelSize; ++i)
             {
 
                sum += sourcePixel[line + i*pixelStride];
@@ -1059,21 +1059,21 @@ auto tick2 = ::time::now();
    *
    */
 
-   void fastblur::stackblur(vector4* pimage32,const int w,const int h,const int radius, int wj)
+   void fastblur::stackblur(vector4* pimage32,const ::i32 w,const ::i32 h,const ::i32 radius, ::i32 wj)
    {
 
       if(radius < 1) return;	// nothing to do
 
       // some values for convenience
-      //const int w = pimage->width;
-      //const int h = pimage->height;
-      const int wm = w - 1;
-      const int hm = h - 1;
-      const int r1 = radius + 1;
+      //const ::i32 w = pimage->width;
+      //const ::i32 h = pimage->height;
+      const ::i32 wm = w - 1;
+      const ::i32 hm = h - 1;
+      const ::i32 r1 = radius + 1;
 
       // number of divisions in the kernel
       // D(-rectangle), D(-rectangle+1), ... D(0), ... D(rectangle-1), D(rectangle)
-      const int div = (radius * 2) + 1;
+      const ::i32 div = (radius * 2) + 1;
 
       // temporary output space for first pass.
       //vector4* tsurface = ___new vector4[wh];
@@ -1081,7 +1081,7 @@ auto tick2 = ::time::now();
       // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      //int* const vmin = allocateø< int[maximum >(w,h)];
+      //::i32* const vmin = allocateø< ::i32[maximum >(w,h)];
 
       // calculate divisor for pulling an output from the kernel
       //   the kernel is pyramid shaped.
@@ -1091,27 +1091,27 @@ auto tick2 = ::time::now();
       //
       // I store the reciprocal in the vector to
       // mul_ps later instead of div_ps
-      int divsumi = (div + 1) >> 1;
+      ::i32 divsumi = (div + 1) >> 1;
       divsumi *= divsumi;
-      const vector4 divsum(1.0f / (float)divsumi);
+      const vector4 divsum(1.0f / (::f32)divsumi);
 
       // kernel pixel data "stack"
       // which works more like a ring-buffer,
       // where the pointer is advanced each iteration, modulo #divisions
       vector4* stack = m_stack;
-      int stackpointer;
-      int stackstart;
+      ::i32 stackpointer;
+      ::i32 stackstart;
 
 
 
       // input/output offsets.
       // they are discrete because the source can be non-square
-      int yw = 0;	// current read offset in source
-      int yi = 0; // current write offset in destination
+      ::i32 yw = 0;	// current read offset in source
+      ::i32 yi = 0; // current write offset in destination
 
 
       // blur horizontally, output to temporary buffer
-      for(int y=0; y<h; y++)
+      for(::i32 y=0; y<h; y++)
       {
 
          vector4 insum(0.f);
@@ -1122,7 +1122,7 @@ auto tick2 = ::time::now();
          // pixels before the left edge of the image are
          // samples of [0] (maximum()).  minimum() handles
          // images which are smaller than the kernel.
-         for(int i=-radius; i <= radius; i++)
+         for(::i32 i=-radius; i <= radius; i++)
          {
 
             // calcualte address of source pixel
@@ -1133,10 +1133,10 @@ auto tick2 = ::time::now();
             sir = p;
 
             // rbs is a weight from (1)...(radius+1)...(1)
-            const int rbs = r1 - abs(i);
+            const ::i32 rbs = r1 - abs(i);
 
             // add pixel to accumulators
-            sum += sir * (float) rbs;
+            sum += sir * (::f32) rbs;
             if(i > 0)
             {
                insum  += sir;
@@ -1154,7 +1154,7 @@ auto tick2 = ::time::now();
 
 
          // now start outputing pixels
-         for(int x=0; x<w; x++)
+         for(::i32 x=0; x<w; x++)
          {
 
             // output a pixel
@@ -1205,7 +1205,7 @@ auto tick2 = ::time::now();
       // now blur vertically from the temporary
       // buffer, using the original image buffer
       // as the output
-      for(int x=0; x<w; x++)
+      for(::i32 x=0; x<w; x++)
       {
 
          vector4 insum(0);
@@ -1213,8 +1213,8 @@ auto tick2 = ::time::now();
          vector4 sum(0);
 
          //preload the stack
-         int yp = -radius * wj;
-         for(int i = -radius; i <= radius; i++)
+         ::i32 yp = -radius * wj;
+         for(::i32 i = -radius; i <= radius; i++)
          {
 
             vector4& sir = stack[i + radius];
@@ -1224,8 +1224,8 @@ auto tick2 = ::time::now();
 
             sir = p;
 
-            const int rbs = r1 - abs(i);
-            sum += sir * (float) rbs;
+            const ::i32 rbs = r1 - abs(i);
+            sum += sir * (::f32) rbs;
             if(i > 0)
             {
                insum  += sir;
@@ -1248,7 +1248,7 @@ auto tick2 = ::time::now();
          // this loop is the same as the y-loop,
          // except the src/dest offsets are calcuated differently
          yi = x;	// set starting output offset by column
-         for(int y=0; y<h; y++)
+         for(::i32 y=0; y<h; y++)
          {
 
             pimage32[yi] = sum * divsum;
@@ -1276,19 +1276,19 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_boxblur(vector4 * pimage,int w,int h,int radius,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_boxblur(vector4 * pimage,::i32 w,::i32 h,::i32 radius,::u32 * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup)
    {
 
-      int dxLeft = 0;
-      int dxRight = 0;
-      int dyLeft = 0;
-      int dyRight = 0;
+      ::i32 dxLeft = 0;
+      ::i32 dxRight = 0;
+      ::i32 dyLeft = 0;
+      ::i32 dyRight = 0;
       vector4* src = pimage;
       vector4* dst = tsurface;
       ::u32 kernelSizeX = radius * 3 / 2 + 1;
       ::u32 kernelSizeY = radius * 3 / 2 + 1;
 
-      for(int i = 0; i < 3; ++i)
+      for(::i32 i = 0; i < 3; ++i)
       {
 
          if(kernelSizeX)
@@ -1329,7 +1329,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_stackblur(vector4 * pimage,int w,int h,int radius,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_stackblur(vector4 * pimage,::i32 w,::i32 h,::i32 radius,::u32 * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup)
    {
 
       stackblur(pimage,w,h,radius, stride);
@@ -1343,10 +1343,10 @@ auto tick2 = ::time::now();
 
 
 
-   void fastblur::do_fastblur(image32_t * pimage32,int w,int h,rgba_t * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,::i32 w,::i32 h,rgba_t * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup)
    {
 
-      int radius = m_iRadius;
+      ::i32 radius = m_iRadius;
 
       if(radius <= 0)
       {
@@ -1355,20 +1355,20 @@ auto tick2 = ::time::now();
 
       }
 
-      int rsum,gsum,bsum,asum;
-      int x;
-      int y;
-      int i;
-      int yp;
-      int yw;
-      unsigned char * pbyte_1;
-      unsigned char * pbyte_2;
-      int wm = w - 1;
-      //      int hm = h - 1;
-      int wr = minimum(w,cx) - 1 - radius;
-      int hr = minimum(h,cy) - 1 - radius;
-      //   int div        = radius + radius + 1;
-      unsigned char * p;
+      ::i32 rsum,gsum,bsum,asum;
+      ::i32 x;
+      ::i32 y;
+      ::i32 i;
+      ::i32 yp;
+      ::i32 yw;
+      ::u8 * pbyte_1;
+      ::u8 * pbyte_2;
+      ::i32 wm = w - 1;
+      //      ::i32 hm = h - 1;
+      ::i32 wr = minimum(w,cx) - 1 - radius;
+      ::i32 hr = minimum(h,cy) - 1 - radius;
+      //   ::i32 div        = radius + radius + 1;
+      ::u8 * p;
 
       yw = 0;
 
@@ -1379,13 +1379,13 @@ auto tick2 = ::time::now();
       if(bottomup)
       {
 
-         pimage32 = (image32_t *)(((unsigned char *)pimage32) + (stride * (cy - h)));
+         pimage32 = (image32_t *)(((::u8 *)pimage32) + (stride * (cy - h)));
 
-         prgba = (rgba_t *)(((unsigned char *)prgba) + (stride * (cy - h)));
+         prgba = (rgba_t *)(((::u8 *)prgba) + (stride * (cy - h)));
 
       }
 
-//      int dir;
+//      ::i32 dir;
 
       //if(bottomup)
       //{
@@ -1400,12 +1400,12 @@ auto tick2 = ::time::now();
 
       //}
 
-      int workstride = w * sizeof(::u32);
+      ::i32 workstride = w * sizeof(::u32);
 
-      //int * pimage32 = (int *)pimage32;
-      unsigned char * pb = (unsigned char *)pimage32;
-      unsigned char * pwork = (unsigned char *)prgba;
-      unsigned char * pwk = (unsigned char *)prgba;
+      //::i32 * pimage32 = (::i32 *)pimage32;
+      ::u8 * pb = (::u8 *)pimage32;
+      ::u8 * pwork = (::u8 *)prgba;
+      ::u8 * pwk = (::u8 *)prgba;
 
       for(y = 0; y < h; y++)
       {
@@ -1514,10 +1514,10 @@ auto tick2 = ::time::now();
             yp += stride;
          }
 
-         unsigned char * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
-         unsigned char * r2 = &pwk[(x * 4)];
+         ::u8 * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
+         ::u8 * r2 = &pwk[(x * 4)];
 
-         pbyte_1 = (unsigned char *)&pimage32[x];
+         pbyte_1 = (::u8 *)&pimage32[x];
 
          for(y = 0; y < radius; y++)
          {
@@ -1585,7 +1585,7 @@ auto tick2 = ::time::now();
 
 #endif // VECTOR3_SSE
 
-   void fastblur::do_fastblur(image32_t * pimage32,int w,int h,unsigned char * rectangle,unsigned char * g,unsigned char * b,unsigned char * a,unsigned char * dv,int stride,int * vmin,int * vmax,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,::i32 w,::i32 h,::u8 * rectangle,::u8 * g,::u8 * b,::u8 * a,::u8 * dv,::i32 stride,::i32 * vmin,::i32 * vmax,::i32 cx,::i32 cy,::i32 bottomup)
    {
 
       throw ::exception(error_wrong_state);
@@ -1599,14 +1599,14 @@ auto tick2 = ::time::now();
 
             }
 
-            int asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
-            int s = stride / sizeof(::color32_t);
-            int wm = w - 1;
-            int hm = h - 1;
-            int div = radius + radius + 1;
-            int i32_point;
-            int pbyte_1;
-            int pbyte_2;
+            ::i32 asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
+            ::i32 s = stride / sizeof(::color32_t);
+            ::i32 wm = w - 1;
+            ::i32 hm = h - 1;
+            ::i32 div = radius + radius + 1;
+            ::i32 i32_point;
+            ::i32 pbyte_1;
+            ::i32 pbyte_2;
 
             yw = yi = 0;
 

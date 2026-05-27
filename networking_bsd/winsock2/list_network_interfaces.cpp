@@ -167,14 +167,14 @@ namespace networking_bsd
 
             if (pCurrAddresses->PhysicalAddressLength != 0) {
                strLog.append_formatf("\tPhysical address: ");
-               for (i = 0; i < (int)pCurrAddresses->PhysicalAddressLength;
+               for (i = 0; i < (::i32)pCurrAddresses->PhysicalAddressLength;
                     i++) {
                   if (i == (pCurrAddresses->PhysicalAddressLength - 1))
                      strLog.append_formatf("%.2X\n",
-                            (int)pCurrAddresses->PhysicalAddress[i]);
+                            (::i32)pCurrAddresses->PhysicalAddress[i]);
                   else
                      strLog.append_formatf("%.2X-",
-                            (int)pCurrAddresses->PhysicalAddress[i]);
+                            (::i32)pCurrAddresses->PhysicalAddress[i]);
                }
             }
             strLog.append_formatf("\tFlags: %ld\n", pCurrAddresses->Flags);

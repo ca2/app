@@ -138,7 +138,7 @@ namespace innate_subsystem
 //    //          }
 //    //
 //    //          ThemeLib::DrawThemeText(m_theme, dc, BP_PUSHBUTTON, state,
-//    //                                  uniTitle.getString(), (int)uniTitle.getLength(),
+//    //                                  uniTitle.getString(), (::i32)uniTitle.getLength(),
 //    //                                  DT_CENTER | DT_VCENTER | DT_SINGLELINE,
 //    //                                  0, &captionRect);
 //    //       } else {

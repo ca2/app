@@ -255,7 +255,7 @@ void subparticle::term_task()
 
 }
 
-int g_iSubparticleCallCount = 0;
+::i32 g_iSubparticleCallCount = 0;
 void subparticle::call()
 {
 
@@ -292,7 +292,7 @@ void subparticle::call()
 }
 
 
-bool subparticle::defer_consume_main_arguments(int argc, char ** argv, int & iArgument)
+bool subparticle::defer_consume_main_arguments(::i32 argc, char_pointer * argv, ::i32 & iArgument)
 {
 
    return false;
@@ -800,7 +800,7 @@ void subparticle::unlock()
 }
 
 
-void subparticle::unlock(int /* lCount */, int* /* pPrevCount=nullptr */)
+void subparticle::unlock(::i32 /* lCount */, ::i32* /* pPrevCount=nullptr */)
 {
 
    //return false;
@@ -836,12 +836,12 @@ bool subparticle::_wait(const class time& timeWait)
    //
    //   //auto milliseconds = wait.operator ::u32();
    //   //::u32 ui;
-   //   //if (wait.m_d <= 0.)
+   //   //if (wait.m_f64 <= 0.)
    //   //{
    //   //   ui = 0;
    //
    //   //}
-   //   //else if (wait.m_d >= 0xffffffffu)
+   //   //else if (wait.m_f64 >= 0xffffffffu)
    //   //{
    //
    //   //   ui = 0xffffffffu;
@@ -849,11 +849,11 @@ bool subparticle::_wait(const class time& timeWait)
    //   //else
    //   //{
    //
-   //   //   ui = (::u32) (wait.m_d * 1'000.0);
+   //   //   ui = (::u32) (wait.m_f64 * 1'000.0);
    //
    //   //}
    //
-   //   ////return (::u32)m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (::u32)(m_d * 1'000.0));
+   //   ////return (::u32)m_f64 <= 0. ? 0 : (m_f64 >= 0xffffffffu ? 0xffffffffu : (::u32)(m_f64 * 1'000.0));
    //   //if (milliseconds < 1'000'000'000)
    //   //{
    //
@@ -929,7 +929,7 @@ void subparticle::acquire_ownership()
 }
 
 
-::string subparticle::get_short_debug_text(int i) const
+::string subparticle::get_short_debug_text(::i32 i) const
 {
 
 #if REFERENCING_DEBUGGING
@@ -944,7 +944,7 @@ void subparticle::acquire_ownership()
 
    ::earth::time_span span(elapsed.m_iSecond);
 
-   auto iHour = (int)span.hours();
+   auto iHour = (::i32)span.hours();
    auto iMinute = span.minute();
    auto iSecond = span.second();
 
@@ -957,13 +957,13 @@ void subparticle::acquire_ownership()
          if (iSecond <= 0)
          {
 
-            strTime.formatf("%dms", (int)elapsed.integral_millisecond());
+            strTime.formatf("%dms", (::i32)elapsed.integral_millisecond());
 
          }
          else
          {
 
-            strTime.formatf("%ds %03dms", iSecond, (int)elapsed.millisecond());
+            strTime.formatf("%ds %03dms", iSecond, (::i32)elapsed.millisecond());
 
          }
 
@@ -971,7 +971,7 @@ void subparticle::acquire_ownership()
       else
       {
 
-         strTime.formatf("%dm%02ds %03dms", iMinute, iSecond, (int)elapsed.millisecond());
+         strTime.formatf("%dm%02ds %03dms", iMinute, iSecond, (::i32)elapsed.millisecond());
 
       }
 
@@ -979,7 +979,7 @@ void subparticle::acquire_ownership()
    else
    {
 
-      strTime.formatf("%dh%02dm%02ds %03dms", iHour, iMinute, iSecond, (int)elapsed.millisecond());
+      strTime.formatf("%dh%02dm%02ds %03dms", iHour, iMinute, iSecond, (::i32)elapsed.millisecond());
 
    }
 
@@ -996,7 +996,7 @@ void subparticle::acquire_ownership()
 }
 
 
-void subparticle::get_debug_title(char * sz, character_count c) const
+void subparticle::get_debug_title(char_pointer sz, character_count c) const
 {
 
    auto psubparticle = (::subparticle *)this;
@@ -1035,7 +1035,7 @@ void subparticle::get_debug_title(char * sz, character_count c) const
 }
 
 
-void subparticle::to_sz(char * sz, character_count len) const
+void subparticle::to_sz(char_pointer sz, character_count len) const
 {
 
 

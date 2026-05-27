@@ -43,7 +43,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
    //   Shader::BlendMode::AlphaBlend
    //);
 
-   //const float positions[] = {
+   //const ::f32 positions[] = {
    //    0.f, 0.f, 1.f, 0.f, 0.f, 1.f,
    //    1.f, 0.f, 1.f, 1.f, 0.f, 1.f
    //};
@@ -71,7 +71,7 @@ void ImageImpact::set_image(::image::image *pimage) {
 }
 
 
-float ImageImpact::scale() const
+::f32 ImageImpact::scale() const
 {
    
    return ::pow(2.f, m_scale / 5.f);
@@ -79,7 +79,7 @@ float ImageImpact::scale() const
 }
 
 
-void ImageImpact::set_scale(float scale) 
+void ImageImpact::set_scale(::f32 scale) 
 {
 
    m_scale = ::log2(scale) * 5.f;
@@ -112,7 +112,7 @@ void ImageImpact::reset()
 }
 
 
-float_point ImageImpact::pos_to_pixel(const float_point & p) const
+::f32_point ImageImpact::pos_to_pixel(const ::f32_point & p) const
 {
 
    auto p2 = p;
@@ -120,7 +120,7 @@ float_point ImageImpact::pos_to_pixel(const float_point & p) const
    if (m_bDrawBorder)
    {
 
-      p2 -= ::float_size(1.f, 1.f);
+      p2 -= ::f32_size(1.f, 1.f);
 
    }
 
@@ -129,7 +129,7 @@ float_point ImageImpact::pos_to_pixel(const float_point & p) const
 }
 
 
-float_point ImageImpact::pixel_to_pos(const float_point & p) const
+::f32_point ImageImpact::pixel_to_pos(const ::f32_point & p) const
 {
 
    auto pos = (p * scale() + m_offset) / screen()->pixel_ratio();
@@ -137,7 +137,7 @@ float_point ImageImpact::pixel_to_pos(const float_point & p) const
    if (m_bDrawBorder)
    {
 
-      pos += ::float_size(1.f, 1.f);
+      pos += ::f32_size(1.f, 1.f);
 
    }
 
@@ -146,7 +146,7 @@ float_point ImageImpact::pixel_to_pos(const float_point & p) const
 }
 
 
-bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::scoped_string & scopedstrText) 
+bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key & /* ekeyModifiers */, const ::scoped_string & scopedstrText) 
 {
 
    if (!m_bEnabled || !m_pimage)
@@ -185,16 +185,16 @@ bool ImageImpact::mouse_motion_event(const i32_point & /* p */, const i32_size &
 
    }
 
-   m_offset.cx += (float)rel.cx * screen()->pixel_ratio();
+   m_offset.cx += (::f32)rel.cx * screen()->pixel_ratio();
 
-   m_offset.cy += (float)rel.cy * screen()->pixel_ratio();
+   m_offset.cy += (::f32)rel.cy * screen()->pixel_ratio();
 
    return true;
 
 }
 
 
-bool ImageImpact::scroll_event(const i32_point & p, const float_size & rel) 
+bool ImageImpact::scroll_event(const i32_point & p, const ::f32_size & rel) 
 {
 
    if (!m_bEnabled || !m_pimage)
@@ -204,7 +204,7 @@ bool ImageImpact::scroll_event(const i32_point & p, const float_size & rel)
 
    }
 
-   float_sequence2 p1 = pos_to_pixel(p - m_pos);
+   f32_sequence2 p1 = pos_to_pixel(p - m_pos);
    m_scale += rel.cy;
 
    // Restrict scaling to a reasonable range
@@ -213,7 +213,7 @@ bool ImageImpact::scroll_event(const i32_point & p, const float_size & rel)
          m_pimage->height())) * 5.f));
    m_scale = ::minimum(m_scale, 45.f);
 
-   float_sequence2 p2 = pos_to_pixel(p - m_pos);
+   f32_sequence2 p2 = pos_to_pixel(p - m_pos);
    m_offset += (p2 - p1) * scale();
    return true;
 
@@ -227,12 +227,12 @@ void ImageImpact::draw(::nano2d::context  * pcontext)
      // return;
 
 
-   pcontext->_draw_image((float) m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimage);
+   pcontext->_draw_image((::f32) m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, m_pimage);
 
    //Canvas::draw(pcontext);
 
-   //int_sequence2 top_left = int_sequence2(pixel_to_pos(float_sequence2(0.f, 0.f))),
-   //   size = int_sequence2(pixel_to_pos(float_sequence2(m_pimage->width(), m_pimage->height())) - float_sequence2(top_left));
+   //int_sequence2 top_left = int_sequence2(pixel_to_pos(f32_sequence2(0.f, 0.f))),
+   //   size = int_sequence2(pixel_to_pos(f32_sequence2(m_pimage->width(), m_pimage->height())) - f32_sequence2(top_left));
 
    //if (m_draw_image_border) {
    //   pcontext->begin_path();
@@ -248,29 +248,29 @@ void ImageImpact::draw(::nano2d::context  * pcontext)
    //::nano2d::IntersectScissor(ctx, m_pos.x, m_pos.y, m_size.cx, m_size.cy);
 
    //if (scale() > 100 && m_pixel_callback) {
-   //   float font_size = scale() / 10.f;
-   //   float alpha = ::minimum(1.f, (scale() - 100) / 100.f);
+   //   ::f32 font_size = scale() / 10.f;
+   //   ::f32 alpha = ::minimum(1.f, (scale() - 100) / 100.f);
    //   pcontext->font_size(font_size);
    //   pcontext->font_face("sans-bold");
    //   pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-   //   int_sequence2 start = max(int_sequence2(0), int_sequence2(pos_to_pixel(float_sequence2(0.f, 0.f))) - 1),
-   //      end = ::nanoui::min(int_sequence2(pos_to_pixel(float_sequence2(m_size))) + int_sequence2(1, 1), int_sequence2(m_pimage->width(), m_pimage->height()) + int_sequence2(-1, -1));
+   //   int_sequence2 start = max(int_sequence2(0), int_sequence2(pos_to_pixel(f32_sequence2(0.f, 0.f))) - 1),
+   //      end = ::nanoui::min(int_sequence2(pos_to_pixel(f32_sequence2(m_size))) + int_sequence2(1, 1), int_sequence2(m_pimage->width(), m_pimage->height()) + int_sequence2(-1, -1));
 
-   //   char text_buf[80],
+   //   ::i8 text_buf[80],
    //      * text[4] = { text_buf, text_buf + 20, text_buf + 40, text_buf + 60 };
 
-   //   for (int y = start.y; y <= end.y; ++y) {
-   //      for (int x = start.x; x <= end.x; ++x) {
-   //         int_sequence2 pos = int_sequence2(pixel_to_pos(float_sequence2(x + .5f, y + .5f)));
+   //   for (::i32 y = start.y; y <= end.y; ++y) {
+   //      for (::i32 x = start.x; x <= end.x; ++x) {
+   //         int_sequence2 pos = int_sequence2(pixel_to_pos(f32_sequence2(x + .5f, y + .5f)));
 
    //         m_pixel_callback(int_sequence2(x, y), text, 20);
 
-   //         for (int ch = 0; ch < 4; ++ch) {
+   //         for (::i32 ch = 0; ch < 4; ++ch) {
    //            Color col(0.f, 0.f, 0.f, alpha);
    //            pcontext->fill_color(col);
    //            ::nano2d::FontBlur(ctx, 2);
-   //            float xpos = m_pos.x + pos.x,
+   //            ::f32 xpos = m_pos.x + pos.x,
    //               ypos = m_pos.y + pos.y + (ch - 1.5f) * font_size;
    //            pcontext->text(xpos, ypos, text[ch], nullptr);
    //            col = Color(0.3f, 0.3f, 0.3f, alpha);
@@ -297,11 +297,11 @@ void ImageImpact::draw_contents(::nano2d::context  * pcontext)
    Canvas::draw_contents(pcontext);
 
    /* Ensure that 'offset' is a multiple of the pixel ratio */
-   //float pixel_ratio = screen()->pixel_ratio();
-   //m_offset = (float_sequence2(int_sequence2(m_offset / pixel_ratio)) * pixel_ratio);
+   //::f32 pixel_ratio = screen()->pixel_ratio();
+   //m_offset = (f32_sequence2(int_sequence2(m_offset / pixel_ratio)) * pixel_ratio);
 
-   //float_sequence2 bound1 = float_sequence2(m_size) * pixel_ratio,
-   //   bound2 = -float_sequence2(m_pimage->width(), m_pimage->height()) * scale();
+   //f32_sequence2 bound1 = f32_sequence2(m_size) * pixel_ratio,
+   //   bound2 = -f32_sequence2(m_pimage->width(), m_pimage->height()) * scale();
 
    //if ((m_offset.x >= bound1.x) != (m_offset.x < bound2.x))
    //   m_offset.x = ::maximum(::minimum(m_offset.x, bound1.x), bound2.x);
@@ -310,7 +310,7 @@ void ImageImpact::draw_contents(::nano2d::context  * pcontext)
 
 //   int_sequence2 viewport_size = render_pass()->viewport().second;
 
-   //float scale = std::pow(2.f, m_scale / 5.f);
+   //::f32 scale = std::pow(2.f, m_scale / 5.f);
 
    //Matrix4f matrix_background =
    //   Matrix4f::scale(Vector3f(m_pimage->width() * scale / 20.f,
@@ -318,7 +318,7 @@ void ImageImpact::draw_contents(::nano2d::context  * pcontext)
 
    //Matrix4f matrix_image =
    //   Matrix4f::ortho(0.f, viewport_size.cx, viewport_size.cy, 0.f, -1.f, 1.f) *
-   //   Matrix4f::translate(Vector3f(m_offset.x, (int)m_offset.y, 0.f)) *
+   //   Matrix4f::translate(Vector3f(m_offset.x, (::i32)m_offset.y, 0.f)) *
    //   Matrix4f::scale(Vector3f(m_image->size().x * scale,
    //      m_image->size().y * scale, 1.f));
 

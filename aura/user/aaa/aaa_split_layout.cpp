@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   const int split_layout::m_iMarging = 5;
+   const ::i32 split_layout::m_iMarging = 5;
 
    split_layout::split_layout()
    {
@@ -63,7 +63,7 @@ namespace user
 
       //::pointer<::user::interaction>puserinteraction;
 
-      //int i;
+      //::i32 i;
 
       //for (i = 0; i < iSplitBarCount; i++)
       //{
@@ -85,7 +85,7 @@ namespace user
 
       //}
 
-      //::double_rectangle rectangleX;
+      //::f64_rectangle rectangleX;
 
       //for (i = 0; i < get_pane_count(); i++)
       //{
@@ -237,7 +237,7 @@ namespace user
       if(!m_bInitialized)
          return;
 
-      ::double_rectangle splitRect;
+      ::f64_rectangle splitRect;
       CalcSplitBarRect(iIndex, &splitRect);
       ::i32_point pointCursor = pMsg->pt;
 
@@ -245,7 +245,7 @@ namespace user
 
       {
 
-//         int   fwKeys = (int) pMsg->wParam;        // key flags
+//         ::i32   fwKeys = (::i32) pMsg->wParam;        // key flags
 
          if(psession->is_mouse_button_pressed(::user::e_mouse_left_button))
          {
@@ -278,7 +278,7 @@ namespace user
 
       {
 
-         int   fwKeys = (int) pMsg->wParam;        // key flags
+         ::i32   fwKeys = (::i32) pMsg->wParam;        // key flags
 
 
          auto point = pointCursor;
@@ -298,7 +298,7 @@ namespace user
 
 
 
-               int nPos;
+               ::i32 nPos;
                bool bMove;
                nPos = GetPos(point.x, point.y);
                if(m_iIndex <= 0)
@@ -307,7 +307,7 @@ namespace user
                }
                else
                {
-                  bMove = nPos > (int) m_splitbara[m_iIndex - 1]->m_dwPosition;
+                  bMove = nPos > (::i32) m_splitbara[m_iIndex - 1]->m_dwPosition;
                }
                if(get_pane_count() >= m_iIndex )
                {
@@ -315,11 +315,11 @@ namespace user
                }
                else
                {
-                  bMove = bMove && nPos < (int) m_splitbara[m_iIndex]->m_dwPosition;
+                  bMove = bMove && nPos < (::i32) m_splitbara[m_iIndex]->m_dwPosition;
                }
                if(bMove)
                {
-                  bMove = nPos != (int) m_splitbara[m_iIndex]->m_dwPosition;
+                  bMove = nPos != (::i32) m_splitbara[m_iIndex]->m_dwPosition;
                }
                informationf("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
                FORMATTED_ informationf("split_layout::RelayChildEvent nPos %d\n", nPos);
@@ -345,7 +345,7 @@ namespace user
    }
 
 
-   int split_layout::GetPos(int xPos, int yPos)
+   ::i32 split_layout::GetPos(::i32 xPos, ::i32 yPos)
    {
 
       if (m_eorientationSplit == e_orientation_horizontal)
@@ -364,10 +364,10 @@ namespace user
    }
 
 
-   int split_layout::GetMinPos()
+   ::i32 split_layout::GetMinPos()
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -387,10 +387,10 @@ namespace user
    }
 
 
-   int split_layout::GetMaxPos()
+   ::i32 split_layout::GetMaxPos()
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -424,16 +424,16 @@ namespace user
 
       }
 
-      int iDimension = get_normal_dimension();
+      ::i32 iDimension = get_normal_dimension();
 
-      unsigned int dwPosition;
+      ::u32 dwPosition;
 
-      double dRate;
+      ::f64 dRate;
 
       if(iDimension > 0)
       {
 
-         for(int i = 0 ; i < m_splitbara.get_count(); i++)
+         for(::i32 i = 0 ; i < m_splitbara.get_count(); i++)
          {
 
             if (m_splitbara[i]->m_dRate >= 0.0)
@@ -446,7 +446,7 @@ namespace user
 
                   dwPosition = m_splitbara[i]->m_dwPosition;
 
-                  dRate = (double)dwPosition / (double)iDimension;
+                  dRate = (::f64)dwPosition / (::f64)iDimension;
 
                   m_splitbara[i]->m_dRate = dRate;
 
@@ -465,13 +465,13 @@ namespace user
 
                }
 
-               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (unsigned int)(m_splitbara[i]->m_dRate * iDimension));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (::u32)(m_splitbara[i]->m_dRate * iDimension));
 
             }
             else
             {
 
-               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (unsigned int)(m_splitbara[i]->m_dwPosition));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (::u32)(m_splitbara[i]->m_dwPosition));
 
             }
 
@@ -479,9 +479,9 @@ namespace user
 
       }
 
-      ::double_rectangle rectangleBar;
+      ::f64_rectangle rectangleBar;
 
-      int i;
+      ::i32 i;
 
       ::collection::count iSplitBarCount = get_split_count();
 
@@ -489,9 +489,9 @@ namespace user
 
       ::pointer<::user::interaction>puserinteraction;
 
-      unsigned int uBaseFlags = SWP_NOZORDER;
+      ::u32 uBaseFlags = SWP_NOZORDER;
 
-      unsigned int uFlags = uBaseFlags;
+      ::u32 uFlags = uBaseFlags;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -528,9 +528,9 @@ namespace user
       for(i = 0; i < get_pane_count(); i++)
       {
 
-         ::double_rectangle & rectanglePane = m_panea[i]->m_rect;
+         ::f64_rectangle & rectanglePane = m_panea[i]->m_rect;
 
-         ::double_rectangle & rectangleX = m_panea[i]->m_rectangleX;
+         ::f64_rectangle & rectangleX = m_panea[i]->m_rectangleX;
 
          CalcPaneRect(i,&rectanglePane);
 
@@ -571,7 +571,7 @@ namespace user
    }
 
 
-   void split_layout::set_position(::collection::index iIndex, int nPos)
+   void split_layout::set_position(::collection::index iIndex, ::i32 nPos)
    {
 
       ASSERT(iIndex >= 0);
@@ -592,7 +592,7 @@ namespace user
    }
 
 
-   void split_layout::set_position_rate(::collection::index iIndex, double dRate, double dMinimumRate, double dMaximumRate)
+   void split_layout::set_position_rate(::collection::index iIndex, ::f64 dRate, ::f64 dMinimumRate, ::f64 dMaximumRate)
    {
 
       ASSERT(iIndex >= 0);
@@ -609,12 +609,12 @@ namespace user
       m_splitbara[iIndex]->m_dRate         = dRate;
       m_splitbara[iIndex]->m_dMinimumRate  = dMinimumRate;
       m_splitbara[iIndex]->m_dMaximumRate  = dMaximumRate;
-      m_splitbara[iIndex]->m_dwPosition    = (unsigned int) -1; // disable position evaluation at first on on_layout
+      m_splitbara[iIndex]->m_dwPosition    = (::u32) -1; // disable position evaluation at first on on_layout
 
    }
 
 
-   int split_layout::get_position(::collection::index iIndex)
+   ::i32 split_layout::get_position(::collection::index iIndex)
    {
 
       ASSERT(iIndex >= 0);
@@ -637,7 +637,7 @@ namespace user
    ::collection::count split_layout::get_pane_count()
    {
 
-      return (int) m_panea.get_count();
+      return (::i32) m_panea.get_count();
 
    }
 
@@ -656,7 +656,7 @@ namespace user
       for (::collection::index i = 0; i < get_pane_count(); i++)
       {
 
-         if (is_pane_visible((int) (i)))
+         if (is_pane_visible((::i32) (i)))
          {
 
             c++;
@@ -670,7 +670,7 @@ namespace user
    }
 
 
-   bool split_layout::is_pane_visible(int iPane)
+   bool split_layout::is_pane_visible(::i32 iPane)
    {
 
       if (iPane < 0)
@@ -728,16 +728,16 @@ namespace user
 
    {
 
-      int nMinPos = GetMinPos(iPane);
+      ::i32 nMinPos = GetMinPos(iPane);
 
-      int nMaxPos = GetMaxPos(iPane);
+      ::i32 nMaxPos = GetMaxPos(iPane);
 
       CalcPaneRect(nMinPos, nMaxPos, prect);
 
 
    }
 
-   void split_layout::CalcPaneRect(int nMinPos, int nMaxPos, RECT32 * prect)
+   void split_layout::CalcPaneRect(::i32 nMinPos, ::i32 nMaxPos, RECT32 * prect)
 
    {
 
@@ -768,10 +768,10 @@ namespace user
    }
 
 
-   int split_layout::get_normal_dimension()
+   ::i32 split_layout::get_normal_dimension()
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -791,10 +791,10 @@ namespace user
    }
 
 
-   int split_layout::get_ortogonal_dimension()
+   ::i32 split_layout::get_ortogonal_dimension()
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -829,14 +829,14 @@ namespace user
 
       }
 
-      int nPos = 0;
+      ::i32 nPos = 0;
 
       ::collection::index i = 0;
 
       while (i <= iIndex)
       {
 
-         if (is_pane_visible((int)(i)))
+         if (is_pane_visible((::i32)(i)))
          {
 
             nPos = m_splitbara[iIndex]->m_dwPosition;
@@ -1021,7 +1021,7 @@ namespace user
       else
       {
 
-         ::double_rectangle rectanglePane;
+         ::f64_rectangle rectanglePane;
 
          pcomponent->m_pholder->rectangle(rectanglePane);
 
@@ -1060,7 +1060,7 @@ namespace user
    }
 
 
-   int split_layout::GetMinPos(::collection::index iPane)
+   ::i32 split_layout::GetMinPos(::collection::index iPane)
    {
 
       if (get_split_count() <= 0 || iPane <= 0)
@@ -1072,7 +1072,7 @@ namespace user
       else
       {
 
-         ::double_rectangle rectangle;
+         ::f64_rectangle rectangle;
 
          CalcSplitBarRect(iPane - 1, rectangle);
 
@@ -1093,7 +1093,7 @@ namespace user
 
    }
 
-   int split_layout::GetMaxPos(::collection::index iPane)
+   ::i32 split_layout::GetMaxPos(::collection::index iPane)
    {
 
       if (get_split_count() <= 0 || iPane >= get_split_count())
@@ -1105,7 +1105,7 @@ namespace user
       else
       {
 
-         ::double_rectangle rectangle;
+         ::f64_rectangle rectangle;
 
          CalcSplitBarRect(iPane, rectangle);
 
@@ -1142,16 +1142,16 @@ namespace user
       if(!m_bInitialized)
          return;
 
-      ::double_rectangle splitRect;
+      ::f64_rectangle splitRect;
 
       CalcSplitBarRect(iSplitBar, &splitRect);
 
       if(emessage == ::user::e_message_left_button_down)
       {
 
-         int   fwKeys = (int) wParam;        // key flags
-//         int xPos = splitRect.left + (short) LOWORD(lParam);  // horizontal position of cursor
-//         int yPos = splitRect.top + (short) HIWORD(lParam);  // vertical position of cursor
+         ::i32   fwKeys = (::i32) wParam;        // key flags
+//         ::i32 xPos = splitRect.left + (::i16) LOWORD(lParam);  // horizontal position of cursor
+//         ::i32 yPos = splitRect.top + (::i16) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::user::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
@@ -1162,9 +1162,9 @@ namespace user
       }
       else if(emessage == ::user::e_message_left_button_up)
       {
-//         int   fwKeys = wParam;        // key flags
-//         int xPos = splitRect.left + (short) LOWORD(lParam);  // horizontal position of cursor
-//         int yPos = splitRect.top + (short) HIWORD(lParam);  // vertical position of cursor
+//         ::i32   fwKeys = wParam;        // key flags
+//         ::i32 xPos = splitRect.left + (::i16) LOWORD(lParam);  // horizontal position of cursor
+//         ::i32 yPos = splitRect.top + (::i16) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
             psession->ReleaseCapture();
@@ -1176,9 +1176,9 @@ namespace user
       }
       else if(emessage == ::user::e_message_mouse_move)
       {
-         int   fwKeys = (int) wParam;        // key flags
-         int xPos = splitRect.left + (short) LOWORD(lParam);  // horizontal position of cursor
-         int yPos = splitRect.top + (short) HIWORD(lParam);  // vertical position of cursor
+         ::i32   fwKeys = (::i32) wParam;        // key flags
+         ::i32 xPos = splitRect.left + (::i16) LOWORD(lParam);  // horizontal position of cursor
+         ::i32 yPos = splitRect.top + (::i16) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
             //cslock lock(m_pmutex);
@@ -1190,7 +1190,7 @@ namespace user
                informationf("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
 
 
-               int nPos;
+               ::i32 nPos;
                bool bMove;
                nPos = GetPos(xPos, yPos);
                if(m_iIndex <= 0)
@@ -1199,7 +1199,7 @@ namespace user
                }
                else
                {
-                  bMove = nPos > (int) m_splitbara[m_iIndex - 1]->m_dwPosition;
+                  bMove = nPos > (::i32) m_splitbara[m_iIndex - 1]->m_dwPosition;
                }
                if(get_pane_count() >= m_iIndex )
                {
@@ -1207,11 +1207,11 @@ namespace user
                }
                else
                {
-                  bMove = bMove && nPos < (int) m_splitbara[m_iIndex]->m_dwPosition;
+                  bMove = bMove && nPos < (::i32) m_splitbara[m_iIndex]->m_dwPosition;
                }
                if(bMove)
                {
-                  bMove = nPos != (int) m_splitbara[m_iIndex]->m_dwPosition;
+                  bMove = nPos != (::i32) m_splitbara[m_iIndex]->m_dwPosition;
                }
                if(bMove)
                {
@@ -1358,7 +1358,7 @@ namespace user
       if (colorBackground.m_iA > 0)
       {
 
-         ::double_rectangle rectangleX;
+         ::f64_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 

@@ -16,7 +16,7 @@ namespace user
       ::image::image_list_pointer m_pimagelist;
       ::image::image_list_pointer m_pimagelistDisable;
       ///CBaseNumericDiscreteRelation < ::u32, ::u32, ::u32, ::u32 > m_rel;
-      atom_map_base < int > m_rel;
+      atom_map_base < ::i32 > m_rel;
 
 
       image_manager();

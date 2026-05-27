@@ -48,7 +48,7 @@
 //      virtual ~exception_engine();
 //
 //
-//      static const char * default_format()
+//      static const_char_pointer default_format()
 //      { return "%f(%l) : %s\n"; }
 //
 //

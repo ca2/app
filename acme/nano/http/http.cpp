@@ -107,9 +107,9 @@ namespace nano
 
          ::string strUrl(url.as_string());
 
-         int iRedirectLimit = 30;
+         ::i32 iRedirectLimit = 30;
 
-         for(int iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
+         for(::i32 iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
          {
 
             auto pnanohttpget = create_newø < ::nano::http::get>();

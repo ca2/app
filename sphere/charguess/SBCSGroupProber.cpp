@@ -45,7 +45,7 @@ nsSBCSGroupProber::nsSBCSGroupProber()
 
 nsSBCSGroupProber::~nsSBCSGroupProber()
 {
-  for (PRunsigned int i = 0; i < NUM_OF_SBCS_PROBERS; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
   {
     delete mProbers[i];
   }
@@ -68,7 +68,7 @@ const_char_pointer nsSBCSGroupProber::GetCharSetName()
 
 void  nsSBCSGroupProber::Reset(void)
 {
-  for (PRunsigned int i = 0; i < NUM_OF_SBCS_PROBERS; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
   {
     mProbers[i]->Reset();
     mIsActive[i] = PR_TRUE;
@@ -78,24 +78,24 @@ void  nsSBCSGroupProber::Reset(void)
 }
 
 //This filter apply to all scripts that does not use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const ::string & aBuf, PRunsigned int aLen, char** newBuf, PRunsigned int& newLen)
+PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const ::string & aBuf, PRunsigned ::i32 aLen, char_pointer * newBuf, PRunsigned ::i32& newLen)
 {
   //do filtering to reduce load to probers
-  char *newptr;
-  char *prevPtr, *curPtr;
+  char_pointer newptr;
+  char_pointer prevPtr, *curPtr;
   
   PRBool meetMSB = PR_FALSE;   
-  newptr = *newBuf = (char*)PR_MALLOC(aLen);
+  newptr = *newBuf = (char_pointer )PR_MALLOC(aLen);
   if (!newptr)
     return PR_FALSE;
 
-  for (curPtr = prevPtr = (char*)aBuf; curPtr < aBuf+aLen; curPtr++)
+  for (curPtr = prevPtr = (char_pointer )aBuf; curPtr < aBuf+aLen; curPtr++)
   {
     if (*curPtr & 0x80)
       meetMSB = PR_TRUE;
     else if (*curPtr < 'A' || (*curPtr > 'Z' && *curPtr < 'a') || *curPtr > 'z') 
     {
-      //current char is a symbol, most likely a punctuation. we treat it as segment delimiter
+      //current ::i8 is a symbol, most likely a punctuation. we treat it as segment delimiter
       if (meetMSB && curPtr > prevPtr) 
       //this segment contains more than single symbol, and it has upper ascii, we need to keep it
       {
@@ -109,25 +109,25 @@ PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const ::string & aBuf, PRu
     }
   }
 
-  newLen = (PRunsigned int)(newptr - *newBuf);
+  newLen = (PRunsigned ::i32)(newptr - *newBuf);
 
   return PR_TRUE;
 }
 
 #ifdef  NO_ENGLISH_CONTAMINATION 
 //This filter apply to all scripts that does use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const ::string & aBuf, PRunsigned int aLen, char** newBuf, PRunsigned int& newLen)
+PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const ::string & aBuf, PRunsigned ::i32 aLen, char_pointer * newBuf, PRunsigned ::i32& newLen)
 {
   //do filtering to reduce load to probers
-  char *newptr;
-  char *prevPtr, *curPtr;
+  char_pointer newptr;
+  char_pointer prevPtr, *curPtr;
   PRBool isInTag = PR_FALSE;
 
-  newptr = *newBuf = (char*)PR_MALLOC(aLen);
+  newptr = *newBuf = (char_pointer )PR_MALLOC(aLen);
   if (!newptr)
     return PR_FALSE;
 
-  for (curPtr = prevPtr = (char*)aBuf; curPtr < aBuf+aLen; curPtr++)
+  for (curPtr = prevPtr = (char_pointer )aBuf; curPtr < aBuf+aLen; curPtr++)
   {
 		if (*curPtr == '>')
 			isInTag = PR_FALSE;
@@ -155,12 +155,12 @@ PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const ::string & aBuf, PRunsi
 }
 #endif //NO_ENGLISH_CONTAMINATION
 
-nsProbingState nsSBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsSBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsProbingState st;
-  PRunsigned int i;
-  char *newBuf1;
-  PRunsigned int newLen1;
+  PRunsigned ::i32 i;
+  char_pointer newBuf1;
+  PRunsigned ::i32 newLen1;
 
   //apply filter to original buffer, and we got aaa_memory_new buffer back
   //depend on what script it is, we will feed them the ___new buffer 
@@ -195,17 +195,17 @@ nsProbingState nsSBCSGroupProber::HandleData(const ::string & aBuf, PRunsigned i
   return mState;
 }
 
-float nsSBCSGroupProber::GetConfidence(void)
+::f32 nsSBCSGroupProber::GetConfidence(void)
 {
-  PRunsigned int i;
-  float bestConf = 0.0, cf;
+  PRunsigned ::i32 i;
+  ::f32 bestConf = 0.0, cf;
 
   switch (mState)
   {
   case eFoundIt:
-    return (float)0.99; //sure yes
+    return (::f32)0.99; //sure yes
   case eNotMe:
-    return (float)0.01;  //sure no
+    return (::f32)0.01;  //sure no
   default:
     for (i = 0; i < NUM_OF_SBCS_PROBERS; i++)
     {
@@ -226,8 +226,8 @@ float nsSBCSGroupProber::GetConfidence(void)
 void 
 nsSBCSGroupProber::DumpStatus()
 {
-  PRunsigned int i;
-  float cf;
+  PRunsigned ::i32 i;
+  ::f32 cf;
   
   cf = GetConfidence();
   printf("SBCS Group Prober --------begin status \r\n");

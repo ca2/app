@@ -28,14 +28,14 @@
  * high-level methods for a SIMPLE MUA *
  ***************************************************/
 
-char* popbegin(const ::string & servername, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, popsession** sp){
+char_pointer popbegin(const ::string & servername, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, popsession** sp){
 /* prepares, connect and get lists of messages stored on pop server */
 /* you must give a valid servername, user and pass */
 /* returns an error message if a problem occurs, else nullptr */
-char* resp=nullptr;
-char* err=nullptr;
-char *hostname, *ptr_port;
-int nport;
+char_pointer resp=nullptr;
+char_pointer err=nullptr;
+char_pointer hostname, *ptr_port;
+::i32 nport;
 popsession* s = nullptr;
 	
 	if(!(servername && user && pass)){
@@ -65,7 +65,7 @@ popsession* s = nullptr;
 		nport = 110;
 	else {
 		*ptr_port = 0;
-		nport = (int) strtoul (++ptr_port, nullptr, 10);
+		nport = (::i32) strtoul (++ptr_port, nullptr, 10);
 		if (!nport)
 			nport = 110;
 	}
@@ -134,10 +134,10 @@ error:
 	return (err);
 }
 
-char* popgethead(popsession* session, int atom){
+char_pointer popgethead(popsession* session, ::i32 atom){
 /* returns the header of a message atom between 1 and poplast() or nullptr if bad atom */
-char* resp;
-char* msg;
+char_pointer resp;
+char_pointer msg;
 	if(!session){
 		return(nullptr);
 	}
@@ -160,10 +160,10 @@ char* msg;
 	return(msg);
 }
 		
-char* popgetmsg(popsession* session, int atom){
+char_pointer popgetmsg(popsession* session, ::i32 atom){
 /* returns a message atom between 1 to poplast() or nullptr if bad atom */
-char* resp=nullptr;
-char* msg=nullptr;
+char_pointer resp=nullptr;
+char_pointer msg=nullptr;
 
 #ifdef EBUG
 	fprintf(stderr, "<popgetmsg>\n");
@@ -205,10 +205,10 @@ char* msg=nullptr;
 #endif
 	return(msg);	
 }
-int popdelmsg(popsession* session, int atom){
+::i32 popdelmsg(popsession* session, ::i32 atom){
 /* deletes a message 'atom' on pop server */
 /* returns -1 if no deletion (server error), 0 else */
-char* resp;
+char_pointer resp;
 	if(!session){
 		return(-1);
 	}
@@ -241,10 +241,10 @@ char* resp;
 	session->uidl[atom]=nullptr;
 	return(0);
 }
-int popcancel(popsession* session){
+::i32 popcancel(popsession* session){
 /* cancel all previous deletions on pop server */
 /* returns -1 if server error, 0 else */
-char* resp;
+char_pointer resp;
 	if(!session){
 		return(-1);
 	}
@@ -294,8 +294,8 @@ char* resp;
 
 void popend(popsession* session){
 /* quit and destroys pop session */
-int i;
-char* resp;
+::i32 i;
+char_pointer resp;
 
 	if(!session){return;}
 	resp=pop3_quit(session->sock);
@@ -313,10 +313,10 @@ char* resp;
 }
 
 
-int poplast(popsession* session){
+::i32 poplast(popsession* session){
 /* returns the atom of the last downloadable message */
-	char* r=nullptr;
-	int n;
+	char_pointer r=nullptr;
+	::i32 n;
 	
 	r=pop3_stat(session->sock);
 	n=stat2last(rectangle);
@@ -324,11 +324,11 @@ int poplast(popsession* session){
 	return(n);
 }
 
-int popnum(popsession* session){
+::i32 popnum(popsession* session){
 /* return the  number of messages of the current time */
-	int i=-2; /* skip +OK\n and .\n */
-	char* lines=nullptr;
-	char* p=nullptr;
+	::i32 i=-2; /* skip +OK\n and .\n */
+	char_pointer lines=nullptr;
+	char_pointer p=nullptr;
 	
 	lines=pop3_list(session->sock, 0); /* 0 means 'all' */
 	p=lines;

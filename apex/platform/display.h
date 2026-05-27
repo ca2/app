@@ -25,8 +25,8 @@
 //inline bool window_is_minimal(enum_display edisplay) { return edisplay == ::e_display_minimal; }
 
 
-//CLASS_DECL_APEX int windows_show_window(enum_display edisplay, enum_activation useractivation);
-//CLASS_DECL_APEX enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & useractivation);
+//CLASS_DECL_APEX ::i32 windows_show_window(enum_display edisplay, enum_activation useractivation);
+//CLASS_DECL_APEX enum_display windows_show_window_to_edisplay(::i32 iShowWindow, enum_activation & useractivation);
 
 
 

@@ -593,7 +593,7 @@ SizingNone:;
       //return;
 
 
-      const int size = 16;
+      const ::i32 size = 16;
 
       auto rectangleX(rectangleXParam);
       //            ::i32_rectangle rectangleXB(rectangleX);

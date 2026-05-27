@@ -6,17 +6,17 @@
 ////#include "acme/exception/exception.h"
 
 
-void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLower);
+void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, ::i32 iRedLower);
 
 
-double get_default_screen_dpi();
+::f64 get_default_screen_dpi();
 
 
 namespace image
 {
 
 
-   bool imaging::nanosvg(::image::image * pimage, void * pNSVGimage, int iRedLower)
+   bool imaging::nanosvg(::image::image * pimage, void * pNSVGimage, ::i32 iRedLower)
    {
 
       NSVGrasterizer * rast = nsvgCreateRasterizer();
@@ -32,13 +32,13 @@ namespace image
 
       nsvg_rasterizer_set_output_format(rast, iRedLower);
 
-      int w = (int)pimage->width();
+      ::i32 w = (::i32)pimage->width();
 
-      int h = (int)pimage->height();
+      ::i32 h = (::i32)pimage->height();
 
       ::image32_t * pdata = nullptr;
 
-      int iScan = 0;
+      ::i32 iScan = 0;
 
       auto psvgimage = (NSVGimage *)pNSVGimage;
 
@@ -48,21 +48,21 @@ namespace image
 
          iScan = pimage->m_iScan;
 
-         nsvgRasterize(rast, psvgimage, 0, 0, 1, (unsigned char *)pdata, w, h, iScan);
+         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)pdata, w, h, iScan);
 
 #ifdef UNIVERSAL_WINDOWS
 
-         unsigned char * pimage32 = (unsigned char *)pimage->image32();
+         ::u8 * pimage32 = (::u8 *)pimage->image32();
 
          for (::collection::index iLine = 0; iLine < h; iLine++)
          {
 
-            unsigned char * pline = &pimage32[iLine * iScan];
+            ::u8 * pline = &pimage32[iLine * iScan];
 
             for (::collection::index x = 0; x < w; x++)
             {
 
-               unsigned char b = pline[0];
+               ::u8 b = pline[0];
 
                pline[0] = pline[2];
 
@@ -92,7 +92,7 @@ namespace image
    }
 
 
-   void image::nanosvg(char * pszXml, double dDpi)
+   void image::nanosvg(char_pointer pszXml, ::f64 dDpi)
    {
 
       if (dDpi <= 0.0)
@@ -137,7 +137,7 @@ namespace image
    }
 
 
-   void image::create_nanosvg(char * pszXml, double dDpi)
+   void image::create_nanosvg(char_pointer pszXml, ::f64 dDpi)
    {
 
       NSVGimage * psvgimage;
@@ -149,7 +149,7 @@ namespace image
 
       }
 
-      psvgimage = nsvgParse(pszXml, "px", (float)dDpi);
+      psvgimage = nsvgParse(pszXml, "px", (::f32)dDpi);
 
       if (::is_null(psvgimage))
       {
@@ -161,7 +161,7 @@ namespace image
       try
       {
 
-         create({ (int)psvgimage->width, (int)psvgimage->height });
+         create({ (::i32)psvgimage->width, (::i32)psvgimage->height });
 
          map();
 

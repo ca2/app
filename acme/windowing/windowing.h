@@ -205,9 +205,9 @@ namespace acme
 
          //void main_post(const ::procedure & procedure) override;
 
-         virtual void display_error_trap_push(int i);
+         virtual void display_error_trap_push(::i32 i);
 
-         virtual void display_error_trap_pop_ignored(int i);
+         virtual void display_error_trap_pop_ignored(::i32 i);
 
          //virtual void * fetch_windowing_display();
 
@@ -270,8 +270,8 @@ namespace acme
          //virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath, ::acme::windowing::display * pwindowingdisplay);
 
          //virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay);
-         virtual double get_default_screen_dpi();
-         virtual float default_screen_points_to_pixels(float fPoints);
+         virtual ::f64 get_default_screen_dpi();
+         virtual ::f32 default_screen_points_to_pixels(::f32 fPoints);
 
 
 

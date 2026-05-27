@@ -18,7 +18,7 @@
 #define DEEP_DATA_DEBUG 0
 
 /**
-* Return the number of bytes required to store a variable-length unsigned
+* Return the number of bytes required to store a variable-length ::u32
 * 32-bit integer in base-128 varint encoding.
 *
 * \lparam v
@@ -26,7 +26,7 @@
 * \return
 *      Number of bytes required.
 */
-static inline memsize u32_size(unsigned int v)
+static inline memsize u32_size(::u32 v)
 {
    if (v < (1UL << 7))
    {
@@ -52,7 +52,7 @@ static inline memsize u32_size(unsigned int v)
 
 
 /**
-* Pack an unsigned 32-bit integer in base-128 varint encoding and return the
+* Pack an ::u32 32-bit integer in base-128 varint encoding and return the
 * number of bytes written, which must be 5 or less.
 *
 * \lparam value
@@ -62,9 +62,9 @@ static inline memsize u32_size(unsigned int v)
 * \return
 *      Number of bytes written to `out`.
 */
-static inline memsize u32_pack(unsigned int value, unsigned char *out)
+static inline memsize u32_pack(::u32 value, ::u8 *out)
 {
-   unsigned rv = 0;
+   ::u32 rv = 0;
 
    if (value >= 0x80)
    {
@@ -92,7 +92,7 @@ static inline memsize u32_pack(unsigned int value, unsigned char *out)
 }
 
 
-CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned int u)
+CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, ::u32 u)
 {
 
    auto iSize = ::u32_size(u);
@@ -108,12 +108,12 @@ CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned i
 }
 
 
-int client_send(memory & m, int fin, memory & memory, bool useMask)
+::i32 client_send(memory & m, ::i32 fin, memory & memory, bool useMask)
 {
 
-   long long message_size = memory.get_size();
+   ::i64 message_size = memory.get_size();
 
-   int length = (int) ( 2 + message_size);
+   ::i32 length = (::i32) ( 2 + message_size);
 
    if (message_size >= 65536)
    {
@@ -128,7 +128,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    }
 
-   unsigned char masking_key[4];
+   ::u8 masking_key[4];
 
    if (useMask)
    {
@@ -141,11 +141,11 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    m.set_size(length);
 
-   unsigned char * frame = (unsigned char*)m.get_data();
+   ::u8 * frame = (::u8*)m.get_data();
 
    frame[0] = 0x80 | fin;
 
-   int iOffset = -1;
+   ::i32 iOffset = -1;
 
    if (message_size < 126)
    {
@@ -208,18 +208,18 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    }
 
-   return (int) (m.get_size());
+   return (::i32) (m.get_size());
 
 }
 
-int client_send_binary(memory & m, memory & memory)
+::i32 client_send_binary(memory & m, memory & memory)
 {
 
    return client_send(m, 0x82, memory, true);
 
 }
 
-int client_send(memory & m, int fin, const char* src)
+::i32 client_send(memory & m, ::i32 fin, const_char_pointer src)
 {
 
    memsize len = 0;
@@ -255,11 +255,11 @@ int client_send(memory & m, int fin, const char* src)
 
    m.set_size(length);
 
-   char* frame = (char*)m.get_data();
+   char_pointer frame = (char_pointer )m.get_data();
 
-   frame[0] = (char)fin;
+   frame[0] = (::i8)fin;
 
-   int iOffset;
+   ::i32 iOffset;
 
    if (len >= 126)
    {
@@ -271,7 +271,7 @@ int client_send(memory & m, int fin, const char* src)
 
          frame[1] = 127;
          
-         *((long long*)&frame[2]) = HTONLL(len);
+         *((::i64*)&frame[2]) = HTONLL(len);
          
       }
       else
@@ -281,7 +281,7 @@ int client_send(memory & m, int fin, const char* src)
 
          frame[1] = 126;
 
-         *((short*)&frame[2]) = htons((unsigned short) (len));
+         *((::i16*)&frame[2]) = htons((::u16) (len));
 
       }
 
@@ -291,7 +291,7 @@ int client_send(memory & m, int fin, const char* src)
 
       iOffset = 2;
 
-      frame[1] = (char) (len);
+      frame[1] = (::i8) (len);
 
    }
 
@@ -302,12 +302,12 @@ int client_send(memory & m, int fin, const char* src)
 
    }
 
-   return (int) (m.get_size());
+   return (::i32) (m.get_size());
 
 }
 
 
-int client_send_text(memory & m, const char* src)
+::i32 client_send_text(memory & m, const_char_pointer src)
 {
 
    return client_send(m, 0x81, src);
@@ -315,7 +315,7 @@ int client_send_text(memory & m, const char* src)
 }
 
 
-int client_send_text(memory & m, const char* src, bool bMasked)
+::i32 client_send_text(memory & m, const_char_pointer src, bool bMasked)
 {
 
    memory m2(src, strlen(src));
@@ -567,9 +567,9 @@ namespace networking_bsd
 
          m_strBase64 = pbase64->encode(m);
 
-         int iLen;
+         ::i32 iLen;
 
-         iLen = (int)(m_strBase64.length());
+         iLen = (::i32)(m_strBase64.length());
 
          inheader("Sec-WebSocket-Key") = m_strBase64;
          if (m_strWebSocketProtocol.has_character())
@@ -636,7 +636,7 @@ namespace networking_bsd
    void websocket_client::OnHeaderComplete()
    {
 
-      int iHttpStatusCode;
+      ::i32 iHttpStatusCode;
 
       outattr(__id(http_status_code)).as(iHttpStatusCode);
 
@@ -752,11 +752,11 @@ namespace networking_bsd
 
 #ifdef BSD_STYLE_SOCKETS
 
-      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
+      ::i32 iResult = (::i32) SSL_get_verify_result(m_psslcontext->m_ssl);
 
 #else
 
-      int iResult = 0;
+      ::i32 iResult = 0;
 
 #endif
 
@@ -801,7 +801,7 @@ namespace networking_bsd
    }
 
 
-   void websocket_client::OnRawData(char *buf, memsize len)
+   void websocket_client::OnRawData(char_pointer buf, memsize len)
    {
 
       if (m_bWebSocket)
@@ -817,9 +817,9 @@ namespace networking_bsd
 
          m_memResponse.append(buf, len);
 
-         //unsigned long long uLen = 0;
+         //::u64 uLen = 0;
 
-         //int iOffset = 2;
+         //::i32 iOffset = 2;
 
          while (m_memResponse.get_size() >= 2)
          {
@@ -827,7 +827,7 @@ namespace networking_bsd
             // From
             // https://github.com/dhbaird/easywsclient/blob/master/easywsclient.cpp
 
-            unsigned char * data = (unsigned char *)m_memResponse.get_data(); // peek, but don't consume
+            ::u8 * data = (::u8 *)m_memResponse.get_data(); // peek, but don't consume
 
 
 #if DEEP_DATA_DEBUG
@@ -849,12 +849,12 @@ namespace networking_bsd
                else if (data[i] < 10)
                {
                   strChar += "0";
-                  strChar += as_string((int)data[i]);
+                  strChar += as_string((::i32)data[i]);
                   strChar += " ";
                }
                else if (data[i] < 32)
                {
-                  strChar += as_string((int)data[i]);
+                  strChar += as_string((::i32)data[i]);
                   strChar += " ";
                }
                else if (data[i] >= 128)
@@ -863,7 +863,7 @@ namespace networking_bsd
                }
                else
                {
-                  strChar += string((const char *)&data[i], 1);
+                  strChar += string((const_char_pointer )&data[i], 1);
                   strChar += "  ";
                }
 
@@ -931,8 +931,8 @@ namespace networking_bsd
             {
 
                m_iN = 0;
-               m_iN |= ((unsigned long long)data[2]) << 8;
-               m_iN |= ((unsigned long long)data[3]) << 0;
+               m_iN |= ((::u64)data[2]) << 8;
+               m_iN |= ((::u64)data[3]) << 0;
                m_i = 4;
 
             }
@@ -940,14 +940,14 @@ namespace networking_bsd
             {
 
                m_iN = 0;
-               m_iN |= ((unsigned long long)data[2]) << 56;
-               m_iN |= ((unsigned long long)data[3]) << 48;
-               m_iN |= ((unsigned long long)data[4]) << 40;
-               m_iN |= ((unsigned long long)data[5]) << 32;
-               m_iN |= ((unsigned long long)data[6]) << 24;
-               m_iN |= ((unsigned long long)data[7]) << 16;
-               m_iN |= ((unsigned long long)data[8]) << 8;
-               m_iN |= ((unsigned long long)data[9]) << 0;
+               m_iN |= ((::u64)data[2]) << 56;
+               m_iN |= ((::u64)data[3]) << 48;
+               m_iN |= ((::u64)data[4]) << 40;
+               m_iN |= ((::u64)data[5]) << 32;
+               m_iN |= ((::u64)data[6]) << 24;
+               m_iN |= ((::u64)data[7]) << 16;
+               m_iN |= ((::u64)data[8]) << 8;
+               m_iN |= ((::u64)data[9]) << 0;
                m_i = 10;
 
             }
@@ -955,10 +955,10 @@ namespace networking_bsd
             if (m_mask)
             {
 
-               m_maskingkey[0] = ((unsigned char)data[m_i + 0]);
-               m_maskingkey[1] = ((unsigned char)data[m_i + 1]);
-               m_maskingkey[2] = ((unsigned char)data[m_i + 2]);
-               m_maskingkey[3] = ((unsigned char)data[m_i + 3]);
+               m_maskingkey[0] = ((::u8)data[m_i + 0]);
+               m_maskingkey[1] = ((::u8)data[m_i + 1]);
+               m_maskingkey[2] = ((::u8)data[m_i + 2]);
+               m_maskingkey[3] = ((::u8)data[m_i + 3]);
 
             }
 
@@ -1001,7 +1001,7 @@ namespace networking_bsd
                if (m_fin)
                {
 
-                  on_websocket_data(m_memReceivedData.get_data(), (int) (m_memReceivedData.get_size()));
+                  on_websocket_data(m_memReceivedData.get_data(), (::i32) (m_memReceivedData.get_size()));
 
                   m_memReceivedData.set_size(0);
 
@@ -1083,12 +1083,12 @@ namespace networking_bsd
    }
 
 
-   void websocket_client::on_websocket_data(unsigned char * pdata, int len)
+   void websocket_client::on_websocket_data(::u8 * pdata, ::i32 len)
    {
 
       m_durationLastPong.Now();
 
-      string str((const char *) pdata, len);
+      string str((const_char_pointer ) pdata, len);
 
       //::fork(get_app(), [=]()
       //{

@@ -89,7 +89,7 @@ namespace operating_system
 } // namespace operating_system
 
 #define WIN32_COLOR_WINDOW 5 // WinUser.h (windows.h) COLOR_WINDOW
-#define WIN32_CW_USEDEFAULT ((int)0x80000000) // WinUser.h (windows.h) CW_USEDEFAULT
+#define WIN32_CW_USEDEFAULT ((::i32)0x80000000) // WinUser.h (windows.h) CW_USEDEFAULT
 
 namespace windows
 {
@@ -101,11 +101,11 @@ namespace windows
    public:
 
 
-      static const int ID_SHOW_ABOUT_BOX = 64800;
+      static const ::i32 ID_SHOW_ABOUT_BOX = 64800;
 
 
       ::operating_system::windows_window m_windowswindow;
-      double m_dVelocity;
+      ::f64 m_dVelocity;
       class ::time m_timeLastSizeMove;
       ::i32_point m_pointSizeMoveStart;
       bool m_bMovingNow;
@@ -113,7 +113,7 @@ namespace windows
       bool m_bSizeMoveMode;
       //HWND m_hwnd;
       HMENU m_hmenuSystem;
-      int m_iDebugAtom = 0;
+      ::i32 m_iDebugAtom = 0;
       WNDPROC       m_wndprocDefault;
 
       window();
@@ -127,9 +127,9 @@ namespace windows
       virtual bool _on_default_system_menu_command(::lresult & lresult, ::wparam wparam, ::lparam lparam);
       virtual void _defer_show_system_menu(::user::mouse * ppmouse);
 
-      virtual bool is_window_class_registered(const char * pszWindowClassName);
-      virtual bool register_window_class(const char * pszWindowClassName, int iWindowClassStyle = 0, void * pHCURSOR = nullptr, void * pHBRUSH_Background = (void *) (HBRUSH)WIN32_COLOR_WINDOW);
-      virtual bool _register_window_class(WNDCLASSEXW &wndclassexw, const char * pszWindowClassName);
+      virtual bool is_window_class_registered(const_char_pointer pszWindowClassName);
+      virtual bool register_window_class(const_char_pointer pszWindowClassName, ::i32 iWindowClassStyle = 0, void * pHCURSOR = nullptr, void * pHBRUSH_Background = (void *) (HBRUSH)WIN32_COLOR_WINDOW);
+      virtual bool _register_window_class(WNDCLASSEXW &wndclassexw, const_char_pointer pszWindowClassName);
 
 
       virtual ::operating_system::window _create_window_ex(
@@ -203,7 +203,7 @@ namespace windows
 
       bool is_window_visible() override;
       bool is_window_iconic() override;
-      float get_window_scale() override;
+      ::f32 get_window_scale() override;
 
 
       ::i32_point screen_to_window_client(const ::i32_point & point);
@@ -213,18 +213,18 @@ namespace windows
 
 
 
-      void show_window(int iShowFlags) override;
-      void set_window_style(int iStyle) override;
+      void show_window(::i32 iShowFlags) override;
+      void set_window_style(::i32 iStyle) override;
       ::i64 get_window_style() override;
 
       void post_message(user::enum_message eusermessage, wparam wparam = {}, lparam lparam = {}) override;
 
       void set_active_window() override;
       void set_window_text(const scoped_string &scopedstr) override;
-      void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags) override;
+      void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;
       void window_invalidate_rect(const i32_rectangle *prectangle, bool bErase) override;
       void update_window() override;
-      void redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags) override;
+      void redraw_window(const i32_rectangle *prectangle, void *pHRGN, ::i32 iRedrawFlags) override;
       void window_set_focus() override;
       void set_foreground_window(::user::activation_token *puseractivationtoken) override;
       ::i32_rectangle window_get_client_rect() override;
@@ -233,7 +233,7 @@ namespace windows
       void dump_operating_system_child_window_hierarchy() override;
 
 
-      virtual int _on_non_client_hit_test(const ::i32_point &point);
+      virtual ::i32 _on_non_client_hit_test(const ::i32_point &point);
 
 
    };

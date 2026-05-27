@@ -6,7 +6,7 @@
 
 
 
-//using real = double;
+//using real = ::f64;
 //using integer = ::i64;
 
 namespace number
@@ -18,33 +18,33 @@ namespace number
       union
       {
 
-         char        m_i8;
-         unsigned char        m_u8;
-         short       m_i16;
-         unsigned short       m_u16;
-         int       m_i32;
+         ::i8        m_i8;
+         ::u8        m_u8;
+         ::i16       m_i16;
+         ::u16       m_u16;
+         ::i32       m_i32;
          ::u32       m_u32;
          ::i64       m_hi;
          ::u64       m_hn;
 
-         float       m_f;
-         double       m_d;
+         ::f32       m_f32;
+         ::f64       m_f64;
 
       };
 
       enum_number    m_enumber;
 
       number(enum_number enumber = e_number_none) { m_hi = 0; m_enumber = enumber; }
-      number(char i) { m_i8 = i; m_enumber = e_number_char; }
-      number(unsigned char u) { m_u8 = u; m_enumber = e_number_unsigned_char; }
-      number(short i) { m_i16 = i; m_enumber = e_number_short; }
-      number(unsigned short u) { m_u16 = u; m_enumber = e_number_unsigned_short; }
-      number(int i) { m_i32 = i; m_enumber = e_number_int; }
+      number(::i8 i) { m_i8 = i; m_enumber = e_number_char; }
+      number(::u8 u) { m_u8 = u; m_enumber = e_number_unsigned_char; }
+      number(::i16 i) { m_i16 = i; m_enumber = e_number_short; }
+      number(::u16 u) { m_u16 = u; m_enumber = e_number_unsigned_short; }
+      number(::i32 i) { m_i32 = i; m_enumber = e_number_int; }
       number(::u32 u) { m_u32 = u; m_enumber = e_number_unsigned_int; }
       number(::i64 i) { m_hi = i; m_enumber = e_number_long_long; }
       number(::u64 u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
-      number(float f) { m_f = f; m_enumber = e_number_float; }
-      number(double d) { m_d = d; m_enumber = e_number_double; }
+      number(::f32 f) { m_f32 = f; m_enumber = e_number_float; }
+      number(::f64 d) { m_f64 = d; m_enumber = e_number_double; }
       //#ifdef __clang__
       //   number(long l) { m_hi = l; m_enumber = e_number_long_long; }
       //#endif
@@ -81,9 +81,9 @@ namespace number
             case e_number_unsigned_long_long:
                return (T)m_hn;
             case e_number_float:
-               return (T)m_f;
+               return (T)m_f32;
             case e_number_double:
-               return(T)m_d;
+               return(T)m_f64;
          };
          return (T)0;
       }
@@ -97,19 +97,19 @@ namespace number
             case e_number_none:
                break;
             case e_number_char:
-               m_i8 = (char) t;
+               m_i8 = (::i8) t;
                break;
             case e_number_unsigned_char:
-               m_u8 = (unsigned char) t;
+               m_u8 = (::u8) t;
                break;
             case e_number_short:
-               m_i16 = (short) t;
+               m_i16 = (::i16) t;
                break;
             case e_number_unsigned_short:
-               m_u16 = (unsigned short)t;
+               m_u16 = (::u16)t;
                break;
             case e_number_int:
-               m_i32 = (int)t;
+               m_i32 = (::i32)t;
                break;
             case e_number_unsigned_int:
                m_u32 = (::u32)t;
@@ -121,25 +121,25 @@ namespace number
                m_hn = (::u64)t;
                break;
             case e_number_float:
-               m_f = (float)t;
+               m_f32 = (::f32)t;
                break;
             case e_number_double:
-               m_d = (double)t;
+               m_f64 = (::f64)t;
                break;
          };
 
       }
 
-      char get_char() const { return get < char>(); }
-      unsigned char get_unsigned_char() const { return get < unsigned char>(); }
-      short get_short() const { return get < short>(); }
-      unsigned short get_unsigned_short() const { return get < unsigned short>(); }
-      int get_int() const { return get < int>(); }
+      ::i8 get_char() const { return get < ::i8>(); }
+      ::u8 get_unsigned_char() const { return get < ::u8>(); }
+      ::i16 get_short() const { return get < ::i16>(); }
+      ::u16 get_unsigned_short() const { return get < ::u16>(); }
+      ::i32 get_int() const { return get < ::i32>(); }
       ::u32 get_unsigned_int() const { return get < ::u32>(); }
       ::i64 get_long_long() const { return get < ::i64>(); }
       ::u64 get_unsigned_long_long() const { return get < ::u64>(); }
-      float get_float() const { return get < float>(); }
-      double get_double() const { return get < double>(); }
+      ::f32 get_float() const { return get < ::f32>(); }
+      ::f64 get_double() const { return get < ::f64>(); }
 
 
       ::number::number operator + (const number& number) const
@@ -246,7 +246,7 @@ namespace number
 
          auto enumber = maximum(m_enumber, number.m_enumber);
 
-         if (enumber & 64) // float
+         if (enumber & 64) // ::f32
          {
 
             return get_double() == number.get_double();
@@ -268,7 +268,7 @@ namespace number
 
          auto enumber = maximum(m_enumber, number.m_enumber);
 
-         if (enumber & 64) // float
+         if (enumber & 64) // ::f32
          {
 
             return get_double() != number.get_double();
@@ -291,7 +291,7 @@ namespace number
 
          auto enumber = maximum(m_enumber, number.m_enumber);
 
-         if (enumber & 64) // float
+         if (enumber & 64) // ::f32
          {
 
             return get_double() < number.get_double();
@@ -314,7 +314,7 @@ namespace number
 
          auto enumber = maximum(m_enumber, number.m_enumber);
 
-         if (enumber & 64) // float
+         if (enumber & 64) // ::f32
          {
 
             return get_double() <= number.get_double();
@@ -337,7 +337,7 @@ namespace number
 
          auto enumber = maximum(m_enumber, number.m_enumber);
 
-         if (enumber & 64) // float
+         if (enumber & 64) // ::f32
          {
 
             return get_double() > number.get_double();
@@ -361,7 +361,7 @@ namespace number
 
          auto enumber = maximum(m_enumber, number.m_enumber);
 
-         if (enumber & 64) // float
+         if (enumber & 64) // ::f32
          {
 
             return get_double() >= number.get_double();
@@ -395,7 +395,7 @@ inline string get_default_integer_scalar_format()
 }
 
 
-//inline string get_default_scalar_format < double >()
+//inline string get_default_scalar_format < ::f64 >()
 //{
 //   return "%d";
 //}
@@ -442,8 +442,8 @@ namespace  number
       public:
 
 
-         virtual bool on_set_scalar(scalar_source * pscalar, enum_scalar escalar, ::number::number n, int iFlags);
-         // virtual bool on_set_integer_scalar(scalar_source* pscalar, enum_scalar escalar, ::integer i, int iFlags);
+         virtual bool on_set_scalar(scalar_source * pscalar, enum_scalar escalar, ::number::number n, ::i32 iFlags);
+         // virtual bool on_set_integer_scalar(scalar_source* pscalar, enum_scalar escalar, ::integer i, ::i32 iFlags);
 
 
       };
@@ -457,28 +457,28 @@ namespace  number
       scalar_source();
 
 
-      bool set_scalar(enum_scalar escalar,::number::number real,bool bForce = false,int iFlags = e_scalar_none);
+      bool set_scalar(enum_scalar escalar,::number::number real,bool bForce = false,::i32 iFlags = e_scalar_none);
       bool constrain_scalar(enum_scalar escalar, ::number::number& real);
       void increment_scalar(enum_scalar  escalar, ::number::number real);
-      double get_scalar_rate(enum_scalar escalar,double dDefault = 0.0);
-      bool set_scalar_rate(enum_scalar escalar,double dValue,int iFlags);
+      ::f64 get_scalar_rate(enum_scalar escalar,::f64 dDefault = 0.0);
+      bool set_scalar_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags);
       bool contains_scalar(enum_scalar escalar, ::number::number real);
 
-      //bool set_integer_scalar(enum_scalar escalar, ::integer integer, bool bForce = false, int iFlags = e_scalar_none);
+      //bool set_integer_scalar(enum_scalar escalar, ::integer integer, bool bForce = false, ::i32 iFlags = e_scalar_none);
       //bool constrain_integer_scalar(enum_scalar escalar, ::integer& integer);
       //void increment_integer_scalar(enum_scalar  escalar, ::integer iIncintegerrement);
-      //double get_integer_scalar_rate(enum_scalar escalar, double dDefault = 0.0);
-      //bool set_integer_scalar_rate(enum_scalar escalar, double dValue, int iFlags);
+      //::f64 get_integer_scalar_rate(enum_scalar escalar, ::f64 dDefault = 0.0);
+      //bool set_integer_scalar_rate(enum_scalar escalar, ::f64 dValue, ::i32 iFlags);
       //bool contains_integer_scalar(enum_scalar escalar, ::integer integer);
 
 
-      //virtual bool on_set_real_scalar(enum_scalar escalar, ::real real, int iFlags);
+      //virtual bool on_set_real_scalar(enum_scalar escalar, ::real real, ::i32 iFlags);
       //virtual bool get_real_scalar_minimum(enum_scalar escalar, ::real& real);
       //virtual bool get_real_scalar(enum_scalar escalar, ::real& real);
       //virtual bool get_real_scalar_maximum(enum_scalar escalar, ::real& real);
 
 
-      virtual bool on_set_scalar(enum_scalar escalar, ::number::number integer, int iFlags);
+      virtual bool on_set_scalar(enum_scalar escalar, ::number::number integer, ::i32 iFlags);
       virtual ::number::number get_scalar_minimum(enum_scalar escalar);
       virtual ::number::number get_scalar(enum_scalar escalar);
       virtual ::number::number get_scalar_maximum(enum_scalar escalar);
@@ -505,9 +505,9 @@ namespace  number
 
       scalar(scalar_source* psource = nullptr, enum_scalar ereal_scalar = e_scalar_none);
 
-      virtual double get_rate(double dDefault = 0.0);
+      virtual ::f64 get_rate(::f64 dDefault = 0.0);
 
-      virtual bool set_rate(double dRate, int iFlags);
+      virtual bool set_rate(::f64 dRate, ::i32 iFlags);
 
       //string Format(const ::scoped_string & scopedstrFormat);
 
@@ -530,8 +530,8 @@ namespace  number
       void increment(number number = 1) { set(get() + number); }
       void decrement(number number = 1) { set(get() - number); }
 
-      scalar& operator ++(int) { increment(); return *this; }
-      scalar& operator --(int) { decrement(); return *this; }
+      scalar& operator ++(::i32) { increment(); return *this; }
+      scalar& operator --(::i32) { decrement(); return *this; }
 
    };
 } // namespace number
@@ -550,8 +550,8 @@ namespace  number
 //   ::real get();
 //
 //   
-//   double get_rate(double dDefault = 0.0) override;
-//   bool set_rate(double dRate,int iFlags) override;
+//   ::f64 get_rate(::f64 dDefault = 0.0) override;
+//   bool set_rate(::f64 dRate,::i32 iFlags) override;
 //
 //
 //   ::real maximum();
@@ -565,8 +565,8 @@ namespace  number
 //   void increment(::real iValue = ::numeric_info<::real>::unitary()) { set(get() + iValue); }
 //   void decrement(::real iValue = ::numeric_info<::real>::unitary()) { set(get() - iValue); }
 //
-//   real_scalar & operator ++(int) { increment(); return *this; }
-//   real_scalar & operator --(int) { decrement(); return *this; }
+//   real_scalar & operator ++(::i32) { increment(); return *this; }
+//   real_scalar & operator --(::i32) { decrement(); return *this; }
 //
 //
 //};
@@ -582,8 +582,8 @@ namespace  number
 //   void set(::integer dValue);
 //   ::integer get();
 //
-//   double get_rate(double dDefault = 0.0) override;
-//   bool set_rate(double dRate, int iFlags) override;
+//   ::f64 get_rate(::f64 dDefault = 0.0) override;
+//   bool set_rate(::f64 dRate, ::i32 iFlags) override;
 //
 //
 //   ::integer maximum();
@@ -600,22 +600,22 @@ namespace  number
 //   void increment(::integer iValue = ::numeric_info<::integer>::unitary()) { set(get() + iValue); }
 //   void decrement(::integer iValue = ::numeric_info<::integer>::unitary()) { set(get() - iValue); }
 //
-//   integer_scalar& operator ++(int) { increment(); return *this; }
-//   integer_scalar& operator --(int) { decrement(); return *this; }
+//   integer_scalar& operator ++(::i32) { increment(); return *this; }
+//   integer_scalar& operator --(::i32) { decrement(); return *this; }
 //
 //
 //};
 //
 //
 //
-////using double_scalar_manager = scalar_manager < double >;
+////using f64_scalar_manager = scalar_manager < ::f64 >;
 ////using int_scalar_manager  = scalar_manager < ::i64 >;
 //
-////using double_scalar_listener = scalar_manager < double >::listener;
+////using f64_scalar_listener = scalar_manager < ::f64 >::listener;
 ////using int_scalar_listener  = scalar_manager < ::i64 >::listener;
 //
 //
-////using double_scalar = scalar < double >;
+////using f64_scalar = scalar < ::f64 >;
 ////using int_scalar  = scalar < ::i64 >;
 //
 //

@@ -13,7 +13,7 @@ namespace write_text
 
       enum_font_weight        m_efontweight;
       /// m_iFontWeight maybe "fraction" of a font weight
-      short                   m_iFontWeight;
+      ::i16                   m_iFontWeight;
 
 
    public:
@@ -36,7 +36,7 @@ namespace write_text
       }
 
 
-      font_weight(int iFontWeight)
+      font_weight(::i32 iFontWeight)
       {
 
          set_font_weight(iFontWeight);
@@ -44,7 +44,7 @@ namespace write_text
       }
 
 
-      constexpr static enum_font_weight sink(int iFontWeight) 
+      constexpr static enum_font_weight sink(::i32 iFontWeight) 
       {
 
          if (iFontWeight <= 0)
@@ -124,11 +124,11 @@ namespace write_text
 
 
       constexpr enum_font_weight efontweight() const { return m_efontweight; }
-      constexpr int as_i32() const { return m_iFontWeight; }
+      constexpr ::i32 as_i32() const { return m_iFontWeight; }
 
 
       constexpr operator enum_font_weight() const { return efontweight(); }
-      constexpr operator int() const { return as_i32(); }
+      constexpr operator ::i32() const { return as_i32(); }
 
 
       constexpr ::std::weak_ordering operator <=>(const enum_font_weight efontweight) const

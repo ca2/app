@@ -474,7 +474,7 @@ namespace experience_anthill
    void frame_011::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
    {
 
-      const int size = 16;
+      const ::i32 size = 16;
 
       ::i32_rectangle rectangleX(rectangleXParam);
 

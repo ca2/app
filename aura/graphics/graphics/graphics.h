@@ -27,7 +27,7 @@ namespace graphics
       ::particle_pointer            m_pparticleData;
       manual_reset_happening        m_manualresethappening;
       ::i32_size                    m_sizeInternal;
-      int                           m_iScan;
+      ::i32                           m_iScan;
 
 
       ::draw2d::graphics_pointer g();
@@ -101,7 +101,7 @@ namespace graphics
 
       virtual void on_end_draw();
 
-      //virtual bool update_buffer(const ::i32_size & size, int iStrideParam = -1);
+      //virtual bool update_buffer(const ::i32_size & size, ::i32 iStrideParam = -1);
 
       virtual bool update_buffer(buffer_item * pitem);
 

@@ -39,7 +39,7 @@ namespace http
       void InitBody( memsize sz );
 
       /** write body data */
-      void write( const char *buf, memsize sz );
+      void write( const_char_pointer pszBuffer, memsize sz );
 
       /** No more writing */
       void CloseBody();

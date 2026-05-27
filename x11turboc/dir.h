@@ -44,16 +44,16 @@
 
 struct ffblk
 {
-  char ff_reserved[21];		// Not needed, obviously.
-  char ff_attrib;
-  int ff_ftime;
-  int ff_fdate;
+  ::i8 ff_reserved[21];		// Not needed, obviously.
+  ::i8 ff_attrib;
+  ::i32 ff_ftime;
+  ::i32 ff_fdate;
   long ff_fsize;
-  char ff_name[FILENAME_MAX + 1];	// Size 13 in Turbo C 2.x.
+  ::i8 ff_name[FILENAME_MAX + 1];	// Size 13 in Turbo C 2.x.
   // Stuff not in Turbo, used for the emulation.
   glob_t *GlobPtr;
   gint OnFile;
-  int DesiredAttributes;
+  ::i32 DesiredAttributes;
 };
 
 //----------------------------------------------------------------------------
@@ -63,8 +63,8 @@ __BEGIN_DECLS
 #ifndef __MINGW32__
 #define mkdir(filename) mkdir(filename,0755)
 #endif
-int findfirst (const ::string &pathname, struct ffblk *fblk, int attrib);
-int findnext (struct ffblk *fblk);
+::i32 findfirst (const ::string &pathname, struct ffblk *fblk, ::i32 attrib);
+::i32 findnext (struct ffblk *fblk);
 void findlast (struct ffblk *fblk);
 
 __END_DECLS

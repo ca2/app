@@ -75,7 +75,7 @@ public:
 
 
 
-   //inline  int compare_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
+   //inline  ::i32 compare_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
    //inline  bool equal_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
 
 
@@ -89,13 +89,13 @@ public:
 
 
 
-   static inline  int compare_ignore_case(const string & left, const string & right, size_t len = 0);
+   static inline  ::i32 compare_ignore_case(const string & left, const string & right, size_t len = 0);
    static inline  bool equal_ignore_case(const string & left, const string & right, size_t len = 0);
 
 
    static void   increment_digit_letter(string & str);
 
-   static void   copy(string & str, const ::scoped_string & scopedstr, int iCount);
+   static void   copy(string & str, const ::scoped_string & scopedstr, ::i32 iCount);
 
    static string   replace_with(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, character_count iStart = 0);
    static string   case_insensitive_replace_with(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, character_count iStart = 0);
@@ -151,11 +151,11 @@ public:
 
    //inline  const_char_pointer __utf8_inc(const_char_pointer psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
-   //const_char_pointer     utf8_next_add_length(character_count * paddlength, const_char_pointer psz);
-   //const_char_pointer     utf8_inc_copy_slide_back(character_count * pslideback, ::ansi_character * pchDst, const_char_pointer pchSrc);
-   //const_char_pointer     utf8_inc_count(const_char_pointer psz, character_count * piCount);
+   //const_char_pointer utf8_next_add_length(character_count * paddlength, const_char_pointer psz);
+   //const_char_pointer utf8_inc_copy_slide_back(character_count * pslideback, ::ansi_character * pchDst, const_char_pointer pchSrc);
+   //const_char_pointer utf8_inc_count(const_char_pointer psz, character_count * piCount);
 
-   static string block(::ansi_character ch, int iSize);
+   static string block(::ansi_character ch, ::i32 iSize);
    static void fill(string & str, ::ansi_character ch);
 
 
@@ -192,7 +192,7 @@ public:
 
    static string & zero_pad(string & str, character_count iPad);
    static string         zero_padded(const ::scoped_string & scopedstr, character_count iPad);
-   static int            get_escaped_char(const_char_pointer psz, character_count pos, character_count & retPos);
+   static ::i32            get_escaped_char(const_char_pointer psz, character_count pos, character_count & retPos);
    static bool           get_curly_content(const_char_pointer psz, string & str);
    static bool           is_simple_natural(const_char_pointer psz, character_count iCount = -1);
    static bool           is_natural(const ::scoped_string & scopedstr);
@@ -253,9 +253,9 @@ public:
 
 
 
-   static string signed_double(double d);
+   static string signed_double(::f64 d);
 
-   static string signed_int(int i);
+   static string signed_int(::i32 i);
 
    static bool is_true(const ::scoped_string & scopedstr);
 
@@ -272,19 +272,19 @@ public:
 
 
    static bool to(::i64 & i, const ::scoped_string & scopedstrParam);
-   static bool to(int & i, const ::scoped_string & scopedstrParam);
+   static bool to(::i32 & i, const ::scoped_string & scopedstrParam);
    static bool to(::u64 & u, const ::scoped_string & scopedstrParam);
    static bool to(::u32 & u, const ::scoped_string & scopedstrParam);
 
 
-   static bool to(int & i, int iBase, const ::scoped_string & scopedstrParam);
-   static bool to(::i64 & i, int iBase, const ::scoped_string & scopedstrParam);
-   static bool to(::u64 & u, int iBase, const ::scoped_string & scopedstrParam);
-   static bool to(::u32 & u, int iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::i32 & i, ::i32 iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::i64 & i, ::i32 iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::u64 & u, ::i32 iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::u32 & u, ::i32 iBase, const ::scoped_string & scopedstrParam);
 
 
    static iptr         to_iptr(const ::scoped_string & scopedstr);
-   static int          to_int(const ::scoped_string & scopedstr);
+   static ::i32          to_int(const ::scoped_string & scopedstr);
    static ::u32          to_unsigned_int(const ::scoped_string & scopedstr);
 
 
@@ -293,10 +293,10 @@ public:
 
 
 
-   static inline   int to_with_fallback(const ::scoped_string & scopedstr, int iDefault);
+   static inline   ::i32 to_with_fallback(const ::scoped_string & scopedstr, ::i32 iDefault);
    static inline   ::i64 to_with_fallback(const ::scoped_string & scopedstr, ::i64 iDefault);
-   static inline   int to_with_fallback(const ::scoped_string & scopedstr, int iDefault, int iBase);
-   static inline   ::i64 to_with_fallback(const ::scoped_string & scopedstr, ::i64 iDefault, int iBase);
+   static inline   ::i32 to_with_fallback(const ::scoped_string & scopedstr, ::i32 iDefault, ::i32 iBase);
+   static inline   ::i64 to_with_fallback(const ::scoped_string & scopedstr, ::i64 iDefault, ::i32 iBase);
 
 
 

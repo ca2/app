@@ -61,12 +61,12 @@ namespace subsystem_windows
       ::wstring uniCmdLine(strstorage);
       size_t cmdLen = uniCmdLine.length();
       if (cmdLen > 0) {
-         int nArgs;
+         ::i32 nArgs;
          LPWSTR *argList = CommandLineToArgvW(uniCmdLine, &nArgs);
          if(argList == 0) {
             throw ::subsystem::Exception("Invalid command line");
          }
-         for(int i = 0; i < nArgs; i++) {
+         for(::i32 i = 0; i < nArgs; i++) {
             ::wstring uniArg(argList[i]);
             ::string arg;
             arg = uniArg;

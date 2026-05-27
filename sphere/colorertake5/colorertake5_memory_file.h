@@ -3,13 +3,13 @@
 #include<contrib/minizip/unzip.h>
 
 typedef struct{
-  const uchar *stream;
+  const ::u8 * stream;
   memsize get_length;
-  int pointer;
-  int error;
+  ::i32 pointer;
+  ::i32 error;
 } MemoryFile;
 
-voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const ::string &filename, int mode)
+voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const ::string &filename, ::i32 mode)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   mf->error = 0;
@@ -21,7 +21,7 @@ uptr ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uptr
 
   MemoryFile *mf = (MemoryFile*)opaque;
 
-  if (mf->pointer+(int)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
+  if (mf->pointer+(::i32)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
   memory_transfer(buf, mf->stream+mf->pointer, this->get_size);
   mf->pointer += this->get_size;
   return this->get_size;
@@ -40,10 +40,10 @@ long ZCALLBACK mem_tell_file_func (voidpf opaque, voidpf stream)
   return mf->pointer;
 }
 
-long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uptr offset, int origin)
+long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uptr offset, ::i32 origin)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
-  int cpointer;
+  ::i32 cpointer;
 
   switch (origin){
     case ZLIB_FILEFUNC_SEEK_CUR :
@@ -70,12 +70,12 @@ long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uptr offset, in
   return 0;
 }
 
-int ZCALLBACK mem_close_file_func (voidpf opaque, voidpf stream)
+::i32 ZCALLBACK mem_close_file_func (voidpf opaque, voidpf stream)
 {
   return 0;
 }
 
-int ZCALLBACK mem_error_file_func (voidpf opaque, voidpf stream)
+::i32 ZCALLBACK mem_error_file_func (voidpf opaque, voidpf stream)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   return mf->error;

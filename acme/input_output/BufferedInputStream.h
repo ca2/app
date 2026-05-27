@@ -20,7 +20,7 @@
 
       ::pointer < DataInputStream > m_pdatainputstream;
 
-      //::array_base<char> m_buffer;
+      //::array_base<::i8> m_buffer;
       ::memory m_buffer;
 
       memsize m_have;

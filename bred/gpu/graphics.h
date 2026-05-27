@@ -124,10 +124,10 @@ namespace gpu
       // }
 
 
-      //virtual void context_transform(::double_point & p, enum_transform_context etransformcontext);
+      //virtual void context_transform(::f64_point & p, enum_transform_context etransformcontext);
 
     
-      ::double_size total_size() override;
+      ::f64_size total_size() override;
 
       virtual ::gpu::shader* rectangle_shader();
 
@@ -167,24 +167,24 @@ namespace gpu
       virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
 
 
-      void draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen) override;
+      void draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *ppen) override;
 
-      virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
+      virtual void _fill_quad(const ::f64_point points[4], const ::color::color& color);
 
-      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
+      void fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color) override;
 
       using ::draw2d::graphics::line;
-      void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen) override;
+      void line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* ppen) override;
 
       //using ::draw2d::graphics::get_text_extent;
-      double_size _get_text_extent(const ::scoped_string& scopedstr) override;
+      ::f64_size _get_text_extent(const ::scoped_string& scopedstr) override;
 
 
       using ::draw2d::graphics::get_text_metrics;
       void get_text_metrics(::write_text::text_metric* pmetrics) override;
 
 
-      void text_out(double x, double yParam, const ::scoped_string& scopedstr) override;
+      void text_out(::f64 x, ::f64 yParam, const ::scoped_string& scopedstr) override;
 
 
       virtual ::typeface::face* get_face(::write_text::font* pfont);

@@ -23,7 +23,7 @@ namespace berg
       ::image::image_pointer m_pimageOperatingSystem;
       ::image::image_pointer m_pimageOperatingAmbient;
       //string m_strFont1;
-      int m_iSequence;
+      ::i32 m_iSequence;
 
 
       about_the_operating_system_impact();

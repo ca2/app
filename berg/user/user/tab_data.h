@@ -22,8 +22,8 @@ namespace user
    public:
 
 
-      ::double_size                          m_sizeSep;
-      int                                 m_iHeightAddUp;
+      ::f64_size                          m_sizeSep;
+      ::i32                                 m_iHeightAddUp;
       ::draw2d::pen_pointer               m_ppen;
       ::draw2d::brush_pointer             m_pbrushTextHover;
       ::draw2d::brush_pointer             m_pbrushTextSel;
@@ -35,8 +35,8 @@ namespace user
       ::draw2d::pen_pointer               m_ppenBorderSel;
       ::draw2d::pen_pointer               m_ppenBorderHover;
       bool                                m_bCreated;
-      int                                 m_iTabHeight;
-      int                                 m_iTabWidth;
+      ::i32                                 m_iTabHeight;
+      ::i32                                 m_iTabWidth;
       tab_pane_array                      m_tabpanea;
       ::i32_rectangle                     m_rectangleTab;
       ::i32_rectangle                     m_rectangleHosting;

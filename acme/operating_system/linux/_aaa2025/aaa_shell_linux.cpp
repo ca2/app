@@ -6,16 +6,16 @@
 
 
 
-const char * linux_g_direct_get_file_icon_path(const ::file::path & path, int iSize);
+const_char_pointer linux_g_direct_get_file_icon_path(const ::file::path & path, ::i32 iSize);
 
-string linux_get_file_icon_path(string strPath, int iSize)
+string linux_get_file_icon_path(string strPath, ::i32 iSize)
 {
 
    return ::string_from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
 
 }
 
-const char * linux_g_direct_get_file_content_type(const ::scoped_string & scopedstrFile);
+const_char_pointer linux_g_direct_get_file_content_type(const ::scoped_string & scopedstrFile);
 
 string core_linux_get_file_content_type(string strPath)
 {
@@ -85,7 +85,7 @@ namespace linux
 //
 //      }
 
-//      int linux::get_image_by_extension(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key & key, color32_t crBk)
+//      ::i32 linux::get_image_by_extension(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key & key, color32_t crBk)
 //      {
 //
 //         return I32_MINIMUM;
@@ -95,16 +95,16 @@ namespace linux
 
 
 
-//      int linux::get_file_extension_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//      ::i32 linux::get_file_extension_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
-//         int iImage;
+//         ::i32 iImage;
 //
 //         wstring wstrFilePath;
 //
 ////         imagekey.m_strPath = "foo";
 //
-//         imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+//         imagekey.m_strShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 //
 //         {
 //
@@ -201,7 +201,7 @@ namespace linux
       //   IShellFolder * lpsf,
       //   LPITEMIDLIST lpiidlAbsolute,
       //   LPITEMIDLIST lpiidlChild,
-      //   const unichar * lpcszExtra,
+      //   const wide_character * lpcszExtra,
       //   e_icon eicon,
       //   HICON * phicon16,
       //   HICON * phicon48)
@@ -211,7 +211,7 @@ namespace linux
 
       //   if (lpsf == nullptr)
       //      return false;
-      //   int iType;
+      //   ::i32 iType;
       //   switch (eicon)
       //   {
       //   case icon_normal:
@@ -238,9 +238,9 @@ namespace linux
       //      lpiidlAbsolute,
       //      szFilePath);
 
-      //   char szPath[_MAX_PATH * 10];
+      //   ::i8 szPath[_MAX_PATH * 10];
       //   string strPath;
-      //   //   int iImage = I32_MINIMUM;
+      //   //   ::i32 iImage = I32_MINIMUM;
 
       //   HICON hicon16 = nullptr;
       //   HICON hicon48 = nullptr;
@@ -261,8 +261,8 @@ namespace linux
 
 
 
-      //   int iIcon = I32_MINIMUM;
-      //   unsigned int uFlags = 0;
+      //   ::i32 iIcon = I32_MINIMUM;
+      //   ::u32 uFlags = 0;
 
       //   SHFILEINFO shfi16;
       //   SHFILEINFO shfi48;
@@ -290,12 +290,12 @@ namespace linux
       //            auto pFind = strFilePath.rear_find('.');
 
       //            imagekey.m_iIcon = I32_MINIMUM;
-      //            imagekey.m_pszExtension = (char*)&strFilePath[iFind];
+      //            imagekey.m_pszExtension = (char_pointer )&strFilePath[iFind];
       //            imagekey.m_strPath = "";
       //         }
       //         else
       //         {
-      //            imagekey.m_strPath = (char *)strPath.c_str();
+      //            imagekey.m_strPath = (char_pointer )strPath.c_str();
       //            imagekey.m_iIcon = iIcon;
       //            imagekey.m_pszExtension = nullptr;
       //         }
@@ -356,7 +356,7 @@ namespace linux
       //         iIcon = imagekey.m_iIcon;
       //         bool bExtract = false;
       //         //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.length() + 1);
-      //         //char * lpsz = (char *) ::GlobalLock(hglobal);
+      //         //char_pointer lpsz = (char_pointer ) ::GlobalLock(hglobal);
       //         //strcpy(lpsz, strPath);
       //         try
       //         {
@@ -385,7 +385,7 @@ namespace linux
       //            if (strlen(imagekey.m_strPath) <= 0)
       //            {
       //               SHGetFileInfo(
-      //                  (const char *)lpiidlAbsolute,
+      //                  (const_char_pointer )lpiidlAbsolute,
       //                  FILE_ATTRIBUTE_NORMAL,
       //                  &shfi16,
       //                  sizeof(shfi16),
@@ -394,7 +394,7 @@ namespace linux
       //                  | SHGFI_SMALLICON);
       //               hicon16 = shfi16.hIcon;
       //               SHGetFileInfo(
-      //                  (const char *)lpiidlAbsolute,
+      //                  (const_char_pointer )lpiidlAbsolute,
       //                  FILE_ATTRIBUTE_NORMAL,
       //                  &shfi48,
       //                  sizeof(shfi48),
@@ -452,10 +452,10 @@ namespace linux
 
 
 
-      //int linux::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
+      //::i32 linux::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const wide_character * lpcszExtra, color32_t crBk)
       //{
 
-      //   int iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
+      //   ::i32 iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
 
       //   _017ItemIDListFree(pfork, lpiidlChild);
 
@@ -467,7 +467,7 @@ namespace linux
 
 
 
-//      bool linux::get_icon( ::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool linux::get_icon( ::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstr, const wide_character * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -481,7 +481,7 @@ namespace linux
 //
 //      }
 //
-//      bool linux::get_icon(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool linux::get_icon(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, LPITEMIDLIST lpiidlAbsolute, const wide_character * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -510,7 +510,7 @@ namespace linux
 //
 
 
-      shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcsz)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const_char_pointer lpcsz)
       {
 
          return get_folder_type(pparticle, utf8_to_unicode(lpcsz));
@@ -561,12 +561,12 @@ pdirectorysystem->is(strPath))
       }
 
 
-      int shell::impl_get_file_image(const image_key & imagekeyParam)
+      ::i32 shell::impl_get_file_image(const image_key & imagekeyParam)
       {
 
          image_key imagekey(imagekeyParam);
 
-         int iImage = I32_MINIMUM;
+         ::i32 iImage = I32_MINIMUM;
 
          if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
          {
@@ -675,7 +675,7 @@ pdirectorysystem->is(strPath))
          if (::is_set(pFind) || iFind2 >= 2)
          {
             string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
-            int i = 0;
+            ::i32 i = 0;
 
             while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
             {
@@ -860,7 +860,7 @@ pdirectorysystem->is(strPath))
 //
 //      }
 //
-//      int linux::shell_run()
+//      ::i32 linux::shell_run()
 //      {
 //
 //         per_fork fork;
@@ -886,7 +886,7 @@ pdirectorysystem->is(strPath))
 //
 //               synchronouslock.unlock();
 //
-//               int iImage = get_image(&fork, pkey->m_pacmewindowingwindow, *pkey, nullptr, pkey->m_cr);
+//               ::i32 iImage = get_image(&fork, pkey->m_pacmewindowingwindow, *pkey, nullptr, pkey->m_cr);
 //
 //               {
 //
@@ -910,10 +910,10 @@ pdirectorysystem->is(strPath))
 //
 
 
-//      int linux::get_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//      ::i32 linux::get_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
-//         int iImage = I32_MINIMUM;
+//         ::i32 iImage = I32_MINIMUM;
 //
 //         {
 //            if (color32_byte_opacity(crBk) != 255)
@@ -929,7 +929,7 @@ pdirectorysystem->is(strPath))
 //
 //            imagekey.set_path(strPath);
 //
-//            imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+//            imagekey.m_strShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 //
 //            imagekey.m_eattribute = eattribute;
 //
@@ -982,11 +982,11 @@ pdirectorysystem->is(strPath))
 //
 
 
-      int shell::get_image_by_file_extension(image_key & imagekey)
-      //int linux::get_image_foo(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      ::i32 shell::get_image_by_file_extension(image_key & imagekey)
+      //::i32 linux::get_image_foo(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         int iImage = I32_MINIMUM;
+         ::i32 iImage = I32_MINIMUM;
 
          {
 
@@ -1000,7 +1000,7 @@ pdirectorysystem->is(strPath))
 
             image_key imagekey;
 
-            imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+            imagekey.m_strShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 
             imagekey.set_extension(imagekey.m_strPath);
 
@@ -1038,7 +1038,7 @@ pdirectorysystem->is(strPath))
       }
 
 
-//      int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
+//      ::i32 shell::add_hover_image(::i32 iSize, ::i32 iImage, color32_t crBk)
 //      {
 //
 //         if (crBk == 0)

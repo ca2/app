@@ -115,7 +115,7 @@ CLASS_DECL_ACME void task_set_name(htask htask, const ::scoped_string & scopedst
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask htask, _In_ PCWSTR pThreadDescription);
 
 
-int get_os_thread_priority(::enum_priority epriority)
+::i32 get_os_thread_priority(::enum_priority epriority)
 {
 
    if (epriority <= ::e_priority_none)
@@ -145,7 +145,7 @@ int get_os_thread_priority(::enum_priority epriority)
 
 
 
-int get_os_priority_class(::enum_priority epriority)
+::i32 get_os_priority_class(::enum_priority epriority)
 {
 
    if (epriority <= ::e_priority_none)
@@ -174,7 +174,7 @@ int get_os_priority_class(::enum_priority epriority)
 }
 
 
-::enum_priority get_os_thread_scheduling_priority(int nPriority)
+::enum_priority get_os_thread_scheduling_priority(::i32 nPriority)
 {
 
    ::enum_priority epriority;
@@ -213,7 +213,7 @@ int get_os_priority_class(::enum_priority epriority)
 }
 
 
-::enum_priority get_os_class_scheduling_priority(int nPriority)
+::enum_priority get_os_class_scheduling_priority(::i32 nPriority)
 {
 
    ::enum_priority epriority;
@@ -353,13 +353,13 @@ CLASS_DECL_ACME string task_get_name()
 }
 
 
-//enum_synchronization_result windows_wait_result_to_synchronization_result(int iResult)
+//enum_synchronization_result windows_wait_result_to_synchronization_result(::i32 iResult)
 //{
 //
 //   if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
 //   {
 //
-//      return (enum_synchronization_result)((int)e_synchronization_result_abandoned_base + (iResult - WAIT_ABANDONED_0));
+//      return (enum_synchronization_result)((::i32)e_synchronization_result_abandoned_base + (iResult - WAIT_ABANDONED_0));
 //
 //   }
 //   else if (iResult == WAIT_IO_COMPLETION)
@@ -383,7 +383,7 @@ CLASS_DECL_ACME string task_get_name()
 //   else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
 //   {
 //
-//      return (enum_synchronization_result)((int)e_synchronization_result_signaled_base + (iResult - WAIT_OBJECT_0));
+//      return (enum_synchronization_result)((::i32)e_synchronization_result_signaled_base + (iResult - WAIT_OBJECT_0));
 //
 //   }
 //   else
@@ -457,7 +457,7 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
 }
 
 
-CLASS_DECL_ACME int get_processor_count()
+CLASS_DECL_ACME ::i32 get_processor_count()
 {
 
    SYSTEM_INFO sysinfo;

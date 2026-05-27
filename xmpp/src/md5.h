@@ -17,16 +17,16 @@
 struct MD5Context {
 	::u32 buf[4];
 	::u32 bits[2];
-	unsigned char in[64];
+	::u8 in[64];
 };
 
 void MD5Init(struct MD5Context *action_context);
-void MD5Update(struct MD5Context *action_context, unsigned char const *buf,
+void MD5Update(struct MD5Context *action_context, ::u8 const *buf,
 	       ::u32 len);
-void MD5Final(unsigned char digest[16], struct MD5Context *action_context);
+void MD5Final(::u8 digest[16], struct MD5Context *action_context);
 
 #ifdef DEBUG_MD5
-void MD5DumpBytes(unsigned char *b, int len);
+void MD5DumpBytes(::u8 *b, ::i32 len);
 #endif
 
 #endif /* !MD5_H */

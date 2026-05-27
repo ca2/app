@@ -31,7 +31,7 @@ namespace windowing
 
 
       virtual ::u32 monitor_color_temperature();
-      virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
+      virtual bool adjust_monitor( ::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma);
 
 
       virtual ::i32_rectangle monitor_rectangle();
@@ -42,10 +42,10 @@ namespace windowing
 
       virtual void set_workspace_rectangle(const ::i32_rectangle & rectangle);
 
-      virtual void set_workspace_rectangle_left(int left);
-      virtual void set_workspace_rectangle_top(int top);
-      virtual void set_workspace_rectangle_right(int right);
-      virtual void set_workspace_rectangle_bottom(int bottom);
+      virtual void set_workspace_rectangle_left(::i32 left);
+      virtual void set_workspace_rectangle_top(::i32 top);
+      virtual void set_workspace_rectangle_right(::i32 right);
+      virtual void set_workspace_rectangle_bottom(::i32 bottom);
 
 
    };

@@ -77,7 +77,7 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 
    }
 
-   int iShare = _SH_DENYNO;
+   ::i32 iShare = _SH_DENYNO;
 
    m_eopen = eopen;
 
@@ -93,7 +93,7 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 }
 
 
-void stdio_file::open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, int iShare)
+void stdio_file::open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, ::i32 iShare)
 {
 
    m_path = path;
@@ -192,7 +192,7 @@ try_again:
 void stdio_file::translate(filesize offset, ::enum_seek eseek)
 {
 
-   int nFrom = SEEK_SET;
+   ::i32 nFrom = SEEK_SET;
 
    switch (eseek)
    {
@@ -220,7 +220,7 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
 
 #else
 
-   int iFseekResult = fseek(m_pfile, offset, nFrom);
+   ::i32 iFseekResult = fseek(m_pfile, offset, nFrom);
 
    if (iFseekResult != 0)
    {
@@ -263,12 +263,12 @@ memsize stdio_file::read(void * p, ::memsize s)
 
    auto amountRead = fread(p, 1, s, m_pfile);
 
-   int iEof = feof(m_pfile);
+   ::i32 iEof = feof(m_pfile);
 
    if (!iEof)
    {
 
-      int iError = ferror(m_pfile);
+      ::i32 iError = ferror(m_pfile);
 
       if (iError != 0)
       {
@@ -286,10 +286,10 @@ memsize stdio_file::read(void * p, ::memsize s)
 }
 
 
-int stdio_file::get_unsigned_char()
+::i32 stdio_file::get_unsigned_char()
 {
 
-   int iChar = fgetc(m_pfile);
+   ::i32 iChar = fgetc(m_pfile);
 
    if (iChar == EOF)
    {
@@ -300,15 +300,15 @@ int stdio_file::get_unsigned_char()
 
    }
 
-   return (unsigned char)iChar;
+   return (::u8)iChar;
 
 }
 
 
-int stdio_file::peek_byte()
+::i32 stdio_file::peek_byte()
 {
 
-   int iChar = fgetc(m_pfile);
+   ::i32 iChar = fgetc(m_pfile);
 
    if (iChar == EOF)
    {
@@ -321,12 +321,12 @@ int stdio_file::peek_byte()
 
    ::ungetc(iChar, m_pfile);
 
-   return (unsigned char)iChar;
+   return (::u8)iChar;
 
 }
 
 
-void stdio_file::put_byte_back(unsigned char uch)
+void stdio_file::put_byte_back(::u8 uch)
 {
 
    ::ungetc(uch, m_pfile);
@@ -446,7 +446,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
 
 
-::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
+::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, ::i32 iShare)
 {
 
    auto pfile = pparticle->application()->create_newø < ::stdio_file >();
@@ -624,8 +624,8 @@ memsize file_system::__safe_find_string(const ::file::path& path, const_char_poi
       return -2;
    }
 
-   char buffer[BUFFER_SIZE * 2];
-   char* found;
+   ::i8 buffer[BUFFER_SIZE * 2];
+   char_pointer found;
    size_t bytesRead;
    size_t offset = 0;
    memsize pos=0;
@@ -794,7 +794,7 @@ void __cdecl __clearerr_s(FILE * stream)
 
    }
 
-   auto psz = fgets(pszBuffer, (int)iBufferSize, pfile);
+   auto psz = fgets(pszBuffer, (::i32)iBufferSize, pfile);
 
    if (::is_null(psz))
    {
@@ -836,7 +836,7 @@ memsize file_system::as_memory(const ::file::path & pathParam, void * p, memsize
 
    auto iReadAtMostByteCount = s;
 
-   unsigned char * psz = (unsigned char *)p;
+   ::u8 * psz = (::u8 *)p;
 
    ::size_t iPos = 0;
 
@@ -1045,11 +1045,11 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
 
    }
 
-   int iChar;
+   ::i32 iChar;
 
    string strLine;
 
-   int iLastChar = -1;
+   ::i32 iLastChar = -1;
 
    while (iLine >= 0)
    {
@@ -1083,7 +1083,7 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
       else if (iLine == 0)
       {
 
-         str += (char)iChar;
+         str += (::i8)iChar;
 
       }
 

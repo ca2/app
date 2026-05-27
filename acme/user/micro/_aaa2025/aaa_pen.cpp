@@ -30,7 +30,7 @@ pen::~pen()
 }
 
 
-   ::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, int iWidth, color32_t color)
+   ::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, ::i32 iWidth, color32_t color)
    {
 
       ::pointer<::nano::graphics::pen> ppen(e_create, pparticle, nullptr);

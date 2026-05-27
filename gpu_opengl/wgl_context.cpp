@@ -90,7 +90,7 @@ namespace gpu_opengl
          pixelAttribs.append({WGL_STENCIL_BITS_ARB, 8});
          pixelAttribs.add(0);
 
-         for (int i = 0; i < pixelAttribs.size(); i++)
+         for (::i32 i = 0; i < pixelAttribs.size(); i++)
          {
 
             information("pixelAttribs{}={}", i, pixelAttribs[i]);
@@ -99,7 +99,7 @@ namespace gpu_opengl
 
          //ASSERT(pixelAttribs.size() == 17);
 
-         int format[64] = {};
+         ::i32 format[64] = {};
 
          UINT numFormats = 0;
 
@@ -164,7 +164,7 @@ namespace gpu_opengl
 
          }
 
-         int contextAttribs[] = {
+         ::i32 contextAttribs[] = {
             WGL_CONTEXT_MAJOR_VERSION_ARB,    3, WGL_CONTEXT_MINOR_VERSION_ARB, 3, WGL_CONTEXT_PROFILE_MASK_ARB,
             WGL_CONTEXT_CORE_PROFILE_BIT_ARB, 0};
 
@@ -179,7 +179,7 @@ namespace gpu_opengl
    }
 
 
-   void wgl_context::_create_wgl_context(int * contextAttribs)
+   void wgl_context::_create_wgl_context(::i32 * contextAttribs)
    {
 
       ::cast<approach> pgpuapproach = m_papplication->get_gpu_approach();
@@ -224,7 +224,7 @@ namespace gpu_opengl
 
          m_hdc = GetDC(m_hwnd);
 
-         // int pixelAttribs[] = {
+         // ::i32 pixelAttribs[] = {
          //     WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
          //     WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
          //     WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
@@ -253,7 +253,7 @@ namespace gpu_opengl
          pixelAttribs.append({WGL_ACCELERATION_ARB, WGL_FULL_ACCELERATION_ARB});
          // if (pdevice->m_bAddSwapChainSupport)
          //{
-         //    pixelAttribs.append({WGL_DOUBLE_BUFFER_ARB, GL_TRUE}); // <-- double buffering
+         //    pixelAttribs.append({WGL_DOUBLE_BUFFER_ARB, GL_TRUE}); // <-- ::f64 buffering
          // }
          pixelAttribs.append({WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB});
          // pixelAttribs.append({WGL_COLOR_BITS_ARB, 32}); // total color bits
@@ -267,7 +267,7 @@ namespace gpu_opengl
          pixelAttribs.append({WGL_STENCIL_BITS_ARB, 8}); // optional, for stencil
          pixelAttribs.add(0); // terminator
 
-         int format = 0;
+         ::i32 format = 0;
 
          UINT numFormats = 0;
 
@@ -299,7 +299,7 @@ namespace gpu_opengl
             throw ::exception(error_failed, "SetPixelFormat failed");
          }
 
-         int contextAttribs[] = {
+         ::i32 contextAttribs[] = {
             WGL_CONTEXT_MAJOR_VERSION_ARB,    3, WGL_CONTEXT_MINOR_VERSION_ARB, 3, WGL_CONTEXT_PROFILE_MASK_ARB,
             WGL_CONTEXT_CORE_PROFILE_BIT_ARB, 0};
 
@@ -355,7 +355,7 @@ namespace gpu_opengl
       pixelformatdescriptor.iPixelType = PFD_TYPE_RGBA;
       pixelformatdescriptor.cColorBits = 32;
 
-      int iPixelFormat = ChoosePixelFormat(m_hdc, &pixelformatdescriptor);
+      ::i32 iPixelFormat = ChoosePixelFormat(m_hdc, &pixelformatdescriptor);
 
       SetPixelFormat(m_hdc, iPixelFormat, &pixelformatdescriptor);
 
@@ -455,7 +455,7 @@ namespace gpu_opengl
 
             informationf("MS WGL - wglMakeCurrent failed");
 
-            int iLastError = GetLastError();
+            ::i32 iLastError = GetLastError();
 
             informationf("last-error code: %d\n", iLastError);
 

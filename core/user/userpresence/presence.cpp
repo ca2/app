@@ -41,7 +41,7 @@ namespace userpresence
    void presence::defer_pulse_user_presence()
    {
 
-      int iStatus = (int) m_iShortStatusWayTag;
+      ::i32 iStatus = (::i32) m_iShortStatusWayTag;
       if(m_timeLastActivity.elapsed() < 20_s)
       {
          iStatus = status_online;

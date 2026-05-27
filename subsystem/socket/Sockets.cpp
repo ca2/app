@@ -48,7 +48,7 @@ namespace subsystem
 
 
 
-   void Sockets::startSockets(int loVer, int hiVer)
+   void Sockets::startSockets(::i32 loVer, ::i32 hiVer)
    {
       if (m_bIsStarted) {
          throw ::subsystem::Exception("Sockets already initialized.");
@@ -69,7 +69,7 @@ namespace subsystem
 
    }
 
-   void Sockets::_startSockets(int loVer, int hiVer)
+   void Sockets::_startSockets(::i32 loVer, ::i32 hiVer)
    {
 
 

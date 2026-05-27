@@ -4,12 +4,12 @@
 #include "acme/_operating_system.h"
 
 
-float g_DPIScaleX = 1.0f;
-float g_DPIScaleY = 1.0f;
+::f32 g_DPIScaleX = 1.0f;
+::f32 g_DPIScaleY = 1.0f;
 
 
 
-CLASS_DECL_ACME float os_get_dpi()
+CLASS_DECL_ACME ::f32 os_get_dpi()
 {
 
    return g_DPIScaleX;
@@ -17,7 +17,7 @@ CLASS_DECL_ACME float os_get_dpi()
 }
 
 
-CLASS_DECL_ACME float point_dpi(oswindow hwnd, float points)
+CLASS_DECL_ACME ::f32 point_dpi(oswindow hwnd, ::f32 points)
 {
 
    __UNREFERENCED_PARAMETER(hwnd);
@@ -27,7 +27,7 @@ CLASS_DECL_ACME float point_dpi(oswindow hwnd, float points)
 }
 
 
-CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
+CLASS_DECL_ACME ::f32 dpiy(oswindow hwnd, ::f32 y)
 {
 
    __UNREFERENCED_PARAMETER(hwnd);
@@ -37,7 +37,7 @@ CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 }
 
 
-//CLASS_DECL_ACME float dpix(HWND hwnd, float x)
+//CLASS_DECL_ACME ::f32 dpix(HWND hwnd, ::f32 x)
 //{
 //
 //   __UNREFERENCED_PARAMETER(hwnd);
@@ -47,7 +47,7 @@ CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 //}
 //
 //
-//CLASS_DECL_ACME float y_dpi(HWND hwnd, float y)
+//CLASS_DECL_ACME ::f32 y_dpi(HWND hwnd, ::f32 y)
 //{
 //
 //   __UNREFERENCED_PARAMETER(hwnd);
@@ -57,7 +57,7 @@ CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 //}
 //
 //
-//CLASS_DECL_ACME float x_dpi(HWND hwnd, float x)
+//CLASS_DECL_ACME ::f32 x_dpi(HWND hwnd, ::f32 x)
 //{
 //
 //   __UNREFERENCED_PARAMETER(hwnd);

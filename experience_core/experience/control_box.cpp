@@ -77,9 +77,9 @@ namespace experience_core
       {
 
          crBackground = argb(90, 
-            m_colorBackground.m_uchRed, 
-            m_colorBackground.m_uchGreen, 
-            m_colorBackground.m_uchBlue);
+            m_colorBackground.m_u8Red, 
+            m_colorBackground.m_u8Green, 
+            m_colorBackground.m_u8Blue);
 
       }
       else
@@ -140,7 +140,7 @@ namespace experience_core
    }
 
 
-   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_sizeButtonDefault={26, 26};

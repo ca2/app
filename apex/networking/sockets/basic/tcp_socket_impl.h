@@ -63,28 +63,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      {
 //
 //
-//         int _b;
-//         int _t;
-//         int _q;
-//         char * _buf;
+//         ::i32 _b;
+//         ::i32 _t;
+//         ::i32 _q;
+//         char_pointer _buf;
 //         memory m_memory;
-//         int m_iTcpOuputCapacity;
+//         ::i32 m_iTcpOuputCapacity;
 //
 //
-//         output(int iTcpOutputCapacity) :
+//         output(::i32 iTcpOutputCapacity) :
 //            m_iTcpOuputCapacity(iTcpOutputCapacity),
 //            _b(0), _t(0), _q(0)
 //         {
 //            m_memory.set_size(m_iTcpOuputCapacity);
-//            _buf = (char *)m_memory.get_data();
+//            _buf = (char_pointer )m_memory.get_data();
 //         }
 //
-//         output(int iTcpOutputCapacity, const_char_pointer buf, int len) :
+//         output(::i32 iTcpOutputCapacity, const_char_pointer pszBuffer, ::i32 len) :
 //            m_iTcpOuputCapacity(iTcpOutputCapacity),
 //            _b(0), _t(len), _q(len)
 //         {
 //            m_memory.set_size(m_iTcpOuputCapacity);
-//            _buf = (char *)m_memory.get_data();
+//            _buf = (char_pointer )m_memory.get_data();
 //            ::memory_copy(_buf, buf, len);
 //         }
 //
@@ -92,17 +92,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //         }
 //
-//         int Space()
+//         ::i32 Space()
 //         {
 //            return m_iTcpOuputCapacity - _t;
 //         }
-//         void add(const_char_pointer buf, int len)
+//         void add(const_char_pointer pszBuffer, ::i32 len)
 //         {
 //            ::memory_copy(_buf + _t, buf, len);
 //            _t += len;
 //            _q += len;
 //         }
-//         int erase(int len)
+//         ::i32 erase(::i32 len)
 //         {
 //            _b += len;
 //            _q -= len;
@@ -112,7 +112,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //            return _buf + _b;
 //         }
-//         int Len()
+//         ::i32 Len()
 //         {
 //            return _q;
 //         }
@@ -133,16 +133,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      //memsize m_output_length;
 //
 //      //bool     m_bReuseSession;
-//      //int m_socks4_state; ///< socks4 support
-//      //char m_socks4_vn; ///< socks4 support, temporary ::payload
-//      //char m_socks4_cd; ///< socks4 support, temporary ::payload
-//      //unsigned short m_socks4_dstport; ///< socks4 support
+//      //::i32 m_socks4_state; ///< socks4 support
+//      //::i8 m_socks4_vn; ///< socks4 support, temporary ::payload
+//      //::i8 m_socks4_cd; ///< socks4 support, temporary ::payload
+//      //::u16 m_socks4_dstport; ///< socks4 support
 //      //::u32 m_socks4_dstip; ///< socks4 support
 //
 //      //string m_strConnectHost;
 //      //::networking::port_t m_iConnectPort;
 //
-//      //int m_resolver_id; ///< Resolver atom (if any) for current open call
+//      //::i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 //
 //      //bool m_bReconnect; ///< Reconnect on lost connection flag
 //      //bool m_bTryingReconnect; ///< Trying to reconnect
@@ -194,7 +194,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      /** This callback is executed after a successful read from the socket.
 //      \lparam buf Pointer to the data
 //      \lparam len Length of the data */
-//      virtual void OnRawData(char * buf, memsize len) override;
+//      virtual void OnRawData(char_pointer buf, memsize len) override;
 //
 //      /** Called when output buffer has been sent.
 //      Note: Will only be called IF the output buffer has been used.
@@ -225,7 +225,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      //#endif
 //
 //            /** Callback executed when resolver thread has finished a resolve request. */
-//            //void OnResolved(int atom, ::networking::address * addr) override;
+//            //void OnResolved(::i32 atom, ::networking::address * addr) override;
 //            /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
 //      void OnSSLConnect() override;
 //      /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -248,7 +248,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //      void DisableInputBuffer(bool = true);
 //
-//      //void OnOptions(int,int,int,socket_id) override;
+//      //void OnOptions(::i32,::i32,::i32,socket_id) override;
 //
 //      void SetLineProtocol(bool = true) override;
 //
@@ -258,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      virtual string get_connect_host();
 //      virtual ::networking::port_t get_connect_port();
 //
-//      virtual int Protocol() override;
+//      virtual ::i32 Protocol() override;
 //
 //      /** Trigger limit for callback OnTransferLimit. */
 //      void SetTransferLimit(memsize sz);
@@ -270,8 +270,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      void OnRead() override;
 //      //using ::file::file::read;
 //      //using ::object::read;
-//      virtual int read(void * buf, int n);
-//      virtual int recv(void * buf, int n);
+//      virtual ::i32 read(void * buf, ::i32 n);
+//      virtual ::i32 recv(void * buf, ::i32 n);
 //      void on_read(const void * buf, memsize n) override;
 //      void OnWrite() override;
 //
@@ -310,16 +310,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //
 //      /** the actual send() */
-//      int try_write(const void * buf, int len);
+//      ::i32 try_write(const void * buf, ::i32 len);
 //      /** add data to output buffer top */
-//      void buffer(const void * buf, int len);
+//      void buffer(const void * buf, ::i32 len);
 //
 //      void InitializeContextTLSClientMethod();
 //
 //   };
 //
 //   extern "C"
-//      int tcp_socket_SSL_password_cb(char * buf, int num, int rwflag, void * userdata);
+//      ::i32 tcp_socket_SSL_password_cb(char_pointer buf, ::i32 num, ::i32 rwflag, void * userdata);
 //
 //
 //} // namespace sockets

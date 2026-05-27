@@ -56,7 +56,7 @@ namespace graphics3d
       //   cube(::std::initializer_list < ::file::path > list)
       //   {
 
-      //      int i = 0;
+      //      ::i32 i = 0;
 
       //      for (auto& item : list)
       //      {
@@ -107,8 +107,8 @@ namespace graphics3d
 
 
 
-      //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
-      //unsigned int cubemapTexture;
+      //::u32 skyboxVAO, skyboxVBO, skyboxEBO;
+      //::u32 cubemapTexture;
       //::string_array_base facesCubemap;
 
 

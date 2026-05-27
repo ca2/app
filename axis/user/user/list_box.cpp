@@ -460,7 +460,7 @@ namespace user
 
       //::draw2d::save_context savecontext(pgraphics);
 
-      //::double_rectangle rectangleClipBox;
+      //::f64_rectangle rectangleClipBox;
 
       //pgraphics->get_clip_box(rectangleClipBox);
 
@@ -607,7 +607,7 @@ namespace user
 
       pgraphics->set(ppen);
 
-      ::double_rectangle rX(rectangleX);
+      ::f64_rectangle rX(rectangleX);
 
       rX.deflate(1, 1, 1, 1);
 
@@ -653,7 +653,7 @@ namespace user
 
       string strItem;
 
-      ::double_size size;
+      ::f64_size size;
 
       psize->cx = 0;
 
@@ -673,14 +673,14 @@ namespace user
          if (size.cx > psize->cx)
          {
 
-            psize->cx = (int)size.cx;
+            psize->cx = (::i32)size.cx;
 
          }
 
          if (size.cy > m_dItemHeight)
          {
 
-            m_dItemHeight = (int)size.cy;
+            m_dItemHeight = (::i32)size.cy;
 
             if (size.cy != 18)
             {
@@ -695,7 +695,7 @@ namespace user
 
       m_dItemHeight += 4.0;
 
-      int iAddUp = 0;
+      ::i32 iAddUp = 0;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
@@ -718,9 +718,9 @@ namespace user
 
       }
 
-      psize->cy = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
-      int iScrollBarWidth = 20;
+      ::i32 iScrollBarWidth = 20;
 
       psize->cx += iScrollBarWidth;
 
@@ -738,10 +738,10 @@ namespace user
    }
 
 
-   int list_box::_001GetItemHeight() const
+   ::i32 list_box::_001GetItemHeight() const
    {
 
-      return (int)(m_dItemHeight + m_iPadding * 2);
+      return (::i32)(m_dItemHeight + m_iPadding * 2);
 
    }
 
@@ -754,7 +754,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         set_context_offset_y((double)(iItem * _001GetItemHeight()));
+         set_context_offset_y((::f64)(iItem * _001GetItemHeight()));
 
       }
       else
@@ -1193,7 +1193,7 @@ namespace user
 
       ::i32_rectangle rectangleItem = rectangleX;
 
-      int iAddUp = 0;
+      ::i32 iAddUp = 0;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
@@ -1205,7 +1205,7 @@ namespace user
       for (::collection::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (int)(iAddUp + iItem));
+         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (::i32)(iAddUp + iItem));
 
          rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 

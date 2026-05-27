@@ -41,12 +41,12 @@ namespace subsystem
       // Encrypt the given buffer.
       // The sizes of both "dst" and "src" must be multiples of 8.
       // Both "dst" and "src" may point to the same buffer.
-      void encrypt(unsigned char *dst, const unsigned char *src, size_t dataLen, const unsigned char *key);
+      void encrypt(::u8 *dst, const ::u8 *src, size_t dataLen, const ::u8 *key);
 
       // Decrypt the given buffer.
       // The sizes of both "dst" and "src" must be multiples of 8.
       // Both "dst" and "src" may point to the same buffer.
-      void decrypt(unsigned char *dst, const unsigned char *src, size_t dataLen, const unsigned char *key);
+      void decrypt(::u8 *dst, const ::u8 *src, size_t dataLen, const ::u8 *key);
 
    private:
       enum OperationMode
@@ -60,21 +60,21 @@ namespace subsystem
       // Sets the internal key register according to the hexadecimal
       // key contained in the 8 bytes of hexkey, according to the DES,
       // for encryption or decryption according to mode.
-      void deskey(const unsigned char hexKey[8], OperationMode mode);
+      void deskey(const ::u8 hexKey[8], OperationMode mode);
 
       // Encrypts/Decrypts (according to the key currently loaded in the
       // internal key register) one block of eight bytes at address 'from'
       // into the block at address 'to'.  They can be the same.
-      void des(const unsigned char from[8], unsigned char to[8]);
+      void des(const ::u8 from[8], ::u8 to[8]);
 
-      static void scrunch(const unsigned char *outof, unsigned long *into);
-      static void unscrun(const unsigned long *outof, unsigned char *into);
-      static void desfunc(unsigned long *block, unsigned long *keys);
-      void cookey(unsigned long *raw1);
-      void usekey(unsigned long *from);
+      static void scrunch(const ::u8 *outof, ulong *into);
+      static void unscrun(const ulong *outof, ::u8 *into);
+      static void desfunc(ulong *block, ulong *keys);
+      void cookey(ulong *raw1);
+      void usekey(ulong *from);
 
 
-      unsigned long m_knL[32];
+      ulong m_knL[32];
    };
 
 

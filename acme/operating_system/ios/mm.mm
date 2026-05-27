@@ -34,7 +34,7 @@ void _get_exe_path(char * pszPath, int size)
 
 
 
-//bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+//bool mm1_get_file_image(::u32 * pcr, int cx, int cy, int iScan, const char * psz)
 //{
 //   
 //   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
@@ -49,7 +49,7 @@ NSString * applicationDocumentsDirectory()
 }
 
 
-bool _ui_library_dir(char * psz, unsigned int * puiSize)
+bool _ui_library_dir(char * psz, ::u32 * puiSize)
 {
 
    NSString * pstr = [NSHomeDirectory() stringByAppendingString:@"/Library"];
@@ -61,7 +61,7 @@ bool _ui_library_dir(char * psz, unsigned int * puiSize)
       
    }
    
-   *puiSize = (unsigned int) strlen([pstr UTF8String]);
+   *puiSize = (::u32) strlen([pstr UTF8String]);
    
    strncpy(psz, [pstr UTF8String], *puiSize);
    

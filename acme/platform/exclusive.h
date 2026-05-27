@@ -23,8 +23,8 @@ namespace acme
 
 // #else
 
-//       int                     m_iFile;
-//       int                     m_iLock;
+//       ::i32                     m_iFile;
+//       ::i32                     m_iLock;
 
 // #endif
 

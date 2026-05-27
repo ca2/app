@@ -55,12 +55,12 @@ inline void * fixed_alloc_no_sync::Alloc()
    // erase the first available node from the free list_base
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
-   return (void *) (((unsigned char *)pNode) + 16);
+   return (void *) (((::u8 *)pNode) + 16);
 }
 
 inline void fixed_alloc_no_sync::Free(void * p)
 {
-   p = (void *) (((unsigned char *)p) - 16);
+   p = (void *) (((::u8 *)p) - 16);
    if (p != nullptr)
    {
       // simply return the node to the free list_base
@@ -77,13 +77,13 @@ public:
 
 
    ::heap::allocator * m_pallocator;
-   int                                             m_i32;
-   int                                             m_iShareCount;
+   ::i32                                             m_i32;
+   ::i32                                             m_iShareCount;
    ::array_base < ::critical_section >             m_criticalsectiona;
    address_array_base < fixed_alloc_no_sync * >    m_allocptra;
 
 
-   fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64, int iShareCount = 2);
+   fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64, ::i32 iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -103,8 +103,8 @@ public:
 
 
    ::heap::allocator *                          m_pallocator;
-   int                                          m_i32;
-   int                                          m_iShareCount;
+   ::i32                                          m_i32;
+   ::i32                                          m_iShareCount;
    address_array_base < fixed_alloc_sync * >    m_allocptra;
 
 
@@ -149,8 +149,8 @@ public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const_char_pointer ,int) { return s_palloc->Alloc(); } \
-   void operator delete(void * p, const_char_pointer ,int) { s_palloc->Free(p); } \
+   void * operator new(size_t, const_char_pointer ,::i32) { return s_palloc->Alloc(); } \
+   void operator delete(void * p, const_char_pointer ,::i32) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 
 

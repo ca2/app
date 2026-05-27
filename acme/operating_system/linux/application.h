@@ -58,7 +58,7 @@
 //
 //      virtual ::user::interaction_base * FindWindow(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName);
 //
-//      virtual ::user::interaction_base * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const_char_pointer lpszClass, const ::scoped_string & scopedstrWindow);
+//      virtual ::user::interaction_base * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const_char_pointer pszClass, const ::scoped_string & scopedstrWindow);
 //
 //
 //      virtual void get_time(struct timeval *i32_point);

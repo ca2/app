@@ -32,18 +32,18 @@ struct NSWindow;
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
 
-int get_main_screen_rectangle(::i32_rectangle * prectangle);
+::i32 get_main_screen_rectangle(::i32_rectangle * prectangle);
 
 
-int GetScreenRect(::i32_rectangle * prectangle, int iMonitor);
+::i32 GetScreenRect(::i32_rectangle * prectangle, ::i32 iMonitor);
 
 
-int GetScreenCount();
+::i32 GetScreenCount();
 
-int GetWorkspaceRect(::i32_rectangle * prectangle, int iMonitor);
+::i32 GetWorkspaceRect(::i32_rectangle * prectangle, ::i32 iMonitor);
 
 
-int GetWorkspaceCount();
+::i32 GetWorkspaceCount();
 
 
 

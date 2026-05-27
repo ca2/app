@@ -37,7 +37,7 @@ namespace user
       //
       // Cache:
       //
-      // int                           m_iKey;
+      // ::i32                           m_iKey;
 
       //::atom                                id();
       bool                                   m_bNew;
@@ -48,7 +48,7 @@ namespace user
       ::text::text                           m_text;
       ::u32                                  m_uiSmallBitmap;
       ::color::color                         m_colorSmallMask;
-      int                                    m_iSmallImageWidth;
+      ::i32                                    m_iSmallImageWidth;
       ::collection::index                                  m_iSubItem;
       ::collection::index                                  m_iColumn;
       ::image::image_list_pointer                m_pimagelist;
@@ -59,8 +59,8 @@ namespace user
       ::image::icon_int_map                 m_mapIcon;
       ::i32_size                             m_sizeIcon;
       bool                                   m_bIcon;
-      int                                  m_iPosition;
-      int                                  m_iWidth;
+      ::i32                                  m_iPosition;
+      ::i32                                  m_iWidth;
       bool                                   m_bCustomDraw;
       ::image::image_pointer                        m_pimageHeader;
 
@@ -79,8 +79,8 @@ namespace user
    
    
 
-      static int CompareOrderSectEndNonVisible(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
-      static int CompareOrder(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
+      static ::i32 CompareOrderSectEndNonVisible(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
+      static ::i32 CompareOrder(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
 
       static inline bool less_SectEndNonVisible(const ::pointer<list_column> columna, const ::pointer<list_column>columnb)
       {
@@ -95,7 +95,7 @@ namespace user
 
       //};
 
-      static int CompareKey(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
+      static ::i32 CompareKey(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
 
       bool operator ==(const ::user::list_column & pcolumn) const;
       //list_column & operator = (const list_column & column);

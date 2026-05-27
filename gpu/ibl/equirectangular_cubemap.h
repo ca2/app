@@ -29,8 +29,8 @@ namespace gpu
          /// @brief  model view projection
          floating_matrix4 mvp;
 
-         //int faceIndex;
-         int hdri;
+         //::i32 faceIndex;
+         ::i32 hdri;
          };
 
          const ::u32 m_uCubemapWidth = 2048;

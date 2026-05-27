@@ -11,7 +11,7 @@
 //#include <sys/stat.h>
 
 
-void fd_set_size(int fd, ::i64 iSize)
+void fd_set_size(::i32 fd, ::i64 iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
@@ -20,7 +20,7 @@ void fd_set_size(int fd, ::i64 iSize)
 }
 
 
-::i64 fd_get_file_size(int fd)
+::i64 fd_get_file_size(::i32 fd)
 {
 
    struct stat st;
@@ -96,7 +96,7 @@ bool __node_further_file_is_equal(const ::file::path &, const ::file::path &)
 // The lockf() function is not available on Android; we translate to flock().
 //#define F_LOCK LOCK_EX
 //#define F_ULOCK LOCK_UN
-int lockf(int fd, int cmd, off_t ignored_len) 
+::i32 lockf(::i32 fd, ::i32 cmd, off_t ignored_len) 
 {
    
    return ::flock(fd, cmd);

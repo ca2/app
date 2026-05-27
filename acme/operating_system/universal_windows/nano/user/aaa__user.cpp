@@ -16,7 +16,7 @@ extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactor
    //pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
    //pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
    //pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();
-   //pfactory->add_factory_item < ::windows::nano::graphics::device, ::nano::graphics::device >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::context, ::nano::graphics::context >();
 
    //pfactory->add_factory_item < ::micro::user >();
 

@@ -13,7 +13,7 @@
 #endif // _DEBUG
 
 
-single_lock::single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock, const ::subparticle * psubparticleContext, const_char_pointer pszFile, int iLine) :
+single_lock::single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock, const ::subparticle * psubparticleContext, const_char_pointer pszFile, ::i32 iLine) :
    m_psubparticleContext(psubparticleContext),
    m_pszFile(pszFile),
    m_iLine(iLine),
@@ -351,7 +351,7 @@ void single_lock::debug_on_unlock()
 }
 
 
-void single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
+void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 {
 
    ASSERT(m_psubparticleSynchronization != nullptr);
@@ -393,7 +393,7 @@ bool single_lock::is_locked() const
 
 
 
-_single_lock::_single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock, const ::subparticle * psubparticleContext, const_char_pointer pszFile, int iLine) :
+_single_lock::_single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock, const ::subparticle * psubparticleContext, const_char_pointer pszFile, ::i32 iLine) :
    m_psubparticleContext(psubparticleContext),
    m_pszFile(pszFile),
    m_iLine(iLine),
@@ -598,7 +598,7 @@ void _single_lock::unlock()
 }
 
 
-void _single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
+void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 {
 
    //ASSERT(m_psync != nullptr);

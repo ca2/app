@@ -49,8 +49,8 @@ namespace draw2d_cairo
 
       bool mask_fill(cairo_t * pdc);
       bool mask_paint(cairo_t * pdc);
-      bool mask_paint_with_alpha(cairo_t * pdc, double dOpacity);
-      bool _mask(cairo_t * pdc, double dOpacity, enum_mask emask);
+      bool mask_paint_with_alpha(cairo_t * pdc, ::f64 dOpacity);
+      bool _mask(cairo_t * pdc, ::f64 dOpacity, enum_mask emask);
       bool _mask_combine(cairo_t * pdc);
 
       bool _fill(cairo_t * pdc);

@@ -36,12 +36,12 @@ namespace innate_subsystem
    // {
    // }
    //
-   // void ProgressBar::setRange(unsigned short min, unsigned short max)
+   // void ProgressBar::setRange(::u16 min, ::u16 max)
    // {
    //    //SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKE::lparam(min, max));
    // }
    //
-   // void ProgressBar::setPos(unsigned short pos)
+   // void ProgressBar::setPos(::u16 pos)
    // {
    //    //SendMessage(m_hwnd, PBM_SETPOS, (::wparam)pos, 0);
    // }

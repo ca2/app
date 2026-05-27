@@ -12,15 +12,15 @@
 #include <sys/wait.h>
 
 
-int gdb_check();
+::i32 gdb_check();
 
 
 class ::time g_timeLastDebuggerAttachedCheck;
-int g_iLastIsDebuggerAttached;
-int g_iLastIsDebuggerAttachedOptimizedCount;
+::i32 g_iLastIsDebuggerAttached;
+::i32 g_iLastIsDebuggerAttachedOptimizedCount;
 
 
-int __node_is_debugger_attached()
+::i32 __node_is_debugger_attached()
 {
 
    if(g_timeLastDebuggerAttachedCheck.elapsed() > 300_ms)
@@ -58,14 +58,14 @@ int __node_is_debugger_attached()
 // https://stackoverflow.com/users/63550/peter-mortensen
 // https://stackoverflow.com/users/75501/sam-liao
 
-int gdb_check()
+::i32 gdb_check()
 {
 
    critical_section_lock lock(::platform::get()->globals_critical_section());
 
-   char buf[4096];
+   ::i8 buf[4096];
 
-   const int status_fd = ::open("/proc/self/status", O_RDONLY | O_CLOEXEC);
+   const ::i32 status_fd = ::open("/proc/self/status", O_RDONLY | O_CLOEXEC);
 
    if (status_fd == -1)
    {
@@ -87,7 +87,7 @@ int gdb_check()
 
    buf[num_read] = '\0';
 
-   constexpr char tracerPidString[] = "TracerPid:";
+   constexpr ::i8 tracerPidString[] = "TracerPid:";
 
    const auto tracer_pid_ptr = ::strstr(buf, tracerPidString);
 
@@ -110,7 +110,7 @@ int gdb_check()
       else
       {
 
-         int iDebuggerAttached = ::isdigit(*characterPtr) != 0 && *characterPtr != '0';
+         ::i32 iDebuggerAttached = ::isdigit(*characterPtr) != 0 && *characterPtr != '0';
 
          return iDebuggerAttached;
 
@@ -124,11 +124,11 @@ int gdb_check()
 
 
 /*
-int gdb_check()
+::i32 gdb_check()
 {
-  int pid = fork();
-  int status;
-  int res;
+  ::i32 pid = fork();
+  ::i32 status;
+  ::i32 res;
 
   if (pid == -1)
     {
@@ -138,7 +138,7 @@ int gdb_check()
 
   if (pid == 0)
     {
-      int ppid = getppid();
+      ::i32 ppid = getppid();
 
       // Child
       if (ptrace(PTRACE_ATTACH, ppid, nullptr, nullptr) == 0)
@@ -177,7 +177,7 @@ int gdb_check()
 //   return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
 //}
 //
-//int
+//::i32
 //gdb_check(void)
 //{
 //
@@ -234,7 +234,7 @@ int gdb_check()
 //
 //::u32 dwMessageId,
 //::u32 dwLanguageId,
-//char * pBuffer,
+//char_pointer pBuffer,
 //
 //::u32 nSize,
 //va_list *Arguments

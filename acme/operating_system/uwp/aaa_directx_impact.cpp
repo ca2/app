@@ -196,7 +196,7 @@ namespace universal_windows
       m_window->PointerPressed -= m_tokenPointerPressed;
    }
 
-   void impact::SetText(String^ text, int iBeg, int iEnd)
+   void impact::SetText(String^ text, ::i32 iBeg, ::i32 iEnd)
    {
 
       m_strText = text;
@@ -405,7 +405,7 @@ namespace universal_windows
       }
    }
 
-   //Rect impact::ScaleRect(Rect rectangle, double scale)
+   //Rect impact::ScaleRect(Rect rectangle, ::f64 scale)
    //{
    //   rectangle.X *= scale;
    //   rectangle.Y *= scale;
@@ -439,7 +439,7 @@ namespace universal_windows
       selectionRect.Y += windowBounds.Y;
 
       // Finally, scale up to raw pixels.
-      double scaleFactor = DisplayInformation::GetForCurrentImpact()->RawPixelsPerViewPixel;
+      ::f64 scaleFactor = DisplayInformation::GetForCurrentImpact()->RawPixelsPerViewPixel;
 
       contentRect = ScaleRect(contentRect, scaleFactor);
       selectionRect = ScaleRect(selectionRect, scaleFactor);
@@ -526,7 +526,7 @@ namespace universal_windows
          // Left arrow
       case VirtualKey::Left:
          // If the shift key is down, then adjust the size of the selection.
-         //if ((int)m_window->GetKeyState(VirtualKey::Shift) & (int) CoreVirtualKeyStates::Down)
+         //if ((::i32)m_window->GetKeyState(VirtualKey::Shift) & (::i32) CoreVirtualKeyStates::Down)
          //{
          //   // If this is the start of a selection, then remember which edge we are adjusting.
          //   if (!HasSelection())
@@ -560,7 +560,7 @@ namespace universal_windows
          // Right arrow
       case VirtualKey::Right:
          // If the shift key is down, then adjust the size of the selection.
-         //if ((int)m_window->GetKeyState(VirtualKey::Shift) & (int) CoreVirtualKeyStates::Down)
+         //if ((::i32)m_window->GetKeyState(VirtualKey::Shift) & (::i32) CoreVirtualKeyStates::Down)
          //{
          //   // If this is the start of a selection, then remember which edge we are adjusting.
          //   if (!HasSelection())
@@ -594,7 +594,7 @@ namespace universal_windows
    }
 
    // Adjust the active endpoint of the selection in the specified direction.
-   void impact::AdjustSelectionEndpoint(int direction)
+   void impact::AdjustSelectionEndpoint(::i32 direction)
    {
       CoreTextRange range = _selection;
       if (_extendingLeft)

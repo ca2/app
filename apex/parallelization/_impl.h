@@ -281,7 +281,7 @@ inline ::i32_bool critical_section::Unlock()
 //
 //
 //template < typename PRED >
-//inline bool predicate_Sleep(int iTime, PRED pred)
+//inline bool predicate_Sleep(::i32 iTime, PRED pred)
 //{
 //
 //   if(iTime < 100)

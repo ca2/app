@@ -37,13 +37,13 @@ namespace windows_common
 
             wstring wstr(scopedstr);
 
-            int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.length(), nullptr, 0);
+            ::i32 iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (::i32)wstr.length(), nullptr, 0);
 
             wstring wstrTarget;
 
             WCHAR* pwszTarget = wstrTarget.get_buffer(iSize);
 
-            IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.length(), pwszTarget, iSize);
+            IdnToAscii(IDN_RAW_PUNYCODE, wstr, (::i32)wstr.length(), pwszTarget, iSize);
 
             wstrTarget.release_buffer();
 
@@ -59,13 +59,13 @@ namespace windows_common
 
             wstring wstrSource(scopedstr);
 
-            int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.length(), nullptr, 0);
+            ::i32 iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (::i32)wstrSource.length(), nullptr, 0);
 
             wstring wstrTarget;
 
             auto pwszTarget = wstrTarget.get_buffer(iSize);
 
-            IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.length(), pwszTarget, iSize);
+            IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (::i32)wstrSource.length(), pwszTarget, iSize);
 
             wstrTarget.release_buffer(iSize);
 

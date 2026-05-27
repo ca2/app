@@ -151,8 +151,8 @@ namespace httpd
    //   const_char_pointer months[] = { "Jan","Feb","Mar","Apr","May","Jun",
    //                            "Jul","Aug","Sep","Oct","Nov","Dec"
    //   };
-   //   int i;
-   //   char s[40];
+   //   ::i32 i;
+   //   ::i8 s[40];
 
    //   /* 1997-12-16 09:50:40 */
 
@@ -200,7 +200,7 @@ namespace httpd
 
    //   gregoriantime.set(timeNow, ::time::local());
 
-   //   char slask[40]; // yyyy-mm-dd hh:mm:ss
+   //   ::i8 slask[40]; // yyyy-mm-dd hh:mm:ss
 
    //   sprintf(slask, "%d-%02d-%02d %02d:%02d:%02d",
    //           gregoriantime.m_iYear,
@@ -222,9 +222,9 @@ namespace httpd
    //}
 
 
-   //map_base < int, DH * > * g_pmapdh = nullptr;
+   //map_base < ::i32, DH * > * g_pmapdh = nullptr;
 
-   //map_base < int, DH * > * dh_map()
+   //map_base < ::i32, DH * > * dh_map()
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -232,7 +232,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = ___new map_base < int, DH * > ();
+   //      g_pmapdh = ___new map_base < ::i32, DH * > ();
 
    //   }
 
@@ -241,7 +241,7 @@ namespace httpd
    //}
 
 
-   //DH * get_dh(int keylength)
+   //DH * get_dh(::i32 keylength)
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -251,7 +251,7 @@ namespace httpd
    //}
 
 
-   //void set_dh(int keylength, DH * pdh)
+   //void set_dh(::i32 keylength, DH * pdh)
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -261,7 +261,7 @@ namespace httpd
    //}
 
 
-   //DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
+   //DH * tmp_dh_callback(SSL *ssl, ::i32 is_export, ::i32 keylength)
    //{
 
    //   switch(keylength)

@@ -121,14 +121,14 @@ namespace draw2d_cairo
    */
 
    /*
-      int palette::GetEntryCount()
+      ::i32 palette::GetEntryCount()
       {
 
          //ASSERT(get_os_data() != nullptr);
 
-         //unsigned short nEntries;
+         //::u16 nEntries;
 
-         //::GetObject(get_os_data(), sizeof(unsigned short), &nEntries); return (int)nEntries;
+         //::GetObject(get_os_data(), sizeof(::u16), &nEntries); return (::i32)nEntries;
 
          return 0;
 

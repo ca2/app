@@ -32,8 +32,8 @@ namespace prodevian
       //mnk_controller m_controller;
 
       // Configuration
-      float m_angleCursorPixel = 0.0025f;
-      float m_moveSpeed = 30.0f;
+      ::f32 m_angleCursorPixel = 0.0025f;
+      ::f32 m_moveSpeed = 30.0f;
 
 
 
@@ -44,7 +44,7 @@ namespace prodevian
 
       virtual void on_initialize_actor();
 
-      void on_update(float deltaTime) override;
+      void on_update(::f32 deltaTime) override;
 
       //::graphics3d::transform& transform() override;
 

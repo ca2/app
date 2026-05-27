@@ -8,7 +8,7 @@ public:
 
 
    ::atom                                 m_atomPid;
-   long long                                  m_iTask;
+   ::i64                                  m_iTask;
    ::pointer<::interprocess::call>          m_pcall;
    ::payload                              m_payload;
    ::pointer<manual_reset_happening>         m_pevReady;
@@ -16,7 +16,7 @@ public:
    boolean                               m_tristateHandled;
 
 
-   ::interprocess::task(::interprocess::call* pcall, const ::atom& idPid, long long iTask);
+   ::interprocess::task(::interprocess::call* pcall, const ::atom& idPid, ::i64 iTask);
    ~::interprocess::task() override;
 
 

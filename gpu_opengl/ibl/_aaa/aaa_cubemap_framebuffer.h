@@ -22,10 +22,10 @@ namespace gpu_opengl
 
 
 
-         ///int m_iWidth, m_iHeight;
-         //unsigned int m_uFramebufferId;
-         //unsigned int m_uDepthRenderbufferId;
-         //unsigned int m_uCubemapTextureId;
+         ///::i32 m_iWidth, m_iHeight;
+         //::u32 m_uFramebufferId;
+         //::u32 m_uDepthRenderbufferId;
+         //::u32 m_uCubemapTextureId;
 
 
 
@@ -36,7 +36,7 @@ namespace gpu_opengl
          ~cubemap_framebuffer() override;
 
 
-         //virtual void initialize_cubemap_framebuffer(int width, int height);
+         //virtual void initialize_cubemap_framebuffer(::i32 width, ::i32 height);
 
 
          void on_initialize_cubemap_framebuffer() override;
@@ -51,10 +51,10 @@ namespace gpu_opengl
           * Set which cube face texture to render to.
           * @param index
           */
-         void setCubeFace(unsigned int index, ::gpu::shader * pgpushader) override;
+         void setCubeFace(::u32 index, ::gpu::shader * pgpushader) override;
 
 
-         unsigned int getCubemapTextureId();
+         ::u32 getCubemapTextureId();
 
 
       };

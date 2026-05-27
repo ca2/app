@@ -40,35 +40,35 @@ typedef UINT_PTR (*NSISPLUGINCALLBACK)(enum NSPIM);
 // but the stack, variables and HWND passed on to plug-ins.
 typedef struct
 {
-  int autoclose;
-  int all_user_var;
-  int exec_error;
-  int abort;
-  int exec_reboot; // NSIS_SUPPORT_REBOOT
-  int reboot_called; // NSIS_SUPPORT_REBOOT
-  int XXX_cur_insttype; // Deprecated
-  int plugin_api_version; // see NSISPIAPIVER_CURR
+  ::i32 autoclose;
+  ::i32 all_user_var;
+  ::i32 exec_error;
+  ::i32 abort;
+  ::i32 exec_reboot; // NSIS_SUPPORT_REBOOT
+  ::i32 reboot_called; // NSIS_SUPPORT_REBOOT
+  ::i32 XXX_cur_insttype; // Deprecated
+  ::i32 plugin_api_version; // see NSISPIAPIVER_CURR
                           // used to be XXX_insttype_changed
-  int silent; // NSIS_CONFIG_SILENT_SUPPORT
-  int instdir_error;
-  int rtl;
-  int errlvl;
-  int alter_reg_view;
-  int status_update;
+  ::i32 silent; // NSIS_CONFIG_SILENT_SUPPORT
+  ::i32 instdir_error;
+  ::i32 rtl;
+  ::i32 errlvl;
+  ::i32 alter_reg_view;
+  ::i32 status_update;
 } exec_flags_t;
 
 #ifndef NSISCALL
 #  define NSISCALL __stdcall
 #endif
-#if !defined(_WIN32) && !defined(char *)
-#  define char * TCHAR*
+#if !defined(_WIN32) && !defined(char_pointer )
+#  define char_pointer TCHAR*
 #endif
 
 typedef struct {
   exec_flags_t *exec_flags;
-  int (NSISCALL *ExecuteCodeSegment)(int, HWND);
-  void (NSISCALL *validate_filename)(char *);
-  int (NSISCALL *RegisterPluginCallback)(HMODULE, NSISPLUGINCALLBACK); // returns 0 on success, 1 if already registered and < 0 on errors
+  ::i32 (NSISCALL *ExecuteCodeSegment)(::i32, HWND);
+  void (NSISCALL *validate_filename)(char_pointer );
+  ::i32 (NSISCALL *RegisterPluginCallback)(HMODULE, NSISPLUGINCALLBACK); // returns 0 on success, 1 if already registered and < 0 on errors
 } extra_parameters;
 
 // Definitions for page showing plug-ins

@@ -194,8 +194,8 @@ void xf_event_adjust_coordinates(xfContext* xfc, int* x, int* y)
 
 		if (xf_picture_transform_required(xfc))
 		{
-			double xScalingFactor = settings->DesktopWidth / (double)xfc->scaledWidth;
-			double yScalingFactor = settings->DesktopHeight / (double)xfc->scaledHeight;
+			::f64 xScalingFactor = settings->DesktopWidth / (::f64)xfc->scaledWidth;
+			::f64 yScalingFactor = settings->DesktopHeight / (::f64)xfc->scaledHeight;
 			*x = (int)((*x - xfc->offset_x) * xScalingFactor);
 			*y = (int)((*y - xfc->offset_y) * yScalingFactor);
 		}

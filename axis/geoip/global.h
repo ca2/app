@@ -14,12 +14,12 @@ The following makes PROTOTYPES default to 0 if it has not already
 #endif
 
 /* POINTER defines a matter pointer type */
-typedef uchar *POINTER;
+typedef ::u8 * POINTER;
 
-/* unsigned short defines a two unsigned char unsigned short */
-typedef unsigned short ush;
+/* ::u16 defines a two ::u8 ::u16 */
+typedef ::u16 ush;
 
-/* ::u32 defines a four unsigned char unsigned short */
+/* ::u32 defines a four ::u8 ::u16 */
 typedef ::u32 ui;
 
 /* PROTO_LIST is defined depending on how PROTOTYPES is defined above.

@@ -1,7 +1,7 @@
 
 
 [MTAThread]
-int main(Array < String ^ > ^ stra)
+::i32 main(Array < String ^ > ^ stra)
 {
 
    auto psystem = allocateø ::platform::system();
@@ -14,7 +14,7 @@ int main(Array < String ^ > ^ stra)
 
    ::e_status estatus = psystem->start();
 
-   int iErrorStatus = estatus.error_status();
+   ::i32 iErrorStatus = estatus.error_status();
 
    return iErrorStatus;
 

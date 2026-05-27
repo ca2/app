@@ -54,7 +54,7 @@ namespace micro
 
 
          //virtual void create_message_box(conversation * pconversation);
-         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) override;
+         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter) override;
          
          ::string get_title() override;
 
@@ -77,7 +77,7 @@ namespace micro
 
          //void do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
 
-         void on_draw(::nano::graphics::device * pnanodevice) override;
+         void on_draw(::nano::graphics::context * pnanodevice) override;
 
          void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
 

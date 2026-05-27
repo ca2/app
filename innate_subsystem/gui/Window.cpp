@@ -198,7 +198,7 @@ namespace innate_subsystem
 ::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_button_state ebuttonstate)
 {
    
-   int mouseButtons = 0;
+   ::i32 mouseButtons = 0;
    
    mouseButtons |= ebuttonstate & ::user::e_button_state_right ? innate_subsystem::e_mouse_right : 0;
    mouseButtons |= ebuttonstate & ::user::e_button_state_middle ? innate_subsystem::e_mouse_middle : 0;

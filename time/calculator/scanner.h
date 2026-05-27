@@ -43,8 +43,8 @@ namespace datetime
    public:
       
       
-      const_char_pointer                  input;
-      const_char_pointer                  next_input;
+      const_char_pointer input;
+      const_char_pointer next_input;
 
       class token *                 m_ptoken;
       const ::text::context *   m_ptextcontext;

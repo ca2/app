@@ -349,8 +349,8 @@ namespace userex
 
       }
 
-      int cxBorder = rectangleX.width() / 16;
-      int h = rectangleX.height() / 4;
+      ::i32 cxBorder = rectangleX.width() / 16;
+      ::i32 h = rectangleX.height() / 4;
 
       ::i32_rectangle rectangleIndicator(rectangleX);
 

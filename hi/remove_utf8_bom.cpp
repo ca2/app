@@ -63,7 +63,7 @@ namespace console_hello
 
       //   }
 
-      //   //char szBomCandidate;
+      //   //::i8 szBomCandidate;
 
       //   //pfile->read(szBomCandidate, 3);
 

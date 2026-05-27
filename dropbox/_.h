@@ -12,8 +12,8 @@
 #endif
 
 
-// int z_compress(void* dest, ::u64* destLen, const void* source, ::u64 sourceLen);
-// int z_uncompress(void* dest, ::u64* destLen, const void* source, ::u64 sourceLen);
+// ::i32 z_compress(void* dest, ::u64* destLen, const void* source, ::u64 sourceLen);
+// ::i32 z_uncompress(void* dest, ::u64* destLen, const void* source, ::u64 sourceLen);
 
 
 

@@ -124,11 +124,11 @@ namespace innate_subsystem
 //    m_pparticleThis->setIcon(icon);
 //    }
 //
-//    void NotifyIcon::setText(const char *text)
+//    void NotifyIcon::setText(const_char_pointer text)
 //    {
 //       // m_nid.uFlags = NIF_TIP;
 //       //
-//       // const size_t BUFFER_SIZE_charS = sizeof(m_nid.szTip) / sizeof(char);
+//       // const size_t BUFFER_SIZE_charS = sizeof(m_nid.szTip) / sizeof(::i8);
 //       // _tcsncpy_s(m_nid.szTip, BUFFER_SIZE_charS, text, _TRUNCATE);
 //       //
 //       // Shell_NotifyIcon(NIM_MODIFY, &m_nid);
@@ -136,7 +136,7 @@ namespace innate_subsystem
 //    }
 //
 //    void
-//    NotifyIcon::showBalloon(const char *message, const char *caption,
+//    NotifyIcon::showBalloon(const_char_pointer message, const_char_pointer caption,
 //                          ::u32 timeoutMillis)
 //    {
 //       // m_nid.uFlags = NIF_INFO;

@@ -114,16 +114,16 @@
 //
 //   virtual void implementation_message_loop_step();
 //
-//   virtual void draw(::nano::graphics::device * pnanodevice);
+//   virtual void draw(::nano::graphics::context * pnanodevice);
 //
-//   virtual void on_draw(::nano::graphics::device * pnanodevice);
+//   virtual void on_draw(::nano::graphics::context * pnanodevice);
 //
-//   virtual void on_char(int iChar);
+//   virtual void on_char(::i32 iChar);
 //
 //   virtual bool is_active();
 //   virtual void set_active();
 //
-//   virtual void draw_children(::nano::graphics::device * pnanodevice);
+//   virtual void draw_children(::nano::graphics::context * pnanodevice);
 //
 //   virtual void delete_drawing_objects();
 //   virtual bool get_dark_mode();
@@ -210,11 +210,11 @@
 //   void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
 //   virtual void get_text_selection(character_count& iBeg, character_count& iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
 //   virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel);
-//   virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x);
+//   virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x);
 //   virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel);
-//   virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x);
+//   virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x);
 //   virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn);
-//   virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x);
+//   virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x);
 //   virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel);
 //
 //
@@ -242,7 +242,7 @@
 //   void release_mouse_capture() override;
 //
 //
-//   void _on_window_simple_action(const char * pszActionName) override;
+//   void _on_window_simple_action(const_char_pointer pszActionName) override;
 //
 //
 ////

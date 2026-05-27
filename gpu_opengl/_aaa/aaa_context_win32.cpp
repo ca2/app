@@ -123,9 +123,9 @@ namespace gpu_opengl
 
          LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
          LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-         //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-         unsigned int dwExStyle = 0;
-         unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
+         //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+         ::u32 dwExStyle = 0;
+         ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
          dwStyle |= WS_POPUP;
          //dwStyle |= WS_VISIBLE;
          //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
@@ -133,10 +133,10 @@ namespace gpu_opengl
          //dwStyle = 0;
          dwStyle &= ~WS_THICKFRAME;
          dwStyle &= ~WS_BORDER;
-         int x = 0;
-         int y = 0;
-         int nWidth = size.cx;
-         int nHeight = size.cy;
+         ::i32 x = 0;
+         ::i32 y = 0;
+         ::i32 nWidth = size.cx;
+         ::i32 nHeight = size.cy;
          HWND hWndParent = nullptr;
          HMENU hMenu = nullptr;
          HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -188,7 +188,7 @@ namespace gpu_opengl
 
          PIXELFORMATDESCRIPTOR pixformat;
 
-         int chosenformat;
+         ::i32 chosenformat;
 
          HDC hdc = GetDC(m_hwnd);
 
@@ -358,7 +358,7 @@ namespace gpu_opengl
 
             //PIXELFORMATDESCRIPTOR pixformat;
 
-            //int chosenformat;
+            //::i32 chosenformat;
 
             HDC hdc = GetDC(m_hwnd);
 
@@ -421,7 +421,7 @@ namespace gpu_opengl
 
             pwindow->m_hglrcProto = hglrc;
 
-   //         int context_attribs[] = {
+   //         ::i32 context_attribs[] = {
    //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
    //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
    //0, 0
@@ -511,7 +511,7 @@ namespace gpu_opengl
 
          m_sizeHost = sizeNew;
          //HDC pdcDIB;                      // контекст устройства в памяти
-         //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+         //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); ::i32 cyDIB(300);  // его размеры (например для окна 200х300)
          //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section// создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
          //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 
@@ -752,13 +752,13 @@ namespace gpu_opengl
       if (iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 

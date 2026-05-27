@@ -14,8 +14,8 @@ namespace os
       string                     m_strTitle;
       string                     m_strWindowClass;
 
-      int                        m_w;
-      int                        m_h;
+      ::i32                        m_w;
+      ::i32                        m_h;
       ::i32_size                       m_size;
       ::i32_point                      m_point;
       bool                       m_bLButtonDown;
@@ -68,18 +68,18 @@ namespace os
 
 
       /*
-      virtual bool on_lbutton_up(int x, int y);
-      virtual bool on_lbutton_down(int x, int y);
-      virtual bool on_mouse_move(int x, int y);
-      virtual bool on_char(int iKey, const ::scoped_string & scopedstrChar);
+      virtual bool on_lbutton_up(::i32 x, ::i32 y);
+      virtual bool on_lbutton_down(::i32 x, ::i32 y);
+      virtual bool on_mouse_move(::i32 x, ::i32 y);
+      virtual bool on_char(::i32 iKey, const ::scoped_string & scopedstrChar);
       */
 
       //virtual bool on_windows_key_down(wparam wparam, lparam lparam);
       //virtual bool on_windows_key_up(wparam wparam, lparam lparam);
 
 
-      virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
-      virtual bool move_window(int x, int y);
+      virtual bool set_window_position(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, bool bShow);
+      virtual bool move_window(::i32 x, ::i32 y);
 
       void viewport_client_to_screen(::i32_point * ppt);
       void viewport_screen_to_client(::i32_point * ppt);

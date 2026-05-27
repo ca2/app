@@ -32,10 +32,10 @@ namespace sockets
    public:
 
 
-      int m_iState;
-      int m_length;
-      int m_ptr;
-      char m_message[8192];
+      ::i32 m_iState;
+      ::i32 m_length;
+      ::i32 m_ptr;
+      ::i8 m_message[8192];
 
       class Initializer
       {
@@ -46,27 +46,27 @@ namespace sockets
          int_to_string Method;
          int_to_string header;
          int_to_string Attribute;
-         string_map_base < int > ResponseHeader;
+         string_map_base < ::i32 > ResponseHeader;
 
       };
 
       AjpBaseSocket();
 
-      virtual void OnRawData(char *buf, memsize sz) override;
+      virtual void OnRawData(char_pointer buf, memsize sz) override;
 
-      virtual void OnHeader( short atom, short len ) = 0;
-      virtual void OnPacket( const_char_pointer buf, memsize sz ) = 0;
+      virtual void OnHeader( ::i16 atom, ::i16 len ) = 0;
+      virtual void OnPacket( const_char_pointer pszBuffer, memsize sz ) = 0;
 
    protected:
-      uchar get_byte(const ::string &buf, int& ptr);
-      bool get_boolean(const ::string &buf, int& ptr);
-      short get_integer(const ::string &buf, int& ptr);
-      string get_string(const ::string &buf, int& ptr);
+      uchar get_byte(const ::string &buf, ::i32& ptr);
+      bool get_boolean(const ::string &buf, ::i32& ptr);
+      ::i16 get_integer(const ::string &buf, ::i32& ptr);
+      string get_string(const ::string &buf, ::i32& ptr);
 
-      void put_byte(char *buf, int& ptr, uchar zz);
-      void put_boolean(char *buf, int& ptr, bool zz);
-      void put_integer(char *buf, int& ptr, short zz);
-      void put_string(char *buf, int& ptr, const ::scoped_string & scopedstr);
+      void put_byte(char_pointer buf, ::i32& ptr, uchar zz);
+      void put_boolean(char_pointer buf, ::i32& ptr, bool zz);
+      void put_integer(char_pointer buf, ::i32& ptr, ::i16 zz);
+      void put_string(char_pointer buf, ::i32& ptr, const ::scoped_string & scopedstr);
 
    };
 

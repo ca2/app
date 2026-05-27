@@ -137,7 +137,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::_mask(cairo_t * pgraphics, double dOpacity, enum_mask emask)
+   bool region::_mask(cairo_t * pgraphics, ::f64 dOpacity, enum_mask emask)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -181,9 +181,9 @@ namespace draw2d_cairo
 
       cairo_fill(m_pcairo);
 
-      int x = m_rectangleBoundingBoxInternal.left;
+      ::i32 x = m_rectangleBoundingBoxInternal.left;
 
-      int y = m_rectangleBoundingBoxInternal.top;
+      ::i32 y = m_rectangleBoundingBoxInternal.top;
 
       cairo_push_group(m_pcairo);
 
@@ -359,7 +359,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask_paint_with_alpha(cairo_t * pdc, double dOpacity)
+   bool region::mask_paint_with_alpha(cairo_t * pdc, ::f64 dOpacity)
    {
 
       return _mask(pdc, dOpacity, e_mask_paint_with_alpha);
@@ -397,13 +397,13 @@ namespace draw2d_cairo
 
       auto size = pitem->m_item.size();
 
-      double centerx    = center.x;
+      ::f64 centerx    = center.x;
 
-      double centery    = center.y;
+      ::f64 centery    = center.y;
 
-      double radiusx    = fabs(size.cx) / 2.0;
+      ::f64 radiusx    = fabs(size.cx) / 2.0;
 
-      double radiusy    = fabs(size.cy) / 2.0;
+      ::f64 radiusy    = fabs(size.cy) / 2.0;
 
       if(radiusx == 0.0 || radiusy == 0.0)
       {
@@ -441,7 +441,7 @@ namespace draw2d_cairo
 
       cairo_move_to(pgraphics, pitem->m_polygon[0].x, pitem->m_polygon[0].y);
 
-      for(int i = 1; i < pitem->m_polygon.size(); i++)
+      for(::i32 i = 1; i < pitem->m_polygon.size(); i++)
       {
 
          cairo_line_to(pgraphics, pitem->m_polygon[i].x, pitem->m_polygon[i].y);
@@ -467,9 +467,9 @@ namespace draw2d_cairo
 
       }
 
-      int n = 0;
+      ::i32 n = 0;
 
-      for(int i = 0; i < pitem->m_polypolygon.size(); i++)
+      for(::i32 i = 0; i < pitem->m_polypolygon.size(); i++)
       {
 
          auto ppolygon = pitem->m_polypolygon[i];
@@ -483,7 +483,7 @@ namespace draw2d_cairo
 
             n++;
 
-            for(int j = 1; j < polygon.size(); j++)
+            for(::i32 j = 1; j < polygon.size(); j++)
             {
 
                cairo_line_to(pgraphics, polygon[n].x, polygon[n].y);
@@ -604,10 +604,10 @@ namespace draw2d_cairo
 
             ::pointer<::geometry2d::rectangle_item> prectangleitem = m_pitem;
 
-            cairorectangleint.x =(int) prectangleitem->m_item.left;
-            cairorectangleint.y = (int)prectangleitem->m_item.top;
-            cairorectangleint.width = (int) prectangleitem->m_item.width();
-            cairorectangleint.height = (int) prectangleitem->m_item.height();
+            cairorectangleint.x =(::i32) prectangleitem->m_item.left;
+            cairorectangleint.y = (::i32)prectangleitem->m_item.top;
+            cairorectangleint.width = (::i32) prectangleitem->m_item.width();
+            cairorectangleint.height = (::i32) prectangleitem->m_item.height();
 
             return cairo_region_create_rectangle(&cairorectangleint);
 
@@ -745,9 +745,9 @@ namespace draw2d_cairo
 
       cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
 
-      int x = m_rectangleBoundingBoxInternal.left;
+      ::i32 x = m_rectangleBoundingBoxInternal.left;
 
-      int y = m_rectangleBoundingBoxInternal.top;
+      ::i32 y = m_rectangleBoundingBoxInternal.top;
 
       cairo_push_group(m_pcairo);
 
@@ -793,13 +793,13 @@ namespace draw2d_cairo
 
    //   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   double centerx    = (m_x2 + m_x1) / 2.0;
+   //   ::f64 centerx    = (m_x2 + m_x1) / 2.0;
 
-   //   double centery    = (m_y2 + m_y1) / 2.0;
+   //   ::f64 centery    = (m_y2 + m_y1) / 2.0;
 
-   //   double radiusx    = fabs(m_x2 - m_x1) / 2.0;
+   //   ::f64 radiusx    = fabs(m_x2 - m_x1) / 2.0;
 
-   //   double radiusy    = fabs(m_y2 - m_y1) / 2.0;
+   //   ::f64 radiusy    = fabs(m_y2 - m_y1) / 2.0;
 
    //   if(radiusx == 0.0 || radiusy == 0.0)
    //   {
@@ -839,7 +839,7 @@ namespace draw2d_cairo
 
    //   cairo_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
 
-   //   for(int i = 1; i < m_nCount; i++)
+   //   for(::i32 i = 1; i < m_nCount; i++)
    //   {
 
    //      cairo_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);

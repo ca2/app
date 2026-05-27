@@ -48,14 +48,14 @@ namespace write_text
       virtual void handle_font_enumeration(::topic* ptopic);
 
       
-      virtual font_pointer font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight = e_font_weight_normal);
+      virtual font_pointer font(const font_family_pointer & pfontfamily, const font_size & fontsize, ::i32 iFontWeight = e_font_weight_normal);
 
 
       virtual font_pointer create_font();
       virtual memory_pointer get_file_memory(::platform::context * pcontext, const ::file::path & path);
 
       
-      virtual font_descriptor calculate_font_descriptor(const_char_pointer face, float size);
+      virtual font_descriptor calculate_font_descriptor(const_char_pointer face, ::f32 size);
       virtual string get_font_descriptor_face(const font_descriptor & font_descriptor);
 
       

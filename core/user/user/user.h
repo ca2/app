@@ -170,7 +170,7 @@ namespace core
 
       void on_file_manager_open(::filemanager::data *pdata, ::file::item_array &itema) override;
 
-      //      int track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrMatter, int
+      //      ::i32 track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrMatter, ::i32
       //      iFlags, const ::i32_point & pointCursor) override;
 
 
@@ -223,8 +223,8 @@ namespace core
       virtual void initialize(::particle *pparticle) override;
 
 
-      // virtual bool do_prompt_file_name(::payload& payloadFile, const ::scoped_string & scopedstrTitle, unsigned
-      // int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom
+      // virtual bool do_prompt_file_name(::payload& payloadFile, const ::scoped_string & scopedstrTitle, ::u32
+      // ::i32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom
       // & atomFileManager = "file_manager_save");
 
 
@@ -252,7 +252,7 @@ namespace core
 
       // virtual bool is_session() const override;
 
-      ////void construct(::particle * pparticle, int iPhase) override;
+      ////void construct(::particle * pparticle, ::i32 iPhase) override;
 
       // virtual void process_init();
 
@@ -294,7 +294,7 @@ namespace core
       ////virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
 
       //// Long PhRESSing time
-      //// time in ::times that a pressing is considered a double click
+      //// time in ::times that a pressing is considered a ::f64 click
       // virtual ::u32 get_Long_PhRESSing_time();
 
       // virtual void defer_initialize_user_presence();

@@ -15,27 +15,27 @@ namespace write_text
    public:
 
 
-      double_point                        m_point;
-      double_size                         m_size;
+      ::f64_point                        m_point;
+      ::f64_size                         m_size;
 
       text_out();
       ~text_out() override;
 
 
-      virtual void offset(const ::double_point & point);
+      virtual void offset(const ::f64_point & point);
       
       
-      virtual ::double_rectangle get_rectangle() const
+      virtual ::f64_rectangle get_rectangle() const
       { return { m_point, m_size }; }
 
 
-      virtual bool hit_test(const ::double_point& point);
+      virtual bool hit_test(const ::f64_point& point);
 
 
-      virtual bool contains(const ::double_point & point);
+      virtual bool contains(const ::f64_point & point);
 
       
-      virtual void expand_bounding_box(double_point & top_left, double_point &  bottom_right) const
+      virtual void expand_bounding_box(::f64_point & top_left, ::f64_point &  bottom_right) const
       {
          
          get_rectangle().expand_bounding_box(top_left, bottom_right);

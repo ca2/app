@@ -26,21 +26,21 @@
 //
 // //#include aaa_<crtdbg.h>
 //
-// ::earth::time::::earth::time()
+// ::earth::time::earth::time()
 // : m_timeValue(0)
 // {
 // }
-// ::earth::time::::earth::time(const ::earth::time &dt)
+// ::earth::time::earth::time(const ::earth::time &dt)
 // : m_timeValue(dt.m_timeValue)
 // {
 // }
 //
-// ::earth::time::::earth::time(::u64 timeValue)
+// ::earth::time::earth::time(::u64 timeValue)
 // : m_timeValue(timeValue)
 // {
 // }
 //
-// ::earth::time::::earth::time(FILETIME ft)
+// ::earth::time::earth::time(FILETIME ft)
 // {
 //   const ::u64 SECS_BETWEEN_EPOCHS = 11644473600;
 //   const ::u64 SECS_TO_100NS = 10000000;

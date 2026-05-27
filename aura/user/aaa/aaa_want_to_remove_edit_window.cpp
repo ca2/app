@@ -78,7 +78,7 @@ namespace user
 
    }
    
-   //LRESULT _OnCommand(unsigned short, unsigned short, HWND);
+   //LRESULT _OnCommand(::u16, ::u16, HWND);
 
    LRESULT edit_window::_OnSetFocus(VOID)
    {
@@ -96,7 +96,7 @@ namespace user
    }
 
 
-   void edit_window::get_text_composition_area(::double_rectangle & r)
+   void edit_window::get_text_composition_area(::f64_rectangle & r)
    {
 
 

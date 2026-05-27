@@ -90,7 +90,7 @@ namespace heap
       if (i >= 1510)
       {
 
-         char sz[1024];
+         ::i8 sz[1024];
          
          sprintf(sz, "heap::memory::free %06lld 0x%016llx\n", i, p);
 
@@ -100,7 +100,7 @@ namespace heap
       else
       {
 
-         char sz[1024];
+         ::i8 sz[1024];
 
          sprintf(sz, "heap::memory::free %06lld 0x%016llx\n", i, p);
 
@@ -131,7 +131,7 @@ namespace heap
    }
 
 
-   void * memory::allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation)
+   void * memory::allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, const_char_pointer pszAnnotation)
    {
 
       return m_pheap->allocate_debug(size, nBlockUse, szFileName, nLine, pszAnnotation);
@@ -139,14 +139,14 @@ namespace heap
    }
 
 
-   void * memory::reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation)
+   void * memory::reallocate_debug(void * p, memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, const_char_pointer pszAnnotation)
    {
 
       return m_pheap->reallocate_debug(p, size, nBlockUse, szFileName, nLine, pszAnnotation);
    }
 
 
-   void memory::free_debug(void * p, int nBlockUse)
+   void memory::free_debug(void * p, ::i32 nBlockUse)
    {
 
       return m_pheap->free_debug(p, nBlockUse);
@@ -154,7 +154,7 @@ namespace heap
    }
 
 
-   memsize memory::size_debug(void * p, int nBlockUse)
+   memsize memory::size_debug(void * p, ::i32 nBlockUse)
    {
 
       return m_pheap->size_debug(p, nBlockUse);
@@ -171,7 +171,7 @@ namespace heap
    }
 
 
-   void * memory::aligned_allocate_debug(memsize s, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align, const_char_pointer pszAnnotation)
+   void * memory::aligned_allocate_debug(memsize s, memsize * psizeAllocated, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, memsize align, const_char_pointer pszAnnotation)
    {
 
       return m_pheap->aligned_allocate_debug(s, psizeAllocated, nBlockUse, szFileName, nLine, align, pszAnnotation);
@@ -187,7 +187,7 @@ namespace heap
    }
 
 
-   void * memory::unaligned_allocate_debug(memsize s, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation)
+   void * memory::unaligned_allocate_debug(memsize s, memsize * psizeAllocated, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, const_char_pointer pszAnnotation)
    {
 
       return m_pheap->aligned_allocate_debug(s, psizeAllocated, nBlockUse, szFileName, nLine, 0, pszAnnotation);
@@ -213,7 +213,7 @@ namespace heap
 
    }
 
-   //void memory::free_debug(void * p, int nBlockUse)
+   //void memory::free_debug(void * p, ::i32 nBlockUse)
    //{
 
    //   return m_pheap->free_debug(p, nBlockUse);
@@ -221,7 +221,7 @@ namespace heap
    //}
 
 
-   //memsize memory::size_debug(void * p, int nBlockUse)
+   //memsize memory::size_debug(void * p, ::i32 nBlockUse)
    //{
 
    //   return m_pheap->size_debug(p, nBlockUse);
@@ -255,7 +255,7 @@ namespace heap
 //      void on_plex_heap_alloc(plex_heap_alloc * palloc)
 //      {
 //
-//         int iAllocSize = palloc->m_iAllocSize;
+//         ::i32 iAllocSize = palloc->m_iAllocSize;
 //
 //         if (iAllocSize < 256)
 //         {

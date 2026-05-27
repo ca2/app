@@ -32,7 +32,7 @@ class raw_fail {};
 //#endif
 //
 //};
-//typedef int MAIN_RUNNER(main_runner_data * pmainrunnerdata);
+//typedef ::i32 MAIN_RUNNER(main_runner_data * pmainrunnerdata);
 //typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
 
 #include "apex_main_data.h"
@@ -57,8 +57,8 @@ public:
    //::pointer<apex_main_data>        m_pmaindata;
    ::pointer<::acme::library>         m_plibrary;
    ::e_status                          m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
-   int                                 m_iStatusCount;
-   int                                 m_iTotalStatusCount;
+   ::i32                                 m_iStatusCount;
+   ::i32                                 m_iTotalStatusCount;
 
 
    //app_core(apex_main_data * pdata);
@@ -67,7 +67,7 @@ public:
 
    bool on_result(const ::e_status & estatus);
 
-   //static unsigned int WINAPI MAIN(void * pvoid);
+   //static ::u32 WINAPI MAIN(void * pvoid);
 
    //bool system_beg();
 
@@ -111,9 +111,9 @@ public:
 
 //CLASS_DECL_ACME bool node_fill(system * pappcore);
 
-//CLASS_DECL_APEX int apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
+//CLASS_DECL_APEX ::i32 apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 
-//CLASS_DECL_APEX int apex_entry_point(int argc, char* argv[], char* pszCommandLin, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
+//CLASS_DECL_APEX ::i32 apex_entry_point(::i32 argc, char_pointer argv[], char_pointer pszCommandLin, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 
 
 

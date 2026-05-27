@@ -3,7 +3,7 @@
 
 #if defined(_M_IX86)
 CLASS_DECL_ACME void x86_cache_oriented_destroy_all_memory_pools();
-CLASS_DECL_ACME ::i32_bool x86_cache_oriented_set_thread_memory_pool(int iPoolIndex);
+CLASS_DECL_ACME ::i32_bool x86_cache_oriented_set_thread_memory_pool(::i32 iPoolIndex);
 CLASS_DECL_ACME void * x86_cache_oriented_memory_alloc(memsize s);
 CLASS_DECL_ACME void x86_cache_oriented_memory_free(void * p);
 CLASS_DECL_ACME void x86_cache_oriented_memory_reset();
@@ -54,7 +54,7 @@ CLASS_DECL_ACME void processor_cache_oriented_memory_reset()
 }
 
 
-CLASS_DECL_ACME ::i32_bool processor_cache_oriented_set_thread_memory_pool(int iPoolIndex)
+CLASS_DECL_ACME ::i32_bool processor_cache_oriented_set_thread_memory_pool(::i32 iPoolIndex)
 {
 
 #if defined(_M_IX86)

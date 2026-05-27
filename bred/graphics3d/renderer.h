@@ -32,7 +32,7 @@
 // 		//::array_base<VkCommandBuffer>					    m_commandBuffers;
 // 		//VkCommandPool										   m_commandPool = VK_NULL_HANDLE;
 // 		uint32_t								         m_currentImageIndex = 0;
-// 		int												 m_currentFrameIndex = 0;
+// 		::i32												 m_currentFrameIndex = 0;
 // 		bool										       m_bIsFrameStarted = false;
 //
 // 		//::pointer<sandbox_descriptor_set_layout>		  m_globalLayout;
@@ -74,11 +74,11 @@
 //
 // 		void waitDeviceIdle() override;
 //
-// 		void updateSystems(::gpu::frame *pframe, ::gpu::properties * ppropertiesGlobalUbo, float deltaTime)override;
+// 		void updateSystems(::gpu::frame *pframe, ::gpu::properties * ppropertiesGlobalUbo, ::f32 deltaTime)override;
 //
 // 		// Inline helpers
 // 		//inline VkRenderPass getSwapChainRenderPass() const { return m_swapchain->getRenderPass(); }
-// 		virtual float getAspectRatio() const;
+// 		virtual ::f32 getAspectRatio() const;
 // 		virtual inline bool isFrameInProgress() const;
 //
 // 		// inline VkCommandBuffer getCurrentCommandBuffer() const {
@@ -86,7 +86,7 @@
 // 		// 	return m_commandBuffers[m_currentFrameIndex];
 // 		// }
 //
-// 		inline 	int getFrameIndex() const {
+// 		inline 	::i32 getFrameIndex() const {
 // 			ASSERT(m_bIsFrameStarted && "Cannot get frame index when frame not in progress");
 // 			return m_currentFrameIndex;
 // 		}

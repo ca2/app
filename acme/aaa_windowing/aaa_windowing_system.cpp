@@ -120,14 +120,14 @@ namespace windowing
     }
 
 
-    void windowing_base::display_error_trap_push(int i)
+    void windowing_base::display_error_trap_push(::i32 i)
     {
 
 
     }
 
 
-    void windowing_base::display_error_trap_pop_ignored(int i)
+    void windowing_base::display_error_trap_pop_ignored(::i32 i)
     {
 
 

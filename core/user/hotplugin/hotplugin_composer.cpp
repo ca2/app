@@ -477,7 +477,7 @@ namespace hotplugin
 
       throw_todo();
 
-      ////int iReturnCode = 0;
+      ////::i32 iReturnCode = 0;
 
       //::axis::system * paxissystem = (::axis::system *) pVoid;
 

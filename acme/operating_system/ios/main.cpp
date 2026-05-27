@@ -1,7 +1,7 @@
 #include "framework.h"
 
 //#include <crt_externs.h>
-CLASS_DECL_ACME int ca2_main();
+CLASS_DECL_ACME ::i32 ca2_main();
 
 //CLASS_DECL_BOOT extern fixed_alloc_array * g_pfixedallocaWstring;
 

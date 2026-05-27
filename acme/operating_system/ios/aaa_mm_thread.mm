@@ -42,7 +42,7 @@ void set_thread_int(const char * pszKey, int i)
 
 
 
-unsigned int m_sleep(unsigned int seconds)
+::u32 m_sleep(::u32 seconds)
 {
 
    [NSThread sleepForTimeInterval:seconds];

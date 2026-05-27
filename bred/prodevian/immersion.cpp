@@ -65,7 +65,7 @@ namespace prodevian
    }
 
 
-   // void immersion::onUpdate(float dt)
+   // void immersion::onUpdate(::f32 dt)
    // {
    //    m_pscene->update(dt);
    // }

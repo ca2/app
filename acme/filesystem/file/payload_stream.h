@@ -5,19 +5,19 @@
 //
 //
 //inline void __exchange(::payload_stream & s, bool & b);
-//inline void __exchange(::payload_stream & s, char & i);
-//inline void __exchange(::payload_stream & s, short & i);
-//inline void __exchange(::payload_stream & s, int & i);
+//inline void __exchange(::payload_stream & s, ::i8 & i);
+//inline void __exchange(::payload_stream & s, ::i16 & i);
+//inline void __exchange(::payload_stream & s, ::i32 & i);
 //inline void __exchange(::payload_stream & s, ::i64 & i);
 //#if !defined(LINUX)
 //inline void __exchange(::payload_stream & s, long & l);
 //#endif
-//inline void __exchange(::payload_stream & s, unsigned char & u);
-//inline void __exchange(::payload_stream & s, unsigned short & u);
+//inline void __exchange(::payload_stream & s, ::u8 & u);
+//inline void __exchange(::payload_stream & s, ::u16 & u);
 //inline void __exchange(::payload_stream & s, ::u32 & u);
 //inline void __exchange(::payload_stream & s, ::u64 & u);
-//inline void __exchange(::payload_stream & s, float & f);
-//inline void __exchange(::payload_stream & s, double & d);
+//inline void __exchange(::payload_stream & s, ::f32 & f);
+//inline void __exchange(::payload_stream & s, ::f64 & d);
 //inline void __exchange(::payload_stream & s, ::earth::time & time);
 //inline void __exchange(::payload_stream & s, const ::scoped_string & scopedstr);
 //inline void __exchange(::payload_stream & s, string & str);
@@ -96,7 +96,7 @@
 //   virtual void write(const block & block) ;
 //
 //
-//   virtual void exchange(const ::atom & atom, double & d) ;
+//   virtual void exchange(const ::atom & atom, ::f64 & d) ;
 //   virtual void exchange(const ::atom& atom, ::i64& i) ;
 //
 //

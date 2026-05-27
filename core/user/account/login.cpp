@@ -146,47 +146,47 @@ namespace account
 
       }
 
-      int stdw = 800;
+      ::i32 stdw = 800;
 
-      int stdh = 400;
+      ::i32 stdh = 400;
 
-      int h;
+      ::i32 h;
 
-      int w;
+      ::i32 w;
 
-      w = (int)(rectangleX.width());
+      w = (::i32)(rectangleX.width());
 
-      h = (int)(rectangleX.height());
+      h = (::i32)(rectangleX.height());
 
-      m_dRateX = (double)w / (double)stdw;
+      m_dRateX = (::f64)w / (::f64)stdw;
 
-      m_dRateY = (double)h / (double)stdh;
+      m_dRateY = (::f64)h / (::f64)stdh;
 
-      double rx = m_dRateX;
+      ::f64 rx = m_dRateX;
 
-      double ry = m_dRateY;
+      ::f64 ry = m_dRateY;
 
-      int x1 = (int) (49 * rx);
+      ::i32 x1 = (::i32) (49 * rx);
 
-      int w2 = (int) ((rectangleX.width() - 49 * 2 * rx));
+      ::i32 w2 = (::i32) ((rectangleX.width() - 49 * 2 * rx));
 
-      int h1 = (int) (23 * ry);
+      ::i32 h1 = (::i32) (23 * ry);
 
-      int pad = (int) (5 * ry);
+      ::i32 pad = (::i32) (5 * ry);
 
-      int y = (int) ((49 + 86) * ry);
+      ::i32 y = (::i32) ((49 + 86) * ry);
 
-      m_pstillUser->place(::int_rectangle_dimension(x1,y,w2,h1));
+      m_pstillUser->place(::i32_rectangle_dimension(x1,y,w2,h1));
       m_pstillUser->display(::e_display_normal, { ::user::e_activation_no_activate });
 
       y += h1 + pad;
 
-      m_peditUser->place(::int_rectangle_dimension(x1,y,w2, h1));
+      m_peditUser->place(::i32_rectangle_dimension(x1,y,w2, h1));
       m_peditUser->display(::e_display_normal, { ::user::e_activation_no_activate });
 
       y += h1 + pad;
 
-      m_pstillPassword->place(::int_rectangle_dimension(x1,y,w2, h1));
+      m_pstillPassword->place(::i32_rectangle_dimension(x1,y,w2, h1));
       m_pstillPassword->display(::e_display_normal, { ::user::e_activation_no_activate });
 
       y += h1 + pad;
@@ -294,21 +294,21 @@ namespace account
 
       colorBackground = colorOut.get_blend(colorIn, 0.5);
 
-      double rx = m_dRateX;
+      ::f64 rx = m_dRateX;
 
-      double ry = m_dRateY;
+      ::f64 ry = m_dRateY;
 
       if (m_pimage->is_set() && m_pimage->height() > 21)
       {
 
-         double r = (double)(64) / (double)m_pimage->height();
+         ::f64 r = (::f64)(64) / (::f64)m_pimage->height();
 
-         auto rectangleSource = double_rectangle_dimension(0, 0, m_pimage->width(), m_pimage->height());
+         auto rectangleSource = f64_rectangle_dimension(0, 0, m_pimage->width(), m_pimage->height());
 
          ::image::image_source imagesource(m_pimage);
 
-         auto rectangleTarget = double_rectangle_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
-                                                        int (m_pimage->width() * r), int (m_pimage->height() * r));
+         auto rectangleTarget = f64_rectangle_dimension((::i32)(49 * rx), (::i32)(49 * ry) + 2 - 11,
+                                                        ::i32 (m_pimage->width() * r), ::i32 (m_pimage->height() * r));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -320,13 +320,13 @@ namespace account
       else if (m_bCred && m_strCred.has_character())
       {
 
-         float fHeight = 18.0;
+         ::f32 fHeight = 18.0;
 
          ::write_text::font_pointer f(e_create, this);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (int)height(rectangleX) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (::i32)height(rectangleX) * 0.7);
 
-         float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
+         ::f32 fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
          //auto psystem = system();
 
@@ -338,17 +338,17 @@ namespace account
          pgraphics->set(f);
 
          pgraphics->set_text_color(colorBorderOut);
-         pgraphics->text_out((int)(49 * rx), (int)(49 * ry), m_strCred);
+         pgraphics->text_out((::i32)(49 * rx), (::i32)(49 * ry), m_strCred);
       }
 
       else if (m_picon95)
       {
 
-         pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
+         pgraphics->draw_ca2_border2((::i32)(49 * rx), (::i32)(49 * ry) - 11, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
          ::image::image_source imagesource(m_picon95);
 
-         auto rectangleTarget = double_rectangle_dimension((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry));
+         auto rectangleTarget = f64_rectangle_dimension((::i32)(49 * rx) + 2, (::i32)(49 * ry) + 2 - 11, (::i32)((91 + 2 + 2) * ry), (::i32)((91 + 2 + 2) * ry));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -360,7 +360,7 @@ namespace account
       else
       {
 
-         pgraphics->draw_ca2_with_border2((int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
+         pgraphics->draw_ca2_with_border2((::i32)(49 * rx), (::i32)(49 * ry) - 23, (::i32)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
       }
 
@@ -517,8 +517,8 @@ namespace account
       m_pstillPassword->set_window_text("");
       m_pbutton->set_window_text("");
 
-      int stdw = 800;
-      int stdh = 177 + 23 + 1140;
+      ::i32 stdw = 800;
+      ::i32 stdh = 177 + 23 + 1140;
 
       place(0,0,stdw,stdh);
 

@@ -118,7 +118,7 @@
 //			&vsBlob, &errorBlob
 //		);
 //		if (FAILED(hr)) {
-//			if (errorBlob) OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+//			if (errorBlob) OutputDebugStringA((char_pointer )errorBlob->GetBufferPointer());
 //			return;
 //		}
 //
@@ -134,7 +134,7 @@
 //			&psBlob, &errorBlob
 //		);
 //		if (FAILED(hr)) {
-//			if (errorBlob) OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+//			if (errorBlob) OutputDebugStringA((char_pointer )errorBlob->GetBufferPointer());
 //			return;
 //		}
 //
@@ -180,7 +180,7 @@
 //		//	m_vkswapchain = nullptr;
 //		//}
 //
-//		//for (int i = 0; i < depthImages.size(); i++) {
+//		//for (::i32 i = 0; i < depthImages.size(); i++) {
 //		//   vkDestroyImageView(m_pgpucontext->logicalDevice(), depthImageViews[i], nullptr);
 //		//   vkDestroyImage(m_pgpucontext->logicalDevice(), depthImages[i], nullptr);
 //		//   vkFreeMemory(m_pgpucontext->logicalDevice(), depthImageMemorys[i], nullptr);
@@ -373,7 +373,7 @@
 //	//}
 //
 //
-//	int swap_chain_render_target::get_image_index() const
+//	::i32 swap_chain_render_target::get_image_index() const
 //	{
 //
 //		return m_uCurrentSwapChainImage;
@@ -454,7 +454,7 @@
 //
 //		//m_formatImage = surfaceFormat.format;
 //		//m_extent = extent;
-//		//m_pgpucontext->m_rectangle.set_size({ (int)extent.width, (int)extent.height });
+//		//m_pgpucontext->m_rectangle.set_size({ (::i32)extent.width, (::i32)extent.height });
 //
 //	}
 //
@@ -603,7 +603,7 @@
 //		//depthImageMemorys.resize(imageCount());
 //		//depthImageViews.resize(imageCount());
 //
-//		//for (int i = 0; i < depthImages.size(); i++) {
+//		//for (::i32 i = 0; i < depthImages.size(); i++) {
 //		//   VkImageCreateInfo imageInfo{};
 //		//   imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
 //		//   imageInfo.imageType = VK_IMAGE_TYPE_2D;
@@ -750,8 +750,8 @@
 //		D3D11_VIEWPORT vp = {};
 //		vp.TopLeftX = 0;
 //		vp.TopLeftY = 0;
-//		vp.Width = static_cast<float>(rectangle.width());
-//		vp.Height = static_cast<float>(rectangle.height());
+//		vp.Width = static_cast<::f32>(rectangle.width());
+//		vp.Height = static_cast<::f32>(rectangle.height());
 //		vp.MinDepth = 0.0f;
 //		vp.MaxDepth = 1.0f;
 //		pgpudevice->m_pd3d12devicecontext->RSSetViewports(1, &vp);

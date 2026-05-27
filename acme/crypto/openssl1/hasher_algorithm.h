@@ -12,17 +12,17 @@ namespace openssl
    public:
 
 
-      //int SHA1_Init(SHA_CTX* c);
-      //int SHA1_Update(SHA_CTX* c, const void* data, size_t len);
-      //int SHA1_Final(unsigned char* md, SHA_CTX* c);
-      //unsigned char* SHA1(const unsigned char* d, size_t n, unsigned char* md);
-      //void SHA1_Transform(SHA_CTX* c, const unsigned char* data);
+      //::i32 SHA1_Init(SHA_CTX* c);
+      //::i32 SHA1_Update(SHA_CTX* c, const void* data, size_t len);
+      //::i32 SHA1_Final(::u8* md, SHA_CTX* c);
+      //::u8* SHA1(const ::u8* d, size_t n, ::u8* md);
+      //void SHA1_Transform(SHA_CTX* c, const ::u8* data);
 
 
-      //typedef int __HASH_INIT(EVP_MD_CTX* pctx);
-      //typedef int __HASH_UPDATE(CTX* pctx, const void* data, size_t len);
-      //typedef int __HASH_FINAL(unsigned char* md, CTX* pctx);
-      //typedef unsigned char* __HASH_HASH(const unsigned char* d, size_t n, unsigned char* md);
+      //typedef ::i32 __HASH_INIT(EVP_MD_CTX* pctx);
+      //typedef ::i32 __HASH_UPDATE(CTX* pctx, const void* data, size_t len);
+      //typedef ::i32 __HASH_FINAL(::u8* md, CTX* pctx);
+      //typedef ::u8* __HASH_HASH(const ::u8* d, size_t n, ::u8* md);
 
 
       //using HASH_INIT = __HASH_INIT*;

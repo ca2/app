@@ -42,7 +42,7 @@ namespace user
 
       //void parse(const ::scoped_string & scopedstrSource);
 
-      //void start_build(int iItem = -1);
+      //void start_build(::i32 iItem = -1);
 
       //void PostFillTask(string& strFile, uptr uiTimer);
 

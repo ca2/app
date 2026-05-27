@@ -34,7 +34,7 @@ namespace helloworld
 
       //};
 
-      //double                           m_dRenderFps;
+      //::f64                           m_dRenderFps;
       //bool                             m_bDib1;
 
       //bool                             m_bAlternate;
@@ -51,12 +51,12 @@ namespace helloworld
 
       //bool                             m_bNewLayout;
       //bool                             m_bHelloRender;
-      //int                              m_cx;
-      //int                              m_cy;
-      //int                              m_cxCache1;
-      //int                              m_cyCache1;
-      //int                              m_cxTarget;
-      //int                              m_cyTarget;
+      //::i32                              m_cx;
+      //::i32                              m_cy;
+      //::i32                              m_cxCache1;
+      //::i32                              m_cyCache1;
+      //::i32                              m_cxTarget;
+      //::i32                              m_cyTarget;
 
       //::image::fastblur               m_pimageImage;
       //::image::image_pointer                 m_pimageOut;
@@ -73,8 +73,8 @@ namespace helloworld
 
       //::write_text::font_pointer                m_pfont;
 
-      //double                           m_dMinRadius;
-      //double                           m_dMaxRadius;
+      //::f64                           m_dMinRadius;
+      //::f64                           m_dMaxRadius;
 
       //string                           m_strHelloWorld;
 
@@ -118,7 +118,7 @@ namespace helloworld
       // { synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);  string str(m_strHelloWorld.c_str()); return str; }
 
 
-      virtual int run();
+      virtual ::i32 run();
 
       virtual bool initialize_render(const ::scoped_string & scopedstrId);
 

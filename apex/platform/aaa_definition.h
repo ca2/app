@@ -17,17 +17,17 @@
 //      return a > b ? a : b;
 //   }
 //
-//   template <class T> inline int MyCompare(T a, T b)
+//   template <class T> inline ::i32 MyCompare(T a, T b)
 //   {
 //      return a < b ? -1 : (a == b ? 0 : 1);
 //   }
 //
-//   inline int BoolToInt(bool value)
+//   inline ::i32 BoolToInt(bool value)
 //   {
 //      return (value ? 1 : 0);
 //   }
 //
-//   inline bool IntToBool(int value)
+//   inline bool IntToBool(::i32 value)
 //   {
 //      return (value != 0);
 //   }
@@ -78,7 +78,7 @@
 //extern "C++"
 //{
 //   template <typename _CountofType, size_t _SizeOfArray>
-//   char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
+//   ::i8 (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
 //#define _countof(_Array) sizeof(*__countof_helper(_Array))
 //}
 //#endif
@@ -176,7 +176,7 @@
 //#ifndef ENSURE_RETURN_HR
 //#define ENSURE_RETURN_HR(expr, hr)          \
 //do {                                           \
-//   int __atl_condVal=!!(expr);                \
+//   ::i32 __atl_condVal=!!(expr);                \
 //   ASSERT(__atl_condVal);                  \
 //   if(!(__atl_condVal)) return hr;            \
 //} while (0)
@@ -354,8 +354,8 @@
 //   Same comes true for those definitions of constants which use the above macros
 //*/
 //#ifndef WINDOWS
-//#define MAKEINTRESOURCEA(i) ((char *)((uptr)((unsigned short)(i))))
-//#define MAKEINTRESOURCEW(i) ((unichar *)((uptr)((unsigned short)(i))))
+//#define MAKEINTRESOURCEA(i) ((char_pointer )((uptr)((::u16)(i))))
+//#define MAKEINTRESOURCEW(i) ((wide_character * )((uptr)((::u16)(i))))
 //#endif
 //#ifdef UNICODE
 //#define MAKEINTRESOURCE  MAKEINTRESOURCEW

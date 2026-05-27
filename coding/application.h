@@ -86,8 +86,8 @@ class ::time      m_timeFoldersSetupDetected;
 
 
       __DECLARE_APPLICATION_RELEASE_TIME();
-      virtual void preempt_message(const char * pszMessage);
-      virtual void micro_preempt(const char * pszMessage);
+      virtual void preempt_message(const_char_pointer pszMessage);
+      virtual void micro_preempt(const_char_pointer pszMessage);
 
       /////////////bool did_just_install_cloud_data_provider();
       ///
@@ -148,12 +148,12 @@ class ::time      m_timeFoldersSetupDetected;
 #endif
 
 #if TORTOISE_GIT
-      // bool defer_install_tortoise_git(int iTry);
+      // bool defer_install_tortoise_git(::i32 iTry);
       //void install_tortoise_git();
       virtual bool __is_tortoise_git_installed();
 #endif
 #if SMART_GIT
-      //bool defer_install_smart_git(int iTry);
+      //bool defer_install_smart_git(::i32 iTry);
       virtual void __install_smart_git();
       virtual void __download_smart_git();
       virtual ::string __smart_git_download_url();
@@ -188,18 +188,18 @@ class ::time      m_timeFoldersSetupDetected;
       virtual void __list_deps();
          virtual bool __are_folders_setup();
 #if JETBRAINS_CLION
-         //bool defer_install_smart_git(int iTry);
+         //bool defer_install_smart_git(::i32 iTry);
          //void install_smart_git();
          virtual bool __is_jetbrains_clion_installed();
          virtual bool __is_jetbrains_toolbox_installed();
 #endif
 #if INSTALL_GIT_ServiceControlManager
-      //bool defer_install_git_scm(int iTry);
+      //bool defer_install_git_scm(::i32 iTry);
       //void install_git_scm();
       virtual bool __is_git_scm_installed();
 #endif
 #ifdef WINDOWS_DESKTOP
-      //bool defer_install_git_scm(int iTry);
+      //bool defer_install_git_scm(::i32 iTry);
       //void install_git_scm();
       bool __is_msys2_installed();
       bool __is_strawberry_perl_installed();

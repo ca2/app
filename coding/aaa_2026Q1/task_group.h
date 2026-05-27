@@ -89,9 +89,9 @@ namespace coding
 
       virtual ::collection::index status_stage(const ::scoped_string& scopedstrLine);
 
-      void do_tasks(const ::file::path & pathBuildFolder, const ::function < int(::coding::task* ptask) > & dotask);
+      void do_tasks(const ::file::path & pathBuildFolder, const ::function < ::i32(::coding::task* ptask) > & dotask);
 
-      void _do_task(::coding::task* ptask, const ::function < int(::coding::task* ptask) >& dotask);
+      void _do_task(::coding::task* ptask, const ::function < ::i32(::coding::task* ptask) >& dotask);
 
       class ::time elapsed() const { return m_timeEnd - m_timeStart; }
 

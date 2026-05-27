@@ -18,15 +18,15 @@ namespace networking
       
       address();
       //address(const address& address);
-      ////address(int family, ::networking::port_t port = 0);
+      ////address(::i32 family, ::networking::port_t port = 0);
       //address(const ::scoped_string & scopedstrAddress, ::networking::port_t port = 0);
       //address(::particle * pparticle, const ::scoped_string & scopedstrAddress, const ::scoped_string & scopedstrServiceName);
 //#if defined(BSD_STYLE_SOCKETS)
 //      address(const in_addr & a, ::networking::port_t port = 0);
 //      address(const in6_addr & a, ::networking::port_t port = 0);
 //      address(const sockaddr_in & a);
-//      address(const sockaddr_in6 & a, int iLen = -1);
-//      address(const sockaddr & sa, int iLen = -1);
+//      address(const sockaddr_in6 & a, ::i32 iLen = -1);
+//      address(const sockaddr & sa, ::i32 iLen = -1);
 //#endif
       ~address();
 
@@ -55,14 +55,14 @@ namespace networking
       virtual  bool is_valid() const;
 
 
-      //virtual  int get_family() const;
+      //virtual  ::i32 get_family() const;
 
 
 //#if defined(BSD_STYLE_SOCKETS)
 //
 //      inline sockaddr * sa();
 //      inline const sockaddr * sa() const;
-//      int sa_len() const;
+//      ::i32 sa_len() const;
 //
 //      void * addr_data();
 //
@@ -89,7 +89,7 @@ namespace networking
    };
 
 
-//   inline int address::get_family() const
+//   inline ::i32 address::get_family() const
 //   {
 //
 //#if defined(BSD_STYLE_SOCKETS)

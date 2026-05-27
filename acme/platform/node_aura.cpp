@@ -31,13 +31,13 @@ namespace platform
 
 
    ::image::image_pointer aura_node_layer::get_file_image_by_type_identifier(
-      int iSize, const ::scoped_string& scopedstrTypeIdentifier)
+      ::i32 iSize, const ::scoped_string& scopedstrTypeIdentifier)
    {
       return {};
    }
 
 
-   ::image::image_pointer aura_node_layer::get_file_image(int iSize, const ::file::path& path)
+   ::image::image_pointer aura_node_layer::get_file_image(::i32 iSize, const ::file::path& path)
    {
       return {};
    }

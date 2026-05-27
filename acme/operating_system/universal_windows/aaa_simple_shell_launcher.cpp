@@ -23,7 +23,7 @@ void ::acme::shell_launcher::execute()
 bool ::acme::shell_launcher::succeeded()
 {
  
-   return ((int) m_h) >= 32;
+   return ((::i32) m_h) >= 32;
 
 }
 

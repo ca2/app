@@ -27,17 +27,17 @@ public:
    //operator enum_check () const { return m_payload.echeck(); }
 
    operator bool() const { return m_payload.get_bool(); }
-   operator char ()const { return m_payload.as_i8(); }
-   operator unsigned char ()const { return m_payload.as_u8(); }
-   operator short () const { return m_payload.as_i16(); }
-   operator unsigned short ()const { return m_payload.as_u16(); }
-   operator int () const { return m_payload.as_i32(); }
+   operator ::i8 ()const { return m_payload.as_i8(); }
+   operator ::u8 ()const { return m_payload.as_u8(); }
+   operator ::i16 () const { return m_payload.as_i16(); }
+   operator ::u16 ()const { return m_payload.as_u16(); }
+   operator ::i32 () const { return m_payload.as_i32(); }
    operator ::u32 ()const { return m_payload.as_u32(); }
    operator ::i64 () const { return m_payload.as_i64(); }
    operator ::u64 ()const { return m_payload.as_u64(); }
 
-   operator float () const { return m_payload.as_float(); }
-   operator double ()const { return m_payload.as_double(); }
+   operator ::f32 () const { return m_payload.as_f32(); }
+   operator ::f64 ()const { return m_payload.as_f64(); }
 
    operator class ::time ()const { return m_payload.as_time(); }
    operator earth::time()const { return m_payload.as_earth_time(); }

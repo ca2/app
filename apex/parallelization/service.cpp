@@ -14,7 +14,7 @@ service::~service()
 }
 
 
-void service::set_arguments(int argc, char** argv)
+void service::set_arguments(::i32 argc, char_pointer * argv)
 {
 
 
@@ -22,7 +22,7 @@ void service::set_arguments(int argc, char** argv)
 }
 
 
-void service::set_arguments(int argc, wchar_t** argv)
+void service::set_arguments(::i32 argc, wchar_t** argv)
 {
 
 

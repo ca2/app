@@ -31,7 +31,7 @@ namespace android
 
       //using namespace std;
 
-      //int main(void)
+      //::i32 main(void)
       //{
          //Variables 
          //DWORD dwSize = 0;
@@ -113,7 +113,7 @@ namespace android
             //         //printf("%s", pszOutBuffer); 
             //         DWORD wmWritten;
             //         bool fr = WriteFile(hFile, pszOutBuffer, dwSize, &wmWritten, NULL);
-            //         int n = GetLastError();
+            //         ::i32 n = GetLastError();
             //      }
             //      // Free the memory allocated to the buffer.            
             //      delete[] pszOutBuffer;

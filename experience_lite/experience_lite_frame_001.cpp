@@ -1047,7 +1047,7 @@ SizingNone:;
                {
                   i32_point ptCenter = rectangle.center();
 
-                  int iMod;
+                  ::i32 iMod;
                   if(rectangle.width() % 2 == 1)
                      iMod = 1;
                   else
@@ -1069,7 +1069,7 @@ SizingNone:;
 
                   ::i32_rectangle rectangleB;
 
-                  int iMod;
+                  ::i32 iMod;
                   if(rectangle.width() % 2 == 1)
                      iMod = 1;
                   else
@@ -1087,7 +1087,7 @@ SizingNone:;
                {
                   i32_point ptCenter = rectangle.center();
 
-                  int iMod;
+                  ::i32 iMod;
                   if(rectangle.height() % 2 == 1)
                      iMod = 1;
                   else
@@ -1108,7 +1108,7 @@ SizingNone:;
                {
                   i32_point ptCenter = rectangle.center();
 
-                  int iMod;
+                  ::i32 iMod;
                   if(rectangle.height() % 2 == 1)
                      iMod = 1;
                   else

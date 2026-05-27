@@ -87,7 +87,7 @@ void on_term_thread();
 //
 ////#if !defined(WINDOWS)
 ////
-////   char* g_pszDemangle;
+////   char_pointer g_pszDemangle;
 ////   critical_section* g_pcsDemangle;
 ////
 ////#endif
@@ -114,7 +114,7 @@ void on_term_thread();
 ////#include <mach/mach_time.h>
 ////
 //////clock_serv_t   g_cclock;
-////   double g_machtime_conversion_factor;
+////   ::f64 g_machtime_conversion_factor;
 ////   //   clock_get_time(cclock, &mts);
 ////
 ////#endif
@@ -140,7 +140,7 @@ void on_term_thread();
 //
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //
-////   int g_iMemoryCountersStartable;
+////   ::i32 g_iMemoryCountersStartable;
 ////   //::pointer< ::mutex > g_pmutexTrait;
 ////   //::pointer< ::mutex > g_pmutexFactory;
 ////

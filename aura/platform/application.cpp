@@ -77,7 +77,7 @@ extern "C"
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags);
 #endif
 
 #if defined(LINUX)
@@ -110,7 +110,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, 
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
-CLASS_DECL_AURA int ui_open_url(const ::scoped_string & scopedstr);
+CLASS_DECL_AURA ::i32 ui_open_url(const ::scoped_string & scopedstr);
 #endif
 
 
@@ -671,7 +671,7 @@ namespace aura
    //         //      if (::is_set(pFind))
    //         //      {
 
-   //         //         int message = atoi(str(0, pFind));
+   //         //         ::i32 message = atoi(str(0, pFind));
 
    //         //         memory m;
 
@@ -1415,7 +1415,7 @@ namespace aura
 
 
 
-   //void application::DoWaitCursor(int nCode) // 0 => restore, 1=> begin, -1=> end
+   //void application::DoWaitCursor(::i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
    //   __UNREFERENCED_PARAMETER(nCode);
@@ -1459,7 +1459,7 @@ namespace aura
    //bool application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    //{
 
-   //   return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
+   //   return get_temp_file_name_template(strRet, pszName, pszExtension, nullptr);
 
    //}
 
@@ -2208,7 +2208,7 @@ namespace aura
          // current application startup won't be
          // exited by timeout.
 
-         int iRetry = 1;
+         ::i32 iRetry = 1;
 
 retry_license:
 
@@ -2784,7 +2784,7 @@ retry_license:
    }
 
 
-   //void application::on_set_scalar(enum_scalar escalar, ::i64 iValue, int iFlags)
+   //void application::on_set_scalar(enum_scalar escalar, ::i64 iValue, ::i32 iFlags)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2906,7 +2906,7 @@ retry_license:
    //}
 
 
-   ////int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, ::u32 fuStyle)
+   ////::i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, ::u32 fuStyle)
    ////{
 
    ////   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -3047,7 +3047,7 @@ retry_license:
 
    //  ::text::context * pcontext = psession->textcontext();
 
-   //  for (int i = 0; i < localeschema().m_straLocale.get_count(); i++)
+   //  for (::i32 i = 0; i < localeschema().m_straLocale.get_count(); i++)
    //  {
 
    //     string strLocale = localeschema().m_straLocale[i];
@@ -3211,7 +3211,7 @@ retry_license:
 
 
 
-   ////int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ////::i32 application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    ////{
 
    //   return -1;
@@ -3324,7 +3324,7 @@ retry_license:
 //   void application::show_critical_error_log()
 //   {
 //
-//      static int g_iCount = 0;
+//      static ::i32 g_iCount = 0;
 //
 //      string strFile = directory()->appdata() / (file()->module().name() + "_log_error.txt");
 //
@@ -3380,7 +3380,7 @@ retry_license:
    //}
 
 
-   //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
+   //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel)
    //{
 
    //   return psystem->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
@@ -3476,7 +3476,7 @@ retry_license:
    ////}
 
 
-   //void application::install_trace(double dRate)
+   //void application::install_trace(::f64 dRate)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3517,8 +3517,8 @@ retry_license:
 //         informationf("Could not create or open a registrty key\n");
 //         return 0;
 //      }
-//      RegSetValueExW(hkey, L"", 0, REG_SZ, (unsigned char*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (unsigned char*)content-type.c_str(), ::u32 (content-type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (::u8*)content-type.c_str(), ::u32 (content-type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
 //      RegCloseKey(hkey);
 //
 //
@@ -3530,7 +3530,7 @@ retry_license:
 //         informationf("Could not create or open a registrty key\n");
 //         return 0;
 //      }
-//      RegSetValueExW(hkey, L"", 0, REG_SZ, (unsigned char*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
 //
@@ -3541,12 +3541,12 @@ retry_license:
 //         informationf("Could not create or open a registrty key\n");
 //         return 0;
 //      }
-//      RegSetValueExW(hkey, L"", 0, REG_SZ, (unsigned char*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
 //      wstring wstr(directory_system()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()) / "spa_register.txt");
 //
-//      int iRetry = 9;
+//      ::i32 iRetry = 9;
 //
 //      while (!file_system()->exists(utf8(wstr.c_str())) && iRetry > 0)
 //      {
@@ -5359,7 +5359,7 @@ retry_license:
 
 
 
-   //void application::process_message_filter(int code, ::message::message * pmessage)
+   //void application::process_message_filter(::i32 code, ::message::message * pmessage)
    //{
 
    //   //::pointer<::user::message>pusermessage(pmessage);
@@ -5377,7 +5377,7 @@ retry_license:
 
 
 
-   void application::DoWaitCursor(int nCode)
+   void application::DoWaitCursor(::i32 nCode)
    {
 
       if (nCode < 0)
@@ -5541,7 +5541,7 @@ retry_license:
    //bool application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    //{
 
-   //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
+   //   return get_temp_file_name_template(strRet,pszName,pszExtension,nullptr);
 
    //}
 
@@ -5613,7 +5613,7 @@ retry_license:
 //
 //
 //
-//   int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   ::i32 application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      {
@@ -5658,7 +5658,7 @@ retry_license:
 //
 //   }
 //
-//   int application::hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   ::i32 application::hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      return -1;
@@ -5830,7 +5830,7 @@ retry_license:
       //}
 
 
-      //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
+      //bool application::compress_gz(const ::stream & os, const ::stream & is, ::i32 iLevel)
 
       //{
 
@@ -5840,7 +5840,7 @@ retry_license:
       //}
 
 
-      //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
+      //bool application::compress_gz(const ::stream & os, const ::stream & is, ::i32 iLevel)
       //{
 
       //   return psystem->compress().gz(this, os, is, iLevel);
@@ -5991,7 +5991,7 @@ namespace aura
    //}
 
 
-   //lresult application::GetPaintMsgProc(int nCode, wparam wParam, lparam lParam)
+   //lresult application::GetPaintMsgProc(::i32 nCode, wparam wParam, lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nCode);
@@ -6054,7 +6054,7 @@ namespace aura
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
-   //   __UNREFERENCED_PARAMETER(pcszType);
+   //   __UNREFERENCED_PARAMETER(pszType);
 
    //   __UNREFERENCED_PARAMETER(storage);
 
@@ -6106,7 +6106,7 @@ namespace aura
     }*/
 
 
-   bool application::on_idle(int lCount)
+   bool application::on_idle(::i32 lCount)
    {
 
       return false;
@@ -6196,10 +6196,10 @@ namespace aura
    ::collection::count count = (len + 1) / 2;
    memory.set_size(count);
    ::collection::index i = 0;
-   unsigned char b;
+   ::u8 b;
    while(*pszHex != '\0')
    {
-   char ch = (char) tolower(*pszHex);
+   ::i8 ch = (::i8) tolower(*pszHex);
    if(ch >= '0' && ch <= '9')
    {
    b = ch - '0';
@@ -6219,7 +6219,7 @@ namespace aura
    return true;
    }
    b = b << 4;
-   ch = (char) tolower(*pszHex);
+   ch = (::i8) tolower(*pszHex);
    if(ch >= '0' && ch <= '9')
    {
    b |= (ch - '0');
@@ -6243,13 +6243,13 @@ namespace aura
    void application::memory_to_hex(string & strHex, memory & memory)
    {
    ::collection::count count = memory.get_size();
-   char * psz = strHex.get_buffer(count * 2);
+   char_pointer psz = strHex.get_buffer(count * 2);
 
    for(::collection::index i = 0; i < count; i++)
    {
-   *psz++ = ::hex::lower_from((unsigned char) ((memory.get_data()[i] >> 4) & 0xf));
+   *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
 
-   *psz++ = ::hex::lower_from((unsigned char) (memory.get_data()[i] & 0xf));
+   *psz++ = ::hex::lower_from((::u8) (memory.get_data()[i] & 0xf));
 
    }
    strHex.ReleaseBuffer(count * 2);
@@ -6519,7 +6519,7 @@ namespace aura
    //      //                  pData->szPolicyName,
    //      //                  nullptr,
    //      //                  &dwType,
-   //      //                  (unsigned char*)&dwValue,
+   //      //                  (::u8*)&dwValue,
    //      //                  &dwDataLen))
    //      //         {
    //      //            if (dwType == REG_DWORD)
@@ -6580,7 +6580,7 @@ namespace aura
 
    /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
    {
-   for (int i = 1; i < __argc; i++)
+   for (::i32 i = 1; i < __argc; i++)
    {
    const ::scoped_string & scopedstrParam = __targv[i];
    bool bFlag = false;
@@ -6783,7 +6783,7 @@ namespace aura
    /////////////////////////////////////////////////////////////////////////////
    // application idle processing
 
-   //   void application::DevModeChange(char * pDeviceName)
+   //   void application::DevModeChange(char_pointer pDeviceName)
    //
    //   {
    //      __UNREFERENCED_PARAMETER(pDeviceName);
@@ -6855,7 +6855,7 @@ namespace aura
    void application::_001OnFileNew()
    {
       string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if (strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -7070,7 +7070,7 @@ namespace aura
    //void application::OnAppExit()
    //{
 
-   //   // same as double-clicking on main window close box
+   //   // same as ::f64-clicking on main window close box
 
    //   ASSERT(m_pacmeuserinteractionMain != nullptr);
 
@@ -7129,7 +7129,7 @@ namespace aura
 
 
 
-   //   bool application::OnDDECommand(char * pszCommand)
+   //   bool application::OnDDECommand(char_pointer pszCommand)
    //
    //   {
    //      /*      if (m_pdocmanager != nullptr)
@@ -7193,7 +7193,7 @@ namespace aura
    }
 
 
-   //int application::get_open_document_count()
+   //::i32 application::get_open_document_count()
    //{
    //   //ENSURE(m_pdocmanager != nullptr);
    //   //  return document_manager()->get_open_document_count();
@@ -7237,7 +7237,7 @@ namespace aura
       //__UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
       //throw ::interface_only();
-      ///*char szRegistryKey[256];
+      ///*::i8 szRegistryKey[256];
       //VERIFY(::aura::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
    }
@@ -7314,7 +7314,7 @@ namespace aura
 
    /*   ::u32 application::GetProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   int nDefault)
+   ::i32 nDefault)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -7329,9 +7329,9 @@ namespace aura
    ::u32 dwValue;
    ::u32 dwType;
    ::u32 dwCount = sizeof(::u32);
-   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
-   (unsigned char *)&dwValue, &dwCount);
+   (::u8 *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
    if (lResult == ERROR_SUCCESS)
    {
@@ -7369,15 +7369,15 @@ namespace aura
    string strValue;
    ::u32 dwType=REG_NONE;
    ::u32 dwCount=0;
-   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_SZ);
-   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
-   (unsigned char *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
+   (::u8 *)strValue.GetBuffer(dwCount/sizeof(::i8)), &dwCount);
    strValue.ReleaseBuffer();
    }
    RegCloseKey(hSecKey);
@@ -7397,7 +7397,7 @@ namespace aura
 
    pszDefault = "";   // don't pass in nullptr
 
-   char szT[4096];
+   ::i8 szT[4096];
    ::u32 dw = ::GetPrivateProfileString(scopedstrSection, pszEntry,
 
    pszDefault, szT, _countof(szT), m_pszProfileName);
@@ -7409,7 +7409,7 @@ namespace aura
 
    bool application::GetProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   unsigned char** ppData, ::u32* pBytes)
+   ::u8** ppData, ::u32* pBytes)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -7434,14 +7434,14 @@ namespace aura
 
    ::u32 dwType=0;
    ::u32 dwCount=0;
-   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = ___new unsigned char[*pBytes];
-   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   *ppData = ___new ::u8[*pBytes];
+   lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
    }
@@ -7468,10 +7468,10 @@ namespace aura
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = ___new unsigned char[*pBytes];
-   for (int i=0;i<nLen;i+=2)
+   *ppData = ___new ::u8[*pBytes];
+   for (::i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (unsigned char)
+   (*ppData)[i/2] = (::u8)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return true;
@@ -7481,7 +7481,7 @@ namespace aura
 
    bool application::WriteProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   int nValue)
+   ::i32 nValue)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -7493,9 +7493,9 @@ namespace aura
 
    if (hSecKey == nullptr)
    return false;
-   int lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
+   ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
-   (unsigned char *)&nValue, sizeof(nValue));
+   (::u8 *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
    return lResult == ERROR_SUCCESS;
    }
@@ -7503,7 +7503,7 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
 
-   char szT[16];
+   ::i8 szT[16];
    _stprintf_s(szT, _countof(szT), "%d", nValue);
    return ::WritePrivateProfileString(scopedstrSection, pszEntry, szT,
 
@@ -7520,7 +7520,7 @@ namespace aura
 
    if (m_pszRegistryKey != nullptr)
    {
-   int lResult;
+   ::i32 lResult;
    if (scopedstrEntry == nullptr) //delete whole department
 
    {
@@ -7539,7 +7539,7 @@ namespace aura
    if (hSecKey == nullptr)
    return false;
    // necessary to cast away const below
-   lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
+   lResult = ::RegDeleteValue(hSecKey, (char_pointer )pszEntry);
 
    RegCloseKey(hSecKey);
    }
@@ -7551,7 +7551,7 @@ namespace aura
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (unsigned char *)pszValue, (lstrlen(scopedstrValue)+1)*sizeof(char));
+   (::u8 *)pszValue, (lstrlen(scopedstrValue)+1)*sizeof(::i8));
 
    RegCloseKey(hSecKey);
    }
@@ -7569,13 +7569,13 @@ namespace aura
 
    bool application::WriteProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   unsigned char * pData, ::u32 nBytes)
+   ::u8 * pData, ::u32 nBytes)
    {
    ASSERT(scopedstrSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   int lResult;
+   ::i32 lResult;
    HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
@@ -7588,14 +7588,14 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = ___new char[nBytes*2+1];
+   char_pointer psz = ___new ::i8[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
    {
-   psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
+   psz[i*2] = (::i8)((pData[i] & 0x0F) + 'A'); //low nibble
 
-   psz[i*2+1] = (char)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
+   psz[i*2+1] = (::i8)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
 
    }
    psz[i*2] = 0;
@@ -7902,7 +7902,7 @@ namespace aura
 
    //   string strId = m_strId;
 
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
 
    //   if (strId.length() > 0)
    //   {
@@ -7923,7 +7923,7 @@ namespace aura
    //   {
    //      OSVERSIONINFOEX osvi;
    //      DWORDLONG dwlConditionMask = 0;
-   //      unsigned char op = VER_GREATER_EQUAL;
+   //      ::u8 op = VER_GREATER_EQUAL;
    //
    //      // Initialize the OSVERSIONINFOEX structure.
    //
@@ -8001,7 +8001,7 @@ namespace aura
    ////      }
    ////
    ////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-   ////      // short file name so we need to use the short file name.
+   ////      // ::i16 file name so we need to use the ::i16 file name.
    ////      string strShortName;
    ////
    ////      strShortName = file()->module();
@@ -8009,7 +8009,7 @@ namespace aura
    ////      // strip out path
    ////      //string strFileName = ::PathFindFileName(strShortName);
    ////      // strip out extension
-   ////      //char * pszFileName = strFileName.GetBuffer();
+   ////      //char_pointer pszFileName = strFileName.GetBuffer();
    ////      //::PathRemoveExtension(scopedstrFileName);
    ////      //strFileName.ReleaseBuffer();
    ////
@@ -8035,7 +8035,7 @@ namespace aura
 
    //   string strId = m_strId;
 
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
 
    //   if (strId.length() > 0)
    //   {
@@ -8084,7 +8084,7 @@ namespace aura
 
    //   string strId = m_strId;
 
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
 
    //   if (strId.length() > 0)
    //   {
@@ -8148,7 +8148,7 @@ namespace aura
    //}
 
 
-   int application::track_popup_menu(::menu::track_popup * ptrackpopup)
+   ::i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
 
       __UNREFERENCED_PARAMETER(ptrackpopup);
@@ -8175,7 +8175,7 @@ namespace aura
       if (i64Size > 1024 * 1024 * 1024)
       {
 
-         double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
+         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0 * 1024.0);
 
          strSize.formatf("%0.2f GB", d);
 
@@ -8183,7 +8183,7 @@ namespace aura
       else if (i64Size > 1024 * 1024)
       {
 
-         double d = (double)i64Size / (1024.0 * 1024.0);
+         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0);
 
          strSize.formatf("%0.1f MB", d);
 
@@ -8191,7 +8191,7 @@ namespace aura
       else if (i64Size > 1024)
       {
 
-         double d = (double)i64Size / (1024.0);
+         ::f64 d = (::f64)i64Size / (1024.0);
 
          strSize.formatf("%0.0f KB", d);
 
@@ -8284,7 +8284,7 @@ namespace aura
    //}
    //
    //
-   //   int application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
+   //   ::i32 application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //      string strApp;
    //      string_array_base stra;
@@ -8302,7 +8302,7 @@ namespace aura
    //   }
    //
    ////
-   //   int application::send_simple_command(void* osdata, const ::scoped_string & scopedstr, void* osdataSender)
+   //   ::i32 application::send_simple_command(void* osdata, const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //#ifdef WINDOWS_DESKTOP
    //      ::windowing::window * pwindow = (::oswindow) osdata;
@@ -8314,7 +8314,7 @@ namespace aura
    //      cds.cbData = (::u32)strlen(scopedstr);
    //      cds.lpData = (PVOID)psz;
    //
-   //      return (int)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
+   //      return (::i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
    //#else
    //      throw ::exception(todo);
    //#endif
@@ -8334,7 +8334,7 @@ namespace aura
 
       throw ::exception(todo);
 
-      //for (int i = 0; i < m_straAppInterest.get_count(); i++)
+      //for (::i32 i = 0; i < m_straAppInterest.get_count(); i++)
       //{
       //   if (m_straAppInterest[i] != m_strAppName || pwindowing->is_window(m_mapAppInterest[m_straAppInterest[i]]))
       //   {
@@ -8373,24 +8373,24 @@ namespace aura
    }
 
 
-   int application::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept)
+   ::i32 application::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept)
    {
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
       return iCount;
 
    }
 
 
-   int application::GetVisibleFrameCount()
+   ::i32 application::GetVisibleFrameCount()
    {
 
       auto uia = *m_puserinteractionaFrame;
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
-      for (int i = 0; i < uia.interaction_count(); i++)
+      for (::i32 i = 0; i < uia.interaction_count(); i++)
       {
 
          ::pointer<::user::interaction>puserinteraction = uia.interaction_at(i);
@@ -8432,13 +8432,13 @@ namespace aura
    //}
 
 
-   //bool application::platform_open_by_file_extension(int iEdge, const ::scoped_string & scopedstrPathName, application_bias * pappbias)
+   //bool application::platform_open_by_file_extension(::i32 iEdge, const ::scoped_string & scopedstrPathName, application_bias * pappbias)
    //{
 
    //   return psystem->get_platform(iEdge)->open_by_file_extension(scopedstrPathName, pappbias);
    //}
 
-   //bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
+   //bool application::platform_open_by_file_extension(::i32 iEdge, ::create * pcc)
    //{
 
    //   return psystem->get_platform(iEdge)->open_by_file_extension(pcc);
@@ -8492,7 +8492,7 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception & e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
+   void application::report_error(const ::exception & e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
 
       string strMessage;
@@ -8883,7 +8883,7 @@ namespace aura
    }
 
 
-   void application::process_message_filter(int code, ::message::message* pmessage)
+   void application::process_message_filter(::i32 code, ::message::message* pmessage)
    {
 
       //if (pmessage == nullptr)
@@ -9018,7 +9018,7 @@ namespace aura
    //}
 
 
-   void application::on_thread_on_idle(::thread* pthread, int lCount)
+   void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
       if (lCount <= 0)
@@ -9455,7 +9455,7 @@ namespace aura
    //
 
 
-   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
+   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
       auto prequest = create_newø<::request >();
@@ -9697,7 +9697,7 @@ namespace aura
 
    ////   uboBuffers.set_size(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
 
-   ////   for (int i = 0; i < uboBuffers.size(); i++)
+   ////   for (::i32 i = 0; i < uboBuffers.size(); i++)
    ////   {
 
    ////      uboBuffers[i] = allocateø buffer();
@@ -9719,7 +9719,7 @@ namespace aura
 
    ////   std::vector<VkDescriptorSet> globalDescriptorSets(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
 
-   ////   for (int i = 0; i < globalDescriptorSets.size(); i++)
+   ////   for (::i32 i = 0; i < globalDescriptorSets.size(); i++)
    ////   {
 
    ////      auto bufferInfo = uboBuffers[i]->descriptorInfo();
@@ -9765,7 +9765,7 @@ namespace aura
 
    ////      auto newTime = std::chrono::high_resolution_clock::now();
 
-   ////      float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - currentTime).count();
+   ////      ::f32 frameTime = std::chrono::duration<::f32, std::chrono::seconds::period>(newTime - currentTime).count();
 
    ////      currentTime = newTime;
 
@@ -9783,14 +9783,14 @@ namespace aura
    ////         && m_prenderer->m_pvkcrenderpass->height() > 0)
    ////      {
 
-   ////         float aspect = m_prenderer->getAspectRatio();
+   ////         ::f32 aspect = m_prenderer->getAspectRatio();
 
    ////         camera.setPerspectiveProjection(::radians(50.f), aspect, 0.1f, 100.f);
 
    ////         if (auto commandBuffer = m_prenderer->beginFrame())
    ////         {
 
-   ////            int frameIndex = m_prenderer->getFrameIndex();
+   ////            ::i32 frameIndex = m_prenderer->getFrameIndex();
 
    ////            FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera, globalDescriptorSets[frameIndex], m_gameObjects };
 
@@ -9832,7 +9832,7 @@ namespace aura
    ////}
 
 
-   ////void Application::resize(int cx, int cy)
+   ////void Application::resize(::i32 cx, ::i32 cy)
    ////{
 
    ////   m_prenderer->m_pvkcrenderpass->windowExtent.width = cx;
@@ -9895,7 +9895,7 @@ namespace aura
 
    //   //}
 
-   //   //float fLo = 0.5f;
+   //   //::f32 fLo = 0.5f;
 
    //   //std::vector<floating_sequence3> lightColors{
    //   //      {1.f, fLo, fLo},
@@ -9906,12 +9906,12 @@ namespace aura
    //   //      {1.f, 1.f, 1.f}
    //   //};
 
-   //   //for (int i = 0; i < lightColors.size(); i++) {
+   //   //for (::i32 i = 0; i < lightColors.size(); i++) {
    //   //   auto pointLight = VkcGameObject::makePointLight(0.2f);
    //   //   pointLight.color = lightColors[i];
    //   //   auto rotateLight = glm::rotate(
    //   //      floating_matrix4(1.f),
-   //   //      (i * glm::two_pi<float>()) / lightColors.size(),
+   //   //      (i * glm::two_pi<::f32>()) / lightColors.size(),
    //   //      { 0.f, -1.f, 0.f });
    //   //   pointLight.pointLight->lightIntensity = 1.0f;
    //   //   pointLight.transform.translation = floating_sequence3(rotateLight * floating_sequence4(-1.f, -1.f, -1.f, 1.f));
@@ -9921,14 +9921,14 @@ namespace aura
    //}
 
 
-   //void application::handle_mouse_move(int x, int y)
+   //void application::handle_mouse_move(::i32 x, ::i32 y)
    //{
 
 
 
    //}
 
-   //void application::resize(int cx, int cy)
+   //void application::resize(::i32 cx, ::i32 cy)
    //{
 
 

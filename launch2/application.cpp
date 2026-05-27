@@ -12,11 +12,11 @@
 
 bool curl_check_http_ok(const_char_pointer pszUrl);
 bool wget_check_http_ok(const_char_pointer pszUrl);
-char * get_command_output(const_char_pointer pszCommand);
+char_pointer get_command_output(const_char_pointer pszCommand);
 
 
-bool touch(const_char_pointer filename) {
-   int fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
+bool touch(const_char_pointer pszFilename) {
+   ::i32 fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
 
    if (fd == -1) {
       fprintf(stderr, "Unable to touch file");
@@ -28,7 +28,7 @@ bool touch(const_char_pointer filename) {
 }
 
 
-char * buffered_FILE_as_string(FILE * f)
+char_pointer buffered_FILE_as_string(FILE * f)
 {
 
    if (!f)
@@ -38,24 +38,24 @@ char * buffered_FILE_as_string(FILE * f)
 
    }
 
-   //char buffer[1];
+   //::i8 buffer[1];
 
-   int iTotalSize = 0;
+   ::i32 iTotalSize = 0;
 
-   int iPos = 0;
-   char *str = NULL;
+   ::i32 iPos = 0;
+   char_pointer str = NULL;
    size_t size = 0;
    ssize_t read = 0;
-   char * p = nullptr;
+   char_pointer p = nullptr;
 
-   char * pOld = nullptr;
+   char_pointer pOld = nullptr;
    while((read = getline(&str, &size, f) )!= -1)
    {
 
       iPos = iTotalSize;
       iTotalSize +=read;
 
-      p = (char *) malloc(iTotalSize);
+      p = (char_pointer ) malloc(iTotalSize);
 
       if(pOld)
       {
@@ -80,7 +80,7 @@ char * buffered_FILE_as_string(FILE * f)
 }
 
 
-char * FILE_as_string(FILE * f)
+char_pointer FILE_as_string(FILE * f)
 {
 
    if (!f)
@@ -90,7 +90,7 @@ char * FILE_as_string(FILE * f)
 
    }
 
-   char * buffer = nullptr;
+   char_pointer buffer = nullptr;
 
    long length;
 
@@ -100,7 +100,7 @@ char * FILE_as_string(FILE * f)
 
    fseek (f, 0, SEEK_SET);
 
-   buffer = (char *) malloc (length);
+   buffer = (char_pointer ) malloc (length);
 
    if (buffer)
    {
@@ -114,10 +114,10 @@ char * FILE_as_string(FILE * f)
 }
 
 
-char * as_string(const_char_pointer pszFilename)
+char_pointer as_string(const_char_pointer pszFilename)
 {
 
-   char * buffer = nullptr;
+   char_pointer buffer = nullptr;
 
    FILE * f = fopen (scopedstrFilename, "rb");
 
@@ -135,7 +135,7 @@ char * as_string(const_char_pointer pszFilename)
 }
 
 
-char * get_line(char * str, char * & next)
+char_pointer get_line(char_pointer str, char_pointer & next)
 {
    auto start = str;
    if(!str)
@@ -157,14 +157,14 @@ char * get_line(char * str, char * & next)
 
    }
 
-   char * psz = (char*)malloc (str - start + 1);
+   char_pointer psz = (char_pointer )malloc (str - start + 1);
    strncpy(scopedstr, start, str - start);
    psz[str-start] ='\0';
    return psz;
 
 }
 
-char * case_insensitive_begins_skip(char * psz, const_char_pointer pszPrefix)
+char_pointer case_insensitive_begins_skip(char_pointer psz, const_char_pointer pszPrefix)
 {
 
    auto iLenPrefix = strlen(scopedstrPrefix);
@@ -177,13 +177,13 @@ char * case_insensitive_begins_skip(char * psz, const_char_pointer pszPrefix)
 
 }
 
-char * trim_quotes(char * psz)
+char_pointer trim_quotes(char_pointer psz)
 {
 
    auto iLen = strlen(scopedstr);
    if(*psz == '\"' && psz[iLen-1] == '\"')
    {
-      char * pszTrimmed = (char*)malloc (iLen - 2 + 1);
+      char_pointer pszTrimmed = (char_pointer )malloc (iLen - 2 + 1);
       strncpy(scopedstrTrimmed, psz + 1, iLen -2);
       psz[iLen -2] ='\0';
       return pszTrimmed;
@@ -198,7 +198,7 @@ namespace launch
 {
 
 
-application::application(int argc, char * argv[]) :
+application::application(::i32 argc, char_pointer argv[]) :
    m_argc(argc),
    m_argv(argv)
 {
@@ -252,7 +252,7 @@ printf("Calculating Download URL...\n");
 
 parse_app_root_and_app_name();
 
-char * szDownloadUrl = get_download_url(m_pszAppRoot, m_pszAppName);
+char_pointer szDownloadUrl = get_download_url(m_pszAppRoot, m_pszAppName);
 
 if (!szDownloadUrl)
 {
@@ -290,11 +290,11 @@ return;
 
 printf("Launching %s/%s...\n", m_pszAppRoot, m_pszAppName);
 
-char szHome[2048];
+::i8 szHome[2048];
 
 strcpy(szHome, getenv("HOME"));
 
-char szApplication[4096];
+::i8 szApplication[4096];
 
 strcpy(szApplication, szHome);
 
@@ -302,7 +302,7 @@ strcat(szApplication, "/application");
 
 mkdir(szApplication, 0777);
 
-char szAppCore[4096];
+::i8 szAppCore[4096];
 
 strcpy(szAppCore, szApplication);
 
@@ -312,7 +312,7 @@ strcat(szAppCore, m_pszAppRoot);
 
 mkdir(szAppCore, 0777);
 
-char szStore[4096];
+::i8 szStore[4096];
 
 strcpy(szStore, szAppCore);
 
@@ -322,7 +322,7 @@ strcat(szAppCore, m_pszAppName);
 
 mkdir(szStore, 0777);
 
-char szInstallingWithLaunchStore[4096];
+::i8 szInstallingWithLaunchStore[4096];
 
 strcpy(szInstallingWithLaunchStore, szStore);
 
@@ -330,7 +330,7 @@ strcat(szInstallingWithLaunchStore, "/installing_with_launch_store");
 
 touch(szInstallingWithLaunchStore);
 
-char szLog[4096];
+::i8 szLog[4096];
 
 strcpy(szLog, szStore);
 
@@ -342,7 +342,7 @@ auto t =::time(nullptr);
 
 auto ptm = localtime(&t);
 
-char szLogFilename[1024];
+::i8 szLogFilename[1024];
 
 sprintf(szLogFilename,
 "/%04d-%02d-%02d_%02d-%02d-%02d.txt",
@@ -353,13 +353,13 @@ ptm->tm_hour,
 ptm->tm_min,
 ptm->tm_sec);
 
-char szLogPath[4096];
+::i8 szLogPath[4096];
 
 strcpy(szLogPath, szLog);
 
 strcat(szLogPath, szLogFilename);
 
-char szX64[4096];
+::i8 szX64[4096];
 
 strcpy(szX64, szStore);
 
@@ -369,10 +369,10 @@ mkdir(szX64, 0777);
 
 chdir(szX64);
 
-   char szAppExeName[1024];
+   ::i8 szAppExeName[1024];
    sprintf(szAppExeName, "_%s_%s", m_pszAppRoot, m_pszAppName);
 
-   for(int i = 0; i < strlen(szAppExeName); i++)
+   for(::i32 i = 0; i < strlen(szAppExeName); i++)
    {
 
 if(szAppExeName[i] =='-')
@@ -382,9 +382,9 @@ szAppExeName[i] = '_';
 }
 
    }
-   char szZipName[1024];
+   ::i8 szZipName[1024];
    sprintf(szZipName, "_%s.zip", szAppExeName);
-   char szDownloadCommand[2048];
+   ::i8 szDownloadCommand[2048];
 if (!strcasecmp(m_pszDistro, "freebsd")) {
 
 strcpy(szDownloadCommand, "curl --http1.1 ");
@@ -406,7 +406,7 @@ strcat(szDownloadCommand, szZipName);
 
 system(szDownloadCommand);
 
-   char szUnzipCommand[2048];
+   ::i8 szUnzipCommand[2048];
 
    sprintf(szUnzipCommand, "unzip -o %s -d .", szZipName);
 
@@ -417,7 +417,7 @@ system(szUnzipCommand);
 
 
 
-char szCommand[4096];
+::i8 szCommand[4096];
 
 strcpy(szCommand, "sh -c \"nohup ./");
 strcat(szCommand, szAppExeName);
@@ -430,7 +430,7 @@ system(szCommand);
 }
 
 
-char * application::get_download_url(const_char_pointer pszRoot, const_char_pointer pszName)
+char_pointer application::get_download_url(const_char_pointer pszRoot, const_char_pointer pszName)
 {
 
 auto pszEtcOsRelease = as_string("/etc/os-release");
@@ -504,7 +504,7 @@ m_pszDistro = "freebsd";
 
 m_pszVersion = strdup(m_pszVersion);
 
-auto pszDot = (char *) strchr(m_pszVersion, '.');
+auto pszDot = (char_pointer ) strchr(m_pszVersion, '.');
 
 if (scopedstrDot)
 {
@@ -615,7 +615,7 @@ printf("There it is ___new version : %s\n", m_pszVersion);
 
 }
 
-char szUrl[4096];
+::i8 szUrl[4096];
 
 if (m_pszBranch)
 {
@@ -658,11 +658,11 @@ void application::install_dependencies()
 
    }
 
-   auto pszCommand = (char*) ::malloc(strlen(scopedstr) + 1024);
+   auto pszCommand = (char_pointer ) ::malloc(strlen(scopedstr) + 1024);
 
    auto len = strlen(scopedstrCommand);
 
-   for(int i = 0; i < len; i++)
+   for(::i32 i = 0; i < len; i++)
    {
 
       if(scopedstrCommand[i] == '\n' || pszCommand[i] == '\r')
@@ -750,7 +750,7 @@ return bOk;
 
 
 
-int main(int argc, char * argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
 
 
@@ -789,7 +789,7 @@ int main(int argc, char * argv[])
 //         {
 //
 //
-//         char szCommand[4096];
+//         ::i8 szCommand[4096];
 //
 //      strcpy(szCommand, "wget -S --spider ");
 //      strcat(szCommand, pszUrl);
@@ -823,7 +823,7 @@ int main(int argc, char * argv[])
 //         {
 //
 //
-//         char szCommand[4096];
+//         ::i8 szCommand[4096];
 //
 //      strcpy(szCommand, "wget -S --spider ");
 //      strcat(szCommand, pszUrl);
@@ -959,11 +959,11 @@ int main(int argc, char * argv[])
 //      }
 //
 
-char * start_temporary_file_name()
+char_pointer start_temporary_file_name()
 {
 
-   char sz[8192];
-   char szCurDir[1024];
+   ::i8 sz[8192];
+   ::i8 szCurDir[1024];
    getcwd(szCurDir, sizeof(szCurDir));
    auto ptmpname = tempnam(szCurDir, "tmpfl");
    return ptmpname;
@@ -971,7 +971,7 @@ char * start_temporary_file_name()
 }
 
 
-void end_temporary_file_name(char * ptmpname)
+void end_temporary_file_name(char_pointer ptmpname)
 {
 
    remove(ptmpname);
@@ -981,7 +981,7 @@ void end_temporary_file_name(char * ptmpname)
 }
 
 
-char * end_temporary_file_name_as_string(char * ptmpname)
+char_pointer end_temporary_file_name_as_string(char_pointer ptmpname)
 {
 
    auto p = as_string(ptmpname);
@@ -993,12 +993,12 @@ char * end_temporary_file_name_as_string(char * ptmpname)
 }
 
 
-char * get_command_output(const_char_pointer pszCommand)
+char_pointer get_command_output(const_char_pointer pszCommand)
 {
 
    auto ptmpname = start_temporary_file_name();
 
-   char sz[8129];
+   ::i8 sz[8129];
 
    sprintf(sz, "%s &> %s", pszCommand, ptmpname);
 

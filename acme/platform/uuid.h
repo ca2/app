@@ -8,10 +8,10 @@ namespace platform
 
    struct uuid_t 
    {
-      unsigned long  data1;
-      unsigned short data2;
-      unsigned short data3;
-      unsigned char  data4[8];
+      ulong  data1;
+      ::u16 data2;
+      ::u16 data3;
+      ::u8  data4[8];
    };
    
    // 128-bit
@@ -23,7 +23,7 @@ namespace platform
       union
       {
          uuid_t         m_uuid;
-         unsigned char  m_ucha[16];
+         ::u8  m_u8a[16];
 
       };
 

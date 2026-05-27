@@ -29,7 +29,7 @@
 #include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
-const char* eglErrorString(EGLint error);
+const_char_pointer eglErrorString(EGLint error);
 #ifdef WITH_X11
 #include <X11/Xlib.h>
 #endif
@@ -101,7 +101,7 @@ namespace gpu_opengl
     GLuint id,
     GLenum severity,
     GLsizei length,
-    const GLchar* message,
+    const GLchar_pointer message,
     const void* userParam)
    {
 
@@ -225,7 +225,7 @@ namespace gpu_opengl
       if (m_eglcontext == EGL_NO_CONTEXT)
       {
 
-         int iError = eglGetError();
+         ::i32 iError = eglGetError();
 
          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 
@@ -354,7 +354,7 @@ namespace gpu_opengl
       if (m_eglsurface == EGL_NO_SURFACE)
       {
 
-         int iError = eglGetError();
+         ::i32 iError = eglGetError();
 
          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 
@@ -444,7 +444,7 @@ namespace gpu_opengl
       //  if (m_eglcontext == EGL_NO_CONTEXT)
       //  {
       //
-      //     int iError = eglGetError();
+      //     ::i32 iError = eglGetError();
       //
       //     const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
       //
@@ -478,7 +478,7 @@ namespace gpu_opengl
       if (m_eglsurface == EGL_NO_SURFACE)
       {
 
-         int iError = eglGetError();
+         ::i32 iError = eglGetError();
 
          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 
@@ -558,9 +558,9 @@ namespace gpu_opengl
 //
 //       //m_itaskGpu = ::current_itask();
 //
-// //      unsigned long target = GL_TEXTURE_2D;
+// //      ulong target = GL_TEXTURE_2D;
 // //
-// //      unsigned long internalFormat = GL_RGBA;
+// //      ulong internalFormat = GL_RGBA;
 // //
 // //      long max_level = 0;
 // //
@@ -704,7 +704,7 @@ namespace gpu_opengl
 //       if (m_eglsurface == EGL_NO_SURFACE)
 //       {
 //
-//          int iError = eglGetError();
+//          ::i32 iError = eglGetError();
 //
 //          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 //
@@ -728,7 +728,7 @@ namespace gpu_opengl
 //       if (m_eglcontext == EGL_NO_CONTEXT)
 //       {
 //
-//          int iError = eglGetError();
+//          ::i32 iError = eglGetError();
 //
 //          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 //
@@ -871,13 +871,13 @@ namespace gpu_opengl
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 
@@ -932,7 +932,7 @@ namespace gpu_opengl
       if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
       {
 
-         int iError = eglGetError();
+         ::i32 iError = eglGetError();
 
          auto pszError = eglQueryString(egldisplay, iError);
 
@@ -1003,7 +1003,7 @@ namespace gpu_opengl
       if (!eglMakeCurrent(egldisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT))
       {
 
-         int iError = eglGetError();
+         ::i32 iError = eglGetError();
 
          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 
@@ -1102,7 +1102,7 @@ namespace gpu_opengl
       if (!eglSwapBuffers(egldisplay, m_eglsurface))
       {
 
-         int iError = eglGetError();
+         ::i32 iError = eglGetError();
 
          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 

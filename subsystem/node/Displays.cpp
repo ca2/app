@@ -70,7 +70,7 @@ namespace subsystem
 //   // }
 // }
 //
-// void Displays::getDisplayCoordinates(unsigned char displayNumber,
+// void Displays::getDisplayCoordinates(::u8 displayNumber,
 //                                             ::i32_rectangle *prectangle)
 // {
 //

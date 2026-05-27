@@ -22,11 +22,11 @@ public:
 
    // // Now alloc from any pool and release to any pool (not necessaraly the same allocated at) . save four bytes per allocation
    ::heap::allocator *      m_pallocator;
-   int                      m_iAlloc; // Now alloc from any pool
-   int                      m_iFree; // and release to any pool
-   int                      m_iShareCount;
-   int                      m_iShareBound;
-   int                      m_iAllocSize;
+   ::i32                      m_iAlloc; // Now alloc from any pool
+   ::i32                      m_iFree; // and release to any pool
+   ::i32                      m_iShareCount;
+   ::i32                      m_iShareBound;
+   ::i32                      m_iAllocSize;
 
 
 

@@ -85,7 +85,7 @@ namespace innate_subsystem
 //       m_pparticleThis->create();
 //    }
 //
-//    bool Menu::loadMenu(const char * lpMenuName)
+//    bool Menu::loadMenu(const_char_pointer lpMenuName)
 //    {
 //       // _ASSERT(m_menu == 0);
 //       //
@@ -106,7 +106,7 @@ namespace innate_subsystem
 //       m_pparticleThis->createPopupMenu();
 //    }
 //
-//    int Menu::getMenuItemCount()
+//    ::i32 Menu::getMenuItemCount()
 //    {
 //       // _ASSERT(m_menu != 0);
 //       //
@@ -115,7 +115,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getMenuItemCount();
 //    }
 //
-//    // bool Menu::appendMenu(::u32 uFlags, unsigned int_PTR uIDNewItem, LPCTSTR lpNewItem)
+//    // bool Menu::appendMenu(::u32 uFlags, ::u32 int_PTR uIDNewItem, LPCTSTR lpNewItem)
 //    // {
 //    //    // _ASSERT(m_menu != 0);
 //    //    //
@@ -145,7 +145,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->deleteMenu(uPosition);
 //    }
 //
-//    bool Menu::getSubMenu(int nPos, MenuInterface *pmenu)
+//    bool Menu::getSubMenu(::i32 nPos, MenuInterface *pmenu)
 //    {
 //
 //       return m_pparticleThis->getSubMenu(nPos, pmenu);
@@ -187,12 +187,12 @@ namespace innate_subsystem
 //    }
 //
 //
-//    int Menu::findMenuItem(::u32 uID)
+//    ::i32 Menu::findMenuItem(::u32 uID)
 //    {
 //       return m_pparticleThis->findMenuItem(uID);
 //       // _ASSERT(m_menu != 0);
 //       //
-//       // for (int i = 0; i < getMenuItemCount(); i++) {
+//       // for (::i32 i = 0; i < getMenuItemCount(); i++) {
 //       //    if (GetMenuItemID(m_menu, i) == uID) {
 //       //       return i;
 //       //    }
@@ -216,7 +216,7 @@ namespace innate_subsystem
 //    bool Menu::appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pmenu)
 //    {
 //       return m_pparticleThis->appendSubMenu(scopedstr, pmenu);
-//       //return appendMenu(MF_POPUP, (unsigned int_PTR)pMenu->getMenu(), strVal.getString());
+//       //return appendMenu(MF_POPUP, (::u32 int_PTR)pMenu->getMenu(), strVal.getString());
 //    }
 //
 //    bool Menu::insertMenuItem(::u32 uItem, const ::scoped_string & scopedstr, ::u32 uID)
@@ -253,7 +253,7 @@ namespace innate_subsystem
 //    {
 //       // _ASSERT(m_menu != 0);
 //       //
-//       // int pos = findMenuItem(uID);
+//       // ::i32 pos = findMenuItem(uID);
 //       // if (pos == -1) {
 //       //    return false;
 //       // }
@@ -298,7 +298,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    void Menu::trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand)
+//    void Menu::trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(::i32)> &onCommand)
 //    {
 //       m_pparticleThis->trackPopupMenuOnCursorPosition(pwindowNotify, onCommand);
 //

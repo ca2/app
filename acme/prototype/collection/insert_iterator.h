@@ -19,6 +19,6 @@ public:
     { return *this; }
   insert_iterator<Container>& operator ++ ()
     { return *this; }
-  insert_iterator<Container> operator ++ (int)
+  insert_iterator<Container> operator ++ (::i32)
     { return *this; }
 };

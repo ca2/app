@@ -101,7 +101,7 @@
 //      iterator iLowerBound;
 //      iterator iUpperBound;
 //      iterator iLPos, iUPos, iMPos;
-//      //   unsigned int t;
+//      //   ::u32 t;
 //
 //      if (a.get_count() >= 2)
 //      {

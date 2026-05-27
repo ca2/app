@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/simple_ui/_simple_ui.h"
 
-void maximum_line_length(string_array_base & stra, int iLen)
+void maximum_line_length(string_array_base & stra, ::i32 iLen)
 {
 
    for(::collection::index i = 0; i < stra.get_size(); i++)
@@ -27,7 +27,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::duration durationTimeout):
+   message_box::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::duration durationTimeout):
       ::object(pparticle)
    {
 
@@ -89,7 +89,7 @@ namespace simple_ui
    }
 
 
-   int message_box::show()
+   ::i32 message_box::show()
    {
 
       ::i32_rectangle rectangleDesktop;
@@ -135,13 +135,13 @@ namespace simple_ui
 
       ::i32_rectangle rectangleFontopus;
 
-      int stdw = 800;
+      ::i32 stdw = 800;
 
-      int stdh = 400;
+      ::i32 stdh = 400;
 
-      int w = stdw;
+      ::i32 w = stdw;
 
-      int h = stdh;
+      ::i32 h = stdh;
 
       if(w > rectangleDesktop.width())
       {
@@ -281,15 +281,15 @@ namespace simple_ui
 
       }
 
-      int cx = 100;
+      ::i32 cx = 100;
 
-      int cy = 25;
+      ::i32 cy = 25;
 
-      int margin = 10;
+      ::i32 margin = 10;
 
-      int x = rectangleX.left + margin;
+      ::i32 x = rectangleX.left + margin;
 
-      int y = rectangleX.bottom - cy - margin;
+      ::i32 y = rectangleX.bottom - cy - margin;
 
       for(::collection::index i = 0; i < m_tapaA.get_count(); i++)
       {
@@ -446,7 +446,7 @@ namespace simple_ui
    }
 
 
-   //long long message_box::increment_reference_count()
+   //::i64 message_box::increment_reference_count()
    //{
 
    //   return simple_ui::top::increment_reference_count();
@@ -454,7 +454,7 @@ namespace simple_ui
    //}
 
 
-   //long long message_box::decrement_reference_count()
+   //::i64 message_box::decrement_reference_count()
    //{
 
    //   return simple_ui::top::decrement_reference_count();
@@ -490,7 +490,7 @@ namespace simple_ui
 
 
 //extern "C"
-//CLASS_DECL_CORE void system_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int uFlags)
+//CLASS_DECL_CORE void system_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,::u32 uFlags)
 //{
 //
 //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(oswindow, pszText, pszCaption, uFlags, function);
@@ -530,10 +530,10 @@ send(pmessageboxpayload);
 //}
 
 
-//int ui_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, const ::function_arg & function)
+//::i32 ui_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 uFlags, const ::function_arg & function)
 //{
 //
-//   int iResult = 0;
+//   ::i32 iResult = 0;
 //
 //   {
 //

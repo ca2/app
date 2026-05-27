@@ -109,9 +109,9 @@ namespace lite
 
       rcClient = ptab->get_data()->m_rectangleHosting;
 
-      int iTabHeight = ptab->get_data()->m_iTabHeight;
+      ::i32 iTabHeight = ptab->get_data()->m_iTabHeight;
 
-      //int iB = rcClient.top;
+      //::i32 iB = rcClient.top;
 
       rcTabs.bottom = rcTabs.top + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom;
 
@@ -125,11 +125,11 @@ namespace lite
 
       pgraphics->fill_rectangle(rcClient, crbk);
 
-      int iTab = -1;
+      ::i32 iTab = -1;
 
       ::draw2d::brush_pointer pbrushText;
 
-      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          ::user::tab_pane & pane = ptab->get_data()->m_panea(iPane);
@@ -502,7 +502,7 @@ namespace lite
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(ptab->m_eelementHover == (int)::e_element_split + i)
+               if(ptab->m_eelementHover == (::i32)::e_element_split + i)
                {
                   pgraphics->fill_rectangle(rectangleEmp,argb(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_pbrushTextHover);
@@ -587,11 +587,11 @@ namespace lite
 
       if(ptab->get_data()->m_bVertical)
       {
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         int cx;
-         int cy;
-         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         ::i32 iTabWidth = 16;
+         ::i32 iTabHeight = 8;
+         ::i32 cx;
+         ::i32 cy;
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -675,8 +675,8 @@ namespace lite
       }
       else
       {
-         int iTabHeight = 16;
-         int cy;
+         ::i32 iTabHeight = 16;
+         ::i32 cy;
          ::draw2d::graphics_pointer graphics(e_create);
          pgraphics->create_compatible_graphics(nullptr);
          ::draw2d::graphics_pointer & pgraphics = graphics;
@@ -685,10 +685,10 @@ namespace lite
 
          ::i32_rectangle rectangleX;
          ptab->rectangle(rectangleX);
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
-         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         ::i32 ixAdd;
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -762,7 +762,7 @@ namespace lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -798,7 +798,7 @@ namespace lite
 
       }
 
-      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          if(iPane != ptab->_001GetSel())
@@ -834,7 +834,7 @@ namespace lite
    }
 
 
-   bool theme::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar)
+   bool theme::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::i32 iItem, ::user::toolbar * ptoolbar)
    {
 
       _001DrawLiteToolbarItem(pgraphics, iItem, ptoolbar);
@@ -844,7 +844,7 @@ namespace lite
    }
 
 
-   void theme::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar)
+   void theme::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::i32 iItem, ::user::toolbar * ptoolbar)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -914,8 +914,8 @@ namespace lite
       }
 
 
-      //int iOffsetX = 0;
-      //int iOffsetY = 0;
+      //::i32 iOffsetX = 0;
+      //::i32 iOffsetY = 0;
 
       ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 
@@ -1148,7 +1148,7 @@ namespace lite
 
    }
 
-   void theme::_001DrawLiteToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar)
+   void theme::_001DrawLiteToolbarItem(::draw2d::graphics_pointer & pgraphics, ::i32 iItem, ::user::toolbar * ptoolbar)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1221,8 +1221,8 @@ namespace lite
       }
 
 
-      //int iOffsetX = 0;
-      //int iOffsetY = 0;
+      //::i32 iOffsetX = 0;
+      //::i32 iOffsetY = 0;
 
       ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 
@@ -1509,10 +1509,10 @@ namespace lite
    }
 
 
-   bool theme::get_double(double & d, ::user::e_double edouble, ::user::style_context * pcontext)
+   bool theme::get_double(::f64 & d, ::user::e_double edouble, ::user::style_context * pcontext)
    {
 
-      if (edouble == ::user::double_list_item_height_rate)
+      if (edouble == ::user::f64_list_item_height_rate)
       {
 
          d = 1.65;

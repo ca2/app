@@ -20,12 +20,12 @@
 #include "aura/message/user.h"
 
 
-void scroll_x(::i32_rectangle & rectangleTarget, double dRateX, const ::i32_rectangle & rectangle)
+void scroll_x(::i32_rectangle & rectangleTarget, ::f64 dRateX, const ::i32_rectangle & rectangle)
 {
 
-   int w = ::width(rectangle);
+   ::i32 w = ::width(rectangle);
 
-   rectangleTarget.left = (int) (rectangle.left + (rectangle.width() - w) * dRateX);
+   rectangleTarget.left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
 
    rectangleTarget.right = rectangleTarget.left + w;
 
@@ -180,9 +180,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int w = rectangleX.width();
+      ::i32 w = rectangleX.width();
 
-      int h = rectangleX.height();
+      ::i32 h = rectangleX.height();
 
       if (w <= 0 || h <= 0)
       {
@@ -205,7 +205,7 @@ namespace user
 
       {
 
-         int iSize = minimum(15 * w / 15, 15 * h / 15);
+         ::i32 iSize = minimum(15 * w / 15, 15 * h / 15);
 
          rectangleCheckBox.left = 0;
          rectangleCheckBox.top = 0;
@@ -339,9 +339,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int w = rectangleX.width();
+      ::i32 w = rectangleX.width();
 
-      int h = rectangleX.height();
+      ::i32 h = rectangleX.height();
 
       w--;
 
@@ -389,13 +389,13 @@ namespace user
 
       ::i32_rectangle rectangleEllipse(1, 1, h-2, h-2);
 
-      //double dNow = ::get_millis();
+      //::f64 dNow = ::get_millis();
 
       ::draw2d::path_pointer ppath(e_create, this);
 
       ::i32_rectangle rectangleL(1, 1, h-2, h-2);
 
-      auto rectangleR = int_rectangle_dimension(h-2, 1, h-2, h-2);
+      auto rectangleR = i32_rectangle_dimension(h-2, 1, h-2, h-2);
 
       ppath->add_arc(rectangleL, -90_degree, -180_degree);
 
@@ -455,7 +455,7 @@ namespace user
 
          m_dPosition = ::sin((π / 2.0) * dRate);
 
-         double dRate = m_dPosition;
+         ::f64 dRate = m_dPosition;
 
          if (bComplement)
          {
@@ -487,7 +487,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         unsigned char bAlphaP1 = (unsigned char) (255.0 * (1.0 - dRate));
+         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
 
          ::color::color crP1 = argb(bAlphaP1, 0, 0, 0);
 
@@ -562,7 +562,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
+      ::i32 iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
 
       ::i32_rectangle rectangleCheckBox;
       rectangleCheckBox.left = 1;

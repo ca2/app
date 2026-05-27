@@ -52,7 +52,7 @@ namespace html
    }
 
 
-   float style::parse_dimension(const ::scoped_string & scopedstr)
+   ::f32 style::parse_dimension(const ::scoped_string & scopedstr)
    {
 
       return _parse_dimension(scopedstr);
@@ -60,7 +60,7 @@ namespace html
    }
 
 
-   bool style::parse_border_width(const ::scoped_string & scopedstr, float & f)
+   bool style::parse_border_width(const ::scoped_string & scopedstr, ::f32 & f)
    {
 
       return _parse_border_width(scopedstr, f);
@@ -88,7 +88,7 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, float & f)
+   bool style::get_dimension(bool bParent, const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, ::f32 & f)
    {
 
       f = 0.f;
@@ -137,7 +137,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, ::float_rectangle & rectangle)
+   bool style::get_surround_box(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, ::f32_rectangle & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -200,7 +200,7 @@ namespace html
       if(pstyleBottom != nullptr)
          iBottom = pstyleBottom->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"));
 
-      float f = 0.f;
+      ::f32 f = 0.f;
 
       if(pstyle != nullptr)
       {
@@ -321,16 +321,16 @@ namespace html
       ::collection::index iTopW          = -1;
       ::collection::index iRightW        = -1;
       ::collection::index iBottomW       = -1;
-      float f              = 0.f;
-      float fLeft          = 0.f;
-      float fTop           = 0.f;
-      float fRight         = 0.f;
-      float fBottom        = 0.f;
-      float fW             = 0.f;
-      float fLeftW         = 0.f;
-      float fTopW          = 0.f;
-      float fRightW        = 0.f;
-      float fBottomW       = 0.f;
+      ::f32 f              = 0.f;
+      ::f32 fLeft          = 0.f;
+      ::f32 fTop           = 0.f;
+      ::f32 fRight         = 0.f;
+      ::f32 fBottom        = 0.f;
+      ::f32 fW             = 0.f;
+      ::f32 fLeftW         = 0.f;
+      ::f32 fTopW          = 0.f;
+      ::f32 fRightW        = 0.f;
+      ::f32 fBottomW       = 0.f;
 
       if(m_propertyset.has_property(rangeName) && parse_border_width(m_propertyset[rangeName], f))
          pstyle = this;
@@ -438,28 +438,28 @@ namespace html
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeft, iLeft, fLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeftW, iLeftW, fLeftW);
-      rectangle.left          = (float) payloadCurrent.as_double();
+      rectangle.left          = (::f32) payloadCurrent.as_f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTop, iTop, fTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTopW, iTopW, fTopW);
-      rectangle.top           = (float)payloadCurrent.as_double();
+      rectangle.top           = (::f32)payloadCurrent.as_f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRight, iRight, fRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRightW, iRightW, fRightW);
-      rectangle.right         = (float)payloadCurrent.as_double();
+      rectangle.right         = (::f32)payloadCurrent.as_f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottom, iBottom, fBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottomW, iBottomW, fBottomW);
-      rectangle.bottom        = (float)payloadCurrent.as_double();
+      rectangle.bottom        = (::f32)payloadCurrent.as_f64();
 
       return true;
 
@@ -827,16 +827,16 @@ namespace html
                string strParent;
                if(pelement->m_pparent->m_pstyle->get_text(rangeName, scopedstrSubClass, pdata, pelement->m_pparent, strParent))
                {
-                  str = ::as_string((int)((double) atof(str) * atoi(strParent)));
+                  str = ::as_string((::i32)((::f64) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = ::as_string((int)((double) atof(str) * 12));
+                  str = ::as_string((::i32)((::f64) atof(str) * 12));
                }
             }
             else
             {
-               str = ::as_string((int)((double) atof(str) * 12));
+               str = ::as_string((::i32)((::f64) atof(str) * 12));
             }
          }
       }
@@ -844,7 +844,7 @@ namespace html
    }
 
 
-   bool style::get_alpha(const ::scoped_string & scopedstrSubClass, html_data * pdata, const ::html::element * pelement, double & d)
+   bool style::get_alpha(const ::scoped_string & scopedstrSubClass, html_data * pdata, const ::html::element * pelement, ::f64 & d)
    {
 
       const_char_pointer rangeName = "opacity";
@@ -865,7 +865,7 @@ namespace html
 
       }
 
-      d = m_propertyset["opacity"].as_double();
+      d = m_propertyset["opacity"].as_f64();
 
       return true;
 
@@ -889,7 +889,7 @@ namespace html
          string strKey(pszStart, psz - pszStart);
          strKey.trim();
 
-         char chQuote = '\0';
+         ::i8 chQuote = '\0';
          psz++;
          pszStart = psz;
          while((chQuote != '\0' || *psz != ';') && *psz != '\0' && *psz != '}')
@@ -936,7 +936,7 @@ namespace html
    }
 
 
-   bool style::matches_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const_ansi_range rangeName, float & f)
+   bool style::matches_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const_ansi_range rangeName, ::f32 & f)
    {
       if(etag != tag_none && m_etag != tag_none)
          if(m_etag != etag)
@@ -1024,7 +1024,7 @@ namespace html
    }
 
 
-   float style::_parse_dimension(const ::scoped_string & scopedstrParam)
+   ::f32 style::_parse_dimension(const ::scoped_string & scopedstrParam)
    {
 
       string str(scopedstrParam);
@@ -1033,22 +1033,22 @@ namespace html
       if(str.case_insensitive_ends_eat("px"))
       {
          str.trim();
-         return (float) strtod(str, nullptr);
+         return (::f32) strtod(str, nullptr);
       }
-      else if(str.case_insensitive_ends_eat("::float_point"))
+      else if(str.case_insensitive_ends_eat("::f32_point"))
       {
          str.trim();
-         return (float) (strtod(str, nullptr) * 96.0 / 72.0);
+         return (::f32) (strtod(str, nullptr) * 96.0 / 72.0);
       }
       else
       {
-         return (float) strtod(str, nullptr);
+         return (::f32) strtod(str, nullptr);
       }
 
    }
 
 
-   bool style::_parse_border_width(const ::scoped_string & scopedstr, float & f)
+   bool style::_parse_border_width(const ::scoped_string & scopedstr, ::f32 & f)
    {
 
       if (scopedstr.is_empty())
@@ -1158,7 +1158,7 @@ namespace html
       }
       if(i >= str.length())
       {
-         f = (float) strtod(&str[iFindDigit], nullptr);
+         f = (::f32) strtod(&str[iFindDigit], nullptr);
          return true;
       }
       if(str[i] == '.')
@@ -1167,7 +1167,7 @@ namespace html
       }
       if(i >= str.length())
       {
-         f = (float) strtod(&str[iFindDigit], nullptr);
+         f = (::f32) strtod(&str[iFindDigit], nullptr);
          return true;
       }
       while(i < str.length() && character_isdigit(str[i]))
@@ -1176,7 +1176,7 @@ namespace html
       }
       if(i >= str.length())
       {
-         f = (float) strtod(&str[iFindDigit], nullptr);
+         f = (::f32) strtod(&str[iFindDigit], nullptr);
          return true;
       }
       while(i < str.length() && character_isspace(str[i]))
@@ -1185,12 +1185,12 @@ namespace html
       }
       if(i >= str.length())
       {
-         f = (float) strtod(&str[iFindDigit], nullptr);
+         f = (::f32) strtod(&str[iFindDigit], nullptr);
          return true;
       }
-      f = (float) strtod(&str[iFindDigit], nullptr);
+      f = (::f32) strtod(&str[iFindDigit], nullptr);
       str = str.substr(i);
-      if(case_insensitive_string_begins(str, "::float_point"))
+      if(case_insensitive_string_begins(str, "::f32_point"))
       {
          str.trim();
          if(str.length() == 2 || character_isspace(str[3]))
@@ -1254,15 +1254,15 @@ namespace html
             range.consume_spaces(0);
             range.consume("(");
             range.consume_spaces(0);
-            int R = (int) range.consume_natural(255);
+            ::i32 R = (::i32) range.consume_natural(255);
             range.consume_spaces(0);
             range.consume(",");
             range.consume_spaces(0);
-            int G = (int) range.consume_natural(255);
+            ::i32 G = (::i32) range.consume_natural(255);
             range.consume_spaces(0);
             range.consume(",");
             range.consume_spaces(0);
-            int B = (int) range.consume_natural(255);
+            ::i32 B = (::i32) range.consume_natural(255);
             range.consume_spaces(0);
             range.consume(")");
             color32 = argb(255, R, G, B);

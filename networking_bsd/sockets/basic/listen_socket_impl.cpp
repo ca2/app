@@ -22,8 +22,8 @@
 
 // Demangle C++ symbols using __cxa_demangle
 void demangle_and_print(const_char_pointer mangled_name) {
-    int status = 0;
-    char *demangled_name = abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status);
+    ::i32 status = 0;
+    char_pointer demangled_name = abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status);
     
     if (status == 0) {
         // Successful demangling
@@ -48,7 +48,7 @@ void print_backtrace() {
     fprintf(stderr, "Backtrace:\n");
 
     while (unw_step(&cursor) > 0) {
-        char func_name[256];
+        ::i8 func_name[256];
         unw_word_t offset, pc;
 
         unw_get_reg(&cursor, UNW_REG_IP, &pc);
@@ -69,7 +69,7 @@ namespace sockets_bsd
 #if defined(OPENBSD)
 
    // Signal handler function
-   void handle_sigpipe(int signum) 
+   void handle_sigpipe(::i32 signum) 
    {
       
       fprintf(stderr, "Caught SIGPIPE (signal %d)\n", signum);
@@ -140,7 +140,7 @@ namespace sockets_bsd
       if (GetSocketId() != INVALID_SOCKET)
       {
 
-         close_socket((int) GetSocketId());
+         close_socket((::i32) GetSocketId());
 
       }
 
@@ -149,7 +149,7 @@ namespace sockets_bsd
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(::networking::port_t port,int depth)
+   ::i32 listen_socket_impl::Bind(::networking::port_t port,::i32 depth)
    {
       if (IsIpv6())
       {
@@ -166,7 +166,7 @@ namespace sockets_bsd
       }
    }
 
-   int listen_socket_impl::Bind(::networking::address * ad,int depth)
+   ::i32 listen_socket_impl::Bind(::networking::address * ad,::i32 depth)
    {
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
@@ -181,7 +181,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(::networking::port_t port,const string & protocol,int depth)
+   ::i32 listen_socket_impl::Bind(::networking::port_t port,const string & protocol,::i32 depth)
    {
       if (IsIpv6())
       {
@@ -201,7 +201,7 @@ namespace sockets_bsd
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,int depth)
+   ::i32 listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,::i32 depth)
    {
       
       auto paddress = __SystemNetworking(system())->create_address(scopedstrInterface, preferred_address_type(), port);
@@ -225,7 +225,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,const string & protocol,int depth)
+   ::i32 listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,const string & protocol,::i32 depth)
    {
 
       auto paddress = __SystemNetworking(system())->create_address(scopedstrInterface, preferred_address_type(), port);
@@ -248,7 +248,7 @@ namespace sockets_bsd
    \lparam a Ipv4 interface address
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(in_addr a,::networking::port_t port,int depth)
+   ::i32 listen_socket_impl::Bind(in_addr a,::networking::port_t port,::i32 depth)
    {
 
       auto paddress = allocateø ::networking_bsd::address();
@@ -271,7 +271,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,int depth)
+   ::i32 listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,::i32 depth)
    {
 
       auto paddress = allocateø ::networking_bsd::address();
@@ -286,7 +286,7 @@ namespace sockets_bsd
    \lparam a Ipv6 interface address
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,int depth)
+   ::i32 listen_socket_impl::Bind(in6_addr a,::networking::port_t port,::i32 depth)
    {
 
       auto paddress = allocateø ::networking_bsd::address();
@@ -310,7 +310,7 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,int depth)
+   ::i32 listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,::i32 depth)
    {
 
       auto paddress = allocateø ::networking_bsd::address();
@@ -326,7 +326,7 @@ namespace sockets_bsd
    \lparam ad Interface address
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(::networking::address * paddress,const string & protocol,int depth)
+   ::i32 listen_socket_impl::Bind(::networking::address * paddress,const string & protocol,::i32 depth)
    {
       
 #if defined(OPENBSD)
@@ -450,7 +450,7 @@ namespace sockets_bsd
    //   }
 
    /** Return listen queue depth. */
-   int listen_socket_impl::GetDepth()
+   ::i32 listen_socket_impl::GetDepth()
    {
       return m_depth;
    }
@@ -517,7 +517,7 @@ namespace sockets_bsd
       if (socket_handler()->get_count() >= FD_SETSIZE)
       {
 
-         fatal() <<"accept " << (int)socket_handler()->get_count() << " base_socket_handler fd_set limit reached";
+         fatal() <<"accept " << (::i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached";
 
          close_socket(socketAccept);
 
@@ -630,7 +630,7 @@ namespace sockets_bsd
 #if defined(__ANDROID__) || defined(__BSD__) || defined(__APPLE__) || defined(LINUX)
    SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
 #else
-   SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, int *lenptr)
+   SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, ::i32 *lenptr)
 #endif
    {
       return ::_accept_socket(socket, saptr, lenptr);
@@ -641,7 +641,7 @@ namespace sockets_bsd
       return false;
    }
 
-   void listen_socket_impl::OnOptions(int,int,int,SOCKET s)
+   void listen_socket_impl::OnOptions(::i32,::i32,::i32,SOCKET s)
    {
       //_SetSoReuseaddr(s, true);
    }

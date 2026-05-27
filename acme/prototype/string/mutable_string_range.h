@@ -92,7 +92,7 @@ public:
    /// Return :
    /// Coder    Date                      Desc
    /// bro      2002-10-29
-   void escape_copy(char escape, const ::const_ansi_range & rangeSource);
+   void escape_copy(::i8 escape, const ::const_ansi_range & rangeSource);
 
    
 };
@@ -126,9 +126,9 @@ _unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   int len1;
+   ::i32 len1;
 
-   int len2;
+   ::i32 len2;
 
    while (p < pEnd) {
 
@@ -186,9 +186,9 @@ _unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::r
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   //int len1;
+   //::i32 len1;
 
-   int len2;
+   ::i32 len2;
 
    while (pEnd < p) {
 

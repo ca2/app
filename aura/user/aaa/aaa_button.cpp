@@ -196,9 +196,9 @@ namespace user
          get_window_text(str);
          const ::size & size = pgraphics->get_text_extent(str);
 
-         ::double_rectangle rectangle(0, 0, 0, 0);
-         rectangle.right = int(size.cx * 1.6);
-         rectangle.bottom = int(size.cy * 1.4);
+         ::f64_rectangle rectangle(0, 0, 0, 0);
+         rectangle.right = ::i32(size.cx * 1.6);
+         rectangle.bottom = ::i32(size.cy * 1.4);
 
          set_size(rectangle.size());
 
@@ -216,9 +216,9 @@ namespace user
 
          ::size sizeTotal = calc_text_size();
 
-         sizeTotal.cx = (int)(sizeTotal.cx * 1.6);
+         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
 
-         sizeTotal.cy = (int)(sizeTotal.cy * 1.4);
+         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
 
          set_size(sizeTotal);
 
@@ -287,13 +287,13 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX, ::user::e_layout_design);
 
       ::size sizeText = calc_text_size();
 
-      ::double_rectangle rectangle;
+      ::f64_rectangle rectangle;
 
       rectangle.left = rectangleX.left + (rectangleX.width() - sizeText.cx) / 2;
 
@@ -320,7 +320,7 @@ namespace user
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -414,13 +414,13 @@ namespace user
 
       rectangleX.left += 3;
       rectangleX.top += 3;
-      ::double_rectangle rectangleText = m_rectangleText;
+      ::f64_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pbitmap->m_pimage->is_set())
       {
          if (m_pbitmap->m_pimage->width() > 0 && m_pbitmap->m_pimage->height() > 0)
          {
-            ::double_rectangle rectangleDib;
+            ::f64_rectangle rectangleDib;
             rectangleDib = m_rectangleText;
             rectangleDib.bottom = minimum(rectangleText.top + m_pbitmap->m_pimage->width(), rectangleText.bottom);
             rectangleDib.right = minimum(rectangleText.left + m_pbitmap->m_pimage->height(), rectangleText.right);
@@ -559,7 +559,7 @@ namespace user
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -589,7 +589,7 @@ namespace user
 
          colorBottomRight.hls_rate(0.0, 0.2, 0.0);
 
-         ::double_rectangle rectanglePush(rectangleX);
+         ::f64_rectangle rectanglePush(rectangleX);
 
          pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
@@ -619,7 +619,7 @@ namespace user
 
    {
 
-      ::double_rectangle rectangleText(prectText);
+      ::f64_rectangle rectangleText(prectText);
 
 
       if (m_estockicon == stock_icon_none)
@@ -695,7 +695,7 @@ namespace user
 
          pgraphics->set(ppen);
 
-         ::double_rectangle rectangleIcon(rectangleText);
+         ::f64_rectangle rectangleIcon(rectangleText);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -709,15 +709,15 @@ namespace user
    void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::double_rectangle rectangleMargin(2, 2,2, 2);
+      ::f64_rectangle rectangleMargin(2, 2,2, 2);
 
-      ::double_rectangle rectangleBorder(2, 2, 2, 2);
+      ::f64_rectangle rectangleBorder(2, 2, 2, 2);
 
       rectangleX.deflate(rectangleMargin);
 
@@ -725,7 +725,7 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::double_rectangle rectanglePadding(4, 4, 4,4);
+      ::f64_rectangle rectanglePadding(4, 4, 4,4);
 
       rectangleX.deflate(rectanglePadding);
 
@@ -760,40 +760,40 @@ namespace user
       else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      ::double_rectangle rectangleMargin(4, 4, 4, 4);
+      ::f64_rectangle rectangleMargin(4, 4, 4, 4);
 
-      ::double_rectangle rectangleBorder(2, 2,2 ,2);
+      ::f64_rectangle rectangleBorder(2, 2,2 ,2);
 
       rectangleX.deflate(rectangleMargin);
 
       rectangleX.deflate(rectangleBorder);
 
-      ::double_rectangle rectanglePadding(4, 4,4,4);
+      ::f64_rectangle rectanglePadding(4, 4,4,4);
 
       rectangleX.deflate(rectanglePadding);
 
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
-         ::double_rectangle rectangleAspect;
+         ::f64_rectangle rectangleAspect;
 
          rectangleAspect.left = 0;
 
          rectangleAspect.top = 0;
 
-         double dW = (double) rectangleX.width() / (double)pimage->width();
+         ::f64 dW = (::f64) rectangleX.width() / (::f64)pimage->width();
 
-         double dH = (double) rectangleX.height() / (double) pimage->height();
+         ::f64 dH = (::f64) rectangleX.height() / (::f64) pimage->height();
 
-         double dMin = minimum(minimum(dW, dH), 1.0);
+         ::f64 dMin = minimum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (int) (pimage->width() * dMin);
+         rectangleAspect.right = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (int) (pimage->height() * dMin);
+         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
@@ -801,7 +801,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw(rectangleAspect, pimage->g(), ::double_rectangle(pimage->get_size()));
+         pgraphics->draw(rectangleAspect, pimage->g(), ::f64_rectangle(pimage->get_size()));
 
       }
 
@@ -813,17 +813,17 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      ::double_rectangle rectanglePadded(rectangleX);
+      ::f64_rectangle rectanglePadded(rectangleX);
 
-      int iPadding = 4;
+      ::i32 iPadding = 4;
 
       rectanglePadded.deflate(iPadding, iPadding);
 
-      ::double_rectangle rectangleAspect(rectanglePadded);
+      ::f64_rectangle rectangleAspect(rectanglePadded);
 
       if (m_pbitmap->m_pimage)
       {
@@ -849,15 +849,15 @@ namespace user
 
             rectangleAspect.top = 0;
 
-            double dW = (double)rectanglePadded.width() / (double)pimage->width();
+            ::f64 dW = (::f64)rectanglePadded.width() / (::f64)pimage->width();
 
-            double dH = (double)rectanglePadded.height() / (double)pimage->height();
+            ::f64 dH = (::f64)rectanglePadded.height() / (::f64)pimage->height();
 
-            double dMin = minimum(minimum(dW, dH), 1.0);
+            ::f64 dMin = minimum(minimum(dW, dH), 1.0);
 
-            rectangleAspect.right = (int) (pimage->width() * dMin);
+            rectangleAspect.right = (::i32) (pimage->width() * dMin);
 
-           rectangleAspect.bottom = (int) (pimage->height() * dMin);
+           rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
             rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
 
@@ -865,7 +865,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw(rectangleAspect, pimage->g(), ::double_rectangle(pimage->get_size()));
+            pgraphics->draw(rectangleAspect, pimage->g(), ::f64_rectangle(pimage->get_size()));
 
             rectangleAspect.left = rectangleAspect.right + iPadding;
             rectangleAspect.right = rectanglePadded.right;
@@ -886,7 +886,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -941,7 +941,7 @@ namespace user
 
       class imaging & imaging = ::auraacmesystem()->imaging();
 
-      ::double_rectangle rectangle = rectangleX;
+      ::f64_rectangle rectangle = rectangleX;
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
@@ -953,8 +953,8 @@ namespace user
       imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),color32,200);
       rectangle.deflate(1,1,1,1);
 
-      int x1 = rectangle.left;
-      int x2 = x1 + rectangle.width() / 3;
+      ::i32 x1 = rectangle.left;
+      ::i32 x2 = x1 + rectangle.width() / 3;
 
       rectangle.left = x1;
       rectangle.right = x2;
@@ -1122,16 +1122,16 @@ namespace user
 
    }
 
-   int button::BaseToolTipGetIndex()
+   ::i32 button::BaseToolTipGetIndex()
    {
       // use window dialog control atom as the index
-      return (int)GetDlgCtrlId();
+      return (::i32)GetDlgCtrlId();
    }
 
 
    void button::_001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics)
    {
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
       bool bItemHover;
       bool bSubItemHover;
 

@@ -20,10 +20,10 @@ public:
    //::size_type < UNIT_TYPE>         m_sizeRadius;
    ::point_type < UNIT_TYPE >       m_pointBegin;
    ::point_type < UNIT_TYPE >       m_pointEnd;
-   ::double_angle                      m_angleBeg;
-   ::double_angle                      m_angleExt;
-   ::double_angle                      m_angleEnd2;
-   ::double_angle                      m_angleRotation;
+   ::f64_angle                      m_angleBeg;
+   ::f64_angle                      m_angleExt;
+   ::f64_angle                      m_angleEnd2;
+   ::f64_angle                      m_angleRotation;
 
 
    void offset(const ::size_type < UNIT_TYPE > & offset)

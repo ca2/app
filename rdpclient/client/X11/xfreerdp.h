@@ -95,8 +95,8 @@ struct xf_context
    DEFINE_RDP_CLIENT_COMMON();
 
    GC gc;
-   int xfds;
-   int depth;
+   ::i32 xfds;
+   ::i32 depth;
 
    GC gc_mono;
    BOOL invert;
@@ -109,8 +109,8 @@ struct xf_context
    Drawable drawable;
    Pixmap bitmap_mono;
    Colormap colormap;
-   int screen_number;
-   int scanline_pad;
+   ::i32 screen_number;
+   ::i32 scanline_pad;
    BOOL big_endian;
    BOOL fullscreen;
    BOOL decorations;
@@ -123,7 +123,7 @@ struct xf_context
    xfPointer* pointer;
    xfWorkArea workArea;
    xfFullscreenMonitors fullscreenMonitors;
-   int current_desktop;
+   ::i32 current_desktop;
    BOOL remote_app;
    HANDLE ::pointer < ::mutex >;
    BOOL UseXThreads;
@@ -131,7 +131,7 @@ struct xf_context
 
    HGDI_DC hdc;
    ::u32 bitmap_size;
-   unsigned char* bitmap_buffer;
+   ::u8* bitmap_buffer;
 
    BOOL frame_begin;
    ::u3216 frame_x1;
@@ -146,18 +146,18 @@ struct xf_context
    ::u328 blue_shift_l;
    ::u328 blue_shift_r;
 
-   int XInputOpcode;
+   ::i32 XInputOpcode;
 
-   int savedWidth;
-   int savedHeight;
-   int savedPosX;
-   int savedPosY;
+   ::i32 savedWidth;
+   ::i32 savedHeight;
+   ::i32 savedPosX;
+   ::i32 savedPosY;
 
 #ifdef WITH_XRENDER
-   int scaledWidth;
-   int scaledHeight;
-   int offset_x;
-   int offset_y;
+   ::i32 scaledWidth;
+   ::i32 scaledHeight;
+   ::i32 offset_x;
+   ::i32 offset_y;
 #endif
 
    BOOL focused;
@@ -171,7 +171,7 @@ struct xf_context
    XModifierKeymap* modifierMap;
    wArrayList* keyCombinations;
    wArrayList* xevents;
-   char* actionScript;
+   char_pointer actionScript;
 
    XSetWindowAttributes attribs;
    BOOL complex_regions;
@@ -226,7 +226,7 @@ struct xf_context
    BOOL xrenderAvailable;
 
    /* value to be sent over wire for each logical client mouse button */
-   int button_map[NUM_BUTTONS_MAPPED];
+   ::i32 button_map[NUM_BUTTONS_MAPPED];
 };
 
 BOOL xf_create_window(xfContext* xfc);
@@ -282,7 +282,7 @@ void xf_lock_x11(xfContext* xfc, BOOL display);
 void xf_unlock_x11(xfContext* xfc, BOOL display);
 
 BOOL xf_picture_transform_required(xfContext* xfc);
-void xf_draw_screen(xfContext* xfc, int x, int y, int w, int h);
+void xf_draw_screen(xfContext* xfc, ::i32 x, ::i32 y, ::i32 w, ::i32 h);
 
 FREERDP_API ::u32 xf_exit_code_from_disconnect_reason(::u32 reason);
 

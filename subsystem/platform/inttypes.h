@@ -26,16 +26,16 @@
 
 
 
-// Defines unsigned types
-//typedef unsigned char       unsigned char;
-//typedef unsigned short      unsigned short;
+// Defines ::u32 types
+//typedef ::u8       ::u8;
+//typedef ::u16      ::u16;
 //typedef ::u32        ::u32;
 //typedef ::u64  ::u64;
 
 // Defines signed types
-//typedef signed char         char;
-//typedef signed short        short;
-//typedef signed int          int;
+//typedef signed ::i8         ::i8;
+//typedef ::i16        ::i16;
+//typedef signed ::i32          ::i32;
 //typedef signed ::i64    ::i64;
 //
 //// __INTTYPES_H__

@@ -34,7 +34,7 @@ public:
 
 //   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
-//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, ::i32> = 0>
    template < prototype_number A >
    constexpr point_type(A a)
    {
@@ -190,7 +190,7 @@ public:
 //   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
 
    template < prototype_point POINT >
-   double distance(const POINT& point) const { auto s = *this - point; return sqrt((double) (s.cx * s.cx + s.cy * s.cy)); }
+   ::f64 distance(const POINT& point) const { auto s = *this - point; return sqrt((::f64) (s.cx * s.cx + s.cy * s.cy)); }
 
    template < prototype_point POINT >
    point_type mid(const POINT& point) const
@@ -372,9 +372,9 @@ public:
 
 
 
-//inline auto as_int_point(const ::lparam & lparam) noexcept { return ::i32_point(lparam.x, lparam.y); }
-inline auto as_int_point(const ::u32 u) noexcept { return ::i32_point((int)u32_x(u), (int)u32_y(u)); }
-inline auto as_int_point(const ::u64 u) noexcept { return ::i32_point((int)u64_x(u), (int)u64_y(u)); }
+//inline auto as_i32_point(const ::lparam & lparam) noexcept { return ::i32_point(lparam.x, lparam.y); }
+inline auto as_i32_point(const ::u32 u) noexcept { return ::i32_point((::i32)u32_x(u), (::i32)u32_y(u)); }
+inline auto as_i32_point(const ::u64 u) noexcept { return ::i32_point((::i32)u64_x(u), (::i32)u64_y(u)); }
 
 
 //inline auto as_i64_point(const ::lparam & lparam) noexcept { return ::i64_point(lparam.x, lparam.y); }
@@ -382,17 +382,17 @@ inline auto as_i64_point(const ::u32 u) noexcept { return ::i64_point((::i64)u32
 inline auto as_i64_point(const ::u64 u) noexcept { return ::i64_point((::i64)u64_x(u), (::i64)u64_y(u)); }
 
 
-//inline auto as_float_point(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x, (float)lparam.y); }
-inline auto as_float_point(const ::u32 u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
-inline auto as_float_point(const ::u64 u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
+//inline auto as_f32_point(const ::lparam & lparam) noexcept { return ::f32_point((::f32)lparam.x, (::f32)lparam.y); }
+inline auto as_f32_point(const ::u32 u) noexcept { return ::f32_point((::f32)u32_x(u), (::f32)u32_y(u)); }
+inline auto as_f32_point(const ::u64 u) noexcept { return ::f32_point((::f32)u64_x(u), (::f32)u64_y(u)); }
 
 
-//inline auto as_double_point(const ::lparam & lparam) noexcept { return ::double_point(lparam.x, lparam.y); }
-inline auto as_double_point(const ::u32 u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
-inline auto as_double_point(const ::u64 u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
+//inline auto as_f64_point(const ::lparam & lparam) noexcept { return ::f64_point(lparam.x, lparam.y); }
+inline auto as_f64_point(const ::u32 u) noexcept { return ::f64_point((::f64)u32_x(u), (::f64)u32_y(u)); }
+inline auto as_f64_point(const ::u64 u) noexcept { return ::f64_point((::f64)u64_x(u), (::f64)u64_y(u)); }
 
 
-inline bool is_almost_equal(const ::double_point& p1, const ::double_point& p2, double dTolerance)
+inline bool is_almost_equal(const ::f64_point& p1, const ::f64_point& p2, ::f64 dTolerance)
 {
 
    return is_almost_equal(p1.x, p2.x, dTolerance) && is_almost_equal(p1.y, p2.y, dTolerance);
@@ -400,7 +400,7 @@ inline bool is_almost_equal(const ::double_point& p1, const ::double_point& p2, 
 }
 
 
-inline bool is_different(const ::double_point& p1, const ::double_point& p2, double dTolerance)
+inline bool is_different(const ::f64_point& p1, const ::f64_point& p2, ::f64 dTolerance)
 {
 
    return !is_almost_equal(p1, p2, dTolerance);
@@ -433,7 +433,7 @@ constexpr point_type<NUMBER>::point_type(const lparam &lparam) : sequence_type<U
 
 
 template < prototype_point POINT >
-constexpr lparam::lparam(const POINT & point) : lparam((int)point.x, (int)point.y)
+constexpr lparam::lparam(const POINT & point) : lparam((::i32)point.x, (::i32)point.y)
 {
 
 
@@ -443,7 +443,7 @@ constexpr lparam::lparam(const POINT & point) : lparam((int)point.x, (int)point.
 constexpr ::i32_point lparam::point() const
 {
 
-   return {(int)this->x(), (int)this->y()};
+   return {(::i32)this->x(), (::i32)this->y()};
 
 }
 

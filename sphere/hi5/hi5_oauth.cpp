@@ -11,17 +11,17 @@ namespace hi5
    namespace oAuthLibDefaults
    {
       /* Constants */
-      const int OAUTHLIB_BUFFSIZE = 1024;
-//       const int OAUTHLIB_BUFFSIZE_LARGE = 1024;
+      const ::i32 OAUTHLIB_BUFFSIZE = 1024;
+//       const ::i32 OAUTHLIB_BUFFSIZE_LARGE = 1024;
 
 
    };
 
 
-   string char2hex( char dec )
+   string char2hex( ::i8 dec )
    {
-      char dig1 = (dec&0xF0)>>4;
-      char dig2 = (dec&0x0F);
+      ::i8 dig1 = (dec&0xF0)>>4;
+      ::i8 dig2 = (dec&0x0F);
       if ( 0<= dig1 && dig1<= 9) dig1+='0';    //0,48 in ascii
       if (10<= dig1 && dig1<=15) dig1+='A'-10; //A,65 in ascii
       if ( 0<= dig2 && dig2<= 9) dig2+='0';
@@ -38,7 +38,7 @@ namespace hi5
 
       string escaped;
       ::collection::count maximum = ca.get_length();
-      for(int i=0; i<maximum; i++)
+      for(::i32 i=0; i<maximum; i++)
       {
          if ( (48 <= ca[i] && ca[i] <= 57) ||//0-9
                (65 <= ca[i] && ca[i] <= 90) ||//ABC...XYZ
@@ -51,7 +51,7 @@ namespace hi5
          else
          {
             escaped.append("%");
-            escaped.append( char2hex(ca[i]) );//converts char 255 to string "FF"
+            escaped.append( char2hex(ca[i]) );//converts ::i8 255 to string "FF"
          }
       }
       return escaped;
@@ -309,18 +309,18 @@ namespace hi5
       if (m_nonce.has_character() && m_timeStamp.has_character())
          return;
 
-      char szTime[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
-      char szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
+      ::i8 szTime[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
+      ::i8 szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       memory_set( szTime, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       memory_set( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       srand((::u32) time( nullptr ) );
       sprintf( szRand, "%x", rand()%1000 );
 #ifdef WINDOWS
-      sprintf( szTime, "%ld", (int) time( nullptr ) );
+      sprintf( szTime, "%ld", (::i32) time( nullptr ) );
 #elif defined __LP64
       sprintf( szTime, "%ld", (::i64) time( nullptr ) );
 #else
-      sprintf( szTime, "%d", (int) time( nullptr ) );
+      sprintf( szTime, "%d", (::i32) time( nullptr ) );
 #endif
 
       m_nonce = szTime;
@@ -622,7 +622,7 @@ namespace hi5
 
             keyValueList.sort();
 
-            for(int i = 0; i < keyValueList.get_count(); i++)
+            for(::i32 i = 0; i < keyValueList.get_count(); i++)
             {
 
                auto pFind = keyValueList[i].find("=");

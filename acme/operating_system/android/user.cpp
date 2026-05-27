@@ -130,18 +130,18 @@
 ////
 //
 //
-//int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
+//::i32 _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
 //{
 //
-//   int iMessageBox = emessagebox.m_eenum & 0x7f;
+//   ::i32 iMessageBox = emessagebox.m_eenum & 0x7f;
 //
 //   wstring wstrText(scopedstrMessage);
 //
 //   wstring wstrTitle(scopedstrTitle);
 //
-//   ///int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
+//   ///::i32 iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
 //
-//   int iResult = 0;
+//   ::i32 iResult = 0;
 //
 //   return iResult;
 //

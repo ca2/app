@@ -17,7 +17,7 @@ namespace str
 
 
       tokenizer(const ::scoped_string & scopedstrSrc);
-      tokenizer(const char * pch, int nLength );
+      tokenizer(const_char_pointer pch, ::i32 nLength );
 
       tokenizer();
       virtual ~tokenizer();
@@ -26,22 +26,22 @@ namespace str
       bool ReadLine(string & str,
                     bool bWithSeparator = false);
       // _01Read read a token if find one of \n\r\t or space
-      bool _01Read(int & i);
-      bool _01Read(unsigned int & user);
-      bool _01ReadHex(int & i);
-      bool _01ReadHex(unsigned int & user);
-      //bool _01Read(char * psz);
+      bool _01Read(::i32 & i);
+      bool _01Read(::u32 & user);
+      bool _01ReadHex(::i32 & i);
+      bool _01ReadHex(::u32 & user);
+      //bool _01Read(char_pointer psz);
 
       bool _01Read(string & str);
       bool ExtractFolderPath(const ::scoped_string & scopedstrFilePath);
 
       void Restart();
       void Restart(string &strNew);
-      bool GetNextToken(string &strToken, const char * pSeparator, bool bWithSeparator = false);
+      bool GetNextToken(string &strToken, const_char_pointer pszSeparator, bool bWithSeparator = false);
 
       bool GetNextSmallestToken(string &strToken, const string_array_base & straSeparator, bool bWithSeparator = false);
       // Any of separator character
-      bool GetNextTokenEx(string &strToken, const char * pSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
+      bool GetNextTokenEx(string &strToken, const_char_pointer pszSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 
       bool _001GetNextToken(string & strToken);
 

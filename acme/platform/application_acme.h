@@ -57,7 +57,7 @@ namespace platform
 //
 //      string                              m_strProgName;
 //      string                           m_strStandalone;
-//      //int                              m_iExitCode = 0;
+//      //::i32                              m_iExitCode = 0;
 //      bool                             m_bApplicationFirstRequest;
 //      //::pointer < ::request >                         m_prequest;
 //
@@ -120,7 +120,7 @@ namespace platform
 
       //virtual void application_main(::platform::system * psystem);
 
-      virtual int application_main();
+      virtual ::i32 application_main();
 
 
       //void on_set_platform() override;
@@ -182,13 +182,13 @@ namespace platform
 //
 //#else
 //
-//      void set_args(int argc, char * argv[], char * envpb[]);
+//      void set_args(::i32 argc, char_pointer argv[], char_pointer envpb[]);
 //
 //#endif
 
-      virtual int __implement();
+      virtual ::i32 __implement();
 
-      virtual int main_loop();
+      virtual ::i32 main_loop();
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
 

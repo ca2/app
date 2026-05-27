@@ -17,7 +17,7 @@ namespace user
 
       ::number::scalar        m_scalar;
 
-      double                  m_dRate;
+      ::f64                  m_dRate;
 
       bool                    m_bSlide;
 
@@ -37,9 +37,9 @@ namespace user
       
       void set_scalar(const ::number::scalar & scalar);
 
-      void set_rate(double dRate);
+      void set_rate(::f64 dRate);
 
-      double get_slide_rate();
+      ::f64 get_slide_rate();
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

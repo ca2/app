@@ -25,7 +25,7 @@
 //#define DEEP_DATA_DEBUG 0
 //
 ///**
-//* Return the number of bytes required to store a variable-length unsigned
+//* Return the number of bytes required to store a variable-length ::u32
 //* 32-bit integer in base-128 varint encoding.
 //*
 //* \lparam v
@@ -59,7 +59,7 @@
 //
 //
 ///**
-//* Pack an unsigned 32-bit integer in base-128 varint encoding and return the
+//* Pack an ::u32 32-bit integer in base-128 varint encoding and return the
 //* number of bytes written, which must be 5 or less.
 //*
 //* \lparam value
@@ -69,9 +69,9 @@
 //* \return
 //*      Number of bytes written to `out`.
 //*/
-//static inline memsize u32_pack(::u32 value, unsigned char *out)
+//static inline memsize u32_pack(::u32 value, ::u8 *out)
 //{
-//   unsigned rv = 0;
+//   ::u32 rv = 0;
 //
 //   if (value >= 0x80)
 //   {
@@ -115,12 +115,12 @@
 //}
 //
 //
-//int client_send(memory & m, int fin, memory & memory, bool bUseMask)
+//::i32 client_send(memory & m, ::i32 fin, memory & memory, bool bUseMask)
 //{
 //
 //   ::i64 message_size = memory.size();
 //
-//   int length = (int) ( 2 + message_size);
+//   ::i32 length = (::i32) ( 2 + message_size);
 //
 //   if (message_size >= 65536)
 //   {
@@ -135,7 +135,7 @@
 //
 //   }
 //
-//   unsigned char masking_key[4];
+//   ::u8 masking_key[4];
 //
 //   if (bUseMask)
 //   {
@@ -148,11 +148,11 @@
 //
 //   m.set_size(length);
 //
-//   unsigned char * frame = (unsigned char*)m.data();
+//   ::u8 * frame = (::u8*)m.data();
 //
 //   frame[0] = 0x80 | fin;
 //
-//   int iOffset = -1;
+//   ::i32 iOffset = -1;
 //
 //   if (message_size < 126)
 //   {
@@ -215,18 +215,18 @@
 //
 //   }
 //
-//   return (int) (m.size());
+//   return (::i32) (m.size());
 //
 //}
 //
-//int client_send_binary(memory & m, memory & memory)
+//::i32 client_send_binary(memory & m, memory & memory)
 //{
 //
 //   return client_send(m, 0x82, memory, true);
 //
 //}
 //
-//int client_send(memory & m, int fin, const_char_pointer src)
+//::i32 client_send(memory & m, ::i32 fin, const_char_pointer src)
 //{
 //
 //   memsize len = 0;
@@ -262,11 +262,11 @@
 //
 //   m.set_size(length);
 //
-//   char* frame = (char*)m.data();
+//   char_pointer frame = (char_pointer )m.data();
 //
-//   frame[0] = (char)fin;
+//   frame[0] = (::i8)fin;
 //
-//   int iOffset;
+//   ::i32 iOffset;
 //
 //   if (len >= 126)
 //   {
@@ -288,7 +288,7 @@
 //
 //         frame[1] = 126;
 //
-//         *((short*)&frame[2]) = htons((unsigned short) (len));
+//         *((::i16*)&frame[2]) = htons((::u16) (len));
 //
 //      }
 //
@@ -298,7 +298,7 @@
 //
 //      iOffset = 2;
 //
-//      frame[1] = (char) (len);
+//      frame[1] = (::i8) (len);
 //
 //   }
 //
@@ -309,12 +309,12 @@
 //
 //   }
 //
-//   return (int) (m.size());
+//   return (::i32) (m.size());
 //
 //}
 //
 //
-//int client_send_text(memory & m, const_char_pointer src)
+//::i32 client_send_text(memory & m, const_char_pointer src)
 //{
 //
 //   return client_send(m, 0x81, src);
@@ -322,7 +322,7 @@
 //}
 //
 //
-//int client_send_text(memory & m, const_char_pointer src, bool bMasked)
+//::i32 client_send_text(memory & m, const_char_pointer src, bool bMasked)
 //{
 //
 //   memory m2(src, strlen(src));
@@ -610,9 +610,9 @@ namespace sockets
 
          m_strBase64 = pbase64->encode(m);
 
-         //int iLen;
+         //::i32 iLen;
 
-         //iLen = (int)(m_strBase64.length());
+         //iLen = (::i32)(m_strBase64.length());
 
          m_phttpsocket->inheader("Sec-WebSocket-Key") = m_strBase64;
          if (m_strWebSocketProtocol.has_character())
@@ -686,7 +686,7 @@ namespace sockets
       if(!m_bWebSocket)
       {
          
-         int iHttpStatusCode;
+         ::i32 iHttpStatusCode;
          
          iHttpStatusCode = m_phttpsocket->outattr("http_status_code").as_i32();
          
@@ -807,11 +807,11 @@ namespace sockets
 
       //#ifdef BSD_STYLE_SOCKETS
       //
-      //      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
+      //      ::i32 iResult = (::i32) SSL_get_verify_result(m_psslcontext->m_ssl);
       //
       //#else
 
-      int iResult = 0;
+      ::i32 iResult = 0;
 
       //#endif
 
@@ -852,7 +852,7 @@ namespace sockets
    }
 
 
-   void websocket::OnRawData(char * buf, memsize len)
+   void websocket::OnRawData(char_pointer buf, memsize len)
    {
 
       if (m_bWebSocket)
@@ -870,7 +870,7 @@ namespace sockets
 
          //::u64 uLen = 0;
 
-         //int iOffset = 2;
+         //::i32 iOffset = 2;
 
          while (m_memResponse.size() >= 2)
          {
@@ -878,7 +878,7 @@ namespace sockets
             // From
             // https://github.com/dhbaird/easywsclient/blob/master/easywsclient.cpp
 
-            unsigned char * data = (unsigned char *)m_memResponse.data(); // peek, but don't consume
+            ::u8 * data = (::u8 *)m_memResponse.data(); // peek, but don't consume
 
 
 #if DEEP_DATA_DEBUG
@@ -900,12 +900,12 @@ namespace sockets
                else if (data[i] < 10)
                {
                   strChar += "0";
-                  strChar += as_string((int)data[i]);
+                  strChar += as_string((::i32)data[i]);
                   strChar += " ";
                }
                else if (data[i] < 32)
                {
-                  strChar += as_string((int)data[i]);
+                  strChar += as_string((::i32)data[i]);
                   strChar += " ";
                }
                else if (data[i] >= 128)
@@ -1006,10 +1006,10 @@ namespace sockets
             if (m_mask)
             {
 
-               m_maskingkey[0] = ((unsigned char)data[m_i32 + 0]);
-               m_maskingkey[1] = ((unsigned char)data[m_i32 + 1]);
-               m_maskingkey[2] = ((unsigned char)data[m_i32 + 2]);
-               m_maskingkey[3] = ((unsigned char)data[m_i32 + 3]);
+               m_maskingkey[0] = ((::u8)data[m_i32 + 0]);
+               m_maskingkey[1] = ((::u8)data[m_i32 + 1]);
+               m_maskingkey[2] = ((::u8)data[m_i32 + 2]);
+               m_maskingkey[3] = ((::u8)data[m_i32 + 3]);
 
             }
 
@@ -1178,7 +1178,7 @@ namespace sockets
          //                     string strMessage = "yes_account_com";
          //                     m.set_size(strMessage.length() + 2);
          //                     m.data()[0] = 0x81;
-         //                     m.data()[1] = (unsigned char) (strMessage.length());
+         //                     m.data()[1] = (::u8) (strMessage.length());
          //                     ::memory_copy(&m.data()[2], strMessage.c_str(), strMessage.length());
          //                     write(m.data(), m.size());
          //                     //return;
@@ -1269,7 +1269,7 @@ namespace sockets
    }
 
 
-   memory websocket::get_server_send(int fin, memory & memory)
+   memory websocket::get_server_send(::i32 fin, memory & memory)
    {
    
       return get_frame_send(fin, memory, false);
@@ -1277,7 +1277,7 @@ namespace sockets
    }
 
    
-   memory websocket::get_server_send(int fin, const_char_pointer src)
+   memory websocket::get_server_send(::i32 fin, const_char_pointer src)
    {
       
       return get_frame_send(fin, src, false);
@@ -1285,7 +1285,7 @@ namespace sockets
    }
 
 
-   memory websocket::get_client_send(int fin, memory & memory)
+   memory websocket::get_client_send(::i32 fin, memory & memory)
    {
    
       return get_frame_send(fin, memory, m_bUseMask);
@@ -1293,7 +1293,7 @@ namespace sockets
    }
 
 
-   memory websocket::get_client_send(int fin, const_char_pointer src)
+   memory websocket::get_client_send(::i32 fin, const_char_pointer src)
    {
    
       return get_frame_send(fin, src, m_bUseMask);
@@ -1302,7 +1302,7 @@ namespace sockets
 
 
 
-   ::memory websocket::get_frame_send(int opcode, memory& payload, bool bUseMask)
+   ::memory websocket::get_frame_send(::i32 opcode, memory& payload, bool bUseMask)
    {
 
       memsize payload_len = payload.size();
@@ -1326,9 +1326,9 @@ namespace sockets
       memory frame;
       frame.set_size(header_size + payload_len);
 
-      unsigned char* data = frame.data();
+      ::u8* data = frame.data();
 
-      int i = 0;
+      ::i32 i = 0;
 
       // FIN + opcode
       data[i++] = 0x80 | (opcode & 0x0f);
@@ -1336,7 +1336,7 @@ namespace sockets
       // Payload length
       if (payload_len < 126)
       {
-         data[i++] = (bUseMask ? 0x80 : 0) | (unsigned char)payload_len;
+         data[i++] = (bUseMask ? 0x80 : 0) | (::u8)payload_len;
       }
       else if (payload_len <= 65535)
       {
@@ -1348,25 +1348,25 @@ namespace sockets
       {
          data[i++] = (bUseMask ? 0x80 : 0) | 127;
 
-         for (int shift = 56; shift >= 0; shift -= 8)
+         for (::i32 shift = 56; shift >= 0; shift -= 8)
          {
             data[i++] = (payload_len >> shift) & 0xff;
          }
       }
 
-      unsigned char masking_key[4] = {};
+      ::u8 masking_key[4] = {};
 
       if (bUseMask)
       {
          mathematics()->random(memory(masking_key, 4));
 
-         for (int k = 0; k < 4; k++)
+         for (::i32 k = 0; k < 4; k++)
          {
             data[i++] = masking_key[k];
          }
       }
 
-      unsigned char* dst = &data[i];
+      ::u8* dst = &data[i];
 
       if (bUseMask)
       {
@@ -1385,7 +1385,7 @@ namespace sockets
    }
 
 
-   ::memory websocket::get_frame_send(int fin, const_char_pointer src, bool bUseMask)
+   ::memory websocket::get_frame_send(::i32 fin, const_char_pointer src, bool bUseMask)
    {
       
       memory memory(src, ansi_length(src));

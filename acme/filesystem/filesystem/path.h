@@ -66,7 +66,7 @@ namespace file
       //path(enum_get_buffer, character_count len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
       path(path&& path) : string(::transfer(path)), path_meta(::transfer(path)) {}
-      //template < typename ITERATOR_TYPE, int t_size >
+      //template < typename ITERATOR_TYPE, ::i32 t_size >
       //path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, ::i64 iSize = -1);
       //template < prototype_character_range RANGE >
       //path(const RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, ::i64 iSize = -1);
@@ -386,7 +386,7 @@ namespace file
       ::file::path with_deferred_extension(const ::string_array_base & straPreserveExtensions) const;
       ::file::path with_deferred_extension(const ::file::file_dialog* pdialog) const;
 
-      //inline char separator() const
+      //inline ::i8 separator() const
       //{
 
       //   return '/';
@@ -400,7 +400,7 @@ namespace file
 
       //}
 
-      //inline char other_separator() const
+      //inline ::i8 other_separator() const
       //{
 
       //   return file_path_other_separator(m_epath);
@@ -474,7 +474,7 @@ namespace file
       }
 
       template < character_count n >
-      bool operator == (const char (&cha)[n]) const
+      bool operator == (const ::i8 (&cha)[n]) const
       {
 
          return operator ==(::string(cha));
@@ -581,7 +581,7 @@ namespace file
       //path operator * () const;
 
       //path operator -- () const;
-      //path operator -- (int) const { return operator --(); }
+      //path operator -- (::i32) const { return operator --(); }
 
 
 //      void to_string(string & str) const;
@@ -642,13 +642,13 @@ namespace file
 
 
       path folder() const;
-      path folder(int i) const;
+      path folder(::i32 i) const;
       path parent() const;
-      path ascendant(int i) const;
+      path ascendant(::i32 i) const;
       path & ascend();
-      path & ascend(int i);
-      path operator - (int i) const { return this->ascendant(i); }
-      path & operator -= (int i);
+      path & ascend(::i32 i);
+      path operator - (::i32 i) const { return this->ascendant(i); }
+      path & operator -= (::i32 i);
       //using path_meta::operator -=;
 
       ::string_array_base parts() const;
@@ -731,7 +731,7 @@ inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 
 
 
-//template < typename ITERATOR_TYPE2, character_count n, int t_size >
+//template < typename ITERATOR_TYPE2, character_count n, ::i32 t_size >
 //::file::path operator / (const ::non_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //
@@ -813,7 +813,7 @@ template < character_pointer CHARACTER_POINTER >
 }
 
 
-//template < prototype_character CHARACTER, int t_size >
+//template < prototype_character CHARACTER, ::i32 t_size >
 //::file::path operator / (
 //   const ::character_range < const CHARACTER* >& range,
 //   const const_string_range_static_array< const CHARACTER *, t_size > & a)

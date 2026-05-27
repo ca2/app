@@ -12,7 +12,7 @@ namespace write_text
    {
 
       string m_strFace;
-      int m_iSize; // x1000
+      ::i32 m_iSize; // x1000
 
    };
 

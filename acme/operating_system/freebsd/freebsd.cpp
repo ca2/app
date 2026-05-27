@@ -6,7 +6,7 @@
 //namespace linux
 //{
 //
-//   int function()
+//   ::i32 function()
 //   {
 //      return 0;
 //   }

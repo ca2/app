@@ -1,6 +1,9 @@
 // Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "brush.h"
+#include "font.h"
 #include "graphics.h"
+#include "pen.h"
 #include "acme/windowing/window.h"
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
@@ -153,6 +156,42 @@ namespace nano
 //
 //         }
 //
+
+
+        ::pointer<brush> graphics::create_solid_brush(const ::color::color& color)
+        {
+
+           auto pbrush = createø<brush>();
+
+           pbrush->create_solid_brush(color);
+
+           return pbrush;
+
+        }
+
+
+        ::pointer<pen> graphics::create_pen(const ::color::color &color, ::f64 fWidth)
+        {
+
+           auto ppen = createø<pen>();
+
+           ppen->create_pen(color, fWidth);
+
+           return ppen;
+
+        }
+
+
+        ::pointer<font> graphics::create_point_font(enum_font efont, ::f64 fPoint, bool bBold, bool bUnderline)
+        {
+
+              auto pfont = createø<font>();
+
+              pfont->create_point_font(efont, fPoint, bBold, bUnderline);
+
+              return pfont;
+           }
+
 
     } // namespace user
 } // namespace nano

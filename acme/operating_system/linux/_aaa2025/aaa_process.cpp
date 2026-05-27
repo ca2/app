@@ -16,7 +16,7 @@
 
 
 
-extern char **environ;
+extern char_pointer *environ;
 
 
 
@@ -25,7 +25,7 @@ struct chldstatus
 {
 
    bool m_bRet;
-   int  m_iExitCode;
+   ::i32  m_iExitCode;
 
 };
 
@@ -59,7 +59,7 @@ critical_section * get_pid_cs()
 }
 
 
-chldstatus get_chldstatus(int iPid)
+chldstatus get_chldstatus(::i32 iPid)
 {
 
    cslock synchronouslock(get_pid_cs());
@@ -69,7 +69,7 @@ chldstatus get_chldstatus(int iPid)
 }
 
 // must be called under get_pid_cs lock
-void init_chldstatus(int iPid)
+void init_chldstatus(::i32 iPid)
 {
 
    auto & s = g_ppid->operator[](iPid);
@@ -81,14 +81,14 @@ void init_chldstatus(int iPid)
 }
 
 
-void ansios_sigchld_handler(int sig)
+void ansios_sigchld_handler(::i32 sig)
 {
 
-   int saved_errno = errno;
+   ::i32 saved_errno = errno;
 
-   int iExitCode;
+   ::i32 iExitCode;
 
-   int iPid;
+   ::i32 iPid;
 
    while((iPid = waitpid(-1, &iExitCode,
                          WUNTRACED
@@ -143,7 +143,7 @@ void install_sigchld_handler()
 }
 
 
-CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
+CLASS_DECL_ACME void process_get_os_priority(::i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 namespace ansios
@@ -174,7 +174,7 @@ namespace ansios
 
       string_array_base straParam;
 
-      address_array < char * > argv;
+      address_array < char_pointer > argv;
 
       straParam.explode_command_line(scopedstrCmdLine, &argv);
 
@@ -185,7 +185,7 @@ namespace ansios
       if(epriority != ::e_priority_normal && epriority != ::e_priority_none)
       {
 
-         int iPolicy = SCHED_OTHER;
+         ::i32 iPolicy = SCHED_OTHER;
 
          sched_param schedparam;
 
@@ -218,9 +218,9 @@ namespace ansios
 
       }
 
-      address_array < char * > env;
+      address_array < char_pointer > env;
 
-      char * const * e = environ;
+      char_pointer const * e = environ;
 
       string strFallback;
 
@@ -229,7 +229,7 @@ namespace ansios
 
          ::collection::index i = 0;
 
-         int iPrevious = -1;
+         ::i32 iPrevious = -1;
 
          const ::scoped_string & scopedstr;
 
@@ -238,9 +238,9 @@ namespace ansios
             if(i <= iPrevious)
                break;
 
-            env.add((char *) psz);
+            env.add((char_pointer ) psz);
 
-            iPrevious = (int) i;
+            iPrevious = (::i32) i;
 
             i++;
 
@@ -248,17 +248,17 @@ namespace ansios
 
          env.add(nullptr);
 
-         e = (char * const *)env.get_data();
+         e = (char_pointer const *)env.get_data();
 
       }
 
-      int status = 0;
+      ::i32 status = 0;
 
       {
 
          cslock synchronouslock(get_pid_cs());
 
-         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
+         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char_pointer const *)argv.get_data(),e);
 
          init_chldstatus(m_iPid);
 
@@ -272,13 +272,13 @@ namespace ansios
    bool process::has_exited()
    {
 
-      int iExitCode;
+      ::i32 iExitCode;
 
 #if 0
 
       {
 
-         int iPid;
+         ::i32 iPid;
 
          iPid = waitpid(m_iPid, &iExitCode,
                         WUNTRACED
@@ -369,12 +369,12 @@ namespace ansios
    }
 
 
-   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,::i32 iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
       string_array_base straParam;
 
-      address_array < char * > argv;
+      address_array < char_pointer > argv;
 
       if (access("/usr/bin/gksu", X_OK) != 0)
       {
@@ -399,19 +399,19 @@ namespace ansios
 
       posix_spawn_file_actions_init(&actions);
 
-      int status= 0;
+      ::i32 status= 0;
 
       {
 
          cslock synchronouslock(get_pid_cs());
 
-         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char_pointer const *)argv.get_data(),environ);
 
          init_chldstatus(m_iPid);
 
       }
 
-      //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
+      //::i32 status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char_pointer const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
 auto tickStart = ::duration::now();
@@ -423,7 +423,7 @@ auto tickStart = ::duration::now();
 
       }
 
-      unsigned int dwExitCode = 0;
+      ::u32 dwExitCode = 0;
 
       if(!has_exited())
       {

@@ -153,7 +153,7 @@ namespace apex
 //
 //      wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
 //
-//      if (::CreateProcessW((unichar*)wstrApp.c_str(), (unichar*)wstrCmdLine.c_str(),
+//      if (::CreateProcessW((wide_character * )wstrApp.c_str(), (wide_character * )wstrCmdLine.c_str(),
 //         nullptr, nullptr, false, 0, nullptr, wstrDir,
 //         &si, &pi))
 //      {

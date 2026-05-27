@@ -20,9 +20,9 @@ struct trace_statement_struct
    ::particle *            m_pparticleLogging = nullptr;
    enum_trace_level        m_etracelevel = e_trace_level_information;
    enum_trace_category     m_etracecategory = e_trace_category_general;
-   const_char_pointer           m_pszFunction = nullptr;
-   const_char_pointer           m_pszFile = nullptr;
-   int                     m_iLine = -1;
+   const_char_pointer m_pszFunction = nullptr;
+   const_char_pointer m_pszFile = nullptr;
+   ::i32                     m_iLine = -1;
 
    trace_statement_struct(::platform::tracer * ptracer) : m_ptracer(ptracer) {}
    trace_statement_struct(trace_statement_struct && tracestatementstruct) = default;
@@ -56,7 +56,7 @@ public:
    inline trace_statement & operator()(::particle * pparticle) { m_pparticleLogging = pparticle; return *this; }
    inline trace_statement & operator()(enum_trace_level etracelevel) { m_etracelevel = etracelevel; return *this; }
    inline trace_statement & operator()(enum_trace_category etracecategory) { m_etracecategory = etracecategory; return *this; }
-   inline trace_statement & operator()(const_char_pointer pszFunction, const_char_pointer pszFile, int iLine)
+   inline trace_statement & operator()(const_char_pointer pszFunction, const_char_pointer pszFile, ::i32 iLine)
    {
       m_pszFunction = pszFunction;
       m_pszFile = pszFile;

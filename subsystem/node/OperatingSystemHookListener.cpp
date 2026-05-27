@@ -10,7 +10,7 @@ namespace subsystem
 
 
 
-   bool OperatingSystemHookListener::operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam)
+   bool OperatingSystemHookListener::operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, ::i32 iVkCode, ::lparam lparam)
    {
 
       return false;

@@ -101,7 +101,7 @@ namespace sockets
       bool Complete();
 
       /** get ptr to response data buffer. */
-      const unsigned char *GetDataPtr() const;
+      const ::u8 *GetDataPtr() const;
 
       /** get length of response data buffer. */
       memsize GetDataLength() const;
@@ -121,7 +121,7 @@ namespace sockets
       virtual void request_url(const ::scoped_string & scopedstrUrlParam);
 
 
-      virtual void on_set_scalar(enum_scalar escalar,::i64 iValue,int iFlags) override;
+      virtual void on_set_scalar(enum_scalar escalar,::i64 iValue,::i32 iFlags) override;
       virtual void get_scalar_minimum(enum_scalar escalar, ::i64 & i) override;
       virtual void get_scalar(enum_scalar escalar, ::i64 & i) override;
       virtual void get_scalar_maximum(enum_scalar escalar, ::i64 & i) override;

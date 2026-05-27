@@ -13,7 +13,7 @@ namespace hi5
       string      m_strConnectionStatus;
       /* Constants */
       const string TWIT_COLON;
-      const char TWIT_EOS;
+      const ::i8 TWIT_EOS;
 
       /* Miscellaneous data used to build twitter URLs*/
       const string TWIT_SEARCHQUERYSTRING;
@@ -121,8 +121,8 @@ namespace hi5
 
 
       string mediaUpload(file_pointer pfile, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory);
-      string mediaUploadInit(int iTotalSize, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory);
-      bool mediaUploadAppend(const ::scoped_string & scopedstrMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, const ::scoped_string & scopedstrMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
+      string mediaUploadInit(::i32 iTotalSize, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory);
+      bool mediaUploadAppend(const ::scoped_string & scopedstrMediaId, ::collection::index iIndex, file_pointer pfile, ::i32 iSize, const ::scoped_string & scopedstrMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
       ::payload mediaUploadFinalize(const ::scoped_string & scopedstrMediaId);
       ::payload mediaUploadStatus(const ::scoped_string & scopedstrMediaId);
 
@@ -188,7 +188,7 @@ namespace hi5
       string get_response();
 
       /* Internal cURL related methods */
-      int saveLastWebResponse(char*& data, size_t size);
+      ::i32 saveLastWebResponse(char_pointer & data, size_t size);
 
 
 

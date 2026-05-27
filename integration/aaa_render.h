@@ -39,7 +39,7 @@ namespace app_integration
       ::user::impact *                    m_pimpact;
       string                              m_strFont1;
       string                              m_strHoverFont;
-      int                                 m_iDrawing;
+      ::i32                                 m_iDrawing;
       string_map < ::image::image_pointer >      m_pimagemap;
       ::image::image_pointer                     m_pimage1;
       ::image::image_pointer                     m_pimage2;
@@ -49,8 +49,8 @@ namespace app_integration
       virtual ~render();
 
 #ifdef _DEBUG
-      virtual long long increment_reference_count() override;
-      virtual long long decrement_reference_count() override;
+      virtual ::i64 increment_reference_count() override;
+      virtual ::i64 decrement_reference_count() override;
 #endif
 
       string get_font();
@@ -59,7 +59,7 @@ namespace app_integration
 
       ::e_status set_hover_font(const ::scoped_string & scopedstrHoverFont);
 
-      virtual void initialize_simple_drawing(int iDrawing);
+      virtual void initialize_simple_drawing(::i32 iDrawing);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

@@ -945,7 +945,7 @@ namespace experience_anthill
 
       ::i32_rectangle r1 = ptab->rectangle();
 
-      ::double_rectangle r2;
+      ::f64_rectangle r2;
 
       pgraphics->get_clip_box(r2);
 
@@ -975,9 +975,9 @@ namespace experience_anthill
 
       rcClient = ptab->get_data()->m_rectangleHosting;
 
-      int iTabHeight = ptab->get_data()->m_iTabHeight;
+      ::i32 iTabHeight = ptab->get_data()->m_iTabHeight;
 
-      //int iB = rcClient.top;
+      //::i32 iB = rcClient.top;
 
       rcTabs.bottom = rcTabs.top + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom;
 
@@ -1013,7 +1013,7 @@ namespace experience_anthill
 
       auto ppenBorder = createø < ::draw2d::pen >();
 
-      for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -1528,7 +1528,7 @@ namespace experience_anthill
 
       pdata->m_rectangleTextMargin = ptab->get_padding(pstyle);
 
-      int iTextLeftMargin = 4;
+      ::i32 iTextLeftMargin = 4;
 
       pdata->m_rectangleTextMargin.left += iTextLeftMargin;
 
@@ -1558,12 +1558,12 @@ namespace experience_anthill
       if (ptab->get_data()->m_bVertical)
       {
 
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         int cx;
-         int cy;
+         ::i32 iTabWidth = 16;
+         ::i32 iTabHeight = 8;
+         ::i32 cx;
+         ::i32 cy;
 
-         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -1579,7 +1579,7 @@ namespace experience_anthill
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1589,9 +1589,9 @@ namespace experience_anthill
                size.cy = maximum(size.cy, ppane->m_pimage->height());
             }
 
-            int iTextLeftMargin = 4;
+            ::i32 iTextLeftMargin = 4;
 
-            cx = (int) ( size.cx + 2 + iTextLeftMargin);
+            cx = (::i32) ( size.cx + 2 + iTextLeftMargin);
 
             if (!ppane->m_bPermanent)
             {
@@ -1607,7 +1607,7 @@ namespace experience_anthill
 
             }
 
-            cy = (int) (size.cy + 2);
+            cy = (::i32) (size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1660,8 +1660,8 @@ namespace experience_anthill
       }
       else
       {
-         int iTabHeight = 16;
-         int cy;
+         ::i32 iTabHeight = 16;
+         ::i32 cy;
          //         ::draw2d::graphics_pointer graphics(e_create);
            //       pgraphics->create_compatible_graphics(nullptr);
              //     ::draw2d::graphics_pointer & pgraphics = graphics;
@@ -1670,11 +1670,11 @@ namespace experience_anthill
 
          ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
 
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
+         ::i32 ixAdd;
 
-         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -1690,7 +1690,7 @@ namespace experience_anthill
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1701,7 +1701,7 @@ namespace experience_anthill
 
             }
 
-            cy = (int) (size.cy + 2);
+            cy = (::i32) (size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1735,7 +1735,7 @@ namespace experience_anthill
 
             }
 
-            ppane->m_size.cx = (int) (size.cx + ixAdd
+            ppane->m_size.cx = (::i32) (size.cx + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
                + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
@@ -1762,7 +1762,7 @@ namespace experience_anthill
 
          pdata->m_iTabHeight = iTabHeight;
 
-         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -1798,7 +1798,7 @@ namespace experience_anthill
 
       }
 
-      for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for (::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())
@@ -1916,8 +1916,8 @@ namespace experience_anthill
       //      }
 
 
-            //int iOffsetX = 0;
-            //int iOffsetY = 0;
+            //::i32 iOffsetX = 0;
+            //::i32 iOffsetY = 0;
 
       rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
@@ -2002,7 +2002,7 @@ namespace experience_anthill
 
                   auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_hover);
 
-                  ::image::image_source imagesource(ptoolitem->m_pimage, ::double_rectangle(rectangle.size()));
+                  ::image::image_source imagesource(ptoolitem->m_pimage, ::f64_rectangle(rectangle.size()));
 
                   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2049,7 +2049,7 @@ namespace experience_anthill
 
                auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_pressed);
 
-               ::image::image_source imagesource(ptoolitem->m_pimage, ::double_rectangle(rectangle.size()));
+               ::image::image_source imagesource(ptoolitem->m_pimage, ::f64_rectangle(rectangle.size()));
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2090,7 +2090,7 @@ namespace experience_anthill
 
                auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_none);
 
-               ::image::image_source imagesource(ptoolitem->m_pimage, ::double_rectangle(rectangle.size()));
+               ::image::image_source imagesource(ptoolitem->m_pimage, ::f64_rectangle(rectangle.size()));
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2268,7 +2268,7 @@ namespace experience_anthill
 
                   auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_hover);
 
-                  ::image::image_source imagesource(ptoolitem->m_pimage, ::double_rectangle(rectangle.size()));
+                  ::image::image_source imagesource(ptoolitem->m_pimage, ::f64_rectangle(rectangle.size()));
 
                   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2469,10 +2469,10 @@ namespace experience_anthill
    //   }
 
    //
-   //   bool style::get_double(double & d, ::user::e_double edouble, ::user::style_context * pcontext)
+   //   bool style::get_double(::f64 & d, ::user::e_double edouble, ::user::style_context * pcontext)
    //   {
    //
-   //      if (edouble == ::user::double_list_item_height_rate)
+   //      if (edouble == ::user::f64_list_item_height_rate)
    //      {
    //
    //         d = 1.65;

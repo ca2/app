@@ -7,10 +7,10 @@ inline winrt::Windows::Foundation::Rect as_winrt_windows_foundation_rect(const :
 
    winrt::Windows::Foundation::Rect rect;
 
-   rect.X = (float) rectangle.left;
-   rect.Y = (float) rectangle.top;
-   rect.Width = (float) rectangle.width();
-   rect.Height = (float) rectangle.height();
+   rect.X = (::f32) rectangle.left;
+   rect.Y = (::f32) rectangle.top;
+   rect.Width = (::f32) rectangle.width();
+   rect.Height = (::f32) rectangle.height();
 
    return rect;
 
@@ -22,10 +22,10 @@ inline ::i32_rectangle as_int_rectangle(const ::winrt::Windows::Foundation::Rect
 
    ::i32_rectangle rectangle;
 
-   rectangle.left = (int)rect.X;
-   rectangle.top = (int)rect.Y;
-   rectangle.right = (int)(rect.X + rect.Width);
-   rectangle.bottom = (int)(rect.Y + rect.Height);
+   rectangle.left = (::i32)rect.X;
+   rectangle.top = (::i32)rect.Y;
+   rectangle.right = (::i32)(rect.X + rect.Width);
+   rectangle.bottom = (::i32)(rect.Y + rect.Height);
 
    return rectangle;
 

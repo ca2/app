@@ -66,7 +66,7 @@ namespace gpu
       virtual void end_render();
 
       virtual void set_block3(::gpu::block *pgpublock);
-      virtual void bind_slot_set(int iSet, ::gpu::binding_slot_set *pgpubindingslotset);
+      virtual void bind_slot_set(::i32 iSet, ::gpu::binding_slot_set *pgpubindingslotset);
       virtual void set_source(::gpu::texture *pgputexture);
       virtual void set_source(::gpu::pixmap *pgpupixmap);
       virtual void set_model2(::graphics3d::renderable *prenderable);
@@ -89,10 +89,10 @@ namespace gpu
 
       //virtual void set_primitive_topology_triangle_strip();
 
-      virtual void draw_int_a_count(int a);
+      virtual void draw_int_a_count(::i32 a);
 
-      virtual void draw_vertexes(int iVertexCount);
-      virtual void draw_indexes(int iIndexCount);
+      virtual void draw_vertexes(::i32 iVertexCount);
+      virtual void draw_indexes(::i32 iIndexCount);
 
 
       virtual void draw(::gpu::pixmap * ppixmap);

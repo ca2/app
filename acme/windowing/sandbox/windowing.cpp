@@ -428,7 +428,7 @@ bool windowing::targeted_keyboard_messages()
 //   
 //   //}
 //   
-//   //int iCursor = 0;
+//   //::i32 iCursor = 0;
 //   
 //   //if (ecursor == e_cursor_size_top_left)
 //   //{

@@ -101,7 +101,7 @@ namespace console_integration
    }
 
 
-   void third_winrt::speak(::index iIndex, ::index iCount, const ::scoped_string& scopedstrText, int iExitCode)
+   void third_winrt::speak(::index iIndex, ::index iCount, const ::scoped_string& scopedstrText, ::i32 iExitCode)
    {
 
       ::string strMessage;
@@ -134,7 +134,7 @@ namespace console_integration
    void third_winrt::compile()
    {
 
-      int iExitCode;
+      ::i32 iExitCode;
 
       try
       {

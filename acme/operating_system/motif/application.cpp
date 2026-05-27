@@ -7,8 +7,8 @@
 
 
 
-int g_argc;
-char** g_argv;
+::i32 g_argc;
+char_pointer * g_argv;
 
 
 namespace motif

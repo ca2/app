@@ -15,10 +15,10 @@ namespace subsystem_bsd_sockets
 {
 
 
-   int subsystem::get_last_socket_error() { return WSAGetLastError(); }
+   ::i32 subsystem::get_last_socket_error() { return WSAGetLastError(); }
 
 
-   string subsystem::get_socket_error_message_text(int iError)
+   string subsystem::get_socket_error_message_text(::i32 iError)
    {
 
       if (iError <= 0)

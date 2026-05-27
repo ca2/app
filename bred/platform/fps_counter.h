@@ -20,21 +20,21 @@ public:
    void update()
    {
       auto currentTime = std::chrono::high_resolution_clock::now();
-      std::chrono::duration<double, std::milli> deltaTime = currentTime - m_lastTime;
+      std::chrono::duration<::f64, std::milli> deltaTime = currentTime - m_lastTime;
       m_lastTime = currentTime;
 
       // Store frame time in ms
-      double frameTimeMs = deltaTime.count();
+      ::f64 frameTimeMs = deltaTime.count();
       m_frameTimes.push_back(frameTimeMs);
 
       // Update counts
       m_frameCount++;
 
       // Calculate average over the last second (or some interval)
-      std::chrono::duration<double, std::milli> elapsedSinceStart = currentTime - m_startTime;
+      std::chrono::duration<::f64, std::milli> elapsedSinceStart = currentTime - m_startTime;
       if (elapsedSinceStart.count() >= 1000.0)
       { // Update every 1 second
-         double totalMs = std::accumulate(m_frameTimes.begin(), m_frameTimes.end(), 0.0);
+         ::f64 totalMs = std::accumulate(m_frameTimes.begin(), m_frameTimes.end(), 0.0);
          m_averageFrameTimeMs = totalMs / m_frameTimes.size();
          m_averageFps = 1000.0 / m_averageFrameTimeMs;
 
@@ -57,14 +57,14 @@ public:
    //}
 
    // Getter functions
-   float getAverageFrameTime() const { return m_averageFrameTimeMs; }
-   float getAverageFps() const { return m_averageFps; }
+   ::f32 getAverageFrameTime() const { return m_averageFrameTimeMs; }
+   ::f32 getAverageFps() const { return m_averageFps; }
 
 private:
    std::chrono::time_point<std::chrono::high_resolution_clock> m_startTime;
    std::chrono::time_point<std::chrono::high_resolution_clock> m_lastTime;
    ::u32 m_frameCount;
-   std::deque<double> m_frameTimes; // Store frame times to average over a window
-   float m_averageFrameTimeMs;
-   float m_averageFps;
+   std::deque<::f64> m_frameTimes; // Store frame times to average over a window
+   ::f32 m_averageFrameTimeMs;
+   ::f32 m_averageFps;
 };

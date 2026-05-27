@@ -40,9 +40,9 @@ void acme_system_term();
 
 
 //#ifdef WINDOWS
-//CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
+//CLASS_DECL_ACME void set_argc_argv_envp(::i32 argc, wchar_t ** argv, wchar_t ** envp);
 //#else
-//CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
+//CLASS_DECL_ACME void set_argc_argv_envp(::i32 argc, char_pointer * argv, char_pointer * envp);
 //#endif
 
 
@@ -62,14 +62,14 @@ namespace acme
 }
 
 
-extern char **environ;
+extern char_pointer *environ;
 
 
 #ifdef WINDOWS
-int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
+::i32 wmain(::i32 argc, wchar_t* argv[], wchar_t* envp[])
 #else
-int main(int argc, char ** argv)
-//int main(int argc, char ** argv, char ** envp)
+::i32 main(::i32 argc, char_pointer * argv)
+//::i32 main(::i32 argc, char_pointer * argv, char_pointer * envp)
 #endif
 {
    
@@ -88,7 +88,7 @@ int main(int argc, char ** argv)
 //#define DEEP_DEBUG
 #ifdef DEEP_DEBUG
    printf("argc=%d\n", argc);
-   for(int i = 0; i < argc; i++)
+   for(::i32 i = 0; i < argc; i++)
    {
       auto pszParameter = argv[i];
       if constexpr(std::is_same_v<decltype(*argv[0]), wchar_t>)
@@ -97,7 +97,7 @@ int main(int argc, char ** argv)
       }
       else
       {
-         printf("argv[%d]=%s\n", i, (char *) pszParameter);
+         printf("argv[%d]=%s\n", i, (char_pointer ) pszParameter);
       }
    }
 #endif
@@ -313,7 +313,7 @@ int main(int argc, char ** argv)
 ////      try
 ////      {
 ////
-////         int iExitCode = papp->main_loop();
+////         ::i32 iExitCode = papp->main_loop();
 ////
 ////         return iExitCode;
 ////
@@ -372,7 +372,7 @@ int main(int argc, char ** argv)
 //////
 //////      //auto envp = psystem->node()->_get_envp(wcsdupa);
 //////
-//////      platform_char** envp = nullptr;
+//////      platform_char ** envp = nullptr;
 //////
 //////#endif
 ////

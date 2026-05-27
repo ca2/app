@@ -119,11 +119,11 @@ namespace turboc
 
       //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
-//      int iCount = 30;
+//      ::i32 iCount = 30;
 
       ::draw2d::brush_pointer pbrushText(this_create);
 
-      double T = 2.3;
+      ::f64 T = 2.3;
 
       if(false)
       {
@@ -144,17 +144,17 @@ namespace turboc
 
       }
 
-      double t= ::time::now() / 1000.0;
+      ::f64 t= ::time::now() / 1000.0;
 
-      double w = 2.0 * 3.1415 / T;
+      ::f64 w = 2.0 * 3.1415 / T;
 
-      double r = (tri(w * t) + 1.0) / 2.0;
+      ::f64 r = (tri(w * t) + 1.0) / 2.0;
 
-//      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
+//      ::f64 dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      //int i= ::time::now()  / 100 % iCount;
+      //::i32 i= ::time::now()  / 100 % iCount;
 
-      //int iBlur;
+      //::i32 iBlur;
 
       //if(i <= (iCount / 2))
       //   iBlur = i;
@@ -228,7 +228,7 @@ namespace turboc
       if(false)
       {
 
-         double dPeriod = (5000) * 11;
+         ::f64 dPeriod = (5000) * 11;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.49,0.84);
 
@@ -236,7 +236,7 @@ namespace turboc
       else if(m_bAlternate)
       {
 
-         double dPeriod = (5100) * 8;
+         ::f64 dPeriod = (5100) * 8;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.49,0.84);
 
@@ -244,7 +244,7 @@ namespace turboc
       else
       {
 
-         double dPeriod = (4900) * 11;
+         ::f64 dPeriod = (4900) * 11;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.23,0.84);
 

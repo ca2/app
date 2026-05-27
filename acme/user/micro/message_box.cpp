@@ -7,7 +7,7 @@
 #include "still.h"
 #include "theme.h"
 #include "acme/handler/sequence.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/user/micro/details_window.h"
 #include "acme/user/micro/popup_button.h"
@@ -29,7 +29,7 @@
 bool is_ui_possible();
 
 
-void ns_do_main_loop(double dSeconds);
+void ns_do_main_loop(::f64 dSeconds);
 
 
 namespace micro
@@ -104,7 +104,7 @@ namespace micro
    }
 
 
-   void message_box::on_draw(::nano::graphics::device* pmicrodevice)
+   void message_box::on_draw(::nano::graphics::context * pgraphicscontext)
    {
 
       i32_rectangle rectangleText;
@@ -118,7 +118,7 @@ namespace micro
       if (m_picon)
       {
 
-         pmicrodevice->draw(m_picon, 25, 25, 48, 48);
+         pgraphicscontext->draw(m_picon, 25, 25, 48, 48);
 
          rectangleText.left += 48 + 10;
 
@@ -126,7 +126,7 @@ namespace micro
 
       ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
 
-      pmicrodevice->draw_text123(
+      pgraphicscontext->draw_text123(
          pmessageboxpayload->m_strMessage,
          rectangleText,
          e_align_top_left,
@@ -194,7 +194,7 @@ namespace micro
    }
 
 
-   void message_box::add_button(const ::scoped_string& scopedstrText, enum_dialog_result edialogresult, char chLetter)
+   void message_box::add_button(const ::scoped_string& scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
    {
 
       ::micro::dialog::add_button(scopedstrText, edialogresult, chLetter);
@@ -229,11 +229,11 @@ namespace micro
       if (pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask)
       {
 
-         int iDefaultButtonMask = (int)(pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask);
+         ::i32 iDefaultButtonMask = (::i32)(pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask);
 
-         int iDefaultButtonIndex = iDefaultButtonMask >> 8;
+         ::i32 iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
-         int iDefaultButton = iDefaultButtonIndex & 7;
+         ::i32 iDefaultButton = iDefaultButtonIndex & 7;
 
          m_pacmeuserinteractionaChildren->element_at(iDefaultButton)->set_keyboard_focus();
 
@@ -245,15 +245,15 @@ namespace micro
 
       }
 
-      auto wButton = (int)(m_rectangle.width() * 0.2);
+      auto wButton = (::i32)(m_rectangle.width() * 0.2);
 
-      auto hButton = (int)(m_rectangle.height() * 0.2);
+      auto hButton = (::i32)(m_rectangle.height() * 0.2);
 
-      auto iRight = (int)(m_rectangle.width() - m_rectangle.width() * 0.025);
+      auto iRight = (::i32)(m_rectangle.width() - m_rectangle.width() * 0.025);
 
-      auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
+      auto iBottom = (::i32)(m_rectangle.height() - m_rectangle.width() * 0.025);
 
-      auto wSpacing = (int)(m_rectangle.width() * 0.025);
+      auto wSpacing = (::i32)(m_rectangle.width() * 0.025);
 
       auto countButton = micro_button_count();
 
@@ -295,8 +295,8 @@ namespace micro
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-      //int wScreen = 1280;
-      //int hScreen = 768;
+      //::i32 wScreen = 1280;
+      //::i32 hScreen = 768;
 
       auto sizeScreen = system()->acme_windowing()->acme_display()->get_main_screen_size();
 
@@ -308,7 +308,7 @@ namespace micro
 
       //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
-      int w = wScreen / 2;
+      ::i32 w = wScreen / 2;
 
       if (w < 200)
       {
@@ -317,7 +317,7 @@ namespace micro
 
       }
 
-      int h = (w / 16) * 5;
+      ::i32 h = (w / 16) * 5;
 
       if (wScreen < hScreen)
       {
@@ -325,8 +325,8 @@ namespace micro
          h = (w / 10) * 5;
 
       }
-      int x = (wScreen - w) / 2;
-      int y = (hScreen - h) / 2;
+      ::i32 x = (wScreen - w) / 2;
+      ::i32 y = (hScreen - h) / 2;
 
       m_rectangle.set_dimension(x, y, w, h);
 
@@ -381,7 +381,7 @@ namespace micro
 
       ::acme::user::interaction::on_create_window();
 
-      int x = 25;
+      ::i32 x = 25;
 
       if (m_picon)
       {
@@ -423,13 +423,13 @@ namespace micro
       if (m_pstillTimeout)
       {
 
-         auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
-         auto hButton = (int)(m_rectangle.height() * 0.2);
-         auto wButton = (int)(m_rectangle.width() * 0.2);
+         auto iBottom = (::i32)(m_rectangle.height() - m_rectangle.width() * 0.025);
+         auto hButton = (::i32)(m_rectangle.height() * 0.2);
+         auto wButton = (::i32)(m_rectangle.width() * 0.2);
 
          m_pstillTimeout->m_rectangle.bottom = iBottom;
          m_pstillTimeout->m_rectangle.top = m_pstillTimeout->m_rectangle.bottom - hButton / 2;
-         m_pstillTimeout->m_rectangle.left = (int)(m_rectangle.width() * 0.025);
+         m_pstillTimeout->m_rectangle.left = (::i32)(m_rectangle.width() * 0.025);
          m_pstillTimeout->m_rectangle.right = m_pstillTimeout->m_rectangle.left + wButton / 3;
 
          set_timer(1021, 200_ms);

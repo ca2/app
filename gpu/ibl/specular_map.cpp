@@ -194,7 +194,7 @@ namespace gpu
             auto mipHeight = m_ptexturePrefilteredEnvMapCubemap->mip_height();
 
             // each mip level has increasing roughness
-            float roughness = (float)iCurrentMip / (float)(mipCount - 1);
+            ::f32 roughness = (::f32)iCurrentMip / (::f32)(mipCount - 1);
 
             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
 
@@ -306,7 +306,7 @@ BEGIN_GPU_PROPERTIES(::gpu::ibl::specular_map::prefiltered_env_map_push_constant
 GPU_PROPERTY("mvp", ::gpu::e_type_mat4)
 //GPU_PROPERTY("view", ::gpu::e_type_mat4)
 //GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-GPU_PROPERTY("roughness", ::gpu::e_type_float)
+GPU_PROPERTY("roughness", ::gpu::e_type_f32)
 GPU_PROPERTY("numSamples", ::gpu::e_type_i32)
 END_GPU_PROPERTIES()
 

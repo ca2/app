@@ -14,7 +14,7 @@ namespace hotplugin
       ::hotplugin::composer *       m_pbasecomposer;
       plugin *                      m_pplugin;
       memory                        m_memory;
-      double                        m_dProgressRate;
+      ::f64                        m_dProgressRate;
       bool                          m_bShowProgress;
 
 
@@ -87,28 +87,28 @@ namespace hotplugin
 
       virtual void start_plugin() override;
 
-      virtual int  start_ca2_system() override;
+      virtual ::i32  start_ca2_system() override;
 
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle) override;
 
 
-      virtual int start_app_install(const ::scoped_string & scopedstrCommandLine);
+      virtual ::i32 start_app_install(const ::scoped_string & scopedstrCommandLine);
 
-      static int s_start_app_install(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
+      static ::i32 s_start_app_install(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
 
-      int start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      ::i32 start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
-      static int s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
+      static ::i32 s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
 
-      int host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      ::i32 host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
       virtual void deferred_prodevian_redraw() override;
 
       virtual void start_ca2() override;
 
-      virtual void set_progress_rate(double dRate) override;
+      virtual void set_progress_rate(::f64 dRate) override;
 
-      virtual double get_progress_rate() override;
+      virtual ::f64 get_progress_rate() override;
 
       virtual void set_ca2_installation_ready(bool bReady = true) override;
 
@@ -125,7 +125,7 @@ namespace hotplugin
       virtual void blend_bitmap(::draw2d::graphics * pimage,const ::i32_rectangle & rectangle);
 
 
-      virtual void translate_mouse_message(int * px, int * py) override;
+      virtual void translate_mouse_message(::i32 * px, ::i32 * py) override;
 
       virtual void message_handler(::user::message * pusermessage) override;
       virtual void plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx) override;

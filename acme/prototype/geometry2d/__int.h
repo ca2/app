@@ -7,8 +7,8 @@
 struct INT_SIZE
 {
 
-   int cx;
-   int cy;
+   ::i32 cx;
+   ::i32 cy;
 //
 //   operator ::hash32() const { return cx | cy << 16; }
 
@@ -20,8 +20,8 @@ typedef const INT_SIZE * LPCINT_SIZE;
 struct INT_POINT
 {
 
-   int x;
-   int y;
+   ::i32 x;
+   ::i32 y;
 
 };
 
@@ -32,10 +32,10 @@ typedef const INT_POINT * LPCINT_POINT;
 struct INT_RECTANGLE
 {
 
-   int left;
-   int top;
-   int right;
-   int bottom;
+   ::i32 left;
+   ::i32 top;
+   ::i32 right;
+   ::i32 bottom;
 
 };
 

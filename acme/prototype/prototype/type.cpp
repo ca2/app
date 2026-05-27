@@ -4,7 +4,7 @@
 
 
 
-string cxxabi_demangle (const_char_pointer name);
+string cxxabi_demangle (const_char_pointer pszName);
 
 
 #if defined(WINDOWS)
@@ -69,7 +69,7 @@ string type_name(const ::std::type_info & typeinfo)
 //}
 
 
-char * g_pszDemangle = nullptr;
+char_pointer g_pszDemangle = nullptr;
 size_t g_sizeDemangle = 0;
 critical_section * g_pcsDemangle = nullptr;
 
@@ -82,9 +82,9 @@ string type_name(const ::std::type_info& typeinfo)
 
    auto name = typeinfo.name();
 
-   int status = -4;
+   ::i32 status = -4;
 
-   char* res = abi::__cxa_demangle(name, 0, 0, &status);
+   char_pointer res = abi::__cxa_demangle(name, 0, 0, &status);
 
    string str;
 
@@ -581,7 +581,7 @@ namespace platform
 
 }
 
-const char * as_const_char_pointer(::enum_task_tool etasktool)
+const_char_pointer as_const_char_pointer (::enum_task_tool etasktool)
 {
 
 switch (etasktool)
@@ -613,9 +613,9 @@ switch (etasktool)
    if (i1 >= 0 && i2 >= 0)
    {
 
-      const char * psz = nullptr;
+      const_char_pointer psz = nullptr;
 
-      if (i1 == ::atom::e_type_task_tool && (psz =as_const_char_pointer((::enum_task_tool)i2)))
+      if (i1 == ::atom::e_type_task_tool && (psz =as_const_char_pointer ((::enum_task_tool)i2)))
       {
 
          str+="maybe e_type_task_tool?=" + ::string(psz);

@@ -11,7 +11,7 @@
 namespace ansios
 {
 
-   unsigned long timeCounter()
+   ulong timeCounter()
    {
       timeval tv;
       gettimeofday(&tv, 0);

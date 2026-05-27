@@ -195,7 +195,7 @@ namespace fs
    }
 
 
-   int remote_native::is_dir(const ::file::path & path)
+   ::i32 remote_native::is_dir(const ::file::path & path)
    {
 
       if(path.is_empty())

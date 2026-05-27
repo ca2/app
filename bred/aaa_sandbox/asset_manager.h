@@ -54,7 +54,7 @@ namespace graphics3d
 
       void preloadGlobalAssets();
       ::pointer<graphics3d::object_model> loadObjModel(const ::scoped_string& name, const ::scoped_string& filepath, bool isSkybox = false);
-      ::pointer<graphics3d::IModel> loadGLTFmodel(const ::scoped_string& name, const ::scoped_string& filepath, uint32_t gltfFlags = 0u, float scale = 1.f);
+      ::pointer<graphics3d::IModel> loadGLTFmodel(const ::scoped_string& name, const ::scoped_string& filepath, uint32_t gltfFlags = 0u, ::f32 scale = 1.f);
       ::pointer<gpu::texture> loadCubemap(
          const ::scoped_string& name,
          const ::scoped_string& ktxFilename

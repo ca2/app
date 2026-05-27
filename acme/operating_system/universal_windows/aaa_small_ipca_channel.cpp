@@ -17,7 +17,7 @@
 
       // extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
       // _In_ const ::atom & atom,
-      // _In_ unsigned int dwFlag);
+      // _In_ ::u32 dwFlag);
 
 
       base::base()
@@ -121,7 +121,7 @@
       }
 
 
-      bool tx::send(int message, void * pdata, int len, ::duration durationTimeout)
+      bool tx::send(::i32 message, void * pdata, ::i32 len, ::duration durationTimeout)
       {
 
          if (!is_tx_ok())
@@ -131,7 +131,7 @@
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::acmeacmesystem()->url_encode(::acmeacmesystem()->base64().encode((unsigned char *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::acmeacmesystem()->url_encode(::acmeacmesystem()->base64().encode((::u8 *)pdata, len));
 
          Uri ^uri = ref aaa_primitive_new Uri(anotherappURI);
 
@@ -195,13 +195,13 @@
 
       //}
 
-      //void rx::receiver::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+      //void rx::receiver::on_ipc_receive(rx * prx, ::i32 message, void * pdata, memsize len)
       //{
 
       //}
 
 
-      //void rx::receiver::on_ipc_post(rx * prx, long long int a, long long int b)
+      //void rx::receiver::on_ipc_post(rx * prx, ::i64 ::i32 a, ::i64 ::i32 b)
       //{
 
       //}
@@ -221,7 +221,7 @@
 
       }
 
-      void * rx::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+      void * rx::on_ipc_receive(rx * prx, ::i32 message, void * pdata, memsize len)
       {
 
          if (m_preceiver != nullptr)
@@ -236,7 +236,7 @@
       }
 
 
-      void * rx::on_ipc_post(rx * prx, long long int a, long long int b)
+      void * rx::on_ipc_post(rx * prx, ::i64 ::i32 a, ::i64 ::i32 b)
       {
 
          if (m_preceiver != nullptr)

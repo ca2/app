@@ -18,7 +18,7 @@
 #include "aura/graphics/image/image.h"
 #include "nano2d/draw2d_context.h"
 
-//int g_iColorWheelExit = 0;
+//::i32 g_iColorWheelExit = 0;
 namespace graphics
 {
 
@@ -46,38 +46,38 @@ namespace graphics
 
       //}
 
-      double x = (double)m_rectangle.left;
-      double y = (double)m_rectangle.top;
-      double w = (double)m_rectangle.width();
-      double h = (double)m_rectangle.height();
+      ::f64 x = (::f64)m_rectangle.left;
+      ::f64 y = (::f64)m_rectangle.top;
+      ::f64 w = (::f64)m_rectangle.width();
+      ::f64 h = (::f64)m_rectangle.height();
 
-      double diam1 = (w < h ? w : h);
-      double r1 = diam1 * 0.48;
-      double r0 = r1 * .75;
-      double u;
+      ::f64 diam1 = (w < h ? w : h);
+      ::f64 r1 = diam1 * 0.48;
+      ::f64 r0 = r1 * .75;
+      ::f64 u;
       u = ::maximum(r1 / 50, 1.5f);
       u = ::minimum(u, 4.f);
 
 
-      int diamRound = (((int)ceil(diam1) - 1) / 2) * 2;
+      ::i32 diamRound = (((::i32)ceil(diam1) - 1) / 2) * 2;
 
       i32_size sizeImageOffset;
 
-      sizeImageOffset.cx = (int) (x + (w - diam1) / 2.0);
+      sizeImageOffset.cx = (::i32) (x + (w - diam1) / 2.0);
 
-      sizeImageOffset.cy = (int) (y + (h - diam1) / 2.0);
+      sizeImageOffset.cy = (::i32) (y + (h - diam1) / 2.0);
 
-      ::double_point center;
+      ::f64_point center;
 
-      center = sizeImageOffset + ::double_size(diamRound / 2, diamRound / 2);
+      center = sizeImageOffset + ::f64_size(diamRound / 2, diamRound / 2);
 
-      double hue = m_hls.m_dH;
+      ::f64 hue = m_hls.m_dH;
       
-      int centerX = diamRound / 2;
+      ::i32 centerX = diamRound / 2;
 
-      int centerY = diamRound / 2;
+      ::i32 centerY = diamRound / 2;
 
-      double dAlphaThickness = u / 2.0;
+      ::f64 dAlphaThickness = u / 2.0;
 
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 100) return;
 
@@ -90,14 +90,14 @@ namespace graphics
       // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 300) return;
 
 
-         //::double_ellipse ellipse1;
+         //::f64_ellipse ellipse1;
 
          //ellipse1.left = center.x - r1;
          //ellipse1.top = center.y - r1;
          //ellipse1.right = center.x + r1;
          //ellipse1.bottom = center.y + r1;
 
-         //::double_ellipse ellipse0;
+         //::f64_ellipse ellipse0;
 
          //ellipse0.left = center.x - r0;
          //ellipse0.top = center.y - r0;
@@ -149,31 +149,31 @@ namespace graphics
 
             m_pimageCircle->fill_byte(0);
 
-            for (int x = 0; x < diamRound; x++)
+            for (::i32 x = 0; x < diamRound; x++)
             {
 
-               for (int y = 0; y < diamRound; y++)
+               for (::i32 y = 0; y < diamRound; y++)
                {
 
-                  int dx = x - centerX;
+                  ::i32 dx = x - centerX;
 
-                  int dy = y - centerY;
+                  ::i32 dy = y - centerY;
 
 #if defined(__APPLE__)
-                  double dHue = atan2(dy, dx);
+                  ::f64 dHue = atan2(dy, dx);
 #else
-                  double dHue = atan2(-dy, dx);
+                  ::f64 dHue = atan2(-dy, dx);
 #endif
-                  double dRadius = sqrt((dx * dx) + (dy * dy));
+                  ::f64 dRadius = sqrt((dx * dx) + (dy * dy));
 
-                  unsigned char opacity = 0;
+                  ::u8 opacity = 0;
 
                   if (dRadius >= r1)
                   {
 
-                     double d = dAlphaThickness - dRadius + r1;
+                     ::f64 d = dAlphaThickness - dRadius + r1;
 
-                     opacity = (unsigned char)(minimum_maximum(d / dAlphaThickness, 0., 1.0) * 255.);
+                     opacity = (::u8)(minimum_maximum(d / dAlphaThickness, 0., 1.0) * 255.);
 
                      if (opacity == 0)
                      {
@@ -186,21 +186,21 @@ namespace graphics
                   else if (dRadius > r0)
                   {
 
-                     opacity = (unsigned char)255;
+                     opacity = (::u8)255;
 
                   }
                   else if (dRadius > r0 - dAlphaThickness)
                   {
 
-                     double d = dRadius - r0 + dAlphaThickness;
+                     ::f64 d = dRadius - r0 + dAlphaThickness;
 
-                     opacity = (unsigned char)(minimum_maximum(d / dAlphaThickness, 0., 1.0) * 255.);
+                     opacity = (::u8)(minimum_maximum(d / dAlphaThickness, 0., 1.0) * 255.);
 
                   }
                   else
                   {
 
-                     //opacity = (unsigned char)0;
+                     //opacity = (::u8)0;
 
                      continue;
 
@@ -241,40 +241,40 @@ namespace graphics
          }
          //      pcontext->save();
 
-         //double cx = x + w * 0.5;
-         //double cy = y + h * 0.5;
-         double cx = sizeImageOffset.cx + centerX;
-         double cy = sizeImageOffset.cy + centerY;
-         //double r1 = (w < h ? w : h) * 0.5;
-         //double r0 = r1 * .75;
+         //::f64 cx = x + w * 0.5;
+         //::f64 cy = y + h * 0.5;
+         ::f64 cx = sizeImageOffset.cx + centerX;
+         ::f64 cy = sizeImageOffset.cy + centerY;
+         //::f64 r1 = (w < h ? w : h) * 0.5;
+         //::f64 r0 = r1 * .75;
 
-         ////float aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
-         //float aeps = 1. / r0;   // one pixel arc length in radians (2pi cancels out).
+         ////::f32 aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
+         //::f32 aeps = 1. / r0;   // one pixel arc length in radians (2pi cancels out).
 
-         //for (int i = 0; i < 6; i++) 
+         //for (::i32 i = 0; i < 6; i++) 
          //{
-         //   //auto a0 = (double)i / 6.0 * ::nano2d::f_pi * 2.0 - aeps;
-         //   //auto a1 = (double)(i + 1.0) / 6.0 * ::nano2d::f_pi * 2.0 + aeps;
-         //   auto a0precis = radians((double)i / 6.0 * ::nano2d::f_pi * 2.0);
-         //   auto a1precis = radians((double)(i + 1.0) / 6.0 * ::nano2d::f_pi * 2.0);
-         //   auto a0 = radians((double)i / 6.0 * ::nano2d::f_pi * 2.0 - aeps);
-         //   auto a1 = radians((double)(i + 1.0) / 6.0 * ::nano2d::f_pi * 2.0 + aeps);
+         //   //auto a0 = (::f64)i / 6.0 * ::nano2d::f_pi * 2.0 - aeps;
+         //   //auto a1 = (::f64)(i + 1.0) / 6.0 * ::nano2d::f_pi * 2.0 + aeps;
+         //   auto a0precis = radians((::f64)i / 6.0 * ::nano2d::f_pi * 2.0);
+         //   auto a1precis = radians((::f64)(i + 1.0) / 6.0 * ::nano2d::f_pi * 2.0);
+         //   auto a0 = radians((::f64)i / 6.0 * ::nano2d::f_pi * 2.0 - aeps);
+         //   auto a1 = radians((::f64)(i + 1.0) / 6.0 * ::nano2d::f_pi * 2.0 + aeps);
          //   pcontext->begin_path();
          //   pcontext->arc(cx, cy, r0, a0, a1, ::nano2d::e_winding_cw);
          //   pcontext->arc(cx, cy, r1, a1, a0, ::nano2d::e_winding_ccw);
          //   pcontext->close_path();
-         //   //float ax = (float)cx + cos(a0 - 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
-         //   //float ay = (float)cy + sin(a0 - 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
-         //   //float bx = (float)cx + cos(a1 + 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
-         //   //float by = (float)cy + sin(a1 + 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
-         //   float ax = (float)cx + cos(a0 - 3. * aeps) * (r1);
-         //   float ay = (float)cy + sin(a0 - 3. * aeps) * (r1);
-         //   float bx = (float)cx + cos(a1 + 3. * aeps) * (r1);
-         //   float by = (float)cy + sin(a1 + 3. * aeps) * (r1);
-         //   //float ax = (float)cx + cos(a0) * (r0 * 0.3 + r1 * 0.7);
-         //   //float ay = (float)cy + sin(a0) * (r0 * 0.3 + r1 * 0.7);
-         //   //float bx = (float)cx + cos(a1) * (r0 * 0.3 + r1 * 0.7);
-         //   //float by = (float)cy + sin(a1) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 ax = (::f32)cx + cos(a0 - 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 ay = (::f32)cy + sin(a0 - 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 bx = (::f32)cx + cos(a1 + 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 by = (::f32)cy + sin(a1 + 3. * aeps) * (r0 * 0.3 + r1 * 0.7);
+         //   ::f32 ax = (::f32)cx + cos(a0 - 3. * aeps) * (r1);
+         //   ::f32 ay = (::f32)cy + sin(a0 - 3. * aeps) * (r1);
+         //   ::f32 bx = (::f32)cx + cos(a1 + 3. * aeps) * (r1);
+         //   ::f32 by = (::f32)cy + sin(a1 + 3. * aeps) * (r1);
+         //   //::f32 ax = (::f32)cx + cos(a0) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 ay = (::f32)cy + sin(a0) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 bx = (::f32)cx + cos(a1) * (r0 * 0.3 + r1 * 0.7);
+         //   //::f32 by = (::f32)cy + sin(a1) * (r0 * 0.3 + r1 * 0.7);
          //   paint = pcontext->linear_gradient(ax, ay, bx, by,
          //      ::color::HSLA_color(a0precis.m_fAngle / (::nano2d::f_pi * 2), 1.0, 0.55, 255),
          //      ::color::HSLA_color(a1precis.m_fAngle / (::nano2d::f_pi * 2), 1.0, 0.55, 255));
@@ -294,14 +294,14 @@ namespace graphics
 
 
             //pcontext->save();
-            pcontext->translate((float) cx, (float) cy);
+            pcontext->translate((::f32) cx, (::f32) cy);
          
          
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5200) return;
             
 //#if defined(__APPLE__)
 
-         auto fAngle = (float) (-hue * ::nano2d::f_pi * 2);
+         auto fAngle = (::f32) (-hue * ::nano2d::f_pi * 2);
 
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5250) return;
             pcontext->rotate(fAngle);
@@ -309,21 +309,21 @@ namespace graphics
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5300) return;
 //#else
 //
-//            pcontext->rotate((float) (hue * ::nano2d::f_pi * 2));
+//            pcontext->rotate((::f32) (hue * ::nano2d::f_pi * 2));
 //            
 //#endif
             
 
-            pcontext->stroke_width((float)u);
+            pcontext->stroke_width((::f32)u);
 
          
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5400) return;
 
             pcontext->begin_path();
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5500) return;
-            pcontext->circle(0, 0, (float) (r0 - 0.5));
+            pcontext->circle(0, 0, (::f32) (r0 - 0.5));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5600) return;
-            pcontext->circle(0, 0, (float) (r1 + 0.5f));
+            pcontext->circle(0, 0, (::f32) (r1 + 0.5f));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5700) return;
             pcontext->stroke_color(rgba(0, 0, 0, 64));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5800) return;
@@ -335,19 +335,19 @@ namespace graphics
             // Marker on
             pcontext->begin_path();
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6000) return;
-            pcontext->rectangle((float) (r0 - 1.),(float)(- 2. * u), (float) (r1 - r0 + 2.), (float) (4.0 * u));
+            pcontext->rectangle((::f32) (r0 - 1.),(::f32)(- 2. * u), (::f32) (r1 - r0 + 2.), (::f32) (4.0 * u));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6100) return;
             pcontext->stroke_color(rgba(255, 255, 255, 192));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6200) return;
             pcontext->stroke();
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6300) return;
-            paint = pcontext->box_gradient((float)(r0 - 3.), (float)( - 5.), (float)(r1 - r0 + 6.), (float)(10.), (float)(2), (float)(4.), rgba(0, 0, 0, 128), rgba(0, 0, 0, 0));
+            paint = pcontext->box_gradient((::f32)(r0 - 3.), (::f32)( - 5.), (::f32)(r1 - r0 + 6.), (::f32)(10.), (::f32)(2), (::f32)(4.), rgba(0, 0, 0, 128), rgba(0, 0, 0, 0));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6400) return;
             pcontext->begin_path();
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6500) return;
-            pcontext->rectangle((float)(r0 - 2. -10.), (float)(-4. -10.), (float)(r1 - r0 + 4. + 20.), (float)(8. + 20.));
+            pcontext->rectangle((::f32)(r0 - 2. -10.), (::f32)(-4. -10.), (::f32)(r1 - r0 + 4. + 20.), (::f32)(8. + 20.));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6600) return;
-            pcontext->rectangle((float)(r0 - 2.), (float)(-4.), (float)(r1 - r0 + 4.), (float)(8.));
+            pcontext->rectangle((::f32)(r0 - 2.), (::f32)(-4.), (::f32)(r1 - r0 + 4.), (::f32)(8.));
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6700) return;
             pcontext->path_winding(::nano2d::e_solidity_hole);
          // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6800) return;
@@ -361,11 +361,11 @@ namespace graphics
 
 
             //// Center triangle
-            float r = (float)(r0 - 6.0);
-            float ax = (float)(-0.5 * r);
-            float ay = (float)(0.5 * ::sqrt(3.) * r);
-            float bx = (float)(-0.5 * r);
-            float by = (float)(-0.5 * ::sqrt(3.) * r);
+            ::f32 r = (::f32)(r0 - 6.0);
+            ::f32 ax = (::f32)(-0.5 * r);
+            ::f32 ay = (::f32)(0.5 * ::sqrt(3.) * r);
+            ::f32 bx = (::f32)(-0.5 * r);
+            ::f32 by = (::f32)(-0.5 * ::sqrt(3.) * r);
             pcontext->begin_path();
             pcontext->move_to(r, 0);
             pcontext->line_to(ax, ay);
@@ -383,13 +383,13 @@ namespace graphics
             //hsv = m_hls;
 
             // Select circle on triangle
-            //float sx =-r -( r * (1.0 -hsv.m_dV - hsv.m_dS) + ax * hsv.m_dV + bx * hsv.m_dS);
-            //float sy = ay * hsv.m_dV + by * hsv.m_dS;
+            //::f32 sx =-r -( r * (1.0 -hsv.m_dV - hsv.m_dS) + ax * hsv.m_dV + bx * hsv.m_dS);
+            //::f32 sy = ay * hsv.m_dV + by * hsv.m_dS;
 
-            double dTriangleSide = sqrt(3.0) * r;
-            double dTriangleHeight = 3.0 * r / 2.0;
+            ::f64 dTriangleSide = sqrt(3.0) * r;
+            ::f64 dTriangleHeight = 3.0 * r / 2.0;
 
-            //auto triangle_y_top = [&](double x)
+            //auto triangle_y_top = [&](::f64 x)
             //   {
 
             //      return (1.0 - (x - bx) / 1.5 * r) * (-dTriangleSide / 2.);
@@ -397,14 +397,14 @@ namespace graphics
             //   };
 
 
-            auto triangle_x_right = [&](double y)
+            auto triangle_x_right = [&](::f64 y)
                {
 
                   return (1.0 - fabs(y * 2.0 / dTriangleSide)) * 1.5 * r + bx;
 
                };
 
-            //auto triangle_y_top = [&](double x)
+            //auto triangle_y_top = [&](::f64 x)
 //   {
 
 //      return (1.0 - (x - bx) / 1.5 * r) * (-dTriangleSide / 2.);
@@ -412,28 +412,28 @@ namespace graphics
 //   };
 
 
-//auto triangle_y_bottom = [&](double x)
+//auto triangle_y_bottom = [&](::f64 x)
 //   {
 
 //      return (1.0 - (x - bx) / 1.5 * r) * (dTriangleSide / 2.);
 
 //   };
 
-            float sx = (float)(bx + (dTriangleHeight * m_hls.m_dS));
-            float sy = (float)(dTriangleSide * (m_hls.m_dL - 0.5));
+            ::f32 sx = (::f32)(bx + (dTriangleHeight * m_hls.m_dS));
+            ::f32 sy = (::f32)(dTriangleSide * (m_hls.m_dL - 0.5));
 
             auto max_sx_for_given_sx = triangle_x_right(sy);
 
             if (sx > max_sx_for_given_sx)
             {
-               sx = (float)(max_sx_for_given_sx);
+               sx = (::f32)(max_sx_for_given_sx);
 
             }
 
 
-            pcontext->stroke_width((float)(u));
+            pcontext->stroke_width((::f32)(u));
             pcontext->begin_path();
-            pcontext->circle((float)(sx), (float)(sy), (float)(2. * u));
+            pcontext->circle((::f32)(sx), (::f32)(sy), (::f32)(2. * u));
             pcontext->stroke_color(rgba(255, 255, 255, 192));
             pcontext->stroke();
 
@@ -533,40 +533,40 @@ namespace graphics
    color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const i32_point & p)
    {
 
-      //double x = (double)m_rectangle.left;
-      //double y = (double)m_rectangle.top;
-      double x = 0.;
-      double y = 0.;
-      double w = (double)m_rectangle.width();
-      double h = (double)m_rectangle.height();
+      //::f64 x = (::f64)m_rectangle.left;
+      //::f64 y = (::f64)m_rectangle.top;
+      ::f64 x = 0.;
+      ::f64 y = 0.;
+      ::f64 w = (::f64)m_rectangle.width();
+      ::f64 h = (::f64)m_rectangle.height();
 
-      double diam1 = (w < h ? w : h);
-      double r1 = diam1 * 0.48;
-      double r0 = r1 * .75;
-      double u;
+      ::f64 diam1 = (w < h ? w : h);
+      ::f64 r1 = diam1 * 0.48;
+      ::f64 r0 = r1 * .75;
+      ::f64 u;
       u = ::maximum(r1 / 50, 1.5f);
       u = ::minimum(u, 4.f);
 
 
-      int diamRound = (((int)ceil(diam1) - 1) / 2) * 2;
+      ::i32 diamRound = (((::i32)ceil(diam1) - 1) / 2) * 2;
 
       i32_size sizeImageOffset;
 
-      sizeImageOffset.cx = (int) (x + (w - diam1) / 2.0);
+      sizeImageOffset.cx = (::i32) (x + (w - diam1) / 2.0);
 
-      sizeImageOffset.cy = (int) (y + (h - diam1) / 2.0);
+      sizeImageOffset.cy = (::i32) (y + (h - diam1) / 2.0);
 
-      ::double_point center;
+      ::f64_point center;
 
-      center = sizeImageOffset + ::double_size(diamRound / 2, diamRound / 2);
+      center = sizeImageOffset + ::f64_size(diamRound / 2, diamRound / 2);
 
       auto cx = p.x - center.x;
 
       auto cy = p.y - center.y;
 
-      double smallest_dimension = diamRound /2;
+      ::f64 smallest_dimension = diamRound /2;
 
-      double mr = ::sqrt(cx * cx + cy * cy);
+      ::f64 mr = ::sqrt(cx * cx + cy * cy);
       
       if(!m_ehittestDrag && mr >r1)
       {
@@ -580,11 +580,11 @@ namespace graphics
          
 //#if defined(__APPLE__)
 
-         double dAngle = ::atan2(-cy, cx);
+         ::f64 dAngle = ::atan2(-cy, cx);
          
 //#else
 //         
-//         double dAngle = ::atan2(cy, cx);
+//         ::f64 dAngle = ::atan2(cy, cx);
 //         
 //#endif
 
@@ -624,34 +624,34 @@ namespace graphics
       }
 
       // #if defined(__APPLE__)
-      double a = m_hls.m_dH * 2.0 * ::nano2d::f_pi;
+      ::f64 a = m_hls.m_dH * 2.0 * ::nano2d::f_pi;
 //#else
-//      double a = -m_hls.m_dH * 2.0 * ::nano2d::f_pi;
+//      ::f64 a = -m_hls.m_dH * 2.0 * ::nano2d::f_pi;
 //#endif
-      double sin_a = ::sin(a);
-      double cos_a = ::cos(a);
+      ::f64 sin_a = ::sin(a);
+      ::f64 cos_a = ::cos(a);
 
-      double_point xy(cos_a * cx - sin_a * cy, sin_a * cx + cos_a * cy);
+      ::f64_point xy(cos_a * cx - sin_a * cy, sin_a * cx + cos_a * cy);
 
-      //double r = r0 - 6;
+      //::f64 r = r0 - 6;
 
-      double r = r0;
+      ::f64 r = r0;
 
-      //float sx = bx + (1.5 * r * m_hls.m_dS * 2.0 * minimum(m_hls.m_dL, 1.0 - m_hls.m_dL));
-      //float sy = sqrt(3.) * r * (m_hls.m_dL - 0.5) * (1.0 - m_hls.m_dS * minimum(m_hls.m_dL, 1.0 - m_hls.m_dL));
+      //::f32 sx = bx + (1.5 * r * m_hls.m_dS * 2.0 * minimum(m_hls.m_dL, 1.0 - m_hls.m_dL));
+      //::f32 sy = sqrt(3.) * r * (m_hls.m_dL - 0.5) * (1.0 - m_hls.m_dS * minimum(m_hls.m_dL, 1.0 - m_hls.m_dL));
 
-      double sx = xy.x;
-      double sy = xy.y;
+      ::f64 sx = xy.x;
+      ::f64 sy = xy.y;
 
-      double bx = -0.5f * r;
+      ::f64 bx = -0.5f * r;
 
-      double dTriangleSide = sqrt(3.0) * r;
-      double dTriangleHeight= 3.0 * r / 2.0;
+      ::f64 dTriangleSide = sqrt(3.0) * r;
+      ::f64 dTriangleHeight= 3.0 * r / 2.0;
 
 
-      double l0 = (double)(r - xy.x + ::sqrt(3.) * xy.y) / (3. * r);
-      double l1 = (double)(r - xy.x - ::sqrt(3.) * xy.y) / (3. * r);
-      double l2 = 1. - l0 - l1;
+      ::f64 l0 = (::f64)(r - xy.x + ::sqrt(3.) * xy.y) / (3. * r);
+      ::f64 l1 = (::f64)(r - xy.x - ::sqrt(3.) * xy.y) / (3. * r);
+      ::f64 l2 = 1. - l0 - l1;
       bool triangle_test = l0 >= 0. && l0 <= 1. && l1 >= 0. && l1 <= 1. &&
          l2 >= 0. && l2 <= 1.;
 
@@ -663,13 +663,13 @@ namespace graphics
          l0 = ::minimum(::maximum(0., l0), 1.);
          l1 = ::minimum(::maximum(0., l1), 1.);
          l2 = ::minimum(::maximum(0., l2), 1.);
-         double sum = l0 + l1 + l2;
+         ::f64 sum = l0 + l1 + l2;
          l0 /= sum;
          l1 /= sum;
-         double dMinY = -dTriangleSide / 2.0;
-         double dMaxY = dTriangleSide / 2.0;
+         ::f64 dMinY = -dTriangleSide / 2.0;
+         ::f64 dMaxY = dTriangleSide / 2.0;
          sx = minimum_maximum(sx, bx, bx + 1.5*r);
-         double dRangeY =(bx + 1.5 * r - sx)/ fabs(1.5*r);
+         ::f64 dRangeY =(bx + 1.5 * r - sx)/ fabs(1.5*r);
          sy = minimum_maximum(sy, dMinY * dRangeY, dMaxY * dRangeY);
 
          //color::hsv hsv(m_hls);
@@ -726,14 +726,14 @@ namespace graphics
    //   auto g = color.f32_green();
    //   auto b = color.f32_blue();
 
-   //   float M = color.f32_maximum_rgb();
+   //   ::f32 M = color.f32_maximum_rgb();
 
-   //   float m = color.f32_minimum_rgb();
+   //   ::f32 m = color.f32_minimum_rgb();
 
    //   if (M == m)
    //   {
 
-   //      float l = 0.5f * (M + m);
+   //      ::f32 l = 0.5f * (M + m);
    //      m_hue = 0.f;
    //      m_black = 1.f - l;
    //      m_white = l;
@@ -742,7 +742,7 @@ namespace graphics
    //   else
    //   {
 
-   //      float d = M - m, h;
+   //      ::f32 d = M - m, h;
 
    //      if (M == r)
    //      {
@@ -767,9 +767,9 @@ namespace graphics
 
    //      ::color::color ch = hue2rgb(m_hue);
 
-   //      float M2 = ch.f32_maximum_rgb();
+   //      ::f32 M2 = ch.f32_maximum_rgb();
 
-   //      float m2 = ch.f32_minimum_rgb();
+   //      ::f32 m2 = ch.f32_minimum_rgb();
 
    //      m_white = (M * m2 - m * M2) / (m2 - M2);
 

@@ -39,33 +39,33 @@ namespace innate_subsystem
 //
 //
 //    }
-//    // Tab::Tab(BaseDialog *dialog, const char *caption)
+//    // Tab::Tab(BaseDialog *dialog, const_char_pointer caption)
 //    // : m_dialog(dialog)
 //    // {
 //    //    m_caption.setString(caption);
 //    // }
 //    //
-//    void Tab::initialize_tab(DialogInterface *dialog, const char *caption)
+//    void Tab::initialize_tab(DialogInterface *dialog, const_char_pointer caption)
 // //: m_dialog(dialog)
 //    {
 //       m_pparticleThis->initialize_tab(dialog, caption);
 //   ///    m_caption.setString(caption);
 //    }
 //
-//    //void setCaption(const char *caption) override; { m_caption->setString(caption); }
+//    //void setCaption(const_char_pointer caption) override; { m_caption->setString(caption); }
 //
-//    void Tab::setCaption(const char *caption)
+//    void Tab::setCaption(const_char_pointer caption)
 //    {
 //
 //       m_pparticleThis->setCaption(caption);
 //
 //    }
 //
-//    // const char *getCaption() {
+//    // const_char_pointer getCaption() {
 //    //     return m_caption.getString();
 //    // }
 //
-//    const char *Tab::getCaption()
+//    const_char_pointer Tab::getCaption()
 //    {
 //
 //       return m_pparticleThis->getCaption();

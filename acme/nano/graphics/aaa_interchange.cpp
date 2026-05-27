@@ -90,7 +90,7 @@ void interchange::on_initialize_particle()
 }
 
 
-void interchange::draw(::nano::graphics::device * pnanodevice)
+void interchange::draw(::nano::graphics::context * pnanodevice)
 {
    
    ::pointer<::nano::graphics::pen>pnanopenBorder;
@@ -128,7 +128,7 @@ return m_rectangle;
 }
 
 
-void interchange::draw_children(::nano::graphics::device * pnanodevice)
+void interchange::draw_children(::nano::graphics::context * pnanodevice)
 {
    
    for (auto & pchild: m_childa)
@@ -220,7 +220,7 @@ void interchange::message_loop()
 
 
 
-void interchange::on_draw(::nano::graphics::device * pnanodevice)
+void interchange::on_draw(::nano::graphics::context * pnanodevice)
 {
    
    //m_pwindowbase->draw(pnanodevice);
@@ -228,7 +228,7 @@ void interchange::on_draw(::nano::graphics::device * pnanodevice)
 }
 
 
-void interchange::on_char(int iChar)
+void interchange::on_char(::i32 iChar)
 {
    
    if (iChar == '\t' && m_childa.has_element())
@@ -332,17 +332,17 @@ void interchange::create_drawing_objects()
       
    }
    
-   m_pbrushWindow = ::nano::graphics::create_solid_brush(this, m_colorWindow);
+   m_pbrushWindow = nano()->graphics()->create_solid_brush(m_colorWindow);
    
-   m_pbrushText = ::nano::graphics::create_solid_brush(this, m_colorText);
+   m_pbrushText = nano()->graphics()->create_solid_brush(m_colorText);
    
-   m_pbrushHyperlink = ::nano::graphics::create_solid_brush(this, m_colorHyperlink);
+   m_pbrushHyperlink = nano()->graphics()->create_solid_brush(m_colorHyperlink);
    
-   m_pbrushHyperlinkHover = ::nano::graphics::create_solid_brush(this, m_colorHyperlinkHover);
+   m_pbrushHyperlinkHover = nano()->graphics()->create_solid_brush(m_colorHyperlinkHover);
    
-   m_ppenBorder = ::nano::graphics::create_pen(this, 1, m_colorText);
+   m_ppenBorder = nano()->graphics()->create_pen(1, m_colorText);
    
-   m_ppenBorderFocus = ::nano::graphics::create_pen(this, 1, m_colorFocus);
+   m_ppenBorderFocus = nano()->graphics()->create_pen(1, m_colorFocus);
    
 }
 
@@ -456,7 +456,7 @@ void interchange::add_child(::micro::child * pchild)
 }
 
 
-void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
 {
    
    auto pbutton = allocateø ::micro::button();
@@ -793,7 +793,7 @@ void interchange::release_capture()
 }
 
 
-::pointer<::nano::graphics::device>interchange::create_device()
+::pointer<::nano::graphics::context>interchange::create_device()
 {
    
    throw interface_only();

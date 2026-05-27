@@ -17,13 +17,13 @@ namespace innate_subsystem
         
       // This state doesn't difference between left and right modifiers. It's
        // needed to ToUnicodeEx().
-       unsigned char m_viewerKeyState[::user::e_key_count];
+       ::u8 m_viewerKeyState[::user::e_key_count];
 
        // This state does difference between left and right modifiers. It's
        // needed to know the server side state (e.g. to release or restore
        // modifiyers state outside from a real key event).
-       //unsigned char m_serverKeyState[256];
-       unsigned char m_serverKeyState[::user::e_key_count];
+       //::u8 m_serverKeyState[256];
+       ::u8 m_serverKeyState[::user::e_key_count];
        bool m_leftMetaIsPressed;
        bool m_rightMetaIsPressed;
 
@@ -35,13 +35,13 @@ namespace innate_subsystem
 
         void clearKeyState();
 
-       //bool isPressed(unsigned char virtKey);
+       //bool isPressed(::u8 virtKey);
        bool isPressed(::user::enum_key euserkey);
 
              //void clearKeyState();
-       int GettingCharFromCtrlSymbol(int ch);
+       ::i32 GettingCharFromCtrlSymbol(::i32 ch);
 
-       //bool isPressed(unsigned char virtKey);
+       //bool isPressed(::u8 virtKey);
 
     };
 
@@ -51,7 +51,7 @@ namespace innate_subsystem
    public:
 
 
-       virtual bool vkCodeToString(unsigned short virtKey, bool down,
+       virtual bool vkCodeToString(::u16 virtKey, bool down,
                                   ::wstring *res, keyboard_state_t *pkeyboardstate) = 0;
 
    };
@@ -72,7 +72,7 @@ namespace innate_subsystem
        ImplementCompositeø(KeyboardLayout, keyboardlayout) 
            
            
-           bool vkCodeToString(unsigned short virtKey, bool down, ::wstring *res, keyboard_state_t *pkeyboardstate) override
+           bool vkCodeToString(::u16 virtKey, bool down, ::wstring *res, keyboard_state_t *pkeyboardstate) override
        {
 
            return m_pkeyboardlayout->vkCodeToString(virtKey, down, res, pkeyboardstate);
@@ -96,7 +96,7 @@ namespace innate_subsystem
 
 
    
-   inline bool isDeadCharacter(int ch)
+   inline bool isDeadCharacter(::i32 ch)
    {
       return (ch == '^' || ch == 0x00a8 || //
               ch == '~' || ch == 0x00b4 || //

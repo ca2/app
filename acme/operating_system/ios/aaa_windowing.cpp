@@ -25,7 +25,7 @@
 //}
 
 
-//oswindow get_window(oswindow window, int iParentHood)
+//oswindow get_window(oswindow window, ::i32 iParentHood)
 //{
 //
 //   return nullptr;
@@ -40,10 +40,10 @@
 oswindow_dataptra * g_poswindowdataptra = nullptr;
 
 
-int oswindow_find(UIWindow * window)
+::i32 oswindow_find(UIWindow * window)
 {
 
-   for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
+   for(::i32 i = 0; i < g_poswindowdataptra->get_count(); i++)
    {
       if(g_poswindowdataptra->element_at(i)->m_nswindow == window)
       {
@@ -257,7 +257,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 //
 //
-//int oswindow_data::get_window_long(int iIndex)
+//::i32 oswindow_data::get_window_long(::i32 iIndex)
 //{
 //
 //   if(::is_null(*this))
@@ -271,7 +271,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 //
 //
-//int oswindow_data::set_window_long(int iIndex, int iNewLong)
+//::i32 oswindow_data::set_window_long(::i32 iIndex, ::i32 iNewLong)
 //{
 //
 //   if(::is_null(*this))
@@ -280,7 +280,7 @@ bool oswindow_erase(UIWindow * window)
 //   if(m_plongmap == nullptr)
 //      return 0;
 //
-//   int iLong = m_plongmap->operator[](iIndex);
+//   ::i32 iLong = m_plongmap->operator[](iIndex);
 //
 //   m_plongmap->operator[](iIndex) = iNewLong;
 //
@@ -443,7 +443,7 @@ oswindow set_active_window(oswindow window)
 
 
 
-int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, unsigned int uFlags)
+int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
 {
    
    main_async([=]()
@@ -597,7 +597,7 @@ void os_term_windowing()
 // }
 
 
-int_bool point_is_window_origin(::i32_point ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(::i32_point ptHitTest, oswindow oswindowExclude, ::i32 iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;

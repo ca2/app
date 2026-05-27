@@ -19,7 +19,7 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME int message_box(
+   CLASS_DECL_ACME ::i32 message_box(
       const ::operating_system::window & operatingsystemwindow,
       const ::scoped_string & scopedstrMessage,
       const ::scoped_string & scopedstrCaption,
@@ -108,9 +108,9 @@ namespace windows
 
    CLASS_DECL_ACME ::i32_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow);
 
-   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand);
+   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, ::i32 iGetWindowCommand);
 
-   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, int iGetWindowLong);
+   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, ::i32 iGetWindowLong);
 
    CLASS_DECL_ACME ::itask get_window_thread_id(const ::operating_system::window & operatingsystemwindow);
 

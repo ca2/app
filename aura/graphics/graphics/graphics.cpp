@@ -14,7 +14,7 @@
 //
 // What does it mean?
 //
-// With multiple buffers (including double buffering)
+// With multiple buffers (including ::f64 buffering)
 // every pixel of the buffer should be set again.
 // This mean also that damaged areas (m_rectangleaNeedRedraw)
 // wouldn't make sense with multiple buffers, as
@@ -40,7 +40,7 @@ namespace graphics
       //if (!pgraphics->m_callbackImage32CpuBuffer)
       //{
 
-      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, int cx, int cy, int scan)
+      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
       //      {
 
       //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

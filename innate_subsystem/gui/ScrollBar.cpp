@@ -141,7 +141,7 @@ namespace innate_subsystem
    //    // return result;
    // }
    //
-   // void ScrollBar::setHorzRange(int imin, int imax, int istep)
+   // void ScrollBar::setHorzRange(::i32 imin, ::i32 imax, ::i32 istep)
    // {
    //    m_pparticleThis->setHorzRange(imin, imax, istep);
    //    // m_hMin  = imin;
@@ -161,7 +161,7 @@ namespace innate_subsystem
    //    // }
    // }
    //
-   // void ScrollBar::setVertRange(int imin, int imax, int istep) {
+   // void ScrollBar::setVertRange(::i32 imin, ::i32 imax, ::i32 istep) {
    //
    //    m_pparticleThis->setVertRange(imin, imax, istep);
    //    // m_vMin  = imin;
@@ -181,7 +181,7 @@ namespace innate_subsystem
    //    // }
    // }
    //
-   // void ScrollBar::setVertPos(int iPos) {
+   // void ScrollBar::setVertPos(::i32 iPos) {
    //    m_pparticleThis->setVertPos(iPos);
    //    // if (!m_isVirtualScroll) {
    //    //    SCROLLINFO si;
@@ -196,7 +196,7 @@ namespace innate_subsystem
    //    // }
    // }
    //
-   // void ScrollBar::setHorzPos(int iPos) {
+   // void ScrollBar::setHorzPos(::i32 iPos) {
    //
    //    m_pparticleThis->setHorzPos(iPos);
    //    // if (!m_isVirtualScroll) {
@@ -212,9 +212,9 @@ namespace innate_subsystem
    //    // }
    // }
    //
-   // void ScrollBar::moveUpVert(int iPercent) {
+   // void ScrollBar::moveUpVert(::i32 iPercent) {
    //    m_pparticleThis->moveUpVert(iPercent);
-   //    // int iShift = m_vStep;
+   //    // ::i32 iShift = m_vStep;
    //    //
    //    // if (iPercent) {
    //    //    iShift = iShift * iPercent / 100;
@@ -230,10 +230,10 @@ namespace innate_subsystem
    //    // return setVertPos(m_vPos);
    // }
    //
-   // void ScrollBar::moveDownVert(int iPercent) {
+   // void ScrollBar::moveDownVert(::i32 iPercent) {
    //
    //    m_pparticleThis->moveDownVert(iPercent);
-   //    // int iShift = m_vStep;
+   //    // ::i32 iShift = m_vStep;
    //    //
    //    // if (iPercent) {
    //    //    iShift = iShift * iPercent / 100;
@@ -249,8 +249,8 @@ namespace innate_subsystem
    //    // return setVertPos(m_vPos);
    // }
    //
-   // void ScrollBar::moveLeftHorz(int iPercent) {
-   //    // int iShift = m_hStep;
+   // void ScrollBar::moveLeftHorz(::i32 iPercent) {
+   //    // ::i32 iShift = m_hStep;
    //    //
    //    // if (iPercent) {
    //    //    iShift = iShift * iPercent / 100;
@@ -268,8 +268,8 @@ namespace innate_subsystem
    //    m_pparticleThis->moveLeftHorz(iPercent);
    // }
    //
-   // void ScrollBar::moveRightHorz(int iPercent) {
-   //    // int iShift = m_vStep;
+   // void ScrollBar::moveRightHorz(::i32 iPercent) {
+   //    // ::i32 iShift = m_vStep;
    //    //
    //    // if (iPercent) {
    //    //    iShift = iShift * iPercent / 100;
@@ -287,21 +287,21 @@ namespace innate_subsystem
    //    m_pparticleThis->moveRightHorz(iPercent);
    // }
    //
-   // int ScrollBar::getVertPos() {
+   // ::i32 ScrollBar::getVertPos() {
    //    return m_pparticleThis->getVertPos();
    // }
    //
-   // int ScrollBar::getHorzPos() {
+   // ::i32 ScrollBar::getHorzPos() {
    //    return m_pparticleThis->getHorzPos();
    // }
    //
-   // int ScrollBar::getVerticalSize()
+   // ::i32 ScrollBar::getVerticalSize()
    // {
    //    //return GetSystemMetrics(SM_CXVSCROLL);
    //    return m_pparticleThis->getVerticalSize();
    // }
    //
-   // int ScrollBar::getHorizontalSize()
+   // ::i32 ScrollBar::getHorizontalSize()
    // {
    //    //return GetSystemMetrics(SM_CXHSCROLL);
    //    return m_pparticleThis->getHorizontalSize();

@@ -32,9 +32,9 @@ namespace ios
       //SHGetImageList(SHIL_JUMBO, IID_IImageList, m_pimagelistJumbo);
       /// SHGetMalloc(&m_pmalloc);
 
-      //int iThreadCount = get_processor_count() * 2;
+      //::i32 iThreadCount = get_processor_count() * 2;
 
-//      int iThreadCount = 1; // for ios
+//      ::i32 iThreadCount = 1; // for ios
 //
 //      for (::collection::index i = 0; i < iThreadCount; i++)
 //      {
@@ -59,7 +59,7 @@ namespace ios
    }
 
 
-   int shell::get_image_by_extension(image_key & key, color32_t crBk)
+   ::i32 shell::get_image_by_extension(image_key & key, color32_t crBk)
    {
 
       return I32_MINIMUM;
@@ -67,10 +67,10 @@ namespace ios
    }
 
 
-   int shell::get_foo_image(image_key imagekey, color32_t crBk)
+   ::i32 shell::get_foo_image(image_key imagekey, color32_t crBk)
    {
 
-      int iImage = -1;
+      ::i32 iImage = -1;
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -79,10 +79,10 @@ namespace ios
    }
 
 
-   int shell::get_image(image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
+   ::i32 shell::get_image(image_key imagekey, const wide_character * lpcszExtra, color32_t crBk)
    {
 
-      int iImage = I32_MINIMUM;
+      ::i32 iImage = I32_MINIMUM;
 
       if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
       {
@@ -187,7 +187,7 @@ namespace ios
       if (::is_set(pFind) || iFind2 >= 2)
       {
          string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
-         int i = 0;
+         ::i32 i = 0;
 
          while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
          {
@@ -305,7 +305,7 @@ namespace ios
    }
 
 
-//   int ios::get_image_by_extension(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key & key, color32_t crBk)
+//   ::i32 ios::get_image_by_extension(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key & key, color32_t crBk)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -321,10 +321,10 @@ namespace ios
 //   }
 
 
-//   int ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk)
+//   ::i32 ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wide_character * lpcszExtra, color32_t crBk)
 ////      {
 ////
-////         int iImage = I32_MINIMUM;
+////         ::i32 iImage = I32_MINIMUM;
 ////
 ////         ::ios::comptr < IShellFolder> lpsf;
 ////
@@ -352,7 +352,7 @@ namespace ios
 ////
 ////         }
 ////
-////         int iType;
+////         ::i32 iType;
 ////         switch (imagekey.m_eicon)
 ////         {
 ////         case icon_normal:
@@ -370,7 +370,7 @@ namespace ios
 ////
 ////         string strFilePath(imagekey.m_strPath);
 ////
-////         char szPath[_MAX_PATH * 6];
+////         ::i8 szPath[_MAX_PATH * 6];
 ////         WCHAR wszPath[_MAX_PATH * 6];
 ////         string strPath;
 ////
@@ -393,7 +393,7 @@ namespace ios
 ////         }
 ////
 ////         wstring wstrPath;
-////         int iIcon = I32_MINIMUM;
+////         ::i32 iIcon = I32_MINIMUM;
 ////
 ////         SHFILEINFOW shfi16;
 ////         SHFILEINFOW shfi48;
@@ -402,7 +402,7 @@ namespace ios
 ////         ::ios::comptr < IShellIconOverlayIdentifier > lpioverlay;
 ////         ::ios::comptr < IExtractImage > lpiextractimage;
 ////
-////         unsigned int uExtractIconLocationFlags = 0;
+////         ::u32 uExtractIconLocationFlags = 0;
 ////
 ////         bool bMaybeLink = true;
 ////
@@ -429,7 +429,7 @@ namespace ios
 ////                  auto pFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = I32_MINIMUM;
-////                  imagekey.m_strExtension = (char*)&strFilePath[iFind+1];
+////                  imagekey.m_strExtension = (char_pointer )&strFilePath[iFind+1];
 ////                  imagekey.m_strPath = "";
 ////
 ////                  bMaybeLink = false;
@@ -477,7 +477,7 @@ namespace ios
 ////
 ////                                 strExpandEnv = imagekey.m_strPath;
 ////                                 strExpandEnv.case_insensitive_replace(str, m_strShellThemePrefix + str);
-////                                 imagekey.m_strPath = (char*)strExpandEnv.c_str();
+////                                 imagekey.m_strPath = (char_pointer )strExpandEnv.c_str();
 ////
 ////                              }
 ////
@@ -504,8 +504,8 @@ namespace ios
 ////            nullptr,
 ////            lpioverlay)))
 ////         {
-////            int iIndex = 0;
-////            unsigned int dwFlags = 0;
+////            ::i32 iIndex = 0;
+////            ::u32 dwFlags = 0;
 ////            if (SUCCEEDED(hrIconLocation = lpioverlay->GetOverlayInfo(
 ////               wszPath,
 ////               sizeof(wszPath),
@@ -517,13 +517,13 @@ namespace ios
 ////                  auto pFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = I32_MINIMUM;
-////                  imagekey.m_strExtension = (char *)&strFilePath(pFind);
+////                  imagekey.m_strExtension = (char_pointer )&strFilePath(pFind);
 ////                  imagekey.m_strPath = "";
 ////               }
 ////               else
 ////               {
 ////                  strFilePath = expand_env(szPath);
-////                  imagekey.m_strPath = (char *)strFilePath.c_str();
+////                  imagekey.m_strPath = (char_pointer )strFilePath.c_str();
 ////                  imagekey.m_iIcon = iIcon;
 ////                  imagekey.m_strExtension = "";
 ////               }
@@ -540,8 +540,8 @@ namespace ios
 ////            ::i32_size s;
 ////            s.cx = 48;
 ////            s.cy = 48;
-////            unsigned int dwDepth = 32;
-////            unsigned int dwFlags = 0;
+////            ::u32 dwDepth = 32;
+////            ::u32 dwFlags = 0;
 ////            if (SUCCEEDED(hrIconLocation = lpiextractpimage->GetLocation(
 ////               wszPath,
 ////               sizeof(wszPath),
@@ -556,14 +556,14 @@ namespace ios
 ////                  auto pFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = I32_MINIMUM;
-////                  imagekey.m_strExtension = (char *)&strFilePath(pFind);
+////                  imagekey.m_strExtension = (char_pointer )&strFilePath(pFind);
 ////                  imagekey.m_strPath = "";
 ////               }
 ////               else
 ////               {
 ////                  //imagekey.m_strPath = expand_env(strP);
 ////                  strFilePath = expand_env(strP);
-////                  imagekey.m_strPath = (char *)strFilePath.c_str();
+////                  imagekey.m_strPath = (char_pointer )strFilePath.c_str();
 ////                  imagekey.m_iIcon = iIcon;
 ////                  imagekey.m_strExtension = "";
 ////               }
@@ -572,7 +572,7 @@ namespace ios
 ////         else
 ////         {
 ////
-////            imagekey.m_strPath = (char *)strFilePath.c_str();
+////            imagekey.m_strPath = (char_pointer )strFilePath.c_str();
 ////            imagekey.m_iIcon = iIcon;
 ////            imagekey.m_strExtension = "";
 ////
@@ -625,7 +625,7 @@ namespace ios
 ////
 ////                     string strFooPath = m_strShellThemePrefix + "foo." + strExtension;
 ////
-////                     imagekey.m_strPath = (char *)(const char *)strFooPath;
+////                     imagekey.m_strPath = (char_pointer )(const_char_pointer )strFooPath;
 ////                     imagekey.m_iIcon = 0;
 ////                     imagekey.m_strExtension = "";
 ////
@@ -881,10 +881,10 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 ////      }
 
 
-//   int ios::get_foo_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, color32_t crBk)
+//   ::i32 ios::get_foo_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, color32_t crBk)
 //   {
 //
-//      int iImage = -1;
+//      ::i32 iImage = -1;
 ////
 ////         SHFILEINFOW shfi16;
 ////
@@ -894,7 +894,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 ////
 ////         imagekey.m_strPath = "foo";
 ////
-////         imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+////         imagekey.m_strShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 ////
 ////         {
 ////
@@ -991,7 +991,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
    //   IShellFolder * lpsf,
    //   LPITEMIDLIST lpiidlAbsolute,
    //   LPITEMIDLIST lpiidlChild,
-   //   const unichar * lpcszExtra,
+   //   const wide_character * lpcszExtra,
    //   e_icon eicon,
    //   HICON * phicon16,
    //   HICON * phicon48)
@@ -1001,7 +1001,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
    //   if (lpsf == nullptr)
    //      return false;
-   //   int iType;
+   //   ::i32 iType;
    //   switch (eicon)
    //   {
    //   case icon_normal:
@@ -1028,9 +1028,9 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
    //      lpiidlAbsolute,
    //      szFilePath);
 
-   //   char szPath[_MAX_PATH * 10];
+   //   ::i8 szPath[_MAX_PATH * 10];
    //   string strPath;
-   //   //   int iImage = I32_MINIMUM;
+   //   //   ::i32 iImage = I32_MINIMUM;
 
    //   HICON hicon16 = nullptr;
    //   HICON hicon48 = nullptr;
@@ -1051,8 +1051,8 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
 
 
-   //   int iIcon = I32_MINIMUM;
-   //   unsigned int uFlags = 0;
+   //   ::i32 iIcon = I32_MINIMUM;
+   //   ::u32 uFlags = 0;
 
    //   SHFILEINFO shfi16;
    //   SHFILEINFO shfi48;
@@ -1080,12 +1080,12 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
    //            auto pFind = strFilePath.rear_find('.');
 
    //            imagekey.m_iIcon = I32_MINIMUM;
-   //            imagekey.m_strExtension = (char*)&strFilePath[iFind];
+   //            imagekey.m_strExtension = (char_pointer )&strFilePath[iFind];
    //            imagekey.m_strPath = "";
    //         }
    //         else
    //         {
-   //            imagekey.m_strPath = (char *)strPath.c_str();
+   //            imagekey.m_strPath = (char_pointer )strPath.c_str();
    //            imagekey.m_iIcon = iIcon;
    //            imagekey.m_strExtension = nullptr;
    //         }
@@ -1146,7 +1146,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
    //         iIcon = imagekey.m_iIcon;
    //         bool bExtract = false;
    //         //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.length() + 1);
-   //         //char * lpsz = (char *) ::GlobalLock(hglobal);
+   //         //char_pointer lpsz = (char_pointer ) ::GlobalLock(hglobal);
    //         //strcpy(lpsz, strPath);
    //         try
    //         {
@@ -1175,7 +1175,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
    //            if (strlen(imagekey.m_strPath) <= 0)
    //            {
    //               SHGetFileInfo(
-   //                  (const char *)lpiidlAbsolute,
+   //                  (const_char_pointer )lpiidlAbsolute,
    //                  FILE_ATTRIBUTE_NORMAL,
    //                  &shfi16,
    //                  sizeof(shfi16),
@@ -1184,7 +1184,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
    //                  | SHGFI_SMALLICON);
    //               hicon16 = shfi16.hIcon;
    //               SHGetFileInfo(
-   //                  (const char *)lpiidlAbsolute,
+   //                  (const_char_pointer )lpiidlAbsolute,
    //                  FILE_ATTRIBUTE_NORMAL,
    //                  &shfi48,
    //                  sizeof(shfi48),
@@ -1242,10 +1242,10 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
 
 
-   //int ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
+   //::i32 ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const wide_character * lpcszExtra, color32_t crBk)
    //{
 
-   //   int iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
+   //   ::i32 iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
 
    //   _017ItemIDListFree(pfork, lpiidlChild);
 
@@ -1257,7 +1257,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
 
 
-//      bool ios::get_icon( ::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool ios::get_icon( ::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstr, const wide_character * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1271,7 +1271,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 //
 //      }
 //
-//      bool ios::get_icon(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool ios::get_icon(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, LPITEMIDLIST lpiidlAbsolute, const wide_character * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1314,7 +1314,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 //   }
 
 
-//   e_folder ios::get_folder_type(::particle * pparticle, const unichar * lpcszPath)
+//   e_folder ios::get_folder_type(::particle * pparticle, const wide_character * lpcszPath)
 //   {
 //
 //      string strPath;
@@ -1340,7 +1340,7 @@ pdirectorysystem->is(strPath))
 //
 //   }
 
-   //int ios::run()
+   //::i32 ios::run()
    //{
 
    //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the i32_size can be customized by the user.
@@ -1386,7 +1386,7 @@ pdirectorysystem->is(strPath))
 
    //         }
 
-   //         //int i = 20;
+   //         //::i32 i = 20;
 
    //         //while (task_get_run() && i >= 0)
    //         //{
@@ -1435,10 +1435,10 @@ pdirectorysystem->is(strPath))
 
    //}
 
-//   int ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
+//   ::i32 ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, const wide_character * lpcszExtra, color32_t crBk)
 //   {
 //
-//      int iImage = I32_MINIMUM;
+//      ::i32 iImage = I32_MINIMUM;
 //
 //      if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
 //      {
@@ -1543,7 +1543,7 @@ pdirectorysystem->is(strPath))
 //      if (::is_set(pFind) || iFind2 >= 2)
 //      {
 //         string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
-//         int i = 0;
+//         ::i32 i = 0;
 //
 //         while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
 //         {
@@ -1716,7 +1716,7 @@ pdirectorysystem->is(strPath))
 //
 //            synchronouslock.unlock();
 //
-//            int iImage = get_image(&fork, pkey->m_pacmewindowingwindow, *pkey, nullptr, pkey->m_cr);
+//            ::i32 iImage = get_image(&fork, pkey->m_pacmewindowingwindow, *pkey, nullptr, pkey->m_cr);
 //
 //            {
 //
@@ -1737,10 +1737,10 @@ pdirectorysystem->is(strPath))
 //   }
 
 
-//   int ios::get_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//   ::i32 ios::get_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
-//      int iImage = I32_MINIMUM;
+//      ::i32 iImage = I32_MINIMUM;
 //
 //      {
 //         
@@ -1755,7 +1755,7 @@ pdirectorysystem->is(strPath))
 //
 //         imagekey.set_path(strPath);
 //
-//         imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+//         imagekey.m_strShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 //
 //         imagekey.m_eattribute = eattribute;
 //
@@ -1805,10 +1805,10 @@ pdirectorysystem->is(strPath))
 //   }
 //
 //
-//   int ios::get_image_foo(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//   ::i32 ios::get_image_foo(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
-//      int iImage = I32_MINIMUM;
+//      ::i32 iImage = I32_MINIMUM;
 //
 //      {
 //
@@ -1821,11 +1821,11 @@ pdirectorysystem->is(strPath))
 //
 //         image_key imagekey;
 //
-//         imagekey.m_strPath = (char *) (const char *) "foo";
+//         imagekey.m_strPath = (char_pointer ) (const_char_pointer ) "foo";
 //
-//         imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+//         imagekey.m_strShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 //
-//         imagekey.m_strExtension = (char *)strExtension.c_str();
+//         imagekey.m_strExtension = (char_pointer )strExtension.c_str();
 //
 //         imagekey.m_eattribute = eattribute;
 //
@@ -1861,7 +1861,7 @@ pdirectorysystem->is(strPath))
 //   }
 //
 //
-//   int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
+//   ::i32 shell::add_hover_image(::i32 iSize, ::i32 iImage, color32_t crBk)
 //   {
 //
 //      if (crBk == 0)
@@ -1913,10 +1913,10 @@ pdirectorysystem->is(strPath))
 //
 //   }
 
-   int shell::impl_get_file_image(const image_key & imagekey)
+   ::i32 shell::impl_get_file_image(const image_key & imagekey)
    {
 
-      int iImage = I32_MINIMUM;
+      ::i32 iImage = I32_MINIMUM;
 
       image_key * pstore = aaa_primitive_new image_key(imagekey);
 
@@ -1973,7 +1973,7 @@ pdirectorysystem->is(strPath))
 
                synchronouslock.unlock();
 
-               int iImage = get_image(*pkey, nullptr, pkey->m_cr);
+               ::i32 iImage = get_image(*pkey, nullptr, pkey->m_cr);
 
                {
 
@@ -1998,7 +1998,7 @@ pdirectorysystem->is(strPath))
 
    }
 
-   shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const_char_pointer lpcszPath)
    {
 
       string strPath(lpcszPath);

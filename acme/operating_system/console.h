@@ -56,7 +56,7 @@ namespace console
 
 
       ::write_text_stream                          m_cout;
-      int                                          m_iTextColor;
+      ::i32                                          m_iTextColor;
 
 
       console(const ::pointer < ::string_buffer_base > & pstringbuffer = nullptr);
@@ -66,25 +66,25 @@ namespace console
       // 2025 API
       inline ::write_text_stream & cout() { return m_cout; }
       virtual void redirect_io();
-      virtual void SetWindowSize(int iHeight,int iWidth);
+      virtual void SetWindowSize(::i32 iHeight,::i32 iWidth);
       virtual void SetCursorVisibility(bool show);
-      virtual void SetCursorPosition(int y,int x);
-      virtual void SetTextColor(int color);
-      inline int GetTextColor() { return m_iTextColor; }
-      virtual void SetScreenColor(::enum_dos_color color,int iLineStart = 0,int iLineCount = -1);
+      virtual void SetCursorPosition(::i32 y,::i32 x);
+      virtual void SetTextColor(::i32 color);
+      inline ::i32 GetTextColor() { return m_iTextColor; }
+      virtual void SetScreenColor(::enum_dos_color color,::i32 iLineStart = 0,::i32 iLineCount = -1);
       virtual void write(const ::scoped_string & scopedstr);
-      virtual ::i32_rectangle get_position_rectangle(int y, int x);
+      virtual ::i32_rectangle get_position_rectangle(::i32 y, ::i32 x);
 
 
 
       // 2026.3 API
       virtual void defer_non_root();
       virtual void start_input();
-      virtual int getch(void);
-      virtual int get_thoughtful_character();
-      virtual enum_response yes_no(const char * pszPrompt);
-      virtual enum_response yes_no_default_yes(const char * pszPrompt);
-      virtual ::string prompt_line(const char * pszPrompt);
+      virtual ::i32 getch(void);
+      virtual ::i32 get_thoughtful_character();
+      virtual enum_response yes_no(const_char_pointer pszPrompt);
+      virtual enum_response yes_no_default_yes(const_char_pointer pszPrompt);
+      virtual ::string prompt_line(const_char_pointer pszPrompt);
 
 
    };
@@ -93,8 +93,8 @@ namespace console
 } // namespace console
 
 
-CLASS_DECL_ACME int current_getch();
-CLASS_DECL_ACME int current_getch_utf8(::string &strChar);
+CLASS_DECL_ACME ::i32 current_getch();
+CLASS_DECL_ACME ::i32 current_getch_utf8(::string &strChar);
 
 
 

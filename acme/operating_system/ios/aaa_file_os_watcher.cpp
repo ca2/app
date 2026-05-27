@@ -105,7 +105,7 @@ namespace file
 //   }
 
 
-   void os_watch::on_event(unsigned long uEventType)
+   void os_watch::on_event(ulong uEventType)
    {
       
       ::file::action action;
@@ -159,7 +159,7 @@ namespace file
 
 
 
-//   void os_watch::eraseFile(const char * file)
+//   void os_watch::eraseFile(const_char_pointer file)
 //   {
 //
 //

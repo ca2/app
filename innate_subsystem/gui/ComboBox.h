@@ -43,37 +43,37 @@ namespace innate_subsystem
         //virtual ~ComboBoxInterface() = 0;
 
         // Adds new item to the end of combo box items list.
-        virtual int addItem(const char *text) = 0;
+        virtual ::i32 addItem(const_char_pointer text) = 0;
 
         // Adds new item to the end of combo box items list.
-        virtual int addItem(const char *text, void *tag) = 0;
+        virtual ::i32 addItem(const_char_pointer text, void *tag) = 0;
 
         // Inserts new item to the specified position
-        virtual void insertItem(int index, const char *text) = 0;
+        virtual void insertItem(::i32 index, const_char_pointer text) = 0;
 
         // Inserts new item to the specified position
-        virtual void insertItem(int index, const char *text, void *tag) = 0;
+        virtual void insertItem(::i32 index, const_char_pointer text, void *tag) = 0;
 
         // Returns count of combo box items
-        virtual int getItemsCount() = 0;
+        virtual ::i32 getItemsCount() = 0;
 
         // Sets user data (tag) associated with combo box item with specified index
-        virtual void setItemData(int index, void *tag) = 0;
+        virtual void setItemData(::i32 index, void *tag) = 0;
 
         // Returns user data associated with combo box item with specified index
-        virtual void *getItemData(int index) = 0;
+        virtual void *getItemData(::i32 index) = 0;
 
         // Sets text associated with combo box item with specified index
-        virtual ::string getItemText(int index) = 0;
+        virtual ::string getItemText(::i32 index) = 0;
 
         // Returns current selected item index
-        virtual int getSelectedItemIndex() = 0;
+        virtual ::i32 getSelectedItemIndex() = 0;
 
         // Selects item with specified index
-        virtual void setSelectedItem(int index) = 0;
+        virtual void setSelectedItem(::i32 index) = 0;
 
         // Deletes item from specified location
-        virtual void deleteItem(int index) = 0;
+        virtual void deleteItem(::i32 index) = 0;
 
         // Removes all combo box items
         virtual void removeAllItems() = 0;
@@ -96,65 +96,65 @@ namespace innate_subsystem
       //~ComboBox();
 
       // Adds new item to the end of combo box items list.
-         int addItem(const char *text) override
+         ::i32 addItem(const_char_pointer text) override
       {
          return m_pcombobox->addItem(text);
       }
 
       // Adds new item to the end of combo box items list.
-      int addItem(const char* text, void* tag) override
+      ::i32 addItem(const_char_pointer text, void* tag) override
       {
 
          return m_pcombobox->addItem(text, tag);
       }
 
       // Inserts new item to the specified position
-      void insertItem(int index, const char* text) override 
+      void insertItem(::i32 index, const_char_pointer text) override 
       { return m_pcombobox->insertItem(index, text);
 
       }
 
       // Inserts new item to the specified position
-      void insertItem(int index, const char* text, void* tag)  override{ return m_pcombobox->insertItem(index, text, tag);
+      void insertItem(::i32 index, const_char_pointer text, void* tag)  override{ return m_pcombobox->insertItem(index, text, tag);
 
       }
 
       // Returns count of combo box items
-      int getItemsCount() override
+      ::i32 getItemsCount() override
       {
 
          return m_pcombobox->getItemsCount();
       }
 
       // Sets user data (tag) associated with combo box item with specified index
-      void setItemData(int index, void* tag) override { m_pcombobox->setItemData(index, tag);
+      void setItemData(::i32 index, void* tag) override { m_pcombobox->setItemData(index, tag);
 
       }
 
       // Returns user data associated with combo box item with specified index
-      void* getItemData(int index) override { return m_pcombobox->getItemData(index);
+      void* getItemData(::i32 index) override { return m_pcombobox->getItemData(index);
 
       }
 
       // Sets text associated with combo box item with specified index
-      ::string getItemText(int index) override      {
+      ::string getItemText(::i32 index) override      {
 
          return m_pcombobox->getItemText(index);
       }
 
       // Returns current selected item index
-      int getSelectedItemIndex() override
+      ::i32 getSelectedItemIndex() override
       {
 
          return m_pcombobox->getSelectedItemIndex();
       }
 
       // Selects item with specified index
-      void setSelectedItem(int index) override{ m_pcombobox->setSelectedItem(index);
+      void setSelectedItem(::i32 index) override{ m_pcombobox->setSelectedItem(index);
       }
 
       // Deletes item from specified location
-      void deleteItem(int index) override
+      void deleteItem(::i32 index) override
       {
 
          m_pcombobox->deleteItem(index);

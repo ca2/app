@@ -20,7 +20,7 @@
 #ifdef WINDOWS_DESKTOP
 
 
-//int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
+//::i32 windows_desktop1_main(HINSTANCE hInstance, ::i32       nCmdShow);
 
 //
 //void verisimple_message_loop()
@@ -756,7 +756,7 @@ namespace user
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
 
-//            //short circuit for frequent messages
+//            //::i16 circuit for frequent messages
 //            if (iMessage == ::user::e_message_apply_visual)
 //            {
 //
@@ -901,7 +901,7 @@ namespace user
    //#ifdef WINDOWS_DESKTOP
    //
    //
-   //   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+   //   ::i32 thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
    //   {
    //
    //#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -949,7 +949,7 @@ namespace user
    //
    //#endif
    //
-   //      int iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
+   //      ::i32 iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
    //
    //      if (iRet <= 0)
    //      {

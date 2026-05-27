@@ -79,7 +79,7 @@ namespace subsystem
    //    // }
    // }
    //
-   // // int OperatingSystemApplication::processMessages()
+   // // ::i32 OperatingSystemApplication::processMessages()
    // // {
    // //
    // //    return m_pparticleThis->processMessages();
@@ -95,7 +95,7 @@ namespace subsystem
    // //    //     }
    // //    //   }
    // //    //
-   // //    //   return (int)msg.wParam;
+   // //    //   return (::i32)msg.wParam;
    // // }
    //
    // // void OperatingSystemApplication::createWindow(const ::scoped_string & scopedstrClassName)
@@ -125,7 +125,7 @@ namespace subsystem
    //
    //
    //
-   // //void OperatingSystemApplication::postMainThreadMessage(int iMainThreadMessage)
+   // //void OperatingSystemApplication::postMainThreadMessage(::i32 iMainThreadMessage)
    // //{
    // //   //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
    // //   //   //                             0, 0,
@@ -205,7 +205,7 @@ namespace subsystem
    // //   return DefWindowProc(hWnd, msg, wparam, lparam);
    // // }
    //
-   //  int OperatingSystemApplication::getExitCode()
+   //  ::i32 OperatingSystemApplication::getExitCode()
    // {
    //
    //    return m_pparticleThis->getExitCode();

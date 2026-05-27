@@ -470,7 +470,7 @@ SizingNone:;
 
 
 
-               const int size = 16;
+               const ::i32 size = 16;
 
                ::i32_rectangle rectangleX(lpcrectClient);
                //            ::i32_rectangle rectangleXB(rectangleX);

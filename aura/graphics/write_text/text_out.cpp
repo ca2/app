@@ -22,7 +22,7 @@ namespace write_text
    }
 
 
-   void text_out::offset(const ::double_point & point)
+   void text_out::offset(const ::f64_point & point)
    {
 
       m_point.offset(point);
@@ -30,7 +30,7 @@ namespace write_text
    }
 
 
-   bool text_out::hit_test(const ::double_point& point)
+   bool text_out::hit_test(const ::f64_point& point)
    {
 
       return contains(point);
@@ -38,7 +38,7 @@ namespace write_text
    }
 
 
-   bool text_out::contains(const ::double_point & point)
+   bool text_out::contains(const ::f64_point & point)
    {
 
       return point.x >= m_point.x

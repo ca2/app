@@ -22,10 +22,10 @@ namespace xml
 
 
 
-   //static const char '<'      = ;
-   //static const char '>'   = '>';
-   //static const char '/'   = '/';
-   //static const char '\\' = '\\';   // for m_strValue field escape
+   //static const ::i8 '<'      = ;
+   //static const ::i8 '>'   = '>';
+   //static const ::i8 '/'   = '/';
+   //static const ::i8 '\\' = '\\';   // for m_strValue field escape
 
 
    node::node()
@@ -113,7 +113,7 @@ namespace xml
    //   return true;
    //}
 
-   //bool node::get_attr(const ::scoped_string & scopedstrName, int & iValue)
+   //bool node::get_attr(const ::scoped_string & scopedstrName, ::i32 & iValue)
 
    //{
    //   if(!m_attra.has_property(pcszName))
@@ -235,7 +235,7 @@ namespace xml
    }
    */
    /*
-   node & node::FindNode(const ::scoped_string & scopedstrName,int iPos)
+   node & node::FindNode(const ::scoped_string & scopedstrName,::i32 iPos)
 
    {
       return GetChildNodeArray().find(pcszName, iPos);
@@ -378,7 +378,7 @@ namespace xml
       rangeXml.consume(">");
 
 
-      //return (char *) pszXml;
+      //return (char_pointer ) pszXml;
    }
 
 
@@ -693,7 +693,7 @@ namespace xml
 //            //{
 //               // if " or '
 //               // or none quote
-//               int quote = *rangeXml.m_begin;
+//               ::i32 quote = *rangeXml.m_begin;
 //
 //               pszStart = rangeXml.m_begin;
 //
@@ -717,7 +717,7 @@ namespace xml
 //
 //               bool trim = pparseinfo->m_bTrimValue;
 //
-//               char escape = pparseinfo->m_chEscape;
+//               ::i8 escape = pparseinfo->m_chEscape;
 //
 //               //_SetString( xml, pszEnd, &attr->m_strValue, trim, '\\' );
 //               
@@ -1191,7 +1191,7 @@ namespace xml
                }
 
                bool trim = pparseinfo->m_bTrimValue;
-               char escape = pparseinfo->m_chEscape;
+               ::i8 escape = pparseinfo->m_chEscape;
                //_SetString( xml, pszEnd, &m_strValue, trim, '\\' );
                //pszEnd = xml;
                //rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
@@ -1356,7 +1356,7 @@ namespace xml
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
-                     char escape = pparseinfo->m_chEscape;
+                     ::i8 escape = pparseinfo->m_chEscape;
                      //_SetString( xml, pszEnd, &m_strValue, trim, '\\' );
                      //pszEnd = xml;
                      //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
@@ -1367,11 +1367,11 @@ namespace xml
                      //   }
                      //   else
                      //   {
-                     //      pszEnd = (char *) ::str::__utf8_inc(pszEnd);
+                     //      pszEnd = (char_pointer ) ::str::__utf8_inc(pszEnd);
                      //   }
                      //}
                      //if (pszEnd > pszEndXml)
-                       // pszEnd = (char *)pszEndXml;
+                       // pszEnd = (char_pointer )pszEndXml;
                      _SetString({pszStart, rangeXml.m_begin}, &pnode->m_strValue, trim, escape);
                      //xml = pszEnd;
                      //TEXTVALUE
@@ -1452,7 +1452,7 @@ namespace xml
       if( m_enode == ::data::e_node_xml_document )
       {
 
-         for (int i = 0; i < m_nodea.get_size(); i++)
+         for (::i32 i = 0; i < m_nodea.get_size(); i++)
          {
 
             auto pnode = m_nodea[i];
@@ -1571,13 +1571,13 @@ namespace xml
 
          }
 
-         for (int i = 0; i < m_nodea.get_size(); i++)
+         for (::i32 i = 0; i < m_nodea.get_size(); i++)
          {
 
             if (opt && opt->m_bNewLine)
             {
 
-               for (int i = 0; i < opt->m_iTabBase; i++)
+               for (::i32 i = 0; i < opt->m_iTabBase; i++)
                {
 
                   ostring += '\t';
@@ -1636,7 +1636,7 @@ namespace xml
             {
                if( opt && opt->m_bNewLine )
                   ostring += "\r\n";
-               for( int i = 0 ; i < opt->m_iTabBase ; i++)
+               for( ::i32 i = 0 ; i < opt->m_iTabBase ; i++)
                   ostring += '\t';
             }
             ostring += (opt &&opt->m_bReferenceValue&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue);
@@ -1646,7 +1646,7 @@ namespace xml
          if( opt && opt->m_bNewLine && !m_nodea.is_empty() )
          {
             ostring += "\r\n";
-            for( int i = 0 ; i < opt->m_iTabBase-1 ; i++)
+            for( ::i32 i = 0 ; i < opt->m_iTabBase-1 ; i++)
                ostring += '\t';
          }
 
@@ -1683,7 +1683,7 @@ namespace xml
 
       if( m_enode == ::data::e_node_xml_document )
       {
-         for( int i = 0 ; i < m_nodea.get_size(); i++ )
+         for( ::i32 i = 0 ; i < m_nodea.get_size(); i++ )
             ostring += m_nodea[i]->get_xml_node()->get_text( opt );
       }
       else if( m_enode == ::data::e_node_xml_pi )
@@ -1707,7 +1707,7 @@ namespace xml
          else
          {
             // m_nodea text
-            for( int i = 0 ; i < m_nodea.get_size(); i++ )
+            for( ::i32 i = 0 ; i < m_nodea.get_size(); i++ )
                ostring += m_nodea[i]->get_xml_node()->get_text();
 
             // Text Value
@@ -1730,7 +1730,7 @@ namespace xml
    //attr * node::find_attr( const_char_pointer attrname )
    //{
    //   return m_attra.find(attrname);
-   //   /*for( int i = 0 ; i < m_attra.get_count(); i++ )
+   //   /*for( ::i32 i = 0 ; i < m_attra.get_count(); i++ )
    //   {
    //      ::xml::attr * attr = &m_attra.m_propertyptra[i];
    //      if(attr != nullptr)
@@ -1751,17 +1751,17 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   /*attr_array node::attrs( const_char_pointer lpszName )
+   /*attr_array node::attrs( const_char_pointer pszName )
    {
 
       attr_array attra(this);
 
-      for( int i = 0 ; i < m_attra.get_count(); i++ )
+      for( ::i32 i = 0 ; i < m_attra.get_count(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != nullptr)
          {
-            if(attr->name() == lpszName)
+            if(attr->name() == pszName)
                attra.m_propertyptra.add(*attr);
          }
       }
@@ -1802,7 +1802,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node::array node::children( const_char_pointer lpszName )
+   node::array node::children( const_char_pointer pszName )
    {
       
       node::array nodea;
@@ -1810,7 +1810,7 @@ namespace xml
       for(auto & pnode : m_nodea)
       {
 
-         if (pnode->m_strName == lpszName)
+         if (pnode->m_strName == pszName)
          {
 
             nodea.add(pnode);
@@ -1860,7 +1860,7 @@ namespace xml
 
       ::collection::count count = 0;
 
-      for(int i = 0; i < m_nodea.get_count(); i++)
+      for(::i32 i = 0; i < m_nodea.get_count(); i++)
       {
 
          if (m_nodea[i]->m_strName == scopedstrName)
@@ -1947,12 +1947,12 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::get_child(const_char_pointer lpszName)
+   node * node::get_child(const_char_pointer pszName)
    {
 
       ::collection::index iStart = 0;
 
-      return get_child(lpszName, iStart);
+      return get_child(pszName, iStart);
 
    }
 
@@ -1973,7 +1973,7 @@ namespace xml
 
       }
 
-      for(int i = 0; i < stra.get_size(); i++)
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
 
          pnode = pnode->get_child_with_attribute(strName, strAttr, stra[i]);
@@ -2018,7 +2018,7 @@ namespace xml
       ::xml::node  * pnode = this;
       if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].length() == 0))
          return this;
-      for(int i = 0; i < stra.get_size(); i++)
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
          pnode = pnode->get_child(stra[i]);
          if(pnode == nullptr)
@@ -2092,11 +2092,11 @@ namespace xml
 
    }
 
-   node * node::get_child(const_char_pointer lpszName, ::collection::index & iStartPosition)
+   node * node::get_child(const_char_pointer pszName, ::collection::index & iStartPosition)
    {
       for(::collection::index i = iStartPosition; i < m_nodea.get_size(); i++ )
       {
-         if(m_nodea[i]->m_strName.order(lpszName) == 0)
+         if(m_nodea[i]->m_strName.order(pszName) == 0)
             return m_nodea[i]->get_xml_node();
       }
       return nullptr;
@@ -2112,37 +2112,37 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   string   node::get_child_value( const_char_pointer lpszName )
+   string   node::get_child_value( const_char_pointer pszName )
    {
-      node * node = get_child( lpszName );
+      node * node = get_child( pszName );
       return (node != nullptr)? (const_char_pointer )node->m_strValue : nullptr;
    }
 
    
-   string node::get_child_text( const_char_pointer lpszName, disp_option * opt /*= &optDefault*/ )
+   string node::get_child_text( const_char_pointer pszName, disp_option * opt /*= &optDefault*/ )
    {
       
-      node * node = get_child( lpszName );
+      node * node = get_child( pszName );
 
       return node != nullptr ? node->get_text(opt).c_str() : "";
 
    }
 
    
-   property * node::GetChildAttr( const_char_pointer lpszName, const_char_pointer attrname )
+   property * node::GetChildAttr( const_char_pointer pszName, const_char_pointer attrname )
    {
 
-      node * node = get_child(lpszName);
+      node * node = get_child(pszName);
 
       return node ? node->lookup_attribute(attrname) : nullptr;
 
    }
 
 
-   string node::GetChildAttrValue( const_char_pointer lpszName, const_char_pointer attrname )
+   string node::GetChildAttrValue( const_char_pointer pszName, const_char_pointer attrname )
    {
       
-      property * attr = GetChildAttr( lpszName, attrname );
+      property * attr = GetChildAttr( pszName, attrname );
 
       return attr ? attr->as_string() : string("");
 
@@ -2151,19 +2151,19 @@ namespace xml
 
    //========================================================
    // Name   : find
-   // Desc   : find node with tag lpszName from it's all m_nodea
+   // Desc   : find node with tag pszName from it's all m_nodea
    // Param  :
    // Return : nullptr return if no found node.
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::rear_find( const_char_pointer lpszName, int iDepth)
+   node * node::rear_find( const_char_pointer pszName, ::i32 iDepth)
    {
       ::collection::index i = 0;
       for( ; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i]->m_strName == lpszName )
+         if(m_nodea[i]->m_strName == pszName )
             return m_nodea[i]->get_xml_node();
       }
       if(iDepth == 0)
@@ -2177,7 +2177,7 @@ namespace xml
       {
          node * pnodeChild = m_nodea[i]->get_xml_node();
 
-         pnodeChild = pnodeChild->rear_find(lpszName, iDepth);
+         pnodeChild = pnodeChild->rear_find(pszName, iDepth);
 
          if(pnodeChild != nullptr)
 
@@ -2462,10 +2462,10 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-// /*   attr * node::add_attr( const_char_pointer lpszName /*= nullptr*/, /*const ::scoped_string & scopedstrValue /*= nullptr*/ /*)
+// /*   attr * node::add_attr( const_char_pointer pszName /*= nullptr*/, /*const ::scoped_string & scopedstrValue /*= nullptr*/ /*)
    /* {
 
-       ::xml::attr * pproperty = (::xml::attr *) m_attra.add(lpszName, pszValue);
+       ::xml::attr * pproperty = (::xml::attr *) m_attra.add(pszName, pszValue);
 
        if(m_pdocument != nullptr)
        {
@@ -2647,7 +2647,7 @@ namespace xml
 
       }
 
-      for(int i = 0; i < m_nodea.get_size(); i++)
+      for(::i32 i = 0; i < m_nodea.get_size(); i++)
       {
          if(m_nodea[i]->m_strName == scopedstrName)
          {
@@ -2676,7 +2676,7 @@ namespace xml
 
       }
 
-      for (int i = 0; i < m_nodea.get_size(); i++)
+      for (::i32 i = 0; i < m_nodea.get_size(); i++)
       {
 
          if (m_nodea[i]->m_strName == scopedstrName)
@@ -2724,7 +2724,7 @@ namespace xml
 
       string strValue;
       ::collection::count count = 0;
-      for(int i = 0; i < m_nodea.get_size(); i++)
+      for(::i32 i = 0; i < m_nodea.get_size(); i++)
       {
          if (!m_nodea[i])
          {
@@ -2823,7 +2823,7 @@ namespace xml
    node * node::GetChildByAttr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue)
    {
       string strValue;
-      for(int i = 0; i < m_nodea.get_size(); i++)
+      for(::i32 i = 0; i < m_nodea.get_size(); i++)
       {
          if(m_nodea[i]->get_xml_node()->m_strName == scopedstrName)
          {
@@ -2847,13 +2847,13 @@ namespace xml
       
       string strValue;
 
-      for(int i = 0; i < m_nodea.get_size(); i++)
+      for(::i32 i = 0; i < m_nodea.get_size(); i++)
       {
 
          if(m_nodea[i]->m_strName == scopedstrName)
          {
 
-            for(int j = 0; j < straAttrName.get_size(); j++)
+            for(::i32 j = 0; j < straAttrName.get_size(); j++)
             {
 
                ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
@@ -2881,7 +2881,7 @@ namespace xml
       
       string strValue;
       
-      for(int i = 0; i < m_nodea.get_size(); i++)
+      for(::i32 i = 0; i < m_nodea.get_size(); i++)
       {
          
          if(m_nodea[i]->m_strName == scopedstrName)
@@ -2889,7 +2889,7 @@ namespace xml
             
             bool bAll = true;
 
-            for(int j = 0; j < straAttrName.get_size(); j++)
+            for(::i32 j = 0; j < straAttrName.get_size(); j++)
             {
 
                ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
@@ -2966,7 +2966,7 @@ namespace xml
 
             pcol->set_attribute("row_count", iRowCount);
 
-            for(int iRow = 0; iRow < iRowCount; iRow++)
+            for(::i32 iRow = 0; iRow < iRowCount; iRow++)
             {
 
                if(iRow < straa[iCol].get_count())
@@ -3029,7 +3029,7 @@ namespace xml
       for(::collection::index iRow = 0; iRow < iRowCount; iRow++)
       {
 
-         for(int iCol = 0; iCol < straa[iCol].get_count(); iCol++)
+         for(::i32 iCol = 0; iCol < straa[iCol].get_count(); iCol++)
          {
 
             if(iRow < straa[iCol].get_count())

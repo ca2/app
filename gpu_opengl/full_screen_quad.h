@@ -42,7 +42,7 @@
 //
 //   // private:
 //   //
-//   //    std::vector<float> mVertices = {
+//   //    std::vector<::f32> mVertices = {
 //   //       // positions   // textureCoordinates
 //   //       -1.0f,  1.0f,  0.0f, 1.0f,
 //   //       -1.0f, -1.0f,  0.0f, 0.0f,

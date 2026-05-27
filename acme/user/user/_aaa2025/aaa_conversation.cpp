@@ -3,14 +3,14 @@
 #include "conversation.h"
 
 
-void conversation::initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+void conversation::initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
 
 }
 
 
-void conversation::do_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+void conversation::do_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
 
@@ -33,7 +33,7 @@ void conversation::do_conversation(const ::scoped_string & scopedstrMessage, con
 }
 
 
-::::user::e_message_box conversation::get_conversation_flags()
+::user::e_message_box conversation::get_conversation_flags()
 {
 
    return ::user::e_message_box_ok;

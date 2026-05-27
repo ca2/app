@@ -32,15 +32,15 @@ namespace graphics3d
 
       using shape_data = ::graphics3d::model_data < Vertex >;
       //struct ShapeData {
-      //   ::array<float> vertexes;  // Positions, colors, texture coordinates, and normals
-      //   ::array<unsigned int> indexes;
+      //   ::array<::f32> vertexes;  // Positions, colors, texture coordinates, and normals
+      //   ::array<::u32> indexes;
       //};
 
       // Generate a graphics3d with position, color, texture coordinates, and normals
-      static shape_data CreateCube(float size) {
+      static shape_data CreateCube(::f32 size) {
          shape_data shape;
 
-         float halfSize = size / 2.0f;
+         ::f32 halfSize = size / 2.0f;
 
          // Vertices for a graphics3d
          shape.vertexes = {
@@ -107,11 +107,11 @@ namespace graphics3d
       }
 
       // Generate a plane (XZ plane by default) with position, texture coords, and normals
-      static shape_data CreatePlane(float width, float depth) {
+      static shape_data CreatePlane(::f32 width, ::f32 depth) {
          shape_data shape;
 
-         float halfWidth = width / 2.0f;
-         float halfDepth = depth / 2.0f;
+         ::f32 halfWidth = width / 2.0f;
+         ::f32 halfDepth = depth / 2.0f;
 
          // Vertices for a plane
          shape.vertexes = {
@@ -131,11 +131,11 @@ namespace graphics3d
       }
 
       // Generate a wall (XY plane by default) with position, texture coords, and normals
-      static shape_data CreateWall(float width, float height) {
+      static shape_data CreateWall(::f32 width, ::f32 height) {
          shape_data shape;
 
-         float halfWidth = width / 2.0f;
-         float halfHeight = height / 2.0f;
+         ::f32 halfWidth = width / 2.0f;
+         ::f32 halfHeight = height / 2.0f;
 
          // Vertices for a wall
          shape.vertexes = {
@@ -155,25 +155,25 @@ namespace graphics3d
          return shape;
       }
 
-      static shape_data CreateSphere(float radius, unsigned int sectorCount, unsigned int stackCount) {
+      static shape_data CreateSphere(::f32 radius, ::u32 sectorCount, ::u32 stackCount) {
          shape_data shape;
 
-         float x, y, z, xy;                               // vertex position
-         float nx, ny, nz, lengthInv = 1.0f / radius;     // normal
-         float s, t;                                      // texture coordinates
+         ::f32 x, y, z, xy;                               // vertex position
+         ::f32 nx, ny, nz, lengthInv = 1.0f / radius;     // normal
+         ::f32 s, t;                                      // texture coordinates
 
-         float sectorStep = 2 * M_PI / sectorCount;
-         float stackStep = M_PI / stackCount;
-         float sectorAngle, stackAngle;
+         ::f32 sectorStep = 2 * M_PI / sectorCount;
+         ::f32 stackStep = M_PI / stackCount;
+         ::f32 sectorAngle, stackAngle;
 
-         for (unsigned int i = 0; i <= stackCount; ++i) {
+         for (::u32 i = 0; i <= stackCount; ++i) {
             stackAngle = M_PI / 2 - i * stackStep;        // from pi/2 to -pi/2
             xy = radius * cosf(stackAngle);              // r * cos(u)
             z = radius * sinf(stackAngle);               // r * sin(u)
 
             // add (sectorCount+1) vertexes per stack
             // the first and last vertexes have same position and normal, but different tex coords
-            for (unsigned int j = 0; j <= sectorCount; ++j) {
+            for (::u32 j = 0; j <= sectorCount; ++j) {
                sectorAngle = j * sectorStep;           // from 0 to 2pi
 
                // vertex position (x, y, z)
@@ -192,20 +192,20 @@ namespace graphics3d
                shape.vertexes.push_back(nz);
 
                // vertex tex coord (s, t) range between [0, 1]
-               s = (float)j / sectorCount;
-               t = (float)i / stackCount;
+               s = (::f32)j / sectorCount;
+               t = (::f32)i / stackCount;
                shape.vertexes.push_back(s);
                shape.vertexes.push_back(t);
             }
          }
 
          // Indices
-         unsigned int k1, k2;
-         for (unsigned int i = 0; i < stackCount; ++i) {
+         ::u32 k1, k2;
+         for (::u32 i = 0; i < stackCount; ++i) {
             k1 = i * (sectorCount + 1);     // beginning of current stack
             k2 = k1 + sectorCount + 1;      // beginning of next stack
 
-            for (unsigned int j = 0; j < sectorCount; ++j, ++k1, ++k2) {
+            for (::u32 j = 0; j < sectorCount; ++j, ++k1, ++k2) {
                if (i != 0) {
                   // triangle 1
                   shape.indexes.push_back(k1);
@@ -226,7 +226,7 @@ namespace graphics3d
       }
 
       // Generate a ray with a specified length
-      static shape_data CreateRay(float length) {
+      static shape_data CreateRay(::f32 length) {
          shape_data shape;
 
          // Define vertexes for the ray (start at origin, end at specified length)

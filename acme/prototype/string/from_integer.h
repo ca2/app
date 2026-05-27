@@ -3,34 +3,34 @@
 
 #include <string.h>
 
-CLASS_DECL_ACME string i64toa_dup(::i64 i, int iBase);
+CLASS_DECL_ACME string i64toa_dup(::i64 i, ::i32 iBase);
 CLASS_DECL_ACME string i64toa_dup(::i64 i);
 
-CLASS_DECL_ACME string ui64toa_dup(::i64 i, int iBase);
+CLASS_DECL_ACME string ui64toa_dup(::i64 i, ::i32 iBase);
 CLASS_DECL_ACME string ui64toa_dup(::i64 i);
 
 template < prototype_integer INTEGER >
-::string string_from(INTEGER i, int iBase = 10)
+::string string_from(INTEGER i, ::i32 iBase = 10)
 {
 
    return i64toa_dup(i, iBase);
 
 }
 
-inline string ansi_string_from_long_long(::i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
-inline char * ansi_concatenate_long_long(char * psz, ::i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline string ansi_string_from_long_long(::i64 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline char_pointer ansi_concatenate_long_long(char_pointer psz, ::i64 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 
 
 
 
-inline void wide_from_i64_base(::wide_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
-inline void wide_from_u64_base(::wide_character * sz, ::u64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_i64_base(::wide_character * sz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_u64_base(::wide_character * sz, ::u64 i, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
 
-inline string ansi_string_from_long_long(::i64 i, int iBase, enum_digit_case edigitcase)
+inline string ansi_string_from_long_long(::i64 i, ::i32 iBase, enum_digit_case edigitcase)
 {
-   char sz[32];
+   ::i8 sz[32];
 //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_long_long(sz, i, iBase, edigitcase);
 //#else
@@ -39,7 +39,7 @@ inline string ansi_string_from_long_long(::i64 i, int iBase, enum_digit_case edi
    return string(sz);
 }
 
-inline char * ansi_concatenate_long_long(char * psz, ::i64 i, int iBase, enum_digit_case edigitcase)
+inline char_pointer ansi_concatenate_long_long(char_pointer psz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase)
 {
 //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_long_long(psz + strlen(psz), i, iBase, edigitcase);
@@ -50,9 +50,9 @@ inline char * ansi_concatenate_long_long(char * psz, ::i64 i, int iBase, enum_di
 }
 
 
-inline string ansi_string_from_i(int i, int iBase, enum_digit_case edigitcase)
+inline string ansi_string_from_i(::i32 i, ::i32 iBase, enum_digit_case edigitcase)
 {
-   char sz[16];
+   ::i8 sz[16];
 //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_long_long(sz, i, iBase, edigitcase);
 //#else

@@ -2339,7 +2339,7 @@ bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, ::u
 //      //pusersystem->set_rect(rectangleFrame);
 //
 //      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-//      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+//      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((::i32)const_layout().sketch().display().eflag())).c_str());
 //
 //
 //   }
@@ -2747,7 +2747,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   bool bDib = false;
 //
-//   double dAlpha = get_alpha();
+//   ::f64 dAlpha = get_alpha();
 //
 //   ::draw2d::graphics_pointer& pgraphics = pgraphicsParam;
 //
@@ -2803,7 +2803,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //         //bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 //
-//         int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
+//         ::i32 iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 //
 //         //if (!bBlurBackground)
 //         //{
@@ -2942,7 +2942,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //pgraphics->fill_solid_rectangle(::double_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+   //pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
 
    //return;
 
@@ -3001,7 +3001,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if (m_pimageBlur->is_ok())
          {
 
-            ::double_rectangle rectangleTarget(rectangleX.size());
+            ::f64_rectangle rectangleTarget(rectangleX.size());
 
             {
 
@@ -3055,7 +3055,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::platform::type(this).name() + " : draw_frame");
 
-//   pgraphics->fill_solid_rectangle(::double_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+//   pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
    //return;
 

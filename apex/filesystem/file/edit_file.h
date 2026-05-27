@@ -28,36 +28,36 @@ namespace file
       //bool m_bDelete = true;
 
 
-      unsigned char * m_pdata;
+      ::u8 * m_pdata;
       memsize    m_size;
 
 
       edit_item_base();
 
 
-      bool read_byte(filesize & next_boundary, unsigned char * pbyte, ::file::edit_file * pfile);
+      bool read_byte(filesize & next_boundary, ::u8 * pbyte, ::file::edit_file * pfile);
 
 
 
 
       //virtual void data_item_on_fill_children(::data::tree_item < edit_item_base > * pitem);
 
-      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile);
+      //virtual bool read_byte(::u8* pbyte, ::file::edit_file* pfile);
 
       virtual filesize get_position(bool bForward);
 
-      virtual unsigned char* data();
+      virtual ::u8* data();
       virtual enum_edit_item get_type();
       virtual memsize get_extent();
       virtual memsize get_file_extent();
-      virtual unsigned char* reverse_get_data();
+      virtual ::u8* reverse_get_data();
       virtual enum_edit_item reverse_get_type();
       virtual memsize reverse_get_extent();
       virtual memsize reverse_get_file_extent();
       virtual memsize get_extent(bool bForward);
       virtual enum_edit_item get_type(bool bForward);
       virtual memsize get_file_extent(bool bForward);
-      virtual unsigned char* data(bool bForward);
+      virtual ::u8* data(bool bForward);
       virtual memsize get_delta_length();
 
    };
@@ -84,16 +84,16 @@ namespace file
 
       }
 
-      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
+      //virtual bool read_byte(::u8* pbyte, ::file::edit_file* pfile) override;
 
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual unsigned char* data()  override;
+      virtual ::u8* data()  override;
       virtual enum_edit_item reverse_get_type()  override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual unsigned char* reverse_get_data() override;
+      virtual ::u8* reverse_get_data() override;
 
       virtual memsize get_delta_length()  override;
    };
@@ -137,16 +137,16 @@ namespace file
 
       }
 
-      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
+      //virtual bool read_byte(::u8* pbyte, ::file::edit_file* pfile) override;
 
       virtual enum_edit_item get_type()  override;
       virtual memsize get_extent()  override;
       virtual memsize get_file_extent() override;
-      virtual unsigned char* data()  override;
+      virtual ::u8* data()  override;
       virtual enum_edit_item reverse_get_type()  override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual unsigned char* reverse_get_data() override;
+      virtual ::u8* reverse_get_data() override;
       virtual memsize get_delta_length() override;
 
    };
@@ -165,11 +165,11 @@ namespace file
    //   virtual enum_edit_item get_type() override;
    //   virtual memsize get_extent() override;
    //   virtual memsize get_file_extent() override;
-   //   virtual unsigned char* data()  override;
+   //   virtual ::u8* data()  override;
    //   virtual enum_edit_item reverse_get_type() override;
    //   virtual memsize reverse_get_extent() override;
    //   virtual memsize reverse_get_file_extent() override;
-   //   virtual unsigned char* reverse_get_data()  override;
+   //   virtual ::u8* reverse_get_data()  override;
    //   virtual memsize get_delta_length() override;
 
    //};
@@ -201,14 +201,14 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual unsigned char* data() override;
+      virtual ::u8* data() override;
       virtual enum_edit_item reverse_get_type() override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual unsigned char* reverse_get_data()  override;
+      virtual ::u8* reverse_get_data()  override;
       virtual memsize get_delta_length() override;
 
-      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
+      //virtual bool read_byte(::u8* pbyte, ::file::edit_file* pfile) override;
 
    };
 

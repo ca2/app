@@ -680,7 +680,7 @@ void directory_system::set_path_install_folder(const ::scoped_string & scopedstr
 
    string strCandidate;
 
-   for (int i = 0; i < patha.get_count(); i++)
+   for (::i32 i = 0; i < patha.get_count(); i++)
    {
 
       strCandidate = patha[i] / scopedstrTopic;
@@ -1172,7 +1172,7 @@ bool directory_system::list_base(string_array_base & stra, const ::scoped_string
          //::file::path archive();
 
 
-int directory_system::make_path(const ::scoped_string & scopedstr)
+::i32 directory_system::make_path(const ::scoped_string & scopedstr)
 {
 
    throw ::interface_only();
@@ -1196,11 +1196,11 @@ int directory_system::make_path(const ::scoped_string & scopedstr)
 
       //string name(const ::file::path & path);
       //bool mk(const ::scoped_string & scopedstrPath);
-      //bool _mk(const  char * path); // makes a directory path (all intermediates too)
+      //bool _mk(const_char_pointer path); // makes a directory path (all intermediates too)
       //bool is(const ::file::path & path);
       //bool _is(const ::file::path & path);
-      //bool mk(const  char * path); // makes a directory path (all intermediates too)
-      //bool mkdir(const  char * path); // only creates if parent dir already exists
+      //bool mk(const_char_pointer path); // makes a directory path (all intermediates too)
+      //bool mkdir(const_char_pointer path); // only creates if parent dir already exists
       //void ls(::file::path_array_base & patha, const ::file::path & path);
       //void ls_dir(::file::path_array_base & patha, const ::file::path & path);
       //void ls_file(::file::path_array_base & patha, const ::file::path & path);
@@ -1452,7 +1452,7 @@ bool directory_system::is_accessible(const ::file::path & path)
 }
 
 
-bool directory_system::contains_files(const ::file::path& path, const ::string_array_base& straName, int iMinimumSize)
+bool directory_system::contains_files(const ::file::path& path, const ::string_array_base& straName, ::i32 iMinimumSize)
 {
 
    for (auto& strName : straName)

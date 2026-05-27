@@ -115,8 +115,8 @@ namespace filemanager
       //      oswindow oswindowDesktop = ::get_desktop_window();
       //      ::i32_rectangle rectangleOpen;
       //      ::GetWindowRect(oswindowDesktop, rectangleOpen);
-      //      int iWidth = rectangleOpen.width();
-      //      int iHeight = rectangleOpen.width();
+      //      ::i32 iWidth = rectangleOpen.width();
+      //      ::i32 iHeight = rectangleOpen.width();
       //      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
       //      pimpact->get_parent_frame()->order(e_zorder_top);
       //      pimpact->get_parent_frame()->place(rectangleOpen);

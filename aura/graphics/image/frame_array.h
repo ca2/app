@@ -21,11 +21,11 @@ namespace image
       class ::time         m_timeTotal;
       ::collection::count              m_countLoop; // 0 - infinite loop
       ::collection::index              m_iLoop;
-      int                  m_iTransparentIndex;
+      ::i32                  m_iTransparentIndex;
       bool                 m_bTransparent;
       ::color::color       m_colorTransparent;
       ::color::color       m_colorBack;
-      unsigned char                 m_backgroundIndex;
+      ::u8                 m_backgroundIndex;
       ::i32_size           m_sizeLogical;
       ::i32_size           m_size;
       ::image::image_pointer      m_pimageCompose;

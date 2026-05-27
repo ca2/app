@@ -152,7 +152,7 @@ namespace user
          if(pformNew)
          {
 
-            static int s_iFormSerial = 1;
+            static ::i32 s_iFormSerial = 1;
 
             pformNew->payload("form_serial") = s_iFormSerial;
 

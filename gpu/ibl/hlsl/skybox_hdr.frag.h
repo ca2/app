@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_skybox_hdr_frag[] = R"frag_text(//------------------------------------------------------------------------------
+const ::i8 g_psz_skybox_hdr_frag[] = R"frag_text(//------------------------------------------------------------------------------
 // Skybox Pixel Shader (HLSL / DirectX 11)
 //------------------------------------------------------------------------------
 
@@ -27,10 +27,10 @@ cbuffer GlobalUbo : register(b0)
     float4 ambientLightColor;
     float3 cameraPosition;
     PointLight pointLights[10];
-    int numLights;
-    int padding0;
-    int padding1;
-    int padding2;
+    ::i32 numLights;
+    ::i32 padding0;
+    ::i32 padding1;
+    ::i32 padding2;
 };
 
 // Input from vertex shader
@@ -51,11 +51,11 @@ cbuffer MatrixBuffer : register(b1)
 float3 ACESFilmTonemap(float3 color)
 {
     // ACES tonemapping constants
-    float a = 2.51;
-    float b = 0.03;
-    float c = 2.43;
-    float d = 0.59;
-    float e = 0.14;
+    ::f32 a = 2.51;
+    ::f32 b = 0.03;
+    ::f32 c = 2.43;
+    ::f32 d = 0.59;
+    ::f32 e = 0.14;
     return clamp((color*(a*color+b)) / (color*(c*color+d)+e), 0.0f, 1.0f);
 }
 

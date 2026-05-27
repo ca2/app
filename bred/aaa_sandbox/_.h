@@ -28,7 +28,7 @@ namespace graphics3d
     class IWindowInput;
 
 
-    using scene_object_map = ::map < long long, ::pointer < scene_object > >;
+    using scene_object_map = ::map < ::i64, ::pointer < scene_object > >;
 
 
 } // namespace graphics3d

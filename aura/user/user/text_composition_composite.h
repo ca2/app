@@ -33,7 +33,7 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
 		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
-		//virtual int on_text_composition_message(int iMessage) override;
+		//virtual ::i32 on_text_composition_message(::i32 iMessage) override;
 
 		//virtual void on_text_composition_done();
 

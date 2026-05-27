@@ -40,8 +40,8 @@ __declspec(align(16)) class vector4
 public:
    // constructors
    inline vector4() : mmvalue(_mm_setzero_ps()) {}
-   inline vector4(float a) : mmvalue(_mm_set_ps(a, a, a, a)) {}
-   inline vector4(float w, float x, float y, float z) : mmvalue(_mm_set_ps(z, y, x, w)) {}
+   inline vector4(::f32 a) : mmvalue(_mm_set_ps(a, a, a, a)) {}
+   inline vector4(::f32 w, ::f32 x, ::f32 y, ::f32 z) : mmvalue(_mm_set_ps(z, y, x, w)) {}
    inline vector4(__m128 m) : mmvalue(m) {}
 
    // arithmetic operators with vector4
@@ -84,41 +84,41 @@ public:
       return *this;
    }
 
-   // arithmetic operators with float
-   inline vector4 operator +(float b) const
+   // arithmetic operators with ::f32
+   inline vector4 operator +(::f32 b) const
    {
       return _mm_add_ps(mmvalue, _mm_set1_ps(b));
    }
-   inline vector4 operator-(float b) const
+   inline vector4 operator-(::f32 b) const
    {
       return _mm_sub_ps(mmvalue, _mm_set1_ps(b));
    }
-   inline vector4 operator*(float b) const
+   inline vector4 operator*(::f32 b) const
    {
       return _mm_mul_ps(mmvalue, _mm_set1_ps(b));
    }
-   inline vector4 operator/(float b) const
+   inline vector4 operator/(::f32 b) const
    {
       return _mm_div_ps(mmvalue, _mm_set1_ps(b));
    }
 
-   // op= operators with float
-   inline vector4 & operator +=(float b)
+   // op= operators with ::f32
+   inline vector4 & operator +=(::f32 b)
    {
       mmvalue = _mm_add_ps(mmvalue, _mm_set1_ps(b));
       return *this;
    }
-   inline vector4 & operator-=(float b)
+   inline vector4 & operator-=(::f32 b)
    {
       mmvalue = _mm_sub_ps(mmvalue, _mm_set1_ps(b));
       return *this;
    }
-   inline vector4 & operator*=(float b)
+   inline vector4 & operator*=(::f32 b)
    {
       mmvalue = _mm_mul_ps(mmvalue, _mm_set1_ps(b));
       return *this;
    }
-   inline vector4 & operator/=(float b)
+   inline vector4 & operator/=(::f32 b)
    {
       mmvalue = _mm_div_ps(mmvalue, _mm_set1_ps(b));
       return *this;
@@ -134,17 +134,17 @@ public:
    }
 
    // dot product with another vector
-   inline float dot(const vector4 & b) const
+   inline ::f32 dot(const vector4 & b) const
    {
       return _mm_cvtss_float(_mm_dp_ps(mmvalue, b.mmvalue, 0x55));
    }
    // length of the vector
-   inline float length() const
+   inline ::f32 length() const
    {
       return _mm_cvtss_float(_mm_sqrt_ss(_mm_dp_ps(mmvalue, mmvalue, 0x55)));
    }
    // 1/length() of the vector
-   inline float rlength() const
+   inline ::f32 rlength() const
    {
       return _mm_cvtss_float(_mm_rsqrt_ss(_mm_dp_ps(mmvalue, mmvalue, 0x55)));
    }
@@ -169,7 +169,7 @@ public:
    {
       struct
       {
-         float w, x, y, z;
+         ::f32 w, x, y, z;
       };
       __m128 mmvalue;
    };
@@ -178,19 +178,19 @@ public:
 
 };
 
-inline vector4 operator +(float a, const vector4 & b)
+inline vector4 operator +(::f32 a, const vector4 & b)
 {
    return b + a;
 }
-inline vector4 operator-(float a, const vector4 & b)
+inline vector4 operator-(::f32 a, const vector4 & b)
 {
    return vector4(_mm_set1_ps(a)) - b;
 }
-inline vector4 operator*(float a, const vector4 & b)
+inline vector4 operator*(::f32 a, const vector4 & b)
 {
    return b * a;
 }
-inline vector4 operator/(float a, const vector4 & b)
+inline vector4 operator/(::f32 a, const vector4 & b)
 {
    return vector4(_mm_set1_ps(a)) / b;
 }

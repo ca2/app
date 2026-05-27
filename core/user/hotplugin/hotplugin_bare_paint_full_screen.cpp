@@ -9,7 +9,7 @@ namespace hotplugin
    void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
    {
 
-      double dRate = get_progress_rate();
+      ::f64 dRate = get_progress_rate();
 
       if (dRate <= 0.0)
       {
@@ -22,8 +22,8 @@ namespace hotplugin
 
       window_rectangle(&rectangleWindow);
 
-      int cx = rectangleWindow.right - rectangleWindow.left;
-      int cy = rectangleWindow.bottom - rectangleWindow.top;
+      ::i32 cx = rectangleWindow.right - rectangleWindow.left;
+      ::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       ::i32_rectangle rectangle;
 
@@ -46,11 +46,11 @@ namespace hotplugin
 
       {
 
-         unsigned char uchR, uchG, uchB;
+         ::u8 uchR, uchG, uchB;
          ::i32_rectangle rectangleDraw;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(255, uchR, uchG, uchB));
-         rectangleDraw = int_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
+         rectangleDraw = i32_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
 
          pgraphics->fill_rectangle(rectangleDraw, br);
 
@@ -79,14 +79,14 @@ namespace hotplugin
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangleParam.left + 80, (int)(rectangleParam.top + 120 + 50 * 0.2), strProgress);
+      pgraphics->text_out(rectangleParam.left + 80, (::i32)(rectangleParam.top + 120 + 50 * 0.2), strProgress);
 
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 30);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangleParam.left + 80, (int)(rectangleParam.top + 120 + 50 * 0.2 + 120 * 0.2), m_strStatus2);
+      pgraphics->text_out(rectangleParam.left + 80, (::i32)(rectangleParam.top + 120 + 50 * 0.2 + 120 * 0.2), m_strStatus2);
 
 
    }

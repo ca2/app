@@ -113,11 +113,11 @@ NAMESPACE_END(detail)
  *    // Expose an integer variable by reference
  *    h->add_variable("integer variable", a_int);
  *
- *    // Expose a float variable via setter/getter functions
+ *    // Expose a ::f32 variable via setter/getter functions
  *    h->add_variable(
- *      [&](float value) { a_float = value; },
+ *      [&](::f32 value) { a_float = value; },
  *      [&]() { return *a_float; },
- *      "float variable");
+ *      "::f32 variable");
  *
  *    // add a ___new button
  *    h->add_button("Button", [&]() { std::cout << "Button pressed" << std::endl; });
@@ -177,7 +177,7 @@ NAMESPACE_END(detail)
          refresh();
          pwidget->set_callback(setter);
          pwidget->set_editable(editable);
-         pwidget->set_font_size((float)m_widget_font_size);
+         pwidget->set_font_size((::f32)m_widget_font_size);
          int_sequence2 sizeFixed = pwidget->fixed_size();
          pwidget->set_fixed_size(sizeFixed.prefer_self_coordinate_if_set(m_fixed_size));
          m_refresh_callbacks.add(refresh);
@@ -265,22 +265,22 @@ NAMESPACE_END(detail)
       void set_label_font_name(const ::scoped_string & name) { m_label_font_name = name; }
 
       /// The size of the font being used for group headers.
-      int group_font_size() const { return m_group_font_size; }
+      ::i32 group_font_size() const { return m_group_font_size; }
 
       /// Sets the size of the font being used for group headers.
-      void set_group_font_size(int value) { m_group_font_size = value; }
+      void set_group_font_size(::i32 value) { m_group_font_size = value; }
 
       /// The size of the font being used for labels.
-      int label_font_size() const { return m_label_font_size; }
+      ::i32 label_font_size() const { return m_label_font_size; }
 
       /// Sets the size of the font being used for labels.
-      void set_label_font_size(int value) { m_label_font_size = value; }
+      void set_label_font_size(::i32 value) { m_label_font_size = value; }
 
       /// The size of the font being used for non-group / non-label widgets.
-      int widget_font_size() const { return m_widget_font_size; }
+      ::i32 widget_font_size() const { return m_widget_font_size; }
 
       /// Sets the size of the font being used for non-group / non-label widgets.
-      void set_widget_font_size(int value) { m_widget_font_size = value; }
+      void set_widget_font_size(::i32 value) { m_widget_font_size = value; }
 
    protected:
       /// A reference to the \::pointer nanoui::Screen this FormHelper is assisting.
@@ -298,17 +298,17 @@ NAMESPACE_END(detail)
       /// The fixed size for newly added widgets.
       ::i32_size m_fixed_size = i32_size(0, 20);
       /// The font size for group headers.
-      int m_group_font_size = 20;
+      ::i32 m_group_font_size = 20;
       /// The font size for labels.
-      int m_label_font_size = 16;
+      ::i32 m_label_font_size = 16;
       /// The font size for non-group / non-label widgets.
-      int m_widget_font_size = 16;
+      ::i32 m_widget_font_size = 16;
       /// The spacing used **before** ___new groups.
-      int m_pre_group_spacing = 15;
+      ::i32 m_pre_group_spacing = 15;
       /// The spacing used **after** each group.
-      int m_post_group_spacing = 5;
+      ::i32 m_post_group_spacing = 5;
       /// The spacing between all other widgets.
-      int m_variable_spacing = 5;
+      ::i32 m_variable_spacing = 5;
 };
 
 

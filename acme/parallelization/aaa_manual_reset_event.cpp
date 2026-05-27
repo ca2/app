@@ -11,7 +11,7 @@
 #include "manual_reset_happening.h"
 
 
-manual_reset_happening::manual_reset_happening(char * sz, bool bInitiallyOwn) :
+manual_reset_happening::manual_reset_happening(char_pointer sz, bool bInitiallyOwn) :
    ::happening(sz, bInitiallyOwn, true)
 {
 

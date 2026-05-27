@@ -14,8 +14,8 @@
 #include "coding/integration.h"
 
 
-//CLASS_DECL_ACME const char* build_step_stage_prefix();
-//CLASS_DECL_ACME const char* build_step_radix(::coding::enum_step estep);
+//CLASS_DECL_ACME const_char_pointer build_step_stage_prefix();
+//CLASS_DECL_ACME const_char_pointer build_step_radix(::coding::enum_step estep);
 
 namespace coding
 {
@@ -91,7 +91,7 @@ namespace coding
       if (!ptaskgroup) return nullptr;
       auto pintegration = ptaskgroup->m_pintegration;
       if (!pintegration) return nullptr;
-      auto ptab = pintegration->m_papp->m_ptabimpact->get_tab_by_id((::enum_impact)((int) e_impact_multitasking | (int) ptask->m_etaskOrdinal));
+      auto ptab = pintegration->m_papp->m_ptabimpact->get_tab_by_id((::enum_impact)((::i32) e_impact_multitasking | (::i32) ptask->m_etaskOrdinal));
       if (!ptab) return nullptr;
       auto pplaceholder = ptab->m_pplaceholder;
       if (!pplaceholder) return nullptr; 

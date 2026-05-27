@@ -20,7 +20,7 @@ namespace http
       virtual ~get_socket();
 
 
-      virtual void OnDataArrived(const char *, memsize len);
+      virtual void OnDataArrived(const_char_pointer , memsize len);
       void OnHeader(atom idKey, const string & value);
 
 

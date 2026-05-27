@@ -20,7 +20,7 @@
 }
 
 @property (nonatomic, retain) NSMutableData *dataToDownload;
-@property (nonatomic) float downloadSize;
+@property (nonatomic) ::f32 downloadSize;
 
 - (void)async :(const_char_pointer )psz withResponseCallback:(PFN_NANO_HTTP_RESPONSE) pfnResponseCallback andUserData:(void*)userData;
 

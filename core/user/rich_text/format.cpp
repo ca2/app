@@ -298,7 +298,7 @@ namespace user
 
             }
 
-            double dFontSize = m_dFontSize;
+            ::f64 dFontSize = m_dFontSize;
 
             if (m_escript == e_script_subscript || m_escript == e_script_superscript)
             {
@@ -358,8 +358,8 @@ namespace user
       //   stream.exchange("i32_size", m_dFontSize);
       //   stream.exchange("foreground", (::u32 &)m_colorForeground);
       //   stream.exchange("background", (::u32 &)m_colorBackground);
-      //   stream.exchange("script", (int &)m_escript);
-      //   stream.exchange("lineheight", (int &)m_elineheight);
+      //   stream.exchange("script", (::i32 &)m_escript);
+      //   stream.exchange("lineheight", (::i32 &)m_elineheight);
 
       //}
 

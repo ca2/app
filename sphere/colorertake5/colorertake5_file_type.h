@@ -41,7 +41,7 @@ namespace colorertake5
              @return Parameter name with index <code>idx</code> or <code>nullptr</code>
              if index is too large.
          */
-         virtual string enumerateParameters(int idx) = 0;
+         virtual string enumerateParameters(::i32 idx) = 0;
 
          virtual string getParameterDescription(const ::scoped_string & scopedstrName) = 0;
 

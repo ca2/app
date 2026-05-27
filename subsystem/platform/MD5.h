@@ -40,24 +40,24 @@ namespace subsystem
    {
    public:
       MD5();
-      void update(const unsigned char *buf, ::u32 length);
-      void update(const char *buf, ::u32 length);
+      void update(const ::u8 *buf, ::u32 length);
+      void update(const_char_pointer pszBuffer, ::u32 length);
       MD5& finalize();
 
       /**
        * Returns 16 byte MD5 hash.
        */
-      unsigned char *getHash();
+      ::u8 *getHash();
 
    private:
-      static const int BLOCKSIZE = 64;
+      static const ::i32 BLOCKSIZE = 64;
 
-      static void decode(::u32 output[], const unsigned char input[], ::u32 len);
-      static void encode(unsigned char output[], const ::u32 input[], ::u32 len);
+      static void decode(::u32 output[], const ::u8 input[], ::u32 len);
+      static void encode(::u8 output[], const ::u32 input[], ::u32 len);
 
       void init();
 
-      void transform(const unsigned char block[BLOCKSIZE]);
+      void transform(const ::u8 block[BLOCKSIZE]);
 
    private:
 
@@ -70,7 +70,7 @@ namespace subsystem
       static ::u32 H(::u32 x, ::u32 y, ::u32 z);
       static ::u32 I(::u32 x, ::u32 y, ::u32 z);
 
-      static ::u32 rotateLeft(::u32 x, int n);
+      static ::u32 rotateLeft(::u32 x, ::i32 n);
 
       static void FF(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac);
       static void GG(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac);
@@ -81,13 +81,13 @@ namespace subsystem
       // if finalized.
       bool m_finalized;
       // bytes that didn't fit in last 64 byte chunk.
-      unsigned char m_buffer[BLOCKSIZE];
+      ::u8 m_buffer[BLOCKSIZE];
       // 64bit counter for number of bits (lo, hi).
       ::u32 m_count[2];
       // m_digest so far.
       ::u32 m_state[4];
       // the result.
-      unsigned char m_digest[16];
+      ::u8 m_digest[16];
    };
 
 } // namespace subsystem

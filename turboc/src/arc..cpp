@@ -38,7 +38,7 @@
 //----------------------------------------------------------------------------
 
 void
-arc (int x, int y, int stangle, int endangle, int radius)
+arc (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 radius)
 {
   TcLastArcX = x;
   TcLastArcY = y;

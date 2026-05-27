@@ -61,8 +61,8 @@ namespace subsystem
       @param procName procedure name.
       @return address of procedure or 0 if failed.
       */
-      // FARPROC getProcAddress(const char *procName);
-      virtual void *getProcAddress(const char *procName) = 0;
+      // FARPROC getProcAddress(const_char_pointer procName);
+      virtual void *getProcAddress(const_char_pointer procName) = 0;
 
       // protected:
       //    HMODULE m_module;
@@ -107,7 +107,7 @@ Dynamic library class.
       @param procName procedure name.
       @return address of procedure or 0 if failed.
       */
-      void *getProcAddress(const char *procName) override { return m_pdynamiclibrary->getProcAddress(procName); }
+      void *getProcAddress(const_char_pointer procName) override { return m_pdynamiclibrary->getProcAddress(procName); }
 
       // protected:
       //    HMODULE m_module;

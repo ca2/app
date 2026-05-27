@@ -209,7 +209,7 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
 
    ::string str;
 
-   auto data = (char *)memory.data();
+   auto data = (char_pointer )memory.data();
 
    auto size = memory.size();
 
@@ -274,7 +274,7 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
    //
    //}
 
-   //char * psz = str.get_buffer(iReadAtMostByteCount);
+   //char_pointer psz = str.get_buffer(iReadAtMostByteCount);
 
    //::size_t iPos = 0;
 
@@ -311,7 +311,7 @@ string file_system::safe_get_string(const ::file::path& pathParam, character_cou
 
    ::string str;
 
-   auto data = (char *)memory.data();
+   auto data = (char_pointer )memory.data();
 
    auto size = memory.size();
 
@@ -347,7 +347,7 @@ string file_system::__safe_get_string(const ::file::path& pathParam, character_c
 
    ::string str;
 
-   auto data = (char*)memory.data();
+   auto data = (char_pointer )memory.data();
 
    auto size = memory.size();
 
@@ -586,7 +586,7 @@ bool file_system::__exists(const ::file::path& path)
 //}
 
 
-void file_system::get_temporary_file_name_template(char* szRet, character_count iBufferSize,
+void file_system::get_temporary_file_name_template(char_pointer szRet, character_count iBufferSize,
                                                    const ::scoped_string& scopedstrName,
                                                    const ::scoped_string& scopedstrExtension,
                                                    const ::scoped_string& scopedstrTemplate)
@@ -609,7 +609,7 @@ filesize file_system::get_size(const ::file::path& path)
 }
 
 
-filesize file_system::get_size_fd(int iFile)
+filesize file_system::get_size_fd(::i32 iFile)
 {
 
    throw ::interface_only();
@@ -706,7 +706,7 @@ void file_system::set_size(const ::file::path& pathName, filesize size)
 }
 
 
-void file_system::set_size(int iFileDescriptor, filesize size)
+void file_system::set_size(::i32 iFileDescriptor, filesize size)
 {
 
    throw ::interface_only();
@@ -797,7 +797,7 @@ bool file_system::safe_erase(const ::file::path& path)
 }
 
 
-void replace_char(char* sz, char ch1, char ch2)
+void replace_char(char_pointer sz, ::i8 ch1, ::i8 ch2)
 {
 
    while (*sz)
@@ -843,7 +843,7 @@ void file_system::copy(const ::file::path& pathNew, const ::file::path& pathExis
       ::file::path strDirSrc(pathExisting);
       ::file::path strDirDst(pathNew);
 
-      for (int i = 0; i < listing.size(); i++)
+      for (::i32 i = 0; i < listing.size(); i++)
       {
 
          strSrc = listing[i];
@@ -1239,9 +1239,9 @@ void file_system::put_time(const ::file::path& path, const ::earth::time& time)
 
    }
 
-   int iPath = 0;
+   ::i32 iPath = 0;
 
-   int iPathCount = 0;
+   ::i32 iPathCount = 0;
 
    auto time = datetime()->strtotime(session()->text_context(), strTime, iPath, iPathCount);
 
@@ -1262,9 +1262,9 @@ void file_system::put_time(const ::file::path& path, const ::earth::time& time)
 
    }
 
-   int iPath = 0;
+   ::i32 iPath = 0;
 
-   int iPathCount = 0;
+   ::i32 iPathCount = 0;
 
    auto time = datetime()->strtotime(session()->text_context(), strTime, iPath, iPathCount);
 
@@ -1373,11 +1373,11 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 
    //}
 
-   int iChar;
+   ::i32 iChar;
 
    string strLine;
 
-   int iLastChar = -1;
+   ::i32 iLastChar = -1;
 
    filesize iPosStart = -1;
 
@@ -1541,7 +1541,7 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //
 //#else
 //
-//   char pPathBuffer[MAX_PATH * 16];
+//   ::i8 pPathBuffer[MAX_PATH * 16];
 //
 //   strcpy(pPathBuffer, "/tmp/");
 //
@@ -1549,18 +1549,18 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //
 //   ::file::path pathFolder(pPathBuffer);
 //
-//   for (int i = 0; i < 1000; i++)
+//   for (::i32 i = 0; i < 1000; i++)
 //   {
 //
 //      ::file::path path;
 //
 //      path = pathFolder;
 //
-//      path /= lpszName;
+//      path /= pszName;
 //
 //      path /= as_string(i);
 //
-//      path /= (string(lpszName) + "." + string(scopedstrExtension));
+//      path /= (string(pszName) + "." + string(scopedstrExtension));
 //
 //      if (exists(path))
 //      {
@@ -1605,7 +1605,7 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //
 //      dwWrite = (::u32)minimum(nCount - uiWrittenTotal, 0xffffffffu);
 //
-//      dw = (::u32)(fwrite(&((unsigned char *)pdata)[pos], 1, dwWrite, file));
+//      dw = (::u32)(fwrite(&((::u8 *)pdata)[pos], 1, dwWrite, file));
 //
 //      if (dw != dwWrite)
 //      {
@@ -1721,7 +1721,7 @@ void file_system::_erase(const ::file::path& path)
 
    ::file::path path;
 
-   int i = 0;
+   ::i32 i = 0;
 
    while (true)
    {
@@ -1813,7 +1813,7 @@ void file_system::init_system()
 }
 
 
-int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlotName)
+::i32 file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlotName)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -1823,7 +1823,7 @@ int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlo
    if (i >= 0)
    {
 
-      return (int) i;
+      return (::i32) i;
 
    }
 
@@ -1836,7 +1836,7 @@ int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlo
 
    i = m_straFileSystemItemSlot.add(scopedstrSlotName);
 
-   return (int) i;
+   return (::i32) i;
 
 }
 

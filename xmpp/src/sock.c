@@ -75,7 +75,7 @@ static int _in_progress(int error)
 #endif
 }
 
-sock_t sock_connect(const char * const host, const unsigned int port)
+sock_t sock_connect(const char * const host, const ::u32 port)
 {
     sock_t sock;
     char service[6];
@@ -196,7 +196,7 @@ int sock_connect_error(const sock_t sock)
 
 struct dnsquery_header
 {
-	unsigned short id;
+	::u16 id;
 	unsigned char qr;
 	unsigned char opcode;
 	unsigned char aa;
@@ -205,39 +205,39 @@ struct dnsquery_header
 	unsigned char ra;
 	unsigned char z;
 	unsigned char rcode;
-	unsigned short qdcount;
-	unsigned short ancount;
-	unsigned short nscount;
-	unsigned short arcount;
+	::u16 qdcount;
+	::u16 ancount;
+	::u16 nscount;
+	::u16 arcount;
 };
 
 struct dnsquery_question
 {
 	char qname[1024];
-	unsigned short qtype;
-	unsigned short qclass;
+	::u16 qtype;
+	::u16 qclass;
 };
 
 struct dnsquery_srvrdata
 {
-	unsigned short priority;
-	unsigned short weight;
-	unsigned short port;
+	::u16 priority;
+	::u16 weight;
+	::u16 port;
 	char target[1024];
 };
 
 struct dnsquery_resourcerecord
 {
 	char name[1024];
-	unsigned short type;
-	unsigned short _class;
-	unsigned int ttl;
-	unsigned short rdlength;
+	::u16 type;
+	::u16 _class;
+	::u32 ttl;
+	::u16 rdlength;
 	struct dnsquery_srvrdata rdata;
 };
 
 
-void netbuf_add_32bitnum(unsigned char *buf, int buflen, int *offset, unsigned int num)
+void netbuf_add_32bitnum(unsigned char *buf, int buflen, int *offset, ::u32 num)
 {
 	unsigned char *start = buf + *offset;
 	unsigned char *p = start;
@@ -251,7 +251,7 @@ void netbuf_add_32bitnum(unsigned char *buf, int buflen, int *offset, unsigned i
 	*offset += 4;
 }
 
-void netbuf_get_32bitnum(unsigned char *buf, int buflen, int *offset, unsigned int *num)
+void netbuf_get_32bitnum(unsigned char *buf, int buflen, int *offset, ::u32 *num)
 {
 	unsigned char *start = buf + *offset;
 	unsigned char *p = start;
@@ -266,7 +266,7 @@ void netbuf_get_32bitnum(unsigned char *buf, int buflen, int *offset, unsigned i
 	*offset += 4;
 }
 
-void netbuf_add_16bitnum(unsigned char *buf, int buflen, int *offset, unsigned short num)
+void netbuf_add_16bitnum(unsigned char *buf, int buflen, int *offset, ::u16 num)
 {
 	unsigned char *start = buf + *offset;
 	unsigned char *p = start;
@@ -278,7 +278,7 @@ void netbuf_add_16bitnum(unsigned char *buf, int buflen, int *offset, unsigned s
 	*offset += 2;
 }
 
-void netbuf_get_16bitnum(unsigned char *buf, int buflen, int *offset, unsigned short *num)
+void netbuf_get_16bitnum(unsigned char *buf, int buflen, int *offset, ::u16 *num)
 {
 	unsigned char *start = buf + *offset;
 	unsigned char *p = start;
@@ -693,7 +693,7 @@ int sock_srv_lookup(const char *service, const char *proto, const char *domain, 
 
 		if (error == ERROR_SUCCESS)
 		{
-			unsigned int i;
+			::u32 i;
 			DWORD numinterfaces = 0;
 
 			RegQueryInfoKey(searchlist, NULL, NULL, NULL, &numinterfaces, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

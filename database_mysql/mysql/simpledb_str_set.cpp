@@ -114,7 +114,7 @@ public:
    virtual ~db_str_sync_queue() {}
 
 
-   virtual int run();
+   virtual ::i32 run();
 
    void queue(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr);
 
@@ -125,7 +125,7 @@ public:
 
 
 
-int db_str_sync_queue::run()
+::i32 db_str_sync_queue::run()
 {
 
    single_lock synchronouslock(m_pmutex, false);
@@ -160,7 +160,7 @@ repeat:;
              goto repeat;
           }
 
-          for(int i = 1; i < m_itema.get_size(); i++)
+          for(::i32 i = 1; i < m_itema.get_size(); i++)
           {
              if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
              {

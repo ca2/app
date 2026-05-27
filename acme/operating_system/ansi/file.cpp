@@ -19,7 +19,7 @@
 //HANDLE
 //WINAPI
 //create_file(
-//            char const * pFileName,
+//            ::i8 const * pFileName,
 
 //            ::u32 dwDesiredAccess,
 //            ::u32 dwShareMode,
@@ -74,7 +74,7 @@
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
-//               int lDistanceToMove,
+//               ::i32 lDistanceToMove,
 //               PLONG pDistanceToMoveHigh,
 
 //               ::u32 dwMoveMethod
@@ -229,7 +229,7 @@
 //      return false;
 //
 //   }
-//   char * pszRealPath = ::realpath(scopedstr, NULL);
+//   char_pointer pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if (scopedstrRealPath == NULL)
 //   {

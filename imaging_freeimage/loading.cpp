@@ -35,9 +35,9 @@ namespace imaging_freeimage
          return false;
       }
 
-      int w = FreeImage_GetWidth(image32);
+      ::i32 w = FreeImage_GetWidth(image32);
 
-      int h = FreeImage_GetHeight(image32);
+      ::i32 h = FreeImage_GetHeight(image32);
 
       pimage->create({w, h});
 
@@ -50,9 +50,9 @@ namespace imaging_freeimage
 
       void* pdata = FreeImage_GetBits(image32);
 
-      int iSrcScan = FreeImage_GetPitch(image32);
+      ::i32 iSrcScan = FreeImage_GetPitch(image32);
 
-      int iLineSize = w * sizeof(color32_t);
+      ::i32 iLineSize = w * sizeof(color32_t);
 
       pimage->map();
 
@@ -61,9 +61,9 @@ namespace imaging_freeimage
       for (::collection::index y = 0; y < pimage->height(); y++)
       {
 
-         unsigned char * pbDst = ((unsigned char *)pimage->get_data()) + ((pimage->height() - y - 1) * pimage->scan_size());
+         ::u8 * pbDst = ((::u8 *)pimage->get_data()) + ((pimage->height() - y - 1) * pimage->scan_size());
 
-         unsigned char * pbSrc = (unsigned char *)pdata + (y * iSrcScan);
+         ::u8 * pbSrc = (::u8 *)pdata + (y * iSrcScan);
 
          for (::collection::index x = 0; x < pimage->width(); x++)
          {
@@ -86,9 +86,9 @@ namespace imaging_freeimage
 
 #elif defined(APPLEOS)
 
-      unsigned char * pbDst = (unsigned char *)pimage->get_data();
+      ::u8 * pbDst = (::u8 *)pimage->get_data();
 
-      unsigned char * pbSrc = (unsigned char *)pdata;
+      ::u8 * pbSrc = (::u8 *)pdata;
 
       ::collection::count c = (count)pimage->area();
 
@@ -112,11 +112,11 @@ namespace imaging_freeimage
 
 #else
 
-      for (int i = 0; i < pimage->height(); i++)
+      for (::i32 i = 0; i < pimage->height(); i++)
       {
          ::memory_copy(
-            &((unsigned char *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
-            &((unsigned char *)pdata)[iSrcScan * i],
+            &((::u8 *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
+            &((::u8 *)pdata)[iSrcScan * i],
             iLineSize);
       }
 
@@ -231,7 +231,7 @@ namespace imaging_freeimage
 
    //#endif // WINDOWS_DESKTOP
 
-const char* getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
+const_char_pointer getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
     switch (format) {
         case FIF_UNKNOWN: return "Unknown Format";
         case FIF_BMP:     return "BMP";
@@ -261,7 +261,7 @@ const char* getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
 }
 
 // Function to print FreeImage messages
-void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
+void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
     printf("FreeImage Error [format %d]: %s\n", fif, message);
 }
    void image_context::_load_image(::image::image* pimage, const ::payload& varFileParam,
@@ -300,7 +300,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
 
       FIMEMORY* pmem = nullptr;
 
-      for(int i = 0; i < 2; i++)
+      for(::i32 i = 0; i < 2; i++)
       {
 
          if(i == 1)
@@ -347,7 +347,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
 
          auto size = memory.size();
 
-         char pszPngSignature[] = {(char)137, 80, 78, 71, 13, 10, 26, 10};
+         ::i8 pszPngSignature[] = {(::i8)137, 80, 78, 71, 13, 10, 26, 10};
 
          bool bPng = size > sizeof(pszPngSignature)
                      && ansi_ncmp((const_char_pointer )pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
@@ -450,7 +450,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
             
             auto pszImageFormat = getFreeImageFormatName(format);
             
-            information() << "FreeImage_GetFileTypeFromMemory returned: " << (int) format << " = "<< pszImageFormat;
+            information() << "FreeImage_GetFileTypeFromMemory returned: " << (::i32) format << " = "<< pszImageFormat;
 
             pfibitmap = FreeImage_LoadFromMemory(format, pmem);
 
@@ -486,7 +486,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
          return;
       }
 
-      int iExifOrientation = -1;
+      ::i32 iExifOrientation = -1;
 
       bool bOrientation = false;
 
@@ -511,7 +511,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
                {
                   auto value = FreeImage_GetTagValue(tag);
 
-                  iExifOrientation = *((unsigned short *)value);
+                  iExifOrientation = *((::u16 *)value);
 
                   pimage->m_iExifOrientation = iExifOrientation;
                }
@@ -551,9 +551,9 @@ information() << "image_from_freeimage Success";
       //
       //      ::image::image_pointer pimage2;
       //
-      //      //double dPiQuarter = ::atan(1.0);
+      //      //::f64 dPiQuarter = ::atan(1.0);
       //
-      //      //double dPi = dPiQuarter * 4.0;
+      //      //::f64 dPi = dPiQuarter * 4.0;
       //
       //      // http://sylvana.net/jpegcrop/exif_orientation.html
       //      //1) transform = "";;

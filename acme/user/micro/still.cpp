@@ -3,7 +3,7 @@
 #include "button.h"
 #include "still.h"
 #include "acme/nano/graphics/icon.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/windowing/window.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/micro/theme.h"
@@ -20,7 +20,7 @@ namespace micro
    }
 
 
-   void still::on_draw(::nano::graphics::device * pmicrodevice)
+   void still::on_draw(::nano::graphics::context * pgraphicscontext)
    {
 
             wstring wstrText(m_strText);
@@ -38,8 +38,7 @@ namespace micro
       if (m_picon)
       {
 
-         pmicrodevice->draw(m_picon, 0, 0, m_rectangle.width(), m_rectangle.height());
-
+         pgraphicscontext->draw(m_picon, 0, 0, m_rectangle.width(), m_rectangle.height());
 
          return;
 
@@ -104,7 +103,7 @@ namespace micro
 
 
 
-      pmicrodevice->draw_text123(
+      pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
          e_align_center,
@@ -116,7 +115,7 @@ namespace micro
    }
 
 
-   void still::on_char(int iChar)
+   void still::on_char(::i32 iChar)
    {
 
       if (iChar == '\r' || iChar == ' ')
@@ -271,7 +270,7 @@ namespace micro
       ::micro::elemental::resize_to_fit();
 
       //
-      //   auto pdevice = createø < ::nano::graphics::device >();
+      //   auto pdevice = createø < ::nano::graphics::context >();
       //
       //   auto size = pdevice->get_text_extents(m_strText, acme_windowing_window()->m_pfont);
       //

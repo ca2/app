@@ -107,7 +107,7 @@ namespace platform
       //bool                                                m_bUserDarkMode;
 
       //bool                                                  m_bOperatingSystemDarkMode;
-      //int                                                   m_iWeatherDarkness;
+      //::i32                                                   m_iWeatherDarkness;
       ::file::path m_pathModule;
 
 
@@ -131,7 +131,7 @@ namespace platform
 
 
       virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
-                             ::e_display edisplay, const class time& timeTimeout, ::property_set & set, int* piExitCode);
+                             ::e_display edisplay, const class time& timeTimeout, ::property_set & set, ::i32* piExitCode);
 
 
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string& scopedstr);
@@ -318,7 +318,7 @@ namespace platform
       virtual void datetime_to_file_time(::file_time_t* pfile_time, const ::earth::time& time);
 
 
-      virtual int node_init_check(int* pi, char*** ppz);
+      virtual ::i32 node_init_check(::i32* pi, char_pointer ** ppz);
 
 
       virtual void start_node();
@@ -343,9 +343,9 @@ namespace platform
       //
       // virtual void _term_os_theme_colors();
 
-      //      virtual int get_simple_ui_darkness();
+      //      virtual ::i32 get_simple_ui_darkness();
 
-      //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+      //      virtual void set_simple_ui_darkness(::i32 iWeatherDarkness);
 
       //virtual void set_dark_mode(bool bDark);
 
@@ -374,13 +374,13 @@ namespace platform
 //      virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay);
 
 
-      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize);
+      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, ::i32 iSize);
 
 
       virtual string get_file_content_type(const ::scoped_string & scopedstrPath);
 
 
-      virtual int os_launch_uri(const ::scoped_string & scopedstrUri, char* pszError = NULL, int iBufferSize = 0);
+      virtual ::i32 os_launch_uri(const ::scoped_string & scopedstrUri, char_pointer pszError = NULL, ::i32 iBufferSize = 0);
 
 
 //      virtual void enable_wallpaper_change_notification();
@@ -434,13 +434,13 @@ namespace platform
       virtual void browse_for_file(::file::path& path);
 
 
-      virtual double get_time_zone();
+      virtual ::f64 get_time_zone();
 
 
       virtual string font_name(enum_font efont);
 
 
-      //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
+      //virtual string font_name(enum_operating_system eoperatingsystem, ::i32 iVariant, enum_font efont);
 
 
       virtual string file_memory_map_path_from_name(const ::scoped_string & scopedstrName);
@@ -449,7 +449,7 @@ namespace platform
       virtual enum_operating_system get_operating_system() const;
 
 
-      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
+      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags);
 
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string& scopedstrAppId,
@@ -547,7 +547,7 @@ namespace platform
 
 
       virtual void launch_application(::particle* pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams,
-                                      int iBitCount);
+                                      ::i32 iBitCount);
 
 
       virtual void shell_open(const ::file::path& path, const ::scoped_string & scopedstrParams = "",
@@ -561,7 +561,7 @@ namespace platform
                                        const ::file::path& pathWorkingDirectory = {});
 
 
-      virtual int shell_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams,
+      virtual ::i32 shell_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams,
                                      const class time& timeTimeout = 1_minute,
                                      const ::file::path& pathWorkingDirectory = {});
 
@@ -570,7 +570,7 @@ namespace platform
                                       const ::file::path& pathWorkingDirectory = {});
 
 
-      virtual int root_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams,
+      virtual ::i32 root_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams,
                                     const class time& timeTimeout = 1_minute,
                                     const ::file::path& pathWorkingDirectory = {});
 
@@ -628,35 +628,35 @@ namespace platform
 
 
       //#if defined(__ANDROID__)
-      //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+      //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
       //#else
-      virtual int get_call_stack_default_frame_count();
+      virtual ::i32 get_call_stack_default_frame_count();
 
 
-      virtual void get_call_stack_frames(void** stack, int& frame_count);
+      virtual void get_call_stack_frames(void** stack, ::i32& frame_count);
 
 
       virtual string get_call_stack_trace(const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                          int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
-                                          int iCount = -1);
+                                          ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                          ::i32 iCount = -1);
 
 
-      virtual string get_call_stack_trace(void** stack, int frame_count,
+      virtual string get_call_stack_trace(void** stack, ::i32 frame_count,
                                           const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                          int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
-                                          int iCount = -1);
+                                          ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                          ::i32 iCount = -1);
 
 
       //#endif
       virtual string _get_call_stack_trace(const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                           int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
-                                           int iCount = -1);
+                                           ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                           ::i32 iCount = -1);
 
 
-      virtual string _get_call_stack_trace(void** stack, int frame_count,
+      virtual string _get_call_stack_trace(void** stack, ::i32 frame_count,
                                             const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                            int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
-                                            int iCount = -1);
+                                            ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                            ::i32 iCount = -1);
 
 
         virtual ::string get_command_line();
@@ -665,16 +665,16 @@ namespace platform
       //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes = nullptr);
 
 
-      virtual int get_current_processor_index();
+      virtual ::i32 get_current_processor_index();
 
 
-      virtual int get_current_process_maximum_affinity();
+      virtual ::i32 get_current_process_maximum_affinity();
 
 
-      virtual int get_current_process_affinity_order();
+      virtual ::i32 get_current_process_affinity_order();
 
 
-      virtual ::u64 translate_processor_affinity(int i);
+      virtual ::u64 translate_processor_affinity(::i32 i);
 
 
       //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
@@ -682,10 +682,10 @@ namespace platform
       //CLASS_DECL_ACME string ca2_command_line();
 
 
-      //virtual int process_get_status();
-      //virtual void process_set_status(int iStatus);
-      //virtual int * process_get_pargc();
-      //virtual int process_get_argc();
+      //virtual ::i32 process_get_status();
+      //virtual void process_set_status(::i32 iStatus);
+      //virtual ::i32 * process_get_pargc();
+      //virtual ::i32 process_get_argc();
 
 
       virtual bool set_process_priority(::enum_priority epriority);
@@ -697,9 +697,9 @@ namespace platform
       //
       //#if !defined(UNIVERSAL_WINDOWS)
       //
-      //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
+      //      //virtual ::i32 call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
       //
-      //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
+      //      typedef ::i32 CALLSYNCONRETRY(::i32 iTry, uptr dwParam);
       //
       //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
       //
@@ -711,11 +711,11 @@ namespace platform
       //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
       //
       //
-      //      //virtual int get_current_processor_index();
+      //      //virtual ::i32 get_current_processor_index();
       //
-      //      //virtual int get_current_process_maximum_affinity();
+      //      //virtual ::i32 get_current_process_maximum_affinity();
       //
-      //      //virtual int get_current_process_affinity_order();
+      //      //virtual ::i32 get_current_process_affinity_order();
       //
       //
       //#endif
@@ -753,7 +753,7 @@ namespace platform
       //virtual bool is_shared_library_busy(const string_array_base & stra);
 
 
-      // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount);
+      // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, ::i32 iBitCount);
 
 
       //virtual bool shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
@@ -776,10 +776,10 @@ namespace platform
       //virtual string process_version_dir_name();
 
 
-      virtual int is_debug_build();
+      virtual ::i32 is_debug_build();
 
 
-      virtual int is_release_build();
+      virtual ::i32 is_release_build();
 
 
       //virtual bool succeeded(const ::error_code& errorcode);
@@ -1009,7 +1009,7 @@ namespace platform
 
       //virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
       //virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);
-      //virtual void edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink);
+      //virtual void edit_link_icon(const ::file::path& path, ::i32 iIcon, const ::file::path& pathLink);
       //   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
       virtual bool has_alias_in_path(const ::scoped_string& scopedstr, bool bNoUI = false, bool bNoMount = false);
 
@@ -1136,7 +1136,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      virtual platform_char** _get_envp(wcsdup_array& a);
+      virtual platform_char ** _get_envp(wcsdup_array& a);
 
 
       virtual void register_dll(const ::file::path& pathDll);
@@ -1252,13 +1252,13 @@ namespace platform
       virtual ::string eol();
 
 
-      virtual int building_core_count(bool bDedicatedBuilding);
+      virtual ::i32 building_core_count(bool bDedicatedBuilding);
 
 
-      virtual int performance_core_count();
+      virtual ::i32 performance_core_count();
 
 
-      virtual int efficiency_core_count();
+      virtual ::i32 efficiency_core_count();
 
 
       virtual bool defer_component_factory(const ::scoped_string& scopedstrComponent);
@@ -1269,8 +1269,8 @@ namespace platform
 
       //      virtual void * fetch_windowing_system_display();
       //      virtual void windowing_system_async(const ::procedure & procedure);
-      //      virtual void windowing_system_display_error_trap_push(int i);
-      //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
+      //      virtual void windowing_system_display_error_trap_push(::i32 i);
+      //      virtual void windowing_system_display_error_trap_pop_ignored(::i32 i);
 
 
       virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle& rectangle);

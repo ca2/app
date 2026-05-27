@@ -22,7 +22,7 @@ string ca2_module_folder_dup();
 //{
 //
 //   bool m_bRet;
-//   int  m_iExitCode;
+//   ::i32  m_iExitCode;
 //
 //
 //};
@@ -57,7 +57,7 @@ string ca2_module_folder_dup();
 //}
 //
 //
-//chldstatus get_chldstatus(int iPid)
+//chldstatus get_chldstatus(::i32 iPid)
 //{
 //
 //   critical_section_lock synchronouslock(get_pid_cs());
@@ -67,7 +67,7 @@ string ca2_module_folder_dup();
 //}
 //
 // must be called under get_pid_cs lock
-//void init_chldstatus(int iPid)
+//void init_chldstatus(::i32 iPid)
 //{
 //
 //   auto & s = g_ppid->operator[](iPid);
@@ -79,14 +79,14 @@ string ca2_module_folder_dup();
 //}
 //
 //
-//void ansios_sigchld_handler(int sig)
+//void ansios_sigchld_handler(::i32 sig)
 //{
 //
-//   int saved_errno = errno;
+//   ::i32 saved_errno = errno;
 //
-//   int iExitCode;
+//   ::i32 iExitCode;
 //
-//   int iPid;
+//   ::i32 iPid;
 //
 //   while((iPid = waitpid(-1, &iExitCode,
 //                         WUNTRACED
@@ -141,7 +141,7 @@ string ca2_module_folder_dup();
 //}
 
 
-CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * pparam, int iCa2Priority);
+CLASS_DECL_ACME void process_get_os_priority(::i32 * piOsPolicy, sched_param * pparam, ::i32 iCa2Priority);
 
 
 //namespace ansios
@@ -160,7 +160,7 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //   }
 //
 //
-//   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir,int iCa2Priority)
+//   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir,::i32 iCa2Priority)
 //   {
 //
 //      if(!::operating_system::process::create_child_process(scopedstrCmdLine,bPiped,pszDir,iCa2Priority))
@@ -168,11 +168,11 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //      string_array_base straParam;
 //
-//      address_array < char * > argv;
+//      address_array < char_pointer > argv;
 //
 //      straParam.explode_command_line(scopedstrCmdLine, &argv);
 //
-//      char *   cmd_line;
+//      char_pointer cmd_line;
 //
 //      cmd_line = strdup(scopedstrCmdLine);
 //
@@ -185,7 +185,7 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //      //ansi_copy(cmd_line, pszCmdLine);
 //
-//      char *   exec_path_name = cmd_line;
+//      char_pointer exec_path_name = cmd_line;
 //
 //      critical_section_lock synchronouslock(get_pid_cs());
 //
@@ -205,13 +205,13 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //
 //
-//         char *      argv[1024 + 1];
+//         char_pointer argv[1024 + 1];
 //
-//         int		argc = 0;
+//         ::i32		argc = 0;
 //
 //         prepare_argc_argv(argc, argv, cmd_line);
 //
-//         int iExitCode = execv(exec_path_name, argv);
+//         ::i32 iExitCode = execv(exec_path_name, argv);
 //
 //         free(cmd_line);
 //
@@ -243,13 +243,13 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //   bool process::has_exited()
 //   {
 //
-//      int iExitCode;
+//      ::i32 iExitCode;
 //
 //#if 0
 //
 //      {
 //
-//         int iPid;
+//         ::i32 iPid;
 //
 //         iPid = waitpid(m_iPid, &iExitCode,
 //                        WUNTRACED
@@ -337,13 +337,13 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //   }
 //
 //
-//   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,int iShow,const class time & timeTimeOut,bool * pbTimeOut)
+//   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,::i32 iShow,const class time & timeTimeOut,bool * pbTimeOut)
 //   {
 //
 //
 //      string_array_base straParam;
 //
-//      address_array < char * > argv;
+//      address_array < char_pointer > argv;
 //
 //      if (access("/usr/bin/gksu", X_OK) != 0)
 //      {
@@ -360,9 +360,9 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //      straParam.explode_command_line(scopedstrCmdLine, &argv);
 //
-//      char *   cmd_line;
+//      char_pointer cmd_line;
 //
-//      cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstrCmdLine ) + 1 );
+//      cmd_line = (char_pointer ) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstrCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {
@@ -373,7 +373,7 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //      ansi_copy(cmd_line, pszCmdLine);
 //
-//      char *   exec_path_name = cmd_line;
+//      char_pointer exec_path_name = cmd_line;
 //
 //
 //      critical_section_lock synchronouslock(get_pid_cs());
@@ -390,9 +390,9 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //
 //         // child
-//         char     *pArg, *pPtr;
-//         char     *argv[1024 + 1];
-//         int      argc;
+//         char_pointer pArg, *pPtr;
+//         char_pointer argv[1024 + 1];
+//         ::i32      argc;
 //         if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
 //            pArg++;
 //         else
@@ -445,9 +445,9 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 }
 
 
-char* _android_get_executable_path_dup()
+char_pointer _android_get_executable_path_dup()
 {
-   char exe_path[PATH_MAX *8];
+   ::i8 exe_path[PATH_MAX *8];
    ssize_t len = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
    if (len != -1) {
       exe_path[len] = '\0';

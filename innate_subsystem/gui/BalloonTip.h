@@ -38,20 +38,20 @@
 // class BalloonTipInter : public Tooltip
 // {
 // public:
-//   BalloonTip(const char *text, const char *caption);
+//   BalloonTip(const_char_pointer text, const_char_pointer caption);
 //   BalloonTip();
 //   virtual ~BalloonTip();
 //
 //   void showTooltip(Control *control);
 //
-//   void setText(const char *text);
-//   void setTitle(const char *caption);
+//   void setText(const_char_pointer text);
+//   void setTitle(const_char_pointer caption);
 //
 //   void getText(::string *text) const;
 //   void getTitle(::string *title) const;
 //
-//   void setIconType(int iconType);
-//   int getIconType() const;
+//   void setIconType(::i32 iconType);
+//   ::i32 getIconType() const;
 //
 // protected:
 //   ::string m_text;

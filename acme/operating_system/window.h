@@ -28,7 +28,7 @@ namespace operating_system
    //   union
    //   {
 
-   //      unsigned char m_opaque[32];
+   //      ::u8 m_opaque[32];
    //      ::u64 m_la[4];
 
    //   };
@@ -44,7 +44,7 @@ namespace operating_system
       union
       {
 
-         unsigned char              m_opaque[24];
+         ::u8              m_opaque[24];
          ::u64         m_ulla[3];
 
       };

@@ -25,7 +25,7 @@ public:
    string                     m_strServiceName;
    //manual_reset_happening         m_stopped;
    ////bool                       m_bStopping;
-   //int                        m_iPid;
+   //::i32                        m_iPid;
    //enum_service_status        m_estatus;
    //::u32                        m_uControlStart;
    //::u32                        m_uControlStop;
@@ -46,9 +46,9 @@ public:
 
    //virtual void service_main();
 
-   void set_arguments(int argc, char** argv);
+   void set_arguments(::i32 argc, char_pointer * argv);
 
-   void set_arguments(int argc, wchar_t** argv);
+   void set_arguments(::i32 argc, wchar_t** argv);
 
    virtual void start_service();
 

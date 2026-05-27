@@ -34,7 +34,7 @@ CLASS_DECL_ACME void get_last_status();
 CLASS_DECL_ACME void set_last_status(::e_status estatus);
 
 
-CLASS_DECL_ACME bool _istlead(int ch);
+CLASS_DECL_ACME bool _istlead(::i32 ch);
 
 
 

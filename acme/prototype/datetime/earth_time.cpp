@@ -73,7 +73,7 @@ namespace earth
    }
 
 
-   time::time(int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, const class ::time & timeshift)
+   time::time(::i32 nYear, ::i32 nMonth, ::i32 nDay, ::i32 nHour, ::i32 nMin, ::i32 nSec, const class ::time & timeshift)
    {
 
 
@@ -132,7 +132,7 @@ namespace earth
 #ifdef WINDOWS
 
 
-   time::time(unsigned short wDosDate, unsigned short wDosTime, int nDST)
+   time::time(::u16 wDosDate, ::u16 wDosTime, ::i32 nDST)
    {
 
       struct tm atm;
@@ -310,7 +310,7 @@ namespace earth
    }
 
 
-   int time::year(const class ::time & timeshift) const noexcept
+   ::i32 time::year(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -325,7 +325,7 @@ namespace earth
    }
 
 
-   int time::month(const class ::time& timeshift) const noexcept
+   ::i32 time::month(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -341,7 +341,7 @@ namespace earth
    }
 
 
-   int time::day(const class ::time& timeshift) const noexcept
+   ::i32 time::day(const class ::time& timeshift) const noexcept
    {
 
       //struct tm ttm;
@@ -358,7 +358,7 @@ namespace earth
    }
 
 
-   int time::hour(const class ::time& timeshift) const noexcept
+   ::i32 time::hour(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -374,7 +374,7 @@ namespace earth
    }
 
 
-   int time::minute(const class ::time& timeshift) const noexcept
+   ::i32 time::minute(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -390,7 +390,7 @@ namespace earth
    }
 
 
-   int time::second(const class ::time& timeshift) const noexcept
+   ::i32 time::second(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -406,7 +406,7 @@ namespace earth
    }
 
 
-   int time::day_of_week(const class ::time & timeshift) const noexcept
+   ::i32 time::day_of_week(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -422,7 +422,7 @@ namespace earth
    }
 
 
-   //int time::GetGmtYear() const noexcept
+   //::i32 time::GetGmtYear() const noexcept
    //{
 
    //   struct tm ttm;
@@ -436,7 +436,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtMonth() const noexcept
+   //::i32 time::GetGmtMonth() const noexcept
    //{
 
    //   struct tm ttm;
@@ -450,7 +450,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtDay() const noexcept
+   //::i32 time::GetGmtDay() const noexcept
    //{
 
    //   struct tm ttm;
@@ -464,7 +464,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtHour() const noexcept
+   //::i32 time::GetGmtHour() const noexcept
    //{
 
    //   struct tm ttm;
@@ -478,7 +478,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtMinute() const noexcept
+   //::i32 time::GetGmtMinute() const noexcept
    //{
 
    //   struct tm ttm;
@@ -492,7 +492,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtSecond() const noexcept
+   //::i32 time::GetGmtSecond() const noexcept
    //{
 
    //   struct tm ttm;
@@ -506,7 +506,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtDayOfWeek() const noexcept
+   //::i32 time::GetGmtDayOfWeek() const noexcept
    //{
 
    //   struct tm ttm;
@@ -602,7 +602,7 @@ namespace earth
       timeUtc += timeshift.m_iSecond;
 #if _SECURE_TEMPLATE
 
-char* szBuffer = str.get_buffer(maxTimeBufferSize);
+char_pointer szBuffer = str.get_buffer(maxTimeBufferSize);
 
 struct tm ptmTemp;
 
@@ -633,7 +633,7 @@ return str;
 //
  #else
    //#if defined(LINUX) || defined(__ANDROID__) || defined(SOLARIS) || defined(__APPLE__)
-      char * szBuffer = str.get_buffer(maxTimeBufferSize);
+      char_pointer szBuffer = str.get_buffer(maxTimeBufferSize);
 //   #if OSBIT == 32
   //    const posix_time timet = (const posix_time) timeUtc;
     //  struct tm * ptmTemp = gmtime(&timet);
@@ -654,10 +654,10 @@ return str;
 //   #elif defined(__APPLE__)
 //
 //   #if __WORDSIZE != 64
-//   #pragma error "error: long should 8-unsigned char on __APPLE__"
+//   #pragma error "error: long should 8-::u8 on __APPLE__"
 //   #endif
 //
-//      char * szBuffer = str.get_buffer(maxTimeBufferSize);
+//      char_pointer szBuffer = str.get_buffer(maxTimeBufferSize);
 //
 //      struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 //
@@ -696,7 +696,7 @@ return str;
 
    //   string str;
 
-   //   char szBuffer[maxTimeBufferSize];
+   //   ::i8 szBuffer[maxTimeBufferSize];
 
    //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
@@ -822,7 +822,7 @@ return str;
 //
 //dump_context & operator <<(dump_context & dumpcontext, ::earth::time & time)
 //{
-////   char psz[32];
+////   ::i8 psz[32];
 ////   psz[0] = '\0';
 ////
 //////   posix_time tmp = time.get_time();

@@ -29,7 +29,7 @@ namespace turboc
 
 
 // cax@ca2
-typedef int gint;
+typedef ::i32 gint;
 #define __BEGIN_DECLS
 #define __END_DECLS
 

@@ -47,7 +47,7 @@ typedef uint32_t  dos_time_t;
 CLASS_DECL_ACME dos_time_t   minimum_dos_time();
 CLASS_DECL_ACME dos_time_t   maximum_dos_time();
 CLASS_DECL_ACME posix_time      dos_time_unix_time(dos_time_t dostime);
-CLASS_DECL_ACME dos_time_t   dos_time(int year, int month, int day, int hour, int minute, int second);
+CLASS_DECL_ACME dos_time_t   dos_time(::i32 year, ::i32 month, ::i32 day, ::i32 hour, ::i32 minute, ::i32 second);
 CLASS_DECL_ACME dos_time_t   unix_time_dos_time(posix_time unix_time);
 
 

@@ -36,11 +36,11 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 CLASS_DECL_ACME string solve_relative(const ::scoped_string & scopedstrParam, bool * pbUrl = nullptr);
 CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrAbsolute);
 
-inline char file_path_separator(enum_path epath);
+inline ::i8 file_path_separator(enum_path epath);
 
 inline const_char_pointer file_path_separator_sz(enum_path epath);
 
-inline char file_path_other_separator(enum_path epath);
+inline ::i8 file_path_other_separator(enum_path epath);
 
 CLASS_DECL_ACME enum_path file_path_get_type(const ::scoped_string & scopedstr, enum_path epathForce = e_path_none);
 
@@ -56,7 +56,7 @@ CLASS_DECL_ACME bool file_path_normalize_inline(string & strPath, enum_path & ep
 
 
 
-inline char file_path_separator(enum_path epath)
+inline ::i8 file_path_separator(enum_path epath)
 {
 
 #ifdef WINDOWS
@@ -87,7 +87,7 @@ inline const_char_pointer file_path_separator_sz(enum_path epath)
 
 }
 
-inline char file_path_other_separator(enum_path epath)
+inline ::i8 file_path_other_separator(enum_path epath)
 {
 
 #ifdef WINDOWS

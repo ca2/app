@@ -71,19 +71,19 @@
 #define N1_slash 63
 
 
-static const char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const ::i8 base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-CLASS_DECL_ACME char* _crypto_base64_encode(const unsigned char* data, int length)
+CLASS_DECL_ACME char_pointer _crypto_base64_encode(const ::u8* data, ::i32 length)
 {
-   int c;
-   const unsigned char* q;
-   char* p;
-   char* ret;
-   int i = 0;
-   int blocks;
+   ::i32 c;
+   const ::u8* q;
+   char_pointer p;
+   char_pointer ret;
+   ::i32 i = 0;
+   ::i32 blocks;
 
    q = data;
-   p = ret = (char*)malloc((length + 3) * 4 / 3 + 1);
+   p = ret = (char_pointer )malloc((length + 3) * 4 / 3 + 1);
    if (!p)
       return nullptr;
 
@@ -137,7 +137,7 @@ CLASS_DECL_ACME char* _crypto_base64_encode(const unsigned char* data, int lengt
    return ret;
 }
 
-static int _base64_decode_char(char c)
+static ::i32 _base64_decode_char(::i8 c)
 {
    if (c >= 'A' && c <= 'Z')
       return c - 'A';
@@ -160,17 +160,17 @@ static int _base64_decode_char(char c)
    return -1;
 }
 
-static void* _base64_decode(const_char_pointer s, int length, int* data_len)
+static void* _base64_decode(const_char_pointer s, ::i32 length, ::i32* data_len)
 {
-   int n[4];
-   unsigned char* q;
-   unsigned char* data;
-   int nBlocks, i, outputLen;
+   ::i32 n[4];
+   ::u8* q;
+   ::u8* data;
+   ::i32 nBlocks, i, outputLen;
 
    if (length % 4)
       return nullptr;
 
-   q = data = (unsigned char*)malloc(length / 4 * 3 + 1);
+   q = data = (::u8*)malloc(length / 4 * 3 + 1);
    if (!q)
       return nullptr;
 
@@ -238,9 +238,9 @@ out_free:
    return nullptr;
 }
 
-CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int length, unsigned char** dec_data, int* res_length)
+CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, ::i32 length, ::u8** dec_data, ::i32* res_length)
 {
-   *dec_data = (unsigned char *) _base64_decode(enc_data, length, res_length);
+   *dec_data = (::u8 *) _base64_decode(enc_data, length, res_length);
 }
 
 
@@ -252,7 +252,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
    base64::base64()
    {
 
-      int i, j;
+      ::i32 i, j;
 
       // etable
       for (j = 0; j < 3; j++)
@@ -350,12 +350,12 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
    void base64::encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode)
    {
 
-      int i,hiteof= false;
-      unsigned char igroup[3],ogroup[4];
-      int n;
-      char ch;
+      ::i32 i,hiteof= false;
+      ::u8 igroup[3],ogroup[4];
+      ::i32 n;
+      ::i8 ch;
 
-      uchar * enc_table = this->etable[emode];
+      ::u8 * enc_table = this->etable[emode];
 
       while(!hiteof)
       {
@@ -392,15 +392,15 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
    }
 
 
-   void base64::encode(::file::file *pfileOutput, unsigned char * pdata, memsize size, e_mode emode)
+   void base64::encode(::file::file *pfileOutput, ::u8 * pdata, memsize size, e_mode emode)
    {
 
-      int i, hiteof = false;
-      unsigned char igroup[3], ogroup[4];
-      int n;
-      char ch;
+      ::i32 i, hiteof = false;
+      ::u8 igroup[3], ogroup[4];
+      ::i32 n;
+      ::i8 ch;
 
-      uchar * enc_table = this->etable[emode];
+      ::u8 * enc_table = this->etable[emode];
 
       memory m;
 
@@ -444,8 +444,8 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
 
    bool base64::decode(::file::file * pfileOutput, ::file::file * pfileInput)
    {
-      int i;
-      unsigned char a[4],b[4],o[3];
+      ::i32 i;
+      ::u8 a[4],b[4],o[3];
       uchar uch;
 
       while(true)
@@ -502,10 +502,10 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
 
    ::i64 base64::decode(const ::block & block, ::file::file * pfileInput)
    {
-      int i;
-      unsigned char a[4],b[4],o[3];
+      ::i32 i;
+      ::u8 a[4],b[4],o[3];
       uchar uch;
-      unsigned char * pdata = (unsigned char *)block.begin();
+      ::u8 * pdata = (::u8 *)block.begin();
       ::i64 iDecode = 0;
       memsize rem = block.size();
       while(rem > 0)
@@ -544,7 +544,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
          o[1]= (b[1]<<4)|(b[2]>>2);
          o[2]= (b[2]<<6)|b[3];
          i= a[2]=='='?1:(a[3]=='='?2:3);
-         i = minimum(i, (int) rem);
+         i = minimum(i, (::i32) rem);
          for (::collection::index idx = 0; idx < i; idx++)
          {
             *pdata = o[idx];
@@ -573,7 +573,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
 
       ::memory_file file;
 
-      encode(&file, (unsigned char *) block.begin(), (memsize) block.size(), emode);
+      encode(&file, (::u8 *) block.begin(), (memsize) block.size(), emode);
 
       return file.as_string();
 
@@ -678,7 +678,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer enc_data, int leng
 
    // https://stackoverflow.com/questions/13195143/range-of-valid-character-for-a-base-64-encoding
 
-   bool base64::is(int iChar)
+   bool base64::is(::i32 iChar)
    {
 
       if (iChar >= 'A' && iChar <= 'Z')

@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_scene_vert[] = R"vert_text(// scene_vs.hlsl
+const ::i8 g_psz_scene_vert[] = R"vert_text(// scene_vs.hlsl
 // Shader Model 5.0
 
 // ---------- Structures ----------
@@ -23,7 +23,7 @@ cbuffer GlobalUbo : register(b0)
     float4 ambientLightColor;
     float4 cameraPosition;
     PointLight pointLights[10];
-    int numLights;
+    ::i32 numLights;
 };
 
 
@@ -32,15 +32,15 @@ cbuffer PushConsts : register(b1)
     float4x4 modelMatrix;
     float4x4 normalMatrix;
 
-    int   useTextureAlbedo;
-    int   useTextureNormal;
-    int   useAlphaMask;
+    ::i32   useTextureAlbedo;
+    ::i32   useTextureNormal;
+    ::i32   useAlphaMask;
 
     float3 albedo;
-    float  metallic;
-    float  roughness;
-    float  ambientOcclusion;
-    float  alphaMaskCutoff;
+    ::f32  metallic;
+    ::f32  roughness;
+    ::f32  ambientOcclusion;
+    ::f32  alphaMaskCutoff;
 };
 
 struct VSInput

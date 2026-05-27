@@ -4,8 +4,8 @@
 #if OSBIT == 32
 
 
-typedef int iptr;
-typedef unsigned int uptr;
+typedef ::i32 iptr;
+typedef ::u32 uptr;
 
 
 #elif OSBIT == 64
@@ -15,14 +15,14 @@ typedef unsigned int uptr;
 
 
 typedef long iptr;
-typedef unsigned long uptr;
+typedef ulong uptr;
 
 
 #else
 
 
-typedef long long iptr;
-typedef unsigned long long uptr;
+typedef ::i64 iptr;
+typedef ::u64 uptr;
 
 
 #endif
@@ -41,15 +41,15 @@ typedef unsigned long long uptr;
 
 #if OSBIT == 64
 
-typedef unsigned long long              rtptr;
-typedef unsigned long long              ulong_ptr;
-typedef unsigned long long              dword_ptr;
+typedef ::u64              rtptr;
+typedef ::u64              ulong_ptr;
+typedef ::u64              dword_ptr;
 
 #else
 
-typedef unsigned int              rtptr;
-typedef unsigned int              ulong_ptr;
-typedef unsigned int              dword_ptr;
+typedef ::u32              rtptr;
+typedef ::u32              ulong_ptr;
+typedef ::u32              dword_ptr;
 
 #endif
 

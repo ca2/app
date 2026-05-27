@@ -48,7 +48,7 @@ public:
    {
 
    }
-   node_set_base(BASE_ITEM * pitem, int iCount);
+   node_set_base(BASE_ITEM * pitem, ::i32 iCount);
    node_set_base(const ::std::initializer_list < BASE_ITEM > & list_base);
    node_set_base(const node_set_base & m);
 
@@ -783,12 +783,12 @@ node_set_base < NODE, t_eallocate >::node_set_base(const ::std::initializer_list
 
 
 template < typename NODE, enum_allocate t_eallocate >
-node_set_base < NODE, t_eallocate >::node_set_base(BASE_ITEM * pitem, int iCount)
+node_set_base < NODE, t_eallocate >::node_set_base(BASE_ITEM * pitem, ::i32 iCount)
 {
 
    construct();
 
-   for(int i = 0; i < iCount; i++)
+   for(::i32 i = 0; i < iCount; i++)
    {
 
       set_item(pitem[i]);
@@ -1351,7 +1351,7 @@ typename node_set_base < NODE, t_eallocate >::PAYLOAD node_set_base < NODE, t_ea
 //}
 //
 
-using double_set = set < double >;
+using f64_set = set < ::f64 >;
 
 using dword_set = set < ::u32 >;
 

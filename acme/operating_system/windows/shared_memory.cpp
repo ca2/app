@@ -54,11 +54,11 @@ namespace windows
    }
 
 
-   bool shared_memory::CreateSharedMemory(const char* name, memsize size)
+   bool shared_memory::CreateSharedMemory(const_char_pointer pszName, memsize size)
    {
 
       try {
-         bool needToInit = _createFile(name, size);
+         bool needToInit = _createFile(pszName, size);
          _mapViewOfFile();
          if (needToInit) {
             memset(m_begin, 0, size);
@@ -73,13 +73,13 @@ namespace windows
    }
 
 
-   bool shared_memory::OpenSharedMemory(const char * name, memsize size)
+   bool shared_memory::OpenSharedMemory(const_char_pointer pszName, memsize size)
    {
       try {
 
          m_memsize = size;
 
-         ::wstring wstrName(name);
+         ::wstring wstrName(pszName);
 
          m_hToMap = OpenFileMappingW(
             FILE_MAP_WRITE, // read/write access
@@ -111,12 +111,12 @@ namespace windows
       }
    }
 
-   bool shared_memory::_createFile(const char *name, memsize size)
+   bool shared_memory::_createFile(const_char_pointer pszName, memsize size)
    {
 
       m_memsize = size;
 
-      ::wstring wstrName(name);
+      ::wstring wstrName(pszName);
       DWORD lowSize = size & 0xffffffff;
       DWORD highSize = (DWORD64)size >> 32 & 0xffffffff;
 
@@ -170,7 +170,7 @@ namespace windows
                                         0);
       if (errorCode != ERROR_SUCCESS) {
          ::string strMessage;
-         strMessage.formatf("Cannot SetSecurityInfo with error = %d", (int)errorCode);
+         strMessage.formatf("Cannot SetSecurityInfo with error = %d", (::i32)errorCode);
          throw ::exception(error_failed, strMessage);
       }
    }

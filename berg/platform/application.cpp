@@ -545,7 +545,7 @@ namespace berg
    }
 
 
-   int application::track_popup_menu(::menu::track_popup * ptrackpopup)
+   ::i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
       
       auto puser = user();

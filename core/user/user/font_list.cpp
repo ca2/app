@@ -465,7 +465,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
+      ::i32 iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
       //if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       //{

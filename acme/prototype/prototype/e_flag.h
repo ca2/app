@@ -89,7 +89,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //   }
 //
 //
-//   e_flag& operator ++(int)
+//   e_flag& operator ++(::i32)
 //   {
 //
 //      m_eflag = (enum_flag)((::i64)m_eflag + 1);

@@ -1925,7 +1925,7 @@ namespace coding
    }
 
 
-   void coding::release_package(const char* pszAppId, const char* pszTarget, const char* pszSource)
+   void coding::release_package(const_char_pointer pszAppId, const_char_pointer pszTarget, const_char_pointer pszSource)
    {
       
       m_timeTopicStoreStart.Now();
@@ -2076,7 +2076,7 @@ namespace coding
       }
 
       set["transfer_progress_function"] = ::transfer_progress_function(
-         [this, scopedstrAppId](double dRate, filesize done, filesize total)
+         [this, scopedstrAppId](::f64 dRate, filesize done, filesize total)
          {
 
             if (total > 0)
@@ -2416,7 +2416,7 @@ class ::time coding::get_topic_elapsed_time()
 
       information(strCommand);
 
-      int iExitCode = node()->command_system(strCommand, tracefunction);
+      ::i32 iExitCode = node()->command_system(strCommand, tracefunction);
 
       if (iExitCode != 0)
       {
@@ -2690,7 +2690,7 @@ class ::time coding::get_topic_elapsed_time()
 
       m_integrationcommanda.add(pcommand);
 
-      pcommand->m_iStep =(int) m_iCommandStep++;
+      pcommand->m_iStep =(::i32) m_iCommandStep++;
 
    }
 
@@ -2854,7 +2854,7 @@ class ::time coding::get_topic_elapsed_time()
 
       m_pathLogFolder = pathLogFolder;
 
-     // int iExitCode = 0;
+     // ::i32 iExitCode = 0;
 
       string strStep;
 
@@ -3200,7 +3200,7 @@ class ::time coding::get_topic_elapsed_time()
    }
 
 
-   void coding::speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string& scopedstrText, int iExitCode)
+   void coding::speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string& scopedstrText, ::i32 iExitCode)
    {
 
       ::string strMessage;
@@ -3401,7 +3401,7 @@ class ::time coding::get_topic_elapsed_time()
    // }
 
 
-   int coding::_do_task(::coding::task* ptask)
+   ::i32 coding::_do_task(::coding::task* ptask)
    {
 
       ::file_pointer pfileLog;
@@ -3428,7 +3428,7 @@ class ::time coding::get_topic_elapsed_time()
 
       auto strCommand = ptask->m_strCommand;
 
-      int iExitCode = 0;
+      ::i32 iExitCode = 0;
 
       ploginterface->m_iIndex = -1;
 

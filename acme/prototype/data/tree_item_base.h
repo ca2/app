@@ -1234,7 +1234,7 @@ namespace data
    //::collection::index tree_item ::get_proper_item_index(tree_item_base * _pitemParam, ::collection::index * piLevel)
    //{
 
-   //   int iIndex = 0;
+   //   ::i32 iIndex = 0;
 
    //   if (piLevel)
    //   {

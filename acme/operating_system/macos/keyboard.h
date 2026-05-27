@@ -41,7 +41,7 @@ extern "C"
 
 } // extern "C"
 
-bool apple_is_action_key(int i);
+bool apple_is_action_key(::i32 i);
 
 
 

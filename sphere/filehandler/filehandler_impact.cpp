@@ -96,7 +96,7 @@ namespace filehandler
 
       item item(this);
 
-      for(int i = 0; i < straApp.get_count(); i++)
+      for(::i32 i = 0; i < straApp.get_count(); i++)
       {
          item.parse(straApp[i]);
          item.m_iIndex = i;
@@ -168,8 +168,8 @@ namespace filehandler
 
    void impact::list_base::on_layout(const ::i32_rectangle * lpcrect)
    {
-      int top = lpcrect->top;
-      for(int i = 0; i < get_count(); i++)
+      ::i32 top = lpcrect->top;
+      for(::i32 i = 0; i < get_count(); i++)
       {
          item & item = operator()(i);
          item.m_rectangleItem.left = lpcrect.left;
@@ -189,7 +189,7 @@ namespace filehandler
 
    void impact::list_base::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics)
    {
-      for(int i = 0; i < get_count(); i++)
+      for(::i32 i = 0; i < get_count(); i++)
       {
          element_at(i)->draw(pimpact, pgraphics, this);
       }
@@ -281,7 +281,7 @@ namespace filehandler
 
       }
 
-      for(int i = 0; i < m_plist->get_count(); i++)
+      for(::i32 i = 0; i < m_plist->get_count(); i++)
       {
          
          if(m_plist->element_at(i)->m_rectangleName.contains(item.m_pointHitTest))

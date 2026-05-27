@@ -16,8 +16,8 @@ namespace platform
       public:
 
 
-    int m_iWidth;
-    int m_iHeight;
+    ::i32 m_iWidth;
+    ::i32 m_iHeight;
 
     ::i64 m_lMemFreeAvailableKb;
 

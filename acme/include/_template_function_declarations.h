@@ -37,13 +37,13 @@ CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
 CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 
-CLASS_DECL_ACME int ansi_open(const ::scoped_string & scopedstr, int i);
+CLASS_DECL_ACME ::i32 ansi_open(const ::scoped_string & scopedstr, ::i32 i);
 
 //CLASS_DECL_ACME FILE* ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
 
-CLASS_DECL_ACME int ansi_file_flag(int iFlag);
+CLASS_DECL_ACME ::i32 ansi_file_flag(::i32 iFlag);
 
-CLASS_DECL_ACME void ansi_get_errno(int* perrno);
+CLASS_DECL_ACME void ansi_get_errno(::i32* perrno);
 
 CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 
@@ -53,18 +53,18 @@ CLASS_DECL_ACME::e_status get_last_status();
 
 //#if !defined(__APPLE__) && !defined(LINUX) && !defined(__ANDROID__) && !defined(FREEBSD) && !defined(OPENBSD)
 //
-//int ftruncate(int file, filesize len);
+//::i32 ftruncate(::i32 file, filesize len);
 //
 //#endif
 
 
-CLASS_DECL_ACME int get_os_thread_priority(::enum_priority epriority);
+CLASS_DECL_ACME ::i32 get_os_thread_priority(::enum_priority epriority);
 
-CLASS_DECL_ACME int get_os_priority_class(::enum_priority epriority);
+CLASS_DECL_ACME ::i32 get_os_priority_class(::enum_priority epriority);
 
-CLASS_DECL_ACME::enum_priority get_os_thread_scheduling_priority(int iCa2Priority);
+CLASS_DECL_ACME::enum_priority get_os_thread_scheduling_priority(::i32 iCa2Priority);
 
-CLASS_DECL_ACME::enum_priority get_os_class_scheduling_priority(int iCa2Priority);
+CLASS_DECL_ACME::enum_priority get_os_class_scheduling_priority(::i32 iCa2Priority);
 
 
 CLASS_DECL_ACME const ::particle * general_trace_object();
@@ -97,15 +97,15 @@ inline void assign(LEFT& l, const RIGHT& r) { l = r; }
 inline void assign(::block& block, const ::payload& r);
 
 inline void assign(long& l, const ::payload& r);
-inline void assign(unsigned long& l, const ::payload& r);
+inline void assign(ulong& l, const ::payload& r);
 
 
 inline void assign(bool& l, const ::payload& r);
-inline void assign(char & ch, const ::payload& r);
-inline void assign(unsigned char & uch, const ::payload& r);
-inline void assign(short & sh, const ::payload& r);
-inline void assign(unsigned short & ush, const ::payload& r);
-inline void assign(int & i, const ::payload& r);
+inline void assign(::i8 & ch, const ::payload& r);
+inline void assign(::u8 & uch, const ::payload& r);
+inline void assign(::i16 & sh, const ::payload& r);
+inline void assign(::u16 & ush, const ::payload& r);
+inline void assign(::i32 & i, const ::payload& r);
 inline void assign(::u32 & ui, const ::payload& r);
 inline void assign(::i64 & hi, const ::payload& r);
 inline void assign(::u64 & hn, const ::payload& r);
@@ -139,7 +139,7 @@ CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);
 
 CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const ::scoped_string & scopedstrGroup);
 
-CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, int iGroup);
+CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, ::i32 iGroup);
 
 
 CLASS_DECL_ACME bool _is_color_sel(const ::atom& atom);
@@ -154,11 +154,11 @@ CLASS_DECL_ACME bool _is_font_sel(const ::atom& atom);
 //inline void dump_elements(dump_context& dumpcontext, const TYPE* pElements, ::collection::count nCount);
 
 
-int CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character* pMultByteStr, int cbMultiByte,
-   ::wide_character* pWideCharStr, int cchWideChar);
+::i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character* pMultByteStr, ::i32 cbMultiByte,
+   ::wide_character* pWideCharStr, ::i32 cchWideChar);
 
-int CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character* pWideCharStr, int cchWideChar,
-   ::ansi_character* pMultByteStr, int cbMultiByte, const_char_pointer pDefaultChar,
+::i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character* pWideCharStr, ::i32 cchWideChar,
+   ::ansi_character* pMultByteStr, ::i32 cbMultiByte, const_char_pointer pDefaultChar,
    ::i32_bool* pUsedDefaultChar);
 
 
@@ -213,7 +213,7 @@ inline const ::particle * trace_object(const ::particle* pparticle);
 
 
 
-inline int read_char(unsigned char*& pdata, memsize& s, char* pch);
+inline ::i32 read_char(::u8*& pdata, memsize& s, char_pointer pch);
 
 
 
@@ -244,15 +244,15 @@ inline bool exists(const ::file::enum_type& etype);
 //CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
-CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
-CLASS_DECL_ACME int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
-CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
+CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
-CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
+CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::ansi_character * & len);
 
-CLASS_DECL_ACME ::ansi_character * __long_longtoansi(::i64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
+CLASS_DECL_ACME ::ansi_character * __long_longtoansi(::i64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::ansi_character * & len);
 
 
 template<typename T1, typename T2>

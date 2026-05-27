@@ -54,7 +54,7 @@
 #define MAXIMUM_WAIT_OBJECTS      64
 
 //union semun {
-//    int val;
+//    ::i32 val;
 //    struct semid_ds * buf;
 //    USHORT * array;
 //
@@ -66,7 +66,7 @@
 //CLASS_DECL_ACME void set_last_error(::u32 dw);
 
 
-CLASS_DECL_ACME bool _istlead(int ch);
+CLASS_DECL_ACME bool _istlead(::i32 ch);
 
 
 

@@ -31,7 +31,7 @@ namespace subsystem
 
    CommandLine::~CommandLine() {}
 
-   bool CommandLine::parse(const CommandLineFormat *format, int formatSize, const CommandLineArguments *cmdArgs)
+   bool CommandLine::parse(const CommandLineFormat *format, ::i32 formatSize, const CommandLineArguments *cmdArgs)
    {
       ::string_array_base argContainer;
       ::string_array_base::iterator argIter;
@@ -55,7 +55,7 @@ auto iSize = argContainer.size();
          strKey.make_lower();
 
          result = false;
-         for (int i = 0; i < formatSize; i++)
+         for (::i32 i = 0; i < formatSize; i++)
          {
             auto keyName = format[i].keyName;
 
@@ -103,7 +103,7 @@ auto iSize = argContainer.size();
       return found;
    }
 
-   bool CommandLine::getOption(int index, string *key, string *arg) const
+   bool CommandLine::getOption(::i32 index, string *key, string *arg) const
    {
       if (index < 0 || (size_t)index >= m_foundKeys.size())
       {
@@ -122,7 +122,7 @@ auto iSize = argContainer.size();
       return true;
    }
 
-   // bool CommandLine::_matchKey(const char * pszKeyTemplate, string *key)
+   // bool CommandLine::_matchKey(const_char_pointer pszKeyTemplate, string *key)
    // {
    //    return *key == (++pszKeyTemplate);
    // }

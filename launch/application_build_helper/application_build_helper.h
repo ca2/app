@@ -17,7 +17,7 @@ namespace application_build_helper
 
       string            m_strPackage;
       ::file::path      m_pathReference;
-      int               m_iLine;
+      ::i32               m_iLine;
 
 
    };
@@ -78,7 +78,7 @@ namespace application_build_helper
       string_map_base < string_to_string_base >     m_mapBinaryToProject;
       string_map_base < string_to_string_base >     m_mapProjectToBinary;
 
-      int                                 m_iExitCode;
+      ::i32                                 m_iExitCode;
 
 
       application_build_helper(application * papplication);

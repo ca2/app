@@ -60,7 +60,7 @@ public:
    bool                                      m_bCapture;
    bool                                      m_bStartCentered;
    bool                                      m_bArbitraryPositioning;
-   int                                       m_iFontSize;
+   ::i32                                       m_iFontSize;
    enum_font                                 m_efont;
 
    bool                                      m_bTopMost;
@@ -92,16 +92,16 @@ public:
 
    void message_loop() override;
 
-   void draw(::nano::graphics::device * pnanodevice) override;
+   void draw(::nano::graphics::context * pnanodevice) override;
 
-   void on_draw(::nano::graphics::device * pnanodevice) override;
+   void on_draw(::nano::graphics::context * pnanodevice) override;
 
-   void on_char(int iChar) override;
+   void on_char(::i32 iChar) override;
 
    bool is_active() override;
    void set_active() override;
 
-   void draw_children(::nano::graphics::device * pnanodevice) override;
+   void draw_children(::nano::graphics::context * pnanodevice) override;
 
    void delete_drawing_objects() override;
    bool get_dark_mode() override;
@@ -161,13 +161,13 @@ public:
    void set_cursor(enum_cursor ecursor) override;
 
 
-   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
 
    void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 
    
-   ::pointer<::nano::graphics::device>create_device();
+   ::pointer<::nano::graphics::context>create_device();
 
    
    void _run_modal_loop() override;

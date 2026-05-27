@@ -260,7 +260,7 @@ namespace keyboard
       if (strKeyWithNoModifier.size() > 1 && strKeyWithNoModifier.begins_eat("F"))
       {
 
-         int iF = atoi(strKeyWithNoModifier);
+         ::i32 iF = atoi(strKeyWithNoModifier);
 
          if (iF < 1 || iF > 24)
          {

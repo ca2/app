@@ -140,7 +140,7 @@
 //   }
 //
 //
-//   void interaction_base::_on_window_simple_action(const char * pszActionName)
+//   void interaction_base::_on_window_simple_action(const_char_pointer pszActionName)
 //   {
 //
 //      ::string strActionName(scopedstrActionName);
@@ -373,21 +373,21 @@
 //   }
 //
 //
-//   void interaction_base::draw(::nano::graphics::device* pnanodevice)
+//   void interaction_base::draw(::nano::graphics::context* pgraphicscontext)
 //   {
 //
 //
 //   }
 //
 //
-//   void interaction_base::on_draw(::nano::graphics::device* pnanodevice)
+//   void interaction_base::on_draw(::nano::graphics::context* pgraphicscontext)
 //   {
 //
 //
 //   }
 //
 //
-//   void interaction_base::on_char(int iChar)
+//   void interaction_base::on_char(::i32 iChar)
 //   {
 //
 //
@@ -409,7 +409,7 @@
 //   }
 //
 //
-//   void interaction_base::draw_children(::nano::graphics::device* pnanodevice)
+//   void interaction_base::draw_children(::nano::graphics::context* pgraphicscontext)
 //   {
 //
 //
@@ -930,7 +930,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32& x)
 //   {
 //
 //      return -1;
@@ -946,7 +946,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32& x)
 //   {
 //
 //      return -1;
@@ -962,7 +962,7 @@
 //   }
 //
 //
-//   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x)
+//   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x)
 //   {
 //
 //      return -1;

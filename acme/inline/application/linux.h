@@ -8,8 +8,8 @@
 
 //#ifdef LINUX
 //
-//extern char _binary__matter_zip_start[];
-//extern char _binary__matter_zip_end[];
+//extern ::i8 _binary__matter_zip_start[];
+//extern ::i8 _binary__matter_zip_end[];
 
 //#endif
 
@@ -31,7 +31,7 @@ public:
    ::pointer<APPLICATION>       m_papplication;
 
 
-   app_runner(int argc, char * argv[], char * envp[], char * res_start, char * res_end)
+   app_runner(::i32 argc, char_pointer argv[], char_pointer envp[], char_pointer res_start, char_pointer res_end)
    {
 
       m_pmain = memory_new class ::main;
@@ -55,12 +55,12 @@ public:
    }
 
 
-   int main()
+   ::i32 main()
    {
 
       __main(*m_pmain);
 
-      int iExitCode = m_pmain->m_iExitCode;
+      ::i32 iExitCode = m_pmain->m_iExitCode;
 
       return iExitCode;
 
@@ -87,7 +87,7 @@ public:
 //APPLICATION_CLASS g_app;
 
 
-int main(int argc, char * argv[], char * envp[])
+::i32 main(::i32 argc, char_pointer argv[], char_pointer envp[])
 {
 
    auto papp = allocateø APPLICATION_CLASS();
@@ -102,7 +102,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #endif
 
-   int iExitCode = papp->main_loop();
+   ::i32 iExitCode = papp->main_loop();
 
    return iExitCode;
 

@@ -3,7 +3,7 @@
 
 #define sclip1(v, c) \
 { \
-   int value = v + 1; \
+   ::i32 value = v + 1; \
    if(value < c) \
    { \
       value = c; \
@@ -13,7 +13,7 @@
    
 #define sclip2(v, c) \
 { \
-   int value = v * 2 + 1; \
+   ::i32 value = v * 2 + 1; \
    if(value < c) \
    { \
       value = c; \
@@ -23,10 +23,10 @@
 
 #define M1(l, s1, s2, s5, s8) \
    { \
-   int v1 = s1; \
-   int v2 = s2; \
-   int v5 = s5; \
-   int v8 = s8; \
+   ::i32 v1 = s1; \
+   ::i32 v2 = s2; \
+   ::i32 v5 = s5; \
+   ::i32 v8 = s8; \
    sclip1(v1, 1); \
    sclip1(v2, 2); \
    sclip1(v5, 5); \
@@ -42,11 +42,11 @@
 #define INTM2(s1, s2, s5, s8) \
    {\
       string strHash = straHash.implode(";"); \
-      int iMod = stunCalculateFingerprint(strHash, strHash.length()); \
-      int v1 = s1 * 2 + 1; \
-      int v2 = s2 * 2 + 1; \
-      int v5 = s5 * 2 + 1; \
-      int v8 = s8 * 2 + 1; \
+      ::i32 iMod = stunCalculateFingerprint(strHash, strHash.length()); \
+      ::i32 v1 = s1 * 2 + 1; \
+      ::i32 v2 = s2 * 2 + 1; \
+      ::i32 v5 = s5 * 2 + 1; \
+      ::i32 v8 = s8 * 2 + 1; \
       sclip2(v1, 1); \
       sclip2(v2, 2); \
       sclip2(v5, 5); \
@@ -69,7 +69,7 @@ string salt(::ca::application * papp, const ::scoped_string & scopedstrSourceSal
    }
    else if(straSourceHash.get_count() > 1)
    {
-      for(int i = 0; i < straSourceSalt.get_size(); i++) 
+      for(::i32 i = 0; i < straSourceSalt.get_size(); i++) 
       { 
          ::LoadLibrary(straSourceSalt[i]); 
       } 
@@ -125,7 +125,7 @@ string salt(::ca::application * papp, const ::scoped_string & scopedstrSourceSal
 
 static WINDOWS_DEFINITION_EXTENSION_MODULE VmscdadecDLL = { nullptr, nullptr };
 
-extern "C" int APIENTRY
+extern "C" ::i32 APIENTRY
 DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
    // Remove this if you use lpReserved

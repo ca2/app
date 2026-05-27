@@ -44,8 +44,8 @@ typedef struct wf_context wfContext;
 
 
 void floatbar_window_create(wfContext* wfc);
-int floatbar_show(FloatBar* floatbar);
-int floatbar_hide(FloatBar* floatbar);
+::i32 floatbar_show(FloatBar* floatbar);
+::i32 floatbar_hide(FloatBar* floatbar);
 
 
 

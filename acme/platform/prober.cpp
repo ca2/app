@@ -42,9 +42,9 @@ namespace platform
    void prober::run()
    {
       
-      int passed = 0;
+      ::i32 passed = 0;
 
-      int failed = 0;
+      ::i32 failed = 0;
 
       for (const auto& ptestcase : m_testcasea)
       {
@@ -104,7 +104,7 @@ namespace platform
    //   runner.expect(2 + 2 == 5, "2 + 2 should be 5"); // This should fail
    //}
 
-   //int main() {
+   //::i32 main() {
    //   TestRunner runner;
 
    //   runner.add_test("Addition Test", [&]() { test_addition(runner); });

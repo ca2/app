@@ -36,8 +36,8 @@ namespace gpu
 
             ::floating_matrix4 mvp;
 
-            float deltaPhi;
-            float deltaTheta;
+            ::f32 deltaPhi;
+            ::f32 deltaTheta;
          };
 
          const ::u32 m_udiffuse_irradiance_mapWidth = 32;

@@ -13,10 +13,10 @@
 //   public:
 //
 //
-//      double m_d; // in seconds;
+//      ::f64 m_f64; // in seconds;
 //
 //
-//      class ::time(double d = 0.0) : m_d(d) {}
+//      class ::time(::f64 d = 0.0) : m_f64(d) {}
 //
 //
 //      static inline class ::time none() // UTC
@@ -28,9 +28,9 @@
 //
 //      static class ::time local();
 //
-//      operator double &() { return m_d; }
+//      operator ::f64 &() { return m_f64; }
 //
-//      operator double() const { return m_d; }
+//      operator ::f64() const { return m_f64; }
 //
 //   };
 //

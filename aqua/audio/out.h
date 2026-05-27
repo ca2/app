@@ -17,13 +17,13 @@
 //            virtual ~out();
 //
 //
-//            virtual int waveout_open(int iChanel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+//            virtual ::i32 waveout_open(::i32 iChanel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //
-//            virtual int waveout_start();
+//            virtual ::i32 waveout_start();
 //
-//            virtual int waveout_stop();
+//            virtual ::i32 waveout_stop();
 //
-//            virtual int waveout_close();
+//            virtual ::i32 waveout_close();
 //
 //
 //

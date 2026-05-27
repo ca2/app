@@ -36,13 +36,13 @@
 //message_queue * aaa_get_message_queue(itask idthread, bool bCreate);
 
 
-//CLASS_DECL_ACME void thread_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
+//CLASS_DECL_ACME void thread_get_os_priority(::i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 //
-//CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
+//CLASS_DECL_ACME void process_get_os_priority(::i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 //
-//CLASS_DECL_ACME::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_ACME::enum_priority thread_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam);
 //
-//CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam);
 
 
 thread_local ::message_queue * t_pmessagequeue = nullptr;
@@ -106,8 +106,8 @@ t_phappeningNotifyLock;
 
       while (true)
       {
-         int i;
-         int j;
+         ::i32 i;
+         ::i32 j;
          i = 0;
          for (; comparison::lt(i, dwSize);)
          {
@@ -120,7 +120,7 @@ t_phappeningNotifyLock;
                if (pmq->m_messagea.get_count() > 0)
                {
 
-                  return (::enum_status)(((int) signaled_base) + dwSize);
+                  return (::enum_status)(((::i32) signaled_base) + dwSize);
 
                }
 
@@ -167,7 +167,7 @@ t_phappeningNotifyLock;
    else
    {
 
-      int i;
+      ::i32 i;
 
       //while (true)
       //{
@@ -194,7 +194,7 @@ t_phappeningNotifyLock;
             if (pmq->m_phappeningNewMessage->start_notify_lock(&notifylock))
             {
 
-               return (enum_status)(((int) signaled_base) + dwSize);
+               return (enum_status)(((::i32) signaled_base) + dwSize);
 
             }
 
@@ -420,10 +420,10 @@ void * os_thread_thread_proc(void * pparameter);
 
 
 
-int get_os_thread_priority(::enum_priority epriority)
+::i32 get_os_thread_priority(::enum_priority epriority)
 {
 
-   return (int)epriority;
+   return (::i32)epriority;
 
 }
 
@@ -439,7 +439,7 @@ int get_os_thread_priority(::enum_priority epriority)
 
 ::u32 g_dwDebug_post_thread_msg_time;
 
-int g_iDebug_post_thread_msg_time;
+::i32 g_iDebug_post_thread_msg_time;
 
 
 
@@ -515,10 +515,10 @@ void os_on_term_thread()
 }
 
 
-::enum_priority get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+::enum_priority get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam);
 
 
-::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+::enum_priority thread_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);
@@ -526,7 +526,7 @@ void os_on_term_thread()
 }
 
 
-CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
+CLASS_DECL_ACME ::u64 translate_processor_affinity(::i32 iOrder)
 {
 
    return 1 << iOrder;
@@ -535,23 +535,23 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
 
 
 
-void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority)
+void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
-   int iOsPolicy;
+   ::i32 iOsPolicy;
 
-   int iCa2Min;
+   ::i32 iCa2Min;
 
-   int iCa2Max;
+   ::i32 iCa2Max;
 
    if (epriority == ::e_priority_normal)
    {
 
       iOsPolicy = SCHED_OTHER;
 
-      iCa2Min = (int) ::e_priority_normal;
+      iCa2Min = (::i32) ::e_priority_normal;
 
-      iCa2Max = (int) ::e_priority_normal;
+      iCa2Max = (::i32) ::e_priority_normal;
 
    }
    else if (epriority > ::e_priority_normal)
@@ -559,7 +559,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 
       iOsPolicy = SCHED_RR;
 
-      iCa2Min = (int) ::e_priority_normal;
+      iCa2Min = (::i32) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -575,15 +575,15 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::e_priority_normal;
+      iCa2Max = (::i32) ::e_priority_normal;
 
    }
 
-   int iOsMax = sched_get_priority_max(iOsPolicy);
+   ::i32 iOsMax = sched_get_priority_max(iOsPolicy);
 
-   int iOsMin = sched_get_priority_min(iOsPolicy);
+   ::i32 iOsMin = sched_get_priority_min(iOsPolicy);
 
-   int iOsPriority;
+   ::i32 iOsPriority;
 
    if (iCa2Min == iCa2Max)
    {
@@ -603,7 +603,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 }
 
 
-void thread_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority)
+void thread_get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -611,7 +611,7 @@ void thread_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priorit
 }
 
 
-::enum_priority get_os_thread_scheduling_priority(int nPriority)
+::enum_priority get_os_thread_scheduling_priority(::i32 nPriority)
 {
 
    return (::enum_priority) nPriority;
@@ -647,13 +647,13 @@ string task_get_name()
 //using htask = void *;
 
 //extern "C"
-//int   imp_stubs_pthread_setname_np(pthread_t,const_char_pointer );
+//::i32   imp_stubs_pthread_setname_np(pthread_t,const_char_pointer );
 
 //
 //void task_set_name(htask htask, const ::scoped_string & scopedstrTaskName)
 //{
 //
-//   int error = imp_stubs_pthread_setname_np((pthread_t)htask, pszTaskName);
+//   ::i32 error = imp_stubs_pthread_setname_np((pthread_t)htask, pszTaskName);
 //
 //   if (error)
 //   {
@@ -695,7 +695,7 @@ string task_get_name()
    /* Try obtaining the thread name.
     * If this fails, we'hi return a pointer to an empty string. */
     //if (!thread_name_buffer[0])
-   char thread_name_buffer[17] = { 0 };
+   ::i8 thread_name_buffer[17] = { 0 };
    prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
 
    return thread_name_buffer;
@@ -806,7 +806,7 @@ namespace parallelization
    CLASS_DECL_ACME bool set_priority(htask htask, enum_priority epriority)
    {
 
-      int iPolicy;
+      ::i32 iPolicy;
 
       sched_param schedparam;
 
@@ -831,7 +831,7 @@ namespace parallelization
    ::enum_priority get_priority(htask htask)
    {
 
-      int iOsPolicy = SCHED_OTHER;
+      ::i32 iOsPolicy = SCHED_OTHER;
 
       sched_param schedparam;
 

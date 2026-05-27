@@ -33,9 +33,9 @@ namespace image
 
 
       i32_map < string > m_mapIntPath;
-      string_map_base < int > m_mapPathInt;
+      string_map_base < ::i32 > m_mapPathInt;
       string_map_base < ::image::image_pointer > m_mapPathImage;
-      int         m_iImageSeed;
+      ::i32         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
       map_base < i32_size, ::pointer_array < ::image::image > > m_imagepool;
 
@@ -52,13 +52,13 @@ namespace image
 
 
       /// @brief  it always returns 4 channels!!
-      virtual unsigned char * like_stbi_load_from_memory(
-         const unsigned char *buffer,
-         int len, 
-         int *x,
-         int *y,
-         int *channels_in_file,
-         int desired_channels);
+      virtual ::u8 * like_stbi_load_from_memory(
+         const ::u8 *buffer,
+         ::i32 len, 
+         ::i32 *x,
+         ::i32 *y,
+         ::i32 *channels_in_file,
+         ::i32 desired_channels);
 
       virtual void like_stbi_image_free(void *data);
 
@@ -81,7 +81,7 @@ namespace image
       virtual ::image::image_pointer create_image();
 
 
-      virtual ::image::image_pointer create_image(const ::i32_size& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+      virtual ::image::image_pointer create_image(const ::i32_size& size, const image32_t* pcolor = nullptr, ::i32 iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
       virtual ::image::pool_image pool_image(const ::i32_size & size);
 
@@ -92,9 +92,9 @@ namespace image
       virtual ::image::image_pointer defer_stretch_image(::image::image * pimage, const ::i32_size& size);
 
 
-      virtual int image_integer(const ::file::path & path);
-      virtual int create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
-      virtual ::image::image_pointer integer_image(int i);
+      virtual ::i32 image_integer(const ::file::path & path);
+      virtual ::i32 create_image_integer(::i32 w, ::i32 h, const image32_t * pcolor, ::i32 iScan = -1);
+      virtual ::image::image_pointer integer_image(::i32 i);
       virtual ::image::image_pointer path_image(const ::file::path & pathImage);
       virtual ::image::image_pointer
       image_from_file(const ::payload &payloadFile, const ::image::load_options &loadoptions = ::image::load_options());
@@ -108,7 +108,7 @@ namespace image
       virtual ::image::image_pointer load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-      virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+      virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);
       virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath);
       virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
       //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
@@ -127,7 +127,7 @@ namespace image
       virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
       virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
       virtual void _load_matter_icon(::image::image *pimage, string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-      virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
+      virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, ::i32 w, ::i32 h);
       virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);
       virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);
 
@@ -138,7 +138,7 @@ namespace image
 
 
 
-      virtual void set_cursor_image(const ::image::image *pimage, int xHotSpot, int yHotSpot);
+      virtual void set_cursor_image(const ::image::image *pimage, ::i32 xHotSpot, ::i32 yHotSpot);
 
 
       virtual ::image::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);

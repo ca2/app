@@ -119,7 +119,7 @@ namespace sockets
    }
 
 
-   void AjpBaseSocket::OnRawData(char *buf, memsize sz)
+   void AjpBaseSocket::OnRawData(char_pointer buf, memsize sz)
    {
 
       informationf("OnRawData: %d bytes\n", sz);
@@ -134,7 +134,7 @@ namespace sockets
          case 0:
             {
                memsize missing = m_length - m_ptr;
-               short len = (short)(missing < left ? missing : left);
+               ::i16 len = (::i16)(missing < left ? missing : left);
                ::memory_copy(m_message + m_ptr, buf + ptr, len);
                m_ptr += len;
                ptr += len;
@@ -142,9 +142,9 @@ namespace sockets
                {
                   return; // read more
                }
-               int point = 0;
-               short atom = get_integer(m_message, point);
-               short length = get_integer(m_message, point);
+               ::i32 point = 0;
+               ::i16 atom = get_integer(m_message, point);
+               ::i16 length = get_integer(m_message, point);
                OnHeader(atom, length);
                m_iState = 1;
                m_length = length;
@@ -154,7 +154,7 @@ namespace sockets
          case 1:
             {
                memsize missing = m_length - m_ptr;
-               short len = (short)(missing < left ? missing : left);
+               ::i16 len = (::i16)(missing < left ? missing : left);
                ::memory_copy(m_message + m_ptr, buf + ptr, len);
                m_ptr += len;
                ptr += len;
@@ -174,23 +174,23 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   uchar AjpBaseSocket::get_byte(const ::string &buf, int& ptr)
+   uchar AjpBaseSocket::get_byte(const ::string &buf, ::i32& ptr)
    {
       return (uchar)buf[ptr++];
    }
 
 
    // ---------------------------------------------------------------------------
-   bool AjpBaseSocket::get_boolean(const ::string &buf, int& ptr)
+   bool AjpBaseSocket::get_boolean(const ::string &buf, ::i32& ptr)
    {
       return ( (uchar)buf[ptr++] & 1) == 1 ? true : false;
    }
 
 
    // ---------------------------------------------------------------------------
-   short AjpBaseSocket::get_integer(const ::string &buf, int& ptr)
+   ::i16 AjpBaseSocket::get_integer(const ::string &buf, ::i32& ptr)
    {
-      short n;
+      ::i16 n;
       ::memory_copy(&n, buf + ptr, 2);
       ptr += 2;
       return ntohs(n);
@@ -198,9 +198,9 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   string AjpBaseSocket::get_string(const ::string &buf, int& ptr)
+   string AjpBaseSocket::get_string(const ::string &buf, ::i32& ptr)
    {
-      short len = get_integer(buf, ptr);
+      ::i16 len = get_integer(buf, ptr);
       if (len != -1)
       {
          string tmp = buf + ptr;
@@ -214,35 +214,35 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_byte(char *buf, int& ptr, uchar zz)
+   void AjpBaseSocket::put_byte(char_pointer buf, ::i32& ptr, uchar zz)
    {
       buf[ptr++] = zz;
    }
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_boolean(char *buf, int& ptr, bool zz)
+   void AjpBaseSocket::put_boolean(char_pointer buf, ::i32& ptr, bool zz)
    {
       buf[ptr++] = zz ? 1 : 0;
    }
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_integer(char *buf, int& ptr, short zz)
+   void AjpBaseSocket::put_integer(char_pointer buf, ::i32& ptr, ::i16 zz)
    {
-      short tmp = htons(zz);
+      ::i16 tmp = htons(zz);
       ::memory_copy(buf + ptr, &tmp, 2);
       ptr += 2;
    }
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_string(char *buf, int& ptr, const ::scoped_string & scopedstr)
+   void AjpBaseSocket::put_string(char_pointer buf, ::i32& ptr, const ::scoped_string & scopedstr)
    {
       string str(scopedstr);
-      put_integer(buf, ptr, (short)str.length() );
+      put_integer(buf, ptr, (::i16)str.length() );
       ::memory_copy(buf + ptr, (const ::string &) str);
-      ptr += (int)str.length();
+      ptr += (::i32)str.length();
       put_byte(buf, ptr, 0);
    }
 

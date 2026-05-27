@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 //! Project version number for acme_framework.
-FOUNDATION_EXPORT double acme_frameworkVersionNumber;
+FOUNDATION_EXPORT ::f64 acme_frameworkVersionNumber;
 
 //! Project version string for acme_framework.
-FOUNDATION_EXPORT const unsigned char acme_frameworkVersionString[];
+FOUNDATION_EXPORT const ::u8 acme_frameworkVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <acme_framework/PublicHeader.h>
 

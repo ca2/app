@@ -90,10 +90,10 @@ namespace account
 
       string strFormat;
 
-      for(int i = 0; i < 64; i += 2)
+      for(::i32 i = 0; i < 64; i += 2)
       {
 
-         char iDigit = mathematics()->random_char();
+         ::i8 iDigit = mathematics()->random_char();
 
          strFormat = ::hex::lower_case_padded_from<2>(iDigit);
 
@@ -364,7 +364,7 @@ namespace account
             || m_iPasswordOriginalLength <= 0)
       {
 
-         string strOpenResult = ::as_string((int) error_authentication);
+         string strOpenResult = ::as_string((::i32) error_authentication);
 
          set("open", strOpenResult);
 
@@ -496,7 +496,7 @@ namespace account
 
       set["post"]["source"] = straHash.implode(";");
 
-      for(int i = 0; i < 3; i++)
+      for(::i32 i = 0; i < 3; i++)
       {
 
          try

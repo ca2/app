@@ -18,7 +18,7 @@ public:
    virtual ~cancel_exception();
 
 
-   //virtual bool get_error_message(string & str,Punsigned int pnHelpContext = nullptr);
+   //virtual bool get_error_message(string & str,Punsigned ::i32 pnHelpContext = nullptr);
 
 
 };
@@ -37,7 +37,7 @@ cancel_exception<CONTEXT_TYPE>::~cancel_exception()
 
 }
 
-//bool cancel_exception::get_error_message(string & str,Punsigned int pnHelpContext)
+//bool cancel_exception::get_error_message(string & str,Punsigned ::i32 pnHelpContext)
 //{
 //
 //   str = what();

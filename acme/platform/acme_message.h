@@ -21,7 +21,7 @@ namespace acme
 
       class ::time m_time;
       ::i64 m_iTimestamp;
-      ::double_point m_pointMessage;
+      ::f64_point m_pointMessage;
       ::user::enum_message m_eusermessage;
       wparam m_wparam;
       lparam m_lparam;
@@ -33,7 +33,7 @@ namespace acme
 
    private:
 
-      int id() { return 0; }
+      ::i32 id() { return 0; }
    };
 
 

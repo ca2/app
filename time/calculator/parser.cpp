@@ -255,10 +255,10 @@ element * parser::expr(::datetime::element * pelement1)
    }
 
 
-   void parser::expect(char value)
+   void parser::expect(::i8 value)
    {
 
-      char error_msg[11] = "expected ";
+      ::i8 error_msg[11] = "expected ";
       error_msg[9] = value;
       error_msg[10] = '\0';
       m_pscanner->peek();

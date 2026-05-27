@@ -43,27 +43,27 @@ enum e_set_version
 //
 //   virtual filesize get_position() const;
 //
-////      void read(int & i);
+////      void read(::i32 & i);
 ////      void read(::u32 & u);
 ////      void read(::i64 & i);
 ////      void read(::u64 & u);
 //
 //   using stream::read;
 //   virtual stream & read (bool & b) override;
-//   virtual stream & read (char & ch) override;
-//   virtual stream & read (unsigned char & uch) override;
+//   virtual stream & read (::i8 & ch) override;
+//   virtual stream & read (::u8 & uch) override;
 //#ifdef WINDOWS
 //   virtual stream & read (unichar & wch) override;
 //#endif
-//   virtual stream & read(char & I) override;
-//   virtual stream & read (short & sh) override;
-//   virtual stream & read (unsigned short & u) override;
-//   virtual stream & read (int & i) override;
+//   virtual stream & read(::i8 & I) override;
+//   virtual stream & read (::i16 & sh) override;
+//   virtual stream & read (::u16 & u) override;
+//   virtual stream & read (::i32 & i) override;
 //   virtual stream & read (::u32 & u) override;
 //   virtual stream & read (::i64 & i) override;
 //   virtual stream & read (::u64 & u) override;
-//   virtual stream & read (float & f) override;
-//   virtual stream & read (double & d) override;
+//   virtual stream & read (::f32 & f) override;
+//   virtual stream & read (::f64 & d) override;
 //   virtual stream & read(::i32_point * ppoint) ;
 //   virtual stream & read(::i32_size * psize) ;
 //   virtual stream & read (::i32_rectangle * prectangle) ;
@@ -75,21 +75,21 @@ enum e_set_version
 //   void full_load(string & str);
 //
 //   using stream::write;
-//   virtual stream & write(char ch) override;
+//   virtual stream & write(::i8 ch) override;
 //   virtual stream & write(uchar uch) override;
-//   virtual stream & write(char i) override;
-//   virtual stream & write (short sh) override;
-//   virtual stream & write (unsigned short u) override;
+//   virtual stream & write(::i8 i) override;
+//   virtual stream & write (::i16 sh) override;
+//   virtual stream & write (::u16 u) override;
 //#ifdef WINDOWS
 //   virtual stream & write (unichar wch) override;
 //#endif
 //   virtual stream & write (bool b) override;
-//   virtual stream & write (int i) override;
+//   virtual stream & write (::i32 i) override;
 //   virtual stream & write (::u32 u) override;
 //   virtual stream & write (::i64 i) override;
 //   virtual stream & write (::u64 u) override;
-//   virtual stream & write (float f) override;
-//   virtual stream & write (double d) override;
+//   virtual stream & write (::f32 f) override;
+//   virtual stream & write (::f64 d) override;
 //   virtual stream & write(const ::i32_point * ppoint);
 //   virtual stream & write(const ::i32_size & psize) ;
 //   virtual stream & write (const ::i32_rectangle * prectangle) ;

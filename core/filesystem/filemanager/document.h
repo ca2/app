@@ -26,7 +26,7 @@ namespace filemanager
       string                              m_strManagerId;
       bool                                m_bInitialized;
 ///      ::pointer < ::user::document >         m_pdocumentTopic;
-      int m_iIconSize;
+      ::i32 m_iIconSize;
 
       document();
       ~document() override;
@@ -75,7 +75,7 @@ namespace filemanager
 
       ::pointer<::filemanager::data>create_file_manager_data(::request * prequest = nullptr);
 
-      //virtual void Initialize(int iTemplate, const ::scoped_string & scopedstrMatter);
+      //virtual void Initialize(::i32 iTemplate, const ::scoped_string & scopedstrMatter);
 
       void browse_initial_path(const ::action_context & actioncontext) override;
 
@@ -176,9 +176,9 @@ namespace filemanager
    };
 
 
-   CLASS_DECL_CORE int get_manager_id_byte_len();
+   CLASS_DECL_CORE ::i32 get_manager_id_byte_len();
 
-   CLASS_DECL_CORE int get_manager_id_len();
+   CLASS_DECL_CORE ::i32 get_manager_id_len();
 
    CLASS_DECL_CORE string create_manager_id(::particle * pparticle);
 

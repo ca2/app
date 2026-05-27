@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     xmpp_ctx_t *ctx;
     hash_t *table, *clone;
     hash_iterator_t *iter;
-    unsigned int seed;
+    ::u32 seed;
     const char *key;
     char *result;
     int err = 0;
@@ -43,9 +43,9 @@ int main(int argc, char **argv)
     /* initialize random numbers */
     if (argc > 2) {
 	/* use a seed from the command line */
-	seed = (unsigned int)atoi(argv[1]);
+	seed = (::u32)atoi(argv[1]);
     } else {
-	seed = (unsigned int)clock();
+	seed = (::u32)clock();
     }
     /* using random seed 'seed' */
     srand(seed);

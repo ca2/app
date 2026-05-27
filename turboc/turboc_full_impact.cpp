@@ -110,11 +110,11 @@ namespace turboc
       if(rectangleX.area() <= 0)
          return;
 
-//      int iCount = 30;
+//      ::i32 iCount = 30;
 
       ::draw2d::brush_pointer pbrushText(this_create);
 
-      double T = 2.3;
+      ::f64 T = 2.3;
 
       if(false)
       {
@@ -135,20 +135,20 @@ namespace turboc
 
       }
 
-      double t= ::time::now() / 1000.0;
+      ::f64 t= ::time::now() / 1000.0;
 
-      double w = 2.0 * 3.1415 / T;
+      ::f64 w = 2.0 * 3.1415 / T;
 
-      double r = (tri(w * t) + 1.0) / 2.0;
+      ::f64 r = (tri(w * t) + 1.0) / 2.0;
 
-      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
+      ::f64 dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
       ::color::color ca;
 
       if(false)
       {
 
-         double dPeriod = (5000) * 11;
+         ::f64 dPeriod = (5000) * 11;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.49,0.84);
 
@@ -156,7 +156,7 @@ namespace turboc
       else if(m_bAlternate)
       {
 
-         double dPeriod = (5100) * 8;
+         ::f64 dPeriod = (5100) * 8;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.49,0.84);
 
@@ -164,7 +164,7 @@ namespace turboc
       else
       {
 
-         double dPeriod = (4900) * 11;
+         ::f64 dPeriod = (4900) * 11;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.23,0.84);
 
@@ -217,7 +217,7 @@ namespace turboc
          else
          {
 
-            for(int i = 0; i < dBlur * 2; i++)
+            for(::i32 i = 0; i < dBlur * 2; i++)
             {
 
 /*               m_pimage->blur(m_cx,m_cy);
@@ -273,7 +273,7 @@ namespace turboc
 
       pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
-      unsigned char a,R,g,b;
+      ::u8 a,R,g,b;
 
       if(m_bAlternate)
       {
@@ -298,7 +298,7 @@ namespace turboc
 
          FT_Face & face = (FT_Face &)papp->m_faceAi;
 
-         int error;
+         ::i32 error;
 
          error = FT_Set_Char_Size(face,        /* handle to face object */
                                   0,          /* char_width in 1/64th of points */
@@ -316,7 +316,7 @@ namespace turboc
 
                ::i64 iChar =  unicode_index(unicode_to_utf8(L"Love"));
 
-               int glyph_index = FT_Get_Char_Index(face,(int)iChar);
+               ::i32 glyph_index = FT_Get_Char_Index(face,(::i32)iChar);
 
                error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 
@@ -367,7 +367,7 @@ namespace turboc
 
                ::i64 iChar =  unicode_index(unicode_to_utf8(L"Love"));
 
-               int glyph_index = FT_Get_Char_Index(face,(int)iChar);
+               ::i32 glyph_index = FT_Get_Char_Index(face,(::i32)iChar);
 
                error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 

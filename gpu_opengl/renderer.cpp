@@ -49,7 +49,7 @@ void main() {
 namespace gpu_opengl
 {
 
-   //void vertex2f(const ::double_polygon& a, float fZ);
+   //void vertex2f(const ::f64_polygon& a, ::f32 fZ);
 
 
    renderer::renderer()
@@ -67,7 +67,7 @@ namespace gpu_opengl
    }
 
 
-   //int renderer::width()
+   //::i32 renderer::width()
    //{
 
    //   //auto rectangle = m_pgpucontext->m_pimpact->host_rectangle();
@@ -84,7 +84,7 @@ namespace gpu_opengl
    //}
 
 
-   //int renderer::height()
+   //::i32 renderer::height()
    //{
 
    //   //auto rectangle = m_pgpucontext->m_pimpact->host_rectangle();
@@ -148,13 +148,13 @@ namespace gpu_opengl
 
       auto r = pgpucontext->rectangle();
 
-      int left;
+      ::i32 left;
 
-      int top;
+      ::i32 top;
 
-      int width;
+      ::i32 width;
 
-      int height;
+      ::i32 height;
 
       if (eoutput == ::gpu::e_output_cpu_buffer)
       {
@@ -242,9 +242,9 @@ namespace gpu_opengl
 
       auto r = m_pgpucontext->rectangle();
 
-      int width = r.width();
+      ::i32 width = r.width();
 
-      int height = r.height();
+      ::i32 height = r.height();
 
       auto pgpurendertarget = this->render_target();
 
@@ -285,9 +285,9 @@ namespace gpu_opengl
          ///::opengl::resize(size, bYSwap);
 
          bool bYSwap = true;
-         //double d = 200.0 / 72.0;
+         //::f64 d = 200.0 / 72.0;
 
-   //double d = 1.0;
+   //::f64 d = 1.0;
    ////glViewport(0, 0, size.cx * d, size.cy * d);
 
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
@@ -408,9 +408,9 @@ namespace gpu_opengl
          ::opengl::check_error("");
 
          bool bYSwap = true;
-         //double d = 200.0 / 72.0;
+         //::f64 d = 200.0 / 72.0;
 
-   //double d = 1.0;
+   //::f64 d = 1.0;
    ////glViewport(0, 0, size.cx * d, size.cy * d);
          //glViewport(0, 0, width, height);
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
@@ -492,7 +492,7 @@ namespace gpu_opengl
    }
 
 
-   //int renderer::get_frame_count()
+   //::i32 renderer::get_frame_count()
    //{
 
    //   return ::gpu::renderer::get_frame_count();
@@ -594,9 +594,9 @@ namespace gpu_opengl
       //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
       //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboId);
 
-      //int iGlError1 = glGetError();
+      //::i32 iGlError1 = glGetError();
 
-      //int iGlError2 = -1;
+      //::i32 iGlError2 = -1;
 
       //if (drawFboId != 0)
       //{
@@ -919,7 +919,7 @@ namespace gpu_opengl
       //
       //      }
       //
-      //      int iError = glGetError();
+      //      ::i32 iError = glGetError();
       //
       //      if (iError != 0)
       //      {
@@ -934,14 +934,14 @@ namespace gpu_opengl
       //
       //      {
       //
-      //         auto dst = (unsigned char*)data;
+      //         auto dst = (::u8*)data;
       //         auto size = cx * cy;
       //
       //         while (size > 0)
       //         {
-      //            dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
-      //            dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
-      //            dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
+      //            dst[0] = byte_clip(((::i32)dst[0] * (::i32)dst[3]) / 255);
+      //            dst[1] = byte_clip(((::i32)dst[1] * (::i32)dst[3]) / 255);
+      //            dst[2] = byte_clip(((::i32)dst[2] * (::i32)dst[3]) / 255);
       //            dst += 4;
       //            size--;
       //         }
@@ -960,7 +960,7 @@ namespace gpu_opengl
 //   GLuint createFullscreenQuad(GLuint& quadVBO) {
 //      // Vertex data: (x, y, u, v)
 //#if 1
-//      float quadVertices[] = {
+//      ::f32 quadVertices[] = {
 //         //  Position   TexCoords
 //         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
 //         -1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
@@ -971,7 +971,7 @@ namespace gpu_opengl
 //          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
 //      };
 //#else
-//      float quadVertices[] = {
+//      ::f32 quadVertices[] = {
 //         //  Position   TexCoords
 //         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
 //         0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
@@ -992,11 +992,11 @@ namespace gpu_opengl
 //      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 //
 //      // Position attribute (location = 0)
-//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
 //      glEnableVertexAttribArray(0);
 //
 //      // Texture Coord attribute (location = 1)
-//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
 //      glEnableVertexAttribArray(1);
 //
 //      // Unbind for safety
@@ -1182,7 +1182,7 @@ namespace gpu_opengl
 ////
 ////                     glActiveTexture(GL_TEXTURE0);
 ////
-////                     int iGlError1 = glGetError();
+////                     ::i32 iGlError1 = glGetError();
 ////
 ////                     ::cast < context > pcontext = prenderer->m_pgpucontext;
 ////
@@ -1190,7 +1190,7 @@ namespace gpu_opengl
 ////
 ////                     glBindTexture(GL_TEXTURE_2D, tex);
 ////
-////                     int iGlError2 = glGetError();
+////                     ::i32 iGlError2 = glGetError();
 ////
 ////                     ::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
 ////
@@ -1205,19 +1205,19 @@ namespace gpu_opengl
 ////
 ////                     glBindVertexArray(m_VAOFullScreenQuad);
 ////
-////                     int iGlError00 = glGetError();
+////                     ::i32 iGlError00 = glGetError();
 ////
 ////                     glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
 ////
-////                     int iGlError01 = glGetError();
+////                     ::i32 iGlError01 = glGetError();
 ////
 ////                     glBindVertexArray(0);
 ////
-////                     int iGlErrorA = glGetError();
+////                     ::i32 iGlErrorA = glGetError();
 ////
 ////                     glBindTexture(GL_TEXTURE_2D, 0);
 ////
-////                     int iGlErrorB = glGetError();
+////                     ::i32 iGlErrorB = glGetError();
 ////
 ////                     debug() << "gl error";
 ////
@@ -1262,7 +1262,7 @@ namespace gpu_opengl
 
    //      ::cast < texture > ptexture = player->m_pgpurenderer->m_pgpurendertarget->current_texture();
    //      ::cast < context > pcontext = player->m_pgpurenderer->m_pgpucontext;
-   //   //   int textureID = ptexture->m_gluTextureID;
+   //   //   ::i32 textureID = ptexture->m_gluTextureID;
 
    //   //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
    //   //      GL_TEXTURE_2D, textureID, 0);
@@ -1276,9 +1276,9 @@ namespace gpu_opengl
 
    //      auto r = pcontext->rectangle();
 
-   //      int width = r.width();
+   //      ::i32 width = r.width();
 
-   //      int height = r.height();
+   //      ::i32 height = r.height();
 
    //   //   //clear(player->m_pgputextureSource);
 
@@ -1297,9 +1297,9 @@ namespace gpu_opengl
    //
    //   auto rectangleHost = m_pgpucontext->rectangle();
 
-   //   int wHost = rectangleHost.width();
+   //   ::i32 wHost = rectangleHost.width();
 
-   //   int hHost = rectangleHost.height();
+   //   ::i32 hHost = rectangleHost.height();
 
    //   //glPopAttrib();
    //   //glPopMatrix();
@@ -1364,28 +1364,28 @@ namespace gpu_opengl
    //      glGenBuffers(1, &m_vboQuadBlend);
    //      glBindVertexArray(m_vaoQuadBlend);
    //      glBindBuffer(GL_ARRAY_BUFFER, m_vboQuadBlend);
-   //      glBufferData(GL_ARRAY_BUFFER, 4 * 4 * sizeof(float), NULL, GL_DYNAMIC_DRAW);
-   //      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+   //      glBufferData(GL_ARRAY_BUFFER, 4 * 4 * sizeof(::f32), NULL, GL_DYNAMIC_DRAW);
+   //      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
    //      glEnableVertexAttribArray(0);
-   //      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+   //      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
    //      glEnableVertexAttribArray(1);
 
    //   }
 
-   //   float WIDTH = (float)wHost;
-   //   float HEIGHT = (float)hHost;
+   //   ::f32 WIDTH = (::f32)wHost;
+   //   ::f32 HEIGHT = (::f32)hHost;
 
    //   auto rectangle = prendererSource->m_pgpucontext->rectangle();
 
-   //   float w = (float)rectangle.width();
-   //   float h = (float)rectangle.height();
-   //   float x = (float)rectangle.left;
-   //   float y = (float)(hHost - rectangle.bottom);
+   //   ::f32 w = (::f32)rectangle.width();
+   //   ::f32 h = (::f32)rectangle.height();
+   //   ::f32 x = (::f32)rectangle.left;
+   //   ::f32 y = (::f32)(hHost - rectangle.bottom);
 
    //   // 3. Composite scene texture at 1:1 into UI FBO at position (200, 150)
-   //   //float x = 200.0f, y = 150.0f, w = SCENE_W, h = SCENE_H;
+   //   //::f32 x = 200.0f, y = 150.0f, w = SCENE_W, h = SCENE_H;
 
-   //   float l, r, b, t;
+   //   ::f32 l, r, b, t;
 
    //   if (1)
    //   {
@@ -1396,12 +1396,12 @@ namespace gpu_opengl
    //   }
    //   else
    //   {
-   //      l = (float)rectangle.left;
-   //      r = (float)rectangle.right;
-   //      b = (float)rectangle.bottom;
-   //      t = (float)rectangle.top;
+   //      l = (::f32)rectangle.left;
+   //      r = (::f32)rectangle.right;
+   //      b = (::f32)rectangle.bottom;
+   //      t = (::f32)rectangle.top;
    //   }
-   //   float quad[] = {
+   //   ::f32 quad[] = {
    //          l, b,  0.0f, 0.0f,
    //          r, b,  1.0f, 0.0f,
    //          l, t,  0.0f, 1.0f,
@@ -1497,7 +1497,7 @@ namespace gpu_opengl
 //
 //      }
 //
-//      float quadVertices[] = {
+//      ::f32 quadVertices[] = {
 //         // pos      // uv
 //         -1.0f, -1.0f,  0.0f, 0.0f,
 //          1.0f, -1.0f,  1.0f, 0.0f,
@@ -1508,9 +1508,9 @@ namespace gpu_opengl
 //      auto rectangleTarget =  ptextureSource->rectangle();
 //
 //
-//      int iTopH = ptextureDst->size().cy;
-//      int rectangleBottom = rectangleTarget.bottom;
-//      int iY = iTopH - rectangleBottom;
+//      ::i32 iTopH = ptextureDst->size().cy;
+//      ::i32 rectangleBottom = rectangleTarget.bottom;
+//      ::i32 iY = iTopH - rectangleBottom;
 //
 //      glViewport(
 //         rectangleTarget.left,
@@ -1547,9 +1547,9 @@ namespace gpu_opengl
 //         glBindBuffer(GL_ARRAY_BUFFER, vbo);
 //         glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 //         glEnableVertexAttribArray(0); // position
-//         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
 //         glEnableVertexAttribArray(1); // texcoord
-//         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
 //
 //      }
 //      else
@@ -1588,20 +1588,20 @@ namespace gpu_opengl
 //            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //            {
-//               float fOpacity = 0.5;
-//               float fRed = 0.5;
-//               float fGreen = 0.75;
-//               float fBlue = 0.95;
-//               auto f32Opacity = (float)fOpacity;
-//               auto f32Red = (float)(fRed * fOpacity);
-//               auto f32Green = (float)(fGreen * fOpacity);
-//               auto f32Blue = (float)(fBlue * fOpacity);
+//               ::f32 fOpacity = 0.5;
+//               ::f32 fRed = 0.5;
+//               ::f32 fGreen = 0.75;
+//               ::f32 fBlue = 0.95;
+//               auto f32Opacity = (::f32)fOpacity;
+//               auto f32Red = (::f32)(fRed * fOpacity);
+//               auto f32Green = (::f32)(fGreen * fOpacity);
+//               auto f32Blue = (::f32)(fBlue * fOpacity);
 //               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //            }
 //
-//            ::double_polygon polygon;
+//            ::f64_polygon polygon;
 //
-//            ::double_rectangle rectangle(500, 100, 550, 150);
+//            ::f64_rectangle rectangle(500, 100, 550, 150);
 //
 //            polygon = rectangle;
 //
@@ -1656,7 +1656,7 @@ namespace gpu_opengl
 //
 //      }
 //
-//      float quadVertices[] = {
+//      ::f32 quadVertices[] = {
 //         // pos      // uv
 //         -1.0f, -1.0f,  0.0f, 0.0f,
 //          1.0f, -1.0f,  1.0f, 0.0f,
@@ -1697,9 +1697,9 @@ namespace gpu_opengl
 //      glBindBuffer(GL_ARRAY_BUFFER, vbo);
 //      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 //      glEnableVertexAttribArray(0); // position
-//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
 //      glEnableVertexAttribArray(1); // texcoord
-//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
 //
 //      m_pshaderBlend2->bind(nullptr);
 //
@@ -1732,20 +1732,20 @@ namespace gpu_opengl
 //            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //            {
-//               float fOpacity = 0.5;
-//               float fRed = 0.5;
-//               float fGreen = 0.75;
-//               float fBlue = 0.95;
-//               auto f32Opacity = (float)fOpacity;
-//               auto f32Red = (float)(fRed * fOpacity);
-//               auto f32Green = (float)(fGreen * fOpacity);
-//               auto f32Blue = (float)(fBlue * fOpacity);
+//               ::f32 fOpacity = 0.5;
+//               ::f32 fRed = 0.5;
+//               ::f32 fGreen = 0.75;
+//               ::f32 fBlue = 0.95;
+//               auto f32Opacity = (::f32)fOpacity;
+//               auto f32Red = (::f32)(fRed * fOpacity);
+//               auto f32Green = (::f32)(fGreen * fOpacity);
+//               auto f32Blue = (::f32)(fBlue * fOpacity);
 //               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //            }
 //
-//            ::double_polygon polygon;
+//            ::f64_polygon polygon;
 //
-//            ::double_rectangle rectangle(500, 100, 550, 150);
+//            ::f64_rectangle rectangle(500, 100, 550, 150);
 //
 //            polygon = rectangle;
 //
@@ -1768,7 +1768,7 @@ namespace gpu_opengl
 //   }
 
 
-   //void vertex2f(const ::double_polygon& a, float fZ)
+   //void vertex2f(const ::f64_polygon& a, ::f32 fZ)
    //{
    //   for (auto& p : a)
    //   {
@@ -1795,20 +1795,20 @@ namespace gpu_opengl
    //   //glBegin(GL_QUADS);
 
    //   //{
-   //   //   float fOpacity = 0.5;
-   //   //   float fRed = 0.5;
-   //   //   float fGreen = 0.75;
-   //   //   float fBlue = 0.95;
-   //   //   auto f32Opacity = (float)fOpacity;
-   //   //   auto f32Red = (float)(fRed * fOpacity);
-   //   //   auto f32Green = (float)(fGreen * fOpacity);
-   //   //   auto f32Blue = (float)(fBlue * fOpacity);
+   //   //   ::f32 fOpacity = 0.5;
+   //   //   ::f32 fRed = 0.5;
+   //   //   ::f32 fGreen = 0.75;
+   //   //   ::f32 fBlue = 0.95;
+   //   //   auto f32Opacity = (::f32)fOpacity;
+   //   //   auto f32Red = (::f32)(fRed * fOpacity);
+   //   //   auto f32Green = (::f32)(fGreen * fOpacity);
+   //   //   auto f32Blue = (::f32)(fBlue * fOpacity);
    //   //   ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
    //   //}
 
-   //   //::double_polygon polygon;
+   //   //::f64_polygon polygon;
 
-   //   //::double_rectangle rectangle(100, 100, 200, 200);
+   //   //::f64_rectangle rectangle(100, 100, 200, 200);
 
    //   //polygon = rectangle;
 
@@ -1861,7 +1861,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   float quadVertices[] = {
+   //   ::f32 quadVertices[] = {
    //      // pos      // uv
    //      -1.0f, -1.0f,  0.0f, 0.0f,
    //       1.0f, -1.0f,  1.0f, 0.0f,
@@ -1902,9 +1902,9 @@ namespace gpu_opengl
    //   glBindBuffer(GL_ARRAY_BUFFER, vbo);
    //   glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
    //   glEnableVertexAttribArray(0); // position
-   //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+   //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
    //   glEnableVertexAttribArray(1); // texcoord
-   //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+   //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
 
    //   m_pshaderBlend2->bind(nullptr);
 
@@ -1933,20 +1933,20 @@ namespace gpu_opengl
    //      //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 
    //      {
-   //         float fOpacity = 0.5;
-   //         float fRed = 0.5;
-   //         float fGreen = 0.75;
-   //         float fBlue = 0.95;
-   //         auto f32Opacity = (float)fOpacity;
-   //         auto f32Red = (float)(fRed * fOpacity);
-   //         auto f32Green = (float)(fGreen * fOpacity);
-   //         auto f32Blue = (float)(fBlue * fOpacity);
+   //         ::f32 fOpacity = 0.5;
+   //         ::f32 fRed = 0.5;
+   //         ::f32 fGreen = 0.75;
+   //         ::f32 fBlue = 0.95;
+   //         auto f32Opacity = (::f32)fOpacity;
+   //         auto f32Red = (::f32)(fRed * fOpacity);
+   //         auto f32Green = (::f32)(fGreen * fOpacity);
+   //         auto f32Blue = (::f32)(fBlue * fOpacity);
    //         ///::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
    //      }
 
-   //      ::double_polygon polygon;
+   //      ::f64_polygon polygon;
 
-   //      ::double_rectangle rectangle(100, 100, 200, 200);
+   //      ::f64_rectangle rectangle(100, 100, 200, 200);
 
    //      polygon = rectangle;
 
@@ -2024,20 +2024,20 @@ namespace gpu_opengl
 //         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //         {
-//            float fOpacity = 0.5;
-//            float fRed = 0.5;
-//            float fGreen = 0.75;
-//            float fBlue = 0.95;
-//            auto f32Opacity = (float)fOpacity;
-//            auto f32Red = (float)(fRed * fOpacity);
-//            auto f32Green = (float)(fGreen * fOpacity);
-//            auto f32Blue = (float)(fBlue * fOpacity);
+//            ::f32 fOpacity = 0.5;
+//            ::f32 fRed = 0.5;
+//            ::f32 fGreen = 0.75;
+//            ::f32 fBlue = 0.95;
+//            auto f32Opacity = (::f32)fOpacity;
+//            auto f32Red = (::f32)(fRed * fOpacity);
+//            auto f32Green = (::f32)(fGreen * fOpacity);
+//            auto f32Blue = (::f32)(fBlue * fOpacity);
 //            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //         }
 //
-//         ::double_polygon polygon;
+//         ::f64_polygon polygon;
 //
-//         ::double_rectangle rectangle(300, 300, 400, 400);
+//         ::f64_rectangle rectangle(300, 300, 400, 400);
 //
 //         polygon = rectangle;
 //

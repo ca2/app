@@ -4,7 +4,7 @@
 namespace networking
 {
 
-   using port_t = unsigned short;
+   using port_t = ::u16;
 
    class address;
 
@@ -41,9 +41,9 @@ namespace netserver
 
 
 //CLASS_DECL_APEX ::u32 c_inet_addr(const_char_pointer src);
-//CLASS_DECL_APEX int c_inet_pton(int af, const_char_pointer src, void * dst);
-//CLASS_DECL_APEX const_char_pointer c_inet_ntop(int af, const void * src, char * dst, int cnt);
-//CLASS_DECL_APEX string c_inet_ntop(int af, const void * src);
+//CLASS_DECL_APEX ::i32 c_inet_pton(::i32 af, const_char_pointer src, void * dst);
+//CLASS_DECL_APEX const_char_pointer c_inet_ntop(::i32 af, const void * src, char_pointer dst, ::i32 cnt);
+//CLASS_DECL_APEX string c_inet_ntop(::i32 af, const void * src);
 
 
 
@@ -59,7 +59,7 @@ namespace netserver
 #ifdef WINDOWS
 using socket_id = ::uptr; 
 #else
-using socket_id = int;
+using socket_id = ::i32;
 #endif
 
 

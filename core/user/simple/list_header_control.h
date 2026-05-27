@@ -10,7 +10,7 @@ class CLASS_DECL_CORE simple_list_header_control :
 public:
 
 
-   static const int         s_iDividerWidth;
+   static const ::i32         s_iDividerWidth;
 
 
    simple_list_header_control();

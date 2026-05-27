@@ -7,7 +7,7 @@
 namespace sandbox_game
 {
 
-   mnk_controller::mnk_controller(float moveSpeed, float mouseSensitivity)
+   mnk_controller::mnk_controller(::f32 moveSpeed, ::f32 mouseSensitivity)
       : m_moveSpeed(moveSpeed), m_mouseSensitivity(mouseSensitivity), m_yaw(-90.f), m_pitch(0.f)
    {
    }
@@ -17,18 +17,18 @@ namespace sandbox_game
    }
 
    void mnk_controller::update(
-      float dt,
+      ::f32 dt,
       ::graphics3d::IWindowInput * pinput,
       ::graphics3d::transform& transform)
    {
 
       // 1) Smooth raw mouse delta into m_smoothDelta
-      float alpha = 1.0f - std::exp(-m_smoothing * dt);
+      ::f32 alpha = 1.0f - std::exp(-m_smoothing * dt);
       m_smoothDelta += (m_rawDelta - m_smoothDelta) * alpha;
 
       // 2) Camera-space movement
-      float pitchDeg = glm::degrees(transform.rotation.x);
-      float yawDeg = glm::degrees(transform.rotation.y);
+      ::f32 pitchDeg = glm::degrees(transform.rotation.x);
+      ::f32 yawDeg = glm::degrees(transform.rotation.y);
       floating_sequence3 front{
           std::cos(glm::radians(yawDeg)) * std::cos(glm::radians(pitchDeg)),
           std::sin(glm::radians(pitchDeg)),

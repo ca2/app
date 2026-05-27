@@ -249,7 +249,7 @@ namespace datetime
       enum_element calendar::hit_test(const i32_point & point, ::user::e_zorder ezorder)
       {
 
-         for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
+         for (::i32 iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
             if (hit_test((enum_element)iElement, point))

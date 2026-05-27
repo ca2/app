@@ -6,7 +6,7 @@
 
 //#define BLOCK_SIZE  256
 //
-//void CTSFEditWnd::_SaveToFile(char * pszFile)
+//void CTSFEditWnd::_SaveToFile(char_pointer pszFile)
 //{
 //    if(scopedstrFile)
 //    {
@@ -40,7 +40,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                unsigned char    buffer[BLOCK_SIZE];
+//                ::u8    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //
@@ -78,7 +78,7 @@
 //        
 //        //write the plain UNICODE text into the stream
 //        LPWSTR          pwsz;
-//        int            cch;
+//        ::i32            cch;
 //        ULONG           uWritten;
 //        LARGE_INTEGER   li;
 //        ULONG           uSize;
@@ -179,7 +179,7 @@
 
 **************************************************************************/
 
-//void CTSFEditWnd::_LoadFromFile(char * pszFile)
+//void CTSFEditWnd::_LoadFromFile(char_pointer pszFile)
 //{
 //    if(scopedstrFile)
 //    {
@@ -208,7 +208,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                unsigned char    buffer[BLOCK_SIZE];
+//                ::u8    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //

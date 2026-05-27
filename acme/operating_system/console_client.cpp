@@ -48,7 +48,7 @@ namespace console
 //   }
 
 
-   void console_client::SetWindowSize(int iHeight, int iWidth)
+   void console_client::SetWindowSize(::i32 iHeight, ::i32 iWidth)
    {
 
       get_console()->SetWindowSize(iHeight, iWidth);
@@ -64,7 +64,7 @@ namespace console
    }
 
 
-   void console_client::SetCursorPosition(int y, int x)
+   void console_client::SetCursorPosition(::i32 y, ::i32 x)
    {
 
       get_console()->SetCursorPosition(y, x);
@@ -72,7 +72,7 @@ namespace console
    }
 
 
-   void console_client::SetTextColor(int color)
+   void console_client::SetTextColor(::i32 color)
    {
       m_iTextColor = color;
 
@@ -81,7 +81,7 @@ namespace console
    }
 
 
-   void console_client::SetScreenColor(enum_dos_color edoscolor, int iLineStart, int iLineCount)
+   void console_client::SetScreenColor(enum_dos_color edoscolor, ::i32 iLineStart, ::i32 iLineCount)
    {
 
       get_console()->SetScreenColor(edoscolor, iLineStart, iLineCount);
@@ -97,7 +97,7 @@ namespace console
    }
 
 
-   ::i32_rectangle console_client::get_position_rectangle(int y, int x)
+   ::i32_rectangle console_client::get_position_rectangle(::i32 y, ::i32 x)
    {
     
       return get_console()->get_position_rectangle(y, x);

@@ -44,22 +44,22 @@ namespace sockets
    public:
 
 
-      char * m_ibuf; ///< Input buffer
-      int m_ibufsz; ///< i32_size of input buffer
+      char_pointer m_ibuf; ///< Input buffer
+      ::i32 m_ibufsz; ///< i32_size of input buffer
       bool m_bind_ok; ///< Bind completed successfully
       ::networking::port_t m_port; ///< Bind port number
       memsize m_last_size_written;
-      int m_iConnectionRetryCount;
+      ::i32 m_iConnectionRetryCount;
       bool m_b_read_ts;
 
 
-      int m_iWriteFlags;
+      ::i32 m_iWriteFlags;
 
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam ibufsz Maximum i32_size of receive message (extra bytes will be truncated)
       \lparam ipv6 'true' if this is an ipv6 socket */
-      udp_socket(int ibufsz = 16384, bool ipv6 = false, int retries = 0);
+      udp_socket(::i32 ibufsz = 16384, bool ipv6 = false, ::i32 retries = 0);
       ~udp_socket();
 
       ///** Called when incoming data has been received.
@@ -68,7 +68,7 @@ namespace sockets
       //\lparam sa Pointer to sockaddr struct of sender
       //\lparam sa_len Length of sockaddr struct */
       //using socket::OnRawData;
-      //virtual void OnRawData(char * buf, memsize len, struct sockaddr * sa, socklen_t sa_len);
+      //virtual void OnRawData(char_pointer buf, memsize len, struct sockaddr * sa, socklen_t sa_len);
 
       ///** Called when incoming data has been received and read timestamp is enabled.
       //\lparam buf Pointer to data
@@ -76,36 +76,36 @@ namespace sockets
       //\lparam sa Pointer to sockaddr struct of sender
       //\lparam sa_len Length of sockaddr struct
       //\lparam ts Timestamp from message */
-      //virtual void OnRawData(char * buf, memsize len, struct sockaddr * sa, socklen_t sa_len, struct timeval * ts);
+      //virtual void OnRawData(char_pointer buf, memsize len, struct sockaddr * sa, socklen_t sa_len, struct timeval * ts);
 
       ///** To receive incoming data, call Bind to setup an incoming port.
       //\lparam port Incoming port number
       //\lparam range Port range to try if ports already in use
       //\return 0 if bind succeeded */
-      //int Bind(::networking::port_t & port, int range = 1);
+      //::i32 Bind(::networking::port_t & port, ::i32 range = 1);
       ///** To receive data on a specific interface:port, use this.
       //\lparam intf Interface ip/hostname
       //\lparam port Port number
       //\lparam range Port range
       //\return 0 if bind succeeded */
-      //int Bind(const ::scoped_string & scopedstrHost, ::networking::port_t & port, int range = 1);
+      //::i32 Bind(const ::scoped_string & scopedstrHost, ::networking::port_t & port, ::i32 range = 1);
       ///** To receive data on a specific interface:port, use this.
       //\lparam a Ip address
       //\lparam port Port number
       //\lparam range Port range
       //\return 0 if bind succeeded */
-      //int Bind(in_addr a, ::networking::port_t & port, int range = 1);
+      //::i32 Bind(in_addr a, ::networking::port_t & port, ::i32 range = 1);
       ///** To receive data on a specific interface:port, use this.
       //\lparam a Ipv6 address
       //\lparam port Port number
       //\lparam range Port range
       //\return 0 if bind succeeded */
-      //int Bind(in6_addr a, ::networking::port_t & port, int range = 1);
+      //::i32 Bind(in6_addr a, ::networking::port_t & port, ::i32 range = 1);
       ///** To receive data on a specific interface:port, use this.
       //\lparam ad socket address
       //\lparam range Port range
       //\return 0 if bind succeeded */
-      int Bind(::networking::address & address, int range = 1);
+      ::i32 Bind(::networking::address & address, ::i32 range = 1);
 
       /** Define remote host.
       \lparam l Address of remote host
@@ -129,22 +129,22 @@ namespace sockets
       bool open(::networking::address * address);
 
       /** Send to specified host */
-      void SendToBuf(const ::scoped_string & scopedstr, ::networking::port_t, const_char_pointer data, int len, int flags = 0);
+      void SendToBuf(const ::scoped_string & scopedstr, ::networking::port_t, const_char_pointer data, ::i32 len, ::i32 flags = 0);
       /** Send to specified address */
-      //void SendToBuf(const in_addr & a, ::networking::port_t, const_char_pointer data, int len, int flags = 0);
+      //void SendToBuf(const in_addr & a, ::networking::port_t, const_char_pointer data, ::i32 len, ::i32 flags = 0);
       ///** Send to specified ipv6 address */
-      //void SendToBuf(const in6_addr & a, ::networking::port_t, const_char_pointer data, int len, int flags = 0);
+      //void SendToBuf(const in6_addr & a, ::networking::port_t, const_char_pointer data, ::i32 len, ::i32 flags = 0);
       /** Send to specified socket address */
-      void SendToBuf(::networking::address * address, const_char_pointer data, int len, int flags = 0);
+      void SendToBuf(::networking::address * address, const_char_pointer data, ::i32 len, ::i32 flags = 0);
 
       /** Send string to specified host */
-      //void SendTo(const ::scoped_string & scopedstr, ::networking::port_t, const ::scoped_string & scopedstr, int flags = 0);
+      //void SendTo(const ::scoped_string & scopedstr, ::networking::port_t, const ::scoped_string & scopedstr, ::i32 flags = 0);
       ///** Send string to specified address */
-      //void SendTo(in_addr, ::networking::port_t, const ::scoped_string & scopedstr, int flags = 0);
+      //void SendTo(in_addr, ::networking::port_t, const ::scoped_string & scopedstr, ::i32 flags = 0);
       ///** Send string to specified ipv6 address */
-      //void SendTo(in6_addr, ::networking::port_t, const ::scoped_string & scopedstr, int flags = 0);
+      //void SendTo(in6_addr, ::networking::port_t, const ::scoped_string & scopedstr, ::i32 flags = 0);
       /** Send string to specified socket address */
-      void SendTo(::networking::address * address, const ::scoped_string & scopedstr, int flags = 0);
+      void SendTo(::networking::address * address, const ::scoped_string & scopedstr, ::i32 flags = 0);
 
       /** Send to connected address */
       //using ::file::file::write;
@@ -160,21 +160,21 @@ namespace sockets
       bool IsBroadcast();
 
       /** multicast */
-      void SetMulticastTTL(int ttl = 1);
-      int GetMulticastTTL();
+      void SetMulticastTTL(::i32 ttl = 1);
+      ::i32 GetMulticastTTL();
       bool SetMulticastLoop(bool = true);
       bool IsMulticastLoop();
-      void AddMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrInterface = "0.0.0.0", int if_index = 0);
-      void DropMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrInterface = "0.0.0.0", int if_index = 0);
+      void AddMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrInterface = "0.0.0.0", ::i32 if_index = 0);
+      void DropMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrInterface = "0.0.0.0", ::i32 if_index = 0);
       /** multicast, ipv6 only */
-      void SetMulticastHops(int = -1);
+      void SetMulticastHops(::i32 = -1);
       /** multicast, ipv6 only */
-      int GetMulticastHops();
+      ::i32 GetMulticastHops();
       /** Returns true if Bind succeeded. */
       bool IsBound();
       /** Return Bind port number */
       //::networking::port_t GetPort();
-      //void OnOptions(int, int, int, socket_id) {}
+      //void OnOptions(::i32, ::i32, ::i32, socket_id) {}
       memsize GetLastSizeWritten();
 
       /** Also read timestamp information from incoming message */
@@ -185,7 +185,7 @@ namespace sockets
       void OnRead();
 #if defined(LINUX) || defined(MACOSX)
       /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */
-      int (char * ioBuf, int inBufSize, struct sockaddr * from, int fromlen, struct timeval * ts);
+      ::i32 (char_pointer ioBuf, ::i32 inBufSize, struct sockaddr * from, ::i32 fromlen, struct timeval * ts);
 #endif
 
       /** create before using sendto methods */

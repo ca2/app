@@ -57,7 +57,7 @@ public:
    }
 
 
-   THIS_ITERATOR operator ++(int)
+   THIS_ITERATOR operator ++(::i32)
    {
 
       ITERATOR_TYPE item(*this);

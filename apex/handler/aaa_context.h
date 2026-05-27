@@ -11,7 +11,7 @@ class CLASS_DECL_APEX handler_context :
 public:
 
    // 0 update serial is not ok
-   unsigned long long       m_uUpdateSerial;
+   ::u64       m_uUpdateSerial;
 
 
    handler_context();

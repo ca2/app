@@ -21,9 +21,9 @@ namespace coding
 
       enum_task                              m_etaskOrdinal;
 
-      int                                    m_iLeftMargin;
-      int                                    m_iLeftWidth;
-      int                                    m_yStart;
+      ::i32                                    m_iLeftMargin;
+      ::i32                                    m_iLeftWidth;
+      ::i32                                    m_yStart;
 
 
 

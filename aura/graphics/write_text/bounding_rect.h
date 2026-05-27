@@ -11,7 +11,7 @@
 //}
 //
 //
-//inline bool get_bounding_box(::double_rectangle & rectangleBounding, const ::write_text::text_out & textout)
+//inline bool get_bounding_box(::f64_rectangle & rectangleBounding, const ::write_text::text_out & textout)
 //{
 //
 //   //copy(prectangle, pdrawtext->m_rectangle);
@@ -31,7 +31,7 @@
 //}
 //
 //
-//inline bool get_bounding_box(::double_rectangle & rectangleBounding, const ::write_text::draw_text & drawtext)
+//inline bool get_bounding_box(::f64_rectangle & rectangleBounding, const ::write_text::draw_text & drawtext)
 //{
 //
 //   copy(rectangleBounding, drawtext.m_rectangle);

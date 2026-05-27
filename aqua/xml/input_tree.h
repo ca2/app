@@ -56,17 +56,17 @@ namespace xml
 
       //virtual bool load_attr(const ::scoped_string & scopedstrName, bool & b);
 
-      //virtual bool load_attr(const ::scoped_string & scopedstrName, double & d);
+      //virtual bool load_attr(const ::scoped_string & scopedstrName, ::f64 & d);
 
-      //virtual bool load_attr(const ::scoped_string & scopedstrName, int & iValue);
+      //virtual bool load_attr(const ::scoped_string & scopedstrName, ::i32 & iValue);
 
       //virtual bool get_attr(const ::scoped_string & scopedstrName, string & strValue, const ::scoped_string & scopedstrDefault = "");
 
       //virtual bool get_attr(const ::scoped_string & scopedstrName, bool & b, bool bDefault = false);
 
-      //virtual bool get_attr(const ::scoped_string & scopedstrName, double & d, double dDefault = 0.0);
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, ::f64 & d, ::f64 dDefault = 0.0);
 
-      //virtual bool get_attr(const ::scoped_string & scopedstrName, int & iValue, int iDefault = 0);
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, ::i32 & iValue, ::i32 iDefault = 0);
 
       virtual void get_value(string & strValue);
 

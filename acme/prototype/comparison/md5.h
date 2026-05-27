@@ -83,7 +83,7 @@
 //
 //
 //		action_context     m_ctx;
-//		uchar       m_uchaDigest[16];
+//		uchar       m_u8aDigest[16];
 //
 //
 //		md5();
@@ -92,7 +92,7 @@
 //		void	            initialize();
 //		void	            update(const void * pdata, size_t nInputLen);
 //		void	            destroy();
-//		const unsigned char *   
+//		const ::u8 *   
 //                        digest();
 //		string			   to_string();
 //		const void *		body(const void *data, ::u32 i32_size);

@@ -14,7 +14,7 @@ namespace graphics
    public:
 
 
-      int                           m_iGoodStride;
+      ::i32                           m_iGoodStride;
       //::image::image_pointer               m_imageaBuffer[2];
       //::pointer_array < ::mutex >   m_mutexa;
       //bool                          m_bSingleBufferMode;
@@ -23,7 +23,7 @@ namespace graphics
       bool                          m_bDibIsHostingBuffer;
 
 
-      int                           m_iCurrentBuffer;
+      ::i32                           m_iCurrentBuffer;
 
 
       double_buffer();

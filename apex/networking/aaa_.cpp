@@ -12,25 +12,25 @@
 #include <netdb.h>
 #endif
 
-unsigned int c_inet_to_ui(const char * src)
+::u32 c_inet_to_ui(const_char_pointer src)
 {
 
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (unsigned int) ansi_to_long_long(&src[2], nullptr, 16);
+      return (::u32) ansi_to_long_long(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (unsigned int) ansi_to_long_long(&src[1], nullptr, 16);
+      return (::u32) ansi_to_long_long(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (unsigned int) ansi_to_long_long(src, nullptr, 10);
+      return (::u32) ansi_to_long_long(src, nullptr, 10);
 
    }
 
@@ -83,22 +83,22 @@ static const uchar index_hex[256] =
 */
 CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * string)
 {
-   const uchar *s = (const uchar *)(const char *) string;
-   int department = 0;        /* index of the current department (a 16-bit
+   const ::u8 * s = (const ::u8 * )(const_char_pointer ) string;
+   ::i32 department = 0;        /* index of the current department (a 16-bit
                            * piece of the address */
-   int double_colon = -1;  /* index of the department after the first
+   ::i32 f64_colon = -1;  /* index of the department after the first
                            * 16-bit group of zeros represented by
-                           * the double colon */
-   unsigned int val = 0;
-   int len;
+                           * the ::f64 colon */
+   ::u32 val = 0;
+   ::i32 len;
 
-   /* Handle initial (double) colon */
+   /* Handle initial (::f64) colon */
    if (*s == ':')
    {
       if (s[1] != ':') throw parsing_exception("to in6_addr");
       s += 2;
       addr.pr_s6_addr16[0] = 0;
-      department = double_colon = 1;
+      department = f64_colon = 1;
    }
 
    while (*s)
@@ -106,9 +106,9 @@ CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * strin
       if (department == 8) throw parsing_exception("to in6_addr (too long)"); /* too long */
       if (*s == ':')
       {
-         if (double_colon != -1) throw parsing_exception("to in6_addr (too double colons)"); /* two double colons */
+         if (f64_colon != -1) throw parsing_exception("to in6_addr (too ::f64 colons)"); /* two ::f64 colons */
          addr.pr_s6_addr16[department++] = 0;
-         double_colon = department;
+         f64_colon = department;
          s++;
          continue;
       }
@@ -134,7 +134,7 @@ CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * strin
          throw parsing_exception("to in6_addr (bad character)"); /* bad character */
 
       }
-      addr.pr_s6_addr16[department++] = htons((unsigned short)val);
+      addr.pr_s6_addr16[department++] = htons((::u16)val);
    }
 
    if (*s == '.')
@@ -187,30 +187,30 @@ CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * strin
       department++;
    }
 
-   if (double_colon != -1)
+   if (f64_colon != -1)
    {
-      /* Stretch the double colon */
-      int tosection;
-      int ncopy = department - double_colon;
+      /* Stretch the ::f64 colon */
+      ::i32 tosection;
+      ::i32 ncopy = department - f64_colon;
       for (tosection = 7; ncopy--; tosection--)
       {
          addr.pr_s6_addr16[tosection] =
-         addr.pr_s6_addr16[double_colon + ncopy];
+         addr.pr_s6_addr16[f64_colon + ncopy];
       }
-      while (tosection >= double_colon)
+      while (tosection >= f64_colon)
       {
          addr.pr_s6_addr16[tosection--] = 0;
       }
    }
    else if (department != 8)
    {
-      throw parsing_exception("to in6_addr (too short)"); /* too short */
+      throw parsing_exception("to in6_addr (too ::i16)"); /* too ::i16 */
    }
 }
 
 #undef XX
 
-static const char *basis_hex = "0123456789abcdef";
+static const_char_pointer basis_hex = "0123456789abcdef";
 
 
 
@@ -225,19 +225,19 @@ CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
 
    str.empty();
 
-#define STUFF(c) { str += ((char)(c)); }
+#define STUFF(c) { str += ((::i8)(c)); }
 
-   int double_colon = -1;          /* index of the first 16-bit
+   ::i32 f64_colon = -1;          /* index of the first 16-bit
                                  * group of zeros represented
-                                 * by the double colon */
-   int double_colon_length = 1;    /* use double colon only if
+                                 * by the ::f64 colon */
+   ::i32 f64_colon_length = 1;    /* use ::f64 colon only if
                                  * there are two or more 16-bit
                                  * groups of zeros */
-   int zero_length;
-   int department;
-   unsigned int val;
+   ::i32 zero_length;
+   ::i32 department;
+   ::u32 val;
 
-   /* Scan to find the placement of the double colon */
+   /* Scan to find the placement of the ::f64 colon */
    for (department = 0; department < 8; department++)
    {
       if (addr.pr_s6_addr16[department] == 0)
@@ -250,10 +250,10 @@ CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
             department++;
          }
          /* Select the longest sequence of zeros */
-         if (zero_length > double_colon_length)
+         if (zero_length > f64_colon_length)
          {
-            double_colon = department - zero_length;
-            double_colon_length = zero_length;
+            f64_colon = department - zero_length;
+            f64_colon_length = zero_length;
          }
       }
    }
@@ -261,15 +261,15 @@ CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
    /* Now start converting to a string */
    department = 0;
 
-   if (double_colon == 0)
+   if (f64_colon == 0)
    {
-      if (double_colon_length == 6 ||
-            (double_colon_length == 5 && addr.pr_s6_addr16[5] == 0xffff))
+      if (f64_colon_length == 6 ||
+            (f64_colon_length == 5 && addr.pr_s6_addr16[5] == 0xffff))
       {
          /* ipv4 format address */
          STUFF(':');
          STUFF(':');
-         if (double_colon_length == 5)
+         if (f64_colon_length == 5)
          {
             STUFF('f');
             STUFF('f');
@@ -299,11 +299,11 @@ CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
 
    while (department < 8)
    {
-      if (department == double_colon)
+      if (department == f64_colon)
       {
          STUFF(':');
          STUFF(':');
-         department += double_colon_length;
+         department += f64_colon_length;
          continue;
       }
       val = ntohs(addr.pr_s6_addr16[department]);
@@ -321,7 +321,7 @@ CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
       }
       STUFF(basis_hex[val & 0xf]);
       department++;
-      if (department < 8 && department != double_colon) STUFF(':');
+      if (department < 8 && department != f64_colon) STUFF(':');
    }
    STUFF('\0');
 //   return str;
@@ -338,13 +338,13 @@ struct c_in_addr
    {
       struct
       {
-         unsigned char	s_b1;
-         unsigned char	s_b2;
-         unsigned char	s_b3;
-         unsigned char	s_b4;
+         ::u8	s_b1;
+         ::u8	s_b2;
+         ::u8	s_b3;
+         ::u8	s_b4;
       } S_un_b;
 
-      unsigned int S_addr;
+      ::u32 S_addr;
    } S_un;
 };
 
@@ -364,22 +364,22 @@ CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * s
    if(stra.get_count() != 4)
       throw parsing_exception("to in_addr (stra.get_count() != 4)");
 
-   int i1 = ansi_to_int(stra[0]);
+   ::i32 i1 = ansi_to_int(stra[0]);
 
    if(i1 < 0 || i1 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (I)");
 
-   int i2 = ansi_to_int(stra[1]);
+   ::i32 i2 = ansi_to_int(stra[1]);
 
    if(i2 < 0 || i2 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (II)");
 
-   int i3 = ansi_to_int(stra[2]);
+   ::i32 i3 = ansi_to_int(stra[2]);
 
    if(i3 < 0 || i3 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (III)");
 
-   int i4 = ansi_to_int(stra[3]);
+   ::i32 i4 = ansi_to_int(stra[3]);
 
    if(i4 < 0 || i4 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (IV)");
@@ -400,12 +400,12 @@ CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * s
 
 //} // namespace str
 
-inline string ip_to_string(unsigned char b1, unsigned char b2, unsigned char b3, unsigned char b4)
+inline string ip_to_string(::u8 b1, ::u8 b2, ::u8 b3, ::u8 b4)
 {
 
    string str;
 
-   char * psz = str.get_buffer(20);
+   char_pointer psz = str.get_buffer(20);
 
    ansi_concatenate_long_long(scopedstr, b1);
 
@@ -441,7 +441,7 @@ CLASS_DECL_APEX ::string as_string(const in_addr &  addr)
          addr.S_un.S_un_b.s_b3,
          addr.S_un.S_un_b.s_b4);
 #else
-   char sz[32];
+   ::i8 sz[32];
    str = inet_ntop(AF_INET, &addr, sz, sizeof(sz));
 #endif
 }
@@ -532,7 +532,7 @@ CLASS_DECL_APEX void from_string(const sockaddr & addr, string & str)
 //} // namespace str
 
 
-CLASS_DECL_APEX int c_inet_pton(int af, const char *src, void *dst)
+CLASS_DECL_APEX ::i32 c_inet_pton(::i32 af, const_char_pointer src, void *dst)
 {
 
    if(af == AF_INET)
@@ -565,7 +565,7 @@ CLASS_DECL_APEX int c_inet_pton(int af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_APEX string c_inet_ntop(int af, const void *src)
+CLASS_DECL_APEX string c_inet_ntop(::i32 af, const void *src)
 {
 
    string str;
@@ -591,7 +591,7 @@ CLASS_DECL_APEX string c_inet_ntop(int af, const void *src)
 
 }
 
-CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int cnt)
+CLASS_DECL_APEX const_char_pointer c_inet_ntop(::i32 af, const void *src, char_pointer dst, ::i32 cnt)
 {
 
    if(dst == nullptr)
@@ -611,9 +611,9 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 
 }
 
-//#define C_INADDR_NONE ((unsigned int) -1)
+//#define C_INADDR_NONE ((::u32) -1)
 //
-//CLASS_DECL_APEX unsigned int c_inet_addr(const char * src)
+//CLASS_DECL_APEX ::u32 c_inet_addr(const_char_pointer src)
 //{
 //
 //   try
@@ -638,7 +638,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 //
 //      c_in_addr addr;
 //
-//      unsigned int ul;
+//      ::u32 ul;
 //
 //      if(stra.get_count() == 2)
 //      {
@@ -648,7 +648,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 //         if(ul > 255)
 //            return C_INADDR_NONE;
 //
-//         addr.S_un.S_un_b.s_b1 = (unsigned char) ul;
+//         addr.S_un.S_un_b.s_b1 = (::u8) ul;
 //
 //         ul = c_inet_to_ui(stra[1]);
 //
@@ -670,14 +670,14 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 //         if(ul > 255)
 //            return C_INADDR_NONE;
 //
-//         addr.S_un.S_un_b.s_b1 = (unsigned char) ul;
+//         addr.S_un.S_un_b.s_b1 = (::u8) ul;
 //
 //         ul = c_inet_to_ui(stra[1]);
 //
 //         if(ul > 255)
 //            return C_INADDR_NONE;
 //
-//         addr.S_un.S_un_b.s_b2 = (unsigned char) ul;
+//         addr.S_un.S_un_b.s_b2 = (::u8) ul;
 //
 //         ul = c_inet_to_ui(stra[1]);
 //
@@ -721,7 +721,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 //}
 //
 //
-//CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
+//CLASS_DECL_APEX string c_gethostbyname(const_char_pointer hostname)
 //{
 //
 ////#ifdef UNIVERSAL_WINDOWS
@@ -873,7 +873,7 @@ namespace net
 {
 
 
-   int family_len(int family)
+   ::i32 family_len(::i32 family)
    {
 
       if (family == AF_INET)
@@ -921,7 +921,7 @@ namespace net
 
       string str;
 
-      char sz[INET6_ADDRSTRLEN + INET_ADDRSTRLEN];
+      ::i8 sz[INET6_ADDRSTRLEN + INET_ADDRSTRLEN];
 
       switch (sockaddr.sa_family)
       {

@@ -42,7 +42,7 @@ namespace winrt
 
             //    memVer.from_hex("00");
 
-            //  memVer.prefix_der_unsigned int();
+            //  memVer.prefix_der_unsigned ::i32();
 
       memfile.write(&blob, sizeof(blob));
 
@@ -56,7 +56,7 @@ namespace winrt
 
 
 
-      //memMod.prefix_der_unsigned int();
+      //memMod.prefix_der_unsigned ::i32();
 
       memory memExp;
 
@@ -68,7 +68,7 @@ namespace winrt
 
       memfile.write(memMod.get_data(), memMod.get_size());
 
-      //memExp.prefix_der_unsigned int();
+      //memExp.prefix_der_unsigned ::i32();
 
       ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ cipher =
       
@@ -108,42 +108,42 @@ namespace winrt
    }
 
 
-   int rsa::public_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_encrypt(memory& out, const memory& in, string& strError)
    {
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_pkey, in.get_os_crypt_buffer(), nullptr));
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
    {
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_pkey, in.get_os_crypt_buffer(), nullptr));
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
    {
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_pkey, in.get_os_crypt_buffer(), nullptr));
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
    {
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_pkey, in.get_os_crypt_buffer(), nullptr));
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 

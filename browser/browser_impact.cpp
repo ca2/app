@@ -8,7 +8,7 @@
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "acme/constant/timer.h"
-int cef_main(HINSTANCE hInstance, HWND hwnd, ::i32_rectangle i32_rectangle);
+::i32 cef_main(HINSTANCE hInstance, HWND hwnd, ::i32_rectangle i32_rectangle);
 
 namespace browser
 {
@@ -825,7 +825,7 @@ namespace browser
    {
    }
 
-   //void impact::OnSize(::u32 nType, int cx, int cy)
+   //void impact::OnSize(::u32 nType, ::i32 cx, ::i32 cy)
    //{
    //   CImpact::OnSize(nType, cx, cy);
 
@@ -886,8 +886,8 @@ namespace browser
                       CefRenderHandler::PaintElementType type,
                       const CefRenderHandler::rectList& dirtyRects,
                       const void* buffer,
-                      int width,
-                      int height)
+                      ::i32 width,
+                      ::i32 height)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

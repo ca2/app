@@ -15,7 +15,7 @@ namespace windowing
 
 
    simple_ui_display::simple_ui_display(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle,
-                                        const ::::user::e_message_box &emessagebox) :
+                                        const ::user::e_message_box &emessagebox) :
       m_strTitle(strTitle),
       m_strFontName("serif"),
       m_size(100, 40),
@@ -33,7 +33,7 @@ namespace windowing
 
       m_stra.add_lines(strMessage);
 
-      unsigned int uType = ((unsigned int) emessagebox) & 7;
+      ::u32 uType = ((::u32) emessagebox) & 7;
 
       switch (uType)
       {
@@ -72,7 +72,7 @@ namespace windowing
    }
 
 
-   long long simple_ui_display::increment_reference_count()
+   ::i64 simple_ui_display::increment_reference_count()
    {
 
       return hook::increment_reference_count();
@@ -80,7 +80,7 @@ namespace windowing
    }
 
 
-   long long simple_ui_display::decrement_reference_count()
+   ::i64 simple_ui_display::decrement_reference_count()
    {
 
       return hook::decrement_reference_count();
@@ -88,7 +88,7 @@ namespace windowing
    }
 
 
-   long long simple_ui_display::release()
+   ::i64 simple_ui_display::release()
    {
 
       return hook::release();
@@ -321,14 +321,14 @@ namespace windowing
 //      try
 //      {
 //
-//         int iDraw = 1;
+//         ::i32 iDraw = 1;
 //
 //         XSync(pdisplay, False);
 //
 //         if (iDraw == 1)
 //         {
 //
-//            const char *buf = "Test";
+//            const_char_pointer pszBuffer = "Test";
 //
 //            XftDrawRect(m_pdraw, &m_colorBack, 0, 0, m_size.cx, m_size.cy);
 //
@@ -338,7 +338,7 @@ namespace windowing
 //
 //            color32_t crBk = get_simple_ui_color(::e_element_background);
 //
-//            int iY = m_iMarginTop;
+//            ::i32 iY = m_iMarginTop;
 //
 //            for (auto &str : m_stra)
 //            {
@@ -354,7 +354,7 @@ namespace windowing
 //
 //            }
 //
-//            int right = m_size.cx - m_iMarginRight;
+//            ::i32 right = m_size.cx - m_iMarginRight;
 //
 //            XftColor colorFore;
 //            XftColor colorBack;
@@ -480,7 +480,7 @@ namespace windowing
    }
 
 
-   int simple_ui_display::show()
+   ::i32 simple_ui_display::show()
    {
 
 //      {
@@ -526,9 +526,9 @@ namespace windowing
 //               PropertyChangeMask |
 //               ColormapChangeMask;
 //
-//            //      char **missingCharset_list = NULL;
+//            //      char_pointer *missingCharset_list = NULL;
 //            //
-//            //      int missingCharset_count = 0;
+//            //      ::i32 missingCharset_count = 0;
 //            //
 //            //      m_fs = XCreateFontSet(pdisplay,
 //            //         "-*-*-medium-r-*-*-*-140-75-75-*-*-*-*" ,
@@ -539,7 +539,7 @@ namespace windowing
 //            //
 //            //         fprintf(stderr, "Missing charsets :\n");
 //            //
-//            //         for(int i = 0; i < missingCharset_count; i++)
+//            //         for(::i32 i = 0; i < missingCharset_count; i++)
 //            //         {
 //            //
 //            //            fprintf(stderr, "%s\n", missingCharset_list[i]);
@@ -566,7 +566,7 @@ namespace windowing
 //            //printf("Window created %" PRId64 "\n", m_window);
 //            XStoreName(pdisplay, m_window, m_strTitle);
 //
-//            const char *pszFont = "Ubuntu:i32_size=12";
+//            const_char_pointer pszFont = "Ubuntu:i32_size=12";
 //
 //            m_pfont = XftFontOpenName(pdisplay, m_iScreen, pszFont);
 //
@@ -637,7 +637,7 @@ namespace windowing
 //
 //      }
 //
-//      int iMaxButtonTextWidth = 50;
+//      ::i32 iMaxButtonTextWidth = 50;
 //
 //      for (::collection::index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
 //      {
@@ -693,21 +693,21 @@ namespace windowing
 //
 //      sizeTotal.cy += m_iMarginBottom;
 //
-//      int iButtonWidth = 100;
+//      ::i32 iButtonWidth = 100;
 //
 //      m_size = m_size.maximum(sizeTotal);
 //
-//      int iScreenCount = 0;
+//      ::i32 iScreenCount = 0;
 //
 //      auto pscreens = XineramaQueryScreens(pdisplay, &iScreenCount);
 //
-//      int cxScreen = 800;
+//      ::i32 cxScreen = 800;
 //
-//      int cyScreen = 600;
+//      ::i32 cyScreen = 600;
 //
-//      int xScreen = 0;
+//      ::i32 xScreen = 0;
 //
-//      int yScreen = 0;
+//      ::i32 yScreen = 0;
 //
 //      if (pscreens)
 //      {
@@ -874,7 +874,7 @@ namespace windowing
    }
 
 
-   bool simple_ui_display::on_click(int iResult)
+   bool simple_ui_display::on_click(::i32 iResult)
    {
 
       m_iResult = iResult;

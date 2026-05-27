@@ -2,16 +2,16 @@
 //#include "aqua.h"
 #include <math.h>
 
-CLASS_DECL_AURA void pre_multiply_alpha(::u32 * puserinteraction, int cx, int cy, int stride)
+CLASS_DECL_AURA void pre_multiply_alpha(::u32 * puserinteraction, ::i32 cx, ::i32 cy, ::i32 stride)
 {
-   unsigned char * p = (unsigned char *)puserinteraction;
-   unsigned char a1;
-   unsigned char a2;
-   unsigned char a3;
-   unsigned char a4;
-   int s = stride * cy / 16;
+   ::u8 * p = (::u8 *)puserinteraction;
+   ::u8 a1;
+   ::u8 a2;
+   ::u8 a3;
+   ::u8 a4;
+   ::i32 s = stride * cy / 16;
 #pragma loop(hint_parallel(0))
-   for (int i = 0; i < s; i++)
+   for (::i32 i = 0; i < s; i++)
    {
       a1 = p[3];
       a2 = p[7];
@@ -45,7 +45,7 @@ CLASS_DECL_AURA void pre_multiply_alpha(::u32 * puserinteraction, int cx, int cy
 
 /*
 extern "C"
-double hypot(double x,double y)
+::f64 hypot(::f64 x,::f64 y)
 {
    return sqrt(x*x + y*y);
 }

@@ -51,7 +51,7 @@ namespace gpu_opengl
    }
 
 
-   int render_target::get_frame_index()
+   ::i32 render_target::get_frame_index()
    {
 
       return 0;
@@ -66,7 +66,7 @@ namespace gpu_opengl
    }
 
 
-   //int render_target::get_image_index() const
+   //::i32 render_target::get_image_index() const
    //{
    //   
    //   return m_pgpurenderer->get_frame_index(); 
@@ -129,9 +129,9 @@ namespace gpu_opengl
       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
       //   ::opengl::check_error("");
 
-      //   int w = m_size.cx;
+      //   ::i32 w = m_size.cx;
 
-      //   int h = m_size.cy;
+      //   ::i32 h = m_size.cy;
       //   // Allocate storage for a 24-bit depth + 8-bit stencil buffer
       //   glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, w, h, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
       //   ::opengl::check_error("");

@@ -19,12 +19,12 @@ public:
   static SharedInputSource *getInputSource(string path, stream & aura);
 
   /** Increments object counter */
-  int addref(){
+  ::i32 addref(){
     return ++ref_count;
   }
 
   /** Decrements object counter */
-  int delref(){
+  ::i32 delref(){
     if (ref_count == 0){
       CLR_ERROR("SharedInputSource", "delref: already zeroed references");
     }
@@ -39,7 +39,7 @@ public:
    * Returns currently opened stream.
    * Opens it, if not yet opened.
    */
-  const unsigned char *getStream(){
+  const ::u8 *getStream(){
     if (stream == nullptr){
       stream = openStream();
     }
@@ -50,7 +50,7 @@ public:
     return is->get_location();
   }
 
-  const unsigned char *openStream(){
+  const ::u8 *openStream(){
     return is->openStream();
   }
 
@@ -66,8 +66,8 @@ private:
   static Hashtable<SharedInputSource*> *isHash;
 
   stream & is;
-  const unsigned char *stream;
-  int ref_count;
+  const ::u8 *stream;
+  ::i32 ref_count;
 };
 
 #endif

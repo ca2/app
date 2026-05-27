@@ -49,7 +49,7 @@ namespace parallelization
       }
 
 
-      ::collection::count operator ++(int)
+      ::collection::count operator ++(::i32)
       {
 
          ::collection::count c = m_interlocked;
@@ -85,13 +85,13 @@ namespace parallelization
 //   interlocked_int      m_interlocked;
 //
 //
-//   counter32(int lCount) : m_interlocked(lCount) {}
+//   counter32(::i32 lCount) : m_interlocked(lCount) {}
 //
 //
-//   int operator ++()
+//   ::i32 operator ++()
 //   {
 //
-//      int i = --m_interlocked;
+//      ::i32 i = --m_interlocked;
 //
 //      if (i <= 0)
 //      {
@@ -105,10 +105,10 @@ namespace parallelization
 //   }
 //
 //
-//   int operator ++(int)
+//   ::i32 operator ++(::i32)
 //   {
 //
-//      int i = m_interlocked;
+//      ::i32 i = m_interlocked;
 //
 //      ++(*this);
 //

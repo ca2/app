@@ -64,7 +64,7 @@ extern "C" {
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
     from (void *) without cast */
-typedef struct Tagunzip_File__ { int unused; } unzip_File__;
+typedef struct Tagunzip_File__ { ::i32 unused; } unzip_File__;
 typedef unzip_File__ *unzip_File;
 #else
 typedef voidp unzip_File;
@@ -123,9 +123,9 @@ typedef struct unzip__file_info_s
    tm_unzip_ tmu_date;
 } unzip__file_info;
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_StringFileNameCompare OF ((const_char_pointer fileName1,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_StringFileNameCompare OF ((const_char_pointer fileName1,
       const_char_pointer fileName2,
-      int iCaseSensitivity));
+      ::i32 iCaseSensitivity));
 /*
    Compare two filename (fileName1,fileName2).
    If iCaseSenisivity = 1, comparision is case sensitivity (like strcmp)
@@ -136,7 +136,7 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_StringFileNameCompare OF ((const_char_poi
 */
 
 
-extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open OF((const_char_pointer path));
+extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open OF((const_char_pointer pszPath));
 /*
   open a Zip spfile-> path contain the full pathname (by example,
      on a Windows XP computer "ca:\\zlib\\zlib113.zip" or on an Unix computer
@@ -147,21 +147,21 @@ extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open OF((const_char_pointer path))
        of this unzip_ip package.
 */
 
-extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open2 OF((const_char_pointer path,
+extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open2 OF((const_char_pointer pszPath,
       zlib_filefunc_def* pzlib_filefunc_def, void * opaque));
 /*
    open a Zip file, like unzip_Open, but provide a set of file low level API
       for read/write the zip file (see ioapi.h)
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_Close OF((unzip_File file));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_Close OF((unzip_File file));
 /*
   close a ZipFile opened with unzip_ipOpen.
   If there is files inside the .Zip opened with unzip_OpenCurrentFile (see later),
     these files MUST be closed with unzip_ipCloseCurrentFile before call unzip_ipClose.
   return UNZ_OK if there is no problem. */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GetGlobalInfo OF((unzip_File file,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GetGlobalInfo OF((unzip_File file,
       unzip__global_info *pglobal_info));
 /*
   write info about the ZipFile in the *pglobal_info structure.
@@ -169,35 +169,35 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_GetGlobalInfo OF((unzip_File file,
   return UNZ_OK if there is no problem. */
 
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GetGlobalComment OF((unzip_File file,
-      char *szComment,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GetGlobalComment OF((unzip_File file,
+      char_pointer szComment,
       uptr uSizeBuf));
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
   uSizeBuf is the i32_size of the szComment buffer.
-  return the number of unsigned char copied or an error code <0
+  return the number of ::u8 copied or an error code <0
 */
 
 
 /***************************************************************************/
 /* Unzip package allow you browse the directory of the zipfile */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GoToFirstFile OF((unzip_File file));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GoToFirstFile OF((unzip_File file));
 /*
   set the current file of the zipfile to the first spfile->
   return UNZ_OK if there is no problem
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GoToNextFile OF((unzip_File file));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GoToNextFile OF((unzip_File file));
 /*
   set the current file of the zipfile to the next spfile->
   return UNZ_OK if there is no problem
   return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_LocateFile OF((unzip_File file,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_LocateFile OF((unzip_File file,
       const_char_pointer szFileName,
-      int iCaseSensitivity));
+      ::i32 iCaseSensitivity));
 /*
   Try locate the file szFileName in the zipfile.
   For the iCaseSensitivity signification, see unzip_StringFileNameCompare
@@ -217,23 +217,23 @@ typedef struct unzip__file_pos_s
    uptr num_of_file;            /* # of file */
 } unzip__file_pos;
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GetFilePos(
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GetFilePos(
 unzip_File file,
 unzip__file_pos* file_pos);
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GoToFilePos(
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GoToFilePos(
 unzip_File file,
 unzip__file_pos* file_pos);
 
 /* ****************************************** */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GetCurrentFileInfo OF((unzip_File file,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GetCurrentFileInfo OF((unzip_File file,
       unzip__file_info *pfile_info,
-      char *szFileName,
+      char_pointer szFileName,
       uptr fileNameBufferSize,
       void *extraField,
       uptr extraFieldBufferSize,
-      char *szComment,
+      char_pointer szComment,
       uptr commentBufferSize));
 /*
   get Info about the current file
@@ -253,13 +253,13 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_GetCurrentFileInfo OF((unzip_File file,
    from it, and close it (you can close it before reading all the file)
    */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile OF((unzip_File file));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile OF((unzip_File file));
 /*
   open for reading data the current file in the zipfile.
   If there is no error, the return value is UNZ_OK.
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFilePassword OF((unzip_File file,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFilePassword OF((unzip_File file,
       const_char_pointer password));
 /*
   open for reading data the current file in the zipfile.
@@ -267,10 +267,10 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFilePassword OF((unzip_File fi
   If there is no error, the return value is UNZ_OK.
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile2 OF((unzip_File file,
-      int* method,
-      int* level,
-      int raw));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile2 OF((unzip_File file,
+      ::i32* method,
+      ::i32* level,
+      ::i32 raw));
 /*
   Same than unzip_OpenCurrentFile, but open for read raw the file (not uncompress)
     if raw==1
@@ -280,10 +280,10 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile2 OF((unzip_File file,
          but you CANNOT set method parameter as nullptr
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile3 OF((unzip_File file,
-      int* method,
-      int* level,
-      int raw,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile3 OF((unzip_File file,
+      ::i32* method,
+      ::i32* level,
+      ::i32 raw,
       const_char_pointer password));
 /*
   Same than unzip_OpenCurrentFile, but open for read raw the file (not uncompress)
@@ -295,13 +295,13 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile3 OF((unzip_File file,
 */
 
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_CloseCurrentFile OF((unzip_File file));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_CloseCurrentFile OF((unzip_File file));
 /*
   close the file in zip opened with unzip_OpenCurrentFile
   Return UNZ_CRCERROR if all the file was read but the CRC is not good
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_ReadCurrentFile OF((unzip_File file,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_ReadCurrentFile OF((unzip_File file,
       voidp buf,
       ::u32 len));
 /*
@@ -309,7 +309,7 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_ReadCurrentFile OF((unzip_File file,
   buf contain buffer where data must be copied
   len the i32_size of buf.
 
-  return the number of unsigned char copied if somes bytes are copied
+  return the number of ::u8 copied if somes bytes are copied
   return 0 if the end of file was reached
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
@@ -320,12 +320,12 @@ extern iptr CLASS_DECL_FOLDER_ZIP unzip_tell OF((unzip_File file));
   Give the current position in uncompressed data
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_eof OF((unzip_File file));
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_eof OF((unzip_File file));
 /*
   return 1 if the end of file was reached, 0 elsewhere
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzip_GetLocalExtrafield OF((unzip_File file,
+extern ::i32 CLASS_DECL_FOLDER_ZIP unzip_GetLocalExtrafield OF((unzip_File file,
       voidp buf,
       ::u32 len));
 /*

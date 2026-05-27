@@ -46,7 +46,7 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    /*bool Toolbar::create(int _tbID, const ::operating_system::window & operatingsystemwindowParent, ::u32 dwStyle)
+//    /*bool Toolbar::create(::i32 _tbID, const ::operating_system::window & operatingsystemwindowParent, ::u32 dwStyle)
 //    {
 //
 //       return m_pparticleThis->create(_tbID, operatingsystemwindowParent, dwStyle);
@@ -70,7 +70,7 @@ namespace innate_subsystem
 //       // return !!m_hWndToolbar;
 //    }
 //
-//    void Toolbar::setViewAutoButtons(int iButton, int style)
+//    void Toolbar::setViewAutoButtons(::i32 iButton, ::i32 style)
 //    {
 //       //m_autoButtons[iButton] = style;
 //       return m_pparticleThis->setViewAutoButtons(iButton, style);
@@ -120,7 +120,7 @@ namespace innate_subsystem
 //       m_pparticleThis->attachToolbar(operatingsystemwindow);
 //       // std::vector<TBBUTTON> tbuttons;
 //       //
-//       // for (int i=0; i < m_numberTB; i++) {
+//       // for (::i32 i=0; i < m_numberTB; i++) {
 //       //    TBBUTTON tbutton;
 //       //
 //       //    ZeroMemory(&tbutton, sizeof(tbutton));
@@ -149,17 +149,17 @@ namespace innate_subsystem
 //       // m_hWndToolbar = CreateToolbarEx(hwnd,
 //       //    WS_VISIBLE | WS_CHILD | TBSTYLE_TOOLTIPS | WS_CLIPSIBLINGS | TBSTYLE_FLAT | WS_BORDER,
 //       //    m_id,
-//       //    static_cast<int>(tbuttons.size()),
+//       //    static_cast<::i32>(tbuttons.size()),
 //       //    GetModuleHandle(NULL),
 //       //    m_id,
 //       //    &tbuttons.front(),
-//       //    static_cast<int>(tbuttons.size()),
+//       //    static_cast<::i32>(tbuttons.size()),
 //       //    0, 0, 0, 0,
 //       //    sizeof(TBBUTTON));
 //       // SendMessage(m_hWndToolbar, TB_SETINDENT, 4, 0);
 //    }
 //
-//    bool Toolbar::enableButton(int idButton, bool enable)
+//    bool Toolbar::enableButton(::i32 idButton, bool enable)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_ENABLEBUTTON,
 //       //                              idButton, MAKELONG(enable, 0));
@@ -167,7 +167,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->enableButton(idButton, enable);
 //    }
 //
-//    bool Toolbar::pressButton(int idButton, bool press)
+//    bool Toolbar::pressButton(::i32 idButton, bool press)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_PRESSBUTTON,
 //       //                              idButton, MAKELONG(press, 0));
@@ -175,7 +175,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->pressButton(idButton, press);
 //    }
 //
-//    bool Toolbar::getButtonRect(int nIndex, ::i32_rectangle & buttonRect)
+//    bool Toolbar::getButtonRect(::i32 nIndex, ::i32_rectangle & buttonRect)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_GETITEMRECT,
 //       //                              nIndex, (::lparam)buttonRect);
@@ -203,7 +203,7 @@ namespace innate_subsystem
 //       //    RECT r, btnRect;
 //       //    GetClientRect(GetParent(m_hWndToolbar), &r);
 //       //    getButtonRect(0, &btnRect);
-//       //    int height = getButtonsHeight() + btnRect.top * 2 + 2;
+//       //    ::i32 height = getButtonsHeight() + btnRect.top * 2 + 2;
 //       //    SetWindowPos(m_hWndToolbar, HWND_TOP, 0, 0, r.right - r.left, height,
 //       //                 SWP_NOMOVE);
 //       // } else {
@@ -215,19 +215,19 @@ namespace innate_subsystem
 //       m_pparticleThis->autoSize();
 //    }
 //
-//    int Toolbar::getButtonsHeight()
+//    ::i32 Toolbar::getButtonsHeight()
 //    {
 //       // return HIWORD(SendMessage(m_hWndToolbar, TB_GETBUTTONSIZE, 0, 0));
 //       return m_pparticleThis->getButtonsHeight();
 //    }
 //
-//    int Toolbar::getButtonsWidth()
+//    ::i32 Toolbar::getButtonsWidth()
 //    {
 //       // return LOWORD(SendMessage(m_hWndToolbar, TB_GETBUTTONSIZE, 0, 0));
 //       return m_pparticleThis->getButtonsWidth();
 //    }
 //
-//    int Toolbar::getHeight()
+//    ::i32 Toolbar::getHeight()
 //    {
 //       // RECT r;
 //       // GetWindowRect(m_hWndToolbar, &r);
@@ -235,7 +235,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getHeight();
 //    }
 //
-//    int Toolbar::getTotalWidth()
+//    ::i32 Toolbar::getTotalWidth()
 //    {
 //       // SIZE size;
 //       // SendMessage(m_hWndToolbar, TB_GETMAXSIZE, 0, reinterpret_cast<::lparam>(&size));
@@ -264,7 +264,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->isVisible();
 //    }
 //
-//    bool Toolbar::checkButton(int idButton, bool check)
+//    bool Toolbar::checkButton(::i32 idButton, bool check)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_CHECKBUTTON,
 //       //         idButton, MAKELONG(check, 0));
@@ -272,7 +272,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->checkButton(idButton, check);
 //    }
 //
-//    ::lresult Toolbar::getState(int idButton)
+//    ::lresult Toolbar::getState(::i32 idButton)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_GETSTATE,
 //       //                  idButton, 0);
@@ -280,7 +280,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getState(idButton);
 //    }
 //
-//    ::lresult Toolbar::addBitmap(int nButtons, ::u32 bitmapID)
+//    ::lresult Toolbar::addBitmap(::i32 nButtons, ::u32 bitmapID)
 //    {
 //       // TBADDBITMAP resBitmap;
 //       //
@@ -301,7 +301,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->addSystemBitmap(stdBitmapID);
 //    }
 //
-//    bool Toolbar::addButton(int iBitmap, int idCommand, unsigned char state, unsigned char style, ::u32 dwData, int iString)
+//    bool Toolbar::addButton(::i32 iBitmap, ::i32 idCommand, ::u8 state, ::u8 style, ::u32 dwData, ::i32 iString)
 //    {
 //       // TBBUTTON tbb;
 //       //
@@ -320,7 +320,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->addButton(iBitmap, idCommand, state, style, dwData, iString);
 //    }
 //
-//    bool Toolbar::addNButton(int nButtons, toolbar_button_t * ptoolbarbutton)
+//    bool Toolbar::addNButton(::i32 nButtons, toolbar_button_t * ptoolbarbutton)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_ADDBUTTONS, nButtons, reinterpret_cast<::lparam>(tbb));
 //       // if (result) {

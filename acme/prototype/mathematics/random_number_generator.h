@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME int random_context_entropy(int iLevel= 3);
+CLASS_DECL_ACME ::i32 random_context_entropy(::i32 iLevel= 3);
 
 #include <random>
 //#include "acme/prototype/collection/numeric_array.h"
@@ -33,13 +33,13 @@ namespace mathematics
       std::uniform_int_distribution<::u32> m_distributionU8;
 
 
-      void seed(int iTwistLen, ::u32 seed);
+      void seed(::i32 iTwistLen, ::u32 seed);
       ::u32 get_unsigned_int();
-      unsigned char get_unsigned_char();
+      ::u8 get_unsigned_char();
 
    private:
       ::u32 _get();
-      int m_value;
+      ::i32 m_value;
       u32_array m_uinta;
       ::i64 m_iAccess = 0;
    };

@@ -40,7 +40,7 @@ bool folder::is_reading() const
 }
 
 
-void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
+void folder::open_for_reading(file_pointer pfile, ::i32 iBufferLevel)
 {
 
    throw ::interface_only();

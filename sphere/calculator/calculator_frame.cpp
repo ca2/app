@@ -65,7 +65,7 @@ namespace calculator
 
    void frame::OnTimer(::u32 uEvent)
    {
-      static float theta;
+      static ::f32 theta;
       if(uEvent == 3)
       {
 

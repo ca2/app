@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 extern void
-setcolor (int color)
+setcolor (::i32 color)
 {
  // XColor Color;
  // if (color < 0)
@@ -81,7 +81,7 @@ setcolor (int color)
 
 //----------------------------------------------------------------
 
-int
+::i32
 getcolor (void)
 {
   return (TcForegroundColor);

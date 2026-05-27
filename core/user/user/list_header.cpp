@@ -52,7 +52,7 @@ namespace user
 
       ::i32_rectangle rectangleColumn = pdrawitem->rcItem;
 
-      int iColumn = pdrawitem->itemID;
+      ::i32 iColumn = pdrawitem->itemID;
 
       ::user::list * plist = m_plist;
 
@@ -133,7 +133,7 @@ namespace user
 
       //  hditem.mask = HDI_ORDER;
 
-      //   char pszText[1024];
+      //   ::i8 pszText[1024];
 
       //   hditem.pszText = pszText;
       //   hditem.cchTextMax = 1024;
@@ -171,7 +171,7 @@ namespace user
 
       }
 
-      int x;
+      ::i32 x;
 
       if(plist->m_bGroup && plist->m_bLateralGroup)
       {
@@ -186,9 +186,9 @@ namespace user
 
       }
       
-      int xLast = x;
+      ::i32 xLast = x;
       
-      for(int i = 0; i <= iItem; i++)
+      for(::i32 i = 0; i <= iItem; i++)
       {
          
          xLast = x;
@@ -366,7 +366,7 @@ namespace user
    {
       ::user::list * plist = m_plist;
       ::i32_rectangle rectangle;
-      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          if(GetItemRect(&rectangle, element_item_Box, iItem))
          {
@@ -394,7 +394,7 @@ namespace user
    {
       ::user::list * plist = m_plist;
       ::i32_rectangle rectangle;
-      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          if(GetItemRect(&rectangle, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
          {
@@ -591,7 +591,7 @@ namespace user
                
                rectangle.right = pointCursor.x;
                
-               int iNewWidth = rectangle.width();
+               ::i32 iNewWidth = rectangle.width();
                
                plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
                
@@ -668,7 +668,7 @@ namespace user
             
             rectangle.right = pointCursor.x;
             
-            int iNewWidth = rectangle.width();
+            ::i32 iNewWidth = rectangle.width();
             
             plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
             
@@ -796,7 +796,7 @@ namespace user
 
       //         host_to_client(rectangleX);
 
-      //         m_pshapeaClip->add_item(allocateø rectangle_shape(::double_rectangle(rectangleX)));
+      //         m_pshapeaClip->add_item(allocateø rectangle_shape(::f64_rectangle(rectangleX)));
 
       //         m_pshapeaClip->add_item(allocateø intersect_clip_shape());
 
@@ -911,7 +911,7 @@ namespace user
 
       ::i32_rectangle rectangleUpdate(rectangleX);
 
-      ::double_rectangle rectangleClipBox;
+      ::f64_rectangle rectangleClipBox;
 
       pgraphics->get_clip_box(rectangleClipBox);
 
@@ -942,7 +942,7 @@ namespace user
 
       ppen->create_solid(1.0, color);
 
-      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
 
          drawitem.itemID = iItem;
@@ -966,13 +966,13 @@ namespace user
    }
 
 
-   int list_header::GetDividerWidth()
+   ::i32 list_header::GetDividerWidth()
    {
       return 4;
    }
 
 
-   ::double_point list_header::get_parent_context_offset()
+   ::f64_point list_header::get_parent_context_offset()
    {
 
       ::pointer<::user::interaction>puser = get_parent();

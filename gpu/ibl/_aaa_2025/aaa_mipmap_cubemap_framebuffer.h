@@ -21,15 +21,15 @@ namespace gpu
       public:
 
 
-         //unsigned int m_uWidth, m_uHeight;
-         //unsigned int m_uMipWidth, m_uMipHeight;
-         //unsigned int m_uMipLevel;
+         //::u32 m_uWidth, m_uHeight;
+         //::u32 m_uMipWidth, m_uMipHeight;
+         //::u32 m_uMipLevel;
 
          ::pointer < ::gpu::texture > m_ptexture;
 
-         // unsigned int m_uFramebufferId;
-         // unsigned int m_uDepthRenderbufferId;
-         // unsigned int m_uCubemapTextureId;
+         // ::u32 m_uFramebufferId;
+         // ::u32 m_uDepthRenderbufferId;
+         // ::u32 m_uCubemapTextureId;
 
 
          mipmap_cubemap_framebuffer();
@@ -38,7 +38,7 @@ namespace gpu
          ~mipmap_cubemap_framebuffer() override;
 
 
-         virtual void initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base * pscenebase, int iWidth, int iHeight);
+         virtual void initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base * pscenebase, ::i32 iWidth, ::i32 iHeight);
          virtual void on_initialize_mipmap_cubemap_framebuffer();
 
          virtual void bind();
@@ -48,31 +48,31 @@ namespace gpu
           * Set the mip level to render with.
           * @param mipLevel
           */
-         virtual void set_current_mip(int level);
+         virtual void set_current_mip(::i32 level);
 
 
          /**
           * Get the current width based on the mip level.
           * @return
           */
-         virtual int mip_width();
+         virtual ::i32 mip_width();
 
 
          /**
           * Get the current height based on the mip level.
           * @return
           */
-         virtual int mip_height();
+         virtual ::i32 mip_height();
 
 
          /**
           * Set which cube face texture to render to.
           * @param index
           */
-         virtual void set_cube_face(int iFace);
+         virtual void set_cube_face(::i32 iFace);
 
 
-         //unsigned int getCubemapTextureId();
+         //::u32 getCubemapTextureId();
 
       };
 

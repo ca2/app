@@ -183,7 +183,7 @@ namespace user
    //}
 
 
-   //void text_property::get_text(char * psz, character_count len)
+   //void text_property::get_text(char_pointer psz, character_count len)
    //{
 
    //   string str;

@@ -39,7 +39,7 @@ namespace subsystem_bsd_sockets
    {}
 
 
-   void Sockets::_startSockets(int loVer, int hiVer)
+   void Sockets::_startSockets(::i32 loVer, ::i32 hiVer)
    {
 
       if (loVer < 0 || hiVer < 0)

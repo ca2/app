@@ -87,7 +87,7 @@ namespace simple_ui
 
       string str;
 
-      int iAttempt = 0;
+      ::i32 iAttempt = 0;
 
    restart:
 

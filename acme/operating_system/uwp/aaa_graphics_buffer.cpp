@@ -55,7 +55,7 @@ namespace universal_windows
    }
 
 
-   bool buffer::create_os_buffer(const ::size& size, int iStrideParam)
+   bool buffer::create_os_buffer(const ::size& size, ::i32 iStrideParam)
    {
 
       return true;
@@ -133,7 +133,7 @@ namespace universal_windows
    }
 
 
-   bool buffer::create_buffer(const ::size& size, int iStrideParam)
+   bool buffer::create_buffer(const ::size& size, ::i32 iStrideParam)
    {
 
       return true;

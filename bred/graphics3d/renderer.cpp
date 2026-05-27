@@ -145,7 +145,7 @@
 //       //    );
 //       // }
 //    }
-//    void renderer::updateSystems(::gpu::frame * pframe, ::gpu::properties * ppropertiesGlobalUbo, float deltaTime)
+//    void renderer::updateSystems(::gpu::frame * pframe, ::gpu::properties * ppropertiesGlobalUbo, ::f32 deltaTime)
 //    {
 //       for (auto& prendersystem : m_rendersystema) {
 //          //prendersystem->update(pframe, ppropertiesGlobalUbo);
@@ -278,8 +278,8 @@
 //    //    // VkViewport viewport{};
 //    //    // viewport.x = 0.0f;
 //    //    // viewport.y = 0.0f;
-//    //    // viewport.width = static_cast<float>(m_swapchain->getSwapChainExtent().width);
-//    //    // viewport.height = static_cast<float>(m_swapchain->getSwapChainExtent().height);
+//    //    // viewport.width = static_cast<::f32>(m_swapchain->getSwapChainExtent().width);
+//    //    // viewport.height = static_cast<::f32>(m_swapchain->getSwapChainExtent().height);
 //    //    // viewport.minDepth = 0.0f;
 //    //    // viewport.maxDepth = 1.0f;
 //    //    // VkRect2D scissor{ {0, 0}, m_swapchain->getSwapChainExtent() };
@@ -333,7 +333,7 @@
 //    //    //vkDeviceWaitIdle(m_pgpudevice->device());
 //    // }
 //
-//    float renderer::getAspectRatio() const
+//    ::f32 renderer::getAspectRatio() const
 //    {
 //
 //       //return m_swapchain->extentAspectRatio();

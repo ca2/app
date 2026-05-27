@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-setbkcolor (int color)
+setbkcolor (::i32 color)
 {
  // XColor Color;
  // if (color < 0)
@@ -98,7 +98,7 @@ setbkcolor (int color)
 
 //----------------------------------------------------------------
 
-int
+::i32
 getbkcolor (void)
 {
   return (TcBackgroundColor);

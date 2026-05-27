@@ -32,7 +32,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/elemental.h"
 #include "acme/user/micro/theme.h"
@@ -301,7 +301,7 @@ namespace acme
       }
 
 
-      //void interaction::draw(::nano::graphics::device * pnanodevice)
+      //void interaction::draw(::nano::graphics::context * pnanodevice)
       //{
 
       //   ::pointer<::nano::graphics::pen>pnanopenBorder;
@@ -332,14 +332,14 @@ namespace acme
       //}
 
 
-      void interaction::_on_draw(::nano::graphics::device * pnanodevice)
+      void interaction::_on_draw(::nano::graphics::context * pnanodevice)
       {
 
 
       }
 
 
-      void interaction::on_window_paint(nano::graphics::device *pnanographicsdevice)
+      void interaction::on_window_paint(::nano::graphics::context *pgraphicscontext)
       {
 
 
@@ -409,7 +409,7 @@ namespace acme
       }
 
 
-      //void interaction::draw_children(::nano::graphics::device * pnanodevice)
+      //void interaction::draw_children(::nano::graphics::context * pnanodevice)
       //{
 
       //   for (auto & pchild : m_nanouserinteractionaChildren)
@@ -426,7 +426,7 @@ namespace acme
       //void interaction::resize_to_fit()
       //{
 
-      //   auto pdevice = createø < ::nano::graphics::device >();
+      //   auto pdevice = createø < ::nano::graphics::context >();
 
       //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
 
@@ -1027,21 +1027,21 @@ namespace acme
       //}
 
 
-      //void interaction::draw(::nano::graphics::device * pnanodevice)
+      //void interaction::draw(::nano::graphics::context * pnanodevice)
       //{
 
 
       //}
 
 
-      //void interaction::on_draw(::nano::graphics::device * pnanodevice)
+      //void interaction::on_draw(::nano::graphics::context * pnanodevice)
       //{
 
 
       //}
 
 
-      //void interaction::on_char(int iChar)
+      //void interaction::on_char(::i32 iChar)
       //{
 
       //   if (iChar == '\t' && m_nanouserinteractionaChildren.has_element())
@@ -1109,7 +1109,7 @@ namespace acme
       //}
 
 
-      //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+      //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
       //{
 
       //   auto pbutton = allocateø ::micro::button();
@@ -1374,7 +1374,7 @@ namespace acme
       //}
 
 
-      //void interaction::draw_children(::nano::graphics::device * pnanodevice)
+      //void interaction::draw_children(::nano::graphics::context * pnanodevice)
       //{
 
 
@@ -2229,7 +2229,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
          {
 
             return -1;
@@ -2245,7 +2245,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
          {
 
             return -1;
@@ -2261,7 +2261,7 @@ namespace acme
          }
 
 
-         character_count interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+         character_count interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x)
          {
 
             return -1;
@@ -2380,7 +2380,7 @@ namespace acme
       }
 
 
-      bool interaction::on_window_activate(int iActivate, bool bMinimized,
+      bool interaction::on_window_activate(::i32 iActivate, bool bMinimized,
                                            const operating_system::window &operatingsystemwindow)
       {
 
@@ -2389,8 +2389,8 @@ namespace acme
       }
 
 
-      bool interaction::on_window_mouse_activate(int & iResult, const ::operating_system::window & operatingsystemwindowTop,
-   int iHitTest, int iMessage)
+      bool interaction::on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
+   ::i32 iHitTest, ::i32 iMessage)
       {
 
          information("::acme::user::interaction::on_window_mouse_activate");
@@ -2416,7 +2416,7 @@ namespace acme
       }
 
 
-      float interaction::get_window_scale()
+      ::f32 interaction::get_window_scale()
       {
 
          return m_pacmewindowingwindow->get_window_scale();
@@ -2480,7 +2480,7 @@ namespace acme
       }
 
 
-      void interaction::set_window_style(int iStyle)
+      void interaction::set_window_style(::i32 iStyle)
       {
 
          m_pacmewindowingwindow->set_window_style(iStyle);
@@ -2496,7 +2496,7 @@ namespace acme
       }
 
 
-      void interaction::show_window(int iShowFlags)
+      void interaction::show_window(::i32 iShowFlags)
       {
 
          m_pacmewindowingwindow->show_window(iShowFlags);
@@ -2504,7 +2504,7 @@ namespace acme
       }
 
 
-      void interaction::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags)
+      void interaction::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags)
       {
 
          m_pacmewindowingwindow->set_window_position(operatingsystemwindow, point, size, iSetWindowPosFlags);
@@ -2527,7 +2527,7 @@ namespace acme
       }
 
 
-      void interaction::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+      void interaction::redraw_window(const i32_rectangle *prectangle, void *pHRGN, ::i32 iRedrawFlags)
       {
 
          m_pacmewindowingwindow->redraw_window(prectangle, pHRGN, iRedrawFlags);

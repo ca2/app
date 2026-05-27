@@ -52,7 +52,7 @@ namespace gpu
             ALPHAMODE_BLEND
          };
          AlphaMode alphaMode = ALPHAMODE_OPAQUE;
-         float alphaCutoff = 1.0f;
+         ::f32 alphaCutoff = 1.0f;
 
          bool useTextureAlbedo = false;
          bool useTextureMetallicRoughness = false;
@@ -61,9 +61,9 @@ namespace gpu
          bool useTextureEmissive = false;
 
          floating_sequence3 m_seq3Albedo = ::gpu::gltf::colorWhite;
-         float m_fMetallic = 1.0f;
-         float m_fRoughness = 0.0f;
-         float m_fAmbientOcclusion = 1.0f;
+         ::f32 m_fMetallic = 1.0f;
+         ::f32 m_fRoughness = 0.0f;
+         ::f32 m_fAmbientOcclusion = 1.0f;
          floating_sequence3 m_seq3Emissive = floating_sequence3(0.0, 0.0, 0.0);
 
          ::pointer<::gpu::texture> m_textureaPbr[e_texture_count];

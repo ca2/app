@@ -97,7 +97,7 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 #define __EVALUATE_MACRO(name) name
 
 
-///#define lower_byte(w)              ((unsigned char)((w) & 0xff))
+///#define lower_byte(w)              ((::u8)((w) & 0xff))
 
 
 
@@ -110,8 +110,8 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 //#define __CONCAT3____(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-// #define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-// #define as_u32(a, b)                                   ((::u32)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define __unsigned_short(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+// #define as_u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 
 // #ifdef __cplusplus
@@ -127,35 +127,35 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 // #endif
 
-// #define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
-// #define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
+// #define lower_unsigned_short(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+// #define upper_unsigned_short(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
 // #define lower_unsigned_int(u)                                     ((::u32)(u))
 // #define upper_unsigned_int(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 
-// #define u32_x(u)                                     ((short)lower_unsigned_short(u))
-// #define u32_y(u)                                     ((short)upper_unsigned_short(u))
+// #define u32_x(u)                                     ((::i16)lower_unsigned_short(u))
+// #define u32_y(u)                                     ((::i16)upper_unsigned_short(u))
 
 // #define __u32xy(u)                                    u32_x(u), u32_y(u)
 
-// #define u64_x(u)                                     ((int)lower_unsigned_int(u))
-// #define u64_y(u)                                     ((int)upper_unsigned_int(u))
+// #define u64_x(u)                                     ((::i32)lower_unsigned_int(u))
+// #define u64_y(u)                                     ((::i32)upper_unsigned_int(u))
 
 // #define __u64xy(u)                                    u64_x(u), u64_y(u)
 
 
-//#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_unsigned_int(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_unsigned_int(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_unsigned_int(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_unsigned_int(lparam))
 
 
 
 
-// #define make_int(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define make_int(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 // #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
 // #define make_unsigned_int(l, h)         ((::uptr)(::u32)make_int(l, h))
 
-//#define lower_byte(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
+//#define lower_byte(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
 
 
 
@@ -198,12 +198,12 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 // return - result - if not ok
 #ifndef RINOK
-#define RINOK(x) { int __result__ = (x); if (__result__ != 0) return __result__; }
+#define RINOK(x) { ::i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { int __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
+#define TINOK(e, x) { ::i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 
@@ -367,12 +367,12 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 // #ifndef int_x
-// #define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
+// #define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
 // #endif
 
 
 // #ifndef int_y
-// #define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
+// #define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 // #endif
 
 

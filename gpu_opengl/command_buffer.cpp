@@ -58,7 +58,7 @@ namespace gpu_opengl
 
 
 
-   void command_buffer::draw_int_a_count(int a)
+   void command_buffer::draw_int_a_count(::i32 a)
    {
 
       glDrawArrays(GL_TRIANGLES, 0, a);
@@ -100,7 +100,7 @@ namespace gpu_opengl
    }
 
    
-   void command_buffer::draw_vertexes(int iVertexCount)
+   void command_buffer::draw_vertexes(::i32 iVertexCount)
    {
 
       GLenum mode = GL_TRIANGLES;
@@ -122,7 +122,7 @@ namespace gpu_opengl
    }
 
 
-   void command_buffer::draw_indexes(int iIndexCount)
+   void command_buffer::draw_indexes(::i32 iIndexCount)
    {
 
       GLenum mode = GL_TRIANGLES;
@@ -166,7 +166,7 @@ namespace gpu_opengl
 //   GLuint createFullscreenQuad(GLuint& quadVBO) {
 //      // Vertex data: (x, y, u, v)
 //#if 1
-//      float quadVertices[] = {
+//      ::f32 quadVertices[] = {
 //         //  Position   TexCoords
 //         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
 //         -1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
@@ -177,7 +177,7 @@ namespace gpu_opengl
 //          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
 //      };
 //#else
-//      float quadVertices[] = {
+//      ::f32 quadVertices[] = {
 //         //  Position   TexCoords
 //         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
 //         0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
@@ -198,11 +198,11 @@ namespace gpu_opengl
 //      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 //
 //      // Position attribute (location = 0)
-//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
 //      glEnableVertexAttribArray(0);
 //
 //      // Texture Coord attribute (location = 1)
-//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
 //      glEnableVertexAttribArray(1);
 //
 //      // Unbind for safety

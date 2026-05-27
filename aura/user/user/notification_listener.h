@@ -31,7 +31,7 @@ enum enum_notification
       ~notification_listener() override;
       
       
-      virtual void on_keyboard_layout_change(const char * pszKeyboardLayoutId);
+      virtual void on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId);
       
    };
 

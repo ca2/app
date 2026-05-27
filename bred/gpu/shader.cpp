@@ -111,7 +111,7 @@ namespace gpu
    }
 
 
-   ::gpu::binding_set *shader::binding_set(int iSet, ::gpu::binding_set *pgpubindingset)
+   ::gpu::binding_set *shader::binding_set(::i32 iSet, ::gpu::binding_set *pgpubindingset)
    {
 
       if (iSet < 0)
@@ -159,7 +159,7 @@ namespace gpu
    }
 
 
-   ::gpu::binding *shader::binding(int iSet, int iSlot)
+   ::gpu::binding *shader::binding(::i32 iSet, ::i32 iSlot)
    {
 
       auto pbindingset = binding_set(iSet);
@@ -204,7 +204,7 @@ namespace gpu
 
 
 
-   ::gpu::binding_slot_set * shader::binding_slot_set(int iSet, ::gpu::binding_set * pgpubindingset)
+   ::gpu::binding_slot_set * shader::binding_slot_set(::i32 iSet, ::gpu::binding_set * pgpubindingset)
    {
 
       if (iSet < 0)
@@ -259,7 +259,7 @@ namespace gpu
    }
 
 
-   ::gpu::binding_slot *shader::binding_slot(int iSet, int iSlot, ::gpu::binding *pgpubinding)
+   ::gpu::binding_slot *shader::binding_slot(::i32 iSet, ::i32 iSlot, ::gpu::binding *pgpubinding)
    {
 
       auto pbindingslotset = binding_slot_set(iSet);
@@ -348,7 +348,7 @@ namespace gpu
             continue;
          }
 
-         int iBinding = -1;
+         ::i32 iBinding = -1;
 
          for (auto &bindingslot: *pbindingslotset)
          {
@@ -396,7 +396,7 @@ namespace gpu
             continue;
          }
 
-         int iBinding = -1;
+         ::i32 iBinding = -1;
 
          for (auto &bindingslot: *pbindingslotset)
          {
@@ -422,7 +422,7 @@ namespace gpu
 
 
 
-   ::gpu::binding_set *shader::_001GetSingularImageBindingSet(int &iSet)
+   ::gpu::binding_set *shader::_001GetSingularImageBindingSet(::i32 &iSet)
    {
 
       if (!m_pbindingslotseta)
@@ -511,14 +511,14 @@ namespace gpu
    }
 
 
-   void shader::bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock, int iSlot)
+   void shader::bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock, ::i32 iSlot)
    {
 
       throw ::interface_only("shader::bind_block(::gpu::block*) not implemented at this shader implementation");
    }
 
 
-   void shader::bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet,
+   void shader::bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, ::i32 iSet,
                               ::gpu::binding_slot_set * pgpubindingslotset)
    {
 
@@ -526,7 +526,7 @@ namespace gpu
 
    }
 
-   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource, ::i32 iSlot)
    {
 
       throw ::interface_only("shader::bind_source(::gpu::texture*) not implemented at this shader implementation");
@@ -534,7 +534,7 @@ namespace gpu
    }
 
 
-   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource, ::i32 iSlot)
    {
 
       bind_source(pgpucommandbuffer, pgpupixmapSource->m_pgputexture, iSlot);
@@ -542,7 +542,7 @@ namespace gpu
    }
 
 
-   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, int iIndex, const char* pszPayloadName, gpu::texture* pgputextureSource)
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture* pgputextureSource)
    {
 
 
@@ -565,14 +565,14 @@ namespace gpu
 //   }
 //
 //
-//   void shader::setInt(const ::scoped_string & scopedstrName, int value)
+//   void shader::setInt(const ::scoped_string & scopedstrName, ::i32 value)
 //   {
 //
 //
 //   }
 //
 //
-//   void shader::setFloat(const ::scoped_string & scopedstrName, float value)
+//   void shader::setFloat(const ::scoped_string & scopedstrName, ::f32 value)
 //   {
 //
 //
@@ -585,7 +585,7 @@ namespace gpu
 ////   }
 //
 //
-//   void shader::setVec2(const ::scoped_string & scopedstrName, float x, float y)
+//   void shader::setVec2(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y)
 //   {
 //
 //   }
@@ -598,7 +598,7 @@ namespace gpu
 ////   }
 //
 //
-//   void shader::setVec3(const ::scoped_string & scopedstrName, float x, float y, float z)
+//   void shader::setVec3(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y, ::f32 z)
 //   {
 //
 //   }
@@ -610,25 +610,25 @@ namespace gpu
 ////   }
 //
 //
-//   void shader::setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w)
+//   void shader::setVec4(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w)
 //   {
 //
 //   }
 //
 //
-//   void shader::setMat2(const ::scoped_string & scopedstrName, const float p[2*2])
+//   void shader::setMat2(const ::scoped_string & scopedstrName, const ::f32 p[2*2])
 //   {
 //
 //   }
 //
 //
-//   void shader::setMat3(const ::scoped_string & scopedstrName, const float p[3*3])
+//   void shader::setMat3(const ::scoped_string & scopedstrName, const ::f32 p[3*3])
 //   {
 //
 //   }
 //
 //
-//   void shader::setMat4(const ::scoped_string & scopedstrName, const float p[4*4])
+//   void shader::setMat4(const ::scoped_string & scopedstrName, const ::f32 p[4*4])
 //   {
 //
 //   }
@@ -720,7 +720,7 @@ namespace gpu
    //}
 
 
-   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, ::i32 i)
    //{
    //   
    //   m_mapSamplerAndTexture[scopedstrName].m_i32 = i;
@@ -736,7 +736,7 @@ namespace gpu
    }
 
 
-   void shader::set_int(const ::scoped_string& scopedstrName, int value)
+   void shader::set_int(const ::scoped_string& scopedstrName, ::i32 value)
    {
 
       ::string strName(scopedstrName);
@@ -782,7 +782,7 @@ namespace gpu
    }
 
 
-   void shader::set_float(const ::scoped_string& scopedstrName, float value)
+   void shader::set_float(const ::scoped_string& scopedstrName, ::f32 value)
    {
       
       ::string strName(scopedstrName);
@@ -790,21 +790,21 @@ namespace gpu
       if (m_propertiesPushShared.contains(scopedstrName))
       {
 
-         auto &a = m_propertiesPushShared.as_float(strName);
+         auto &a = m_propertiesPushShared.as_f32(strName);
 
          a = value;
       }
       else if (m_propertiesPushVertex.contains(scopedstrName))
       {
 
-         auto &a = m_propertiesPushVertex.as_float(strName);
+         auto &a = m_propertiesPushVertex.as_f32(strName);
 
          a = value;
       }
       else if (m_propertiesPushFragment.contains(scopedstrName))
       {
 
-         auto &a = m_propertiesPushFragment.as_float(strName);
+         auto &a = m_propertiesPushFragment.as_f32(strName);
 
          a = value;
       }
@@ -812,7 +812,7 @@ namespace gpu
    }
 
 
-   void shader::set_sequence2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y)
    {
 
       ::string strName(scopedstrName);
@@ -876,7 +876,7 @@ namespace gpu
    }
 
    
-   void shader::set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z)
    {
       ::string strName(scopedstrName);
 
@@ -940,7 +940,7 @@ namespace gpu
    }
 
 
-   void shader::set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w)
    {
 
       ::string strName(scopedstrName);

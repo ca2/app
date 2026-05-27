@@ -59,7 +59,7 @@ bool is_filemanager_group(const ::atom & atom, const ::scoped_string & scopedstr
 }
 
 
-bool is_filemanager_group(const ::atom & atom, int iGroup)
+bool is_filemanager_group(const ::atom & atom, ::i32 iGroup)
 {
 
    if(atom.is_text())

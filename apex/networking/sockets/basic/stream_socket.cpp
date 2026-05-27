@@ -74,7 +74,7 @@ namespace sockets
 
    }
 
-   //void stream_socket::set_maximum_connection_time(int x)
+   //void stream_socket::set_maximum_connection_time(::i32 x)
    //{
    //   m_secsConnectionTimeout = x;
    //}
@@ -104,7 +104,7 @@ namespace sockets
    }
 
 
-   int stream_socket::GetMaximumConnectionRetryCount()
+   ::i32 stream_socket::GetMaximumConnectionRetryCount()
    {
 
       return stream_socket_impl()->GetMaximumConnectionRetryCount();
@@ -113,7 +113,7 @@ namespace sockets
    }
 
 
-   void stream_socket::SetMaximumConnectionRetryCount(int x)
+   void stream_socket::SetMaximumConnectionRetryCount(::i32 x)
    {
 
       stream_socket_impl()->SetMaximumConnectionRetryCount(x);
@@ -121,7 +121,7 @@ namespace sockets
    }
 
 
-   int stream_socket::GetConnectionRetryCount()
+   ::i32 stream_socket::GetConnectionRetryCount()
    {
 
       return stream_socket_impl()->GetConnectionRetryCount();
@@ -195,7 +195,7 @@ namespace sockets
    }
 
 
-   void stream_socket::SetShutdownStatus(int x)
+   void stream_socket::SetShutdownStatus(::i32 x)
    {
 
       stream_socket_impl()->SetShutdownStatus(x);
@@ -203,7 +203,7 @@ namespace sockets
    }
 
 
-   int stream_socket::GetShutdownStatus()
+   ::i32 stream_socket::GetShutdownStatus()
    {
       
       return stream_socket_impl()->GetShutdownStatus();
@@ -211,7 +211,7 @@ namespace sockets
    }
 
 
-   int stream_socket::protocol()
+   ::i32 stream_socket::protocol()
    {
       
       return stream_socket_impl()->protocol();

@@ -38,7 +38,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName, float & f)
+   style * style_sheet_array::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName, ::f32 & f)
    {
 
       style * pstyle = nullptr;

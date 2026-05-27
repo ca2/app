@@ -12,9 +12,9 @@
 //// define fixed size integer types
 //#ifdef _MSC_VER
 //    // Windows
-//typedef unsigned __int8  uint8_t;
-//typedef unsigned __int32 uint32_t;
-//typedef unsigned ::i64 uint64_t;
+//typedef ::u32 __int8  uint8_t;
+//typedef ::u32 __int32 uint32_t;
+//typedef ::u64 uint64_t;
 //#else
 //    // GCC
 //#include <stdint.h>
@@ -65,7 +65,7 @@ public:
    /// return latest hash as 64 hex characters
    ::string getHash();
    /// return latest hash as bytes
-   void        getHash(unsigned char buffer[HashBytes]);
+   void        getHash(::u8 buffer[HashBytes]);
 
    /// restart
    void reset();
@@ -73,13 +73,13 @@ public:
    template <size_t N>
    static ::string bytes2hex(const uint8_t(&rawHash)[N])
    {
-      return ::hex::upper_case_from((const char (&)[N])rawHash);
+      return ::hex::upper_case_from((const ::i8 (&)[N])rawHash);
       //// convert to hex string
       //::string result;
       //result.reserve(2 * N);
       //for (size_t i = 0; i < N; ++i)
       //{
-      //    static const char dec2hex[16 + 1] = "0123456789ABCDEF";
+      //    static const ::i8 dec2hex[16 + 1] = "0123456789ABCDEF";
       //    result += dec2hex[(rawHash[i] >> 4) & 15];
       //    result += dec2hex[ rawHash[i]       & 15];
       //}
@@ -98,7 +98,7 @@ private:
    /// valid bytes in m_buffer
    size_t   m_bufferSize;
    /// bytes not processed yet
-   unsigned char  m_buffer[BlockSize];
+   ::u8  m_buffer[BlockSize];
 
    enum { HashValues = HashBytes / 4 };
    /// hash, stored as integers

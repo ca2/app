@@ -103,7 +103,7 @@
 
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect, color32_t color32, unsigned char bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect, color32_t color32, ::u8 bAlpha);
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 
@@ -121,7 +121,7 @@
             };
 
 
-            frame::enum_element operator ++(frame::enum_element & eelement, int i);
+            frame::enum_element operator ++(frame::enum_element & eelement, ::i32 i);
 
 
          } // namespace lite

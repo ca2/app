@@ -5,7 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-//synchronization::synchronization(const char * lpszName)
+//synchronization::synchronization(const_char_pointer pszName)
 //{
 //
 //   m_bOwner = true;
@@ -16,7 +16,7 @@
 //
 //#endif
 //
-//   if (lpszName == nullptr)
+//   if (pszName == nullptr)
 //   {
 //
 //      m_pszName = nullptr;
@@ -25,7 +25,7 @@
 //   else
 //   {
 //
-//      m_pszName = strdup(lpszName);
+//      m_pszName = strdup(pszName);
 //
 //   }
 //
@@ -35,13 +35,13 @@
 //#ifdef WINDOWS
 //
 //
-//synchronization::synchronization(hsynchronization hsyncobject, const char * lpszName) :
+//synchronization::synchronization(hsynchronization hsyncobject, const_char_pointer pszName) :
 //   m_hsync(hsyncobject)
 //{
 //
 //   m_bOwner = false;
 //
-//   if (lpszName == nullptr)
+//   if (pszName == nullptr)
 //   {
 //
 //      m_pszName = nullptr;
@@ -50,7 +50,7 @@
 //   else
 //   {
 //
-//      m_pszName = strdup(lpszName);
+//      m_pszName = strdup(pszName);
 //
 //   }
 //
@@ -267,7 +267,7 @@ void synchronization::unlock()
 }
 
 
-void synchronization::unlock(int /* lCount */, int * /* pPrevCount=nullptr */)
+void synchronization::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 {
 
    //return false;
@@ -287,14 +287,14 @@ bool synchronization::_wait(const class ::wait & wait)
 
    }
 
-   //auto milliseconds = wait.operator unsigned int();
-   //unsigned int ui;
-   //if (wait.m_d <= 0.)
+   //auto milliseconds = wait.operator ::u32();
+   //::u32 ui;
+   //if (wait.m_f64 <= 0.)
    //{
    //   ui = 0;
 
    //}
-   //else if (wait.m_d >= 0xffffffffu)
+   //else if (wait.m_f64 >= 0xffffffffu)
    //{
 
    //   ui = 0xffffffffu;
@@ -302,11 +302,11 @@ bool synchronization::_wait(const class ::wait & wait)
    //else
    //{
 
-   //   ui = (unsigned int) (wait.m_d * 1'000.0);
+   //   ui = (::u32) (wait.m_f64 * 1'000.0);
 
    //}
 
-   ////return (unsigned int)m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (unsigned int)(m_d * 1'000.0));
+   ////return (::u32)m_f64 <= 0. ? 0 : (m_f64 >= 0xffffffffu ? 0xffffffffu : (::u32)(m_f64 * 1'000.0));
    //if (milliseconds < 1'000'000'000)
    //{
 
@@ -418,7 +418,7 @@ void synchronization::acquire_ownership()
 //}
 
 
-//bool synchronization::unlock(int /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool synchronization::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //

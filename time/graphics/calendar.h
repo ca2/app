@@ -23,8 +23,8 @@ namespace datetime
          ::write_text::font_pointer     m_pfontYear;
          ::write_text::font_pointer     m_pfontMonth;
          ::write_text::font_pointer     m_pfontSpin;
- /*        int                        m_iColWidth;
-         int                        m_iLineHeight;
+ /*        ::i32                        m_iColWidth;
+         ::i32                        m_iLineHeight;
          i32_point                      m_point;*/
 
 

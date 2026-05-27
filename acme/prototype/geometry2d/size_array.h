@@ -35,10 +35,10 @@ public:
 };
 
 
-//using int_size_array = size_array_base < int >;
+//using i32_size_array = size_array_base < ::i32 >;
 //using i64_size_array = size_array_base < ::i64 >;
-//using float_size_array = size_array_base < float >;
-//using double_size_array = size_array_base < double >;
+//using f32_size_array = size_array_base < ::f32 >;
+//using f64_size_array = size_array_base < ::f64 >;
 
 
 

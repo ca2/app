@@ -3,12 +3,12 @@
 
 // 0 - most deep call stack logging
 // 4 - most lite call stack logging
-int g_iCallStackLevel = 4;
+::i32 g_iCallStackLevel = 4;
 
 e_callstack g_ecallstack = callstack_none;
 
 
-callstack::callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * address, int iCount) :
+callstack::callstack(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * address, ::i32 iCount) :
    m_pszFormat(scopedstrFormat),
    m_iCount(iCount),
    m_caller_address(address)
@@ -49,7 +49,7 @@ callstack::~callstack()
 }
 
 
-const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
+const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, ::i32 iSkip, ::i32 iCount)
 {
 
    if (iSkip >= 0)
@@ -83,7 +83,7 @@ const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSk
 
 }
 
-const char * callstack::xxxstack_trace() const
+const_char_pointer callstack::xxxstack_trace() const
 {
 
    return m_pszCallStack;
@@ -91,7 +91,7 @@ const char * callstack::xxxstack_trace() const
 }
 
 
-string get_callstack(particle * pparticle, const ::scoped_string & scopedstrFormat = callstack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1)
+string get_callstack(particle * pparticle, const ::scoped_string & scopedstrFormat = callstack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1)
 {
 
    if (iSkip >= 0)
@@ -101,14 +101,14 @@ string get_callstack(particle * pparticle, const ::scoped_string & scopedstrForm
 
    }
 
-   auto pcallstack = allocateø callstack(scopedstrFormat, (int)iSkip, caller_address, (int)iCount);
+   auto pcallstack = allocateø callstack(scopedstrFormat, (::i32)iSkip, caller_address, (::i32)iCount);
 
    return pcallstack;
 
 }
 
 
-CLASS_DECL_ACME ::pointer<callstack>get_callstack(e_callstack ecallstack, int iCallStackAddUp)
+CLASS_DECL_ACME ::pointer<callstack>get_callstack(e_callstack ecallstack, ::i32 iCallStackAddUp)
 {
 
    iCallStackAddUp++;

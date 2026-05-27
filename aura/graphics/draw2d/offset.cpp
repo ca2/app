@@ -24,13 +24,13 @@ namespace draw2d
    }
 
 
-   void offset_context::x_offset(double dx) { m_poffsetable->x_offset(dx); }
+   void offset_context::x_offset(::f64 dx) { m_poffsetable->x_offset(dx); }
 
-   void offset_context::y_offset(double dy) { m_poffsetable->y_offset(dy); }
+   void offset_context::y_offset(::f64 dy) { m_poffsetable->y_offset(dy); }
 
-   void offset_context::offset(double dx, double dy) { m_poffsetable->offset(dx, dy); }
+   void offset_context::offset(::f64 dx, ::f64 dy) { m_poffsetable->offset(dx, dy); }
 
-   void offset_context::shift_impact_area(double dx, double dy, double w, double h) { m_poffsetable->shift_impact_area(dx, dy, w, h); }
+   void offset_context::shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h) { m_poffsetable->shift_impact_area(dx, dy, w, h); }
 
 
 } // namespace draw2d

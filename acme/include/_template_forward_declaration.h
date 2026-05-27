@@ -194,7 +194,7 @@ struct largest_number_struct {
    using type = if_else <
       ((::std::is_floating_point_v < T1 > && sizeof(T1) < sizeof(T2))
       || (::std::is_floating_point_v < T2 > && sizeof(T2) < sizeof(T1))),
-      double,
+      ::f64,
       if_else < ((::std::is_floating_point_v < T1 >
       && ::std::is_floating_point_v < T2 > &&
       sizeof(T1) > sizeof(T2))
@@ -289,7 +289,7 @@ using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeConta
 //class array_non_particle;
 
 
-template < typename ARRAY_BASE, int t_preallocated_array_size >
+template < typename ARRAY_BASE, ::i32 t_preallocated_array_size >
 class preallocated_array_base;
 
 
@@ -517,18 +517,18 @@ class numeric_array_base;
 //using numeric_array = ::array_particle < numeric_base_array < TYPE, t_etypeContainer > >;
 
 
-using char_array_base = numeric_array_base < char >;
-using short_array_base = numeric_array_base < short >;
-using i32_array_base = numeric_array_base < int >;
+using char_array_base = numeric_array_base < ::i8 >;
+using short_array_base = numeric_array_base < ::i16 >;
+using i32_array_base = numeric_array_base < ::i32 >;
 using i64_array_base = numeric_array_base < ::i64 >;
 
-using u8_array_base = numeric_array_base < unsigned char >;
-using u16_array_base = numeric_array_base < unsigned short >;
+using u8_array_base = numeric_array_base < ::u8 >;
+using u16_array_base = numeric_array_base < ::u16 >;
 using unsigned_i32_array_base = numeric_array_base < ::u32 >;
 using u64_array_base = numeric_array_base < ::u64 >;
 
-using float_array_base = numeric_array_base < float >;
-using double_array_base = numeric_array_base < double >;
+using f32_array_base = numeric_array_base < ::f32 >;
+using f64_array_base = numeric_array_base < ::f64 >;
 
 
 
@@ -542,8 +542,8 @@ using u16_array = ::array_particle < u16_array_base >;
 using u32_array = ::array_particle < unsigned_i32_array_base >;
 using u64_array = ::array_particle < u64_array_base >;
 
-using float_array = ::array_particle < float_array_base >;
-using double_array = ::array_particle < double_array_base >;
+using f32_array = ::array_particle < f32_array_base >;
+using f64_array = ::array_particle < f64_array_base >;
 
 
 using index_array_base = numeric_array_base < ::collection::index >;
@@ -558,7 +558,7 @@ using unsigned_i32_array_base = numeric_array_base < ::u32 >;
 using u32_array = ::array_particle < unsigned_i32_array_base >;
 
 
-using unique_int_sort_array = unique_number_sort_array < int >;
+using unique_int_sort_array = unique_number_sort_array < ::i32 >;
 using unique_i64_sort_array = unique_number_sort_array < ::i64 >;
 
 
@@ -586,8 +586,8 @@ using unique_iptr_sort_array = unique_int_sort_array;
 
 #endif
 
-//using float_array = numeric_array < float >;
-//using double_array = numeric_array < double >;
+//using f32_array = numeric_array < ::f32 >;
+//using f64_array = numeric_array < ::f64 >;
 
 using strsize_array_base = iptr_array_base;
 
@@ -626,7 +626,7 @@ inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
 
 
 template < typename T >
-inline unsigned char byte_clip(const T & t) { return ((unsigned char)(((t) < (unsigned char)0) ? (unsigned char)0 : (((t) > (unsigned char)255) ? (unsigned char)255 : (unsigned char)t))); }
+inline ::u8 byte_clip(const T & t) { return ((::u8)(((t) < (::u8)0) ? (::u8)0 : (((t) > (::u8)255) ? (::u8)255 : (::u8)t))); }
 
 
 template < typename A, typename B >
@@ -647,7 +647,7 @@ template <class TYPEA, class TYPEB, class ARRAYA = array < TYPEA >, class ARRAYB
 class spreadset;
 
 
-using int_spreadset = spreadset < int, int, unique_int_sort_array, unique_int_sort_array >;
+using int_spreadset = spreadset < ::i32, ::i32, unique_int_sort_array, unique_int_sort_array >;
 
 using i64_spreadset = spreadset < ::i64, ::i64, unique_i64_sort_array, unique_i64_sort_array >;
 
@@ -1054,14 +1054,14 @@ class pointer_array_base;
 template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
 class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
 
-template<typename TYPE, int t_iSize, enum_array t_earray = e_array_none, typename ARG_TYPE = const TYPE &>
+template<typename TYPE, ::i32 t_iSize, enum_array t_earray = e_array_none, typename ARG_TYPE = const TYPE &>
 class block_array;
 
 template<typename TYPE, typename ARG_TYPE>
 class array_range;
 
 
-template<class T, int t_preallocated_array_size, typename ARG_T = const T * >
+template<class T, ::i32 t_preallocated_array_size, typename ARG_T = const T * >
 using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, ::block_array < ::pointer < T >,t_preallocated_array_size, e_array_none, ARG_T > >;
 
 
@@ -1101,8 +1101,8 @@ using extended_topic_pointer = ::pointer<extended_topic>;
 
 
 using i32_array_array_base = ::array_base<i32_array_base>;
-using float_array_array_base = ::array_base<float_array_base>;
-using double_array_array_base = ::array_base<double_array_base>;
+using f32_array_array_base = ::array_base<f32_array_base>;
+using f64_array_array_base = ::array_base<f64_array_base>;
 
 
 using task_pointer = ::pointer<task>;

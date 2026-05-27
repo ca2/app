@@ -3,8 +3,8 @@
  *
  * \brief A specialization of TextBox representing floating point values.
 
- *  The emplate parametersshould a be floating point type, e.g. ``float`` or
- *  ``double``.
+ *  The emplate parametersshould a be floating point type, e.g. ``::f32`` or
+ *  ``::f64``.
  */
  // From TextBox.h by camilo on 2023-05-16 14:22 <3ThomasBorregaardSorensen!!
 #pragma once
@@ -22,7 +22,7 @@ namespace nanoui
    {
    public:
       FloatBox(Widget* parent, Scalar value = (Scalar)0.f) : TextBox(parent) {
-         m_number_format = sizeof(Scalar) == sizeof(float) ? "%.4g" : "%.7g";
+         m_number_format = sizeof(Scalar) == sizeof(::f32) ? "%.4g" : "%.7g";
          set_default_value("0");
          set_format("[-+]?[0-9]*\\.?[0-9]+([e_e][-+]?[0-9]+)?");
          set_value_increment((Scalar)0.1);
@@ -154,7 +154,7 @@ namespace nanoui
             if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_pointMouseDown.x != -1)
             {
 
-               int value_delta = static_cast<int>((p.x - m_pointMouseDown.x) / float(10));
+               ::i32 value_delta = static_cast<::i32>((p.x - m_pointMouseDown.x) / ::f32(10));
 
                set_value(m_mouse_down_value + value_delta * m_value_increment, e_source_user);
 
@@ -176,7 +176,7 @@ namespace nanoui
       }
 
 
-      virtual bool scroll_event(const i32_point& p, const float_size& rel) override
+      virtual bool scroll_event(const i32_point& p, const ::f32_size& rel) override
       {
 
          if (Widget::scroll_event(p, rel))
@@ -189,7 +189,7 @@ namespace nanoui
          if (m_bSpinnable && !focused())
          {
 
-            int value_delta = (rel.cy > 0) ? 1 : -1;
+            ::i32 value_delta = (rel.cy > 0) ? 1 : -1;
 
             set_value(value() + value_delta * m_value_increment, e_source_user);
 

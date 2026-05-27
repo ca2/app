@@ -30,11 +30,11 @@ namespace user
    void interaction_scaler::on_display_change(const ::i32_size & size)
    {
 
-      double dW = (double) size.cx / 1920.0;
+      ::f64 dW = (::f64) size.cx / 1920.0;
 
-      double dH = (double) size.cy / 1080.0;
+      ::f64 dH = (::f64) size.cy / 1080.0;
 
-      double dScreenScaler = minimum(dW, dH);
+      ::f64 dScreenScaler = minimum(dW, dH);
 
       m_dScreenScaler = dScreenScaler;
 

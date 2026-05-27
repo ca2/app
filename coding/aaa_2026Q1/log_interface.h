@@ -15,7 +15,7 @@ namespace coding
    public:
 
       //enum_task                                    m_etask;
-      int                                          m_iStatus1;
+      ::i32                                          m_iStatus1;
       ::collection::index                                 m_iIndex;
       ::collection::index                                 m_iStage;
       //::string_array                               m_straStage;

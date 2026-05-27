@@ -271,13 +271,13 @@ bool install::get_debug_project_enabled()
 //   
 //   directory_system()->change_current(pathHomeFolder / "Dropbox");
 //   
-//   int iTryStart = 0;
+//   ::i32 iTryStart = 0;
 //   
-//   int iRetryStart = 3;
+//   ::i32 iRetryStart = 3;
 //   
 //   class ::time timeLastTryStart;
 //   
-//   int iExitCodeLastTryStart = -1;
+//   ::i32 iExitCodeLastTryStart = -1;
 //   
 //   ::string strOutputLastTryStart;
 //   
@@ -288,7 +288,7 @@ bool install::get_debug_project_enabled()
 //      
 //      ::string strLs;
 //      
-//      int iExitCode = node()->get_posix_shell_command_output(strLs, pathDropboxBin + " exclude list");
+//      ::i32 iExitCode = node()->get_posix_shell_command_output(strLs, pathDropboxBin + " exclude list");
 //      
 //      auto pszLs = strLs.c_str();
 //      
@@ -456,17 +456,17 @@ void install::install_setup_folders()
 //               
 //               ::string strLs1;
 //               
-//               int iExitCode1 = node()->get_posix_shell_command_output(
+//               ::i32 iExitCode1 = node()->get_posix_shell_command_output(
 //                                                                       strLs1, m_strDropboxCommand + " exclude add *");
 //               
 //               ::string strLs2;
 //               
-//               int iExitCode2 = node()->get_posix_shell_command_output(
+//               ::i32 iExitCode2 = node()->get_posix_shell_command_output(
 //                                                                       strLs2, m_strDropboxCommand + " exclude remove box");
 //               
 //               ::string strLs;
 //               
-//               int iExitCode = node()->get_posix_shell_command_output(
+//               ::i32 iExitCode = node()->get_posix_shell_command_output(
 //                                                                      strLs, m_strDropboxCommand + " exclude list");
 //               
 //               auto pszLs = strLs.c_str();
@@ -505,7 +505,7 @@ void install::install_setup_folders()
 //               
 //               ::string strLs;
 //               
-//               int iExitCode = node()->get_posix_shell_command_output(
+//               ::i32 iExitCode = node()->get_posix_shell_command_output(
 //                                                                      strLs, m_strDropboxCommand + " exclude list");
 //               
 //               auto pszLs = strLs.c_str();
@@ -541,17 +541,17 @@ void install::install_setup_folders()
 //                  
 //                  ::string strLs1;
 //                  
-//                  int iExitCode1 = node()->get_posix_shell_command_output(
+//                  ::i32 iExitCode1 = node()->get_posix_shell_command_output(
 //                                                                          strLs1, m_strDropboxCommand + " exclude add *");
 //                  
 //                  ::string strLs2;
 //                  
-//                  int iExitCode2 = node()->get_posix_shell_command_output(
+//                  ::i32 iExitCode2 = node()->get_posix_shell_command_output(
 //                                                                          strLs2, m_strDropboxCommand + " exclude remove box");
 //                  
 //                  ::string strLs;
 //                  
-//                  int iExitCode = node()->get_posix_shell_command_output(
+//                  ::i32 iExitCode = node()->get_posix_shell_command_output(
 //                                                                         strLs, m_strDropboxCommand + " exclude list");
 //                  
 //                  auto pszLs = strLs.c_str();
@@ -718,7 +718,7 @@ void install::install_setup_folders()
 //      
 //      ::string strLs;
 //      
-//      int iExitCode = node()->
+//      ::i32 iExitCode = node()->
 //      get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
 //      
 //      auto pszLs = strLs.c_str();
@@ -736,7 +736,7 @@ void install::install_setup_folders()
 //         
 //         print_line("font_at_index.txt: " + line);
 //         
-//         int iFind = stra.case_insensitive_find_first_begins(line + ":");
+//         ::i32 iFind = stra.case_insensitive_find_first_begins(line + ":");
 //         
 //         if (iFind < 0)
 //         {
@@ -834,9 +834,9 @@ void install::install_setup_folders()
 //}
 
 
-int install::synchronous_posix_terminal(const ::scoped_string & scopedstr)
+::i32 install::synchronous_posix_terminal(const ::scoped_string & scopedstr)
 {
-   int iExitCode = node()->synchronous_posix_terminal(
+   ::i32 iExitCode = node()->synchronous_posix_terminal(
                                                       scopedstr,
                                                       e_posix_shell_system_default,
                                                       [this](auto etracelevel, auto str, bool bCarriage)
@@ -852,7 +852,7 @@ void install::install_git_scm()
 {
    //directory_system()->change_current(m_path.folder());
    
-   int iExitCode = node()->synchronous_posix_terminal("echo \"sudo apt install git\"; sudo apt install git");
+   ::i32 iExitCode = node()->synchronous_posix_terminal("echo \"sudo apt install git\"; sudo apt install git");
    
    informationf("sudo apt install git Exit Code : %d", iExitCode);
    
@@ -869,7 +869,7 @@ void install::install_patch_shell()
    
    information() << "Gonna run command : " << pathPatchShell;
    
-   int iExitCode = synchronous_posix_terminal("cd " + pathPatchShell.folder() + "; ./" + pathPatchShell.name());
+   ::i32 iExitCode = synchronous_posix_terminal("cd " + pathPatchShell.folder() + "; ./" + pathPatchShell.name());
    
    information() << "patch shell exit code : " << iExitCode;
    
@@ -953,10 +953,10 @@ void install::install_deps()
    
    auto depsa = get_install_dep_script_names();
    
-   int iRetryCount = 5;
-   int iTry = 0;
-   int iFailureCount;
-   int iTotalCount;
+   ::i32 iRetryCount = 5;
+   ::i32 iTry = 0;
+   ::i32 iFailureCount;
+   ::i32 iTotalCount;
    
    while (true)
    {
@@ -968,7 +968,7 @@ void install::install_deps()
       {
          ::file::path path = directory_system()->home() / "cmake/operating_system/tool-linux/bin" / deps;
          
-         int iExitCode = synchronous_posix_terminal("echo \\\"" + path + "\\\"; " + path);
+         ::i32 iExitCode = synchronous_posix_terminal("echo \\\"" + path + "\\\"; " + path);
          
          informationf("%s Exit Code : %d", path.c_str(), iExitCode);
          
@@ -1013,7 +1013,7 @@ void install::install_git_credential_manager()
    {
       directory_system()->change_current(m_path.folder());
       
-      int iExitCode = synchronous_posix_terminal(
+      ::i32 iExitCode = synchronous_posix_terminal(
                                                  "echo \"sudo apt install " + m_path + "\"; sudo apt install " + m_path);
       
       if(iExitCode != 0)
@@ -1033,7 +1033,7 @@ void install::install_git_credential_manager()
    {
       directory_system()->change_current(m_path.folder());
       
-      int iExitCode = synchronous_posix_terminal(
+      ::i32 iExitCode = synchronous_posix_terminal(
                                                  "echo \"sudo tar -xzvf " + m_path + " -C /usr/local/bin\"; sudo tar -xzvf " + m_path +
                                                  " -C /usr/local/bin");
       
@@ -1052,7 +1052,7 @@ void install::install_git_credential_manager()
 
    }
    
-   int iExitCode = synchronous_posix_terminal("git-credential-manager configure");
+   ::i32 iExitCode = synchronous_posix_terminal("git-credential-manager configure");
    
    
    if(iExitCode != 0)
@@ -1069,7 +1069,7 @@ void install::install_git_credential_manager()
    }
 
    
-   int iExitCode2 = node()->posix_shell_command(
+   ::i32 iExitCode2 = node()->posix_shell_command(
                                                 "git config --global credential.credentialStore secretservice",
                                                 e_posix_shell_system_default,
                                                 [this](auto etracelevel, auto str, bool bCarriage)
@@ -1280,7 +1280,7 @@ void install::install_visual_studio_code()
 //      
 //      ::string strOutput;
 //      
-//      int iExitCode = node()->get_posix_shell_command_output(strOutput, strCommand);
+//      ::i32 iExitCode = node()->get_posix_shell_command_output(strOutput, strCommand);
 //      
 //      if (iExitCode == 0)
 //      {
@@ -1509,7 +1509,7 @@ void install::install_visual_studio_code()
 //      
 //      ::string strLs;
 //      
-//      int iExitCode = node()->
+//      ::i32 iExitCode = node()->
 //      get_posix_shell_command_output(strLs, m_strDropboxCommand + " dropbox filestatus");
 //      
 //      auto pszLs = strLs.c_str();
@@ -1529,7 +1529,7 @@ void install::install_visual_studio_code()
 //         
 //         print_line("font_at_index.txt: " + line);
 //         
-//         int iFind = stra.case_insensitive_find_first_begins(line + ":");
+//         ::i32 iFind = stra.case_insensitive_find_first_begins(line + ":");
 //         
 //         if (iFind < 0)
 //         {
@@ -1588,7 +1588,7 @@ void install::install_visual_studio_code()
 //
 //
 //::file::path install::_dropbox_ensure_files_in_index_txt_are_up_to_date_and_present(
-//                                                                                    const ::scoped_string & scopedstrDropboxFolder, const ::scoped_string & scopedstrFileExtension, int iMinimumFileSize)
+//                                                                                    const ::scoped_string & scopedstrDropboxFolder, const ::scoped_string & scopedstrFileExtension, ::i32 iMinimumFileSize)
 //{
 //   
 //   ::string_array lines;
@@ -1653,7 +1653,7 @@ void install::install_visual_studio_code()
 //      
 //      ::string strLs;
 //      
-//      int iExitCode = node()->
+//      ::i32 iExitCode = node()->
 //      get_posix_shell_command_output(strLs, m_strDropboxCommand + " dropbox filestatus");
 //      
 //      auto pszLs = strLs.c_str();
@@ -1672,7 +1672,7 @@ void install::install_visual_studio_code()
 //         
 //         print_line("font_at_index.txt: " + line);
 //         
-//         int iFind = stra.case_insensitive_find_first_begins(line + ":");
+//         ::i32 iFind = stra.case_insensitive_find_first_begins(line + ":");
 //         
 //         if (iFind < 0)
 //         {
@@ -1767,10 +1767,10 @@ void install::install_visual_studio_code()
 //      
 //      set_status2("Installing JetBrains Toolbox...");
 //      
-//      int iExitCode = node()->synchronous_posix_terminal(
+//      ::i32 iExitCode = node()->synchronous_posix_terminal(
 //                                                         "echo \"sudo apt install libfuse2\"; sudo apt install libfuse2");
 //      
-//      int iExitCode2 = node()->posix_shell_command(pathJetbrains / "toolbox/jetbrains-toolbox");
+//      ::i32 iExitCode2 = node()->posix_shell_command(pathJetbrains / "toolbox/jetbrains-toolbox");
 //   }
 //   catch (...)
 //   {

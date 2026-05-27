@@ -31,7 +31,7 @@
 }
 
 
-int _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int origin)
+::i32 _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, ::i32 origin)
 {
 
    file_pointer  pfile = (::file::file *) handle;

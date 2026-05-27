@@ -428,7 +428,7 @@ namespace user
    //   {
    //      strSql += " order by ";
 
-   //      for (int i = 0; i < m_sortinfo.m_useritema.get_size(); i++)
+   //      for (::i32 i = 0; i < m_sortinfo.m_useritema.get_size(); i++)
    //      {
    //         CSortInfoItem& item = m_sortinfo.m_useritema[i];
    //         switch (item.m_iSubItem)
@@ -495,7 +495,7 @@ namespace user
    //   MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-   //   int iFind;
+   //   ::i32 iFind;
    //   if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
    //   {
    //   mediamanager::GetMediaManager()->album_build().add(wstrPath, pdocument->m_fileinfo.m_timeaAdd[iFind]);
@@ -546,18 +546,18 @@ namespace user
    //   else
    //   {
    //   kill_timer(1124);
-   //   int iTopIndex = _001GetTopIndex();
+   //   ::i32 iTopIndex = _001GetTopIndex();
    //   if(m_buildhelper.m_iTopIndex != iTopIndex)
    //   {
    //   m_buildhelper.m_iTopIndex = iTopIndex;
    //   m_buildhelper.m_iStep = 0;
    //   }
-   //   int iItem;
+   //   ::i32 iItem;
 
 
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-   //   int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+   //   ::i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
    //   ::i32_array_base iaRemove;
    //   while(true)
@@ -579,7 +579,7 @@ namespace user
    //   string wstrPath;
    //   wstrPath = pds->fv("filepath").get_asString();
 
-   //   int iFind;
+   //   ::i32 iFind;
    //   if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
    //   {
    //   PostFillTask(wstrPath, uEvent);
@@ -612,7 +612,7 @@ namespace user
    //   MediaLibraryDoc * pdocument = get_document();
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-   //   int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+   //   ::i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
    //   ::i32_array_base iaRemove;
    //   auto pFind = 0;
@@ -740,7 +740,7 @@ namespace user
 
    //}
 
-   //void list2::start_build(int iItem)
+   //void list2::start_build(::i32 iItem)
    //{
    //   __UNREFERENCED_PARAMETER(iItem);
    //   auto iTopIndex = m_iTopDisplayIndex;
@@ -821,7 +821,7 @@ namespace user
    //   // method 3: Selected Childs with GetChilds()
    //   // Result: Person, Person, Person
    //   index iNode = 0;
-   //   for (int i = 0; i < pnodeFolder->get_children_count(); i++)
+   //   for (::i32 i = 0; i < pnodeFolder->get_children_count(); i++)
    //   {
 
    //      auto pnodeItem = pnodeFolder->child_at(i);
@@ -868,7 +868,7 @@ namespace user
 
    //   auto pnodeFile = pxmldocument->get_child("file");
 
-   //   for (int i = 0; i < pnodeFile->get_children_count(); i++)
+   //   for (::i32 i = 0; i < pnodeFile->get_children_count(); i++)
    //   {
    //      auto pnodeItem = pnodeFile->child_at(i);
    //      if (pnodeItem->get_name() == "file")
@@ -896,10 +896,10 @@ namespace user
    //}
 
 
-   /*int ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
+   /*::i32 ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
 
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(::i32 i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i).id() == pszId)
 
@@ -927,8 +927,8 @@ namespace user
    void list2::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      int x = 5;
-      int y = 5;
+      ::i32 x = 5;
+      ::i32 y = 5;
 
       auto rectangleX = this->rectangle();
 
@@ -958,7 +958,7 @@ namespace user
          puseritem->m_rectangle2.left = 0;
          puseritem->m_rectangle2.right = rectangleX.width();
          puseritem->m_rectangle2.top = y;
-         puseritem->m_rectangle2.bottom = (int) (y + iLineHeight);
+         puseritem->m_rectangle2.bottom = (::i32) (y + iLineHeight);
 
          ::user::enum_state estate = ::user::e_state_none;
 
@@ -973,9 +973,9 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, (int) y, pitem->get_item_text(puseritembase));
+         pgraphics->text_out(x, (::i32) y, pitem->get_item_text(puseritembase));
 
-         y = (int) (y + iLineHeight);
+         y = (::i32) (y + iLineHeight);
 
       }
 

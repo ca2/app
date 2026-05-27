@@ -95,7 +95,7 @@ namespace gpu
 
       auto prendertarget = prenderer->render_target();
 
-      int iFrameIndex = prendertarget->get_frame_index();
+      ::i32 iFrameIndex = prendertarget->get_frame_index();
 
       if (iFrameIndex < 0)
       {
@@ -151,7 +151,7 @@ namespace gpu
             }
          }
 
-         // int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+         // ::i32 iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
 
          // m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
          // m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
@@ -167,7 +167,7 @@ namespace gpu
       if (estate == ::gpu::e_state_began_render)
       {
 
-         int iFrameIndex = prendertarget->get_frame_index();
+         ::i32 iFrameIndex = prendertarget->get_frame_index();
 
          if (iFrameIndex < 0)
          {
@@ -232,7 +232,7 @@ namespace gpu
 
 
    //}
-   void graphics::draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen)
+   void graphics::draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *ppen)
    {
 
       line(rectangle.top_left(), rectangle.top_right(), ppen);
@@ -347,7 +347,7 @@ namespace gpu
 
          auto prendertarget = prenderer->render_target();
 
-         int iFrameIndex = prendertarget->get_frame_index();
+         ::i32 iFrameIndex = prendertarget->get_frame_index();
 
          auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
 
@@ -594,7 +594,7 @@ namespace gpu
    }
    //
    //
-   // void graphics::context_transform(::double_point & p, enum_transform_context etransformcontext)
+   // void graphics::context_transform(::f64_point & p, enum_transform_context etransformcontext)
    // {
    //
    //    context_matrix().transform(p);
@@ -602,7 +602,7 @@ namespace gpu
    // }
 
 
-   ::double_size graphics::total_size()
+   ::f64_size graphics::total_size()
    {
 
       auto pcontext = gpu_context();
@@ -725,7 +725,7 @@ namespace gpu
    }
 
 
-   void graphics::_fill_quad(const ::double_point points[4], const ::color::color& color)
+   void graphics::_fill_quad(const ::f64_point points[4], const ::color::color& color)
    {
 
       ::gpu::debug_scope debugscopeFillQuad(::gpu::current_command_buffer(),
@@ -753,7 +753,7 @@ namespace gpu
 
       }
 
-      ::block_array < double_point, 4 > quad;
+      ::block_array < ::f64_point, 4 > quad;
 
       quad.add(points[0]);
       quad.add(points[1]);
@@ -781,12 +781,12 @@ namespace gpu
    }
 
 
-   void graphics::fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color)
+   void graphics::fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color)
    {
 
       auto r = rectangle;
 
-      double_point points[4] =
+      ::f64_point points[4] =
       {
          {r.top_left()},
          {r.top_right()},
@@ -799,7 +799,7 @@ namespace gpu
    }
 
 
-   void graphics::line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen)
+   void graphics::line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* ppen)
    {
 
       auto pcontext = gpu_context();
@@ -812,9 +812,9 @@ namespace gpu
 
       auto pshader = rectangle_shader();
 
-//      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+//      ::f32 g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
-      ::double_point points1[2];
+      ::f64_point points1[2];
 
       points1[0].x = x1;
       points1[0].y = y1;
@@ -831,9 +831,9 @@ namespace gpu
       //m.scale(2.0 / size.cx, 2.0 / size.cy);
       //m.translate(-1.0, -1.0);
 
-      ::double_point_array pointa;
+      ::f64_point_array pointa;
 
-      ::double_point pointPen(ppen->m_dWidth, ppen->m_dWidth);
+      ::f64_point pointPen(ppen->m_dWidth, ppen->m_dWidth);
 
       ::draw2d::make_line_triangles_cap_butt_square(
          pointa,
@@ -845,14 +845,14 @@ namespace gpu
 
       auto color = m_ppen->m_color;
 
-      float fA = color.f32_opacity();
-      float fR = color.f32_red() * fA;
-      float fG = color.f32_green() * fA;
-      float fB = color.f32_blue() * fA;
+      ::f32 fA = color.f32_opacity();
+      ::f32 fR = color.f32_red() * fA;
+      ::f32 fG = color.f32_green() * fA;
+      ::f32 fB = color.f32_blue() * fA;
 
       ::array<::graphics3d::sequence2_color> quadVertices;
       for (auto& point : pointa)
-         quadVertices.add({ {(float)point.x, (float)point.y}, {fR, fG, fB, fA} });
+         quadVertices.add({ {(::f32)point.x, (::f32)point.y}, {fR, fG, fB, fA} });
 
       auto pmodelbuffer = model_buffer(::draw2d::e_model_line);
 
@@ -902,7 +902,7 @@ namespace gpu
 
 
    
-   double_size graphics::_get_text_extent(const ::scoped_string& scopedstr)
+   ::f64_size graphics::_get_text_extent(const ::scoped_string& scopedstr)
    {
 
       auto pcontext = gpu_context();
@@ -926,23 +926,23 @@ namespace gpu
       ::string str(scopedstr);
       auto psz = str.c_str();
 
-      float x = 0.0f;
-      float y = 0.0f;
+      ::f32 x = 0.0f;
+      ::f32 y = 0.0f;
       //glEnable(GL_CULL_FACE);
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      //int xpos = 0;
-      //int ypos = 0;
+      //::i32 xpos = 0;
+      //::i32 ypos = 0;
       while (next_unicode_character(strChar, psz))
       {
 
          auto& ch = pface->get_character(strChar);
 
-         //float xpos = x + ch.Bearing.x * scale;
-         //float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
+         //::f32 xpos = x + ch.Bearing.x * scale;
+         //::f32 ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
-         //float w = (float) ch.Size.x;
-         float h = (float)ch.Size.y;
+         //::f32 w = (::f32) ch.Size.x;
+         ::f32 h = (::f32)ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
          // render glyph texture over quad
@@ -1073,7 +1073,7 @@ namespace gpu
    }
 
 
-   void graphics::text_out(double x, double yParam, const ::scoped_string& scopedstr)
+   void graphics::text_out(::f64 x, ::f64 yParam, const ::scoped_string& scopedstr)
    {
       //return;
 
@@ -1148,7 +1148,7 @@ namespace gpu
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      ::floating_sequence4 vec4TextColor{ __expand_float_pre_rgba(color) };
+      ::floating_sequence4 vec4TextColor{ __expand_f32_pre_rgba(color) };
       pshader->set_sequence4("textColor", vec4TextColor);
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
@@ -1156,8 +1156,8 @@ namespace gpu
       // auto size = pcontext->m_rectangle.size();
       // floating_matrix4 projection = glm::ortho(
       //    0.0f,
-      //    static_cast<float>(size.width()),
-      //    static_cast<float>(size.height()),
+      //    static_cast<::f32>(size.width()),
+      //    static_cast<::f32>(size.height()),
       //    0.0f);
       //pshader->push_properties();
       set(m_pfont);
@@ -1209,21 +1209,21 @@ namespace gpu
       //   warning() << "draw_text: " << str;
 
       //}
-      //float scale;
+      //::f32 scale;
       //if (pfont->m_fontsize.eunit() == e_unit_point)
       //{
-      //   scale = pfont->m_fontsize.as_float() / FONT_POINT_DENOMINATOR;
+      //   scale = pfont->m_fontsize.as_f32() / FONT_POINT_DENOMINATOR;
       //}
       //else
       //{
-      //   scale = pfont->m_fontsize.as_float() / FONT_PIXEL_DENOMINATOR;
+      //   scale = pfont->m_fontsize.as_f32() / FONT_PIXEL_DENOMINATOR;
       //}
       //auto y = m_pgpucontextCompositor->m_rectangle.height() - yParam - pface->m_iPixelSize;
       auto y = yParam;
 
 
       ::i32_point point(x, y);
-      int Δx = 0;
+      ::i32 Δx = 0;
       //auto pcontext = gpu_context();
 
       //point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
@@ -1246,13 +1246,13 @@ namespace gpu
       {
 
          auto& ch = pface->get_character(strChar);
-         //float h2 = (float)(ch.Size.y - ch.Bearing.y);
-         float xpos = (float) (point.x + Δx + ch.Bearing.x);
-         //float ypos = (float) (point.y + h2);
-         float ypos = (float) (point.y);
+         //::f32 h2 = (::f32)(ch.Size.y - ch.Bearing.y);
+         ::f32 xpos = (::f32) (point.x + Δx + ch.Bearing.x);
+         //::f32 ypos = (::f32) (point.y + h2);
+         ::f32 ypos = (::f32) (point.y);
 
-         float sizex = (float) ch.Size.x;
-         float sizey = (float) ch.Size.y;
+         ::f32 sizex = (::f32) ch.Size.x;
+         ::f32 sizey = (::f32) ch.Size.y;
          // update VBO for each character
          // render glyph texture over quad
 
@@ -1300,13 +1300,13 @@ namespace gpu
 
                {
 
-                  double l = (double) (xpos);
-                  double t = (double) (ypos + ch.aHeight2);
-                  double r = (double) (xpos + sizex);
-                  double b = (double) (t + sizey);
+                  ::f64 l = (::f64) (xpos);
+                  ::f64 t = (::f64) (ypos + ch.aHeight2);
+                  ::f64 r = (::f64) (xpos + sizex);
+                  ::f64 b = (::f64) (t + sizey);
 
-                  double_point p1(l, t);
-                  double_point p2(r, b);
+                  ::f64_point p1(l, t);
+                  ::f64_point p2(r, b);
 
                   __transform(p1);
                   __transform(p2);
@@ -1326,15 +1326,15 @@ namespace gpu
 
                   auto size = ppixmap->m_pgputexture->size();
 
-                  auto w = (float)(size.width());
-                  auto h = (float)(size.height());
+                  auto w = (::f32)(size.width());
+                  auto h = (::f32)(size.height());
 
-                  float_rectangle rectangle = ppixmap->m_rectangle;
+                  ::f32_rectangle rectangle = ppixmap->m_rectangle;
 
-                  float l = rectangle.left / w;
-                  float t = rectangle.top / h;
-                  float r = rectangle.right / w;
-                  float b = rectangle.bottom / h;
+                  ::f32 l = rectangle.left / w;
+                  ::f32 t = rectangle.top / h;
+                  ::f32 r = rectangle.right / w;
+                  ::f32 b = rectangle.bottom / h;
 
                   ::floating_sequence4 texcoords(l, t, r, b);
 
@@ -1347,7 +1347,7 @@ namespace gpu
                //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
                //::opengl::check_error("");
                //// update content of VBO memory
-               //int iVbo = pface->m_FaceVBO;
+               //::i32 iVbo = pface->m_FaceVBO;
                //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
                //::opengl::check_error("");
                //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
@@ -1366,7 +1366,7 @@ namespace gpu
 
                auto h = ppixmap->m_rectangle.height();
 
-               strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
+               strMessage.formatf("::i8 bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
 
                ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
 

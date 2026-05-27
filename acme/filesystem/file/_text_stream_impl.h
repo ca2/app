@@ -11,22 +11,22 @@
 //
 //inline void __string_exchange(text_stream & s, ::ansi_character & ansich) { s.string_exchange(ansich); }
 //inline void __string_exchange(text_stream & s, ::wide_character & widech) { s.string_exchange(widech); }
-//inline void __string_exchange(text_stream & s, char & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, short & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, int & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, ::i8 & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, ::i16 & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, ::i32 & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, ::i64 & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, unsigned char & u) { s.number_exchange(u); }
-//inline void __string_exchange(text_stream & s, unsigned short & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, ::u8 & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, ::u16 & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, ::u32 & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, ::u64 & u) { s.number_exchange(u); }
 //#if !defined(LINUX) && !defined(FREEBSD) && !defined(OPENBSD)
 //inline void __string_exchange(text_stream & s, long & l) { s.number_exchange(l); }
 //#endif
-//inline void __string_exchange(text_stream & s, float & f) { s.number_exchange(f); }
-//inline void __string_exchange(text_stream & s, double & d) { s.number_exchange(d); }
+//inline void __string_exchange(text_stream & s, ::f32 & f) { s.number_exchange(f); }
+//inline void __string_exchange(text_stream & s, ::f64 & d) { s.number_exchange(d); }
 //inline void __string_exchange(text_stream & s, ::earth::time & time) { s.number_exchange(time.m_i32); }
 //inline void __string_exchange(text_stream & s, const ::scoped_string & scopedstr) { s.write_only(scopedstr); }
-//inline void __string_exchange(text_stream & s, char * psz) { s.string_exchange(scopedstr); }
+//inline void __string_exchange(text_stream & s, char_pointer psz) { s.string_exchange(scopedstr); }
 //inline void __string_exchange(text_stream & s, string & str) { s.string_exchange(str); }
 //inline void __string_exchange(text_stream & s, ::file::path & path) { s.string_exchange(path); }
 //inline void __string_exchange(text_stream & s, ::atom & atom) { s.string_exchange(atom); }

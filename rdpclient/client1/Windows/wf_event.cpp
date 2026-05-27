@@ -39,7 +39,7 @@ static HWND g_focus_hWnd;
 #define X_POS(lParam) ((::u3216) (lParam & 0xFFFF))
 #define Y_POS(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
 
-BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, ::u32 rop);
+BOOL wf_scale_blt(wfContext* wfc, HDC hdc, ::i32 x, ::i32 y, ::i32 w, ::i32 h, HDC hdcSrc, ::i32 x1, ::i32 y1, ::u32 rop);
 void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u3216 x, ::u3216 y);
 
 static BOOL g_flipping_in;
@@ -51,7 +51,7 @@ static BOOL alt_ctrl_down()
 		(GetAsyncKeyState(VK_MENU) & 0x8000));
 }
 
-LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK wf_ll_kbd_proc(::i32 nCode, WPARAM wParam, LPARAM lParam)
 {
 	wfContext* wfc;
 	::u32 rdp_scancode;
@@ -82,10 +82,10 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 					return 1;
 				
 				input = wfc->instance->input;
-				rdp_scancode = MAKE_RDP_SCANCODE((unsigned char) p->scanCode, p->flags & LLKHF_EXTENDED);
+				rdp_scancode = MAKE_RDP_SCANCODE((::u8) p->scanCode, p->flags & LLKHF_EXTENDED);
 
 				DEBUG_KBD("keydown %d scanCode %04X flags %02X vkCode %02X",
-					(wParam == ::user::e_message_key_down), (unsigned char) p->scanCode, p->flags, p->vkCode);
+					(wParam == ::user::e_message_key_down), (::u8) p->scanCode, p->flags, p->vkCode);
 
 				if (wfc->fs_toggle &&
 					((p->vkCode == VK_RETURN) || (p->vkCode == VK_CANCEL)) &&
@@ -187,15 +187,15 @@ void wf_event_focus_in(wfContext* wfc)
 		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x, (::u3216)point.y);
 }
 
-static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+static ::i32 wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 {
-	int delta;
-	int flags;
+	::i32 delta;
+	::i32 flags;
 	rdpInput* input;
 
 	DefWindowProc(hWnd, Msg, wParam, lParam);
 	input = wfc->instance->input;
-	delta = ((signed short) HIWORD(wParam)); /* GET_WHEEL_DELTA_WPARAM(wParam); */
+	delta = ((::i16) HIWORD(wParam)); /* GET_WHEEL_DELTA_WPARAM(wParam); */
 
 	if (delta > 0)
 	{
@@ -252,7 +252,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	HDC hdc;
 //	LONG_PTR ptr;
 //	wfContext* wfc;
-//	int x, y, w, h;
+//	::i32 x, y, w, h;
 //	PAINTSTRUCT ps;
 //	rdpInput* input;
 //	BOOL processed;
@@ -274,8 +274,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			case ::user::e_message_reposition:
 //				if (!wfc->disablewindowtracking)
 //				{
-//					int x = (int)(short) LOWORD(lParam);
-//					int y = (int)(short) HIWORD(lParam);
+//					::i32 x = (::i32)(::i16) LOWORD(lParam);
+//					::i32 y = (::i32)(::i16) HIWORD(lParam);
 //					wfc->client_x = x;
 //					wfc->client_y = y;
 //				}
@@ -385,9 +385,9 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //			case ::user::e_message_scroll_x:
 //				{
-//					int xDelta;     // xDelta = new_pos - current_pos  
-//					int xNewPos;    // ___new position 
-//					int yDelta = 0; 
+//					::i32 xDelta;     // xDelta = new_pos - current_pos  
+//					::i32 xNewPos;    // ___new position 
+//					::i32 yDelta = 0; 
 // 
 //					switch (LOWORD(wParam)) 
 //					{ 
@@ -457,9 +457,9 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //				case ::user::e_message_scroll_y:
 //				{ 
-//					int xDelta = 0; 
-//					int yDelta;     // yDelta = new_pos - current_pos 
-//					int yNewPos;    // ___new position 
+//					::i32 xDelta = 0; 
+//					::i32 yDelta;     // yDelta = new_pos - current_pos 
+//					::i32 yNewPos;    // ___new position 
 // 
 //					switch (LOWORD(wParam)) 
 //					{ 
@@ -591,7 +591,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //		case ::user::e_message_activate:
 //			{
-//				int activate = (int)(short) LOWORD(wParam);
+//				::i32 activate = (::i32)(::i16) LOWORD(wParam);
 //				if (activate != WA_INACTIVE)
 //				{
 //					if (alt_ctrl_down())
@@ -615,9 +615,9 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	return 0;
 //}
 //
-//BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, ::u32 rop)
+//BOOL wf_scale_blt(wfContext* wfc, HDC hdc, ::i32 x, ::i32 y, ::i32 w, ::i32 h, HDC hdcSrc, ::i32 x1, ::i32 y1, ::u32 rop)
 //{
-//	int ww, wh, dw, dh;
+//	::i32 ww, wh, dw, dh;
 //
 //	if (!wfc->client_width)
 //		wfc->client_width = wfc->width;
@@ -653,7 +653,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 
 void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u3216 x, ::u3216 y)
 {
-	int ww, wh, dw, dh;
+	::i32 ww, wh, dw, dh;
 	rdpContext* context;
 	MouseEventEventArgs eventArgs;
 

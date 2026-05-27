@@ -46,7 +46,7 @@ namespace gpu
 
 
       model_data_base();
-      model_data_base(dummy_t, int iVertexCount, int iIndexCount = -1)
+      model_data_base(dummy_t, ::i32 iVertexCount, ::i32 iIndexCount = -1)
       {
 
          m_bDummy = true;
@@ -92,7 +92,7 @@ namespace gpu
          _set_index_array_base(&indexes);
       }
       template<typename INDEX>
-      void set_index_type_and_count(int iIndexCount)
+      void set_index_type_and_count(::i32 iIndexCount)
       {
          if (typeid(INDEX) != this->index_type())
          {
@@ -170,7 +170,7 @@ namespace gpu
 
 
       model_data() {}
-      model_data(int iVertexCount, int iIndexCount)
+      model_data(::i32 iVertexCount, ::i32 iIndexCount)
       { m_vertexes.set_size(iVertexCount);
          m_indexes.set_size(iIndexCount);
          update();

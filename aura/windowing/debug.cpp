@@ -8,7 +8,7 @@
 //extern ::particle * user_synchronization();
 
 
-int g_iIgnoreXDisplayError = 0;
+::i32 g_iIgnoreXDisplayError = 0;
 
 
 //void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
@@ -34,7 +34,7 @@ int g_iIgnoreXDisplayError = 0;
 //   }
 //
 //}
-//int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+//::i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 //{
 //
 //   const ::scoped_string & scopedstrError;

@@ -15,7 +15,7 @@
 #include "nanosvgrast.h"
 
 
-void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLower)
+void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, ::i32 iRedLower)
 {
 
    prasterizer->m_iRedLower = iRedLower;

@@ -467,7 +467,7 @@ void file_context::set_length(const ::file::path & path, filesize size)
 
 
 ::file::path
-file_context::time(const ::file::path & pathBase, int iMaxLevel, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix,
+file_context::time(const ::file::path & pathBase, ::i32 iMaxLevel, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix,
                    bool bTryDelete)
 {
 
@@ -483,7 +483,7 @@ file_context::time(const ::file::path & pathBase, int iMaxLevel, const ::scoped_
 
    string strSuffix(scopedstrSuffix);
 
-   int iIncLevel = 0;
+   ::i32 iIncLevel = 0;
 
 restart:
 
@@ -497,7 +497,7 @@ restart:
 
    string strFormat;
 
-   for (int i = 1; i <= iMaxLevel;)
+   for (::i32 i = 1; i <= iMaxLevel;)
    {
 
       directory()->create(str);
@@ -516,7 +516,7 @@ restart:
       if (i < iMaxLevel)
       {
 
-         int iMax = filterex_time_square("", listing);
+         ::i32 iMax = filterex_time_square("", listing);
 
          if (iMax == -1)
          {
@@ -567,7 +567,7 @@ restart:
 
          directory()->enumerate(listing);
 
-         int iMax = bTryDelete ? 0 : filterex_time_square(scopedstrPrefix, listing);
+         ::i32 iMax = bTryDelete ? 0 : filterex_time_square(scopedstrPrefix, listing);
 
          do
          {
@@ -635,14 +635,14 @@ restart:
 }
 
 
-int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & patha)
+::i32 file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & patha)
 {
 
-   int iMax = -1;
+   ::i32 iMax = -1;
 
-   int iIndex;
+   ::i32 iIndex;
 
-   for (int i = 0; i < patha.size(); i++)
+   for (::i32 i = 0; i < patha.size(); i++)
    {
 
       string str = patha[i].name();
@@ -1723,7 +1723,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      for (int i = 0; i < listing.size(); i++)
+      for (::i32 i = 0; i < listing.size(); i++)
       {
 
          strSrc = listing[i];
@@ -2131,7 +2131,7 @@ void file_context::transfer(const ::file::path & pathNew, const ::file::path & p
 //#else
 //   if (::rename(scopedstr, pszNew) != 0)
 //   {
-//      int err = errno;
+//      ::i32 err = errno;
 //      string strError;
 //      strError.Format("Failed to delete file error=%d", err);
 //      throw ::exception(::exception(strError));
@@ -2196,7 +2196,7 @@ void file_context::erase(const ::file::path & path)
 //
 //   if (unlink(scopedstr) != 0)
 //   {
-//      int err = errno;
+//      ::i32 err = errno;
 //      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
 //      {
 //         string strError;
@@ -2217,7 +2217,7 @@ void file_context::erase(const ::file::path & path)
    string strNew;
    if (directory()->is(path))
    {
-      int i = 1;
+      ::i32 i = 1;
       while (i <= 100)
       {
          strNew.formatf("%s-%s-%d", path.c_str(), strCopy.c_str(), i);
@@ -2236,7 +2236,7 @@ void file_context::erase(const ::file::path & path)
       {
          strExt = "-" + strExt;
       }
-      int i = 1;
+      ::i32 i = 1;
       while (i <= 100)
       {
          strNew.formatf("%s-%s-%d%s", path.c_str(), strCopy.c_str(), i, strExt.c_str());
@@ -2308,7 +2308,7 @@ void file_context::trash_that_is_not_trash(::file::path_array_base & patha)
 
    directory()->create(strDir);
 
-   for (int i = 0; i < patha.size(); i++)
+   for (::i32 i = 0; i < patha.size(); i++)
    {
 
       transfer(strDir / patha[i].name(), patha[i]);
@@ -2377,7 +2377,7 @@ void file_context::replace_with(const ::file::path & pathContext, const ::scoped
 
    directory()->enumerate(listing);
 
-   for (int i = 0; i < listing.size(); i++)
+   for (::i32 i = 0; i < listing.size(); i++)
    {
 
       strOldName = listing[i].name();
@@ -2493,9 +2493,9 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 
    string str;
 
-   char buf[30];
+   ::i8 buf[30];
 
-   for (int i = 0; i < 1000; i++)
+   for (::i32 i = 0; i < 1000; i++)
    {
 
       sprintf(buf, "%d", i);
@@ -2521,10 +2521,10 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 }
 
 
-::file::path file_context::sys_temp_unique(const ::file::path & lpszName)
+::file::path file_context::sys_temp_unique(const ::file::path & pszName)
 {
 
-   return directory_system()->sys_temp() / lpszName;
+   return directory_system()->sys_temp() / pszName;
 
 }
 
@@ -2559,7 +2559,7 @@ file_pointer file_context::get(const ::file::path & path)
 ::file_pointer file_context::get_temporary_upload_file(const ::file::path & pathCurrent)
 {
 
-   int i = 0;
+   ::i32 i = 0;
 
    //static ::pointer < ::mutex > s_mutex(nullptr);
 
@@ -2762,7 +2762,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   ::u64 iPos;
 //
-//   for (int i = 0; i < patha.size(); i++)
+//   for (::i32 i = 0; i < patha.size(); i++)
 //   {
 //      if (case_insensitive_string_ends(patha[i], ".zip"))
 //      {
@@ -2777,7 +2777,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //      write_gen_string(pfile, &ctx, strRelative);
 //      if (pfile2->open(patha[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         throw ::exception(::exception("failed"));
-//      write_n_number(pfile, &ctx, (int)pfile2->size());
+//      write_n_number(pfile, &ctx, (::i32)pfile2->size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
 //         pfile->write(buf, uRead);
@@ -2812,7 +2812,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   string strRelative;
 //   string strMd5;
 //   string strMd5New;
-//   int iBufSize = 1024 * 1024;
+//   ::i32 iBufSize = 1024 * 1024;
 //   memory buf;
 //   buf.set_size(iBufSize);
 //   ::i64 iLen;
@@ -2870,7 +2870,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   if (pctx != nullptr)
 //   {
 //
-//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (int)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (::i32)str.length());
 //
 //   }
 //
@@ -2884,7 +2884,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   string str;
 //
-//   char ch;
+//   ::i8 ch;
 //
 //   while ((uRead = pfile->read(&ch, 1)) == 1)
 //   {
@@ -2920,7 +2920,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   pfile->write((const_char_pointer )str);
 //   if (pctx != nullptr)
 //   {
-//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (int)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (::i32)str.length());
 //   }
 //}
 
@@ -2928,7 +2928,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //{
 //   ::i64 iLen;
 //   read_n_number(pfile, pctx, iLen);
-//   char * psz = str.get_buffer((character_count)(iLen + 1));
+//   char_pointer psz = str.get_buffer((character_count)(iLen + 1));
 //
 //   pfile->read(scopedstr, (memsize)iLen);
 //
@@ -2937,7 +2937,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //      ::i64 iProcessed = 0;
 //      while (iLen - iProcessed > 0)
 //      {
-//         int iProcess = (int)minimum(1024 * 1024, iLen - iProcessed);
+//         ::i32 iProcess = (::i32)minimum(1024 * 1024, iLen - iProcessed);
 //         MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
 //
 //         iProcessed += iProcess;
@@ -4243,7 +4243,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //::file::path file_context::time(const ::file::path & pathBasePath, int iDepth, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
+   //::file::path file_context::time(const ::file::path & pathBasePath, ::i32 iDepth, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    //{
    //
    //   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
@@ -4359,9 +4359,9 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //string file_context::sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension)
+   //string file_context::sys_temp(const_char_pointer pszName, const ::scoped_string & scopedstrExtension)
    //{
-   //   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
+   //   return psystem->m_spfile->sys_temp(pszName, pszExtension, get_app());
    //}
 
 

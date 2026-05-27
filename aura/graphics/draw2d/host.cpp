@@ -22,7 +22,7 @@ namespace draw2d
    }
 
 
-   double host::point_dpi(double d)
+   ::f64 host::point_dpi(::f64 d)
    {
 
       return d;
@@ -30,7 +30,7 @@ namespace draw2d
    }
 
 
-   double host::dpiy(double d)
+   ::f64 host::dpiy(::f64 d)
    {
 
       return d;

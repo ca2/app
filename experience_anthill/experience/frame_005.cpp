@@ -490,17 +490,17 @@ namespace experience_anthill
       
 
       ::i32_rectangle rectangle(rectangleParam);
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width();
-      int cy = rectangle.height();
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width();
+      ::i32 cy = rectangle.height();
 
       ::i32_rectangle rectangleDraw;
 
       if (eborder & e_border_top)
       {
 
-         rectangleDraw = int_rectangle_dimension(x, y, cx, 1);
+         rectangleDraw = i32_rectangle_dimension(x, y, cx, 1);
 
          if (session()->savings()->is_trying_to_save(e_resource_processing))
          {
@@ -519,7 +519,7 @@ namespace experience_anthill
       if (eborder & e_border_left)
       {
 
-         rectangleDraw = int_rectangle_dimension(x, y + 1, 1, cy - 2);
+         rectangleDraw = i32_rectangle_dimension(x, y + 1, 1, cy - 2);
 
          if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
@@ -539,7 +539,7 @@ namespace experience_anthill
       if (eborder & e_border_right)
       {
 
-         rectangleDraw = int_rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
+         rectangleDraw = i32_rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
          if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
@@ -559,7 +559,7 @@ namespace experience_anthill
       if (eborder & e_border_bottom)
       {
 
-         rectangleDraw = int_rectangle_dimension(x, y + cy - 1, cx, 1);
+         rectangleDraw = i32_rectangle_dimension(x, y + cy - 1, cx, 1);
 
          if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
@@ -592,7 +592,7 @@ namespace experience_anthill
    void frame_005::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
    {
 
-      const int size = 16;
+      const ::i32 size = 16;
 
       ::i32_rectangle rectangleX(rectangleXParam);
       //            ::i32_rectangle rectangleXB(rectangleX);

@@ -59,7 +59,7 @@ namespace simple_drawing
       if(get_pane_count() > 0)
          return;
 
-      int iPane;
+      ::i32 iPane;
 
       if (papp->m_bMultiverseChat)
       {

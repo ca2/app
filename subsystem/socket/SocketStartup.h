@@ -40,7 +40,7 @@ namespace subsystem
       // Initializes Windows sockets subsystem.
       // Throws exception if winsock already initialized or
       // if was error during winsock startup.
-      static void startup(unsigned char loVer, unsigned char hiVer);
+      static void startup(::u8 loVer, ::u8 hiVer);
 
       //  Deinitializes Windows sockets subsystem.
       // Throws exception if winsock does not initialized or

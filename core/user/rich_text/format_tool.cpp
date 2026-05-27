@@ -124,7 +124,7 @@ namespace user
             return;
 
          }
-         int iControl = 0;
+         ::i32 iControl = 0;
          constructø(m_pbuttonBold);
          iControl++;
          constructø(m_pbuttonItalic);
@@ -182,7 +182,7 @@ namespace user
          //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
          //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
          //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
-         //::double_rectangle r(2, 2, 2, 2);
+         //::f64_rectangle r(2, 2, 2, 2);
          //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
          //bm_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
          m_pcomboSize->m_bEdit = true;
@@ -289,7 +289,7 @@ namespace user
          m_pcomboFamily->display_child(70, 5, 120, 20);
          m_pcomboSize->display_child(195, 5, 40, 20);
 
-         int x = 245;
+         ::i32 x = 245;
          //throw "create line layout";
          m_pbuttonForeground->display_child(x, 5, 20, 20);
          x += 20;
@@ -653,25 +653,25 @@ namespace user
       }
 
 
-      void format_tool::set_font_size(double dFontSize)
+      void format_tool::set_font_size(::f64 dFontSize)
       {
 
          dFontSize = maximum(6.0, minimum(1440.0, dFontSize));
 
-         double dRound = dFontSize - (double)(int)dFontSize;
+         ::f64 dRound = dFontSize - (::f64)(::i32)dFontSize;
 
-         int iRound = -1;
+         ::i32 iRound = -1;
 
-         int iDouble = -1;
+         ::i32 iDouble = -1;
 
          string strEdit;
 
          if (dRound < 0.25)
          {
 
-            iRound = (int)dFontSize;
+            iRound = (::i32)dFontSize;
 
-            m_pformat->m_dFontSize = (double)iRound;
+            m_pformat->m_dFontSize = (::f64)iRound;
 
             strEdit = ::as_string(iRound);
 
@@ -679,11 +679,11 @@ namespace user
          else if (dRound >= 0.75)
          {
 
-            iRound = (int)dFontSize;
+            iRound = (::i32)dFontSize;
 
             iRound++;
 
-            m_pformat->m_dFontSize = (double)iRound;
+            m_pformat->m_dFontSize = (::f64)iRound;
 
             strEdit = ::as_string(iRound);
 
@@ -691,9 +691,9 @@ namespace user
          else
          {
 
-            iDouble = (int)((dFontSize + 0.25) * 2.0);
+            iDouble = (::i32)((dFontSize + 0.25) * 2.0);
 
-            m_pformat->m_dFontSize = ((double)iRound) / 2.0;
+            m_pformat->m_dFontSize = ((::f64)iRound) / 2.0;
 
             strEdit = ::as_string(iDouble / 2) + ".5";
 

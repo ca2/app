@@ -2,7 +2,7 @@
 
 #if OBJECT_TYPE_COUNTER
 
-int g_iObjTypCtrInit = 0;
+::i32 g_iObjTypCtrInit = 0;
 ::i64 g_iObjTypCtr = 0;
 
 critical_section g_csObjTypCtr;

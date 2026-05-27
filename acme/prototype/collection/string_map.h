@@ -27,7 +27,7 @@ using string_map = map_particle < string_map_base < PAYLOAD, PAIR > >;
 
 using string_to_iptr_base = string_map_base < iptr > ;
 
-using string_to_int_base =  string_map_base < int > ;
+using string_to_int_base =  string_map_base < ::i32 > ;
 
 using string_to_ptr_base =  string_map_base < void * > ;
 

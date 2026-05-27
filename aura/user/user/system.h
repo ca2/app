@@ -17,12 +17,12 @@ namespace user
    //   hinstance            hInstance;
    //   void *               hMenu;
    //   oswindow             hwndParent;
-   //   int                  cy;
-   //   int                  cx;
-   //   int                  y;
-   //   int                  x;
+   //   ::i32                  cy;
+   //   ::i32                  cx;
+   //   ::i32                  y;
+   //   ::i32                  x;
    //   long                 style;
-   //   platform_char *      lpszName;
+   //   platform_char *      pszName;
    //   platform_char *      lpszClass;
    //   ::u32                  dwExStyle;
 

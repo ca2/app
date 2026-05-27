@@ -142,9 +142,9 @@ namespace xml
       //   ::text_stream ostring;
       //   //ostring << (const_char_pointer )m_strName << "='" << (const_char_pointer )m_strValue << "' ";
 
-      //   ostring << (const_char_pointer )m_strName << L"=" << (char)opt->m_chQuote
+      //   ostring << (const_char_pointer )m_strName << L"=" << (::i8)opt->m_chQuote
       //      << (const_char_pointer )(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-      //      << (char)opt->m_chQuote << L" ";
+      //      << (::i8)opt->m_chQuote << L" ";
       //   return ostring.str();
 
       if (opt == nullptr)

@@ -33,7 +33,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
@@ -182,7 +182,7 @@ namespace micro
    }
 
 
-   void elemental::_on_draw(::nano::graphics::device * pnanodevice)
+   void elemental::_on_draw(::nano::graphics::context * pnanodevice)
    {
 
       draw_background(pnanodevice);
@@ -192,18 +192,18 @@ namespace micro
    }
 
 
-   void elemental::on_window_paint(nano::graphics::device *pnanographicsdevice)
+   void elemental::on_window_paint(::nano::graphics::context *pgraphicscontext)
    {
 
-      draw_background(pnanographicsdevice);
+      draw_background(pgraphicscontext);
 
-      draw_foreground(pnanographicsdevice);
+      draw_foreground(pgraphicscontext);
 
    }
 
 
 
-   void elemental::draw_background(::nano::graphics::device * pmicrodevice)
+   void elemental::draw_background(::nano::graphics::context * pgraphicscontext)
    {
 
       if (m_bBorder)
@@ -226,7 +226,7 @@ namespace micro
 
          rectangleX = get_client_rectangle();
 
-         pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
+         pgraphicscontext->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
       }
       else
       {
@@ -238,17 +238,17 @@ namespace micro
    }
 
 
-   void elemental::draw_foreground(::nano::graphics::device * pmicrodevice)
+   void elemental::draw_foreground(::nano::graphics::context * pgraphicscontext)
    {
 
-      on_draw(pmicrodevice);
+      on_draw(pgraphicscontext);
 
-      draw_children(pmicrodevice);
+      draw_children(pgraphicscontext);
 
    }
 
 
-   void elemental::draw_children(::nano::graphics::device * pmicrodevice)
+   void elemental::draw_children(::nano::graphics::context * pgraphicscontext)
    {
 
       if (m_pacmeuserinteractionaChildren)
@@ -264,26 +264,26 @@ namespace micro
             if (pchild != pelementalHover)
             {
 
-               draw_child(pmicrodevice, pelemental);
+               draw_child(pgraphicscontext, pelemental);
 
             }
 
             //auto r = pelemental->get_rectangle();
 
-            //pmicrodevice->translate(r.left, r.top);
+            //pgraphicscontext->translate(r.left, r.top);
 
-            //pelemental->draw_background(pmicrodevice);
+            //pelemental->draw_background(pgraphicscontext);
 
-            //pelemental->draw_foreground(pmicrodevice);
+            //pelemental->draw_foreground(pgraphicscontext);
 
-            //pmicrodevice->translate(-r.left, -r.top);
+            //pgraphicscontext->translate(-r.left, -r.top);
 
          }
 
          if (pelementalHover)
          {
 
-            draw_child(pmicrodevice, pelementalHover);
+            draw_child(pgraphicscontext, pelementalHover);
 
          }
 
@@ -292,18 +292,18 @@ namespace micro
    }
 
 
-   void elemental::draw_child(::nano::graphics::device* pmicrodevice, ::micro::elemental* pelemental)
+   void elemental::draw_child(::nano::graphics::context * pgraphicscontext, ::micro::elemental* pelemental)
    {
 
       auto r = pelemental->get_rectangle();
 
-      pmicrodevice->translate(r.left, r.top);
+      pgraphicscontext->translate(r.left, r.top);
 
-      pelemental->draw_background(pmicrodevice);
+      pelemental->draw_background(pgraphicscontext);
 
-      pelemental->draw_foreground(pmicrodevice);
+      pelemental->draw_foreground(pgraphicscontext);
 
-      pmicrodevice->translate(-r.left, -r.top);
+      pgraphicscontext->translate(-r.left, -r.top);
 
    }
 
@@ -311,7 +311,7 @@ namespace micro
    void elemental::resize_to_fit()
    {
 
-      auto pdevice = createø<::nano::graphics::device>();
+      auto pdevice = createø<::nano::graphics::context>();
 
       auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -750,21 +750,21 @@ namespace micro
    //}
 
 
-   //void elemental::draw(::nano::graphics::device * pmicrodevice)
+   //void elemental::draw(::nano::graphics::context * pgraphicscontext)
    //{
 
 
    //}
 
 
-   void elemental::on_draw(::nano::graphics::device * pmicrodevice)
+   void elemental::on_draw(::nano::graphics::context * pgraphicscontext)
    {
 
 
    }
 
 
-   void elemental::on_char(int iChar)
+   void elemental::on_char(::i32 iChar)
    {
 
       //if (iChar == '\t' && m_pacmeuserinteractionaChildren.has_element())
@@ -800,7 +800,7 @@ namespace micro
    }
 
 
-   void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+   void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
    {
 
       auto pbutton = allocateø::micro::button();
@@ -1584,7 +1584,7 @@ namespace micro
    //}
 
 
-   //void elemental::draw_children(::nano::graphics::device * pmicrodevice)
+   //void elemental::draw_children(::nano::graphics::context * pgraphicscontext)
    //{
 
 
@@ -2248,7 +2248,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
    //{
 
    //   return -1;
@@ -2264,7 +2264,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
    //{
 
    //   return -1;
@@ -2280,7 +2280,7 @@ namespace micro
    //}
 
 
-   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x)
    //{
 
    //   return -1;

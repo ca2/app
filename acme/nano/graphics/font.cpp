@@ -15,8 +15,8 @@ namespace nano
 font::font()
 {
 
-   m_bBold = false;
-   m_bUnderline = false;
+   //m_bBold = false;
+   //m_bUnderline = false;
 
 }
 
@@ -30,16 +30,19 @@ font::~font()
 
 
 
-   ::pointer<::nano::graphics::font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold)
+   void font::create_point_font(enum_font efont, ::f64 fPoint,
+                                                                                  bool bBold, bool bUnderline)
    {
 
-      ::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
+      throw ::interface_only();
 
-      pfont->m_iFontSize = iPoint;
-      pfont->m_strFontName = pparticle->node()->font_name(efont);
-      pfont->m_bBold = bBold;
+      //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
 
-      return pfont;
+      //pfont->m_iFontSize = iPoint;
+      //pfont->m_strFontName = pparticle->node()->font_name(efont);
+      //pfont->m_bBold = bBold;
+
+    //  return pfont;
 
    }
 

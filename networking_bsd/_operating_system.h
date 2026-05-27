@@ -5,7 +5,7 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_NETWORKING_BSD string bsd_socket_error(int iBsdSocketError);
+CLASS_DECL_NETWORKING_BSD string bsd_socket_error(::i32 iBsdSocketError);
 
 
 #ifdef WINDOWS

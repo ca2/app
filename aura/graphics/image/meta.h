@@ -32,16 +32,16 @@ namespace image
 
       ::pointer<::draw2d::bitmap>               m_pbitmap;
       ::pointer<::draw2d::graphics>             m_pgraphics;
-      double                                    m_dSpeed;
-      double                                    m_dIsotropicRate;
+      ::f64                                    m_dSpeed;
+      ::f64                                    m_dIsotropicRate;
       //::i32_size                                m_sizeAlloc;
       //i32_point                                 m_point;
-      double                                    m_dSizeScaler;
+      ::f64                                    m_dSizeScaler;
       //::draw2d::enum_alpha_mode               m_ealphamode;
       bool                                      m_bOwn;
       ::image::enum_mipmap                      m_emipmap;
       ::collection::index                       m_iFrame;
-      int                                       m_iExifOrientation;
+      ::i32                                       m_iExifOrientation;
       bool                                      m_bCreateHelperMaps;
       ::pointer<::image::image_extension>       m_pextension;
       image_dynamic                             m_dynamic;

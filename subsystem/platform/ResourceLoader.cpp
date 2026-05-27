@@ -38,12 +38,12 @@ namespace subsystem
    ResourceLoader::~ResourceLoader()
    {}//h
 
-   //HICON ResourceLoader::loadStandartIcon(const char* iconName)
+   //HICON ResourceLoader::loadStandartIcon(const_char_pointer iconName)
    //{
    //   return LoadIcon(NULL, iconName);
    //}
 
-   //HICON ResourceLoader::loadIcon(const char* iconName)
+   //HICON ResourceLoader::loadIcon(const_char_pointer iconName)
    //{
    //   return LoadIcon(m_appInstance, iconName);
    //}
@@ -64,7 +64,7 @@ namespace subsystem
 
 
       //// Id of string-group, based from 0.
-      //int resId = (id / 16) + 1;
+      //::i32 resId = (id / 16) + 1;
       //HRSRC resHnd = FindResource(m_appInstance,
       //   MAKEINTRESOURCE(resId),
       //   RT_STRING);
@@ -117,7 +117,7 @@ namespace subsystem
    //      MAKEINTRESOURCE(id));
    //}
 
-   //HCURSOR ResourceLoader::loadStandardCursor(const char* id)
+   //HCURSOR ResourceLoader::loadStandardCursor(const_char_pointer id)
    //{
    //   return LoadCursor(0, id);
    //}

@@ -71,7 +71,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text(char * psz, character_count len)
+   //   void text_property::get_text(char_pointer psz, character_count len)
    //   {
    //
    //      string str;
@@ -308,7 +308,7 @@ namespace data
    }
 
 
-  /* void text_property::get_text(char * psz, character_count len)
+  /* void text_property::get_text(char_pointer psz, character_count len)
    {
 
       auto strText = this->as_text();
@@ -707,7 +707,7 @@ namespace data
    //}
 
 
-   //void text_property::get_text(char * psz, character_count len)
+   //void text_property::get_text(char_pointer psz, character_count len)
    //{
 
    //   string str;

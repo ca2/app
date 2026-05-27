@@ -88,7 +88,7 @@ s_p = this;
 
       ::string strNameBuf;
 
-      int iBufferSize = 1024;
+      ::i32 iBufferSize = 1024;
 
       auto namebuf = strNameBuf.get_buffer(iBufferSize);
 
@@ -109,10 +109,10 @@ s_p = this;
       };
 
       strNameBuf.clear();
-      char digtxt[5];
-      for (int i = 0; ph->h_addr_list[i]; i++) {
-         for (int j = 0; j < ph->h_length; j++) {
-            sprintf(digtxt, "{}.", (unsigned char) ph->h_addr_list[i][j]);
+      ::i8 digtxt[5];
+      for (::i32 i = 0; ph->h_addr_list[i]; i++) {
+         for (::i32 j = 0; j < ph->h_length; j++) {
+            sprintf(digtxt, "{}.", (::u8) ph->h_addr_list[i][j]);
             strNameBuf += digtxt;
          }
          if (ph->h_addr_list[i+1] != 0)

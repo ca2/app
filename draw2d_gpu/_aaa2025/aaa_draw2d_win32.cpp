@@ -61,7 +61,7 @@ namespace draw2d_gpu
 
 
    //      HDC hdc = GetDC(hwnd);
-   //      int PixelFormat = ChoosePixelFormat(hdc, &pfd);
+   //      ::i32 PixelFormat = ChoosePixelFormat(hdc, &pfd);
    //      if (PixelFormat == 0) {
    //         throw ::exception(error_failed);
    //      }
@@ -72,7 +72,7 @@ namespace draw2d_gpu
    //      }
 
    //      ::ReleaseDC(hwnd, hdc);
-   //      //   int attribs[] = {
+   //      //   ::i32 attribs[] = {
    //      // WGL_DRAW_TO_WINDOW_ARB, TRUE,
    //      // WGL_DOUBLE_BUFFER_ARB, TRUE,
    //      // WGL_SUPPORT_OPENGL_ARB, TRUE,
@@ -133,7 +133,7 @@ namespace draw2d_gpu
    //      //   pfd.cAlphaBits = 8;
    //      //   pfd.cDepthBits = 24;
 
-   //      //   int format = ChoosePixelFormat(hdc, &pfd);
+   //      //   ::i32 format = ChoosePixelFormat(hdc, &pfd);
    //      //   SetPixelFormat(hdc, format, &pfd);
 
    //   }
@@ -164,7 +164,7 @@ namespace draw2d_gpu
 
    //   HDC dc = GetDC(hwnd);
 
-   //   int pixelAttribs[] = {
+   //   ::i32 pixelAttribs[] = {
    //       WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
    //       WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
    //       WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
@@ -175,14 +175,14 @@ namespace draw2d_gpu
    //       0
    //   };
 
-   //   int format;
+   //   ::i32 format;
    //   UINT numFormats;
    //   wglChoosePixelFormatARB(dc, pixelAttribs, NULL, 1, &format, &numFormats);
    //   PIXELFORMATDESCRIPTOR pfd;
    //   DescribePixelFormat(dc, format, sizeof(pfd), &pfd);
    //   SetPixelFormat(dc, format, &pfd);
 
-   //   int contextAttribs[] = {
+   //   ::i32 contextAttribs[] = {
    //       WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
    //       WGL_CONTEXT_MINOR_VERSION_ARB, 3,
    //       WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,

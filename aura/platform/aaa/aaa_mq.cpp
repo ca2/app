@@ -33,7 +33,7 @@ message_queue::~message_queue()
 }
 
 
-int_bool message_queue::post_message(::acme::windowing::window * pacmewindowingwindow, unsigned int uMessage, WPARAM wParam, LPARAM lParam)
+int_bool message_queue::post_message(::acme::windowing::window * pacmewindowingwindow, ::u32 uMessage, WPARAM wParam, LPARAM lParam)
 {
 
    if(m_bQuit)
@@ -78,13 +78,13 @@ int_bool message_queue::post_message(const MESSAGE & message)
 }
 
 
-int_bool message_queue::get_message(LPMESSAGE pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+int_bool message_queue::get_message(LPMESSAGE pMsg, ::acme::windowing::window * pacmewindowingwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    if (wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (unsigned int)-1;
+      wMsgFilterMax = (::u32)-1;
 
    }
 
@@ -93,7 +93,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, ::acme::windowing::window * 
    while (true)
    {
 
-      for (int i = 0; i < m_messagea.get_count();)
+      for (::i32 i = 0; i < m_messagea.get_count();)
       {
 
          MESSAGE & msg = m_messagea[i];
@@ -165,13 +165,13 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, ::acme::windowing::window * 
 }
 
 
-int_bool message_queue::peek_message(LPMESSAGE pMsg,::acme::windowing::window * pacmewindowingwindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax,unsigned int wRemoveMsg)
+int_bool message_queue::peek_message(LPMESSAGE pMsg,::acme::windowing::window * pacmewindowingwindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (unsigned int)-1;
+      wMsgFilterMax = (::u32)-1;
 
    }
 
@@ -179,7 +179,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,::acme::windowing::window * 
 
    ::collection::count count = m_messagea.get_count();
 
-   for(int i = 0; i < count; i++)
+   for(::i32 i = 0; i < count; i++)
    {
 
       MESSAGE & msg = m_messagea[i];
@@ -477,7 +477,7 @@ CLASS_DECL_AURA int_bool message_queue_post(::acme::windowing::window * pacmewin
 }
 
 
-//CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg)
+//CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, ::acme::windowing::window * pacmewindowingwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 //{
 //
 //   auto pmq = ::get_message_queue(::current_itask(), false);
@@ -501,7 +501,7 @@ CLASS_DECL_AURA int_bool message_queue_post(::acme::windowing::window * pacmewin
 //}
 
 
-CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, ::acme::windowing::window * pacmewindowingwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    auto pmq = ::get_message_queue(::current_itask(), true);

@@ -37,8 +37,8 @@ namespace gpu
       //virtual void createImages();
 
 
-      //virtual int get_frame_index();
-      //virtual int get_frame_count();
+      //virtual ::i32 get_frame_index();
+      //virtual ::i32 get_frame_count();
 
       //virtual void on_new_frame();
 

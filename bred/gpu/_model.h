@@ -8,7 +8,7 @@ namespace draw2d
 {
 
 
-   enum enum_model : int
+   enum enum_model : ::i32
    {
 
       e_model_none,

@@ -45,7 +45,7 @@ namespace nanoui
          ::pointer < ::nano2d::text_box >    m_ptextbox;
 
       Label(Widget * parent, const ::scoped_string & caption,
-         const ::scoped_string & font = "sans", int font_size = -1);
+         const ::scoped_string & font = "sans", ::i32 font_size = -1);
 
       /// Get the label's text caption
       ::string caption() const { return m_strCaption; }

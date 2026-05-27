@@ -29,7 +29,7 @@ namespace image
       ~image_frame() override;
 
 
-      virtual void gif_set_disposal(int iDisposal);
+      virtual void gif_set_disposal(::i32 iDisposal);
 
 
       virtual void _001Process(::image::image *pimageCompose, ::image::image *pimageFrame, ::image::image_frame_array * pframea);

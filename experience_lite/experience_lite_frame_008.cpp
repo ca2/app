@@ -431,7 +431,7 @@ SizingNone:
 
                         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 
-                        pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
+                        pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
                         rectangleA.deflate(1, 1, 1, 1);
 

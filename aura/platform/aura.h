@@ -37,7 +37,7 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern int g_iObjTypCtrInit;
+////   extern ::i32 g_iObjTypCtrInit;
 ////
 ////#endif
 //
@@ -56,7 +56,7 @@
 ////#else
 ////
 ////   extern DWORD_PTR g_tlsindexLastError;
-////   extern char* g_pszDemangle;
+////   extern char_pointer g_pszDemangle;
 ////   extern critical_section* g_pcsDemangle;
 ////
 ////#endif
@@ -88,7 +88,7 @@
 ////#include <mach/mach_time.h>
 ////
 //////clock_serv_t   g_cclock;
-////   extern double g_machtime_conversion_factor;
+////   extern ::f64 g_machtime_conversion_factor;
 ////   //   clock_get_time(cclock, &mts);
 ////
 ////#endif
@@ -133,7 +133,7 @@
 //
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //
-//   //extern int g_iMemoryCountersStartable;
+//   //extern ::i32 g_iMemoryCountersStartable;
 //   //extern ::pointer< ::mutex > g_pmutexTrait;
 //   //extern ::pointer< ::mutex > g_pmutexFactory;
 //

@@ -14,8 +14,8 @@ namespace userfs
    public:
 
 
-      int      m_iImage;
-      int      m_iImageSelected;
+      ::i32      m_iImage;
+      ::i32      m_iImageSelected;
 
 
       list_item();
@@ -25,7 +25,7 @@ namespace userfs
       //index CompareArrangeByName(const list_item & item) const;
       //index GetIndex() const;
 
-      inline int get_type_weight() { return is_folder() ? 0 : 1; }
+      inline ::i32 get_type_weight() { return is_folder() ? 0 : 1; }
 
       list_item & operator = (const list_item & item);
 

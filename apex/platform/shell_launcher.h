@@ -36,7 +36,7 @@ namespace apex
    protected:
 
 
-      int                  m_iMode;
+      ::i32                  m_iMode;
 
 
    public:

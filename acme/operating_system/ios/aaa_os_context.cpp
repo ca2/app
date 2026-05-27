@@ -2,7 +2,7 @@
 #include "_ios.h"
 
 
-bool ns_open_file(const char * );
+bool ns_open_file(const_char_pointer );
 
 
 
@@ -110,7 +110,7 @@ namespace ios
        if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
        SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
        {
-       unsigned int dwLastError = ::get_last_error();
+       ::u32 dwLastError = ::get_last_error();
        return false;
        }*/
       //reset the previlages
@@ -128,13 +128,13 @@ namespace ios
 //      throw ::not_implemented();
       return;
 
-      /*      unsigned int dwPid;
+      /*      ::u32 dwPid;
        while(get_pid_by_title(scopedstrName, dwPid))
        {
        HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
        PROCESS_VM_READ,
        false, dwPid );
-       TerminateProcess(hProcess, (unsigned int) -1);
+       TerminateProcess(hProcess, (::u32) -1);
        CloseHandle(hProcess);
        ::EnumWindows((WNDENUMPROC)
        CKillProcessHelper::TerminateAppEnum,
@@ -155,11 +155,11 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
       unsigned_int_array dwa;
       get_all_processes(dwa);
-      for(int i = 0; i < dwa.get_count(); i++)
+      for(::i32 i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).case_insensitive_order(scopedstrName) == 0)
          {
@@ -171,11 +171,11 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
       unsigned_int_array dwa;
       get_all_processes(dwa);
-      for(int i = 0; i < dwa.get_count(); i++)
+      for(::i32 i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).title().case_insensitive_order(scopedstrName) == 0)
          {
@@ -187,7 +187,7 @@ namespace ios
    }
 
 
-   int os_context::get_pid()
+   ::i32 os_context::get_pid()
    {
 
       return ::getpid();
@@ -195,7 +195,7 @@ namespace ios
    }
 
 
-   ::file::path os_context::get_process_path(unsigned int dwPid)
+   ::file::path os_context::get_process_path(::u32 dwPid)
    {
       /*
        string strName = ":<unknown>";
@@ -209,7 +209,7 @@ namespace ios
        if (nullptr != hProcess )
        {
        HMODULE hMod;
-       unsigned int cbNeeded;
+       ::u32 cbNeeded;
 
        if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
        &cbNeeded) )
@@ -234,18 +234,18 @@ namespace ios
 
       /*
        dwa.set_size(0);
-       unsigned int cbNeeded = 0;
+       ::u32 cbNeeded = 0;
        while(cbNeeded == natural(dwa.get_count()))
        {
        dwa.set_size(dwa.get_count() + 1024);
        if(!EnumProcesses(
        dwa.get_data(),
-       (unsigned int) (dwa.get_count() * sizeof(unsigned int)),
+       (::u32) (dwa.get_count() * sizeof(::u32)),
        &cbNeeded))
        {
        return;
        }
-       dwa.set_size(cbNeeded / sizeof(unsigned int));
+       dwa.set_size(cbNeeded / sizeof(::u32));
        }*/
    }
 
@@ -271,7 +271,7 @@ namespace ios
 
        key1.QueryValue("DefaultConnectionSettings", mem);
 
-       bool bAutoDetect = (((unsigned char *) mem.get_data())[8] & 0x08) != 0;
+       bool bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
        return bAutoDetect;
        */
@@ -777,7 +777,7 @@ namespace ios
    }
 
 
-   void os_context::raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+   void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
       throw ::not_implemented();
@@ -868,7 +868,7 @@ namespace ios
 //
 
 
-CLASS_DECL_ACME bool _istlead(int ch)
+CLASS_DECL_ACME bool _istlead(::i32 ch)
 {
 
    return false;

@@ -89,7 +89,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       return;
    }
    const_char_pointer pszPreTopLevel = m_pszTopLevel - 2;
-   int iLenPreTopLevel = 0;
+   ::i32 iLenPreTopLevel = 0;
    while (pszPreTopLevel > psz && *pszPreTopLevel != '.')
    {
       pszPreTopLevel--;
@@ -106,9 +106,9 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
 
    }
    const_char_pointer pszPreTopLevel2 = nullptr;
-   int iLenPreTopLevel2 = 0;
+   ::i32 iLenPreTopLevel2 = 0;
    const_char_pointer pszPreTopLevel3 = nullptr;
-   //      int iLenPreTopLevel3 = 0;
+   //      ::i32 iLenPreTopLevel3 = 0;
    if(m_iCount >= 4)
    {
       pszPreTopLevel2 = pszPreTopLevel - 2;
@@ -324,13 +324,13 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 
 bool CLASS_DECL_ACME server_is_top_domain(const_char_pointer pszTop1, character_count blen, const_char_pointer pszTop2, character_count alen)
 {
-   char a1;
-   char a2;
-   char a3;
-   char a4;
-   char b1;
-   char b2;
-   char b3;
+   ::i8 a1;
+   ::i8 a2;
+   ::i8 a3;
+   ::i8 a4;
+   ::i8 b1;
+   ::i8 b2;
+   ::i8 b3;
    if(blen >= 1)
    {
       b1 = pszTop1[0];
@@ -1083,10 +1083,10 @@ bool CLASS_DECL_ACME server_is_top_domain(const_char_pointer pszTop1, character_
 
 /*      bool url_domain_in(const ::scoped_string & scopedstr, string url)
 {
-int iPos = url.rear_find('.');
+::i32 iPos = url.rear_find('.');
 if(iPos < 0)
 return false;
-int iLen = str.length();
+::i32 iLen = str.length();
 if(url.get_length() < iLen + 1)
 return false;
 if(url[iLen] != '.')
@@ -1101,11 +1101,11 @@ return false;
 
 void url_domain_prefix(string suffix, string url, string & prefix)
 {
-int iLen = url.get_length();
-int iSufLen = suffix.get_length();
+::i32 iLen = url.get_length();
+::i32 iSufLen = suffix.get_length();
 if(iLen < iSufLen)
 return false;
-int iPos = iLen - iSufLen;
+::i32 iPos = iLen - iSufLen;
 if(strsubstr($str, $pos) != $suffix)
 return false;
 if($pos == 0)

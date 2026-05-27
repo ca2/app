@@ -89,7 +89,7 @@ namespace gpu_opengl
 
          // PIXELFORMATDESCRIPTOR pixformat;
 
-         // int chosenformat;
+         // ::i32 chosenformat;
 
          // HDC hdc;
 
@@ -241,7 +241,7 @@ namespace gpu_opengl
 
          pgpuapproach->defer_init_gpu_library();
 
-         auto pszVersion = (const_char_pointer)glGetString(GL_VERSION);
+         auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
          //::e_status estatus =
 
          ::string strVersion(pszVersion);
@@ -337,10 +337,10 @@ namespace gpu_opengl
 //      //   //dwStyle = 0;
 //      //   dwStyle &= ~WS_THICKFRAME;
 //      //   dwStyle &= ~WS_BORDER;
-//      //   int x = 0;
-//      //   int y = 0;
-//      //   int nWidth = size.cx;
-//      //   int nHeight = size.cy;
+//      //   ::i32 x = 0;
+//      //   ::i32 y = 0;
+//      //   ::i32 nWidth = size.cx;
+//      //   ::i32 nHeight = size.cy;
 //      //   HWND hWndParent = nullptr;
 //      //   HMENU hMenu = nullptr;
 //      //   HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -491,7 +491,7 @@ namespace gpu_opengl
        //     m_sizeHost = sizeNew;
        //     //HDC pdcDIB;                      // контекст устройства в памяти
        //     //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое
-       //     битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+       //     битмапаint cxDIB(200); ::i32 cyDIB(300);  // его размеры (например для окна 200х300)
        //     //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section//
        //     создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
        //     //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
@@ -565,7 +565,7 @@ namespace gpu_opengl
 
       //   PIXELFORMATDESCRIPTOR pixformat;
 
-      //   int chosenformat;
+      //   ::i32 chosenformat;
 
       //   HDC hdc = GetDC(m_hwnd);
 

@@ -39,7 +39,7 @@
    public:
 
       bool m_bOwnMemory;
-      char *m_buffer;
+      char_pointer m_buffer;
       ::memory m_memory;
       memsize m_size;
       memsize m_max;
@@ -85,7 +85,7 @@
       /**
        * Returns written data.
        */
-      const char *toByteArray() const;
+      const_char_pointer toByteArray() const;
 
    //protected:
    };

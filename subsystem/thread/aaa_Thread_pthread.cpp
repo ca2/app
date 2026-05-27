@@ -198,7 +198,7 @@ bool thread_implementation::isThreadActive() const
 bool thread_implementation::setThreadPriority(
     ::subsystem::THREAD_PRIORITY value)
 {
-    int policy;
+    ::i32 policy;
     sched_param param;
 
     pthread_getschedparam(
@@ -206,13 +206,13 @@ bool thread_implementation::setThreadPriority(
         &policy,
         &param);
 
-    int minPriority =
+    ::i32 minPriority =
         sched_get_priority_min(policy);
 
-    int maxPriority =
+    ::i32 maxPriority =
         sched_get_priority_max(policy);
 
-    int priority =
+    ::i32 priority =
         (minPriority + maxPriority) / 2;
 
     switch (value)
@@ -438,7 +438,7 @@ void thread_implementation::onRunThread()
 //bool thread_implementation::setThreadPriority(
 //    ::subsystem::THREAD_PRIORITY value)
 //{
-//    int policy;
+//    ::i32 policy;
 //    sched_param param;
 //
 //    pthread_getschedparam(
@@ -446,13 +446,13 @@ void thread_implementation::onRunThread()
 //        &policy,
 //        &param);
 //
-//    int minPriority =
+//    ::i32 minPriority =
 //        sched_get_priority_min(policy);
 //
-//    int maxPriority =
+//    ::i32 maxPriority =
 //        sched_get_priority_max(policy);
 //
-//    int priority =
+//    ::i32 priority =
 //        (minPriority + maxPriority) / 2;
 //
 //    switch (value)

@@ -205,7 +205,7 @@ using status_pointer = ::pointer < ::particle_of < TYPE > >;
 //
 //   operator bool() const { return is_ok(); }
 //
-//   operator int() const { return is_ok() != false; }
+//   operator ::i32() const { return is_ok() != false; }
 //
 //   ::e_status estatus() const { return m_estatus; }
 //

@@ -40,7 +40,7 @@ namespace user
    }
 
 
-   void interaction_layout::create_state(int iStateCount)
+   void interaction_layout::create_state(::i32 iStateCount)
    {
 
       if (iStateCount == m_iStateCount)
@@ -59,7 +59,7 @@ namespace user
 
          //m_pstate = ___new window_state[m_iStateCount];
 
-         //for (int iState = 0; iState < m_iStateCount; iState++)
+         //for (::i32 iState = 0; iState < m_iStateCount; iState++)
          //{
 
          //   m_pstate[iState].set_interaction_layout(this);
@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   //void interaction_layout::move_to(int x, int y)
+   //void interaction_layout::move_to(::i32 x, ::i32 y)
    //{
    //
    //   layout().sketch().m_point.set(x, y);
@@ -147,7 +147,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_size(int cx, int cy)
+   //void interaction_layout::set_size(::i32 cx, ::i32 cy)
    //{
    //
    //   layout().sketch().m_size.set(cx, cy);
@@ -185,7 +185,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(int x, int y, int cx, int cy)
+   //void interaction_layout::set_dim(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
    //{
    //
    //   set_dim(::i32_point(x, y), ::i32_size(cx, cy));
@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   //bool interaction_layout::window_move(int x, int y)
+   //bool interaction_layout::window_move(::i32 x, ::i32 y)
    //{
 
    //   layout().sketch().m_point = {x, y};
@@ -448,7 +448,7 @@ namespace user
    //void interaction_layout::window_rectangle(::i32_rectangle* prectangle) const
    //{
 
-   //   ::set_rect_point_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);
+   //   ::set_rect_poi32_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);
 
    //}
 

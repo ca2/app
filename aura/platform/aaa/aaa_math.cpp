@@ -4,16 +4,16 @@
 //#include <math.h>
 #endif
 
-static int lastrand;
+static ::i32 lastrand;
 
 #ifdef WINDOWS
-//extern "C" int _fltused = 0;
+//extern "C" ::i32 _fltused = 0;
 #else
-int _fltused = 0;
+::i32 _fltused = 0;
 #endif
 
 
-CLASS_DECL_AURA int abs_dup(int i)
+CLASS_DECL_AURA ::i32 abs_dup(::i32 i)
 {
    if(i < 0)
       return -i;
@@ -21,7 +21,7 @@ CLASS_DECL_AURA int abs_dup(int i)
       return i;
 }
 
-CLASS_DECL_AURA double fabs_dup(double f)
+CLASS_DECL_AURA ::f64 fabs_dup(::f64 f)
 {
    if(f < 0.0)
       return -f;
@@ -30,14 +30,14 @@ CLASS_DECL_AURA double fabs_dup(double f)
 }
 
 #ifdef SUPORTA_MATEMATICA_AVANCADA
-CLASS_DECL_AURA double atan_dup(double d)
+CLASS_DECL_AURA ::f64 atan_dup(::f64 d)
 {
 #ifdef X86
     _asmxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         fatan
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -45,24 +45,24 @@ CLASS_DECL_AURA double atan_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double asin_dup(double d)
+CLASS_DECL_AURA ::f64 asin_dup(::f64 d)
 {
    return 2.0 * atan_dup(d / (1.0 + sqrt_dup(1.0 - d * d)));
 }
 
-CLASS_DECL_AURA double acos_dup(double d)
+CLASS_DECL_AURA ::f64 acos_dup(::f64 d)
 {
    return 2.0 * atan_dup(sqrt_dup(1.0 - d * d) / (1.0 + d));
 }
 
-CLASS_DECL_AURA double sqrt_dup(double d)
+CLASS_DECL_AURA ::f64 sqrt_dup(::f64 d)
 {
 #ifdef X86
     _asmxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         fsqrt
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -70,25 +70,25 @@ CLASS_DECL_AURA double sqrt_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double pow_dup(double aura, double e)
+CLASS_DECL_AURA ::f64 pow_dup(::f64 aura, ::f64 e)
 {
    return exp_dup(e * log_dup(aura));
 }
 
 
-CLASS_DECL_AURA double fmod_dup(double x, double y)
+CLASS_DECL_AURA ::f64 fmod_dup(::f64 x, ::f64 y)
 {
    return fmod(x, y);
 }
 
-CLASS_DECL_AURA double exp_dup(double d)
+CLASS_DECL_AURA ::f64 exp_dup(::f64 d)
 {
 #ifdef X86
     _asmxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         fexp
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -96,14 +96,14 @@ CLASS_DECL_AURA double exp_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double log_dup(double d)
+CLASS_DECL_AURA ::f64 log_dup(::f64 d)
 {
 #ifdef X86
     _asmxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         flog
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -111,14 +111,14 @@ CLASS_DECL_AURA double log_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double tan_dup(double d)
+CLASS_DECL_AURA ::f64 tan_dup(::f64 d)
 {
 #ifdef X86
     _asmxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         ftan
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -126,14 +126,14 @@ CLASS_DECL_AURA double tan_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double sin_dup(double d)
+CLASS_DECL_AURA ::f64 sin_dup(::f64 d)
 {
 #ifdef X86
     _asmxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         fsin
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -141,14 +141,14 @@ CLASS_DECL_AURA double sin_dup(double d)
 #endif
 }
 
-CLASS_DECL_AURA double cos_dup(double d)
+CLASS_DECL_AURA ::f64 cos_dup(::f64 d)
 {
 #ifdef X86
     _asmxxxx
     {
-        fld unsigned int PTR [d]
+        fld ::u32 PTR [d]
         fcos
-        fstp unsigned int ptr[d]
+        fstp ::u32 ptr[d]
     }
     return d;
 #else
@@ -158,27 +158,27 @@ CLASS_DECL_AURA double cos_dup(double d)
 
 #endif
 
-CLASS_DECL_AURA void srand_dup(unsigned int seed)
+CLASS_DECL_AURA void srand_dup(::u32 seed)
 {
 	lastrand = seed;
 }
 
-CLASS_DECL_AURA  int rand_dup()
+CLASS_DECL_AURA  ::i32 rand_dup()
 {
 	return (((lastrand = lastrand * 214013L + 2531011L) >> 16) & 0x7FFF);
 }
 
 
-/*long long ftoi64(double d)
+/*::i64 ftoi64(::f64 d)
 {
-   long long u = 0x7fffffffffffffff;
-   long long l = 0x8000000000000000;
-   double m;
+   ::i64 u = 0x7fffffffffffffff;
+   ::i64 l = 0x8000000000000000;
+   ::f64 m;
    while(true)
    {
       if(u <= l)
          return l;
-      m = ((double) u + (double) l) / 2.0;
+      m = ((::f64) u + (::f64) l) / 2.0;
       if(d >= m)
       {
          l = u / 2 + l / 2;
@@ -190,18 +190,18 @@ CLASS_DECL_AURA  int rand_dup()
    }
 }*/
 
-int ftol(double d)
+::i32 ftol(::f64 d)
 {
-   int u = I32_MAXIMUM;
-   int l = I32_MINIMUM;
-   double m;
-   double delta;
-   int i = 0;
+   ::i32 u = I32_MAXIMUM;
+   ::i32 l = I32_MINIMUM;
+   ::f64 m;
+   ::f64 delta;
+   ::i32 i = 0;
    while(i < 128)
    {
       if(u <= l)
          return l;
-      m = ((double) u + (double) l) / 2.0;
+      m = ((::f64) u + (::f64) l) / 2.0;
       delta = d - m;
       if(delta >= 0.0)
       {

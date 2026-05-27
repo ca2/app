@@ -10,7 +10,7 @@ class less_predicate_base :
 {
 public:
 
-   virtual int less(ARG_TYPE a1, ARG_TYPE a2) = 0;
+   virtual ::i32 less(ARG_TYPE a1, ARG_TYPE a2) = 0;
 
 };
 
@@ -27,7 +27,7 @@ public:
 
    less_predicate(PRED pred) : m_predicate(pred) {}
 
-   virtual int less(ARG_TYPE a1, ARG_TYPE a2)
+   virtual ::i32 less(ARG_TYPE a1, ARG_TYPE a2)
    {
 
       return m_predicate(a1, a2);

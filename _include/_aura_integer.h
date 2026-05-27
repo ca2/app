@@ -4,20 +4,20 @@
 #include <limits.h>
 
 
-//using char = int8_t;
-//using short = int16_t;
-//using int = int32_t;
+//using ::i8 = int8_t;
+//using ::i16 = int16_t;
+//using ::i32 = int32_t;
 //using ::i64 = ::i64;
 
 
-//using unsigned char = uint8_t;
-//using unsigned short = uint16_t;
+//using ::u8 = uint8_t;
+//using ::u16 = uint16_t;
 //using ::u32 = uint32_t;
 //using ::u64 = uint64_t;
 
 
-//using float = float;
-//using d = double;
+//using ::f32 = ::f32;
+//using d = ::f64;
 
 
 #ifdef __cplusplus
@@ -57,7 +57,7 @@ TARGET throw_cast(SOURCE src)
 #define DOUBLE_MAXIMUM  (DBL_MAX)
 
 
-typedef int i32_bool;
+typedef ::i32 i32_bool;
 
 
 

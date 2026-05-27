@@ -16,7 +16,7 @@ namespace linux
 
    class linux
    {
-      int function();
+      ::i32 function();
    };
 
 
@@ -53,9 +53,9 @@ CLASS_DECL_ACME const_char_pointer __get_app_name();
 
 //::i32_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-//int CLASS_DECL_ACME __linux_main(int argc, char * argv[]);
+//::i32 CLASS_DECL_ACME __linux_main(::i32 argc, char_pointer argv[]);
 
-//CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const ::file::path & path = nullptr);
+//CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const ::file::path & path = nullptr);
 
 #include "internal.h"
 

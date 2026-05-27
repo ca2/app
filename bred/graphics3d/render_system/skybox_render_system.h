@@ -20,18 +20,18 @@ namespace graphics3d
          // floating_matrix4 modelMatrix;
          // floating_matrix4 normalMatrix;
 
-         // int useTextureAlbedo; // 0
-         // int useTextureMetallicRoughness; // 4
-         // int useTextureNormal; // 8
-         // int useTextureAmbientOcclusion; // 12
-         // int useTextureEmissive; // 16
+         // ::i32 useTextureAlbedo; // 0
+         // ::i32 useTextureMetallicRoughness; // 4
+         // ::i32 useTextureNormal; // 8
+         // ::i32 useTextureAmbientOcclusion; // 12
+         // ::i32 useTextureEmissive; // 16
 
          //// 20
 
          //::floating_sequence3 albedo; // 20
-         // float metallic; // 32
-         // float roughness; // 36
-         // float ambientOcclusion; // 40
+         // ::f32 metallic; // 32
+         // ::f32 roughness; // 36
+         // ::f32 ambientOcclusion; // 40
          //::floating_sequence3 emissive; // 44
 
          //// 36
@@ -39,7 +39,7 @@ namespace graphics3d
          //// 56
 
          ////::floating_sequence3 cameraPosition;//56
-         // float bloomBrightnessCutoff; // 68
+         // ::f32 bloomBrightnessCutoff; // 68
          //// 72
          floating_sequence3 multiplier;
       };

@@ -33,7 +33,7 @@ void xf_rail_end_local_move(xfContext* xfc, xfAppWindow* appWindow);
 void xf_rail_enable_remoteapp_mode(xfContext* xfc);
 void xf_rail_disable_remoteapp_mode(xfContext* xfc);
 
-int xf_rail_init(xfContext* xfc, RailClientContext* rail);
-int xf_rail_uninit(xfContext* xfc, RailClientContext* rail);
+::i32 xf_rail_init(xfContext* xfc, RailClientContext* rail);
+::i32 xf_rail_uninit(xfContext* xfc, RailClientContext* rail);
 
 #endif /* __XF_RAIL_H */

@@ -36,7 +36,7 @@ namespace simpledb
    const ::scoped_string & scopedstrUser,
    const ::scoped_string & scopedstrPassword,
    const ::scoped_string & scopedstrDatabase,
-   int iPort,
+   ::i32 iPort,
    const ::scoped_string & scopedstrSocketName,
    ::u32 uFlags)
    {

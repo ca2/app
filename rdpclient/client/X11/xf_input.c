@@ -53,10 +53,10 @@ typedef struct touch_contact
 {
 	int id;
 	int count;
-	double pos_x;
-	double pos_y;
-	double last_x;
-	double last_y;
+	::f64 pos_x;
+	::f64 pos_y;
+	::f64 last_x;
+	::f64 last_y;
 
 } touchContact;
 
@@ -65,12 +65,12 @@ touchContact contacts[MAX_CONTACTS];
 int active_contacts;
 int lastEvType;
 XIDeviceEvent lastEvent;
-double firstDist = -1.0;
-double lastDist;
+::f64 firstDist = -1.0;
+::f64 lastDist;
 
-double z_vector;
-double px_vector;
-double py_vector;
+::f64 z_vector;
+::f64 px_vector;
+::f64 py_vector;
 
 int xinput_opcode;
 int scale_cnt;
@@ -237,12 +237,12 @@ void xf_input_save_last_event(XGenericEventCookie* cookie)
 
 void xf_input_detect_pan(xfContext* xfc)
 {
-	double dx[2];
-	double dy[2];
-	double px;
-	double py;
-	double dist_x;
-	double dist_y;
+	::f64 dx[2];
+	::f64 dy[2];
+	::f64 px;
+	::f64 py;
+	::f64 dist_x;
+	::f64 dist_y;
 
 	if (active_contacts != 2)
 	{
@@ -327,9 +327,9 @@ void xf_input_detect_pan(xfContext* xfc)
 
 void xf_input_detect_pinch(xfContext* xfc)
 {
-	double dist;
-	double zoom;
-	double delta;
+	::f64 dist;
+	::f64 zoom;
+	::f64 delta;
 	ZoomingChangeEventArgs e;
 
 	if (active_contacts != 2)

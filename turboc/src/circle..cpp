@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------
 
 void
-circle (int x, int y, int radius)
+circle (::i32 x, ::i32 y, ::i32 radius)
 {
   arc (x, y, 0, 360, radius);
 }

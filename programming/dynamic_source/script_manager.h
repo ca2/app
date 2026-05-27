@@ -76,13 +76,13 @@ namespace dynamic_source
 
       ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
-      int m_iFileSystemScriptSlotIndex = -1;
+      ::i32 m_iFileSystemScriptSlotIndex = -1;
       pointer_array < plugin_map_item >                     m_pluginmapitema;
 
       ::semaphore                                           m_semCompiler;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
-      int                                                   m_iTunnelPluginCount;
+      ::i32                                                   m_iTunnelPluginCount;
       ::pointer < ::mutex >                                 m_pmutexOutLink;
       string_map_base < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
       ::pointer < ::mutex >                                 m_pmutexInLink;

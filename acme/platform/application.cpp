@@ -83,7 +83,7 @@ namespace platform
       m_bUserApplication = true;
 
 #ifdef _DEBUG
-      int cx = 204;
+      ::i32 cx = 204;
 
 //      _001Test001(::as_string(cx));
 
@@ -389,7 +389,7 @@ namespace platform
    //}
 
 
-   //int application::application_main()
+   //::i32 application::application_main()
    //{
 
    //   implement_application();
@@ -649,7 +649,7 @@ namespace platform
    //}
 
 
-   int application::application_main()
+   ::i32 application::application_main()
    {
 
       __check_refdbg
@@ -1060,7 +1060,7 @@ namespace platform
 
          ::string_array_base straFiles;
 
-         for (int iArgument = 1; iArgument < psystem->m_argc;)
+         for (::i32 iArgument = 1; iArgument < psystem->m_argc;)
          {
 
             auto iArgumentBefore = iArgument;
@@ -1228,7 +1228,7 @@ namespace platform
 
    //      //   ::string_array straFiles;
 
-   //      //   for (int iArgument = 1; iArgument < this->m_argc;)
+   //      //   for (::i32 iArgument = 1; iArgument < this->m_argc;)
    //      //   {
 
    //      //      auto iArgumentBefore = iArgument;
@@ -1407,7 +1407,7 @@ namespace platform
    //#else
    //
    //
-   //   void application::set_args(int argc, char * argv[], char * envp[])
+   //   void application::set_args(::i32 argc, char_pointer argv[], char_pointer envp[])
    //   {
    //
    //      m_argc = argc;
@@ -1422,7 +1422,7 @@ namespace platform
    //#endif
 
 
-   //int application::__implement()
+   //::i32 application::__implement()
    //{
 
    //   return main_loop();
@@ -1430,7 +1430,7 @@ namespace platform
    //}
 
 
-   //int application::main_loop()
+   //::i32 application::main_loop()
    //{
 
    //   //__main(this);
@@ -1983,7 +1983,7 @@ namespace platform
 
          auto ptextcontext = psession->text_context();
 
-         for (int i = 0; i < ptextcontext->localeschema()->m_straLocale.get_count(); i++)
+         for (::i32 i = 0; i < ptextcontext->localeschema()->m_straLocale.get_count(); i++)
          {
 
             auto strLocale = ptextcontext->localeschema()->m_straLocale[i];

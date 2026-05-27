@@ -34,7 +34,7 @@ namespace gpu_opengl
       GLint                            m_iMatrixUniform;
 
       GLuint                           m_gluTextureBitmap1;
-      int                              m_iLastBitmap1Scan;
+      ::i32                              m_iLastBitmap1Scan;
       ::i32_size                       m_sizeBitmap1;
 
       memory                           m_memorySwap;
@@ -55,7 +55,7 @@ namespace gpu_opengl
       void render() override;
 
       void set_bitmap_1(::image::image *pimage) override;
-      //void set_topic_texture(int iIndex) override;
+      //void set_topic_texture(::i32 iIndex) override;
       void set_cull_face(::gpu::enum_cull_mode ecullmode) override;
       //void swap_buffers() override;
 
@@ -70,7 +70,7 @@ namespace gpu_opengl
       ::memory white_to_color_sampler_frag() override;
 
 
-      //void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
+      //void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, ::i32 iAssimpTextureType) override;
 
 
       //virtual void create_offscreen_buffer(const ::i32_size& size);
@@ -111,7 +111,7 @@ namespace gpu_opengl
 
 
       void clear(::gpu::texture * pgputexture, const ::color::color& color) override;
-      //void create_global_ubo(int iSize, int iFrameCount) override;
+      //void create_global_ubo(::i32 iSize, ::i32 iFrameCount) override;
       void update_global_ubo1(::gpu::block * pblock) override;
 
 
@@ -192,16 +192,16 @@ namespace gpu_opengl
 //       /// @return lutBrdf
 //       virtual ::pointer < ::gpu::texture > generateBRDFlut();
 
-       floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
-                                    float zFar = 1.0f) override;
+       floating_matrix4 ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear = -1.0f,
+                                    ::f32 zFar = 1.0f) override;
      
 
-      //floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+      //floating_matrix4 perspective(::f32 fovyRadians, ::f32 aspect, ::f32 zNear, ::f32 zFar);
 
       //floating_matrix4 rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
       //                                const ::floating_sequence3 &forward) override; // OpenGL forward = -f
 
-      //floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
+      //floating_matrix4 lookAt(const f32_sequence3 &eye, const f32_sequence3 &center, const f32_sequence3 &up) override;
 
        floating_sequence3 front(const ::graphics3d::floating_rotation &rotation) override;
        void load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture) override;

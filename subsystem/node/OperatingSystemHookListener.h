@@ -37,7 +37,7 @@ namespace subsystem
       //virtual bool on_keyboard_message(::lresult & lresult, ::user::enum_message emssage, ::wparam wparam);
 
 
-      virtual bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam);
+      virtual bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, ::i32 iVkCode, ::lparam lparam);
 
    };
 

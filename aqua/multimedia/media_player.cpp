@@ -1070,14 +1070,14 @@ string media_player::get_player_state_string(enum_player_state eplayerstate)
 
 }
 
-void media_player::player_set_volume(double dVolume)
+void media_player::player_set_volume(::f64 dVolume)
 {
 
 
 }
 
 
-double media_player::player_get_volume()
+::f64 media_player::player_get_volume()
 {
 
    return 1.0;

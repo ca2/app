@@ -161,7 +161,7 @@ namespace simpledb
 
          }
 
-         int iTryStatement = 0;
+         ::i32 iTryStatement = 0;
 
          auto pdatabase = pserver->get_local_database();
 

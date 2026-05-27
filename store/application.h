@@ -15,16 +15,16 @@ namespace store
    public:
 
 
-      //int m_argc;
-      //char ** m_argv;
-      //int m_iExitCode;
+      //::i32 m_argc;
+      //char_pointer * m_argv;
+      //::i32 m_iExitCode;
       //const_char_pointer m_pszDistro;
-      //char * m_pszVersion;
+      //char_pointer m_pszVersion;
       //const_char_pointer m_pszBranch;
-      //char * m_pszAppRoot;
-      //char * m_pszAppName;
+      //char_pointer m_pszAppRoot;
+      //char_pointer m_pszAppName;
 
-      //application(int argc, char * argv[]);
+      //application(::i32 argc, char_pointer argv[]);
       application();
       ~application();
 
@@ -33,7 +33,7 @@ namespace store
       //void run();
 
 
-      //char * get_download_url(const_char_pointer pszRoot, const_char_pointer pszName);
+      //char_pointer get_download_url(const_char_pointer pszRoot, const_char_pointer pszName);
 
       //bool check_http_ok(const_char_pointer pszUrl);
 

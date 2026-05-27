@@ -247,13 +247,13 @@ namespace VistaTools
    ::i32_bool   bVESuccess                  = false;
 
    __declspec(allocate("ve_shared"))
-   char   szVE_Path[ MAX_PATH ]         = "";
+   ::i8   szVE_Path[ MAX_PATH ]         = "";
 
    __declspec(allocate("ve_shared"))
-   char   szVE_Parameters[ MAX_PATH ]      = "";
+   ::i8   szVE_Parameters[ MAX_PATH ]      = "";
 
    __declspec(allocate("ve_shared"))
-   char   szVE_Directory[ MAX_PATH ]      = "";
+   ::i8   szVE_Directory[ MAX_PATH ]      = "";
 
    __declspec(allocate("ve_shared"))
    ::i32_bool    bVE_NeedProcessHandle         = false;
@@ -265,7 +265,7 @@ namespace VistaTools
 // the hook callback routine, it is called in the context of th shell proces
 
    LRESULT CALLBACK
-   VistaEelevator_HookProc_MsgRet( int code, WPARAM wParam, LPARAM lParam )
+   VistaEelevator_HookProc_MsgRet( ::i32 code, WPARAM wParam, LPARAM lParam )
    {
       if ( code >= 0 && lParam )
       {
@@ -298,7 +298,7 @@ namespace VistaTools
    (WINAPI
     *PGetModuleHandleExW)(
     __in        ::u32    dwFlags,
-    __in_opt    const unichar * pModuleName,
+    __in_opt    const wide_character * pModuleName,
 
     __out HMODULE* phModule
     );
@@ -406,7 +406,7 @@ namespace VistaTools
 
       if ( !pGetModuleHandleExW(
             GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-            (const unichar *)VistaEelevator_HookProc_MsgRet,
+            (const wide_character * )VistaEelevator_HookProc_MsgRet,
             &hModule ) )
       {
          ASSERT_HERE;

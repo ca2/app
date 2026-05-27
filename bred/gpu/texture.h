@@ -23,15 +23,15 @@ namespace gpu
       texture_attributes                  m_textureattributes;
       texture_flags                       m_textureflags;
       enum_texture_state                  m_etexturestate;
-      int                                 m_iAtlasX;
-      int                                 m_iAtlasY;
-      int                                 m_iAtlasCurrentRowHeight;
+      ::i32                                 m_iAtlasX;
+      ::i32                                 m_iAtlasY;
+      ::i32                                 m_iAtlasCurrentRowHeight;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
       //::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::collection::index                 m_iIndex;
-      int                                 m_iCurrentMip;
-      int                                 m_iCurrentLayer;
+      ::i32                                 m_iCurrentMip;
+      ::i32                                 m_iCurrentLayer;
       bool m_bHdr = false;
 
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
@@ -57,20 +57,20 @@ namespace gpu
 
       virtual ::i32_rectangle rectangle() const;
       virtual ::i32_size size() const;
-      virtual int width() const;
-      virtual int height() const;
+      virtual ::i32 width() const;
+      virtual ::i32 height() const;
 
-      virtual int mip_count() const;
-      virtual int maximum_mip_count() const;
-      virtual int mip_width_for_mip(int baseWidth, int iMip) const;
-      virtual int mip_height_for_mip(int baseHeight, int iMip) const;
-      virtual int mip_width() const;
-      virtual int mip_height() const;
-///      virtual int render_target_view_index(int iFace, int iMip) const;
-//      virtual int current_render_target_view_index() const;
+      virtual ::i32 mip_count() const;
+      virtual ::i32 maximum_mip_count() const;
+      virtual ::i32 mip_width_for_mip(::i32 baseWidth, ::i32 iMip) const;
+      virtual ::i32 mip_height_for_mip(::i32 baseHeight, ::i32 iMip) const;
+      virtual ::i32 mip_width() const;
+      virtual ::i32 mip_height() const;
+///      virtual ::i32 render_target_view_index(::i32 iFace, ::i32 iMip) const;
+//      virtual ::i32 current_render_target_view_index() const;
 
 
-      virtual int layer_count() const;
+      virtual ::i32 layer_count() const;
 
 
       virtual void set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_texture_state etexturestate);
@@ -83,7 +83,7 @@ namespace gpu
       virtual void initialize_with_image_data(
          ::gpu::context *pgpucontext, 
          const ::i32_rectangle &rectangleTarget,
-         int numChannels,
+         ::i32 numChannels,
          bool bSrgb,
          const void * pdata,
          enum_texture etexture = e_texture_image);
@@ -91,7 +91,7 @@ namespace gpu
          const texture_attributes & textureattributes,
          const texture_flags & textureflags = {},
          const texture_data & texturedata = {});
-//      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
+//      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle& rectangleTarget, ::i32 iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
       virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget);
 
       virtual void initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
@@ -118,17 +118,17 @@ namespace gpu
 
       virtual bool is_in_shader_sampling_state();
 
-      //virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
+      //virtual void set_cube_face(::i32 iFace, ::gpu::shader *pgpushader);
 
       virtual void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer);
 
-      virtual void set_current_mip(int level);
+      virtual void set_current_mip(::i32 level);
 
-      virtual int mip_width();
+      virtual ::i32 mip_width();
 
-      virtual int mip_height();
+      virtual ::i32 mip_height();
 
-      virtual void set_current_layer(int iLayer);
+      virtual void set_current_layer(::i32 iLayer);
 
 
       //virtual void defer_fence();

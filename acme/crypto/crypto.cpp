@@ -122,7 +122,7 @@ namespace crypto
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES 1024
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH)
 
-   string chunk_split(const string& body, int chunklen = 76, const string& end = "\r\n");
+   string chunk_split(const string& body, ::i32 chunklen = 76, const string& end = "\r\n");
 
 
 
@@ -186,7 +186,7 @@ namespace crypto
 
 
 
-      int crypto::key(memory& storage)
+      ::i32 crypto::key(memory& storage)
       {
 
          storage.set_size(16);
@@ -198,11 +198,11 @@ namespace crypto
          //for (memsize i = 0; i < storage.size(); i++)
          //{
 
-         //   storage.data()[i] = pmathematics->random<char>() & 0xff;
+         //   storage.data()[i] = pmathematics->random<::i8>() & 0xff;
 
          //}
 
-         return (int)storage.size();
+         return (::i32)storage.size();
 
       }
 
@@ -250,7 +250,7 @@ namespace crypto
 
       //   pbase64->decode(storageKey, pszKey);
 
-      //   /* int cipherlen = */ encrypt(storageEncrypt, storageDecrypt, storageKey);
+      //   /* ::i32 cipherlen = */ encrypt(storageEncrypt, storageDecrypt, storageKey);
 
       //   strEncrypt = pbase64->encode(storageEncrypt);
 
@@ -276,7 +276,7 @@ namespace crypto
 
       //   pbase64->decode(storageKey, pszKey);
 
-      //   /*int plainlen =*/ decrypt(storageDecrypt, storageEncrypt, storageKey);
+      //   /*::i32 plainlen =*/ decrypt(storageDecrypt, storageEncrypt, storageKey);
 
       //   strDecrypt = storageDecrypt.as_string();
 
@@ -369,7 +369,7 @@ namespace crypto
       }
 
 
-      int crypto::get_md5_digest_length() const
+      ::i32 crypto::get_md5_digest_length() const
       {
 
          return get_hash_digest_length(e_hash_md5);
@@ -377,7 +377,7 @@ namespace crypto
       }
 
 
-      int crypto::get_sha1_digest_length() const
+      ::i32 crypto::get_sha1_digest_length() const
       {
 
          return get_hash_digest_length(e_hash_sha1);
@@ -385,7 +385,7 @@ namespace crypto
       }
 
 
-      int crypto::get_sha256_digest_length() const
+      ::i32 crypto::get_sha256_digest_length() const
       {
 
          return get_hash_digest_length(e_hash_sha256);
@@ -393,7 +393,7 @@ namespace crypto
       }
 
 
-      int crypto::get_nessie_digest_length() const
+      ::i32 crypto::get_nessie_digest_length() const
       {
 
          return get_hash_digest_length(e_hash_nessie);
@@ -401,7 +401,7 @@ namespace crypto
       }
 
 
-      int crypto::get_hash_digest_length(enum_hash) const
+      ::i32 crypto::get_hash_digest_length(enum_hash) const
       {
 
          throw ::interface_only();
@@ -615,10 +615,10 @@ namespace crypto
 
          string strFormat;
 
-         for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
+         for (::i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
          {
 
-            ::i64 iDigit = system()->mathematics()->random<char>();
+            ::i64 iDigit = system()->mathematics()->random<::i8>();
 
             strFormat.formatf("%02x", iDigit);
 
@@ -633,7 +633,7 @@ namespace crypto
 
       // calculate the hash from a salt and a password
       // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-      string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iOrder)
+      string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, ::i32 iOrder)
       {
 
          string strHash(scopedstrPassword);
@@ -642,7 +642,7 @@ namespace crypto
 
          strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
 
-         for (int i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
+         for (::i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
          {
 
             string strStepSalt = strSalt.substr(i) + strSalt.left(i);
@@ -656,7 +656,7 @@ namespace crypto
       }
 
 
-      string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iMaxOrder)
+      string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, ::i32 iMaxOrder)
       {
 
          string strHash(scopedstrPassword);
@@ -665,7 +665,7 @@ namespace crypto
 
          strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
 
-         for (int i = 0; i < iMaxOrder; i++)
+         for (::i32 i = 0; i < iMaxOrder; i++)
          {
 
             string strStepSalt = strSalt.substr(i) + strSalt.left(i);
@@ -679,7 +679,7 @@ namespace crypto
       }
 
 
-      bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, int iOrder)
+      bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, ::i32 iOrder)
       {
 
          string strHash(scopedstrHash);
@@ -708,7 +708,7 @@ namespace crypto
       }
 
 
-      string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, int iOrder)
+      string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, ::i32 iOrder)
       {
 
          return v5_get_password_hash(v5_get_password_salt(), scopedstrPassword, iOrder);
@@ -738,7 +738,7 @@ namespace crypto
 
          }
 
-         int iLength = 256;
+         ::i32 iLength = 256;
 
          str = system()->mathematics()->random_alphanumeric(iLength);
 
@@ -790,7 +790,7 @@ namespace crypto
 
 
 
-      //   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+      //   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
       //   {
       //
       //
@@ -807,20 +807,20 @@ namespace crypto
       //
       //      single_lock synchronouslock(mutex(), true);
       //
-      //      int iRsaSize = 8192;
+      //      ::i32 iRsaSize = 8192;
       //
       //      out.set_size(iRsaSize);
       //
       //      out.set(0);
       //
-      //      ::collection::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      //      ::collection::count i = RSA_private_decrypt((::i32)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
       //
       //      if (i < 0 || i >(1024 * 1024))
       //      {
       //
       //         strError = ERR_error_string(ERR_get_error(), nullptr);
       //
-      //         return (int)i;
+      //         return (::i32)i;
       //
       //      }
       //
@@ -828,11 +828,11 @@ namespace crypto
       //
       //#endif
       //
-      //      return int(out.get_size());
+      //      return ::i32(out.get_size());
       //
       //   }
       //
-      //   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+      //   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
       //   {
       //#ifdef MACOS_DEPRECATED
       //
@@ -925,15 +925,15 @@ namespace crypto
       //
       //#else
       //
-      //      auto iInSize = (int)in.get_size();
+      //      auto iInSize = (::i32)in.get_size();
       //
-      //      auto pInData = (const uchar*)(const_char_pointer )in.get_data();
+      //      auto pInData = (const ::u8 * )(const_char_pointer )in.get_data();
       //
       //      auto pOutData = out.get_data();
       //
       //      auto prsa = m_prsa;
       //
-      //      int i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
+      //      ::i32 i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
       //
       //      strError = ERR_error_string(ERR_get_error(), nullptr);
       //
@@ -943,12 +943,12 @@ namespace crypto
       //
       //#endif
       //
-      //      return int(out.get_size());
+      //      return ::i32(out.get_size());
       //
       //   }
       //
       //
-      //   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+      //   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
       //   {
       //
       //
@@ -965,20 +965,20 @@ namespace crypto
       //
       //      single_lock synchronouslock(mutex(), true);
       //
-      //      int iRsaSize = 8192;
+      //      ::i32 iRsaSize = 8192;
       //
       //      out.set_size(iRsaSize);
       //
       //      out.set(0);
       //
-      //      ::collection::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      //      ::collection::count i = RSA_public_decrypt((::i32)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
       //
       //      if (i < 0 || i >(1024 * 1024))
       //      {
       //
       //         strError = ERR_error_string(ERR_get_error(), nullptr);
       //
-      //         return (int)i;
+      //         return (::i32)i;
       //
       //      }
       //
@@ -986,7 +986,7 @@ namespace crypto
       //
       //#endif
       //
-      //      return int(out.get_size());
+      //      return ::i32(out.get_size());
       //
       //   }
 
@@ -1008,7 +1008,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->public_encrypt(memory, memIn, strError);
+         ::i32 i = prsa->public_encrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {
@@ -1039,7 +1039,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->private_decrypt(memory, memIn, strError);
+         ::i32 i = prsa->private_decrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {
@@ -1068,7 +1068,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->public_decrypt(memory, memIn, strError);
+         ::i32 i = prsa->public_decrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {
@@ -1099,7 +1099,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->public_decrypt(memory, memIn, strError);
+         ::i32 i = prsa->public_decrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {
@@ -1128,7 +1128,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->private_encrypt(memory, memIn, strError);
+         ::i32 i = prsa->private_encrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {
@@ -1157,7 +1157,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->private_encrypt(memory, memIn, strError);
+         ::i32 i = prsa->private_encrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {
@@ -1186,7 +1186,7 @@ namespace crypto
 
          string strError;
 
-         int i = prsa->public_decrypt(memory, memIn, strError);
+         ::i32 i = prsa->public_decrypt(memory, memIn, strError);
 
          if (i < 0 || i >(1024 * 1024))
          {

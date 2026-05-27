@@ -153,7 +153,7 @@ namespace berg
 } // namespace berg
 
 
-CLASS_DECL_BERG int get_core_init();
+CLASS_DECL_BERG ::i32 get_core_init();
 //extern "C"
 //CLASS_DECL_BERG ::i32_bool defer_aura_init();
 //extern "C"

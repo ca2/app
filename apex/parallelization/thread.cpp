@@ -54,7 +54,7 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #include "acme/_operating_system.h"
 
 
-::collection::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, ::u32* pline, ::u32* pdisplacement = 0);
+::collection::index engine_fileline(DWORD_PTR dwAddress, char_pointer psz, ::i32 nCount, ::u32* pline, ::u32* pdisplacement = 0);
 
 #endif
 
@@ -1049,7 +1049,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //}
 
 
-int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+::i32 thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    throw ::exception();
@@ -1269,7 +1269,7 @@ bool thread::get_message()
 
    MESSAGE message = {};
 
-   //int iResult = get_message(&message, NULL, 0, 0);
+   //::i32 iResult = get_message(&message, NULL, 0, 0);
 
    get_message(&message, NULL, 0, 0);
 
@@ -1514,7 +1514,7 @@ bool thread::handle_message(bool & bContinue)
 }
 
 
-void thread::on_thread_on_idle(thread* pimpl, int lCount)
+void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 {
 
    //return ::success;
@@ -1718,7 +1718,7 @@ void thread::post_quit()
 //}
 
 
-bool thread::post_quit_message(int nExitCode)
+bool thread::post_quit_message(::i32 nExitCode)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -2660,7 +2660,7 @@ void thread::process_window_procedure_exception(const ::exception& e, ::message:
 }
 
 
-void thread::process_message_filter(int code, ::message::message* pmessage)
+void thread::process_message_filter(::i32 code, ::message::message* pmessage)
 {
 
    auto papplication = application();
@@ -2700,7 +2700,7 @@ void thread::process_message_filter(int code, ::message::message* pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddress);
+size_t engine_symbol(char_pointer sz, ::i32 n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddress);
 
 #endif
 
@@ -2766,9 +2766,9 @@ void thread::branch(enum_parallelization eparallelization,
    //
    //      ULONG BackTraceHash;
    //
-   //      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+   //      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
    //
-   //      char sz[1024];
+   //      ::i8 sz[1024];
    //
    //      zero(sz);
    //
@@ -4110,7 +4110,7 @@ void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & opera
 
       MSG msg{};
 
-      int iRet = -1;
+      ::i32 iRet = -1;
 
       if (has_finishing_flag())
       {
@@ -4475,9 +4475,9 @@ bool thread::initialize_message_queue()
 
    //single_lock synchronouslock(&m_sptimera->m_pmutex,true);
 
-   //int iMin = 100;
+   //::i32 iMin = 100;
 
-   //for(int i = 0; i < m_sptimera->m_timera.get_count(); i++)
+   //for(::i32 i = 0; i < m_sptimera->m_timera.get_count(); i++)
    //{
 
    //   if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
@@ -4842,7 +4842,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //}
 
 
-int thread::get_x_window_count() const
+::i32 thread::get_x_window_count() const
 {
 
    return 0;
@@ -4943,7 +4943,7 @@ void thread::request(::request* prequest)
 }
 
 
-CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
+CLASS_DECL_APEX void forking_count_thread_null_end(::i32 iOrder)
 {
 
 

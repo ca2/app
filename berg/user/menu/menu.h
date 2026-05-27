@@ -31,20 +31,20 @@ namespace user
 //#endif
       bool                                   m_bOwnItem;
       ::i32_size                             m_size;
-      double                                 m_dCheckBoxSize;
+      ::f64                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
-      double                                 m_dHeaderHeight;
+      ::f64                                 m_dHeaderHeight;
       ::pointer<::menu::item>                m_pitemClose;
       //atom                                 m_atomSubMenu;
       //::pointer<::menu::item>              m_pitemSubMenu;
-      int                                    m_iHoverSubMenu;
+      ::i32                                    m_iHoverSubMenu;
       ::u32                                    m_dwOut;
       ::pointer<menu>                        m_pmenuSubMenu;
       //atom                                 m_atomTimerMenu;
       i32_point                              m_pointTrack;
       bool                                   m_bScreenHint;
       i32_rectangle                          m_rectangleScreenHint;
-      //int                                  m_iFlags;
+      //::i32                                  m_iFlags;
       ::menu::e_track_popup                  m_etrackpopup;
       bool                                   m_bCursorHint;
       ::i32_point                            m_pointCursorHint;
@@ -81,13 +81,13 @@ namespace user
 
       virtual ::channel * get_notify_channel();
 
-      ::menu::item * GetSubMenu(int i);
+      ::menu::item * GetSubMenu(::i32 i);
 
       virtual void defer_initialize_user_menu();
       virtual void initialize_user_menu();
       
       
-      virtual void set_minimum_width(int iWidth);
+      virtual void set_minimum_width(::i32 iWidth);
 
       //virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 
@@ -159,8 +159,8 @@ namespace user
 
       virtual void update_command(::menu::item * pitemParent);
 
-      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
-      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
+      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight);
+      void layout_buttons(::menu::item * pitem, ::i32 iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 
 
 

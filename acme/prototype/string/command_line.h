@@ -16,7 +16,7 @@ CLASS_DECL_ACME string_array_base command_arguments_from_command_line(const ::sc
 
 
 
-CLASS_DECL_ACME void prepare_argc_argv(int & argc, char ** argv, char * cmd_line);
+CLASS_DECL_ACME void prepare_argc_argv(::i32 & argc, char_pointer * argv, char_pointer cmd_line);
 
 
 CLASS_DECL_ACME string transform_to_c_arg(const ::scoped_string & scopedstr);
@@ -24,7 +24,7 @@ CLASS_DECL_ACME string_array_base get_c_args_from_string(const ::scoped_string &
 CLASS_DECL_ACME string_array_base no_escape_get_c_args_from_string(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME string_array_base get_c_args_from_c(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME string_array_base get_c_args_for_c(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array_base get_c_args(int argc, char ** argv);
+CLASS_DECL_ACME string_array_base get_c_args(::i32 argc, char_pointer * argv);
 
 
 

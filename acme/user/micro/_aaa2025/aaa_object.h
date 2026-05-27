@@ -27,7 +27,7 @@ public:
    virtual void * operating_system_data();
 
 
-   virtual void update(::nano::graphics::device * pnanodevice);
+   virtual void update(::nano::graphics::context * pnanodevice);
 
 
 };

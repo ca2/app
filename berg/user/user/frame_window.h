@@ -40,12 +40,12 @@ namespace user
       //bool                                       m_bAutoWindowFrame;
       ::logic::boolean                             m_bWindowFrame;
       bool                                         m_bLayered;
-      int                                          m_iFrameData;
+      ::i32                                          m_iFrameData;
       ::atom                                       m_atomHelp;         // xxx mrs
       ::user::impact_system *                      m_pimpactsystem;
       ::i32_rectangle                              m_rectangleHosting;
 
-      int                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
+      ::i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
 //      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
 //      // 1 => first of many windows viewing ::user::document, 2=> second
 //#ifdef WINDOWS_DESKTOP
@@ -57,7 +57,7 @@ namespace user
       ::user::frame_window *                       m_pNextFrameWnd; // next frame_window in cast global list_base
       ::i32_rectangle                              m_rectangleBorder;         // for OLE border space negotiation
 
-      int                                          m_nShowDelay;           // SW_ command for delay show/hide
+      ::i32                                          m_nShowDelay;           // SW_ command for delay show/hide
 
       bool                                         m_bFrameMoveEnable;
       //bool                                         m_bNeedRepositionBars;
@@ -286,7 +286,7 @@ namespace user
       virtual bool pre_create_window(::user::system * pusersystem) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       void destroy() override;   // default to delete this.
-      int OnCreateHelper(::user::system * pusersystem);
+      ::i32 OnCreateHelper(::user::system * pusersystem);
 
       //void BringToTop(::e_display edisplay) override;
       // bring interaction_impl to top for SW_ commands which affect z-order
@@ -310,7 +310,7 @@ namespace user
       //void OnIdleUpdateCmdUI(::message::message * pmessage);
       //void OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho);
       void OnSetFocus(::pointer<::user::interaction>pOldWnd);
-      void OnSize(::u32 nType, int cx, int cy);
+      void OnSize(::u32 nType, ::i32 cx, ::i32 cy);
       bool OnEraseBkgnd(::image::image *pimage);
       //void OnActivate(::u32 nState, ::pointer<::user::interaction>pWndOther, bool bMinimized);
       //bool OnNcActivate(bool bActive);

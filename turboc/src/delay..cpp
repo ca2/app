@@ -26,7 +26,7 @@
 //#include <sys/times.h>
 //#include "dos.h"
 
-static int clockInitialized = 0;
+static ::i32 clockInitialized = 0;
 static clock_t InitialTime;
 
 //-----------------------------------------------------------------------
@@ -49,7 +49,7 @@ clockTurbo (void)
 //-----------------------------------------------------------------------
 
 void
-delay (gunsigned int ::times)
+delay (gunsigned ::i32 ::times)
 {
   //struct tms Buf;
   //clock_t EndTime;

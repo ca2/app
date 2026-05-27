@@ -7,7 +7,7 @@
 //rWINAPI
 GetTempPathA(
 ::u32 nBufferLength,
-char * lpBuffer
+char_pointer lpBuffer
 )
 {
 

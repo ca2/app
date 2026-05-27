@@ -23,7 +23,7 @@ namespace graphics3d
 
 
 
-		float                                              m_fYScale;
+		::f32                                              m_fYScale;
 		//::pointer < ::gpu::approach >					      m_papproach;
 		//::pointer < ::gpu::context >					      m_pgpucontext;
 		//::pointer < ::gpu::context >					      m_pgpucontextGraphics3D;
@@ -33,7 +33,7 @@ namespace graphics3d
 	   ::pointer < ::graphics3d::input >			         m_pinput;
 
 		::graphics3d::transform					               m_transform;
-		float													         m_fFrameTime;
+		::f32													         m_fFrameTime;
 
 		bool													         m_bWireframeMode = false;
 
@@ -44,7 +44,7 @@ namespace graphics3d
 		bool													         m_bEngineOnFrameContextInitialization = false;
 
 		bool                                               m_bLoadedEngine = false;
-      float m_fInputPitchFlip;
+      ::f32 m_fInputPitchFlip;
 		//::image32_callback                        m_callbackImage32CpuBuffer;
       ::pointer<::graphics3d::shape_factory> m_pshapefactory;
 
@@ -83,7 +83,7 @@ namespace graphics3d
 		virtual void engine_on_after_load_scene(::graphics3d::scene_base* pscene);
 
 
-		float dt() { return m_fFrameTime; }
+		::f32 dt() { return m_fFrameTime; }
 
 		virtual floating_matrix4 model_matrix(::graphics3d::transform& transformcomponent);
 		virtual floating_matrix4 normal_matrix(::graphics3d::transform& transformcomponent);
@@ -111,7 +111,7 @@ namespace graphics3d
 
 		virtual void on_layout(const ::i32_rectangle & rectanglePlacement);
 
-		virtual void on_mouse_move(float x, float y);
+		virtual void on_mouse_move(::f32 x, ::f32 y);
 
 		virtual void on_render_frame();
 
@@ -121,9 +121,9 @@ namespace graphics3d
 
 		//virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t &model);
 
-		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, int w, int h, int stride);
+		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, ::i32 w, ::i32 h, ::i32 stride);
 
-      virtual floating_matrix4 perspective(const ::float_angle & angleFovY, float aspect, float zNear, float zFar);
+      virtual floating_matrix4 perspective(const ::f32_angle & angleFovY, ::f32 aspect, ::f32 zNear, ::f32 zFar);
 
       virtual void calculate_impact(::floating_matrix4 &matrixImpact, const ::graphics3d::camera &camera);
       virtual void calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera);

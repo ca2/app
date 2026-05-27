@@ -134,18 +134,18 @@
 
 struct text_info
 {
-  ::u32 currmode;		// Is only a char in conio.
-  unsigned char winleft;
-  unsigned char wintop;
-  unsigned char winright;
-  unsigned char winbottom;
-  unsigned char attribute;
-  unsigned char normattr;
-  //unsigned char currmode;
-  unsigned char screenheight;
-  unsigned char screenwidth;
-  unsigned char curx;
-  unsigned char cury;
+  ::u32 currmode;		// Is only a ::i8 in conio.
+  ::u8 winleft;
+  ::u8 wintop;
+  ::u8 winright;
+  ::u8 winbottom;
+  ::u8 attribute;
+  ::u8 normattr;
+  //::u8 currmode;
+  ::u8 screenheight;
+  ::u8 screenwidth;
+  ::u8 curx;
+  ::u8 cury;
 };
 
 //----------------------------------------------------------------------------
@@ -158,24 +158,24 @@ __BEGIN_DECLS
 // function is optional in Turbo C, but must be used in all cases for us
 // because otherwise we can't guarantee that the necessary initialization
 // of ncurses has occurred.
-extern void textattr (int newattr);
-extern void textbackground (int newcolor);
-extern void textcolor (int newcolor);
+extern void textattr (::i32 newattr);
+extern void textbackground (::i32 newcolor);
+extern void textcolor (::i32 newcolor);
 extern void lowvideo (void);
 extern void highvideo (void);
 extern void normvideo (void);
 extern void gettextinfo (struct text_info *r);
-extern int wherex (void);
-extern int wherey (void);
-extern void gotoxy (int x, int y);
-extern void window (int left, int top, int right, int bottom);
+extern ::i32 wherex (void);
+extern ::i32 wherey (void);
+extern void gotoxy (::i32 x, ::i32 y);
+extern void window (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
 extern void clreol (void);
 extern void clrscr (void);
-extern void textmode (int newmode);
-extern int putch (int c);
-extern int getche (void);
-extern int cputs (const ::scoped_string & scopedstr);
-extern int cprintf (const ::string &format, ...);
+extern void textmode (::i32 newmode);
+extern ::i32 putch (::i32 c);
+extern ::i32 getche (void);
+extern ::i32 cputs (const ::scoped_string & scopedstr);
+extern ::i32 cprintf (const ::string &format, ...);
 extern void delline (void);
 extern void insline (void);
 
@@ -184,22 +184,22 @@ extern void insline (void);
 #ifdef gettext
 #undef gettext
 #endif
-static inline char *
+static inline char_pointer 
 gettextIntl (const ::string &msgid) { 
-  extern char *gettext (const ::string &msgid);
+  extern char_pointer gettext (const ::string &msgid);
   return (gettext (msgid)); 
 }
 // The following is used to access the TurboC-library's gettext.
-extern int gettextTurboC (int left, int top, int right, int bottom, void *destin);
+extern ::i32 gettextTurboC (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *destin);
 #define gettext gettextTurboC
 
-extern int puttext (int left, int top, int right, int bottom, void *destin);
-extern int movetext (int left, int top, int right, int bottom, int dleft,
-		     int dtop);
-extern int kbhit (void);
-extern char *cgets (char *s);
-extern char *getpass (const ::string &prompt);
-extern void _setcursortype (int cur_t);
+extern ::i32 puttext (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *destin);
+extern ::i32 movetext (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, ::i32 dleft,
+		     ::i32 dtop);
+extern ::i32 kbhit (void);
+extern char_pointer cgets (char_pointer s);
+extern char_pointer getpass (const ::string &prompt);
+extern void _setcursortype (::i32 cur_t);
 
 // Implementing getch/ungetch is a little tricky, since functions of the same
 // names, but slightly different behavior, are available in ncurses.  We
@@ -207,22 +207,22 @@ extern void _setcursortype (int cur_t);
 // So we want to use macros to redefine what they mean when encountered
 // in the Turbo C code.  However, we provide NEW functions (getchNcurses
 // and ungetchNcurses) to provide the ncurses functionality.
-static inline int
+static inline ::i32
 getchNcurses (void)
 {
   return (getch ());
 }
-extern int getchTurbo (void);
+extern ::i32 getchTurbo (void);
 #ifdef getch
 #undef getch
 #endif
 #define getch getchTurbo
 static inline void
-ungetchNcurses (int c)
+ungetchNcurses (::i32 c)
 {
   ungetch (c);
 }
-extern int ungetchTurbo (int c);
+extern ::i32 ungetchTurbo (::i32 c);
 #ifdef ungetch
 #undef ungetch
 #endif
@@ -235,35 +235,35 @@ extern void RawResizeTurboC (gint Rows, gint Columns);
 extern void ConioResizeCallback (void);
 
 // Graphics-window keyboard buffer.
-int TcAddKeybuf (char c);
-int TcExtractKeybuf (char *c);
+::i32 TcAddKeybuf (::i8 c);
+::i32 TcExtractKeybuf (char_pointer c);
 
 __END_DECLS
 //--------------------------------------------------------------------------
 // Variables.
 #ifdef TURBOC_VARIABLES_C
-int directvideo = 1, _directvideo = 1, _wscroll = 1;
-char TcKeybuf[TC_KEYBUF_SIZE];
+::i32 directvideo = 1, _directvideo = 1, _wscroll = 1;
+::i8 TcKeybuf[TC_KEYBUF_SIZE];
 gint TcKeybufStart = 0, TcKeybufSize = 0;
 pthread_mutex_t TcMutex = PTHREAD_MUTEX_INITIALIZER;
-int ConioInitialized = 0;	// Becomes 1 after initialization.
+::i32 ConioInitialized = 0;	// Becomes 1 after initialization.
 struct text_info CurrentAttributes;
 // CurrentWindow is NULL prior to initialization.  After initialization,
 // it begins as the ncurses stdscr.  After the window function is used, it
 // becomes something else.
 WINDOW *CurrentWindow = NULL;
-int ColorPairsUsed;
-int ConioRefreshOkay = 1;
+::i32 ColorPairsUsed;
+::i32 ConioRefreshOkay = 1;
 #else // TURBOC_VARIABLES_C
-extern int directvideo, _directvideo, _wscroll;
-extern char TcKeybuf[TC_KEYBUF_SIZE];
+extern ::i32 directvideo, _directvideo, _wscroll;
+extern ::i8 TcKeybuf[TC_KEYBUF_SIZE];
 extern gint TcKeybufStart, TcKeybufSize;
 extern pthread_mutex_t TcMutex;
-extern int ConioInitialized;
+extern ::i32 ConioInitialized;
 extern struct text_info CurrentAttributes;
 extern WINDOW *CurrentWindow;
-extern int ColorPairsUsed;
-extern int ConioRefreshOkay;
+extern ::i32 ColorPairsUsed;
+extern ::i32 ConioRefreshOkay;
 #endif // TURBOC_VARIABLES_C
 
 #endif // _INCLUDED_CONIO_H

@@ -40,10 +40,10 @@ oswindow_dataptra * g_oswindow_dataptra()
 }
 
 
-int oswindow_find(::user::interaction * pinteraction)
+::i32 oswindow_find(::user::interaction * pinteraction)
 {
 
-   for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
+   for(::i32 i = 0; i < g_oswindow_dataptra()->get_count(); i++)
    {
       if(g_oswindow_dataptra()->element_at(i)->m_puserinteraction == pinteraction)
       {

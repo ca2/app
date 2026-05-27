@@ -23,14 +23,14 @@
 //     {
 //     public:
 //
-//         virtual int frameIndex() = 0;
-//         virtual float frameTime() = 0;
+//         virtual ::i32 frameIndex() = 0;
+//         virtual ::f32 frameTime() = 0;
 //         //VkCommandBuffer commandBuffer;
 //         //::pointer < ::gpu::command_buffer > m_pcommandbuffer;
 //         virtual ::gpu::command_buffer * getCommandBuffer() = 0;
 //         virtual ICamera * camera() = 0;
 //         //VkDescriptorSet globalDescriptorSet;
-//         virtual IGameObject * game_object(unsigned int u) = 0;
+//         virtual IGameObject * game_object(::u32 u) = 0;
 //         virtual IScene * scene() = 0;
 //
 //     };

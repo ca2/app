@@ -32,7 +32,7 @@ namespace innate_subsystem
    virtual public ::particle
    {
    public:
-      virtual bool isStringCorrect(const char *string);
+      virtual bool isStringCorrect(const_char_pointer string);
    };
 } // namespace innate_subsystem
 

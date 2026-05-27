@@ -21,7 +21,7 @@
 CLASS_DECL_ACME ::i32_bool is_process_running(::u32 pid)
 {
 
-   int i = kill(pid, 0);
+   ::i32 i = kill(pid, 0);
 
    return (i == 0) || (i == -1 && errno == EPERM);
 
@@ -60,18 +60,18 @@ CLASS_DECL_ACME ::i32_bool is_process_running(::u32 pid)
 
 
 
-::enum_priority get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+::enum_priority get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 {
 
-   int iCa2Min;
+   ::i32 iCa2Min;
 
-   int iCa2Max;
+   ::i32 iCa2Max;
 
 
    if (iOsPolicy == SCHED_RR)
    {
 
-      iCa2Min = (int) ::e_priority_normal;
+      iCa2Min = (::i32) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -81,27 +81,27 @@ CLASS_DECL_ACME ::i32_bool is_process_running(::u32 pid)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::e_priority_normal;
+      iCa2Max = (::i32) ::e_priority_normal;
 
    }
    else
    {
 
-      iCa2Min = (int) ::e_priority_normal;
+      iCa2Min = (::i32) ::e_priority_normal;
 
-      iCa2Max = (int) ::e_priority_normal;
+      iCa2Max = (::i32) ::e_priority_normal;
 
    }
 
-   int iOsMax = sched_get_priority_max(iOsPolicy);
+   ::i32 iOsMax = sched_get_priority_max(iOsPolicy);
 
-   int iOsMin = sched_get_priority_min(iOsPolicy);
+   ::i32 iOsMin = sched_get_priority_min(iOsPolicy);
 
-   int iCa2Priority;
+   ::i32 iCa2Priority;
 
    if (iOsMax == iOsMin)
    {
-      iCa2Priority = (int) ::e_priority_normal;
+      iCa2Priority = (::i32) ::e_priority_normal;
    }
    else
    {
@@ -115,11 +115,11 @@ CLASS_DECL_ACME ::i32_bool is_process_running(::u32 pid)
 }
 
 
-void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
+void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 
-void process_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority)
+void process_get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -127,7 +127,7 @@ void process_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priori
 }
 
 
-::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+::enum_priority process_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);

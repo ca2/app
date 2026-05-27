@@ -23,9 +23,9 @@ struct kiss_fftr_state{
     COMPLEXD * super_twiddles;
 };
 
-kiss_fftr_cfg kiss_fftr_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem)
+kiss_fftr_cfg kiss_fftr_alloc(::i32 nfft,::i32 inverse_fft,void * mem,size_t * lenmem)
 {
-    int i;
+    ::i32 i;
     kiss_fftr_cfg st = nullptr;
     size_t subsize, memneeded;
 
@@ -49,13 +49,13 @@ kiss_fftr_cfg kiss_fftr_alloc(int nfft,int inverse_fft,void * mem,size_t * lenme
         return nullptr;
 
     st->substate = (kiss_fft_cfg) (st + 1); /*just beyond kiss_fftr_state struct */
-    st->tmpbuf = (COMPLEXD *) (((char *) st->substate) + subsize);
+    st->tmpbuf = (COMPLEXD *) (((char_pointer ) st->substate) + subsize);
     st->super_twiddles = st->tmpbuf + nfft;
     kiss_fft_alloc(nfft, inverse_fft, st->substate, &subsize);
 
     for (i = 0; i < nfft; ++i) {
-        double phase =
-            -3.14159265358979323846264338327 * ((double) i / nfft + .5);
+        ::f64 phase =
+            -3.14159265358979323846264338327 * ((::f64) i / nfft + .5);
         if (inverse_fft)
             phase *= -1;
         kf_cexp (st->super_twiddles+i,phase);
@@ -66,7 +66,7 @@ kiss_fftr_cfg kiss_fftr_alloc(int nfft,int inverse_fft,void * mem,size_t * lenme
 void kiss_fftr(kiss_fftr_cfg st,const kiss_fft_scalar *timedata,COMPLEXD *freqdata)
 {
     /* input buffer timedata is stored row-wise */
-    int k,N;
+    ::i32 k,N;
 
     if ( st->substate->inverse) {
         fprintf(stderr,"kiss fft usage error: improper alloc\n");
@@ -110,7 +110,7 @@ void kiss_fftr(kiss_fftr_cfg st,const kiss_fft_scalar *timedata,COMPLEXD *freqda
 void kiss_fftri(kiss_fftr_cfg st,const COMPLEXD *freqdata,kiss_fft_scalar *timedata)
 {
     /* input buffer timedata is stored row-wise */
-    int k, N;
+    ::i32 k, N;
 
     if (st->substate->inverse == 0) {
         fprintf (stderr, "kiss fft usage error: improper alloc\n");

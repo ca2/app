@@ -42,7 +42,7 @@ class message_queue;
 
 //using htask = void *;
 
-// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
+// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an ::i32 but a pointer in some implementations ?, so should use pthread_equal...)
 class CLASS_DECL_ACME htask
 {
 public:
@@ -88,7 +88,7 @@ public:
 
 //using itask = iptr;
 
-// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
+// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an ::i32 but a pointer in some implementations ?, so should use pthread_equal...)
 class CLASS_DECL_ACME itask
 {
 public:

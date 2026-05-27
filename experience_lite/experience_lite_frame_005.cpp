@@ -465,17 +465,17 @@ SizingNone:;
             {
 
                ::i32_rectangle rectangle(rectangleParam);
-               int x = rectangle.left;
-               int y = rectangle.top;
-               int cx = rectangle.width();
-               int cy = rectangle.height();
+               ::i32 x = rectangle.left;
+               ::i32 y = rectangle.top;
+               ::i32 cx = rectangle.width();
+               ::i32 cy = rectangle.height();
 
                ::i32_rectangle rectangle;
 
                if(eborder & e_border_top)
                {
 
-                  rectangleDraw = int_rectangle_dimension(x, y, cx, 1);
+                  rectangleDraw = i32_rectangle_dimension(x, y, cx, 1);
 
                   if(session()->savings()->is_trying_to_save(::e_resource_processing))
                   {
@@ -494,7 +494,7 @@ SizingNone:;
                if(eborder & e_border_left)
                {
 
-                  rectangleDraw = int_rectangle_dimension(x, y + 1, 1, cy - 2);
+                  rectangleDraw = i32_rectangle_dimension(x, y + 1, 1, cy - 2);
 
                   if(session()->savings()->is_trying_to_save(::e_resource_processing))
                   {
@@ -514,7 +514,7 @@ SizingNone:;
                if(eborder & e_border_right)
                {
 
-                  rectangleDraw = int_rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
+                  rectangleDraw = i32_rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
                   if(session()->savings()->is_trying_to_save(::e_resource_processing))
                   {
@@ -534,7 +534,7 @@ SizingNone:;
                if(eborder & e_border_bottom)
                {
 
-                  rectangleDraw = int_rectangle_dimension(x, y + cy - 1, cx, 1);
+                  rectangleDraw = i32_rectangle_dimension(x, y + cy - 1, cx, 1);
 
                   if(session()->savings()->is_trying_to_save(::e_resource_processing))
                   {
@@ -572,7 +572,7 @@ SizingNone:;
 
 
 
-               const int size = 16;
+               const ::i32 size = 16;
 
                ::i32_rectangle rectangleX(lpcrectClient);
                //            ::i32_rectangle rectangleXB(rectangleX);

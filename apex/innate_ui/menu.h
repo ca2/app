@@ -16,14 +16,14 @@ namespace innate_ui
       ~menu() override;
 
 
-      virtual void load_menu_from_resource(int iMenuResourceId);
+      virtual void load_menu_from_resource(::i32 iMenuResourceId);
 
-      virtual void set_default_menu_item_command_id(int iDefaultMenuItemCommandId);
+      virtual void set_default_menu_item_command_id(::i32 iDefaultMenuItemCommandId);
 
-      virtual void erase_menu_item_by_command_id(int iDefaultMenuItemCommandId);
+      virtual void erase_menu_item_by_command_id(::i32 iDefaultMenuItemCommandId);
 
       
-      virtual void track_popup_menu(const ::operating_system::window & operatingsystemwindow, const ::function<void(int)> &functionOnActionId);
+      virtual void track_popup_menu(const ::operating_system::window & operatingsystemwindow, const ::function<void(::i32)> &functionOnActionId);
 
 
 

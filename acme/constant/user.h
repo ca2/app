@@ -4,7 +4,7 @@
 
 
 
-//#define make_int(a, b)      ((int)(((unsigned short)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define make_int(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 
 
@@ -297,13 +297,13 @@ namespace user
    enum enum_double
    {
 
-      e_double_none,
-      e_double_default_one_min,
-      e_double_width_rate,
-      e_double_list_item_height_rate,
-      e_double_tree_item_height_rate,
-      e_double_default_one_max,
-      e_double_focus_height_width,
+      e_f64_none,
+      e_f64_default_one_min,
+      e_f64_width_rate,
+      e_f64_list_item_height_rate,
+      e_f64_tree_item_height_rate,
+      e_f64_default_one_max,
+      e_f64_focus_height_width,
 
    };
 

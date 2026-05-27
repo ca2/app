@@ -11,10 +11,10 @@ Public domain */
 
 /* use _SZ_ALLOC_DEBUG to debug alloc/free operations */
 #ifdef _SZ_ALLOC_DEBUG
-int g_allocCount = 0;
+::i32 g_allocCount = 0;
 
-int g_allocCountMid = 0;
-int g_allocCountBig = 0;
+::i32 g_allocCountMid = 0;
+::i32 g_allocCountBig = 0;
 #endif
 
 void * paged_allocate(size_t size)

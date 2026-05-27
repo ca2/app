@@ -78,7 +78,7 @@ ls_jpeg_error_exit (j_common_ptr cinfo) {
 */
 METHODDEF(void)
 ls_jpeg_output_message (j_common_ptr cinfo) {
-	char buffer[JMSG_LENGTH_MAX];
+	::i8 buffer[JMSG_LENGTH_MAX];
 
 	// create the message
 	(*cinfo->err->format_message)(cinfo, buffer);
@@ -103,7 +103,7 @@ Build a crop string.
 @return Returns true if successful, returns false otherwise
 */
 static ::i32_bool
-getCropString(char* crop, int* left, int* top, int* right, int* bottom, int width, int height) {
+getCropString(char_pointer crop, ::i32* left, ::i32* top, ::i32* right, ::i32* bottom, ::i32 width, ::i32 height) {
 	if(!left || !top || !right || !bottom) {
 		return false;
 	}
@@ -151,7 +151,7 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 }
 
 static ::i32_bool
-JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, ::i32_bool perfect) {
+JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, ::i32* left, ::i32* top, ::i32* right, ::i32* bottom, ::i32_bool perfect) {
 	const ::i32_bool onlyReturnCropRect = (dst_io == nullptr) || (dst_handle == nullptr);
 	const long stream_start = onlyReturnCropRect ? 0 : dst_io->tell_proc(dst_handle);
 	::i32_bool swappedDim = false;
@@ -252,7 +252,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 		jpeg_read_header(&srcinfo, true);
 
 		// crop option
-		char crop[64];
+		::i8 crop[64];
 		const ::i32_bool hasCrop = getCropString(crop, left, top, right, bottom, swappedDim ? srcinfo.image_height : srcinfo.image_width, swappedDim ? srcinfo.image_width : srcinfo.image_height);
 
 		if(hasCrop) {
@@ -277,11 +277,11 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 			// transform, which might have trimed the image,
 			// and crop itself, which is adjusted to lie on a iMCU boundary
 
-			const int fullWidth = swappedDim ? srcinfo.image_height : srcinfo.image_width;
-			const int fullHeight = swappedDim ? srcinfo.image_width : srcinfo.image_height;
+			const ::i32 fullWidth = swappedDim ? srcinfo.image_height : srcinfo.image_width;
+			const ::i32 fullHeight = swappedDim ? srcinfo.image_width : srcinfo.image_height;
 
-			int transformedFullWidth = fullWidth;
-			int transformedFullHeight = fullHeight;
+			::i32 transformedFullWidth = fullWidth;
+			::i32 transformedFullHeight = fullHeight;
 
 			if(trimH && transformedFullWidth/transfoptions.iMCU_sample_width > 0) {
 				transformedFullWidth = (transformedFullWidth/transfoptions.iMCU_sample_width) * transfoptions.iMCU_sample_width;
@@ -290,8 +290,8 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 				transformedFullHeight = (transformedFullHeight/transfoptions.iMCU_sample_height) * transfoptions.iMCU_sample_height;
 			}
 
-			const int trimmedWidth = fullWidth - transformedFullWidth;
-			const int trimmedHeight = fullHeight - transformedFullHeight;
+			const ::i32 trimmedWidth = fullWidth - transformedFullWidth;
+			const ::i32 trimmedHeight = fullHeight - transformedFullHeight;
 
 			if(left) {
 				*left = trimmedWidth + transfoptions.x_crop_offset * transfoptions.iMCU_sample_width;
@@ -369,7 +369,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 // ----------------------------------------------------------
 
 ::i32_bool DLL_CALLCONV
-FreeImage_JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, ::i32_bool perfect) {
+FreeImage_JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, ::i32* left, ::i32* top, ::i32* right, ::i32* bottom, ::i32_bool perfect) {
 	return JPEGTransformFromHandle(src_io, src_handle, dst_io, dst_handle, operation, left, top, right, bottom, perfect);
 }
 
@@ -500,7 +500,7 @@ FreeImage_JPEGTransform(const ::string &src_file, const ::string &dst_file, FREE
 }
 
 ::i32_bool DLL_CALLCONV
-FreeImage_JPEGCrop(const ::string &src_file, const ::string &dst_file, int left, int top, int right, int bottom) {
+FreeImage_JPEGCrop(const ::string &src_file, const ::string &dst_file, ::i32 left, ::i32 top, ::i32 right, ::i32 bottom) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
@@ -534,7 +534,7 @@ FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_
 }
 
 ::i32_bool DLL_CALLCONV
-FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, int left, int top, int right, int bottom) {
+FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, ::i32 left, ::i32 top, ::i32 right, ::i32 bottom) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
@@ -551,7 +551,7 @@ FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, int left, 
 }
 
 ::i32_bool DLL_CALLCONV
-FreeImage_JPEGTransformCombined(const ::string &src_file, const ::string &dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, ::i32_bool perfect) {
+FreeImage_JPEGTransformCombined(const ::string &src_file, const ::string &dst_file, FREE_IMAGE_JPEG_OPERATION operation, ::i32* left, ::i32* top, ::i32* right, ::i32* bottom, ::i32_bool perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
@@ -568,7 +568,7 @@ FreeImage_JPEGTransformCombined(const ::string &src_file, const ::string &dst_fi
 }
 
 ::i32_bool DLL_CALLCONV
-FreeImage_JPEGTransformCombinedU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, ::i32_bool perfect) {
+FreeImage_JPEGTransformCombinedU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, ::i32* left, ::i32* top, ::i32* right, ::i32* bottom, ::i32_bool perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
@@ -611,7 +611,7 @@ getMemIO(FIMEMORY* src_stream, FIMEMORY* dst_stream, FreeImageIO* dst_io, fi_han
 }
 
 ::i32_bool DLL_CALLCONV
-FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_stream, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, ::i32_bool perfect) {
+FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_stream, FREE_IMAGE_JPEG_OPERATION operation, ::i32* left, ::i32* top, ::i32* right, ::i32* bottom, ::i32_bool perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;

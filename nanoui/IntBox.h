@@ -3,7 +3,7 @@
  *
  * \brief A specialization of TextBox for representing integral values.
  *
- * Template parameters should be integral types, e.g. ``int``, ``long``,
+ * Template parameters should be integral types, e.g. ``::i32``, ``long``,
  * ``uint32_t``, etc.
  */
  // From TextBox.h by camilo on 2023-05-16 14:21 <3ThomasBorregaardSorensen!!
@@ -52,7 +52,7 @@ namespace nanoui
       Scalar calc_dimension(const ::scoped_string& scopedstr) const
       {
          Scalar res = 0;
-         double r = tinyexpr::te_interp(::string(scopedstr), nullptr);
+         ::f64 r = tinyexpr::te_interp(::string(scopedstr), nullptr);
          if (!std::isnan(r))
             res = ::maximum(static_cast<decltype(res)>(r), static_cast<decltype(res)>(0));
          return res;
@@ -103,7 +103,7 @@ namespace nanoui
 
       }
 
-      int m_iIncrementStep;
+      ::i32 m_iIncrementStep;
 
       virtual bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
       {
@@ -318,7 +318,7 @@ virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bD
    if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
    {
 
-      int value_delta = static_cast<int>((p.x - m_pointMouseDown.x) / float(10));
+      ::i32 value_delta = static_cast<::i32>((p.x - m_pointMouseDown.x) / ::f32(10));
 
       set_value(m_iMouseDownValue + value_delta * m_iIncrementValue, e_source_user);
 
@@ -338,7 +338,7 @@ virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bD
 }
 
 
-virtual bool scroll_event(const i32_point& p, const float_size& rel) override
+virtual bool scroll_event(const i32_point& p, const ::f32_size& rel) override
 {
 
    if (Widget::scroll_event(p, rel))
@@ -351,7 +351,7 @@ virtual bool scroll_event(const i32_point& p, const float_size& rel) override
    if (m_bSpinnable && !focused())
    {
 
-      int value_delta = (rel.cy > 0) ? 1 : -1;
+      ::i32 value_delta = (rel.cy > 0) ? 1 : -1;
 
       set_value(value() + value_delta * m_iIncrementValue, e_source_user);
 

@@ -22,7 +22,7 @@ namespace networking_bsd
 
 
       using ::networking_bsd::tcp_socket::OnRead;
-      void OnRead( char *buf, memsize n );
+      void OnRead( char_pointer buf, memsize n );
       void link_write(void * p, memsize size);
 
 

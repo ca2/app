@@ -30,7 +30,7 @@ static void wl_shell_surface_handle_ping(void* data, struct wl_shell_surface* sh
 	wl_shell_surface_pong(shell_surface, serial);
 }
 
-static void wl_shell_surface_handle_configure(void* data, struct wl_shell_surface* shell_surface, unsigned int edges, i32 width, i32 height)
+static void wl_shell_surface_handle_configure(void* data, struct wl_shell_surface* shell_surface, ::u32 edges, i32 width, i32 height)
 {
 	wlfWindow* window = data;
 

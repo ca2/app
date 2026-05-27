@@ -1345,7 +1345,7 @@ void object::set_child_tasks_to_finish()
    try
    {
 
-      //for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
+      //for (::i32 iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
       //{
 
       //   auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
@@ -1381,7 +1381,7 @@ void object::set_child_tasks_to_finish()
 
       //}
 
-      for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
+      for (::i32 iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
       {
 
           auto ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
@@ -2580,7 +2580,7 @@ struct context_object_test_struct :
 
    }
 
-   unsigned char m_ucha[1024];
+   ::u8 m_u8a[1024];
 
 };
 
@@ -3229,7 +3229,7 @@ void object::initialize(::particle * pparticle)
 // void to_string(const string_exchange & str) const 
 
 //::image::image_pointer create_image();
-//::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, ::i32 iGoodStride = -1, bool bPreserve = false);
 
 //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
 //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
@@ -3678,7 +3678,7 @@ void object::initialize(::particle * pparticle)
 // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-// ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+// ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);
 // ::image::image_pointer load_thumbnail(const ::file::path & path);
 // ::image::image_pointer load_dib(const ::file::path & pathDib);
 

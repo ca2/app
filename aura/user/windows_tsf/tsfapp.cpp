@@ -25,7 +25,7 @@
    Local Function Prototypes
 **************************************************************************/
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, char *, int);
+::i32 WINAPI WinMain(HINSTANCE, HINSTANCE, char_pointer , ::i32);
 
 /**************************************************************************
    Global Variables
@@ -39,13 +39,13 @@ ITfThreadMgr    *g_pThreadMgr;
 
 **************************************************************************/
 
-int WINAPI WinMain( HINSTANCE hInstance,
+::i32 WINAPI WinMain( HINSTANCE hInstance,
                     HINSTANCE hPrevInstance,
-                    char * lpCmdLine,
-                    int nCmdShow)
+                    char_pointer lpCmdLine,
+                    ::i32 nCmdShow)
 {
     CTSFMainWnd *pMainWnd;
-    int         nReturn = 0;
+    ::i32         nReturn = 0;
 
     CoInitialize(NULL);
 
@@ -108,7 +108,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
 
                     if(::user::e_message_quit == msg.message)
                     {
-                        nReturn = (int)msg.wParam;
+                        nReturn = (::i32)msg.wParam;
                     }
                 }
                 

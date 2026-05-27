@@ -5,7 +5,7 @@
 #include "set_node.h"
 
 
-template < typename ITEM, const int DEFAULT_HASH_TABLE_SIZE = 17 >
+template < typename ITEM, const ::i32 DEFAULT_HASH_TABLE_SIZE = 17 >
 class set_dynamic_hash_table
 {
 public:
@@ -107,7 +107,7 @@ public:
 };
 
 
-template < int m_nHashTableSize, typename PAYLOAD >
+template < ::i32 m_nHashTableSize, typename PAYLOAD >
 class set_fixed_hash_table
 {
 public:

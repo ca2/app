@@ -3,7 +3,7 @@
 #include "__implement.h"
 
 
-int __implement()
+::i32 __implement()
 {
 
    auto papp = ___new app_just_message_box::application ();
@@ -12,7 +12,7 @@ int __implement()
 
    papp->m_strAppName = "Just Message Box";
 
-   int iExitCode = papp->__implement();
+   ::i32 iExitCode = papp->__implement();
 
    return iExitCode;
 

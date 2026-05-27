@@ -235,9 +235,9 @@ namespace image
    }*/
 
 
-   // inline concrete < ::i32_size > i32_size(const ::double_size & sizeDst, const ::double_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->i32_size(sizeDst, sizeSrc, eimageselection); }
+   // inline concrete < ::i32_size > i32_size(const ::f64_size & sizeDst, const ::f64_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->i32_size(sizeDst, sizeSrc, eimageselection); }
 
-   ::i32_size icon::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
+   ::i32_size icon::image_source_size(const ::f64_size & sizeDst, enum_image_selection eimageselection) const
    {
 
       if (m_sizea.is_empty())
@@ -272,7 +272,7 @@ namespace image
 
          iFound = m_sizea.first_index();
 
-         double dRateSmaller = 1.0 / pow(2.0, (double)(int)(eimageselection - e_image_selection_prefer_smaller));
+         ::f64 dRateSmaller = 1.0 / pow(2.0, (::f64)(::i32)(eimageselection - e_image_selection_prefer_smaller));
 
          for (::collection::index i = m_sizea.get_upper_bound(); i >= 0; i--)
          {
@@ -325,7 +325,7 @@ namespace image
    ::i32_size icon::image_source_size() const
    { 
       
-      return image_source_size(::double_size(), e_image_selection_default);
+      return image_source_size(::f64_size(), e_image_selection_default);
    
    }
 

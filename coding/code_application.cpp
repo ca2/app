@@ -788,7 +788,7 @@ namespace coding
 #if TORTOISE_GIT
 
 
-   //bool code_application::defer_install_main_item(enum_install einstall, int iTry)
+   //bool code_application::defer_install_main_item(enum_install einstall, ::i32 iTry)
    //{
 
    //   ::string strTitle = get_title(einstall);
@@ -804,7 +804,7 @@ namespace coding
    //   ////call_sync("msiexec.exe", "/i \"" + path + "\" /passive /norestart ADDLOCAL=ALL", path.folder(), ::e_display_default, 10_min, set);
    //   {
 
-   //      int iAttempt = 0;
+   //      ::i32 iAttempt = 0;
 
    //      while (iTry > 0)
    //      {
@@ -920,7 +920,7 @@ namespace coding
 
    ////}
 
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -962,7 +962,7 @@ namespace coding
 
    //   ::property_set set;
 
-   //   int iExitCode = -1;
+   //   ::i32 iExitCode = -1;
    //
    //   node()->call_sync("msiexec", "/package \"" + path.name() + "\" /quiet /passive", path.folder(), e_display_normal, 2_hour, set, &iExitCode);
 
@@ -984,7 +984,7 @@ namespace coding
 
 #if SMART_GIT
 
-   //bool code_application::defer_install_smart_git(int iTry)
+   //bool code_application::defer_install_smart_git(::i32 iTry)
    //{
 
    //   //set_status1("Downloading TortoiseSVN");
@@ -998,7 +998,7 @@ namespace coding
    //   ////call_sync("msiexec.exe", "/i \"" + path + "\" /passive /norestart ADDLOCAL=ALL", path.folder(), ::e_display_default, 10_min, set);
    //   {
 
-   //      int iAttempt = 0;
+   //      ::i32 iAttempt = 0;
 
    //      while (iTry > 0)
    //      {
@@ -1076,7 +1076,7 @@ namespace coding
 
    //void code_application::install_smart_git()
    //{
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -1121,10 +1121,10 @@ namespace coding
 
 #if INSTALL_GIT_ServiceControlManager
 
-   //bool code_application::defer_install_git_scm(int iTry)
+   //bool code_application::defer_install_git_scm(::i32 iTry)
    //{
 
-   //   int iAttempt = 0;
+   //   ::i32 iAttempt = 0;
 
    //   while (iTry > 0)
    //   {
@@ -1220,7 +1220,7 @@ namespace coding
 
    //   }
 
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -1264,7 +1264,7 @@ namespace coding
 
    //   //m_pimpact->post_redraw();
 
-   //   int iExitCode = node()->command_system(path + " /verysilent /loadinf=" + pathInf, 2_hour);
+   //   ::i32 iExitCode = node()->command_system(path + " /verysilent /loadinf=" + pathInf, 2_hour);
 
    //   ::string strGitScmExit;
 
@@ -1278,7 +1278,7 @@ namespace coding
 
    //   tracefunction.m_timeTimeout = 5_min;
 
-   //   int iExitCode2 = node()->unix_shell_command("git config --global core.symlinks true", tracefunction);
+   //   ::i32 iExitCode2 = node()->unix_shell_command("git config --global core.symlinks true", tracefunction);
 
    //}
 
@@ -1322,7 +1322,7 @@ namespace coding
 
    //      set["raw_http"] = true;
 
-   //      for (int i = 0; i < 10; i++)
+   //      for (::i32 i = 0; i < 10; i++)
    //      {
 
    //         pathUrl = http().get("https://ca2.software/code/script/windows/" + str, set);
@@ -1594,7 +1594,7 @@ namespace coding
 
                      // todo: check strPreviousLocation executable image
                      // is the same as this executable image.
-                     for (int i = 1; i <= 3; i++)
+                     for (::i32 i = 1; i <= 3; i++)
                      {
 
                         try
@@ -1769,9 +1769,9 @@ namespace coding
       ::file::path pathUrl = strUrl;
 
 
-      int iAttemptCount = 5;
+      ::i32 iAttemptCount = 5;
 
-      for (int i = 0; i < iAttemptCount; i++)
+      for (::i32 i = 0; i < iAttemptCount; i++)
       {
 
          ::property_set set;
@@ -1824,7 +1824,7 @@ namespace coding
 
          }
 
-         int iWaitSeconds = 2 * i;
+         ::i32 iWaitSeconds = 2 * i;
 
          while (iWaitSeconds > 0)
          {
@@ -2078,7 +2078,7 @@ namespace coding
 
       //path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
 
-      for (int iTry = 0; iTry < 6; iTry++)
+      for (::i32 iTry = 0; iTry < 6; iTry++)
       {
 
          preempt(3_s);
@@ -2158,7 +2158,7 @@ namespace coding
    //   else
    //   {
 
-   //      set_status1(as_string((int)(::i64)m_cPendingSource) + " Working Copies to Download...");
+   //      set_status1(as_string((::i32)(::i64)m_cPendingSource) + " Working Copies to Download...");
 
    //   }
 
@@ -2327,7 +2327,7 @@ namespace coding
    //    //
    //    //      //path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
    //    //
-   //    //      for(int iTry = 0; iTry < 6; iTry++)
+   //    //      for(::i32 iTry = 0; iTry < 6; iTry++)
    //    //      {
    //    //
    //    //         preempt(3_s);
@@ -3346,7 +3346,7 @@ namespace coding
 //void code_debugging()
 //{
 //
-//   const char* pszFree;
+//   const_char_pointer pszFree;
 //
 //   {
 //

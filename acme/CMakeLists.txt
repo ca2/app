@@ -418,15 +418,16 @@ list(APPEND library_source
         #nano/dynamic_library/dynamic_library.h
         nano/graphics/brush.cpp
         nano/graphics/brush.h
-        nano/graphics/device.cpp
-        nano/graphics/device.h
-        nano/graphics/device.h
+        nano/graphics/context.cpp
+        nano/graphics/context.h
         nano/graphics/font.cpp
         nano/graphics/font.h
         nano/graphics/graphics.cpp
         nano/graphics/graphics.h
         nano/graphics/object.cpp
         nano/graphics/object.h
+        nano/graphics/path.cpp
+        nano/graphics/path.h
         nano/graphics/pen.cpp
         nano/graphics/pen.h
         nano/graphics/icon.cpp
@@ -2331,6 +2332,7 @@ if (${WIN32})
             #operating_system/windows/base/_windows.h
             #operating_system/windows/console.h
        operating_system/windows/geometry2d.h
+       operating_system/windows/_window_class.h
             operating_system/windows/calculate_edesktop.cpp
             #operating_system/windows/calculate_etoolkit.cpp
             operating_system/windows/calculate_ewindowing.cpp
@@ -2489,15 +2491,18 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/nano/idn/_idn.cpp
             operating_system/windows_common/nano/idn/idn.cpp
             operating_system/windows_common/nano/idn/idn.h
-            #      operating_system/windows_common/_dll.cpp
-       operating_system/windows_common/acme.cpp
-            #      operating_system/windows_common/aura.cpp
+            operating_system/windows_common/apartment_thread.cpp
+            operating_system/windows_common/apartment_thread.h
+             #      operating_system/windows_common/_dll.cpp
+            operating_system/windows_common/acme.cpp
+
+
+       #      operating_system/windows_common/aura.cpp
             #      operating_system/windows_common/base.cpp
             #      operating_system/windows_common/bstring.cpp
             #      operating_system/windows_common/com.cpp
-       operating_system/windows_common/cpu_features.cpp
-
-       operating_system/windows_common/debug.cpp
+            operating_system/windows_common/cpu_features.cpp
+            operating_system/windows_common/debug.cpp
             #operating_system/windows_common/desktop.cpp
             operating_system/windows_common/dll.cpp
             operating_system/windows_common/file.cpp
@@ -3233,10 +3238,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/windows_common/apartment_thread.cpp
-   operating_system/windows_common/apartment_thread.h
-   operating_system/windows/_window_class.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

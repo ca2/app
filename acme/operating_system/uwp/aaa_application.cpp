@@ -61,30 +61,30 @@ namespace acme
    string application::get_version()
    {
 #ifdef WINDOWS_DESKTOP
-      char lpszModuleFilePath[MAX_PATH + 1];
+      ::i8 lpszModuleFilePath[MAX_PATH + 1];
       GetModuleFileName(nullptr, lpszModuleFilePath, MAX_PATH + 1);
 
-      unsigned int dw;
+      ::u32 dw;
 
-      unsigned int dwResSize = GetFileVersionInfoSize(
+      ::u32 dwResSize = GetFileVersionInfoSize(
                         lpszModuleFilePath,
                         &dw);
 
 
       if(dwResSize > 0)
       {
-         LPVOID lpdata = aaa_primitive_new unsigned char[dwResSize];
+         LPVOID lpdata = aaa_primitive_new ::u8[dwResSize];
          if(GetFileVersionInfo(
                lpszModuleFilePath,
                0,
                dwResSize,
                lpdata))
          {
-            unsigned int cbTranslate;
+            ::u32 cbTranslate;
             struct LANGANDCODEPAGE
             {
-               unsigned short wLanguage;
-               unsigned short wCodePage;
+               ::u16 wLanguage;
+               ::u16 wCodePage;
             } *lpTranslate;
 
             // read the list of languages and code pages.
@@ -96,10 +96,10 @@ namespace acme
 
             string strKey;
             //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-            for(int i=0; i < 1; i++ )
+            for(::i32 i=0; i < 1; i++ )
             {
-               char * lpsz;
-               unsigned int uSize;
+               char_pointer lpsz;
+               ::u32 uSize;
 
                strKey.formatf(
                TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
@@ -116,7 +116,7 @@ namespace acme
 
                // Retrieve file description for language and code page "i".
                VerQueryValue(lpdata,
-                             (char *) (const char *) strKey,
+                             (char_pointer ) (const_char_pointer ) strKey,
                              (LPVOID *)&lpsz,
                              &uiSize);
 
@@ -170,7 +170,7 @@ namespace acme
    //   // avoid calling CloseHandle() on our own thread handle
    //   // during the thread destructor
    //   set_os_data(nullptr);
-   //   //int iRet = ::platform::application::term_instance();
+   //   //::i32 iRet = ::platform::application::term_instance();
 
    //   //::pointer<application_base>:destroy();
 
@@ -204,7 +204,7 @@ namespace acme
 
 
       // Advanced: handling messages sent to message filter hook
-      bool application::ProcessMessageFilter(int code, LPMSG lpMsg)
+      bool application::ProcessMessageFilter(::i32 code, LPMSG lpMsg)
       {
          return  ::universal_windows::thread::ProcessMessageFilter(code, lpMsg);
       }
@@ -266,7 +266,7 @@ namespace acme
 //#ifdef WINDOWS
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      unsigned long long tt;
+//      ::u64 tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
 //      p->tv_sec = (long)tt / 1000000;
@@ -281,19 +281,19 @@ namespace acme
 //   {
 //#if (defined(SOLARIS8) || defined(SOLARIS))
 //      {
-//         static std::map<string, char *> vmap;
+//         static std::map<string, char_pointer > vmap;
 //         if (vmap.find(payload) != vmap.end())
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = aaa_primitive_new char[payload.get_length() + 1 + value.get_length() + 1];
+//         vmap[::payload] = aaa_primitive_new ::i8[payload.get_length() + 1 + value.get_length() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }
 //#elif defined WINDOWS_DESKTOP
 //      {
 //         string slask = payload + "=" + value;
-//         _putenv( (const char *)slask);
+//         _putenv( (const_char_pointer )slask);
 //      }
 //#elif defined UNIVERSAL_WINDOWS
 //
@@ -304,7 +304,7 @@ namespace acme
 //   }
 
 
-   //unsigned int application::get_thread_id()
+   //::u32 application::get_thread_id()
    //{
 
    //   return ::GetCurrentThreadId();

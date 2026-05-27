@@ -204,7 +204,7 @@ namespace experience_anthill
 
       auto rectangleX = this->rectangle();
       
-      ::double_ellipse ellipse;
+      ::f64_ellipse ellipse;
       
       ellipse.set(rectangleX);
 

@@ -14,7 +14,7 @@ namespace graphics
    public:
 
 
-      int                           m_iGoodStride;
+      ::i32                           m_iGoodStride;
       ::image::image_pointer               m_pimageBuffer;
 
       bool                          m_bDibIsHostingBuffer;

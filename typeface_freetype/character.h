@@ -13,7 +13,7 @@ namespace typeface_freetype
    /// Holds all state information relevant to a character as loaded using FreeType
    struct character 
    {
-      int m_iUnicode;
+      ::i32 m_iUnicode;
       bool m_bInit;
       ::u32 TextureID; // ID handle of the glyph texture
       glm::ivec2   Size;      // Size of glyph

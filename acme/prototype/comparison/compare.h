@@ -63,7 +63,7 @@ namespace comparison
 
 
    template < >
-   inline bool lt(unsigned long u, long i)
+   inline bool lt(ulong u, long i)
    {
       return i < 0 ? false : u < (::u32) i;
    }
@@ -163,10 +163,10 @@ namespace comparison
 
 
    template < typename T1, typename T2 >
-   inline bool is_equal(const T1& t1, const T2& t2, double dMargin, bool bIn)
+   inline bool is_equal(const T1& t1, const T2& t2, ::f64 dMargin, bool bIn)
    {
 
-      double delta = (double)(t1 - t2);
+      ::f64 delta = (::f64)(t1 - t2);
 
       if (bIn)
       {
@@ -248,7 +248,7 @@ template < typename TYPE >
 [[nodiscard]]constexpr auto u16_constrained(TYPE t)
 {
 
-   return (unsigned short) constrain(t, 0, UINT16_MAX);
+   return (::u16) constrain(t, 0, UINT16_MAX);
 
 }
 
@@ -267,11 +267,11 @@ struct domain_id
 
 
    enum_domain    m_edomain;
-   int          m_iId;
+   ::i32          m_iId;
 
 
    constexpr domain_id() : m_edomain(e_domain_none), m_iId(-1){}
-   constexpr domain_id(enum_domain edomain, int iId) : m_edomain(edomain), m_iId(iId){}
+   constexpr domain_id(enum_domain edomain, ::i32 iId) : m_edomain(edomain), m_iId(iId){}
    constexpr domain_id(const domain_id & domainid) : m_edomain(domainid.m_edomain), m_iId(domainid.m_iId){}
 
    inline constexpr bool operator == (const ::domain_id & domainid) const

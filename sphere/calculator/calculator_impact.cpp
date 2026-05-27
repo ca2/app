@@ -135,7 +135,7 @@ namespace calculator
    }
 
 
-   void impact::_001OnTabClick(int iTab)
+   void impact::_001OnTabClick(::i32 iTab)
    {
 
       if(iTab == 1)

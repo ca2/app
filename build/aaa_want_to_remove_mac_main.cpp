@@ -21,7 +21,7 @@
 
 
 
-int main(int argc, char *argv[])
+int main(int argc, char_pointerargv[])
 {
 
    if (!defer_core_init())

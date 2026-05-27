@@ -394,7 +394,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 
 
-//void matter::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+//void matter::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
 //{
 //
 //   system()->__tracea(elevel, pszFunction, pszFile, iLine, psz);
@@ -402,7 +402,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 //
 //
-//void matter::__tracef(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...) const
+//void matter::__tracef(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, ...) const
 //{
 //
 //   va_list valist;
@@ -416,7 +416,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 
 
-//void matter::__tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list valist) const
+//void matter::__tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list valist) const
 //{
 //
 //   string str;
@@ -434,7 +434,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 
 
-//void matter::__simple_tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args) const
+//void matter::__simple_tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args) const
 //{
 //
 //   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
@@ -442,7 +442,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 //
 //
-//void matter::__simple_tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, int iLine, const ::scoped_string & scopedstr) const
+//void matter::__simple_tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, ::i32 iLine, const ::scoped_string & scopedstr) const
 //{
 //
 //   __tracea(elevel, pszFunction, pszFileName, iLine, psz);

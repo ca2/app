@@ -273,7 +273,7 @@ bool ifs::enumerate(::file::listing_base & listing)
 }
 
 
-int ifs::is_dir(const ::file::path & path)
+::i32 ifs::is_dir(const ::file::path & path)
 {
 
    if(path.is_empty())

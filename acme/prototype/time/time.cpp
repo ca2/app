@@ -83,7 +83,7 @@
 
 
 
-void time::set(long double d, enum_unit eunit)
+void time::set(::f128 d, enum_unit eunit)
 {
 
    switch (eunit)
@@ -113,7 +113,7 @@ void time::set(long double d, enum_unit eunit)
 }
 
 
-void time::fset(long double d, double dNano)
+void time::fset(::f128 d, ::f64 dNano)
 {
 
    dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
@@ -126,7 +126,7 @@ void time::fset(long double d, double dNano)
 }
 
 
-void time::fset(long double d)
+void time::fset(::f128 d)
 {
 
    raw_set(
@@ -136,7 +136,7 @@ void time::fset(long double d)
 }
 
 
-class ::time time::fcreate(long double d, double dNano)
+class ::time time::fcreate(::f128 d, ::f64 dNano)
 {
 
    time time;

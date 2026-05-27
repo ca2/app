@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool is_x11();
 //
 //}
 
-int get_main_screen_rectangle(::i32_rectangle * lprect);
+::i32 get_main_screen_rectangle(::i32_rectangle * lprect);
 
 
 namespace draw2d
@@ -89,7 +89,7 @@ CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::par
 extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr);
 
 
 #ifdef WINDOWS
@@ -514,7 +514,7 @@ namespace aura
 
    //      auto applicationa = get_applicationa();
 
-   //      for (int i = 0; i < applicationa.get_size();)
+   //      for (::i32 i = 0; i < applicationa.get_size();)
    //      {
 
    //         try
@@ -805,7 +805,7 @@ namespace aura
       //   printf("%s", "\n\nApplication Information\n");
       //   informationf("---->  Application Information\n");
 
-      //   int iPid;
+      //   ::i32 iPid;
 
       //   iPid = ::get_current_process_id();
 
@@ -857,13 +857,13 @@ namespace aura
 //            if(i > 0)
 //            {
 //
-//               int iSize = strLine.length();
+//               ::i32 iSize = strLine.length();
 //
 //               iSize *= 2;
 //
 //               iSize = maximum(iSize, 4096);
 //
-//               char * pszEnvLine = (char *) ::malloc(iSize);
+//               char_pointer pszEnvLine = (char_pointer ) ::malloc(iSize);
 //
 //               ::zero(scopedstrEnvLine, iSize);
 //
@@ -2217,7 +2217,7 @@ namespace aura
 
       //::aqua::system::term2();
 
-      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //for (::i32 i = 0; i < m_serviceptra.get_size(); i++)
       //{
 
       //   try
@@ -2233,7 +2233,7 @@ namespace aura
 
       //}
 
-      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //for (::i32 i = 0; i < m_serviceptra.get_size(); i++)
       //{
 
       //   try
@@ -2492,7 +2492,7 @@ namespace aura
    //}
 
 
-   //int system::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args)
+   //::i32 system::_001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1,::i32 i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args)
    //{
 
    //   return _debug_logging_report(i1,psz1,i2,psz2,psz3,args);
@@ -2500,7 +2500,7 @@ namespace aura
    //}
 
 
-//   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list_base)
+//   ::i32 system::_debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFileName, ::i32 iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list_base)
 //   {
 //
 //      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
@@ -2588,7 +2588,7 @@ namespace aura
 
 
 
-   //bool system::assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine)
+   //bool system::assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine)
 
    //{
    //   __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -2598,7 +2598,7 @@ namespace aura
    //}
 
 
-   //bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine)
+   //bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine)
 
    //{
    //   __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -2717,7 +2717,7 @@ namespace aura
    //}
 
 
-   //::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount)
+   //::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount)
    //{
 
    //   return nullptr;
@@ -2811,7 +2811,7 @@ namespace aura
 //
 //      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 //
-////      for(int i = 0; i < appptra().get_size(); i++)
+////      for(::i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
 //      //     ::aura::application * papp = appptra()(i);
 //      //   papp->load_string_table();
@@ -2829,7 +2829,7 @@ namespace aura
 //
 //      sl.wait(10_s);
 //
-////      for(int i = 0; i < appptra().get_size(); i++)
+////      for(::i32 i = 0; i < appptra().get_size(); i++)
 ////     {
 //      //       ::aura::application * papp = appptra()(i);
 //      //       papp->set_locale(scopedstrLocale,context);
@@ -2847,7 +2847,7 @@ namespace aura
 //
 //      sl.wait(10_s);
 //
-////      for(int i = 0; i < appptra().get_size(); i++)
+////      for(::i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
 //      //       ::aura::application * papp = appptra()(i);
 //      //       papp->set_schema(scopedstrStyle,context);
@@ -3063,7 +3063,7 @@ namespace aura
    //}
 
 
-   //void system::install_progress_add_up(int iAddUp)
+   //void system::install_progress_add_up(::i32 iAddUp)
    //{
 
    //   __UNREFERENCED_PARAMETER(iAddUp);
@@ -3277,7 +3277,7 @@ namespace aura
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
-////      for(int i = 0; i < straTitle.get_count(); i++)
+////      for(::i32 i = 0; i < straTitle.get_count(); i++)
 ////      {
 ////
 ////         strLibraryId = straTitle[i];
@@ -3424,7 +3424,7 @@ namespace aura
 //
 //      strRoot += "/";
 //
-//      for(int i = 0; i < stra.get_count(); i++)
+//      for(::i32 i = 0; i < stra.get_count(); i++)
 //      {
 //
 //         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
@@ -3728,7 +3728,7 @@ namespace aura
 //
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::double_rectangle * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::f64_rectangle * prectangle)
 //
 //   {
 //
@@ -3750,9 +3750,9 @@ namespace aura
 //   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::i32_rectangle * prectangle)
 //   {
 //
-//      ::double_rectangle rectangle;
+//      ::f64_rectangle rectangle;
 //
-//      if (!window_rectangle(pwindow, (::double_rectangle*)i32_rectangle))
+//      if (!window_rectangle(pwindow, (::f64_rectangle*)i32_rectangle))
 //      {
 //
 //         return false;
@@ -3925,7 +3925,7 @@ namespace aura
 //
 //      }
 //
-//      GetScreenRect(prectangle, (int) iMonitor);
+//      GetScreenRect(prectangle, (::i32) iMonitor);
 //
 //
 //#else
@@ -4041,7 +4041,7 @@ namespace aura
 //
 //      }
 //
-//      GetWorkspaceRect(prectangle, (int) iWorkspace);
+//      GetWorkspaceRect(prectangle, (::i32) iWorkspace);
 //
 //
 //      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
@@ -4166,7 +4166,7 @@ namespace aura
    //}
 
 
-   /*void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   /*void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    {
 
       if (m_ptrace.is_null())
@@ -5510,7 +5510,7 @@ namespace aura
 namespace aura
 {
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp);
+   //CLASS_DECL_AURA void black_body(::f32* r, ::f32* g, ::f32* b, ::u32 dwTemp);
 
    /*  bool system::on_application_menu_action(const ::scoped_string & scopedstrCommand)
      {
@@ -6130,10 +6130,10 @@ if(!m_pimaging)
    //   set_enum_name(::e_type_empty     , "is_empty");
    //   set_enum_name(::e_type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
-   //   set_enum_name(::type_unsigned int     , "ulong");
+   //   set_enum_name(::type_unsigned ::i32     , "ulong");
    //   set_enum_name(::e_type_element       , "ca2");
    //   set_enum_name(::e_type_bool      , "bool");
-   //   set_enum_name(::e_type_double    , "double");*/
+   //   set_enum_name(::e_type_f64    , "::f64");*/
 
    //   //if (!::aura::application::init_application())
    //   //{
@@ -6525,7 +6525,7 @@ if(!m_pimaging)
 
    //   plibrary->get_create_impact_id_list(ida);
 
-   //   for (int i = 0; i < ida.get_count(); i++)
+   //   for (::i32 i = 0; i < ida.get_count(); i++)
    //   {
 
    //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
@@ -6825,7 +6825,7 @@ if(!m_pimaging)
    These will be interpolated for the actual temperature.
    This table was provided by Ingo Thies, 2013. See
    the file README-colorramp for more information. */
-   static const float g_fa_blackbody_color[] =
+   static const ::f32 g_fa_blackbody_color[] =
    {
       1.00000000f,  0.18172716f,  0.00000000f, /* 1000K */
       1.00000000f,  0.25503671f,  0.00000000f, /* 1100K */
@@ -7072,7 +7072,7 @@ if(!m_pimaging)
    };
 
    static void
-      interpolate_color(float a, const float* c1, const float* c2, float* r, float* g, float* b)
+      interpolate_color(::f32 a, const ::f32* c1, const ::f32* c2, ::f32* r, ::f32* g, ::f32* b)
    {
 
       *r = (1.0f - a) * c1[0] + a * c2[0];
@@ -7082,10 +7082,10 @@ if(!m_pimaging)
    }
 
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp)
+   //CLASS_DECL_AURA void black_body(::f32* r, ::f32* g, ::f32* b, ::u32 dwTemp)
    //{
 
-   //   int temp_index = ((dwTemp - 1000) / 100) * 3;
+   //   ::i32 temp_index = ((dwTemp - 1000) / 100) * 3;
 
    //   if (temp_index < 0)
    //   {
@@ -7093,14 +7093,14 @@ if(!m_pimaging)
    //      temp_index = 0;
 
    //   }
-   //   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
+   //   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(::f32)) - 3)
    //   {
 
-   //      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
+   //      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(::f32)) - 3;
 
    //   }
 
-   //   float alpha = (dwTemp % 100) / 100.0f;
+   //   ::f32 alpha = (dwTemp % 100) / 100.0f;
 
    //   interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
 

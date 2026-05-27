@@ -167,7 +167,7 @@ namespace subsystem
       return true;
    }
 
-   bool RegistryKey::setValueAsInt32(const ::scoped_string & scopedstrName, int value)
+   bool RegistryKey::setValueAsInt32(const ::scoped_string & scopedstrName, ::i32 value)
    {
       if (!isOpened()) {
          return false;
@@ -216,7 +216,7 @@ namespace subsystem
       return true;
    }
 
-   bool RegistryKey::getValueAsInt32(const ::scoped_string & scopedstrName, int *out)
+   bool RegistryKey::getValueAsInt32(const ::scoped_string & scopedstrName, ::i32 *out)
    {
       if (!isOpened()) {
          return false;

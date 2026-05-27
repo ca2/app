@@ -58,7 +58,7 @@
 
 #define TAG CLIENT_TAG("windows")
 
-//int af_create_console(void)
+//::i32 af_create_console(void)
 //{
 //   if(!AllocConsole())
 //      return 1;
@@ -79,9 +79,9 @@
 //
 //BOOL af_sw_end_paint(wfContext* wfc)
 //{
-//   int i;
+//   ::i32 i;
 //   rdpGdi* gdi;
-//   int ninvalid;
+//   ::i32 ninvalid;
 //   ::i32_rectangle updateRect;
 //   HGDI_RGN cinvalid;
 //   REGION16 invalidRegion;
@@ -212,8 +212,8 @@
 CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 {
    rdpContext* wfc;
-   int desktopWidth;
-   int desktopHeight;
+   ::i32 desktopWidth;
+   ::i32 desktopHeight;
    rdpContext* context;
    rdpSettings* settings;
 
@@ -325,7 +325,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
       return false;
    }
 
-   ///freerdp_set_param_uint32(settings,FreeRDP_KeyboardLayout,(int)GetKeyboardLayout(0) & 0x0000FFFF);
+   ///freerdp_set_param_uint32(settings,FreeRDP_KeyboardLayout,(::i32)GetKeyboardLayout(0) & 0x0000FFFF);
 
    PubSub_SubscribeChannelConnected(instance->context->pubSub,
       (pChannelConnectedEventHandler)af_OnChannelConnectedEventHandler);
@@ -504,7 +504,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //};
 
 //static BOOL af_authenticate_raw(freerdp* instance, const ::scoped_string & scopedstrTitle,
-//		char** username, char** password, char** domain)
+//		char_pointer * username, char_pointer * password, char_pointer * domain)
 //{
 //   //PubSub_Subscribe(instance->context->pubSub,"ConnectionResult",(pEventHandler)rdpclient_connection_result);
 //   return freerdp_authenticate(instance,username,password,domain,instance->context->settings->ServerHostname,0);
@@ -513,10 +513,10 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	//BOOL fSave;
 //	//::u32 status;
 //	//::u32 dwFlags;
-//	//char UserName[CREDUI_MAX_USERNAME_LENGTH + 1];
-//	//char Password[CREDUI_MAX_PASSWORD_LENGTH + 1];
-//	//char User[CREDUI_MAX_USERNAME_LENGTH + 1];
-//	//char Domain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
+//	//::i8 UserName[CREDUI_MAX_USERNAME_LENGTH + 1];
+//	//::i8 Password[CREDUI_MAX_PASSWORD_LENGTH + 1];
+//	//::i8 User[CREDUI_MAX_USERNAME_LENGTH + 1];
+//	//::i8 Domain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
 //
 //	//fSave = false;
 //	//ZeroMemory(UserName, sizeof(UserName));
@@ -569,26 +569,26 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //}
 //
 //static BOOL af_authenticate(freerdp* instance,
-//		char** username, char** password, char** domain)
+//		char_pointer * username, char_pointer * password, char_pointer * domain)
 //{
 //	return af_authenticate_raw(instance, instance->settings->ServerHostname,
 //			username, password, domain);
 //}
 //
 //static BOOL af_gw_authenticate(freerdp* instance,
-//		char** username, char** password, char** domain)
+//		char_pointer * username, char_pointer * password, char_pointer * domain)
 //{
-//	char tmp[MAX_PATH];
+//	::i8 tmp[MAX_PATH];
 //
 //	sprintf(tmp, sizeof(tmp), "Gateway %s", instance->settings->GatewayHostname);
 //	return af_authenticate_raw(instance, tmp, username, password, domain);
 //}
 //
-//BOOL af_verify_certificate(freerdp* instance, char* topic, char* issuer, char* fingerprint)
+//BOOL af_verify_certificate(freerdp* instance, char_pointer topic, char_pointer issuer, char_pointer fingerprint)
 //{
 //#if 0
 //	::u32 mode;
-//	int read_size;
+//	::i32 read_size;
 //	::u32 read_count;
 //	TCHAR answer[2];
 //	TCHAR* read_buffer;
@@ -657,7 +657,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //void* af_input_thread(void* arg)
 //{
-//	int status;
+//	::i32 status;
 //	wMessage message;
 //	wMessageQueue* queue;
 //	freerdp* instance = (freerdp*) arg;
@@ -690,10 +690,10 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //::u32 WINAPI af_client_thread(LPVOID lpParam)
 //{
 //	MSG msg;
-//	int width;
-//	int height;
+//	::i32 width;
+//	::i32 height;
 //	BOOL msg_ret;
-//	int quit_msg;
+//	::i32 quit_msg;
 //	::u32 nCount;
 //	HANDLE handles[64];
 //	wfContext* wfc;
@@ -888,19 +888,19 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 #endif
 
 
-//int freerdp_client_focus_in(wfContext* wfc)
+//::i32 freerdp_client_focus_in(wfContext* wfc)
 //{
 //   postthreadmessage(wfc->mainThreadId,::user::e_message_set_focus,0,1);
 //   return 0;
 //}
 //
-//int freerdp_client_focus_out(wfContext* wfc)
+//::i32 freerdp_client_focus_out(wfContext* wfc)
 //{
 //   postthreadmessage(wfc->mainThreadId,::user::e_message_kill_focus,0,1);
 //   return 0;
 //}
 
-//int freerdp_client_set_window_size(wfContext* wfc,int width,int height)
+//::i32 freerdp_client_set_window_size(wfContext* wfc,::i32 width,::i32 height)
 //{
 //   WLog_DBG(TAG,"freerdp_client_set_window_size %d, %d",width,height);
 //
@@ -913,7 +913,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //}
 //
 //// TODO: Some of that code is a duplicate of af_pre_connect. Refactor?
-//int freerdp_client_load_settings_from_rdp_file(wfContext* wfc,char* filename)
+//::i32 freerdp_client_load_settings_from_rdp_file(wfContext* wfc,char_pointer filename)
 //{
 //   rdpSettings* settings;
 //
@@ -1060,7 +1060,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //   if(!getenv("HOME"))
 //   {
-//      char home[MAX_PATH * 2] = "HOME=";
+//      ::i8 home[MAX_PATH * 2] = "HOME=";
 //      ansi_concatenate(home,getenv("HOMEDRIVE"));
 //      ansi_concatenate(home,getenv("HOMEPATH"));
 //      _putenv(home);
@@ -1122,7 +1122,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //   }
 //}
 ////
-////int wfreerdp_client_start(rdpContext* context)
+////::i32 wfreerdp_client_start(rdpContext* context)
 ////{
 ////	HWND hWndParent;
 ////	HINSTANCE hInstance;
@@ -1168,7 +1168,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 ////	return 0;
 ////}
 //
-//int wfreerdp_client_stop(rdpContext* context)
+//::i32 wfreerdp_client_stop(rdpContext* context)
 //{
 //   wfContext* wfc = (wfContext*)context;
 //
@@ -1196,7 +1196,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //   return 0;
 //}
 //
-////int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
+////::i32 RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
 ////{
 ////	pEntryPoints->Version = 1;
 ////	pEntryPoints->Size = sizeof(RDP_CLIENT_ENTRY_POINTS_V1);

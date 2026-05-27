@@ -26,7 +26,7 @@ namespace nano
       }
 
 
-      void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
+      void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, ::i32 iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
       {
 
          throw interface_only();

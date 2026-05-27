@@ -38,8 +38,8 @@
     virtual public ::particle
     {
     public:
-       static const int APPLICATION_DATA_SPECIAL_FOLDER = 0x0;
-       static const int COMMON_APPLICATION_DATA_SPECIAL_FOLDER = 0x1;
+       static const ::i32 APPLICATION_DATA_SPECIAL_FOLDER = 0x0;
+       static const ::i32 COMMON_APPLICATION_DATA_SPECIAL_FOLDER = 0x1;
     //public:
        OperatingSystem();
        ~OperatingSystem();
@@ -64,7 +64,7 @@
        // will be failed.
        //
 
-       virtual ::string getSpecialFolderPath(int specialFolderId) = 0;
+       virtual ::string getSpecialFolderPath(::i32 specialFolderId) = 0;
 
        // Sets full path to current executing process file to out argument
        virtual ::string getCurrentModulePath() = 0;

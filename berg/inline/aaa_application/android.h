@@ -2,7 +2,7 @@
 
 
 
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //{
 //
 //   class aura_aura aura_aura;
@@ -37,7 +37,7 @@
 //
 //#ifdef ANDROID_LAUNCHER
 //
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //{
 //
 //   class aura_aura aura_aura;

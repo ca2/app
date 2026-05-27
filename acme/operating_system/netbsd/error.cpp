@@ -2,7 +2,7 @@
 
 //string get_error_message(::u32 dwError)
 //{
-//   char * pBuffer;
+//   char_pointer pBuffer;
 //
 //   string str;
 ////   FormatMessage(
@@ -11,7 +11,7 @@
 ////      nullptr,
 ////      dwError,
 ////      0,
-////      (char *) &pBuffer,
+////      (char_pointer ) &pBuffer,
 //
 ////      1,
 ////      nullptr);

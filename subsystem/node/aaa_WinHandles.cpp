@@ -60,7 +60,7 @@ HANDLE WinHandles::assignHandleFor(HANDLE hSource, HANDLE hTargetProc,
 }
 
 HANDLE WinHandles::assignHandleFor(HANDLE hSource,
-                                   unsigned int procId,
+                                   ::u32 procId,
                                    bool neededToCloseSource,
                                    bool keepCloseRight)
 {

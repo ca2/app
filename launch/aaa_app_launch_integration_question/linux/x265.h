@@ -50,7 +50,7 @@ public:
    
    void download();
    
-   void configure(int iBits);
+   void configure(::i32 iBits);
    
    void compile();
    

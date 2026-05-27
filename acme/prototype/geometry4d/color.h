@@ -52,7 +52,7 @@ public:
 
 //   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
-//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, ::i32> = 0>
    color_type(UNIT_TYPE n)
    {
    
@@ -60,7 +60,7 @@ public:
       
    }
 //   color_type() {};
-//   color_type(float f) { x = y = z = f; };
+//   color_type(::f32 f) { x = y = z = f; };
 //   color_type(const color_type & v) = default;
    //color_type(color_type && v) = default;
    color_type(UNIT_TYPE r, UNIT_TYPE g, UNIT_TYPE b, UNIT_TYPE a = 0) :
@@ -144,8 +144,8 @@ public:
 };
 
 
-using color_float = color_type < float >;
-using color_double = color_type < double >;
+using color_float = color_type < ::f32 >;
+using color_double = color_type < ::f64 >;
 
 
 template < prototype_number NUMBER1, prototype_number NUMBER2 >

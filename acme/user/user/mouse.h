@@ -58,13 +58,13 @@ namespace user
 
       //}
 
-      bool is_left_button_pressed() const       { return m_ebuttonstate & (int) ::user::e_button_state_left; }
-      bool is_right_button_pressed() const      { return m_ebuttonstate & (int)::user::e_button_state_right; }
-      bool is_shift_pressed() const             { return m_ebuttonstate & (int)::user::e_button_state_shift; }
-      bool is_control_pressed() const           { return m_ebuttonstate & (int)::user::e_button_state_control; }
-      bool is_middle_button_pressed() const     { return m_ebuttonstate & (int)::user::e_button_state_middle; }
-      bool is_x1_button_pressed() const         { return m_ebuttonstate & (int)::user::e_button_state_x1; }
-      bool is_x2_button_pressed() const         { return m_ebuttonstate & (int)::user::e_button_state_x2; }
+      bool is_left_button_pressed() const       { return m_ebuttonstate & (::i32) ::user::e_button_state_left; }
+      bool is_right_button_pressed() const      { return m_ebuttonstate & (::i32)::user::e_button_state_right; }
+      bool is_shift_pressed() const             { return m_ebuttonstate & (::i32)::user::e_button_state_shift; }
+      bool is_control_pressed() const           { return m_ebuttonstate & (::i32)::user::e_button_state_control; }
+      bool is_middle_button_pressed() const     { return m_ebuttonstate & (::i32)::user::e_button_state_middle; }
+      bool is_x1_button_pressed() const         { return m_ebuttonstate & (::i32)::user::e_button_state_x1; }
+      bool is_x2_button_pressed() const         { return m_ebuttonstate & (::i32)::user::e_button_state_x2; }
 
       void set_left_button_pressed()   { m_ebuttonstate |= ::user::e_button_state_left;
       }

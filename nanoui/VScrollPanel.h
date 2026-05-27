@@ -31,8 +31,8 @@ namespace nanoui
 
 
       bool              m_bDrag;
-      float             m_fTotalHeight;
-      float             m_fScroll;
+      ::f32             m_fTotalHeight;
+      ::f32             m_fScroll;
       bool              m_update_layout;
 
       ::i32_point       m_pointCurrentLocalCursor;
@@ -43,27 +43,27 @@ namespace nanoui
        * Return the current scroll amount as a value between 0 and 1. 0 means
        * scrolled to the top and 1 to the bottom.
        */
-      float scroll() const { return m_fScroll; }
+      ::f32 scroll() const { return m_fScroll; }
 
       /**
        * Set the scroll amount to a value between 0 and 1. 0 means scrolled to
        * the top and 1 to the bottom.
        */
-      void set_scroll(float fScroll) { m_fScroll = fScroll; }
+      void set_scroll(::f32 fScroll) { m_fScroll = fScroll; }
 
 
-      virtual float y_coordinate_vertical_scroll(int y);
+      virtual ::f32 y_coordinate_vertical_scroll(::i32 y);
 
       virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //virtual bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
-      virtual bool scroll_event(const i32_point& p, const float_size& rel) override;
+      virtual bool scroll_event(const i32_point& p, const ::f32_size& rel) override;
       virtual void draw(::nano2d::context * pcontext) override;
       i32_size get_scroll_offset() const override;
 
-      virtual float get_track_bar_height() const;
+      virtual ::f32 get_track_bar_height() const;
 
 
    };

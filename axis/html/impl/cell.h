@@ -32,8 +32,8 @@ namespace html
 
 
             holder();
-            holder(int iCol, int iRow);
-            holder(cell * pcell, int iCol, int iRow);
+            holder(::i32 iCol, ::i32 iRow);
+            holder(cell * pcell, ::i32 iCol, ::i32 iRow);
             holder(const class holder & holder);
             ::html::impl::cell *   m_pcell;
 
@@ -68,7 +68,7 @@ namespace html
          ::collection::index m_iRowEnd;
 
 
-         float m_fWidth;
+         ::f32 m_fWidth;
 
          ::collection::count m_iRowSpan;
          ::collection::count m_iColSpan;
@@ -82,11 +82,11 @@ namespace html
          void move_to(html_data * pdocument);
 
 
-         virtual ::float_size get_content_size();
-         virtual ::float_point get_content_top_left();
+         virtual ::f32_size get_content_size();
+         virtual ::f32_point get_content_top_left();
 
 
-         virtual float get_extra_content_height();
+         virtual ::f32 get_extra_content_height();
 
 
          virtual void implement_phase1(html_data * pdocument, ::html::element* pelemental);
@@ -107,16 +107,16 @@ namespace html
          void _001OnDraw(html_data * pdata);
 
 
-         virtual float calc_width();
+         virtual ::f32 calc_width();
 
 
          virtual bool contains_column(::collection::index iCol);
          virtual bool contains_row(::collection::index iRow);
          virtual bool contains_cell(::collection::index iCol, ::collection::index iRow);
 
-         virtual float get_table_border();
-         virtual float get_cell_spacing();
-         virtual float get_cell_padding();
+         virtual ::f32 get_table_border();
+         virtual ::f32 get_cell_spacing();
+         virtual ::f32 get_cell_padding();
 
 
       };

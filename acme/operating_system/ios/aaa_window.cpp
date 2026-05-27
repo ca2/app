@@ -22,10 +22,10 @@ UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow)
 //oswindow_dataptra * g_poswindowdataptra = nullptr;
 
 
-//int oswindow_find(nswindow window)
+//::i32 oswindow_find(nswindow window)
 //{
 //
-//   for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
+//   for(::i32 i = 0; i < g_poswindowdataptra->get_count(); i++)
 //   {
 //      if(g_poswindowdataptra->element_at(i)->m_nswindow == window)
 //      {
@@ -214,7 +214,7 @@ oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwin
 
 }
 
-bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
+bool oswindow_data::is_child(::acme::windowing::window * pacmewindowingwindow)
 {
 
    if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -241,7 +241,7 @@ iptr oswindow_data::get_window_long_ptr(iptr iIndex)
    if(is_null())
       return 0;
 
-   return m_pimpl->m_puserinteraction->get_window_long_ptr((int)iIndex);
+   return m_pimpl->m_puserinteraction->get_window_long_ptr((::i32)iIndex);
 
 }
 
@@ -252,7 +252,7 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
    if(is_null())
       return 0;
 
-   return m_pimpl->m_puserinteraction->set_window_long_ptr((int)iIndex, iNewLong);
+   return m_pimpl->m_puserinteraction->set_window_long_ptr((::i32)iIndex, iNewLong);
 
 }
 

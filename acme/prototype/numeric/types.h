@@ -6,7 +6,7 @@
 #if OSBIT == 32
 
 
-using iptr = int;
+using iptr = ::i32;
 using uptr = ::u32;
 
 
@@ -22,15 +22,15 @@ using uptr = ::u32;
 
 
 // typedef long iptr;
-// typedef unsigned long uptr;
+// typedef ulong uptr;
 
 
 // #else
-//using ::i64 = ::i64 int;
-//using ::u64 = ::u64 int;
+//using ::i64 = ::i64 ::i32;
+//using ::u64 = ::u64 ::i32;
 //#if defined(HAS_HYPER_INTEGER)
 //using hyper_integer = __int128;
-//using hyper_natural = unsigned __int128;
+//using hyper_natural = ::u32 __int128;
 //#endif
 typedef i64 iptr;
 typedef u64 uptr;
@@ -44,18 +44,18 @@ typedef u64 uptr;
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
 //
 //#define DO_FOR_NUMBER_TYPES(DO) \
-//DO(char, char, ch, CHAR); \
-//DO(unsigned char, unsigned_char, uch, UNSIGNED_CHAR); \
-//DO(short, short, sh, SHORT); \
-//DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
-//DO(int, int, i, INT); \
+//DO(::i8, ::i8, ch, CHAR); \
+//DO(::u8, unsigned_char, uch, UNSIGNED_CHAR); \
+//DO(::i16, ::i16, sh, SHORT); \
+//DO(::u16, unsigned_short, ush, UNSIGNED_SHORT); \
+//DO(::i32, ::i32, i, INT); \
 //DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
 //DO(long, long, l, LONG); \
-//DO(unsigned long, unsigned_long, ul, UNSIGNED_LONG); \
+//DO(ulong, unsigned_long, ul, UNSIGNED_LONG); \
 //DO(::i64, ::i64, hi, HUGE_INTEGER); \
 //DO(::u64, ::u64, hn, HUGE_NATURAL); \
-//DO(float, float, f, FLOAT); \
-//DO(double, double, d, DOUBLE);
+//DO(::f32, ::f32, f, FLOAT); \
+//DO(::f64, ::f64, d, DOUBLE);
 //
 //#else
 
@@ -82,10 +82,10 @@ DO(i16, i16, i16, SHORT); \
 DO(u16, u16, u16, UNSIGNED_SHORT); \
 DO(i32, i32, i32, INT); \
 DO(u32, u32, u32, UNSIGNED_INT); \
-DO(i64, i64, i64, HUGE_INTEGER); \
-DO(u64, u64, u64, HUGE_NATURAL); \
-DO(float, float, f, FLOAT); \
-DO(double, double, d, DOUBLE);
+DO(i64, i64, i64, LONG_LONG); \
+DO(u64, u64, u64, UNSIGNED_LONG_LONG); \
+DO(f32, f32, f32, FLOAT); \
+DO(f64, f64, f64, DOUBLE);
 
 //
 //
@@ -120,7 +120,7 @@ DO(double, double, d, DOUBLE);
 #define __pricount PRIiPTR
 
 
-// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
+// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an ::i32 but a pointer in some implementations ?, so should use pthread_equal...)
 /// task_index starts at 1, task_index 0 is not ok
 typedef u64 task_index;
 

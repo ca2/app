@@ -28,7 +28,7 @@ struct hash32
    constexpr hash32(FLOATING f) : hash32(&f, sizeof(f)) { }
    template < typename T >
    constexpr hash32(const ::pointer < T > & t) : hash32(t.m_p) { }
-   constexpr hash32(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((unsigned char*&)p)++; }
+   constexpr hash32(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((::u8*&)p)++; }
 
 
    constexpr ::hash32 operator + (::hash32 u) 
@@ -66,8 +66,8 @@ inline ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex
 //   hash32(INTEGRAL i) : m_u((::u32)i) {}
 //   template < a_enum ENUM >
 //   hash32(const ::enumeration < ENUM > & e) : m_u((::u32)e.m_eenum) {}
-//   hash32(float f) : m_u(*(::u32 *)&f) {}
-//   hash32(double d) : m_u(((::u32*)&d)[0]| ((::u32*)&d)[1]) {}
+//   hash32(::f32 f) : m_u(*(::u32 *)&f) {}
+//   hash32(::f64 d) : m_u(((::u32*)&d)[0]| ((::u32*)&d)[1]) {}
 //   template < typename T >
 //   hash32(const ::pointer < T >& t) : m_u((::u32)(::uptr)t.m_p) {}
 //   hash32(const ::hash32& hash32) : m_u(hash32.m_u) {}

@@ -41,46 +41,46 @@ struct _CliprdrStream
 {
 	IStream * iStream;
 
-	int m_lRefCount;
-	int m_lIndex;
+	::i32 m_lRefCount;
+	::i32 m_lIndex;
 	ULARGE_INTEGER m_lSize;
 	ULARGE_INTEGER m_lOffset;
 	void* m_pData;
 };
 typedef struct _CliprdrStream CliprdrStream;
 
-CliprdrStream* CliprdrStream_New(int index, void* pData);
+CliprdrStream* CliprdrStream_New(::i32 index, void* pData);
 void CliprdrStream_Delete(CliprdrStream* instance);
 
 struct _CliprdrDataObject
 {
 	IDataObject * iDataObject;
 
-	int m_lRefCount;
+	::i32 m_lRefCount;
 	FORMATETC* m_pFormatEtc;
 	STGMEDIUM* m_pStgMedium;
-	int m_nNumFormats;
-	int m_nStreams;
+	::i32 m_nNumFormats;
+	::i32 m_nStreams;
 	IStream** m_pStream;
 	void* m_pData;
 };
 typedef struct _CliprdrDataObject CliprdrDataObject;
 
-CliprdrDataObject* CliprdrDataObject_New(FORMATETC* fmtetc, STGMEDIUM* stgmed, int count, void* data);
+CliprdrDataObject* CliprdrDataObject_New(FORMATETC* fmtetc, STGMEDIUM* stgmed, ::i32 count, void* data);
 void CliprdrDataObject_Delete(CliprdrDataObject* instance);
 
 struct _CliprdrEnumFORMATETC
 {
 	IEnumFORMATETC * iEnumFORMATETC;
 
-	int m_lRefCount;
-	int m_nIndex;
-	int m_nNumFormats;
+	::i32 m_lRefCount;
+	::i32 m_nIndex;
+	::i32 m_nNumFormats;
 	FORMATETC* m_pFormatEtc;
 };
 typedef struct _CliprdrEnumFORMATETC CliprdrEnumFORMATETC;
 
-CliprdrEnumFORMATETC* CliprdrEnumFORMATETC_New(int nFormats, FORMATETC* pFormatEtc);
+CliprdrEnumFORMATETC* CliprdrEnumFORMATETC_New(::i32 nFormats, FORMATETC* pFormatEtc);
 void CliprdrEnumFORMATETC_Delete(CliprdrEnumFORMATETC* This);
 
 struct format_mapping
@@ -100,8 +100,8 @@ struct wf_clipboard
 	BOOL synchronization;
 	::u32 capabilities;
 
-	int map_size;
-	int map_capacity;
+	::i32 map_size;
+	::i32 map_capacity;
 	formatMapping* format_mappings;
 
 	::u32 requestedFormatId;
@@ -118,11 +118,11 @@ struct wf_clipboard
 
 	LPDATAOBJECT data_obj;
 	ULONG req_fsize;
-	char* req_fdata;
+	char_pointer req_fdata;
 	HANDLE req_fevent;
 
-	int nFiles;
-	int file_array_size;
+	::i32 nFiles;
+	::i32 file_array_size;
 	WCHAR** file_names;
 	FILEDESCRIPTORW** fileDescriptor;
 };
@@ -130,10 +130,10 @@ struct wf_clipboard
 void wf_cliprdr_init(wfContext* wfc, CliprdrClientContext* cliprdr);
 void wf_cliprdr_uninit(wfContext* wfc, CliprdrClientContext* cliprdr);
 
-int cliprdr_send_data_request(wfClipboard* clipboard, ::u32 format);
-int cliprdr_send_lock(wfClipboard* clipboard);
-int cliprdr_send_unlock(wfClipboard* clipboard);
-int cliprdr_send_request_filecontents(wfClipboard* clipboard, void* streamid,
-		int index, int flag, ::u32 positionhigh, ::u32 positionlow, ULONG request);
+::i32 cliprdr_send_data_request(wfClipboard* clipboard, ::u32 format);
+::i32 cliprdr_send_lock(wfClipboard* clipboard);
+::i32 cliprdr_send_unlock(wfClipboard* clipboard);
+::i32 cliprdr_send_request_filecontents(wfClipboard* clipboard, void* streamid,
+		::i32 index, ::i32 flag, ::u32 positionhigh, ::u32 positionlow, ULONG request);
 
 #endif /* __WF_CLIPRDR_H */

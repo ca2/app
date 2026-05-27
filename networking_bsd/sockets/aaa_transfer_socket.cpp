@@ -23,7 +23,7 @@ namespace networking_bsd
 {
 
 
-   int get_error()
+   ::i32 get_error()
    {
 
 #ifdef WINDOWS
@@ -54,7 +54,7 @@ namespace networking_bsd
    }
 
 
-   //bool transfer_socket_exception::GetErrorMessage(string & strError, Punsigned int /*pnHelpContext = nullptr*/)
+   //bool transfer_socket_exception::GetErrorMessage(string & strError, Punsigned ::i32 /*pnHelpContext = nullptr*/)
    //{
    //   if (m_nError == 0)
    //   {
@@ -67,7 +67,7 @@ namespace networking_bsd
    //   return true;
    //}
 
-   //string transfer_socket_exception::GetErrorMessage(Punsigned int /*pnHelpContext = nullptr*/)
+   //string transfer_socket_exception::GetErrorMessage(Punsigned ::i32 /*pnHelpContext = nullptr*/)
    //{
    //   string str;
    //   GetErrorMessage(str);
@@ -110,7 +110,7 @@ namespace networking_bsd
    //   m_hSocket = INVALID_SOCKET;
    //}
 
-   //void transfer_socket::create(int nType /* = SOCK_STREAM */)
+   //void transfer_socket::create(::i32 nType /* = SOCK_STREAM */)
    //{
    //   ASSERT(m_hSocket == INVALID_SOCKET);
    //   if ((m_hSocket = socket(AF_INET, nType, 0)) == INVALID_SOCKET)
@@ -184,7 +184,7 @@ namespace networking_bsd
    //   }
    //}
 
-   //int transfer_socket::write(const void* pch, int nSize, int nSecs) // const
+   //::i32 transfer_socket::write(const void* pch, ::i32 nSize, ::i32 nSecs) // const
    //{
 
    //   ::networking_bsd::tcp_socket::write(pch, nSize);
@@ -193,7 +193,7 @@ namespace networking_bsd
 
    //}
 
-   //int transfer_socket::send(const char * pch, int nSize, int nSecs) // const
+   //::i32 transfer_socket::send(const_char_pointer pch, ::i32 nSize, ::i32 nSecs) // const
    //{
    //   //ASSERT(pch != nullptr);
    //   //ASSERT(m_hSocket != INVALID_SOCKET);
@@ -210,7 +210,7 @@ namespace networking_bsd
    //   //   throw ::exception(transfer_socket_exception(_T("Send timeout")));
    //   //}
 
-   //   const int nBytesSent = send(pch, nSize);
+   //   const ::i32 nBytesSent = send(pch, nSize);
    //   if (nBytesSent == SOCKET_ERROR)
    //   {
    //      throw ::exception(transfer_socket_exception(_T("Send")));
@@ -219,7 +219,7 @@ namespace networking_bsd
    //   return nBytesSent;
    //}
 
-   bool transfer_socket::check_readability(int nSecsPatience) // const
+   bool transfer_socket::check_readability(::i32 nSecsPatience) // const
    {
 
       fd_set fd;
@@ -230,7 +230,7 @@ namespace networking_bsd
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley networking_bsd.
-      const int iRet = ::select((int) (GetSocketId() + 1), &fd, nullptr, nullptr, &tv);
+      const ::i32 iRet = ::select((::i32) (GetSocketId() + 1), &fd, nullptr, nullptr, &tv);
 
       if (iRet == SOCKET_ERROR)
       {
@@ -244,7 +244,7 @@ namespace networking_bsd
    }
 
 
-   bool transfer_socket::check_writability(int nSecsPatience) // const
+   bool transfer_socket::check_writability(::i32 nSecsPatience) // const
    {
 
       fd_set fd;
@@ -255,7 +255,7 @@ namespace networking_bsd
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley networking_bsd.
-      const int iRet = ::select((int) (GetSocketId() + 1), nullptr, &fd, nullptr, &tv);
+      const ::i32 iRet = ::select((::i32) (GetSocketId() + 1), nullptr, &fd, nullptr, &tv);
 
       if (iRet == SOCKET_ERROR)
       {
@@ -293,7 +293,7 @@ namespace networking_bsd
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      unsigned char * pbuf = (unsigned char *) pdata;
+      ::u8 * pbuf = (::u8 *) pdata;
 
       m_file.seek_to_end();
 
@@ -302,16 +302,16 @@ namespace networking_bsd
    }
 
 
-   //int transfer_socket::receive(void * pch, int nSize, int nSecs) // const
+   //::i32 transfer_socket::receive(void * pch, ::i32 nSize, ::i32 nSecs) // const
    //{
 
-   //   unsigned char * point = (unsigned char *)pch;
+   //   ::u8 * point = (::u8 *)pch;
 
-   //   int nBytesReceived = 0;
+   //   ::i32 nBytesReceived = 0;
 
-   //   unsigned int tickStart= ::duration::now();
+   //   ::u32 tickStart= ::duration::now();
 
-   //   int iRead = 0;
+   //   ::i32 iRead = 0;
 
    //   while (nSize - nBytesReceived > 0)
    //   {
@@ -406,7 +406,7 @@ namespace networking_bsd
    }
 
 
-   int transfer_socket::receive_datagram(char* pch, int nSize, SOCKADDR * psa, int nSecs) // const
+   ::i32 transfer_socket::receive_datagram(char_pointer pch, ::i32 nSize, SOCKADDR * psa, ::i32 nSecs) // const
    {
 
       if (!check_readability(nSecs))
@@ -418,7 +418,7 @@ namespace networking_bsd
 
       // input buffer should be big enough for the entire datagram
       socklen_t nFromSize = sizeof(SOCKADDR);
-      const int nBytesReceived = (int) (::recvfrom(GetSocketId(), pch, nSize, 0, psa, &nFromSize));
+      const ::i32 nBytesReceived = (::i32) (::recvfrom(GetSocketId(), pch, nSize, 0, psa, &nFromSize));
 
       if (nBytesReceived == SOCKET_ERROR)
       {
@@ -430,7 +430,7 @@ namespace networking_bsd
       return nBytesReceived;
    }
 
-   int transfer_socket::send_datagram(const char* pch, int nSize, const SOCKADDR * psa, int nSecs) // const
+   ::i32 transfer_socket::send_datagram(const_char_pointer pch, ::i32 nSize, const SOCKADDR * psa, ::i32 nSecs) // const
    {
 
       if (!check_writability(nSecs))
@@ -440,7 +440,7 @@ namespace networking_bsd
 
       }
 
-      const int nBytesSent = (int) (::sendto(GetSocketId(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
+      const ::i32 nBytesSent = (::i32) (::sendto(GetSocketId(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
       
       if (nBytesSent == SOCKET_ERROR)
       {
@@ -466,7 +466,7 @@ namespace networking_bsd
    //   tcp_socket(handler),
    //   transfer_socket(handler)
    //{
-   //   m_pReadBuf = aaa_primitive_new char[nSizeRecv];
+   //   m_pReadBuf = aaa_primitive_new ::i8[nSizeRecv];
    //   m_nReadBuf = 0;
    //}
 
@@ -475,19 +475,19 @@ namespace networking_bsd
    //   delete[] m_pReadBuf;
    //}
 
-   //int http_transfer_socket::read_http_header_line(char* pch, int nSize, int nSecs)
+   //::i32 http_transfer_socket::read_http_header_line(char_pointer pch, ::i32 nSize, ::i32 nSecs)
    //   // reads an entire header line through CRLF (or socket close)
    //   // inserts zero string terminator, object maintains a buffer
    //{
-   //   int       nBytesThisTime = m_nReadBuf;
+   //   ::i32       nBytesThisTime = m_nReadBuf;
    //   ptrdiff_t nLineLength = 0;
-   //   char*     pch1 = m_pReadBuf;
-   //   char*     pch2 = nullptr;
+   //   char_pointer pch1 = m_pReadBuf;
+   //   char_pointer pch2 = nullptr;
 
    //   do
    //   {
    //      // look for lf (assume preceded by color32)
-   //      if ((pch2 = (char *)memchr(pch1, '\n', nBytesThisTime)) != nullptr)
+   //      if ((pch2 = (char_pointer )memchr(pch1, '\n', nBytesThisTime)) != nullptr)
    //      {
    //         ASSERT((pch2) > m_pReadBuf);
    //         ASSERT(*(pch2 - 1) == '\r');
@@ -495,7 +495,7 @@ namespace networking_bsd
    //         if (nLineLength >= nSize)
    //            nLineLength = nSize - 1;
    //         ::memory_copy(pch, m_pReadBuf, nLineLength); // copy the line to caller
-   //         m_nReadBuf -= static_cast<unsigned int>(nLineLength);
+   //         m_nReadBuf -= static_cast<::u32>(nLineLength);
    //         memory_transfer(m_pReadBuf, pch2 + 1, m_nReadBuf); // shift remaining characters left
    //         break;
    //      }
@@ -510,14 +510,14 @@ namespace networking_bsd
 
    //   *(pch + nLineLength) = _T('\0');
 
-   //   return static_cast<unsigned int>(nLineLength);
+   //   return static_cast<::u32>(nLineLength);
    //}
 
    //// reads remainder of a transmission through buffer full or socket close
    //// (assume headers have been read already)
-   //int http_transfer_socket::read_http_response(char* pch, int nSize, int nSecs)
+   //::i32 http_transfer_socket::read_http_response(char_pointer pch, ::i32 nSize, ::i32 nSecs)
    //{
-   //   int nBytesToRead, nBytesThisTime, nBytesRead = 0;
+   //   ::i32 nBytesToRead, nBytesThisTime, nBytesRead = 0;
 
    //   if (m_nReadBuf > 0)
    //   { // copy anything already in the recv buffer
@@ -528,7 +528,7 @@ namespace networking_bsd
    //   }
    //   do
    //   { // now pass the rest of the data directly to the caller
-   //      nBytesToRead = std::minimum(static_cast<int>(nSizeRecv), nSize - nBytesRead);
+   //      nBytesToRead = std::minimum(static_cast<::i32>(nSizeRecv), nSize - nBytesRead);
    //      nBytesThisTime = receive(pch, nBytesToRead, nSecs);
    //      if (nBytesThisTime <= 0)
    //         break; // sender closed the socket

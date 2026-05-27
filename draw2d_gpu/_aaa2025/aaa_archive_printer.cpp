@@ -21,7 +21,7 @@ namespace draw2d_gpu
    {
       if (is_opened())
          close();
-      if(!OpenPrinter((char *)(const ::string &)pszDeviceName,&m_hPrinter,nullptr))
+      if(!OpenPrinter((char_pointer )(const ::string &)pszDeviceName,&m_hPrinter,nullptr))
          return false;
          
       if(m_hPrinter == nullptr)
@@ -77,9 +77,9 @@ namespace draw2d_gpu
          return false;
       if (m_hdc != nullptr)
          return false;
-      int iSize = DocumentProperties(nullptr, pprinter->m_hPrinter, (char *)(const ::string &)pprinter->m_strName, nullptr, nullptr, 0);
+      ::i32 iSize = DocumentProperties(nullptr, pprinter->m_hPrinter, (char_pointer )(const ::string &)pprinter->m_strName, nullptr, nullptr, 0);
       m_pdevmode = (DEVMODE *)malloc(iSize);
-      if (!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *)(const ::string &)pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
+      if (!DocumentProperties(nullptr, pprinter->m_hPrinter, (char_pointer )(const ::string &)pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       {
          throw ::exception(::exception("failed to get printer DocumentProperties"));
          return false;

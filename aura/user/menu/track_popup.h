@@ -12,7 +12,7 @@
 namespace menu
 {
 
-   enum enum_track_popup : int
+   enum enum_track_popup : ::i32
    {
       
       e_track_popup_none,

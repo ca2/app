@@ -98,20 +98,20 @@ namespace platform
    //::string aura_system_layer::install_get_version() override{}
    //void aura_system_layer::install_set_version(const ::scoped_string & scopedstrVersion) override{}
    //::string aura_system_layer::install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override{}
-   //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override{}
-   //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
+   //virtual ::i32 install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override{}
+   //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override{}
 
    //virtual ::install::canvas * install_create_canvas(){}
    //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle){}
-   //virtual int install_canvas_increment_mode(){}
+   //virtual ::i32 install_canvas_increment_mode(){}
 
    //::string aura_system_layer::install_get_platform() override{}
    //void aura_system_layer::install_set_platform(const ::scoped_string & scopedstrPlatform) override{}
    //::string aura_system_layer::install_get_version() override{}
    //void aura_system_layer::install_set_version(const ::scoped_string & scopedstrVersion) override{}
    //::string aura_system_layer::install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override{}
-   //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override{}
-   //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
+   //virtual ::i32 install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override{}
+   //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override{}
 
    //virtual ::pointer<::factory::factory> & node_factory() override{}
 
@@ -169,7 +169,7 @@ namespace platform
 
    //virtual bool initialize_application() override{}
 
-   //virtual int exit_instance(){}
+   //virtual ::i32 exit_instance(){}
    //virtual bool destroy(){}
 
    //void aura_system_layer::destroy() override{}
@@ -473,11 +473,11 @@ namespace platform
        inline ::atom atom(const property & prop){}*/
 
 
-   //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override{}
-   //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::string & iModuleName, const ::scoped_string & scopedstrFormat, va_list list) override{}
-   //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override{}
+   //virtual ::i32 _001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1,::i32 i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override{}
+   //virtual ::i32 _debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFilename, ::i32 iLinenumber, const ::string & iModuleName, const ::scoped_string & scopedstrFormat, va_list list) override{}
+   //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine) override{}
 
-   //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override{}
+   //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine) override{}
 
 
    //void aura_system_layer::initialize_log(const ::scoped_string & scopedstrId) override{}
@@ -517,7 +517,7 @@ namespace platform
    //virtual bool map_application_library(const ::scoped_string & scopedstrLibrary) override{}
 
 
-   //void aura_system_layer::install_progress_add_up(int iAddUp = 1) override{}
+   //void aura_system_layer::install_progress_add_up(::i32 iAddUp = 1) override{}
 
    //void aura_system_layer::create_session(::collection::index iEdge = 0) override{}
 
@@ -528,8 +528,8 @@ namespace platform
    //void aura_system_layer::on_request(::request * prequest) override{}
 
    //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr){}
-   //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount){}
-   //virtual int pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount){}
+   //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount){}
+   //virtual ::i32 pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount){}
 
 
    //::string aura_system_layer::get_system_platform() override{}
@@ -559,8 +559,8 @@ namespace platform
    //void aura_system_layer::defer_check_openweather_city_list(){}
 
    //virtual openweather_city * openweather_find_city(string strQuery){}
-   //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, ::i64 & iId, double & dLat, double & dLon){}
-   //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, ::i64 & iId, double & dLat, double & dLon, bool bPrefix){}
+   //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, ::i64 & iId, ::f64 & dLat, ::f64 & dLon){}
+   //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, ::i64 & iId, ::f64 & dLat, ::f64 & dLon, bool bPrefix){}
 
    //#ifdef __ANDROID__
    ////#pragma message("at macos??")
@@ -575,7 +575,7 @@ namespace platform
    //
    //      virtual bool on_open_file(::payload payloadFile, string strExtra) override{}
    //
-   //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback){}
+   //virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback){}
 
    //virtual bool initialize_native_window1(){}
 
@@ -610,7 +610,7 @@ namespace platform
    //void aura_system_layer::process_machine_event_data(machine_event_data * pdata) override{}
 
 
-   //void aura_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override{}
+   //void aura_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override{}
 
 
    //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam){}
@@ -638,7 +638,7 @@ namespace platform
    //void aura_system_layer::term_system() override{}
 
 
-   //virtual int main(){}
+   //virtual ::i32 main(){}
    ///void aura_system_layer::InitApplication() override{}
 
    //void aura_system_layer::init() override{}
@@ -676,7 +676,7 @@ namespace platform
    //      virtual ::pointer<::handler>handler(){}
 
 
-   //virtual int main(){}
+   //virtual ::i32 main(){}
 
    //void aura_system_layer::on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override{}
 
@@ -795,11 +795,11 @@ namespace platform
 
    //virtual ::install::canvas * install_create_canvas() override{}
    //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle){}
-   //virtual int install_canvas_increment_mode() override{}
+   //virtual ::i32 install_canvas_increment_mode() override{}
 
 
    //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor){}
-   //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma){}
+   //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma){}
    //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle) override{}
 
    //virtual ::collection::count get_monitor_count() override{}

@@ -24,9 +24,9 @@ namespace draw2d_cairo
       bool delete_object();
 
 
-      int get_object(int nCount, void * lpObject) const;
+      ::i32 get_object(::i32 nCount, void * lpObject) const;
 //      ::u32 GetObjectType() const override;
-//      bool CreateStockObject(int nIndex) override;
+//      bool CreateStockObject(::i32 nIndex) override;
 //      bool UnrealizeObject() override;
 //      bool operator==(const object& obj) const;
 //      bool operator!=(const object& obj) const;

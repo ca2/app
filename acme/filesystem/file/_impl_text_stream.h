@@ -23,11 +23,11 @@ inline ::string ellipsis(const_char_pointer psz, character_count len)
 }
 
 
-//inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
-inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix)
+//inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix = 10)
+inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix)
 {
 
-   char* endptr = nullptr;
+   char_pointer endptr = nullptr;
 
    auto u = strtoull(scopedstr, &endptr, iRadix);
 
@@ -52,11 +52,11 @@ inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegi
 }
 
 
-inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix)
-//inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
+inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix)
+//inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix = 10)
 {
 
-   char* endptr = nullptr;
+   char_pointer endptr = nullptr;
 
    auto i = strtoll(scopedstr, &endptr, 10);
 
@@ -81,10 +81,10 @@ inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegi
 }
 
 
-inline double consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
+inline ::f64 consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix = 10)
 {
 
-   char* endptr = nullptr;
+   char_pointer endptr = nullptr;
 
    auto d = strtod(scopedstr, &endptr);
 

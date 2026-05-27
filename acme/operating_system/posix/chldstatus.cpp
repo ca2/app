@@ -10,7 +10,7 @@ struct chldstatus
 {
 
    bool m_bRet;
-   int  m_iExitCode;
+   ::i32  m_iExitCode;
 
 };
 
@@ -52,7 +52,7 @@ critical_section * get_chldstatus_cs()
 }
 
 
-chldstatus get_chldstatus(int iPid)
+chldstatus get_chldstatus(::i32 iPid)
 {
 
    critical_section_lock synchronouslock(get_chldstatus_cs());
@@ -63,7 +63,7 @@ chldstatus get_chldstatus(int iPid)
 
 
 // must be called under get_pid_cs lock
-void init_chldstatus(int iPid)
+void init_chldstatus(::i32 iPid)
 {
 
    auto & chldstatus = g_pchldstatusmap->operator[](iPid);
@@ -75,14 +75,14 @@ void init_chldstatus(int iPid)
 }
 
 
-void ansios_sigchld_handler(int sig)
+void ansios_sigchld_handler(::i32 sig)
 {
 
-   int saved_errno = errno;
+   ::i32 saved_errno = errno;
 
-   int iExitCode;
+   ::i32 iExitCode;
 
-   int iPid;
+   ::i32 iPid;
 
    while((iPid = waitpid(-1, &iExitCode,
                          WUNTRACED

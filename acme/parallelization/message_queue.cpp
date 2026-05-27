@@ -296,7 +296,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::windo
 
    ::collection::count count = m_messagea.get_count();
 
-   for(int i = 0; i < count; i++)
+   for(::i32 i = 0; i < count; i++)
    {
 
       MESSAGE & msg = m_messagea[i];

@@ -36,13 +36,13 @@ popup_button::~popup_button()
 
 
 
-void popup_button::calculate_size_and_position(int x, int y)
+void popup_button::calculate_size_and_position(::i32 x, ::i32 y)
 {
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-   //int wScreen = 1280;
-   //int hScreen = 768;
+   //::i32 wScreen = 1280;
+   //::i32 hScreen = 768;
 
    auto sizeScreen = m_pwindowbase->get_main_screen_size();
 
@@ -54,8 +54,8 @@ void popup_button::calculate_size_and_position(int x, int y)
 
    //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
-   int w = 150;
-   int h = 50 * 2;
+   ::i32 w = 150;
+   ::i32 h = 50 * 2;
    
    if (x == INT_MIN || y == INT_MIN)
    {
@@ -81,7 +81,7 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y)
+void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, ::i32 x, ::i32 y)
 {
 
    calculate_size_and_position(x, y);
@@ -90,15 +90,15 @@ void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText
 
    add_button("Cancel", e_dialog_result_cancel, 'c');
 
-   int wButton = 150;
+   ::i32 wButton = 150;
 
-   int hButton = 50;
+   ::i32 hButton = 50;
 
-   int iRight = m_rectangle.width();
+   ::i32 iRight = m_rectangle.width();
 
-   int iBottom = m_rectangle.height();
+   ::i32 iBottom = m_rectangle.height();
 
-   int wSpacing = 25;
+   ::i32 wSpacing = 25;
 
    for (::collection::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
    {
@@ -136,7 +136,7 @@ void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText
 }
 
 
-void popup_button::on_draw(::nano::graphics::device * pnanodevice)
+void popup_button::on_draw(::nano::graphics::context * pnanodevice)
 {
 
    /*i32_rectangle rectangleText;

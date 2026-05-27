@@ -183,12 +183,12 @@ namespace heap
    //
    //}
    //
-   void malloc_allocator::check_bounds(unsigned char * p)
+   void malloc_allocator::check_bounds(::u8 * p)
    {
 
       uptr * pinteraction = (uptr *)p;
 
-      unsigned char a[256];
+      ::u8 a[256];
 
       zero(a);
 

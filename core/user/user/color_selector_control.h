@@ -72,7 +72,7 @@ namespace user
       //virtual void on_draw_color_wheel(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point);
-      //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, int y);
+      //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 y);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

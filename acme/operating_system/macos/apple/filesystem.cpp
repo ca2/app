@@ -13,13 +13,13 @@ string apple_app_module_folder();
 string apple_app_module_path();
 
 
-char * ns_get_executable_path();
+char_pointer ns_get_executable_path();
 
 
 string get_exe_path()
 {
    
-   char path[8192];
+   ::i8 path[8192];
 
    ::u32 size = sizeof(path);
 

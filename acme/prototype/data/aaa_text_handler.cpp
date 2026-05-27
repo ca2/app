@@ -188,7 +188,7 @@ namespace data
    //}
 
 
-   //void text_handler::get_text(char * psz, character_count len)
+   //void text_handler::get_text(char_pointer psz, character_count len)
    //{
 
    //   string str;

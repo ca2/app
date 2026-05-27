@@ -56,7 +56,7 @@ namespace typeface
 
       ::string str(scopedstr);
 
-      int iUnicodeIndex = unicode_index(scopedstr);
+      ::i32 iUnicodeIndex = unicode_index(scopedstr);
 
       character& ch = m_mapCharacter[iUnicodeIndex];
 
@@ -109,9 +109,9 @@ namespace typeface
    //       glGenBuffers(1, &m_VBO);
    //       glBindVertexArray(m_VAO);
    //       glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-   //       glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+   //       glBufferData(GL_ARRAY_BUFFER, sizeof(::f32) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
    //       glEnableVertexAttribArray(0);
-   //       glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+   //       glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), 0);
    //       glBindBuffer(GL_ARRAY_BUFFER, 0);
    //       glBindVertexArray(0);*/
 
@@ -123,7 +123,7 @@ namespace typeface
    //}
 
    
-   void face::create_texture(character& ch, const unsigned char* p)
+   void face::create_texture(character& ch, const ::u8* p)
    {
 
       auto size = ch.Size.x * ch.Size.y * 4;

@@ -71,8 +71,8 @@ namespace user
    {
    public:
 
-      int place_hold(::user::interaction * pinteraction);
-      int unplace(::user::interaction * pinteraction);
+      ::i32 place_hold(::user::interaction * pinteraction);
+      ::i32 unplace(::user::interaction * pinteraction);
 
    };
 

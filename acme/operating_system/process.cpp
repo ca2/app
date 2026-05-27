@@ -110,7 +110,7 @@ namespace operating_system
    }
 
 
-   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLine,int iShow,const class time & timeTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLine,::i32 iShow,const class time & timeTimeOut,bool * pbTimeOut)
    {
 
       return false;

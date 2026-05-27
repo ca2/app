@@ -207,7 +207,7 @@ namespace platform
 
 
 
-      void set_type_and_data(::rapidjson::Value &entry, const char *type, ::rapidjson::Value &data,
+      void set_type_and_data(::rapidjson::Value &entry, const_char_pointer type, ::rapidjson::Value &data,
                              ::rapidjson::Document::AllocatorType &alloc);
 
 
@@ -223,7 +223,7 @@ namespace platform
 
    }
 
-      void registry_key_implementation::set_type_and_data(::rapidjson::Value &entry, const char *type,
+      void registry_key_implementation::set_type_and_data(::rapidjson::Value &entry, const_char_pointer type,
                                                        ::rapidjson::Value &data,
                                                        ::rapidjson::Document::AllocatorType &alloc)
    {
@@ -260,7 +260,7 @@ namespace platform
    //   if (!path) return parts;
 
    //   std::string cur;
-   //   for (const char *p = path; *p; ++p) {
+   //   for (const_char_pointer p = path; *p; ++p) {
    //      if (*p == '\\' || *p == '/') {
    //         if (!cur.empty()) {
    //            parts.push_back(cur);
@@ -274,14 +274,14 @@ namespace platform
    //   return parts;
    //}
 
-   static ::string bin_to_hex(const unsigned char *data, memsize size) 
+   static ::string bin_to_hex(const ::u8 *data, memsize size) 
    {
-      static const char *hex = "0123456789ABCDEF";
+      static const_char_pointer hex = "0123456789ABCDEF";
       ::string out;
       auto p = out.get_buffer(size * 2);
       for (character_count i = 0; i < size; ++i)
       {
-         unsigned char b = data[i];
+         ::u8 b = data[i];
          *p = hex[(b >> 4) & 0xF];
          p++;
          *p = hex[b & 0xF];
@@ -291,14 +291,14 @@ namespace platform
       return ::transfer(out);
    }
 
-   static int hex_val(char c) {
+   static ::i32 hex_val(::i8 c) {
       if (c >= '0' && c <= '9') return c - '0';
       if (c >= 'A' && c <= 'F') return 10 + (c - 'A');
       if (c >= 'a' && c <= 'f') return 10 + (c - 'a');
       return -1;
    }
 
-   static ::e_status hex_to_bin(const char *hex, memory & memory) {
+   static ::e_status hex_to_bin(const_char_pointer hex, memory & memory) {
       if (!hex) return error_bad_argument;
       size_t n = std::strlen(hex);
       if (n % 2 != 0) return error_io;
@@ -310,10 +310,10 @@ namespace platform
       auto buf = memory.data();
 
       for (size_t i = 0; i < needed; ++i) {
-         int hi = hex_val(hex[i * 2]);
-         int lo = hex_val(hex[i * 2 + 1]);
+         ::i32 hi = hex_val(hex[i * 2]);
+         ::i32 lo = hex_val(hex[i * 2 + 1]);
          if (hi < 0 || lo < 0) return error_io;
-         *buf = (unsigned char)((hi << 4) | lo);
+         *buf = (::u8)((hi << 4) | lo);
          buf++;
       }
 
@@ -601,7 +601,7 @@ namespace platform
       auto pentry = _get_payload_entry(scopedstrName, true);
       if (!pentry) return error_io;
 
-      auto hex = bin_to_hex((const unsigned char *)block.data(), block.size());
+      auto hex = bin_to_hex((const ::u8 *)block.data(), block.size());
       auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
       ::rapidjson::Value val(hex.c_str(), alloc);
       set_type_and_data(*pentry, "binary", val, alloc);
@@ -728,7 +728,7 @@ namespace platform
       if (!pentry) return error_not_found;
       if (!pentry->HasMember("type") || !(*pentry)["type"].IsString()) return error_wrong_type;
 
-      const char *t = (*pentry)["type"].GetString();
+      const_char_pointer t = (*pentry)["type"].GetString();
       if (std::strcmp(t, "sz") == 0) eregistry = e_registry_string;
       else if (std::strcmp(t, "dword") == 0) eregistry = e_registry_dword;
       else if (std::strcmp(t, "qword") == 0) eregistry = e_registry_qword;
@@ -738,7 +738,7 @@ namespace platform
       return ::success;
    }
 
-   //const char *RegXStrError(int status) {
+   //const_char_pointer RegXStrError(::i32 status) {
    //   switch (status) {
    //      case ::success: return "ok";
    //      case error_bad_argument: return "invalid argument";

@@ -10,7 +10,7 @@
 
 bool uiwindow_is_visible(UIWindow * window);
 bool uiwindow_is_iconic(UIWindow * window);
-bool uiwindow_show_window(UIWindow * window, int iShow);
+bool uiwindow_show_window(UIWindow * window, ::i32 iShow);
 
 bool oswindow_data::is_window_visible()
 {
@@ -69,12 +69,12 @@ bool oswindow_data::screen_to_client(::i32_point *lppoint)
 
 
 
-int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, unsigned int uFlags)
+int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
 {
    
    return true;
    
-//   //   int   value_mask = 0;
+//   //   ::i32   value_mask = 0;
 //   bool  bMove = !(uFlags & SWP_NOMOVE);
 //   bool  bSize = !(uFlags & SWP_NOSIZE);
 //

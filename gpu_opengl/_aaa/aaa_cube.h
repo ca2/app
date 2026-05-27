@@ -17,7 +17,7 @@
  //   public:
 
 
- //      unsigned int m_uVAO, m_uVBO;
+ //      ::u32 m_uVAO, m_uVBO;
 
  //      cube();
  //      ~cube() override;
@@ -36,7 +36,7 @@
 
  //   //private:
 
- //     //  std::vector<float> mVertices = {
+ //     //  std::vector<::f32> mVertices = {
  //     //     // positions
  //     //     -1.0f,  1.0f, -1.0f,
  //     //     -1.0f, -1.0f, -1.0f,

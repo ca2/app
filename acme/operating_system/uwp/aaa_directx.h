@@ -57,12 +57,12 @@ namespace universal_windows
 
       virtual bool defer_init();
 
-      virtual void Initialize(::winrt::Windows::UI::Core::CoreWindow^ window, float dpi);
+      virtual void Initialize(::winrt::Windows::UI::Core::CoreWindow^ window, ::f32 dpi);
       virtual void HandleDeviceLost();
       virtual void CreateDeviceIndependentResources();
       virtual void CreateDeviceResources();
-      virtual void SetDpi(float dpi);
-      virtual void OnChangeDpi(float dpi);
+      virtual void SetDpi(::f32 dpi);
+      virtual void OnChangeDpi(::f32 dpi);
       virtual void UpdateForWindowSizeChange();
       virtual void CreateWindowSizeDependentResources();
       //virtual HRESULT Render();
@@ -100,8 +100,8 @@ namespace universal_windows
       D3D_FEATURE_LEVEL                               m_featureLevel;
       ::winrt::Windows::Foundation::Size                       m_renderTargetSize;
       ::winrt::Windows::Foundation::Rect                       m_windowBounds;
-      float                                           m_dpi;
-      float                                           m_dpiIni;
+      ::f32                                           m_dpi;
+      ::f32                                           m_dpiIni;
       //bool                                            m_windowSizeChangeInProgress;
 
 

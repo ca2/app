@@ -30,7 +30,7 @@ namespace database
 
       bool              m_bActive;
       bool              m_bError;
-      int           m_iLastResult;
+      ::i32           m_iLastResult;
       string            m_strQueryErrorMessage;
       string            m_strDatabaseErrorMessage;
 

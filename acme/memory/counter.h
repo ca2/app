@@ -28,11 +28,11 @@ namespace heap
       };
 
       bool m_bEnabled = false;
-      //int                                 m_iMemoryCounters = -1;
+      //::i32                                 m_iMemoryCounters = -1;
 
       ::critical_section                  m_criticalsection;
 
-      //int                                 m_iMemoryCountersStartable = 0;
+      //::i32                                 m_iMemoryCountersStartable = 0;
 
       ::map_base < TYPE, item >       m_mapCounter;
 

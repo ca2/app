@@ -155,10 +155,10 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnData(const_char_pointer buf,memsize sz)
+   void http_base_socket::OnData(const_char_pointer pszBuffer,memsize sz)
    {
 
-      m_request.write( buf, sz );
+      m_request.write( pszBuffer, sz );
 
    }
 
@@ -243,7 +243,7 @@ namespace sockets
 
       }
 
-      for(int i = 0; i < m_response.cookies().size(); i++)
+      for(::i32 i = 0; i < m_response.cookies().size(); i++)
       {
 
          m_response.m_propertysetHeader.set_at("set-cookie", m_response.cookies().element_at(i)->get_cookie_string());
@@ -285,7 +285,7 @@ namespace sockets
       //Debug deb("http_base_socket::OnTransferLimit");
       //informationf("");
       //informationf("http_base_socket::OnTransferLimit");
-      //   char msg[32768];
+      //   ::i8 msg[32768];
 
       if (m_request.m_url.as_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
       {
@@ -354,9 +354,9 @@ namespace sockets
 
 
    //string http_base_socket::set-cookie(
-   //const_char_pointer name,
+   //const_char_pointer pszName,
    //::payload payload,
-   //int iExpire,
+   //::i32 iExpire,
    //const ::file::path & path,
    //const_char_pointer domain,
    //bool bSecure)
@@ -663,7 +663,7 @@ namespace sockets
             
             mem.set_size(128 * 1024 * 1024);
 
-            for (int i = 0; i < prangea->get_count(); i++)
+            for (::i32 i = 0; i < prangea->get_count(); i++)
             {
                
                memsize iStart = prangea->element_at(i)->element_at(0);

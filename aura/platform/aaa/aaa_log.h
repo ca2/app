@@ -35,9 +35,9 @@ namespace aura
       bool                       m_bInitialized;
       string                     m_strLogPath;
       atom                         id();
-      int                        m_iYear;
-      int                        m_iMonth;
-      int                        m_iDay;
+      ::i32                        m_iYear;
+      ::i32                        m_iMonth;
+      ::i32                        m_iDay;
 
 
       log();
@@ -56,7 +56,7 @@ namespace aura
 
       virtual bool process_init();
 
-      virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, int iLine, const ::scoped_string & scopedstr) override;
+      virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, ::i32 iLine, const ::scoped_string & scopedstr) override;
 
       void set_trace_category(e_trace_category ecategory, enum_trace_level elevelMin);
 
@@ -69,7 +69,7 @@ namespace aura
    };
 
 
-   CLASS_DECL_AURA int SimpleDebugReport(int, const ::string &, int, const ::string &, const ::scoped_string & scopedstrFormat, va_list list);
+   CLASS_DECL_AURA ::i32 SimpleDebugReport(::i32, const ::string &, ::i32, const ::string &, const ::scoped_string & scopedstrFormat, va_list list);
 
 
 } // namespace aura

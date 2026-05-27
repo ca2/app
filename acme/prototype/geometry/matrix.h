@@ -6,7 +6,7 @@
 #include "acme/prototype/geometry/sequence.h"
 #include "acme/prototype/geometry2d/angle.h"
 
-//template<prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+//template<prototype_floating FLOATING_TYPE, ::i32 t_iDimension, enum_matrix_major t_emajor>
 //struct matrix_type;
 
 
@@ -20,7 +20,7 @@
 #include "acme/operating_system/cpu_features.h"
 
 
-//CLASS_DECL_ACME extern int g_iCpuFeatures; // 0=scalar,1=SSE,2=AVX,3=AVX2
+//CLASS_DECL_ACME extern ::i32 g_iCpuFeatures; // 0=scalar,1=SSE,2=AVX,3=AVX2
 
 
 
@@ -28,12 +28,12 @@ namespace geometry
 {
 
 
-   template<prototype_floating FLOATING, int t_iDimension>
+   template<prototype_floating FLOATING, ::i32 t_iDimension>
    inline void _transpose(FLOATING(& A_target)[t_iDimension][t_iDimension],
                                  const FLOATING(& A_source)[t_iDimension][t_iDimension])
    {
-      for (int i = 0; i < t_iDimension; i++)
-         for (int j = 0; j < t_iDimension; j++)
+      for (::i32 i = 0; i < t_iDimension; i++)
+         for (::i32 j = 0; j < t_iDimension; j++)
             A_target[i][j] = A_source[j][i];
    }
 
@@ -44,12 +44,12 @@ namespace geometry
 
 
 /// Simple matrix class with row-major storage
-template<prototype_floating FLOATING_TYPE, int t_iDimension>
+template<prototype_floating FLOATING_TYPE, ::i32 t_iDimension>
 struct row_major_type
 {
 
    using FLOATING = FLOATING_TYPE;
-   static constexpr int DIMENSION = t_iDimension;
+   static constexpr ::i32 DIMENSION = t_iDimension;
 
 
    union
@@ -68,7 +68,7 @@ struct translation_t
 
 
 /// Matrix class
-template<prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+template<prototype_floating FLOATING_TYPE, ::i32 t_iDimension, enum_matrix_major t_emajor>
 struct matrix_type
 {
 
@@ -77,17 +77,17 @@ struct matrix_type
    {
 
       using FLOATING = FLOATING_TYPE;
-      static constexpr int DIMENSION = t_iDimension;
+      static constexpr ::i32 DIMENSION = t_iDimension;
 
       FLOATING m_rowa[t_iDimension];
 
-      constexpr const FLOATING &operator[](int i) const
+      constexpr const FLOATING &operator[](::i32 i) const
       {
          
          return m_rowa[i]; 
       }
 
-      FLOATING& operator[](int i)
+      FLOATING& operator[](::i32 i)
       {
          return m_rowa[i]; 
       }
@@ -99,8 +99,8 @@ struct matrix_type
 
 
    using FLOATING = FLOATING_TYPE;
-   static constexpr int DIMENSION = t_iDimension;
-   static constexpr int SQUARED_DIMENSION = DIMENSION * DIMENSION;
+   static constexpr ::i32 DIMENSION = t_iDimension;
+   static constexpr ::i32 SQUARED_DIMENSION = DIMENSION * DIMENSION;
 
    union
    {
@@ -140,7 +140,7 @@ struct matrix_type
       requires(DIMENSION == 4)
    {
       
-      for (int i = 0; i < SQUARED_DIMENSION; i++) this->fa[i] = m.fa[i];
+      for (::i32 i = 0; i < SQUARED_DIMENSION; i++) this->fa[i] = m.fa[i];
 
    }
 
@@ -154,7 +154,7 @@ struct matrix_type
 
       auto c = SQUARED_DIMENSION;
 
-      for (int i = 0; i < c; ++i) this->fa[i] = (FLOATING)p[i];
+      for (::i32 i = 0; i < c; ++i) this->fa[i] = (FLOATING)p[i];
       
    }
 
@@ -168,8 +168,8 @@ struct matrix_type
 
       // Copy the 3×3 into the upper-left of the 4×4
       // (column-major order)
-      for (int c = 0; c < 3; ++c)
-         for (int r = 0; r < 3; ++r)
+      for (::i32 c = 0; c < 3; ++c)
+         for (::i32 r = 0; r < 3; ++r)
             this->m[c][r] = m.m[c][r];
    }
 
@@ -178,8 +178,8 @@ struct matrix_type
    constexpr matrix_type(NUMBER diagonal) 
    {
 
-      for (int i = 0; i < DIMENSION; i++)
-         for (int j = 0; j < DIMENSION; j++)
+      for (::i32 i = 0; i < DIMENSION; i++)
+         for (::i32 j = 0; j < DIMENSION; j++)
             m[i][j] = i == j ? (FLOATING) diagonal : (FLOATING) 0;
 
    }
@@ -200,9 +200,9 @@ struct matrix_type
    //{
    //   // Columns of result are A * columns_of(B)
    //   matrix_type R;
-   //   for (int col = 0; col < 4; ++col)
+   //   for (::i32 col = 0; col < 4; ++col)
    //   {
-   //      for (int row = 0; row < 4; ++row)
+   //      for (::i32 row = 0; row < 4; ++row)
    //      {
    //         R.m[col][row] = 
    //            this->m[0][row] * B.m[col][0] + 
@@ -218,10 +218,10 @@ struct matrix_type
 
    //   auto &a = *this;
    //   matrix_type c;
-   //   for (int i = 0; i < DIMENSION; ++i) {
-   //      for (int j = 0; j < DIMENSION; ++j) {
+   //   for (::i32 i = 0; i < DIMENSION; ++i) {
+   //      for (::i32 j = 0; j < DIMENSION; ++j) {
    //         FLOATING accum = 0;
-   //         for (int k = 0; k < DIMENSION; ++k)
+   //         for (::i32 k = 0; k < DIMENSION; ++k)
    //            accum += a.m[k][i] * b.m[j][k];
    //         c.m[j][i] = accum;
    //      }
@@ -247,8 +247,8 @@ struct matrix_type
 
 #if defined(__SSE__)
    // -------------------- SSE 128-bit version --------------------
-   inline float_sequence4 mul_sse(const float_sequence4 &s) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   inline f32_sequence4 mul_sse(const f32_sequence4 &s) const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       const auto &M = *this;
       __m128 vx = _mm_set_ps(s.w, s.z, s.y, s.x); // [w z y x]
@@ -261,7 +261,7 @@ struct matrix_type
          _mm_add_ps(_mm_mul_ps(_mm_shuffle_ps(vx, vx, 0x00), col0), _mm_mul_ps(_mm_shuffle_ps(vx, vx, 0x55), col1)),
          _mm_add_ps(_mm_mul_ps(_mm_shuffle_ps(vx, vx, 0xAA), col2), _mm_mul_ps(_mm_shuffle_ps(vx, vx, 0xFF), col3)));
 
-      float_sequence4 out;
+      f32_sequence4 out;
       _mm_storeu_ps(&out.x, res);
       return out;
    }
@@ -270,8 +270,8 @@ struct matrix_type
     
 #if defined(__AVX__)
    // -------------------- AVX 256-bit version --------------------
-   inline float_sequence4 mul_avx(const float_sequence4 &s) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   inline f32_sequence4 mul_avx(const f32_sequence4 &s) const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       const auto &M = *this;
       __m256 vx = _mm256_setr_m128(_mm_set1_ps(s.x), _mm_set1_ps(s.y));
@@ -286,7 +286,7 @@ struct matrix_type
       __m128 sum = _mm_add_ps(_mm256_castps256_ps128(_mm256_add_ps(mul01, mul23)),
                               _mm256_extractf128_ps(_mm256_add_ps(mul01, mul23), 1));
 
-      float_sequence4 out;
+      f32_sequence4 out;
       _mm_storeu_ps(&out.x, sum);
       return out;
    }
@@ -295,8 +295,8 @@ struct matrix_type
     
 #if defined(__AVX2__)
    // -------------------- AVX2 fully unrolled --------------------
-   inline float_sequence4 mul_avx2(const float_sequence4 &s) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   inline f32_sequence4 mul_avx2(const f32_sequence4 &s) const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       const auto &M = *this;
       __m256 vx = _mm256_set1_ps(s.x);
@@ -315,14 +315,14 @@ struct matrix_type
       __m256 total = _mm256_add_ps(_mm256_add_ps(mul0, mul1), _mm256_add_ps(mul2, mul3));
       __m128 sum = _mm_add_ps(_mm256_castps256_ps128(total), _mm256_extractf128_ps(total, 1));
 
-      float_sequence4 out;
+      f32_sequence4 out;
       _mm_storeu_ps(&out.x, sum);
       return out;
    }
 #endif
    //    // AVX2 version of matrix × vector
-   //inline float_sequence4 mul_avx2( const float_sequence4 &s)
-   //   requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   //inline f32_sequence4 mul_avx2( const f32_sequence4 &s)
+   //   requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    //{
    //   const auto &M = *this;
    //   // Load vector s into low 128 bits: [x y z w]
@@ -350,7 +350,7 @@ struct matrix_type
 
    //   __m128 sum = _mm_add_ps(low, high); // combine contributions
 
-   //   float_sequence4 out;
+   //   f32_sequence4 out;
    //   _mm_storeu_ps(&out.x, sum);
 
    //   return out;
@@ -363,7 +363,7 @@ struct matrix_type
 
       auto c = SQUARED_DIMENSION;
 
-      for (int i = 0; i < c; ++i)
+      for (::i32 i = 0; i < c; ++i)
       {
          
          this->fa[i] = (FLOATING)(this->fa[i] * n);
@@ -388,8 +388,8 @@ struct matrix_type
    }
 
 
-   inline float_sequence4 operator*(const float_sequence4 &s) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   inline f32_sequence4 operator*(const f32_sequence4 &s) const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       //if (g_cpufeatures.m_bAVX2)
       //   return mul_avx2(s);
@@ -423,9 +423,9 @@ struct matrix_type
       matrix_type R;
 
 
-      for (int col = 0; col < 4; ++col)
+      for (::i32 col = 0; col < 4; ++col)
       {
-         for (int row = 0; row < 4; ++row)
+         for (::i32 row = 0; row < 4; ++row)
          {
             R.fa[col * 4 + row] = 
                A.fa[0 * 4 + row] * B.fa[col * 4 + 0] +
@@ -440,15 +440,15 @@ struct matrix_type
 
 #if defined(__SSE__)
    inline matrix_type mul_sse(const matrix_type &B) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       auto &A = *this;
       matrix_type R;
 
 
-      for (int col = 0; col < 4; ++col)
+      for (::i32 col = 0; col < 4; ++col)
       {
-         const float *bCol = &B.fa[col * 4];
+         const ::f32 *bCol = &B.fa[col * 4];
 
          // Load columns of A
          __m128 a0 = _mm_loadu_ps(&A.fa[0]); // column 0
@@ -477,15 +477,15 @@ struct matrix_type
     
 #if defined(__AVX__)
    inline matrix_type mul_avx(const matrix_type &B) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       auto &A = *this;
       matrix_type R;
 
 
-      for (int col = 0; col < 4; ++col)
+      for (::i32 col = 0; col < 4; ++col)
       {
-         const float *bCol = &B.fa[col * 4];
+         const ::f32 *bCol = &B.fa[col * 4];
 
          // Broadcast elements of B column
          __m256 b01 = _mm256_set_ps(bCol[1], bCol[1], bCol[0], bCol[0], bCol[1], bCol[1], bCol[0], bCol[0]);
@@ -517,16 +517,16 @@ struct matrix_type
 #if defined(__AVX2__)
    
 inline matrix_type mul_avx2(const matrix_type &B) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
    auto &A = *this;
    matrix_type R;
 
       // Broadcast each column of B and multiply by columns of A
-      for (int col = 0; col < 4; ++col)
+      for (::i32 col = 0; col < 4; ++col)
       {
          // Load column of B
-         const float *bCol = &B.fa[col * 4];
+         const ::f32 *bCol = &B.fa[col * 4];
 
          // Broadcast each element of the column
          __m256 b0 = _mm256_set1_ps(bCol[0]);
@@ -560,7 +560,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 #endif
 
    inline matrix_type operator*(const matrix_type &m) const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
       //if (g_cpufeatures.m_bAVX2)
       //   return mul_avx2(m);
@@ -584,7 +584,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
       auto c = DIMENSION - 1;
 
-      for (int i = 0; i < c; ++i) 
+      for (::i32 i = 0; i < c; ++i) 
          m[c][i] = t[i];
 
       return m;
@@ -602,7 +602,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
       auto c = DIMENSION - 1;
 
-      for (int i = 0; i < c; ++i)
+      for (::i32 i = 0; i < c; ++i)
          result.m[i][i] = s[i];
 
       return result;
@@ -628,7 +628,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    //static matrix_type scale(const sequence_type<FLOATING, DIMENSION>& m_coordinatea) {
    //   matrix_type result;
    //   ::memory_set(result.m, 0, sizeof(FLOATING) * SQUARED_DIMENSION);
-   //   for (int i = 0; i < DIMENSION; ++i)
+   //   for (::i32 i = 0; i < DIMENSION; ++i)
    //      result.m[i][i] = m_coordinatea[i];
    //   return result;
    //}
@@ -636,7 +636,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    //static matrix_type translate(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
    //   matrix_type result;
    //   ::memory_set(result.m, 0, sizeof(FLOATING) * SQUARED_DIMENSION);
-   //   for (int i = 0; i < DIMENSION; ++i) {
+   //   for (::i32 i = 0; i < DIMENSION; ++i) {
    //      result.m[i][i] = 1.f;
    //      if (i < DIMENSION - 1)
    //         result.m[DIMENSION - 1][i] = m_coordinatea[i];
@@ -644,13 +644,13 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    //   return result;
    //}
 
-   const column & operator[](int i) const
+   const column & operator[](::i32 i) const
    {
 
       return columna[i];
    }
 
-   column & operator[](int i) { return columna[i]; }
+   column & operator[](::i32 i) { return columna[i]; }
 
 
    matrix_type & rotate(const sequence_type<FLOATING, 3>& axis, FLOATING angle)
@@ -699,7 +699,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
    }
 
-   template <int S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
+   template <::i32 S = DIMENSION, std::enable_if_t<S == 4, ::i32> = 0>
    static matrix_type perspective(FLOATING fov, FLOATING near_, FLOATING far_, FLOATING aspect = 1.f)
    {
 
@@ -714,7 +714,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return trafo;
    }
 
-   template <int S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
+   template <::i32 S = DIMENSION, std::enable_if_t<S == 4, ::i32> = 0>
    static matrix_type ortho(FLOATING left, FLOATING right,
       FLOATING bottom, FLOATING top,
       FLOATING near_, FLOATING far_)
@@ -984,15 +984,15 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       // A.m[1] A.m[4] A.m[7]
       // A.m[2] A.m[5] A.m[8]
 
-      //float a00 = A.fa[0];
-      //float a01 = A.fa[3];
-      //float a02 = A.fa[6];
-      //float a10 = A.fa[1];
-      //float a11 = A.fa[4];
-      //float a12 = A.fa[7];
-      //float a20 = A.fa[2];
-      //float a21 = A.fa[5];
-      //float a22 = A.fa[8];
+      //::f32 a00 = A.fa[0];
+      //::f32 a01 = A.fa[3];
+      //::f32 a02 = A.fa[6];
+      //::f32 a10 = A.fa[1];
+      //::f32 a11 = A.fa[4];
+      //::f32 a12 = A.fa[7];
+      //::f32 a20 = A.fa[2];
+      //::f32 a21 = A.fa[5];
+      //::f32 a22 = A.fa[8];
 
       // Cofactors
       auto c00 = (A.fa[4] * A.fa[8] - A.fa[7] * A.fa[5]);
@@ -1052,11 +1052,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
 #if defined(__SSE__)
    inline matrix_type inversed_sse() const
-      requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 3 && std::is_same_v<FLOATING, ::f32>)
    {
 
       const auto &A = *this;
-      // Load columns (pad with 0 in 4th float)
+      // Load columns (pad with 0 in 4th ::f32)
       __m128 c0 = _mm_set_ps(0.0f, A.fa[2], A.fa[1], A.fa[0]);
       __m128 c1 = _mm_set_ps(0.0f, A.fa[5], A.fa[4], A.fa[3]);
       __m128 c2 = _mm_set_ps(0.0f, A.fa[8], A.fa[7], A.fa[6]);
@@ -1077,25 +1077,25 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       __m128 cof0 = _mm_sub_ps(t0, t1);
 
       // We will extract elements later.
-      float c00 = _mm_cvtss_f32(cof0);
+      ::f32 c00 = _mm_cvtss_f32(cof0);
 
       // Scalar fallback for the remaining cofactors (SSE only helps partially for 3×3)
       // (This keeps correctness while still accelerating the heavy parts.)
 
-      float a00 = A.fa[0], a01 = A.fa[3], a02 = A.fa[6];
-      float a10 = A.fa[1], a11 = A.fa[4], a12 = A.fa[7];
-      float a20 = A.fa[2], a21 = A.fa[5], a22 = A.fa[8];
+      ::f32 a00 = A.fa[0], a01 = A.fa[3], a02 = A.fa[6];
+      ::f32 a10 = A.fa[1], a11 = A.fa[4], a12 = A.fa[7];
+      ::f32 a20 = A.fa[2], a21 = A.fa[5], a22 = A.fa[8];
 
-      float c01 = -(a10 * a22 - a12 * a20);
-      float c02 = (a10 * a21 - a11 * a20);
-      float c10 = -(a01 * a22 - a02 * a21);
-      float c11 = (a00 * a22 - a02 * a20);
-      float c12 = -(a00 * a21 - a01 * a20);
-      float c20 = (a01 * a12 - a02 * a11);
-      float c21 = -(a00 * a12 - a02 * a10);
-      float c22 = (a00 * a11 - a01 * a10);
+      ::f32 c01 = -(a10 * a22 - a12 * a20);
+      ::f32 c02 = (a10 * a21 - a11 * a20);
+      ::f32 c10 = -(a01 * a22 - a02 * a21);
+      ::f32 c11 = (a00 * a22 - a02 * a20);
+      ::f32 c12 = -(a00 * a21 - a01 * a20);
+      ::f32 c20 = (a01 * a12 - a02 * a11);
+      ::f32 c21 = -(a00 * a12 - a02 * a10);
+      ::f32 c22 = (a00 * a11 - a01 * a10);
 
-      float det = a00 * c00 + a01 * c01 + a02 * c02;
+      ::f32 det = a00 * c00 + a01 * c01 + a02 * c02;
 
       matrix_type out;
 
@@ -1106,7 +1106,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
          return {1.0f};
       }
 
-      float invDet = 1.0f / det;
+      ::f32 invDet = 1.0f / det;
 
       // Store adjugate * invDet (column-major)
       out.fa[0] = c00 * invDet;
@@ -1129,41 +1129,41 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 #if defined(__AVX__)
 
    inline matrix_type inversed_avx() const
-      requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 3 && std::is_same_v<FLOATING, ::f32>)
    {
 
-      const float *in = this->fa;
+      const ::f32 *in = this->fa;
       matrix_type result;
-      float *out = result.fa;
+      ::f32 *out = result.fa;
          // Load 3×3 matrix (column-major)
-         float m00 = in[0], m01 = in[3], m02 = in[6];
-         float m10 = in[1], m11 = in[4], m12 = in[7];
-         float m20 = in[2], m21 = in[5], m22 = in[8];
+         ::f32 m00 = in[0], m01 = in[3], m02 = in[6];
+         ::f32 m10 = in[1], m11 = in[4], m12 = in[7];
+         ::f32 m20 = in[2], m21 = in[5], m22 = in[8];
 
          //
          // ---- Cofactor matrix (scalar – fastest for 3×3) ----
          //
-         float cf00 = m11 * m22 - m12 * m21;
-         float cf01 = -(m10 * m22 - m12 * m20);
-         float cf02 = m10 * m21 - m11 * m20;
+         ::f32 cf00 = m11 * m22 - m12 * m21;
+         ::f32 cf01 = -(m10 * m22 - m12 * m20);
+         ::f32 cf02 = m10 * m21 - m11 * m20;
 
-         float cf10 = -(m01 * m22 - m02 * m21);
-         float cf11 = m00 * m22 - m02 * m20;
-         float cf12 = -(m00 * m21 - m01 * m20);
+         ::f32 cf10 = -(m01 * m22 - m02 * m21);
+         ::f32 cf11 = m00 * m22 - m02 * m20;
+         ::f32 cf12 = -(m00 * m21 - m01 * m20);
 
-         float cf20 = m01 * m12 - m02 * m11;
-         float cf21 = -(m00 * m12 - m02 * m10);
-         float cf22 = m00 * m11 - m01 * m10;
+         ::f32 cf20 = m01 * m12 - m02 * m11;
+         ::f32 cf21 = -(m00 * m12 - m02 * m10);
+         ::f32 cf22 = m00 * m11 - m01 * m10;
 
          // Determinant
-         float det = m00 * cf00 + m01 * cf01 + m02 * cf02;
-         float invdet = 1.0f / det;
+         ::f32 det = m00 * cf00 + m01 * cf01 + m02 * cf02;
+         ::f32 invdet = 1.0f / det;
 
          //
          // ---- Pack cofactors into column-major adjoint matrix ----
          //
          // adj = transpose(cofactor matrix)
-         alignas(32) float adj[9] = {
+         alignas(32) ::f32 adj[9] = {
             cf00, cf10, cf20, // column 0
             cf01, cf11, cf21, // column 1
             cf02, cf12, cf22 // column 2
@@ -1241,11 +1241,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       inv[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
                 m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 
-      float det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
+      ::f32 det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
 
-      float invDet = 1.0f / det;
+      ::f32 invDet = 1.0f / det;
 
-      for (int i = 0; i < 16; i++)
+      for (::i32 i = 0; i < 16; i++)
          inv[i] *= invDet;
 
       return *this;
@@ -1255,7 +1255,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
 #if defined(__SSE__)
    inline matrix_type inversed_sse() const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
 
       const auto &a = *this;
@@ -1266,7 +1266,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       __m128 col3 = _mm_loadu_ps(&a.fa[12]);
 
       // Unpack into scalar floats for fully unrolled computation
-      float m[16];
+      ::f32 m[16];
       _mm_storeu_ps(&m[0], col0);
       _mm_storeu_ps(&m[4], col1);
       _mm_storeu_ps(&m[8], col2);
@@ -1312,8 +1312,8 @@ inline matrix_type mul_avx2(const matrix_type &B) const
                    m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 
       // Compute determinant
-      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-      float invDet = 1.0f / det;
+      ::f32 det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+      ::f32 invDet = 1.0f / det;
 
       // Multiply all elements by 1/det using SSE
       __m128 v0 = _mm_loadu_ps(&inv.fa[0]);
@@ -1336,7 +1336,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 #if defined(__AVX__)
 
    inline matrix_type inversed_avx() const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
 
       const auto &a = *this;
@@ -1345,7 +1345,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       __m256 col23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
 
       // Unpack into scalar floats for full unrolled computation
-      float m[16];
+      ::f32 m[16];
       _mm256_storeu_ps(&m[0], col01);
       _mm256_storeu_ps(&m[8], col23);
 
@@ -1389,8 +1389,8 @@ inline matrix_type mul_avx2(const matrix_type &B) const
                    m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 
       // Determinant
-      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-      float invDet = 1.0f / det;
+      ::f32 det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+      ::f32 invDet = 1.0f / det;
 
       // Multiply all 16 elements by 1/det using AVX
       __m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
@@ -1408,7 +1408,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 #if defined(__AVX2__)
 
    inline matrix_type inversed_avx2() const
-      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, ::f32>)
    {
 
       const auto &a = *this;
@@ -1423,7 +1423,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       __m128 r3 = _mm256_extractf128_ps(col23, 1); // col3 low
 
       // Compute pairs for cofactors (fully unrolled)
-      float m[16];
+      ::f32 m[16];
       _mm_storeu_ps(&m[0], r0);
       _mm_storeu_ps(&m[4], r1);
       _mm_storeu_ps(&m[8], r2);
@@ -1469,8 +1469,8 @@ inline matrix_type mul_avx2(const matrix_type &B) const
                    m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 
       // Compute determinant
-      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-      float invDet = 1.0f / det;
+      ::f32 det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+      ::f32 invDet = 1.0f / det;
 
       // Scale all elements by 1/det using AVX2
       __m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
@@ -1487,7 +1487,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    inline matrix_type & inverse()
    {
 
-      if constexpr ( std::is_same_v<FLOATING, float>)
+      if constexpr ( std::is_same_v<FLOATING, ::f32>)
       {
          if constexpr (DIMENSION == 4)
          {
@@ -1609,14 +1609,14 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 };
 
 
-using float_matrix2 = matrix_type<float, 2>;
-using float_matrix3 = matrix_type<float, 3>;
-using float_matrix4 = matrix_type<float, 4>;
+using f32_matrix2 = matrix_type<::f32, 2>;
+using f32_matrix3 = matrix_type<::f32, 3>;
+using f32_matrix4 = matrix_type<::f32, 4>;
 
 
-using double_matrix2 = matrix_type<double, 2>;
-using double_matrix3 = matrix_type<double, 3>;
-using double_matrix4 = matrix_type<double, 4>;
+using f64_matrix2 = matrix_type<::f64, 2>;
+using f64_matrix3 = matrix_type<::f64, 3>;
+using f64_matrix4 = matrix_type<::f64, 4>;
 
 //
 //namespace geometry
@@ -1626,8 +1626,8 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //   static inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
 //   //                              const FLOATING A_source[t_iDimension][t_iDimension])
 //   //{
-//   //   for (int i = 0; i < t_iDimension; i++)
-//   //      for (int j = 0; j < t_iDimension; j++)
+//   //   for (::i32 i = 0; i < t_iDimension; i++)
+//   //      for (::i32 j = 0; j < t_iDimension; j++)
 //   //         A_target[i][j] = A_source[j][i];
 //   //}
 //   //
@@ -1645,13 +1645,13 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //////matrix_type<FLOATING, 3> inverse(const matrix_type<FLOATING, 3> &m)
 //   //////{
 //
-//   //////   float det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
+//   //////   ::f32 det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
 //   //////               m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2]) + m[2][0] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]);
 //
 //   //////   if (std::fabs(det) < 1e-8f)
 //   //////      return matrix_type<FLOATING, 3>(1.0f); // fallback to identity (non-invertible)
 //
-//   //////   float invDet = 1.0f / det;
+//   //////   ::f32 invDet = 1.0f / det;
 //
 //   //////   matrix_type<FLOATING, 3> r;
 //   //////   r[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invDet;
@@ -1736,17 +1736,17 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //   invOut[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
 //   //                m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 //
-//   //   float det = m[0] * invOut[0] + m[1] * invOut[4] + m[2] * invOut[8] + m[3] * invOut[12];
+//   //   ::f32 det = m[0] * invOut[0] + m[1] * invOut[4] + m[2] * invOut[8] + m[3] * invOut[12];
 //
 //   //   // Determinant zero → not invertible
 //   //   if (det == 0.0f)
 //   //      return {}; // or assert / return identity
 //
-//   //   float invDet = 1.0f / det;
+//   //   ::f32 invDet = 1.0f / det;
 //
 //   //   matrix_type<FLOATING, 4> R{};
-//   //   for (int i = 0; i < 16; i++)
-//   //      ((float *)R.m)[i] = invOut[i] * invDet;
+//   //   for (::i32 i = 0; i < 16; i++)
+//   //      ((::f32 *)R.m)[i] = invOut[i] * invDet;
 //
 //   //   return R;
 //   //}
@@ -1767,12 +1767,12 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //   // and upper-left 3x3 is orthonormal (rotation + uniform scale = 1)
 //   //   matrix_type<FLOATING, 4> R;
 //   //   // transpose the 3x3 rotation
-//   //   for (int c = 0; c < 3; ++c)
-//   //      for (int r = 0; r < 3; ++r)
+//   //   for (::i32 c = 0; c < 3; ++c)
+//   //      for (::i32 r = 0; r < 3; ++r)
 //   //         R.m[c][r] = A.m[r][c];
 //
 //   //   // compute -R^T * translation
-//   //   float tx = A.m[3][0], ty = A.m[3][1], tz = A.m[3][2];
+//   //   ::f32 tx = A.m[3][0], ty = A.m[3][1], tz = A.m[3][2];
 //   //   R.m[3][0] = -(R.m[0][0] * tx + R.m[1][0] * ty + R.m[2][0] * tz);
 //   //   R.m[3][1] = -(R.m[0][1] * tx + R.m[1][1] * ty + R.m[2][1] * tz);
 //   //   R.m[3][2] = -(R.m[0][2] * tx + R.m[1][2] * ty + R.m[2][2] * tz);
@@ -1785,7 +1785,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //}
 //
 //
-//   //inline float_matrix4 inverse_col_major_simd(const float_matrix4 &A)
+//   //inline f32_matrix4 inverse_col_major_simd(const f32_matrix4 &A)
 //   //{
 //   //   const __m128 row0 = _mm_loadu_ps(&A.m[0][0]);
 //   //   const __m128 row1 = _mm_loadu_ps(&A.m[1][0]);
@@ -1837,7 +1837,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //   minor2 = _mm_mul_ps(minor2, invDet);
 //   //   minor3 = _mm_mul_ps(minor3, invDet);
 //
-//   //   float_matrix4 R;
+//   //   f32_matrix4 R;
 //
 //   //   _mm_storeu_ps(&R.m[0][0], minor0);
 //   //   _mm_storeu_ps(&R.m[1][0], minor1);
@@ -1852,8 +1852,8 @@ using double_matrix4 = matrix_type<double, 4>;
 ////// each column is contiguous in memory: &M.m[col][0]
 ////#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 ////
-////   // float_matrix4 * vec4  (column-major) using SSE: result = col0 * vx + col1 * vy + ...
-////   inline float_sequence4 mat4_mul_vec4_sse(const float_matrix4 &M, const float_sequence4 &s)
+////   // f32_matrix4 * vec4  (column-major) using SSE: result = col0 * vx + col1 * vy + ...
+////   inline f32_sequence4 mat4_mul_vec4_sse(const f32_matrix4 &M, const f32_sequence4 &s)
 ////   {
 ////      __m128 col0 = _mm_loadu_ps(&M.m[0][0]); // m00,m01,m02,m03
 ////      __m128 col1 = _mm_loadu_ps(&M.m[1][0]);
@@ -1868,24 +1868,24 @@ using double_matrix4 = matrix_type<double, 4>;
 ////      __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(col0, vx), _mm_mul_ps(col1, vy)),
 ////                            _mm_add_ps(_mm_mul_ps(col2, vz), _mm_mul_ps(col3, vw)));
 ////
-////      float_sequence4 out;
+////      f32_sequence4 out;
 ////      _mm_storeu_ps(&out.x, r);
 ////      return out;
 ////   }
 ////
-////   // float_matrix4 * float_matrix4 (column-major): compute A * B by multiplying A by each column of B
-////   inline float_matrix4 mat4_mul_mat4_sse(const float_matrix4 &A, const float_matrix4 &B)
+////   // f32_matrix4 * f32_matrix4 (column-major): compute A * B by multiplying A by each column of B
+////   inline f32_matrix4 mat4_mul_mat4_sse(const f32_matrix4 &A, const f32_matrix4 &B)
 ////   {
-////      float_matrix4 R;
+////      f32_matrix4 R;
 ////      // for each column j of B, compute R.col[j] = A * B.col[j]
-////      for (int j = 0; j < 4; ++j)
+////      for (::i32 j = 0; j < 4; ++j)
 ////      {
 ////         __m128 colB = _mm_loadu_ps(&B.m[j][0]); // B column j
 ////         // extract components of B.col[j]
-////         float bj0 = ((float *)&B.m[j][0])[0];
-////         float bj1 = ((float *)&B.m[j][0])[1];
-////         float bj2 = ((float *)&B.m[j][0])[2];
-////         float bj3 = ((float *)&B.m[j][0])[3];
+////         ::f32 bj0 = ((::f32 *)&B.m[j][0])[0];
+////         ::f32 bj1 = ((::f32 *)&B.m[j][0])[1];
+////         ::f32 bj2 = ((::f32 *)&B.m[j][0])[2];
+////         ::f32 bj3 = ((::f32 *)&B.m[j][0])[3];
 ////
 ////         __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_loadu_ps(&A.m[0][0]), _mm_set1_ps(bj0)),
 ////                                          _mm_mul_ps(_mm_loadu_ps(&A.m[1][0]), _mm_set1_ps(bj1))),
@@ -1899,7 +1899,7 @@ using double_matrix4 = matrix_type<double, 4>;
 ////#endif // __SSE__
 //
 ////   // Fallback wrappers that choose SSE version if available
-////   inline vec4 mul(const float_matrix4 &M, const vec4 &s)
+////   inline vec4 mul(const f32_matrix4 &M, const vec4 &s)
 ////   {
 ////#if defined(__SSE__)
 ////      return mat4_mul_vec4_sse(M, s);
@@ -1908,7 +1908,7 @@ using double_matrix4 = matrix_type<double, 4>;
 ////#endif
 ////   }
 ////
-////   inline float_matrix4 mul(const float_matrix4 &A, const float_matrix4 &B)
+////   inline f32_matrix4 mul(const f32_matrix4 &A, const f32_matrix4 &B)
 ////   {
 ////#if defined(__SSE__)
 ////      return mat4_mul_mat4_sse(A, B);
@@ -1919,7 +1919,7 @@ using double_matrix4 = matrix_type<double, 4>;
 ////
 ////#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 ////
-////   inline float_matrix4 mat4_inverse_sse(const float_matrix4 &A)
+////   inline f32_matrix4 mat4_inverse_sse(const f32_matrix4 &A)
 ////   {
 ////      // Build rows from column-major storage:
 ////      // row0 = [ m00 m01 m02 m03 ] where mXY is row X column Y
@@ -1993,7 +1993,7 @@ using double_matrix4 = matrix_type<double, 4>;
 ////      __m128 col2 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(1, 0, 1, 0)); // m02 m12 m22 m32
 ////      __m128 col3 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(3, 2, 3, 2)); // m03 m13 m23 m33
 ////
-////      float_matrix4 R;
+////      f32_matrix4 R;
 ////      _mm_storeu_ps(&R.m[0][0], col0); // store column 0
 ////      _mm_storeu_ps(&R.m[1][0], col1); // store column 1
 ////      _mm_storeu_ps(&R.m[2][0], col2); // store column 2
@@ -2004,7 +2004,7 @@ using double_matrix4 = matrix_type<double, 4>;
 ////#endif // SSE
 //
 ////   // Wrapper: use SIMD inverse when available, else fallback
-////   inline float_matrix4 inverse_simd(const float_matrix4 &A)
+////   inline f32_matrix4 inverse_simd(const f32_matrix4 &A)
 ////   {
 ////#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 ////      return mat4_inverse_sse(A);
@@ -2013,9 +2013,9 @@ using double_matrix4 = matrix_type<double, 4>;
 ////#endif
 ////   }
 //   //   // Multiply 4x4 matrix `a` by 4x4 matrix `b` (a*b) using AVX2 fully unrolled
-//   //inline float_matrix4 mul_avx2(const float_matrix4 &a, const float_matrix4 &b)
+//   //inline f32_matrix4 mul_avx2(const f32_matrix4 &a, const f32_matrix4 &b)
 //   //{
-//   //   float_matrix4 result;
+//   //   f32_matrix4 result;
 //
 //   //   // Load columns of B
 //   //   __m128 b0 = _mm_loadu_ps(&b.fa[0]);
@@ -2024,7 +2024,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //   __m128 b3 = _mm_loadu_ps(&b.fa[12]);
 //
 //   //   // For each column of B, broadcast each element and multiply-add with columns of A
-//   //   for (int col = 0; col < 4; ++col)
+//   //   for (::i32 col = 0; col < 4; ++col)
 //   //   {
 //   //      __m128 bc; // broadcast column element
 //   //      __m256 sum01, sum23;
@@ -2078,7 +2078,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //
 //
 //    // Load all elements into scalar array for cofactor calculation
-//float m[16];
+//::f32 m[16];
 //_mm256_storeu_ps(&m[0], _mm256_loadu_ps(&a.fa[0])); // first 8 elements
 //_mm256_storeu_ps(&m[8], _mm256_loadu_ps(&a.fa[8])); // last 8 elements
 //
@@ -2120,8 +2120,8 @@ using double_matrix4 = matrix_type<double, 4>;
 //            m[8] * m[2] * m[5];
 //
 //// Compute determinant scalar
-//float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-//float invDet = 1.0f / det;
+//::f32 det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+//::f32 invDet = 1.0f / det;
 //
 //// Scale all elements using AVX2
 //__m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
@@ -2132,7 +2132,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //_mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, det256));
 
 
-template<prototype_floating FLOATING, int t_iDimension>  
+template<prototype_floating FLOATING, ::i32 t_iDimension>  
 inline matrix_type<FLOATING, t_iDimension> row_major_type< FLOATING, t_iDimension >::transpose() const
 {
    matrix_type<FLOATING, 4> r;
@@ -2141,7 +2141,7 @@ inline matrix_type<FLOATING, t_iDimension> row_major_type< FLOATING, t_iDimensio
 }
 
 
-template<prototype_number NUMBER, int t_iSize>
+template<prototype_number NUMBER, ::i32 t_iSize>
 template<prototype_floating FLOATING1>
 inline sequence_type<NUMBER, t_iSize>
 sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 3> &M) const
@@ -2156,7 +2156,7 @@ sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 3> &M) co
 }
 
 
-template<prototype_number NUMBER, int t_iSize>
+template<prototype_number NUMBER, ::i32 t_iSize>
    template<prototype_floating FLOATING1>
 inline sequence_type<NUMBER, t_iSize>
 sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) const
@@ -2176,7 +2176,7 @@ sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) co
 
 
 
-template<prototype_number UNIT_TYPE, int t_iSize>
+template<prototype_number UNIT_TYPE, ::i32 t_iSize>
 auto sequence_type<UNIT_TYPE, t_iSize>::as_translation_matrix() const
    requires(t_iSize == 3 && prototype_floating<UNIT_TYPE>)
 {
@@ -2186,7 +2186,7 @@ auto sequence_type<UNIT_TYPE, t_iSize>::as_translation_matrix() const
 }
 
 
-template<prototype_number UNIT_TYPE, int t_iSize>
+template<prototype_number UNIT_TYPE, ::i32 t_iSize>
 auto sequence_type<UNIT_TYPE, t_iSize>::as_scaling_matrix() const
    requires(t_iSize == 3 && prototype_floating<UNIT_TYPE>)
 {
@@ -2195,7 +2195,7 @@ auto sequence_type<UNIT_TYPE, t_iSize>::as_scaling_matrix() const
 
 }
 
-template<prototype_number NUMBER, prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+template<prototype_number NUMBER, prototype_floating FLOATING_TYPE, ::i32 t_iDimension, enum_matrix_major t_emajor>
 inline matrix_type<FLOATING_TYPE, t_iDimension, t_emajor>
 operator*(NUMBER scalar, const matrix_type<FLOATING_TYPE, t_iDimension, t_emajor> & matrix)
 {

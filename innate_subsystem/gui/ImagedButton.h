@@ -86,8 +86,8 @@ namespace innate_subsystem
 
         //::pointer < IconInterface > &m_icon;
 
-        //int m_iconWidth;
-        //int m_iconHeight;
+        //::i32 m_iconWidth;
+        //::i32 m_iconHeight;
   //  private:
     //    static LRESULT CALLBACK wndProc(HWND hWnd, ::u32 message, ::wparam wparam, ::lparam lparam);
     };
@@ -150,8 +150,8 @@ namespace innate_subsystem
 
       //::pointer < IconInterface > &m_icon;
 
-      //int m_iconWidth;
-      //int m_iconHeight;
+      //::i32 m_iconWidth;
+      //::i32 m_iconHeight;
       //  private:
       //    static LRESULT CALLBACK wndProc(HWND hWnd, ::u32 message, ::wparam wparam, ::lparam lparam);
    };

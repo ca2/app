@@ -133,7 +133,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnRawData(char *buf, memsize len)
+   void http_socket::OnRawData(char_pointer buf, memsize len)
    {
       
       if(m_bWebSocketEnabled)
@@ -181,10 +181,10 @@ namespace sockets
                         {
                            memory mem;
                            mem.set_size(TCP_BUFSIZE_READ);
-                           char *tmp = (char *) mem.data();
+                           char_pointer tmp = (char_pointer ) mem.data();
                            ::memory_copy(tmp, buf + ptr, len - ptr);
                            tmp[len - ptr] = 0;
-                           on_read(tmp, (int) (len - ptr));
+                           on_read(tmp, (::i32) (len - ptr));
                            ptr = len;
                         }
                      }
@@ -292,7 +292,7 @@ namespace sockets
                   if (len - sizeData > 0)
                   {
 
-                     on_read(buf + sizeData, (int) (len - sizeData));
+                     on_read(buf + sizeData, (::i32) (len - sizeData));
 
                   }
 
@@ -332,7 +332,7 @@ namespace sockets
             m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
 
-            int iStatusCode = atoi(strHttpStatusCode);
+            ::i32 iStatusCode = atoi(strHttpStatusCode);
             m_response.attr("http_status_code") = iStatusCode;
 
             ::string strStatus = pa.getrest();
@@ -666,7 +666,7 @@ namespace sockets
          }
 
 
-         for (int j = 0; j < straValue.get_count(); j++)
+         for (::i32 j = 0; j < straValue.get_count(); j++)
          {
 
             string strValue = straValue[j];
@@ -1153,9 +1153,9 @@ namespace sockets
          //
          //         m_pwebsocket->m_strBase64 = pbase64->encode(m);
          //
-         //         //int iLen;
+         //         //::i32 iLen;
          //
-         //         //iLen = (int)(m_strBase64.length());
+         //         //iLen = (::i32)(m_strBase64.length());
          //
          //         inheader("Sec-WebSocket-Key") = m_pwebsocket->m_strBase64;
          //         if (m_pwebsocket->m_strWebSocketProtocol.has_character())
@@ -1254,7 +1254,7 @@ namespace sockets
    }
 
 
-   ::string http_socket::get_short_debug_text(int i) const
+   ::string http_socket::get_short_debug_text(::i32 i) const
    {
 
       ::string str;

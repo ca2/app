@@ -119,7 +119,7 @@ void simple_list_data::get_data(string_array_base &stra)
 void simple_list_data::set_column_data(::user::mesh * pmesh,string_array_base & stra, ::collection::index iColumn)
 {
    m_array.set_at_grow(iColumn,___new string_array(stra));
-   for(int iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
+   for(::i32 iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
    {
       if(iColumn != iSubItem)
       {
@@ -147,7 +147,7 @@ bool simple_list_data::erase_item(::collection::index iItem)
       return false;
    if(iItem >= m_array.get_size())
       return false;
-   for(int iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
+   for(::i32 iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
    {
       m_array[iSubItem]->erase_at(iItem);
    }

@@ -29,16 +29,16 @@ typedef enum {
    eItsMe = 2 
 } nsSMState;
 
-#define GETCLASS(c) GETFROMPCK(((unsigned char)(c)), mModel->classTable)
+#define GETCLASS(c) GETFROMPCK(((::u8)(c)), mModel->classTable)
 
 //state machine model
 typedef struct 
 {
   nsPkgInt classTable;
-  PRunsigned int classFactor;
+  PRunsigned ::i32 classFactor;
   nsPkgInt stateTable;
-  const PRunsigned int* charLenTable;
-  const_char_pointer name;
+  const PRunsigned ::i32* charLenTable;
+  const_char_pointer pszName;
 } SMModel;
 
 class nsCodingStateMachine {
@@ -47,28 +47,28 @@ public:
           mCurrentState = eStart;
           mModel = sm;
         };
-  nsSMState NextState(char c){
-    //for each unsigned char we get its class , if it is first unsigned char, we also get unsigned char length
-    PRunsigned int byteCls = GETCLASS(c);
+  nsSMState NextState(::i8 c){
+    //for each ::u8 we get its class , if it is first ::u8, we also get ::u8 length
+    PRunsigned ::i32 byteCls = GETCLASS(c);
     if (mCurrentState == eStart)
     { 
       mCurrentBytePos = 0; 
       mCurrentCharLen = mModel->charLenTable[byteCls];
     }
-    //from unsigned char's class and stateTable, we get its next state
+    //from ::u8's class and stateTable, we get its next state
     mCurrentState=(nsSMState)GETFROMPCK(mCurrentState*(mModel->classFactor)+byteCls,
                                        mModel->stateTable);
     mCurrentBytePos++;
     return mCurrentState;
   };
-  PRunsigned int  GetCurrentCharLen(void) {return mCurrentCharLen;};
+  PRunsigned ::i32  GetCurrentCharLen(void) {return mCurrentCharLen;};
   void      Reset(void) {mCurrentState = eStart;};
   const_char_pointer GetCodingStateMachine() {return mModel->name;};
 
 protected:
   nsSMState mCurrentState;
-  PRunsigned int mCurrentCharLen;
-  PRunsigned int mCurrentBytePos;
+  PRunsigned ::i32 mCurrentCharLen;
+  PRunsigned ::i32 mCurrentBytePos;
 
   SMModel *mModel;
 };

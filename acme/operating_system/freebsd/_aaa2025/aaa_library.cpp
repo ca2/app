@@ -18,7 +18,7 @@ struct query_loaded_library
 //CLASS_DECL_ACME void *__node_library_open(const ::file::path &path, string &strMessage);
 
 
-static int
+static ::i32
 __node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *data)
 {
    query_loaded_library *q = (query_loaded_library *) data;
@@ -110,7 +110,7 @@ namespace platform
 
       }
 
-      if (strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+      if (strstr((const_char_pointer ) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
       {
 
          strPath = "lib" + strPath;
@@ -125,7 +125,7 @@ namespace platform
 
          // pubs.opengroup.org contribution
 
-         int iError = errno;
+         ::i32 iError = errno;
 
          auto pszError = strerror(iError);
 
@@ -136,7 +136,7 @@ namespace platform
 
          }
 
-         char *errstr;
+         char_pointer errstr;
 
          errstr = dlerror();
 
@@ -191,7 +191,7 @@ namespace platform
 
       }
 
-      int iError = errno;
+      ::i32 iError = errno;
 
       auto pszError = strerror(iError);
 

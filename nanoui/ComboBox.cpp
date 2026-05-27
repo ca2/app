@@ -78,7 +78,7 @@ namespace nanoui
       m_straItems = items;
       m_straItemsShort = items_short;
 
-      if (m_iSelectedIndex < 0 || m_iSelectedIndex >= (int)items.size())
+      if (m_iSelectedIndex < 0 || m_iSelectedIndex >= (::i32)items.size())
          m_iSelectedIndex = 0;
       while (m_container->child_count() != 0)
          m_container->erase_child_at(m_container->child_count() - 1);
@@ -132,13 +132,13 @@ namespace nanoui
    }
 
 
-   bool ComboBox::scroll_event(const i32_point& p, const float_size& rel)
+   bool ComboBox::scroll_event(const i32_point& p, const ::f32_size& rel)
    {
 
       set_checked(false, e_source_selection);
       popup()->set_visible(false);
       if (rel.cy < 0) {
-         set_selected_index(::minimum(m_iSelectedIndex + 1, (int)(items().size() - 1)), e_source_selection);
+         set_selected_index(::minimum(m_iSelectedIndex + 1, (::i32)(items().size() - 1)), e_source_selection);
          if (m_callback)
             m_callback(m_iSelectedIndex);
          return true;

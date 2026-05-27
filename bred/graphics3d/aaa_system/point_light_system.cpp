@@ -25,7 +25,7 @@ namespace graphics3d
    //struct PointLightPushConstants {
    //   floating_sequence4 position{};
    //   floating_sequence4 color{};
-   //   float radius;
+   //   ::f32 radius;
    //};
 
 
@@ -115,7 +115,7 @@ namespace graphics3d
    void point_light_system::render(::graphics3d::scene* pscene)
    {
       // sort lights
-      std::map<float, ::collection::index> sorted;
+      std::map<::f32, ::collection::index> sorted;
       for (auto& kv : pscene->m_mapObjects) {
          auto& obj = kv.element2();
 
@@ -124,7 +124,7 @@ namespace graphics3d
 
          // calculate distance
          auto offset = m_pgpucontext->m_pimpact->m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->GetPosition() - obj->m_transform.translation;
-         float disSquared = glm::dot(offset, offset);
+         ::f32 disSquared = glm::dot(offset, offset);
          sorted[disSquared] = obj->m_iId;
       }
 
@@ -167,7 +167,7 @@ namespace graphics3d
       auto dt = m_pgpucontext->m_pimpact->m_pengine->dt();
       auto rotateLight = glm::rotate(floating_matrix4(1.f), 0.5f * dt, { 0.f, -1.f, 0.f });
 
-      int lightIndex = 0;
+      ::i32 lightIndex = 0;
 
       for (auto& kv : pscene->m_mapObjects)
       {

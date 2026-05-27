@@ -1383,12 +1383,12 @@ JSON_HEDLEY_DIAGNOSTIC_POP
     (((probability) >= 0.9) ? __builtin_expect((expr), (expected)) : (JSON_HEDLEY_STATIC_CAST(void, expected), (expr)))
 #  define JSON_HEDLEY_PREDICT_TRUE(expr, probability) \
     (__extension__ ({ \
-        double hedley_probability_ = (probability); \
+        ::f64 hedley_probability_ = (probability); \
         ((hedley_probability_ >= 0.9) ? __builtin_expect(!!(expr), 1) : ((hedley_probability_ <= 0.1) ? __builtin_expect(!!(expr), 0) : !!(expr))); \
     }))
 #  define JSON_HEDLEY_PREDICT_FALSE(expr, probability) \
     (__extension__ ({ \
-        double hedley_probability_ = (probability); \
+        ::f64 hedley_probability_ = (probability); \
         ((hedley_probability_ >= 0.9) ? __builtin_expect(!!(expr), 0) : ((hedley_probability_ <= 0.1) ? __builtin_expect(!!(expr), 1) : !!(expr))); \
     }))
 #  define JSON_HEDLEY_LIKELY(expr)   __builtin_expect(!!(expr), 1)
@@ -2048,7 +2048,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
     #define JSON_HAS_CPP_14
 #endif
 
-// disable float-equal warnings on GCC/clang
+// disable ::f32-equal warnings on GCC/clang
 #if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Wfloat-equal"
@@ -2901,7 +2901,7 @@ template<template<typename U, typename V, typename... Args> class ObjectType =
          class StringType = std::string, class BooleanType = bool,
          class NumberIntegerType = std::int64_t,
          class NumberUnsignedType = std::uint64_t,
-         class NumberFloatType = double,
+         class NumberFloatType = ::f64,
          template<typename U> class AllocatorType = std::allocator,
          template<typename T, typename SFINAE = void> class JSONSerializer =
          adl_serializer,
@@ -3366,7 +3366,7 @@ distinguish the stored values, and the functions @ref basic_json::is_null(),
 number_float), because the library distinguishes these three types for numbers:
 @ref basic_json::number_unsigned_t is used for unsigned integers,
 @ref basic_json::number_integer_t is used for signed integers, and
-@ref basic_json::number_float_t is used for floating-point numbers or to
+@ref basic_json::number_f32_t is used for floating-point numbers or to
 approximate integers which do not fit in the limits of their respective type.
 
 @sa @ref basic_json::basic_json(const value_t value_type) -- create a JSON
@@ -3405,7 +3405,7 @@ inline bool operator<(const value_t lhs, const value_t rhs) noexcept
 {
     static constexpr std::array<std::uint8_t, 9> order = {{
             0 /* null */, 3 /* object */, 4 /* array */, 5 /* string */,
-            1 /* boolean */, 2 /* integer */, 2 /* unsigned */, 2 /* float */,
+            1 /* boolean */, 2 /* integer */, 2 /* unsigned */, 2 /* ::f32 */,
             6 /* binary */
         }
     };
@@ -3453,7 +3453,7 @@ void get_arithmetic_value(const BasicJsonType& j, ArithmeticType& val)
         }
         case value_t::number_float:
         {
-            val = static_cast<ArithmeticType>(*j.template get_ptr<const typename BasicJsonType::number_float_t*>());
+            val = static_cast<ArithmeticType>(*j.template get_ptr<const typename BasicJsonType::number_f32_t*>());
             break;
         }
 
@@ -3500,7 +3500,7 @@ void from_json(const BasicJsonType& j, ConstructibleStringType& s)
 }
 
 template<typename BasicJsonType>
-void from_json(const BasicJsonType& j, typename BasicJsonType::number_float_t& val)
+void from_json(const BasicJsonType& j, typename BasicJsonType::number_f32_t& val)
 {
     get_arithmetic_value(j, val);
 }
@@ -3690,7 +3690,7 @@ template < typename BasicJsonType, typename ArithmeticType,
                std::is_arithmetic<ArithmeticType>::value&&
                !std::is_same<ArithmeticType, typename BasicJsonType::number_unsigned_t>::value&&
                !std::is_same<ArithmeticType, typename BasicJsonType::number_integer_t>::value&&
-               !std::is_same<ArithmeticType, typename BasicJsonType::number_float_t>::value&&
+               !std::is_same<ArithmeticType, typename BasicJsonType::number_f32_t>::value&&
                !std::is_same<ArithmeticType, typename BasicJsonType::boolean_t>::value,
                int > = 0 >
 void from_json(const BasicJsonType& j, ArithmeticType& val)
@@ -3709,7 +3709,7 @@ void from_json(const BasicJsonType& j, ArithmeticType& val)
         }
         case value_t::number_float:
         {
-            val = static_cast<ArithmeticType>(*j.template get_ptr<const typename BasicJsonType::number_float_t*>());
+            val = static_cast<ArithmeticType>(*j.template get_ptr<const typename BasicJsonType::number_f32_t*>());
             break;
         }
         case value_t::boolean:
@@ -4081,7 +4081,7 @@ template<>
 struct external_constructor<value_t::number_float>
 {
     template<typename BasicJsonType>
-    static void construct(BasicJsonType& j, typename BasicJsonType::number_float_t val) noexcept
+    static void construct(BasicJsonType& j, typename BasicJsonType::number_f32_t val) noexcept
     {
         j.m_type = value_t::number_float;
         j.m_value = val;
@@ -4232,7 +4232,7 @@ template<typename BasicJsonType, typename FloatType,
          enable_if_t<std::is_floating_point<FloatType>::value, int> = 0>
 void to_json(BasicJsonType& j, FloatType val) noexcept
 {
-    external_constructor<value_t::number_float>::construct(j, static_cast<typename BasicJsonType::number_float_t>(val));
+    external_constructor<value_t::number_float>::construct(j, static_cast<typename BasicJsonType::number_f32_t>(val));
 }
 
 template<typename BasicJsonType, typename CompatibleNumberUnsignedType,
@@ -4615,7 +4615,7 @@ std::size_t hash(const BasicJsonType& j)
     using string_t = typename BasicJsonType::string_t;
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
 
     const auto type = static_cast<std::size_t>(j.type());
     switch (j.type())
@@ -4674,7 +4674,7 @@ std::size_t hash(const BasicJsonType& j)
 
         case nlohmann::detail::value_t::number_float:
         {
-            const auto h = std::hash<number_float_t> {}(j.template get<number_float_t>());
+            const auto h = std::hash<number_f32_t> {}(j.template get<number_f32_t>());
             return combine(type, h);
         }
 
@@ -4909,23 +4909,23 @@ struct wide_string_input_helper<BaseInputAdapter, 4>
             }
             else if (wc <= 0x7FF)
             {
-                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xC0u | ((static_cast<unsigned int>(wc) >> 6u) & 0x1Fu));
-                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<unsigned int>(wc) & 0x3Fu));
+                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xC0u | ((static_cast<::u32>(wc) >> 6u) & 0x1Fu));
+                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<::u32>(wc) & 0x3Fu));
                 utf8_bytes_filled = 2;
             }
             else if (wc <= 0xFFFF)
             {
-                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xE0u | ((static_cast<unsigned int>(wc) >> 12u) & 0x0Fu));
-                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<unsigned int>(wc) >> 6u) & 0x3Fu));
-                utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<unsigned int>(wc) & 0x3Fu));
+                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xE0u | ((static_cast<::u32>(wc) >> 12u) & 0x0Fu));
+                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<::u32>(wc) >> 6u) & 0x3Fu));
+                utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<::u32>(wc) & 0x3Fu));
                 utf8_bytes_filled = 3;
             }
             else if (wc <= 0x10FFFF)
             {
-                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xF0u | ((static_cast<unsigned int>(wc) >> 18u) & 0x07u));
-                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<unsigned int>(wc) >> 12u) & 0x3Fu));
-                utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<unsigned int>(wc) >> 6u) & 0x3Fu));
-                utf8_bytes[3] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<unsigned int>(wc) & 0x3Fu));
+                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xF0u | ((static_cast<::u32>(wc) >> 18u) & 0x07u));
+                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<::u32>(wc) >> 12u) & 0x3Fu));
+                utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<::u32>(wc) >> 6u) & 0x3Fu));
+                utf8_bytes[3] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<::u32>(wc) & 0x3Fu));
                 utf8_bytes_filled = 4;
             }
             else
@@ -4967,23 +4967,23 @@ struct wide_string_input_helper<BaseInputAdapter, 2>
             }
             else if (wc <= 0x7FF)
             {
-                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xC0u | ((static_cast<unsigned int>(wc) >> 6u)));
-                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<unsigned int>(wc) & 0x3Fu));
+                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xC0u | ((static_cast<::u32>(wc) >> 6u)));
+                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<::u32>(wc) & 0x3Fu));
                 utf8_bytes_filled = 2;
             }
             else if (0xD800 > wc || wc >= 0xE000)
             {
-                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xE0u | ((static_cast<unsigned int>(wc) >> 12u)));
-                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<unsigned int>(wc) >> 6u) & 0x3Fu));
-                utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<unsigned int>(wc) & 0x3Fu));
+                utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xE0u | ((static_cast<::u32>(wc) >> 12u)));
+                utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((static_cast<::u32>(wc) >> 6u) & 0x3Fu));
+                utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | (static_cast<::u32>(wc) & 0x3Fu));
                 utf8_bytes_filled = 3;
             }
             else
             {
                 if (JSON_HEDLEY_UNLIKELY(!input.empty()))
                 {
-                    const auto wc2 = static_cast<unsigned int>(input.get_character());
-                    const auto charcode = 0x10000u + (((static_cast<unsigned int>(wc) & 0x3FFu) << 10u) | (wc2 & 0x3FFu));
+                    const auto wc2 = static_cast<::u32>(input.get_character());
+                    const auto charcode = 0x10000u + (((static_cast<::u32>(wc) & 0x3FFu) << 10u) | (wc2 & 0x3FFu));
                     utf8_bytes[0] = static_cast<std::char_traits<char>::int_type>(0xF0u | (charcode >> 18u));
                     utf8_bytes[1] = static_cast<std::char_traits<char>::int_type>(0x80u | ((charcode >> 12u) & 0x3Fu));
                     utf8_bytes[2] = static_cast<std::char_traits<char>::int_type>(0x80u | ((charcode >> 6u) & 0x3Fu));
@@ -5203,7 +5203,7 @@ struct json_sax
 {
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
 
@@ -5240,7 +5240,7 @@ struct json_sax
     @param[in] s    raw token value
     @return whether parsing should proceed
     */
-    virtual bool number_float(number_float_t val, const string_t& s) = 0;
+    virtual bool number_float(number_f32_t val, const string_t& s) = 0;
 
     /*!
     @brief a string was read
@@ -5330,7 +5330,7 @@ class json_sax_dom_parser
   public:
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
 
@@ -5374,7 +5374,7 @@ class json_sax_dom_parser
         return true;
     }
 
-    bool number_float(number_float_t val, const string_t& /*unused*/)
+    bool number_float(number_f32_t val, const string_t& /*unused*/)
     {
         handle_value(val);
         return true;
@@ -5504,7 +5504,7 @@ class json_sax_dom_callback_parser
   public:
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
     using parser_callback_t = typename BasicJsonType::parser_callback_t;
@@ -5549,7 +5549,7 @@ class json_sax_dom_callback_parser
         return true;
     }
 
-    bool number_float(number_float_t val, const string_t& /*unused*/)
+    bool number_float(number_f32_t val, const string_t& /*unused*/)
     {
         handle_value(val);
         return true;
@@ -5800,7 +5800,7 @@ class json_sax_acceptor
   public:
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
 
@@ -5824,7 +5824,7 @@ class json_sax_acceptor
         return true;
     }
 
-    bool number_float(number_float_t /*unused*/, const string_t& /*unused*/)
+    bool number_float(number_f32_t /*unused*/, const string_t& /*unused*/)
     {
         return true;
     }
@@ -5983,7 +5983,7 @@ class lexer : public lexer_base<BasicJsonType>
 {
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using char_type = typename InputAdapterType::char_type;
     using char_int_type = typename std::char_traits<char_type>::int_type;
@@ -6050,15 +6050,15 @@ class lexer : public lexer_base<BasicJsonType>
 
             if (current >= '0' && current <= '9')
             {
-                codepoint += static_cast<int>((static_cast<unsigned int>(current) - 0x30u) << factor);
+                codepoint += static_cast<int>((static_cast<::u32>(current) - 0x30u) << factor);
             }
             else if (current >= 'A' && current <= 'F')
             {
-                codepoint += static_cast<int>((static_cast<unsigned int>(current) - 0x37u) << factor);
+                codepoint += static_cast<int>((static_cast<::u32>(current) - 0x37u) << factor);
             }
             else if (current >= 'a' && current <= 'f')
             {
-                codepoint += static_cast<int>((static_cast<unsigned int>(current) - 0x57u) << factor);
+                codepoint += static_cast<int>((static_cast<::u32>(current) - 0x57u) << factor);
             }
             else
             {
@@ -6218,9 +6218,9 @@ class lexer : public lexer_base<BasicJsonType>
                                         // overwrite codepoint
                                         codepoint = static_cast<int>(
                                                         // high surrogate occupies the most significant 22 bits
-                                                        (static_cast<unsigned int>(codepoint1) << 10u)
+                                                        (static_cast<::u32>(codepoint1) << 10u)
                                                         // low surrogate occupies the least significant 15 bits
-                                                        + static_cast<unsigned int>(codepoint2)
+                                                        + static_cast<::u32>(codepoint2)
                                                         // there is still the 0xD800, 0xDC00 and 0x10000 noise
                                                         // in the result so we have to subtract with:
                                                         // (0xD800 << 10) + DC00 - 0x10000 = 0x35FDC00
@@ -6259,23 +6259,23 @@ class lexer : public lexer_base<BasicJsonType>
                             else if (codepoint <= 0x7FF)
                             {
                                 // 2-::u8 characters: 110xxxxx 10xxxxxx
-                                add(static_cast<char_int_type>(0xC0u | (static_cast<unsigned int>(codepoint) >> 6u)));
-                                add(static_cast<char_int_type>(0x80u | (static_cast<unsigned int>(codepoint) & 0x3Fu)));
+                                add(static_cast<char_int_type>(0xC0u | (static_cast<::u32>(codepoint) >> 6u)));
+                                add(static_cast<char_int_type>(0x80u | (static_cast<::u32>(codepoint) & 0x3Fu)));
                             }
                             else if (codepoint <= 0xFFFF)
                             {
                                 // 3-::u8 characters: 1110xxxx 10xxxxxx 10xxxxxx
-                                add(static_cast<char_int_type>(0xE0u | (static_cast<unsigned int>(codepoint) >> 12u)));
-                                add(static_cast<char_int_type>(0x80u | ((static_cast<unsigned int>(codepoint) >> 6u) & 0x3Fu)));
-                                add(static_cast<char_int_type>(0x80u | (static_cast<unsigned int>(codepoint) & 0x3Fu)));
+                                add(static_cast<char_int_type>(0xE0u | (static_cast<::u32>(codepoint) >> 12u)));
+                                add(static_cast<char_int_type>(0x80u | ((static_cast<::u32>(codepoint) >> 6u) & 0x3Fu)));
+                                add(static_cast<char_int_type>(0x80u | (static_cast<::u32>(codepoint) & 0x3Fu)));
                             }
                             else
                             {
                                 // 4-::u8 characters: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-                                add(static_cast<char_int_type>(0xF0u | (static_cast<unsigned int>(codepoint) >> 18u)));
-                                add(static_cast<char_int_type>(0x80u | ((static_cast<unsigned int>(codepoint) >> 12u) & 0x3Fu)));
-                                add(static_cast<char_int_type>(0x80u | ((static_cast<unsigned int>(codepoint) >> 6u) & 0x3Fu)));
-                                add(static_cast<char_int_type>(0x80u | (static_cast<unsigned int>(codepoint) & 0x3Fu)));
+                                add(static_cast<char_int_type>(0xF0u | (static_cast<::u32>(codepoint) >> 18u)));
+                                add(static_cast<char_int_type>(0x80u | ((static_cast<::u32>(codepoint) >> 12u) & 0x3Fu)));
+                                add(static_cast<char_int_type>(0x80u | ((static_cast<::u32>(codepoint) >> 6u) & 0x3Fu)));
+                                add(static_cast<char_int_type>(0x80u | (static_cast<::u32>(codepoint) & 0x3Fu)));
                             }
 
                             break;
@@ -6780,19 +6780,19 @@ class lexer : public lexer_base<BasicJsonType>
     }
 
     JSON_HEDLEY_NON_NULL(2)
-    static void strtof(float& f, const char* str, char** endptr) noexcept
+    static void strtof(::f32& f, const char* str, char** endptr) noexcept
     {
         f = std::strtof(str, endptr);
     }
 
     JSON_HEDLEY_NON_NULL(2)
-    static void strtof(double& f, const char* str, char** endptr) noexcept
+    static void strtof(::f64& f, const char* str, char** endptr) noexcept
     {
         f = std::strtod(str, endptr);
     }
 
     JSON_HEDLEY_NON_NULL(2)
-    static void strtof(long double& f, const char* str, char** endptr) noexcept
+    static void strtof(::f128& f, const char* str, char** endptr) noexcept
     {
         f = std::strtold(str, endptr);
     }
@@ -7292,7 +7292,7 @@ scan_number_done:
     }
 
     /// return floating-point value
-    constexpr number_float_t get_number_float() const noexcept
+    constexpr number_f32_t get_number_float() const noexcept
     {
         return value_float;
     }
@@ -7493,7 +7493,7 @@ scan_number_done:
     // number values
     number_integer_t value_integer = 0;
     number_unsigned_t value_unsigned = 0;
-    number_float_t value_float = 0;
+    number_f32_t value_float = 0;
 
     /// the decimal point
     const char_int_type decimal_point_char = '.';
@@ -7535,7 +7535,7 @@ using number_unsigned_function_t =
     decltype(std::declval<T&>().number_unsigned(std::declval<Unsigned>()));
 
 template<typename T, typename Float, typename String>
-using number_float_function_t = decltype(std::declval<T&>().number_float(
+using number_f32_function_t = decltype(std::declval<T&>().number_float(
                                     std::declval<Float>(), std::declval<const String&>()));
 
 template<typename T, typename String>
@@ -7578,7 +7578,7 @@ struct is_sax
 
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
     using exception_t = typename BasicJsonType::exception;
@@ -7589,7 +7589,7 @@ struct is_sax
         is_detected_exact<bool, boolean_function_t, SAX>::value &&
         is_detected_exact<bool, number_integer_function_t, SAX, number_integer_t>::value &&
         is_detected_exact<bool, number_unsigned_function_t, SAX, number_unsigned_t>::value &&
-        is_detected_exact<bool, number_float_function_t, SAX, number_float_t, string_t>::value &&
+        is_detected_exact<bool, number_f32_function_t, SAX, number_f32_t, string_t>::value &&
         is_detected_exact<bool, string_function_t, SAX, string_t>::value &&
         is_detected_exact<bool, binary_function_t, SAX, binary_t>::value &&
         is_detected_exact<bool, start_object_function_t, SAX>::value &&
@@ -7609,7 +7609,7 @@ struct is_sax_static_asserts
 
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
     using exception_t = typename BasicJsonType::exception;
@@ -7629,9 +7629,9 @@ struct is_sax_static_asserts
         is_detected_exact<bool, number_unsigned_function_t, SAX,
         number_unsigned_t>::value,
         "Missing/invalid function: bool number_unsigned(number_unsigned_t)");
-    static_assert(is_detected_exact<bool, number_float_function_t, SAX,
-                  number_float_t, string_t>::value,
-                  "Missing/invalid function: bool number_float(number_float_t, const string_t&)");
+    static_assert(is_detected_exact<bool, number_f32_function_t, SAX,
+                  number_f32_t, string_t>::value,
+                  "Missing/invalid function: bool number_float(number_f32_t, const string_t&)");
     static_assert(
         is_detected_exact<bool, string_function_t, SAX, string_t>::value,
         "Missing/invalid function: bool string(string_t&)");
@@ -7696,7 +7696,7 @@ class binary_reader
 {
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
     using json_sax_t = SAX;
@@ -7898,10 +7898,10 @@ class binary_reader
     {
         switch (element_type)
         {
-            case 0x01: // double
+            case 0x01: // ::f64
             {
-                double number{};
-                return get_number<double, true>(input_format_t::bson, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f64 number{};
+                return get_number<::f64, true>(input_format_t::bson, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
             case 0x02: // string
@@ -8246,7 +8246,7 @@ class binary_reader
             case 0x95:
             case 0x96:
             case 0x97:
-                return get_cbor_array(static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x1Fu), tag_handler);
+                return get_cbor_array(static_cast<std::size_t>(static_cast<::u32>(current) & 0x1Fu), tag_handler);
 
             case 0x98: // array (one-::u8 uint8_t for n follows)
             {
@@ -8300,7 +8300,7 @@ class binary_reader
             case 0xB5:
             case 0xB6:
             case 0xB7:
-                return get_cbor_object(static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x1Fu), tag_handler);
+                return get_cbor_object(static_cast<std::size_t>(static_cast<::u32>(current) & 0x1Fu), tag_handler);
 
             case 0xB8: // map (one-::u8 uint8_t for n follows)
             {
@@ -8429,11 +8429,11 @@ class binary_reader
                 // without such support. An example of a small decoder for
                 // half-precision floating-point numbers in the C language
                 // is shown in Fig. 3.
-                const auto half = static_cast<unsigned int>((byte1 << 8u) + byte2);
-                const double val = [&half]
+                const auto half = static_cast<::u32>((byte1 << 8u) + byte2);
+                const ::f64 val = [&half]
                 {
                     const int exp = (half >> 10u) & 0x1Fu;
-                    const unsigned int mant = half & 0x3FFu;
+                    const ::u32 mant = half & 0x3FFu;
                     JSON_ASSERT(0 <= exp&& exp <= 32);
                     JSON_ASSERT(mant <= 1024);
                     switch (exp)
@@ -8442,27 +8442,27 @@ class binary_reader
                             return std::ldexp(mant, -24);
                         case 31:
                             return (mant == 0)
-                            ? std::numeric_limits<double>::infinity()
-                            : std::numeric_limits<double>::quiet_NaN();
+                            ? std::numeric_limits<::f64>::infinity()
+                            : std::numeric_limits<::f64>::quiet_NaN();
                         default:
                             return std::ldexp(mant + 1024, exp - 25);
                     }
                 }();
                 return sax->number_float((half & 0x8000u) != 0
-                                         ? static_cast<number_float_t>(-val)
-                                         : static_cast<number_float_t>(val), "");
+                                         ? static_cast<number_f32_t>(-val)
+                                         : static_cast<number_f32_t>(val), "");
             }
 
             case 0xFA: // Single-Precision Float (four-::u8 IEEE 754)
             {
-                float number{};
-                return get_number(input_format_t::cbor, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f32 number{};
+                return get_number(input_format_t::cbor, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
             case 0xFB: // Double-Precision Float (eight-::u8 IEEE 754)
             {
-                double number{};
-                return get_number(input_format_t::cbor, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f64 number{};
+                return get_number(input_format_t::cbor, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
             default: // anything else (0xFF is handled inside the other types)
@@ -8519,7 +8519,7 @@ class binary_reader
             case 0x76:
             case 0x77:
             {
-                return get_string(input_format_t::cbor, static_cast<unsigned int>(current) & 0x1Fu, result);
+                return get_string(input_format_t::cbor, static_cast<::u32>(current) & 0x1Fu, result);
             }
 
             case 0x78: // UTF-8 string (one-::u8 uint8_t for n follows)
@@ -8614,7 +8614,7 @@ class binary_reader
             case 0x56:
             case 0x57:
             {
-                return get_binary(input_format_t::cbor, static_cast<unsigned int>(current) & 0x1Fu, result);
+                return get_binary(input_format_t::cbor, static_cast<::u32>(current) & 0x1Fu, result);
             }
 
             case 0x58: // Binary data (one-::u8 uint8_t for n follows)
@@ -8920,7 +8920,7 @@ class binary_reader
             case 0x8D:
             case 0x8E:
             case 0x8F:
-                return get_msgpack_object(static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x0Fu));
+                return get_msgpack_object(static_cast<std::size_t>(static_cast<::u32>(current) & 0x0Fu));
 
             // fixarray
             case 0x90:
@@ -8939,7 +8939,7 @@ class binary_reader
             case 0x9D:
             case 0x9E:
             case 0x9F:
-                return get_msgpack_array(static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x0Fu));
+                return get_msgpack_array(static_cast<std::size_t>(static_cast<::u32>(current) & 0x0Fu));
 
             // fixstr
             case 0xA0:
@@ -9007,16 +9007,16 @@ class binary_reader
                 return get_msgpack_binary(b) && sax->binary(b);
             }
 
-            case 0xCA: // float 32
+            case 0xCA: // ::f32 32
             {
-                float number{};
-                return get_number(input_format_t::msgpack, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f32 number{};
+                return get_number(input_format_t::msgpack, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
-            case 0xCB: // float 64
+            case 0xCB: // ::f32 64
             {
-                double number{};
-                return get_number(input_format_t::msgpack, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f64 number{};
+                return get_number(input_format_t::msgpack, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
             case 0xCC: // uint 8
@@ -9187,7 +9187,7 @@ class binary_reader
             case 0xBE:
             case 0xBF:
             {
-                return get_string(input_format_t::msgpack, static_cast<unsigned int>(current) & 0x1Fu, result);
+                return get_string(input_format_t::msgpack, static_cast<::u32>(current) & 0x1Fu, result);
             }
 
             case 0xD9: // str 8
@@ -9634,14 +9634,14 @@ class binary_reader
 
             case 'd':
             {
-                float number{};
-                return get_number(input_format_t::ubjson, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f32 number{};
+                return get_number(input_format_t::ubjson, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
             case 'D':
             {
-                double number{};
-                return get_number(input_format_t::ubjson, number) && sax->number_float(static_cast<number_float_t>(number), "");
+                ::f64 number{};
+                return get_number(input_format_t::ubjson, number) && sax->number_float(static_cast<number_f32_t>(number), "");
             }
 
             case 'H':
@@ -10164,7 +10164,7 @@ class parser
 {
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using string_t = typename BasicJsonType::string_t;
     using lexer_t = lexer<BasicJsonType, InputAdapterType>;
     using token_type = typename lexer_t::token_type;
@@ -11885,7 +11885,7 @@ class json_pointer
         }
 
         std::size_t processed_chars = 0;
-        unsigned long long res = 0;
+        ::u64 res = 0;
         JSON_TRY
         {
             res = std::stoull(s, &processed_chars);
@@ -11903,7 +11903,7 @@ class json_pointer
 
         // only triggered on special platforms (like 32bit), see also
         // https://github.com/nlohmann/json/pull/2203
-        if (res >= static_cast<unsigned long long>((std::numeric_limits<size_type>::max)()))
+        if (res >= static_cast<::u64>((std::numeric_limits<size_type>::max)()))
         {
             JSON_THROW(detail::out_of_range::create(410, "array index " + s + " exceeds size_type")); // LCOV_EXCL_LINE
         }
@@ -12753,7 +12753,7 @@ class binary_writer
 {
     using string_t = typename BasicJsonType::string_t;
     using binary_t = typename BasicJsonType::binary_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
 
   public:
     /*!
@@ -13661,13 +13661,13 @@ class binary_writer
     }
 
     /*!
-    @brief Writes a BSON element with key @a name and double value @a value
+    @brief Writes a BSON element with key @a name and ::f64 value @a value
     */
     void write_bson_double(const string_t& name,
-                           const double value)
+                           const ::f64 value)
     {
         write_bson_entry_header(name, 0x01);
-        write_number<double, true>(value);
+        write_number<::f64, true>(value);
     }
 
     /*!
@@ -13955,12 +13955,12 @@ class binary_writer
     // CBOR //
     //////////
 
-    static constexpr CharType get_cbor_float_prefix(float /*unused*/)
+    static constexpr CharType get_cbor_f32_prefix(::f32 /*unused*/)
     {
         return to_char_type(0xFA);  // Single-Precision Float
     }
 
-    static constexpr CharType get_cbor_float_prefix(double /*unused*/)
+    static constexpr CharType get_cbor_f32_prefix(::f64 /*unused*/)
     {
         return to_char_type(0xFB);  // Double-Precision Float
     }
@@ -13969,14 +13969,14 @@ class binary_writer
     // MsgPack //
     /////////////
 
-    static constexpr CharType get_msgpack_float_prefix(float /*unused*/)
+    static constexpr CharType get_msgpack_f32_prefix(::f32 /*unused*/)
     {
-        return to_char_type(0xCA);  // float 32
+        return to_char_type(0xCA);  // ::f32 32
     }
 
-    static constexpr CharType get_msgpack_float_prefix(double /*unused*/)
+    static constexpr CharType get_msgpack_f32_prefix(::f64 /*unused*/)
     {
-        return to_char_type(0xCB);  // float 64
+        return to_char_type(0xCB);  // ::f32 64
     }
 
     ////////////
@@ -13991,7 +13991,7 @@ class binary_writer
     {
         if (add_prefix)
         {
-            oa->write_character(get_ubjson_float_prefix(n));
+            oa->write_character(get_ubjson_f32_prefix(n));
         }
         write_number(n);
     }
@@ -14189,7 +14189,7 @@ class binary_writer
             }
 
             case value_t::number_float:
-                return get_ubjson_float_prefix(j.m_value.number_float);
+                return get_ubjson_f32_prefix(j.m_value.number_float);
 
             case value_t::string:
                 return 'S';
@@ -14206,14 +14206,14 @@ class binary_writer
         }
     }
 
-    static constexpr CharType get_ubjson_float_prefix(float /*unused*/)
+    static constexpr CharType get_ubjson_f32_prefix(::f32 /*unused*/)
     {
-        return 'd';  // float 32
+        return 'd';  // ::f32 32
     }
 
-    static constexpr CharType get_ubjson_float_prefix(double /*unused*/)
+    static constexpr CharType get_ubjson_f32_prefix(::f64 /*unused*/)
     {
-        return 'D';  // float 64
+        return 'D';  // ::f32 64
     }
 
     ///////////////////////
@@ -14248,22 +14248,22 @@ class binary_writer
         oa->write_characters(vec.data(), sizeof(NumberType));
     }
 
-    void write_compact_float(const number_float_t n, detail::input_format_t format)
+    void write_compact_float(const number_f32_t n, detail::input_format_t format)
     {
-        if (static_cast<double>(n) >= static_cast<double>(std::numeric_limits<float>::lowest()) &&
-                static_cast<double>(n) <= static_cast<double>((std::numeric_limits<float>::max)()) &&
-                static_cast<double>(static_cast<float>(n)) == static_cast<double>(n))
+        if (static_cast<::f64>(n) >= static_cast<::f64>(std::numeric_limits<::f32>::lowest()) &&
+                static_cast<::f64>(n) <= static_cast<::f64>((std::numeric_limits<::f32>::max)()) &&
+                static_cast<::f64>(static_cast<::f32>(n)) == static_cast<::f64>(n))
         {
             oa->write_character(format == detail::input_format_t::cbor
-                                ? get_cbor_float_prefix(static_cast<float>(n))
-                                : get_msgpack_float_prefix(static_cast<float>(n)));
-            write_number(static_cast<float>(n));
+                                ? get_cbor_f32_prefix(static_cast<::f32>(n))
+                                : get_msgpack_f32_prefix(static_cast<::f32>(n)));
+            write_number(static_cast<::f32>(n));
         }
         else
         {
             oa->write_character(format == detail::input_format_t::cbor
-                                ? get_cbor_float_prefix(n)
-                                : get_msgpack_float_prefix(n));
+                                ? get_cbor_f32_prefix(n)
+                                : get_msgpack_f32_prefix(n));
             write_number(n);
         }
     }
@@ -14679,7 +14679,7 @@ inline cached_power get_cached_power_for_binary_exponent(int e)
     //  and the computation itself is approximated [...]. In practice, however,
     //  this simple function is sufficient."
     //
-    // For IEEE double precision floating-point numbers converted into
+    // For IEEE ::f64 precision floating-point numbers converted into
     // normalized diyfp's w = f * 2^e, with q = 64,
     //
     //      e >= -1022      (min IEEE exponent)
@@ -15149,7 +15149,7 @@ inline void grisu2_digit_gen(char* buffer, int& length, int& decimal_exponent,
     // This implies that the algorithm does not produce more than N decimal
     // digits.
     //
-    //      N = 17 for p = 53 (IEEE double precision)
+    //      N = 17 for p = 53 (IEEE ::f64 precision)
     //      N = 9  for p = 24 (IEEE single precision)
 }
 
@@ -15227,24 +15227,24 @@ void grisu2(char* buf, int& len, int& decimal_exponent, FloatType value)
     JSON_ASSERT(std::isfinite(value));
     JSON_ASSERT(value > 0);
 
-    // If the neighbors (and boundaries) of 'value' are always computed for double-precision
-    // numbers, all float's can be recovered using strtod (and strtof). However, the resulting
+    // If the neighbors (and boundaries) of 'value' are always computed for ::f64-precision
+    // numbers, all ::f32's can be recovered using strtod (and strtof). However, the resulting
     // decimal representations are not exactly "short".
     //
     // The documentation for 'std::to_chars' (https://en.cppreference.com/w/cpp/utility/to_chars)
     // says "value is converted to a string as if by std::sprintf in the default ("C") locale"
-    // and since sprintf promotes float's to double's, I think this is exactly what 'std::to_chars'
+    // and since sprintf promotes ::f32's to ::f64's, I think this is exactly what 'std::to_chars'
     // does.
     // On the other hand, the documentation for 'std::to_chars' requires that "parsing the
     // representation using the corresponding std::from_chars function recovers value exactly". That
     // indicates that single precision floating-point numbers should be recovered using
     // 'std::strtof'.
     //
-    // NB: If the neighbors are computed for single-precision numbers, there is a single float
-    //     (7.0385307e-26f) which can't be recovered using strtod. The resulting double precision
+    // NB: If the neighbors are computed for single-precision numbers, there is a single ::f32
+    //     (7.0385307e-26f) which can't be recovered using strtod. The resulting ::f64 precision
     //     value is off by 1 ulp.
 #if 0
-    const boundaries w = compute_boundaries(static_cast<double>(value));
+    const boundaries w = compute_boundaries(static_cast<::f64>(value));
 #else
     const boundaries w = compute_boundaries(value);
 #endif
@@ -15477,7 +15477,7 @@ template<typename BasicJsonType>
 class serializer
 {
     using string_t = typename BasicJsonType::string_t;
-    using number_float_t = typename BasicJsonType::number_float_t;
+    using number_f32_t = typename BasicJsonType::number_f32_t;
     using number_integer_t = typename BasicJsonType::number_integer_t;
     using number_unsigned_t = typename BasicJsonType::number_unsigned_t;
     using binary_char_t = typename BasicJsonType::binary_t::value_type;
@@ -15533,8 +15533,8 @@ class serializer
     void dump(const BasicJsonType& val,
               const bool pretty_print,
               const bool ensure_ascii,
-              const unsigned int indent_step,
-              const unsigned int current_indent = 0)
+              const ::u32 indent_step,
+              const ::u32 current_indent = 0)
     {
         switch (val.m_type)
         {
@@ -16070,9 +16070,9 @@ class serializer
     @param[in] x  unsigned integer number to count its digits
     @return    number of decimal digits
     */
-    inline unsigned int count_digits(number_unsigned_t x) noexcept
+    inline ::u32 count_digits(number_unsigned_t x) noexcept
     {
-        unsigned int n_digits = 1;
+        ::u32 n_digits = 1;
         for (;;)
         {
             if (x < 10)
@@ -16141,7 +16141,7 @@ class serializer
         const bool is_negative = std::is_same<NumberType, number_integer_t>::value && !(x >= 0); // see issue #755
         number_unsigned_t abs_value;
 
-        unsigned int n_chars;
+        ::u32 n_chars;
 
         if (is_negative)
         {
@@ -16196,7 +16196,7 @@ class serializer
 
     @param[in] x  floating-point number to dump
     */
-    void dump_float(number_float_t x)
+    void dump_float(number_f32_t x)
     {
         // NaN / inf
         if (!std::isfinite(x))
@@ -16205,19 +16205,19 @@ class serializer
             return;
         }
 
-        // If number_float_t is an IEEE-754 single or double precision number,
+        // If number_f32_t is an IEEE-754 single or ::f64 precision number,
         // use the Grisu2 algorithm to produce short numbers which are
         // guaranteed to round-trip, using strtof and strtod, resp.
         //
-        // NB: The test below works if <long double> == <double>.
+        // NB: The test below works if <::f128> == <::f64>.
         static constexpr bool is_ieee_single_or_double
-            = (std::numeric_limits<number_float_t>::is_iec559 && std::numeric_limits<number_float_t>::digits == 24 && std::numeric_limits<number_float_t>::max_exponent == 128) ||
-              (std::numeric_limits<number_float_t>::is_iec559 && std::numeric_limits<number_float_t>::digits == 53 && std::numeric_limits<number_float_t>::max_exponent == 1024);
+            = (std::numeric_limits<number_f32_t>::is_iec559 && std::numeric_limits<number_f32_t>::digits == 24 && std::numeric_limits<number_f32_t>::max_exponent == 128) ||
+              (std::numeric_limits<number_f32_t>::is_iec559 && std::numeric_limits<number_f32_t>::digits == 53 && std::numeric_limits<number_f32_t>::max_exponent == 1024);
 
         dump_float(x, std::integral_constant<bool, is_ieee_single_or_double>());
     }
 
-    void dump_float(number_float_t x, std::true_type /*is_ieee_single_or_double*/)
+    void dump_float(number_f32_t x, std::true_type /*is_ieee_single_or_double*/)
     {
         char* begin = number_buffer.data();
         char* end = ::nlohmann::detail::to_chars(begin, begin + number_buffer.size(), x);
@@ -16225,10 +16225,10 @@ class serializer
         o->write_characters(begin, static_cast<size_t>(end - begin));
     }
 
-    void dump_float(number_float_t x, std::false_type /*is_ieee_single_or_double*/)
+    void dump_float(number_f32_t x, std::false_type /*is_ieee_single_or_double*/)
     {
-        // get number of digits for a float -> text -> float round-trip
-        static constexpr auto d = std::numeric_limits<number_float_t>::max_digits10;
+        // get number of digits for a ::f32 -> text -> ::f32 round-trip
+        static constexpr auto d = std::numeric_limits<number_f32_t>::max_digits10;
 
         // the actual conversion
         std::ptrdiff_t len = (std::snprintf)(number_buffer.data(), number_buffer.size(), "%.*g", d, x);
@@ -16584,8 +16584,8 @@ in @ref boolean_t)
 default; will be used in @ref number_integer_t)
 @tparam NumberUnsignedType type for JSON unsigned integer numbers (@c
 `uint64_t` by default; will be used in @ref number_unsigned_t)
-@tparam NumberFloatType type for JSON floating-point numbers (`double` by
-default; will be used in @ref number_float_t)
+@tparam NumberFloatType type for JSON floating-point numbers (`::f64` by
+default; will be used in @ref number_f32_t)
 @tparam BinaryType type for packed binary data for compatibility with binary
 serialization formats (`std::vector<std::uint8_t>` by default; will be used in
 @ref binary_t)
@@ -17131,7 +17131,7 @@ class basic_json
     However, C++ allows more precise storage if it is known whether the number
     is a signed integer, an unsigned integer or a floating-point number.
     Therefore, three different types, @ref number_integer_t, @ref
-    number_unsigned_t and @ref number_float_t are used.
+    number_unsigned_t and @ref number_f32_t are used.
 
     To store integer numbers in C++, a type is defined by the template
     parameter @a NumberIntegerType which chooses the type to use.
@@ -17165,7 +17165,7 @@ class basic_json
     that are out of range will yield over/underflow when used in a
     constructor. During deserialization, too large or small integer numbers
     will be automatically be stored as @ref number_unsigned_t or @ref
-    number_float_t.
+    number_f32_t.
 
     [RFC 7159](http://rfc7159.net/rfc7159) further states:
     > Note that when such software is used, numbers that are integers and are
@@ -17179,7 +17179,7 @@ class basic_json
 
     Integer number values are stored directly inside a @ref basic_json type.
 
-    @sa @ref number_float_t -- type for number values (floating-point)
+    @sa @ref number_f32_t -- type for number values (floating-point)
 
     @sa @ref number_unsigned_t -- type for number values (unsigned integer)
 
@@ -17203,7 +17203,7 @@ class basic_json
     However, C++ allows more precise storage if it is known whether the number
     is a signed integer, an unsigned integer or a floating-point number.
     Therefore, three different types, @ref number_integer_t, @ref
-    number_unsigned_t and @ref number_float_t are used.
+    number_unsigned_t and @ref number_f32_t are used.
 
     To store unsigned integer numbers in C++, a type is defined by the
     template parameter @a NumberUnsignedType which chooses the type to use.
@@ -17236,7 +17236,7 @@ class basic_json
     number that can be stored is `0`. Integer numbers that are out of range
     will yield over/underflow when used in a constructor. During
     deserialization, too large or small integer numbers will be automatically
-    be stored as @ref number_integer_t or @ref number_float_t.
+    be stored as @ref number_integer_t or @ref number_f32_t.
 
     [RFC 7159](http://rfc7159.net/rfc7159) further states:
     > Note that when such software is used, numbers that are integers and are
@@ -17251,7 +17251,7 @@ class basic_json
 
     Integer number values are stored directly inside a @ref basic_json type.
 
-    @sa @ref number_float_t -- type for number values (floating-point)
+    @sa @ref number_f32_t -- type for number values (floating-point)
     @sa @ref number_integer_t -- type for number values (integer)
 
     @since version 2.0.0
@@ -17274,18 +17274,18 @@ class basic_json
     However, C++ allows more precise storage if it is known whether the number
     is a signed integer, an unsigned integer or a floating-point number.
     Therefore, three different types, @ref number_integer_t, @ref
-    number_unsigned_t and @ref number_float_t are used.
+    number_unsigned_t and @ref number_f32_t are used.
 
     To store floating-point numbers in C++, a type is defined by the template
     parameter @a NumberFloatType which chooses the type to use.
 
     #### Default type
 
-    With the default values for @a NumberFloatType (`double`), the default
-    value for @a number_float_t is:
+    With the default values for @a NumberFloatType (`::f64`), the default
+    value for @a number_f32_t is:
 
     @code {.cpp}
-    double
+    ::f64
     @endcode
 
     #### Default behavior
@@ -17302,13 +17302,13 @@ class basic_json
     [RFC 7159](http://rfc7159.net/rfc7159) states:
     > This specification allows implementations to set limits on the range and
     > precision of numbers accepted. Since software that implements IEEE
-    > 754-2008 binary64 (double precision) numbers is generally available and
+    > 754-2008 binary64 (::f64 precision) numbers is generally available and
     > widely used, good interoperability can be achieved by implementations
     > that expect no more precision or range than these provide, in the sense
     > that implementations will approximate JSON numbers within the expected
     > precision.
 
-    This implementation does exactly follow this approach, as it uses double
+    This implementation does exactly follow this approach, as it uses ::f64
     precision floating-point numbers. Note values smaller than
     `-1.79769313486232e+308` and values greater than `1.79769313486232e+308`
     will be stored as NaN internally and be serialized to `null`.
@@ -17324,7 +17324,7 @@ class basic_json
 
     @since version 1.0.0
     */
-    using number_float_t = NumberFloatType;
+    using number_f32_t = NumberFloatType;
 
     /*!
     @brief a type for a packed binary type
@@ -17437,7 +17437,7 @@ class basic_json
     boolean   | boolean         | @ref boolean_t
     number    | number_integer  | @ref number_integer_t
     number    | number_unsigned | @ref number_unsigned_t
-    number    | number_float    | @ref number_float_t
+    number    | number_float    | @ref number_f32_t
     binary    | binary          | pointer to @ref binary_t
     null      | null            | *no value is stored*
 
@@ -17464,7 +17464,7 @@ class basic_json
         /// number (unsigned integer)
         number_unsigned_t number_unsigned;
         /// number (floating-point)
-        number_float_t number_float;
+        number_f32_t number_float;
 
         /// default constructor (for null values)
         json_value() = default;
@@ -17475,7 +17475,7 @@ class basic_json
         /// constructor for numbers (unsigned)
         json_value(number_unsigned_t v) noexcept : number_unsigned(v) {}
         /// constructor for numbers (floating-point)
-        json_value(number_float_t v) noexcept : number_float(v) {}
+        json_value(number_f32_t v) noexcept : number_float(v) {}
         /// constructor for empty values of a given type
         json_value(value_t t)
         {
@@ -17525,7 +17525,7 @@ class basic_json
 
                 case value_t::number_float:
                 {
-                    number_float = number_float_t(0.0);
+                    number_float = number_f32_t(0.0);
                     break;
                 }
 
@@ -17880,8 +17880,8 @@ class basic_json
     - **strings**: @ref string_t, string literals, and all compatible string
       containers can be used.
     - **numbers**: @ref number_integer_t, @ref number_unsigned_t,
-      @ref number_float_t, and all convertible number types such as `int`,
-      `size_t`, `int64_t`, `float` or `double` can be used.
+      @ref number_f32_t, and all convertible number types such as `int`,
+      `size_t`, `int64_t`, `::f32` or `::f64` can be used.
     - **boolean**: @ref boolean_t / `bool` can be used.
     - **binary**: @ref binary_t / `std::vector<uint8_t>` may be used,
       unfortunately because string literals cannot be distinguished from binary
@@ -17964,7 +17964,7 @@ class basic_json
     basic_json(const BasicJsonType& val)
     {
         using other_boolean_t = typename BasicJsonType::boolean_t;
-        using other_number_float_t = typename BasicJsonType::number_float_t;
+        using other_number_f32_t = typename BasicJsonType::number_f32_t;
         using other_number_integer_t = typename BasicJsonType::number_integer_t;
         using other_number_unsigned_t = typename BasicJsonType::number_unsigned_t;
         using other_string_t = typename BasicJsonType::string_t;
@@ -17978,7 +17978,7 @@ class basic_json
                 JSONSerializer<other_boolean_t>::to_json(*this, val.template get<other_boolean_t>());
                 break;
             case value_t::number_float:
-                JSONSerializer<other_number_float_t>::to_json(*this, val.template get<other_number_float_t>());
+                JSONSerializer<other_number_f32_t>::to_json(*this, val.template get<other_number_f32_t>());
                 break;
             case value_t::number_integer:
                 JSONSerializer<other_number_integer_t>::to_json(*this, val.template get<other_number_integer_t>());
@@ -18766,7 +18766,7 @@ class basic_json
 
         if (indent >= 0)
         {
-            s.dump(*this, true, ensure_ascii, static_cast<unsigned int>(indent));
+            s.dump(*this, true, ensure_ascii, static_cast<::u32>(indent));
         }
         else
         {
@@ -19263,13 +19263,13 @@ class basic_json
     }
 
     /// get a pointer to the value (floating-point number)
-    number_float_t* get_impl_ptr(number_float_t* /*unused*/) noexcept
+    number_f32_t* get_impl_ptr(number_f32_t* /*unused*/) noexcept
     {
         return is_number_float() ? &m_value.number_float : nullptr;
     }
 
     /// get a pointer to the value (floating-point number)
-    constexpr const number_float_t* get_impl_ptr(const number_float_t* /*unused*/) const noexcept
+    constexpr const number_f32_t* get_impl_ptr(const number_f32_t* /*unused*/) const noexcept
     {
         return is_number_float() ? &m_value.number_float : nullptr;
     }
@@ -19547,7 +19547,7 @@ class basic_json
 
     @tparam PointerType pointer type; must be a pointer to @ref array_t, @ref
     object_t, @ref string_t, @ref boolean_t, @ref number_integer_t,
-    @ref number_unsigned_t, or @ref number_float_t. Enforced by a static
+    @ref number_unsigned_t, or @ref number_f32_t. Enforced by a static
     assertion.
 
     @return pointer to the internally stored JSON value if the requested
@@ -19594,7 +19594,7 @@ class basic_json
 
     @tparam PointerType pointer type; must be a pointer to @ref array_t, @ref
     object_t, @ref string_t, @ref boolean_t, @ref number_integer_t,
-    @ref number_unsigned_t, or @ref number_float_t.
+    @ref number_unsigned_t, or @ref number_f32_t.
 
     @return pointer to the internally stored JSON value if the requested
     pointer type @a PointerType fits to the JSON value; `nullptr` otherwise
@@ -19641,7 +19641,7 @@ class basic_json
 
     @tparam ReferenceType reference type; must be a reference to @ref array_t,
     @ref object_t, @ref string_t, @ref boolean_t, @ref number_integer_t, or
-    @ref number_float_t. Enforced by static assertion.
+    @ref number_f32_t. Enforced by static assertion.
 
     @return reference to the internally stored JSON value if the requested
     reference type @a ReferenceType fits to the JSON value; throws
@@ -22564,7 +22564,7 @@ class basic_json
     - Two JSON null values are equal.
 
     @note Floating-point inside JSON values numbers are compared with
-    `json::number_float_t::operator==` which is `double::operator==` by
+    `json::number_f32_t::operator==` which is `::f64::operator==` by
     default. To compare floating-point while respecting an epsilon, an alternative
     [comparison function](https://github.com/mariokonrad/marnav/blob/master/include/marnav/math/floatingpoint.hpp#L34-#L39)
     could be used, for instance
@@ -22584,7 +22584,7 @@ class basic_json
         switch(lhs_type)
             // self_defined case
             case value_t::number_float:
-                return std::abs(lhs - rhs) <= std::numeric_limits<float>::epsilon();
+                return std::abs(lhs - rhs) <= std::numeric_limits<::f32>::epsilon();
             // other cases remain the same with the original
             ...
     }
@@ -22649,19 +22649,19 @@ class basic_json
         }
         else if (lhs_type == value_t::number_integer && rhs_type == value_t::number_float)
         {
-            return static_cast<number_float_t>(lhs.m_value.number_integer) == rhs.m_value.number_float;
+            return static_cast<number_f32_t>(lhs.m_value.number_integer) == rhs.m_value.number_float;
         }
         else if (lhs_type == value_t::number_float && rhs_type == value_t::number_integer)
         {
-            return lhs.m_value.number_float == static_cast<number_float_t>(rhs.m_value.number_integer);
+            return lhs.m_value.number_float == static_cast<number_f32_t>(rhs.m_value.number_integer);
         }
         else if (lhs_type == value_t::number_unsigned && rhs_type == value_t::number_float)
         {
-            return static_cast<number_float_t>(lhs.m_value.number_unsigned) == rhs.m_value.number_float;
+            return static_cast<number_f32_t>(lhs.m_value.number_unsigned) == rhs.m_value.number_float;
         }
         else if (lhs_type == value_t::number_float && rhs_type == value_t::number_unsigned)
         {
-            return lhs.m_value.number_float == static_cast<number_float_t>(rhs.m_value.number_unsigned);
+            return lhs.m_value.number_float == static_cast<number_f32_t>(rhs.m_value.number_unsigned);
         }
         else if (lhs_type == value_t::number_unsigned && rhs_type == value_t::number_integer)
         {
@@ -22812,19 +22812,19 @@ class basic_json
         }
         else if (lhs_type == value_t::number_integer && rhs_type == value_t::number_float)
         {
-            return static_cast<number_float_t>(lhs.m_value.number_integer) < rhs.m_value.number_float;
+            return static_cast<number_f32_t>(lhs.m_value.number_integer) < rhs.m_value.number_float;
         }
         else if (lhs_type == value_t::number_float && rhs_type == value_t::number_integer)
         {
-            return lhs.m_value.number_float < static_cast<number_float_t>(rhs.m_value.number_integer);
+            return lhs.m_value.number_float < static_cast<number_f32_t>(rhs.m_value.number_integer);
         }
         else if (lhs_type == value_t::number_unsigned && rhs_type == value_t::number_float)
         {
-            return static_cast<number_float_t>(lhs.m_value.number_unsigned) < rhs.m_value.number_float;
+            return static_cast<number_f32_t>(lhs.m_value.number_unsigned) < rhs.m_value.number_float;
         }
         else if (lhs_type == value_t::number_float && rhs_type == value_t::number_unsigned)
         {
-            return lhs.m_value.number_float < static_cast<number_float_t>(rhs.m_value.number_unsigned);
+            return lhs.m_value.number_float < static_cast<number_f32_t>(rhs.m_value.number_unsigned);
         }
         else if (lhs_type == value_t::number_integer && rhs_type == value_t::number_unsigned)
         {
@@ -23052,7 +23052,7 @@ class basic_json
 
         // do the actual serialization
         serializer s(detail::output_adapter<char>(o), o.fill());
-        s.dump(j, pretty_print, false, static_cast<unsigned int>(indentation));
+        s.dump(j, pretty_print, false, static_cast<::u32>(indentation));
         return o;
     }
 
@@ -23485,8 +23485,8 @@ class basic_json
     number_unsigned | 256..65535                                 | Unsigned integer (2 bytes follow)  | 0x19
     number_unsigned | 65536..4294967295                          | Unsigned integer (4 bytes follow)  | 0x1A
     number_unsigned | 4294967296..18446744073709551615           | Unsigned integer (8 bytes follow)  | 0x1B
-    number_float    | *any value representable by a float*       | Single-Precision Float             | 0xFA
-    number_float    | *any value NOT representable by a float*   | Double-Precision Float             | 0xFB
+    number_float    | *any value representable by a ::f32*       | Single-Precision Float             | 0xFA
+    number_float    | *any value NOT representable by a ::f32*   | Double-Precision Float             | 0xFB
     string          | *length*: 0..23                            | UTF-8 string                       | 0x60..0x77
     string          | *length*: 23..255                          | UTF-8 string (1 ::u8 follow)       | 0x78
     string          | *length*: 256..65535                       | UTF-8 string (2 bytes follow)      | 0x79
@@ -23595,8 +23595,8 @@ class basic_json
     number_unsigned | 256..65535                        | uint 16          | 0xCD
     number_unsigned | 65536..4294967295                 | uint 32          | 0xCE
     number_unsigned | 4294967296..18446744073709551615  | uint 64          | 0xCF
-    number_float    | *any value representable by a float*     | float 32 | 0xCA
-    number_float    | *any value NOT representable by a float* | float 64 | 0xCB
+    number_float    | *any value representable by a ::f32*     | ::f32 32 | 0xCA
+    number_float    | *any value NOT representable by a ::f32* | ::f32 64 | 0xCB
     string          | *length*: 0..31                   | fixstr           | 0xA0..0xBF
     string          | *length*: 32..255                 | str 8            | 0xD9
     string          | *length*: 256..65535              | str 16           | 0xDA
@@ -23787,7 +23787,7 @@ class basic_json
     number_unsigned | 0..2147483647                     | int32       | 0x10
     number_unsigned | 2147483648..9223372036854775807   | int64       | 0x12
     number_unsigned | 9223372036854775808..18446744073709551615| --   | --
-    number_float    | *any value*                       | double      | 0x01
+    number_float    | *any value*                       | ::f64      | 0x01
     string          | *any value*                       | string      | 0x02
     array           | *any value*                       | document    | 0x04
     object          | *any value*                       | document    | 0x03
@@ -24029,8 +24029,8 @@ class basic_json
     nil              | `null`          | 0xC0
     false            | `false`         | 0xC2
     true             | `true`          | 0xC3
-    float 32         | number_float    | 0xCA
-    float 64         | number_float    | 0xCB
+    ::f32 32         | number_float    | 0xCA
+    ::f32 64         | number_float    | 0xCB
     uint 8           | number_unsigned | 0xCC
     uint 16          | number_unsigned | 0xCD
     uint 32          | number_unsigned | 0xCE
@@ -24277,7 +24277,7 @@ class basic_json
 
     BSON type       | BSON marker ::u8 | JSON value type
     --------------- | ---------------- | ---------------------------
-    double          | 0x01             | number_float
+    ::f64          | 0x01             | number_float
     string          | 0x02             | string
     document        | 0x03             | object
     array           | 0x04             | array
@@ -24294,7 +24294,7 @@ class basic_json
     JavaScript Code | 0x0F             | still unsupported
     int32           | 0x10             | number_integer
     Timestamp       | 0x11             | still unsupported
-    128-bit decimal float | 0x13       | still unsupported
+    128-bit decimal ::f32 | 0x13       | still unsupported
     Max Key         | 0x7F             | still unsupported
     Min Key         | 0xFF             | still unsupported
 

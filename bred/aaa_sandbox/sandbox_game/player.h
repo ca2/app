@@ -28,8 +28,8 @@ namespace sandbox_game
       mnk_controller m_controller;
 
       // Configuration
-      float m_mouseSensitivity = 0.0025f;
-      float m_moveSpeed = 30.0f;
+      ::f32 m_mouseSensitivity = 0.0025f;
+      ::f32 m_moveSpeed = 30.0f;
 
       player();
 
@@ -37,7 +37,7 @@ namespace sandbox_game
       void initialize_sandbox_player(::graphics3d::IWindowInput * pinput);
 
       void onInit() override;
-      void on_update(float deltaTime) override;
+      void on_update(::f32 deltaTime) override;
 
       ::graphics3d::transform& transform() override;
 

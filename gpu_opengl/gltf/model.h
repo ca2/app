@@ -62,7 +62,7 @@ namespace gpu_opengl
          //::gpu::texture *loadMaterialTexture(aiMaterial *material, aiTextureType type);
 
 
-         //::u32 textureFromFile(const char *fileName, ::string directory, aiTextureType type);
+         //::u32 textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType type);
 
       };
 

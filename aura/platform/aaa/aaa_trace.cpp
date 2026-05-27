@@ -24,20 +24,20 @@ namespace aura
       }
 
 
-      typedef void ( * PFN_trace_v)(const ::scoped_string & scopedstrFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args);
-      CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args);
+      typedef void ( * PFN_trace_v)(const ::scoped_string & scopedstrFileName, ::i32 nLine, ::u32 dwCategory, ::u32 nLevel, const ::scoped_string & scopedstrFmt, va_list args);
+      CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName, ::i32 nLine, ::u32 dwCategory, ::u32 nLevel, const ::scoped_string & scopedstrFmt, va_list args);
       CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
 
 
-      void trace::TraceV(const ::scoped_string & scopedstrFileName, int nLine, e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, va_list args) const
+      void trace::TraceV(const ::scoped_string & scopedstrFileName, ::i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, va_list args) const
       {
          __UNREFERENCED_PARAMETER(scopedstrFileName);
          __UNREFERENCED_PARAMETER(nLine);
          /*      const category *pCategory;
          trace_module * pmodule = nullptr;
-         static const int nCount = 1024;
-         char szBuf[nCount] = {'\0'};
-         int nLen = 0;*/
+         static const ::i32 nCount = 1024;
+         ::i8 szBuf[nCount] = {'\0'};
+         ::i32 nLen = 0;*/
 
          auto pcategory = ((trace *) this)->enabled_get(ecategory, elevel);
 
@@ -46,7 +46,7 @@ namespace aura
          {
          if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
          {
-         int nTemp;
+         ::i32 nTemp;
          C_RUNTIME_FORMATTED_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
          if( nTemp < 0 )
          nLen = nCount;
@@ -58,7 +58,7 @@ namespace aura
          {
          if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
          {
-         int nTemp;
+         ::i32 nTemp;
          C_RUNTIME_FORMATTED_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
          if( nTemp < 0 )
          nLen = nCount;
@@ -105,7 +105,7 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args)
+      CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName, ::i32 nLine, ::u32 dwCategory, ::u32 nLevel, const ::scoped_string & scopedstrFmt, va_list args)
       {
 
          __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -121,7 +121,7 @@ namespace aura
 
       }
 
-      /*CLASS_DECL_AURA void system_log_trace_v(const ::scoped_string & scopedstrFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args)
+      /*CLASS_DECL_AURA void system_log_trace_v(const ::scoped_string & scopedstrFileName, ::i32 nLine, ::u32 dwCategory, ::u32 nLevel, const ::scoped_string & scopedstrFmt, va_list args)
       {
       ::auraacmesystem()->log().trace_v(scopedstrFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
@@ -142,8 +142,8 @@ struct MAP_WM_MESSAGE
 {
 
 
-   unsigned int              nMsg;
-   const char *      pszMsg;
+   ::u32              nMsg;
+   const_char_pointer pszMsg;
 
 
 
@@ -336,7 +336,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_AURA const char *  get_windows_message_name(unsigned int nMsg)
+CLASS_DECL_AURA const_char_pointer get_windows_message_name(::u32 nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;
@@ -381,7 +381,7 @@ void set_global_trace_level(enum_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, int iLine, const ::scoped_string & scopedstr)
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, ::i32 iLine, const ::scoped_string & scopedstr)
 {
 
    if (elevel < get_global_trace_level())
@@ -454,7 +454,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, int iLine, const ::scoped_string & scopedstrFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

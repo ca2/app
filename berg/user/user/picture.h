@@ -24,38 +24,38 @@ namespace user
       public:
 
 
-         double_rectangle                 m_rectangle;
-         double_rectangle                 m_rectangleDrawing;
+         ::f64_rectangle                 m_rectangle;
+         ::f64_rectangle                 m_rectangleDrawing;
 
-         double_rectangle                 m_rectangleRegion;
-         double_rectangle                 m_rectangleRegionDrawing;
+         ::f64_rectangle                 m_rectangleRegion;
+         ::f64_rectangle                 m_rectangleRegionDrawing;
 
 
-         double_rectangle                 m_rectangleCursor;
+         ::f64_rectangle                 m_rectangleCursor;
          bool                             m_bDrag;
-         double                           m_dRotate;
+         ::f64                           m_dRotate;
          ::draw2d::region_pointer         m_region;
-         double_rectangle                 m_rectangleBounding;
-         double_polygon_base              m_polygon;
-         double_polygon_base              m_polygonDrawing;
-         double_poi32_array_base          m_pointaCursor;
-         double                           m_dZoom;
-         double_point                     m_pointDrag2;
+         ::f64_rectangle                 m_rectangleBounding;
+         f64_polygon_base              m_polygon;
+         f64_polygon_base              m_polygonDrawing;
+         f64_point_array_base          m_pointaCursor;
+         ::f64                           m_dZoom;
+         ::f64_point                     m_pointDrag2;
 
          bool                             m_bOutline;
-         int                              m_iOutlineWidth;
+         ::i32                              m_iOutlineWidth;
          ::color::hls                     m_hlsOutline;
 
          bool                             m_bGlowDropShadow;
-         int                              m_iGlowDropShadowOffset;
-         int                              m_iGlowDropShadowBlur;
+         ::i32                              m_iGlowDropShadowOffset;
+         ::i32                              m_iGlowDropShadowBlur;
          ::color::hls                     m_hlsGlowDropShadow;
 
-         int                              m_iBlur;
+         ::i32                              m_iBlur;
          bool                             m_bGrayscale;
          bool                             m_bInvert;
-         int                              m_iOpacity; // 0 - 100
-         int                              m_iSaturation; // 0 - 200
+         ::i32                              m_iOpacity; // 0 - 100
+         ::i32                              m_iSaturation; // 0 - 200
 
 
          picture_impl();
@@ -72,7 +72,7 @@ namespace user
       };
 
 
-      double_point_array                  m_pointaCache1;
+      f64_point_array                  m_pointaCache1;
 
 
       ::pointer<picture_impl>    m_ppictureimpl;
@@ -85,7 +85,7 @@ namespace user
       virtual bool is_picture_enabled() const;
 
       
-      virtual ::double_point get_point_transform();
+      virtual ::f64_point get_point_transform();
 
 
       virtual bool is_picture_hover();
@@ -96,28 +96,28 @@ namespace user
 
 
       ::item_pointer parent_client_on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
-      //virtual int on_hit_test_cursor(double_point point);
-      //virtual int on_hit_test( i32_point) const;
-      virtual bool intersects_drawing(const double_polygon & int_polygon) const;
-      virtual bool intersects_drawing(const ::double_rectangle & rectangle) const;
+      //virtual ::i32 on_hit_test_cursor(::f64_point point);
+      //virtual ::i32 on_hit_test( i32_point) const;
+      virtual bool intersects_drawing(const f64_polygon & i32_polygon) const;
+      virtual bool intersects_drawing(const ::f64_rectangle & rectangle) const;
 
-      virtual bool intersects(const ::double_rectangle & rectangle) const;
+      virtual bool intersects(const ::f64_rectangle & rectangle) const;
 
       virtual ::draw2d::region_pointer get_region() const;
 
-      virtual double_rectangle drawing_bounds() const;
-      virtual double_poi32_array_base & drawing_polygon() const;
+      virtual ::f64_rectangle drawing_bounds() const;
+      virtual f64_point_array_base & drawing_polygon() const;
 
-      virtual void update_drawing_rect(::double_size sizePage, ::double_size sizeClient);
-      virtual void update_screen_rect(::double_size sizePage, ::double_size sizeClient);
+      virtual void update_drawing_rect(::f64_size sizePage, ::f64_size sizeClient);
+      virtual void update_screen_rect(::f64_size sizePage, ::f64_size sizeClient);
       virtual void update_region();
       virtual void update_placement();
 
-      virtual void set_drag_point(const ::double_point & double_point);
-      virtual ::double_point get_drag_point();
+      virtual void set_drag_point(const ::f64_point & ::f64_point);
+      virtual ::f64_point get_drag_point();
 
-      virtual void _transform_sequence(double_sequence2 & sequence) const;
-      virtual void _transform_sequence_drawing(double_sequence2 & sequence) const;
+      virtual void _transform_sequence(f64_sequence2 & sequence) const;
+      virtual void _transform_sequence_drawing(f64_sequence2 & sequence) const;
       template < typename T >
       inline T _transform(const T & t) const
       {
@@ -132,8 +132,8 @@ namespace user
          _transform_sequence(tTransform);
          return tTransform;
       }
-      virtual void _rtransform_sequence(double_sequence2 & sequence) const;
-      virtual void _rtransform_sequence_drawing(double_sequence2 & sequence) const;
+      virtual void _rtransform_sequence(f64_sequence2 & sequence) const;
+      virtual void _rtransform_sequence_drawing(f64_sequence2 & sequence) const;
       template < typename T >
       inline T _rtransform(const T & t) const
       {
@@ -149,8 +149,8 @@ namespace user
          return tTransform;
       }
 
-      virtual void drag_transform_sequence(double_sequence2 & sequence) const;
-      virtual void drag_transform_sequence_drawing(double_sequence2 & sequence) const;
+      virtual void drag_transform_sequence(f64_sequence2 & sequence) const;
+      virtual void drag_transform_sequence_drawing(f64_sequence2 & sequence) const;
       template < typename T >
       inline T drag_transform(const T & t) const
       {
@@ -165,9 +165,9 @@ namespace user
          drag_transform_sequence(tTransform);
          return tTransform;
       }
-      //inline void drag_rtransform_size(double_size& size) const { drag_rtransform_point((::double_point &) size); }
-      virtual void drag_rtransform_sequence(double_sequence2 & sequence) const;
-      virtual void drag_rtransform_sequence_drawing(double_sequence2 & sequence) const;
+      //inline void drag_rtransform_size(::f64_size& size) const { drag_rtransform_point((::f64_point &) size); }
+      virtual void drag_rtransform_sequence(f64_sequence2 & sequence) const;
+      virtual void drag_rtransform_sequence_drawing(f64_sequence2 & sequence) const;
       template < typename T >
       inline T drag_rtransform(const T & t) const
       {
@@ -187,8 +187,8 @@ namespace user
       virtual void reset_cursor_rect();
       virtual bool is_dragging();
       virtual bool is_valid();
-      virtual ::double_size get_size();
-      virtual ::double_size get_request_size();
+      virtual ::f64_size get_size();
+      virtual ::f64_size get_request_size();
 
       virtual ::image::image_pointer defer_draw_drop_shadow_phase1(i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow, ::image::image_pointer pimage);
       virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow);
@@ -200,14 +200,14 @@ namespace user
       virtual bool is_text_editor();
 
       
-      virtual ::double_rectangle get_rect_for_picture2();
+      virtual ::f64_rectangle get_rect_for_picture2();
 
 
       virtual void draw(::draw2d::graphics_pointer & pgraphics);
       virtual void draw_impl(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void move_to(double_point point, ::double_size sizePage, ::double_size sizeClient, const ::double_rectangle & rectangleMargin);
+      virtual void move_to(::f64_point point, ::f64_size sizePage, ::f64_size sizeClient, const ::f64_rectangle & rectangleMargin);
 
 
       void read_from_stream(::binary_stream & stream) override;

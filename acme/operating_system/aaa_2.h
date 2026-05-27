@@ -91,7 +91,7 @@ CLASS_DECL_ACME bool is_verbose();
 #endif
 
 template < typename PRED >
-inline bool predicate_Sleep(int iTime, PRED pred);
+inline bool predicate_Sleep(::i32 iTime, PRED pred);
 
 CLASS_DECL_ACME void press_any_key_to_exit(const ::scoped_string & scopedstr = nullptr);
 
@@ -132,8 +132,8 @@ CLASS_DECL_ACME locale_t get_c_locale();
 
 //#ifdef
 //
-//CLASS_DECL_ACME iptr get_window_long_ptr(::windowing::window * pwindow, int iIndex);
-//CLASS_DECL_ACME iptr set_window_long_ptr(::windowing::window * pwindow, int iIndex, iptr i);
+//CLASS_DECL_ACME iptr get_window_long_ptr(::windowing::window * pwindow, ::i32 iIndex);
+//CLASS_DECL_ACME iptr set_window_long_ptr(::windowing::window * pwindow, ::i32 iIndex, iptr i);
 
 
 #include "user.h"
@@ -167,7 +167,7 @@ enum enum_command_system
 #include "acme/prototype/duration/_.h"
 
 
-CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
+CLASS_DECL_ACME void command_system(string & strOutput, string & strError, ::i32 & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
 CLASS_DECL_ACME ::atom auto pmessageboxpayload = __initialize_new ::message_box_payload(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, enum_message_box emessagebox = ::user::e_message_box_ok);
 

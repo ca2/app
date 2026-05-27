@@ -74,7 +74,7 @@ namespace subsystem_bsd_sockets
       m_port = ntohs(addr.sin_port);
    }
 
-   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port)
+   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, ::u16 port)
    {
 
       auto psocketaddress = bsd_sockets_subsystem()->resolve_ip4_address(scopedstrHost, port);
@@ -135,7 +135,7 @@ namespace subsystem_bsd_sockets
       return ::format("{}.{}.{}.{}", b1, b2, b3, b4);
 #else
       
-      char buffer[INET_ADDRSTRLEN];
+      ::i8 buffer[INET_ADDRSTRLEN];
 
       inet_ntop(AF_INET, &m_addr, buffer, INET_ADDRSTRLEN);
 
@@ -145,7 +145,7 @@ namespace subsystem_bsd_sockets
       
    }
 
-   unsigned short SocketAddressIPv4::getPort() const
+   ::u16 SocketAddressIPv4::getPort() const
    {
       return m_port;
    }
@@ -156,13 +156,13 @@ namespace subsystem_bsd_sockets
       
 #ifdef WINDOWS
 
-      bool isLoopback = (unsigned long)m_addr.S_un.S_addr == 16777343;
+      bool isLoopback = (ulong)m_addr.S_un.S_addr == 16777343;
 
       return isLoopback;
       
 #else
       
-      bool isLoopback = (unsigned long)m_addr.s_addr == 16777343;
+      bool isLoopback = (ulong)m_addr.s_addr == 16777343;
 
       return isLoopback;
 
@@ -172,7 +172,7 @@ namespace subsystem_bsd_sockets
    }
 
 
-   ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port)
+   ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, ::u16 port)
    {
       auto presolvedAddress = createø<::subsystem::SocketAddressIPv4Interface>();
 

@@ -19,7 +19,7 @@ namespace user
 
 
       bool                                         m_bColumnsAdded;
-      int                                          m_iImageSpacing;
+      ::i32                                          m_iImageSpacing;
       bool                                         m_bMorePlain;
       bool                                         m_bAutoCreateListHeader;
       bool                                         m_bHeaderCtrl;
@@ -43,14 +43,14 @@ namespace user
       index_map_base < ::image::image_pointer >         m_mapIconBlur;
       ::color::color                               m_colorEmbossedText;
       ::color::color                               m_colorEmbossedTextBackground;
-      double                                       m_dIconSaturation;
-      double                                       m_dIconLightness;
-      double                                       m_dIconOpacity;
-      int                                          m_iIconBlur;
-      int                                          m_iIconBlurRadius;
-      int                                          m_iTextSpreadRadius;
-      int                                          m_iTextBlurRadius;
-      int                                          m_iTextBlur;
+      ::f64                                       m_dIconSaturation;
+      ::f64                                       m_dIconLightness;
+      ::f64                                       m_dIconOpacity;
+      ::i32                                          m_iIconBlur;
+      ::i32                                          m_iIconBlurRadius;
+      ::i32                                          m_iTextSpreadRadius;
+      ::i32                                          m_iTextBlurRadius;
+      ::i32                                          m_iTextBlur;
       ::i32_rectangle                              m_rectangleSpot;
       ::image::image_pointer                              m_pimageSpot;
       //::image::image_pointer                              m_pimageTime;
@@ -69,9 +69,9 @@ namespace user
 
 
 
-      int _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
-      virtual int _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
-      virtual int _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
+      ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
+      virtual ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
+      virtual ::i32 _001CalcItemHeight(::user::style * pstyle, ::i32 iBaseHeight);
       virtual ::e_align get_draw_text_align(EImpact eview);
       virtual ::e_draw_text get_draw_text_flags(EImpact eview);
 
@@ -107,9 +107,9 @@ namespace user
       void PreSubClassWindow() override;
       void _OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn) override;
-      //virtual int _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
-      int _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn) override;
-      virtual int _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
+      //virtual ::i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
+      ::i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn) override;
+      virtual ::i32 _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
       void _001OnSort() override;
 
 
@@ -146,7 +146,7 @@ namespace user
 
       ::collection::index _001CalcDisplayTopIndex() override;
       ::collection::count _001CalcDisplayItemCount() override;
-      int _001GetGroupHeight(::collection::index iGroup) override;
+      ::i32 _001GetGroupHeight(::collection::index iGroup) override;
 
 
       void FilterInclude(::i32_array_base & array) override;
@@ -268,9 +268,9 @@ namespace user
 
       //virtual void _001OnColumnChange();
 
-      bool _001SetColumnWidth(::collection::index iColumn, int iWidth) override;
+      bool _001SetColumnWidth(::collection::index iColumn, ::i32 iWidth) override;
 
-      //virtual int _001GetColumnWidth(::collection::index iColumn);
+      //virtual ::i32 _001GetColumnWidth(::collection::index iColumn);
 
       ::collection::index sub_item_to_order(::collection::index iSubItem) override;
 
@@ -397,7 +397,7 @@ namespace user
       EImpact _001GetImpact() override;
 
 
-      int get_wheel_scroll_delta() override;
+      ::i32 get_wheel_scroll_delta() override;
 
       //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 

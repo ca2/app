@@ -86,7 +86,7 @@ namespace hellobase
    }
 
 
-   int application::exit_application()
+   ::i32 application::exit_application()
    {
 
       ::helloaxis::application::exit_application();

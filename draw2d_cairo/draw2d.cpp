@@ -40,7 +40,7 @@ return g_pdraw2dcairo;
    return get()->m_pmutex;
 
 }
-   //double draw2d::g_dEmboss = 2.0;
+   //::f64 draw2d::g_dEmboss = 2.0;
 
 
    draw2d::draw2d()
@@ -277,9 +277,9 @@ return g_pdraw2dcairo;
 //   const ::e_draw_text & edrawtext,
 //   color32_t crText,
 //   color32_t crGlow,
-//   int iSpreadRadius,
-//   int iBlurRadius,
-//   int iBlur,
+//   ::i32 iSpreadRadius,
+//   ::i32 iBlurRadius,
+//   ::i32 iBlur,
 //   bool bUpdate,
 //   const ::color_filter & colorfilter)
 //   {
@@ -325,38 +325,38 @@ return g_pdraw2dcairo;
 //   }
 //
 //   void draw2d::alpha_spread__24CC(
-//   unsigned char * lpbDst, int xDest, int yDest, int wDest, int cx, int cy,
-//   unsigned char * lpbSrc, int xSrc, int ySrc, int wSrc,
-//   unsigned char bMin, int iRadius)
+//   ::u8 * lpbDst, ::i32 xDest, ::i32 yDest, ::i32 wDest, ::i32 cx, ::i32 cy,
+//   ::u8 * lpbSrc, ::i32 xSrc, ::i32 ySrc, ::i32 wSrc,
+//   ::u8 bMin, ::i32 iRadius)
 //   {
 //      __UNREFERENCED_PARAMETER(xDest);
 //      __UNREFERENCED_PARAMETER(yDest);
 //      __UNREFERENCED_PARAMETER(xSrc);
 //      __UNREFERENCED_PARAMETER(ySrc);
-//      int iFilterW = iRadius * 2 + 1;
-//      int iFilterH = iRadius * 2 + 1;
-//      int iFilterHalfW = iFilterW / 2;
-//      int iFilterHalfH = iFilterH / 2;
-//      int iFilterArea = iFilterW * iFilterH;
-//      int divisor;
-//      unsigned char *lpbSource;
-//      unsigned char *lpbSource_1;
-//      unsigned char *lpbSource_2;
-//      unsigned char *lpwDestination;
-//      unsigned char *lpFilter;
-//      unsigned char *pFilter;
+//      ::i32 iFilterW = iRadius * 2 + 1;
+//      ::i32 iFilterH = iRadius * 2 + 1;
+//      ::i32 iFilterHalfW = iFilterW / 2;
+//      ::i32 iFilterHalfH = iFilterH / 2;
+//      ::i32 iFilterArea = iFilterW * iFilterH;
+//      ::i32 divisor;
+//      ::u8 *lpbSource;
+//      ::u8 *lpbSource_1;
+//      ::u8 *lpbSource_2;
+//      ::u8 *lpwDestination;
+//      ::u8 *lpFilter;
+//      ::u8 *pFilter;
 //
 //
-//      int i;
-//      int x;
-//      int y;
-//      int x1;
-//      int y1;
-//      int x2;
-//      int y2;
+//      ::i32 i;
+//      ::i32 x;
+//      ::i32 y;
+//      ::i32 x1;
+//      ::i32 y1;
+//      ::i32 x2;
+//      ::i32 y2;
 //
-//      int iRadius2 = iRadius * iRadius;
-//      int r2;
+//      ::i32 iRadius2 = iRadius * iRadius;
+//      ::i32 r2;
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
@@ -402,13 +402,13 @@ return g_pdraw2dcairo;
 //
 //               }
 //
-//               pFilter[x + y * iFilterW] = (unsigned char)i;
+//               pFilter[x + y * iFilterW] = (::u8)i;
 //
-//               pFilter[iFilterW - 1 - x + y * iFilterW] = (unsigned char)i;
+//               pFilter[iFilterW - 1 - x + y * iFilterW] = (::u8)i;
 //
-//               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (unsigned char)i;
+//               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
 //
-//               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (unsigned char)i;
+//               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
 //
 //            }
 //
@@ -418,9 +418,9 @@ return g_pdraw2dcairo;
 //
 //      synchronouslock.unlock();
 //
-//      int maxx1 = cx;
-//      int maxy1 = cy;
-//      int max3x1 = maxx1 * 3;
+//      ::i32 maxx1 = cx;
+//      ::i32 maxy1 = cy;
+//      ::i32 max3x1 = maxx1 * 3;
 //
 //
 //      ::u32 dwR;
@@ -428,15 +428,15 @@ return g_pdraw2dcairo;
 //      ::u32 dwB;
 //
 //
-//      int iFilterXLowerBound;
-//      int iFilterXUpperBound;
-//      int iFilterYLowerBound;
-//      int iFilterYUpperBound;
+//      ::i32 iFilterXLowerBound;
+//      ::i32 iFilterXUpperBound;
+//      ::i32 iFilterYLowerBound;
+//      ::i32 iFilterYUpperBound;
 //
-//      int yLowerBound[4];
-//      int yUpperBound[4];
-//      int xLowerBound[4];
-//      int xUpperBound[4];
+//      ::i32 yLowerBound[4];
+//      ::i32 yUpperBound[4];
+//      ::i32 xLowerBound[4];
+//      ::i32 xUpperBound[4];
 //
 //      // top
 //      xLowerBound[0] = 0;
@@ -462,10 +462,10 @@ return g_pdraw2dcairo;
 //      yLowerBound[3] = cy - iFilterHalfW;
 //      yUpperBound[3] = cy - 1;
 //
-//      int xL;
-//      int xU;
-//      int yL;
-//      int yU;
+//      ::i32 xL;
+//      ::i32 xU;
+//      ::i32 yL;
+//      ::i32 yU;
 //
 //      bool bSpread;
 //      ::u32 bMin3 = bMin * 3;
@@ -530,11 +530,11 @@ return g_pdraw2dcairo;
 //               dwG = 0;
 //               dwB = 0;
 //               bSpread = false;
-//               for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+//               for (::i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
 //               {
 //                  lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//                  for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+//                  for (::i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
 //                  {
 //                     if (*lpFilter >= 1)
 //                     {
@@ -567,8 +567,8 @@ return g_pdraw2dcairo;
 //      iFilterXLowerBound = 0;
 //      iFilterXUpperBound = iFilterH - 1;
 //
-//      int iFilterHalfWidth = iFilterW / 2;
-//      int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+//      ::i32 iFilterHalfWidth = iFilterW / 2;
+//      ::i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 //
 //      yL = iFilterHalfWidth;
 //      yU = maxy1 - iFilterHalfWidth;
@@ -599,11 +599,11 @@ return g_pdraw2dcairo;
 //            dwG = 0;
 //            dwB = 0;
 //            bSpread = false;
-//            for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+//            for (::i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
 //            {
 //               lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //               lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//               for (int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+//               for (::i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
 //               {
 //                  if (*lpFilter >= 1)
 //                  {
@@ -641,36 +641,36 @@ return g_pdraw2dcairo;
 //   }
 //
 //
-//   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, int iChannel, int iRadius, color32_t crSpreadSetColor)
+//   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, ::i32 iChannel, ::i32 iRadius, color32_t crSpreadSetColor)
 //   {
 //
 //      pimageDst->map();
 //
 //      pimageSrc->map();
 //
-//      int iFilterW = iRadius * 2 + 1;
-//      int iFilterH = iRadius * 2 + 1;
-//      int iFilterHalfW = iRadius;
-//      int iFilterHalfH = iRadius;
-//      int iFilterArea = iFilterW * iFilterH;
-//      int divisor = iFilterW * iFilterH;
-//      unsigned char *lpbSource;
-//      unsigned char *lpbSource_1;
-//      unsigned char *lpbSource_2;
-//      unsigned char *lpwDestination;
-//      unsigned char *lpFilter;
-//      unsigned char * pFilter;
+//      ::i32 iFilterW = iRadius * 2 + 1;
+//      ::i32 iFilterH = iRadius * 2 + 1;
+//      ::i32 iFilterHalfW = iRadius;
+//      ::i32 iFilterHalfH = iRadius;
+//      ::i32 iFilterArea = iFilterW * iFilterH;
+//      ::i32 divisor = iFilterW * iFilterH;
+//      ::u8 *lpbSource;
+//      ::u8 *lpbSource_1;
+//      ::u8 *lpbSource_2;
+//      ::u8 *lpwDestination;
+//      ::u8 *lpFilter;
+//      ::u8 * pFilter;
 //
-//      int i;
-//      int x;
-//      int y;
-//      int x1;
-//      int y1;
-//      int x2;
-//      int y2;
+//      ::i32 i;
+//      ::i32 x;
+//      ::i32 y;
+//      ::i32 x1;
+//      ::i32 y1;
+//      ::i32 x2;
+//      ::i32 y2;
 //
-//      int iRadiusSquare = iRadius * iRadius;
-//      int rSquare;
+//      ::i32 iRadiusSquare = iRadius * iRadius;
+//      ::i32 rSquare;
 //
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -697,49 +697,49 @@ return g_pdraw2dcairo;
 //                  i = 1;
 //               else
 //                  i = 0;
-//               pFilter[x + y * iFilterW] = (unsigned char)i;
+//               pFilter[x + y * iFilterW] = (::u8)i;
 //            }
 //         }
 //      }
 //
 //      synchronouslock.unlock();
 //
-//      int cx = pimageDst->width();
-//      int cy = pimageDst->height();
+//      ::i32 cx = pimageDst->width();
+//      ::i32 cy = pimageDst->height();
 //
 //      if (cx != pimageSrc->width() || cy != pimageSrc->height())
 //         return false;
 //
-//      unsigned char * lpbDst = (unsigned char *)pimageDst->get_data();
-//      unsigned char * lpbSrc = (unsigned char *)pimageSrc->get_data();
+//      ::u8 * lpbDst = (::u8 *)pimageDst->get_data();
+//      ::u8 * lpbSrc = (::u8 *)pimageSrc->get_data();
 //
-//      //int wSrc = cx * 4;
-//      //int wDst = cx * 4;
-//      int wSrc = pimageSrc->scan_size();
-//      int wDst = pimageDst->scan_size();
+//      //::i32 wSrc = cx * 4;
+//      //::i32 wDst = cx * 4;
+//      ::i32 wSrc = pimageSrc->scan_size();
+//      ::i32 wDst = pimageDst->scan_size();
 //
-//      int maxx1 = cx;
-//      int maxy1 = cy;
-//      //   int maxy2 = cy - iFilterW;
-//      //   int maxy3 = cy - iFilterW / 2;
-//      int max3x1 = maxx1 * 4;
-//      //   int max3x2 = (maxx1 - iFilterH) * 4;
-//      //   int max3x3 = (maxx1 - iFilterH / 2) * 4;
-//      //int w = cx * 4;
+//      ::i32 maxx1 = cx;
+//      ::i32 maxy1 = cy;
+//      //   ::i32 maxy2 = cy - iFilterW;
+//      //   ::i32 maxy3 = cy - iFilterW / 2;
+//      ::i32 max3x1 = maxx1 * 4;
+//      //   ::i32 max3x2 = (maxx1 - iFilterH) * 4;
+//      //   ::i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
+//      //::i32 w = cx * 4;
 //
 //      ::copy_image32(pimageDst, pimageSrc);
 //      //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 //
 //
-//      int iFilterXLowerBound;
-//      int iFilterXUpperBound;
-//      int iFilterYLowerBound;
-//      int iFilterYUpperBound;
+//      ::i32 iFilterXLowerBound;
+//      ::i32 iFilterXUpperBound;
+//      ::i32 iFilterYLowerBound;
+//      ::i32 iFilterYUpperBound;
 //
-//      int yLowerBound[4];
-//      int yUpperBound[4];
-//      int xLowerBound[4];
-//      int xUpperBound[4];
+//      ::i32 yLowerBound[4];
+//      ::i32 yUpperBound[4];
+//      ::i32 xLowerBound[4];
+//      ::i32 xUpperBound[4];
 //
 //      // top
 //      xLowerBound[0] = 0;
@@ -765,21 +765,21 @@ return g_pdraw2dcairo;
 //      yLowerBound[3] = cy - iFilterHalfH;
 //      yUpperBound[3] = cy - 1;
 //
-//      int xL;
-//      int xU;
-//      int yL;
-//      int yU;
+//      ::i32 xL;
+//      ::i32 xU;
+//      ::i32 yL;
+//      ::i32 yU;
 //
 //
-//      int xMax = cx - 1;
-//      int yMax = cy - 1;
+//      ::i32 xMax = cx - 1;
+//      ::i32 yMax = cy - 1;
 //
 //      // limits due the filter
-//      int xMaxFilterBound = xMax - iFilterHalfW;
-//      int yMaxFilterBound = yMax - iFilterHalfH;
+//      ::i32 xMaxFilterBound = xMax - iFilterHalfW;
+//      ::i32 yMaxFilterBound = yMax - iFilterHalfH;
 //
-//      int xFilterMax = iFilterW - 1;
-//      int yFilterMax = iFilterH - 1;
+//      ::i32 xFilterMax = iFilterW - 1;
+//      ::i32 yFilterMax = iFilterH - 1;
 //
 //      for (i = 0; i < 4; i++)
 //      {
@@ -838,11 +838,11 @@ return g_pdraw2dcairo;
 //                  lpbSource_1 = lpbSource + maximum(x2, 0) + iChannel;
 //
 //
-//                  for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+//                  for (::i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
 //                  {
 //                     lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //                     lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//                     for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+//                     for (::i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
 //                     {
 //                        if (*lpFilter >= 1)
 //                        {
@@ -871,8 +871,8 @@ return g_pdraw2dcairo;
 //      iFilterXLowerBound = 0;
 //      iFilterXUpperBound = iFilterH - 1;
 //
-//      int iFilterHalfWidth = iFilterW / 2;
-//      int iFilterHalfWidthBytes = iFilterHalfWidth * 4;
+//      ::i32 iFilterHalfWidth = iFilterW / 2;
+//      ::i32 iFilterHalfWidthBytes = iFilterHalfWidth * 4;
 //
 //      yL = iFilterHalfWidth;
 //      yU = maxy1 - iFilterHalfWidth;
@@ -901,11 +901,11 @@ return g_pdraw2dcairo;
 //
 //            if (*((::u32 *)lpwDestination) != 0xffffffff)
 //            {
-//               for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+//               for (::i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
 //               {
 //                  lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//                  for (int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+//                  for (::i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
 //                  {
 //                     if (*lpFilter >= 1)
 //                     {
@@ -940,7 +940,7 @@ return g_pdraw2dcairo;
 //
 //      ::pointer<::write_text::font_enumeration_item>pitem;
 //
-//      double dAndroid = 4.4;
+//      ::f64 dAndroid = 4.4;
 //
 //      string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 //
@@ -1492,7 +1492,7 @@ return g_pdraw2dcairo;
 } // namespace draw2d_cairo
 
 
-//enum_rotate_flip exif_orientation_rotate_flip(int orientation)
+//enum_rotate_flip exif_orientation_rotate_flip(::i32 orientation)
 //{
 //
 //

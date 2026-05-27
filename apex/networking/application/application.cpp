@@ -83,7 +83,7 @@ namespace networking
    }
 
 
-   int application::get_current_port()
+   ::i32 application::get_current_port()
    {
 
       auto iConnectPort = m_psocketthread->m_iConnectPort;
@@ -94,7 +94,7 @@ namespace networking
 
 
 
-   int application::wait_get_current_port(const class time & time)
+   ::i32 application::wait_get_current_port(const class time & time)
    {
 
       class ::time timeStart;

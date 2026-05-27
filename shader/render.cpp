@@ -282,9 +282,9 @@ namespace app_shader
                   
                   auto pointCursor = m_puserinteraction->mouse_cursor_position();
                   
-                  float x = (float)pointCursor.x;
+                  ::f32 x = (::f32)pointCursor.x;
                   
-                  float y = (float)pointCursor.y;
+                  ::f32 y = (::f32)pointCursor.y;
                   
                   m_pgpushader->set_sequence2("mouse", x, y);
                   m_pgpushader->set_sequence2("iMouse", x, y);
@@ -293,9 +293,9 @@ namespace app_shader
                
                {
                   
-                  float cx = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->width();
+                  ::f32 cx = (::f32)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->width();
                   
-                  float cy = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
+                  ::f32 cy = (::f32)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
                   
                   m_pgpushader->set_sequence2("resolution", cx, cy);
                   m_pgpushader->set_sequence2("iResolution", cx, cy);
@@ -306,7 +306,7 @@ namespace app_shader
                   
                   auto dTime = m_timeStart.elapsed().floating_second();
                   
-                  float time = (float)dTime;
+                  ::f32 time = (::f32)dTime;
                   
                   m_pgpushader->set_float("time", time);
                   m_pgpushader->set_float("iTime", time);
@@ -380,7 +380,7 @@ namespace app_shader
          if (strLabel.has_character())
          {
 
-            colorBackground.m_uchOpacity = 128;
+            colorBackground.m_u8Opacity = 128;
 
             ::draw2d::brush_pointer pbrush;
 
@@ -409,7 +409,7 @@ namespace app_shader
 
             auto size = pgraphicsLabel->get_text_extent(strLabel);
 
-            ::i32_rectangle rect(::double_point(0, 0), size);
+            ::i32_rectangle rect(::f64_point(0, 0), size);
 
             rect.inflate(4);
 
@@ -446,7 +446,7 @@ namespace app_shader
 
          ::image::image_source imagesource(m_pimageLabel);
 
-         double_rectangle rectangle(double_point(10, 10), m_pimageLabel->size());
+         ::f64_rectangle rectangle(::f64_point(10, 10), m_pimageLabel->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -507,7 +507,7 @@ namespace app_shader
 
             }
 
-            colorBackground.m_uchOpacity = 128;
+            colorBackground.m_u8Opacity = 128;
 
             ::draw2d::brush_pointer pbrush;
 
@@ -540,7 +540,7 @@ namespace app_shader
 
             auto size = pgraphicsError->get_text_extent(strError);
 
-            ::i32_rectangle rect(::double_point( 0, 0 ), size);
+            ::i32_rectangle rect(::f64_point( 0, 0 ), size);
 
             rect.move_to(10, 10);
             rect.inflate(4);
@@ -576,7 +576,7 @@ namespace app_shader
 
          ::image::image_source imagesource(m_pimageError);
 
-         double_rectangle rectangle(double_point(10, 40), m_pimageError->size());
+         ::f64_rectangle rectangle(::f64_point(10, 40), m_pimageError->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -642,7 +642,7 @@ namespace app_shader
 
       //i32_rectangle rectangle;
 
-      //int iSize = minimum(m_rectangle.width(), m_rectangle.height());
+      //::i32 iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
       //iSize = iSize * 3 / 4;
 
@@ -654,7 +654,7 @@ namespace app_shader
 
       //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::double_size size(0., 0.);
+      //::f64_size size(0., 0.);
       //
       //bool bDrawText = true;
       //

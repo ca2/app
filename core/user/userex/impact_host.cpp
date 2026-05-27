@@ -147,7 +147,7 @@ namespace userex
 
       pframewindow->order_front();
 
-      pframewindow->place(::int_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
+      pframewindow->place(::i32_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
 
       pframewindow->display();
 
@@ -526,7 +526,7 @@ namespace userex
                   information() << "pframewindowTab VISIBLE VISIBLE VISIBLE";
                   information() << "";
                   information() << "";
-                  auto rectangleRequest = int_rectangle_dimension(20, 20, 800, 300);
+                  auto rectangleRequest = i32_rectangle_dimension(20, 20, 800, 300);
 
                   //if (!pframewindowTab->is_this_visible() || rectangleRequest != pframewindowTab->window_request_rect())
                   {

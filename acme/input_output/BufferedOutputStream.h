@@ -69,7 +69,7 @@
       ::pointer < DataOutputStream > m_pdataoutputstream;
 
 
-      //char m_buffer[100000];
+      //::i8 m_buffer[100000];
       ::memory m_memoryBuffer;
 
       memsize m_dataLength;

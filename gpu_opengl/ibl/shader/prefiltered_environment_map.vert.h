@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_prefiltered_environment_map_vert[] = R"vert_text(#version 330 core
+const ::i8 g_psz_prefiltered_environment_map_vert[] = R"vert_text(#version 330 core
 
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aNormal;

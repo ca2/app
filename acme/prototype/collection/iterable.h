@@ -124,7 +124,7 @@ namespace iter
    //void get_comparable_ida(const ITERABLE & iterable, ITERABLE2 & iterable2);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count explode_command_line(const ITERABLE & iterable, const ITYPE & str, char ** argv = nullptr);
+   ::collection::count explode_command_line(const ITERABLE & iterable, const ITYPE & str, char_pointer * argv = nullptr);
 
    template < typename ITERABLE, typename ITERABLE2 >
    bool operator == (const ITERABLE & iterable, const ITERABLE & iterable2);
@@ -357,7 +357,7 @@ namespace iter
 
    // csstidy: Same as explode, but not within a ITYPE
    template < typename ITERABLE, typename ITYPE >
-   ITERABLE & csstidy_explode_ws(const ITERABLE & iterable, char sep, const ITYPE & psz);
+   ITERABLE & csstidy_explode_ws(const ITERABLE & iterable, ::i8 sep, const ITYPE & psz);
 
    template < typename ITERABLE, typename ITYPE >
    void get_format_string(const ITERABLE & iterable, ITYPE & str, const ITYPE & lpcszSeparator);
@@ -393,10 +393,10 @@ namespace iter
    ITYPE & get_network_payload(const ITERABLE & iterable, ITYPE & str, bool bNewLine = true);
 
    template < typename ITERABLE, typename ITYPE >
-   void c_add(ITERABLE & iterable, char ** ppsz, ::collection::count iCount);
+   void c_add(ITERABLE & iterable, char_pointer * ppsz, ::collection::count iCount);
 
    template < typename ITERABLE, typename ITYPE >
-   void c_add(ITERABLE & iterable, char ** ppsz);
+   void c_add(ITERABLE & iterable, char_pointer * ppsz);
 
    template < typename ITERABLE, typename ITYPE >
    void c_add(ITERABLE & iterable, wchar_t ** ppsz, ::collection::count iCount);
@@ -1321,7 +1321,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count explode_command_line(ITERABLE & iterable, const ITYPE & str, char ** argv)
+   ::collection::count explode_command_line(ITERABLE & iterable, const ITYPE & str, char_pointer * argv)
    {
 
       ITYPE strParse(str);
@@ -1339,7 +1339,7 @@ namespace iter
          for (typename ITERABLE::iterator i = 0; i < get_count(); i++)
          {
 
-            char * pch = (char *)(const ITYPE &)element_at(i);
+            char_pointer pch = (char_pointer )(const ITYPE &)element_at(i);
 
             argv->add(pch);
 
@@ -1553,7 +1553,7 @@ end:
       {
          str = get_at(0);
       }
-      for (int i = 1; i < iterable.m_nSize; i++)
+      for (::i32 i = 1; i < iterable.m_nSize; i++)
       {
          str += lpcszSeparator + get_at(i);
       }
@@ -1568,12 +1568,12 @@ end:
    {
    ITERABLE  strArray;
    u32_array dwa;
-   for(int i = 0; i < iterable.m_nSize; i++)
+   for(::i32 i = 0; i < iterable.m_nSize; i++)
    {
    strArray.add_tokens(get_at(i), "/", false);
    if(strArray.get_size() > 1)
    {
-   for(int j = 0; j < strArray.get_size(); j++)
+   for(::i32 j = 0; j < strArray.get_size(); j++)
    {
    add_unique(strArray.get_at(j));
    }
@@ -2730,14 +2730,14 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ITERABLE  & csstidy_explode_ws(ITERABLE & iterable, char sep, const ITYPE & psz)
+   ITERABLE  & csstidy_explode_ws(ITERABLE & iterable, ::i8 sep, const ITYPE & psz)
    {
 
       ITYPE istring(scopedstr);
 
       // 1 = st // 2 = str
-      int status = 1;
-      char to = '\0';
+      ::i32 status = 1;
+      ::i8 to = '\0';
 
       add("");
       character_count num = 0;
@@ -2787,7 +2787,7 @@ end:
    void replace(ITERABLE & iterable, const ITYPE & lpszSearch, const ITYPE & lpszReplace)
    {
 
-      for (int i = 0; i < iterable.get_size(); i++)
+      for (::i32 i = 0; i < iterable.get_size(); i++)
       {
 
          iterable.element_at(i).replace(lpszSearch, lpszReplace);
@@ -3445,7 +3445,7 @@ end:
 
    //   array < atom > ida;
 
-   //   for (int i = 0; i < get_count(); i++)
+   //   for (::i32 i = 0; i < get_count(); i++)
    //   {
    //      iterable2.add(element_at(i));
    //   }
@@ -3461,14 +3461,14 @@ end:
    ITYPE encode_v16(const ITERABLE & iterable)
    {
       ITYPE strEncode;
-      for (int u = 0; u < iterable.get_count(); u++)
+      for (::i32 u = 0; u < iterable.get_count(); u++)
       {
          ITYPE & str = iterable.element_at(u);
          strEncode += hex::lower_from((const_char_pointer )str);
          strEncode += "00";
-         /*      for(int uj = 0; uj < str.length(); uj++)
+         /*      for(::i32 uj = 0; uj < str.length(); uj++)
          {
-         char sz[32];
+         ::i8 sz[32];
          ansi_from_long_long(sz, str[uj], 16);
          if(ansi_length(sz) == 0)
          {
@@ -3495,8 +3495,8 @@ end:
    template < typename ITERABLE, typename ITYPE >
    void decode_v16(const ITERABLE & iterable, const ITYPE & psz)
    {
-      int iSize = 1024;
-      char * str = nullptr;
+      ::i32 iSize = 1024;
+      char_pointer str = nullptr;
       if (scopedstr == nullptr)
          return;
       while (*psz != '\0')
@@ -3504,13 +3504,13 @@ end:
          psz++;
          if (*psz == '\0')
             break;
-         char sz[3];
+         ::i8 sz[3];
          sz[0] = psz[-1];
          sz[1] = psz[0];
          sz[2] = '\0';
          const ITYPE & pszEnd;
-         int iConversion = ::ansi_to_int(sz, &pszEnd, 16);
-         char ch = static_cast <char> (iConversion);
+         ::i32 iConversion = ::ansi_to_int(sz, &pszEnd, 16);
+         ::i8 ch = static_cast <::i8> (iConversion);
          if (ch == '\0')
          {
             add(str);
@@ -3521,13 +3521,13 @@ end:
          {
             if (str == nullptr)
             {
-               str = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+               str = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
             }
             else if (iSize < (ansi_length(str) + 1))
             {
-               char * strOld = str;
+               char_pointer strOld = str;
                iSize += 1024;
-               char * strNew = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+               char_pointer strNew = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
                ansi_copy(strNew, strOld);
                str = strNew;
             }
@@ -3794,7 +3794,7 @@ end:
 
    /// expect strings allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
-   void c_add(ITERABLE & iterable, char ** ppsz, ::collection::count c)
+   void c_add(ITERABLE & iterable, char_pointer * ppsz, ::collection::count c)
    {
 
       for (typename ITERABLE::iterator i = 0; i < c; i++)
@@ -3812,15 +3812,15 @@ end:
 
    /// expect strings allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
-   void c_add(ITERABLE & iterable, char ** ppszParam)
+   void c_add(ITERABLE & iterable, char_pointer * ppszParam)
    {
 
-      char ** ppsz = ppszParam;
+      char_pointer * ppsz = ppszParam;
 
       while (ppsz != nullptr)
       {
 
-         char * psz = *ppsz;
+         char_pointer psz = *ppsz;
 
          iterable.add(scopedstr);
 
@@ -4510,7 +4510,7 @@ public:
 
    // csstidy: Same as explode, but not within a ITYPE
    template < typename ITYPE >
-   Container & csstidy_explode_ws(const char sep, const ITYPE & psz)
+   Container & csstidy_explode_ws(const ::i8 sep, const ITYPE & psz)
    {
 
       return ::iter::csstidy_explode_ws(*this, sep, psz);
@@ -4534,7 +4534,7 @@ public:
    }
 
    template < typename ITYPE >
-   void c_add(char ** ppsz, ::collection::count iCount)
+   void c_add(char_pointer * ppsz, ::collection::count iCount)
    {
 
       return ::iter::c_add(*this, ppsz, iCount);
@@ -4542,7 +4542,7 @@ public:
    }
 
    template < typename ITYPE >
-   void c_add(char ** ppsz)
+   void c_add(char_pointer * ppsz)
    {
 
       return ::iter::c_add(*this, ppsz);
@@ -4688,8 +4688,8 @@ public:
 
    }
 
-   template < typename int, typename INT2 >
-   Container islice(int first, INT2 count = -1)
+   template < typename ::i32, typename INT2 >
+   Container islice(::i32 first, INT2 count = -1)
    {
 
       Container iterableSlice;

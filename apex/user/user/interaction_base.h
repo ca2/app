@@ -65,9 +65,9 @@ namespace user
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowTextLength);
 //#ifdef WINDOWS
-//      virtual character_count _009GetWindowText(wchar_t * pwsz, int n);
+//      virtual character_count _009GetWindowText(wchar_t * pwsz, ::i32 n);
 //#else
-//      character_count _009GetWindowText(char * psz, int n) override;
+//      character_count _009GetWindowText(char_pointer psz, ::i32 n) override;
 //#endif
 //      character_count _009GetWindowTextLength() override;
 
@@ -112,7 +112,7 @@ namespace user
 
       bool is_place_holder() override;
 
-      double _001GetTopLeftWeightedOccludedOpaqueRate() override;
+      ::f64 _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
       virtual ::windowing::cursor * get_mouse_cursor();
 
@@ -124,11 +124,11 @@ namespace user
 
       bool _is_window() const override;
 
-      //virtual int get_window_long(int nIndex) const;
-      //virtual int set_window_long(int nIndex,int lValue);
+      //virtual ::i32 get_window_long(::i32 nIndex) const;
+      //virtual ::i32 set_window_long(::i32 nIndex,::i32 lValue);
 
-      //virtual iptr get_window_long_ptr(int nIndex) const;
-      //virtual void set_window_long_ptr(int nIndex, iptr lValue);
+      //virtual iptr get_window_long_ptr(::i32 nIndex) const;
+      //virtual void set_window_long_ptr(::i32 nIndex, iptr lValue);
 
       ::user::interaction * first_child() override;
       ::user::interaction * last_child() override;
@@ -340,7 +340,7 @@ namespace user
       void set_window_text(const ::scoped_string & scopedstrString) override;
       void set_window_text_source(const ::a_string_function & function) override;
 
-      character_count get_window_text(char * pszStringBuf,character_count nMaxCount) override;
+      character_count get_window_text(char_pointer pszStringBuf,character_count nMaxCount) override;
 
       string get_window_text() override;
       void get_window_text(string & rString) override;
@@ -359,9 +359,9 @@ namespace user
 
       void OnLinkClick(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrTarget = nullptr) override;
 
-      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1) override;
-      ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
-      ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
 
 
       ::user::interaction * get_wnd() override;
@@ -391,7 +391,7 @@ namespace user
       void pre_translate_message(::message::message * pmessage) override;
 
 
-      int get_descendant_level(::user::element * puserelement) override;
+      ::i32 get_descendant_level(::user::element * puserelement) override;
       //virtual bool is_descendant(const ::user::interaction_base * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
@@ -445,8 +445,8 @@ namespace user
 
       ::windowing::window * window() override;
       
-      //virtual ::double_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      //virtual ::double_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::f64_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::f64_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
       //virtual bool can_merge(::user::interaction * pinteraction);
@@ -587,7 +587,7 @@ namespace user
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::interaction_base * pfocus);
-      void keyboard_focus_OnTimer(int iTimer) override;
+      void keyboard_focus_OnTimer(::i32 iTimer) override;
       void keyboard_focus_OnChar(::message::message * pmessage) override;
       void keyboard_focus_OnSysChar(::message::message * pmessage) override;
       void keyboard_focus_OnKeyDown(::message::message * pmessage) override;
@@ -654,7 +654,7 @@ namespace user
       //virtual bool SetPlacement(const ::i32_rectangle & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
-      int get_total_page_count(::handler_context * pcontext) override;
+      ::i32 get_total_page_count(::handler_context * pcontext) override;
 
 
       void edit_on_text(const ::scoped_string & scopedstr) override;
@@ -688,11 +688,11 @@ namespace user
       // Text Edit
       //void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
       ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
       character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
+      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x) override;
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
 
 

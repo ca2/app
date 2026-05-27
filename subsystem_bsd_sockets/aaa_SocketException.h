@@ -39,7 +39,7 @@ public:
   SocketException();
   // Creates socket exception object with specified error numner.
   // Error string generates automaticly;
-  SocketException(int error);
+  SocketException(::i32 error);
   // Creates socket exception object with specified scopedstrMessage.
   // Error number is sets to zero.
   SocketException(const ::scoped_string & scopedstrMessage);
@@ -47,14 +47,14 @@ public:
   virtual ~SocketException();
 
   // Returns error number.
-  int errno();
+  ::i32 errno();
 
 //protected:
   // Sets m_errno and generates error description string.
-  void setErrno(int error);
+  void setErrno(::i32 error);
 
 //protected:
-  int m_errno;
+  ::i32 m_errno;
 };
 
 

@@ -78,7 +78,7 @@ namespace app_integration
 
       i32_rectangle rectangle;
 
-      int iSize = minimum(m_rectangle.width(), m_rectangle.height());
+      ::i32 iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
       iSize = iSize * 3 / 4;
 
@@ -90,7 +90,7 @@ namespace app_integration
 
       rectangle.offset_x(iSize / 5 * m_iDrawing);
       
-      ::double_size size(0., 0.);
+      ::f64_size size(0., 0.);
       
       bool bDrawText = true;
       
@@ -127,14 +127,14 @@ namespace app_integration
          if (!size.is_empty())
          {
 
-            int iHeight = rectangle.height();
+            ::i32 iHeight = rectangle.height();
 
-            double dMaxDimension = size.get_maximum_dimension();
+            ::f64 dMaxDimension = size.get_maximum_dimension();
 
             if (m_iDrawing == 1)
             {
 
-               float fSize = (float) (iHeight * 80.0 / dMaxDimension);
+               ::f32 fSize = (::f32) (iHeight * 80.0 / dMaxDimension);
 
                pfont2->create_pixel_font(strFontFamily, fSize, 800);
 
@@ -142,7 +142,7 @@ namespace app_integration
             else
             {
 
-               float fSize = (float) (iHeight * 160.0 / dMaxDimension);
+               ::f32 fSize = (::f32) (iHeight * 160.0 / dMaxDimension);
 
                pfont2->create_pixel_font(strFontFamily, fSize, 800);
 

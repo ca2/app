@@ -137,11 +137,11 @@ namespace graphics3d
     //     // maskConfig.attributeDescriptions = attributes;
     //     // maskConfig.colorBlendAttachment.blendEnable = VK_FALSE;
     //
-    //     // struct SpecData { VkBool32 alphaMask; float cutoff; };
+    //     // struct SpecData { VkBool32 alphaMask; ::f32 cutoff; };
     //     // static SpecData specData{ VK_TRUE, 0.5f };
     //     // static VkSpecializationMapEntry mapEntries[2] = {
     //     //     { 0, offsetof(SpecData, alphaMask), sizeof(VkBool32) },
-    //     //     { 1, offsetof(SpecData, cutoff),    sizeof(float) }
+    //     //     { 1, offsetof(SpecData, cutoff),    sizeof(::f32) }
     //     // };
     //     // static VkSpecializationInfo specInfo{};
     //     // specInfo.mapEntryCount = 2;
@@ -211,7 +211,7 @@ namespace graphics3d
                 floating_matrix4 world = pgameobject->getTransform().floating_matrix4() * node->getMatrix();
                 floating_matrix4 normalMat = glm::transpose(glm::inverse(world));
                 memcpy(node->mesh->uniformBuffer.mapped, &world, sizeof(world));
-                memcpy((char*)node->mesh->uniformBuffer.mapped + sizeof(world), &normalMat, sizeof(normalMat));
+                memcpy((char_pointer )node->mesh->uniformBuffer.mapped + sizeof(world), &normalMat, sizeof(normalMat));
 
                 // vkCmdBindDescriptorSets(
                 //     frame.m_pcommandbuffer,

@@ -31,10 +31,10 @@ void xf_event_action_script_free(xfContext* xfc);
 BOOL xf_event_process(freerdp* instance, XEvent* happening);
 void xf_event_SendClientEvent(xfContext* xfc, xfWindow* window, Atom atom, ::u32 numArgs, ...);
 
-void xf_event_adjust_coordinates(xfContext* xfc, int* x, int *y);
+void xf_event_adjust_coordinates(xfContext* xfc, ::i32* x, ::i32 *y);
 
-BOOL xf_generic_MotionNotify(xfContext* xfc, int x, int y, int state, Window window, BOOL app);
-BOOL xf_generic_ButtonPress(xfContext* xfc, int x, int y, int button, Window window, BOOL app);
-BOOL xf_generic_ButtonRelease(xfContext* xfc, int x, int y, int button, Window window, BOOL app);
+BOOL xf_generic_MotionNotify(xfContext* xfc, ::i32 x, ::i32 y, ::i32 state, Window window, BOOL app);
+BOOL xf_generic_ButtonPress(xfContext* xfc, ::i32 x, ::i32 y, ::i32 button, Window window, BOOL app);
+BOOL xf_generic_ButtonRelease(xfContext* xfc, ::i32 x, ::i32 y, ::i32 button, Window window, BOOL app);
 
 #endif /* __XF_EVENT_H */

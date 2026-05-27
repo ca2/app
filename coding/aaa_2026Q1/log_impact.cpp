@@ -175,13 +175,13 @@ namespace coding
 
       pgraphics->set(m_pfontTopic);
 
-      ::double_point p1(p.x, 10);
+      ::f64_point p1(p.x, 10);
 
       pgraphics->set_text_color(argb(255, 89, 89, 89));
 
       pgraphics->text_out(p1, plog->m_ptask->m_strTopic1);
 
-      ::double_point p2(p.x, 50);
+      ::f64_point p2(p.x, 50);
 
       pgraphics->set(m_pfontTopic2);
 
@@ -189,7 +189,7 @@ namespace coding
 
       pgraphics->text_out(p2, plog->m_ptask->m_strTopic12);
 
-      int yTopic2Bottom = 100;
+      ::i32 yTopic2Bottom = 100;
 
       {
 
@@ -212,7 +212,7 @@ namespace coding
 
             }
 
-            int iAlpha = 255;
+            ::i32 iAlpha = 255;
 
             for (auto i = plog->m_straLog.get_upper_bound();
                i >= 0; i--)

@@ -38,7 +38,7 @@
    public:
 
    //protected:
-      const char *m_buffer;
+      const_char_pointer m_buffer;
       memsize m_bufferSize;
       memsize m_left;
 
@@ -47,7 +47,7 @@
        * @param buffer source buffer.
        * @param bufferSize count of bytes in memory buffer.
        */
-      //ByteArrayInputStream(const char *buffer, memsize bufferSize);
+      //ByteArrayInputStream(const_char_pointer pszBuffer, memsize bufferSize);
       ByteArrayInputStream();
       ByteArrayInputStream(::particle * pparticle, const ::block & block);
       ~ByteArrayInputStream() override;

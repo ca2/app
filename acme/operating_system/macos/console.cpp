@@ -11,7 +11,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-int current_getch();
+::i32 current_getch();
 
 namespace console
 {
@@ -42,15 +42,15 @@ namespace console
    }
 
 
-   int console::getch(void) {
+   ::i32 console::getch(void) {
       return ::current_getch();
 
    }
 
-   int console::get_thoughtful_character()
+   ::i32 console::get_thoughtful_character()
    {
 
-      int iCharacter;
+      ::i32 iCharacter;
 
       while (true)
       {
@@ -82,7 +82,7 @@ namespace console
 
 
 
-   enum_response console::yes_no(const char * pszPrompt)
+   enum_response console::yes_no(const_char_pointer pszPrompt)
    {
 
       while (true)
@@ -115,7 +115,7 @@ namespace console
 
    }
 
-   enum_response console::yes_no_default_yes(const char * pszPrompt)
+   enum_response console::yes_no_default_yes(const_char_pointer pszPrompt)
    {
 
       while (true)

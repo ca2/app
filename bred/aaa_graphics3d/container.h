@@ -44,17 +44,17 @@ namespace graphics3d
 	public:
 
 
-		::function < void(void*, int, int, int)> m_callbackOffscreen;
+		::function < void(void*, ::i32, ::i32, ::i32)> m_callbackOffscreen;
 
-		double   m_dCursorX;
-		double   m_dCursorY;
+		::f64   m_dCursorX;
+		::f64   m_dCursorY;
 		bool		m_bFirstMouse;
 		bool		m_bLastMouse;
 
 
 		bool		m_bShouldClose;
-		int		m_iWidth;
-		int		m_iHeight;
+		::i32		m_iWidth;
+		::i32		m_iHeight;
 		bool		m_bFramebufferResized;
 
 		

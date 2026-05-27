@@ -18,7 +18,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcschrs( const_char_pointer psz, const_char_pointer pszchs );
+   CLASS_DECL_AQUA char_pointer _tcschrs( const_char_pointer psz, const_char_pointer pszchs );
 
    //========================================================
    // Name   : _tcsskip
@@ -29,7 +29,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //CLASS_DECL_AQUA char * _tcsskip(::const_ansi_range & rangeXml);
+   //CLASS_DECL_AQUA char_pointer _tcsskip(::const_ansi_range & rangeXml);
 
    //========================================================
    // Name   : _tcsechr
@@ -40,7 +40,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //CLASS_DECL_AQUA char * _tcsechr(::const_ansi_range & rangeXml, int ch, int escape );
+   //CLASS_DECL_AQUA char_pointer _tcsechr(::const_ansi_range & rangeXml, ::i32 ch, ::i32 escape );
 
    //========================================================
    // Name   : _tcselen
@@ -51,7 +51,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA int _tcselen( int escape, char * srt, char * end = nullptr ) ;
+   CLASS_DECL_AQUA ::i32 _tcselen( ::i32 escape, char_pointer srt, char_pointer end = nullptr ) ;
 
    //========================================================
    // Name   : _tcsecpy
@@ -62,8 +62,8 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA void _tcsecpy(char * psz, int escape, const_char_pointer srt, const_char_pointer end = nullptr);
-   //CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, const ::const_ansi_range & range);
+   CLASS_DECL_AQUA void _tcsecpy(char_pointer psz, ::i32 escape, const_char_pointer srt, const_char_pointer end = nullptr);
+   //CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, ::i8 escape, const ::const_ansi_range & range);
 
    
    ////========================================================
@@ -75,7 +75,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA int _tcsenicmp( const_char_pointer psz, const_char_pointer str, character_count len, int escape );
+   //CLASS_DECL_AQUA ::i32 _tcsenicmp( const_char_pointer psz, const_char_pointer str, character_count len, ::i32 escape );
 
    ////========================================================
    //// Name   : _tcsenistr
@@ -86,7 +86,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA char * _tcsenistr( const_char_pointer psz, const_char_pointer str, character_count len, int escape );
+   //CLASS_DECL_AQUA char_pointer _tcsenistr( const_char_pointer psz, const_char_pointer str, character_count len, ::i32 escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -97,7 +97,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcseistr( const_char_pointer psz, const_char_pointer str, int escape );
+   CLASS_DECL_AQUA char_pointer _tcseistr( const_char_pointer psz, const_char_pointer str, ::i32 escape );
 
    //========================================================
    // Name   : _SetString
@@ -108,7 +108,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(::const_ansi_range range, string* ps, bool trim, int escape);
+   inline void _SetString(::const_ansi_range range, string* ps, bool trim, ::i32 escape);
    inline void _SetString(::const_ansi_range range, string* ps,bool trim); // no escape
    inline void _SetString(::const_ansi_range range, string* ps); // no trim, no escape
 
@@ -143,7 +143,7 @@ namespace xml
    }
 
 
-   void _defer_escape(string * ps, ::const_ansi_range & range, int escape)
+   void _defer_escape(string * ps, ::const_ansi_range & range, ::i32 escape)
    {
 
       if (escape)
@@ -174,7 +174,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(::const_ansi_range range,string* ps,bool trim,int escape)
+   inline void _SetString(::const_ansi_range range,string* ps,bool trim,::i32 escape)
    {
 
       if(trim)
@@ -230,7 +230,7 @@ namespace xml
 namespace xml
 {
 
-//   inline int ch_ansi_char_isspace(uchar uch)
+//   inline ::i32 ch_ansi_char_isspace(uchar uch)
 //   {
 //      return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
 //   }
@@ -245,12 +245,12 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline char * _tcschrs(const_char_pointer psz,const_char_pointer pszchs)
+   inline char_pointer _tcschrs(const_char_pointer psz,const_char_pointer pszchs)
    {
       while(*psz)
       {
          if(ansi_chr(pszchs,*psz))
-            return (char *)psz;
+            return (char_pointer )psz;
          psz++;
       }
       return nullptr;
@@ -265,12 +265,12 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //inline char * _tcsskip(const_char_pointer psz)
+   //inline char_pointer _tcsskip(const_char_pointer psz)
    //{
 
    //   while(ansi_char_isspace((uchar)*psz)) psz++;
 
-   //   return (char *)psz;
+   //   return (char_pointer )psz;
 
    //}
 

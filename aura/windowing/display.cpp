@@ -136,7 +136,7 @@ namespace windowing
 
 
 
-   float display::get_dpi()
+   ::f32 display::get_dpi()
    {
 
       return 96.0;
@@ -384,7 +384,7 @@ namespace windowing
 
       ::i32_rectangle rectangleMonitor;
 
-      int iMaximumArea = -1;
+      ::i32 iMaximumArea = -1;
 
       ::collection::index iMainMonitor = -1;
 
@@ -466,7 +466,7 @@ namespace windowing
    }
 
 
-   int display::get_zoomed_title_bar_height()
+   ::i32 display::get_zoomed_title_bar_height()
    {
     
       return -1;
@@ -699,7 +699,7 @@ namespace windowing
    }
 
 
-   void display::_on_monitor(int iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace)
+   void display::_on_monitor(::i32 iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace)
    {
 
       ::acme::windowing::display::_on_monitor(iIndex, rectangle, rectangleWorkspace);
@@ -826,7 +826,7 @@ namespace windowing
 
       auto psystem = system();
 
-      double dMargin = psystem->m_dDpi;
+      ::f64 dMargin = psystem->m_dDpi;
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {

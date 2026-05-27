@@ -33,7 +33,7 @@ CLASS_DECL_ACME void copy(::string & str, const ::payload & payload)
 }
 
 
-CLASS_DECL_ACME void copy(::payload & payload, const int & i)
+CLASS_DECL_ACME void copy(::payload & payload, const ::i32 & i)
 {
 
    payload = i;
@@ -276,7 +276,7 @@ payload::payload(bool * pb) :
 }
 
 
-//payload::payload(int i)
+//payload::payload(::i32 i)
 //{
 //
 //   m_etype = e_type_new;
@@ -334,7 +334,7 @@ payload::payload(long l)
 #endif
 
 
-payload::payload(int * pi) :
+payload::payload(::i32 * pi) :
    m_etype(e_type_pi32)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
@@ -346,12 +346,12 @@ payload::payload(int * pi) :
 
 
 
-payload::payload(float* pf) :
-   m_etype(e_type_pfloat)
+payload::payload(::f32* pf) :
+   m_etype(e_type_pf32)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   , m_pf(pf)
+   , m_pf32(pf)
 {
 
 }
@@ -378,12 +378,12 @@ payload::payload(::i64 * pll):
 }
 
 
-payload::payload(double* pd) :
-   m_etype(e_type_pdouble)
+payload::payload(::f64* pd) :
+   m_etype(e_type_pf64)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   , m_pd(pd)
+   , m_pf64(pd)
 {
 
 }
@@ -401,20 +401,20 @@ payload::payload(::u64 * pull) :
 }
 
 
-//payload::payload(float float)
+//payload::payload(::f32 ::f32)
 //{
 //
 //   m_etype = e_type_new;
-//   operator = (float);
+//   operator = (::f32);
 //
 //}
 //
 //
-//payload::payload(double d)
+//payload::payload(::f64 d)
 //{
 //
 //   m_etype = e_type_new;
-//   operator = (double);
+//   operator = (::f64);
 //
 //}
 
@@ -450,16 +450,16 @@ payload::payload(const ::i64_array_base& longlonga) :
 
 }
 
-payload::payload(const ::float_array_base& floata) :
-   m_etype(e_type_float_array),
-   m_pfloata(__new__prefix(&m_preferer) new ::float_array(floata))
+payload::payload(const ::f32_array_base& floata) :
+   m_etype(e_type_f32_array),
+   m_pfloata(__new__prefix(&m_preferer) new ::f32_array(floata))
 {
 
 }
 
-payload::payload(const ::double_array_base& doublea) :
-   m_etype(e_type_double_array),
-   m_pdoublea(__new__prefix(&m_preferer) new ::double_array(doublea))
+payload::payload(const ::f64_array_base& doublea) :
+   m_etype(e_type_f64_array),
+   m_pdoublea(__new__prefix(&m_preferer) new ::f64_array(doublea))
 {
 
 }
@@ -728,7 +728,7 @@ atom::enum_type payload::atom_type() const
 }
 
 
-class ::payload & payload::operator ++(int)
+class ::payload & payload::operator ++(::i32)
 {
 
    switch(get_type())
@@ -738,8 +738,8 @@ class ::payload & payload::operator ++(int)
    case e_type_string_array:
    case e_type_int_array:
    case e_type_i64_array:
-   case e_type_float_array:
-   case e_type_double_array:
+   case e_type_f32_array:
+   case e_type_f64_array:
    case e_type_empty:
    case e_type_element:
    case e_type_path:
@@ -766,8 +766,8 @@ class ::payload & payload::operator ++(int)
 
    }
       break;
-   case e_type_double:
-      m_d += 1.0;
+   case e_type_f64:
+      m_f64 += 1.0;
       break;
    case e_type_i32:
       m_i32++;
@@ -860,8 +860,8 @@ void payload::set_type(enum_type etype, bool bConvert)
          case e_type_u64:
             m_u64 = this->as_u64();
             break;
-         case e_type_double:
-            m_d = this->as_double();
+         case e_type_f64:
+            m_f64 = this->as_f64();
             break;
          case e_type_string:
             m_str = ::transfer(this->as_string());
@@ -1184,7 +1184,7 @@ class ::payload & payload::operator = (para_return & eret)
 //}
 
 
-//class ::payload & payload::operator = (int i)
+//class ::payload & payload::operator = (::i32 i)
 //{
 //
 //    if(get_type() == e_type_pi32)
@@ -1219,7 +1219,7 @@ class ::payload & payload::operator = (para_return & eret)
 //}
 //
 //
-//class ::payload & payload::operator = (int * pi)
+//class ::payload & payload::operator = (::i32 * pi)
 //{
 //
 //   set_type(e_type_pi32, false);
@@ -1410,68 +1410,68 @@ class ::payload & payload::operator = (long l)
    }
 #endif
 
-//class ::payload & payload::operator = (float float)
+//class ::payload & payload::operator = (::f32 ::f32)
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      m_ppayload->operator = (float);
+//      m_ppayload->operator = (::f32);
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      m_pproperty->operator =(float);
+//      m_pproperty->operator =(::f32);
 //
 //   }
-//   else if (m_etype == e_type_pdouble)
+//   else if (m_etype == e_type_pf64)
 //   {
 //
-//      *m_pd = float;
+//      *m_pf64 = ::f32;
 //
 //   }
-//   else if (m_etype == e_type_pfloat)
+//   else if (m_etype == e_type_pf32)
 //   {
 //
-//      *m_pf = float;
+//      *m_pf32 = ::f32;
 //
 //   }
-//   else if (m_etype == e_type_pchar)
+//   else if (m_etype == e_type_pi8)
 //   {
 //
-//      *m_pi8 = (char)float;
+//      *m_pi8 = (::i8)::f32;
 //
 //   }
-//   else if (m_etype == e_type_pshort)
+//   else if (m_etype == e_type_pi16)
 //   {
 //
-//      *m_pi16 = (short)float;
+//      *m_pi16 = (::i16)::f32;
 //
 //   }
 //   else if (m_etype == e_type_pi32)
 //   {
 //
-//      *m_pi32 = (int)float;
+//      *m_pi32 = (::i32)::f32;
 //
 //   }
 //   else if (m_etype == e_type_pi64)
 //   {
 //
-//      *m_pi64 = (::i64)float;
+//      *m_pi64 = (::i64)::f32;
 //
 //   }
 //   else
 //   {
 //
-//      if (m_etype != e_type_float)
+//      if (m_etype != e_type_f32)
 //      {
 //
-//         set_type(e_type_float, false);
+//         set_type(e_type_f32, false);
 //
 //      }
 //
-//      m_f = float;
+//      m_f32 = ::f32;
 //
 //   }
 //
@@ -1480,49 +1480,49 @@ class ::payload & payload::operator = (long l)
 //}
 //
 //
-//class ::payload & payload::operator = (double d)
+//class ::payload & payload::operator = (::f64 d)
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      m_ppayload->operator = (double);
+//      m_ppayload->operator = (::f64);
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      m_pproperty->operator =(double);
+//      m_pproperty->operator =(::f64);
 //
 //   }
-//   else if (m_etype == e_type_pdouble)
+//   else if (m_etype == e_type_pf64)
 //   {
 //
-//      *m_pd = d;
+//      *m_pf64 = d;
 //
 //   }
-//   else if (m_etype == e_type_pfloat)
+//   else if (m_etype == e_type_pf32)
 //   {
 //
-//      *m_pf = (float) d;
+//      *m_pf32 = (::f32) d;
 //
 //   }
-//   else if (m_etype == e_type_pchar)
+//   else if (m_etype == e_type_pi8)
 //   {
 //
-//      *m_pi8 = (char) d;
+//      *m_pi8 = (::i8) d;
 //
 //   }
-//   else if (m_etype == e_type_pshort)
+//   else if (m_etype == e_type_pi16)
 //   {
 //
-//      *m_pi16 = (short)d;
+//      *m_pi16 = (::i16)d;
 //
 //   }
 //   else if (m_etype == e_type_pi32)
 //   {
 //
-//      *m_pi32 = (int)d;
+//      *m_pi32 = (::i32)d;
 //
 //   }
 //   else if (m_etype == e_type_pi64)
@@ -1533,12 +1533,12 @@ class ::payload & payload::operator = (long l)
 //   }
 //   else
 //   {
-//      if (m_etype != e_type_double)
+//      if (m_etype != e_type_f64)
 //      {
-//         set_type(e_type_double, false);
+//         set_type(e_type_f64, false);
 //
 //      }
-//      m_d = d;
+//      m_f64 = d;
 //
 //   }
 //
@@ -1649,7 +1649,7 @@ void payload::payload_increment_reference_count()
       case e_type_int_array:
          if (m_pia) m_pia->increment_reference_count();
          break;
-      case e_type_float_array:
+      case e_type_f32_array:
          if (m_pfloata) m_pfloata->increment_reference_count();
          break;
       case e_type_payload_array:
@@ -1661,7 +1661,7 @@ void payload::payload_increment_reference_count()
       case e_type_i64_array:
          if (m_plonglonga) m_plonglonga->increment_reference_count();
          break;
-      case e_type_double_array:
+      case e_type_f64_array:
          if (m_pdoublea) m_pdoublea->increment_reference_count();
          break;
       case e_type_memory:
@@ -1752,16 +1752,16 @@ class ::payload & payload::operator = (const class ::payload & payload)
          m_plonglonga = __new__prefix(&m_preferer) new ::i64_array(*payload.m_plonglonga);
 
       }
-      else if (etypeSource == e_type_float_array)
+      else if (etypeSource == e_type_f32_array)
       {
 
-         m_pfloata = __new__prefix(&m_preferer) new ::float_array(*payload.m_pfloata);
+         m_pfloata = __new__prefix(&m_preferer) new ::f32_array(*payload.m_pfloata);
 
       }
-      else if (etypeSource == e_type_double_array)
+      else if (etypeSource == e_type_f64_array)
       {
 
-         m_pdoublea = __new__prefix(&m_preferer) new ::double_array(*payload.m_pdoublea);
+         m_pdoublea = __new__prefix(&m_preferer) new ::f64_array(*payload.m_pdoublea);
 
       }
       else if (etypeSource == e_type_payload_array)
@@ -1828,16 +1828,16 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_u64:
             m_u64 = payload.m_u64;
             break;
-         case e_type_pchar:
+         case e_type_pi8:
             m_pi8 = payload.m_pi8;
             break;
-         case e_type_punsigned_char:
+         case e_type_pu8:
             m_pu8 = payload.m_pu8;
             break;
-         case e_type_pshort:
+         case e_type_pi16:
             m_pi16 = payload.m_pi16;
             break;
-         case e_type_punsigned_short:
+         case e_type_pu16:
             m_pu16 = payload.m_pu16;
             break;
          case e_type_pi32:
@@ -1852,11 +1852,11 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_pu64:
             m_pu64 = payload.m_pu64;
             break;
-         case e_type_float:
-            m_f = payload.m_f;
+         case e_type_f32:
+            m_f32 = payload.m_f32;
             break;
-         case e_type_double:
-            m_d = payload.m_d;
+         case e_type_f64:
+            m_f64 = payload.m_f64;
             break;
          case e_type_string:
             m_str = payload.m_str;
@@ -1968,7 +1968,7 @@ class ::payload& payload::operator = (const ::i64_array_base& longlonga)
 }
 
 
-class ::payload& payload::operator = (const ::float_array_base& floata)
+class ::payload& payload::operator = (const ::f32_array_base& floata)
 {
 
    //if (m_etype == e_type_payload_pointer)
@@ -1986,17 +1986,17 @@ class ::payload& payload::operator = (const ::float_array_base& floata)
    //else
    {
 
-      if (m_etype != e_type_float_array)
+      if (m_etype != e_type_f32_array)
       {
 
-         set_type(e_type_float_array, false);
+         set_type(e_type_f32_array, false);
 
       }
 
       if (::is_null(m_pfloata))
       {
 
-         m_pfloata = ___new float_array(floata);
+         m_pfloata = ___new f32_array(floata);
 
       }
       else
@@ -2015,7 +2015,7 @@ class ::payload& payload::operator = (const ::float_array_base& floata)
 
 
 
-class ::payload& payload::operator = (const ::double_array_base& doublea)
+class ::payload& payload::operator = (const ::f64_array_base& doublea)
 {
 
    //if (m_etype == e_type_payload_pointer)
@@ -2033,17 +2033,17 @@ class ::payload& payload::operator = (const ::double_array_base& doublea)
    //else
    {
 
-      if (m_etype != e_type_double_array)
+      if (m_etype != e_type_f64_array)
       {
 
-         set_type(e_type_double_array, false);
+         set_type(e_type_f64_array, false);
 
       }
 
       if (::is_null(m_pdoublea))
       {
 
-         m_pdoublea = ___new double_array(doublea);
+         m_pdoublea = ___new f64_array(doublea);
 
       }
       else
@@ -2060,7 +2060,7 @@ class ::payload& payload::operator = (const ::double_array_base& doublea)
 }
 
 
-//class ::payload& payload::operator = (const ::float_array_base& floata)
+//class ::payload& payload::operator = (const ::f32_array_base& floata)
 //{
 //
 //   //if (m_etype == e_type_payload_pointer)
@@ -2078,17 +2078,17 @@ class ::payload& payload::operator = (const ::double_array_base& doublea)
 //   //else
 //   {
 //
-//      if (m_etype != e_type_float_array)
+//      if (m_etype != e_type_f32_array)
 //      {
 //
-//         set_type(e_type_float_array, false);
+//         set_type(e_type_f32_array, false);
 //
 //      }
 //
 //      if (::is_null(m_pfloata))
 //      {
 //
-//         m_pfloata = ___new float_array(floata);
+//         m_pfloata = ___new f32_array(floata);
 //
 //      }
 //      else
@@ -2532,8 +2532,8 @@ bool payload::is_true() const
          return m_i64 != 0;
       case e_type_u64:
          return m_u64 != 0;
-      case e_type_double:
-         return m_d != 0;
+      case e_type_f64:
+         return m_f64 != 0;
       case e_type_bool:
          return m_b;
       //case e_type_payload_pointer:
@@ -2579,7 +2579,7 @@ bool payload::is_empty() const
       return false;
    case e_type_u64:
       return false;
-   case e_type_double:
+   case e_type_f64:
       return false;
    //case e_type_payload_pointer:
    //   return m_ppayload->is_empty();
@@ -2598,7 +2598,7 @@ bool payload::is_empty() const
       return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
-   case e_type_float_array:
+   case e_type_f32_array:
       return ::is_null(m_pfloata) || m_pfloata->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -2606,7 +2606,7 @@ bool payload::is_empty() const
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_i64_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
-   case e_type_double_array:
+   case e_type_f64_array:
       return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
@@ -2644,7 +2644,7 @@ bool payload::has_character() const
       return true;
    case e_type_u64:
       return true;
-   case e_type_double:
+   case e_type_f64:
       return true;
    //case e_type_payload_pointer:
    //   return m_ppayload->has_character();
@@ -2660,7 +2660,7 @@ bool payload::has_character() const
       return ::is_set(m_pstra) && m_pstra->has_element();
    case e_type_int_array:
       return ::is_set(m_pia) && m_pia->has_element();
-   case e_type_float_array:
+   case e_type_f32_array:
       return ::is_set(m_pfloata) && m_pfloata->has_element();
    case e_type_payload_array:
       return ::is_set(m_ppayloada) && m_ppayloada->has_element();
@@ -2668,7 +2668,7 @@ bool payload::has_character() const
       return ::is_set(m_ppropertyset) && m_ppropertyset->has_property();
    case e_type_i64_array:
       return ::is_set(m_plonglonga) && m_plonglonga->has_element();
-   case e_type_double_array:
+   case e_type_f64_array:
       return ::is_set(m_pdoublea) && m_pdoublea->has_element();
    case e_type_memory:
       return ::is_set(m_pmemory) && !m_pmemory->is_empty();
@@ -2765,13 +2765,13 @@ bool payload::is_new_or_null() const
       }
 
    }
-   else if (has_reference_of_type(::e_type_float_array))
+   else if (has_reference_of_type(::e_type_f32_array))
    {
 
-      if (payload.has_reference_of_type(::e_type_float_array))
+      if (payload.has_reference_of_type(::e_type_f32_array))
       {
 
-         return to_strong_ordering(float_array_reference().order(payload.float_array_reference()));
+         return to_strong_ordering(f32_array_reference().order(payload.f32_array_reference()));
 
       }
       else
@@ -2782,13 +2782,13 @@ bool payload::is_new_or_null() const
       }
 
    }
-   else if (has_reference_of_type(::e_type_double_array))
+   else if (has_reference_of_type(::e_type_f64_array))
    {
 
-      if (payload.has_reference_of_type(::e_type_double_array))
+      if (payload.has_reference_of_type(::e_type_f64_array))
       {
 
-         return to_strong_ordering(double_array_reference().order(payload.double_array_reference()));
+         return to_strong_ordering(f64_array_reference().order(payload.f64_array_reference()));
 
       }
       else
@@ -2932,13 +2932,13 @@ bool payload::case_insensitive_equals(const payload & payload) const
       }
 
    }
-   else if (has_reference_of_type(::e_type_float_array))
+   else if (has_reference_of_type(::e_type_f32_array))
    {
 
-      if (payload.has_reference_of_type(::e_type_float_array))
+      if (payload.has_reference_of_type(::e_type_f32_array))
       {
 
-         return ::to_strong_ordering(float_array_reference() <=> payload.float_array_reference());
+         return ::to_strong_ordering(f32_array_reference() <=> payload.f32_array_reference());
 
       }
       else
@@ -2949,13 +2949,13 @@ bool payload::case_insensitive_equals(const payload & payload) const
       }
 
    }
-   else if (has_reference_of_type(::e_type_double_array))
+   else if (has_reference_of_type(::e_type_f64_array))
    {
 
-      if (payload.has_reference_of_type(::e_type_double_array))
+      if (payload.has_reference_of_type(::e_type_f64_array))
       {
 
-         return ::to_strong_ordering(double_array_reference() <=> payload.double_array_reference());
+         return ::to_strong_ordering(f64_array_reference() <=> payload.f64_array_reference());
 
       }
       else
@@ -3009,7 +3009,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
    //else if (is_floating())
    //{
 
-   //   return ::std::strong_order(as_double(), payload.as_double());
+   //   return ::std::strong_order(as_f64(), payload.as_f64());
 
    //}
    else
@@ -3172,32 +3172,32 @@ bool payload::equals_unsigned(::u64 u) const
 }
 
 
-::std::strong_ordering payload::operator <=> (int i) const
+::std::strong_ordering payload::operator <=> (::i32 i) const
 {
    return as_i32() <=> i;
 }
 
-//bool payload::operator != (int i) const
+//bool payload::operator != (::i32 i) const
 //{
 //   return as_i32() != i;
 //}
 //
-//bool payload::operator < (int i) const
+//bool payload::operator < (::i32 i) const
 //{
 //   return as_i64() < i;
 //}
 //
-//bool payload::operator <= (int i) const
+//bool payload::operator <= (::i32 i) const
 //{
 //   return as_i64() <= i;
 //}
 //
-//bool payload::operator >= (int i) const
+//bool payload::operator >= (::i32 i) const
 //{
 //   return as_i64() >= i;
 //}
 //
-//bool payload::operator > (int i) const
+//bool payload::operator > (::i32 i) const
 //{
 //   return as_i64() > i;
 //}
@@ -3326,12 +3326,12 @@ bool payload::equals_unsigned(::u64 u) const
 //   return m_etype == e_type_string && m_str == str;
 //}
 //
-//bool payload::strictly_equal(double d) const
+//bool payload::strictly_equal(::f64 d) const
 //{
-//   return m_etype == e_type_double && m_d == d;
+//   return m_etype == e_type_f64 && m_f64 == d;
 //}
 //
-//bool payload::strictly_equal(int i) const
+//bool payload::strictly_equal(::i32 i) const
 //{
 //   return m_etype == e_type_i32 && m_i32 == i;
 //}
@@ -3356,12 +3356,12 @@ bool payload::equals_unsigned(::u64 u) const
 //   return m_etype != e_type_string || m_str != str;
 //}
 //
-//bool payload::strictly_different(double d) const
+//bool payload::strictly_different(::f64 d) const
 //{
-//   return m_etype != e_type_double || m_d != d;
+//   return m_etype != e_type_f64 || m_f64 != d;
 //}
 //
-//bool payload::strictly_different(int i) const
+//bool payload::strictly_different(::i32 i) const
 //{
 //   return m_etype != e_type_i32 || m_i32 != i;
 //}
@@ -3382,7 +3382,7 @@ string payload::get_recursive_string() const
 
       str += "array (";
 
-      for(int i = 0; i < array_get_count(); i++)
+      for(::i32 i = 0; i < array_get_count(); i++)
       {
 
          if(i > 0)
@@ -3448,7 +3448,7 @@ string payload::get_recursive_string() const
       else if (is_floating())
       {
 
-         auto f = double();
+         auto f = ::f64();
 
          time.m_iSecond = (::i64)floor(f);
          time.m_iNanosecond = (::i64)(fmod(f, 1.0) * 1'000'000'000.0);
@@ -3530,10 +3530,10 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
          str = ::as_string(m_u64);
 
       }
-      else if(m_etype == ::e_type_double)
+      else if(m_etype == ::e_type_f64)
       {
 
-         str = ::as_string(m_d);
+         str = ::as_string(m_f64);
 
       }
       else if(m_etype == ::e_type_atom)
@@ -3557,7 +3557,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if(m_etype == ::e_type_bool)
       {
 
-         str = ::as_string((int)m_b);
+         str = ::as_string((::i32)m_b);
 
       }
       //else if (m_etype == ::e_type_payload_pointer)
@@ -3736,22 +3736,22 @@ string & payload::string_reference()
          atom = (::collection::index) m_u64;
 
       }
-      else if (m_etype == ::e_type_float)
+      else if (m_etype == ::e_type_f32)
       {
 
          ::string str;
 
-         str.formatf("%f", m_f);
+         str.formatf("%f", m_f32);
 
          atom = str;
 
       }
-      else if(m_etype == ::e_type_double)
+      else if(m_etype == ::e_type_f64)
       {
 
          ::string str;
 
-         str.formatf("%f", m_d);
+         str.formatf("%f", m_f64);
 
          atom = str;
 
@@ -3825,7 +3825,7 @@ string & payload::string_reference()
 }
 
 
-int payload::as_i32(int iDefault) const
+::i32 payload::as_i32(::i32 iDefault) const
 {
 
    switch(m_etype)
@@ -3836,40 +3836,40 @@ int payload::as_i32(int iDefault) const
       return iDefault;
    case e_type_string:
       return atoi(m_str);
-   case e_type_double:
-      return (int) m_d;
-   case e_type_pchar:
-      return (int)*m_pi8;
-   case e_type_pshort:
-      return (int)*m_pi16;
+   case e_type_f64:
+      return (::i32) m_f64;
+   case e_type_pi8:
+      return (::i32)*m_pi8;
+   case e_type_pi16:
+      return (::i32)*m_pi16;
    case e_type_pi32:
-      return (int)*m_pi32;
+      return (::i32)*m_pi32;
    case e_type_pi64:
-      return (int)*m_pi64;
-   case e_type_punsigned_char:
-      return (int)*m_pu8;
-   case e_type_punsigned_short:
-      return (int)*m_pu16;
+      return (::i32)*m_pi64;
+   case e_type_pu8:
+      return (::i32)*m_pu8;
+   case e_type_pu16:
+      return (::i32)*m_pu16;
    case e_type_pu32:
-      return (int)*m_pu32;
+      return (::i32)*m_pu32;
    case e_type_pu64:
-      return (int)*m_pu64;
+      return (::i32)*m_pu64;
    case e_type_i8:
-      return (int) m_i8;
+      return (::i32) m_i8;
    case e_type_i16:
-      return (int) m_i32;
+      return (::i32) m_i32;
    case e_type_i32:
       return m_u32;
    case e_type_i64:
-      return (int) m_i64;
+      return (::i32) m_i64;
    case e_type_u8:
-      return (int)m_u8;
+      return (::i32)m_u8;
    case e_type_u16:
-      return (int)m_u16;
+      return (::i32)m_u16;
    case e_type_u32:
-      return (int)m_u32;
+      return (::i32)m_u32;
    case e_type_u64:
-      return (int) m_u64;
+      return (::i32) m_u64;
    case e_type_element:
    case e_type_path:
       return iDefault;
@@ -3883,13 +3883,13 @@ int payload::as_i32(int iDefault) const
    {
       if(!fits_int(m_atomPayload.as_i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (int) (::i64) m_atomPayload.as_i64();
+      return (::i32) (::i64) m_atomPayload.as_i64();
    }
    case e_type_patom:
    {
       if(!fits_int(m_patom->as_i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (int) (::i64) m_patom->as_i64();
+      return (::i32) (::i64) m_patom->as_i64();
    }
    default:
       return iDefault;
@@ -3899,7 +3899,7 @@ int payload::as_i32(int iDefault) const
 
 
 //
-//int & payload::as_i32()
+//::i32 & payload::as_i32()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -3917,7 +3917,7 @@ int payload::as_i32(int iDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      int i = this->as_i32();
+//      ::i32 i = this->as_i32();
 //
 //      set_type(e_type_i32, false);
 //
@@ -4026,16 +4026,16 @@ int payload::as_i32(int iDefault) const
          return m_u64;
       case e_type_atom:
          return m_atomPayload.as_i64();
-      case e_type_pchar:
+      case e_type_pi8:
          if (::is_null(m_pi8)) return iDefault;
          return *m_pi8;
-      case e_type_punsigned_char:
+      case e_type_pu8:
          if (::is_null(m_pu8)) return iDefault;
          return *m_pu8;
-      case e_type_pshort:
+      case e_type_pi16:
          if (::is_null(m_pi16)) return iDefault;
          return *m_pi16;
-      case e_type_punsigned_short:
+      case e_type_pu16:
          if (::is_null(m_pu16)) return iDefault;
          return *m_pu16;
       case e_type_pi32:
@@ -4092,10 +4092,10 @@ long payload::get_long(long lDefault) const
 }
 
 
-unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
+ulong payload::get_unsigned_long(ulong ulDefault) const
 {
    
-   return (unsigned long) this->as_u64(ulDefault);
+   return (ulong) this->as_u64(ulDefault);
    
 }
 
@@ -4153,10 +4153,10 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
       return m_i64;
    case e_type_u64:
       return m_u64;
-   case e_type_float:
-      return (::u64) m_f;
-   case e_type_double:
-      return (::u64) m_d;
+   case e_type_f32:
+      return (::u64) m_f32;
+   case e_type_f64:
+      return (::u64) m_f64;
    case e_type_element:
    case e_type_path:
       return uiDefault;
@@ -4281,7 +4281,7 @@ bool payload::as_bool() const
 }
 
 
-char payload::as_i8(char iDefault) const
+::i8 payload::as_i8(::i8 iDefault) const
 {
    switch (m_etype)
    {
@@ -4290,22 +4290,22 @@ char payload::as_i8(char iDefault) const
    case e_type_empty:
       return iDefault;
    case e_type_i32:
-      return (char)m_i32;
+      return (::i8)m_i32;
    case e_type_u32:
-      return (char)m_u32;
+      return (::i8)m_u32;
    case e_type_i64:
-      return (char)m_i64;
+      return (::i8)m_i64;
    case e_type_u64:
-      return (char)m_u64;
-   case e_type_float:
-      return (char) m_f;
-   case e_type_double:
-      return (char)m_d;
+      return (::i8)m_u64;
+   case e_type_f32:
+      return (::i8) m_f32;
+   case e_type_f64:
+      return (::i8)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
-      return (char)atof(m_str);
+      return (::i8)atof(m_str);
 #else
-      return (char)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::i8)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_i8(iDefault);
@@ -4323,7 +4323,7 @@ char payload::as_i8(char iDefault) const
 
 
 
-unsigned char payload::as_u8(unsigned char uDefault) const
+::u8 payload::as_u8(::u8 uDefault) const
 {
    switch (m_etype)
    {
@@ -4332,22 +4332,22 @@ unsigned char payload::as_u8(unsigned char uDefault) const
    case e_type_empty:
       return uDefault;
    case e_type_i32:
-      return (unsigned char)m_i32;
+      return (::u8)m_i32;
    case e_type_u32:
-      return (unsigned char)m_u32;
+      return (::u8)m_u32;
    case e_type_i64:
-      return (unsigned char)m_i64;
+      return (::u8)m_i64;
    case e_type_u64:
-      return (unsigned char)m_u64;
-   case e_type_float:
-      return (unsigned char)m_f;
-   case e_type_double:
-      return (unsigned char)m_d;
+      return (::u8)m_u64;
+   case e_type_f32:
+      return (::u8)m_f32;
+   case e_type_f64:
+      return (::u8)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
-      return (unsigned char)atof(m_str);
+      return (::u8)atof(m_str);
 #else
-      return (unsigned char)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::u8)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_u8(uDefault);
@@ -4360,7 +4360,7 @@ unsigned char payload::as_u8(unsigned char uDefault) const
 }
 
 
-//unsigned char & payload::as_u8()
+//::u8 & payload::as_u8()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -4378,7 +4378,7 @@ unsigned char payload::as_u8(unsigned char uDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      unsigned char i = this->as_u8();
+//      ::u8 i = this->as_u8();
 //
 //      set_type(e_type_u8, false);
 //
@@ -4392,7 +4392,7 @@ unsigned char payload::as_u8(unsigned char uDefault) const
 
 
 
-short payload::as_i16(short iDefault) const
+::i16 payload::as_i16(::i16 iDefault) const
 {
    switch (m_etype)
    {
@@ -4401,22 +4401,22 @@ short payload::as_i16(short iDefault) const
    case e_type_empty:
       return iDefault;
    case e_type_i32:
-      return (short)m_i32;
+      return (::i16)m_i32;
    case e_type_u32:
-      return (short)m_u32;
+      return (::i16)m_u32;
    case e_type_i64:
-      return (short)m_i64;
+      return (::i16)m_i64;
    case e_type_u64:
-      return (short)m_u64;
-   case e_type_float:
-      return (short)m_f;
-   case e_type_double:
-      return (short)m_d;
+      return (::i16)m_u64;
+   case e_type_f32:
+      return (::i16)m_f32;
+   case e_type_f64:
+      return (::i16)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
-      return (short)atof(m_str);
+      return (::i16)atof(m_str);
 #else
-      return (short)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::i16)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_i16(iDefault);
@@ -4430,7 +4430,7 @@ short payload::as_i16(short iDefault) const
 
 
 
-//short & payload::as_i16()
+//::i16 & payload::as_i16()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -4448,7 +4448,7 @@ short payload::as_i16(short iDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      short i = this->as_i16();
+//      ::i16 i = this->as_i16();
 //
 //      set_type(e_type_i16, false);
 //
@@ -4462,7 +4462,7 @@ short payload::as_i16(short iDefault) const
 
 
 
-unsigned short payload::as_u16(unsigned short uDefault) const
+::u16 payload::as_u16(::u16 uDefault) const
 {
    switch (m_etype)
    {
@@ -4471,22 +4471,22 @@ unsigned short payload::as_u16(unsigned short uDefault) const
    case e_type_empty:
       return uDefault;
    case e_type_i32:
-      return (unsigned short)m_i32;
+      return (::u16)m_i32;
    case e_type_u32:
-      return (unsigned short)m_u32;
+      return (::u16)m_u32;
    case e_type_i64:
-      return (unsigned short)m_i64;
+      return (::u16)m_i64;
    case e_type_u64:
-      return (unsigned short)m_u64;
-   case e_type_float:
-      return (unsigned short)m_f;
-   case e_type_double:
-      return (unsigned short)m_d;
+      return (::u16)m_u64;
+   case e_type_f32:
+      return (::u16)m_f32;
+   case e_type_f64:
+      return (::u16)m_f64;
    case e_type_string:
 #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
-      return (unsigned short)atof(m_str);
+      return (::u16)atof(m_str);
 #else
-      return (unsigned short)_atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::u16)_atof_l(m_str, ::get_task()->locale()->m_locale);
 #endif
    //case e_type_payload_pointer:
    //   return m_ppayload->as_u16(uDefault);
@@ -4500,7 +4500,7 @@ unsigned short payload::as_u16(unsigned short uDefault) const
 
 
 //
-//unsigned short & payload::as_u16()
+//::u16 & payload::as_u16()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -4518,7 +4518,7 @@ unsigned short payload::as_u16(unsigned short uDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      unsigned short i = this->as_u16();
+//      ::u16 i = this->as_u16();
 //
 //      set_type(e_type_u16, false);
 //
@@ -4532,7 +4532,7 @@ unsigned short payload::as_u16(unsigned short uDefault) const
 //
 
 
-float payload::as_float(float fDefault) const
+::f32 payload::as_f32(::f32 fDefault) const
 {
    switch(m_etype)
    {
@@ -4541,60 +4541,60 @@ float payload::as_float(float fDefault) const
    case e_type_empty:
       return fDefault;
    case e_type_i32:
-      return (float) m_i32;
+      return (::f32) m_i32;
    case e_type_u32:
-      return (float) m_u32;
+      return (::f32) m_u32;
    case e_type_i64:
-      return (float) m_i64;
+      return (::f32) m_i64;
    case e_type_u64:
-      return (float) m_u64;
-   case e_type_float:
-      return m_f;
-   case e_type_double:
-      return (float) m_d;
+      return (::f32) m_u64;
+   case e_type_f32:
+      return m_f32;
+   case e_type_f64:
+      return (::f32) m_f64;
    case e_type_string:
    #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
-      return (float) atof(m_str);
+      return (::f32) atof(m_str);
    #else
-      return (float) _atof_l(m_str, ::get_task()->locale()->m_locale);
+      return (::f32) _atof_l(m_str, ::get_task()->locale()->m_locale);
    #endif
    //case e_type_payload_pointer:
-   //   return m_ppayload->as_float(fDefault);
+   //   return m_ppayload->as_f32(fDefault);
    //case e_type_property:
-   //   return m_pproperty->as_float(fDefault);
+   //   return m_pproperty->as_f32(fDefault);
    default:
       return fDefault;
    }
 
 }
 //
-//float & payload::as_float()
+//::f32 & payload::as_f32()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      return m_ppayload->as_float();
+//      return m_ppayload->as_f32();
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      return m_pproperty->as_float();
+//      return m_pproperty->as_f32();
 //
 //   }
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      float i = this->as_float();
+//      ::f32 i = this->as_f32();
 //
-//      set_type(e_type_float, false);
+//      set_type(e_type_f32, false);
 //
-//      m_f = i;
+//      m_f32 = i;
 //
 //   }
 //
-//   return m_f;
+//   return m_f32;
 //
 //}
 //
@@ -4616,9 +4616,9 @@ float payload::as_float(float fDefault) const
 //}
 
 
-double payload::as_double(double dDefault) const
+::f64 payload::as_f64(::f64 dDefault) const
 {
-   double d;
+   ::f64 d;
    if(m_etype == e_type_null)
    {
       return dDefault;
@@ -4629,36 +4629,36 @@ double payload::as_double(double dDefault) const
    }
    else if(m_etype == ::e_type_i32)
    {
-      d = (double) m_i32;
+      d = (::f64) m_i32;
    }
    else if(m_etype == ::e_type_u32)
    {
 
-      d = (double) m_u32;
+      d = (::f64) m_u32;
 
    }
    else if(m_etype == ::e_type_i64)
    {
 
-      d = (double) m_i64;
+      d = (::f64) m_i64;
 
    }
    else if(m_etype == ::e_type_u64)
    {
 
-      d = (double) m_u64;
+      d = (::f64) m_u64;
 
    }
-   else if(m_etype == ::e_type_float)
+   else if(m_etype == ::e_type_f32)
    {
 
-      d = (double) m_f;
+      d = (::f64) m_f32;
 
    }
-   else if(m_etype == ::e_type_double)
+   else if(m_etype == ::e_type_f64)
    {
 
-      d = m_d;
+      d = m_f64;
 
    }
    else if(m_etype == ::e_type_string)
@@ -4700,13 +4700,13 @@ double payload::as_double(double dDefault) const
    //else if(m_etype == ::e_type_payload_pointer)
    //{
 
-   //   d = m_ppayload->as_double(dDefault);
+   //   d = m_ppayload->as_f64(dDefault);
 
    //}
    //else if (m_etype == ::e_type_property)
    //{
 
-   //   d = m_pproperty->as_double(dDefault);
+   //   d = m_pproperty->as_f64(dDefault);
 
    //}
    else
@@ -4721,33 +4721,33 @@ double payload::as_double(double dDefault) const
 }
 
 //
-//double & payload::as_double()
+//::f64 & payload::as_f64()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      return m_ppayload->as_double();
+//      return m_ppayload->as_f64();
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      return m_pproperty->as_double();
+//      return m_pproperty->as_f64();
 //
 //   }
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      double i = this->as_double();
+//      ::f64 i = this->as_f64();
 //
-//      set_type(e_type_double, false);
+//      set_type(e_type_f64, false);
 //
-//      m_d = i;
+//      m_f64 = i;
 //
 //   }
 //
-//   return m_d;
+//   return m_f64;
 //
 //}
 //
@@ -5279,7 +5279,7 @@ i64_array_base payload::as_i64_array() const
 }
 
 
-::float_array_base payload::as_float_array() const
+::f32_array_base payload::as_f32_array() const
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5294,10 +5294,10 @@ i64_array_base payload::as_i64_array() const
          return ::transfer(m_pproperty->as_int_array());
 
       }
-      else*/ if (m_etype != e_type_float_array)
+      else*/ if (m_etype != e_type_f32_array)
       {
 
-         ::float_array_base floata;
+         ::f32_array_base floata;
 
          try
          {
@@ -5307,7 +5307,7 @@ i64_array_base payload::as_i64_array() const
             for (::collection::index i = 0; i < c; i++)
             {
 
-               floata.add(at(i).as_float());
+               floata.add(at(i).as_f32());
 
             }
 
@@ -5332,7 +5332,7 @@ i64_array_base payload::as_i64_array() const
 }
 
 
-float_array & payload::float_array_reference()
+f32_array & payload::f32_array_reference()
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5347,10 +5347,10 @@ float_array & payload::float_array_reference()
          return m_pproperty->i32_array_reference();
 
       }
-      else*/ if (m_etype != e_type_float_array)
+      else*/ if (m_etype != e_type_f32_array)
       {
 
-         auto pfloata = __new__prefix(&m_preferer) new ::float_array();
+         auto pfloata = __new__prefix(&m_preferer) new ::f32_array();
 
          try
          {
@@ -5360,7 +5360,7 @@ float_array & payload::float_array_reference()
             for (::collection::index i = 0; i < c; i++)
             {
 
-               pfloata->add(at(i).as_float());
+               pfloata->add(at(i).as_f32());
 
             }
 
@@ -5370,7 +5370,7 @@ float_array & payload::float_array_reference()
 
          }
 
-         set_type(e_type_float_array, false);
+         set_type(e_type_f32_array, false);
 
          m_pfloata = pfloata;
 
@@ -5378,7 +5378,7 @@ float_array & payload::float_array_reference()
       else if (::is_null(m_pfloata))
       {
 
-         m_pfloata = __new__prefix(&m_preferer) new ::float_array();
+         m_pfloata = __new__prefix(&m_preferer) new ::f32_array();
 
       }
 
@@ -5388,7 +5388,7 @@ float_array & payload::float_array_reference()
 
 
 
-::double_array_base payload::as_double_array() const
+::f64_array_base payload::as_f64_array() const
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5403,10 +5403,10 @@ float_array & payload::float_array_reference()
          return ::transfer(m_pproperty->as_int_array());
 
       }
-      else*/ if (m_etype != e_type_double_array)
+      else*/ if (m_etype != e_type_f64_array)
       {
 
-         ::double_array_base doublea;
+         ::f64_array_base doublea;
 
          try
          {
@@ -5416,7 +5416,7 @@ float_array & payload::float_array_reference()
             for (::collection::index i = 0; i < c; i++)
             {
 
-               doublea.add(at(i).as_double());
+               doublea.add(at(i).as_f64());
 
             }
 
@@ -5441,7 +5441,7 @@ float_array & payload::float_array_reference()
 }
 
 
-double_array & payload::double_array_reference()
+f64_array & payload::f64_array_reference()
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5456,10 +5456,10 @@ double_array & payload::double_array_reference()
          return m_pproperty->i32_array_reference();
 
       }
-      else*/ if (m_etype != e_type_double_array)
+      else*/ if (m_etype != e_type_f64_array)
       {
 
-         auto pdoublea = __new__prefix(&m_preferer) new ::double_array();
+         auto pdoublea = __new__prefix(&m_preferer) new ::f64_array();
 
          try
          {
@@ -5469,7 +5469,7 @@ double_array & payload::double_array_reference()
             for (::collection::index i = 0; i < c; i++)
             {
 
-               pdoublea->add(at(i).as_double());
+               pdoublea->add(at(i).as_f64());
 
             }
 
@@ -5479,7 +5479,7 @@ double_array & payload::double_array_reference()
 
          }
 
-         set_type(e_type_double_array, false);
+         set_type(e_type_f64_array, false);
 
          m_pdoublea = pdoublea;
 
@@ -5487,7 +5487,7 @@ double_array & payload::double_array_reference()
       else if (::is_null(m_pdoublea))
       {
 
-         m_pdoublea = __new__prefix(&m_preferer) new ::double_array();
+         m_pdoublea = __new__prefix(&m_preferer) new ::f64_array();
 
       }
 
@@ -5533,13 +5533,13 @@ class ::time payload::as_time() const
    else if (is_floating())
    {
 
-      return second_time(as_double());
+      return second_time(as_f64());
 
    }
    else
    {
 
-      return second_time(as_double());
+      return second_time(as_f64());
 
    }
 
@@ -5740,7 +5740,7 @@ payload_array_base payload::as_payload_array() const
          else
          {
 
-            for (int i = 0; i < array_get_count(); i++)
+            for (::i32 i = 0; i < array_get_count(); i++)
             {
 
                payloada.add(at(i));
@@ -5806,7 +5806,7 @@ payload_array & payload::payload_array_reference ()
          else
          {
 
-            for (int i = 0; i < array_get_count(); i++)
+            for (::i32 i = 0; i < array_get_count(); i++)
             {
 
                pvara->add(at(i));
@@ -5865,7 +5865,7 @@ payload_array & payload::payload_array_reference ()
       else
       {
 
-         for (int i = 0; i < array_get_count(); i++)
+         for (::i32 i = 0; i < array_get_count(); i++)
          {
 
             set.set_at(i, at(i));
@@ -5939,7 +5939,7 @@ payload_array & payload::payload_array_reference ()
       else if(is_array())
       {
 
-         for (int i = 0; i < array_get_count(); i++)
+         for (::i32 i = 0; i < array_get_count(); i++)
          {
 
             psetNew->set_at(i, at(i));
@@ -6572,11 +6572,11 @@ property & payload::get_property(const ::atom & atom)
    {
    case e_type_int_array:
       return &m_pia->element_at(i);
-   case e_type_float_array:
+   case e_type_f32_array:
       return &m_pfloata->element_at(i);
    case e_type_i64_array:
       return &m_plonglonga->element_at(i);
-   case e_type_double_array:
+   case e_type_f64_array:
       return &m_pdoublea->element_at(i);
    case e_type_string_array:
       return &m_pstra->element_at(i);
@@ -6762,7 +6762,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 
-//::payload payload::operator / (int i) const
+//::payload payload::operator / (::i32 i) const
 //{
 //   return as_i32() / i;
 //}
@@ -6794,15 +6794,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return m_i64 / (::i64) ul;
 //   case ::e_type_u64:
 //      return m_u64 / (::u64) ul;
-//   case ::e_type_float:
-//      return m_f / (float) ul;
-//   case ::e_type_double:
-//      return m_d / (double) ul;
+//   case ::e_type_f32:
+//      return m_f32 / (::f32) ul;
+//   case ::e_type_f64:
+//      return m_f64 / (::f64) ul;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
-//      return atof(m_str) / (double) ul;
+//      return atof(m_str) / (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::get_task()->locale()->m_locale) / (double) ul;
+//      return _atof_l(m_str, ::get_task()->locale()->m_locale) / (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator / (ul);
@@ -6814,12 +6814,12 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //}
 //
-//::payload payload::operator / (double d) const
+//::payload payload::operator / (::f64 d) const
 //{
-//   return as_double() / d;
+//   return as_f64() / d;
 //}
 //
-//::payload operator / (int i, const class ::payload & payload)
+//::payload operator / (::i32 i, const class ::payload & payload)
 //{
 //   return i / payload.as_i32();
 //}
@@ -6851,15 +6851,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return (::i64) ul / payload.m_i64;
 //   case ::e_type_u64:
 //      return (::u64) ul / payload.m_u64;
-//   case ::e_type_float:
-//      return (float) ul / payload.m_f;
-//   case ::e_type_double:
-//      return (double) ul / payload.m_d;
+//   case ::e_type_f32:
+//      return (::f32) ul / payload.m_f32;
+//   case ::e_type_f64:
+//      return (::f64) ul / payload.m_f64;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
-//      return (double) ul / atof(payload.m_str);
+//      return (::f64) ul / atof(payload.m_str);
 //#else
-//      return (double) ul / _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
+//      return (::f64) ul / _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator / (ul, *payload.m_ppayload);
@@ -6870,13 +6870,13 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   }
 //
 //}
-//::payload operator / (double d, const class ::payload & payload)
+//::payload operator / (::f64 d, const class ::payload & payload)
 //{
-//   return double / payload.as_double();
+//   return ::f64 / payload.as_f64();
 //}
 //
 //
-//::payload payload::operator * (int i) const
+//::payload payload::operator * (::i32 i) const
 //{
 //   return as_i32() * i;
 //}
@@ -6907,16 +6907,16 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return m_i64 * (::i64) ul;
 //   case ::e_type_u64:
 //      return m_u64 * (::u64) ul;
-//   case ::e_type_float:
-//      return m_f * (float) ul;
-//   case ::e_type_double:
-//      return m_d * (double) ul;
+//   case ::e_type_f32:
+//      return m_f32 * (::f32) ul;
+//   case ::e_type_f64:
+//      return m_f64 * (::f64) ul;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
 //
-//      return atof(m_str) * (double) ul;
+//      return atof(m_str) * (::f64) ul;
 //#else
-//      return _atof_l(m_str, ::get_task()->locale()->m_locale) * (double) ul;
+//      return _atof_l(m_str, ::get_task()->locale()->m_locale) * (::f64) ul;
 //#endif
 //   case ::e_type_payload_pointer:
 //      return m_ppayload->operator * (ul);
@@ -6928,12 +6928,12 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //}
 //
-//::payload payload::operator * (double d) const
+//::payload payload::operator * (::f64 d) const
 //{
-//   return as_double() * d;
+//   return as_f64() * d;
 //}
 //
-//::payload operator * (int i, const class ::payload & payload)
+//::payload operator * (::i32 i, const class ::payload & payload)
 //{
 //   return i * payload.as_i32();
 //}
@@ -6965,15 +6965,15 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      return (::i64) ul * payload.m_i64;
 //   case ::e_type_u64:
 //      return (::u64) ul * payload.m_u64;
-//   case ::e_type_float:
-//      return (float) ul * payload.m_f;
-//   case ::e_type_double:
-//      return (double) ul * payload.m_d;
+//   case ::e_type_f32:
+//      return (::f32) ul * payload.m_f32;
+//   case ::e_type_f64:
+//      return (::f64) ul * payload.m_f64;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(__ANDROID__)
-//      return (double) ul * atof(payload.m_str);
+//      return (::f64) ul * atof(payload.m_str);
 //#else
-//      return (double) ul * _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
+//      return (::f64) ul * _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
 //#endif
 //   case ::e_type_payload_pointer:
 //      return operator * (ul, *payload.m_ppayload);
@@ -6986,9 +6986,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //}
 //
 //
-//::payload operator * (double d, const class ::payload & payload)
+//::payload operator * (::f64 d, const class ::payload & payload)
 //{
-//   return double * payload.as_double();
+//   return ::f64 * payload.as_f64();
 //}
 //
 
@@ -7012,7 +7012,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 //
-//class ::payload & payload::operator -= (int i)
+//class ::payload & payload::operator -= (::i32 i)
 //{
 //   operator =(*this - i);
 //   return *this;
@@ -7036,9 +7036,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator -= (double d)
+//class ::payload & payload::operator -= (::f64 d)
 //{
-//   operator =(*this - double);
+//   operator =(*this - ::f64);
 //   return *this;
 //}
 //
@@ -7053,7 +7053,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //
 //
-//class ::payload & payload::operator += (int i)
+//class ::payload & payload::operator += (::i32 i)
 //{
 //   operator =(*this + i);
 //   return *this;
@@ -7077,9 +7077,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator += (double d)
+//class ::payload & payload::operator += (::f64 d)
 //{
-//   operator =(*this + double);
+//   operator =(*this + ::f64);
 //   return *this;
 //}
 //
@@ -7108,7 +7108,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 //
-//class ::payload & payload::operator /= (int i)
+//class ::payload & payload::operator /= (::i32 i)
 //{
 //   operator =(*this / i);
 //   return *this;
@@ -7132,9 +7132,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator /= (double d)
+//class ::payload & payload::operator /= (::f64 d)
 //{
-//   operator =(*this / double);
+//   operator =(*this / ::f64);
 //   return *this;
 //}
 //
@@ -7163,7 +7163,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //
 //
-//class ::payload & payload::operator *= (int i)
+//class ::payload & payload::operator *= (::i32 i)
 //{
 //   operator =(*this * i);
 //   return *this;
@@ -7187,9 +7187,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator *= (double d)
+//class ::payload & payload::operator *= (::f64 d)
 //{
-//   operator =(*this * double);
+//   operator =(*this * ::f64);
 //   return *this;
 //}
 //
@@ -7241,7 +7241,7 @@ bool payload::is_scalar() const
            || m_etype == e_type_i32
            || m_etype == e_type_u32
            || m_etype == e_type_bool
-           || m_etype == e_type_double)
+           || m_etype == e_type_f64)
    {
       return true;
    }
@@ -7274,7 +7274,7 @@ bool payload::is_scalar() const
 bool payload::is_floating() const
 {
 
-   if(m_etype == e_type_double || m_etype == e_type_float)
+   if(m_etype == e_type_f64 || m_etype == e_type_f32)
    {
 
       return true;
@@ -7305,7 +7305,7 @@ bool payload::is_floating() const
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
-            int i;
+            ::i32 i;
             for(i = 1; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
@@ -7397,7 +7397,7 @@ dot2:
 
 bool payload::is_boolean() const
 {
-   if (m_etype == e_type_double)
+   if (m_etype == e_type_f64)
    {
       return true;
    }
@@ -7406,7 +7406,7 @@ bool payload::is_boolean() const
 
 bool payload::is_double() const
 {
-   if(m_etype == e_type_double)
+   if(m_etype == e_type_f64)
    {
       return true;
    }
@@ -7725,16 +7725,16 @@ bool payload::has_string_reference() const
 //      return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::acme::is_true(m_pstra->element_at(0))));
 //
 //   }
-//   else if (m_etype == e_type_float)
+//   else if (m_etype == e_type_f32)
 //   {
 //
-//      return m_f != 0.0f;
+//      return m_f32 != 0.0f;
 //
 //   }
-//   else if (m_etype == e_type_double)
+//   else if (m_etype == e_type_f64)
 //   {
 //
-//      return m_d != 0.0;
+//      return m_f64 != 0.0;
 //
 //   }
 //   else if (m_etype == e_type_payload_pointer)
@@ -7979,7 +7979,7 @@ block payload::as_block () const
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{
-//      //   return cast < property >()->name().case_insensitive_order(lpszName) == 0;
+//      //   return cast < property >()->name().case_insensitive_order(pszName) == 0;
 //      //}
 //      else
 //      {
@@ -8163,7 +8163,7 @@ end:
 
 //#if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 
-      double d = atof(strNumber);
+      ::f64 d = atof(strNumber);
 
       //if (bSigned)
       //{
@@ -8174,7 +8174,7 @@ end:
 
 //#else
 
-      //double d = _atof_l(strNumber, ::get_task()->locale()->m_locale);
+      //::f64 d = _atof_l(strNumber, ::get_task()->locale()->m_locale);
 
 //#endif
 
@@ -8431,11 +8431,11 @@ void payload::parse_network_payload(::ansi_range & range)
          if(stra.get_count() == 3)
          {
 
-            double dH = atof(stra[0]);
+            ::f64 dH = atof(stra[0]);
 
-            double dL = atof(stra[1]);
+            ::f64 dL = atof(stra[1]);
 
-            double dS = atof(stra[2]);
+            ::f64 dS = atof(stra[2]);
 
             if(dH >= 0.0 && dH <= 1.0
             && dL >= 0.0 && dL <= 1.0
@@ -8747,13 +8747,13 @@ bool payload::is_numeric() const
       return false;
 
    case e_type_i8:
-   case e_type_pchar:
+   case e_type_pi8:
    case e_type_u8:
-   case e_type_punsigned_char:
+   case e_type_pu8:
    case e_type_i16:
-   case e_type_pshort:
+   case e_type_pi16:
    case e_type_u16:
-   case e_type_punsigned_short:
+   case e_type_pu16:
    case e_type_i32:
    case e_type_pi32:
    case e_type_u32:
@@ -8779,14 +8779,14 @@ bool payload::is_numeric() const
    case e_type_key_exists:
       return false;
 
-   case e_type_double:
+   case e_type_f64:
       return true;
 
    case e_type_string_array:
    case e_type_int_array:
-   case e_type_float_array:
+   case e_type_f32_array:
    case e_type_i64_array:
-   case e_type_double_array:
+   case e_type_f64_array:
    case e_type_payload_array:
    case e_type_property_set:
    case e_type_memory:
@@ -8946,10 +8946,10 @@ const ::i64_array & payload::i64_array_reference() const
 }
 
 
-const ::float_array & payload::float_array_reference() const
+const ::f32_array & payload::f32_array_reference() const
 {
 
-   if (m_etype == e_type_float_array)
+   if (m_etype == e_type_f32_array)
    {
 
       return *m_pfloata;
@@ -8977,10 +8977,10 @@ const ::float_array & payload::float_array_reference() const
 }
 
 
-const ::double_array & payload::double_array_reference() const
+const ::f64_array & payload::f64_array_reference() const
 {
 
-   if (m_etype == e_type_double_array)
+   if (m_etype == e_type_f64_array)
    {
 
       return *m_pdoublea;
@@ -9283,7 +9283,7 @@ const ::color::hls & payload::color_hls_reference() const
 bool is_return_ok(para_return eret)
 {
 
-   return ((int)eret) >= 0;
+   return ((::i32)eret) >= 0;
 
 }
 
@@ -9353,13 +9353,13 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
       return ::get_network_payload(str, *m_plonglonga, bNewLine);
 
    }
-   else if (get_type() == ::e_type_float_array)
+   else if (get_type() == ::e_type_f32_array)
    {
 
       return ::get_network_payload(str, *m_pfloata, bNewLine);
 
    }
-   else if (get_type() == ::e_type_double_array)
+   else if (get_type() == ::e_type_f64_array)
    {
 
       return ::get_network_payload(str, *m_pdoublea, bNewLine);
@@ -9376,7 +9376,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       ::string strHls;
 
-      strHls.formatf("\"hls://%float:%float:%float\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
+      strHls.formatf("\"hls://%::f32:%::f32:%::f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
 
       str += strHls;
 
@@ -9598,19 +9598,19 @@ bool payload::is_false() const
       return !*m_pb;
    case e_type_i8:
       return !m_i8;
-   case e_type_pchar:
+   case e_type_pi8:
       return !m_pi8 || !*m_pi8;
    case e_type_u8:
       return !m_u8;
-   case e_type_punsigned_char:
+   case e_type_pu8:
       return !m_pu8 || !*m_pu8;
    case e_type_i16:
       return !m_i16;
-   case e_type_pshort:
+   case e_type_pi16:
       return !m_pi16 || !*m_pi16;
    case e_type_u16:
       return !m_u16;
-   case e_type_punsigned_short:
+   case e_type_pu16:
       return !m_pu16 || !*m_pu16;
    case e_type_i32:
       return !m_i32;
@@ -9630,14 +9630,14 @@ bool payload::is_false() const
       return !m_pu64 || !*m_pu64;
 
    // floating i32_point
-   case e_type_pfloat:
-      return !*m_pf;
-   case e_type_float:
-      return !m_f;
-   case e_type_pdouble:
-      return !*m_pd;
-   case e_type_double:
-      return !m_d;
+   case e_type_pf32:
+      return !*m_pf32;
+   case e_type_f32:
+      return !m_f32;
+   case e_type_pf64:
+      return !*m_pf64;
+   case e_type_f64:
+      return !m_f64;
 
    // simple classes
    case e_type_string:
@@ -9674,7 +9674,7 @@ bool payload::is_false() const
       return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
-   case e_type_float_array:
+   case e_type_f32_array:
       return ::is_null(m_pfloata) || m_pfloata->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -9682,7 +9682,7 @@ bool payload::is_false() const
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_i64_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
-   case e_type_double_array:
+   case e_type_f64_array:
       return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
@@ -9721,33 +9721,33 @@ bool payload::is_false() const
    //   case e_type_pintegral_day:
    //      return !m_pintegralday || !m_pintegralday->m_i32;
    //   case e_type_floating_nanosecond:
-   //      return !m_fingnanosecond.m_d;
-   //   case e_type_pfloating_nanosecond:
-   //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+   //      return !m_fingnanosecond.m_f64;
+   //   case e_type_pf32ing_nanosecond:
+   //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
    //      case e_type_floating_microsecond:
-   //         return !m_fingmicrosecond.m_d;
-   //      case e_type_pfloating_microsecond:
-   //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+   //         return !m_fingmicrosecond.m_f64;
+   //      case e_type_pf32ing_microsecond:
+   //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
    //      case e_type_floating_millisecond:
-   //         return !m_fingmillisecond.m_d;
-   //      case e_type_pfloating_millisecond:
-   //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+   //         return !m_fingmillisecond.m_f64;
+   //      case e_type_pf32ing_millisecond:
+   //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
    //      case e_type_floating_second:
-   //         return !m_fingsecond.m_d;
-   //      case e_type_pfloating_second:
-   //         return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+   //         return !m_fingsecond.m_f64;
+   //      case e_type_pf32ing_second:
+   //         return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
    //      case e_type_floating_minute:
-   //         return !m_fingminute.m_d;
-   //      case e_type_pfloating_minute:
-   //         return !m_pfloatingminute || !m_pfloatingminute->m_d;
+   //         return !m_fingminute.m_f64;
+   //      case e_type_pf32ing_minute:
+   //         return !m_pfloatingminute || !m_pfloatingminute->m_f64;
    //      case e_type_floating_hour:
-   //         return !m_finghour.m_d;
-   //      case e_type_pfloating_hour:
-   //         return !m_pfloatinghour || !m_pfloatinghour->m_d;
+   //         return !m_finghour.m_f64;
+   //      case e_type_pf32ing_hour:
+   //         return !m_pfloatinghour || !m_pfloatinghour->m_f64;
    //      case e_type_floating_day:
-   //         return !m_fingday.m_d;
-   //      case e_type_pfloating_day:
-   //         return !m_pfloatingday || !m_pfloatingday->m_d;
+   //         return !m_fingday.m_f64;
+   //      case e_type_pf32ing_day:
+   //         return !m_pfloatingday || !m_pfloatingday->m_f64;
 //   case e_type_enum_command:
 //   case e_type_enum_status:
 //   case e_type_enum_check:
@@ -9791,19 +9791,19 @@ bool payload::is_set_false() const
       return !*m_pb;
    case e_type_i8:
       return !m_i8;
-   case e_type_pchar:
+   case e_type_pi8:
       return !m_pi8 || !*m_pi8;
    case e_type_u8:
       return !m_u8;
-   case e_type_punsigned_char:
+   case e_type_pu8:
       return !m_pu8 || !*m_pu8;
    case e_type_i16:
       return !m_i16;
-   case e_type_pshort:
+   case e_type_pi16:
       return !m_pi16 || !*m_pi16;
    case e_type_u16:
       return !m_u16;
-   case e_type_punsigned_short:
+   case e_type_pu16:
       return !m_pu16 || !*m_pu16;
    case e_type_i32:
       return !m_i32;
@@ -9822,14 +9822,14 @@ bool payload::is_set_false() const
    case e_type_pu64:
       return !m_pu64 || !*m_pu64;
    // floating i32_point
-   case e_type_pfloat:
-      return !*m_pf;
-   case e_type_float:
-      return !m_f;
-   case e_type_pdouble:
-      return !*m_pd;
-   case e_type_double:
-      return !m_d;
+   case e_type_pf32:
+      return !*m_pf32;
+   case e_type_f32:
+      return !m_f32;
+   case e_type_pf64:
+      return !*m_pf64;
+   case e_type_f64:
+      return !m_f64;
    // simple classes
    case e_type_string:
       return m_str.is_empty() || m_str.case_insensitive_order("false") == 0 || m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("0") == 0;
@@ -9865,7 +9865,7 @@ bool payload::is_set_false() const
       return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
-   case e_type_float_array:
+   case e_type_f32_array:
       return ::is_null(m_pfloata) || m_pfloata->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -9873,7 +9873,7 @@ bool payload::is_set_false() const
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_i64_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
-   case e_type_double_array:
+   case e_type_f64_array:
       return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
@@ -9912,33 +9912,33 @@ bool payload::is_set_false() const
       //   case e_type_pintegral_day:
       //      return !m_pintegralday || !m_pintegralday->m_i32;
       //   case e_type_floating_nanosecond:
-      //      return !m_fingnanosecond.m_d;
-      //   case e_type_pfloating_nanosecond:
-      //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+      //      return !m_fingnanosecond.m_f64;
+      //   case e_type_pf32ing_nanosecond:
+      //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
       //      case e_type_floating_microsecond:
-      //         return !m_fingmicrosecond.m_d;
-      //      case e_type_pfloating_microsecond:
-      //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+      //         return !m_fingmicrosecond.m_f64;
+      //      case e_type_pf32ing_microsecond:
+      //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
       //      case e_type_floating_millisecond:
-      //         return !m_fingmillisecond.m_d;
-      //      case e_type_pfloating_millisecond:
-      //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+      //         return !m_fingmillisecond.m_f64;
+      //      case e_type_pf32ing_millisecond:
+      //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
       //      case e_type_floating_second:
-      //         return !m_fingsecond.m_d;
-      //      case e_type_pfloating_second:
-      //         return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+      //         return !m_fingsecond.m_f64;
+      //      case e_type_pf32ing_second:
+      //         return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
       //      case e_type_floating_minute:
-      //         return !m_fingminute.m_d;
-      //      case e_type_pfloating_minute:
-      //         return !m_pfloatingminute || !m_pfloatingminute->m_d;
+      //         return !m_fingminute.m_f64;
+      //      case e_type_pf32ing_minute:
+      //         return !m_pfloatingminute || !m_pfloatingminute->m_f64;
       //      case e_type_floating_hour:
-      //         return !m_finghour.m_d;
-      //      case e_type_pfloating_hour:
-      //         return !m_pfloatinghour || !m_pfloatinghour->m_d;
+      //         return !m_finghour.m_f64;
+      //      case e_type_pf32ing_hour:
+      //         return !m_pfloatinghour || !m_pfloatinghour->m_f64;
       //      case e_type_floating_day:
-      //         return !m_fingday.m_d;
-      //      case e_type_pfloating_day:
-      //         return !m_pfloatingday || !m_pfloatingday->m_d;
+      //         return !m_fingday.m_f64;
+      //      case e_type_pf32ing_day:
+      //         return !m_pfloatingday || !m_pfloatingday->m_f64;
 //   case e_type_enum_command:
 //   case e_type_enum_status:
 //   case e_type_enum_check:
@@ -10047,7 +10047,7 @@ namespace user
       bool                       m_bIconic = false;
       i32_rectangle                       m_rectangleRestored = nullptr;
       i32_rectangle                       m_rectangleWindow = nullptr;
-      int                        m_iControlBoxRightToLeft = 0;
+      ::i32                        m_iControlBoxRightToLeft = 0;
       edisplay                   m_edisplay = e_display_default;
       edisplay                   m_edisplayPrevious = e_display_none;
 
@@ -10226,7 +10226,7 @@ void unit_test_primitive_var_acme_block()
 //}
 
 
-//char & payload::as_i8()
+//::i8 & payload::as_i8()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -10244,7 +10244,7 @@ void unit_test_primitive_var_acme_block()
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      char i = this->as_i8();
+//      ::i8 i = this->as_i8();
 //
 //      set_type(e_type_i8, false);
 //
@@ -10455,7 +10455,7 @@ void payload::receive_response(const ::payload & payload)
 void number_operator_payload_test()
 {
 
-   int l = 9457;
+   ::i32 l = 9457;
 
    payload payload("2948572345");
 
@@ -10498,19 +10498,19 @@ long & payload::long_reference()
 }
 
 
-unsigned long & payload::unsigned_long_reference()
+ulong & payload::unsigned_long_reference()
 {
 
    if(m_etype == e_type_u64)
    {
       
-      return (unsigned long &) m_u64;
+      return (ulong &) m_u64;
       
    }
    else if(m_etype == e_type_pu64)
    {
       
-      return (unsigned long &)*m_pu64;
+      return (ulong &)*m_pu64;
       
    }
    else
@@ -10518,7 +10518,7 @@ unsigned long & payload::unsigned_long_reference()
    
       set_type(e_type_u64);
    
-      return (unsigned long &) m_u64;
+      return (ulong &) m_u64;
       
    }
 
@@ -10561,7 +10561,7 @@ case e_type_string_array:
 return m_pstra;
 case e_type_int_array:
 return m_pia;
-case e_type_float_array:
+case e_type_f32_array:
    return m_pfloata;
 case e_type_payload_array:
 return m_ppayloada;
@@ -10569,7 +10569,7 @@ case e_type_property_set:
 return m_ppropertyset;
 case e_type_i64_array:
 return m_plonglonga;
-case e_type_double_array:
+case e_type_f64_array:
    return m_pdoublea;
 case e_type_memory:
 return m_pmemory;
@@ -10652,12 +10652,12 @@ return nullptr;
 //   return payload.m_etype == ::e_type_string && str == payload.m_str;
 //}
 //
-//bool strictly_equal(double d, const class ::payload & payload)
+//bool strictly_equal(::f64 d, const class ::payload & payload)
 //{
-//   return payload.m_etype == ::e_type_double && d == payload.m_d;
+//   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
 //}
 //
-//bool strictly_equal(int i, const class ::payload & payload)
+//bool strictly_equal(::i32 i, const class ::payload & payload)
 //{
 //   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
 //}
@@ -10677,12 +10677,12 @@ return nullptr;
 //   return !strictly_equal(str, payload);
 //}
 //
-//bool strictly_different(double d, const class ::payload & payload)
+//bool strictly_different(::f64 d, const class ::payload & payload)
 //{
 //   return !strictly_equal(d, payload);
 //}
 //
-//bool strictly_different(int i, const class ::payload & payload)
+//bool strictly_different(::i32 i, const class ::payload & payload)
 //{
 //   return !strictly_equal(i, payload);
 //}
@@ -10694,7 +10694,7 @@ return nullptr;
 
 
 
-CLASS_DECL_ACME char & copy(char & i, const payload & payload)
+CLASS_DECL_ACME ::i8 & copy(::i8 & i, const payload & payload)
 {
 
    return i = payload.as_i8();
@@ -10702,7 +10702,7 @@ CLASS_DECL_ACME char & copy(char & i, const payload & payload)
 }
 
 
-CLASS_DECL_ACME unsigned char & copy(unsigned char & u, const payload & payload)
+CLASS_DECL_ACME ::u8 & copy(::u8 & u, const payload & payload)
 {
 
    return u = payload.as_u8();
@@ -10710,7 +10710,7 @@ CLASS_DECL_ACME unsigned char & copy(unsigned char & u, const payload & payload)
 }
 
 
-CLASS_DECL_ACME short & copy(short & i, const payload & payload)
+CLASS_DECL_ACME ::i16 & copy(::i16 & i, const payload & payload)
 {
 
    return i = payload.as_i16();
@@ -10718,7 +10718,7 @@ CLASS_DECL_ACME short & copy(short & i, const payload & payload)
 }
 
 
-CLASS_DECL_ACME unsigned short & copy(unsigned short & u, const payload & payload)
+CLASS_DECL_ACME ::u16 & copy(::u16 & u, const payload & payload)
 {
 
 return u = payload.as_u16();
@@ -10726,7 +10726,7 @@ return u = payload.as_u16();
 }
 
 
-CLASS_DECL_ACME int & copy(int & i, const payload & payload)
+CLASS_DECL_ACME ::i32 & copy(::i32 & i, const payload & payload)
 {
 
    return i = payload.as_i32();
@@ -10758,18 +10758,18 @@ CLASS_DECL_ACME ::u64 & copy(::u64 & u, const payload & payload)
 }
 
 
-// CLASS_DECL_ACME float & copy(float & f, const payload & payload)
+// CLASS_DECL_ACME ::f32 & copy(::f32 & f, const payload & payload)
 // {
 //
-//    return f = payload.as_float();
+//    return f = payload.as_f32();
 //
 // }
 //
 //
-// CLASS_DECL_ACME double & copy(double & f, const payload & payload)
+// CLASS_DECL_ACME ::f64 & copy(::f64 & f, const payload & payload)
 // {
 //
-//    return f = payload.as_double();
+//    return f = payload.as_f64();
 //
 // }
 
@@ -10782,11 +10782,11 @@ CLASS_DECL_ACME ::u64 & copy(::u64 & u, const payload & payload)
          return 1;
       case e_type_int_array:
          return ::is_null(m_pia) ? 0 : m_pia->get_count();
-      case e_type_float_array:
+      case e_type_f32_array:
          return ::is_null(m_pfloata) ? 0 : m_pfloata->get_count();
       case e_type_i64_array:
          return ::is_null(m_plonglonga) ? 0 : m_plonglonga->get_count();
-      case e_type_double_array:
+      case e_type_f64_array:
          return ::is_null(m_pdoublea) ? 0 : m_pdoublea->get_count();
       case e_type_string_array:
          return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
@@ -10846,8 +10846,8 @@ bool payload::is_array() const
    if (m_etype == e_type_string_array
        || m_etype == e_type_int_array
       || m_etype == e_type_i64_array
-      || m_etype == e_type_float_array
-      || m_etype == e_type_double_array
+      || m_etype == e_type_f32_array
+      || m_etype == e_type_f64_array
        || m_etype == e_type_payload_array
        || m_etype == e_type_property_set)
    {
@@ -10974,7 +10974,7 @@ bool payload::is_array() const
 //   }
 //   else if (is_double() || payload2.is_double())
 //   {
-//      payload = as_double() - payload2.as_double();
+//      payload = as_f64() - payload2.as_f64();
 //   }
 //   else if (is_integer() || payload2.is_integer())
 //   {
@@ -11096,7 +11096,7 @@ bool payload::is_array() const
 //   else if ((is_double() && payload2.is_number()) || (is_number() && payload2.is_double()))
 //   {
 //
-//      payload = as_double() + payload2.as_double();
+//      payload = as_f64() + payload2.as_f64();
 //
 //   }
 //   else if (is_integer() && payload2.is_integer())
@@ -11171,7 +11171,7 @@ bool payload::is_array() const
 //   }
 //   else if (is_double() || payload2.is_double())
 //   {
-//      payload = as_double() / payload2.as_double();
+//      payload = as_f64() / payload2.as_f64();
 //   }
 //   else if (is_integer() || payload2.is_integer())
 //   {
@@ -11217,7 +11217,7 @@ bool payload::is_array() const
 //   else if (is_double() || payload2.is_double())
 //   {
 //
-//      payload = as_double() * payload2.as_double();
+//      payload = as_f64() * payload2.as_f64();
 //
 //   }
 //   else if (is_integer() || payload2.is_integer())
@@ -11309,8 +11309,8 @@ bool payload::is_array() const
 //payload::operator ::as_u32() const { return this->as_u32(); }
 //payload::operator ::as_i64() const { return this->as_i64(); }
 //payload::operator ::as_u64() const { return this->as_u64(); }
-//payload::operator ::as_float() const { return this->as_float(); }
-//payload::operator ::as_double() const { return this->as_double(); }
+//payload::operator ::as_f32() const { return this->as_f32(); }
+//payload::operator ::as_f64() const { return this->as_f64(); }
 //
 //
 //payload::operator ::get_string() const
@@ -11457,8 +11457,8 @@ enum_type payload::integer_type() const
       case e_type_string_array:
       case e_type_int_array:
       case e_type_i64_array:
-      case e_type_float_array:
-      case e_type_double_array:
+      case e_type_f32_array:
+      case e_type_f64_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -11467,13 +11467,13 @@ enum_type payload::integer_type() const
          return e_type_i8;
       case e_type_string:
          return e_type_not_found;
-      case e_type_float:
+      case e_type_f32:
          return e_type_not_found;
-      case e_type_double:
+      case e_type_f64:
          return e_type_not_found;
-      case e_type_pfloat:
+      case e_type_pf32:
          return e_type_not_found;
-      case e_type_pdouble:
+      case e_type_pf64:
          return e_type_not_found;
       case e_type_u8:
          return e_type_u8;
@@ -11491,13 +11491,13 @@ enum_type payload::integer_type() const
          return e_type_u32;
       case e_type_i64:
          return e_type_i32;
-      case e_type_punsigned_char:
+      case e_type_pu8:
          return e_type_u8;
-      case e_type_pchar:
+      case e_type_pi8:
          return e_type_i8;
-      case e_type_punsigned_short:
+      case e_type_pu16:
          return e_type_u16;
-      case e_type_pshort:
+      case e_type_pi16:
          return e_type_i16;
       case e_type_pu32:
          return e_type_u32;
@@ -11524,9 +11524,9 @@ enum_type payload::left_hand_integer_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
-      case e_type_float_array:
+      case e_type_f32_array:
       case e_type_i64_array:
-      case e_type_double_array:
+      case e_type_f64_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -11535,13 +11535,13 @@ enum_type payload::left_hand_integer_type() const
          return e_type_i8;
       case e_type_string:
          return e_type_not_found;
-      case e_type_float:
+      case e_type_f32:
          return e_type_not_found;
-      case e_type_double:
+      case e_type_f64:
          return e_type_not_found;
-      case e_type_pfloat:
+      case e_type_pf32:
          return e_type_not_found;
-      case e_type_pdouble:
+      case e_type_pf64:
          return e_type_not_found;
       case e_type_u8:
          return e_type_u8;
@@ -11559,14 +11559,14 @@ enum_type payload::left_hand_integer_type() const
          return e_type_u32;
       case e_type_i64:
          return e_type_i32;
-      case e_type_punsigned_char:
-         return e_type_punsigned_char;
-      case e_type_pchar:
-         return e_type_pchar;
-      case e_type_punsigned_short:
-         return e_type_punsigned_short;
-      case e_type_pshort:
-         return e_type_pshort;
+      case e_type_pu8:
+         return e_type_pu8;
+      case e_type_pi8:
+         return e_type_pi8;
+      case e_type_pu16:
+         return e_type_pu16;
+      case e_type_pi16:
+         return e_type_pi16;
       case e_type_pu32:
          return e_type_pu32;
       case e_type_pi32:
@@ -11592,9 +11592,9 @@ enum_type payload::floating_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
-      case e_type_float_array:
+      case e_type_f32_array:
       case e_type_i64_array:
-      case e_type_double_array:
+      case e_type_f64_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -11603,14 +11603,14 @@ enum_type payload::floating_type() const
          return e_type_i8;
       case e_type_string:
          return e_type_not_found;
-      case e_type_float:
-         return e_type_float;
-      case e_type_double:
-         return e_type_double;
-      case e_type_pfloat:
-         return e_type_float;
-      case e_type_pdouble:
-         return e_type_double;
+      case e_type_f32:
+         return e_type_f32;
+      case e_type_f64:
+         return e_type_f64;
+      case e_type_pf32:
+         return e_type_f32;
+      case e_type_pf64:
+         return e_type_f64;
       case e_type_u8:
          return e_type_not_found;
       case e_type_i8:
@@ -11627,13 +11627,13 @@ enum_type payload::floating_type() const
          return e_type_not_found;
       case e_type_i64:
          return e_type_not_found;
-      case e_type_punsigned_char:
+      case e_type_pu8:
          return e_type_not_found;
-      case e_type_pchar:
+      case e_type_pi8:
          return e_type_not_found;
-      case e_type_punsigned_short:
+      case e_type_pu16:
          return e_type_not_found;
-      case e_type_pshort:
+      case e_type_pi16:
          return e_type_not_found;
       case e_type_pu32:
          return e_type_not_found;
@@ -11661,9 +11661,9 @@ enum_type payload::left_hand_floating_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
-      case e_type_float_array:
+      case e_type_f32_array:
       case e_type_i64_array:
-      case e_type_double_array:
+      case e_type_f64_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -11672,14 +11672,14 @@ enum_type payload::left_hand_floating_type() const
          return e_type_i8;
       case e_type_string:
          return e_type_not_found;
-      case e_type_float:
-         return e_type_float;
-      case e_type_double:
-         return e_type_double;
-      case e_type_pfloat:
-         return e_type_pfloat;
-      case e_type_pdouble:
-         return e_type_pdouble;
+      case e_type_f32:
+         return e_type_f32;
+      case e_type_f64:
+         return e_type_f64;
+      case e_type_pf32:
+         return e_type_pf32;
+      case e_type_pf64:
+         return e_type_pf64;
       case e_type_u8:
          return e_type_not_found;
       case e_type_i8:
@@ -11696,13 +11696,13 @@ enum_type payload::left_hand_floating_type() const
          return e_type_not_found;
       case e_type_i64:
          return e_type_not_found;
-      case e_type_punsigned_char:
+      case e_type_pu8:
          return e_type_not_found;
-      case e_type_pchar:
+      case e_type_pi8:
          return e_type_not_found;
-      case e_type_punsigned_short:
+      case e_type_pu16:
          return e_type_not_found;
-      case e_type_pshort:
+      case e_type_pi16:
          return e_type_not_found;
       case e_type_pu32:
          return e_type_not_found;
@@ -11739,16 +11739,16 @@ payload & payload::add(const ::payload & payload)
          i32_array_reference().append(payload.i64_array_reference());
 
       }
-      else if (payload.get_type() == e_type_float_array)
+      else if (payload.get_type() == e_type_f32_array)
       {
 
-         i32_array_reference().append(payload.float_array_reference());
+         i32_array_reference().append(payload.f32_array_reference());
 
       }
-      else if (payload.get_type() == e_type_double_array)
+      else if (payload.get_type() == e_type_f64_array)
       {
 
-         i32_array_reference().append(payload.double_array_reference());
+         i32_array_reference().append(payload.f64_array_reference());
 
       }
       else
@@ -11775,16 +11775,16 @@ payload & payload::add(const ::payload & payload)
          i64_array_reference().add(payload.i32_array_reference());
 
       }
-      else if (payload.get_type() == e_type_double_array)
+      else if (payload.get_type() == e_type_f64_array)
       {
 
-         i64_array_reference().add(payload.double_array_reference());
+         i64_array_reference().add(payload.f64_array_reference());
 
       }
-      else if (payload.get_type() == e_type_float_array)
+      else if (payload.get_type() == e_type_f32_array)
       {
 
-         i64_array_reference().add(payload.float_array_reference());
+         i64_array_reference().add(payload.f32_array_reference());
 
       }
       else
@@ -11796,74 +11796,74 @@ payload & payload::add(const ::payload & payload)
       }
 
    }
-   else if (get_type() == e_type_float_array)
+   else if (get_type() == e_type_f32_array)
    {
 
       if (payload.get_type() == e_type_int_array)
       {
 
-         float_array_reference().append(payload.i32_array_reference());
+         f32_array_reference().append(payload.i32_array_reference());
 
       }
       else if (payload.get_type() == e_type_i64_array)
       {
 
-         float_array_reference().append(payload.i64_array_reference());
+         f32_array_reference().append(payload.i64_array_reference());
 
       }
-      else if (payload.get_type() == e_type_float_array)
+      else if (payload.get_type() == e_type_f32_array)
       {
 
-         float_array_reference().append(payload.float_array_reference());
+         f32_array_reference().append(payload.f32_array_reference());
 
       }
-      else if (payload.get_type() == e_type_double_array)
+      else if (payload.get_type() == e_type_f64_array)
       {
 
-         float_array_reference().append(payload.double_array_reference());
+         f32_array_reference().append(payload.f64_array_reference());
 
       }
       else
       {
 
          // simple implementation
-         float_array_reference().add(payload.as_float());
+         f32_array_reference().add(payload.as_f32());
 
       }
 
    }
-   else if (get_type() == e_type_double_array)
+   else if (get_type() == e_type_f64_array)
    {
 
       if (payload.get_type() == e_type_i64_array)
       {
 
-         double_array_reference().append_container(payload.i64_array_reference());
+         f64_array_reference().append_container(payload.i64_array_reference());
 
       }
       else if (payload.get_type() == e_type_int_array)
       {
 
-         double_array_reference().append_container(payload.i32_array_reference());
+         f64_array_reference().append_container(payload.i32_array_reference());
 
       }
-      else if (payload.get_type() == e_type_double_array)
+      else if (payload.get_type() == e_type_f64_array)
       {
 
-         double_array_reference().append_container(payload.double_array_reference());
+         f64_array_reference().append_container(payload.f64_array_reference());
 
       }
-      else if (payload.get_type() == e_type_float_array)
+      else if (payload.get_type() == e_type_f32_array)
       {
 
-         double_array_reference().append_container(payload.float_array_reference());
+         f64_array_reference().append_container(payload.f32_array_reference());
 
       }
       else
       {
 
          // simple implementation
-         double_array_reference().add(payload.as_double());
+         f64_array_reference().add(payload.as_f64());
 
       }
 
@@ -11889,16 +11889,16 @@ payload & payload::add(const ::payload & payload)
           ::generic::container::append(string_array_reference(), payload.i64_array_reference());
 
       }
-      else if (payload.get_type() == e_type_float_array)
+      else if (payload.get_type() == e_type_f32_array)
       {
 
-         ::generic::container::append(string_array_reference(), payload.float_array_reference());
+         ::generic::container::append(string_array_reference(), payload.f32_array_reference());
 
       }
-      else if (payload.get_type() == e_type_double_array)
+      else if (payload.get_type() == e_type_f64_array)
       {
 
-         ::generic::container::append(string_array_reference(), payload.double_array_reference());
+         ::generic::container::append(string_array_reference(), payload.f64_array_reference());
 
       }
       else if(payload.get_type() == e_type_payload_array)
@@ -11937,16 +11937,16 @@ payload & payload::add(const ::payload & payload)
           ::generic::container::append(payload_array_reference(), payload.i64_array_reference());
 
       }
-      else if (payload.get_type() == e_type_float_array)
+      else if (payload.get_type() == e_type_f32_array)
       {
 
-         ::generic::container::append(payload_array_reference(), payload.float_array_reference());
+         ::generic::container::append(payload_array_reference(), payload.f32_array_reference());
 
       }
-      else if (payload.get_type() == e_type_double_array)
+      else if (payload.get_type() == e_type_f64_array)
       {
 
-         ::generic::container::append(payload_array_reference(), payload.double_array_reference());
+         ::generic::container::append(payload_array_reference(), payload.f64_array_reference());
 
       }
       else if(payload.get_type() == e_type_string_array)
@@ -11982,7 +11982,7 @@ payload & payload::add(const ::payload & payload)
          switch(etype)
          {
             case e_type_u8:
-               if((unsigned short) m_u8 + (unsigned short) payload.as_u8() >= 256)
+               if((::u16) m_u8 + (::u16) payload.as_u8() >= 256)
                {
                   set_type(e_type_u16);
                   m_u16 += payload.as_u8();
@@ -11993,7 +11993,7 @@ payload & payload::add(const ::payload & payload)
                }
                break;
             case e_type_i8:
-               if(((short) m_i8 + (short) payload.as_i8() >= 129 )|| ((short) m_i8 + (short) payload.as_i8() < -128))
+               if(((::i16) m_i8 + (::i16) payload.as_i8() >= 129 )|| ((::i16) m_i8 + (::i16) payload.as_i8() < -128))
                {
                   set_type(e_type_i16);
                   m_i16 += payload.as_i8();
@@ -12015,7 +12015,7 @@ payload & payload::add(const ::payload & payload)
                }
                break;
             case e_type_i16:
-               if(((int) m_i16 + (int) payload.as_i16() >= 32769) || ((int) m_i16 + (int) payload.as_i16() < -32768))
+               if(((::i32) m_i16 + (::i32) payload.as_i16() >= 32769) || ((::i32) m_i16 + (::i32) payload.as_i16() < -32768))
                {
                   set_type(e_type_i32);
                   m_i32 += payload.as_i16();
@@ -12053,16 +12053,16 @@ payload & payload::add(const ::payload & payload)
             case e_type_i64:
                m_i64 += payload.as_i64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 += payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 += payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 += payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 += payload.as_i16();
                break;
             case e_type_pu32:
@@ -12096,22 +12096,22 @@ payload & payload::add(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f += payload.as_u32();
+            case e_type_f32:
+               m_f32 += payload.as_u32();
                break;
-            case e_type_double:
-               m_d += payload.as_double();
+            case e_type_f64:
+               m_f64 += payload.as_f64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 += payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 += payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 += payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 += payload.as_i16();
                break;
             case e_type_pu32:
@@ -12163,17 +12163,17 @@ payload & payload::add(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f += payload.as_float();
+            case e_type_f32:
+               m_f32 += payload.as_f32();
                break;
-            case e_type_double:
-               m_d += payload.as_double();
+            case e_type_f64:
+               m_f64 += payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf += payload.as_float();
+            case e_type_pf32:
+               *m_pf32 += payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd += payload.as_double();
+            case e_type_pf64:
+               *m_pf64 += payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12194,17 +12194,17 @@ payload & payload::add(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f += payload.as_float();
+            case e_type_f32:
+               m_f32 += payload.as_f32();
                break;
-            case e_type_double:
-               m_d += payload.as_double();
+            case e_type_f64:
+               m_f64 += payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf += payload.as_float();
+            case e_type_pf32:
+               *m_pf32 += payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd += payload.as_double();
+            case e_type_pf64:
+               *m_pf64 += payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12265,7 +12265,7 @@ payload & payload::subtract(const ::payload & payload)
          switch(etype)
          {
             case e_type_u8:
-               if((short) m_u8 - (short) payload.as_i16() < 0)
+               if((::i16) m_u8 - (::i16) payload.as_i16() < 0)
                {
                   set_type(e_type_i16);
                   m_i16 -= payload.as_u8();
@@ -12276,7 +12276,7 @@ payload & payload::subtract(const ::payload & payload)
                }
                break;
             case e_type_i8:
-               if(((short) m_i8 - (short) payload.as_i8() >= 129) || ((short) m_i8 - (short) payload.as_i8() <=  -128))
+               if(((::i16) m_i8 - (::i16) payload.as_i8() >= 129) || ((::i16) m_i8 - (::i16) payload.as_i8() <=  -128))
                {
                   set_type(e_type_i16);
                   m_i16 -= payload.as_i8();
@@ -12287,7 +12287,7 @@ payload & payload::subtract(const ::payload & payload)
                }
                break;
             case e_type_u16:
-               if((int) m_u16 - (int) payload.as_i32() < 0)
+               if((::i32) m_u16 - (::i32) payload.as_i32() < 0)
                {
                   set_type(e_type_i32);
                   m_i32 -= payload.as_u32();
@@ -12298,7 +12298,7 @@ payload & payload::subtract(const ::payload & payload)
                }
                break;
             case e_type_i16:
-               if(((int) m_i16 - (int) payload.as_i16() >= 32769) || ((int) m_i16 - (int) payload.as_i16() < -32768))
+               if(((::i32) m_i16 - (::i32) payload.as_i16() >= 32769) || ((::i32) m_i16 - (::i32) payload.as_i16() < -32768))
                {
                   set_type(e_type_i32);
                   m_i32 -= payload.as_i16();
@@ -12336,16 +12336,16 @@ payload & payload::subtract(const ::payload & payload)
             case e_type_i64:
                m_i64 -= payload.as_i64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 -= payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 -= payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 -= payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 -= payload.as_i16();
                break;
             case e_type_pu32:
@@ -12379,22 +12379,22 @@ payload & payload::subtract(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f -= payload.as_u32();
+            case e_type_f32:
+               m_f32 -= payload.as_u32();
                break;
-            case e_type_double:
-               m_d -= payload.as_double();
+            case e_type_f64:
+               m_f64 -= payload.as_f64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 -= payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 -= payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 -= payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 -= payload.as_i16();
                break;
             case e_type_pu32:
@@ -12446,17 +12446,17 @@ payload & payload::subtract(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f -= payload.as_float();
+            case e_type_f32:
+               m_f32 -= payload.as_f32();
                break;
-            case e_type_double:
-               m_d -= payload.as_double();
+            case e_type_f64:
+               m_f64 -= payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf -= payload.as_float();
+            case e_type_pf32:
+               *m_pf32 -= payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd -= payload.as_double();
+            case e_type_pf64:
+               *m_pf64 -= payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12477,17 +12477,17 @@ payload & payload::subtract(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f -= payload.as_float();
+            case e_type_f32:
+               m_f32 -= payload.as_f32();
                break;
-            case e_type_double:
-               m_d -= payload.as_double();
+            case e_type_f64:
+               m_f64 -= payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf -= payload.as_float();
+            case e_type_pf32:
+               *m_pf32 -= payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd -= payload.as_double();
+            case e_type_pf64:
+               *m_pf64 -= payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12547,7 +12547,7 @@ payload &  payload::multiply(const ::payload & payload)
          switch (etype)
          {
             case e_type_u8:
-               if ((unsigned short) m_u8 + (unsigned short) payload.as_u8() >= 256)
+               if ((::u16) m_u8 + (::u16) payload.as_u8() >= 256)
                {
                   set_type(e_type_u16);
                   m_u16 *= payload.as_u8();
@@ -12557,7 +12557,7 @@ payload &  payload::multiply(const ::payload & payload)
                }
                break;
             case e_type_i8:
-               if ((short) m_i8 + (short) payload.as_i8() >= 129)
+               if ((::i16) m_i8 + (::i16) payload.as_i8() >= 129)
                {
                   set_type(e_type_i16);
                   m_i16 *= payload.as_i8();
@@ -12577,7 +12577,7 @@ payload &  payload::multiply(const ::payload & payload)
                }
                break;
             case e_type_i16:
-               if ((int) m_i16 + (int) payload.as_i16() >= 32769)
+               if ((::i32) m_i16 + (::i32) payload.as_i16() >= 32769)
                {
                   set_type(e_type_i32);
                   m_i32 *= payload.as_i16();
@@ -12612,16 +12612,16 @@ payload &  payload::multiply(const ::payload & payload)
             case e_type_i64:
                m_i64 *= payload.as_i64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 *= payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 *= payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 *= payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 *= payload.as_i16();
                break;
             case e_type_pu32:
@@ -12655,22 +12655,22 @@ payload &  payload::multiply(const ::payload & payload)
 
          switch (etype)
          {
-            case e_type_float:
-               m_f *= payload.as_u32();
+            case e_type_f32:
+               m_f32 *= payload.as_u32();
                break;
-            case e_type_double:
-               m_d *= payload.as_double();
+            case e_type_f64:
+               m_f64 *= payload.as_f64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 *= payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 *= payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 *= payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 *= payload.as_i16();
                break;
             case e_type_pu32:
@@ -12720,17 +12720,17 @@ payload &  payload::multiply(const ::payload & payload)
 
          switch (etype)
          {
-            case e_type_float:
-               m_f *= payload.as_float();
+            case e_type_f32:
+               m_f32 *= payload.as_f32();
                break;
-            case e_type_double:
-               m_d *= payload.as_double();
+            case e_type_f64:
+               m_f64 *= payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf *= payload.as_float();
+            case e_type_pf32:
+               *m_pf32 *= payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd *= payload.as_double();
+            case e_type_pf64:
+               *m_pf64 *= payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12750,17 +12750,17 @@ payload &  payload::multiply(const ::payload & payload)
 
          switch (etype)
          {
-            case e_type_float:
-               m_f *= payload.as_float();
+            case e_type_f32:
+               m_f32 *= payload.as_f32();
                break;
-            case e_type_double:
-               m_d *= payload.as_double();
+            case e_type_f64:
+               m_f64 *= payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf *= payload.as_float();
+            case e_type_pf32:
+               *m_pf32 *= payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd *= payload.as_double();
+            case e_type_pf64:
+               *m_pf64 *= payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12821,7 +12821,7 @@ payload &  payload::divide(const ::payload & payload)
          switch(etype)
          {
             case e_type_u8:
-               if((unsigned short) m_u8 + (unsigned short) payload.as_u8() >= 256)
+               if((::u16) m_u8 + (::u16) payload.as_u8() >= 256)
                {
                   set_type(e_type_u16);
                   m_u16 /= payload.as_u8();
@@ -12832,7 +12832,7 @@ payload &  payload::divide(const ::payload & payload)
                }
                break;
             case e_type_i8:
-               if((short) m_i8 + (short) payload.as_i8() >= 129)
+               if((::i16) m_i8 + (::i16) payload.as_i8() >= 129)
                {
                   set_type(e_type_i16);
                   m_i16 /= payload.as_i8();
@@ -12854,7 +12854,7 @@ payload &  payload::divide(const ::payload & payload)
                }
                break;
             case e_type_i16:
-               if((int) m_i16 + (int) payload.as_i16() >= 32769)
+               if((::i32) m_i16 + (::i32) payload.as_i16() >= 32769)
                {
                   set_type(e_type_i32);
                   m_i32 /= payload.as_i16();
@@ -12892,16 +12892,16 @@ payload &  payload::divide(const ::payload & payload)
             case e_type_i64:
                m_i64 /= payload.as_i64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 /= payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 /= payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 /= payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 /= payload.as_i16();
                break;
             case e_type_pu32:
@@ -12935,22 +12935,22 @@ payload &  payload::divide(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f /= payload.as_u32();
+            case e_type_f32:
+               m_f32 /= payload.as_u32();
                break;
-            case e_type_double:
-               m_d /= payload.as_double();
+            case e_type_f64:
+               m_f64 /= payload.as_f64();
                break;
-            case e_type_punsigned_char:
+            case e_type_pu8:
                *m_pu8 /= payload.as_u8();
                break;
-            case e_type_pchar:
+            case e_type_pi8:
                *m_pi8 /= payload.as_i8();
                break;
-            case e_type_punsigned_short:
+            case e_type_pu16:
                *m_pu16 /= payload.as_u16();
                break;
-            case e_type_pshort:
+            case e_type_pi16:
                *m_pi16 /= payload.as_i16();
                break;
             case e_type_pu32:
@@ -13002,17 +13002,17 @@ payload &  payload::divide(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f /= payload.as_float();
+            case e_type_f32:
+               m_f32 /= payload.as_f32();
                break;
-            case e_type_double:
-               m_d /= payload.as_double();
+            case e_type_f64:
+               m_f64 /= payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf /= payload.as_float();
+            case e_type_pf32:
+               *m_pf32 /= payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd /= payload.as_double();
+            case e_type_pf64:
+               *m_pf64 /= payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -13033,17 +13033,17 @@ payload &  payload::divide(const ::payload & payload)
 
          switch(etype)
          {
-            case e_type_float:
-               m_f /= payload.as_float();
+            case e_type_f32:
+               m_f32 /= payload.as_f32();
                break;
-            case e_type_double:
-               m_d /= payload.as_double();
+            case e_type_f64:
+               m_f64 /= payload.as_f64();
                break;
-            case e_type_pfloat:
-               *m_pf /= payload.as_float();
+            case e_type_pf32:
+               *m_pf32 /= payload.as_f32();
                break;
-            case e_type_pdouble:
-               *m_pd /= payload.as_double();
+            case e_type_pf64:
+               *m_pf64 /= payload.as_f64();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");

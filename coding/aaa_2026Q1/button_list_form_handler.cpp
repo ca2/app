@@ -45,16 +45,16 @@ namespace user
    void button_list_form_handler::create_button_list_form_handler(::user::interaction* pinteraction)
    {
 
-      //      int leftButton = 10;
-      int widthButton = 100;
-      //      int leftStill = 120;
-      //      int widthStill = 400;
+      //      ::i32 leftButton = 10;
+      ::i32 widthButton = 100;
+      //      ::i32 leftStill = 120;
+      //      ::i32 widthStill = 400;
       //
-      //      int y = 10;
-      int controlHeight = 25;
-      //      int controlSpacing = 5;
+      //      ::i32 y = 10;
+      ::i32 controlHeight = 25;
+      //      ::i32 controlSpacing = 5;
       //
-      //      m_pbuttonCheckout->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+      //      m_pbuttonCheckout->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
 
 
       for (::collection::index i = 0; i < m_pstraId->size(); i++)
@@ -394,47 +394,47 @@ namespace user
 
          //get_app()->m_pbaseapplication->create_options_impact(this);
 
-   //      int leftButton = 10;
-   //      int widthButton = 100;
-   //      int leftStill = 120;
-   //      int widthStill = 400;
+   //      ::i32 leftButton = 10;
+   //      ::i32 widthButton = 100;
+   //      ::i32 leftStill = 120;
+   //      ::i32 widthStill = 400;
    //
-   //      int y = 10;
-   //      int controlHeight = 25;
-   //      int controlSpacing = 5;
+   //      ::i32 y = 10;
+   //      ::i32 controlHeight = 25;
+   //      ::i32 controlSpacing = 5;
    //
-   //      m_pbuttonCheckout->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillCheckout->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
-   //
-   //      y+=controlHeight+controlSpacing;
-   //
-   //      m_pbuttonApplicationList->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillApplicationList->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //      m_pbuttonCheckout->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillCheckout->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
    //
    //      y+=controlHeight+controlSpacing;
    //
-   //      m_pbuttonPrepareApplications->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillPrepareApplications->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //      m_pbuttonApplicationList->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillApplicationList->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
    //
    //      y+=controlHeight+controlSpacing;
    //
-   //      m_pbuttonProjectList->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillProjectList->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //      m_pbuttonPrepareApplications->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillPrepareApplications->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
    //
    //      y+=controlHeight+controlSpacing;
    //
-   //      m_pbuttonPrepareProjects->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillPrepareProjects->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //      m_pbuttonProjectList->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillProjectList->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
    //
    //      y+=controlHeight+controlSpacing;
    //
-   //      m_pbuttonCmake->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillCmake->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //      m_pbuttonPrepareProjects->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillPrepareProjects->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
    //
    //      y+=controlHeight+controlSpacing;
    //
-   //      m_pbuttonClean->place(::int_rectangle_dimension(leftButton, y, widthButton, controlHeight));
-   //      m_pstillClean->place(::int_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //      m_pbuttonCmake->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillCmake->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
+   //
+   //      y+=controlHeight+controlSpacing;
+   //
+   //      m_pbuttonClean->place(::i32_rectangle_dimension(leftButton, y, widthButton, controlHeight));
+   //      m_pstillClean->place(::i32_rectangle_dimension(leftStill, y, widthStill, controlHeight));
    //
    //      y+=controlHeight+controlSpacing;
 

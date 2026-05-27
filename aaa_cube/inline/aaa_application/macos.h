@@ -3,7 +3,7 @@
 #include "apex/inline/application/macos.h"
 
 
-// int main(int argc, char * argv[])
+// ::i32 main(::i32 argc, char_pointer argv[])
 // {
 
 //    //class aura_aura aura_aura;
@@ -38,7 +38,7 @@
 
 //    ::e_status estatus = os_application_system_run(psystem);
 
-//    int iErrorStatus = estatus.error_status();
+//    ::i32 iErrorStatus = estatus.error_status();
 
 //    return iErrorStatus;
 

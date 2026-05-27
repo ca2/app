@@ -63,14 +63,14 @@ namespace graphics3d
    }
 
 
-   inline floating_matrix4 rotation_from_yaw_and_pitch(const float_angle & angleYaw, const float_angle & anglePitch)
+   inline floating_matrix4 rotation_from_yaw_and_pitch(const f32_angle & angleYaw, const f32_angle & anglePitch)
    {
       // === 1. direction vectors ===
 
-      float cy = angleYaw.cos();
-      float sy = angleYaw.sin();
-      float cp = anglePitch.cos();
-      float sp = anglePitch.sin();
+      ::f32 cy = angleYaw.cos();
+      ::f32 sy = angleYaw.sin();
+      ::f32 cp = anglePitch.cos();
+      ::f32 sp = anglePitch.sin();
 
       // front vector
       floating_sequence3 front(cp * cy, sp, cp * sy);

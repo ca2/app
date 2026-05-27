@@ -552,7 +552,7 @@ namespace user
       }
 
 
-      ::double_size edit_impl::get_size()
+      ::f64_size edit_impl::get_size()
       {
 
          if (is_picture_enabled())
@@ -650,7 +650,7 @@ namespace user
       }
 
 
-      double edit_impl::get_rotate()
+      ::f64 edit_impl::get_rotate()
       {
 
          if (is_picture_enabled())
@@ -680,7 +680,7 @@ namespace user
 
          }
 
-         //::double_point pointHit = item.m_pointHitTest;
+         //::f64_point pointHit = item.m_pointHitTest;
 
          //if (is_picture_enabled())
          //{
@@ -827,12 +827,12 @@ namespace user
       }
 
 
-      ::double_point edit_impl::get_point_transform()
+      ::f64_point edit_impl::get_point_transform()
       {
 
          // auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
 
-         auto pointD = ::double_point(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
+         auto pointD = ::f64_point(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
 
          return pointD;
 
@@ -1019,7 +1019,7 @@ namespace user
          if (is_picture_enabled())
          {
 
-            double_point point(pointParam);
+            ::f64_point point(pointParam);
 
             screen_to_client()(point);
 
@@ -1027,7 +1027,7 @@ namespace user
 
             window_rectangle(rWindow);
 
-            double_rectangle rectangleWindow;
+            ::f64_rectangle rectangleWindow;
 
             rectangleWindow = rWindow;
 
@@ -1488,19 +1488,19 @@ namespace user
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-         if (key.m_nChar < 256 && character_isalpha((char)key.m_nChar))
+         if (key.m_nChar < 256 && character_isalpha((::i8)key.m_nChar))
          {
 
             if (bShift)
             {
 
-               key.m_nChar = character_toupper((char)key.m_nChar);
+               key.m_nChar = character_toupper((::i8)key.m_nChar);
 
             }
             else
             {
 
-               key.m_nChar = character_tolower((char)key.m_nChar);
+               key.m_nChar = character_tolower((::i8)key.m_nChar);
 
             }
 
@@ -1668,7 +1668,7 @@ namespace user
 
                //on_reset_focus_start_tick();
 
-               //int x;
+               //::i32 x;
                //index iLine = SelToLineX(m_iSelEnd, x);
 
                //::i32_rectangle rectangleX;
@@ -1701,7 +1701,7 @@ namespace user
 
                //on_reset_focus_start_tick();
 
-               //int x;
+               //::i32 x;
 
                //index iLine = SelToLineX(m_iSelEnd, x);
 
@@ -1811,7 +1811,7 @@ namespace user
 
                _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               double x;
+               ::f64 x;
 
                auto plinea = m_plinea;
 
@@ -1849,7 +1849,7 @@ namespace user
 
                _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               double x;
+               ::f64 x;
 
                auto plinea = m_plinea;
 
@@ -2102,7 +2102,7 @@ namespace user
 
                string str;
 
-               char ch = 0;
+               ::i8 ch = 0;
 
                if (pkey->m_ekey == ::user::e_key_tab)
                {
@@ -2119,7 +2119,7 @@ namespace user
                else
                {
 
-                  ch = (char)pkey->m_nChar;
+                  ch = (::i8)pkey->m_nChar;
 
                   if (ch == '\r')
                   {
@@ -2128,7 +2128,7 @@ namespace user
 
                   }
 
-                  int iChar = (int)pkey->m_nChar;
+                  ::i32 iChar = (::i32)pkey->m_nChar;
 
                   if (iChar == '\r')
                   {
@@ -2144,7 +2144,7 @@ namespace user
 
                   }
 
-                  //int iCode = pkey->m_nFlags & 0xff;
+                  //::i32 iCode = pkey->m_nFlags & 0xff;
 
                   //if (bShift)
                   //{
@@ -2229,7 +2229,7 @@ namespace user
       void edit_impl::_001GetSelLineText(string & strText)
       {
 
-         //         double x;
+         //         ::f64 x;
 
          auto prichtextdata = get_rich_text_data();
 

@@ -52,13 +52,13 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       ENSURE_THROW(pAdvise != nullptr, ::windows_definition::ThrowMemoryException() );
 
-      char szItem[80];
+      ::i8 szItem[80];
       szItem[0] = '\0';
 
       if (aItem != 0)
          ::GlobalGetAtomName(aItem, szItem, _countof(szItem));
 
-      char szFormat[80];
+      ::i8 szFormat[80];
       szFormat[0] = '\0';
       if (((::u32)0xC000 <= (::u32)pAdvise->cfFormat) &&
 
@@ -112,7 +112,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //
 //   const ::scoped_string & scopedstrMsgName = nullptr;
 
-//   char szBuf[80];
+//   ::i8 szBuf[80];
 //
 //   // find message name
 //   if (pusermessage->id() >= 0xC000)
@@ -220,7 +220,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //
 //   const ::scoped_string & scopedstrMsgName = nullptr;
 
-//   char szBuf[80];
+//   ::i8 szBuf[80];
 //
 //   // find message name
 //   if (pmsg->message >= 0xC000)

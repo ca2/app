@@ -40,7 +40,7 @@ nsUniversalDetector::nsUniversalDetector()
   mInputState = ePureAscii;
   mLastChar = '\0';
 
-  PRunsigned int i;
+  PRunsigned ::i32 i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
     mCharSetProbers[i] = nsnull;
 }
@@ -69,17 +69,17 @@ void nsUniversalDetector::Reset()
   if (mEscCharSetProber)
     mEscCharSetProber->Reset();
 
-  PRunsigned int i;
+  PRunsigned ::i32 i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
     if (mCharSetProbers[i])
       mCharSetProbers[i]->Reset();
 }
 
 //---------------------------------------------------------------------
-#define SHORTCUT_THRESHOLD      (float)0.95
-#define MINIMUM_THRESHOLD      (float)0.20
+#define SHORTCUT_THRESHOLD      (::f32)0.95
+#define MINIMUM_THRESHOLD      (::f32)0.20
 
-void nsUniversalDetector::HandleData(const ::string & aBuf, PRunsigned int aLen)
+void nsUniversalDetector::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   if(mDone) 
     return;
@@ -132,13 +132,13 @@ void nsUniversalDetector::HandleData(const ::string & aBuf, PRunsigned int aLen)
       }
   }
   
-  PRunsigned int i;
+  PRunsigned ::i32 i;
   for (i = 0; i < aLen; i++)
   {
     //other than 0xa0, if every othe character is ascii, the page is ascii
     if (aBuf[i] & '\x80' && aBuf[i] != '\xA0')  //Since many Ascii only page contains NBSP 
     {
-      //we got a non-ascii unsigned char (high-unsigned char)
+      //we got a non-ascii ::u8 (high-::u8)
       if (mInputState != eHighbyte)
       {
         //adjust state
@@ -226,8 +226,8 @@ void nsUniversalDetector::DataEnd()
   {
   case eHighbyte:
     {
-      float proberConfidence;
-      float maxProberConfidence = (float)0.0;
+      ::f32 proberConfidence;
+      ::f32 maxProberConfidence = (::f32)0.0;
       PRInt32 maxProber = 0;
 
       for (PRInt32 i = 0; i < NUM_OF_CHARSET_PROBERS; i++)

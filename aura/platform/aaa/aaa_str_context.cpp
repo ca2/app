@@ -104,7 +104,7 @@
 //
 //         strid_array stridaFailedLocale(false);
 //
-//         for(int i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
+//         for(::i32 i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
 //         {
 //
 //            ::atom & idLocale = m_plocaleschema->m_idaLocale[i];
@@ -306,7 +306,7 @@
 //               return str;
 //         }
 //
-//         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+//         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
@@ -456,7 +456,7 @@
 //               stra.add(str);
 //         }
 //
-//         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+//         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
@@ -507,8 +507,8 @@
 //      range_sz_item stack[8];
 //      character_count m_pos = 0;
 //
-//      char m_szAlloca[8 * 1024];
-//      char * m_szMerge = m_szAlloca;
+//      ::i8 m_szAlloca[8 * 1024];
+//      char_pointer m_szMerge = m_szAlloca;
 //      character_count m_iSize =0;
 //      character_count m_iMaxSize=sizeof(m_szAlloca);
 //      bool m_bOwn = false;
@@ -522,7 +522,7 @@
 //         }
 //      }
 //
-//      void append(character_count start,character_count end,char * pszTopic)
+//      void append(character_count start,character_count end,char_pointer pszTopic)
 //      {
 //         stack[m_pos].s = start;
 //         stack[m_pos].e = end;
@@ -532,7 +532,7 @@
 //         }
 //      }
 //
-//      void merge(char * pszTopic)
+//      void merge(char_pointer pszTopic)
 //      {
 //
 //         if(m_pos <= 0)
@@ -564,19 +564,19 @@
 //
 //            }
 //
-//            if(newlen >= m_iMaxSize) // extra 1 unsigned char
+//            if(newlen >= m_iMaxSize) // extra 1 ::u8
 //            {
-//               m_iMaxSize = newlen + 1024; // extra 1 unsigned char plus 1023
+//               m_iMaxSize = newlen + 1024; // extra 1 ::u8 plus 1023
 //               if (comparison::ge(m_iMaxSize, sizeof(m_szAlloca)))
 //               {
 //                  if(m_szMerge == m_szAlloca || !m_bOwn)
 //                  {
-//                     m_szMerge = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
+//                     m_szMerge = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
 //                     ::memory_copy(m_szMerge,m_szAlloca,oldlen);
 //                  }
 //                  else
 //                  {
-//                     m_szMerge = (char *)::memory_reallocate(m_szMerge,m_iMaxSize);
+//                     m_szMerge = (char_pointer )::memory_reallocate(m_szMerge,m_iMaxSize);
 //                  }
 //                  m_bOwn = true;
 //               }
@@ -615,7 +615,7 @@
 //         return len;
 //      }
 //
-//      //char * get_string(char string & strTopic)
+//      //char_pointer get_string(::i8 string & strTopic)
 //      //{
 //      //   merge(strTopic);
 //      //   if(m_iSize == 0)
@@ -640,19 +640,19 @@
 //
 //      character_count len;
 //
-//      char * pszFile = mem.get_psz(len);
+//      char_pointer pszFile = mem.get_psz(len);
 //
 //      ::parse parse(scopedstrFile, len);
 //
 //      string str;
 //
-//      //int i = 0;
+//      //::i32 i = 0;
 //
 //      character_count start;
 //
 //      character_count end;
 //
-//      char q;
+//      ::i8 q;
 //
 ////      ::str::utf8_char c;
 //
@@ -660,11 +660,11 @@
 //
 //      //bool bEof = false;
 //
-//      const char * s;
+//      const_char_pointer s;
 //
-//      char * wr;
+//      char_pointer wr;
 //
-//      const char * rd;
+//      const_char_pointer rd;
 //
 //      character_count l;
 //
@@ -694,7 +694,7 @@
 //
 //         rstr.merge(scopedstrFile);
 //
-//         char * psz = rstr.m_szMerge;
+//         char_pointer psz = rstr.m_szMerge;
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
@@ -860,7 +860,7 @@
 //               return true;
 //         }
 //
-//         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+//         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
@@ -929,7 +929,7 @@
 //               return true;
 //         }
 //
-//         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+//         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
@@ -998,7 +998,7 @@
 //               return true;
 //         }
 //
-//         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+//         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
@@ -1048,7 +1048,7 @@
 //
 //      get(straCandidate,idRoot);
 //
-//      for(int i = 0; i < straCandidate.get_count(); i++)
+//      for(::i32 i = 0; i < straCandidate.get_count(); i++)
 //      {
 //
 //         string strCandidate = straCandidate[i];

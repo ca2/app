@@ -14,8 +14,8 @@
 //   constexpr floating_day_t(floating_day day = {}) : floating_day(day) {}
 //
 //
-//   integral_second integral_seconds() const { return integral_second((long long)(m_d * 86'400.0)); }
-//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((long long)(fmod(m_d * 86'400.0, 1.0) * 1'000'000'000.0)); }
+//   integral_second integral_seconds() const { return integral_second((::i64)(m_f64 * 86'400.0)); }
+//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((::i64)(fmod(m_f64 * 86'400.0, 1.0) * 1'000'000'000.0)); }
 //
 //
 //};
@@ -24,11 +24,11 @@
 //using floating_day = floating_time < floating_day_t >; 
 
 //
-//constexpr floating_day operator""_day(long double d) { return (floating_day)d; }
-//constexpr floating_day operator""_days(long double d) { return (floating_day)d; }
+//constexpr floating_day operator""_day(::f128 d) { return (floating_day)d; }
+//constexpr floating_day operator""_days(::f128 d) { return (floating_day)d; }
 
 
-inline floating_day get_floating_day() { return floating_day(get_floating_nanosecond().m_d / 86'400'000'000'000.0); }
+inline floating_day get_floating_day() { return floating_day(get_floating_nanosecond().m_f64 / 86'400'000'000'000.0); }
 
 
 template <  >

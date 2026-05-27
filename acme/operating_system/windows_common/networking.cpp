@@ -3,7 +3,7 @@
 #include "acme/operating_system/networking.h"
 
 
-SOCKET _open_socket(int af, int type, int protocol)
+SOCKET _open_socket(::i32 af, ::i32 type, ::i32 protocol)
 {
 
    auto socket = ::socket(af, type, protocol);
@@ -20,7 +20,7 @@ SOCKET _open_socket(int af, int type, int protocol)
 }
 
 
-int _close_socket(SOCKET s)
+::i32 _close_socket(SOCKET s)
 {
 
    if (s == INVALID_SOCKET)
@@ -44,7 +44,7 @@ int _close_socket(SOCKET s)
 }
 
 
-SOCKET _accept_socket(SOCKET s, sockaddr* addr, int* addrlen)
+SOCKET _accept_socket(SOCKET s, sockaddr* addr, ::i32* addrlen)
 {
 
    auto socket = ::accept(s, addr, addrlen);

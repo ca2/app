@@ -32,7 +32,7 @@ namespace colorertake5
       }
 
 
-      string enumerateParameters(int idx)
+      string enumerateParameters(::i32 idx)
       {
 
          if (idx >= paramVector.get_size() || idx < 0)
@@ -81,11 +81,11 @@ namespace colorertake5
        *        for example). If nullptr, skipped.
        * @return Computed total filetype priority.
        */
-      double getPriority(const ::string & fileName, const ::string & fileContent) const
+      ::f64 getPriority(const ::string & fileName, const ::string & fileContent) const
       {
          SMatches match;
-         double cur_prior = 0;
-         for(int idx = 0; idx < chooserVector.get_size(); idx++)
+         ::f64 cur_prior = 0;
+         for(::i32 idx = 0; idx < chooserVector.get_size(); idx++)
          {
             FileTypeChooser *ftc = chooserVector.element_at(idx);
             if (fileName != nullptr && ftc->isFileName() && ftc->getRE()->parse(fileName, &match))

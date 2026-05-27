@@ -48,7 +48,7 @@ namespace innate_subsystem
 //       // Control::setWindow(hwnd);
 //    }
 //
-//    void FilteredTextBox::setText(char *text)
+//    void FilteredTextBox::setText(char_pointer text)
 //    {
 //       // m_text.setString(text);
 //       // TextBox::setText(text);
@@ -95,7 +95,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->makeCheck();
 //    }
 //
-//    bool FilteredTextBox::isStringValid(const char *string)
+//    bool FilteredTextBox::isStringValid(const_char_pointer string)
 //    {
 //       // if (m_filter != NULL) {
 //       //    return m_filter->isStringCorrect(string);

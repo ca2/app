@@ -47,7 +47,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      ::double_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
 

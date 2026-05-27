@@ -42,7 +42,7 @@ namespace subsystem
 
    struct CommandLineFormat
    {
-      const char *keyName;
+      const_char_pointer keyName;
       UseArgument useArg;
    };
 
@@ -61,7 +61,7 @@ namespace subsystem
        * @param cmdArgs command line to proccess.
        * @return true on successful parsing, false otherwise.
        */
-      bool parse(const CommandLineFormat *format, int formatSize, const CommandLineArguments *cmdArgs);
+      bool parse(const CommandLineFormat *format, ::i32 formatSize, const CommandLineArguments *cmdArgs);
 
       /**
        * Check if the option was actually specified in the command line.
@@ -78,10 +78,10 @@ namespace subsystem
        * @param arg output value for argument of key (optional).
        * @return true if option at the specified index exists, false otherwise.
        */
-      bool getOption(int index, ::string *key, ::string *arg = nullptr) const;
+      bool getOption(::i32 index, ::string *key, ::string *arg = nullptr) const;
 
    //protected:
-      //bool _matchKey(const char * pszKeyTemplate, ::string *key);
+      //bool _matchKey(const_char_pointer pszKeyTemplate, ::string *key);
       //bool _removeKeyPrefix(::string *key);
 
       ::array_base<KeyContainer> m_foundKeys;

@@ -21,7 +21,7 @@ namespace userex
       //string_array_base                   m_straPatternNames;
       ::file::file_dialog_filter       m_filedialogfilter;
       string                           m_strLinkPrefix;
-      int                              m_iForkAddDib;
+      ::i32                              m_iForkAddDib;
 
       image_list_impact();
       ~image_list_impact() override;

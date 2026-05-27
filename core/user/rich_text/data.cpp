@@ -26,7 +26,7 @@ namespace user
    namespace rich_text
    {
 
-      void align(line * pline, const ::double_rectangle & rectangle);
+      void align(line * pline, const ::f64_rectangle & rectangle);
 
       ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, const ::scoped_string & scopedstr)
       {
@@ -312,7 +312,7 @@ namespace user
 
                pspanBeg->m_str = pspanBeg->m_str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
-               pspanBeg->m_iPosEnd = (int)iSelBeg;
+               pspanBeg->m_iPosEnd = (::i32)iSelBeg;
 
                iSpanBeg++;
 
@@ -323,13 +323,13 @@ namespace user
 
                pspanEnd->m_str = pspanEnd->m_str.substr(iSelEnd - iEndBeg);
 
-               pspanEnd->m_iPosBeg = (int)iSelEnd;
+               pspanEnd->m_iPosBeg = (::i32)iSelEnd;
 
                iSpanEnd--;
 
             }
 
-            int iCount = (int)(iSpanEnd - iSpanBeg + 1);
+            ::i32 iCount = (::i32)(iSpanEnd - iSpanBeg + 1);
 
             if (iCount > 0)
             {
@@ -732,10 +732,10 @@ namespace user
 
       }
 
-      // unicode_next(str.c_str()) - str.c_str(); // at least one char is the longest pline
+      // unicode_next(str.c_str()) - str.c_str(); // at least one ::i8 is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
-      ::collection::count longest_pline(string & strSlice, double & d, string_array_base & straWords, double * pdaPosition, double dPositionLeft, int cx)
+      ::collection::count longest_pline(string & strSlice, ::f64 & d, string_array_base & straWords, ::f64 * pdaPosition, ::f64 dPositionLeft, ::i32 cx)
       {
 
          ::collection::count c = straWords.get_count();
@@ -767,7 +767,7 @@ namespace user
       }
 
 
-      int longest_word(string & strSlice, double & dPosition, const ::scoped_string & scopedstrWord, double * pdaPosition, double dPositionLeft, int cx)
+      ::i32 longest_word(string & strSlice, ::f64 & dPosition, const ::scoped_string & scopedstrWord, ::f64 * pdaPosition, ::f64 dPositionLeft, ::i32 cx)
       {
 
          long l = 1;
@@ -842,7 +842,7 @@ namespace user
 
          dPosition = pdaPosition[m - 1];
 
-         return (int)m;
+         return (::i32)m;
 
       }
 

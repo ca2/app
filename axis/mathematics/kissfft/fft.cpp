@@ -39,7 +39,7 @@ static void kf_bfly2(
         COMPLEXD * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
-        int m
+        ::i32 m
         )
 {
     COMPLEXD * Fout2;
@@ -153,11 +153,11 @@ static void kf_bfly5(
         COMPLEXD * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
-        int m
+        ::i32 m
         )
 {
     COMPLEXD *Fout0,*Fout1,*Fout2,*Fout3,*Fout4;
-    int u;
+    ::i32 u;
     COMPLEXD scratch[13];
     COMPLEXD * twiddles = st->twiddles;
     COMPLEXD *tw;
@@ -215,14 +215,14 @@ static void kf_bfly_generic(
         COMPLEXD * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
-        int m,
-        int p
+        ::i32 m,
+        ::i32 p
         )
 {
-    int u,k,q1,q;
+    ::i32 u,k,q1,q;
     COMPLEXD * twiddles = st->twiddles;
     COMPLEXD t;
-    int Norig = st->nfft;
+    ::i32 Norig = st->nfft;
 
     CHECKBUF(scratchbuf,nscratchbuf,p);
 
@@ -236,10 +236,10 @@ static void kf_bfly_generic(
 
         k=u;
         for ( q1=0 ; q1<p ; ++q1 ) {
-            int twidx=0;
+            ::i32 twidx=0;
             Fout[ k ] = scratchbuf[0];
             for (q=1;q<p;++q ) {
-                twidx += (int) (fstride * k);
+                twidx += (::i32) (fstride * k);
                 if (twidx>=Norig) twidx-=Norig;
                 C_MUL(t,scratchbuf[q] , twiddles[twidx] );
                 C_ADDTO( Fout[ k ] ,t);
@@ -254,14 +254,14 @@ void kf_work(
         COMPLEXD * Fout,
         const COMPLEXD * f,
         const size_t fstride,
-        int in_stride,
-        int * factors,
+        ::i32 in_stride,
+        ::i32 * factors,
         const kiss_fft_cfg st
         )
 {
     COMPLEXD * Fout_beg=Fout;
-    const int p=*factors++; /* the ca2  */
-    const int m=*factors++; /* stage's fft length/p */
+    const ::i32 p=*factors++; /* the ca2  */
+    const ::i32 m=*factors++; /* stage's fft length/p */
     const COMPLEXD * Fout_end = Fout + p*m;
 
     if (m==1) {
@@ -292,11 +292,11 @@ void kf_work(
     p[i] * m[i] = m[i-1]
     m0 = n                  */
 static 
-void kf_factor(int n,int * facbuf)
+void kf_factor(::i32 n,::i32 * facbuf)
 {
-    int p=4;
-    double floor_sqrt;
-    floor_sqrt = floor( sqrt((double)n) );
+    ::i32 p=4;
+    ::f64 floor_sqrt;
+    floor_sqrt = floor( sqrt((::f64)n) );
 
     /*factor out powers of 4, powers of 2, then any remaining primes */
     do {
@@ -322,7 +322,7 @@ void kf_factor(int n,int * facbuf)
  * The return value is a contiguous block of memory, allocated with malloc.  As such,
  * It can be freed with free(), rather than a kiss_fft-specific function.
  * */
-kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem )
+kiss_fft_cfg kiss_fft_alloc(::i32 nfft,::i32 inverse_fft,void * mem,size_t * lenmem )
 {
     kiss_fft_cfg st=nullptr;
     size_t memneeded = sizeof(struct kiss_fft_state)
@@ -336,13 +336,13 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
         *lenmem = memneeded;
     }
     if (st) {
-        int i;
+        ::i32 i;
         st->nfft=nfft;
         st->inverse = inverse_fft;
 
         for (i=0;i<nfft;++i) {
-            const double pi=3.14159265358979323846264338327;
-            double phase = ( -2*pi /nfft ) * i;
+            const ::f64 pi=3.14159265358979323846264338327;
+            ::f64 phase = ( -2*pi /nfft ) * i;
             if (st->inverse)
                 phase *= -1;
             kf_cexp(st->twiddles+i, phase );
@@ -356,7 +356,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
 
 
     
-void kiss_fft_stride(kiss_fft_cfg st,const COMPLEXD *fin,COMPLEXD *fout,int in_stride)
+void kiss_fft_stride(kiss_fft_cfg st,const COMPLEXD *fin,COMPLEXD *fout,::i32 in_stride)
 {
     if (fin == fout) {
         CHECKBUF(tmpbuf,ntmpbuf,st->nfft);

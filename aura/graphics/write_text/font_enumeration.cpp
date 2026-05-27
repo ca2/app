@@ -116,7 +116,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item>pitemFound;
 
-      double dMaxSimilarity = 0.2;
+      ::f64 dMaxSimilarity = 0.2;
 
       auto psystem = system();
 
@@ -136,9 +136,9 @@ namespace write_text
       for(auto & pitem : *m_pfontenumerationitema)
       {
 
-         int iFound = -1;
+         ::i32 iFound = -1;
 
-         double dSimilarity = pfonts->font_similarity(pitem->m_strName, scopedstr);
+         ::f64 dSimilarity = pfonts->font_similarity(pitem->m_strName, scopedstr);
 
          if (dSimilarity > dMaxSimilarity)
          {

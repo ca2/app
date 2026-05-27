@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "button.h"
 #include "popup_button.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
 
@@ -25,7 +25,7 @@ namespace micro
    }
 
 
-   void button::on_draw(::nano::graphics::device * pmicrodevice)
+   void button::on_draw(::nano::graphics::context * pgraphicscontext)
    {
       //return;
       //::SelectObject(hdc, m_pinterchange->m_hbrushWindow);
@@ -66,7 +66,7 @@ namespace micro
       
       rectangle -= rectangle.top_left();
 
-      pmicrodevice->rectangle(rectangle, micro_theme()->m_pbrushWindow, ppenBorder);
+      pgraphicscontext->rectangle(rectangle, micro_theme()->m_pbrushWindow, ppenBorder);
 
       wstring wstrText(m_strText);
 
@@ -74,7 +74,7 @@ namespace micro
       
       rectangleText.deflate(4);
 
-      pmicrodevice->draw_text123(
+      pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
          e_align_center,
@@ -86,7 +86,7 @@ namespace micro
    }
 
 
-   void button::on_char(int iChar)
+   void button::on_char(::i32 iChar)
    {
 
       if (iChar == '\r' || iChar == ' ')
@@ -119,7 +119,7 @@ namespace micro
    //void micro_still::resize_to_fit()
    //{
    //
-   //   auto pdevice = createø < ::nano::graphics::device >();
+   //   auto pdevice = createø < ::nano::graphics::context >();
    //
    //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
    //

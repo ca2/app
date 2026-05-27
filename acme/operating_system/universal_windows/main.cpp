@@ -4,7 +4,7 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME int ca2_main();
+CLASS_DECL_ACME ::i32 ca2_main();
 
 
 

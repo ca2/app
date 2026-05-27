@@ -62,7 +62,7 @@ namespace interprocess
    }
 
 
-   //void caller::send(int message, void * pdata, int len, const class time & timeTimeout)
+   //void caller::send(::i32 message, void * pdata, ::i32 len, const class time & timeTimeout)
    //{
 
    //   if (message == I32_MINIMUM)

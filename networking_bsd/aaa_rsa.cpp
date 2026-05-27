@@ -219,7 +219,7 @@ namespace crypto_openssl
    }
 
 
-   int rsa::public_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_encrypt(memory& out, const memory& in, string& strError)
    {
 
 
@@ -243,11 +243,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.get_data(), (int)in.get_size());
+      ::i32 i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const ::u8 * )(const_char_pointer )in.get_data(), (::i32)in.get_size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.get_data(), &out_len, (const uchar*)(const char*)in.get_data(), (int)in.get_size());
+      i = EVP_PKEY_encrypt(pctx, out.get_data(), &out_len, (const ::u8 * )(const_char_pointer )in.get_data(), (::i32)in.get_size());
 
       if (i < 0)
       {
@@ -269,23 +269,23 @@ namespace crypto_openssl
 #else
 
 
-      int i = RSA_public_encrypt((int)in.get_size(), (const uchar*)(const char*)in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      ::i32 i = RSA_public_encrypt((::i32)in.get_size(), (const ::u8 * )(const_char_pointer )in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
 
       strError = ERR_error_string(ERR_get_error(), nullptr);
 
       out.set_size(i);
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
 
 #endif
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
    {
 
 
@@ -315,11 +315,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.get_data(), (int)in.get_size());
+      ::i32 i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const ::u8 * )(const_char_pointer )in.get_data(), (::i32)in.get_size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_decrypt(pctx, out.get_data(), &out_len, (const uchar*)(const char*)in.get_data(), (int)in.get_size());
+      i = EVP_PKEY_decrypt(pctx, out.get_data(), &out_len, (const ::u8 * )(const_char_pointer )in.get_data(), (::i32)in.get_size());
 
       if (i < 0)
       {
@@ -343,20 +343,20 @@ namespace crypto_openssl
 
       single_lock sl(mutex(), true);
 
-      int iRsaSize = 8192;
+      ::i32 iRsaSize = 8192;
 
       out.set_size(iRsaSize);
 
       out.set(0);
 
-      ::collection::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      ::collection::count i = RSA_private_decrypt((::i32)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
 
       if (i < 0 || i >(1024 * 1024))
       {
 
          strError = ERR_error_string(ERR_get_error(), nullptr);
 
-         return (int)i;
+         return (::i32)i;
 
       }
 
@@ -365,12 +365,12 @@ namespace crypto_openssl
 
 #endif
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
    {
 
 #ifdef MACOS_DEPRECATED
@@ -460,9 +460,9 @@ namespace crypto_openssl
 
 #elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      //auto iInSize = (int)in.get_size();
+      //auto iInSize = (::i32)in.get_size();
 
-      //auto pInData = (const uchar*)(const char*)in.get_data();
+      //auto pInData = (const ::u8 * )(const_char_pointer )in.get_data();
 
       //auto pOutData = out.get_data();
 
@@ -484,11 +484,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.get_data(), (int)in.get_size());
+      ::i32 i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const ::u8 * )(const_char_pointer )in.get_data(), (::i32)in.get_size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.get_data(), &out_len, (const uchar*)(const char*)in.get_data(), (int)in.get_size());
+      i = EVP_PKEY_encrypt(pctx, out.get_data(), &out_len, (const ::u8 * )(const_char_pointer )in.get_data(), (::i32)in.get_size());
 
       if (i < 0)
       {
@@ -509,15 +509,15 @@ namespace crypto_openssl
 
 #else
 
-      auto iInSize = (int)in.get_size();
+      auto iInSize = (::i32)in.get_size();
 
-      auto pInData = (const uchar*)(const char*)in.get_data();
+      auto pInData = (const ::u8 * )(const_char_pointer )in.get_data();
 
       auto pOutData = out.get_data();
 
       auto prsa = m_prsa;
 
-      int i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
+      ::i32 i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
 
       strError = ERR_error_string(ERR_get_error(), nullptr);
 
@@ -526,12 +526,12 @@ namespace crypto_openssl
 
 #endif
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
    {
 
 
@@ -562,27 +562,27 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      ::collection::count i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, in.get_data(), (int)in.get_size());
+      ::collection::count i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, in.get_data(), (::i32)in.get_size());
 
       if (i < 0)
       {
 
          strError = ERR_error_string(ERR_get_error(), nullptr);
 
-         return (int)i;
+         return (::i32)i;
 
       }
 
       out.set_size(i);
 
-      i = EVP_PKEY_decrypt(pctx, out.get_data(), &out_len, in.get_data(), (int)in.get_size());
+      i = EVP_PKEY_decrypt(pctx, out.get_data(), &out_len, in.get_data(), (::i32)in.get_size());
 
       if (i < 0)
       {
 
          strError = ERR_error_string(ERR_get_error(), nullptr);
 
-         return (int)i;
+         return (::i32)i;
 
       }
 
@@ -593,20 +593,20 @@ namespace crypto_openssl
 
       single_lock sl(mutex(), true);
 
-      int iRsaSize = 8192;
+      ::i32 iRsaSize = 8192;
 
       out.set_size(iRsaSize);
 
       out.set(0);
 
-      ::collection::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      ::collection::count i = RSA_public_decrypt((::i32)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
 
       if (i < 0 || i >(1024 * 1024))
       {
 
          strError = ERR_error_string(ERR_get_error(), nullptr);
 
-         return (int)i;
+         return (::i32)i;
 
       }
 
@@ -615,7 +615,7 @@ namespace crypto_openssl
 
 #endif
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 

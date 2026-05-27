@@ -87,7 +87,7 @@ namespace fs
 
 
 
-   int native::is_dir(const ::file::path & path)
+   ::i32 native::is_dir(const ::file::path & path)
    {
 
       return directory()->is(path) ? 1 : 0;
@@ -123,7 +123,7 @@ namespace fs
    //}
 
 
-   //string native::eat_end_level(const ::file::path & path, int iCount)
+   //string native::eat_end_level(const ::file::path & path, ::i32 iCount)
    //{
 
    //   string strPath(scopedstrPath);

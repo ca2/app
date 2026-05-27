@@ -28,8 +28,8 @@ namespace gpu_opengl
       CGLContextObj                    m_context;
       CGLContextObj                    m_contextOld;
 
-      int m_iFbo;
-      int m_iTex;
+      ::i32 m_iFbo;
+      ::i32 m_iTex;
       ::i32_size m_sizeFbo;
 
       

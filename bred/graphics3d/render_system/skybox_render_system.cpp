@@ -317,9 +317,9 @@ namespace graphics3d
 
 			//prenderable->bind(pframe->m_pgpucommandbuffer);
 
-         float x_multiplier = 1.f;
-         float y_multiplier = 1.f;
-         float z_multiplier = 1.f;
+         ::f32 x_multiplier = 1.f;
+         ::f32 y_multiplier = 1.f;
+         ::f32 z_multiplier = 1.f;
 
          if (prenderable->m_ecoordinatesystem == ::gpu::e_coordinate_system_vulkan)
          {

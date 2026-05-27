@@ -26,7 +26,7 @@ namespace windowing
 
       ::collection::index              m_iMainMonitor;
       ::collection::index              m_iMainWorkspace;
-      double                           m_dpi;
+      ::f64                           m_dpi;
 
       ::int_rectangle_array_base            m_rectangleaWorkAreas;
 
@@ -47,7 +47,7 @@ namespace windowing
       virtual window * default_root_window();
 
 
-      virtual float get_dpi();
+      virtual ::f32 get_dpi();
 
       //void open_display() override;
       virtual void close_display();
@@ -84,7 +84,7 @@ namespace windowing
 
       virtual monitor * get_monitor(::collection::index iMonitor);
       virtual monitor * ømonitor(::collection::index iMonitor);
-      void _on_monitor(int iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace) override;
+      void _on_monitor(::i32 iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace) override;
 
       virtual monitor * monitor_hit_test(const ::i32_point & point);
 
@@ -136,7 +136,7 @@ namespace windowing
       
       virtual bool get_zoomed_window_site(::collection::index iWorkspace, ::i32_rectangle & rectangle);
       
-      virtual int get_zoomed_title_bar_height();
+      virtual ::i32 get_zoomed_title_bar_height();
       
       virtual bool get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle & rectangle);
       virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle & rectangle);

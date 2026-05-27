@@ -776,7 +776,7 @@ namespace windowing
 
             //      ASSERT(lpszClassName == nullptr || __is_valid_string(lpszClassName) ||
             //       __is_valid_atom(lpszClassName));
-            //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+            //      ENSURE_ARG(pusersystem->m_createstruct.pszName == nullptr || __is_valid_string(pusersystem->m_createstruct.pszName));
 
             // allow modification of several common create parameters
             //::user::system createstruct;
@@ -813,7 +813,7 @@ namespace windowing
       //      else
       //      {
 
-      unsigned uStyle = 0;
+      ::u32 uStyle = 0;
 
       //      if(puserinteraction->m_ewindowflag & ::e_window_flag_miniaturizable)
       //      {
@@ -846,10 +846,10 @@ namespace windowing
 
       //pwindow->m_pwindow = this;
       
-      int x = 0;
-      int y = 0;
-      int w = 0;
-      int h = 0;
+      ::i32 x = 0;
+      ::i32 y = 0;
+      ::i32 w = 0;
+      ::i32 h = 0;
 
       auto puserinteraction = user_interaction();
 
@@ -1007,7 +1007,7 @@ void window::add_user_notification_listener(::user::notification_listener * puse
 }
 
 
-void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
+void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 {
    
    for(auto plistener: m_notificationlistenera)
@@ -1076,7 +1076,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   double window::get_top_margin()
+   ::f64 window::get_top_margin()
    {
 
       return 0.;
@@ -1100,7 +1100,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //::color::color window::screen_pixel(int x, int y)
+   //::color::color window::screen_pixel(::i32 x, ::i32 y)
    //{
 
    //   return screen_pixel(x, y);
@@ -1520,7 +1520,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::_on_reposition(int x, int y)
+   void window::_on_reposition(::i32 x, ::i32 y)
    {
 
       //::i32_point p(x, y);
@@ -1580,7 +1580,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::_on_size(int cx, int cy)
+   void window::_on_size(::i32 cx, ::i32 cy)
    {
 
       auto psize = create_newø<::message::size>();
@@ -1683,7 +1683,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   }
 
 
-   //   character_count window::get_window_text(char * pszStringBuf, character_count nMaxCount)
+   //   character_count window::get_window_text(char_pointer pszStringBuf, character_count nMaxCount)
    //   {
    //
    //      throw ::interface_only();
@@ -1796,7 +1796,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    // }
    //
    //
-   // void window::set_oswindow(::::acme::windowing::window * acmewindowingwindow)
+   // void window::set_oswindow(::acme::windowing::window * acmewindowingwindow)
    // {
    //
    //    _set_oswindow(oswindow);
@@ -1820,7 +1820,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    // }
    //
    //
-   // void window::_set_oswindow(::::acme::windowing::window * acmewindowingwindow)
+   // void window::_set_oswindow(::acme::windowing::window * acmewindowingwindow)
    // {
    //
    //    throw interface_only();
@@ -1852,7 +1852,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   int window::GetUpdateRgn(::draw2d::region* pRgn, bool bErase)
+   ::i32 window::GetUpdateRgn(::draw2d::region* pRgn, bool bErase)
    {
 
       return 0;
@@ -2333,7 +2333,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   float window::get_dpi_for_window()
+   ::f32 window::get_dpi_for_window()
    {
 
       return 96.0f;
@@ -2341,7 +2341,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   float window::get_density_for_window()
+   ::f32 window::get_density_for_window()
    {
 
       return 1.0f;
@@ -2349,50 +2349,50 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   float window::dpiy(float y)
+   ::f32 window::dpiy(::f32 y)
    {
 
-      float fDpi = get_dpi_for_window();
+      ::f32 fDpi = get_dpi_for_window();
 
       return y * fDpi / 96.f;
 
    }
 
 
-   float window::dpix(float x)
+   ::f32 window::dpix(::f32 x)
    {
 
-      float fDpi = get_dpi_for_window();
+      ::f32 fDpi = get_dpi_for_window();
 
       return x * fDpi / 96.f;
 
    }
 
 
-   float window::point_dpi(float points)
+   ::f32 window::point_dpi(::f32 points)
    {
 
-      float fDpi = get_dpi_for_window();
+      ::f32 fDpi = get_dpi_for_window();
 
       return points * fDpi / 72.f;
 
    }
 
 
-   float window::y_dpi(float y)
+   ::f32 window::y_dpi(::f32 y)
    {
 
-      float fDpi = get_dpi_for_window();
+      ::f32 fDpi = get_dpi_for_window();
 
       return y / fDpi;
 
    }
 
 
-   float window::x_dpi(float x)
+   ::f32 window::x_dpi(::f32 x)
    {
 
-      float fDpi = get_dpi_for_window();
+      ::f32 fDpi = get_dpi_for_window();
 
       return x / fDpi;
 
@@ -2610,7 +2610,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
+   bool window::on_set_window_position(const class ::zorder& zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,
       const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
       ::e_display edisplay)
    {
@@ -2620,7 +2620,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
+   bool window::set_window_position(const class ::zorder& zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,
       const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
       ::e_display edisplay)
    {
@@ -2632,7 +2632,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
+   bool window::_set_window_position(const class ::zorder& zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,
       const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
       ::e_display edisplay, ::u32 nOverrideFlags)
    {
@@ -2680,9 +2680,9 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       {
 
          informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
-            (int)bVisibilityChange,
-            (int)bZ,
-            (int)(activationOutput.is_change_request()));
+            (::i32)bVisibilityChange,
+            (::i32)bZ,
+            (::i32)(activationOutput.is_change_request()));
 
          information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
@@ -2974,7 +2974,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
 
-   bool window::_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy,
+   bool window::_set_window_position_unlocked(const class ::zorder& zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,
       const ::user::activation& useractivation, bool bNoZorder, bool bNoMove,
       bool bNoSize, ::e_display edisplay)
    {
@@ -3007,7 +3007,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::_strict_set_window_position_unlocked(int x, int y, int cx, int cy, bool bNoMove, bool bNoSize)
+   bool window::_strict_set_window_position_unlocked(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, bool bNoMove, bool bNoSize)
    {
 
       if (!is_window_zoomed() && !is_full_screen())
@@ -3022,7 +3022,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
             if (bSize)
             {
 
-               set_rectangle_unlocked(::int_rectangle_dimension(x, y, cx, cy));
+               set_rectangle_unlocked(::i32_rectangle_dimension(x, y, cx, cy));
 
             }
             else
@@ -3099,7 +3099,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //}
 
 
-   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    //   {
    //
    //
@@ -3253,7 +3253,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::on_touch_down(int xHost, int yHost, int xAbsolute, int yAbsolute)
+   void window::on_touch_down(::i32 xHost, ::i32 yHost, ::i32 xAbsolute, ::i32 yAbsolute)
    {
 
       ::lparam lparam(xHost, yHost);
@@ -3273,7 +3273,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::on_touch_drag(int xHost, int yHost, int xAbsolute, int yAbsolute)
+   void window::on_touch_drag(::i32 xHost, ::i32 yHost, ::i32 xAbsolute, ::i32 yAbsolute)
    {
 
       ::lparam lparam(xHost, yHost);
@@ -3291,7 +3291,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::on_touch_up(int xHost, int yHost, int xAbsolute, int yAbsolute)
+   void window::on_touch_up(::i32 xHost, ::i32 yHost, ::i32 xAbsolute, ::i32 yAbsolute)
    {
 
       ::lparam lparam(xHost, yHost);
@@ -3309,7 +3309,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::on_size(int w, int h)
+   void window::on_size(::i32 w, ::i32 h)
    {
 
       ::lparam lparam(w, h);
@@ -3442,7 +3442,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       timeUpdateScreenPost.Now();
 
-      informationf("timeBetweenUpdateBufferAndUpdateScreen " + as_string(e1.floating_millisecond().m_d) + "ms\n");
+      informationf("timeBetweenUpdateBufferAndUpdateScreen " + as_string(e1.floating_millisecond().m_f64) + "ms\n");
 
 #endif
 
@@ -3464,7 +3464,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       auto e2 = timeUpdateScreenPost.elapsed();
 
-      informationf("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      informationf("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_f64) + "ms\n");
 
 #endif
 
@@ -3785,7 +3785,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
    }
 
-   void window::set_opacity(double dOpacity)
+   void window::set_opacity(::f64 dOpacity)
    {
 
 
@@ -4037,7 +4037,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //      return false;
 //   }
 //
-//   void window::GetScrollBarInfo(int idObject,PSCROLLBARINFO psbi) const
+//   void window::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
 //   {
 //      __UNREFERENCED_PARAMETER(idObject);
 //      __UNREFERENCED_PARAMETER(psbi);
@@ -4086,7 +4086,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //   return false;
 //    //}
 //
-//    //void window::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,::u32 dwFlags)
+//    //void window::SetLayeredWindowAttributes(::color::color crKey,::u8 bAlpha,::u32 dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(crKey);
 //    //   __UNREFERENCED_PARAMETER(bAlpha);
@@ -4112,7 +4112,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //}
 //
 //
-//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,::u32 * pdwFlags) const
+//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,::u8 * pbAlpha,::u32 * pdwFlags) const
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pcrKey);
 //    //   __UNREFERENCED_PARAMETER(pbAlpha);
@@ -4286,7 +4286,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       }
 
-      //      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
+      //      //      ENSURE_ARG(pusersystem->m_createstruct.pszName == nullptr || is_string_ok(pusersystem->m_createstruct.pszName));
       //      //
       //      if (!user_interaction()->pre_create_window(pusersystem))
       //      {
@@ -4323,13 +4323,13 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       auto puserinteraction = user_interaction();
 
-      int x = puserinteraction->const_layout().sketch().origin().x;
+      ::i32 x = puserinteraction->const_layout().sketch().origin().x;
 
-      int y = puserinteraction->const_layout().sketch().origin().y;
+      ::i32 y = puserinteraction->const_layout().sketch().origin().y;
 
-      int cx = puserinteraction->const_layout().sketch().width();
+      ::i32 cx = puserinteraction->const_layout().sketch().width();
 
-      int cy = puserinteraction->const_layout().sketch().height();
+      ::i32 cy = puserinteraction->const_layout().sketch().height();
 
       m_pointWindow.x = x;
 
@@ -4490,7 +4490,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       }
 
-      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
+      //      ENSURE_ARG(pusersystem->m_createstruct.pszName == nullptr || is_string_ok(pusersystem->m_createstruct.pszName));
       //
       if (!user_interaction()->pre_create_window(pusersystem))
       {
@@ -4669,7 +4669,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //
    //       }
    //
-   //       //user_interaction()->place(int_rectangle_dimension(
+   //       //user_interaction()->place(i32_rectangle_dimension(
    //       //                      pusersystem->m_createstruct.x,
    //       //                      pusersystem->m_createstruct.y,
    //       //                      pusersystem->m_createstruct.cx,
@@ -4918,7 +4918,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //    }
 
 
-   ::color::color window::screen_pixel(int x, int y)
+   ::color::color window::screen_pixel(::i32 x, ::i32 y)
    {
 
       if (::is_null(m_pgraphicsgraphics))
@@ -4960,12 +4960,12 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 ////      wstring wstrClassName(scopedstrClassName);
 ////      pusersystem->m_createstruct.lpszClass = wstrClassName;
 ////      wstring wstrWindowName(scopedstrWindowName);
-////      pusersystem->m_createstruct.lpszName = wstrWindowName;
+////      pusersystem->m_createstruct.pszName = wstrWindowName;
 ////
 ////#else
 ////
 ////      pusersystem->m_createstruct.lpszClass = pszClassName;
-////      pusersystem->m_createstruct.lpszName = pszWindowName;
+////      pusersystem->m_createstruct.pszName = pszWindowName;
 ////
 ////#endif
 //
@@ -5949,7 +5949,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //int window::GetChildByIdText(int nID,string & rectangleString) const
+   //::i32 window::GetChildByIdText(::i32 nID,string & rectangleString) const
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -6458,15 +6458,15 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //      //   if (rectWindow.left >= rcMonitor.left)
       //      //   {
 
-      //      //      pmouse->m_point.x += (int)rcMonitor.left;
+      //      //      pmouse->m_point.x += (::i32)rcMonitor.left;
 
       //      //   }
 
       //      //   if (rectWindow.top >= rcMonitor.top)
       //      //   {
 
-      //      //      //pmouse->m_point.y += (int)rectWindow.top;
-      //      //      pmouse->m_point.y += (int)rcMonitor.top;
+      //      //      //pmouse->m_point.y += (::i32)rectWindow.top;
+      //      //      pmouse->m_point.y += (::i32)rcMonitor.top;
 
       //      //   }
 
@@ -6477,14 +6477,14 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //         if (rectWindow.left >= 0)
       //         {
 
-      //            pmouse->m_point.x += (int)rectWindow.left;
+      //            pmouse->m_point.x += (::i32)rectWindow.left;
 
       //         }
 
       //         if (rectWindow.top >= 0)
       //         {
 
-      //            pmouse->m_point.y += (int)rectWindow.top;
+      //            pmouse->m_point.y += (::i32)rectWindow.top;
 
       //         }
 
@@ -6643,7 +6643,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //         if(pmouse->m_emessage == ::user::e_message_mouse_move)
       //         {
       //
-      //            static int s_iMotionNotify = 0;
+      //            static ::i32 s_iMotionNotify = 0;
       //
       //            s_iMotionNotify++;
       //
@@ -7011,7 +7011,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //int window::message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,::u32 nType)
+   //::i32 window::message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,::u32 nType)
 
    //{
    //   __UNREFERENCED_PARAMETER(scopedstrText);
@@ -7031,12 +7031,12 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-   /*   CScrollBar* window::GetScrollBarCtrl(int) const
+   /*   CScrollBar* window::GetScrollBarCtrl(::i32) const
    {
    throw ::interface_only();
    }*/
 
-   //int window::SetScrollPos(int nBar,int nPos,bool bRedraw)
+   //::i32 window::SetScrollPos(::i32 nBar,::i32 nPos,bool bRedraw)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(nPos);
@@ -7046,7 +7046,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return 0;
    //}
 
-   //int window::GetScrollPos(int nBar) const
+   //::i32 window::GetScrollPos(::i32 nBar) const
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   throw ::interface_only();
@@ -7054,7 +7054,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return 0;
    //}
 
-   //void window::SetScrollRange(int nBar,int nMinPos,int nMaxPos,bool bRedraw)
+   //void window::SetScrollRange(::i32 nBar,::i32 nMinPos,::i32 nMaxPos,bool bRedraw)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(nMinPos);
@@ -7066,7 +7066,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::GetScrollRange(int nBar,LPINT pMinPos,LPINT pMaxPos) const
+   //void window::GetScrollRange(::i32 nBar,LPINT pMinPos,LPINT pMaxPos) const
 
    //{
 
@@ -7082,7 +7082,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //// Turn on/off non-control scrollbars
    ////   for WS_?SCROLL scrollbars - show/hide them
    ////   for control scrollbar - enable/disable them
-   //void window::EnableScrollBarCtrl(int nBar,bool bEnable)
+   //void window::EnableScrollBarCtrl(::i32 nBar,bool bEnable)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(bEnable);
@@ -7093,7 +7093,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   void window::SetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
+//   void window::SetScrollInfo(::i32 nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
 //
 //   {
 //
@@ -7108,7 +7108,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //   }
 //
 //
-//   void window::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
+//   void window::GetScrollInfo(::i32 nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
 //
 //   {
 //
@@ -7125,7 +7125,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //#endif
 
 
-   //int window::GetScrollLimit(int nBar)
+   //::i32 window::GetScrollLimit(::i32 nBar)
    //{
    //   
    //   __UNREFERENCED_PARAMETER(nBar);
@@ -7137,7 +7137,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::ScrollWindow(int xAmount,int yAmount, const ::i32_rectangle * pcrect, const ::i32_rectangle * pcrectClip)
+   //void window::ScrollWindow(::i32 xAmount,::i32 yAmount, const ::i32_rectangle * pcrect, const ::i32_rectangle * pcrectClip)
    //{
 
    //   __UNREFERENCED_PARAMETER(xAmount);
@@ -7234,7 +7234,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   }
    //
    //#ifdef WINDOWS
-   //   void window::OnDevModeChange(__in char * pDeviceName)
+   //   void window::OnDevModeChange(__in char_pointer pDeviceName)
 
    //   {
    //      __UNREFERENCED_PARAMETER(pDeviceName);
@@ -7504,39 +7504,39 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-//   int window::get_window_long(int nIndex) const
+//   ::i32 window::get_window_long(::i32 nIndex) const
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      return (int) ::GetWindowLongPtr(get_handle(), nIndex);
+//      return (::i32) ::GetWindowLongPtr(get_handle(), nIndex);
 //
 //#else
 //
-//      return (int) get_window_long_ptr(nIndex);
+//      return (::i32) get_window_long_ptr(nIndex);
 //
 //#endif
 //
 //   }
 
 
-//   int window::set_window_long(int nIndex,int lValue)
+//   ::i32 window::set_window_long(::i32 nIndex,::i32 lValue)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      return (int) ::SetWindowLongPtr(get_handle(), nIndex, lValue);
+//      return (::i32) ::SetWindowLongPtr(get_handle(), nIndex, lValue);
 //
 //#else
 //
-//      return (int) set_window_long_ptr(nIndex, lValue);
+//      return (::i32) set_window_long_ptr(nIndex, lValue);
 //
 //#endif
 //
 //   }
 
 
-//   iptr window::get_window_long_ptr(int nIndex) const
+//   iptr window::get_window_long_ptr(::i32 nIndex) const
 //   {
 //
 //      return get_window_long_ptr(nIndex);
@@ -7544,7 +7544,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //   }
 //
 //
-//   iptr window::set_window_long_ptr(int nIndex, iptr lValue)
+//   iptr window::set_window_long_ptr(::i32 nIndex, iptr lValue)
 //   {
 //
 //      return set_window_long_ptr(nIndex, lValue);
@@ -7883,7 +7883,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   }
 
 
-   //character_count window::GetWindowText(char * pszString,int nMaxCount)
+   //character_count window::GetWindowText(char_pointer pszString,::i32 nMaxCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(scopedstrString);
@@ -7996,7 +7996,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return false;
    //}
 
-   //int window::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
+   //::i32 window::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
    //{
    //   __UNREFERENCED_PARAMETER(pRgn);
    //   __UNREFERENCED_PARAMETER(bErase);
@@ -8418,7 +8418,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //void window::EnableScrollBar(int nSBFlags,::u32 nArrowFlags)
+   //void window::EnableScrollBar(::i32 nSBFlags,::u32 nArrowFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(nSBFlags);
@@ -8566,14 +8566,14 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::CheckDlgButton(int nIDButton,::u32 nCheck)
+   //void window::CheckDlgButton(::i32 nIDButton,::u32 nCheck)
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   __UNREFERENCED_PARAMETER(nCheck);
    //   throw ::interface_only();
    //}
 
-   //void window::CheckRadioButton(int nIDFirstButton,int nIDLastButton,int nIDCheckButton)
+   //void window::CheckRadioButton(::i32 nIDFirstButton,::i32 nIDLastButton,::i32 nIDCheckButton)
    //{
    //   __UNREFERENCED_PARAMETER(nIDFirstButton);
    //   __UNREFERENCED_PARAMETER(nIDLastButton);
@@ -8581,7 +8581,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   throw ::interface_only();
    //}
 
-   //int window::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,::u32 nFileType)
+   //::i32 window::DlgDirList(char_pointer pPathSpec,::i32 nIDListBox,::i32 nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8593,7 +8593,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return 0;
    //}
 
-   //int window::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,::u32 nFileType)
+   //::i32 window::DlgDirListComboBox(char_pointer pPathSpec,::i32 nIDComboBox,::i32 nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8606,7 +8606,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return 0;
    //}
 
-   //void window::DlgDirSelect(char * pString,int nSize,int nIDListBox)
+   //void window::DlgDirSelect(char_pointer pString,::i32 nSize,::i32 nIDListBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -8618,7 +8618,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return false;
    //}
 
-   //void window::DlgDirSelectComboBox(char * pString,int nSize,int nIDComboBox)
+   //void window::DlgDirSelectComboBox(char_pointer pString,::i32 nSize,::i32 nIDComboBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -8630,7 +8630,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return false;
    //}
 
-   //::u32 window::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
+   //::u32 window::GetChildByIdInt(::i32 nID,bool* pTrans,bool bSigned) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8642,7 +8642,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return 0;
    //}
 
-   //int window::GetChildByIdText(int nID,char * pStr,int nMaxCount) const
+   //::i32 window::GetChildByIdText(::i32 nID,char_pointer pStr,::i32 nMaxCount) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8681,7 +8681,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //::u32 window::IsDlgButtonChecked(int nIDButton) const
+   //::u32 window::IsDlgButtonChecked(::i32 nIDButton) const
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   throw ::interface_only();
@@ -8690,7 +8690,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //lparam window::SendDlgItemMessage(int nID, ::u32 message, wparam wParam,lparam lParam)
+   //lparam window::SendDlgItemMessage(::i32 nID, ::u32 message, wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8704,7 +8704,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
+   //void window::SetDlgItemInt(::i32 nID,::u32 nValue,bool bSigned)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(nValue);
@@ -8712,7 +8712,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   throw ::interface_only();
    //}
 
-   //void window::SetDlgItemText(int nID, const ::scoped_string & scopedstrString)
+   //void window::SetDlgItemText(::i32 nID, const ::scoped_string & scopedstrString)
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8722,7 +8722,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //int window::ScrollWindowEx(int Δx,int Δy,
+   //::i32 window::ScrollWindowEx(::i32 Δx,::i32 Δy,
    //                                     const ::i32_rectangle * prectScroll,
    //                                       const ::i32_rectangle * prectClip,
    //                                     ::draw2d::region* prgnUpdate,::i32_rectangle * pRectUpdate,::u32 flags)
@@ -9074,7 +9074,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       //    E.g.: to assert the size of a data structure, static_assert(sizeof(struct_t) == 10)
       // */
-      // #define STATIC_ASSERT(COND,MSG)      typedef char static_assertion_##MSG[(!!(COND))*2-1]
+      // #define STATIC_ASSERT(COND,MSG)      typedef ::i8 static_assertion_##MSG[(!!(COND))*2-1]
       // /* token pasting madness: */
       // #define COMPILE_TIME_ASSERT3(X,L)     STATIC_ASSERT(X,at_line_##L)             /* add line-number to error message for better warnings, especially GCC will tell the name of the variable as well */
       // #define COMPILE_TIME_ASSERT2(X,L)     COMPILE_TIME_ASSERT3(X, L)               /* expand line-number */
@@ -9620,7 +9620,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //
 //                //#define SEVERITY_HIGH 5
 //
-//                //int iSeverity = SEVERITY_HIGH;
+//                //::i32 iSeverity = SEVERITY_HIGH;
 //
 //                //for(::collection::index i = 0; i < iSeverity * 20; i++)
 //                //{
@@ -9966,7 +9966,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 // //
 // //             //#define SEVERITY_HIGH 5
 // //
-// //             //int iSeverity = SEVERITY_HIGH;
+// //             //::i32 iSeverity = SEVERITY_HIGH;
 // //
 // //             //for(::collection::index i = 0; i < iSeverity * 20; i++)
 // //             //{
@@ -10304,7 +10304,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 // //
 // //             //#define SEVERITY_HIGH 5
 // //
-// //             //int iSeverity = SEVERITY_HIGH;
+// //             //::i32 iSeverity = SEVERITY_HIGH;
 // //
 // //             //for(::collection::index i = 0; i < iSeverity * 20; i++)
 // //             //{
@@ -10727,7 +10727,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
                //#define SEVERITY_HIGH 5
 
-               //int iSeverity = SEVERITY_HIGH;
+               //::i32 iSeverity = SEVERITY_HIGH;
 
                //for(::collection::index i = 0; i < iSeverity * 20; i++)
                //{
@@ -11078,7 +11078,7 @@ slGraphics.unlock();
 
              //#define SEVERITY_HIGH 5
 
-             //int iSeverity = SEVERITY_HIGH;
+             //::i32 iSeverity = SEVERITY_HIGH;
 
              //for(::collection::index i = 0; i < iSeverity * 20; i++)
              //{
@@ -11449,7 +11449,7 @@ slGraphics.unlock();
 //
 //             //#define SEVERITY_HIGH 5
 //
-//             //int iSeverity = SEVERITY_HIGH;
+//             //::i32 iSeverity = SEVERITY_HIGH;
 //
 //             //for(::collection::index i = 0; i < iSeverity * 20; i++)
 //             //{
@@ -12092,7 +12092,7 @@ slGraphics.unlock();
 
             //#define SEVERITY_HIGH 5
 
-            //int iSeverity = SEVERITY_HIGH;
+            //::i32 iSeverity = SEVERITY_HIGH;
 
             //for(::collection::index i = 0; i < iSeverity * 20; i++)
             //{
@@ -12465,7 +12465,7 @@ slGraphics.unlock();
 //
 //            //#define SEVERITY_HIGH 5
 //
-//            //int iSeverity = SEVERITY_HIGH;
+//            //::i32 iSeverity = SEVERITY_HIGH;
 //
 //            //for(::collection::index i = 0; i < iSeverity * 20; i++)
 //            //{
@@ -12800,7 +12800,7 @@ slGraphics.unlock();
 //
 //            //#define SEVERITY_HIGH 5
 //
-//            //int iSeverity = SEVERITY_HIGH;
+//            //::i32 iSeverity = SEVERITY_HIGH;
 //
 //            //for(::collection::index i = 0; i < iSeverity * 20; i++)
 //            //{
@@ -13249,7 +13249,7 @@ slGraphics.unlock();
    //            //
    //            //            auto puserinteraction = user_interaction().m_p;
    //            //
-   //            //            int* pi = (int*)puserinteraction;
+   //            //            ::i32* pi = (::i32*)puserinteraction;
    //            //
    //            //            auto& i = *pi;
    //            //
@@ -14808,9 +14808,9 @@ slGraphics.unlock();
    //      //
    //      //      }
    //
-   //            //int iVisibilityChageBefore = (is_ubunt() && edisplayOutput == e_display_zoomed);
+   //            //::i32 iVisibilityChageBefore = (is_ubunt() && edisplayOutput == e_display_zoomed);
    //
-   //      int iVisibilityChageBefore = true;
+   //      ::i32 iVisibilityChageBefore = true;
    //
    //      if (iVisibilityChageBefore) {
    //         if (edisplayOutput != edisplayWindow)
@@ -15047,7 +15047,7 @@ slGraphics.unlock();
    //
    //         auto pwindowing = windowing();
    //
-   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->operating_system_window();
+   //         ::acme::windowing::window * pacmewindowingwindow = pimplFocus->operating_system_window();
    //
    //         if (pimplFocus == this)
    //         {
@@ -15418,9 +15418,9 @@ slGraphics.unlock();
    //
    //                  user_interaction()->set_size(size, e_layout_sketch);
    //
-   //                  int cx = user_interaction()->const_layout().sketch().size().width();
+   //                  ::i32 cx = user_interaction()->const_layout().sketch().size().width();
    //
-   //                  int cy = user_interaction()->const_layout().sketch().size().height();
+   //                  ::i32 cy = user_interaction()->const_layout().sketch().size().height();
    //                  //         user_interaction()->layout().design().size() = user_interaction()->layout().window().size();
    //
    //
@@ -15668,9 +15668,9 @@ slGraphics.unlock();
 
          user_interaction()->set_size(psize->m_size, ::user::e_layout_sketch);
 
-         int cx = user_interaction()->const_layout().sketch().size().width();
+         ::i32 cx = user_interaction()->const_layout().sketch().size().width();
 
-         int cy = user_interaction()->const_layout().sketch().size().height();
+         ::i32 cy = user_interaction()->const_layout().sketch().size().height();
 
          user_interaction()->set_need_layout();
 
@@ -15839,11 +15839,11 @@ slGraphics.unlock();
          for (::collection::index j = i + 1; j < raTest.get_count(); j++)
          {
 
-            int iArea = raTest[i].area();
+            ::i32 iArea = raTest[i].area();
 
-            int jArea = raTest[j].area();
+            ::i32 jArea = raTest[j].area();
 
-            int iMinArea = maximum(iArea, jArea);
+            ::i32 iMinArea = maximum(iArea, jArea);
 
             if (raTest[i].intersection(raTest[j]).area() == iMinArea)
             {
@@ -15880,11 +15880,11 @@ slGraphics.unlock();
          for (::collection::index j = i + 1; j < raTest.get_count(); j++)
          {
 
-            int iArea = raTest[i].area();
+            ::i32 iArea = raTest[i].area();
 
-            int jArea = raTest[j].area();
+            ::i32 jArea = raTest[j].area();
 
-            int iMaxArea = maximum(iArea, jArea);
+            ::i32 iMaxArea = maximum(iArea, jArea);
 
             if (raTest[i].intersection(raTest[j]).area() < iMaxArea / 3)
             {
@@ -16015,7 +16015,7 @@ slGraphics.unlock();
 
       }
 
-      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.byte_opacity());
+      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.u8_opacity());
 
    }
 
@@ -16041,10 +16041,10 @@ slGraphics.unlock();
    }
 
 
-   double window::approximate_occlusion_rate_except_self_transparent()
+   ::f64 window::approximate_occlusion_rate_except_self_transparent()
    {
 
-      return (double)approximate_occlusion_area_except_self_transparent() / (double)opaque_area();
+      return (::f64)approximate_occlusion_area_except_self_transparent() / (::f64)opaque_area();
 
    }
 
@@ -16070,28 +16070,28 @@ slGraphics.unlock();
    }
 
 
-   double window::_001GetTopLeftWeightedOccludedOpaqueRate()
+   ::f64 window::_001GetTopLeftWeightedOccludedOpaqueRate()
    {
 
       auto iWeightedOccludedOpaqueArea = _001GetTopLeftWeightedOccludedOpaqueArea();
 
       auto iWeightedOpaqueArea = _001GetTopLeftWeightedArea();
 
-      double dWeightedOccludedOpaqueArea = (double)iWeightedOccludedOpaqueArea;
+      ::f64 dWeightedOccludedOpaqueArea = (::f64)iWeightedOccludedOpaqueArea;
 
-      double dWeightedOpaqueArea = (double)iWeightedOpaqueArea;
+      ::f64 dWeightedOpaqueArea = (::f64)iWeightedOpaqueArea;
 
-      double dRate = dWeightedOccludedOpaqueArea / dWeightedOpaqueArea;
+      ::f64 dRate = dWeightedOccludedOpaqueArea / dWeightedOpaqueArea;
 
       return dRate;
 
    }
 
 
-   double window::approximate_occlusion_rate()
+   ::f64 window::approximate_occlusion_rate()
    {
 
-      return (double)approximate_occlusion_area() / (double)user_interaction()->layout().area();
+      return (::f64)approximate_occlusion_area() / (::f64)user_interaction()->layout().area();
 
    }
 
@@ -16256,7 +16256,7 @@ slGraphics.unlock();
    //   }
 
 
-      //   character_count window::get_window_text(char* sz, character_count s)
+      //   character_count window::get_window_text(char_pointer sz, character_count s)
       //   {
       //
       //      if (!m_pwindow)
@@ -16321,7 +16321,7 @@ slGraphics.unlock();
        //}
 
 
-   void window::android_fill_plasma(const void* pixels, int width, int height, int stride, ::i64 time_ms)
+   void window::android_fill_plasma(const void* pixels, ::i32 width, ::i32 height, ::i32 stride, ::i64 time_ms)
    {
 
       ::particle * pparticleSynchronization = nullptr;
@@ -16364,13 +16364,13 @@ slGraphics.unlock();
 
       //_synchronous_lock synchronouslock(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      int wSource;
+      ::i32 wSource;
 
-      int hSource;
+      ::i32 hSource;
 
       ::image32_t * pdataSource = nullptr;
 
-      int scanSource;
+      ::i32 scanSource;
 
       if(pitem)
       {
@@ -16426,24 +16426,24 @@ slGraphics.unlock();
       else
       {
 
-         int r = 50;
+         ::i32 r = 50;
 
-         int g = 100;
+         ::i32 g = 100;
 
-         int b = 150;
+         ::i32 b = 150;
 
-         int a = 180;
+         ::i32 a = 180;
 
          auto color = argb(a, r, g, b);
 
          image32_t image32Color(color, ::color_indexes());
 
-         for(int i = 0; i < height; i++)
+         for(::i32 i = 0; i < height; i++)
          {
 
-            auto pline = (image32_t *)((unsigned char*)pixels + stride * i);
+            auto pline = (image32_t *)((::u8*)pixels + stride * i);
 
-            for(int j = 0; j < width; j++)
+            for(::i32 j = 0; j < width; j++)
             {
 
                pline[j] = image32Color;
@@ -16476,7 +16476,7 @@ slGraphics.unlock();
    //}
 
 
-   //void window::set_opacity(double dOpacity)
+   //void window::set_opacity(::f64 dOpacity)
    //{
 
    //   if (::is_null(m_pwindow))
@@ -16859,7 +16859,7 @@ slGraphics.unlock();
       //}
 
 
-   void window::window_move(int x, int y)
+   void window::window_move(::i32 x, ::i32 y)
    {
 
       //return true;
@@ -17387,7 +17387,7 @@ slGraphics.unlock();
    //
    //            pmessage->m_nFlags = upper_unsigned_short(lparam);
    //
-   //            pmessage->m_iVirtualKey = (int)wparam;
+   //            pmessage->m_iVirtualKey = (::i32)wparam;
    //
    //            pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
    //
@@ -17452,9 +17452,9 @@ slGraphics.unlock();
    //
    //         //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
-   //         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
+   //         pmessage->m_ecommand = (enum_scroll_command)(::i16)lower_unsigned_short(wparam);
    //
-   //         pmessage->m_dPosition = (double)(short)upper_unsigned_short(wparam);
+   //         pmessage->m_dPosition = (::f64)(::i16)upper_unsigned_short(wparam);
    //
    //      }
    //      break;
@@ -17644,7 +17644,7 @@ slGraphics.unlock();
 
          //}
 
-         //   character_count window::get_window_text(char* pszStringBuf, character_count nMaxCount)
+         //   character_count window::get_window_text(char_pointer pszStringBuf, character_count nMaxCount)
          //   {
          //
          //      return 0;
@@ -17855,7 +17855,7 @@ slGraphics.unlock();
    //}
 
 
-   //double window::_001GetTopLeftWeightedOccludedOpaqueRate()
+   //::f64 window::_001GetTopLeftWeightedOccludedOpaqueRate()
    //{
 
    //   return 0.;
@@ -17917,7 +17917,7 @@ slGraphics.unlock();
    //}
 
 
-   ::user::interaction* window::get_child_by_id(const ::atom& atom, ::collection::index iItem, int iLevel)
+   ::user::interaction* window::get_child_by_id(const ::atom& atom, ::collection::index iItem, ::i32 iLevel)
    {
 
       return nullptr;
@@ -17968,11 +17968,11 @@ slGraphics.unlock();
    //void window::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
-   //   int l = GetStyle();
+   //   ::i32 l = GetStyle();
 
    //   l |= dwAdd;
 
-   //   int lRemove = ~dwRemove;
+   //   ::i32 lRemove = ~dwRemove;
 
    //   l &= lRemove;
 
@@ -17993,23 +17993,23 @@ slGraphics.unlock();
    //}
 
 
-   //   int window::get_window_long(int nIndex) const
+   //   ::i32 window::get_window_long(::i32 nIndex) const
    //   {
    //
-   //      return (int)get_window_long_ptr(nIndex);
+   //      return (::i32)get_window_long_ptr(nIndex);
    //
    //   }
    //
    //
-   //   int window::set_window_long(int nIndex, int lValue)
+   //   ::i32 window::set_window_long(::i32 nIndex, ::i32 lValue)
    //   {
    //
-   //      return (int)set_window_long_ptr(nIndex, lValue);
+   //      return (::i32)set_window_long_ptr(nIndex, lValue);
    //
    //   }
    //
    //
-   //   iptr window::get_window_long_ptr(int nIndex) const
+   //   iptr window::get_window_long_ptr(::i32 nIndex) const
    //   {
    //
    ////      return 0;
@@ -18036,7 +18036,7 @@ slGraphics.unlock();
    //   }
    //
    //
-   //   void window::set_window_long_ptr(int nIndex, iptr lValue)
+   //   void window::set_window_long_ptr(::i32 nIndex, iptr lValue)
    //   {
    //
    ////      if (nIndex == GWL_STYLE)
@@ -19443,7 +19443,7 @@ slGraphics.unlock();
       //}
 
 
-      //int window::GetUpdateRgn(class draw2d::region *,bool)
+      //::i32 window::GetUpdateRgn(class draw2d::region *,bool)
       //{
 
       //   return 0;
@@ -19702,7 +19702,7 @@ slGraphics.unlock();
    {
 
    }
-   //void window::set_opacity(double dOpacity)
+   //void window::set_opacity(::f64 dOpacity)
    //{
 
 
@@ -19763,20 +19763,20 @@ slGraphics.unlock();
    }
 
 
-   void window::_017_on_window_configure_delayed(int x, int y, int cx, int cy)
+   void window::_017_on_window_configure_delayed(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
    {
 
-      auto r = ::int_rectangle_dimension(x, y, cx, cy);
+      auto r = ::i32_rectangle_dimension(x, y, cx, cy);
 
       _on_configure_notify_unlocked(r);
 
    }
 
 
-   void window::_017_on_window_configure_immediate(int x, int y, int cx, int cy)
+   void window::_017_on_window_configure_immediate(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
    {
 
-      information() << "::windowing_gtk3::window::_on_configure_immediate " << ::int_rectangle_dimension(x, y, cx, cy);
+      information() << "::windowing_gtk3::window::_on_configure_immediate " << ::i32_rectangle_dimension(x, y, cx, cy);
 
       auto puserinteraction = user_interaction();
 

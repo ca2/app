@@ -47,7 +47,7 @@ void js_dump(CScriptVar *UNUSED(v), void *userdata) {
 }
 
 
-int main(int UNUSED(argc), char **UNUSED(argv))
+::i32 main(::i32 UNUSED(argc), char_pointer *UNUSED(argv))
 {
   tinyjs *js = ___new tinyjs();
   /* add the functions from TinyJS_Functions.cpp */
@@ -66,7 +66,7 @@ int main(int UNUSED(argc), char **UNUSED(argv))
   }
 
   while (js->evaluate("lets_quit") == "0") {
-    char buffer[2048];
+    ::i8 buffer[2048];
     fgets ( buffer, sizeof(buffer), stdin );
     try {
       js->execute(buffer);

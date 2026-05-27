@@ -218,7 +218,7 @@ public:
    }
 
 
-   utf8_character_range operator++(int)
+   utf8_character_range operator++(::i32)
    {
 
       utf8_character_range ret = *this;

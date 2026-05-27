@@ -83,7 +83,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      ::double_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
       bool keyboard_focus_is_focusable() override;
@@ -107,7 +107,7 @@ namespace user
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(::i32_rectangle & rectangle);
 
-      virtual int BaseToolTipGetIndex();
+      virtual ::i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

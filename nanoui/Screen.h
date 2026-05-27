@@ -62,7 +62,7 @@ namespace nanoui
       ::pointer < Widget >                m_pwidgetLeftButtonDown;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
       //   int_sequence2 m_fbsize;
-      float m_pixel_ratio;
+      ::f32 m_pixel_ratio;
       //::user::e_key m_mouse_state;
       ::user::e_key m_modifiers;
       int_sequence2 m_mouse_pos;
@@ -116,7 +116,7 @@ namespace nanoui
        *     rasterize non-convex polygons. (NanoGUI does not render such
        *     polygons, but your application might.)
        *
-       * \param float_buffer
+       * \param f32_buffer
        *     Should NanoGUI try to allocate a floating point pframebuffer? This
        *     is useful for HDR and wide-gamut displays.
        *
@@ -146,7 +146,7 @@ namespace nanoui
          bool fullscreen = false,
          bool depth_buffer = true,
          bool stencil_buffer = true,
-         bool float_buffer = false,
+         bool f32_buffer = false,
          ::u32 gl_major = 3,
          ::u32 gl_minor = 2
       );
@@ -232,7 +232,7 @@ namespace nanoui
       virtual void draw_teardown(::nano2d::context * pcontext);
 
       /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
-      float pixel_ratio() const { return m_pixel_ratio; }
+      ::f32 pixel_ratio() const { return m_pixel_ratio; }
 
 
       virtual bool is_mouse_down(const Widget* pwidget) const;
@@ -245,7 +245,7 @@ namespace nanoui
       //   }
       //
          /// Default keyboard happening handler
-      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
+      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
 
       /// Text input happening handler: codepoint is native endian UTF-32 format
       bool keyboard_character_event(::u32 codepoint) override;
@@ -281,7 +281,7 @@ namespace nanoui
       //   bool has_stencil_buffer() const { return m_stencil_buffer; }
       //
       //   /// Does the pframebuffer use a floating point representation
-      //   bool has_float_buffer() const { return m_f_buffer; }
+      //   bool has_f32_buffer() const { return m_f_buffer; }
       //
       //#if defined(NANOUI_USE_METAL)
       //   /// Return the associated CAMetalLayer object
@@ -340,11 +340,11 @@ namespace nanoui
       virtual void on_close();
       //bool on_mouse_move(const ::i32_point & point) override;
       bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      //   void key_callback_event(int key, int scancode, int action, int mods);
+      //   void key_callback_event(::i32 key, ::i32 scancode, ::i32 action, ::i32 mods);
       //   void char_callback_event(::u32 codepoint);
-      //   void drop_callback_event(int count, const_char_pointer *filenames);
-      //   void scroll_callback_event(double x, double y);
-      //   void resize_callback_event(int width, int height);
+      //   void drop_callback_event(::i32 count, const_char_pointer *filenames);
+      //   void scroll_callback_event(::f64 x, ::f64 y);
+      //   void resize_callback_event(::i32 width, ::i32 height);
       //
       //   /* Internal helper functions */
       virtual void on_child_set_focus(Widget* pwidget);
@@ -387,9 +387,9 @@ namespace nanoui
       bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
       bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key& ekeyModifiers) override;
 
-      bool on_scroll_event(const ::i32_point& point, double x, double y) override;
+      bool on_scroll_event(const ::i32_point& point, ::f64 x, ::f64 y) override;
 
-      void on_character(int iCharacter) override;
+      void on_character(::i32 iCharacter) override;
 
 
    };

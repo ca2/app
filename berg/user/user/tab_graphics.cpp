@@ -52,7 +52,7 @@ namespace user
 
       //i32_point pointContextOffset = pgraphics->get_origin();
 
-      ::double_rectangle rClip;
+      ::f64_rectangle rClip;
 
       pgraphics->get_clip_box(rClip);
 
@@ -469,7 +469,7 @@ namespace user
 
       auto pbrushText = createø < ::draw2d::brush >();
 
-      for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+      for (::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
          auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -817,15 +817,15 @@ namespace user
       if (get_data()->m_bVertical)
       {
 
-         int iTabWidth = 16;
+         ::i32 iTabWidth = 16;
 
-         int iTabHeight = 8;
+         ::i32 iTabHeight = 8;
 
-         int cx;
+         ::i32 cx;
 
-         int cy;
+         ::i32 cy;
 
-         for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+         for (::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -841,7 +841,7 @@ namespace user
 
             ppane->do_split_layout(m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -854,7 +854,7 @@ namespace user
 
             }
 
-            cx = (int)(size.cx + 2.0);
+            cx = (::i32)(size.cx + 2.0);
 
             if (!ppane->m_bPermanent)
             {
@@ -870,7 +870,7 @@ namespace user
 
             }
 
-            cy = (int)(size.cy + 2.0);
+            cy = (::i32)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -920,9 +920,9 @@ namespace user
       else
       {
 
-         int iTabHeight = 16;
+         ::i32 iTabHeight = 16;
 
-         int cy;
+         ::i32 cy;
 
          pgraphics->set(get_font(pstyle, e_state_selected));
 
@@ -930,11 +930,11 @@ namespace user
 
          //         this->rectangle(rectangleX);
 
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
+         ::i32 ixAdd;
 
-         for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+         for (::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -950,7 +950,7 @@ namespace user
 
             ppane->do_split_layout(m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -961,7 +961,7 @@ namespace user
 
             }
 
-            cy = (int)(size.cy + 2.0);
+            cy = (::i32)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -990,7 +990,7 @@ namespace user
 
             }
 
-            ppane->m_size.cx = (int)(size.cx + ixAdd
+            ppane->m_size.cx = (::i32)(size.cx + ixAdd
                                          + get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right
                                          + get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right
                                          + get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right);
@@ -1010,7 +1010,7 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+         for (::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -1042,7 +1042,7 @@ namespace user
          //informationf("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
 
-      for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+      for (::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
 
          if (iIndex != get_current_tab_index())
@@ -1059,7 +1059,7 @@ namespace user
       if (m_pdata->m_bVertical)
       {
 
-         m_sizeBarDragScroll.cy = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy = (::i32)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
 
 
       }

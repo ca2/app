@@ -62,7 +62,7 @@ namespace image
 
 
 
-   void cursor_alloc(::particle * pparticle,cursor_pointer & pcursor,int xHotspot,int yHotspot)
+   void cursor_alloc(::particle * pparticle,cursor_pointer & pcursor,::i32 xHotspot,::i32 yHotspot)
    {
 
       pparticle->constructø(pcursor);
@@ -90,7 +90,7 @@ namespace image
    }
 
 
-   ::draw2d::graphics *cursor::g(const ::double_size & sizeHint)
+   ::draw2d::graphics *cursor::g(const ::f64_size & sizeHint)
    {
 
       return m_pimage->g(sizeHint);
@@ -106,7 +106,7 @@ namespace image
    }
 
 
-   ::i32_size cursor::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
+   ::i32_size cursor::image_source_size(const ::f64_size & sizeDst, enum_image_selection eimageselection) const
    { 
       
       return m_pimage->image_source_size(sizeDst, eimageselection); 

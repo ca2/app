@@ -15,7 +15,7 @@ namespace hotplugin
    void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
-      double dRate = get_progress_rate();
+      ::f64 dRate = get_progress_rate();
 
       if(dRate <= 0.0)
       {
@@ -26,20 +26,20 @@ namespace hotplugin
 
       ::i32_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
-      //  int cx = rectangleWindow.right - rectangleWindow.left;
-      //int cy = rectangleWindow.bottom - rectangleWindow.top;
+      //  ::i32 cx = rectangleWindow.right - rectangleWindow.left;
+      //::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
       ::i32_rectangle rectangle = lprect;
 
 
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-      int h = 33;
-      int m = 49 * 2;
+      ::i32 h = 33;
+      ::i32 m = 49 * 2;
 
-      int top;
-      int bottom;
-      int left;
-      int right;
+      ::i32 top;
+      ::i32 bottom;
+      ::i32 left;
+      ::i32 right;
 
       if(height(rectangle) < h)
       {
@@ -85,7 +85,7 @@ namespace hotplugin
 
       ::i32_rectangle rectangleProgress(rectangleBar);
 
-      rectangleProgress.right = (int) (rectangleProgress.left + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
+      rectangleProgress.right = (::i32) (rectangleProgress.left + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
       ::i32_rectangle rectangleProgressComplement(rectangleBar);
 
@@ -95,7 +95,7 @@ namespace hotplugin
 
       {
 
-         unsigned char uchR,uchG,uchB;
+         ::u8 uchR,uchG,uchB;
          auto pbrush = createø < ::draw2d::brush > ();
          get_progress_color(uchR,uchG,uchB,dRate,0);
          pbrush->create_solid(argb(184,uchR,uchG,uchB));

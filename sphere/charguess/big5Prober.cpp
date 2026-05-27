@@ -29,11 +29,11 @@ void  nsBig5Prober::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsBig5Prober::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsBig5Prober::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsSMState codingState;
 
-  for (PRunsigned int i = 0; i < aLen; i++)
+  for (PRunsigned ::i32 i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -48,7 +48,7 @@ nsProbingState nsBig5Prober::HandleData(const ::string & aBuf, PRunsigned int aL
     }
     if (codingState == eStart)
     {
-      PRunsigned int charLen = mCodingSM->GetCurrentCharLen();
+      PRunsigned ::i32 charLen = mCodingSM->GetCurrentCharLen();
 
       if (i == 0)
       {
@@ -69,10 +69,10 @@ nsProbingState nsBig5Prober::HandleData(const ::string & aBuf, PRunsigned int aL
   return mState;
 }
 
-float nsBig5Prober::GetConfidence(void)
+::f32 nsBig5Prober::GetConfidence(void)
 {
-  float distribCf = mDistributionAnalyser.GetConfidence();
+  ::f32 distribCf = mDistributionAnalyser.GetConfidence();
 
-  return (float)distribCf;
+  return (::f32)distribCf;
 }
 

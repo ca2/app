@@ -196,7 +196,7 @@ namespace console_integration
       }
       
       
-      void x265::configure(int iBits)
+      void x265::configure(::i32 iBits)
       {
          
          ::string strBits;

@@ -9,8 +9,8 @@
 //#include "acme/prototype/prototype/pointer.h"
 
 
-CLASS_DECL_APEX int get_member_function_offset();
-CLASS_DECL_APEX int get_member_function_size();
+CLASS_DECL_APEX ::i32 get_member_function_offset();
+CLASS_DECL_APEX ::i32 get_member_function_size();
 
 
 
@@ -38,7 +38,7 @@ namespace message
       dispatcher(T1 * pparticleHandlerTarget, void (T2:: * pfnHandlerFunction)(::message::message * pmessage))
       {
 
-         auto ptrptr = (unsigned char*)&pfnHandlerFunction;
+         auto ptrptr = (::u8*)&pfnHandlerFunction;
 
          m_chunkMemberFunction.assign(ptrptr + get_member_function_offset(), get_member_function_size());
 

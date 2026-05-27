@@ -64,8 +64,8 @@ namespace gpu_opengl
          glBindTexture(ptexture->m_gluType, ptexture->m_gluTextureID);
          ::opengl::check_error("");
 
-         int width = ptexture->rectangle().width();
-         int height = ptexture->rectangle().height();
+         ::i32 width = ptexture->rectangle().width();
+         ::i32 height = ptexture->rectangle().height();
 
          // specify/allocate each face for the cubemap
          for (auto i = 0; i < 6; i++)
@@ -129,7 +129,7 @@ namespace gpu_opengl
       }
 
 
-      void cubemap_framebuffer::setCubeFace(unsigned int index, ::gpu::shader * pgpushader)
+      void cubemap_framebuffer::setCubeFace(::u32 index, ::gpu::shader * pgpushader)
       {
          ::cast < gpu_opengl::texture>ptexture = m_ptexture;
          glFramebufferTexture2D(
@@ -148,7 +148,7 @@ namespace gpu_opengl
       }
 
 
-      unsigned int cubemap_framebuffer::getCubemapTextureId()
+      ::u32 cubemap_framebuffer::getCubemapTextureId()
       {
          ::cast < gpu_opengl::texture>ptexture = m_ptexture;
          return ptexture->m_gluTextureID;

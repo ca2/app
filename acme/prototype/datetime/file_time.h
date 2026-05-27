@@ -75,7 +75,7 @@ public:
 extern CLASS_DECL_ACME const_char_pointer const szInvalidDateTime;
 extern CLASS_DECL_ACME const_char_pointer const szInvalidDateTimeSpan;
 
-const int maxTimeBufferSize = 128;
+const ::i32 maxTimeBufferSize = 128;
 const long maxDaysInSpan  =   3615897L;
 
 
@@ -107,7 +107,7 @@ struct CLASS_DECL_ACME file_time_set
 
 
 
-   bool modified_timeout(const file_time & current, int iSeconds) const
+   bool modified_timeout(const file_time & current, ::i32 iSeconds) const
    {
 
       if ((current - m_filetimeModified).m_iFileTimeSpan > (iSeconds * 10'000'000))
@@ -122,7 +122,7 @@ struct CLASS_DECL_ACME file_time_set
    }
 
 
-   bool modified_timeout(int iSeconds) const;
+   bool modified_timeout(::i32 iSeconds) const;
 
 };
 
@@ -136,7 +136,7 @@ namespace earth
 } // namespace earth
 
 
-CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds);
+CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, ::i32 iSeconds);
 
 
 CLASS_DECL_ACME void get_file_time_set(const ::file::path & path, file_time_set & time);

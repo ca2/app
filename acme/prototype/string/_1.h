@@ -1,10 +1,10 @@
 #pragma once
 
 
-CLASS_DECL_ACME int trailingBytesForUTF8(::ansi_character ch);
+CLASS_DECL_ACME ::i32 trailingBytesForUTF8(::ansi_character ch);
 
 
-typedef int HRes;
+typedef ::i32 HRes;
 
 
 #include "character.h"

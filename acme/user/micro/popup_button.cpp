@@ -30,13 +30,13 @@ namespace micro
    }
 
 
-   void popup_button::calculate_size_and_position(int x, int y)
+   void popup_button::calculate_size_and_position(::i32 x, ::i32 y)
    {
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-      //int wScreen = 1280;
-      //int hScreen = 768;
+      //::i32 wScreen = 1280;
+      //::i32 hScreen = 768;
 
       auto sizeScreen = system()->acme_windowing()->acme_display()->get_main_screen_size();
 
@@ -48,8 +48,8 @@ namespace micro
 
       //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
-      int w = 150;
-      int h = 50 * 2;
+      ::i32 w = 150;
+      ::i32 h = 50 * 2;
 
       if (x == INT_MIN || y == INT_MIN)
       {
@@ -87,7 +87,7 @@ namespace micro
    }
 
 
-   void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
+   void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, ::i32 x, ::i32 y, ::acme::user::interaction * pacmeuserinteractionOwner)
    {
 
       m_pdialog = message_box(scopedstrText);
@@ -100,15 +100,15 @@ namespace micro
 
       add_button("Cancel", e_dialog_result_cancel, 'c');
 
-      int wButton = 150;
+      ::i32 wButton = 150;
 
-      int hButton = 50;
+      ::i32 hButton = 50;
 
-      int iRight = m_rectangle.width();
+      ::i32 iRight = m_rectangle.width();
 
-      int iBottom = m_rectangle.height();
+      ::i32 iBottom = m_rectangle.height();
 
-      int wSpacing = 25;
+      ::i32 wSpacing = 25;
 
       auto countButton = micro_button_count();
 
@@ -148,7 +148,7 @@ namespace micro
    }
 
 
-   void popup_button::on_draw(::nano::graphics::device * pmicrodevice)
+   void popup_button::on_draw(::nano::graphics::context * pgraphicscontext)
    {
 
       /*i32_rectangle rectangleText;
@@ -159,7 +159,7 @@ namespace micro
 
       rectangleText.deflate(25);
 
-      pmicrodevice->draw_text123(
+      pgraphicscontext->draw_text123(
          m_strMessage,
          rectangleText,
          e_align_top_left,

@@ -29,11 +29,11 @@ void  nsEUCJPProber::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsEUCJPProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsEUCJPProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsSMState codingState;
 
-  for (PRunsigned int i = 0; i < aLen; i++)
+  for (PRunsigned ::i32 i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -48,7 +48,7 @@ nsProbingState nsEUCJPProber::HandleData(const ::string & aBuf, PRunsigned int a
     }
     if (codingState == eStart)
     {
-      PRunsigned int charLen = mCodingSM->GetCurrentCharLen();
+      PRunsigned ::i32 charLen = mCodingSM->GetCurrentCharLen();
 
       if (i == 0)
       {
@@ -71,10 +71,10 @@ nsProbingState nsEUCJPProber::HandleData(const ::string & aBuf, PRunsigned int a
   return mState;
 }
 
-float nsEUCJPProber::GetConfidence(void)
+::f32 nsEUCJPProber::GetConfidence(void)
 {
-  float contxtCf = mContextAnalyser.GetConfidence();
-  float distribCf = mDistributionAnalyser.GetConfidence();
+  ::f32 contxtCf = mContextAnalyser.GetConfidence();
+  ::f32 distribCf = mDistributionAnalyser.GetConfidence();
 
   return (contxtCf > distribCf ? contxtCf : distribCf);
 }

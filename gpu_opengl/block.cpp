@@ -44,8 +44,8 @@ namespace gpu_opengl
       ::opengl::check_error("");
       glBindBuffer(GL_UNIFORM_BUFFER, m_iUBO);
       ::opengl::check_error("");
-      //glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
-      glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_DYNAMIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      //glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(::f32) * 16
+      glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_DYNAMIC_DRAW); // For 2 mat4s = 2 * sizeof(::f32) * 16
       ::opengl::check_error("");
       ::u32 uUboBindingPoint = 0;
       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_iUBO);
@@ -111,7 +111,7 @@ namespace gpu_opengl
       glBindBuffer(GL_UNIFORM_BUFFER, m_iUBO);
       ::opengl::check_error("");
 
-      int iSize = (int) this->size(false);
+      ::i32 iSize = (::i32) this->size(false);
 
       // Map the entire buffer for writing
       void *p = glMapBufferRange(

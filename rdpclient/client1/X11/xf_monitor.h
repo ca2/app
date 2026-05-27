@@ -33,7 +33,7 @@ typedef struct _MONITOR_INFO MONITOR_INFO;
 
 struct _VIRTUAL_SCREEN
 {
-	int nmonitors;
+	::i32 nmonitors;
 	RECTANGLE_16 area;
 	RECTANGLE_16 workarea;
 	MONITOR_INFO* monitors;
@@ -43,7 +43,7 @@ typedef struct _VIRTUAL_SCREEN VIRTUAL_SCREEN;
 #include "xf_client.h"
 #include "xfreerdp.h"
 
-FREERDP_API int xf_list_monitors(xfContext* xfc);
+FREERDP_API ::i32 xf_list_monitors(xfContext* xfc);
 FREERDP_API BOOL xf_detect_monitors(xfContext* xfc, ::u32* pWidth, ::u32* pHeight);
 FREERDP_API void xf_monitors_free(xfContext* xfc);
 

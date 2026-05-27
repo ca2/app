@@ -512,7 +512,7 @@ namespace gpu
 
       //}
 
-      for (int i = 0; i < m_commandbuffera.size(); i++)
+      for (::i32 i = 0; i < m_commandbuffera.size(); i++)
       {
 
          auto& pcommandbuffer = m_commandbuffera[i];
@@ -588,9 +588,9 @@ namespace gpu
 
                   ////{
 
-                  ////   float x = (float) psession->get_cursor_position().x;
+                  ////   ::f32 x = (::f32) psession->get_cursor_position().x;
 
-                  ////   float y = (float) psession->get_cursor_position().y();
+                  ////   ::f32 y = (::f32) psession->get_cursor_position().y();
 
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -599,9 +599,9 @@ namespace gpu
 
                   //{
 
-                  //   float cx = (float) m_papplication->m_pbuffer->m_pimage->width();
+                  //   ::f32 cx = (::f32) m_papplication->m_pbuffer->m_pimage->width();
 
-                  //   float cy = (float) m_papplication->m_pbuffer->m_pimage->height();
+                  //   ::f32 cy = (::f32) m_papplication->m_pbuffer->m_pimage->height();
 
                   //   m_papplication->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
                   //   m_papplication->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
@@ -610,11 +610,11 @@ namespace gpu
 
                   //{
 
-                  //   double dElapsed = m_timeStart.elapsed().floating_second().m_d;
+                  //   ::f64 dElapsed = m_timeStart.elapsed().floating_second().m_f64;
 
-                  //   double dTime = dElapsed / 1000.0;
+                  //   ::f64 dTime = dElapsed / 1000.0;
 
-                  //   float time = (float) dTime;
+                  //   ::f32 time = (::f32) dTime;
 
                   //   m_papplication->m_pprogram->m_pshader->setFloat("time", time);
                   //   m_papplication->m_pprogram->m_pshader->setFloat("iTime", time);
@@ -662,7 +662,7 @@ namespace gpu
 
                         //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
-                        //::double_rectangle rectangleTarget(m_rectangle);
+                        //::f64_rectangle rectangleTarget(m_rectangle);
 
                         //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -731,9 +731,9 @@ namespace gpu
 
             //////{
 
-            //////   float x = (float) psession->get_cursor_position().x;
+            //////   ::f32 x = (::f32) psession->get_cursor_position().x;
 
-            //////   float y = (float) psession->get_cursor_position().y();
+            //////   ::f32 y = (::f32) psession->get_cursor_position().y();
 
             //////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
             //////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -742,9 +742,9 @@ namespace gpu
 
             ////{
 
-            ////   float cx = (float) m_papplication->m_pbuffer->m_pimage->width();
+            ////   ::f32 cx = (::f32) m_papplication->m_pbuffer->m_pimage->width();
 
-            ////   float cy = (float) m_papplication->m_pbuffer->m_pimage->height();
+            ////   ::f32 cy = (::f32) m_papplication->m_pbuffer->m_pimage->height();
 
             ////   m_papplication->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
             ////   m_papplication->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
@@ -753,11 +753,11 @@ namespace gpu
 
             ////{
 
-            ////   double dElapsed = m_timeStart.elapsed().floating_second().m_d;
+            ////   ::f64 dElapsed = m_timeStart.elapsed().floating_second().m_f64;
 
-            ////   double dTime = dElapsed / 1000.0;
+            ////   ::f64 dTime = dElapsed / 1000.0;
 
-            ////   float time = (float) dTime;
+            ////   ::f32 time = (::f32) dTime;
 
             ////   m_papplication->m_pprogram->m_pshader->setFloat("time", time);
             ////   m_papplication->m_pprogram->m_pshader->setFloat("iTime", time);
@@ -803,7 +803,7 @@ namespace gpu
 
          //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
-         //::double_rectangle rectangleTarget(m_rectangle);
+         //::f64_rectangle rectangleTarget(m_rectangle);
 
          //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -1554,7 +1554,7 @@ namespace gpu
 
 //      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
 
-      static int s_iFrameIndex0LayerDraw2dCount = 0;
+      static ::i32 s_iFrameIndex0LayerDraw2dCount = 0;
 
 //      auto iLayer = pgpudevice->m_iLayer;
 //

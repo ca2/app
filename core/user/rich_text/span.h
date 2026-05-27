@@ -32,7 +32,7 @@ namespace user
          string                           m_str;
 
          // Common thing among indexes:
-         // A single character is accounted for the same as the UTF8-unsigned char-count.
+         // A single character is accounted for the same as the UTF8-::u8-count.
          //
          // Sel* -> Selection
          // (selection index:
@@ -44,12 +44,12 @@ namespace user
          /// cached, derived, ephemeral, temporary values
          character_count           m_iPosBeg;
          character_count           m_iPosEnd;
-         double_size             m_sizeSpan;
-         double_size             m_sizeDevice;
-         double_array      m_daPositionLeft;
-         double_array      m_daPositionRight;
-         double_array      m_daPositionDeviceLeft;
-         double_array      m_daPositionDeviceRight;
+         ::f64_size             m_sizeSpan;
+         ::f64_size             m_sizeDevice;
+         f64_array      m_daPositionLeft;
+         f64_array      m_daPositionRight;
+         f64_array      m_daPositionDeviceLeft;
+         f64_array      m_daPositionDeviceRight;
 
 
          span();

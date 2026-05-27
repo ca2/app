@@ -57,7 +57,7 @@
 //    MAC_IDNO = 4
 //};
 //
-//int ns_message_box(const char* title, const char* message, int yesNoStyle)
+//::i32 ns_message_box(const_char_pointer title, const_char_pointer message, ::i32 yesNoStyle)
 //{
 //    NSAlert *alert = [[NSAlert alloc] init];
 //    

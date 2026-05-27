@@ -4,8 +4,8 @@
 /*#define Pixmap image
 
 
-CLASS_DECL_TURBOC int getch();
-CLASS_DECL_TURBOC void ungetch(int c);
+CLASS_DECL_TURBOC ::i32 getch();
+CLASS_DECL_TURBOC void ungetch(::i32 c);
 
 
 

@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_wavefront_frag[] = R"frag_text(// Input from vertex shader
+const ::i8 g_psz_wavefront_frag[] = R"frag_text(// Input from vertex shader
 struct PS_INPUT {
     float4 pos             : SV_POSITION;
     float3 fragColor       : COLOR0;
@@ -26,7 +26,7 @@ cbuffer GlobalUbo : register(b0)
     float4 ambientLightColor;
     float3 cameraPosition;
     PointLight pointLights[10];
-    int numLights;
+    ::i32 numLights;
 };
 
 
@@ -42,21 +42,21 @@ float4 main(PS_INPUT input) : SV_TARGET
     float3 cameraPosWorld = cameraPosition;
     float3 viewDirection = normalize(cameraPosWorld - input.fragPosWorld);
 
-    for (int i = 0; i < numLights; ++i)
+    for (::i32 i = 0; i < numLights; ++i)
     {
 
         PointLight light = pointLights[i];
         float3 directionToLight = light.position.xyz - input.fragPosWorld;
-        float attenuation = 1.0 / dot(directionToLight, directionToLight);
+        ::f32 attenuation = 1.0 / dot(directionToLight, directionToLight);
         directionToLight = normalize(directionToLight);
 
-        float cosAngIncidence = max(dot(surfaceNormal, directionToLight), 0.0f);
+        ::f32 cosAngIncidence = max(dot(surfaceNormal, directionToLight), 0.0f);
         float3 intensity = light.color.rgb * light.color.a * attenuation;
 
         diffuseLight += intensity * cosAngIncidence;
 
         float3 halfAngle = normalize(directionToLight + viewDirection);
-        float blinnTerm = dot(surfaceNormal, halfAngle);
+        ::f32 blinnTerm = dot(surfaceNormal, halfAngle);
         blinnTerm = saturate(blinnTerm);
         blinnTerm = pow(blinnTerm, 64.0f);
 

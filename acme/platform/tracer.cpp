@@ -70,7 +70,7 @@ namespace platform
    //}
    //
    //
-   //tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, logger * plogger)
+   //tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFunction, const_char_pointer pszFile, ::i32 iLine, logger * plogger)
    //{
    //
    //   m_papplication = pcontext;

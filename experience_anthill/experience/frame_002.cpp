@@ -24,7 +24,7 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-//color32_t SetAValue(unsigned char a, color32_t color32)
+//color32_t SetAValue(::u8 a, color32_t color32)
 //{
 //
 //   return argb(a, color32), color32_byte_green(color32), color32_byte_blue(color32));
@@ -481,8 +481,8 @@ namespace experience_anthill
 
    void frame_002::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
    {
-      //            const int size1 = 14;
-      //      const int size2 = 15;
+      //            const ::i32 size1 = 14;
+      //      const ::i32 size2 = 15;
 
       ::i32_rectangle rectangleX(rectangleXParam);
       //            ::i32_rectangle rectangleXB(rectangleX);

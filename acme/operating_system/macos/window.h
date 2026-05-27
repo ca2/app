@@ -149,7 +149,7 @@ namespace macos
 //
 //
 //      ::operating_system::macos_window m_macoswindow;
-//      double m_dVelocity;
+//      ::f64 m_dVelocity;
 //      class ::time m_timeLastSizeMove;
 //      ::i32_point m_pointSizeMoveStart;
 //      bool m_bMovingNow;
@@ -157,7 +157,7 @@ namespace macos
 //      bool m_bSizeMoveMode;
 //      //CGWindowID m_cgwindowid;
 //      HMENU m_hmenuSystem;
-//      int m_iDebugAtom = 0;
+//      ::i32 m_iDebugAtom = 0;
 //
 //      window();
 //      ~window() override;

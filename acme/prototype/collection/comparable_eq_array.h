@@ -424,7 +424,7 @@ template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
 
    ::collection::count cAdd = a.get_count();
 
-   for(int i = 0; i < cAdd; i++)
+   for(::i32 i = 0; i < cAdd; i++)
    {
       if(add_unique(a[i]))
          ca++;

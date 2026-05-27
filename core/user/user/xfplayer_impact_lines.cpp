@@ -84,7 +84,7 @@ void xfplayer_impact_linea::OnChildSetVisible(xfplayer_impact_line * pline, bool
 void xfplayer_impact_linea::Prepare()
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
       this->line_at(i)->m_iIndex = i;
@@ -107,10 +107,10 @@ void xfplayer_impact_linea::Prepare(xfplayer_impact_line *pImpactLine)
 //}
 
 
-void xfplayer_impact_linea::SetEffect(int iEffect)
+void xfplayer_impact_linea::SetEffect(::i32 iEffect)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->SetTextEffect(iEffect);
    }
@@ -124,7 +124,7 @@ void xfplayer_impact_linea::SetEffect(int iEffect)
 ::collection::index xfplayer_impact_linea::FindLine(xfplayer_impact_line * pline)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int iLine = 0; iLine < this->line_count(); iLine++)
+   for (::i32 iLine = 0; iLine < this->line_count(); iLine++)
    {
       if (line_at(iLine) == pline)
          return iLine;
@@ -160,7 +160,7 @@ void xfplayer_impact_linea::install_message_routing(::channel * pchannel)
 void xfplayer_impact_linea::OnMouseMove(::message::message * pmessage)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
       this->line_at(i)->m_iIndex = i;
@@ -173,7 +173,7 @@ void xfplayer_impact_linea::OnMouseMove(::message::message * pmessage)
 void xfplayer_impact_linea::OnLButtonDown(::message::message * pmessage)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
       this->line_at(i)->m_iIndex = i;
@@ -186,7 +186,7 @@ void xfplayer_impact_linea::OnLButtonDown(::message::message * pmessage)
 void xfplayer_impact_linea::OnLButtonUp(::message::message * pmessage)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->OnLButtonUp(pmessage);
       if (pmessage->m_bRet)
@@ -197,7 +197,7 @@ void xfplayer_impact_linea::OnLButtonUp(::message::message * pmessage)
 void xfplayer_impact_linea::on_timer(::timer * ptimer)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->on_timer(ptimer);
    }
@@ -206,7 +206,7 @@ void xfplayer_impact_linea::on_timer(::timer * ptimer)
 void xfplayer_impact_linea::OnSetCursor(::message::message * pmessage)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int i = 0; i < this->line_count(); i++)
+   for (::i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->OnSetCursor(pmessage);
       if (pmessage->m_bRet)
@@ -214,10 +214,10 @@ void xfplayer_impact_linea::OnSetCursor(::message::message * pmessage)
    }
 }
 
-void xfplayer_impact_linea::set_blend(double dBlend)
+void xfplayer_impact_linea::set_blend(::f64 dBlend)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-   for (int iLine = 0; iLine < this->line_count(); iLine++)
+   for (::i32 iLine = 0; iLine < this->line_count(); iLine++)
    {
       line_at(iLine)->set_blend(dBlend);
    }
@@ -307,7 +307,7 @@ void xfplayer_impact_linea::get_text(string & strText, const ::scoped_string & s
 
    }
 
-   for (int iLine = 1; iLine < line_count(); iLine++)
+   for (::i32 iLine = 1; iLine < line_count(); iLine++)
    {
 
       strText += scopedstrLineSeparator;

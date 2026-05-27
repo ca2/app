@@ -200,9 +200,9 @@ public:
 //
 //   auto pSeparatorsEndExclusive = pSeparators + blockSeparators.size();
 //
-//   int len1;
+//   ::i32 len1;
 //
-//   int len2;
+//   ::i32 len2;
 //
 //   while (p < pEndExclusive)
 //   {
@@ -349,7 +349,7 @@ public:
 
 //
 //template < prototype_character CHARACTER >
-//bool _string_compare_prefix(int & iCompare, const ::range < CHARACTER > & blockA, const ::range < CHARACTER > & blockB)
+//bool _string_compare_prefix(::i32 & iCompare, const ::range < CHARACTER > & blockA, const ::range < CHARACTER > & blockB)
 //{
 //
 //   if (blockA.is_empty())
@@ -399,7 +399,7 @@ public:
 //
 //   auto pBEnd = blockB.end();
 //
-//   int iCompare;
+//   ::i32 iCompare;
 //
 //   while (pA < pAEnd && pB < pBEnd)
 //   {
@@ -416,7 +416,7 @@ public:
 //const CHARACTER * string_compare(const CHARACTER * pA, character_count sizeA, const CHARACTER * pB, character_count sizeB)
 //{
 //
-//   int iCompare;
+//   ::i32 iCompare;
 //
 //   if (_string_compare_prefix(iCompare, blockA, blockB))
 //   {

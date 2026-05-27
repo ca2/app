@@ -16,7 +16,7 @@ namespace universal_windows
       HANDLE m_hContext;
       bool m_bGotLast;
       string m_strRoot;
-      char m_chDirSeparator;     // not '\\' for Internet classes
+      ::i8 m_chDirSeparator;     // not '\\' for Internet classes
 
 
       file_find();

@@ -4,7 +4,7 @@
 #include "location.h"
 #include "dimension.h"
 
-inline double sqr(double x)
+inline ::f64 sqr(::f64 x)
 {
    return x * x;
 }
@@ -205,9 +205,9 @@ public:
 
       array < location_type < NUMBER > >  verts = vertexes();
 
-      double dMin = sqrt(::sqr(point.x - verts[0].x) + sqr(point.y - verts[0].y) + sqr(point.z - verts[0].z));
+      ::f64 dMin = sqrt(::sqr(point.x - verts[0].x) + sqr(point.y - verts[0].y) + sqr(point.z - verts[0].z));
 
-      double d;
+      ::f64 d;
 
       ::collection::index iFound = 0;
 
@@ -232,9 +232,9 @@ public:
 
       array < location_type < NUMBER > >  verts = vertexes();
 
-      double dMin = sqrt(::sqr(point.x - verts[0].x) + sqr(point.y - verts[0].y) + sqr(point.z - verts[0].z));
+      ::f64 dMin = sqrt(::sqr(point.x - verts[0].x) + sqr(point.y - verts[0].y) + sqr(point.z - verts[0].z));
 
-      double d;
+      ::f64 d;
 
       ::collection::index iFound = 0;
 
@@ -255,14 +255,14 @@ public:
    }
 
 
-   ::collection::index find_nearest_vertice(int x, int y)
+   ::collection::index find_nearest_vertice(::i32 x, ::i32 y)
    {
 
       array < location_type < NUMBER > >  verts = vertexes();
 
-      double dMin = sqrt(::sqr(x - verts[0].x) + sqr(y - verts[0].y));
+      ::f64 dMin = sqrt(::sqr(x - verts[0].x) + sqr(y - verts[0].y));
 
-      double d;
+      ::f64 d;
 
       ::collection::index iFound = 0;
 
@@ -311,7 +311,7 @@ public:
    //array < array < location_type < NUMBER > > > faces_vertexes();
    //location_type < NUMBER > get_nearest_vertice(location_type < NUMBER > point);
    //index find_nearest_vertice(location_type < NUMBER > point);
-   //index find_nearest_vertice(int x,int y);
+   //index find_nearest_vertice(::i32 x,::i32 y);
 
 
 

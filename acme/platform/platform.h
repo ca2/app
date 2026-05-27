@@ -66,11 +66,11 @@ namespace platform
 
       ::e_display                                     m_edisplay;
       ::user::e_activation                            m_eactivation;
-      int                                             m_argc = 0;
-      char **                                         m_args = nullptr;
-      char **                                         m_envp = nullptr;
+      ::i32                                             m_argc = 0;
+      char_pointer *                                         m_args = nullptr;
+      char_pointer *                                         m_envp = nullptr;
       ::platform::system *                            m_psystem;
-      //int m_iExitCode;
+      //::i32 m_iExitCode;
 
 #ifdef WINDOWS
 
@@ -79,7 +79,7 @@ namespace platform
 
       hinstance                                       m_hinstanceThis = nullptr;
       hinstance                                       m_hinstancePrev = nullptr;
-      int                                             m_nCmdShow = -1;
+      ::i32                                             m_nCmdShow = -1;
 
 #endif
 
@@ -181,7 +181,7 @@ namespace platform
       ::factory::factory_map                                m_factorymap;
       ::factory::component_factory_map                      m_componentfactorymap;
       ::pointer < ::operating_system::dynamic_library >     m_pdynamiclibrary;
-      int                                                   m_iProcessStatus = 0;
+      ::i32                                                   m_iProcessStatus = 0;
       //::interlocked_long_long                            m_iNewTaskIndex;
       //::comparable_array < itask >                        m_itaska;
       bool                                                  m_bVerboseLog;
@@ -243,26 +243,26 @@ namespace platform
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize_system(int argc, wchar_t * args[], wchar_t * envp[]) override;
+      void initialize_system(::i32 argc, wchar_t * args[], wchar_t * envp[]) override;
 
-      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow) override;
+      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, ::i32 nCmdShow) override;
 
 #endif
 
-      void initialize_system(int argc, char ** args, char ** envp) override;
+      void initialize_system(::i32 argc, char_pointer * args, char_pointer * envp) override;
 
 
       void platform_initialize();
       void platform_finalize();
 
 
-      void set_args(int argc, char ** args, wchar_t ** wargs);
+      void set_args(::i32 argc, char_pointer * args, wchar_t ** wargs);
 
       string _get_args(::collection::index iArg) const;
       ::collection::count get_argc();
-      int * get_pargc();
-      char *** get_pargs();
-      char ** get_args();
+      ::i32 * get_pargc();
+      char_pointer ** get_pargs();
+      char_pointer * get_args();
 
 #ifdef WINDOWS
 
@@ -295,8 +295,8 @@ namespace platform
       string get_env(const ::scoped_string & scopedstrVariableName) const;
 
 
-      int get_status();
-      void set_status(int iStatus);
+      ::i32 get_status();
+      void set_status(::i32 iStatus);
 
 
 

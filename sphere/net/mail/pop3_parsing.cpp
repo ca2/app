@@ -14,9 +14,9 @@
 #endif
 #include "libspopc.h"
 
-int dotline(char* buf){
+::i32 dotline(char_pointer buf){
 /* returns 1 if buf contains a "\n.\n" or "\n.\r" substring */
-char* ptr;
+char_pointer ptr;
 
 #ifdef EBUG
 	fprintf(stderr, "<dotline>\n");
@@ -29,7 +29,7 @@ char* ptr;
 	}
 	ptr=buf;
 	while((ptr=strchr(ptr,'.'))){
-		char* dl=ptr-2;/* 2 characters before the dot */
+		char_pointer dl=ptr-2;/* 2 characters before the dot */
 		/* RFC1939 specifies that the termination line is "CRLF.CRLF" */
 		if((dl[0] == '\r') && (dl[1] == '\n') && (dl[3] == '\r') && (dl[4] == '\n')){
 #ifdef EBUG
@@ -45,7 +45,7 @@ char* ptr;
 	return(0);
 }
             
-int pop3_error(char* string){
+::i32 pop3_error(char_pointer string){
 /* returns 1 if pop server error reply (i.e : -ERR ...) */
 	return(string?(!ansi_count_compare(string,"-ERR",(size_t)4)):1);
 }

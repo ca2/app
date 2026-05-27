@@ -135,9 +135,9 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
       
-//      unsigned long target = GL_TEXTURE_2D;
+//      ulong target = GL_TEXTURE_2D;
 //////
-//      unsigned long internalFormat = GL_RGBA;
+//      ulong internalFormat = GL_RGBA;
 //////
 //      long max_level = 0;
 //
@@ -482,13 +482,13 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 

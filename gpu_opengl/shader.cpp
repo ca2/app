@@ -17,7 +17,7 @@
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 
-void ::opengl::insert_debug_message(const char* msg);
+void ::opengl::insert_debug_message(const_char_pointer msg);
 
 
 namespace gpu_opengl
@@ -77,11 +77,11 @@ namespace gpu_opengl
 
       const_char_pointer sza[1];
 
-      sza[0] = (const_char_pointer)blockSource.begin();
+      sza[0] = (const_char_pointer )blockSource.begin();
 
       GLint ia[1];
 
-      ia[0] = (int)blockSource.size();
+      ia[0] = (::i32)blockSource.size();
 
       glShaderSource(uShader, 1, sza, ia);
 
@@ -416,9 +416,9 @@ namespace gpu_opengl
             if (ptextureTarget->m_iCurrentLayer >= 0)
             {
                
-               int iLayer = ptextureTarget->m_iCurrentLayer;
+               ::i32 iLayer = ptextureTarget->m_iCurrentLayer;
                
-               int iMip = ptextureTarget->m_iCurrentMip;
+               ::i32 iMip = ptextureTarget->m_iCurrentMip;
                
                glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + iLayer,
                                       ptextureTarget->m_gluTextureID, iMip);
@@ -582,7 +582,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, ::i32 iSlot)
    {
 
       if (!m_pbindingslotseta)
@@ -686,7 +686,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, int iIndex, const char* pszPayloadName, gpu::texture* pgputextureSource)
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture* pgputextureSource)
    {
     //  pshader->bind_source2(TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP, "diffuseIrradianceMap",
       //                      pscene->m_pibldiffuseirradiancemap->m_pframebufferDiffuseIrradiance->m_ptexture);
@@ -695,7 +695,7 @@ namespace gpu_opengl
       ::opengl::check_error("");
       this->set_int(pszPayloadName, iIndex);
       ::cast<::gpu_opengl::texture > ptexture = pgputextureSource;
-      int gluTextureID = ptexture->m_gluTextureID;
+      ::i32 gluTextureID = ptexture->m_gluTextureID;
       glBindTexture(ptexture->m_gluType, gluTextureID);
       ::opengl::check_error("");
 
@@ -716,12 +716,12 @@ namespace gpu_opengl
    //
    //      }
    //
-   //      glUniform1i(p->m_iUniform, (int)value);
+   //      glUniform1i(p->m_iUniform, (::i32)value);
    //
    //   }
    //
    //
-   //   void shader::setInt(const ::scoped_string & scopedstrName, int value)
+   //   void shader::setInt(const ::scoped_string & scopedstrName, ::i32 value)
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -738,7 +738,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   //   void shader::setFloat(const ::scoped_string & scopedstrName, float value)
+   //   void shader::setFloat(const ::scoped_string & scopedstrName, ::f32 value)
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -765,7 +765,7 @@ namespace gpu_opengl
    ////   }
    //
    //
-   //   void shader::setVec2(const ::scoped_string & scopedstrName, float x, float y)
+   //   void shader::setVec2(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y)
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -792,7 +792,7 @@ namespace gpu_opengl
    ////   }
    //
    //
-   //   void shader::setVec3(const ::scoped_string & scopedstrName, float x, float y, float z)
+   //   void shader::setVec3(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y, ::f32 z)
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -819,7 +819,7 @@ namespace gpu_opengl
    ////   }
    //
    //
-   //   void shader::setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w)
+   //   void shader::setVec4(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w)
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -836,7 +836,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   //   void shader::setMat2(const ::scoped_string & scopedstrName, const float a[2*2])
+   //   void shader::setMat2(const ::scoped_string & scopedstrName, const ::f32 a[2*2])
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -853,7 +853,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   //   void shader::setMat3(const ::scoped_string & scopedstrName, const float a[3*3])
+   //   void shader::setMat3(const ::scoped_string & scopedstrName, const ::f32 a[3*3])
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -870,7 +870,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   //   void shader::setMat4(const ::scoped_string & scopedstrName, const float a[4*4])
+   //   void shader::setMat4(const ::scoped_string & scopedstrName, const ::f32 a[4*4])
    //   {
    //
    //      auto p = get_payload(scopedstrName);
@@ -927,7 +927,7 @@ namespace gpu_opengl
 
    }
 
-   void shader::bind_slot_set(::gpu::command_buffer * pgpucommandbuffer, int iSet,
+   void shader::bind_slot_set(::gpu::command_buffer * pgpucommandbuffer, ::i32 iSet,
                               ::gpu::binding_slot_set * pgpubindingslotset)
    {
 
@@ -979,7 +979,7 @@ namespace gpu_opengl
             //glBindBuffer(GL_UNIFORM_BUFFER, iUbo);
             //::opengl::check_error("");
 
-            ////int iSize = this->size(false);
+            ////::i32 iSize = this->size(false);
 
             ////// Map the entire buffer for writing
             ////void *p = glMapBufferRange(GL_UNIFORM_BUFFER, 0, iSize, GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
@@ -1070,7 +1070,7 @@ namespace gpu_opengl
    }
 
 
-   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, ::i32 i)
    //{
 
    //   if (i == 0)
@@ -1086,7 +1086,7 @@ namespace gpu_opengl
    //}
 
 
-   GLint shader::_get_uniform_location(const_char_pointer name, const_char_pointer debug) const
+   GLint shader::_get_uniform_location(const_char_pointer pszName, const_char_pointer debug) const
    {
 
       ::string strName(name);
@@ -1121,7 +1121,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_bool(const_char_pointer name, bool b) const
+   void shader::_set_bool(const_char_pointer pszName, bool b) const
    {
 
       _set_int(name, b ? 0 : 1);
@@ -1129,10 +1129,10 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_int(const_char_pointer name, int i) const
+   void shader::_set_int(const_char_pointer pszName, ::i32 i) const
    {
 
-      auto location = _get_uniform_location(name, "int");
+      auto location = _get_uniform_location(name, "::i32");
 
       glUniform1i(location, i);
       ::opengl::check_error("");
@@ -1140,10 +1140,10 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_float(const_char_pointer name, float value) const
+   void shader::_set_float(const_char_pointer pszName, ::f32 value) const
    {
 
-      auto location = _get_uniform_location(name, "float");
+      auto location = _get_uniform_location(name, "::f32");
       
       glUniform1f(location, value);
       ::opengl::check_error("");
@@ -1151,7 +1151,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_sequence2(const_char_pointer name, const floating_sequence2& value) const 
+   void shader::_set_sequence2(const_char_pointer pszName, const floating_sequence2& value) const 
    {
 
       auto location = _get_uniform_location(name, "seq2");
@@ -1162,7 +1162,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_sequence3(const_char_pointer name, const floating_sequence3& value) const
+   void shader::_set_sequence3(const_char_pointer pszName, const floating_sequence3& value) const
    {
 
       auto location = _get_uniform_location(name, "seq3");
@@ -1173,7 +1173,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_sequence4(const_char_pointer name, const floating_sequence4& value) const 
+   void shader::_set_sequence4(const_char_pointer pszName, const floating_sequence4& value) const 
    {
       
       auto location = _get_uniform_location(name, "seq4");
@@ -1183,7 +1183,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_matrix2(const_char_pointer name, const floating_matrix2& matrix) const
+   void shader::_set_matrix2(const_char_pointer pszName, const floating_matrix2& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat2"); 
@@ -1194,7 +1194,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_matrix3(const_char_pointer name, const floating_matrix3& matrix) const
+   void shader::_set_matrix3(const_char_pointer pszName, const floating_matrix3& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat3");
@@ -1205,7 +1205,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_matrix4(const_char_pointer name, const floating_matrix4& matrix) const
+   void shader::_set_matrix4(const_char_pointer pszName, const floating_matrix4& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat4");
@@ -1221,7 +1221,7 @@ namespace gpu_opengl
 
       auto p = m_propertiesPushShared.m_pproperties;
 
-      int iLen = 0;
+      ::i32 iLen = 0;
 
       while (true)
       {
@@ -1243,10 +1243,10 @@ namespace gpu_opengl
             switch (p->m_etype)
             {
                case ::gpu::e_type_i32:
-                  _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_int(strName, *(::i32 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
-               case ::gpu::e_type_float:
-                  _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
+               case ::gpu::e_type_f32:
+                  _set_float(strName, *(::f32 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq2:
                   _set_sequence2(strName, *(floating_sequence2 *)(m_propertiesPushShared.data(true) + iLen));
@@ -1338,7 +1338,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_int(const ::scoped_string& scopedstrName, int value)
+   void shader::set_int(const ::scoped_string& scopedstrName, ::i32 value)
    {
 
       if (m_propertiesPushShared.m_pproperties)
@@ -1357,7 +1357,7 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_float(const ::scoped_string& scopedstrName, float value)
+   void shader::set_float(const ::scoped_string& scopedstrName, ::f32 value)
    {
 
       if (m_propertiesPushShared.m_pproperties)
@@ -1376,7 +1376,7 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_sequence2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y)
    {
 
       if (m_propertiesPushShared.m_pproperties)
@@ -1414,7 +1414,7 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z)
    {
 
       if (m_propertiesPushShared.m_pproperties)
@@ -1452,7 +1452,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w)
    {
 
       if (m_propertiesPushShared.m_pproperties)

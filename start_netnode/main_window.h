@@ -11,10 +11,10 @@ namespace app_app
    public:
 
 
-      double            m_dBreathPeriod;
+      ::f64            m_dBreathPeriod;
       class ::time        m_timeStart;
-      double            m_dPhaseShift;
-      int               m_iCloseButtonDraw;
+      ::f64            m_dPhaseShift;
+      ::i32               m_iCloseButtonDraw;
 
 
       main_window();

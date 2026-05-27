@@ -29,21 +29,21 @@ namespace geometry2d
          struct
          {
 
-            double a1;
-            double a2;
-            double a3;
-            double b1;
-            double b2;
-            double b3;
-            double c1;
-            double c2;
-            double c3;
+            ::f64 a1;
+            ::f64 a2;
+            ::f64 a3;
+            ::f64 b1;
+            ::f64 b2;
+            ::f64 b3;
+            ::f64 c1;
+            ::f64 c2;
+            ::f64 c3;
 
          };
 
-         double da[9];
+         ::f64 da[9];
 
-         double a[3][3];
+         ::f64 a[3][3];
 
       };
 
@@ -54,18 +54,18 @@ namespace geometry2d
 
       matrix& operator = (const matrix&) = default;
 
-      static matrix translation(double_point point) { return translation(point.x, point.y); }
-      static matrix translation(double x, double y);
-      static matrix rotation(double dAngleRadians);
-      static matrix scaling(double dRateX, double dRateY);
-      static matrix scaling(double_point point) { return scaling(point.x, point.y); }
-      static matrix scaling(double_size size) { return scaling(size.cx, size.cy); }
+      static matrix translation(::f64_point point) { return translation(point.x, point.y); }
+      static matrix translation(::f64 x, ::f64 y);
+      static matrix rotation(::f64 dAngleRadians);
+      static matrix scaling(::f64 dRateX, ::f64 dRateY);
+      static matrix scaling(::f64_point point) { return scaling(point.x, point.y); }
+      static matrix scaling(f64_size size) { return scaling(size.cx, size.cy); }
 
 
-      matrix& translate(double_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
-      matrix& translate(double x, double y, e_mode emode = mode_append);
-      matrix& rotate(double dAngleRadians, e_mode emode = mode_append);
-      matrix& scale(double dRateX, double dRateY, e_mode emode = mode_append);
+      matrix& translate(::f64_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
+      matrix& translate(::f64 x, ::f64 y, e_mode emode = mode_append);
+      matrix& rotate(::f64 dAngleRadians, e_mode emode = mode_append);
+      matrix& scale(::f64 dRateX, ::f64 dRateY, e_mode emode = mode_append);
       matrix& scale(const ::i32_point& point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
 
 
@@ -73,7 +73,7 @@ namespace geometry2d
       matrix& append(const matrix& m);
 
 
-      double determinant() const;
+      ::f64 determinant() const;
 
       static bool invert(matrix& aDst, const matrix& aSrc);
 
@@ -96,13 +96,13 @@ namespace geometry2d
       matrix& operator * (const matrix& m);
 
       // 6 (six) elements
-      virtual void SetElements(float* fa);
+      virtual void SetElements(::f32* fa);
 
 
       void transform(int_sequence2& point);
 
-      void transform(double_sequence2& point);
-      void transform(double_sequence2 * ppoint, ::collection::count c);
+      void transform(f64_sequence2& point);
+      void transform(f64_sequence2 * ppoint, ::collection::count c);
 
       template < prototype_container CONTAINER >
       void transform(CONTAINER& container) 

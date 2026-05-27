@@ -141,19 +141,19 @@ namespace platform
    //   else if (memsize < 1_mb)
    //   {
    //
-   //      return format_output("%0.2f kb", (double)memsize / (double)(1_kb));
+   //      return format_output("%0.2f kb", (::f64)memsize / (::f64)(1_kb));
    //
    //   }
    //   else if (memsize < 1_gb)
    //   {
    //
-   //      return format_output("%0.2f MB", (double)memsize / (double)(1_mb));
+   //      return format_output("%0.2f MB", (::f64)memsize / (::f64)(1_mb));
    //
    //   }
    //   else
    //   {
    //
-   //      return format_output("%0.2f GB", (double)memsize / (double)(1_gb));
+   //      return format_output("%0.2f GB", (::f64)memsize / (::f64)(1_gb));
    //
    //   }
    //

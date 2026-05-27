@@ -10,7 +10,7 @@ namespace platform
    uuid::uuid()
    {
 
-      ::zero(m_ucha);
+      ::zero(m_u8a);
 
    }
    
@@ -37,13 +37,13 @@ namespace platform
 
       ::string str;
 
-      const unsigned char * p = m_ucha;
+      const ::u8 * p = m_u8a;
 
       str.formatf(
                "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
                *((::u32*)p),
-               *((unsigned short*)(p + 4)), 
-               *((unsigned short*)(p + 6)),
+               *((::u16*)(p + 4)), 
+               *((::u16*)(p + 6)),
                p[8], p[9], 
                p[10], p[11], p[12], p[13], p[14], p[15]);
 

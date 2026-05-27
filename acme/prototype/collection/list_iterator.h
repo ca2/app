@@ -456,7 +456,7 @@ public:
    }
 
 
-   THIS_ITERATOR operator ++(int)
+   THIS_ITERATOR operator ++(::i32)
    {
 
       auto iterator = *this;
@@ -478,7 +478,7 @@ public:
    }
 
 
-   THIS_ITERATOR operator --(int)
+   THIS_ITERATOR operator --(::i32)
    {
 
       auto iterator = *this;

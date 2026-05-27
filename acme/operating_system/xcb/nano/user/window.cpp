@@ -15,7 +15,7 @@
 #include <cairo/cairo-xcb.h>
 
 
-//unsigned long xcb_get_long_property(Display *d, Window w, char *property_name);
+//ulong xcb_get_long_property(Display *d, Window w, char_pointer property_name);
 
 
 //Window _xcb_get_active_window(Display * pdisplay);
@@ -24,11 +24,11 @@
 struct MWMHints
 {
 
-   unsigned long flags;
-   unsigned long functions;
-   unsigned long decorations;
+   ulong flags;
+   ulong functions;
+   ulong decorations;
    long input_mode;
-   unsigned long status;
+   ulong status;
 
 };
 
@@ -128,7 +128,7 @@ namespace nano
       }
 
 
-      void window::on_char(int iChar)
+      void window::on_char(::i32 iChar)
       {
 
          fork([this, iChar]()
@@ -141,7 +141,7 @@ namespace nano
       }
 
 
-      void window::_draw(::nano::graphics::device * pnanodevice)
+      void window::_draw(::nano::graphics::context * pnanodevice)
       {
 
          m_pinterface->draw(pnanodevice);
@@ -213,10 +213,10 @@ namespace nano
 
          xcb_window_t window = xcb_generate_id(m_pdisplay->m_pconnection);
 
-         int x = m_pinterface->m_rectangle.left;
-         int y = m_pinterface->m_rectangle.top;
-         int cx = m_pinterface->m_rectangle.width();
-         int cy = m_pinterface->m_rectangle.height();
+         ::i32 x = m_pinterface->m_rectangle.left;
+         ::i32 y = m_pinterface->m_rectangle.top;
+         ::i32 cx = m_pinterface->m_rectangle.width();
+         ::i32 cy = m_pinterface->m_rectangle.height();
 
          ::u32 uaValueList[5];
 
@@ -275,7 +275,7 @@ namespace nano
 
                XChangeProperty(m_pdisplay->m_pdisplay, m_window,
                                atomWindowType, XA_ATOM, 32, PropModeReplace,
-                               (unsigned char *) &atomWindowTypeSplash, 1);
+                               (::u8 *) &atomWindowTypeSplash, 1);
 
             }
 
@@ -302,7 +302,7 @@ namespace nano
          //   //      mwm_hints.functions=  MWM_FUNC_MOVE;
          //   //
          //   //      XMapWindow(m_pdisplay->m_pdisplay, m_window);
-         //   //      XChangeProperty(m_pdisplay->m_pdisplay, m_window, MotifHints, MotifHints, 32, PropModeReplace, (unsigned char *)&mwm_hints, 5);
+         //   //      XChangeProperty(m_pdisplay->m_pdisplay, m_window, MotifHints, MotifHints, 32, PropModeReplace, (::u8 *)&mwm_hints, 5);
          //
          //         }
 
@@ -314,10 +314,10 @@ namespace nano
 
       }
 
-      //::atom window::hit_test(int x, int y)
+      //::atom window::hit_test(::i32 x, ::i32 y)
       //{
       //
-      //   for (int i = 0; i < m_iButtonCount; i++)
+      //   for (::i32 i = 0; i < m_iButtonCount; i++)
       //   {
       //      if (m_buttona[i].m_rectangle.contains(i32_point(x, y)))
       //      {
@@ -408,12 +408,12 @@ namespace nano
       //}
 
       //#ifndef int_x
-      //#define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
+      //#define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
       //#endif
       //
       //
       //#ifndef int_y
-      //#define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
+      //#define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
       //#endif
       //
       ////LRESULT window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
@@ -433,7 +433,7 @@ namespace nano
       //         break;
       //      case WM_CHAR:
       //      {
-      //         on_char((int) wparam);
+      //         on_char((::i32) wparam);
       //         return 0;
       //      }
       //         break;
@@ -711,7 +711,7 @@ namespace nano
 
                auto pdc = cairo_create(m_psurface);
 
-               m_pnanodevice = allocateø ::cairo::nano::graphics::device(pdc);
+               m_pnanodevice = allocateø ::cairo::nano::graphics::context(pdc);
 
             }
 
@@ -747,7 +747,7 @@ namespace nano
 
             auto keysym = XkbKeycodeToKeysym((Display *) m_pdisplay->m_pX11Display, pkey->detail, 0, pkey->state & ShiftMask ? 1 : 0);
 
-            int iChar = xkb_keysym_to_utf32(keysym);
+            ::i32 iChar = xkb_keysym_to_utf32(keysym);
 
             on_char(iChar);
 
@@ -1105,7 +1105,7 @@ namespace nano
       void window::release_mouse_capture()
       {
 
-         //int bRet = XUngrabPointer(m_pdisplay->m_pdisplay, CurrentTime);
+         //::i32 bRet = XUngrabPointer(m_pdisplay->m_pdisplay, CurrentTime);
 
          m_pdisplay->_release_mouse_capture();
 
@@ -1142,7 +1142,7 @@ namespace nano
       }
 
 
-      void window::_wm_nodecorations(int iMap)
+      void window::_wm_nodecorations(::i32 iMap)
       {
 
          m_pdisplay->_set_nodecorations(m_window, iMap);

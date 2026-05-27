@@ -7,7 +7,7 @@ typedef  void  ACME_MAIN();
 typedef ACME_MAIN* PFN_ACME_MAIN;
 
 
-int main_posix(int argc, char* argv[])
+::i32 main_posix(::i32 argc, char_pointer argv[])
 {
 
    console console(argc, argv);
@@ -29,9 +29,9 @@ int main_posix(int argc, char* argv[])
 
    (*pauramain)();
 
-   int iStatus = (int)papp->m_estatus;
+   ::i32 iStatus = (::i32)papp->m_estatus;
 
-   int iError = 0;
+   ::i32 iError = 0;
 
    if (iStatus < 0)
    {

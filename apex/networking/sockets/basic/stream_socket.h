@@ -18,11 +18,11 @@ namespace sockets
       ////bool m_bConnecting; ///< Flag indicating connection in progress
       ////::second m_secsConnectionTimeout; ///< Connection timeout (seconds)
       //bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
-      //int m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
-      //int m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
+      //::i32 m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
+      //::i32 m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
       //bool m_bCallOnConnect; ///< OnConnect will be called next base_socket_handler cycle if true
       //bool m_bRetryClientConnect; ///< Try another connection attempt next base_socket_handler cycle
-      //int m_iShutdownStatus; ///< Shutdown status
+      //::i32 m_iShutdownStatus; ///< Shutdown status
 
       stream_socket();
       ~stream_socket() override;
@@ -47,7 +47,7 @@ namespace sockets
       
       /** set timeout to use for connection attempt.
       \lparam x time_out in seconds */
-      //void set_maximum_connection_time(int x);
+      //void set_maximum_connection_time(::i32 x);
 
       /** Return number of seconds to wait for a connection.
       \return Connection timeout (seconds) */
@@ -65,16 +65,16 @@ namespace sockets
       n = 0 - no retry
       n > 0 - number of retries
       n = -1 - unlimited retries */
-      virtual void SetMaximumConnectionRetryCount(int n);
+      virtual void SetMaximumConnectionRetryCount(::i32 n);
 
       /** get number of maximum connection retries (tcp only). */
-      virtual int GetMaximumConnectionRetryCount();
+      virtual ::i32 GetMaximumConnectionRetryCount();
 
       /** Increase number of actual connection retries (tcp only). */
       virtual void IncrementConnectionRetryCount();
 
       /** get number of actual connection retries (tcp only). */
-      virtual int GetConnectionRetryCount();
+      virtual ::i32 GetConnectionRetryCount();
 
       /** Reset actual connection retries (tcp only). */
       virtual void ResetConnectionRetryCount();
@@ -102,13 +102,13 @@ namespace sockets
 
 
       /** set shutdown status. */
-      virtual void SetShutdownStatus(int);
+      virtual void SetShutdownStatus(::i32);
 
       /** get shutdown status. */
-      virtual int GetShutdownStatus();
+      virtual ::i32 GetShutdownStatus();
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-      virtual int protocol();
+      virtual ::i32 protocol();
 
    };
 

@@ -68,7 +68,7 @@ void trace_category_static_init(::platform::system * psystem)
    };
 
 
-   int iCategory = 0;
+   ::i32 iCategory = 0;
 
    auto p = psza;
 
@@ -201,7 +201,7 @@ const_char_pointer g_pszTraceLevelName[] =
 };
 
 
-char g_chaTraceLevel[] =
+::i8 g_chaTraceLevel[] =
 {
 
    ' ',

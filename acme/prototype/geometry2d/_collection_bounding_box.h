@@ -41,7 +41,7 @@
 //}
 
 
-//inline bool get_bounding_box(::double_rectangle & rectangleBounding, const int_polygon & polygon)
+//inline bool get_bounding_box(::f64_rectangle & rectangleBounding, const i32_polygon & polygon)
 //{
 //
 //   ::get_bounding_box(rectangleBounding, polygon.data(), polygon.size());
@@ -51,7 +51,7 @@
 //}
 //
 //
-//inline bool get_bounding_box(::i32_rectangle & rectangleBounding, const double_polygon & polygon)
+//inline bool get_bounding_box(::i32_rectangle & rectangleBounding, const f64_polygon & polygon)
 //{
 //
 //   ::get_bounding_box(rectangleBounding, polygon.data(), polygon.size());
@@ -61,7 +61,7 @@
 //}
 //
 //
-//inline bool get_bounding_box(::double_rectangle & rectangleBounding, const double_polygon & polygon)
+//inline bool get_bounding_box(::f64_rectangle & rectangleBounding, const f64_polygon & polygon)
 //{
 //
 //   ::get_bounding_box(rectangleBounding, polygon.data(), polygon.size());

@@ -71,7 +71,7 @@ payload_array_base::~payload_array_base()
 ::collection::count payload_array_base::append(const payload_array_base & payloada)
 {
 
-   for(int i = 0; i < payloada.get_size(); i++)
+   for(::i32 i = 0; i < payloada.get_size(); i++)
    {
 
       add(payloada[i]);
@@ -108,7 +108,7 @@ payload_array_base::~payload_array_base()
 
    ::collection::count c = 0;
 
-   for(int i = 0; i < payloada.get_size(); i++)
+   for(::i32 i = 0; i < payloada.get_size(); i++)
    {
 
       if(!contains(payloada[i]))
@@ -132,7 +132,7 @@ string payload_array_base::implode(const ::scoped_string & scopedstrGlue) const
 
    string str;
 
-   for(int i = 0; i < this->get_count(); i++)
+   for(::i32 i = 0; i < this->get_count(); i++)
    {
 
       if (i > 0)
@@ -508,7 +508,7 @@ payload_array_base payload_array_base::operator +(const payload_array_base & pay
 payload_array_base & payload_array_base::operator = (const string_array_base & stra)
 {
    erase_all();
-   for(int i = 0; i < stra.get_count(); i++)
+   for(::i32 i = 0; i < stra.get_count(); i++)
    {
       add(stra[i]);
    }
@@ -518,7 +518,7 @@ payload_array_base & payload_array_base::operator = (const string_array_base & s
 payload_array_base & payload_array_base::operator = (const ::i32_array_base & inta)
 {
    erase_all();
-   for(int i = 0; i < inta.get_count(); i++)
+   for(::i32 i = 0; i < inta.get_count(); i++)
    {
       add(inta[i]);
    }
@@ -550,7 +550,7 @@ payload_array_base & payload_array_base::operator = (const payload_array_base & 
    if(this != &payloada)
    {
       erase_all();
-      for(int i = 0; i < payloada.get_count(); i++)
+      for(::i32 i = 0; i < payloada.get_count(); i++)
       {
          add(payloada[i]);
       }
@@ -566,7 +566,7 @@ payload_array_base & payload_array_base::operator = (const payload_array_base & 
 //
 //}
 
-int g_iRandomNumberGenerator = 0;
+::i32 g_iRandomNumberGenerator = 0;
 
 
 void payload_array_base::parse_network_payload(::ansi_range & range)

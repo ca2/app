@@ -17,7 +17,7 @@
 //}
 
 
-// int message_box_w(oswindow window,const unichar * pszMessage,const unichar * pszTitle,int iFlags)
+// ::i32 message_box_w(oswindow window,const wide_character * pszMessage,const wide_character * pszTitle,::i32 iFlags)
 // {
 
 
@@ -333,7 +333,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-//CLASS_DECL_ACME char* getenv (const_char_pointer name)
+//CLASS_DECL_ACME char_pointer getenv (const_char_pointer pszName)
 //{
 //   return "";
 //}

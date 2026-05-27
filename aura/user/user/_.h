@@ -364,10 +364,10 @@ class cregexp;
 
 CLASS_DECL_AURA ::user::interaction_base* __user_prototype(::windowing::window * pwindow);
 
-inline wparam __scroll_message_wparam(enum_scroll_command ecommand, int iPosition)
+inline wparam __scroll_message_wparam(enum_scroll_command ecommand, ::i32 iPosition)
 {
 
-   return ((((int)ecommand) & 0xffff) | ((iPosition << 16) & 0xffff0000));
+   return ((((::i32)ecommand) & 0xffff) | ((iPosition << 16) & 0xffff0000));
 
 }
 

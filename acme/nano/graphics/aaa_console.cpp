@@ -37,7 +37,7 @@ namespace user {
       for (auto & pnanobutton : m_pinterchange->m_nanobuttona)
       {
 
-         char ch = pnanobutton->m_chLetter;
+         ::i8 ch = pnanobutton->m_chLetter;
 
          m_mapCharIndex[character_tolower(ch)] = i;
 
@@ -94,7 +94,7 @@ namespace user {
 
          printf("):");
 
-         char ch;
+         ::i8 ch;
 
          auto iReturnCount = scanf("%c", &ch);
 

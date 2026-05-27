@@ -20,12 +20,12 @@ namespace universal_windows
       color32_t             m_colorMetro;
 
       pen(::ca2::application * papp);
-      /*virtual void construct(int nPenStyle, double nWidth, color32_t crColor);
-      virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const unsigned int* lpStyle = nullptr);
-      bool CreatePen(int nPenStyle, double nWidth, color32_t crColor);
-      bool CreatePen(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const unsigned int* lpStyle = nullptr);*/
+      /*virtual void construct(::i32 nPenStyle, ::f64 nWidth, color32_t crColor);
+      virtual void construct(::i32 nPenStyle, ::f64 nWidth, const LOGBRUSH* pLogBrush, ::i32 nStyleCount = 0, const ::u32* lpStyle = nullptr);
+      bool CreatePen(::i32 nPenStyle, ::f64 nWidth, color32_t crColor);
+      bool CreatePen(::i32 nPenStyle, ::f64 nWidth, const LOGBRUSH* pLogBrush, ::i32 nStyleCount = 0, const ::u32* lpStyle = nullptr);*/
 
-      virtual bool create_solid(::ca2::graphics * pgraphics, double dWidth, color32_t crColor);
+      virtual bool create_solid(::ca2::graphics * pgraphics, ::f64 dWidth, color32_t crColor);
 
       virtual ID2D1Brush * get_os_pen_brush(::UNIVERSAL_WINDOWS::graphics * pdc) const;
 

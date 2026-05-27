@@ -51,7 +51,7 @@ namespace image
 
       auto pimage = m_pimage;
 
-      double dSpeed = 1.0;
+      ::f64 dSpeed = 1.0;
 
       if(pimage && extension())
       {
@@ -140,8 +140,8 @@ namespace image
 
       m_pimage = pimageHost;
 
-      //auto dx = (double)imagedrawing.m_rectangleTarget.width() / (double)imagedrawing.image()->width();
-      //auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
+      //auto dx = (::f64)imagedrawing.m_rectangleTarget.width() / (::f64)imagedrawing.image()->width();
+      //auto dy = (::f64)imagedrawing.m_rectangleTarget.height() / (::f64)imagedrawing.image()->height();
 
       //::i32_size size;
 

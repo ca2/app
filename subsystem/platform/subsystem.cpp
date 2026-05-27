@@ -303,7 +303,7 @@ namespace subsystem
 
 
    }
-pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
+pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(::i32 fd)
 {
 
    throw ::interface_only();
@@ -354,7 +354,7 @@ pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
    }
 
 
-   int subsystem::get_last_socket_error()
+   ::i32 subsystem::get_last_socket_error()
    {
 
       return -1;
@@ -362,7 +362,7 @@ pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
    }
 
 
-   string subsystem::get_socket_error_message_text(int iError)
+   string subsystem::get_socket_error_message_text(::i32 iError)
    {
 
       return {};
@@ -370,7 +370,7 @@ pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
    }
 
 
-   ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port)
+   ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, ::u16 port)
    {
 
       return {};
@@ -455,7 +455,7 @@ pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
    }
 
 
-   int subsystem::get_LOADER_CLOSE_CODE()
+   ::i32 subsystem::get_LOADER_CLOSE_CODE()
    {
 
       throw ::interface_only();
@@ -465,7 +465,7 @@ pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
    }
 
 
-   int subsystem::get_SPEC_IPC_CODE()
+   ::i32 subsystem::get_SPEC_IPC_CODE()
    {
 
       throw ::interface_only();

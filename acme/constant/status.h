@@ -7,9 +7,9 @@
 
 #define STATUS_RANGE 1000 // should be enough for the categorization granularity
 
-#define MKSTATUS_RANGE(previous) ((int)(previous) + (int)(STATUS_RANGE))
+#define MKSTATUS_RANGE(previous) ((::i32)(previous) + (::i32)(STATUS_RANGE))
 
-#define STATUS_RANGE_GENERAL ((int)(0))
+#define STATUS_RANGE_GENERAL ((::i32)(0))
 
 #define STATUS_RANGE_TIME_BAG MKSTATUS_RANGE(STATUS_RANGE_GENERAL)
 

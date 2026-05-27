@@ -23,7 +23,7 @@ namespace user
       }
 
       
-      double box::get_dev_pos_left(::collection::index iPos) const 
+      ::f64 box::get_dev_pos_left(::collection::index iPos) const 
       { 
          
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -56,7 +56,7 @@ namespace user
       }
 
 
-      double box::get_dev_pos_right(::collection::index iPos) const
+      ::f64 box::get_dev_pos_right(::collection::index iPos) const
       {
          
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -89,7 +89,7 @@ namespace user
       }
 
 
-      double box::get_dev_pos(::collection::index iPos) const
+      ::f64 box::get_dev_pos(::collection::index iPos) const
       {
 
          if (iPos <= m_iPosBeg)
@@ -117,12 +117,12 @@ namespace user
       string box::get_text() const
       {
 
-         return m_pspan->m_str.substr(get_beg(), (int)(get_pos_count()));
+         return m_pspan->m_str.substr(get_beg(), (::i32)(get_pos_count()));
 
       }
 
 
-      double box::get_pos_left(::collection::index iPos) const
+      ::f64 box::get_pos_left(::collection::index iPos) const
       {
 
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -141,7 +141,7 @@ namespace user
       }
 
 
-      double box::get_pos_right(::collection::index iPos) const
+      ::f64 box::get_pos_right(::collection::index iPos) const
       {
 
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -160,7 +160,7 @@ namespace user
       }
 
 
-      double box::get_pos(::collection::index iPos) const
+      ::f64 box::get_pos(::collection::index iPos) const
       {
 
          if (iPos <= m_iPosBeg)
@@ -178,11 +178,11 @@ namespace user
          else
          {
 
-            double dPreviousRight = get_pos_right(iPos - 1);
+            ::f64 dPreviousRight = get_pos_right(iPos - 1);
 
             return dPreviousRight;
 
-  //          double dThisLeft = get_pos_left(iPos);
+  //          ::f64 dThisLeft = get_pos_left(iPos);
 
 //            return ((dPreviousRight + dThisLeft) / 2.0) + m_rectangleBox.left;
 

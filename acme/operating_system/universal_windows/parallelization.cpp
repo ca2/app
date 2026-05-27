@@ -64,7 +64,7 @@ bool __os_term_thread();
 
 
 // Converts a Win32 thread priority to WinRT format.
-//WorkItemPriority GetWorkItemPriority(int nPriority)
+//WorkItemPriority GetWorkItemPriority(::i32 nPriority)
 //{
 //   if (nPriority < 0)
 //      return WorkItemPriority::Low;
@@ -75,7 +75,7 @@ bool __os_term_thread();
 //}
 
 //
-//htask start_thread(::u32 ( * pfn)(void *), void * pv, int iPriority)
+//htask start_thread(::u32 ( * pfn)(void *), void * pv, ::i32 iPriority)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iPriority);

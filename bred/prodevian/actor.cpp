@@ -34,7 +34,7 @@ namespace prodevian
    }
 
 
-   void actor::on_update(float dt)
+   void actor::on_update(::f32 dt)
    {
 
       // if (!m_pInput)
@@ -46,7 +46,7 @@ namespace prodevian
 
       // try
       // {
-      //    double dx = 0, dy = 0;
+      //    ::f64 dx = 0, dy = 0;
       //    m_pInput->getMouseDelta(dx, dy);
       //    m_controller.mouseCallback(floating_sequence2(dx, dy));
       //    m_controller.update(dt, m_pInput, m_transform);
@@ -54,9 +54,9 @@ namespace prodevian
       //    m_camera.setPosition(m_transform.translation);
       //    m_camera.setRotation(m_transform.rotation);
       //
-      //    int w, h;
+      //    ::i32 w, h;
       //    m_pInput->getFramebufferSize(w, h);
-      //    float aspect = h == 0 ? 1.0f : static_cast<float>(w) / h;
+      //    ::f32 aspect = h == 0 ? 1.0f : static_cast<::f32>(w) / h;
       //    m_camera.updateProjection(aspect, 0.1f, 300.f);
       // }
       // catch (const ::exception &e)

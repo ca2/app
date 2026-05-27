@@ -504,7 +504,7 @@ namespace user
 
       m_pdroptargetwindow = allocateø tab_drop_target_window();
 
-      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (int)pchannel->get_data()->m_iClickTab);
+      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (::i32)pchannel->get_data()->m_iClickTab);
 
       auto rectangle = pchannel->get_data()->m_rectangleHosting;
 
@@ -884,7 +884,7 @@ namespace user
 
             ::user::tab_pane_array & panecompositea = get_data()->m_tabpanea;
 
-            for (int iTab = 0; iTab < panecompositea.get_count(); iTab++)
+            for (::i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
 
                auto pimpactdataPane = panecompositea[iTab]->m_pimpactdata;
@@ -1065,16 +1065,16 @@ namespace user
 
             auto functionHandler = [this](auto puserinteraction)
             {
-               //int width = GetSystemMetrics(SM_CXSCREEN);
-               //int height = GetSystemMetrics(SM_CYSCREEN);
+               //::i32 width = GetSystemMetrics(SM_CXSCREEN);
+               //::i32 height = GetSystemMetrics(SM_CYSCREEN);
 
                application()->create_operating_system_information_impact(OPERATING_SYSTEM_INFORMATION_IMPACT, puserinteraction);
             };
 
             phandlerimpact->call_handler(functionHandler);
          }
-         //int width = GetSystemMetrics(SM_CXSCREEN);
-         //int height = GetSystemMetrics(SM_CYSCREEN);
+         //::i32 width = GetSystemMetrics(SM_CXSCREEN);
+         //::i32 height = GetSystemMetrics(SM_CYSCREEN);
 
          //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
 

@@ -47,12 +47,12 @@ namespace innate_subsystem
       virtual bool getWindowMenu(WindowInterface * pwindow) = 0;
       virtual void getSystemMenu(WindowInterface * pwindow) = 0;
       virtual void create() = 0;
-      virtual bool loadMenu(const char * lpMenuName) = 0;
+      virtual bool loadMenu(const_char_pointer lpMenuName) = 0;
       virtual void createPopupMenu() = 0;
-      virtual bool getSubMenu(int nPos, MenuInterface *pmenu) = 0;
+      virtual bool getSubMenu(::i32 nPos, MenuInterface *pmenu) = 0;
       virtual void termMenu() = 0;
 
-      virtual int getMenuItemCount() = 0;
+      virtual ::i32 getMenuItemCount() = 0;
       virtual bool appendMenu(const ::scoped_string & scopedstr, ::u32 uID) = 0;
       virtual bool appendSeparator() = 0;
       virtual bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) = 0;
@@ -66,11 +66,11 @@ namespace innate_subsystem
       virtual bool checkedMenuItem(::u32 uID, bool bEnable) = 0;
       virtual bool deleteMenu(::u32 uPosition) = 0;
 
-      virtual int findMenuItem(::u32 uID) = 0;
+      virtual ::i32 findMenuItem(::u32 uID) = 0;
 
       virtual bool setDefaultItem(::u32 uID) = 0;
 
-      virtual void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const ::function< void(int) > & onCommand) = 0;
+      virtual void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const ::function< void(::i32) > & onCommand) = 0;
 
       // void operator= (MenuInterface * pmenu)
       // {
@@ -78,9 +78,9 @@ namespace innate_subsystem
       // }
 
       // ///sprivate:
-      //   virtual bool _appendMenu(::u32 uFlags, ::uptr uIDNewItem, const char* lpNewItem) = 0;
+      //   virtual bool _appendMenu(::u32 uFlags, ::uptr uIDNewItem, const_char_pointer lpNewItem) = 0;
       //   virtual bool _insertMenuItem(::u32 uItem, bool fByPosition, LPCMENUITEMINFO lpmii) = 0;
-      //   virtual bool _modifyMenu(::u32 uPosition, ::u32 uFlags, ::iptr uIDNewItem, const char * lpNewItem) = 0;
+      //   virtual bool _modifyMenu(::u32 uPosition, ::u32 uFlags, ::iptr uIDNewItem, const_char_pointer lpNewItem) = 0;
       //   virtual bool _setMenuItem(::u32 uItem, bool fByPosition, LPMENUITEMINFO lpmii) = 0;
 
       // protected:
@@ -105,12 +105,12 @@ namespace innate_subsystem
       bool getWindowMenu(WindowInterface * pwindow) override { return m_pmenu->getWindowMenu(pwindow); }
       void getSystemMenu(WindowInterface * pwindow) override { m_pmenu->getSystemMenu(pwindow); }
       void create() override { m_pmenu->create(); }
-      bool loadMenu(const char * lpMenuName) override { return m_pmenu->loadMenu(lpMenuName); }
+      bool loadMenu(const_char_pointer lpMenuName) override { return m_pmenu->loadMenu(lpMenuName); }
       void createPopupMenu() override { m_pmenu->createPopupMenu(); }
-      bool getSubMenu(int nPos, MenuInterface *menu) override { return m_pmenu->getSubMenu(nPos, menu); }
+      bool getSubMenu(::i32 nPos, MenuInterface *menu) override { return m_pmenu->getSubMenu(nPos, menu); }
       void termMenu() override { m_pmenu->termMenu(); }
 
-      int getMenuItemCount() override { return m_pmenu->getMenuItemCount(); }
+      ::i32 getMenuItemCount() override { return m_pmenu->getMenuItemCount(); }
       bool appendMenu(const ::scoped_string & scopedstr, ::u32 uID) override { return m_pmenu->appendMenu(scopedstr, uID); }
       bool appendSeparator() override { return m_pmenu->appendSeparator(); }
       bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) override { return m_pmenu->appendSubMenu(scopedstr, pMenu); }
@@ -124,12 +124,12 @@ namespace innate_subsystem
       bool checkedMenuItem(::u32 uID, bool bEnable) override { return m_pmenu->checkedMenuItem(uID, bEnable); }
       bool deleteMenu(::u32 uPosition) override { return m_pmenu->deleteMenu(uPosition); }
 
-      int findMenuItem(::u32 uID) override { return m_pmenu->findMenuItem(uID); }
+      ::i32 findMenuItem(::u32 uID) override { return m_pmenu->findMenuItem(uID); }
 
       bool setDefaultItem(::u32 uID) override { return m_pmenu->setDefaultItem(uID); }
 
 
-   void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand) override { m_pmenu->trackPopupMenuOnCursorPosition(pwindowNotify, onCommand); }
+   void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(::i32)> &onCommand) override { m_pmenu->trackPopupMenuOnCursorPosition(pwindowNotify, onCommand); }
 
       // void operator= (MenuInterface * pmenu)
       // {
@@ -137,9 +137,9 @@ namespace innate_subsystem
       // }
 
       // ///sprivate:
-      //   bool _appendMenu(::u32 uFlags, ::uptr uIDNewItem, const char* lpNewItem) override;
+      //   bool _appendMenu(::u32 uFlags, ::uptr uIDNewItem, const_char_pointer lpNewItem) override;
       //   bool _insertMenuItem(::u32 uItem, bool fByPosition, LPCMENUITEMINFO lpmii) override;
-      //   bool _modifyMenu(::u32 uPosition, ::u32 uFlags, ::iptr uIDNewItem, const char * lpNewItem) override;
+      //   bool _modifyMenu(::u32 uPosition, ::u32 uFlags, ::iptr uIDNewItem, const_char_pointer lpNewItem) override;
       //   bool _setMenuItem(::u32 uItem, bool fByPosition, LPMENUITEMINFO lpmii) override;
 
       // protected:

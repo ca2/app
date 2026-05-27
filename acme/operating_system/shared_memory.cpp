@@ -20,7 +20,7 @@ shared_memory::~shared_memory()
 
 }
 
-bool shared_memory::CreateSharedMemory(const char* name, memsize size)
+bool shared_memory::CreateSharedMemory(const_char_pointer pszName, memsize size)
 {
 
    throw ::interface_only();
@@ -30,7 +30,7 @@ bool shared_memory::CreateSharedMemory(const char* name, memsize size)
 }
 
 
-bool shared_memory::OpenSharedMemory(const char* name, memsize size)
+bool shared_memory::OpenSharedMemory(const_char_pointer pszName, memsize size)
 {
 
    throw ::interface_only();

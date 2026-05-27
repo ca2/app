@@ -24,7 +24,7 @@
 #include "framework.h"
 // #include "BalloonTip.h"
 //
-// BalloonTip::BalloonTip(const char *text, const char *caption)
+// BalloonTip::BalloonTip(const_char_pointer text, const_char_pointer caption)
 // {
 //   setText(text);
 //   setTitle(caption);
@@ -45,12 +45,12 @@
 //   MessageBox(control->getWindow(), m_text.getString(), m_title.getString(), MB_OK | MB_ICONWARNING);
 // }
 //
-// void BalloonTip::setText(const char *text)
+// void BalloonTip::setText(const_char_pointer text)
 // {
 //   m_text.setString(text);
 // }
 //
-// void BalloonTip::setTitle(const char *title)
+// void BalloonTip::setTitle(const_char_pointer title)
 // {
 //   m_title.setString(title);
 // }
@@ -65,11 +65,11 @@
 //   title->setString(m_title.getString());
 // }
 //
-// void BalloonTip::setIconType(int iconType)
+// void BalloonTip::setIconType(::i32 iconType)
 // {
 // }
 //
-// int BalloonTip::getIconType() const
+// ::i32 BalloonTip::getIconType() const
 // {
 //   return 0;
 // }

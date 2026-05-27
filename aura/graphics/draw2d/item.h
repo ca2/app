@@ -19,7 +19,7 @@ namespace draw2d
       ::u32                         CtlID;
       ::u32                         itemID;
       ::u32                         itemAction;
-      int                           itemState;
+      ::i32                           itemState;
       ::acme::windowing::window * m_pacmewindowingwindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
       ::i32_rectangle               rcItem;

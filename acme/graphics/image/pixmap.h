@@ -29,8 +29,8 @@ struct pixmap
    struct image_header           m_header;
 #endif
 
-   int                           m_iRedLower;
-   int                           m_iScan;
+   ::i32                           m_iRedLower;
+   ::i32                           m_iScan;
    ::image32_t * m_pimage32;
    ::i32_point                   m_point;
    ::image32_t * m_pimage32Raw;
@@ -40,7 +40,7 @@ struct pixmap
    mutable bool                  m_bMapped; // optionally used by implementation
    bool                          m_bReduced; // optionally used by implementation
 
-   static int                    g_iRedLowerDefault;
+   static ::i32                    g_iRedLowerDefault;
 
 #ifdef __cplusplus
 
@@ -69,7 +69,7 @@ struct pixmap
    }
 
 
-   void initialize(const ::i32_size & size, ::image32_t * pimage32, int iScan)
+   void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
    {
 
       m_size = size;
@@ -88,7 +88,7 @@ struct pixmap
 
 
 
-   int scan_size() const { return m_iScan; }
+   ::i32 scan_size() const { return m_iScan; }
 
    inline ::image32_t * image32() { return m_pimage32; }
    inline ::image32_t * image32() const { return m_pimage32; }
@@ -106,7 +106,7 @@ struct pixmap
 
    inline bool nok() const { return !is_ok(); }
 
-   bool create(::memory& memory, const ::i32_size& size, int stride = -1);
+   bool create(::memory& memory, const ::i32_size& size, ::i32 stride = -1);
 
    inline ::i32_rectangle rectangle() const { return ::i32_rectangle(m_point, m_size); }
 
@@ -116,34 +116,34 @@ struct pixmap
    inline ::i32_point origin() const noexcept { return top_left(); }
    //inline concrete < ::i32_size > size() const noexcept { return m_size; }
    inline ::i32_size size() const noexcept { return m_size; }
-   inline int width() const noexcept { return m_size.cx; }
-   inline int height() const noexcept { return m_size.cy; }
-   inline int area() const noexcept { return m_size.area(); }
-   inline int scan_area() const noexcept { return height() * scan_size(); }
+   inline ::i32 width() const noexcept { return m_size.cx; }
+   inline ::i32 height() const noexcept { return m_size.cy; }
+   inline ::i32 area() const noexcept { return m_size.area(); }
+   inline ::i32 scan_area() const noexcept { return height() * scan_size(); }
 
 
-   inline ::color::color get_pixel(int x, int y) const
+   inline ::color::color get_pixel(::i32 x, ::i32 y) const
    {
 
       return ::image32_get_pixel(image32(), m_colorindexes, scan_size(), height(), x, y);
 
    }
 
-   inline void set_pixel(int x, int y, ::color::color color) 
+   inline void set_pixel(::i32 x, ::i32 y, ::color::color color) 
    {
 
       return ::image32_set_pixel(image32(), m_colorindexes, scan_size(), height(), x, y, color);
 
    }
 
-   inline ::color::color raw_pixel(int x, int y) const
+   inline ::color::color raw_pixel(::i32 x, ::i32 y) const
    {
 
       return ::image32_raw_pixel(image32(), m_colorindexes, scan_size(), height(), x, y);
 
    }
 
-   inline void set_raw_pixel(int x, int y, ::color::color color)
+   inline void set_raw_pixel(::i32 x, ::i32 y, ::color::color color)
    {
 
       return ::image32_set_raw_pixel(image32(), m_colorindexes, scan_size(), height(), x, y, color);
@@ -216,7 +216,7 @@ struct pixmap
 
 
 
-inline void image32_t::copy(const ::i32_size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+inline void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap * ppixmapSrc)
 {
    
    copy(size.minimum(ppixmapSrc->size()), iStrideDst, ppixmapSrc->m_pimage32, ppixmapSrc->m_iScan);

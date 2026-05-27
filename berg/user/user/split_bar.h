@@ -22,9 +22,9 @@ namespace user
       ::collection::index                         m_iIndex;
       split_layout *                m_pparent;
       ::u32                           m_dwPosition;
-      double                        m_dRate;
-      double                        m_dMinimumRate;
-      double                        m_dMaximumRate;
+      ::f64                        m_dRate;
+      ::f64                        m_dMinimumRate;
+      ::f64                        m_dMaximumRate;
       ::u32                           m_dwMaxPosition;
 
 

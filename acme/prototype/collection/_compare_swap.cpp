@@ -71,7 +71,7 @@ namespace compare_swap
    //   index iUpperBound;
    //   index iLPos, iUPos, iMPos;
 
-   //   int iCmp;
+   //   ::i32 iCmp;
    //   ::std::strong_ordering iCompare;
 
    //   if (iSize >= 2)
@@ -95,7 +95,7 @@ namespace compare_swap
    //               if (iMPos == iUPos)
    //                  break;
    //               iCmp = 0;
-   //               for (int i = 0; i < comparefunctiona.get_size(); i++)
+   //               for (::i32 i = 0; i < comparefunctiona.get_size(); i++)
    //               {
    //                  auto iCompare = comparefunctiona[i](comparearga[i], iMPos, iUPos);
    //                  if (iCompare > 0)
@@ -113,7 +113,7 @@ namespace compare_swap
    //                  iUPos--;
    //               else
    //               {
-   //                  for (int i = 0; i < swapfunctiona.get_size(); i++)
+   //                  for (::i32 i = 0; i < swapfunctiona.get_size(); i++)
    //                  {
    //                     swapfunctiona[i](swaparga[i], iMPos, iUPos);
    //                  }
@@ -128,7 +128,7 @@ namespace compare_swap
    //               if (iMPos == iLPos)
    //                  break;
    //               iCmp = 0;
-   //               for (int i = 0; i < comparefunctiona.get_size(); i++)
+   //               for (::i32 i = 0; i < comparefunctiona.get_size(); i++)
    //               {
    //                  iCompare = comparefunctiona[i](comparearga[i], iLPos, iMPos);
    //                  if (iCompare > 0)
@@ -146,7 +146,7 @@ namespace compare_swap
    //                  iLPos++;
    //               else
    //               {
-   //                  for (int i = 0; i < swapfunctiona.get_size(); i++)
+   //                  for (::i32 i = 0; i < swapfunctiona.get_size(); i++)
    //                  {
    //                     swapfunctiona[i](swaparga[i], iLPos, iMPos);
    //                  }
@@ -226,7 +226,7 @@ namespace compare_swap
 
    //      string_array_base straName;
 
-   //      for (int i = 0; i < straPath.get_size(); i++)
+   //      for (::i32 i = 0; i < straPath.get_size(); i++)
    //      {
    //         string strCode(straPath[i].name() + strSuffix);
    //         string str;
@@ -287,7 +287,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
       void_ptra comparearga;
       void_ptra swaparga;
       string_array_base straName;
-      for (int i = 0; i < straPath.size(); i++)
+      for (::i32 i = 0; i < straPath.size(); i++)
       {
          string strCode(straPath[i] + scopedstrSuffix);
          string str;

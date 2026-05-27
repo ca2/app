@@ -1,6 +1,6 @@
 // http://www.beedub.com/Sprite093/src/lib/c/etc/gcvt.c
 //#if defined(LIBC_SCCS) && !defined(lint)
-//static char sccsid[] = "@(#)gcvt.c	5.2 (Berkeley) 3/9/86";
+//static ::i8 sccsid[] = "@(#)gcvt.c	5.2 (Berkeley) 3/9/86";
 //#endif LIBC_SCCS and not lint
 
 /*
@@ -13,13 +13,13 @@
 
 #define GCVTBUFSIZE 2 * DBL_MAX_10_EXP + 33
 
-char * gcvt_internal(double number,int ndigit, char * buf)
+char_pointer gcvt_internal(::f64 number,::i32 ndigit, char_pointer buf)
 {
-   int sign,decpt;
-   char sz[GCVTBUFSIZE];
-   char *point1;
-   char *point2;
-    int i;
+   ::i32 sign,decpt;
+   ::i8 sz[GCVTBUFSIZE];
+   char_pointer point1;
+   char_pointer point2;
+    ::i32 i;
 
    ecvt_dup(sz,GCVTBUFSIZE,  number,ndigit,&decpt,&sign);
    point1 = sz;
@@ -74,10 +74,10 @@ char * gcvt_internal(double number,int ndigit, char * buf)
 
 
 
-int gcvt_dup(char *buf,int nchar,double arg,int ndigits)
+::i32 gcvt_dup(char_pointer buf,::i32 nchar,::f64 arg,::i32 ndigits)
 {
 
-   char sz[GCVTBUFSIZE + 9];
+   ::i8 sz[GCVTBUFSIZE + 9];
 
    gcvt_internal(arg,ndigits,sz);
 

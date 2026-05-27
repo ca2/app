@@ -29,7 +29,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, int iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, ::i32 iStrideParam)
    {
 
       informationf("draw2d_cairo::bitmap::CreateBitmap : (%d, %d)", cx, cy);
@@ -51,7 +51,7 @@ namespace draw2d_cairo
 
       destroy();
 
-      int iStride = stride_for_width(cx);
+      ::i32 iStride = stride_for_width(cx);
 
       m_mem.set_size(iStride * cy);
 
@@ -71,12 +71,12 @@ namespace draw2d_cairo
          if(iStrideParam != iStride)
          {
 
-            int iW = cx * 4;
+            ::i32 iW = cx * 4;
 
-            for(int i = 0; i < cy; i++)
+            for(::i32 i = 0; i < cy; i++)
             {
 
-               ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) pdata)[iStrideParam * i], iW);
+               ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) pdata)[iStrideParam * i], iW);
 
             }
 
@@ -134,7 +134,7 @@ namespace draw2d_cairo
 //
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void ** ppdata, int * pstride)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void ** ppdata, ::i32 * pstride)
    {
 
       //try
@@ -162,9 +162,9 @@ namespace draw2d_cairo
 
 #endif
 
-         int iScanWidth = -1;
+         ::i32 iScanWidth = -1;
 
-         int iSourceStride = -1;
+         ::i32 iSourceStride = -1;
 
          if(pstride)
          {
@@ -189,7 +189,7 @@ namespace draw2d_cairo
 
          }
 
-         int iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
+         ::i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
 
 #ifdef MORE_LOG
 
@@ -213,12 +213,12 @@ namespace draw2d_cairo
             if(iSourceStride != iStride)
             {
 
-               int iW = minimum(iStride, iSourceStride);
+               ::i32 iW = minimum(iStride, iSourceStride);
 
-               for(int i = 0; i < size.cy; i++)
+               for(::i32 i = 0; i < size.cy; i++)
                {
 
-                  ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iSourceStride * i], iW);
+                  ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iSourceStride * i], iW);
 
                }
 
@@ -234,7 +234,7 @@ namespace draw2d_cairo
 
          m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
-         int iSurfaceStatus = cairo_surface_status(m_psurface);
+         ::i32 iSurfaceStatus = cairo_surface_status(m_psurface);
 
          if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
          {
@@ -313,7 +313,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
    {
 
       //return false;
@@ -332,7 +332,7 @@ namespace draw2d_cairo
 
       destroy();
 
-      int iScanWidth = -1;
+      ::i32 iScanWidth = -1;
 //
 //      if(pstride)
 //      {
@@ -358,7 +358,7 @@ namespace draw2d_cairo
 
       //m_mem.m_bAligned = true;
 
-      m_mem.m_begin = (unsigned char*) ppixmap->m_pimage32Raw;
+      m_mem.m_begin = (::u8*) ppixmap->m_pimage32Raw;
       m_mem.m_end = m_mem.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy);
       m_mem.m_bOwner = false;
 
@@ -368,12 +368,12 @@ namespace draw2d_cairo
 //         if(size.cx * 4 != iStride)
 //         {
 //
-//            int iW = size.cx * 4;
+//            ::i32 iW = size.cx * 4;
 //
-//            for(int i = 0; i < size.cy; i++)
+//            for(::i32 i = 0; i < size.cy; i++)
 //            {
 //
-//               ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iW * i], iW);
+//               ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iW * i], iW);
 //
 //            }
 //
@@ -389,7 +389,7 @@ namespace draw2d_cairo
 
       m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
-      int iSurfaceStatus = cairo_surface_status(m_psurface);
+      ::i32 iSurfaceStatus = cairo_surface_status(m_psurface);
 
       if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
       {
@@ -463,7 +463,7 @@ namespace draw2d_cairo
 
 
 
-   int bitmap::stride_for_width(int iWidth)
+   ::i32 bitmap::stride_for_width(::i32 iWidth)
    {
 
       return cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iWidth);
@@ -495,7 +495,7 @@ namespace draw2d_cairo
    }
 
 
-   i32_size bitmap::SetBitmapDimension(int nWidth, int nHeight)
+   i32_size bitmap::SetBitmapDimension(::i32 nWidth, ::i32 nHeight)
    {
 
       throw ::interface_only();
@@ -536,7 +536,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int cx, int cy)
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy)
    {
 
       if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
@@ -551,7 +551,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight)
    {
 
       //return CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
@@ -564,7 +564,7 @@ namespace draw2d_cairo
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   int bitmap::GetBitmap(BITMAP* pBitMap)
+//   ::i32 bitmap::GetBitmap(BITMAP* pBitMap)
 //   {
 //
 //      return 0;
@@ -585,7 +585,7 @@ namespace draw2d_cairo
 //   }
 
 
-   void get_surface_size (cairo_surface_t * psurface, int * plongWidth, int * plongHeight)
+   void get_surface_size (cairo_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), ::system(), SYNCHRONOUS_LOCK_SUFFIX);
@@ -616,7 +616,7 @@ namespace draw2d_cairo
 
       m_psurface = (cairo_surface_t *) psurface;
 
-      get_surface_size((cairo_surface_t *) psurface, (int *) &m_size.cx, (int *)&m_size.cy);
+      get_surface_size((cairo_surface_t *) psurface, (::i32 *) &m_size.cx, (::i32 *)&m_size.cy);
 
       m_osdata[0] = m_psurface;
 

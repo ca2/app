@@ -97,7 +97,7 @@ namespace nanoui
    }
 
 
-   ::float_rectangle in_place_edit::get_outer_rectangle(in_place_edit_mapper* pmapper)
+   ::f32_rectangle in_place_edit::get_outer_rectangle(in_place_edit_mapper* pmapper)
    {
 
       return pmapper->inner_to_outer(m_rectangleInternal, this);
@@ -105,7 +105,7 @@ namespace nanoui
    }
 
 
-   ::float_rectangle in_place_edit::get_edit_rectangle(in_place_edit_mapper* pmapper)
+   ::f32_rectangle in_place_edit::get_edit_rectangle(in_place_edit_mapper* pmapper)
    {
 
       return get_outer_rectangle(pmapper);

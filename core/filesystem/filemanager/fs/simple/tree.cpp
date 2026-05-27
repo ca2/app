@@ -130,7 +130,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             //         index iNode = 0;
-            for(int i = 0 ; i < pnodeFolder->get_children_count(); i++)
+            for(::i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
 
                auto pnodeItem = pnodeFolder->child_at(i);
@@ -227,7 +227,7 @@ namespace filemanager
 
          ::pointer<::data::tree_item<::item>>tree::FindTreeItem(::i64 iFolder)
          {
-            int iUser;
+            ::i32 iUser;
 
             if (iFolder < 0)
             {
@@ -250,10 +250,10 @@ namespace filemanager
          }
 
 
-         int FolderArray::find_absolute(::i64 iFolder)
+         ::i32 FolderArray::find_absolute(::i64 iFolder)
          {
 
-            for(int i = 0; i < this->get_size(); i++)
+            for(::i32 i = 0; i < this->get_size(); i++)
             {
 
                if (this->element_at(i)->m_iFolder == iFolder)

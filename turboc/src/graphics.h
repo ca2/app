@@ -396,8 +396,8 @@ enum font_names
 
 struct arccoordstype
 {
-  int x, y;
-  int xstart, ystart, xend, yend;
+  ::i32 x, y;
+  ::i32 xstart, ystart, xend, yend;
 };
 
 struct palettetype
@@ -408,30 +408,30 @@ struct palettetype
 
 struct fillsettingstype
 {
-  int pattern;
-  int color;
+  ::i32 pattern;
+  ::i32 color;
 };
 
 struct linesettingstype
 {
-  int linestyle;
-  unsigned upattern;
-  int thickness;
+  ::i32 linestyle;
+  ::u32 upattern;
+  ::i32 thickness;
 };
 
 struct textsettingstype
 {
-  int font;
-  int direction;
-  int charsize;
-  int horiz;
-  int vert;
+  ::i32 font;
+  ::i32 direction;
+  ::i32 charsize;
+  ::i32 horiz;
+  ::i32 vert;
 };
 
 struct viewporttype
 {
-  int left, top, right, bottom;
-  int clip;
+  ::i32 left, top, right, bottom;
+  ::i32 clip;
 };
 
 /* This is the structure which holds data for the getimage/putimage
@@ -453,101 +453,101 @@ struct TcImageBuffer
 __BEGIN_DECLS
   
 //
-CLASS_DECL_TURBOC void arc (int x, int y, int stangle, int endangle, int radius);
-CLASS_DECL_TURBOC void bar (int left, int top, int right, int bottom);
-CLASS_DECL_TURBOC void bar3d (int left, int top, int right, int bottom,
-		   int depth, int topflag);
-CLASS_DECL_TURBOC void circle (int x, int y, int radius);
+CLASS_DECL_TURBOC void arc (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 radius);
+CLASS_DECL_TURBOC void bar (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
+CLASS_DECL_TURBOC void bar3d (::i32 left, ::i32 top, ::i32 right, ::i32 bottom,
+		   ::i32 depth, ::i32 topflag);
+CLASS_DECL_TURBOC void circle (::i32 x, ::i32 y, ::i32 radius);
 CLASS_DECL_TURBOC void cleardevice (void);
 CLASS_DECL_TURBOC void clearviewport (void);
 CLASS_DECL_TURBOC void closegraph (void);
-CLASS_DECL_TURBOC void detectgraph (int *graphdriver, int *graphmode);
-CLASS_DECL_TURBOC void drawpoly (int numpoints, int *polypoints);
-CLASS_DECL_TURBOC void ellipse (int x, int y, int stangle, int endangle,
-		     int xradius, int yradius);
-CLASS_DECL_TURBOC void fillellipse (int x, int y, int xradius, int yradius);
-CLASS_DECL_TURBOC void fillpoly (int numpoints, int *polypoints);
-CLASS_DECL_TURBOC void floodfill (int x, int y, int border);
+CLASS_DECL_TURBOC void detectgraph (::i32 *graphdriver, ::i32 *graphmode);
+CLASS_DECL_TURBOC void drawpoly (::i32 numpoints, ::i32 *polypoints);
+CLASS_DECL_TURBOC void ellipse (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle,
+		     ::i32 xradius, ::i32 yradius);
+CLASS_DECL_TURBOC void fillellipse (::i32 x, ::i32 y, ::i32 xradius, ::i32 yradius);
+CLASS_DECL_TURBOC void fillpoly (::i32 numpoints, ::i32 *polypoints);
+CLASS_DECL_TURBOC void floodfill (::i32 x, ::i32 y, ::i32 border);
 CLASS_DECL_TURBOC void getarccoords (struct arccoordstype *arccoords);
-CLASS_DECL_TURBOC void getaspectratio (int *xasp, int *yasp);
-CLASS_DECL_TURBOC int getbkcolor (void);
-CLASS_DECL_TURBOC int getcolor (void);
+CLASS_DECL_TURBOC void getaspectratio (::i32 *xasp, ::i32 *yasp);
+CLASS_DECL_TURBOC ::i32 getbkcolor (void);
+CLASS_DECL_TURBOC ::i32 getcolor (void);
 CLASS_DECL_TURBOC const struct palettetype *getdefaultpalette (void);
 CLASS_DECL_TURBOC const_char_pointer getdrivername (void);
-CLASS_DECL_TURBOC void getfillpattern (char *pattern);
+CLASS_DECL_TURBOC void getfillpattern (char_pointer pattern);
 CLASS_DECL_TURBOC void getfillsettings (struct fillsettingstype *fillinfo);
-CLASS_DECL_TURBOC int getgraphmode (void);
-/*CLASS_DECL_TURBOC void getimage (int left, int top, int right, int bottom, void *bitmap);
+CLASS_DECL_TURBOC ::i32 getgraphmode (void);
+/*CLASS_DECL_TURBOC void getimage (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *bitmap);
 //CLASS_DECL_TURBOC void freeimage (void *bitmap);
 CLASS_DECL_TURBOC void getlinesettings (struct linesettingstype *lineinfo);
-CLASS_DECL_TURBOC int getmaxcolor (void);
-CLASS_DECL_TURBOC int getmaxmode (void);
+CLASS_DECL_TURBOC ::i32 getmaxcolor (void);
+CLASS_DECL_TURBOC ::i32 getmaxmode (void);
 #ifdef getmaxx
 #undef getmaxx
 #endif
-CLASS_DECL_TURBOC int turboc_getmaxx (void);
+CLASS_DECL_TURBOC ::i32 turboc_getmaxx (void);
 #define getmaxx() turboc_getmaxx()
 #ifdef getmaxy
 #undef getmaxy
 #endif
-CLASS_DECL_TURBOC int turboc_getmaxy (void);
+CLASS_DECL_TURBOC ::i32 turboc_getmaxy (void);
 #define getmaxy() turboc_getmaxy()
-CLASS_DECL_TURBOC char *getmodename (int mode_number);
-CLASS_DECL_TURBOC void getmoderange (int graphdriver, int *lomode, int *himode);
-CLASS_DECL_TURBOC unsigned getpixel (int x, int y);
+CLASS_DECL_TURBOC char_pointer getmodename (::i32 mode_number);
+CLASS_DECL_TURBOC void getmoderange (::i32 graphdriver, ::i32 *lomode, ::i32 *himode);
+CLASS_DECL_TURBOC ::u32 getpixel (::i32 x, ::i32 y);
 CLASS_DECL_TURBOC void getpalette (struct palettetype *palette);
-CLASS_DECL_TURBOC int getpalettesize (void);
+CLASS_DECL_TURBOC ::i32 getpalettesize (void);
 CLASS_DECL_TURBOC void gettextsettings (struct textsettingstype *texttypeinfo);
 CLASS_DECL_TURBOC void getviewsettings (struct viewporttype *viewport);
-CLASS_DECL_TURBOC int getx (void);
-CLASS_DECL_TURBOC int gety (void);
+CLASS_DECL_TURBOC ::i32 getx (void);
+CLASS_DECL_TURBOC ::i32 gety (void);
 CLASS_DECL_TURBOC void graphdefaults (void);
 CLASS_DECL_TURBOC void TcGraphDefaults (void);
-CLASS_DECL_TURBOC int TcDefaultColors (int Pal);
-CLASS_DECL_TURBOC char *grapherrormsg (int errorcode);
-CLASS_DECL_TURBOC void _graphfreemem (void *ptr, unsigned i32_size);
-CLASS_DECL_TURBOC void *_graphgetmem (unsigned i32_size);
-CLASS_DECL_TURBOC int graphresult (void);
-CLASS_DECL_TURBOC unsigned imagesize (int left, int top, int right, int bottom);
-CLASS_DECL_TURBOC void initgraph (int *graphdriver, int *graphmode, char *pathtodriver);
-CLASS_DECL_TURBOC int installuserdriver (char *name, int (*detect) (void));
-CLASS_DECL_TURBOC int installuserfont (char *name);
-CLASS_DECL_TURBOC void line (int x1, int y1, int x2, int y2);
-CLASS_DECL_TURBOC void linerel (int Δx, int Δy);
-CLASS_DECL_TURBOC void lineto (int x, int y);
-CLASS_DECL_TURBOC void moverel (int Δx, int Δy);
-CLASS_DECL_TURBOC void moveto (int x, int y);
-CLASS_DECL_TURBOC void outtext (char *textstring);
-CLASS_DECL_TURBOC void outtextxy (int x, int y, char *textstring);
-CLASS_DECL_TURBOC void pieslice (int x, int y, int stangle, int endangle, int radius);
-/*CLASS_DECL_TURBOC void putimage (int left, int top, void *bitmap, int op);
-CLASS_DECL_TURBOC void putpixel (int x, int y, int color);
-CLASS_DECL_TURBOC void i32_rectangle (int left, int top, int right, int bottom);
-CLASS_DECL_TURBOC int registerbgidriver (void (*driver) (void));
-CLASS_DECL_TURBOC int registerbgifont (void (*font) (void));
+CLASS_DECL_TURBOC ::i32 TcDefaultColors (::i32 Pal);
+CLASS_DECL_TURBOC char_pointer grapherrormsg (::i32 errorcode);
+CLASS_DECL_TURBOC void _graphfreemem (void *ptr, ::u32 i32_size);
+CLASS_DECL_TURBOC void *_graphgetmem (::u32 i32_size);
+CLASS_DECL_TURBOC ::i32 graphresult (void);
+CLASS_DECL_TURBOC ::u32 imagesize (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
+CLASS_DECL_TURBOC void initgraph (::i32 *graphdriver, ::i32 *graphmode, char_pointer pathtodriver);
+CLASS_DECL_TURBOC ::i32 installuserdriver (char_pointer name, ::i32 (*detect) (void));
+CLASS_DECL_TURBOC ::i32 installuserfont (char_pointer name);
+CLASS_DECL_TURBOC void line (::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2);
+CLASS_DECL_TURBOC void linerel (::i32 Δx, ::i32 Δy);
+CLASS_DECL_TURBOC void lineto (::i32 x, ::i32 y);
+CLASS_DECL_TURBOC void moverel (::i32 Δx, ::i32 Δy);
+CLASS_DECL_TURBOC void moveto (::i32 x, ::i32 y);
+CLASS_DECL_TURBOC void outtext (char_pointer textstring);
+CLASS_DECL_TURBOC void outtextxy (::i32 x, ::i32 y, char_pointer textstring);
+CLASS_DECL_TURBOC void pieslice (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 radius);
+/*CLASS_DECL_TURBOC void putimage (::i32 left, ::i32 top, void *bitmap, ::i32 op);
+CLASS_DECL_TURBOC void putpixel (::i32 x, ::i32 y, ::i32 color);
+CLASS_DECL_TURBOC void i32_rectangle (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
+CLASS_DECL_TURBOC ::i32 registerbgidriver (void (*driver) (void));
+CLASS_DECL_TURBOC ::i32 registerbgifont (void (*font) (void));
 CLASS_DECL_TURBOC void restorecrtmode (void);
-CLASS_DECL_TURBOC void sector (int X, int Y, int StAngle, int EndAngle,
-		    int XRadius, int YRadius);
-CLASS_DECL_TURBOC void setactivepage (int page);
+CLASS_DECL_TURBOC void sector (::i32 X, ::i32 Y, ::i32 StAngle, ::i32 EndAngle,
+		    ::i32 XRadius, ::i32 YRadius);
+CLASS_DECL_TURBOC void setactivepage (::i32 page);
 CLASS_DECL_TURBOC void setallpalette (struct palettetype *palette);
-CLASS_DECL_TURBOC void setaspectratio (int xasp, int yasp);
-CLASS_DECL_TURBOC void setbkcolor (int color);
-CLASS_DECL_TURBOC void setcolor (int color);
-CLASS_DECL_TURBOC void setfillpattern (char *upattern, int color);
-CLASS_DECL_TURBOC void setfillstyle (int pattern, int color);
-CLASS_DECL_TURBOC unsigned setgraphbufsize (unsigned bufsize);
-CLASS_DECL_TURBOC void setgraphmode (int mode);
-CLASS_DECL_TURBOC void setlinestyle (int linestyle, unsigned upattern, int thickness);
-CLASS_DECL_TURBOC void setpalette (int colornum, int color);
-CLASS_DECL_TURBOC void setrgbpalette (int colornum, int red, int green, int blue);
-CLASS_DECL_TURBOC void settextjustify (int horiz, int vert);
-CLASS_DECL_TURBOC void settextstyle (int font, int direction, int charsize);
-CLASS_DECL_TURBOC void setusercharsize (int multx, int divx, int multy, int divy);
-CLASS_DECL_TURBOC void setviewport (int left, int top, int right, int bottom, int clip);
-CLASS_DECL_TURBOC void setvisualpage (int page);
-CLASS_DECL_TURBOC void setwritemode (int mode);
-CLASS_DECL_TURBOC int textheight (char *textstring);
-CLASS_DECL_TURBOC int textwidth (char *textstring);
+CLASS_DECL_TURBOC void setaspectratio (::i32 xasp, ::i32 yasp);
+CLASS_DECL_TURBOC void setbkcolor (::i32 color);
+CLASS_DECL_TURBOC void setcolor (::i32 color);
+CLASS_DECL_TURBOC void setfillpattern (char_pointer upattern, ::i32 color);
+CLASS_DECL_TURBOC void setfillstyle (::i32 pattern, ::i32 color);
+CLASS_DECL_TURBOC ::u32 setgraphbufsize (::u32 bufsize);
+CLASS_DECL_TURBOC void setgraphmode (::i32 mode);
+CLASS_DECL_TURBOC void setlinestyle (::i32 linestyle, ::u32 upattern, ::i32 thickness);
+CLASS_DECL_TURBOC void setpalette (::i32 colornum, ::i32 color);
+CLASS_DECL_TURBOC void setrgbpalette (::i32 colornum, ::i32 red, ::i32 green, ::i32 blue);
+CLASS_DECL_TURBOC void settextjustify (::i32 horiz, ::i32 vert);
+CLASS_DECL_TURBOC void settextstyle (::i32 font, ::i32 direction, ::i32 charsize);
+CLASS_DECL_TURBOC void setusercharsize (::i32 multx, ::i32 divx, ::i32 multy, ::i32 divy);
+CLASS_DECL_TURBOC void setviewport (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, ::i32 clip);
+CLASS_DECL_TURBOC void setvisualpage (::i32 page);
+CLASS_DECL_TURBOC void setwritemode (::i32 mode);
+CLASS_DECL_TURBOC ::i32 textheight (char_pointer textstring);
+CLASS_DECL_TURBOC ::i32 textwidth (char_pointer textstring);
 
 // Non-user-callable functions.  Really, just names for use as function
 // parameters in the registerbgidriver and registerbgifont functions.
@@ -567,16 +567,16 @@ __END_DECLS
 // Variables.
 #ifdef TURBOC_VARIABLES_C
 #else // TURBOC_VARIABLES_C
-extern volatile int TcGraphicsInitialized;
-extern int TcCurrentGraphMode, TcGraphResult;
-extern int TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
-//extern int TcDriver, TcVisualPage, TcActivePage;
-extern int TcForegroundColor, TcBackgroundColor, TcDriver;
-extern int TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
-extern int Tcx, Tcy, TcViewMaxx, TcViewMaxy;
-extern int TcLastArcX, TcLastArcY, TcLastStangle;
-extern int TcLastEndangle, TcLastRadius;
-extern int TcWritemode, TcTextHoriz, TcTextVert;
+extern volatile ::i32 TcGraphicsInitialized;
+extern ::i32 TcCurrentGraphMode, TcGraphResult;
+extern ::i32 TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
+//extern ::i32 TcDriver, TcVisualPage, TcActivePage;
+extern ::i32 TcForegroundColor, TcBackgroundColor, TcDriver;
+extern ::i32 TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
+extern ::i32 Tcx, Tcy, TcViewMaxx, TcViewMaxy;
+extern ::i32 TcLastArcX, TcLastArcY, TcLastStangle;
+extern ::i32 TcLastEndangle, TcLastRadius;
+extern ::i32 TcWritemode, TcTextHoriz, TcTextVert;
 extern struct linesettingstype TcLinestyle;
 extern RgbStruct TcColors[256];
 extern const RgbStruct TcColors2[2];
@@ -594,10 +594,10 @@ extern const struct palettetype TcDefaultPaletteC3;
 extern const struct palettetype TcDefaultPalette4;
 extern const struct palettetype TcDefaultPalette16;
 extern struct palettetype TcCurrentPalette;
-extern int TcTextFont, TcTextDirection, TcTextCharsize;
-extern int TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
-extern int TcFillStyle, TcFillColor;
-extern char TcUserFillPattern[8];
+extern ::i32 TcTextFont, TcTextDirection, TcTextCharsize;
+extern ::i32 TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
+extern ::i32 TcFillStyle, TcFillColor;
+extern ::i8 TcUserFillPattern[8];
 #ifdef WITH_X
 //extern struct TcPixmapPoolRecord TcPixmapPool[MAX_TCIMAGEBUFS];
 //extern Display *TcDisplay;

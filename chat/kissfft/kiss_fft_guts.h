@@ -13,7 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 /* kiss_fft.h
-   defines kiss_fft_scalar as either short or a double type
+   defines kiss_fft_scalar as either ::i16 or a ::f64 type
    and defines
    typedef struct { kiss_fft_scalar r; kiss_fft_scalar i; }kiss_fft_cpx; */
 #include "kiss_fft.h"
@@ -26,9 +26,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  */
 
 struct kiss_fft_state{
-    int nfft;
-    int inverse;
-    int factors[2*MAXFACTORS];
+    ::i32 nfft;
+    ::i32 inverse;
+    ::i32 factors[2*MAXFACTORS];
     kiss_fft_cpx twiddles[1];
 };
 
@@ -44,7 +44,7 @@ struct kiss_fft_state{
 #ifdef FIXED_POINT
 
 #   define smul(a,b) ( (long)(a)*(b) )
-#   define sround( x )  (short)( ( (x) + (1<<14) ) >>15 )
+#   define sround( x )  (::i16)( ( (x) + (1<<14) ) >>15 )
 
 #   define S_MUL(a,b) sround( smul(a,b) )
 
@@ -80,8 +80,8 @@ struct kiss_fft_state{
 #define C_SUBFROM( res , a)\
     do {    (res).r -= (a).r;  (res).i -= (a).i;  }while(0)
 
-void kf_cexp(kiss_fft_cpx * x,double phase); /* returns e ** (j*phase)   */
+void kf_cexp(kiss_fft_cpx * x,::f64 phase); /* returns e ** (j*phase)   */
 
 /* a debugging function */
 #define pcpx(ca)\
-    fprintf(stderr,"%g + %gi\n",(double)((ca)->r),(double)((ca)->i) )
+    fprintf(stderr,"%g + %gi\n",(::f64)((ca)->r),(::f64)((ca)->i) )

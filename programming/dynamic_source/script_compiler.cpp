@@ -948,7 +948,7 @@ namespace dynamic_source
 
          }
 
-         int iObjFileMinimumByteCount = 1024;
+         ::i32 iObjFileMinimumByteCount = 1024;
 
          if (process->m_exitstatus.m_iExitCode != 0 || file()->length(pathObjFile) < iObjFileMinimumByteCount)
          {
@@ -960,7 +960,7 @@ namespace dynamic_source
             //straLog.add_lines(strLog);
             //for(auto & strLine : straLog)
             //{
-            //   int iColCount = 80;
+            //   ::i32 iColCount = 80;
             //   for (::collection::index i = 0; i < strLine.length(); i += iColCount)
             //   {
             //      if (strLine.length() < i + iColCount + 10)
@@ -1204,7 +1204,7 @@ namespace dynamic_source
 
       string strSource;
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
       while ((strSource = file()->as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::task_get_run())
       {
@@ -1236,7 +1236,7 @@ namespace dynamic_source
       strDest = "";
       strDest += "#include \"netnode_dynamic_source_script_framework.h\"\r\n";
       //strDest += "#include \"11ca2_account.h\"\r\n";
-      //for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
+      //for(::i32 i = 0; i < m_straLibIncludePath.get_count(); i++)
       //{
       //   string str;
       //   str = m_straLibIncludePath[i].relative();
@@ -1338,7 +1338,7 @@ namespace dynamic_source
          if (iLastEnd < 0)
             break;
          iLastEnd += 2;
-         int iShift = 0;
+         ::i32 iShift = 0;
          if (strSource.substr(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          strDest += cppize2(strSource.substr(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
@@ -1351,7 +1351,7 @@ namespace dynamic_source
       strDest += "}\r\n";
 
       //string strId;
-      //for(int i = 0; i < straId.get_size(); i++)
+      //for(::i32 i = 0; i < straId.get_size(); i++)
       //{
       //   strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       //}
@@ -1364,7 +1364,7 @@ namespace dynamic_source
       strCppPath.find_replace("\\", "\\\\");
 
       //      strDest += " \r\n \
-      //         extern \"C\" int APIENTRY \r\n \
+      //         extern \"C\" ::i32 APIENTRY \r\n \
       //         DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved) \r\n \
       //      { \r\n \
       //\r\n  \
@@ -1416,7 +1416,7 @@ namespace dynamic_source
 
       if (m_straSync.get_count() > 1)
       {
-         for (int i = 1; i < m_straSync.get_count(); i++)
+         for (::i32 i = 1; i < m_straSync.get_count(); i++)
          {
 
             ::property_set set;
@@ -1515,7 +1515,7 @@ namespace dynamic_source
 
       directory()->enumerate(l.m_straLibSourcePath);
 
-      for (int i = 0; i < l.m_straLibSourcePath.get_size();)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
          if (l.m_straLibSourcePath[i].final_extension() != "ds" && l.m_straLibSourcePath[i].final_extension() != "cpp")
          {
@@ -1528,7 +1528,7 @@ namespace dynamic_source
       }
       l.m_straLibCppPath.erase_all();
       ::file::path strLibRel = ::file::path("dynamic_source/library") / strName;
-      for (int i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          string str = l.m_straLibSourcePath[i].relative();
          str.case_insensitive_ends_eat(".ds");
@@ -1539,7 +1539,7 @@ namespace dynamic_source
       l.m_straLibIncludePath.clear_results();
       l.m_straLibIncludePath.set_listing(m_pscriptmanager2->m_pathNetseedDsCa2Path / "library" / strName, e_depth_recursively);
       directory()->enumerate(l.m_straLibIncludePath);
-      for (int i = 0; i < l.m_straLibIncludePath.get_size();)
+      for (::i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if (l.m_straLibIncludePath[i].final_extension() != "h"
             || ::str::case_insensitive_find(l.m_straLibIncludePath[i], "\\.svn\\") >= 0
@@ -1553,7 +1553,7 @@ namespace dynamic_source
          }
       }
       l.m_straLibHppPath.erase_all();
-      for (int i = 0; i < l.m_straLibIncludePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();
          str.case_insensitive_ends_eat(".ds");
@@ -1577,7 +1577,7 @@ namespace dynamic_source
       directory()->create(l.m_strLibraryPath.folder());
       directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_library/library");
 
-      for (int i = 0; i < l.m_straLibIncludePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          cppize(l.m_straLibIncludePath[i], l.m_straLibHppPath[i], cpptype_include);
       }
@@ -1615,7 +1615,7 @@ namespace dynamic_source
 
 #endif
 
-      for (int i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          if (l.m_straLibSourcePath[i].final_extension() == "cpp")
          {
@@ -1781,7 +1781,7 @@ namespace dynamic_source
       }
 
       string strObjs;
-      for (int i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
@@ -1944,7 +1944,7 @@ namespace dynamic_source
       {
          strDest += "#include \"netnode_dynamic_source_script.h\"\r\n";
          //strDest += "#include \"11ca2_account.h\"\r\n";
-         //for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
+         //for(::i32 i = 0; i < m_straLibIncludePath.get_count(); i++)
          //{
          //   string str;
          //   str = m_straLibIncludePath[i].relative();
@@ -1973,7 +1973,7 @@ namespace dynamic_source
          if (iLastEnd < 0)
             break;
          iLastEnd += 2;
-         int iShift = 0;
+         ::i32 iShift = 0;
          if (strSource.substr(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          bCode = true;
@@ -1987,7 +1987,7 @@ namespace dynamic_source
       strDest += "}\r\n";*/
 
       //string strId;
-      //for(int i = 0; i < straId.get_size(); i++)
+      //for(::i32 i = 0; i < straId.get_size(); i++)
       //{
       //   strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       //}
@@ -2256,7 +2256,7 @@ namespace dynamic_source
             {
                if (bLow)
                {
-                  strResult += (char)ch2.ansi_lower();
+                  strResult += (::i8)ch2.ansi_lower();
                }
                else
                {
@@ -2654,7 +2654,7 @@ namespace dynamic_source
                }
                if (bLow)
                {
-                  strResult += (char) ch2.ansi_lower();
+                  strResult += (::i8) ch2.ansi_lower();
                }
                else
                {
@@ -2736,7 +2736,7 @@ namespace dynamic_source
       strBody += "// folder and subfolders!\r\n";
       strBody += "\r\n";
       strBody += "?>\r\n\r\n\r\n";
-      for (int i = 0; i < stra.get_size(); i++)
+      for (::i32 i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
          if (case_insensitive_string_begins(str, m_pscriptmanager2->m_pathNetseedDsCa2Path / "core/persistent")
@@ -2884,7 +2884,7 @@ namespace dynamic_source
 
    //   single_lock slLibrary(m_pmutexLibrary, true);
 
-   //   for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
+   //   for(::i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
    //   {
 
    //      //FILETIME ftCreation;
@@ -2932,7 +2932,7 @@ namespace dynamic_source
       m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
       m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
 
-      for (int i = 0; i < m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
 
          struct stat st;
@@ -3019,7 +3019,7 @@ namespace dynamic_source
 
       }
 
-      for (int i = 0; i < straFile.get_count(); i++)
+      for (::i32 i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
          if (::str::case_insensitive_find(".svn", strFile) >= 0 || !case_insensitive_string_ends(strFile, ".txt"))
@@ -3028,7 +3028,7 @@ namespace dynamic_source
          string_array_base straLine;
          straLine.explode("\r\n", strFile);
          string strExtra;
-         for (int j = 0; j < straLine.get_count(); j++)
+         for (::i32 j = 0; j < straLine.get_count(); j++)
          {
             string strLine = straLine[j];
             auto range = strLine();

@@ -5,7 +5,7 @@
 // //
 // //extern "C"
 // //{
-// //GLAPI int gladLoadEGL(void);
+// //GLAPI ::i32 gladLoadEGL(void);
 // //
 // //} // extern "C"
 // //
@@ -119,12 +119,12 @@
 // ////      //printf("Loaded EGL %d.%d after reload.\n",
 // ////        //     GLAD_VERSION_MAJOR(egl_version), GLAD_VERSION_MINOR(egl_version));
 // //
-// //      int iConfigCount = 0;
+// //      ::i32 iConfigCount = 0;
 // //
 // //      if (!eglChooseConfig(m_display, attribList, &m_config, 1, &iConfigCount))
 // //      {
 // //
-// //         int iError = eglGetError();
+// //         ::i32 iError = eglGetError();
 // //
 // //         const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 // //
@@ -264,12 +264,12 @@
 // //
 // //      eglBindAPI(EGL_OPENGL_ES_API);
 // //
-// //      int iConfigCount = 0;
+// //      ::i32 iConfigCount = 0;
 // //
 // //      if (!eglChooseConfig(m_display, attribList, &m_config, 1, &iConfigCount))
 // //      {
 // //
-// //         int iError = eglGetError();
+// //         ::i32 iError = eglGetError();
 // //
 // //         const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 // //
@@ -408,12 +408,12 @@
 //
 //       eglBindAPI(EGL_OPENGL_ES_API);
 //
-//       int iConfigCount = 0;
+//       ::i32 iConfigCount = 0;
 //
 //       if (!eglChooseConfig(m_display, attribList, &m_config, 1, &iConfigCount))
 //       {
 //
-//          int iError = eglGetError();
+//          ::i32 iError = eglGetError();
 //
 //          const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 //
@@ -593,13 +593,13 @@
 //       if(iFindPrecision >= 0)
 //       {
 //
-//          stra[iFindPrecision] = "precision highp float;";
+//          stra[iFindPrecision] = "precision highp ::f32;";
 //
 //       }
 //       else
 //       {
 //
-//          stra.insert_at(1, "precision highp float;");
+//          stra.insert_at(1, "precision highp ::f32;");
 //
 //          iFindPrecision = 1;
 //
@@ -684,20 +684,20 @@
 //          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //          {
-//             float fOpacity = 0.5;
-//             float fRed = 0.5;
-//             float fGreen = 0.75;
-//             float fBlue = 0.95;
-//             auto f32Opacity = (float)fOpacity;
-//             auto f32Red = (float)(fRed * fOpacity);
-//             auto f32Green = (float)(fGreen * fOpacity);
-//             auto f32Blue = (float)(fBlue * fOpacity);
+//             ::f32 fOpacity = 0.5;
+//             ::f32 fRed = 0.5;
+//             ::f32 fGreen = 0.75;
+//             ::f32 fBlue = 0.95;
+//             auto f32Opacity = (::f32)fOpacity;
+//             auto f32Red = (::f32)(fRed * fOpacity);
+//             auto f32Green = (::f32)(fGreen * fOpacity);
+//             auto f32Blue = (::f32)(fBlue * fOpacity);
 //             ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //          }
 //
-//          ::double_polygon polygon;
+//          ::f64_polygon polygon;
 //
-//          ::double_rectangle rectangle(300, 300, 400, 400);
+//          ::f64_rectangle rectangle(300, 300, 400, 400);
 //
 //          polygon = rectangle;
 //

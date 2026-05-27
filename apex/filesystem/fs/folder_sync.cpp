@@ -147,7 +147,7 @@ namespace fs
    }*/
 
 
-   int folder_sync::is_dir(const ::file::path& path)
+   ::i32 folder_sync::is_dir(const ::file::path& path)
    {
 
       auto pathLocal(path);
@@ -198,7 +198,7 @@ namespace fs
    //}
 
 
-   //string folder_sync::eat_end_level(const ::file::path & path, int iCount)
+   //string folder_sync::eat_end_level(const ::file::path & path, ::i32 iCount)
    //{
 
    //   string strPath(scopedstrPath);
@@ -527,7 +527,7 @@ namespace fs
 
 
    void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName,
-                                                int iMinimumSize,
+                                                ::i32 iMinimumSize,
                                                 const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
@@ -842,7 +842,7 @@ namespace fs
 
    ::file::path folder_sync::_cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
       const ::file::path& pathCloudFile, const ::scoped_string& scopedstrFileExtension,
-      int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+      ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       return {};
@@ -852,7 +852,7 @@ namespace fs
 
    void folder_sync::_cloud_ensure_files_are_up_to_date_and_present(
       const ::file::path& pathFolder, const ::string_array_base & stra,
-      int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+      ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
 

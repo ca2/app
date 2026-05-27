@@ -77,14 +77,14 @@ namespace platform
       //::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
 
       ::int_sz *                                      m_pintstringLanguageResourceMap;
-      int                                             m_iMatterFromHttpCache;
+      ::i32                                             m_iMatterFromHttpCache;
 
       const_char_pointer m_pszMain;
 
       bool                                                  m_bAcmeSystemDarkMode;
       class ::time                                          m_timeDarkMode;
       ::color::color                                        m_colorBackground;
-      double                                                m_dLuminance;
+      ::f64                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
 
       ::pointer < ::micro::user >                           m_pmicrouser;
@@ -99,7 +99,7 @@ namespace platform
       //class ::time                                  m_timeStart;
       class ::time                                    m_timeAfterApplicationFirstRequest;
 
-      //int                                           m_iExitCode = 0;
+      //::i32                                           m_iExitCode = 0;
       enum_trace_level                                m_etracelevelMinimum;
       ::pointer < ::platform::system_factory >        m_psystemfactory;
       // END FROM ::main (Now main2)
@@ -416,7 +416,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
+      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -507,7 +507,7 @@ namespace platform
       //virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget);
 
 
-      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
+      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 
 
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
@@ -622,17 +622,17 @@ namespace platform
       virtual void check_exit();
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle);
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
       virtual ::pointer<::regular_expression::context> get_pcre_context();
-      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual ::lresult system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam);
+      virtual ::lresult system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam);
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -744,7 +744,7 @@ namespace platform
       virtual ::file::path local_get_matter_path();
       virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter);
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      virtual void install_progress_add_up(::i32 iAddUp = 1);
 
 
       virtual ::string get_application_server_name();
@@ -752,7 +752,7 @@ namespace platform
 
       virtual ::color::color background_color() const;
 
-      virtual double luminance() const;
+      virtual ::f64 luminance() const;
 
       virtual void set_background_color(const ::color::color & color);
 
@@ -762,9 +762,9 @@ namespace platform
       virtual void set_dark_mode_time(const class ::time & time);
       virtual void on_application_dark_mode_change();
 
-      //      virtual int get_simple_ui_darkness();
+      //      virtual ::i32 get_simple_ui_darkness();
 
-      //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+      //      virtual void set_simple_ui_darkness(::i32 iWeatherDarkness);
 
       virtual void set_dark_mode(bool bDark);
 

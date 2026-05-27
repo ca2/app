@@ -119,7 +119,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      unsigned char bAlpha = (unsigned char) (128.0 * get_alpha());
+      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
@@ -181,11 +181,11 @@ namespace user
 
       prectangle->bottom = rectangleX.bottom;
 
-      double dWidth = ((double)rectangleX.width()) / (iMax - iMin);
+      ::f64 dWidth = ((::f64)rectangleX.width()) / (iMax - iMin);
 
-      prectangle->left = (int) (dWidth * (iStep - iMin));
+      prectangle->left = (::i32) (dWidth * (iStep - iMin));
 
-      prectangle->right = (int) (dWidth * (iStep - iMin + 1));
+      prectangle->right = (::i32) (dWidth * (iStep - iMin + 1));
 
 
 
@@ -200,7 +200,7 @@ namespace user
 
       GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleX);
 
-      int halfm = (prectangle->right - prectangle->left - 2) / 2;
+      ::i32 halfm = (prectangle->right - prectangle->left - 2) / 2;
 
       prectangle->left +=  halfm;
 

@@ -25,72 +25,72 @@ namespace nano2d
 
 
 		virtual void begin_path();
-		virtual void path_winding(int dir);
+		virtual void path_winding(::i32 dir);
 		virtual void close_path();
 
 
-		virtual void translate(float x, float y);
-		virtual void rotate(float angle);
+		virtual void translate(::f32 x, ::f32 y);
+		virtual void rotate(::f32 angle);
 
 
-		virtual void rounded_rect(float x, float y, float w, float h, float r);
+		virtual void rounded_rect(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r);
 
 		virtual void fill();
 		virtual void stroke();
 
 
-		virtual ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey,
+		virtual ::nano2d::paint linear_gradient(::f32 sx, ::f32 sy, ::f32 ex, ::f32 ey,
 			::nano2d::color icol, ::nano2d::color ocol);
-		virtual ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f,
+		virtual ::nano2d::paint box_gradient(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r, ::f32 f,
 			::nano2d::color icol, ::nano2d::color ocol);
-		virtual ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr,
+		virtual ::nano2d::paint radial_gradient(::f32 cx, ::f32 cy, ::f32 inr, ::f32 outr,
 			::nano2d::color icol, ::nano2d::color ocol);
-		virtual ::nano2d::paint image_pattern(float cx, float cy, float w, float h, float angle,
-			int image, float alpha);
+		virtual ::nano2d::paint image_pattern(::f32 cx, ::f32 cy, ::f32 w, ::f32 h, ::f32 angle,
+			::i32 image, ::f32 alpha);
 
 
 		virtual void font_face(const_char_pointer font);
-		virtual void font_size(float size);
-      virtual void font_blur(float blur);
+		virtual void font_size(::f32 size);
+      virtual void font_blur(::f32 blur);
 		virtual void fill_color(::nano2d::color color);
 		virtual void stroke_color(::nano2d::color color);
-      virtual void global_alpha(float alpha);
-		virtual void stroke_width(float width);
-		virtual void text_align(int align);
+      virtual void global_alpha(::f32 alpha);
+		virtual void stroke_width(::f32 width);
+		virtual void text_align(::i32 align);
 
 
 		virtual void fill_paint(::nano2d::paint paint);
 		virtual void stroke_paint(::nano2d::paint paint);
 
-		virtual void scissor(float x, float y, float w, float h);
-		virtual void intersect_scissor(float x, float y, float w, float h);
+		virtual void scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h);
+		virtual void intersect_scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h);
 		virtual void reset_scissor();
 
 
 
-		virtual float text(float x, float y, const_char_pointer string, const_char_pointer end);
-		virtual int text_glyph_positions(float x, float y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, int maxPositions);
-		virtual float text_bounds(float x, float y, const_char_pointer string, const_char_pointer end, float * bounds);
-      virtual void text_line_height(float lineHeight);
+		virtual ::f32 text(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end);
+		virtual ::i32 text_glyph_positions(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, ::i32 maxPositions);
+		virtual ::f32 text_bounds(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end, ::f32 * bounds);
+      virtual void text_line_height(::f32 lineHeight);
 
 
-		virtual void move_to(float x, float y);
-		virtual void line_to(float x, float y);
+		virtual void move_to(::f32 x, ::f32 y);
+		virtual void line_to(::f32 x, ::f32 y);
 
 
-		virtual void rect(float x, float y, float w, float h);
-		virtual void ellipse(float cx, float cy, float rx, float ry);
-		virtual void circle(float cx, float cy, float r);
-		virtual void arc(float cx, float cy, float r, float a0, float a1, int dir);
+		virtual void rect(::f32 x, ::f32 y, ::f32 w, ::f32 h);
+		virtual void ellipse(::f32 cx, ::f32 cy, ::f32 rx, ::f32 ry);
+		virtual void circle(::f32 cx, ::f32 cy, ::f32 r);
+		virtual void arc(::f32 cx, ::f32 cy, ::f32 r, ::f32 a0, ::f32 a1, ::i32 dir);
 
 
-		virtual int create_image(const_char_pointer filename, int imageFlags);
-		virtual int create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan);
-		virtual void image_size(int image, int * w, int * h);
+		virtual ::i32 create_image(const_char_pointer pszFilename, ::i32 imageFlags);
+		virtual ::i32 create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan);
+		virtual void image_size(::i32 image, ::i32 * w, ::i32 * h);
 
 
-		virtual void update_image(int image, const void * data);
-		virtual void _draw_image(float x, float y, float w, float h, ::image::image *pimage);
+		virtual void update_image(::i32 image, const void * data);
+		virtual void _draw_image(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::image::image *pimage);
 
 	};
 

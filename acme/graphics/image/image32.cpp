@@ -7,7 +7,7 @@
 
 
 
-//void image32_t::copy(const ::i32_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(const ::i32_rectangle & rectangle, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 //{
 //
 //   return copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
@@ -17,7 +17,7 @@
 
 
 
-void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::vertical_swap_copy(::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
    ::image32_t * pimage32Dst = this;
@@ -31,14 +31,14 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
 
       }
 
-      int wsrc = iStrideSrc;
-      int wdst = iStrideDst;
-      int cw = cxParam * sizeof(::image32_t);
+      ::i32 wsrc = iStrideSrc;
+      ::i32 wdst = iStrideDst;
+      ::i32 cw = cxParam * sizeof(::image32_t);
 
-      unsigned char * psrc = (unsigned char*)pimage32Src;
-      unsigned char * pdst = ((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
+      ::u8 * psrc = (::u8*)pimage32Src;
+      ::u8 * pdst = ((::u8 *)(pimage32Dst)+iStrideDst * (cyParam - 1));
 
-      for (int i = 0; i < cyParam; i++)
+      for (::i32 i = 0; i < cyParam; i++)
       {
 
          ::memory_copy(pdst, psrc, cw);
@@ -59,7 +59,7 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
 }
 
 
-void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::vertical_swap_copy_swap_red_blue( ::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
    ::image32_t * pimage32Dst = this;
@@ -74,21 +74,21 @@ void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int 
 
       }
 
-      int wsrc = iStrideSrc / sizeof(::image32_t);
-      int wdst = iStrideDst / sizeof(::image32_t);
-      int cw = cxParam * sizeof(::image32_t);
+      ::i32 wsrc = iStrideSrc / sizeof(::image32_t);
+      ::i32 wdst = iStrideDst / sizeof(::image32_t);
+      ::i32 cw = cxParam * sizeof(::image32_t);
 
       auto * psrc = pimage32Src;
-      auto * pdst = (::image32_t *)((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
+      auto * pdst = (::image32_t *)((::u8 *)(pimage32Dst)+iStrideDst * (cyParam - 1));
 
-      for (int i = 0; i < cyParam; i++)
+      for (::i32 i = 0; i < cyParam; i++)
       {
 
-         unsigned char * ps = (unsigned char *)psrc;
+         ::u8 * ps = (::u8 *)psrc;
 
-         unsigned char * pd = (unsigned char *)pdst;
+         ::u8 * pd = (::u8 *)pdst;
 
-         for (int j = 0; j < cxParam; j++)
+         for (::i32 j = 0; j < cxParam; j++)
          {
 
             pd[0] = ps[2];
@@ -119,7 +119,7 @@ void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int 
 }
 
 
-//void image32_t::copy(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 //{
 //
 //   ::image32_t * pimage32Dst = this;
@@ -158,13 +158,13 @@ void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int 
 //      else
 //      {
 //
-//         int cw = cxParam * sizeof(::image32_t);
+//         ::i32 cw = cxParam * sizeof(::image32_t);
 //
-//         auto psrc = (unsigned char *)pimage32Src;
+//         auto psrc = (::u8 *)pimage32Src;
 //
-//         auto pdst = (unsigned char *)pimage32Dst;
+//         auto pdst = (::u8 *)pimage32Dst;
 //
-//         for (int i = 0; i < cyParam; i++)
+//         for (::i32 i = 0; i < cyParam; i++)
 //         {
 //
 //            ::memory_copy(pdst, psrc, cw);
@@ -186,7 +186,7 @@ void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int 
 //}
 
 
-void image32_t::copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::copy_swap_red_blue( ::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
 
@@ -215,23 +215,23 @@ void image32_t::copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, co
 
       }
 
-      int wsrc = iStrideSrc / sizeof(::image32_t);
-      int wdst = iStrideDst / sizeof(::image32_t);
-      int cw = cxParam * sizeof(::image32_t);
+      ::i32 wsrc = iStrideSrc / sizeof(::image32_t);
+      ::i32 wdst = iStrideDst / sizeof(::image32_t);
+      ::i32 cw = cxParam * sizeof(::image32_t);
 
 
       auto * psrc = pimage32Src;
       auto * pdst = pimage32Dst;
 
 
-      for (int i = 0; i < cyParam; i++)
+      for (::i32 i = 0; i < cyParam; i++)
       {
 
-         unsigned char * ps = (unsigned char *)psrc;
+         ::u8 * ps = (::u8 *)psrc;
 
-         unsigned char * pd = (unsigned char *)pdst;
+         ::u8 * pd = (::u8 *)pdst;
 
-         for (int j = 0; j < cxParam; j++)
+         for (::i32 j = 0; j < cxParam; j++)
          {
 
             pd[0] = ps[2];
@@ -263,7 +263,7 @@ void image32_t::copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, co
 }
 
 
-void image32_t::swap_red_blue(int cxParam, int cyParam, int iStride)
+void image32_t::swap_red_blue(::i32 cxParam, ::i32 cyParam, ::i32 iStride)
 {
 
 
@@ -279,12 +279,12 @@ void image32_t::swap_red_blue(int cxParam, int cyParam, int iStride)
 
       auto *p = this;
 
-      for (int i = 0; i < cyParam; i++)
+      for (::i32 i = 0; i < cyParam; i++)
       {
 
-         auto *pline = ((unsigned char *)p) + iStride * i;
+         auto *pline = ((::u8 *)p) + iStride * i;
 
-         for (int j = 0; j < cxParam; j++)
+         for (::i32 j = 0; j < cxParam; j++)
          {
 
             ::swap(pline[0], pline[2]);
@@ -303,8 +303,8 @@ void image32_t::swap_red_blue(int cxParam, int cyParam, int iStride)
 }
 
 
-void image32_t::_001ProperCopyColorref(int cxParam, int cyParam, int iStrideDst, const ::image32_t *pimage32Src,
-                                       int iStrideSrc)
+void image32_t::_001ProperCopyColorref(::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::image32_t *pimage32Src,
+                                       ::i32 iStrideSrc)
 {
 
    ::image32_t * pimage32Dst = this;
@@ -323,7 +323,7 @@ void image32_t::_001ProperCopyColorref(int cxParam, int cyParam, int iStrideDst,
 }
 
 
-void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::copy(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
    if (iStrideSrc == iStrideDst && cy * sizeof(image32_t) == iStrideSrc)
@@ -347,14 +347,14 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 
       }
 
-      int wsrc = iStrideSrc;
-      int wdst = iStrideDst;
-      int cw = cx * sizeof(::image32_t);
+      ::i32 wsrc = iStrideSrc;
+      ::i32 wdst = iStrideDst;
+      ::i32 cw = cx * sizeof(::image32_t);
 
-      auto psrc = (unsigned char*) pimage32Src;
-      auto pdst = (unsigned char*) pimage32Dst;
+      auto psrc = (::u8*) pimage32Src;
+      auto pdst = (::u8*) pimage32Dst;
 
-      for (int i = 0; i < cy; i++)
+      for (::i32 i = 0; i < cy; i++)
       {
 
          ::memory_copy(pdst, psrc, cw);
@@ -376,7 +376,7 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 }
 
 //
-//void image32_t::copy(const ::i32_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 //{
 //
 //   copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
@@ -384,7 +384,7 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 //}
 
 
-enum_rotate_flip exif_orientation_rotate_flip(int orientation)
+enum_rotate_flip exif_orientation_rotate_flip(::i32 orientation)
 {
 
 
@@ -414,7 +414,7 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 }
 
 
-//void image32_t::copy(const ::i32_size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+//void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap * ppixmapSrc)
 //{
 //
 //   copy(size, iStrideDst, ppixmapSrc->image32(), ppixmapSrc->scan_size());
@@ -422,17 +422,17 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 //}
 
 
-void image32_t::set_rectangle(int x, int y, int w, int h, int s, const ::image32_t & image32Source)
+void image32_t::set_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 s, const ::image32_t & image32Source)
 {
 
-   auto pline = ((unsigned char *) this) + s * y + x * 4;
+   auto pline = ((::u8 *) this) + s * y + x * 4;
 
-   for (int i = 0; i < h; i++, pline += s)
+   for (::i32 i = 0; i < h; i++, pline += s)
    {
 
       auto p =(image32_t *) pline;
 
-      for (int j = 0; j < w; j++, p++)
+      for (::i32 j = 0; j < w; j++, p++)
       {
 
          *p = image32Source;
@@ -444,17 +444,17 @@ void image32_t::set_rectangle(int x, int y, int w, int h, int s, const ::image32
 }
 
 
-void image32_t::blend_rectangle(int x, int y, int w, int h, int s, const ::image32_t & image32Source)
+void image32_t::blend_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 s, const ::image32_t & image32Source)
 {
 
-   auto pline = ((unsigned char *) this) + s * y + x * 4;
+   auto pline = ((::u8 *) this) + s * y + x * 4;
 
-   for (int i = 0; i < h; i++, pline += s)
+   for (::i32 i = 0; i < h; i++, pline += s)
    {
 
       auto p =(image32_t *) pline;
 
-      for (int j = 0; j < w; j++, p++)
+      for (::i32 j = 0; j < w; j++, p++)
       {
 
          p->m_ua[0] = image32Source.m_ua[0] + ((255 - image32Source.m_ua[3]) * p->m_ua[0] + 127) / 255;
@@ -469,21 +469,21 @@ void image32_t::blend_rectangle(int x, int y, int w, int h, int s, const ::image
 }
 
 
-void image32_t::copy_3_channel_data(const i32_size & size, int iTargetStride, const void * pdata, int iSourceStride)
+void image32_t::copy_3_channel_data(const i32_size & size, ::i32 iTargetStride, const void * pdata, ::i32 iSourceStride)
 {
 
-   auto ptarget = (unsigned char *)this;
+   auto ptarget = (::u8 *)this;
 
-   auto psource = (const unsigned char *)pdata;
+   auto psource = (const ::u8 *)pdata;
 
-   for (int y = 0; y < size.cy; y++)
+   for (::i32 y = 0; y < size.cy; y++)
    {
 
       auto ptargetLine = ptarget + (iTargetStride * y);
 
       auto psourceLine = psource + (iSourceStride * y);
 
-      for (int x = 0; x < size.cx; x++)
+      for (::i32 x = 0; x < size.cx; x++)
       {
 
          ptargetLine[0] = psourceLine[0];
@@ -501,28 +501,28 @@ void image32_t::copy_3_channel_data(const i32_size & size, int iTargetStride, co
 }
 
 
-void image32_t::copy_1_channel_data(const i32_size &size, int stride, const void *pdata, int inputStride)
+void image32_t::copy_1_channel_data(const i32_size &size, ::i32 stride, const void *pdata, ::i32 inputStride)
 {
 
-   auto ptarget = (const unsigned char *)this;
+   auto ptarget = (const ::u8 *)this;
 
-   auto psource = (const unsigned char *)pdata;
+   auto psource = (const ::u8 *)pdata;
 
-   for (int y = 0; y < size.cy; y++)
+   for (::i32 y = 0; y < size.cy; y++)
    {
 
       auto psourceLine = psource[inputStride * y];
 
       auto ptargetLine = psource[inputStride * y];
 
-      for (int x = 0; x < size.cx; x++)
+      for (::i32 x = 0; x < size.cx; x++)
       {
       }
    }
 }
 
 
-image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size & size, int stride, const void *pdata, int channels, int inputStride)
+image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size & size, ::i32 stride, const void *pdata, ::i32 channels, ::i32 inputStride)
 {
 
    if (stride <= 0)
@@ -545,7 +545,7 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size 
 
    }
 
-   auto imagedata = (unsigned char *)pdata;
+   auto imagedata = (::u8 *)pdata;
 
    auto pixelCount = size.area();
 

@@ -22,9 +22,9 @@ CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const_char
 
 CLASS_DECL_ACME const_char_pointer ansi_rchr(const_char_pointer psz1, ::ansi_character ch);
 
-CLASS_DECL_ACME int ansi_cmp(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME ::i32 ansi_cmp(const_char_pointer psz1, const_char_pointer psz2);
 
-CLASS_DECL_ACME int ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME ::i32 ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
 CLASS_DECL_ACME const_char_pointer ansi_str(const_char_pointer psz, const_char_pointer pszFind);
 
@@ -57,22 +57,22 @@ CLASS_DECL_ACME ::ansi_character * ansi_upr_s(::ansi_character * psz, character_
 CLASS_DECL_ACME const_char_pointer ansi_ichr(const_char_pointer psz1, ::ansi_character ch) { return __ansiichr(psz1, ch); }
 
 
-CLASS_DECL_ACME int ansi_icmp(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME ::i32 ansi_icmp(const_char_pointer psz1, const_char_pointer psz2);
 
-CLASS_DECL_ACME int ansi_nicmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME ::i32 ansi_nicmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
 CLASS_DECL_ACME const_char_pointer ansi_istr(const_char_pointer psz, const_char_pointer pszFind) { return __ansiistr(psz, pszFind); }
 
-//CLASS_DECL_ACME ::ansi_character * u64tostr(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase) { return __u64toansi(u, buf, iBase, edigitcase); }
+//CLASS_DECL_ACME ::ansi_character * u64tostr(::u64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase) { return __u64toansi(u, buf, iBase, edigitcase); }
 
-//CLASS_DECL_ACME ::ansi_character * i64tostr(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase) { return __long_longtoansi(u, buf, iBase, edigitcase); }
+//CLASS_DECL_ACME ::ansi_character * i64tostr(::u64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase) { return __long_longtoansi(u, buf, iBase, edigitcase); }
 
-CLASS_DECL_ACME int ansi_coll(const_char_pointer psz1, const_char_pointer psz2);
-CLASS_DECL_ACME int ansi_ncoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME ::i32 ansi_coll(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME ::i32 ansi_ncoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
-CLASS_DECL_ACME int ansi_icoll(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME ::i32 ansi_icoll(const_char_pointer psz1, const_char_pointer psz2);
 
-CLASS_DECL_ACME int ansi_nicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME ::i32 ansi_nicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
 CLASS_DECL_ACME character_count ansi_spn(const_char_pointer psz1, const_char_pointer psz2) ;
 
@@ -121,11 +121,11 @@ CLASS_DECL_ACME ::wd32_character * wd32_tok_r(::wd32_character * psz, const ::wd
 CLASS_DECL_ACME const ::wd16_character * wd16_rchr(const ::wd16_character * psz1, ::wd16_character ch) { return wcsrchr(psz1, ch); }
 CLASS_DECL_ACME const ::wd32_character * wd32_rchr(const ::wd32_character * psz1, ::wd32_character ch) { return __wd32rchr(psz1, ch); }
 
-CLASS_DECL_ACME int wd16_cmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcscmp(psz1, psz2); }
-CLASS_DECL_ACME int wd32_cmp(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32cmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_cmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcscmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_cmp(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32cmp(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return wcsncmp(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32ncmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd16_ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return wcsncmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32ncmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME const ::wd16_character * wd16_str(const ::wd16_character * psz, const ::wd16_character * pszFind) { return wcsstr(psz, pszFind); }
 CLASS_DECL_ACME const ::wd32_character * wd32_str(const ::wd32_character * psz, const ::wd32_character * pszFind) { return __wd32str(psz, pszFind); }
@@ -151,33 +151,33 @@ CLASS_DECL_ACME ::wd32_character * wd32_upr_s(::wd32_character * psz, character_
 CLASS_DECL_ACME const ::wd16_character * wd16_ichr(const ::wd16_character * psz1, ::wd16_character ch) { return __wd16ichr(psz1, ch); }
 CLASS_DECL_ACME const ::wd32_character * wd32_ichr(const ::wd32_character * psz1, ::wd32_character ch) { return __wd32ichr(psz1, ch); }
 
-CLASS_DECL_ACME int wd16_icmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return _wcsicmp(psz1, psz2); }
-CLASS_DECL_ACME int wd32_icmp(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32icmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_icmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return _wcsicmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_icmp(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32icmp(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return _wcsnicmp(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32nicmp(psz1, psz2, s); }
-CLASS_DECL_ACME int wide_nicmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd16_nicmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd16_nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return _wcsnicmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32nicmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wide_nicmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd16_nicmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME const ::wd16_character * wd16_istr(const ::wd16_character * psz, const ::wd16_character * pszFind) { return __wd16istr(psz, pszFind); }
 CLASS_DECL_ACME const ::wd32_character * wd32_istr(const ::wd32_character * psz, const ::wd32_character * pszFind) { return __wd32istr(psz, pszFind); }
 
-CLASS_DECL_ACME ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __u64towd16(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __u64towd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __u64towd16(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __u64towd32(u, buf, iBase, edigitcase, pend); }
 
-CLASS_DECL_ACME ::wd16_character * i64towd16(::i64 i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __long_longtowd16(i, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wd32_character * i64towd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __long_longtowd32(i, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd16_character * i64towd16(::i64 i, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __long_longtowd16(i, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd32_character * i64towd32(::i64 i, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __long_longtowd32(i, buf, iBase, edigitcase, pend); }
 
-CLASS_DECL_ACME int wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcscoll(psz1, psz2); }
-CLASS_DECL_ACME int wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32cmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcscoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32cmp(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return _wcsncoll(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32ncoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd16_ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return _wcsncoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32ncoll(psz1, psz2, s); }
 
-CLASS_DECL_ACME int wd16_icoll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return _wcsicoll(psz1, psz2); }
-CLASS_DECL_ACME int wd32_icoll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32icoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_icoll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return _wcsicoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_icoll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32icoll(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return _wcsnicoll(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32nicoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd16_nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return _wcsnicoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32nicoll(psz1, psz2, s); }
 
 CLASS_DECL_ACME character_count wd16_spn(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcsspn(psz1, psz2); }
 CLASS_DECL_ACME character_count wd32_spn(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32spn(psz1, psz2); }
@@ -222,12 +222,12 @@ CLASS_DECL_ACME const ::wd16_character * wd16_rchr(const ::wd16_character * psz1
 CLASS_DECL_ACME const ::wd32_character * wd32_rchr(const ::wd32_character * psz1, ::wd32_character ch) { return wcsrchr(psz1, ch); }
 CLASS_DECL_ACME const ::wide_character * wide_rchr(const ::wide_character * psz1, ::wide_character ch) { return wd32_rchr(psz1, ch); }
 
-CLASS_DECL_ACME int wd16_cmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16cmp(psz1, psz2); }
-CLASS_DECL_ACME int wd32_cmp(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wcscmp(psz1, psz2); }
-CLASS_DECL_ACME int wide_cmp(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_cmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_cmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16cmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_cmp(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wcscmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wide_cmp(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_cmp(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16ncmp(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s)
+CLASS_DECL_ACME ::i32 wd16_ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16ncmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s)
 {
 #ifdef WINDOWS
    return wcsncmp(psz1, psz2, s);
@@ -236,7 +236,7 @@ CLASS_DECL_ACME int wd32_ncmp(const ::wd32_character * psz1, const ::wd32_charac
 #endif
    
 }
-CLASS_DECL_ACME int wide_ncmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_ncmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wide_ncmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_ncmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME const ::wd16_character * wd16_str(const ::wd16_character * psz, const ::wd16_character * pszFind) { return __wd16str(psz, pszFind); }
 CLASS_DECL_ACME const ::wd32_character * wd32_str(const ::wd32_character * psz, const ::wd32_character * pszFind) { return wcsstr(psz, pszFind); }
@@ -287,8 +287,8 @@ CLASS_DECL_ACME const ::wd16_character * wd16_ichr(const ::wd16_character * psz1
 CLASS_DECL_ACME const ::wd32_character * wd32_ichr(const ::wd32_character * psz1, ::wd32_character ch) { return __wd32ichr(psz1, ch); }
 CLASS_DECL_ACME const ::wide_character * wide_ichr(const ::wide_character * psz1, ::wd32_character ch) { return wd32_ichr(psz1, ch); }
 
-CLASS_DECL_ACME int wd16_icmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16icmp(psz1, psz2); }
-CLASS_DECL_ACME int wd32_icmp(const ::wd32_character * psz1, const ::wd32_character * psz2)
+CLASS_DECL_ACME ::i32 wd16_icmp(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16icmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_icmp(const ::wd32_character * psz1, const ::wd32_character * psz2)
 {
 #ifdef WINDOWS
    return wcsicmp(psz1, psz2);
@@ -297,10 +297,10 @@ CLASS_DECL_ACME int wd32_icmp(const ::wd32_character * psz1, const ::wd32_charac
 #endif
    
 }
-CLASS_DECL_ACME int wide_icmp(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_icmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wide_icmp(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_icmp(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16nicmp(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s)
+CLASS_DECL_ACME ::i32 wd16_nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16nicmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s)
 {
 #ifdef WINDOWS
    return wcsnicmp(psz1, psz2, s);
@@ -308,35 +308,35 @@ CLASS_DECL_ACME int wd32_nicmp(const ::wd32_character * psz1, const ::wd32_chara
    return __wd32nicmp(psz1, psz2, s);
 #endif
 }
-CLASS_DECL_ACME int wide_nicmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_nicmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wide_nicmp(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_nicmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME const ::wd16_character * wd16_istr(const ::wd16_character * psz, const ::wd16_character * pszFind) { return __wd16istr(psz, pszFind); }
 CLASS_DECL_ACME const ::wd32_character * wd32_istr(const ::wd32_character * psz, const ::wd32_character * pszFind) { return __wd32istr(psz, pszFind); }
 CLASS_DECL_ACME const ::wd32_character * widew_istr(const ::wide_character * psz, const ::wide_character * pszFind) { return wd32_istr(psz, pszFind); }
 
-CLASS_DECL_ACME ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character *pend=nullptr;return __u64towd16(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __u64towd32(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wide_character * u64towide(::u64 u, ::wide_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __u64towd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd16_character *pend=nullptr;return __u64towd16(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __u64towd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wide_character * u64towide(::u64 u, ::wide_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __u64towd32(u, buf, iBase, edigitcase, pend); }
 
-CLASS_DECL_ACME ::wd16_character * i64towd16(::i64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character *pend=nullptr;return __long_longtowd16(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wd32_character * i64towd32(::i64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wide_character * i64towide(::i64 u, ::wide_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd16_character * i64towd16(::i64 u, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd16_character *pend=nullptr;return __long_longtowd16(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd32_character * i64towd32(::i64 u, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wide_character * i64towide(::i64 u, ::wide_character * buf, ::i32 iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
 
-CLASS_DECL_ACME int wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16cmp(psz1, psz2); }
-CLASS_DECL_ACME int wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wcscoll(psz1, psz2); }
-CLASS_DECL_ACME int wide_coll(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_coll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16cmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wcscoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wide_coll(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_coll(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16ncoll(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32ncoll(psz1, psz2, s); }
-CLASS_DECL_ACME int wide_ncoll(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_ncoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd16_ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16ncoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32ncoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wide_ncoll(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_ncoll(psz1, psz2, s); }
 
-CLASS_DECL_ACME int wd16_icoll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16icoll(psz1, psz2); }
-CLASS_DECL_ACME int wd32_icoll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32icoll(psz1, psz2); }
-CLASS_DECL_ACME int wide_icoll(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_icoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd16_icoll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16icoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wd32_icoll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32icoll(psz1, psz2); }
+CLASS_DECL_ACME ::i32 wide_icoll(const ::wide_character * psz1, const ::wide_character * psz2) { return wd32_icoll(psz1, psz2); }
 
-CLASS_DECL_ACME int wd16_nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16nicoll(psz1, psz2, s); }
-CLASS_DECL_ACME int wd32_nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32nicoll(psz1, psz2, s); }
-CLASS_DECL_ACME int wide_nicoll(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_nicoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd16_nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, character_count s) { return __wd16nicoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wd32_nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return __wd32nicoll(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 wide_nicoll(const ::wide_character * psz1, const ::wide_character * psz2, character_count s) { return wd32_nicoll(psz1, psz2, s); }
 
 CLASS_DECL_ACME character_count wd16_spn(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16spn(psz1, psz2); }
 CLASS_DECL_ACME character_count wd32_spn(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wcsspn(psz1, psz2); }

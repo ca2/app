@@ -37,7 +37,7 @@ namespace draw2d_cairo
 
       void dc_select(bool bSelect = true) override;
 
-      void create(const ::i32_size & size, ::enum_flag eflagCreate = OK_IMAGE, int iGoodStride = -1, bool bPreserve = false) override;
+      void create(const ::i32_size & size, ::enum_flag eflagCreate = OK_IMAGE, ::i32 iGoodStride = -1, bool bPreserve = false) override;
       void create(::draw2d::graphics * pgraphics) override;
       void destroy() override;
 
@@ -46,15 +46,15 @@ namespace draw2d_cairo
       void _draw_raw(const ::i32_rectangle & rectangle, ::image::image *pimage, const ::i32_point & point = ::i32_point()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc) override;
-      void SetIconMask(::image::icon * picon, int cx, int cy) override;
+      void SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy) override;
 
 
       //void write(::binary_stream & stream) const override;
       //void read(::binary_stream & stream) override;
 
 
-      void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, unsigned char bA) override;
-      //void blend2(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, unsigned char bA) override;
+      void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
+      //void blend2(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
 
 
    };

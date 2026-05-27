@@ -39,7 +39,7 @@ namespace innate_subsystem
 
    //}
 
-   //void ListView::addColumn(int index, const char *caption, int width, int fmt)
+   //void ListView::addColumn(::i32 index, const_char_pointer caption, ::i32 width, ::i32 fmt)
    //{
    //   // //
    //   // // Create LV_COLUMN struct
@@ -49,7 +49,7 @@ namespace innate_subsystem
    //   // lvColumn.mask = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT;
    //   // lvColumn.fmt = fmt;
    //   // lvColumn.cx = width;
-   //   // lvColumn.pszText = (char *)caption;
+   //   // lvColumn.pszText = (char_pointer )caption;
    //   //
    //   // //
    //   // // Add column to list view
@@ -58,26 +58,26 @@ namespace innate_subsystem
    //   // ListView_InsertColumn(m_hwnd, index, &lvColumn);
    //}
 
-   //void ListView::addColumn(int index, const char *caption, int width)
+   //void ListView::addColumn(::i32 index, const_char_pointer caption, ::i32 width)
    //{
    //   // addColumn(index, caption, width, LVCFMT_LEFT);
    //}
 
-   //ListViewItem ListView::getItem(int index)
+   //ListViewItem ListView::getItem(::i32 index)
    //{
    //   // // Output structure
    //   // ListViewItem item;
    //   // // Windows list view item concept
    //   // LVITEM lvI;
    //   // // Buffer for text data
-   //   // char textBuffer[256];
+   //   // ::i8 textBuffer[256];
    //   //
    //   // //
    //   // // Retrieve text and tag from list view item (zero subitem)
    //   // //
    //   //
    //   // lvI.mask = LVIF_TEXT | LVIF_PARAM;
-   //   // lvI.pszText = (char *)&textBuffer[0];
+   //   // lvI.pszText = (char_pointer )&textBuffer[0];
    //   // lvI.iItem = index;
    //   // lvI.iSubItem = 0;
    //   //
@@ -85,7 +85,7 @@ namespace innate_subsystem
    //   // // FIXME: Forced set text limit. 256 chars max
    //   // //
    //   //
-   //   // lvI.cchTextMax = 256 * sizeof(char);
+   //   // lvI.cchTextMax = 256 * sizeof(::i8);
    //   //
    //   // // Trying to get data from window
    //   // ListView_GetItem(m_hwnd, &lvI);
@@ -102,7 +102,7 @@ namespace innate_subsystem
    //}
 
 
-   //int ListView::getCount()
+   //::i32 ListView::getCount()
    //{
 
    //   return m_pparticleThis->getCount();
@@ -110,13 +110,13 @@ namespace innate_subsystem
    //}
 
 
-   //void ListView::addItem(int index, const char *caption)
+   //void ListView::addItem(::i32 index, const_char_pointer caption)
    //{
    //   // addItem(index, caption, NULL);
    //   m_pparticleThis->addItem(index, caption);
    //}
 
-   //void ListView::addItem(int index, const char *caption, ::lparam tag)
+   //void ListView::addItem(::i32 index, const_char_pointer caption, ::lparam tag)
    //{
    //   // //
    //   // // Prepare LVITEM structure
@@ -127,7 +127,7 @@ namespace innate_subsystem
    //   // lvI.::lparam = tag;
    //   // lvI.iItem = index;
    //   // lvI.iSubItem = 0;
-   //   // lvI.pszText = (char*)caption;
+   //   // lvI.pszText = (char_pointer )caption;
    //   //
    //   // //
    //   // // Send message to window
@@ -137,7 +137,7 @@ namespace innate_subsystem
    //   m_pparticleThis->addItem(index, caption, tag);
    //}
 
-   //void ListView::addItem(int index, const char *caption, ::lparam tag, int imageIndex)
+   //void ListView::addItem(::i32 index, const_char_pointer caption, ::lparam tag, ::i32 imageIndex)
    //{
    //   // //
    //   // // Prepare LVITEM structure
@@ -149,7 +149,7 @@ namespace innate_subsystem
    //   // lvI.iItem = index;
    //   // lvI.iSubItem = 0;
    //   // lvI.iImage = imageIndex;
-   //   // lvI.pszText = (char*)caption;
+   //   // lvI.pszText = (char_pointer )caption;
    //   //
    //   // //
    //   // // Send message to window
@@ -159,7 +159,7 @@ namespace innate_subsystem
    //   m_pparticleThis->addItem(index, caption, tag, imageIndex);
    //}
 
-   //void ListView::removeItem(int i)
+   //void ListView::removeItem(::i32 i)
    //{
    //   // ListView_DeleteItem(getWindow(), i);
    //   m_pparticleThis->removeItem(i);
@@ -171,7 +171,7 @@ namespace innate_subsystem
    //   m_pparticleThis->clear();
    //}
 
-   //void ListView::setSubItemText(int index, int subIndex, const char *caption)
+   //void ListView::setSubItemText(::i32 index, ::i32 subIndex, const_char_pointer caption)
    //{
    //   //
    //   // // Prepare LVITEM structure
@@ -181,7 +181,7 @@ namespace innate_subsystem
    //   // lvI.mask = LVIF_TEXT;
    //   // lvI.iItem = index;
    //   // lvI.iSubItem = subIndex;
-   //   // lvI.pszText = (char*)caption;
+   //   // lvI.pszText = (char_pointer )caption;
    //   //
    //   // //
    //   // // Send message to window
@@ -191,7 +191,7 @@ namespace innate_subsystem
    //   m_pparticleThis->setSubItemText(index, subIndex, caption);
    //}
 
-   //void ListView::setItemData(int index, ::lparam tag)
+   //void ListView::setItemData(::i32 index, ::lparam tag)
    //{
    //   // //
    //   // // Prepare LVITEM structure
@@ -212,7 +212,7 @@ namespace innate_subsystem
    //   m_pparticleThis->setItemData(index, tag);
    //}
 
-   //::lparam ListView::getItemData(int index)
+   //::lparam ListView::getItemData(::i32 index)
    //{
    //   // return getItem(index).tag;
    //   return m_pparticleThis->getItemData(index);
@@ -221,7 +221,7 @@ namespace innate_subsystem
    //ListViewItem ListView::getSelectedItem()
    //{
    //   // ListViewItem item;
-   //   // int index = getSelectedIndex();
+   //   // ::i32 index = getSelectedIndex();
    //   // if (index == -1) {
    //   //    item.index = -1;
    //   //    item.tag = NULL;
@@ -232,14 +232,14 @@ namespace innate_subsystem
    //   return m_pparticleThis->getSelectedItem();
    //}
 
-   //int ListView::getSelectedIndex()
+   //::i32 ListView::getSelectedIndex()
    //{
-   //   // int iSelect = ListView_GetNextItem(m_hwnd, -1, LVNI_SELECTED);
+   //   // ::i32 iSelect = ListView_GetNextItem(m_hwnd, -1, LVNI_SELECTED);
    //   // return iSelect;
    //   return m_pparticleThis->getSelectedIndex();
    //}
 
-   //void ListView::selectItem(int index)
+   //void ListView::selectItem(::i32 index)
    //{
    //   // ::wparam itemIndex = (::wparam)index;
    //   // ListView_SetItemState(m_hwnd, -1, 0, LVIS_SELECTED);
@@ -279,7 +279,7 @@ namespace innate_subsystem
 
    //::i32_array ListView::getSelectedItemsIndexes()
    //{
-   //   // int i = -1;
+   //   // ::i32 i = -1;
    //   // for (::u32 j = 0; j < getSelectedItemsCount(); j++) {
    //   //    i = ListView_GetNextItem(m_hwnd, i, LVNI_SELECTED);
    //   //    indexes[j] = i;
@@ -287,10 +287,10 @@ namespace innate_subsystem
    //   return m_pparticleThis->getSelectedItemsIndexes();
    //}
 
-   //void ListView::set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > &  compareItem)
+   //void ListView::set_sort(::i32 columnIndex, const ::function < ::i32(::lparam, ::lparam) > &  compareItem)
    //{
    //   // // Update parameters of sorting.
-   //   // int oldSortColumnIndex = m_sortColumnIndex;
+   //   // ::i32 oldSortColumnIndex = m_sortColumnIndex;
    //   // m_sortColumnIndex = columnIndex;
    //   //
    //   // // make decision about order
@@ -333,7 +333,7 @@ namespace innate_subsystem
    //   //    // use sortColumnIndex (::lparamSort) as an index of column and
    //   //    // as a flag: positive for ascending order,
    //   //    // negative for descending order
-   //   //    int sortColumnIndex = m_sortColumnIndex + 1;
+   //   //    ::i32 sortColumnIndex = m_sortColumnIndex + 1;
    //   //    if (!m_sortAscending) {
    //   //       sortColumnIndex = -sortColumnIndex;
    //   //    }

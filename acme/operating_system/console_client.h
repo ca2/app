@@ -24,13 +24,13 @@ namespace console
 
 
       virtual void redirect_io() override;
-      virtual void SetWindowSize(int iHeight, int iWidth) override;
+      virtual void SetWindowSize(::i32 iHeight, ::i32 iWidth) override;
       virtual void SetCursorVisibility(bool show) override;
-      virtual void SetCursorPosition(int y, int x) override;
-      virtual void SetTextColor(int color) override;
-      virtual void SetScreenColor(enum_dos_color edoscolor, int iLineStart = 0, int iLineCount = -1) override;
+      virtual void SetCursorPosition(::i32 y, ::i32 x) override;
+      virtual void SetTextColor(::i32 color) override;
+      virtual void SetScreenColor(enum_dos_color edoscolor, ::i32 iLineStart = 0, ::i32 iLineCount = -1) override;
       virtual void write(const ::scoped_string & scopedstr) override;
-      virtual ::i32_rectangle get_position_rectangle(int y, int x) override;
+      virtual ::i32_rectangle get_position_rectangle(::i32 y, ::i32 x) override;
 
    };
 

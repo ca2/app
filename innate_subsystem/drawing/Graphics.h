@@ -80,7 +80,7 @@ namespace innate_subsystem
       virtual void lineTo(const ::i32_point & point) = 0;
 
       // Draws filled rect.
-      //virtual void fillRect(int l, int t, int r, int b, BrushInterface*pbrush) = 0;
+      //virtual void fillRect(::i32 l, ::i32 t, ::i32 r, ::i32 b, BrushInterface*pbrush) = 0;
       virtual void fillRect(const ::i32_rectangle & rectangle, BrushInterface * pbrush) = 0;
       virtual void fillRect(const ::i32_rectangle & rectangle, const ::color::color & color) = 0;
       // Draws ellipse.
@@ -217,7 +217,7 @@ namespace innate_subsystem
       }
 
       // Draws filled rect.
-      //void fillRect(int l, int t, int r, int b, BrushInterface *pbrush) override;
+      //void fillRect(::i32 l, ::i32 t, ::i32 r, ::i32 b, BrushInterface *pbrush) override;
       void fillRect(const ::i32_rectangle& rectangle, BrushInterface* pbrush) override
       {
 

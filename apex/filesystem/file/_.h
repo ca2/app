@@ -5,7 +5,7 @@
 
 //
 //using transfer_progress_function =
-//::function < void(double, filesize, filesize) >;
+//::function < void(::f64, filesize, filesize) >;
 //
 //
 namespace file

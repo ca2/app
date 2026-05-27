@@ -16,8 +16,8 @@ namespace logic
    public:
 
 
-      unsigned char     m_uOn;
-      unsigned char     m_uSet;
+      ::u8     m_uOn;
+      ::u8     m_uSet;
 
 
       //inline boolean(no_initialize_t) { m_uSet = false; }
@@ -26,7 +26,7 @@ namespace logic
       constexpr boolean() { m_uSet = 0; }
 
 
-      constexpr boolean(int i) { m_uOn = i ? 1 : 0; m_uSet = 1; }
+      constexpr boolean(::i32 i) { m_uOn = i ? 1 : 0; m_uSet = 1; }
 
 
       //constexpr boolean(bool b) { m_uOn = b ? 1 : 0; m_uSet = 1; }
@@ -68,16 +68,16 @@ namespace logic
       inline bool operator!() const { return is_false_or_undefined(); }
 
 
-      //inline bool operator<(int i) const { return (int)m_eboolean < i; }
+      //inline bool operator<(::i32 i) const { return (::i32)m_eboolean < i; }
 
 
-      //inline bool operator<=(int i) const { return (int)m_eboolean <= i; }
+      //inline bool operator<=(::i32 i) const { return (::i32)m_eboolean <= i; }
 
 
-      //inline bool operator>(int i) const { return (int)m_eboolean > i; }
+      //inline bool operator>(::i32 i) const { return (::i32)m_eboolean > i; }
 
 
-      //inline bool operator>=(int i) const { return (int)m_eboolean >= i; }
+      //inline bool operator>=(::i32 i) const { return (::i32)m_eboolean >= i; }
 
 
       inline bool operator==(const boolean& b) const
@@ -95,7 +95,7 @@ namespace logic
       }
 
 
-      //inline bool operator!=(int i) const { return !operator==(i); }
+      //inline bool operator!=(::i32 i) const { return !operator==(i); }
 
 
       inline boolean& operator=(const ::logic::boolean& b)

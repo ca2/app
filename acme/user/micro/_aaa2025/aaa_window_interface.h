@@ -36,16 +36,16 @@
 //
 //    virtual void implementation_message_loop_step();
 //
-//    virtual void draw(::nano::graphics::device * pnanodevice);
+//    virtual void draw(::nano::graphics::context * pnanodevice);
 //
-//    virtual void on_draw(::nano::graphics::device * pnanodevice);
+//    virtual void on_draw(::nano::graphics::context * pnanodevice);
 //
-//    virtual void on_char(int iChar);
+//    virtual void on_char(::i32 iChar);
 //
 //    virtual bool is_active();
 //    virtual void set_active();
 //
-//    virtual void draw_children(::nano::graphics::device * pnanodevice);
+//    virtual void draw_children(::nano::graphics::context * pnanodevice);
 //
 //    virtual void delete_drawing_objects();
 //    virtual bool get_dark_mode();

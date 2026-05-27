@@ -17,7 +17,7 @@ namespace user
 
       ::number::scalar        m_scalar;
 
-      double                  m_dRate;
+      ::f64                  m_dRate;
 
 
 

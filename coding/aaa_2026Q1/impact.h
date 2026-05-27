@@ -25,9 +25,9 @@ namespace coding
       };
 
 
-      int                                    m_iLeftMargin;
-      int                                    m_iLeftWidth;
-      int                                    m_yStart;
+      ::i32                                    m_iLeftMargin;
+      ::i32                                    m_iLeftWidth;
+      ::i32                                    m_yStart;
       
       ::pointer<::user::plain_edit>          m_pplaineditRepositoryPath;
       ::pointer<::user::button>              m_pbuttonBrowseRepositoryPath;

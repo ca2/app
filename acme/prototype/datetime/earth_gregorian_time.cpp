@@ -12,7 +12,7 @@ namespace earth
 {
 
 
-   inline int32_t days_from_1jan(int year, int month, int day)
+   inline int32_t days_from_1jan(::i32 year, ::i32 month, ::i32 day)
    {
       static const int32_t days[2][12] =
       {
@@ -139,9 +139,9 @@ namespace earth
    posix_time gregorian_time::make_utc_time() const
    {
 
-      int year = m_iYear;
+      ::i32 year = m_iYear;
 
-      int month = m_iMonth;
+      ::i32 month = m_iMonth;
 
       if (month > 11)
       {
@@ -150,14 +150,14 @@ namespace earth
       }
       else if (month < 0)
       {
-         int years_diff = (-month + 11) / 12;
+         ::i32 years_diff = (-month + 11) / 12;
          year -= years_diff;
          month += 12 * years_diff;
       }
       month++;
-      int day = m_iDay;
-      int day_of_year = days_from_1jan(year, month, day);
-      int days_since_epoch = days_from_1970(year) + day_of_year;
+      ::i32 day = m_iDay;
+      ::i32 day_of_year = days_from_1jan(year, month, day);
+      ::i32 days_since_epoch = days_from_1970(year) + day_of_year;
 
       ::i64 seconds_in_day = 3600 * 24;
 

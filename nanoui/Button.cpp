@@ -21,7 +21,7 @@ namespace nanoui
 {
 
 
-   Button::Button(Widget* parent, const ::scoped_string& caption, int iIcon)
+   Button::Button(Widget* parent, const ::scoped_string& caption, ::i32 iIcon)
       : Widget(parent), m_strCaption(caption), m_iIcon(iIcon),
       m_icon_position(IconPosition::LeftCentered), m_bChecked(false),
       m_flags(NormalButton), m_colorBackground(::color::color(0, 0)),
@@ -39,12 +39,12 @@ namespace nanoui
       if (bRecalcTextSize || m_fTextWidth < 0.f || m_sizeImage.cx < 0.f || m_sizeImage.cy < 0.f)
       {
 
-         int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
-         pcontext->font_size((float)font_size);
+         ::i32 font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
+         pcontext->font_size((::f32)font_size);
          pcontext->font_face("sans-bold");
          m_fTextWidth = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
          m_sizeImage.cx = 0.0f;
-         m_sizeImage.cy = (float)font_size;
+         m_sizeImage.cy = (::f32)font_size;
 
          if (m_iIcon) {
             if (::nano2d_is_font_icon(m_iIcon)) {
@@ -54,7 +54,7 @@ namespace nanoui
                   + m_size.cy * 0.15f;
             }
             else {
-               int pwidgetChild, h;
+               ::i32 pwidgetChild, h;
                pcontext->image_size(m_iIcon, &pwidgetChild, &h);
                m_sizeImage.cx = pwidgetChild * m_sizeImage.cy / h;
             }
@@ -62,7 +62,7 @@ namespace nanoui
 
       }
       
-      return ::i32_size((int)(m_fTextWidth + m_sizeImage.cx) + 20, (int)(m_sizeImage.cy + 11));
+      return ::i32_size((::i32)(m_fTextWidth + m_sizeImage.cx) + 20, (::i32)(m_sizeImage.cy + 11));
       
    }
 
@@ -350,25 +350,25 @@ namespace nanoui
          if (!m_bEnabled && m_pimageDisabled.ok())
          {
 
-            pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimageDisabled);
+            pcontext->_draw_image((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, m_pimageDisabled);
 
          }
          else if (bPressed && m_pimagePressed.ok())
          {
 
-            pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimagePressed);
+            pcontext->_draw_image((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, m_pimagePressed);
 
          }
          else if (m_bMouseHover && m_pimageFocus.ok())
          {
 
-            pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimageFocus);
+            pcontext->_draw_image((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, m_pimageFocus);
 
          }
          else
          {
 
-            pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimageNormal);
+            pcontext->_draw_image((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, m_pimageNormal);
 
          }
 
@@ -440,8 +440,8 @@ namespace nanoui
 
       }
 
-      ::nano2d::paint bg = pcontext->linear_gradient((float)m_pos.x, (float)m_pos.y, (float)m_pos.x,
-         (float)(m_pos.y + m_size.cy), colorGradientTop, colorGradientBottom);
+      ::nano2d::paint bg = pcontext->linear_gradient((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_pos.x,
+         (::f32)(m_pos.y + m_size.cy), colorGradientTop, colorGradientBottom);
 
       pcontext->fill_paint(bg);
       pcontext->fill();
@@ -449,26 +449,26 @@ namespace nanoui
       pcontext->begin_path();
       pcontext->stroke_width(1.0f);
       pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + (bPressed ? 0.5f : 1.5f), m_size.cx - 2.f,
-         m_size.cy - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_ptheme->m_iButtonCornerRadius);
+         m_size.cy - 1.f - (bPressed ? 0.0f : 1.0f), (::f32)m_ptheme->m_iButtonCornerRadius);
       pcontext->stroke_color(m_ptheme->m_colorBorderLight);
       pcontext->stroke();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle((float)m_pos.x + 0.5f, (float)m_pos.y + 0.5f, (float)m_size.cx - 2.f,
-         (float)m_size.cy - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->rounded_rectangle((::f32)m_pos.x + 0.5f, (::f32)m_pos.y + 0.5f, (::f32)m_size.cx - 2.f,
+         (::f32)m_size.cy - 2.f, (::f32)m_ptheme->m_iButtonCornerRadius);
       pcontext->stroke_color(m_ptheme->m_colorBorderDark);
       pcontext->stroke();
 
-      int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
-      pcontext->font_size((float)font_size);
+      ::i32 font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
+      pcontext->font_size((::f32)font_size);
       pcontext->font_face("sans-bold");
       pcontext->text_align(::e_align_left);
       
-      float text_width = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
+      ::f32 text_width = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
 
       auto center = m_pos + m_size * 0.5f;
       
-      auto text_pos = center - ::float_size(text_width * 0.5f, 1.f);
+      auto text_pos = center - ::f32_size(text_width * 0.5f, 1.f);
 
       ::color::color text_color =
          m_colorText.is_transparent() ? m_ptheme->m_colorText : m_colorText;
@@ -478,7 +478,7 @@ namespace nanoui
       if (m_iIcon) {
          auto icon = get_utf8_character(m_iIcon);
 
-         float iw, ih = (float)font_size;
+         ::f32 iw, ih = (::f32)font_size;
          if (::nano2d_is_font_icon(m_iIcon)) {
             ih *= icon_scale();
             pcontext->font_size(ih);
@@ -486,7 +486,7 @@ namespace nanoui
             iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
          }
          else {
-            int pwidgetChild, h;
+            ::i32 pwidgetChild, h;
             ih *= 0.9f;
             pcontext->image_size(m_iIcon, &pwidgetChild, &h);
             iw = pwidgetChild * ih / h;
@@ -495,7 +495,7 @@ namespace nanoui
             iw += m_size.cy * 0.15f;
          pcontext->fill_color(text_color);
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-         float_point icon_pos = center;
+         ::f32_point icon_pos = center;
          icon_pos.y -= 1;
 
          if (m_icon_position == IconPosition::LeftCentered) {
@@ -534,7 +534,7 @@ namespace nanoui
 
       }
 
-      pcontext->font_size((float)font_size);
+      pcontext->font_size((::f32)font_size);
       pcontext->font_face("sans-bold");
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
       pcontext->fill_color(m_ptheme->m_colorTextShadow);

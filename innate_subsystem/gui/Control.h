@@ -79,8 +79,8 @@ namespace innate_subsystem
       // Sets text associated with window
       //
 
-      virtual void setText(const char *text) = 0;
-      virtual void setSignedInt(int value) = 0;
+      virtual void setText(const_char_pointer text) = 0;
+      virtual void setSignedInt(::i32 value) = 0;
       virtual void setUnsignedInt(::u32 value) = 0;
 
       //
@@ -262,8 +262,8 @@ namespace innate_subsystem
       // Sets text associated with window
       //
 
-       void setText(const char *text) override { m_pcontrol->setText(text); }
-       void setSignedInt(int value) override { m_pcontrol->setSignedInt(value); }
+       void setText(const_char_pointer text) override { m_pcontrol->setText(text); }
+       void setSignedInt(::i32 value) override { m_pcontrol->setSignedInt(value); }
        void setUnsignedInt(::u32 value) override { m_pcontrol->setUnsignedInt(value); }
 
       //

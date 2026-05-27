@@ -7,19 +7,19 @@
 
 tiny_http g_tinyhttp;
 ::u32 g_MsDownloadSize = 1024 * 128;
-char * g_MsDownloadBuffer = nullptr;
+char_pointer g_MsDownloadBuffer = nullptr;
 
 void prepare_http()
 {
    if(g_MsDownloadBuffer == nullptr)
    {
-      g_MsDownloadBuffer = ___new char[g_MsDownloadSize];
+      g_MsDownloadBuffer = ___new ::i8[g_MsDownloadSize];
    }
 
 }
 
 
-bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, dword_ptr), void * callback_param )
+bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile, bool bProgress, bool bUrlEncode, ::i32 * piStatus, void (*callback)(void *, ::i32, dword_ptr), void * callback_param )
 {
 
    if(piStatus != nullptr)
@@ -27,7 +27,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
 
    vsstring strUrl;
 
-   char * szBuf = (char *) ca2_alloc(4096);
+   char_pointer szBuf = (char_pointer ) ca2_alloc(4096);
 
    prepare_http();
 
@@ -50,7 +50,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
       callback(callback_param, -1, 0);
    }
 
-   int iCol = 3;
+   ::i32 iCol = 3;
 
 
    strUrl = pszUrl;
@@ -71,7 +71,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
       strReq = strUrl.substr(iPos);
    }
    ::u32 dwSize = 0;
-   char * pszOutBuffer;
+   char_pointer pszOutBuffer;
    ::i32_bool  bResults = false;
 
    WCHAR * pwzHost = utf8_to_16(strHost);
@@ -80,8 +80,8 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
 
    g_tinyhttp.t_parse_url(strUrl);
 
-   char * buffer;
-   int len;
+   char_pointer buffer;
+   ::i32 len;
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
@@ -94,7 +94,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
 
 
 
-vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param, bool bProgress)
+vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*callback)(void *, ::i32, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
@@ -109,15 +109,15 @@ vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*ca
    }
    ::u32 dwSize = 0;
    ::u32 dwDownloaded = 0;
-   char * pszOutBuffer;
+   char_pointer pszOutBuffer;
    ::i32_bool  bResults = false;
 
    g_tinyhttp.m_strUserAgent = "ccwarehouse_ca2_account/linux";
 
    g_tinyhttp.t_parse_url(strUrl);
 
-   char * buffer;
-   int len;
+   char_pointer buffer;
+   ::i32 len;
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
@@ -132,10 +132,10 @@ vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*ca
 vsstring ::url::encode(const ::scoped_string & scopedstr)
 {
    vsstring str;
-   char sz[256];
+   ::i8 sz[256];
    while(*psz != '\0')
    {
-      unsigned char uch = *psz;
+      ::u8 uch = *psz;
       if(ansi_char_isdigit(uch)
             || ansi_char_isalpha(uch)
             || uch == '.'
@@ -181,24 +181,24 @@ vsstring ms_post(const ::scoped_string & scopedstrUrl, const ::scoped_string & s
 vsstring strUrl(scopedstrUrl);
 vsstring strHost;
 vsstring strReq;
-int iPort;
+::i32 iPort;
 if(strUrl.substr(0, 7) == "http://")
 {
-int iPos = strUrl.find("/", 8);
+::i32 iPos = strUrl.find("/", 8);
 strHost = strUrl.substr(7, iPos - 7);
 strReq = strUrl.substr(iPos);
 iPort = 80;
 }
 else if(strUrl.substr(0, 8) == "https://")
 {
-int iPos = strUrl.find("/", 9);
+::i32 iPos = strUrl.find("/", 9);
 strHost = strUrl.substr(8, iPos - 8);
 strReq = strUrl.substr(iPos);
 iPort = 443;
 }
 ::u32 dwSize = 0;
 ::u32 dwDownloaded = 0;
-char * pszOutBuffer;
+char_pointer pszOutBuffer;
 ::i32_bool  bResults = false;
 HINTERNET  hSession = nullptr,
 hConnect = nullptr,
@@ -292,7 +292,7 @@ printf( "Error %u in WinHttpQueryDataAvailable.\n",
 get_last_error());
 
 // Allocate space for the buffer.
-pszOutBuffer = ___new char[dwSize+1];
+pszOutBuffer = ___new ::i8[dwSize+1];
 if (!pszOutBuffer)
 {
 printf("Out of memory\n");
@@ -342,7 +342,7 @@ void config_session_proxy(HINTERNET hSession, WCHAR * pwzUrl)
 {
 WINHTTP_AUTOPROXY_OPTIONS apop;
 
-char szPac[4096];
+::i8 szPac[4096];
 memory_set(szPac, 0, sizeof(szPac));
 ::u32 lcbPac;
 HKEY hkey;
@@ -353,9 +353,9 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections",
 &hkey) == ERROR_SUCCESS)
 {
-int l;
+::i32 l;
 ::u32 dw;
-if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (unsigned char *) &szPac, &lcbPac)) == ERROR_SUCCESS
+if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (::u8 *) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {
 apop.dwAutoDetectFlags = WINHTTP_AUTO_DETECT_TYPE_DHCP | WINHTTP_AUTO_DETECT_TYPE_DNS_A;
@@ -376,8 +376,8 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings",
 &hkey) == ERROR_SUCCESS)
 {
-int l;
-if((l = RegQueryValueEx(hkey, "AutoConfigURL", nullptr, nullptr, (unsigned char *) szPac, &lcbPac)) == ERROR_SUCCESS)
+::i32 l;
+if((l = RegQueryValueEx(hkey, "AutoConfigURL", nullptr, nullptr, (::u8 *) szPac, &lcbPac)) == ERROR_SUCCESS)
 {
 
 apop.dwAutoDetectFlags = 0;

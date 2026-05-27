@@ -31,11 +31,11 @@ struct xf_gfx_surface
 	::u32 width;
 	::u32 height;
 	BOOL alpha;
-	unsigned char* data;
-	unsigned char* stage;
+	::u8* data;
+	::u8* stage;
 /*	XImage* pimage;
-	int scanline;
-	int stageStep;
+	::i32 scanline;
+	::i32 stageStep;
 	::u32 format;
 	BOOL outputMapped;
 	::u32 outputOriginX;
@@ -50,13 +50,13 @@ struct xf_gfx_cache_entry
 	::u32 width;
 	::u32 height;
 	BOOL alpha;
-	unsigned char* data;
-	int scanline;
+	::u8* data;
+	::i32 scanline;
 	::u32 format;
 };
 typedef struct xf_gfx_cache_entry xfGfxCacheEntry;
 
-int xf_OutputExpose(xfContext* xfc, int x, int y, int width, int height);
+::i32 xf_OutputExpose(xfContext* xfc, ::i32 x, ::i32 y, ::i32 width, ::i32 height);
 
 void xf_graphics_pipeline_init(xfContext* xfc, RdpgfxClientContext* gfx);
 void xf_graphics_pipeline_uninit(xfContext* xfc, RdpgfxClientContext* gfx);

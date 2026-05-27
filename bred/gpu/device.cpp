@@ -187,7 +187,7 @@ namespace gpu
 
       }
 
-      for(int i = (int) iFind - 1; i >= 0; i--)
+      for(::i32 i = (::i32) iFind - 1; i >= 0; i--)
       {
          if (m_playera->element_at(i)->m_pgpurenderer
              == player->m_pgpurenderer)
@@ -422,13 +422,13 @@ namespace gpu
    //   //
    //   //      }
    //   //      //glGenBuffers(1, &VAO);
-   //   ////      float vertexes[] = {
+   //   ////      ::f32 vertexes[] = {
    //   //         // positions         // colors
    //   //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
    //   //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
    //   //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
    //   //      //};
-   //   //      float vertexes[] = {
+   //   //      ::f32 vertexes[] = {
    //   //         // first triangle
    //   //          1.f,  1.f, 0.0f,  // top right
    //   //          1.f, -1.f, 0.0f,  // bottom right
@@ -448,10 +448,10 @@ namespace gpu
    //         //glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
    //         //// position attribute
-   //         //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+   //         //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
    //         //glEnableVertexAttribArray(0);
    //         //// color attribute
-   //         ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+   //         ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(::f32), (void*)(3 * sizeof(::f32)));
    //         ////glEnableVertexAttribArray(1);
 
    //         //return ::success;
@@ -486,9 +486,9 @@ namespace gpu
    //   ////glUseProgram(shaderProgram);
 
    //   //// update the uniform color
-   //   ////float timeValue = glfwGetTime();
-   //   ////float greenValue = sin(timeValue) / 2.0f + 0.5f;
-   //   ////int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+   //   ////::f32 timeValue = glfwGetTime();
+   //   ////::f32 greenValue = sin(timeValue) / 2.0f + 0.5f;
+   //   ////::i32 vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
    //   ////glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
    //   //return ::success;
@@ -1080,13 +1080,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_frame_index3()
+   ::i32 device::get_frame_index3()
    {
 
       if (this->get_frame_count() > 1)
       {
 
-         return (int)m_iCurrentFrame3;
+         return (::i32)m_iCurrentFrame3;
 
       }
       else
@@ -1099,13 +1099,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_image_index()
+   ::i32 device::get_image_index()
    {
 
       if (this->get_frame_count() > 1)
       {
 
-         return (int)m_iCurrentImage;
+         return (::i32)m_iCurrentImage;
       }
       else
       {
@@ -1116,17 +1116,17 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_frame_count()
+   ::i32 device::get_frame_count()
    {
 
-      return (int)m_iFrameCount;
+      return (::i32)m_iFrameCount;
 
    }
 
 
 
    
-   pool_group* device::frame_pool_group(int iFrameIndex)
+   pool_group* device::frame_pool_group(::i32 iFrameIndex)
    {
 
       auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
@@ -1140,7 +1140,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   ::pointer_array<::particle >* device::frame_particle_array(int iFrameIndex)
+   ::pointer_array<::particle >* device::frame_particle_array(::i32 iFrameIndex)
    {
       
       auto& pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
@@ -1257,7 +1257,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
    //   string strFragment =
    //      "uniform floating_sequence2 resolution;\n"
-   //      "uniform float time;\n"
+   //      "uniform ::f32 time;\n"
    //      "uniform floating_sequence2 mouse;\n"
    //      "uniform sampler2D backbuffer;\n"
    //      "\n"
@@ -1299,10 +1299,10 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          strFragment =
             //"#" + strVersion + "\n"
             //"\n"
-            //"precision highp float;\n"
+            //"precision highp ::f32;\n"
             "\n"
             "uniform floating_sequence2 iResolution;\n"
-            "uniform float iTime;\n"
+            "uniform ::f32 iTime;\n"
             "uniform floating_sequence2 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
@@ -1361,13 +1361,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_type_size(::gpu::enum_type etype)
+   ::i32 device::get_type_size(::gpu::enum_type etype)
    {
 
       switch (etype)
       {
-      case e_type_i32: return sizeof(int);
-      case e_type_float: return sizeof(float);
+      case e_type_i32: return sizeof(::i32);
+      case e_type_f32: return sizeof(::f32);
       case e_type_seq4: return sizeof(floating_sequence4);
       case e_type_mat4: return sizeof(floating_matrix4);
       case e_type_seq3: return sizeof(floating_sequence3);

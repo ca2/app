@@ -39,31 +39,31 @@ constexpr class time operator""_days(::u64 u) { return day_time(u); }
 
 
 // unit _nanosecond
-constexpr class time operator""_ηs(long double d) { return nanosecond_time(d); }
+constexpr class time operator""_ηs(::f128 d) { return nanosecond_time(d); }
 
 
 // unit _microsecond
-constexpr class time operator""_μs(long double d) { return microsecond_time(d); }
+constexpr class time operator""_μs(::f128 d) { return microsecond_time(d); }
 
 
-constexpr class time operator""_ms(long double d) { return millisecond_time(d); }
+constexpr class time operator""_ms(::f128 d) { return millisecond_time(d); }
 
 
-constexpr class time operator""_s(long double d) { return second_time(d); }
+constexpr class time operator""_s(::f128 d) { return second_time(d); }
 
 
-constexpr class time operator""_min(long double d) { return minute_time(d); }
-constexpr class time operator""_minute(long double d) { return minute_time(d); }
-constexpr class time operator""_minutes(long double d) { return minute_time(d); }
+constexpr class time operator""_min(::f128 d) { return minute_time(d); }
+constexpr class time operator""_minute(::f128 d) { return minute_time(d); }
+constexpr class time operator""_minutes(::f128 d) { return minute_time(d); }
 
 
-constexpr class time operator""_h(long double d) { return hour_time(d); }
-constexpr class time operator""_hour(long double d) { return hour_time(d); }
-constexpr class time operator""_hours(long double d) { return hour_time(d); }
+constexpr class time operator""_h(::f128 d) { return hour_time(d); }
+constexpr class time operator""_hour(::f128 d) { return hour_time(d); }
+constexpr class time operator""_hours(::f128 d) { return hour_time(d); }
 
 
-constexpr class time operator""_day(long double d) { return day_time(d); }
-constexpr class time operator""_days(long double d) { return day_time(d); }
+constexpr class time operator""_day(::f128 d) { return day_time(d); }
+constexpr class time operator""_days(::f128 d) { return day_time(d); }
 
 
 

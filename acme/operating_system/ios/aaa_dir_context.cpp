@@ -3,7 +3,7 @@
 //#include "acme/xml/_.h"
 
 
-bool _ui_library_dir(char * psz, unsigned int * puiSize);
+bool _ui_library_dir(char_pointer psz, ::u32 * puiSize);
 
 
 namespace ios
@@ -65,7 +65,7 @@ namespace ios
 
             dira.ls_dir(listing.m_pathFinal);
 
-            for(int i = 0; i < dira.get_count(); i++)
+            for(::i32 i = 0; i < dira.get_count(); i++)
             {
 
                ::file::path directory_context = dira[i];
@@ -288,7 +288,7 @@ pdirectorysystem->is(stra[i]))
    //         string_array_base straPath;
    //         string_array_base straTitle;
    //         ls(papp, psz, &straPath, &straTitle);
-   //         for(int i = 0; i < straPath.get_count(); i++)
+   //         for(::i32 i = 0; i < straPath.get_count(); i++)
    //         {
    //            if(is(straPath[i], papp))
    //            {
@@ -572,9 +572,9 @@ pdirectorysystem->is(stra[i]))
 
          string str;
 
-         unsigned int uiSize = 4096;
+         ::u32 uiSize = 4096;
 
-         char * psz = str.get_buffer(uiSize);
+         char_pointer psz = str.get_buffer(uiSize);
 
          _ui_library_dir(scopedstr, &uiSize);
 

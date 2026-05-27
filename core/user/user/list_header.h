@@ -30,7 +30,7 @@
 // end_r_commctrl
 
 #define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
-#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a int
+#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a ::i32
 #define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a ::u32 (dos date)
 
 #define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit
@@ -65,14 +65,14 @@ namespace user
 
 
          ::u32                mask;
-         int                  cxy;
+         ::i32                  cxy;
          string               m_strTextText;
          ::image::image_pointer      m_pimage;
-         int                  cchTextMax;
-         int                  fmt;
+         ::i32                  cchTextMax;
+         ::i32                  fmt;
          lparam               lParam;
-         int                  iImage;        // index of bitmap in ImageList
-         int                  iOrder;
+         ::i32                  iImage;        // index of bitmap in ImageList
+         ::i32                  iOrder;
          ::u32                type;           // [in] filter type (defined what pvFilter is a pointer to)
          void *               pvFilter;       // [in] fillter data see above
          ::u32                state;
@@ -86,7 +86,7 @@ namespace user
          ElementDivider,
       };
 
-      int                           m_iImageSpacing;
+      ::i32                           m_iImageSpacing;
       //::write_text::font_pointer                 m_pfont;
       string                        m_strBuffer;
       ::pointer<draw2d::graphics_extension>   m_pgraphicsextension;
@@ -118,7 +118,7 @@ namespace user
       virtual ::collection::index MapItemToOrder(::collection::index iItem);
       virtual ::collection::index ItemToColumnKey(::collection::index iItem);
 
-      virtual int GetDividerWidth();
+      virtual ::i32 GetDividerWidth();
 
 
       bool GetItemRect(::i32_rectangle * prectangle, enum_element eelement, ::collection::index iItem);
@@ -142,7 +142,7 @@ namespace user
       ::collection::index & iItem);
 
 
-      ::double_point get_parent_context_offset() override;
+      ::f64_point get_parent_context_offset() override;
 
       // Message Handlers
    protected:

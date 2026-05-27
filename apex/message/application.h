@@ -36,7 +36,7 @@ namespace message
 
 
       e_application              m_eapplication;
-      int                        m_iRet;
+      ::i32                        m_iRet;
       bool                       m_bOk;
 
 

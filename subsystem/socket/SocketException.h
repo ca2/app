@@ -43,7 +43,7 @@ namespace subsystem
       SocketException();
       // Creates socket exception object with specified error numner.
       // Error string generates automaticly;
-      SocketException(int iErrorCode);
+      SocketException(::i32 iErrorCode);
       // Creates socket exception object with specified scopedstrMessage.
       // Error number is sets to zero.
       SocketException(const ::scoped_string & scopedstrMessage);
@@ -51,13 +51,13 @@ namespace subsystem
       virtual ~SocketException();
 
       // Returns error number.
-      int getErrorCode();
+      ::i32 getErrorCode();
 
       //protected:
       // Sets m_errno and generates error description string.
-      void setErrorCode(int iErrorCode);
+      void setErrorCode(::i32 iErrorCode);
 
       //protected:
-      int m_iErrorCode;
+      ::i32 m_iErrorCode;
    };
 } // namespace subsystem

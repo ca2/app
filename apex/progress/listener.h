@@ -15,7 +15,7 @@ namespace progress
    public:
 
 
-      virtual void on_progress(double dRate);
+      virtual void on_progress(::f64 dRate);
 
 
    };

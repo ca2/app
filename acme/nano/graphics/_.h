@@ -36,7 +36,7 @@ namespace graphics
 class graphics;
 
 
-class device;
+class context;
 //class child;
 
 
@@ -58,11 +58,11 @@ class brush;
 class pen;
 class font;
 
+class path;
 
-
-   CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
-   CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
-   CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
+   //CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
+   //CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, ::i32 iPoint, enum_font efont, bool bBold = false);
+   
 
 
    //::enum_display_type get_display_type();

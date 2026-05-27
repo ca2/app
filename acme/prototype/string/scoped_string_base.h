@@ -544,7 +544,7 @@ public:
 
 
    //template < character_count n >
-   //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
+   //scoped_string_base(const ::i8 (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
    //template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    //void construct_owned_string(ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
    //requires (sizeof(get_iterator_item < ITERATOR_TYPE >) == sizeof(CHARACTER))
@@ -771,7 +771,7 @@ public:
    //const CHARACTER * c_str() const { return this->null_terminated(); }
 
 
-   ::block as_block() const { return { (unsigned char *)this->begin(), this->size() * sizeof(CHARACTER) }; }
+   ::block as_block() const { return { (::u8 *)this->begin(), this->size() * sizeof(CHARACTER) }; }
 
 
 };
@@ -976,7 +976,7 @@ inline ::block as_block(const ::scoped_string & scopedstr)
 
 
 template <  >
-inline bool EqualElements(const ::scoped_string_base < const char * > & element1, const ::scoped_string_base < const char * > & element2)
+inline bool EqualElements(const ::scoped_string_base < const_char_pointer > & element1, const ::scoped_string_base < const_char_pointer > & element2)
 {
 
    return element1.equals(element2);

@@ -691,7 +691,7 @@ namespace application_build_helper
 
       package_reference_array packagereferencea;
 
-      int iLine = 0;
+      ::i32 iLine = 0;
 
       for (auto & str : stra)
       {

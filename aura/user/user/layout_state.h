@@ -40,7 +40,7 @@ namespace user
       ::zorder & zorder() { return m_zorder; }
       const ::zorder & zorder() const { return m_zorder; }
 
-      void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
+      void _patch_order(::i32 iOrder) { m_zorder.m_iZOrder = iOrder; }
 
       ::user::activation activation() const { return m_activation; }
       bool has_activation_request() const

@@ -5,7 +5,7 @@
 //{
 //
 //   //   inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
-//   //   inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+//   //   inline path::path(const property & property,e_path epath, ::i32 iDir): path(property.get_file_path(),epath, iDir) {}
 //   inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
 //   inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
 //   inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }

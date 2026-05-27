@@ -72,8 +72,8 @@ namespace universal_windows
       }
       wstring wstrRoot;
 
-      unichar * pstrRoot = wstrRoot.alloc(_MAX_PATH);
-      const unichar * pstr = shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
+      wide_character * pstrRoot = wstrRoot.alloc(_MAX_PATH);
+      const wide_character * pstr = shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
 
       // passed name isn't a valid path but was found by the API
       ASSERT(pstr != nullptr);
@@ -87,8 +87,8 @@ namespace universal_windows
       else
       {
          // find the last forward or backward whack
-         unichar * pstrBack  = wcsrchr(pstrRoot, '\\');
-         unichar * pstrFront = wcsrchr(pstrRoot, '/');
+         wide_character * pstrBack  = wcsrchr(pstrRoot, '\\');
+         wide_character * pstrFront = wcsrchr(pstrRoot, '/');
 
          if (pstrFront != nullptr || pstrBack != nullptr)
          {

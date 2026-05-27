@@ -3,7 +3,7 @@
 
 
 
-char* string_append_character(char* psz, ::ansi_character ch)
+char_pointer string_append_character(char_pointer psz, ::ansi_character ch)
 {
 
    *psz = ch;
@@ -16,7 +16,7 @@ char* string_append_character(char* psz, ::ansi_character ch)
 
 }
 
-bool is_url(const ::scoped_string & scopedstrCandidate,const char ** ppszRequest)
+bool is_url(const ::scoped_string & scopedstrCandidate,const_char_pointer * ppszRequest)
 {
 
    const ::scoped_string & scopedstr = pszCandidate;
@@ -145,7 +145,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
+//         ::i8 ch = (::i8)strtol(str.substr(iFind + 1,2),nullptr,16);
 //
 //         if(ch != 0)
 //         {
@@ -177,13 +177,13 @@ namespace url
 
       string strDecode;
 
-      char* pszStart = strDecode.get_buffer(sizeLen * 4);
+      char_pointer pszStart = strDecode.get_buffer(sizeLen * 4);
 
       auto pszDecode = pszStart;
 
       character_count i = 0;
 
-      const ::scoped_string & scopedstrEncoded = (const char*)block.get_data();
+      const ::scoped_string & scopedstrEncoded = (const_char_pointer )block.get_data();
 
       while (*pszEncoded != '\0' && i < sizeLen)
       {
@@ -244,7 +244,7 @@ namespace url
 
                }
 
-               *pszDecode = (char)(uchar)(((nibble1 << 4) & 0xf0) | (nibble2 & 0xf));
+               *pszDecode = (::i8)(uchar)(((nibble1 << 4) & 0xf0) | (nibble2 & 0xf));
 
                pszDecode++;
 
@@ -393,14 +393,14 @@ namespace url
 
       auto pszEncoded = pszEncodedStart;
 
-      auto pszInput = (const char*)block.get_data();
+      auto pszInput = (const_char_pointer )block.get_data();
 
       ::memory_set(scopedstrEncoded, 0, block.get_size() * 5);
 
       while (*pszInput != '\0')
       {
 
-         char ch = *pszInput;
+         ::i8 ch = *pszInput;
 
          if (ansi_char_isalnum(ch)
             || ch == '.'
@@ -499,7 +499,7 @@ namespace url
 
 void openURL(const string& url_str);
 
-int ui_open_url(const ::scoped_string & scopedstr);
+::i32 ui_open_url(const ::scoped_string & scopedstr);
 
 void openURL(const string& url_str)
 {
@@ -535,7 +535,7 @@ void openURL(const string& url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
 //{
 //
 //   ::platform::application * papp = (::platform::application *) instance;
@@ -655,7 +655,7 @@ void openURL(const string& url_str)
 //
 //   character_count i = 0;
 //
-//   char ch;
+//   ::i8 ch;
 //
 //   while (i < iLen)
 //   {
@@ -718,7 +718,7 @@ void openURL(const string& url_str)
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.substr(iFind + 1, 2), nullptr, 16);
+//         ::i8 ch = (::i8)strtol(str.substr(iFind + 1, 2), nullptr, 16);
 //
 //         if (ch != 0)
 //         {
@@ -745,7 +745,7 @@ void openURL(const string& url_str)
 //
 //   string strDecode;
 //
-//   char* psz = strDecode.get_buffer(iLen * 4);
+//   char_pointer psz = strDecode.get_buffer(iLen * 4);
 //
 //   character_count i = 0;
 //
@@ -780,7 +780,7 @@ void openURL(const string& url_str)
 //         {
 //            i++;
 //            iLen--;
-//            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
+//            *psz = (::i8)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 //
 //            psz++;
 //            pszUrl += 2;
@@ -930,12 +930,12 @@ void openURL(const string& url_str)
 //
 //   string str;
 //
-//   char sz[256];
+//   ::i8 sz[256];
 //
 //   while (*psz != '\0')
 //   {
 //
-//      char uch = *psz;
+//      ::i8 uch = *psz;
 //
 //      if (ansi_char_isdigit(uch)
 //         || ansi_char_isalpha(uch)
@@ -1067,7 +1067,7 @@ void openURL(const string& url_str)
 
 void openURL(const string& url_str);
 
-int ui_open_url(const ::scoped_string & scopedstr);
+::i32 ui_open_url(const ::scoped_string & scopedstr);
 
 //void openURL(const string& url_str)
 //{
@@ -1103,7 +1103,7 @@ int ui_open_url(const ::scoped_string & scopedstr);
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
 //{
 //
 //   ::application * papp = (::apex::application *) instance;

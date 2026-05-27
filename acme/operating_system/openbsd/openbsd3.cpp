@@ -4,7 +4,7 @@
 #include <dlfcn.h>
 
 
-char * openbsd_acme_path()
+char_pointer openbsd_acme_path()
 {
 
    void * handle = dlopen("libacme.so", RTLD_NOW);

@@ -57,7 +57,7 @@ namespace macos
    }
 
 
-   int rsa::public_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_encrypt(memory& out, const memory& in, string& strError)
    {
 
       SecTransformRef transform = SecEncryptTransformCreate(m_prsa, &error);
@@ -138,7 +138,7 @@ namespace macos
       CFRelease(transform);
 
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
 
    }
@@ -147,124 +147,16 @@ namespace macos
 
 
 
-   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
    {
 
 
 
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
-   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
-   {
-
-
-      SecTransformRef transform = SecEncryptTransformCreate(m_prsa, &error);
-
-      if (error != nullptr)
-      {
-
-         CFRelease(error);
-
-         return "";
-
-      }
-
-      SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
-
-      if (error != nullptr)
-      {
-
-         CFRelease(transform);
-
-         CFRelease(error);
-
-         return "";
-
-      }
-
-      memory memDataIn;
-
-      memDataIn.from_hex(strRsaModulus);
-
-      CFDataRef dataIn = memDataIn.get_os_cf_data();
-
-      SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
-
-      if (error != nullptr)
-      {
-
-         CFRelease(dataIn);
-
-         CFRelease(transform);
-
-         CFRelease(error);
-
-         return "";
-
-      }
-
-      /* Encrypt the data. */
-
-      CFDataRef data = (CFDataRef)SecTransformExecute(transform, &error);
-
-      if (error != nullptr)
-      {
-
-         CFRelease(dataIn);
-
-         CFRelease(transform);
-
-         CFRelease(error);
-
-         return "";
-
-      }
-
-
-      string strHex;
-
-      memory memory;
-
-      memory.set_os_cf_data(data);
-
-      memory.to_hex(strHex);
-
-      CFRelease(data);
-
-      CFRelease(dataIn);
-
-      CFRelease(transform);
-
-      return int(out.get_size());
-
-   }
-
-
-   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
-   {
-
-
-
-      return int(out.get_size());
-
-   }
-
-
-
-
-   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
-   {
-
-
-
-      return int(out.get_size());
-
-   }
-
-
-   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
    {
 
 
@@ -345,16 +237,124 @@ namespace macos
 
       CFRelease(transform);
 
-
-      return int(out.get_size());
+      return ::i32(out.get_size());
 
    }
 
 
-   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
    {
 
-      return int(out.get_size());
+
+
+      return ::i32(out.get_size());
+
+   }
+
+
+
+
+   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   {
+
+
+
+      return ::i32(out.get_size());
+
+   }
+
+
+   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   {
+
+
+      SecTransformRef transform = SecEncryptTransformCreate(m_prsa, &error);
+
+      if (error != nullptr)
+      {
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
+
+      if (error != nullptr)
+      {
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      memory memDataIn;
+
+      memDataIn.from_hex(strRsaModulus);
+
+      CFDataRef dataIn = memDataIn.get_os_cf_data();
+
+      SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
+
+      if (error != nullptr)
+      {
+
+         CFRelease(dataIn);
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      /* Encrypt the data. */
+
+      CFDataRef data = (CFDataRef)SecTransformExecute(transform, &error);
+
+      if (error != nullptr)
+      {
+
+         CFRelease(dataIn);
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+
+      string strHex;
+
+      memory memory;
+
+      memory.set_os_cf_data(data);
+
+      memory.to_hex(strHex);
+
+      CFRelease(data);
+
+      CFRelease(dataIn);
+
+      CFRelease(transform);
+
+
+      return ::i32(out.get_size());
+
+   }
+
+
+   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   {
+
+      return ::i32(out.get_size());
 
    }
 

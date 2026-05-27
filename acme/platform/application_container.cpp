@@ -222,7 +222,7 @@ namespace platform
 
       //multiplelock.lock();
 
-      ////int i = 50;
+      ////::i32 i = 50;
 
       ////while (i > 0 && applicationa.get_size() > 0)
       ////{

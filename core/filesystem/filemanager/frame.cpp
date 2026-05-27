@@ -81,9 +81,9 @@ namespace filemanager
 
 //      create_point_font(::user::font_list_item, "Arial", 14.0, e_font_weight_bold);
 //
-//      create_double(::user::double_width_rate, 1.2);
+//      create_double(::user::f64_width_rate, 1.2);
 //
-//      create_double(::user::double_list_item_height_rate, 2.0);
+//      create_double(::user::f64_list_item_height_rate, 2.0);
 
       //set_need_layout();
 

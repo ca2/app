@@ -6,7 +6,7 @@ class CLASS_DECL_AURA blob
 public:
 
    memsize   m_sizet;
-   char *   m_pchData;
+   char_pointer m_pchData;
 
 
    blob();

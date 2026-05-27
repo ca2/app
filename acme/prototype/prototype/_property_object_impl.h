@@ -81,7 +81,7 @@
 //}
 //
 //
-//inline int property_object::find_int(const ::atom & atom, int iDefault) const
+//inline ::i32 property_object::find_int(const ::atom & atom, ::i32 iDefault) const
 //{
 //
 //   if (!m_ppropertyset)
@@ -100,7 +100,7 @@
 //
 //   }
 //
-//   return pproperty->int(iDefault);
+//   return pproperty->::i32(iDefault);
 //
 //}
 //

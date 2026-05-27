@@ -23,8 +23,8 @@ float4 main(PS_INPUT input) : SV_TARGET
 {
     float3 dir = normalize(input.modelCoordinates);
     float2 uv  = sphericalToCartesian(dir);
-    float u = uv.x;
-    float v = uv.y;
+    ::f32 u = uv.x;
+    ::f32 v = uv.y;
     u = fmod(u + 0.75, 1.0);
     float3 color = hdri.Sample(samLinear, float2(1.0 - u, v)).rgb;
     return float4(color,1.0f);

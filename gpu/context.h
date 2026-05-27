@@ -14,8 +14,8 @@ namespace gpu_gpu
       virtual public ::gpu::context
    {
    public:
-      float m_fGammaCorrectionFactor = 2.2f;
-      float m_fBloomBrightnessCutoff = 1.0f; // fragments with brightness above this are blurred
+      ::f32 m_fGammaCorrectionFactor = 2.2f;
+      ::f32 m_fBloomBrightnessCutoff = 1.0f; // fragments with brightness above this are blurred
 
 //::pointer < ::graphics3d::renderable > m_prenderableSkybox;
       // bool     m_bDepthBuffer = true;
@@ -37,7 +37,7 @@ namespace gpu_gpu
       // GLint                            m_iMatrixUniform;
       //
       // GLuint                           m_gluTextureBitmap1;
-      // int                              m_iLastBitmap1Scan;
+      // ::i32                              m_iLastBitmap1Scan;
       // ::i32_size                       m_sizeBitmap1;
       //
       // memory                           m_memorySwap;
@@ -63,7 +63,7 @@ namespace gpu_gpu
 //       void render() override;
 //
 //       void set_bitmap_1(::image::image *pimage) override;
-//       //void set_topic_texture(int iIndex) override;
+//       //void set_topic_texture(::i32 iIndex) override;
 //       void set_cull_face(::gpu::enum_cull_mode ecullmode) override;
 //       //void swap_buffers() override;
 //
@@ -80,7 +80,7 @@ namespace gpu_gpu
 //       ::memory white_to_color_sampler_frag() override;
 //
 //
-//       void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
+//       void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, ::i32 iAssimpTextureType) override;
 //
 //
 //       //virtual void create_offscreen_buffer(const ::i32_size& size);
@@ -121,7 +121,7 @@ namespace gpu_gpu
 //
 //
 //       void clear(const ::color::color& color) override;
-//       void create_global_ubo(int iSize, int iFrameCount) override;
+//       void create_global_ubo(::i32 iSize, ::i32 iFrameCount) override;
 //       void update_global_ubo(const ::block& block) override;
 //
 //
@@ -190,7 +190,7 @@ namespace gpu_gpu
 
       
       ::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t &model) override;
-      //void load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, int iAssimpTextureType) override;
+      //void load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, ::i32 iAssimpTextureType) override;
       void load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, bool bSrgb) override;
       virtual void load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture);
       virtual void load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture);

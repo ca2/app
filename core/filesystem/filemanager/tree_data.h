@@ -96,7 +96,7 @@ namespace filemanager
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      int MapToCSIDL(EFolder efolder);
+//      ::i32 MapToCSIDL(EFolder efolder);
 //
 //      IShellFolder * _001GetFolder(EFolder efolder);
 //
@@ -118,7 +118,7 @@ namespace filemanager
 
 
 
-      void RenameFile(int iLine, string & str, const ::action_context & action_context);
+      void RenameFile(::i32 iLine, string & str, const ::action_context & action_context);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

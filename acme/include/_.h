@@ -520,8 +520,8 @@ struct block_143 : public block
    template<array_of_non_prototype_character NONCHARACTERA>
    block_143(NONCHARACTERA & a)
    {
-      this->m_begin = (unsigned char *)(a);
-      this->m_end = (unsigned char *)(&a[0] + øarray_count(a));
+      this->m_begin = (::u8 *)(a);
+      this->m_end = (::u8 *)(&a[0] + øarray_count(a));
    }
 
    //template<prototype_raw_array NONCHARACTERA>
@@ -546,7 +546,7 @@ struct block_143 : public block
    //      template<typename NONCHARACTERA>
    //block_143(NONCHARACTERA &a)
    //   requires(::is_raw_array<NONCHARACTERA> && 
-   //::is_same<::decay_array<NONCHARACTERA>, unsigned char>)
+   //::is_same<::decay_array<NONCHARACTERA>, ::u8>)
    ////   && !prototype_character<::non_const<::decay_array<T>>>*/)
    //{
    //}
@@ -577,8 +577,8 @@ struct block_9438756 : public block
    template<array_of_non_prototype_character NONCHARACTERA>
    block_9438756(NONCHARACTERA & a)
    {
-      this->m_begin = (unsigned char *)(a);
-      this->m_end = (unsigned char *)(&a[0] + øarray_count(a));
+      this->m_begin = (::u8 *)(a);
+      this->m_end = (::u8 *)(&a[0] + øarray_count(a));
    }
 
    block_9438756() : block() {}
@@ -588,39 +588,39 @@ struct block_9438756 : public block
       this->m_end = block.m_end;
    }
 
-   block_9438756(const range<unsigned char *> &range) {}
+   block_9438756(const range<::u8 *> &range) {}
    block_9438756(const memory_base &memory) {}
    block_9438756(const memory_base *pmemory) {}
    block_9438756(const atom &atom) {}
 
    // template < ::collection::count c >
-   // block(const char(&sz)[c])
+   // block(const ::i8(&sz)[c])
    //{
 
-   //   this->m_begin = (unsigned char *)(sz);
-   //   this->m_end = (unsigned char *)(this->m_begin + c);
+   //   this->m_begin = (::u8 *)(sz);
+   //   this->m_end = (::u8 *)(this->m_begin + c);
 
    //}
    // template < ::collection::count c >
-   // block(const unsigned char(&ba)[c])
+   // block(const ::u8(&ba)[c])
    //{
 
-   //   this->m_begin = (unsigned char *) ba;
-   //   this->m_end = (unsigned char *) (this->m_begin + c);
+   //   this->m_begin = (::u8 *) ba;
+   //   this->m_end = (::u8 *) (this->m_begin + c);
 
    //}
    //template<const_pointer_to_prototype_character PSZ>
    //block_9438756(PSZ psz)
    //{
-   //   this->m_begin = (unsigned char *)(psz);
-   //   this->m_end = (unsigned char *)(psz + ::string_safe_length(psz));
+   //   this->m_begin = (::u8 *)(psz);
+   //   this->m_end = (::u8 *)(psz + ::string_safe_length(psz));
    //}
 
    //template<const_array_of_prototype_character CONSTCHARACTERA>
    //block_9438756(CONSTCHARACTERA a)
    //{
-   //   this->m_begin = (unsigned char *)(a);
-   //   this->m_end = (unsigned char *)(&a[0] + øarray_count(a) - 1);
+   //   this->m_begin = (::u8 *)(a);
+   //   this->m_end = (::u8 *)(&a[0] + øarray_count(a) - 1);
    //}
    // template<prototype_character CHARACTER, ::collection::count c>
    //   requires(c > 1)
@@ -647,9 +647,9 @@ struct block_9438756 : public block
    block_9438756(enum_as_block, const TYPE &t) : block((void *)&t, sizeof(t))
    {
    }
-   block_9438756(const void *begin, const void *end) : block((unsigned char *)begin, (unsigned char *)end) {}
+   block_9438756(const void *begin, const void *end) : block((::u8 *)begin, (::u8 *)end) {}
    template<prototype_integral INTEGRAL>
-   block_9438756(const void *data, INTEGRAL count) : block((unsigned char *)data, count)
+   block_9438756(const void *data, INTEGRAL count) : block((::u8 *)data, count)
    {
    }
 };
@@ -671,7 +671,7 @@ inline void random_3956873456854(const ::block_9438756 & )
 inline void test_random_3956873456854()
 {
 
-   unsigned char baTicketKey[512];
+   ::u8 baTicketKey[512];
 
    random_143_3956873456854(baTicketKey);
 

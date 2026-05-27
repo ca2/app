@@ -100,7 +100,7 @@ namespace userstack
 
       auto uEvent = ptimer->m_uTimer;
 
-      static float theta;
+      static ::f32 theta;
 
       if(uEvent == 3)
       {
@@ -239,7 +239,7 @@ namespace userstack
       else if(pusermessage->id() == WM_COPYDATA)
       {
 #ifdef WINDOWS_DESKTOP
-         int iEdge = 0;
+         ::i32 iEdge = 0;
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pusermessage->m_lparam.m_lparam;
          if(pstruct->dwData == 2000)
          {
@@ -314,7 +314,7 @@ namespace userstack
       {
          string str = psystem->get_local_mutex_id();
          str.case_insensitive_begins_eat("bergedge");
-         int iEdge = atoi(str);
+         ::i32 iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
          else

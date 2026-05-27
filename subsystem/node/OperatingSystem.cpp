@@ -70,11 +70,11 @@ namespace subsystem
    //   out->format("{} ({})", specification, sysErrText);
    //}
 
-   //bool OperatingSystem::getSpecialFolderPath(int specialFolderId, ::string &out)
+   //bool OperatingSystem::getSpecialFolderPath(::i32 specialFolderId, ::string &out)
    //{
    //   _ASSERT(out != NULL);
 
-   //   int csidl = 0;
+   //   ::i32 csidl = 0;
 
    //   switch (specialFolderId)
    //   {
@@ -280,7 +280,7 @@ namespace subsystem
    //      if (dwmIsEnabledResult != S_OK)
    //      {
    //         ::string errMess;
-   //         errMess.formatf("The DwmIsCompositionEnabled() error code is {}", (int)dwmIsEnabledResult);
+   //         errMess.formatf("The DwmIsCompositionEnabled() error code is {}", (::i32)dwmIsEnabledResult);
    //         throw ::subsystem::Exception("");
    //      }
    //      return result != FALSE;

@@ -47,11 +47,11 @@ namespace crypto_openssl
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      unsigned int digest_size = EVP_MD_get_size(m_pmd);
+      ::u32 digest_size = EVP_MD_get_size(m_pmd);
 
 #else
 
-      unsigned int digest_size = EVP_MD_size(m_pmd);
+      ::u32 digest_size = EVP_MD_size(m_pmd);
 
 #endif
 

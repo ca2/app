@@ -72,18 +72,18 @@ namespace nanoui
       class MyGridWidget : public nanoui::Widget
       {
       public:
-         MyGridWidget(nanoui::Widget* p, int cols);
+         MyGridWidget(nanoui::Widget* p, ::i32 cols);
       };
       MyGridWidget* m_pgridRgb;
-      nanoui::IntBox<int>* m_peditRed;
-      nanoui::IntBox<int>* m_peditGreen;
-      nanoui::IntBox<int>* m_peditBlue;
+      nanoui::IntBox<::i32>* m_peditRed;
+      nanoui::IntBox<::i32>* m_peditGreen;
+      nanoui::IntBox<::i32>* m_peditBlue;
 
 
       MyGridWidget* m_pgridHSV;
-      nanoui::IntBox<int>* m_peditHSV_H;
-      nanoui::IntBox<int>* m_peditHSV_S;
-      nanoui::IntBox<int>* m_peditHSV_V;
+      nanoui::IntBox<::i32>* m_peditHSV_H;
+      nanoui::IntBox<::i32>* m_peditHSV_S;
+      nanoui::IntBox<::i32>* m_peditHSV_V;
 
       MyGridWidget* m_pgridHEX;
       nanoui::TextBox * m_peditHex;

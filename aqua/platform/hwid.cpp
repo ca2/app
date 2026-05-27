@@ -73,7 +73,7 @@ static memory getUUID()
     for (::collection::index i = 0; i < res.size(); i++)
     {
 
-       ((char &) res[i]) = ::character_toupper((char)res[i]);
+       ((::i8 &) res[i]) = ::character_toupper((::i8)res[i]);
 
     }
     return res;
@@ -83,7 +83,7 @@ static void queryCpu(::u32 func, ::u32& eax, ::u32& ebx, ::u32& ecx, ::u32& edx)
 {
 //#ifdef _WIN32
 //    //https://msdn.microsoft.com/ru-ru/library/hskdteyh.aspx
-//    int info[4];
+//    ::i32 info[4];
 //    __cpuid(info, func);
 //    eax = info[0];
 //    ebx = info[1];

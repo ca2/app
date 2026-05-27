@@ -113,7 +113,7 @@ namespace serial
    }
 
 
-   size_t serial::_read(unsigned char* buffer, size_t size)
+   size_t serial::_read(::u8* buffer, size_t size)
    {
 
       //return this->m_pimpl->read(buffer, size);
@@ -122,7 +122,7 @@ namespace serial
    }
 
 
-   size_t serial::read(unsigned char* buffer, size_t size)
+   size_t serial::read(::u8* buffer, size_t size)
    {
       
       synchronous_lock lock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -215,9 +215,9 @@ namespace serial
 
       memory memory;
 
-      memory.set_size(size * sizeof(unsigned char));
+      memory.set_size(size * sizeof(::u8));
 
-      unsigned char* buffer_ = static_cast<unsigned char*>(memory.data());
+      ::u8* buffer_ = static_cast<::u8*>(memory.data());
 
       size_t read_so_far = 0;
 
@@ -240,7 +240,7 @@ namespace serial
 
             }
 
-            break; // timeout occured on reading 1 unsigned char
+            break; // timeout occured on reading 1 ::u8
 
          }
 
@@ -280,7 +280,7 @@ namespace serial
 
       synchronous_lock lock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return _write(reinterpret_cast<const unsigned char*>(data.c_str()), (size_t)data.length());
+      return _write(reinterpret_cast<const ::u8*>(data.c_str()), (size_t)data.length());
 
    }
 
@@ -295,7 +295,7 @@ namespace serial
    }
 
 
-   size_t serial::write(const unsigned char* data, size_t size)
+   size_t serial::write(const ::u8* data, size_t size)
    {
       
       synchronous_lock lock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -305,7 +305,7 @@ namespace serial
    }
 
    
-   size_t serial::_write(const unsigned char* data, size_t length)
+   size_t serial::_write(const ::u8* data, size_t length)
    {
 
       return 0;
@@ -490,7 +490,7 @@ namespace serial
    }
 
 
-   void serial::sendBreak(int time)
+   void serial::sendBreak(::i32 time)
    {
 
       //m_pimpl->sendBreak(time);
@@ -753,7 +753,7 @@ namespace serial
 //   }
 //
 //
-//   size_t serial::_read(unsigned char * buffer, size_t size)
+//   size_t serial::_read(::u8 * buffer, size_t size)
 //   {
 //
 //      return 0;
@@ -761,7 +761,7 @@ namespace serial
 //   }
 //
 //
-//   size_t serial::read(unsigned char * buffer, size_t size)
+//   size_t serial::read(::u8 * buffer, size_t size)
 //   {
 //
 //      scoped_read_lock lock(this);
@@ -786,7 +786,7 @@ namespace serial
 //   size)
 //{
 //   scoped_read_lock lock(this);
-//   unsigned char * buffer_ = ___new unsigned char[size];
+//   ::u8 * buffer_ = ___new ::u8[size];
 //   size_t bytes_read = this->read(buffer_, size);
 //   buffer.append(reinterpret_cast
 //   <const_char_pointer >(buffer_), bytes_read
@@ -824,8 +824,8 @@ namespace serial
 //
 //scoped_read_lock lock(this);
 //size_t eol_len = eol.length();
-//unsigned char * buffer_ = static_cast<unsigned char *>
-//(alloca(size * sizeof(unsigned char)));
+//::u8 * buffer_ = static_cast<::u8 *>
+//(alloca(size * sizeof(::u8)));
 //size_t read_so_far = 0;
 //while (true)
 //{
@@ -834,7 +834,7 @@ namespace serial
 //bytes_read;
 //if (bytes_read == 0)
 //{
-//break; // Timeout occured on reading 1 unsigned char
+//break; // Timeout occured on reading 1 ::u8
 //}
 //if (string(reinterpret_cast
 // <const_char_pointer >
@@ -877,8 +877,8 @@ namespace serial
 //   scoped_read_lock lock(this);
 //   string_array_base lines;
 //   size_t eol_len = (size_t) eol.length();
-//   unsigned char * buffer_ = static_cast<unsigned char *>
-//   (alloca(size * sizeof(unsigned char)));
+//   ::u8 * buffer_ = static_cast<::u8 *>
+//   (alloca(size * sizeof(::u8)));
 //   size_t read_so_far = 0;
 //   size_t start_of_line = 0;
 //   while (read_so_far < size)
@@ -893,7 +893,7 @@ namespace serial
 //               string(reinterpret_cast<const_char_pointer >(buffer_ + start_of_line),
 //                      read_so_far - start_of_line));
 //         }
-//         break; // Timeout occured on reading 1 unsigned char
+//         break; // Timeout occured on reading 1 ::u8
 //      }
 //      if (string(reinterpret_cast<const_char_pointer >
 //                 (buffer_ + read_so_far - eol_len), eol_len) == eol)
@@ -926,7 +926,7 @@ namespace serial
 //
 //   scoped_write_lock lock(this);
 //
-//   return this->_write(reinterpret_cast<const unsigned char *>(data.c_str()), (size_t) data.length());
+//   return this->_write(reinterpret_cast<const ::u8 *>(data.c_str()), (size_t) data.length());
 //
 //}
 //
@@ -941,7 +941,7 @@ namespace serial
 //}
 //
 //
-//size_t serial::write(const unsigned char * data, size_t size)
+//size_t serial::write(const ::u8 * data, size_t size)
 //{
 //
 //   scoped_write_lock lock(this);
@@ -951,7 +951,7 @@ namespace serial
 //}
 //
 //
-//size_t serial::_write(const unsigned char * data, size_t length)
+//size_t serial::_write(const ::u8 * data, size_t length)
 //{
 //
 //   return write(data, length);
@@ -1104,7 +1104,7 @@ namespace serial
 //}
 //
 //
-//void serial::sendBreak(int time)
+//void serial::sendBreak(::i32 time)
 //{
 //
 //

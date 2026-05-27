@@ -27,7 +27,7 @@ namespace user
       i32_rectangle              m_rectangleBroad;
       i32_rectangle              m_rectangleCompact;
       i32_rectangle              m_rectangleWindow;
-      int                        m_iControlBoxRightToLeft;
+      ::i32                        m_iControlBoxRightToLeft;
       ::collection::index                      m_iWorkspace;
 
       //using memory_template < window_rectangle >::operator=;

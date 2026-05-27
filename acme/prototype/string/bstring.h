@@ -18,7 +18,7 @@
 //{
 //public:
 //
-//   typedef unsigned char value_type;
+//   typedef ::u8 value_type;
 //
 //   value_type * m_puchData;
 //
@@ -38,7 +38,7 @@
 //   bstring(bstring && bstr);
 //
 //
-//   bstring(character_count s, char ch);
+//   bstring(character_count s, ::i8 ch);
 //
 //
 //   bstring(const bstring& str, character_count pos, character_count len = -1);
@@ -124,9 +124,9 @@
 //
 //   void assign(const void * p, character_count s);
 //
-//   bstring & assign(character_count s, char c);
+//   bstring & assign(character_count s, ::i8 c);
 //
-//   bstring & append(character_count s, char c);
+//   bstring & append(character_count s, ::i8 c);
 //
 //   bstring & erase(character_count s = 0, character_count len = -1);
 //
@@ -150,7 +150,7 @@
 //   }
 //
 //
-//   unsigned char * get_data() const
+//   ::u8 * get_data() const
 //   {
 //
 //      return m_puchData;
@@ -169,7 +169,7 @@
 //   void set_bstring_data(bstring_data * pdata)
 //   {
 //
-//      m_puchData = (unsigned char *) &pdata[1];
+//      m_puchData = (::u8 *) &pdata[1];
 //
 //   }
 //
@@ -177,7 +177,7 @@
 //   bstring & operator = (const bstring & bstr);
 //
 //
-//   bstring operator + (char ch) const;
+//   bstring operator + (::i8 ch) const;
 //
 //
 //   bstring operator + (const ::scoped_string & scopedstr) const;
@@ -186,7 +186,7 @@
 //   bstring operator + (const bstring & bstr) const;
 //
 //
-//   bstring & operator += (char ch);
+//   bstring & operator += (::i8 ch);
 //
 //
 //   bstring & operator += (const ::scoped_string & scopedstr);
@@ -201,13 +201,13 @@
 //   const_char_pointer c_str() const;
 //
 //
-//   char & operator [](character_count i);
+//   ::i8 & operator [](character_count i);
 //
 //
-//   const char & operator [](character_count i) const;
+//   const ::i8 & operator [](character_count i) const;
 //
 //
-//   char * get_buffer(character_count s);
+//   char_pointer get_buffer(character_count s);
 //
 //
 //   void release_buffer(character_count s = -1);
@@ -216,16 +216,16 @@
 //   void ReleaseBuffer(character_count s = -1);
 //
 //
-//   unsigned char * data();
+//   ::u8 * data();
 //
 //
-//   const unsigned char * data() const;
+//   const ::u8 * data() const;
 //
 //
 //   bool empty() const;
 //
 //
-//   int compare(const ::scoped_string & scopedstr) const;
+//   ::i32 compare(const ::scoped_string & scopedstr) const;
 //
 //
 //   bool operator == (const ::scoped_string & scopedstr) const;
@@ -246,7 +246,7 @@
 //   bool operator > (const ::scoped_string & scopedstr) const;
 //
 //
-//   int compare(const bstring & bstr) const;
+//   ::i32 compare(const bstring & bstr) const;
 //
 //
 //   bool operator != (const bstring & bstr) const;

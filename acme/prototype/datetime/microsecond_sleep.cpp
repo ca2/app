@@ -57,7 +57,7 @@ microsecond_sleep::~microsecond_sleep()
 #ifdef WINDOWS
 
 
-bool microsecond_sleep::sleep(unsigned long usec)
+bool microsecond_sleep::sleep(ulong usec)
 {
 
    LARGE_INTEGER ft;

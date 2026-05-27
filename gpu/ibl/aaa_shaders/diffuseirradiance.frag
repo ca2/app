@@ -5,7 +5,7 @@ in vec3 modelCoordinates;
 
 uniform samplerCube environmentCubemap;
 
-const float PI = 3.14159265359;
+const ::f32 PI = 3.14159265359;
 const vec3 up = vec3(0.0, 0.0, 1.0);
 
 void main() {
@@ -19,11 +19,11 @@ void main() {
 	// over the hemisphere centered around our sample direction
 	// this uses spherical coordinates phi/theta
 
-	float numSamples = 0.0;
-	float delta = 0.025; // radians
+	::f32 numSamples = 0.0;
+	::f32 delta = 0.025; // radians
 
-	for (float phi = 0.0; phi < 2.0 * PI; phi += delta) { // 360 degrees around
-		for (float theta = 0.0; theta < PI / 2.0; theta += delta) { // 90 degrees up/down
+	for (::f32 phi = 0.0; phi < 2.0 * PI; phi += delta) { // 360 degrees around
+		for (::f32 theta = 0.0; theta < PI / 2.0; theta += delta) { // 90 degrees up/down
 
 			vec3 sampleDirectionTangent = vec3(
 				sin(theta) * cos(phi),

@@ -152,7 +152,7 @@ const_char_pointer memory_counter_id(T * pthis)
 //
 //      //synchronous_lock synchronouslock(g_pmutexMemoryCounters, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      //int i = atoi(file_system()->as_string(path));
+//      //::i32 i = atoi(file_system()->as_string(path));
 //
 //      //file_system()->put_contents(path, as_string(i + 1));
 //   }
@@ -171,7 +171,7 @@ const_char_pointer memory_counter_id(T * pthis)
 //
 //      _memory_counter_decrement(scopedstr);
 //
-//      //int i = atoi(file_system()->as_string(path));
+//      //::i32 i = atoi(file_system()->as_string(path));
 //
 //      //file_system()->put_contents(path, as_string(i - 1));
 //
@@ -358,26 +358,26 @@ const_char_pointer memory_counter_id(T * pthis)
 //} // namespace acme
 //
 //
-////inline float i32muldiv(float f, int iNum, int iDen)
+////inline ::f32 i32muldiv(::f32 f, ::i32 iNum, ::i32 iDen)
 ////{
 ////
-////   return (float) (f * iNum / iDen);
+////   return (::f32) (f * iNum / iDen);
 ////
 ////}
 ////
 ////
-////inline double i32muldiv(double d, int iNum, int iDen)
+////inline ::f64 i32muldiv(::f64 d, ::i32 iNum, ::i32 iDen)
 ////{
 ////
-////   return (double) (d * iNum / iDen);
+////   return (::f64) (d * iNum / iDen);
 ////
 ////}
 ////
 ////
-////inline int i32muldiv(int i, int iNum, int iDen)
+////inline ::i32 i32muldiv(::i32 i, ::i32 iNum, ::i32 iDen)
 ////{
 ////
-////   return (int) ::MulDiv(i, iNum, iDen);
+////   return (::i32) ::MulDiv(i, iNum, iDen);
 ////
 ////}
 ////
@@ -385,7 +385,7 @@ const_char_pointer memory_counter_id(T * pthis)
 //#ifndef WINDOWS
 //
 //
-//inline ::i64 MulDiv(::i64 nNumber, int iNum, int iDen)
+//inline ::i64 MulDiv(::i64 nNumber, ::i32 iNum, ::i32 iDen)
 //{
 //
 //   return nNumber * iNum / iDen;

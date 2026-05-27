@@ -21,11 +21,11 @@ plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocS
 
    //disable_referencing_debugging();
 
-   int iShareCount = 1;
+   ::i32 iShareCount = 1;
 
    set_size(iShareCount);
 
-   for (int i = 0; i < get_count(); i++)
+   for (::i32 i = 0; i < get_count(); i++)
    {
 
       set_at(i, øraw_new plex_heap_alloc_sync(pallocator, nAllocSize, nBlockSize));
@@ -36,7 +36,7 @@ plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocS
 
    m_iShareBound = iShareCount - 1;
 
-   m_iAllocSize = (int)nAllocSize;
+   m_iAllocSize = (::i32)nAllocSize;
 
    m_iAlloc = 0;
 
@@ -53,7 +53,7 @@ void Free_check_pointer_in_cpp(void * p);
 plex_heap_alloc::~plex_heap_alloc()
 {
 
-   for (int i = 0; i < get_count(); i++)
+   for (::i32 i = 0; i < get_count(); i++)
    {
 
       delete this->element_at(i);
@@ -83,7 +83,7 @@ plex_heap_alloc::~plex_heap_alloc()
 void plex_heap_alloc::FreeAll()
 {
 
-   for (int i = 0; i < get_count(); i++)
+   for (::i32 i = 0; i < get_count(); i++)
    {
 
       try
@@ -160,14 +160,14 @@ void Alloc_check_pointer_in_cpp(void * p)
 void Free_check_pointer_in_cpp(void * p)
 {
 
-   //if((unsigned char *) p <  (unsigned char *)  g_pf1)
+   //if((::u8 *) p <  (::u8 *)  g_pf1)
    //{
 
    //   output_debug_string("hit g_pf1");
 
    //}
 
-   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)p))
+   if ((::u8 *)0x0000000200000020 == ((::u8 *)p))
    {
 
       output_debug_string("found it?!");
@@ -401,7 +401,7 @@ void Free_check_pointer_in_cpp(void * p)
 //      }
 //
 //   }
-//   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)pParam))
+//   if ((::u8 *)0x0000000200000020 == ((::u8 *)pParam))
 //   {
 //
 //      debug_break();
@@ -526,18 +526,18 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //   auto nBlockSize = m_nBlockSize;
 //
-//   for (int i = 0; i < nBlockSize; i++)
+//   for (::i32 i = 0; i < nBlockSize; i++)
 //   {
 //
 //      pnode->m_pnext = pnodeNext;
 //
 //      pnodeNext = pnode;
 //
-//      pnode = (node *)&((unsigned char *)pnode)[nAllocSize];
+//      pnode = (node *)&((::u8 *)pnode)[nAllocSize];
 //
 //   }
 //
-//   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)pnodeNext))
+//   if ((::u8 *)0x0000000200000020 == ((::u8 *)pnodeNext))
 //   {
 //
 //      debug_break();

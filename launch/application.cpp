@@ -312,7 +312,7 @@ namespace launch
 
          print_line(strCommand);
 
-         int iError = ::system(strCommand);
+         ::i32 iError = ::system(strCommand);
 
          if (iError)
          {
@@ -494,7 +494,7 @@ namespace launch
       m_pathLog = pathLogFolder / strDateTimeName;
 
       m_pathBinaryFolder = pathStore / "binary";
-      // char szX64[4096];
+      // ::i8 szX64[4096];
       //
       // strcpy(szX64, szStore);
       //
@@ -518,10 +518,10 @@ namespace launch
 
 #endif
 
-      //    char szAppExeName[1024];
+      //    ::i8 szAppExeName[1024];
       //    sprintf(szAppExeName, "_%s_%s", m_pszAppRoot, m_pszAppName);
       //
-      //    for(int i = 0; i < strlen(szAppExeName); i++)
+      //    for(::i32 i = 0; i < strlen(szAppExeName); i++)
       //    {
       //
       // if(szAppExeName[i] =='-')
@@ -538,9 +538,9 @@ namespace launch
       ::string strZipName;
 
       strZipName = "_" + strExecutable + ".zip";
-      // char szZipName[1024];
+      // ::i8 szZipName[1024];
       // sprintf(szZipName, "_%s.zip", szAppExeName);
-      // char szDownloadCommand[2048];
+      // ::i8 szDownloadCommand[2048];
 
       auto pathZipName = m_pathBinaryFolder / strZipName;
 
@@ -572,7 +572,7 @@ namespace launch
 
       nano()->compress()->unzip(m_pathBinaryFolder, pathZipName);
 
-      //char szUnzipCommand[2048];
+      //::i8 szUnzipCommand[2048];
 
       //sprintf(szUnzipCommand, "unzip -o %s -d .", szZipName);
 
@@ -609,7 +609,7 @@ namespace launch
 
       node()->detached_command(strCommand, m_pathLog);
 
-      //    char szCommand[4096];
+      //    ::i8 szCommand[4096];
       //    strcpy(szCommand, "sh -c \"nohup ./");
       // strcat(szCommand, szAppExeName);
       // strcat(szCommand, " > \\\"");
@@ -643,7 +643,7 @@ namespace launch
       //
       // }
       //
-      // char szUrl[4096];
+      // ::i8 szUrl[4096];
 
       ::string strUrl;
 
@@ -703,11 +703,11 @@ namespace launch
 //
 //    }
 //
-//    auto pszCommand = (char*) ::malloc(strlen(scopedstr) + 1024);
+//    auto pszCommand = (char_pointer ) ::malloc(strlen(scopedstr) + 1024);
 //
 //    auto len = strlen(scopedstrCommand);
 //
-//    for(int i = 0; i < len; i++)
+//    for(::i32 i = 0; i < len; i++)
 //    {
 //
 //       if(scopedstrCommand[i] == '\n' || pszCommand[i] == '\r')
@@ -795,7 +795,7 @@ namespace launch
 //
 //
 //
-// int main(int argc, char * argv[])
+// ::i32 main(::i32 argc, char_pointer argv[])
 // {
 //
 //
@@ -834,7 +834,7 @@ namespace launch
 //         {
 //
 //
-//         char szCommand[4096];
+//         ::i8 szCommand[4096];
 //
 //      strcpy(szCommand, "wget -S --spider ");
 //      strcat(szCommand, pszUrl);
@@ -868,7 +868,7 @@ namespace launch
 //         {
 //
 //
-//         char szCommand[4096];
+//         ::i8 szCommand[4096];
 //
 //      strcpy(szCommand, "wget -S --spider ");
 //      strcat(szCommand, pszUrl);
@@ -1004,11 +1004,11 @@ namespace launch
 //      }
 //
 //
-// char * start_temporary_file_name()
+// char_pointer start_temporary_file_name()
 // {
 //
-//    char sz[8192];
-//    char szCurDir[1024];
+//    ::i8 sz[8192];
+//    ::i8 szCurDir[1024];
 //    getcwd(szCurDir, sizeof(szCurDir));
 //    auto ptmpname = tempnam(szCurDir, "tmpfl");
 //    return ptmpname;
@@ -1016,7 +1016,7 @@ namespace launch
 // }
 //
 //
-// void end_temporary_file_name(char * ptmpname)
+// void end_temporary_file_name(char_pointer ptmpname)
 // {
 //
 //    remove(ptmpname);
@@ -1026,7 +1026,7 @@ namespace launch
 // }
 //
 //
-// char * end_temporary_file_name_as_string(char * ptmpname)
+// char_pointer end_temporary_file_name_as_string(char_pointer ptmpname)
 // {
 //
 //    auto p = as_string(ptmpname);
@@ -1038,12 +1038,12 @@ namespace launch
 // }
 
 
-// char * get_command_output(const_char_pointer pszCommand)
+// char_pointer get_command_output(const_char_pointer pszCommand)
 // {
 //
 //    auto ptmpname = start_temporary_file_name();
 //
-//    char sz[8129];
+//    ::i8 sz[8129];
 //
 //    sprintf(sz, "%s &> %s", pszCommand, ptmpname);
 //

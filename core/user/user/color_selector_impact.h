@@ -55,7 +55,7 @@ namespace user
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       //virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point);
-      //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, int y);
+      //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 y);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

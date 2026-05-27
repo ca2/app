@@ -32,7 +32,7 @@ namespace innate_subsystem
       return false;
 
    }
-   bool notification_handler::_001OnColumnClick(int iColumn)
+   bool notification_handler::_001OnColumnClick(::i32 iColumn)
    {
 
       return false;
@@ -60,22 +60,14 @@ namespace innate_subsystem
    }
 
 
-   bool notification_handler::_001OnUpDown(int iPos, int iDelta)
+   bool notification_handler::_001OnUpDown(::i32 iPos, ::i32 iDelta)
    {
 
       return false;
 
    }
 
-   bool notification_handler::_002OnAction(int iControl)
-   {
-
-      return false;
-
-   }
-
-
-   bool notification_handler::_002OnKeyDownNotification(int iControl, ::user::enum_key ekey)
+   bool notification_handler::_002OnAction(::i32 iControl)
    {
 
       return false;
@@ -83,7 +75,7 @@ namespace innate_subsystem
    }
 
 
-   bool notification_handler::_002OnColumnClick(int iControl, int iColumn)
+   bool notification_handler::_002OnKeyDownNotification(::i32 iControl, ::user::enum_key ekey)
    {
 
       return false;
@@ -91,21 +83,7 @@ namespace innate_subsystem
    }
 
 
-   bool notification_handler::_002OnSelectionChange(int iControl)
-   {
-
-      return false;
-
-   }
-
-   bool notification_handler::_002OnTabChanged(int iControl)
-   {
-
-      return false;
-
-   }
-
-   bool notification_handler::_002OnTabChanging(int iControl, bool & bOk)
+   bool notification_handler::_002OnColumnClick(::i32 iControl, ::i32 iColumn)
    {
 
       return false;
@@ -113,7 +91,29 @@ namespace innate_subsystem
    }
 
 
-   bool notification_handler::_002OnUpDown(int iControl, int iPos, int iDelta)
+   bool notification_handler::_002OnSelectionChange(::i32 iControl)
+   {
+
+      return false;
+
+   }
+
+   bool notification_handler::_002OnTabChanged(::i32 iControl)
+   {
+
+      return false;
+
+   }
+
+   bool notification_handler::_002OnTabChanging(::i32 iControl, bool & bOk)
+   {
+
+      return false;
+
+   }
+
+
+   bool notification_handler::_002OnUpDown(::i32 iControl, ::i32 iPos, ::i32 iDelta)
    {
 
       return false;

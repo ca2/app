@@ -38,7 +38,7 @@ namespace gpu
    }
 
 
-   void frame_storage::map_allocate(::gpu::memory_buffer* pgpumemorybuffer, int size)
+   void frame_storage::map_allocate(::gpu::memory_buffer* pgpumemorybuffer, ::i32 size)
    {
 
       if (size > m_iBufferSize)
@@ -135,7 +135,7 @@ namespace gpu
    }
 
 
-   //void* frame_storage::allocate(int size)
+   //void* frame_storage::allocate(::i32 size)
    //{
 
    //   return nullptr;

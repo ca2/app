@@ -78,7 +78,7 @@ namespace filemanager
       ::pointer<file_list_callback>          m_pfilelistcallback;
 
       string                                 m_strLevelUp;
-      int                                    m_iIconSize;
+      ::i32                                    m_iIconSize;
       bool                                   m_bListText;
       bool                                   m_bListSelection;
       bool                                   m_bFileSize;

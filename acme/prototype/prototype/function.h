@@ -574,7 +574,7 @@ public:
    }
    //
    //
-   // void get_debug_title(char * sz, character_count c) override
+   // void get_debug_title(char_pointer sz, character_count c) override
    // {
    //
    //    ::string_count_copy(sz, "a procedure", c);
@@ -823,7 +823,7 @@ public:
    //    }
    //
    //
-   //    void get_debug_title(char * sz, character_count c) const override
+   //    void get_debug_title(char_pointer sz, character_count c) const override
    //    {
    //
    //       ::string_count_copy(sz, "function with argument(s) and return type", c);
@@ -1138,7 +1138,7 @@ public:
 //    }
 //
 //
-//    void get_debug_title(char * sz, character_count c) const override
+//    void get_debug_title(char_pointer sz, character_count c) const override
 //    {
 //
 //       ::string_count_copy(sz, "function with argument(s) and no return type", c);

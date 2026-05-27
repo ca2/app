@@ -292,14 +292,14 @@ namespace micro
       }
 
 
-      void user::display_error_trap_push(int i)
+      void user::display_error_trap_push(::i32 i)
       {
 
 
       }
 
 
-      void user::display_error_trap_pop_ignored(int i)
+      void user::display_error_trap_pop_ignored(::i32 i)
       {
 
 

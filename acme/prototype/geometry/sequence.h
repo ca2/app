@@ -18,7 +18,7 @@
 //#include <string.h> // ::memory_set
 
 
-template<prototype_number NUMBER, int t_iSize >
+template<prototype_number NUMBER, ::i32 t_iSize >
 struct sequence_t_type
 {
 
@@ -27,7 +27,7 @@ struct sequence_t_type
    using sequence_size = sequence_size_t<t_iSize>;
    using COORDINATE = NUMBER;
    using UNIT_TYPE = NUMBER;
-   static const int SIZE = t_iSize;
+   static const ::i32 SIZE = t_iSize;
 
 
 };
@@ -40,7 +40,7 @@ struct sequence_t_type<NUMBER, 1>
 
    using COORDINATE = NUMBER;
    using UNIT_TYPE = NUMBER;
-   static const int SIZE = 1;
+   static const ::i32 SIZE = 1;
 
 
    union
@@ -78,7 +78,7 @@ struct sequence_t_type<NUMBER, 2>
 
    using COORDINATE = NUMBER;
    using UNIT_TYPE = NUMBER;
-   static const int SIZE = 2;
+   static const ::i32 SIZE = 2;
 
    union
    {
@@ -120,7 +120,7 @@ struct sequence_t_type<NUMBER, 3>
 
    using COORDINATE = NUMBER;
    using UNIT_TYPE = NUMBER;
-   static const int SIZE = 3;
+   static const ::i32 SIZE = 3;
 
 
    union
@@ -167,7 +167,7 @@ struct sequence_t_type<NUMBER, 4>
 
    using COORDINATE = NUMBER;
    using UNIT_TYPE = NUMBER;
-   static const int SIZE = 4;
+   static const ::i32 SIZE = 4;
 
 
    union
@@ -209,9 +209,9 @@ struct std::hash<::sequence_t_type<NUMBER, 4>>
    }
 };
 
-using int_sequence2_t = sequence_t_type<int, 2>;
-using int_sequence3_t = sequence_t_type<int, 3>;
-using int_sequence4_t = sequence_t_type<int, 4>;
+using int_sequence2_t = sequence_t_type<::i32, 2>;
+using int_sequence3_t = sequence_t_type<::i32, 3>;
+using int_sequence4_t = sequence_t_type<::i32, 4>;
 
 
 using i64_sequence2_t = sequence_t_type<::i64, 2>;
@@ -219,18 +219,18 @@ using i64_sequence3_t = sequence_t_type<::i64, 3>;
 using i64_sequence4_t = sequence_t_type<::i64, 4>;
 
 
-using float_sequence2_t = sequence_t_type<float, 2>;
-using float_sequence3_t = sequence_t_type<float, 3>;
-using float_sequence4_t = sequence_t_type<float, 4>;
+using f32_sequence2_t = sequence_t_type<::f32, 2>;
+using f32_sequence3_t = sequence_t_type<::f32, 3>;
+using f32_sequence4_t = sequence_t_type<::f32, 4>;
 
 
-using double_sequence2_t = sequence_t_type<double, 2>;
-using double_sequence3_t = sequence_t_type<double, 3>;
-using double_sequence4_t = sequence_t_type<double, 4>;
+using f64_sequence2_t = sequence_t_type<::f64, 2>;
+using f64_sequence3_t = sequence_t_type<::f64, 3>;
+using f64_sequence4_t = sequence_t_type<::f64, 4>;
 
 
 
-template < prototype_number NUMBER, int t_iSize >
+template < prototype_number NUMBER, ::i32 t_iSize >
 struct sequence_type :
    public sequence_t_type<NUMBER, t_iSize>
 {
@@ -240,7 +240,7 @@ struct sequence_type :
    using SEQUENCE_T = sequence_t_type< NUMBER, t_iSize >;
    using COORDINATE = typename SEQUENCE_T::COORDINATE;
    using UNIT_TYPE = typename SEQUENCE_T::COORDINATE;
-   static const int SIZE = t_iSize;
+   static const ::i32 SIZE = t_iSize;
 
 
    static constexpr bool IS_MATRIX = false;
@@ -441,32 +441,32 @@ struct sequence_type :
 
 
    // simple menthods: operates on x, y
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, ::i32> = 0 >
    inline void add2(const sequence_type & a)
    {
       this->x += a.x;
       this->y += a.y;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, ::i32> = 0 >
    inline void sub2(const sequence_type & a)
    {
       this->x -= a.x;
       this->y -= a.y;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, ::i32> = 0 >
    inline void mul2(UNIT_TYPE n)
    {
       this->x *= n;
       this->y *= n;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, ::i32> = 0 >
    inline void set2(UNIT_TYPE a, UNIT_TYPE b)
    {
       this->x = a;
       this->y = b;
    }
 
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, ::i32> = 0 >
    static inline void mix2(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
       c.x = a.x*((UNIT_TYPE)1.0 - t) + b.x*t;
@@ -474,28 +474,28 @@ struct sequence_type :
    }
 
    // simple menthods: operates on x, y, z
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, ::i32> = 0 >
    inline void add3(const sequence_type & a)
    {
       this->x += a.x;
       this->y += a.y;
       this->z += a.z;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, ::i32> = 0 >
    inline void sub3(const sequence_type & a)
    {
       this->x -= a.x;
       this->y -= a.y;
       this->z -= a.z;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, ::i32> = 0 >
    inline void mul3(UNIT_TYPE n)
    {
       this->x *= n;
       this->y *= n;
       this->z *= n;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, ::i32> = 0 >
    inline void set3(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c)
    {
       this->x = a;
@@ -503,7 +503,7 @@ struct sequence_type :
       this->z = c;
    }
 
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, ::i32> = 0 >
    static inline void mix3(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
       c.x = a.x*((UNIT_TYPE)1.0 - t) + b.x*t;
@@ -512,7 +512,7 @@ struct sequence_type :
    }
 
    // simple menthods: operates on x, y, z, w
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, ::i32> = 0 >
    inline void add4(const sequence_type & q)
    {
       this->x += q.x;
@@ -520,7 +520,7 @@ struct sequence_type :
       this->z += q.z;
       this->w += q.w;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, ::i32> = 0 >
    inline void sub4(const sequence_type & q)
    {
       this->x -= q.x;
@@ -528,7 +528,7 @@ struct sequence_type :
       this->w -= q.w;
       this->z -= q.z;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, ::i32> = 0 >
    inline void mul4(UNIT_TYPE n)
    {
       this->x *= n;
@@ -536,7 +536,7 @@ struct sequence_type :
       this->w *= n;
       this->z *= n;
    }
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, ::i32> = 0 >
    inline void set4(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d)
    {
       this->x = a;
@@ -545,7 +545,7 @@ struct sequence_type :
       this->z = d;
    }
 
-   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, ::i32> = 0 >
    static inline void mix4(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
       c.x = a.x*((UNIT_TYPE)1.0 - t) + b.x*t;
@@ -808,28 +808,28 @@ struct sequence_type :
 
    constexpr COORDINATE& operator[](::collection::count i) { return this->m_coordinatea[i]; }
 
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), ::i32> = 0>
    //constexpr const COORDINATE& a const { return this->m_coordinatea[0]; }
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), ::i32> = 0>
    //COORDINATE& a { return this->m_coordinatea[0]; }
 
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), ::i32> = 0>
    //constexpr const COORDINATE& b const { return this->m_coordinatea[1]; }
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), ::i32> = 0>
    //COORDINATE& b { return this->m_coordinatea[1]; }
 
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), ::i32> = 0>
    //constexpr const COORDINATE& c const { return this->m_coordinatea[2]; }
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), ::i32> = 0>
    //COORDINATE& c { return this->m_coordinatea[2]; }
 
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), ::i32> = 0>
    //constexpr const COORDINATE& d const { return this->m_coordinatea[3]; }
-   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), ::i32> = 0>
    //COORDINATE& d { return this->m_coordinatea[3]; }
    
    
-   template <::collection::count S = SIZE, std::enable_if_t<(S == 2), int> = 0>
+   template <::collection::count S = SIZE, std::enable_if_t<(S == 2), ::i32> = 0>
    COORDINATE dot_with_left_perpendicular_of(const sequence_type & b)
    {
 
@@ -838,7 +838,7 @@ struct sequence_type :
    }
 
    
-   template <::collection::count S = SIZE, std::enable_if_t<(S == 2), int> = 0>
+   template <::collection::count S = SIZE, std::enable_if_t<(S == 2), ::i32> = 0>
    COORDINATE angle(const sequence_type & b)
    {
 
@@ -975,7 +975,7 @@ struct sequence_type :
    }
 
    
-   template < ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S == 2, ::i32> = 0 >
    const UNIT_TYPE & get_normal_dimension(enum_orientation eorientation) const
    {
       
@@ -984,7 +984,7 @@ struct sequence_type :
    }
 
    
-   template < ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   template < ::collection::count S = SIZE, std::enable_if_t<S == 2, ::i32> = 0 >
    UNIT_TYPE & get_normal_dimension(enum_orientation eorientation)
    {
       
@@ -1191,21 +1191,21 @@ struct sequence_type :
 //};
 
 // Import some common Enoki types
-using int_sequence2 = sequence_type<int, 2>;
-using int_sequence3 = sequence_type<int, 3>;
-using int_sequence4 = sequence_type<int, 4>;
+using int_sequence2 = sequence_type<::i32, 2>;
+using int_sequence3 = sequence_type<::i32, 3>;
+using int_sequence4 = sequence_type<::i32, 4>;
 
 using i64_sequence2 = sequence_type<::i64, 2>;
 using i64_sequence3 = sequence_type<::i64, 3>;
 using i64_sequence4 = sequence_type<::i64, 4>;
 
-using float_sequence2 = sequence_type<float, 2>;
-using float_sequence3 = sequence_type<float, 3>;
-using float_sequence4 = sequence_type<float, 4>;
+using f32_sequence2 = sequence_type<::f32, 2>;
+using f32_sequence3 = sequence_type<::f32, 3>;
+using f32_sequence4 = sequence_type<::f32, 4>;
 
-using double_sequence2 = sequence_type<double, 2>;
-using double_sequence3 = sequence_type<double, 3>;
-using double_sequence4 = sequence_type<double, 4>;
+using f64_sequence2 = sequence_type<::f64, 2>;
+using f64_sequence3 = sequence_type<::f64, 3>;
+using f64_sequence4 = sequence_type<::f64, 4>;
 
 
 
@@ -1270,7 +1270,7 @@ auto ceil(const SEQUENCE& sequence)
 
 
 
-template<prototype_number NUMBER, int t_iSize>
+template<prototype_number NUMBER, ::i32 t_iSize>
 struct std::hash<::sequence_type<NUMBER, t_iSize>>
 {
    std::size_t operator()(const ::sequence_type<NUMBER, t_iSize> &s) const noexcept
@@ -1289,7 +1289,7 @@ struct std::hash<::sequence_type<NUMBER, t_iSize>>
 //   sequence_type<NUMBER, 3> normalize(const sequence_type<NUMBER, 3> &v)
 //   {
 //      
-//      float length = std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+//      ::f32 length = std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 //      
 //      if (length > 0.0f)
 //      {
@@ -1312,7 +1312,7 @@ struct std::hash<::sequence_type<NUMBER, t_iSize>>
 //
 
 
-template < prototype_number NUMBER, prototype_number NUMBER1, int t_iSize >
+template < prototype_number NUMBER, prototype_number NUMBER1, ::i32 t_iSize >
 inline sequence_type<largest_number<NUMBER, NUMBER1>, t_iSize>
 operator *(NUMBER n, const sequence_type< NUMBER1, t_iSize> & s)
 {

@@ -25,7 +25,7 @@
 //    struct point_light_component
 //    {
 //
-//        float lightIntensity = 1.0f;
+//        ::f32 lightIntensity = 1.0f;
 //
 //    };
 //
@@ -110,7 +110,7 @@ namespace graphics3d
 
    struct point_light_t
    {
-      inline static const int MAX_LIGHTS = 10;
+      inline static const ::i32 MAX_LIGHTS = 10;
       floating_sequence4 position{}; // ignore w
       floating_sequence4 color{}; // w is intensity
    };

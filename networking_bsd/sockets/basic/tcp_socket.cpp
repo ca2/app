@@ -33,20 +33,20 @@ CLASS_DECL_ACME::string _017Time(class ::time& time);
 #include <fcntl.h>
 //#include <assert.h>
 
-static int SSL_app_data2_idx = -1;
-static int SSL_app_data3_idx = -1;
+static ::i32 SSL_app_data2_idx = -1;
+static ::i32 SSL_app_data3_idx = -1;
 
 #define TCP_SOCKET_LOG_LEVEL_HIGH 9
 #define TCP_SOCKET_LOG_LEVEL_NORMAL 4
 #define TCP_SOCKET_LOG_LEVEL TCP_SOCKET_LOG_LEVEL_NORMAL
 
 
-int networking_last_error();
+::i32 networking_last_error();
 
 
 void SSL_init_app_data2_3_idx(void)
 {
-   int i;
+   ::i32 i;
 
    if (SSL_app_data2_idx > -1)
    {
@@ -80,7 +80,7 @@ void* SSL_get_app_data2(SSL* ssl)
 
 void SSL_set_app_data2(SSL* ssl, void* arg)
 {
-   SSL_set_ex_data(ssl, SSL_app_data2_idx, (char*)arg);
+   SSL_set_ex_data(ssl, SSL_app_data2_idx, (char_pointer )arg);
    return;
 }
 
@@ -88,9 +88,9 @@ void SSL_set_app_data2(SSL* ssl, void* arg)
 
 
 
-int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
+::i32 current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
 {
-   int result = false;
+   ::i32 result = false;
    _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    if (c->m_ticketkeya.has_elements())
    {
@@ -102,10 +102,10 @@ int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
 }
 
 
-int find_session_key(::sockets_bsd::tcp_socket* c, unsigned char key_name[16], ssl_ticket_key* key, int* is_current_key)
+::i32 find_session_key(::sockets_bsd::tcp_socket* c, ::u8 key_name[16], ssl_ticket_key* key, ::i32* is_current_key)
 {
 
-   int result = false;
+   ::i32 result = false;
    _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    for (auto& ticketkey : c->m_ticketkeya)
    {
@@ -123,9 +123,9 @@ int find_session_key(::sockets_bsd::tcp_socket* c, unsigned char key_name[16], s
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
-static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
-   unsigned char iv[EVP_MAX_IV_LENGTH],
-   EVP_CIPHER_CTX* ctx, EVP_MAC_CTX* hctx, int enc)
+static ::i32 ssl_tlsext_ticket_key_evp_cb(SSL* ssl, ::u8 key_name[16],
+   ::u8 iv[EVP_MAX_IV_LENGTH],
+   EVP_CIPHER_CTX* ctx, EVP_MAC_CTX* hctx, ::i32 enc)
 {
 
    ::sockets_bsd::tcp_socket* c = (::sockets_bsd::tcp_socket*)SSL_get_app_data2(ssl);
@@ -159,7 +159,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
                  << util::format_hex(key.data.name);
            }*/
 
-      strncpy((char*)key_name, (char*)key.key_name, 16);
+      strncpy((char_pointer )key_name, (char_pointer )key.key_name, 16);
 
       //EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr,
       EVP_EncryptInit_ex(ctx, key.cipher, nullptr,
@@ -173,7 +173,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
               OSSL_MAC_PARAM_KEY, key.hmac_key, key.hmac_key_len),
           OSSL_PARAM_construct_utf8_string(
               OSSL_MAC_PARAM_DIGEST,
-              const_cast<char*>(EVP_MD_get0_name(key.hmac)), 0),
+              const_cast<char_pointer >(EVP_MD_get0_name(key.hmac)), 0),
           OSSL_PARAM_construct_end(),
       };
       if (!EVP_MAC_CTX_set_params(hctx, params))
@@ -218,7 +218,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
        OSSL_PARAM_construct_octet_string(
            OSSL_MAC_PARAM_KEY, key.hmac_key, key.hmac_key_len),
        OSSL_PARAM_construct_utf8_string(
-           OSSL_MAC_PARAM_DIGEST, const_cast<char*>(EVP_MD_get0_name(key.hmac)),
+           OSSL_MAC_PARAM_DIGEST, const_cast<char_pointer >(EVP_MD_get0_name(key.hmac)),
            0),
        OSSL_PARAM_construct_end(),
    };
@@ -248,9 +248,9 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //   struct tls_keys_ref* ref;
 //   union tls_sess_key* keys;
 //   struct connection* conn;
-//   int head;
-//   int i;
-//   int ret = -1; /* error by default */
+//   ::i32 head;
+//   ::i32 i;
+//   ::i32 ret = -1; /* error by default */
 //
 //   conn = SSL_get_ex_data(s, ssl_app_data_index);
 //   ref = __objt_listener(conn->target)->bind_conf->keys_ref;
@@ -316,7 +316,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //
 //
 //   //ssl_ticket_key key;
-//   //int is_current_key;
+//   //::i32 is_current_key;
 //   //if (enc)   /* create ___new session */
 //   //{
 //   //   if (current_session_key(c, &key))
@@ -330,10 +330,10 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //   //      //auto mac = EVP_MAC_fetch(0, "sha256", 0);
 //   //      //auto macctx = EVP_MAC_CTX_new(mac)
 //   //      OSSL_PARAM params[] = {
-//   //         OSSL_PARAM_construct_utf8_string("digest", (char*)EVP_MD_get0_name(EVP_sha256()), 0),
+//   //         OSSL_PARAM_construct_utf8_string("digest", (char_pointer )EVP_MD_get0_name(EVP_sha256()), 0),
 //   //         OSSL_PARAM_construct_end() };
 //
-//   //      EVP_MAC_init(hctx, (const unsigned char*)key.hmac_key, 16, params);
+//   //      EVP_MAC_init(hctx, (const ::u8*)key.hmac_key, 16, params);
 //   //      //HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
 //   //      return 1;
 //   //   }
@@ -345,7 +345,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //   //   if (find_session_key(c, key_name, &key, &is_current_key))
 //   //   {
 //   //      //EVP_MAC_init(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
-//   //      EVP_MAC_init(hctx, (const unsigned char*)key.hmac_key, 16, 0);
+//   //      EVP_MAC_init(hctx, (const ::u8*)key.hmac_key, 16, 0);
 //   //      EVP_DecryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
 //   //      if (!is_current_key)
 //   //      {
@@ -358,11 +358,11 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //   //}
 //}
 #else
-static int ssl_tlsext_ticket_key_cb(SSL* s, unsigned char key_name[16], unsigned char* iv, EVP_CIPHER_CTX* ctx, HMAC_CTX* hctx, int enc)
+static ::i32 ssl_tlsext_ticket_key_cb(SSL* s, ::u8 key_name[16], ::u8* iv, EVP_CIPHER_CTX* ctx, HMAC_CTX* hctx, ::i32 enc)
 {
    ::sockets_bsd::tcp_socket* c = (::sockets_bsd::tcp_socket*)SSL_get_app_data2(s);
    ssl_ticket_key key;
-   int is_current_key;
+   ::i32 is_current_key;
    if (enc)   /* create ___new session */
    {
       if (current_session_key(c, &key))
@@ -422,7 +422,7 @@ namespace sockets_bsd
 
 #ifdef LINUX
    // ssl_sigpipe_handle ---------------------------------------------------------
-   void ssl_sigpipe_handle(int x);
+   void ssl_sigpipe_handle(::i32 x);
 #endif
 
    //
@@ -563,7 +563,7 @@ m_ibuf(isize)
 
       string strIp = paddress->get_display_number();
 
-      int iPort = paddress->get_service_number();
+      ::i32 iPort = paddress->get_service_number();
 
       information() << "open address = " << strIp << " :" << iPort;
 
@@ -647,7 +647,7 @@ m_ibuf(isize)
 
       SetClientRemoteAddress(paddress);
 
-      int n = 0;
+      ::i32 n = 0;
 
       if (paddressBind->get_service_number() != 0)
       {
@@ -706,10 +706,10 @@ m_ibuf(isize)
       {
 #ifdef _WIN32
          // check error code that means a connect is in progress
-         int iError = ::WSAGetLastError();
+         ::i32 iError = ::WSAGetLastError();
          if (iError == WSAEWOULDBLOCK || iError == 0)
 #else
-         int iError = networking_last_error();
+         ::i32 iError = networking_last_error();
          if (iError == EINPROGRESS)
 #endif
          {
@@ -1060,7 +1060,7 @@ m_ibuf(isize)
 
    }
 
-   //   void tcp_socket::OnResolved(int atom,::networking::address * a)
+   //   void tcp_socket::OnResolved(::i32 atom,::networking::address * a)
    //   {
    //
    //      auto paddressdepartment = ::networking::address_department();
@@ -1100,10 +1100,10 @@ m_ibuf(isize)
 
 
 
-   int tcp_socket::recv(void* buf, int nBufSize)
+   ::i32 tcp_socket::recv(void* buf, ::i32 nBufSize)
    {
 
-      int n = nBufSize;
+      ::i32 n = nBufSize;
 
 #ifdef HAVE_OPENSSL
 
@@ -1125,7 +1125,7 @@ m_ibuf(isize)
             if (m_psslcontext->m_ssl == nullptr)
             {
 
-               error() << "::networking_bsd::tcp_socket::recv(ssl)" << (int)n << "SSL context is nullptr";
+               error() << "::networking_bsd::tcp_socket::recv(ssl)" << (::i32)n << "SSL context is nullptr";
 
                information() << "::networking_bsd::tcp_socket::recv ssl SSL context is nullptr(0)";
 
@@ -1138,11 +1138,11 @@ m_ibuf(isize)
             else
             {
 
-               n = SSL_read(m_psslcontext->m_ssl, buf, (int)nBufSize);
+               n = SSL_read(m_psslcontext->m_ssl, buf, (::i32)nBufSize);
 
                if (n <= 0)
                {
-                  n = SSL_get_error(m_psslcontext->m_ssl, (int)n);
+                  n = SSL_get_error(m_psslcontext->m_ssl, (::i32)n);
                   switch (n)
                   {
                   case SSL_ERROR_NONE:
@@ -1195,7 +1195,7 @@ m_ibuf(isize)
 
 
 
-                  error() << "tcp_socket::recv(ssl) " << (int)n << " abnormal value from SSL_read";
+                  error() << "tcp_socket::recv(ssl) " << (::i32)n << " abnormal value from SSL_read";
 
 
 
@@ -1223,13 +1223,13 @@ m_ibuf(isize)
 
 #if defined(MSG_NOSIGNAL) || defined(SOLARIS)
          
-         auto nRecv = ::recv(GetSocketId(), (char*)buf, (int)nBufSize, MSG_NOSIGNAL);
+         auto nRecv = ::recv(GetSocketId(), (char_pointer )buf, (::i32)nBufSize, MSG_NOSIGNAL);
          
-         n = (int) nRecv;
+         n = (::i32) nRecv;
 
 #else
 
-         n = (int) ::recv(GetSocketId(), buf, nBufSize, 0);
+         n = (::i32) ::recv(GetSocketId(), buf, nBufSize, 0);
          
 #endif
 
@@ -1246,7 +1246,7 @@ m_ibuf(isize)
          }
          else if (!n)
          {
-            //            int iError = get_error();
+            //            ::i32 iError = get_error();
             //            #ifdef WINDOWS
             //            if (iError == WSAEWOULDBLOCK)
             //            #else
@@ -1278,7 +1278,7 @@ m_ibuf(isize)
 
 
 
-            error() << "::networking_bsd::tcp_socket::recv " << (int)n << " abnormal value from recv";
+            error() << "::networking_bsd::tcp_socket::recv " << (::i32)n << " abnormal value from recv";
 
 
 
@@ -1293,10 +1293,10 @@ m_ibuf(isize)
    }
 
 
-   int tcp_socket::read(void* buf, int nBufSize)
+   ::i32 tcp_socket::read(void* buf, ::i32 nBufSize)
    {
 
-      int n = (int)nBufSize;
+      ::i32 n = (::i32)nBufSize;
 
       n = recv(buf, nBufSize);
 
@@ -1338,7 +1338,7 @@ m_ibuf(isize)
       else if (n < 0)
       {
 
-         error() << "tcp_socket::read " << (int)n << " abnormal value from rcv";
+         error() << "tcp_socket::read " << (::i32)n << " abnormal value from rcv";
 
       }
 
@@ -1350,9 +1350,9 @@ m_ibuf(isize)
    void tcp_socket::OnRead()
    {
 
-      char* buf = (char*)m_memRead.data();
+      char_pointer buf = (char_pointer )m_memRead.data();
 
-      int n = 0;
+      ::i32 n = 0;
 
       try
       {
@@ -1430,7 +1430,7 @@ m_ibuf(isize)
       }
       if (is_connecting())
       {
-         int err = SoError();
+         ::i32 err = SoError();
 
          // don't reset connecting flag on error here, we want the OnConnectFailed timeout later on
          if (!err) // ok
@@ -1492,7 +1492,7 @@ m_ibuf(isize)
 
          repeat = false;
 
-         int n = (int)try_write(poutput->Buf(), poutput->Len());
+         ::i32 n = (::i32)try_write(poutput->Buf(), poutput->Len());
 
          if (n > 0)
          {
@@ -1553,7 +1553,7 @@ m_ibuf(isize)
 
 
 
-   int tcp_socket::_try_write(const void* buf, int len)
+   ::i32 tcp_socket::_try_write(const void* buf, ::i32 len)
    {
 
       ::iptr n = 0;
@@ -1566,7 +1566,7 @@ m_ibuf(isize)
       if (IsSSL())
       {
 
-         n = SSL_write(m_psslcontext->m_ssl, psz, (int)len);
+         n = SSL_write(m_psslcontext->m_ssl, psz, (::i32)len);
 
          if (get_request_url_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
          {
@@ -1578,7 +1578,7 @@ m_ibuf(isize)
          if (n == -1)
          {
 
-            int errnr = SSL_get_error(m_psslcontext->m_ssl, (int)n);
+            ::i32 errnr = SSL_get_error(m_psslcontext->m_ssl, (::i32)n);
 
             if (errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE)
             {
@@ -1594,7 +1594,7 @@ m_ibuf(isize)
 
 #ifdef WINDOWS
 
-                  int iWsaError = ::WSAGetLastError();
+                  ::i32 iWsaError = ::WSAGetLastError();
 
                   information() << "::networking_bsd::tcp_socket::_try_write SSL_ERROR_SYSCALL WSAGetLastError : " << iWsaError;
 
@@ -1627,7 +1627,7 @@ m_ibuf(isize)
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            int errnr = SSL_get_error(m_psslcontext->m_ssl, (int)n);
+            ::i32 errnr = SSL_get_error(m_psslcontext->m_ssl, (::i32)n);
             const_char_pointer errbuf = ERR_error_string(errnr, nullptr);
             information() << "::networking_bsd::tcp_socket::_try_write SSL_write() returns 0: " << errnr << ", " << errbuf;
             //throw ::exception(io_exception(errbuf));
@@ -1639,26 +1639,26 @@ m_ibuf(isize)
       {
          //         retry:
 //#if defined(__APPLE__)
-//         int iSocket = GetSocketId();
-//         n = (int)(::send(iSocket, buf, len, SO_NOSIGPIPE));
+//         ::i32 iSocket = GetSocketId();
+//         n = (::i32)(::send(iSocket, buf, len, SO_NOSIGPIPE));
 //#elif defined(SOLARIS)
-//         n = ::send(GetSocketId(), (const_char_pointer )buf, (int)len, 0);
+//         n = ::send(GetSocketId(), (const_char_pointer )buf, (::i32)len, 0);
 //#else
 
 #if defined(MSG_NOSIGNAL)
 
-         n = ::send(GetSocketId(), (const_char_pointer )buf, (int)len, MSG_NOSIGNAL);
+         n = ::send(GetSocketId(), (const_char_pointer )buf, (::i32)len, MSG_NOSIGNAL);
          
 #else
 
-         n = ::send(GetSocketId(), (const_char_pointer )buf, (int)len, 0);
+         n = ::send(GetSocketId(), (const_char_pointer )buf, (::i32)len, 0);
          
 #endif
 
          ///#endif
          if (n == -1)
          {
-            int iError = networking_last_error();
+            ::i32 iError = networking_last_error();
             // normal error codes:
             // WSAEWOULDBLOCK
             //       EAGAIN or EWOULDBLOCK
@@ -1688,7 +1688,7 @@ m_ibuf(isize)
             //   struct timeval tv;
             //   tv.tv_sec = 1;
             //   tv.tv_usec = 0;
-            //   ::select((int) (GetSocketId() + 1), nullptr, &w, &e, &tv);
+            //   ::select((::i32) (GetSocketId() + 1), nullptr, &w, &e, &tv);
             //   goto retry;
             //}
 
@@ -1715,15 +1715,15 @@ m_ibuf(isize)
 
       }
 
-      return (int)n;
+      return (::i32)n;
 
    }
 
 
-   void tcp_socket::buffer(const void* pdata, int len)
+   void tcp_socket::buffer(const void* pdata, ::i32 len)
    {
 
-      const_char_pointer buf = (const_char_pointer )pdata;
+      const_char_pointer pszBuffer = (const_char_pointer )pdata;
 
       memsize ptr = 0;
 
@@ -1732,12 +1732,12 @@ m_ibuf(isize)
       while (::comparison::lt(ptr, len))
       {
          // buf/len => pbuf/sz
-         int space = 0;
+         ::i32 space = 0;
 
          if (m_obuf_top && (space = m_obuf_top->Space()) > 0)
          {
-            const_char_pointer pbuf = buf + ptr;
-            int sz = (int)(len - ptr);
+            const_char_pointer pbuf = pszBuffer + ptr;
+            ::i32 sz = (::i32)(len - ptr);
             if (space >= sz)
             {
                m_obuf_top->add(pbuf, sz);
@@ -1771,12 +1771,12 @@ m_ibuf(isize)
    /*
       void tcp_socket::write(const ::scoped_string & scopedstr)
       {
-         write(str,  (int) str.length());
+         write(str,  (::i32) str.length());
       }
    */
 
 
-   int tcp_socket::try_write(const void* buf, int len)
+   ::i32 tcp_socket::try_write(const void* buf, ::i32 len)
    {
 
       return _try_write(buf, len);
@@ -1795,7 +1795,7 @@ m_ibuf(isize)
    void tcp_socket::write(const void* p, ::memsize s)
    {
 
-      const unsigned char* buf = (const unsigned char*)p;
+      const ::u8* buf = (const ::u8*)p;
       
       if (!Ready() && !is_connecting())
       {
@@ -1841,7 +1841,7 @@ m_ibuf(isize)
 
          warning() << "::networking_bsd::tcp_socket::write Attempt to write to a non-connected socket, will be sent on connect"; // warning
 
-         buffer(buf, (int)s);
+         buffer(buf, (::i32)s);
 
          return;
 
@@ -1850,7 +1850,7 @@ m_ibuf(isize)
       if (m_obuf_top)
       {
 
-         buffer(buf, (int)s);
+         buffer(buf, (::i32)s);
 
          return;
 
@@ -1858,12 +1858,12 @@ m_ibuf(isize)
       else
       {
 
-         int n = (int)try_write(buf, (int)s);
+         ::i32 n = (::i32)try_write(buf, (::i32)s);
 
-         if (n >= 0 && n < (int)s)
+         if (n >= 0 && n < (::i32)s)
          {
 
-            buffer(buf + n, (int)(s - n));
+            buffer(buf + n, (::i32)(s - n));
 
          }
 
@@ -1912,7 +1912,7 @@ m_ibuf(isize)
 
    void tcp_socket::OnSocks4Connect()
    {
-      char request[1000];
+      ::i8 request[1000];
       memory_set(request, 0, sizeof(request));
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
@@ -1991,7 +1991,7 @@ m_ibuf(isize)
       case 2:
          if (GetInputLength() > 1)
          {
-            m_ibuf.read((char*)&m_socks4_dstport, 2);
+            m_ibuf.read((char_pointer )&m_socks4_dstport, 2);
             m_socks4_state = 3;
          }
          else
@@ -2002,7 +2002,7 @@ m_ibuf(isize)
       case 3:
          if (GetInputLength() > 3)
          {
-            m_ibuf.read((char*)&m_socks4_dstip, 4);
+            m_ibuf.read((char_pointer )&m_socks4_dstip, 4);
             SetSocks4(false);
 
             switch (m_socks4_cd)
@@ -2078,7 +2078,7 @@ m_ibuf(isize)
 //      if(!m_ssl_ctx)
       //    {
 
-      //int iError = 0;
+      //::i32 iError = 0;
 
 //retry_init_ssl_client:
 
@@ -2113,7 +2113,7 @@ m_ibuf(isize)
             if (m_strTlsHostName.has_character())
             {
 
-               SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char*)(const_char_pointer )m_strTlsHostName);
+               SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char_pointer )(const_char_pointer )m_strTlsHostName);
 
             }
 
@@ -2121,7 +2121,7 @@ m_ibuf(isize)
 
          }
 
-         m_psslcontext->m_sbio = BIO_new_socket((int)GetSocketId(), BIO_NOCLOSE);
+         m_psslcontext->m_sbio = BIO_new_socket((::i32)GetSocketId(), BIO_NOCLOSE);
 
          if (!m_psslcontext->m_sbio)
          {
@@ -2209,7 +2209,7 @@ m_ibuf(isize)
          printf("tcp_socket::OnSSLAccept\n");
          printf("---------------------------------\n");
 
-         m_psslcontext->m_sbio = BIO_new_socket((int)GetSocketId(), BIO_NOCLOSE);
+         m_psslcontext->m_sbio = BIO_new_socket((::i32)GetSocketId(), BIO_NOCLOSE);
          if (!m_psslcontext->m_sbio)
          {
             information() << "::networking_bsd::tcp_socket::OnSSLAccept m_sbio is nullptr";
@@ -2264,7 +2264,7 @@ m_ibuf(isize)
 
       //TLS1_1_VERSION
 
-      int r = SSL_connect(m_psslcontext->m_ssl);
+      ::i32 r = SSL_connect(m_psslcontext->m_ssl);
 
       if (r > 0)
       {
@@ -2360,7 +2360,7 @@ m_ibuf(isize)
          const_char_pointer error_str = ERR_error_string(error, nullptr);
          warning() << "could not SSL_connect: " << error_str;
 
-         int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl, r);
+         ::i32 iErrorSsl = SSL_get_error(m_psslcontext->m_ssl, r);
 
          //if(m_spsslclientcontext.is_set() &&
          if (m_psslcontext->m_pclientcontext->m_psslcontext != nullptr &&
@@ -2418,7 +2418,7 @@ m_ibuf(isize)
       }
       else
       {
-         int iErrorSSL = SSL_get_error(m_psslcontext->m_ssl, r);
+         ::i32 iErrorSSL = SSL_get_error(m_psslcontext->m_ssl, r);
          if (iErrorSSL == SSL_ERROR_WANT_READ || iErrorSSL == SSL_ERROR_WANT_WRITE)
          {
          }
@@ -2428,7 +2428,7 @@ m_ibuf(isize)
          else
          {
 
-            char msg[1024];
+            ::i8 msg[1024];
 
             auto uError = ERR_get_error();
 
@@ -2477,7 +2477,7 @@ m_ibuf(isize)
    bool tcp_socket::SSLNegotiate_Server()
    {
 
-      int iReturnCode = SSL_accept(m_psslcontext->m_ssl);
+      ::i32 iReturnCode = SSL_accept(m_psslcontext->m_ssl);
 
       if (iReturnCode > 0)
       {
@@ -2505,7 +2505,7 @@ m_ibuf(isize)
       else if (!iReturnCode)
       {
 
-         int iError = networking_last_error();
+         ::i32 iError = networking_last_error();
 
          information() << "::networking_bsd::tcp_socket::SSLNegotiate_Server SSL_accept: Connection failed networking_last_error() = " << iError;
 
@@ -2519,9 +2519,9 @@ m_ibuf(isize)
       else
       {
 
-         int iError = networking_last_error();
+         ::i32 iError = networking_last_error();
 
-         int iSslError = SSL_get_error(m_psslcontext->m_ssl, iReturnCode);
+         ::i32 iSslError = SSL_get_error(m_psslcontext->m_ssl, iReturnCode);
 
          if (iSslError == SSL_ERROR_WANT_READ)
          {
@@ -2690,7 +2690,7 @@ m_ibuf(isize)
       //   for (::collection::index i = 0; i < ia.get_count(); i++)
       //   {
 
-      //      int keylength = ia[i];
+      //      ::i32 keylength = ia[i];
 
       //      if (get_dh(keylength) == nullptr)
       //      {
@@ -2728,7 +2728,7 @@ m_ibuf(isize)
       //}
 
 
-      //int nid = OBJ_sn2nid(ECDHE_CURVE);
+      //::i32 nid = OBJ_sn2nid(ECDHE_CURVE);
 
       if (strCipherList.contains("ECDH"))
       {
@@ -2740,11 +2740,11 @@ m_ibuf(isize)
          //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
 
          i32_array_base iaCurves;
-         //int* curves_new;
-         //char* cs = NULL;
-         //char* p, * q;
-         //int rv = -1;
-         //int nid;
+         //::i32* curves_new;
+         //char_pointer cs = NULL;
+         //char_pointer p, * q;
+         //::i32 rv = -1;
+         //::i32 nid;
 
 
 #define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
@@ -2833,21 +2833,21 @@ m_ibuf(isize)
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS);
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
-      //int iSetSessionResult = -1;
+      //::i32 iSetSessionResult = -1;
       ::u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
 
       auto strContextMd5 = crypto()->md5(context);
 
-      //int iLenMd5 = strContextMd5.length();
+      //::i32 iLenMd5 = strContextMd5.length();
 
       if (context.length())
       {
          //iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-         //                                                   (const uchar *) (const_char_pointer )context,
+         //                                                   (const ::u8 * ) (const_char_pointer )context,
          //                                                   minimum((::u32) context.length(), uSessionIdMaxLen));
 
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-            (const uchar*)(const_char_pointer )strContextMd5,
+            (const ::u8 * )(const_char_pointer )strContextMd5,
             minimum((::u32)strContextMd5.length(), uSessionIdMaxLen));
       }
       else
@@ -2856,7 +2856,7 @@ m_ibuf(isize)
          // iSetSessionResult =
 
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-            (const uchar*)"--is_empty--", 9);
+            (const ::u8 * )"--is_empty--", 9);
       }
 
       if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
@@ -2906,7 +2906,7 @@ m_ibuf(isize)
          }
          
 
-		 for(int i = 0; i < sk_X509_num(pcert->m_pchain); i++)
+		 for(::i32 i = 0; i < sk_X509_num(pcert->m_pchain); i++)
          //for (auto x : xa)
          {
 
@@ -2952,16 +2952,16 @@ m_ibuf(isize)
 
       {
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-         int i;
+         ::i32 i;
 
          //auto psystem = system();
 
          auto pnetworking2 = __SystemNetworking(system());
 
 
-         int cnt = sizeof(pnetworking2->m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
+         ::i32 cnt = sizeof(pnetworking2->m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
          m_ticketkeya.set_size(cnt);
-         int j;
+         ::i32 j;
          for (i = 0; i < cnt; ++i)
          {
             j = (SSL_SESSION_TICKET_KEY_SIZE * i);
@@ -2994,9 +2994,9 @@ m_ibuf(isize)
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
       if (context.length())
-         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar*)(const  char*)context, (::u32)context.length());
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const ::u8 * )(const_char_pointer )context, (::u32)context.length());
       else
-         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar*)"--is_empty--", 9);
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const ::u8 * )"--is_empty--", 9);
 
       /* Load our keys and certificates*/
       if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, certfile, SSL_FILETYPE_PEM)))
@@ -3016,7 +3016,7 @@ m_ibuf(isize)
    }
 
 
-   int tcp_socket_SSL_password_cb(char* buf, int num, int rwflag, void* userdata)
+   ::i32 tcp_socket_SSL_password_cb(char_pointer buf, ::i32 num, ::i32 rwflag, void* userdata)
    {
 
       __UNREFERENCED_PARAMETER(rwflag);
@@ -3036,7 +3036,7 @@ m_ibuf(isize)
 
       ansi_cpy(buf, strPassword);
 
-      return (int)strPassword.length();
+      return (::i32)strPassword.length();
 
    }
 
@@ -3059,7 +3059,7 @@ m_ibuf(isize)
 
 #endif
 
-      int n;
+      ::i32 n;
 
       SetNonblocking(true);
 
@@ -3077,9 +3077,9 @@ m_ibuf(isize)
 
       }
 
-      char tmp[1000];
+      ::i8 tmp[1000];
 
-      if (!Lost() && (n = (int) ::recv(GetSocketId(), tmp, 1000, 0)) >= 0)
+      if (!Lost() && (n = (::i32) ::recv(GetSocketId(), tmp, 1000, 0)) >= 0)
       {
 
          if (n)
@@ -3131,7 +3131,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::OnRawData(char* buf_in, memsize len)
+   void tcp_socket::OnRawData(char_pointer buf_in, memsize len)
    {
 
       socket::OnRawData(buf_in, len);
@@ -3215,7 +3215,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::OnOptions(int family, int type, int protocol, SOCKET s)
+   void tcp_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, SOCKET s)
    {
 
       __UNREFERENCED_PARAMETER(family);
@@ -3254,8 +3254,8 @@ m_ibuf(isize)
    bool tcp_socket::SetTcpNodelay(bool x)
    {
 #ifdef TCP_NODELAY
-      int optval = x ? 1 : 0;
-      if (setsockopt(GetSocketId(), IPPROTO_TCP, TCP_NODELAY, (char*)&optval, sizeof(optval)) == -1)
+      ::i32 optval = x ? 1 : 0;
+      if (setsockopt(GetSocketId(), IPPROTO_TCP, TCP_NODELAY, (char_pointer )&optval, sizeof(optval)) == -1)
       {
 
 
@@ -3341,7 +3341,7 @@ m_ibuf(isize)
       if (is_connecting())
       {
 
-         int iError = ::pointer < ::sockets_bsd::socket_handler >(socket_handler())->m_iSelectErrno;
+         ::i32 iError = ::pointer < ::sockets_bsd::socket_handler >(socket_handler())->m_iSelectErrno;
 
          if (iError == ETIMEDOUT)
          {
@@ -3354,9 +3354,9 @@ m_ibuf(isize)
             //m_estatus = status_failed;
          }
 
-         int iGetConnectionRetry = GetMaximumConnectionRetryCount();
+         ::i32 iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-         int iGetConnectionRetries = GetConnectionRetryCount();
+         ::i32 iGetConnectionRetries = GetConnectionRetryCount();
 
          if (Socks4())
          {
@@ -3369,13 +3369,13 @@ m_ibuf(isize)
                iGetConnectionRetries < iGetConnectionRetry))
          {
 
-            const int nBufSize = 1024;
+            const ::i32 nBufSize = 1024;
 
-            char buf[nBufSize];
+            ::i8 buf[nBufSize];
 
             SOCKET iGetSocket = GetSocketId();
 
-            int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+            ::i32 n = ::recv(iGetSocket, (char_pointer )buf, (::i32)nBufSize, MSG_OOB);
 
             information() << "::networking_bsd::tcp_socket::OnException got " << n << " bytes of Out of Band Data";
 
@@ -3397,7 +3397,7 @@ m_ibuf(isize)
 
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
-      int err = SoError();
+      ::i32 err = SoError();
 
       fatal() << "::networking_bsd::tcp_socket::OnException on select " << err << bsd_socket_error(err);
 
@@ -3409,7 +3409,7 @@ m_ibuf(isize)
 //#endif // _WIN32
 
 
-   int tcp_socket::protocol()
+   ::i32 tcp_socket::protocol()
    {
 
       return m_ptcpsocketInterface->protocol();
@@ -3480,7 +3480,7 @@ m_ibuf(isize)
       if (cert != nullptr && ansi_len(common_name) > 0)
       {
 
-         char data[256];
+         ::i8 data[256];
 
          if ((topic = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(topic, NID_commonName, data, 256) > 0)
          {
@@ -3537,9 +3537,9 @@ m_ibuf(isize)
          if (!ok)
          {
 
-            int i;
+            ::i32 i;
 
-            int san_names_nb = -1;
+            ::i32 san_names_nb = -1;
 
             STACK_OF(GENERAL_NAME)* san_names = nullptr;
 

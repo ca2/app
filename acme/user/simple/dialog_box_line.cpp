@@ -27,7 +27,7 @@ void simple_dialog_box_line::initialize(::particle * pparticle)
 }
 
 
-double simple_dialog_box_line::get_font_size_em() const
+::f64 simple_dialog_box_line::get_font_size_em() const
 {
 
    switch (m_esimpledialogstyle)
@@ -43,7 +43,7 @@ double simple_dialog_box_line::get_font_size_em() const
 }
 
 
-int simple_dialog_box_line::get_font_weight() const
+::i32 simple_dialog_box_line::get_font_weight() const
 {
 
    switch (m_esimpledialogstyle)
@@ -59,7 +59,7 @@ int simple_dialog_box_line::get_font_weight() const
 }
 
 
-int simple_dialog_box_line::get_byte_text_color_strength() const
+::i32 simple_dialog_box_line::get_byte_text_color_strength() const
 {
 
    switch (m_esimpledialogstyle)

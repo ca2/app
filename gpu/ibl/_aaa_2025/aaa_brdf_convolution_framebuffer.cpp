@@ -31,7 +31,7 @@ namespace gpu
 
 
       void brdf_convolution_framebuffer::initialize_BrdfConvolutionFramebuffer(::graphics3d::scene_base *pscenebase,
-                                                                               unsigned int width, unsigned int height)
+                                                                               ::u32 width, ::u32 height)
       {
 
          initialize_scene_object(pscenebase);
@@ -102,19 +102,19 @@ namespace gpu
       }
 
 
-      unsigned int brdf_convolution_framebuffer::getWidth()
+      ::u32 brdf_convolution_framebuffer::getWidth()
       {
          return m_ptexture->width();
       }
 
 
-      unsigned int brdf_convolution_framebuffer::getHeight()
+      ::u32 brdf_convolution_framebuffer::getHeight()
       {
          return m_ptexture->height();
       }
       //
       //
-      // unsigned int brdf_convolution_framebuffer::getColorTextureId()
+      // ::u32 brdf_convolution_framebuffer::getColorTextureId()
       // {
       //    //return m_uColorTextureId;
       //    return 0;

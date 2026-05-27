@@ -70,9 +70,9 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
 reference_item_array::~reference_item_array()
 {
 
-   int i = 1;
-   int b = 2;
-   int c = i + b;
+   ::i32 i = 1;
+   ::i32 b = 2;
+   ::i32 c = i + b;
 #if REFERENCING_DEBUGGING
 
    for (auto & preferenceitema : m_item2a)

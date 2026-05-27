@@ -386,7 +386,7 @@
     <ClInclude Include="datetime\datetime_calendar_interface.h" />
     <ClInclude Include="datetime\datetime_clock.h" />
     <ClInclude Include="datetime\datetime_clock_interface.h" />
-    <ClInclude Include="datetime\datetime_float_time.h" />
+    <ClInclude Include="datetime\datetime_f32_time.h" />
     <ClInclude Include="datetime\datetime_windows_filetime.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\graphics.h" />
@@ -405,7 +405,7 @@
     <ClCompile Include="datetime\datetime_calendar_interface.cpp" />
     <ClCompile Include="datetime\datetime_clock.cpp" />
     <ClCompile Include="datetime\datetime_clock_interface.cpp" />
-    <ClCompile Include="datetime\datetime_float_time.cpp" />
+    <ClCompile Include="datetime\datetime_f32_time.cpp" />
     <ClCompile Include="datetime\datetime_windows_filetime.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

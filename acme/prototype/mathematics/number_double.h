@@ -20,7 +20,7 @@ namespace mathematics
    };
 
    
-   CLASS_DECL_ACME bool convert_to_double(double & d, const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME bool convert_to_double(::f64 & d, const ::scoped_string & scopedstr);
 
 
 } // namespace mathematics

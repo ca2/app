@@ -134,7 +134,7 @@ namespace ftp
       m_puser->m_strLogin = ANONYMOUS_USER;
    }
 
-   logon::logon(const ::scoped_string & scopedstrHostname, unsigned short ushHostport, const ::scoped_string & scopedstrUsername,
+   logon::logon(const ::scoped_string & scopedstrHostname, ::u16 ushHostport, const ::scoped_string & scopedstrUsername,
                 const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrAccount) :
       //storage_client(Sess(pparticle).account()->storage()),
       //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
@@ -148,9 +148,9 @@ namespace ftp
       m_strPassword = scopedstrPassword;
    }
 
-   logon::logon( const ::scoped_string & scopedstrHostname, unsigned short ushHostport, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword,
+   logon::logon( const ::scoped_string & scopedstrHostname, ::u16 ushHostport, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword,
                 const ::scoped_string & scopedstrAccount, const ::scoped_string & scopedstrFwHostname, const ::scoped_string & scopedstrFwUsername,
-                const ::scoped_string & scopedstrFwPassword, unsigned short ushFwPort, const firewall_type& crFwType) :
+                const ::scoped_string & scopedstrFwPassword, ::u16 ushFwPort, const firewall_type& crFwType) :
       //storage_client(Sess(pparticle).account()->storage()),
       //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
       m_strHostname(scopedstrHostname),
@@ -167,7 +167,7 @@ namespace ftp
 
    }
 
-   void logon::SetHost(const ::scoped_string & scopedstrHostname, unsigned short ushHostport, const ::scoped_string & scopedstrUsername,
+   void logon::SetHost(const ::scoped_string & scopedstrHostname, ::u16 ushHostport, const ::scoped_string & scopedstrUsername,
                        const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrAccount)
    {
       m_strHostname = scopedstrHostname;
@@ -178,7 +178,7 @@ namespace ftp
    }
 
    void logon::SetFirewall(const ::scoped_string & scopedstrFwHostname, const ::scoped_string & scopedstrFwUsername, const ::scoped_string & scopedstrFwPassword,
-                           unsigned short ushFwPort, const firewall_type& crFwType)
+                           ::u16 ushFwPort, const firewall_type& crFwType)
    {
       m_strFwHostname = scopedstrFwHostname;
       m_strFwUsername = scopedstrFwUsername;

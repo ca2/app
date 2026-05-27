@@ -692,14 +692,14 @@ namespace acme
       }
 
 
-      void windowing::display_error_trap_push(int i)
+      void windowing::display_error_trap_push(::i32 i)
       {
 
 
       }
 
 
-      void windowing::display_error_trap_pop_ignored(int i)
+      void windowing::display_error_trap_pop_ignored(::i32 i)
       {
 
 
@@ -1113,7 +1113,7 @@ namespace acme
 //
 //      }
 
-      double windowing::get_default_screen_dpi()
+      ::f64 windowing::get_default_screen_dpi()
       {
 
          // just a guess lol :D
@@ -1122,10 +1122,10 @@ namespace acme
       }
 
 
-      float windowing::default_screen_points_to_pixels(float fPoints)
+      ::f32 windowing::default_screen_points_to_pixels(::f32 fPoints)
       {
 
-         return (float)(fPoints * (get_default_screen_dpi() / 72.0));
+         return (::f32)(fPoints * (get_default_screen_dpi() / 72.0));
 
       }
 

@@ -38,7 +38,7 @@ namespace innate_subsystem
 //    {
 //    }
 //
-//    /*void TextBox::setCaretPos(int h, int v)
+//    /*void TextBox::setCaretPos(::i32 h, ::i32 v)
 //    {
 //       m_pparticleThis->setCaretPos(h, v);
 //       //SendMessage(m_hwnd, EM_LINESCROLL, h, v);
@@ -58,15 +58,15 @@ namespace innate_subsystem
 //       m_pparticleThis->setTextLengthLimit(n);
 //    }
 //
-//    int TextBox::getCurrentLineIndex()
+//    ::i32 TextBox::getCurrentLineIndex()
 //    {
-//       //return (int)SendMessage(m_hwnd, EM_LINEINDEX, -1, 0);
+//       //return (::i32)SendMessage(m_hwnd, EM_LINEINDEX, -1, 0);
 //       return m_pparticleThis->getCurrentLineIndex();
 //    }
 //
-//    int TextBox::getLineCount()
+//    ::i32 TextBox::getLineCount()
 //    {
-//       //return (int)SendMessage(m_hwnd, EM_GETLINECOUNT, 0, 0);
+//       //return (::i32)SendMessage(m_hwnd, EM_GETLINECOUNT, 0, 0);
 //
 //       return m_pparticleThis->getLineCount();
 //    }
@@ -75,7 +75,7 @@ namespace innate_subsystem
 //    // FIXME: Unimplemented
 //    //
 //
-//    int TextBox::getCaretPos()
+//    ::i32 TextBox::getCaretPos()
 //    {
 //       //return 0;
 //       return m_pparticleThis->getCaretPos();

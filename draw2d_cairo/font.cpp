@@ -23,7 +23,7 @@ namespace draw2d_cairo
 
    };
 
-   int CALLBACK EnumFamCallBack(
+   ::i32 CALLBACK EnumFamCallBack(
    _In_ ENUMLOGFONTW   *lpelf,
    _In_ NEWTEXTMETRICW *lpntm,
    _In_ ::u32         FontType,
@@ -166,7 +166,7 @@ namespace draw2d_cairo
 //   }
 
 
-   void font::create(::draw2d::graphics * pgraphics, char iCreate)
+   void font::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
    {
 
       bool bFont = false;
@@ -190,7 +190,7 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      int iPangoSize = (int) (m_fontsize.as_double() * PANGO_SCALE);
+      ::i32 iPangoSize = (::i32) (m_fontsize.as_f64() * PANGO_SCALE);
 
       if(iPangoSize <= 0)
       {
@@ -207,7 +207,7 @@ namespace draw2d_cairo
 
       m_pdesc = pango_font_description_new();
 
-      double dFontScaler = 1.0;
+      ::f64 dFontScaler = 1.0;
 
       if(::is_set(pgraphics->m_pdraw2dhost))
       {
@@ -231,13 +231,13 @@ namespace draw2d_cairo
       if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.as_double() * PANGO_SCALE);
+         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.as_f64() * PANGO_SCALE);
 
       }
       else
       {
 
-         pango_font_description_set_size(m_pdesc, m_fontsize.as_double() * PANGO_SCALE);
+         pango_font_description_set_size(m_pdesc, m_fontsize.as_f64() * PANGO_SCALE);
 
       }
 

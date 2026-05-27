@@ -12,7 +12,7 @@
       .c_str();
 
 }
-CLASS_DECL_ACME ::string _friendly_byte_count_helper(double d, int mod, const char * pszFormat)
+CLASS_DECL_ACME ::string _friendly_byte_count_helper(::f64 d, ::u64 mod, const_char_pointer pszFormat)
 {
 
    if (pszFormat == nullptr)
@@ -39,7 +39,7 @@ CLASS_DECL_ACME ::string _friendly_byte_count_helper(double d, int mod, const ch
 }
 
 
-CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const char *pszFormat)
+CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const_char_pointer pszFormat)
 {
 
    if (ul == 0)

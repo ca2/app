@@ -60,15 +60,15 @@ namespace crypto_openssl
       #ifdef HAVE_OPENSSL
 
 
-      int plainlen = (int)storageDecrypt.get_size();
+      ::i32 plainlen = (::i32)storageDecrypt.get_size();
 
-      int cipherlen, tmplen;
+      ::i32 cipherlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
       EVP_EncryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (int)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
+      cipherlen = (::i32)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
 
       storageEncrypt.set_size(cipherlen);
 
@@ -484,15 +484,15 @@ namespace crypto_openssl
 
 #else
 
-      int cipherlen = (int)storageEncrypt.get_size();
+      ::i32 cipherlen = (::i32)storageEncrypt.get_size();
 
-      int plainlen, tmplen;
+      ::i32 plainlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
 
 
-      //int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
+      //::i32 iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
       memsize iShaLen = memSha1.get_size();
 
       if (iShaLen <= 0)
@@ -504,7 +504,7 @@ namespace crypto_openssl
 
       EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (int)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
+      plainlen = (::i32)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
 
       storageDecrypt.set_size(plainlen);
 
@@ -563,7 +563,7 @@ namespace crypto_openssl
    //}
 
 
-   //int crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
+   //::i32 crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
    //{
    //   memory storageDecrypt;
    //   memory storageEncrypt;
@@ -581,7 +581,7 @@ namespace crypto_openssl
 
    //   pbase64->decode(storageKey, pszKey);
 
-   //   int cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
+   //   ::i32 cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
 
    //   strEncrypt = pbase64->encode(storageEncrypt);
 
@@ -590,7 +590,7 @@ namespace crypto_openssl
    //}
 
 
-   //int crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
+   //::i32 crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
    //{
 
    //   memory storageEncrypt;
@@ -607,7 +607,7 @@ namespace crypto_openssl
 
    //   pbase64->decode(storageKey, pszKey);
 
-   //   int plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
+   //   ::i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 
    //   strDecrypt = storageDecrypt.get_string();
 
@@ -616,10 +616,10 @@ namespace crypto_openssl
    //}
 
 
-   //unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
+   //::u32 crypto::crc32(::u32 dwPrevious, const ::scoped_string & scopedstr)
    //{
 
-   //   return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
+   //   return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(scopedstr));
 
    //}
 
@@ -697,7 +697,7 @@ namespace crypto_openssl
    //}
 
 
-   int crypto::get_hash_digest_length(enum_hash ehash) const
+   ::i32 crypto::get_hash_digest_length(enum_hash ehash) const
    {
 
       auto pmd = __evp_md(ehash);
@@ -717,7 +717,7 @@ namespace crypto_openssl
    }
 
 
-   //int crypto::get_md5_digest_length() const
+   //::i32 crypto::get_md5_digest_length() const
    //{
 
    //   return 16;
@@ -725,7 +725,7 @@ namespace crypto_openssl
    //}
 
 
-   //int crypto::get_sha1_digest_length() const
+   //::i32 crypto::get_sha1_digest_length() const
    //{
 
    //   return 20;
@@ -733,7 +733,7 @@ namespace crypto_openssl
    //}
 
 
-   //int crypto::get_sha256_digest_length() const
+   //::i32 crypto::get_sha256_digest_length() const
    //{
 
    //   return 32;
@@ -741,7 +741,7 @@ namespace crypto_openssl
    //}
 
 
-   //int crypto::get_nessie_digest_length() const
+   //::i32 crypto::get_nessie_digest_length() const
    //{
 
    //   return 64;
@@ -909,9 +909,9 @@ namespace crypto_openssl
    //{
    //   string strSalt;
    //   string strFormat;
-   //   for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
+   //   for (::i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
    //   {
-   //      long long iDigit = random<char>();
+   //      ::i64 iDigit = random<::i8>();
    //      strFormat.formatf("%02x", iDigit);
    //      strSalt += strFormat;
    //   }
@@ -921,12 +921,12 @@ namespace crypto_openssl
 
    //// calculate the hash from a salt and a password
    //// slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-   //string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iOrder)
+   //string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, ::i32 iOrder)
    //{
    //   string strHash(scopedstrPassword);
    //   string strSalt(scopedstrSalt);
    //   strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
-   //   for (int i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
+   //   for (::i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
    //   {
    //      string strStepSalt = strSalt.substr(i) + strSalt.left(i);
    //      strHash = nessie(strStepSalt + strHash).lowered();
@@ -935,12 +935,12 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iMaxOrder)
+   //string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, ::i32 iMaxOrder)
    //{
    //   string strHash(scopedstrPassword);
    //   string strSalt(scopedstrSalt);
    //   strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
-   //   for (int i = 0; i < iMaxOrder; i++)
+   //   for (::i32 i = 0; i < iMaxOrder; i++)
    //   {
    //      string strStepSalt = strSalt.substr(i) + strSalt.left(i);
    //      strHash = nessie(strStepSalt + strHash).lowered();
@@ -949,7 +949,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, int iOrder)
+   //bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, ::i32 iOrder)
    //{
    //   string strHash(scopedstrHash);
    //   string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
@@ -966,7 +966,7 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, int iOrder)
+   //string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, ::i32 iOrder)
    //{
    //   return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    //}
@@ -977,9 +977,9 @@ namespace crypto_openssl
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
-      HMAC(EVP_sha1(), memKey.get_data(), int(memKey.get_size()), memMessage.get_data(), (size_t)memMessage.get_size(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), memKey.get_data(), ::i32(memKey.get_size()), memMessage.get_data(), (size_t)memMessage.get_size(), (::u8*)result, &md_len);
 
 #endif
 
@@ -991,9 +991,9 @@ namespace crypto_openssl
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
-      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const char*)strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), strKey.c_str(), ::i32(strKey.length()), (const ::u8*)(const_char_pointer )strMessage, (size_t)strMessage.length(), (::u8*)result, &md_len);
 
 #endif
 
@@ -1022,7 +1022,7 @@ namespace crypto_openssl
 
       //   }
 
-      //   int iLength = 256;
+      //   ::i32 iLength = 256;
 
       //   generate_random_alphanumeric(str.get_buffer(iLength), iLength);
 
@@ -1131,7 +1131,7 @@ namespace crypto_openssl
       X509* signer = nullptr;
       {
          string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strSigner, (int)strSigner.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strSigner, (::i32)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1140,7 +1140,7 @@ namespace crypto_openssl
       EVP_PKEY* pkey;
       {
          string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strKey, (int)strKey.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strKey, (::i32)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1178,13 +1178,13 @@ namespace crypto_openssl
          }
          pstack509 = sk_X509_new_null();
 
-         for (int i = 0; i < xptra.get_count(); i++)
+         for (::i32 i = 0; i < xptra.get_count(); i++)
          {
             sk_X509_push(pstack509, xptra[i]);
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const char*)strSignature, (int)strSignature.length());
+      BIO* input = BIO_new_mem_buf((void*)(const_char_pointer )strSignature, (::i32)strSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 
@@ -1197,7 +1197,7 @@ namespace crypto_openssl
 
       i2d_PKCS7_bio(output, pkcs7);
 
-      char* pchData = nullptr;
+      char_pointer pchData = nullptr;
       long count = BIO_get_mem_data(output, &pchData);
 
       file()->put_memory(strDir / "META-INF/zigbert.rsa", { pchData, count });
@@ -1322,7 +1322,7 @@ namespace crypto_openssl
 
          BN_set_word(e, 65537);
 
-         int ret = RSA_generate_key_ex(prsa, 1024, e, nullptr);
+         ::i32 ret = RSA_generate_key_ex(prsa, 1024, e, nullptr);
 
          if (ret != 1)
          {
@@ -1371,14 +1371,14 @@ namespace crypto_openssl
 
       {
 
-         char* hexN = n ? BN_bn2hex(n) : nullptr;
-         char* hexE = e ? BN_bn2hex(e) : nullptr;
-         char* hexD = d ? BN_bn2hex(d) : nullptr;
-         char* hexP = p ? BN_bn2hex(p) : nullptr;
-         char* hexQ = q ? BN_bn2hex(q) : nullptr;
-         char* hexDmp1 = dmp1 ? BN_bn2hex(dmp1) : nullptr;
-         char* hexDmq1 = dmp1 ? BN_bn2hex(dmq1) : nullptr;
-         char* hexIqmp = iqmp ? BN_bn2hex(iqmp) : nullptr;
+         char_pointer hexN = n ? BN_bn2hex(n) : nullptr;
+         char_pointer hexE = e ? BN_bn2hex(e) : nullptr;
+         char_pointer hexD = d ? BN_bn2hex(d) : nullptr;
+         char_pointer hexP = p ? BN_bn2hex(p) : nullptr;
+         char_pointer hexQ = q ? BN_bn2hex(q) : nullptr;
+         char_pointer hexDmp1 = dmp1 ? BN_bn2hex(dmp1) : nullptr;
+         char_pointer hexDmq1 = dmp1 ? BN_bn2hex(dmq1) : nullptr;
+         char_pointer hexIqmp = iqmp ? BN_bn2hex(iqmp) : nullptr;
 
          popensslrsa->n = hexN;
          popensslrsa->e = hexE;
@@ -1446,7 +1446,7 @@ namespace crypto_openssl
 
       auto & prsa = popensslrsa->m_prsa;
 
-      auto pbio = BIO_new_mem_buf(memory.get_data(), (int)memory.get_size());
+      auto pbio = BIO_new_mem_buf(memory.get_data(), (::i32)memory.get_size());
 
       PEM_read_bio_RSAPrivateKey(pbio, &prsa, nullptr, nullptr);
 
@@ -1477,7 +1477,7 @@ namespace crypto_openssl
 
       //auto & pkey = popensslrsa->m_prsa;
 
-      //auto pbio = BIO_new_mem_buf(memory.get_data(), (int)memory.get_size());
+      //auto pbio = BIO_new_mem_buf(memory.get_data(), (::i32)memory.get_size());
 
       //PEM_read_bio_RSA_PUBKEY(pbio, &prsa, nullptr, nullptr);
 

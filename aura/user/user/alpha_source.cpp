@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   double alpha_source::get_alpha(::user::interaction * puiTarget)
+   ::f64 alpha_source::get_alpha(::user::interaction * puiTarget)
    {
 
       return 1.0;

@@ -21,7 +21,7 @@
 //    {
 //    public:
 //
-//       //unsigned int m_uVAO, m_uVBO;
+//       //::u32 m_uVAO, m_uVBO;
 //
 //       ::gpu::model_data < ::gpu::position3 > m_modeldata;
 //       ::pointer<::gpu::model_buffer> m_pmodelbuffer;

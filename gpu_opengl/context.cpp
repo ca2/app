@@ -41,10 +41,10 @@ void ::opengl::insert_debug_message(const_char_pointer msg);
 namespace gpu_opengl
 {
 
-   void vertex2f(const ::double_rectangle &rectangle, float fZ);
+   void vertex2f(const ::f64_rectangle &rectangle, ::f32 fZ);
 
 
-   void vertex2f(const ::double_polygon &a, float fZ);
+   void vertex2f(const ::f64_polygon &a, ::f32 fZ);
 
 
    context::context()
@@ -107,13 +107,13 @@ namespace gpu_opengl
 
       }
       //glGenBuffers(1, &VAO);
-      //      float vertexes[] = {
+      //      ::f32 vertexes[] = {
       // positions         // colors
       //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
       //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
       //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
       //};
-      float vertexes[] = {
+      ::f32 vertexes[] = {
          // first triangle
          1.f, 1.f, 0.0f, // top right
          1.f, -1.f, 0.0f, // bottom right
@@ -151,10 +151,10 @@ namespace gpu_opengl
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
       // position attribute
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void *)0);
       glEnableVertexAttribArray(0);
       // color attribute
-      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(::f32), (void*)(3 * sizeof(::f32)));
       //glEnableVertexAttribArray(1);
 
       //return ::success;
@@ -167,14 +167,14 @@ namespace gpu_opengl
 //      ::gpu::context_lock contextlock(this);
 //
 //      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
-//      //int iError16 = glGetError();
+//      //::i32 iError16 = glGetError();
 //
-//      //int size = 0;
+//      //::i32 size = 0;
 //      //glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-//      //int iError17 = glGetError();
+//      //::i32 iError17 = glGetError();
 //
 //      //glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
-//      //int iError18 = glGetError();
+//      //::i32 iError18 = glGetError();
 //
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -210,9 +210,9 @@ namespace gpu_opengl
 //      //glUseProgram(shaderProgram);
 //
 //      // update the uniform color
-//      //float timeValue = glfwGetTime();
-//      //float greenValue = sin(timeValue) / 2.0f + 0.5f;
-//      //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+//      //::f32 timeValue = glfwGetTime();
+//      //::f32 greenValue = sin(timeValue) / 2.0f + 0.5f;
+//      //::i32 vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 //      //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 //
 //      //return ::success;
@@ -255,14 +255,14 @@ namespace gpu_opengl
       //// Initial position : on +Z
       //floating_sequence3 position = floating_sequence3(0, 0, 5);
       //// Initial horizontal angle : toward -Z
-      //float horizontalAngle = 3.14f;
+      //::f32 horizontalAngle = 3.14f;
       //// Initial vertical angle : none
-      //float verticalAngle = 0.0f;
+      //::f32 verticalAngle = 0.0f;
       //// Initial Field of View
-      //float initialFoV = 45.0f;
+      //::f32 initialFoV = 45.0f;
 
-      //float speed = 3.0f; // 3 units / second
-      //float mouseSpeed = 0.005f;
+      //::f32 speed = 3.0f; // 3 units / second
+      //::f32 mouseSpeed = 0.005f;
 
 
    }
@@ -431,7 +431,7 @@ namespace gpu_opengl
    }
 
 
-   //void context::set_topic_texture(int iIndex)
+   //void context::set_topic_texture(::i32 iIndex)
    //{
 
    //   ::gpu::context::set_topic_texture(iIndex);
@@ -712,17 +712,17 @@ namespace gpu_opengl
 
       string strFragment =
          "uniform vec2 resolution;\n"
-         "uniform float time;\n"
+         "uniform ::f32 time;\n"
          "uniform vec2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "float base_res = min(resolution.x, resolution.y);\n"
+         "::f32 base_res = min(resolution.x, resolution.y);\n"
          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
          "\n"
          //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
-         "float posx = max(0.f, uv.x);\n"
-         "float posy = max(0.f, uv.y);\n"
+         "::f32 posx = max(0.f, uv.x);\n"
+         "::f32 posy = max(0.f, uv.y);\n"
          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
          "}\n";
 
@@ -872,10 +872,10 @@ namespace gpu_opengl
    //         strFragment =
    //            //"#" + strVersion + "\n"
    //            //"\n"
-   //            //"precision highp float;\n"
+   //            //"precision highp ::f32;\n"
    //            "\n"
    //            "uniform vec2 iResolution;\n"
-   //            "uniform float iTime;\n"
+   //            "uniform ::f32 iTime;\n"
    //            "uniform vec2 iMouse;\n"
    //            "uniform sampler2D backbuffer;\n"
    //            "\n"
@@ -975,7 +975,7 @@ namespace gpu_opengl
    }
 
 
-   // void context::create_global_ubo(int iGlobalUboSize, int iFrameCount)
+   // void context::create_global_ubo(::i32 iGlobalUboSize, ::i32 iFrameCount)
    // {
    //
    //    ::gpu::context_lock contextlock(this);
@@ -985,7 +985,7 @@ namespace gpu_opengl
    //    ::opengl::check_error("");
    //    glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
    //    ::opengl::check_error("");
-   //    glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+   //    glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(::f32) * 16
    //    ::opengl::check_error("");
    //    ::u32 uUboBindingPoint = 0;
    //    glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
@@ -1021,7 +1021,7 @@ namespace gpu_opengl
 
 
    //void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
-   //   float quadVertices[] = {
+   //   ::f32 quadVertices[] = {
    //      // pos     // uv
    //      -1, -1,    0, 0,
    //      +1, -1,    1, 0,
@@ -1036,10 +1036,10 @@ namespace gpu_opengl
    //   glBindBuffer(GL_ARRAY_BUFFER, *vbo);
    //   glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 
-   //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // position
+   //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0); // position
    //   glEnableVertexAttribArray(0);
 
-   //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // UV
+   //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32))); // UV
    //   glEnableVertexAttribArray(1);
 
    //   glBindVertexArray(0);
@@ -1104,8 +1104,8 @@ namespace gpu_opengl
 //      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 //      //glDisable(GL_BLEND);                    // Ensure no blending
 //
-//      int cx = m_rectangle.width();
-//      int cy = m_rectangle.height();
+//      ::i32 cx = m_rectangle.width();
+//      ::i32 cy = m_rectangle.height();
 //      glViewport(0, 0, cx, cy);
 //      //glClearColor(0.1, 0.1, 0.1, 1.0);
 //      //glClear(GL_COLOR_BUFFER_BIT);
@@ -1205,7 +1205,7 @@ namespace gpu_opengl
 //
 //       {
 //
-//           int iLayer = 0;
+//           ::i32 iLayer = 0;
 //
 //          for (auto player: *playera)
 //          {
@@ -1245,7 +1245,7 @@ namespace gpu_opengl
 //          if (!m_pshaderBlend3)
 //          {
 //
-//             const char full_screen_triangle_vertex_shader[] = R"vert(
+//             const ::i8 full_screen_triangle_vertex_shader[] = R"vert(
 // #version 330 core
 //
 // out vec2 uv;
@@ -1268,7 +1268,7 @@ namespace gpu_opengl
 // }
 // )vert";
 //
-//             const char full_screen_triangle_fragment_shader[] = R"frag(
+//             const ::i8 full_screen_triangle_fragment_shader[] = R"frag(
 // #version 330 core
 //
 // uniform sampler2D uTexture;
@@ -1350,7 +1350,7 @@ namespace gpu_opengl
 //
 //          ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
 //
-//          // int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+//          // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
 //          //
 //          // ptextureDst->bind_render_target();
 //          //
@@ -1391,7 +1391,7 @@ namespace gpu_opengl
 //          if (1)
 //          {
 //
-//             int iLayer = 0;
+//             ::i32 iLayer = 0;
 //
 //             pcommandbuffer.m_p->begin_render(m_pshaderBlend3.m_p, ptextureDst.m_p);
 //
@@ -1425,9 +1425,9 @@ namespace gpu_opengl
 //
 //                   auto r = ptextureSrc->rectangle();
 //
-//                   int h = r.height();
+//                   ::i32 h = r.height();
 //
-//                   int iH = ptextureDst->height();
+//                   ::i32 iH = ptextureDst->height();
 //
 //                   r.top = iH - r.bottom;
 //
@@ -1500,8 +1500,8 @@ namespace gpu_opengl
 //                   //D3D12_VIEWPORT viewport = {};
 //                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
 //                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
-//                   //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
-//                   //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
+//                   //viewport.Width = static_cast<::f32>(ptextureSrc->m_rectangleTarget.width());
+//                   //viewport.Height = static_cast<::f32>(ptextureSrc->m_rectangleTarget.height());
 //                   //viewport.MinDepth = 0.0f;
 //                   //viewport.MaxDepth = 1.0f;
 //
@@ -1518,8 +1518,8 @@ namespace gpu_opengl
 //                   //D3D11_VIEWPORT vp = {};
 //                   //vp.TopLeftX = ptexture->rectangle().left;
 //                   //vp.TopLeftY = ptexture->rectangle().top;
-//                   //vp.Width = static_cast<float>(ptexture->rectangle().width());
-//                   //vp.Height = static_cast<float>(ptexture->rectangle().height());
+//                   //vp.Width = static_cast<::f32>(ptexture->rectangle().width());
+//                   //vp.Height = static_cast<::f32>(ptexture->rectangle().height());
 //                   //vp.MinDepth = 0.0f;
 //                   //vp.MaxDepth = 1.0f;
 //                   //m_pcontext->RSSetViewports(1, &vp);
@@ -1547,7 +1547,7 @@ namespace gpu_opengl
 //          ////::cast <texture > ptextureDst = ptextureTarget;
 //          //{
 //          //
-//          //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
+//          //   ::f32 clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
 //          //
 //          //   D3D12_RECT r[1];
 //          //
@@ -1683,7 +1683,7 @@ namespace gpu_opengl
 
    //   ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
 
-   //   int textureID = ptexture->m_gluTextureID;
+   //   ::i32 textureID = ptexture->m_gluTextureID;
 
    //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
    //      GL_TEXTURE_2D, textureID, 0);
@@ -1697,9 +1697,9 @@ namespace gpu_opengl
    //      if (!ptexture->m_gluDepthStencilRBO)
    //      {
 
-   //         int width = pgpucontext->m_rectangle.width();
+   //         ::i32 width = pgpucontext->m_rectangle.width();
 
-   //         int height = pgpucontext->m_rectangle.height();
+   //         ::i32 height = pgpucontext->m_rectangle.height();
 
    //         glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
    //         ::opengl::check_error("");
@@ -1789,20 +1789,20 @@ namespace gpu_opengl
          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 
          {
-            float fOpacity = 0.5;
-            float fRed = 0.5;
-            float fGreen = 0.75;
-            float fBlue = 0.95;
-            auto f32Opacity = (float)fOpacity;
-            auto f32Red = (float)(fRed * fOpacity);
-            auto f32Green = (float)(fGreen * fOpacity);
-            auto f32Blue = (float)(fBlue * fOpacity);
+            ::f32 fOpacity = 0.5;
+            ::f32 fRed = 0.5;
+            ::f32 fGreen = 0.75;
+            ::f32 fBlue = 0.95;
+            auto f32Opacity = (::f32)fOpacity;
+            auto f32Red = (::f32)(fRed * fOpacity);
+            auto f32Green = (::f32)(fGreen * fOpacity);
+            auto f32Blue = (::f32)(fBlue * fOpacity);
             ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
          }
 
-         ::double_polygon polygon;
+         ::f64_polygon polygon;
 
-         ::double_rectangle rectangle(100, 100, 200, 200);
+         ::f64_rectangle rectangle(100, 100, 200, 200);
 
          polygon = rectangle;
 
@@ -2051,20 +2051,20 @@ namespace gpu_opengl
          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 
          {
-            float fOpacity = 0.5;
-            float fRed = 0.5;
-            float fGreen = 0.75;
-            float fBlue = 0.95;
-            auto f32Opacity = (float)fOpacity;
-            auto f32Red = (float)(fRed * fOpacity);
-            auto f32Green = (float)(fGreen * fOpacity);
-            auto f32Blue = (float)(fBlue * fOpacity);
+            ::f32 fOpacity = 0.5;
+            ::f32 fRed = 0.5;
+            ::f32 fGreen = 0.75;
+            ::f32 fBlue = 0.95;
+            auto f32Opacity = (::f32)fOpacity;
+            auto f32Red = (::f32)(fRed * fOpacity);
+            auto f32Green = (::f32)(fGreen * fOpacity);
+            auto f32Blue = (::f32)(fBlue * fOpacity);
             ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
          }
 
-         ::double_polygon polygon;
+         ::f64_polygon polygon;
 
-         ::double_rectangle rectangle(300, 300, 400, 400);
+         ::f64_rectangle rectangle(300, 300, 400, 400);
 
          polygon = rectangle;
 
@@ -2159,10 +2159,10 @@ namespace gpu_opengl
 //      //   //dwStyle = 0;
 //      //   dwStyle &= ~WS_THICKFRAME;
 //      //   dwStyle &= ~WS_BORDER;
-//      //   int x = 0;
-//      //   int y = 0;
-//      //   int nWidth = size.cx;
-//      //   int nHeight = size.cy;
+//      //   ::i32 x = 0;
+//      //   ::i32 y = 0;
+//      //   ::i32 nWidth = size.cx;
+//      //   ::i32 nHeight = size.cy;
 //      //   HWND hWndParent = nullptr;
 //      //   HMENU hMenu = nullptr;
 //      //   HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -2223,7 +2223,7 @@ namespace gpu_opengl
 
       //         //PIXELFORMATDESCRIPTOR pixformat;
 
-      //         //int chosenformat;
+      //         //::i32 chosenformat;
 
       //         HDC hdc = GetDC(m_hwnd);
 
@@ -2286,7 +2286,7 @@ namespace gpu_opengl
 
       //         pwindow->m_hglrcProto = hglrc;
 
-      //         //         int context_attribs[] = {
+      //         //         ::i32 context_attribs[] = {
       //         //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
       //         //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
       //         //0, 0
@@ -2376,7 +2376,7 @@ namespace gpu_opengl
 
       //      m_sizeHost = sizeNew;
       //      //HDC pdcDIB;                      // контекст устройства в памяти
-      //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+      //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); ::i32 cyDIB(300);  // его размеры (например для окна 200х300)
       //      //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section// создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
       //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 
@@ -2659,13 +2659,13 @@ namespace gpu_opengl
       if (iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 
@@ -2676,7 +2676,7 @@ namespace gpu_opengl
 
    ::memory context::rectangle_shader_vert()
    {
-      const char proto_vert[] = R"vert(
+      const ::i8 proto_vert[] = R"vert(
 #version 330 core
 
 layout(location = 0) in vec2 inPos;
@@ -2697,7 +2697,7 @@ void main() {
    ::memory context::rectangle_shader_frag()
    {
 
-      const char proto_frag[] = R"frag(
+      const ::i8 proto_frag[] = R"frag(
             #version 330 core
 
                in vec4 fragColor;      // Input from the vertex shader (location = 0)
@@ -2742,7 +2742,7 @@ void main() {
         vec2(texcoords.z, texcoords.w)
     );
 
-    int vid = gl_VertexID;
+    ::i32 vid = gl_VertexID;
     //gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
 gl_Position = vec4(positions[vid], 0.0, 1.0);
     TexCoords = uvs[vid];
@@ -2802,7 +2802,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
 
    //void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
-   //                                   int iAssimpTextureType)
+   //                                   ::i32 iAssimpTextureType)
    //{
 
    //   defer_constructø(ptexture);
@@ -2864,11 +2864,11 @@ color = vec4(c.r,c.g, c.b, c.a);
    //   }
    //   else
    //   {
-   //      int width, height, numChannels;
+   //      ::i32 width, height, numChannels;
 
 
 
-   //      unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+   //      ::u8 *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
 
    //      if (!data)
    //      {
@@ -2925,10 +2925,10 @@ color = vec4(c.r,c.g, c.b, c.a);
    //         ::memory memory;
    //         auto count = width * height;
    //         memory.set_size(count * 3);
-   //         auto ptarget = (unsigned char *)memory.data();
-   //         auto psource = (unsigned char *)data;
+   //         auto ptarget = (::u8 *)memory.data();
+   //         auto psource = (::u8 *)data;
    //         format = GL_RGB;
-   //         for (int i = 0; i < count; i++)
+   //         for (::i32 i = 0; i < count; i++)
    //         {
    //            ptarget[0] = *psource;
    //            ptarget[1] = *psource;
@@ -2978,14 +2978,14 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
-                                 float zFar)
+   floating_matrix4 context::ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear,
+                                 ::f32 zFar)
    {
       floating_matrix4 M(1.0f); // identity
 
-      float rl = right - left;
-      float tb = top - bottom;
-      float fn = zFar - zNear;
+      ::f32 rl = right - left;
+      ::f32 tb = top - bottom;
+      ::f32 fn = zFar - zNear;
 
       M[0][0] = 2.0f / rl;
       M[1][1] = 2.0f / tb;
@@ -3000,9 +3000,9 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   //floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
+   //floating_matrix4 context::perspective(::f32 fovyRadians, ::f32 aspect, ::f32 zNear, ::f32 zFar)
    //{
-   //   float f = 1.0f / tanf(fovyRadians * 0.5f);
+   //   ::f32 f = 1.0f / tanf(fovyRadians * 0.5f);
 
    //   floating_matrix4 M(0.0f); // initialize all elements to 0
 
@@ -3049,9 +3049,9 @@ color = vec4(c.r,c.g, c.b, c.a);
    //// ---------------------------------------------------------------
    //// lookAt matrix (OpenGL RH)
    //// ---------------------------------------------------------------
-   //floating_matrix4 context::lookAt(const float_sequence3 &eye, const float_sequence3 &center,
+   //floating_matrix4 context::lookAt(const f32_sequence3 &eye, const f32_sequence3 &center,
 
-   //                                 const float_sequence3 &up)
+   //                                 const f32_sequence3 &up)
    //{
 
    //   // --- Step 1: Compute camera axes ---------------------------------

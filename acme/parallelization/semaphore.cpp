@@ -27,7 +27,7 @@
 #endif
 
 
-semaphore::semaphore(int lInitialCount, int lMaxCount, const_char_pointer pstrName, security_attributes * psecurityattributes)
+semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const_char_pointer pstrName, security_attributes * psecurityattributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -138,7 +138,7 @@ semaphore::semaphore(int lInitialCount, int lMaxCount, const_char_pointer pstrNa
 
    semctl_arg.val = lInitialCount;
 
-   semctl(static_cast < int > (m_hsync), 0, SETVAL, semctl_arg);
+   semctl(static_cast < ::i32 > (m_hsync), 0, SETVAL, semctl_arg);
 
 #endif
 
@@ -151,8 +151,8 @@ semaphore::~semaphore()
 
 #if defined(__BSD__)
 
-int
-_semtimedop(int semid, struct sembuf *array, size_t nops, struct
+::i32
+_semtimedop(::i32 semid, struct sembuf *array, size_t nops, struct
    timespec *_timeout);
 
 
@@ -202,7 +202,7 @@ bool semaphore::_wait(const class time & timeWait)
 bool semaphore::_wait(const class time & timeWait)
 {
 
-   int iRet = 0;
+   ::i32 iRet = 0;
    sembuf sb;
 
    sb.sem_num = 0;
@@ -212,7 +212,7 @@ bool semaphore::_wait(const class time & timeWait)
    if(timeWait.is_infinite())
    {
 
-      iRet = semop(static_cast < int > (m_hsync), &sb, 1);
+      iRet = semop(static_cast < ::i32 > (m_hsync), &sb, 1);
 
    }
    else
@@ -223,9 +223,9 @@ bool semaphore::_wait(const class time & timeWait)
       timespec += timeWait;
 
 #if defined(__BSD__)
-      iRet = _semtimedop(static_cast < int > (m_hsync), &sb, 1, &timespec);
+      iRet = _semtimedop(static_cast < ::i32 > (m_hsync), &sb, 1, &timespec);
 #else
-      iRet = semtimedop(static_cast < int > (m_hsync), &sb, 1, &timespec);
+      iRet = semtimedop(static_cast < ::i32 > (m_hsync), &sb, 1, &timespec);
 
 #endif
 
@@ -260,7 +260,7 @@ bool semaphore::_wait(const class time & timeWait)
 //
 //comparable_array < pthread_t > * g_pthreadaSemaphore = nullptr;
 //
-//void semaphore_timer_handler (int signum)
+//void semaphore_timer_handler (::i32 signum)
 //{
 //
 //   synchronous_lock synchronouslock(g_pmutexSemaphore, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -281,7 +281,7 @@ bool semaphore::_wait(const class time & timeWait)
 //
 //}
 
-//void semaphore_user1_handler (int signum)
+//void semaphore_user1_handler (::i32 signum)
 //{
 //
 //}
@@ -309,7 +309,7 @@ bool semaphore::_wait(const class time & timeWait)
       sb.sem_op   = -1;
       sb.sem_flg  = 0;
 
-      int i = semop(static_cast < int > (m_hsync), &sb, 1);
+      ::i32 i = semop(static_cast < ::i32 > (m_hsync), &sb, 1);
       
       if(i != 0)
       {
@@ -335,7 +335,7 @@ bool semaphore::_wait(const class time & timeWait)
    while(true)
    {
 
-      int i = semop(static_cast < int > (m_hsync), &sb, 1);
+      ::i32 i = semop(static_cast < ::i32 > (m_hsync), &sb, 1);
 
       if(i == 0)
       {
@@ -376,7 +376,7 @@ bool semaphore::_wait(const class time & timeWait)
 #endif
 
 
-void semaphore::unlock(int lCount, int * pPrevCount)
+void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 {
 
 #ifdef WINDOWS
@@ -385,7 +385,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
 
 #elif defined(__ANDROID__)
 
-   int val;
+   ::i32 val;
 
    if (sem_getvalue(m_psem, &val) != 0)
    {
@@ -429,7 +429,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
    sb.sem_op   = 1;
    sb.sem_flg  = 0;
 
-   int i = semop(static_cast < int > (m_hsync), &sb, 1);
+   ::i32 i = semop(static_cast < ::i32 > (m_hsync), &sb, 1);
 
    return i == 0 ? true : false;
 
@@ -437,7 +437,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
 
    semun semctl_arg;
 
-   semctl(static_cast < int > (m_hsync), 0, GETVAL, semctl_arg);
+   semctl(static_cast < ::i32 > (m_hsync), 0, GETVAL, semctl_arg);
 
    if(pPrevCount !=  nullptr)
 
@@ -457,7 +457,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
 
    semctl_arg.val += lCount;
 
-   semctl(static_cast < int > (m_hsync), 0, SETVAL, semctl_arg);
+   semctl(static_cast < ::i32 > (m_hsync), 0, SETVAL, semctl_arg);
 
    //return true;
 

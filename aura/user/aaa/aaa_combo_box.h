@@ -138,11 +138,11 @@ namespace user
       LCID SetLocale(LCID nNewLocale);
       ::collection::index GetTopIndex();
       ::collection::index SetTopIndex(index nIndex);
-      ::collection::index InitStorage(::collection::count nItems, unsigned int nBytes);
-      void SetHorizontalExtent(unsigned int nExtent);
-      unsigned int GetHorizontalExtent();
-      int SetDroppedWidth(unsigned int nWidth);
-      int GetDroppedWidth();
+      ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
+      void SetHorizontalExtent(::u32 nExtent);
+      ::u32 GetHorizontalExtent();
+      ::i32 SetDroppedWidth(::u32 nWidth);
+      ::i32 GetDroppedWidth();
 
 #if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
       bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
@@ -158,16 +158,16 @@ namespace user
       ::collection::index SetItemData(index nIndex, uptr dwItemData);
       void * GetItemDataPtr(index nIndex);
       ::collection::index SetItemDataPtr(index nIndex, void * pData);
-      ::collection::index GetLBText(index nIndex, char * pszText);
+      ::collection::index GetLBText(index nIndex, char_pointer pszText);
 
       void GetLBText(index nIndex, string & rString);
       character_count GetLBTextLen(index nIndex);
 
-      int SetItemHeight(index nIndex, unsigned int cyItemHeight);
-      int GetItemHeight(index nIndex);
+      ::i32 SetItemHeight(index nIndex, ::u32 cyItemHeight);
+      ::i32 GetItemHeight(index nIndex);
       ::collection::index FindStringExact(index nIndexStart, const ::scoped_string & scopedstrFind);
 
-      int SetExtendedUI(bool bExtended = true);
+      ::i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
       void GetDroppedControlRect(RECT32 * prect);
 
@@ -203,7 +203,7 @@ namespace user
 
       virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
 
-      virtual int CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
+      virtual ::i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
 
       virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
 

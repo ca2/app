@@ -28,20 +28,25 @@ pen::~pen()
 
 
 }
+void pen::create_pen(const ::color::color& color, ::f64 fWidth)
+{
 
+   throw ::interface_only();
 
-   ::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, int iWidth, color32_t color)
-   {
+}
 
-      ::pointer<::nano::graphics::pen> ppen(e_create, pparticle, nullptr);
+   //::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, ::i32 iWidth, color32_t color)
+   //{
 
-      ppen->m_iWidth = iWidth;
+   //   ::pointer<::nano::graphics::pen> ppen(e_create, pparticle, nullptr);
 
-      ppen->m_color = color;
+   //   ppen->m_iWidth = iWidth;
 
-      return ppen;
+   //   ppen->m_color = color;
 
-   }
+   //   return ppen;
+
+   //}
 
 
 

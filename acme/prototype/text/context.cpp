@@ -109,7 +109,7 @@ namespace text
 
          string_array_base straFailedLocale;
 
-         for(int i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
+         for(::i32 i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
          {
 
             auto & strLocale = m_plocaleschema->m_straLocale[i];
@@ -319,7 +319,7 @@ namespace text
 
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             auto pschema = pcontext->m_schemaptra[i];
@@ -527,7 +527,7 @@ namespace text
                stra.add(table);
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -578,8 +578,8 @@ namespace text
    //   range_sz_item stack[8];
    //   character_count m_pos = 0;
 
-   //   char m_szAlloca[8 * 1024];
-   //   char * m_szMerge = m_szAlloca;
+   //   ::i8 m_szAlloca[8 * 1024];
+   //   char_pointer m_szMerge = m_szAlloca;
    //   character_count m_iSize =0;
    //   character_count m_iMaxSize=sizeof(m_szAlloca);
    //   bool m_bOwn = false;
@@ -636,19 +636,19 @@ namespace text
 
    //         }
 
-   //         if(newlen >= m_iMaxSize) // extra 1 unsigned char
+   //         if(newlen >= m_iMaxSize) // extra 1 ::u8
    //         {
-   //            m_iMaxSize = newlen + 1024; // extra 1 unsigned char plus 1023
+   //            m_iMaxSize = newlen + 1024; // extra 1 ::u8 plus 1023
    //            if (comparison::ge(m_iMaxSize, sizeof(m_szAlloca)))
    //            {
    //               if(m_szMerge == m_szAlloca || !m_bOwn)
    //               {
-   //                  m_szMerge = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
+   //                  m_szMerge = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
    //                  ::memory_copy(m_szMerge,m_szAlloca,oldlen);
    //               }
    //               else
    //               {
-   //                  m_szMerge = (char *)::memory_reallocate(m_szMerge,m_iMaxSize);
+   //                  m_szMerge = (char_pointer )::memory_reallocate(m_szMerge,m_iMaxSize);
    //               }
    //               m_bOwn = true;
    //            }
@@ -687,7 +687,7 @@ namespace text
    //      return len;
    //   }
 
-   //   //char * get_string(char string & strTopic)
+   //   //char_pointer get_string(::i8 string & strTopic)
    //   //{
    //   //   merge(strTopic);
    //   //   if(m_iSize == 0)
@@ -719,13 +719,13 @@ namespace text
 //
 //      string table;
 //
-//      //int i = 0;
+//      //::i32 i = 0;
 //
 //      character_count start;
 //
 //      character_count end;
 //
-//      char q;
+//      ::i8 q;
 //
 ////      ::table::utf8_char c;
 //
@@ -735,7 +735,7 @@ namespace text
 //
 //      const_char_pointer s;
 //
-//      char * wr;
+//      char_pointer wr;
 //
 //      const_char_pointer rd;
 //
@@ -769,7 +769,7 @@ namespace text
 //
 //         rstr.merge(strFile);
 //
-//         char * psz = rstr.m_szMerge;
+//         char_pointer psz = rstr.m_szMerge;
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
@@ -964,7 +964,7 @@ namespace text
                return true;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -1033,7 +1033,7 @@ namespace text
                return true;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -1102,7 +1102,7 @@ namespace text
                return true;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(::i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -1153,7 +1153,7 @@ namespace text
 
    //   auto psystem = system();
 
-   //   for(int i = 0; i < straCandstrate.get_count(); i++)
+   //   for(::i32 i = 0; i < straCandstrate.get_count(); i++)
    //   {
 
    //      string strCandstrate = straCandstrate[i];

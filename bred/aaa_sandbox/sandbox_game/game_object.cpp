@@ -12,14 +12,14 @@ namespace sandbox_game
    }
 
 
-   void game_object::initialize_game_object(long long llId)
+   void game_object::initialize_game_object(::i64 llId)
    {
 
       m_llId = llId;
    }
 
 
-   long long game_object::getId()
+   ::i64 game_object::getId()
    {
       return m_llId;
    }

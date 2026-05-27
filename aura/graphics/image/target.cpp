@@ -67,7 +67,7 @@ namespace image
    }
 
 
-   void target::set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride, bool bYSwap)
+   void target::set_image_pixels(const ::image32_t* pimage32, ::i32 w, ::i32 h, ::i32 stride, bool bYSwap)
    {
 
       ::i32_size s(w, h);
@@ -94,12 +94,12 @@ namespace image
 
          //}
 
-         ////   for (int y = 0; y < h; y++)
+         ////   for (::i32 y = 0; y < h; y++)
          ////   {
 
-         ////      auto p = (unsigned char*)(m_pimage->image32() + (y * m_pimage->m_iScan) / 4);
+         ////      auto p = (::u8*)(m_pimage->image32() + (y * m_pimage->m_iScan) / 4);
 
-         ////      for (int x = 0; x < w; x++)
+         ////      for (::i32 x = 0; x < w; x++)
          ////      {
 
          ////         //p[0] = p[0] * p[3] / 255;
@@ -242,7 +242,7 @@ namespace image
    }
 
 
-   int targeting::width() const
+   ::i32 targeting::width() const
    {
 
       return m_pimagetarget->m_imagebuffer.width();
@@ -250,7 +250,7 @@ namespace image
    }
 
 
-   int targeting::height() const
+   ::i32 targeting::height() const
    {
 
       return m_pimagetarget->m_imagebuffer.height();
@@ -258,7 +258,7 @@ namespace image
    }
 
 
-   int targeting::scan() const
+   ::i32 targeting::scan() const
    {
 
       return m_pimagetarget->m_imagebuffer.scan_size();

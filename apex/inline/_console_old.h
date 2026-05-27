@@ -14,8 +14,8 @@ public:
    ::pointer<::apex::system>        system();
    //::pointer<::apex::application>   m_papplication;
 
-   console(int argc, wchar_t * argv[]);
-   console(int argc, char * argv[]);
+   console(::i32 argc, wchar_t * argv[]);
+   console(::i32 argc, char_pointer argv[]);
    virtual ~console();
 
 

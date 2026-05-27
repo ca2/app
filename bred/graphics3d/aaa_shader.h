@@ -55,18 +55,18 @@
 //
 //      virtual void setBool(const ::scoped_string& scopedstrName, bool value);
 //
-//      virtual void setInt(const ::scoped_string& scopedstrName, int value);
+//      virtual void setInt(const ::scoped_string& scopedstrName, ::i32 value);
 //
-//      virtual void setFloat(const ::scoped_string& scopedstrName, float value);
+//      virtual void setFloat(const ::scoped_string& scopedstrName, ::f32 value);
 //
 //      //virtual void setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value) override;
-//      virtual void setVec2(const ::scoped_string& scopedstrName, float x, float y);
+//      virtual void setVec2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y);
 //      virtual void setVec2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
 //      //virtual void setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value) override;
-//      virtual void setVec3(const ::scoped_string& scopedstrName, float x, float y, float z);
+//      virtual void setVec3(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z);
 //      virtual void setVec3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
 //      //virtual void setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value) override;
-//      virtual void setVec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
+//      virtual void setVec4(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w);
 //
 //      virtual void setVec4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
 //

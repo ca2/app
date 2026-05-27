@@ -141,10 +141,10 @@ namespace coding
 
       virtual void code_on_change_selection();
 
-      //int unix_shell_command(const ::scoped_string& scopedstrCommand);
+      //::i32 unix_shell_command(const ::scoped_string& scopedstrCommand);
       //bool has_unix_shell_command(const ::scoped_string& scopedstrCommand);
-      //bool is_git_installed(int iAttempt = 0);
-      // bool is_tortoise_git_insftalled(int iAttempt = 0);
+      //bool is_git_installed(::i32 iAttempt = 0);
+      // bool is_tortoise_git_insftalled(::i32 iAttempt = 0);
       //void set_status1(string strStatus);
       //void set_status2(string strStatus);
       //void defer_release_install();

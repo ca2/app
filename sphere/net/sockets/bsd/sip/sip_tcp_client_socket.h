@@ -15,7 +15,7 @@ namespace sockets
       sip_tcp_client_socket();
 
 
-      void OnRawData(char *, size_t);
+      void OnRawData(char_pointer , size_t);
       void OnLine(const ::scoped_string & scopedstrLine);
 
 

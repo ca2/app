@@ -25,7 +25,7 @@
 
 #include "conio.h"
 
-int
+::i32
 wherey (void)
 {
   if (!ConioInitialized)

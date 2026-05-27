@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void prototype_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::i32_rectangle * prectParam, const i32_rectangle & rectangleX, bool bStretch)
+   //void prototype_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::i32_rectangle * prectParam, const i32_rectangle & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -347,7 +347,7 @@ namespace user
    //}
 
 
-   void prototype_impl::window_move(int x, int y)
+   void prototype_impl::window_move(::i32 x, ::i32 y)
    {
 
       //return true;
@@ -863,13 +863,13 @@ namespace user
 
             // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
-            pmessage->m_nChar = static_cast<unsigned int>(wparam);
+            pmessage->m_nChar = static_cast<::u32>(wparam);
 
             pmessage->m_nRepCnt = lower_unsigned_short(lparam);
 
             pmessage->m_nFlags = upper_unsigned_short(lparam);
 
-            pmessage->m_iVirtualKey = (int)wparam;
+            pmessage->m_iVirtualKey = (::i32)wparam;
 
             pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
 
@@ -886,7 +886,7 @@ namespace user
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
+         pmessage->m_uTimer = static_cast<::u32>(wparam);
 
       }
       break;
@@ -895,7 +895,7 @@ namespace user
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
 
-         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
+         pmessage->m_nStatus = static_cast<::u32>(lparam);
 
       }
       break;
@@ -934,9 +934,9 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(::i16)lower_unsigned_short(wparam);
 
-         pmessage->m_dPosition = (double) (short)upper_unsigned_short(wparam);
+         pmessage->m_dPosition = (::f64) (::i16)upper_unsigned_short(wparam);
 
       }
       break;
@@ -1023,7 +1023,7 @@ namespace user
       {
          _NEW_MESSAGE(::message::size);
 
-         pmessage->m_nType = static_cast <unsigned int> (wparam);
+         pmessage->m_nType = static_cast <::u32> (wparam);
 
          pmessage->m_size = ::i32_size(lparam_int_x(lparam), lparam_int_y(lparam));
       }
@@ -1126,7 +1126,7 @@ namespace user
 
    }
 
-//   character_count prototype_impl::get_window_text(char* pszStringBuf, character_count nMaxCount)
+//   character_count prototype_impl::get_window_text(char_pointer pszStringBuf, character_count nMaxCount)
 //   {
 //
 //      return 0;
@@ -1185,7 +1185,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::i32_point& point, unsigned int nFlags)
+   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::i32_point& point, ::u32 nFlags)
    {
 
       return nullptr;
@@ -1337,7 +1337,7 @@ namespace user
    }
 
 
-   double prototype_impl::_001GetTopLeftWeightedOccludedOpaqueRate()
+   ::f64 prototype_impl::_001GetTopLeftWeightedOccludedOpaqueRate()
    {
 
       return 0.;
@@ -1399,7 +1399,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::get_child_by_id(const ::atom& atom, ::collection::index iItem, int iLevel)
+   ::user::interaction* prototype_impl::get_child_by_id(const ::atom& atom, ::collection::index iItem, ::i32 iLevel)
    {
 
       return nullptr;
@@ -1414,7 +1414,7 @@ namespace user
    }
 
 
-   void prototype_impl::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void prototype_impl::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -1431,7 +1431,7 @@ namespace user
    }
 
 
-   //unsigned int prototype_impl::GetStyle() const
+   //::u32 prototype_impl::GetStyle() const
    //{
 
    //   return get_window_long(GWL_STYLE);
@@ -1439,7 +1439,7 @@ namespace user
    //}
 
 
-   //unsigned int prototype_impl::GetExStyle() const
+   //::u32 prototype_impl::GetExStyle() const
    //{
 
    //   return get_window_long(GWL_EXSTYLE);
@@ -1447,14 +1447,14 @@ namespace user
    //}
 
 
-   //void prototype_impl::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void prototype_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
-   //   int l = GetStyle();
+   //   ::i32 l = GetStyle();
 
    //   l |= dwAdd;
 
-   //   int lRemove = ~dwRemove;
+   //   ::i32 lRemove = ~dwRemove;
 
    //   l &= lRemove;
 
@@ -1465,7 +1465,7 @@ namespace user
    //}
 
 
-   //void prototype_impl::ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void prototype_impl::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
    //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -1475,23 +1475,23 @@ namespace user
    //}
 
 
-//   int prototype_impl::get_window_long(int nIndex) const
+//   ::i32 prototype_impl::get_window_long(::i32 nIndex) const
 //   {
 //
-//      return (int)get_window_long_ptr(nIndex);
+//      return (::i32)get_window_long_ptr(nIndex);
 //
 //   }
 //
 //
-//   int prototype_impl::set_window_long(int nIndex, int lValue)
+//   ::i32 prototype_impl::set_window_long(::i32 nIndex, ::i32 lValue)
 //   {
 //
-//      return (int)set_window_long_ptr(nIndex, lValue);
+//      return (::i32)set_window_long_ptr(nIndex, lValue);
 //
 //   }
 //
 //
-//   iptr prototype_impl::get_window_long_ptr(int nIndex) const
+//   iptr prototype_impl::get_window_long_ptr(::i32 nIndex) const
 //   {
 //
 ////      return 0;
@@ -1518,7 +1518,7 @@ namespace user
 //   }
 //
 //
-//   void prototype_impl::set_window_long_ptr(int nIndex, iptr lValue)
+//   void prototype_impl::set_window_long_ptr(::i32 nIndex, iptr lValue)
 //   {
 //
 ////      if (nIndex == GWL_STYLE)
@@ -1668,7 +1668,7 @@ namespace user
    }
 
 
-   unsigned int prototype_impl::ArrangeIconicWindows()
+   ::u32 prototype_impl::ArrangeIconicWindows()
    {
 
       //      return m_puserinteraction->ArrangeIconicWindows();
@@ -1783,7 +1783,7 @@ namespace user
    }
 
 
-   ::user::interaction * prototype_impl::get_wnd(unsigned int nCmd)
+   ::user::interaction * prototype_impl::get_wnd(::u32 nCmd)
    {
 
       if (!m_puserinteraction)
@@ -2908,7 +2908,7 @@ namespace user
    }
 
 
-   //int prototype_impl::GetUpdateRgn(class draw2d::region *,bool)
+   //::i32 prototype_impl::GetUpdateRgn(class draw2d::region *,bool)
    //{
 
    //   return 0;
@@ -3157,7 +3157,7 @@ namespace user
     }
 
 
-   void prototype_impl::set_opacity(double dOpacity)
+   void prototype_impl::set_opacity(::f64 dOpacity)
    {
 
 

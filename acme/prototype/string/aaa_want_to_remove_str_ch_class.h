@@ -8,7 +8,7 @@ namespace str
        - ch_class allows to store enumerations of characters in compact
          form (two-stage bit-field tables).
        - This class supports logical operations over it's instances,
-         char category -> enumeration conversion.
+         ::i8 category -> enumeration conversion.
        @ingroup unicode
    */
    class CLASS_DECL_ACME ch_class
@@ -20,12 +20,12 @@ namespace str
       ch_class(const ch_class &);
       ~ch_class();
 
-      static ch_class *createCharClass(const char * ccs, character_count pos, character_count *retPos);
+      static ch_class *createCharClass(const_char_pointer ccs, character_count pos, character_count *retPos);
 
-      void add_char(const char *);
-      void clear_char(const char *);
-      void add_range(const char *, const char *);
-      void clear_range(const char *, const char *);
+      void add_char(const_char_pointer );
+      void clear_char(const_char_pointer );
+      void add_range(const_char_pointer , const_char_pointer );
+      void clear_range(const_char_pointer , const_char_pointer );
 
       void add_category(ECharCategory);
       void add_category(string);
@@ -38,7 +38,7 @@ namespace str
       void clear();
       void fill();
 
-      bool in_class(const char *pszUtf8Char) const;
+      bool in_class(const_char_pointer pszUtf8Char) const;
 
 
    };

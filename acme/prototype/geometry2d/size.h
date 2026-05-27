@@ -32,7 +32,7 @@ public:
 
 //   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
-//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, ::i32> = 0>
 //   sequence_type(const T & a) {
 //      for (size_t i = 0; i < SIZE; ++i)
 //         m_coordinatea[i] = (COORDINATE)a[i];
@@ -75,8 +75,8 @@ public:
    //size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
    //size_type(::i64 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
    //size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
-   //size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
-   //size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
+   //size_type(::f32 f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
+   //size_type(::f64 d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
 //   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x, lparam.y) {}
    //template < prototype_point POINT >
 //   size_type(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx = sequence.x; this->cy = sequence.y; }
@@ -85,12 +85,12 @@ public:
 //   template < prototype_size SIZE >
 //   size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    //size_type(const ::i64_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const ::float_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const ::double_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const ::f32_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const ::f64_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    //size_type(const ::i32_size* psize) noexcept : size_type(*psize) {}
    //size_type(const ::i64_size* psize) noexcept : size_type(*psize) {}
-   //size_type(const ::float_size* psize) noexcept : size_type(*psize) {}
-   //size_type(const ::double_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::f32_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::f64_size* psize) noexcept : size_type(*psize) {}
 //#ifdef __APPLE__
 ////   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
 ////   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
@@ -168,7 +168,7 @@ public:
    {
       if (get_fit(s) == ::design::e_fit_height) return aspect_height(s.cy); else return aspect_width(s.cx);
    }
-   inline ::design::enum_match get_expand(size_type s) { return (::design::enum_match)(-(int)get_fit(s)); }
+   inline ::design::enum_match get_expand(size_type s) { return (::design::enum_match)(-(::i32)get_fit(s)); }
    inline size_type expand(size_type s)
    {
       if (get_expand(s) == ::design::e_match_height) return aspect_height(s.cy); else return aspect_width(s.cx);
@@ -218,25 +218,25 @@ public:
    inline size_type operator-() const noexcept { return size_type(-this->cx, -this->cy); }
 
 //#ifdef WINDOWS
-//   inline size_type operator /(int i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
+//   inline size_type operator /(::i32 i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
 //#endif
    
    template < prototype_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(NUMBER1 l) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx / l), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy / l)); }
 //   inline size_type operator /(::i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
-//   inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx / f), (UNIT_TYPE)(this->cy / f)); }
-//   inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx / d), (UNIT_TYPE)(this->cy / d)); }
+//   inline size_type operator /(::f32 f) const noexcept { return size_type((UNIT_TYPE)(this->cx / f), (UNIT_TYPE)(this->cy / f)); }
+//   inline size_type operator /(::f64 d) const noexcept { return size_type((UNIT_TYPE)(this->cx / d), (UNIT_TYPE)(this->cy / d)); }
    template < prototype_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(const sequence_type <NUMBER1, 2> & sequence) const { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx / sequence.x), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy / sequence.y)); }
 
    template < prototype_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx * d), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy * d)); }
 
-   //inline size_type operator +(int i) const noexcept { return size_type(this->cx + i, this->cy + i); }
+   //inline size_type operator +(::i32 i) const noexcept { return size_type(this->cx + i, this->cy + i); }
    template < prototype_number NUMBER1 >
    inline size_type<largest_number < UNIT_TYPE, NUMBER1 >> operator +(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx + d), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy + d)); }
 
-//   inline size_type operator -(int i) const noexcept { return size_type(this->cx - i, this->cy - i); }
+//   inline size_type operator -(::i32 i) const noexcept { return size_type(this->cx - i, this->cy - i); }
    template < prototype_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator -(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx - d), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy - d)); }
 
@@ -312,7 +312,7 @@ public:
 template < prototype_size SIZE >
 inline auto abs(const SIZE & size) noexcept { return SIZE(abs(size.cx), abs(size.cy)); }
 //inline auto abs(const ::i64_size& size) noexcept { return ::i64_size(abs(size.cx), abs(size.cy)); }
-//inline auto abs(const ::float_size& size) noexcept { return ::float_size(abs(size.cx), abs(size.cy)); }
-//inline auto abs(const ::double_size& size) noexcept { return ::double_size(abs(size.cx), abs(size.cy)); }
+//inline auto abs(const ::f32_size& size) noexcept { return ::f32_size(abs(size.cx), abs(size.cy)); }
+//inline auto abs(const ::f64_size& size) noexcept { return ::f64_size(abs(size.cx), abs(size.cy)); }
 
 

@@ -25,7 +25,7 @@
 ////#define DEEP_DATA_DEBUG 0
 ////
 /////**
-////* Return the number of bytes required to store a variable-length unsigned
+////* Return the number of bytes required to store a variable-length ::u32
 ////* 32-bit integer in base-128 varint encoding.
 ////*
 ////* \lparam v
@@ -59,7 +59,7 @@
 ////
 ////
 /////**
-////* Pack an unsigned 32-bit integer in base-128 varint encoding and return the
+////* Pack an ::u32 32-bit integer in base-128 varint encoding and return the
 ////* number of bytes written, which must be 5 or less.
 ////*
 ////* \lparam value
@@ -69,9 +69,9 @@
 ////* \return
 ////*      Number of bytes written to `out`.
 ////*/
-////static inline memsize u32_pack(::u32 value, unsigned char *out)
+////static inline memsize u32_pack(::u32 value, ::u8 *out)
 ////{
-////   unsigned rv = 0;
+////   ::u32 rv = 0;
 ////
 ////   if (value >= 0x80)
 ////   {
@@ -115,12 +115,12 @@
 ////}
 ////
 ////
-////int client_send(memory & m, int fin, memory & memory, bool useMask)
+////::i32 client_send(memory & m, ::i32 fin, memory & memory, bool useMask)
 ////{
 ////
 ////   ::i64 message_size = memory.size();
 ////
-////   int length = (int) ( 2 + message_size);
+////   ::i32 length = (::i32) ( 2 + message_size);
 ////
 ////   if (message_size >= 65536)
 ////   {
@@ -135,7 +135,7 @@
 ////
 ////   }
 ////
-////   unsigned char masking_key[4];
+////   ::u8 masking_key[4];
 ////
 ////   if (useMask)
 ////   {
@@ -148,11 +148,11 @@
 ////
 ////   m.set_size(length);
 ////
-////   unsigned char * frame = (unsigned char*)m.data();
+////   ::u8 * frame = (::u8*)m.data();
 ////
 ////   frame[0] = 0x80 | fin;
 ////
-////   int iOffset = -1;
+////   ::i32 iOffset = -1;
 ////
 ////   if (message_size < 126)
 ////   {
@@ -215,18 +215,18 @@
 ////
 ////   }
 ////
-////   return (int) (m.size());
+////   return (::i32) (m.size());
 ////
 ////}
 ////
-////int client_send_binary(memory & m, memory & memory)
+////::i32 client_send_binary(memory & m, memory & memory)
 ////{
 ////
 ////   return client_send(m, 0x82, memory, true);
 ////
 ////}
 ////
-////int client_send(memory & m, int fin, const_char_pointer src)
+////::i32 client_send(memory & m, ::i32 fin, const_char_pointer src)
 ////{
 ////
 ////   memsize len = 0;
@@ -262,11 +262,11 @@
 ////
 ////   m.set_size(length);
 ////
-////   char* frame = (char*)m.data();
+////   char_pointer frame = (char_pointer )m.data();
 ////
-////   frame[0] = (char)fin;
+////   frame[0] = (::i8)fin;
 ////
-////   int iOffset;
+////   ::i32 iOffset;
 ////
 ////   if (len >= 126)
 ////   {
@@ -288,7 +288,7 @@
 ////
 ////         frame[1] = 126;
 ////
-////         *((short*)&frame[2]) = htons((unsigned short) (len));
+////         *((::i16*)&frame[2]) = htons((::u16) (len));
 ////
 ////      }
 ////
@@ -298,7 +298,7 @@
 ////
 ////      iOffset = 2;
 ////
-////      frame[1] = (char) (len);
+////      frame[1] = (::i8) (len);
 ////
 ////   }
 ////
@@ -309,12 +309,12 @@
 ////
 ////   }
 ////
-////   return (int) (m.size());
+////   return (::i32) (m.size());
 ////
 ////}
 ////
 ////
-////int client_send_text(memory & m, const_char_pointer src)
+////::i32 client_send_text(memory & m, const_char_pointer src)
 ////{
 ////
 ////   return client_send(m, 0x81, src);
@@ -322,7 +322,7 @@
 ////}
 ////
 ////
-////int client_send_text(memory & m, const_char_pointer src, bool bMasked)
+////::i32 client_send_text(memory & m, const_char_pointer src, bool bMasked)
 ////{
 ////
 ////   memory m2(src, strlen(src));
@@ -590,9 +590,9 @@
 //
 //         m_pwebsocket->m_strBase64 = pbase64->encode(m);
 //
-//         //int iLen;
+//         //::i32 iLen;
 //
-//         //iLen = (int)(m_strBase64.length());
+//         //iLen = (::i32)(m_strBase64.length());
 //
 //         inheader("Sec-WebSocket-Key") = m_pwebsocket->m_strBase64;
 //         if (m_pwebsocket->m_strWebSocketProtocol.has_character())
@@ -660,7 +660,7 @@
 //   void websocket_client::OnHeaderComplete()
 //   {
 //
-//      int iHttpStatusCode;
+//      ::i32 iHttpStatusCode;
 //
 //      iHttpStatusCode = outattr("http_status_code").as_i32();
 //
@@ -779,11 +779,11 @@
 //
 //      //#ifdef BSD_STYLE_SOCKETS
 //      //
-//      //      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
+//      //      ::i32 iResult = (::i32) SSL_get_verify_result(m_psslcontext->m_ssl);
 //      //
 //      //#else
 //
-//      int iResult = 0;
+//      ::i32 iResult = 0;
 //
 //      //#endif
 //
@@ -824,7 +824,7 @@
 //   }
 //
 //
-//   void websocket_client::OnRawData(char * buf, memsize len)
+//   void websocket_client::OnRawData(char_pointer buf, memsize len)
 //   {
 //
 //      if (m_bWebSocket)
@@ -842,7 +842,7 @@
 //
 //         //::u64 uLen = 0;
 //
-//         //int iOffset = 2;
+//         //::i32 iOffset = 2;
 //
 //         while (m_memResponse.size() >= 2)
 //         {
@@ -850,7 +850,7 @@
 //            // From
 //            // https://github.com/dhbaird/easywsclient/blob/master/easywsclient.cpp
 //
-//            unsigned char * data = (unsigned char *)m_memResponse.data(); // peek, but don't consume
+//            ::u8 * data = (::u8 *)m_memResponse.data(); // peek, but don't consume
 //
 //
 //#if DEEP_DATA_DEBUG
@@ -872,12 +872,12 @@
 //               else if (data[i] < 10)
 //               {
 //                  strChar += "0";
-//                  strChar += as_string((int)data[i]);
+//                  strChar += as_string((::i32)data[i]);
 //                  strChar += " ";
 //               }
 //               else if (data[i] < 32)
 //               {
-//                  strChar += as_string((int)data[i]);
+//                  strChar += as_string((::i32)data[i]);
 //                  strChar += " ";
 //               }
 //               else if (data[i] >= 128)
@@ -978,10 +978,10 @@
 //            if (m_mask)
 //            {
 //
-//               m_maskingkey[0] = ((unsigned char)data[m_i32 + 0]);
-//               m_maskingkey[1] = ((unsigned char)data[m_i32 + 1]);
-//               m_maskingkey[2] = ((unsigned char)data[m_i32 + 2]);
-//               m_maskingkey[3] = ((unsigned char)data[m_i32 + 3]);
+//               m_maskingkey[0] = ((::u8)data[m_i32 + 0]);
+//               m_maskingkey[1] = ((::u8)data[m_i32 + 1]);
+//               m_maskingkey[2] = ((::u8)data[m_i32 + 2]);
+//               m_maskingkey[3] = ((::u8)data[m_i32 + 3]);
 //
 //            }
 //
@@ -1024,7 +1024,7 @@
 //               if (m_fin)
 //               {
 //
-//                  on_websocket_data(m_memReceivedData.data(), (int)(m_memReceivedData.size()));
+//                  on_websocket_data(m_memReceivedData.data(), (::i32)(m_memReceivedData.size()));
 //
 //                  m_memReceivedData.set_size(0);
 //
@@ -1104,7 +1104,7 @@
 //   }
 //
 //
-//   void websocket_client::on_websocket_data(unsigned char * pdata, int len)
+//   void websocket_client::on_websocket_data(::u8 * pdata, ::i32 len)
 //   {
 //
 //      m_timeLastPong.Now();
@@ -1130,7 +1130,7 @@
 //   }
 //
 //
-//   ::memory websocket_client::get_client_send(int fin, memory & memory, bool useMask)
+//   ::memory websocket_client::get_client_send(::i32 fin, memory & memory, bool useMask)
 //   {
 //
 //      throw interface_only();
@@ -1140,7 +1140,7 @@
 //   }
 //
 //
-//   ::memory websocket_client::get_client_send(int fin, const_char_pointer src)
+//   ::memory websocket_client::get_client_send(::i32 fin, const_char_pointer src)
 //   {
 //      
 //      throw interface_only();

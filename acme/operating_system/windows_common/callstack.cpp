@@ -32,7 +32,7 @@ CLASS_DECL_ACME void defer_initialize_callstack()
 }
 
 
-string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
 {
 
    critical_section_lock criticalsectionlock(sym_dbg_help_critical_section());
@@ -45,18 +45,18 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
    
    ULONG hash;
    
-   const int numFrames = CaptureStackBackTrace(iSkip + 1, TRACE_MAX_STACK_FRAMES, stack, &hash);
+   const ::i32 numFrames = CaptureStackBackTrace(iSkip + 1, TRACE_MAX_STACK_FRAMES, stack, &hash);
 
    str = string_format("Stack hash: 0x%08lx\n", hash);
 
-   for (int i = 0; i < numFrames; ++i) 
+   for (::i32 i = 0; i < numFrames; ++i) 
    {
 
       void * moduleBaseVoid = nullptr;
 
       RtlPcToFileHeader(stack[i], &moduleBaseVoid);
 
-      auto moduleBase = (const unsigned char *)moduleBaseVoid;
+      auto moduleBase = (const ::u8 *)moduleBaseVoid;
 
       constexpr auto MODULE_BUF_SIZE = 4096U;
 
@@ -71,7 +71,7 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
 
          auto strName = ::file::path(modulePath).name();
 
-         str += string_format("%02d:%s+0x%016llx\n", i, strName.c_str(), (uptr)((unsigned char *)stack[i] - moduleBase));
+         str += string_format("%02d:%s+0x%016llx\n", i, strName.c_str(), (uptr)((::u8 *)stack[i] - moduleBase));
 
       }
       else

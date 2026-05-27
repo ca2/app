@@ -13,7 +13,7 @@
 //
 //      interlocked_int                              m_lHttpGetSerial;
 //
-//      int                                          m_iErrorCode;
+//      ::i32                                          m_iErrorCode;
 //
 //      sockets_base();
 //      virtual ~sockets_base();

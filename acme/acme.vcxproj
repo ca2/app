@@ -2571,6 +2571,8 @@
     <ClCompile Include="input_output\io_exception.cpp" />
     <ClCompile Include="input_output\OutputStream.cpp" />
     <ClCompile Include="input_output\_.cpp" />
+    <ClCompile Include="nano\graphics\context.cpp" />
+    <ClCompile Include="nano\graphics\path.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="operating_system\environment.cpp" />
     <ClCompile Include="operating_system\GetCPUtime.cpp" />
@@ -2625,6 +2627,8 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="nano\graphics\context.h" />
+    <ClInclude Include="nano\graphics\path.h" />
     <ClInclude Include="operating_system\cpu_features.h" />
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\environment.h" />
@@ -2854,7 +2858,6 @@
     <ClInclude Include="nano\compress\compress.h" />
     <ClInclude Include="nano\compress\_.h" />
     <ClInclude Include="nano\graphics\brush.h" />
-    <ClInclude Include="nano\graphics\device.h" />
     <ClInclude Include="nano\graphics\font.h" />
     <ClInclude Include="nano\graphics\graphics.h" />
     <ClInclude Include="nano\graphics\icon.h" />
@@ -3780,7 +3783,6 @@
     <ClCompile Include="nano\archive\archive.cpp" />
     <ClCompile Include="nano\compress\compress.cpp" />
     <ClCompile Include="nano\graphics\brush.cpp" />
-    <ClCompile Include="nano\graphics\device.cpp" />
     <ClCompile Include="nano\graphics\font.cpp" />
     <ClCompile Include="nano\graphics\graphics.cpp" />
     <ClCompile Include="nano\graphics\icon.cpp" />

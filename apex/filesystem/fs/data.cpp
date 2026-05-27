@@ -73,7 +73,7 @@ namespace fs
 
    }
 
-   //string data::eat_end_level(const ::file::path & path, int iCount)
+   //string data::eat_end_level(const ::file::path & path, ::i32 iCount)
    //{
    //   string strPath(scopedstrPath);
    //   auto pFind = 0;
@@ -134,7 +134,7 @@ namespace fs
    //}
 
 
-   int data::is_dir(const ::file::path & path)
+   ::i32 data::is_dir(const ::file::path & path)
    {
 
       auto etype = file_type(path);
@@ -175,7 +175,7 @@ namespace fs
    //   get_ascendants_name(pcsz, stra);
 
    //   string str;
-   //   for(int i = 0; i < stra.get_size(); i++)
+   //   for(::i32 i = 0; i < stra.get_size(); i++)
    //   {
    //      str += stra[i];
    //      if(i != 0 || !string_ends(str, "//"))
@@ -194,7 +194,7 @@ namespace fs
    //   straSeparator.add("\\");
    //   straParam.add_smallest_tokens(pcsz, straSeparator, true);
 
-   //   for(int i = 0; i < straParam.get_size(); )
+   //   for(::i32 i = 0; i < straParam.get_size(); )
    //   {
    //      if(straParam[i].is_empty())
    //      {

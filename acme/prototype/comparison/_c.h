@@ -12,14 +12,14 @@
 //#define maximum(a, b) (((b) < (a)) ? (a) : (b))
 
 
-inline bool is_almost_equal(double d1, double d2, double dTolerance)
+inline bool is_almost_equal(::f64 d1, ::f64 d2, ::f64 dTolerance)
 {
    
    return DOUBLEABS(d1-d2) < dTolerance;
    
 }
 
-inline bool is_different(double d1, double d2, double dTolerance)
+inline bool is_different(::f64 d1, ::f64 d2, ::f64 dTolerance)
 {
    
    return !is_almost_equal(d1, d2, dTolerance);

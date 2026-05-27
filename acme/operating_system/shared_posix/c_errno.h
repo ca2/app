@@ -15,19 +15,19 @@ class CLASS_DECL_ACME c_errno
 public:
 
 
-   int          m_iErrNo;
+   ::i32          m_iErrNo;
 
 
    c_errno();
 #ifdef WINDOWS
    c_errno(c_errno_t, errno_t iErrNo);
 #else
-   c_errno(c_errno_t, int iErrNo);
+   c_errno(c_errno_t, ::i32 iErrNo);
 #endif
    c_errno(const c_errno & cerrno);
 
 
-   int as_i32() const {return m_iErrNo;}
+   ::i32 as_i32() const {return m_iErrNo;}
 
 
    ::string get_error_description() const;
@@ -51,7 +51,7 @@ public:
    static void s_throw_exception(c_errno cerrno);
 
 
-   bool operator == (int iErrNo) const {return m_iErrNo == iErrNo; }
+   bool operator == (::i32 iErrNo) const {return m_iErrNo == iErrNo; }
 
 
 };

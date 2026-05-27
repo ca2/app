@@ -52,7 +52,7 @@ For log = natural log uncomment the next line. */
 namespace tinyexpr
 {
    
-   typedef double (*te_fun2)(double, double);
+   typedef ::f64 (*te_fun2)(::f64, ::f64);
    
    enum {
       TOK_NULL = TE_CLOSURE7+1, TOK_ERROR, TOK_END, TOK_SEP,
@@ -66,12 +66,12 @@ namespace tinyexpr
    typedef struct state {
       const_char_pointer start;
       const_char_pointer next;
-      int type;
-      union {double value; const double * bound; te_function function;};
+      ::i32 type;
+      union {::f64 value; const ::f64 * bound; te_function function;};
       te_expr *context;
       
       const te_variable *find;
-      int lookup_len;
+      ::i32 lookup_len;
       
       state(){}
    } state;
@@ -85,12 +85,12 @@ namespace tinyexpr
 #define ARITY(TYPE) ( ((TYPE) & (TE_FUNCTION0 | TE_CLOSURE0)) ? ((TYPE) & 0x00000007) : 0 )
 #define NEW_EXPR(type, ...) new_expr((type), {__VA_ARGS__})
    
-   static te_expr *new_expr(const int type, const ::raw_array_base< te_expr * > & parameters) 
+   static te_expr *new_expr(const ::i32 type, const ::raw_array_base< te_expr * > & parameters) 
    {
 
-      const int arity = ARITY(type);
-      const int psize = sizeof(void*) * arity;
-      const int size = (sizeof(te_expr) - sizeof(void*)) + psize + (IS_CLOSURE(type) ? sizeof(void*) : 0);
+      const ::i32 arity = ARITY(type);
+      const ::i32 psize = sizeof(void*) * arity;
+      const ::i32 size = (sizeof(te_expr) - sizeof(void*)) + psize + (IS_CLOSURE(type) ? sizeof(void*) : 0);
       te_expr *ret = (te_expr *) malloc(size);
       ::memory_set(ret, 0, size);
       if (arity && parameters) {
@@ -123,27 +123,27 @@ namespace tinyexpr
    }
    
    
-   static double pi(void) {return 3.14159265358979323846;}
-   static double e(void) {return 2.71828182845904523536;}
-   static double fac(double a) {/* simplest version of fac */
+   static ::f64 pi(void) {return 3.14159265358979323846;}
+   static ::f64 e(void) {return 2.71828182845904523536;}
+   static ::f64 fac(::f64 a) {/* simplest version of fac */
       if (a < 0.0)
          return NAN;
       if (a > UINT_MAX)
          return INFINITY;
-      unsigned int ua = (unsigned int)(a);
-      unsigned long int result = 1, i;
+      ::u32 ua = (::u32)(a);
+      ulong result = 1, i;
       for (i = 1; i <= ua; i++) {
          if (i > ULONG_MAX / result)
             return INFINITY;
          result *= i;
       }
-      return (double)result;
+      return (::f64)result;
    }
-   static double ncr(double n, double r) {
+   static ::f64 ncr(::f64 n, ::f64 r) {
       if (n < 0.0 || r < 0.0 || n < r) return NAN;
       if (n > UINT_MAX || r > UINT_MAX) return INFINITY;
-      unsigned long int un = (unsigned int)(n), ur = (unsigned int)(r), i;
-      unsigned long int result = 1;
+      ulong un = (::u32)(n), ur = (::u32)(r), i;
+      ulong result = 1;
       if (ur > un / 2) ur = un - ur;
       for (i = 1; i <= ur; i++) {
          if (result > ULONG_MAX / (un - ur + i))
@@ -153,7 +153,7 @@ namespace tinyexpr
       }
       return result;
    }
-   static double npr(double n, double r) {return ncr(n, r) * fac(r);}
+   static ::f64 npr(::f64 n, ::f64 r) {return ncr(n, r) * fac(r);}
    
    
    static const te_variable functions[] = {
@@ -189,14 +189,14 @@ namespace tinyexpr
       {0, nullptr, 0, 0}
    };
    
-   static const te_variable *find_builtin(const_char_pointer name, int len) {
-      int imin = 0;
-      int imax = sizeof(functions) / sizeof(te_variable) - 2;
+   static const te_variable *find_builtin(const_char_pointer pszName, ::i32 len) {
+      ::i32 imin = 0;
+      ::i32 imax = sizeof(functions) / sizeof(te_variable) - 2;
       
       /*Binary search.*/
       while (imax >= imin) {
-         const int i = (imin + ((imax-imin)/2));
-         int c = strncmp(name, functions[i].name, len);
+         const ::i32 i = (imin + ((imax-imin)/2));
+         ::i32 c = strncmp(name, functions[i].name, len);
          if (!c) c = '\0' - functions[i].name[len];
          if (c == 0) {
             return functions + i;
@@ -210,8 +210,8 @@ namespace tinyexpr
       return 0;
    }
    
-   static const te_variable *find_lookup(const state *s, const_char_pointer name, int len) {
-      int iters;
+   static const te_variable *find_lookup(const state *s, const_char_pointer pszName, ::i32 len) {
+      ::i32 iters;
       const te_variable *var;
       if (!s->find) return 0;
       
@@ -225,12 +225,12 @@ namespace tinyexpr
    
    
    
-   static double add(double a, double b) {return a + b;}
-   static double sub(double a, double b) {return a - b;}
-   static double mul(double a, double b) {return a * b;}
-   static double divide(double a, double b) {return a / b;}
-   static double negate(double a) {return -a;}
-   static double comma(double a, double b) {(void)a; return b;}
+   static ::f64 add(::f64 a, ::f64 b) {return a + b;}
+   static ::f64 sub(::f64 a, ::f64 b) {return a - b;}
+   static ::f64 mul(::f64 a, ::f64 b) {return a * b;}
+   static ::f64 divide(::f64 a, ::f64 b) {return a / b;}
+   static ::f64 negate(::f64 a) {return -a;}
+   static ::f64 comma(::f64 a, ::f64 b) {(void)a; return b;}
    
    
    void next_token(state *s) {
@@ -245,7 +245,7 @@ namespace tinyexpr
          
          /* Try reading a number. */
          if ((s->next[0] >= '0' && s->next[0] <= '9') || s->next[0] == '.') {
-            s->value = strtod(s->next, (char**)&s->next);
+            s->value = strtod(s->next, (char_pointer *)&s->next);
             s->type = TOK_NUMBER;
          } else {
             /* Look for a variable or builtin function call. */
@@ -254,8 +254,8 @@ namespace tinyexpr
                start = s->next;
                while ((s->next[0] >= 'a' && s->next[0] <= 'z') || (s->next[0] >= '0' && s->next[0] <= '9') || (s->next[0] == '_')) s->next++;
                
-               const te_variable *var = find_lookup(s, start, (int) (s->next - start));
-               if (!var) var = find_builtin(start, (int) (s->next - start));
+               const te_variable *var = find_lookup(s, start, (::i32) (s->next - start));
+               if (!var) var = find_builtin(start, (::i32) (s->next - start));
                
                if (!var) {
                   s->type = TOK_ERROR;
@@ -307,7 +307,7 @@ namespace tinyexpr
    static te_expr *base(state *s) {
       /* <base>      =    <constant> | <variable> | <function-0> {"(" ")"} | <function-1> <power> | <function-X> "(" <expr> {"," <expr>} ")" | "(" <list_base> ")" */
       te_expr *ret;
-      int arity;
+      ::i32 arity;
       
       switch (TYPE_MASK(s->type)) {
          case TOK_NUMBER:
@@ -361,7 +361,7 @@ namespace tinyexpr
             if (s->type != TOK_OPEN) {
                s->type = TOK_ERROR;
             } else {
-               int i;
+               ::i32 i;
                for(i = 0; i < arity; i++) {
                   next_token(s);
                   ret->parameters[i] = expr(s);
@@ -401,7 +401,7 @@ namespace tinyexpr
    
    static te_expr *power(state *s) {
       /* <power>     =    {("-" | "+")} <base> */
-      int sign = 1;
+      ::i32 sign = 1;
       while (s->type == TOK_INFIX && (s->function.m_fn2 == &add || s->function.m_fn2 == &sub)) {
          if (s->function.m_fn2 == &sub) sign = -sign;
          next_token(s);
@@ -424,7 +424,7 @@ namespace tinyexpr
       /* <factor>    =    <power> {"^" <power>} */
       te_expr *ret = power(s);
       
-      int neg = 0;
+      ::i32 neg = 0;
       te_expr *insertion = 0;
       
       if (ret->type == (TE_FUNCTION1 | TE_FLAG_PURE) && ret->function == negate) {
@@ -463,7 +463,7 @@ namespace tinyexpr
       /* <factor>    =    <power> {"^" <power>} */
       te_expr *ret = power(s);
       
-      while (s->type == TOK_INFIX && (s->function.m_fn2 == (double (*)(double, double))&pow)) {
+      while (s->type == TOK_INFIX && (s->function.m_fn2 == (::f64 (*)(::f64, ::f64))&pow)) {
          te_fun2 t = s->function.m_fn2;
          next_token(s);
          ret = NEW_EXPR(TE_FUNCTION2 | TE_FLAG_PURE, ret, power(s));
@@ -480,7 +480,7 @@ namespace tinyexpr
       /* <term>      =    <factor> {("*" | "/" | "%") <factor>} */
       te_expr *ret = factor(s);
       
-      while (s->type == TOK_INFIX && (s->function.m_fn2 == &mul || s->function.m_fn2 == &divide || s->function.m_fn2 == (double (*)(double, double))&fmod)) {
+      while (s->type == TOK_INFIX && (s->function.m_fn2 == &mul || s->function.m_fn2 == &divide || s->function.m_fn2 == (::f64 (*)(::f64, ::f64))&fmod)) {
          te_fun2 t = s->function.m_fn2;
          next_token(s);
          ret = NEW_EXPR(TE_FUNCTION2 | TE_FLAG_PURE, ret, factor(s));
@@ -520,11 +520,11 @@ namespace tinyexpr
    }
    
    
-//#define TE_FUN(...) ((double(*)(__VA_ARGS__))n->function)
+//#define TE_FUN(...) ((::f64(*)(__VA_ARGS__))n->function)
 #define M(e) te_eval((const te_expr *) n->parameters[e])
    
    
-   double te_eval(const te_expr *n) {
+   ::f64 te_eval(const te_expr *n) {
       if (!n) return NAN;
       
       switch(TYPE_MASK(n->type)) {
@@ -574,9 +574,9 @@ namespace tinyexpr
       
       /* Only optimize out functions flagged as pure. */
       if (IS_PURE(n->type)) {
-         const int arity = ARITY(n->type);
-         int known = 1;
-         int i;
+         const ::i32 arity = ARITY(n->type);
+         ::i32 known = 1;
+         ::i32 i;
          for (i = 0; i < arity; ++i) {
             te_optimize(n->parameters[i]);
             if (((te_expr*)(n->parameters[i]))->type != TE_CONSTANT) {
@@ -584,7 +584,7 @@ namespace tinyexpr
             }
          }
          if (known) {
-            const double value = te_eval(n);
+            const ::f64 value = te_eval(n);
             te_free_parameters(n);
             ((te_expr *) n)->type = TE_CONSTANT;
             ((te_expr *) n)->value = value;
@@ -593,7 +593,7 @@ namespace tinyexpr
    }
    
    
-   te_expr *te_compile(const_char_pointer expression, const te_variable *variables, int var_count, int *error) {
+   te_expr *te_compile(const_char_pointer expression, const te_variable *variables, ::i32 var_count, ::i32 *error) {
       state s;
       s.start = s.next = expression;
       s.find = variables;
@@ -605,7 +605,7 @@ namespace tinyexpr
       if (s.type != TOK_END) {
          te_free(root);
          if (error) {
-            *error = (int)(s.next - s.start);
+            *error = (::i32)(s.next - s.start);
             if (*error == 0) *error = 1;
          }
          return 0;
@@ -617,9 +617,9 @@ namespace tinyexpr
    }
    
    
-   double te_interp(const_char_pointer expression, int *error) {
+   ::f64 te_interp(const_char_pointer expression, ::i32 *error) {
       te_expr *n = te_compile(expression, 0, 0, error);
-      double ret;
+      ::f64 ret;
       if (n) {
          ret = te_eval(n);
          te_free(n);
@@ -629,8 +629,8 @@ namespace tinyexpr
       return ret;
    }
    
-   static void pn (const te_expr *n, int depth) {
-      int i, arity;
+   static void pn (const te_expr *n, ::i32 depth) {
+      ::i32 i, arity;
       printf("%*s", depth, "");
       
       switch(TYPE_MASK(n->type)) {

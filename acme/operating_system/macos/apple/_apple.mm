@@ -106,7 +106,7 @@ void ns_main_post(dispatch_block_t block)
 }
 
 
-unsigned int m_sleep(unsigned int seconds)
+::u32 m_sleep(::u32 seconds)
 {
 
    [NSThread sleepForTimeInterval:seconds];
@@ -126,7 +126,7 @@ char * ns_get_executable_path()
 
 
 
-void _ns_do_tasks(double dSeconds)
+void _ns_do_tasks(::f64 dSeconds)
 {
    
    NSRunLoop * runLoop = [ NSRunLoop currentRunLoop ];

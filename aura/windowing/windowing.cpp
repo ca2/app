@@ -740,7 +740,7 @@ namespace windowing
    }
 
 
-   ::i32_bool windowing::point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin)
+   ::i32_bool windowing::point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, ::i32 iMargin)
    {
 
       return false;
@@ -1028,7 +1028,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cx_icon_spacing()
+   ::i32 windowing::system_metrics_get_cx_icon_spacing()
    {
 
       return 76;
@@ -1036,7 +1036,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cy_icon_spacing()
+   ::i32 windowing::system_metrics_get_cy_icon_spacing()
    {
 
       return 98;
@@ -1044,7 +1044,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cx_icon()
+   ::i32 windowing::system_metrics_get_cx_icon()
    {
 
       return 32;
@@ -1052,7 +1052,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cy_icon()
+   ::i32 windowing::system_metrics_get_cy_icon()
    {
 
       return 32;
@@ -1060,7 +1060,7 @@ namespace windowing
    }
 
    
-   int windowing::system_metrics_get_cy_caption()
+   ::i32 windowing::system_metrics_get_cy_caption()
    {
 
       return 22;

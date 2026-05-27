@@ -58,9 +58,9 @@ struct image_header
       return !operator ==(d);
    }
 
-   int width() const { return m_size.cx; }
-   int height() const { return m_size.cy; }
-   int area() const { return m_size.area(); }
+   ::i32 width() const { return m_size.cx; }
+   ::i32 height() const { return m_size.cy; }
+   ::i32 area() const { return m_size.area(); }
    ::i32_size size() const { return m_size; }
 
    void reset()

@@ -18,12 +18,14 @@ class CLASS_DECL_ACME pen :
 public:
 
 
-   int                  m_iWidth;
-   ::color::color       m_color;
+   //::i32                  m_iWidth;
+   //::color::color       m_color;
 
 
    pen();
    ~pen() override;
+
+   virtual void create_pen(const ::color::color &color,  ::f64 fWidth);
 
 
 };

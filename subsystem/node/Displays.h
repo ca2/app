@@ -40,7 +40,7 @@ namespace  subsystem
       //virtual ~DisplaysInterface() =0;
 
       // If a display does not exist now the function return an empty rectangle.
-      virtual void getDisplayCoordinates(unsigned char displayNumber, ::i32_rectangle & rectangle) = 0;
+      virtual void getDisplayCoordinates(::u8 displayNumber, ::i32_rectangle & rectangle) = 0;
 
       virtual ::int_rectangle_array_base getDisplaysCoords() = 0;
 
@@ -59,8 +59,8 @@ namespace  subsystem
       // Returns true if the update() function has been called lately.
       virtual bool isAlreadyUpdated() = 0;
 
-      // int m_xVirtualScreen;
-      // int m_yVirtualScreen;
+      // ::i32 m_xVirtualScreen;
+      // ::i32 m_yVirtualScreen;
       //
       // ::int_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
@@ -84,7 +84,7 @@ virtual public Composite<DisplaysInterface>
        //~Displays() override;
 
       // If a display does not exist now the function return an empty rectangle.
-      void getDisplayCoordinates(unsigned char displayNumber, ::i32_rectangle & rectangle) override
+      void getDisplayCoordinates(::u8 displayNumber, ::i32_rectangle & rectangle) override
       {
 
          m_pdisplays->getDisplayCoordinates(displayNumber, rectangle);
@@ -125,8 +125,8 @@ virtual public Composite<DisplaysInterface>
 
       }
 
-      // int m_xVirtualScreen;
-      // int m_yVirtualScreen;
+      // ::i32 m_xVirtualScreen;
+      // ::i32 m_yVirtualScreen;
       //
       // ::int_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;

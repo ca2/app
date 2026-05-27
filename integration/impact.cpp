@@ -233,7 +233,7 @@ namespace app_integration
          fork([strName, pstraOutput, this]()
    {
 
-      int iExitCode = 0;
+      ::i32 iExitCode = 0;
 
          node()->command_system(*pstraOutput, iExitCode, m_pathIntegration + " " + strName);
 
@@ -329,14 +329,14 @@ namespace app_integration
       }
       auto rect = this->rectangle();
 
-      int y = rect.bottom - 50;
-      for (int i = m_straaOutput.get_upper_bound(); i >= 0; i--)
+      ::i32 y = rect.bottom - 50;
+      for (::i32 i = m_straaOutput.get_upper_bound(); i >= 0; i--)
       {
-         for (int j = 0; j < minimum(3, m_straaOutput[i]->size()); j++)
+         for (::i32 j = 0; j < minimum(3, m_straaOutput[i]->size()); j++)
          {
 
 
-            pgraphics->text_out({ (double)20, (double)y }, m_straName[i] + " > " + m_straaOutput[i]->last(-j - 1));
+            pgraphics->text_out({ (::f64)20, (::f64)y }, m_straName[i] + " > " + m_straaOutput[i]->last(-j - 1));
 
             y -= 30;
 

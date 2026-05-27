@@ -19,7 +19,7 @@
       inline boolean() { m_eboolean = e_boolean_none; }
 
 
-      inline boolean(int i) { operator=(i); }
+      inline boolean(::i32 i) { operator=(i); }
 
 
       inline boolean(bool b) { operator=(b); }
@@ -68,25 +68,25 @@
       inline bool operator!() const { return isFalse(); }
 
 
-      inline bool operator<(int i) const { return (int)m_eboolean < i; }
+      inline bool operator<(::i32 i) const { return (::i32)m_eboolean < i; }
 
 
-      inline bool operator<=(int i) const { return (int)m_eboolean <= i; }
+      inline bool operator<=(::i32 i) const { return (::i32)m_eboolean <= i; }
 
 
-      inline bool operator>(int i) const { return (int)m_eboolean > i; }
+      inline bool operator>(::i32 i) const { return (::i32)m_eboolean > i; }
 
 
-      inline bool operator>=(int i) const { return (int)m_eboolean >= i; }
+      inline bool operator>=(::i32 i) const { return (::i32)m_eboolean >= i; }
 
 
-      inline bool operator==(int i) const { return (int)m_eboolean == i; }
+      inline bool operator==(::i32 i) const { return (::i32)m_eboolean == i; }
 
 
-      inline bool operator!=(int i) const { return !operator==(i); }
+      inline bool operator!=(::i32 i) const { return !operator==(i); }
 
 
-      inline boolean & operator=(int i)
+      inline boolean & operator=(::i32 i)
       {
          m_eboolean = (i ? e_boolean_true : e_boolean_false);
          return *this;
@@ -113,13 +113,13 @@
       }
 
 
-      inline void defer(int i) { if (is_empty()) { operator=(i); } }
+      inline void defer(::i32 i) { if (is_empty()) { operator=(i); } }
 
 
-      inline boolean deferred(int i) const { if (is_empty()) { return i; } else { return m_eboolean; } }
+      inline boolean deferred(::i32 i) const { if (is_empty()) { return i; } else { return m_eboolean; } }
 
 
-      inline boolean operator()(int i) const { return deferred(i); }
+      inline boolean operator()(::i32 i) const { return deferred(i); }
 
    };
 

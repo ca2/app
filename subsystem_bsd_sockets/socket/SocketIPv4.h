@@ -65,7 +65,7 @@ namespace subsystem_bsd_sockets
        * @param port port to connect.
        * @throws SocketException on fail.
        */
-      void connect(const ::scoped_string & scopedstrHost, unsigned short port) override;
+      void connect(const ::scoped_string & scopedstrHost, ::u16 port) override;
       /**
        * Connects to remote host.
        * @param paddress address to connect.
@@ -105,7 +105,7 @@ namespace subsystem_bsd_sockets
        * @param backlog max count of connections in pool.
        * @throws SocketException on fail.
        */
-      void listen(int backlog) override;
+      void listen(::i32 backlog) override;
 
       /**
        * Accepts incoming connection.
@@ -123,7 +123,7 @@ namespace subsystem_bsd_sockets
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
-      int send(const char *data, int size, int flags = 0) override;
+      ::i32 send(const_char_pointer data, ::i32 size, ::i32 flags = 0) override;
       /**
        * Receives data from socket.
        *
@@ -133,9 +133,9 @@ namespace subsystem_bsd_sockets
        * @return count of read bytes.
        * @throws ::io_exception on fail.
        */
-      int recv(char *buffer, int size, int flags = 0) override;
+      ::i32 recv(char_pointer buffer, ::i32 size, ::i32 flags = 0) override;
 
-      int available() override;
+      ::i32 available() override;
 
       /**
        * Returns local address of socket (for listening socket).
@@ -149,8 +149,8 @@ namespace subsystem_bsd_sockets
       ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override;
 
       /* Auxiliary */
-      void setSocketOptions(int level, int name, void *value, int len) override;
-      void getSocketOptions(int level, int name, void *value, int *len) override;
+      void setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len) override;
+      void getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len) override;
 
       void setRcvTimeO(const class ::time &timeTimeout) override;
       void setSndTimeO(const class ::time &timeTimeout) override;
@@ -179,7 +179,7 @@ namespace subsystem_bsd_sockets
       /**
        * WinSock socket.
        */
-      int m_socket;
+      ::i32 m_socket;
       bool m_isClosed;
 
       ::pointer < ::subsystem::SocketAddressIPv4Interface >m_localAddr;

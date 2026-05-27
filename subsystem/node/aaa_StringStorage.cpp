@@ -344,7 +344,7 @@ void StringStorage::format(const TCHAR *format, ...)
   va_list vl;
 
   va_start(vl, format);
-  int count = _vsctprintf(format, vl);
+  ::i32 count = _vsctprintf(format, vl);
   va_end(vl);
 
   resizeBuffer(count + 1);

@@ -301,7 +301,7 @@ namespace data
    void tree <  ITEM >::erase(tree_item_ptr_array< ITEM> & itemptra)
    {
 
-      for (int i = 0; i < itemptra.get_count(); i++)
+      for (::i32 i = 0; i < itemptra.get_count(); i++)
       {
 
          erase(itemptra[i]);
@@ -422,7 +422,7 @@ return;
    ::collection::index tree <  ITEM >::get_proper_item_index(::data::tree_item <  ITEM > * pitemParam, ::collection::index * piLevel, ::collection::index * piCount)
    {
 
-      int iIndex = 0;
+      ::i32 iIndex = 0;
 
       ::collection::count iCount = 0;
 

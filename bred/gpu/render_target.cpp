@@ -198,7 +198,7 @@ namespace gpu
 
    //   auto pcontext = m_pgpurenderer->m_pgpucontext;
 
-   //   for (int i = 0; i < m_ptexturea->size(); i++)
+   //   for (::i32 i = 0; i < m_ptexturea->size(); i++)
    //   {
 
    //      auto& ptexture = m_ptexturea->element_at(i);
@@ -230,7 +230,7 @@ namespace gpu
    }
 
 
-   int render_target::get_frame_index()
+   ::i32 render_target::get_frame_index()
    {
 
       if (m_pgpurenderer->m_pgpucontext->m_iOverrideFrame >= 0)
@@ -258,7 +258,7 @@ namespace gpu
             && "Cannot get frame index when frame not in progress");
 
 #endif
-         return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
+         return (::i32)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
       }
       else
@@ -271,7 +271,7 @@ namespace gpu
    }
 
 
-   int render_target::get_frame_count()
+   ::i32 render_target::get_frame_count()
    {
 
       if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
@@ -279,7 +279,7 @@ namespace gpu
          return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
       }
 
-      return (int)texturea2()->size();
+      return (::i32)texturea2()->size();
 
    }
 
@@ -359,15 +359,15 @@ namespace gpu
    }
 
 
-   int render_target::imageCount() 
+   ::i32 render_target::imageCount() 
    {
       
-      return (int) m_ptexturea->size(); 
+      return (::i32) m_ptexturea->size(); 
    
    }
 
 
-   int render_target::width() 
+   ::i32 render_target::width() 
    {
       
       return m_size.cx; 
@@ -375,7 +375,7 @@ namespace gpu
    }
 
 
-   int render_target::height() 
+   ::i32 render_target::height() 
    {
       
       return m_size.cy; 
@@ -429,7 +429,7 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      int iFrameIndex = get_frame_index();
+      ::i32 iFrameIndex = get_frame_index();
       
       //auto size = m_ptexturea->size();
 
@@ -472,7 +472,7 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      int iFrameIndex = get_frame_index();
+      ::i32 iFrameIndex = get_frame_index();
 
       //auto size = m_ptexturea->size();
 

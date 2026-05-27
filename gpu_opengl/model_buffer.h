@@ -42,7 +42,7 @@ namespace gpu_opengl
       ~model_buffer();
 
 
-      void initialize_dummy_model(::gpu::context* pgpucontext, int iVertexCount) override;
+      void initialize_dummy_model(::gpu::context* pgpucontext, ::i32 iVertexCount) override;
 
 
       void on_initialize_gpu_context_object() override;
@@ -53,7 +53,7 @@ namespace gpu_opengl
       //void sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap) override;
 
       //template < typename VERTEX >
-      //void create_vertex_array(::gpu_vulkan::context* pcontext, int iVertexCount)
+      //void create_vertex_array(::gpu_vulkan::context* pcontext, ::i32 iVertexCount)
       //{
 
       //   initialize_gpu_context_object(pcontext);
@@ -72,26 +72,26 @@ namespace gpu_opengl
       void sequence3_color_create_line(::gpu_vulkan::context* pcontext);*/
 
       //void sequence3_color_set_rectangle(
-      //   const ::double_point points1[4],
+      //   const ::f64_point points1[4],
       //   const  ::color::color& color,
-      //   const ::double_size& size);
+      //   const ::f64_size& size);
 
       //void sequence2_color_set_rectangle(
-      //   const ::double_point points1[4],
+      //   const ::f64_point points1[4],
       //   const ::color::color& color,
-      //   const ::double_size& size);
+      //   const ::f64_size& size);
 
       //void sequence3_color_set_line(
-      //   const ::double_point& pointA,
-      //   const ::double_point& pointB,
+      //   const ::f64_point& pointA,
+      //   const ::f64_point& pointB,
       //   const  ::color::color& color,
-      //   const ::double_size& size);
+      //   const ::f64_size& size);
 
       //void sequence2_color_set_line(
-      //   const ::double_point& pointA,
-      //   const ::double_point& pointB,
+      //   const ::f64_point& pointA,
+      //   const ::f64_point& pointB,
       //   const  ::color::color& color,
-      //   const ::double_size& size);
+      //   const ::f64_size& size);
 
  /*     template < typename VERTEX > 
       memory_map < memory_buffer, VERTEX > map()

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #ifdef WINDOWS_DESKTOP
-static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
+static void TraceDDE(const_char_pointer pszPrefix, const MSG* pMsg)
 {
    ENSURE_ARG(pMsg != nullptr);
    if (pMsg->message == WM_DDE_EXECUTE)
@@ -17,7 +17,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       }
       ASSERT(hCommands != nullptr);
 
-      const char * lpszCommands = (const char *)::GlobalLock(hCommands);
+      const_char_pointer pszCommands = (const_char_pointer )::GlobalLock(hCommands);
       ENSURE_THROW(lpszCommands != nullptr, throw ::exception(error_no_memory));
 //      ::information(::acme::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
       ::GlobalUnlock(hCommands);
@@ -40,16 +40,16 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
 
       DDEADVISE* lpAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
       ENSURE_THROW(lpAdvise != nullptr, throw ::exception(error_no_memory));
-      char szItem[80];
+      ::i8 szItem[80];
       szItem[0] = '\0';
 
       if (aItem != 0)
          ::GlobalGetAtomName(aItem, szItem, _countof(szItem));
 
-      char szFormat[80];
+      ::i8 szFormat[80];
       szFormat[0] = '\0';
-      if (((unsigned int)0xC000 <= (unsigned int)lpAdvise->cfFormat) &&
-            ((unsigned int)lpAdvise->cfFormat <= (unsigned int)0xFFFF))
+      if (((::u32)0xC000 <= (::u32)lpAdvise->cfFormat) &&
+            ((::u32)lpAdvise->cfFormat <= (::u32)0xFFFF))
       {
          ::GetClipboardFormatName(lpAdvise->cfFormat,
                                   szFormat, _countof(szFormat));

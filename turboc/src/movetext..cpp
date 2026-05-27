@@ -28,11 +28,11 @@
 
 //#include "conio.h"
 
-int
-movetext (int left, int top, int right, int bottom, int destleft, int desttop)
+::i32
+movetext (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, ::i32 destleft, ::i32 desttop)
 {
-  int ReturnValue = 0;
-//  int sminrow, smincol, dminrow, dmincol, height_1, width_1;
+  ::i32 ReturnValue = 0;
+//  ::i32 sminrow, smincol, dminrow, dmincol, height_1, width_1;
 //  WINDOW *TempWin = NULL;
 //  if (!ConioInitialized)
 //    textmode (LASTMODE);

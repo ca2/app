@@ -73,10 +73,10 @@ namespace coding
       ::file::path m_pathReleaseInstall;
 
 
-      int m_iAllButtonsHeight;
-      int m_iButtonHeight;
-      int m_iButtonPadding;
-      int m_iButtonCount;
+      ::i32 m_iAllButtonsHeight;
+      ::i32 m_iButtonHeight;
+      ::i32 m_iButtonPadding;
+      ::i32 m_iButtonCount;
 
       ::data::property     m_propertyMainRemark;
 

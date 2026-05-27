@@ -73,7 +73,7 @@ namespace subsystem
    //    // if (sizeof(TCHAR) == 1) {
    //    //    strType = CF_TEXT;
    //    // }
-   //    // int uFormat = GetPriorityClipboardFormat(&strType, sizeof(UINT));
+   //    // ::i32 uFormat = GetPriorityClipboardFormat(&strType, sizeof(UINT));
    //    //
    //    // if (uFormat == 0 || uFormat == -1) {
    //    //    return false;
@@ -101,13 +101,13 @@ namespace subsystem
    //    return m_pparticleThis->setString(scopedstr);
    //    // ::string nativeClipboard = addCR(serverClipboard);
    //    //
-   //    // int dataType = CF_UNICODETEXT;
+   //    // ::i32 dataType = CF_UNICODETEXT;
    //    //
    //    // if (sizeof(TCHAR) == 1) {
    //    //    dataType = CF_TEXT;
    //    // }
-   //    // int strLength = static_cast<int>(nativeClipboard.length()) + 1;
-   //    // int dataSize = strLength * sizeof(TCHAR);
+   //    // ::i32 strLength = static_cast<::i32>(nativeClipboard.length()) + 1;
+   //    // ::i32 dataSize = strLength * sizeof(TCHAR);
    //    //
    //    // if (OpenClipboard(m_hwnd)) {
    //    //    if (m_hndClipboard) {

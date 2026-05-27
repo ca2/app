@@ -3,12 +3,12 @@
 #include "acme/constant/timer.h"
 
 
-void scroll_x(RECT32 * prect, double dRateX, const ::double_rectangle & rectangle)
+void scroll_x(RECT32 * prect, ::f64 dRateX, const ::f64_rectangle & rectangle)
 {
 
-   int w = ::width(prect);
+   ::i32 w = ::width(prect);
 
-   prect->left = (int) (rectangle.left + (rectangle.width() - w) * dRateX);
+   prect->left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
 
    prect->right = prect->left + w;
 
@@ -121,13 +121,13 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      int w = rectangleX.width();
+      ::i32 w = rectangleX.width();
 
-      int h = rectangleX.height();
+      ::i32 h = rectangleX.height();
 
       if (w <= 0 || h <= 0)
       {
@@ -142,13 +142,13 @@ namespace user
 
       pgraphics->offset_origin(rectangleX.left, rectangleX.top);
 
-      ::double_rectangle rectangleCheckBox;
+      ::f64_rectangle rectangleCheckBox;
 
-      ::double_rectangle rectangleText;
+      ::f64_rectangle rectangleText;
 
       {
 
-         int iSize = minimum(15 * w / 15, 15 * h / 15);
+         ::i32 iSize = minimum(15 * w / 15, 15 * h / 15);
 
          rectangleCheckBox.left = 0;
          rectangleCheckBox.top = 0;
@@ -199,7 +199,7 @@ namespace user
 
          get_window_text(strText);
 
-         int iDrawParams = e_align_left_center | DT_SINGLELINE;
+         ::i32 iDrawParams = e_align_left_center | DT_SINGLELINE;
 
          pgraphics->set_font(this, ::e_element_none);
 
@@ -250,13 +250,13 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      int w = rectangleX.width();
+      ::i32 w = rectangleX.width();
 
-      int h = rectangleX.height();
+      ::i32 h = rectangleX.height();
 
       w--;
 
@@ -300,17 +300,17 @@ namespace user
 
       }
 
-      ::double_rectangle rectangle(1, 1, w-2, h-2);
+      ::f64_rectangle rectangle(1, 1, w-2, h-2);
 
-      ::double_rectangle rectangleEllipse(1, 1, h-2, h-2);
+      ::f64_rectangle rectangleEllipse(1, 1, h-2, h-2);
 
-      //double dNow = ::get_millis();
+      //::f64 dNow = ::get_millis();
 
       ::draw2d::path_pointer point(e_create);
 
-      ::double_rectangle rectangleL(1, 1, h-2, h-2);
+      ::f64_rectangle rectangleL(1, 1, h-2, h-2);
 
-      auto rectangleR = int_rectangle_dimension(h-2, 1, h-2, h-2);
+      auto rectangleR = i32_rectangle_dimension(h-2, 1, h-2, h-2);
 
       point->add_arc(rectangleL, -90_degree, -180_degree);
 
@@ -342,7 +342,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double dRate = m_durationAnimationStart.period_rate(m_durationAnimationPeriod);
+      ::f64 dRate = m_durationAnimationStart.period_rate(m_durationAnimationPeriod);
 
       if (dRate < 1.0)
       {
@@ -368,7 +368,7 @@ namespace user
 
          m_dPosition = ::sin((::auraacmesystem()->math().get_pi() / 2.0) * dRate);
 
-         double dRate = m_dPosition;
+         ::f64 dRate = m_dPosition;
 
          if (bComplement)
          {
@@ -377,7 +377,7 @@ namespace user
 
          }
 
-         pbrush1->m_color = (pbrush1->m_color.operator color32_t() & 0xffffff) | ((unsigned char(255.0 * dRate)) << 24);
+         pbrush1->m_color = (pbrush1->m_color.operator color32_t() & 0xffffff) | ((::u8(255.0 * dRate)) << 24);
 
          pbrush1->set_modified();
 
@@ -391,9 +391,9 @@ namespace user
          pgraphics->path(point);
 
          pbrush->create_solid(argb(255,
-                               (unsigned char)((double) color32_byte_red(color32) * dRate),
-                               (unsigned char)((double) color32_byte_green(color32) * dRate),
-                               (unsigned char)((double) color32_byte_blue(color32) * dRate)));
+                               (::u8)((::f64) color32_byte_red(color32) * dRate),
+                               (::u8)((::f64) color32_byte_green(color32) * dRate),
+                               (::u8)((::f64) color32_byte_blue(color32) * dRate)));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 
@@ -403,7 +403,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         unsigned char bAlphaP1 = (unsigned char) (255.0 * (1.0 - dRate));
+         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
 
          color32_t crP1 = argb(bAlphaP1, 0, 0, 0);
 
@@ -478,13 +478,13 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      int iMin = maximum(rectangleX.min_dim() -1, 1);
+      ::i32 iMin = maximum(rectangleX.min_dim() -1, 1);
 
-      ::double_rectangle rectangleCheckBox;
+      ::f64_rectangle rectangleCheckBox;
       rectangleCheckBox.left = 1;
       rectangleCheckBox.top = 1;
       rectangleCheckBox.right = iMin + 1;

@@ -104,7 +104,7 @@ void device::rectangle(const ::i32_rectangle & rectangle, ::nano::graphics::brus
 
 }
 
-      void device::draw(::nano::graphics::icon * picon, int x, int y, int cx, int cy)
+      void device::draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
 {
 
 

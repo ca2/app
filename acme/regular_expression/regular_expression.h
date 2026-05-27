@@ -27,7 +27,7 @@ namespace regular_expression
 
       string                                       m_str;
 
-      int                                          m_iRangeCount;
+      ::i32                                          m_iRangeCount;
 
 
       regular_expression();

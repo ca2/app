@@ -17,10 +17,10 @@ namespace user
    public:
 
 
-      int                                 m_iTextHeight;
-      int                                 m_iMargin;
+      ::i32                                 m_iTextHeight;
+      ::i32                                 m_iMargin;
       bool                                m_bLabel;
-      int                               m_iLabelHeight;
+      ::i32                               m_iLabelHeight;
       ::e_align                           m_ealign;
       string_to_string_base                    m_mapName;
 

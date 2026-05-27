@@ -91,8 +91,8 @@ namespace graphics3d
    void immersion_layer::load_camera(const ::property_set & set)
    {
 
-      auto pos = set.get("position", ::float_array_base{0.f, 0.f, 0.f});
-      auto rot = set.get("rotation", ::float_array_base{0.f, 0.f});
+      auto pos = set.get("position", ::f32_array_base{0.f, 0.f, 0.f});
+      auto rot = set.get("rotation", ::f32_array_base{0.f, 0.f});
 
       m_initialCameraPosition = {pos[0], pos[1], pos[2]};
       m_rotationInitialCamera.set(::degrees(rot[0]), ::degrees(rot[1]));

@@ -59,7 +59,7 @@ namespace innate_subsystem
 
       //virtual void destroyObject() = 0;
       // Returns bitmap height.
-      //virtual int getHeight() const = 0;
+      //virtual ::i32 getHeight() const = 0;
    // protected:
    //    HBITMAP m_bitmap;
    //
@@ -127,7 +127,7 @@ namespace innate_subsystem
 
       }
       // Returns bitmap height.
-      //int getHeight() const override;
+      //::i32 getHeight() const override;
       // protected:
       //    HBITMAP m_bitmap;
       //

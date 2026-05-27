@@ -127,7 +127,7 @@ namespace write_text
 
       //pgraphics->reset_clip();
 
-      ::double_rectangle rectangleClipBox;
+      ::f64_rectangle rectangleClipBox;
       
       pgraphics->get_clip_box(rectangleClipBox);
 
@@ -193,14 +193,14 @@ namespace write_text
          if (m_pfontenumeration->m_pathaLoading.get_count())
          {
 
-            ::double_point point{10.0,10.0};
+            ::f64_point point{10.0,10.0};
 
             for (::collection::index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
             {
 
                pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
 
-               point.y += (int)pgraphics->m_pfont->get_height(pgraphics);
+               point.y += (::i32)pgraphics->m_pfont->get_height(pgraphics);
 
             }
 
@@ -212,7 +212,7 @@ namespace write_text
 
       auto cListDataCount = pfontlistdata->item_count();
 
-      for (int i = 0; i < cListDataCount; i++)
+      for (::i32 i = 0; i < cListDataCount; i++)
       {
 
          ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
@@ -358,7 +358,7 @@ namespace write_text
 
             ::image::image_source imagesource(pbox->m_pimage);
 
-            double_rectangle rectangle(pbox->m_rectangle);
+            ::f64_rectangle rectangle(pbox->m_rectangle);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -396,7 +396,7 @@ namespace write_text
 
       bool bIntersected = false;
 
-      for (int i = 0; i < pfontlistdata->item_count(); i++)
+      for (::i32 i = 0; i < pfontlistdata->item_count(); i++)
       {
 
          if (pfontlistdata->item_at(i) == nullptr)
@@ -406,7 +406,7 @@ namespace write_text
 
          }
 
-         int iBox;
+         ::i32 iBox;
 
          iBox = BOX;
 
@@ -480,7 +480,7 @@ namespace write_text
 
             auto color = puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_hover);
 
-            //auto u8Opacity = color.m_uchOpacity;
+            //auto u8Opacity = color.m_u8Opacity;
 
             pgraphics->fill_rectangle(rectangle, color);
 
@@ -492,7 +492,7 @@ namespace write_text
 
             ::image::image_source imagesource(pbox->m_pimage);
 
-            double_rectangle rectangle(pbox->m_rectangle);
+            ::f64_rectangle rectangle(pbox->m_rectangle);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -547,7 +547,7 @@ namespace write_text
 
          synchronouslock.unlock();
 
-         ::double_size s;
+         ::f64_size s;
 
          string strText = m_strTextLayout;
 
@@ -616,7 +616,7 @@ namespace write_text
 
                string strSample;
 
-               int maxarea = 0;
+               ::i32 maxarea = 0;
 
                ::enum_character_set echarsetFound = pbox->m_pfont->get_character_set(pgraphics);
 
@@ -635,7 +635,7 @@ namespace write_text
                      if (sSample.area() > maxarea)
                      {
 
-                        maxarea = (int)(sSample.area());
+                        maxarea = (::i32)(sSample.area());
 
                         strText = strSample;
 
@@ -660,7 +660,7 @@ namespace write_text
                      if (sSample.area() > maxarea)
                      {
 
-                        maxarea = (int)(sSample.area());
+                        maxarea = (::i32)(sSample.area());
 
                         strText = strSample;
 
@@ -698,7 +698,7 @@ namespace write_text
 
          pbox->set_text_box_init();
 
-         m_size.cx = (int) maximum(m_size.cx, s.cx);
+         m_size.cx = (::i32) maximum(m_size.cx, s.cx);
 
       }
 
@@ -851,7 +851,7 @@ namespace write_text
 
       ::i32_array_base iaSize;
 
-      int iBaseSize;
+      ::i32 iBaseSize;
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -910,13 +910,13 @@ namespace write_text
          if (m_efontlist == e_font_list_wide)
          {
 
-            int iBaseHeight = maximum(250, m_rectangleX.height());
+            ::i32 iBaseHeight = maximum(250, m_rectangleX.height());
 
             iBaseHeight = iBaseHeight + 250;
 
-            int iStep = 200;
+            ::i32 iStep = 200;
 
-            int iDiv = 10;
+            ::i32 iDiv = 10;
 
             iBaseSize = ((iBaseHeight / iStep) * iStep) / iDiv;
 
@@ -1341,21 +1341,21 @@ namespace write_text
 
       i32_size s;
 
-      int iMargin = 40;
+      ::i32 iMargin = 40;
 
-      int w = m_rectangleX.width() - iMargin * 2;
+      ::i32 w = m_rectangleX.width() - iMargin * 2;
 
-      int iPadding = 15;
+      ::i32 iPadding = 15;
 
-      int x = iMargin;
+      ::i32 x = iMargin;
 
-      int y = iMargin + iPadding;
+      ::i32 y = iMargin + iPadding;
 
-      int h = 0;
+      ::i32 h = 0;
 
-      int hExtra = 0;
+      ::i32 hExtra = 0;
 
-      int nextx;
+      ::i32 nextx;
 
       sizeTotal.cx = m_rectangleX.width();
 
@@ -1372,11 +1372,11 @@ namespace write_text
 
       }
 
-      int iLineStart = 0;
+      ::i32 iLineStart = 0;
 
       auto iFontCount = pfontlistdata->item_count();
 
-      for (int i = 0; i < iFontCount; i++)
+      for (::i32 i = 0; i < iFontCount; i++)
       {
 
          ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
@@ -1416,16 +1416,16 @@ namespace write_text
          if (nextx > w )
          {
 
-            int iDen = (i - iLineStart - 1);
+            ::i32 iDen = (i - iLineStart - 1);
 
             if (iDen >= 1)
             {
 
-               int iInc = (w - x + iPadding * 4) / (i - iLineStart - 1);
+               ::i32 iInc = (w - x + iPadding * 4) / (i - iLineStart - 1);
 
-               int iOffset = iInc;
+               ::i32 iOffset = iInc;
 
-               for (int j = iLineStart + 1; j < i; j++)
+               for (::i32 j = iLineStart + 1; j < i; j++)
                {
 
                   ::pointer < font_list_item > pitem2 = pfontlistdata->item_at(j);
@@ -1492,7 +1492,7 @@ namespace write_text
 
       }
 
-      for (int i = 0; i < iFontCount; i++)
+      for (::i32 i = 0; i < iFontCount; i++)
       {
 
          ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
@@ -1507,10 +1507,10 @@ namespace write_text
             auto & size2 = pitem->m_box[j].m_size;
             auto & rect2 = pitem->m_box[j].m_rectangle;
 
-            int dw = (size2.cx - s.cx) / 2;
-            int dh = (size2.cy - s.cy) / 2;
+            ::i32 dw = (size2.cx - s.cx) / 2;
+            ::i32 dh = (size2.cy - s.cy) / 2;
 
-            int x = m_rectangleX.center_x() - rectangle.center_x();
+            ::i32 x = m_rectangleX.center_x() - rectangle.center_x();
 
             if (x > 0)
             {
@@ -1564,16 +1564,16 @@ namespace write_text
 
       i32_size s;
 
-      int h = 0;
+      ::i32 h = 0;
 
       sizeTotal.cx = 0;
 
-      int xSingleColumn = 0;
-      int ySingleColumn = 0;
+      ::i32 xSingleColumn = 0;
+      ::i32 ySingleColumn = 0;
 
       auto pfontlistdata = m_pfontlistdata;
 
-      for (int i = 0; i < pfontlistdata->item_count(); i++)
+      for (::i32 i = 0; i < pfontlistdata->item_count(); i++)
       {
 
          ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);

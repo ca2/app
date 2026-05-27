@@ -23,7 +23,7 @@ namespace experience
       bool                             m_bMoving;
       //::u32                          m_uiSWPFlags;
       ::user::layout_state             m_stateBefore;
-      int                              m_iConsiderMove;
+      ::i32                              m_iConsiderMove;
 
 
       move_manager();

@@ -116,13 +116,13 @@ namespace coding
    //   //}
 
 
-   //   int iTryStart = 0;
+   //   ::i32 iTryStart = 0;
 
-   //   int iRetryStart = 3;
+   //   ::i32 iRetryStart = 3;
 
    //   class ::time timeLastTryStart;
 
-   //   int iExitCodeLastTryStart = -1;
+   //   ::i32 iExitCodeLastTryStart = -1;
 
    //   ::string strOutputLastTryStart;
 
@@ -466,7 +466,7 @@ namespace coding
 
                //strParams = "start /wait msiexec.exe /package \"" + m_path.name() + "\" /quiet /passive";
 
-               //int iExitCode = node()->command_system(strParams, 2_hour, m_path.folder());
+               //::i32 iExitCode = node()->command_system(strParams, 2_hour, m_path.folder());
 
                //::string strExit;
 
@@ -512,7 +512,7 @@ namespace coding
 
          //auto pathPowerShell = node()->_get_power_shell_path();
 
-         int iExitCode = node()->shell_execute_sync(path, "", 10_minutes, path.folder());
+         ::i32 iExitCode = node()->shell_execute_sync(path, "", 10_minutes, path.folder());
 
          ::string strExit;
 
@@ -584,7 +584,7 @@ namespace coding
 
          set_status2(str2);
 
-         int iExitCode = node()->command_system(m_path + " /verysilent /loadinf=" + pathInf, 2_hour);
+         ::i32 iExitCode = node()->command_system(m_path + " /verysilent /loadinf=" + pathInf, 2_hour);
 
          ::string strExit;
 
@@ -609,7 +609,7 @@ namespace coding
 
          tracefunction.set_timeout(5_min);
 
-         int iExitCode2 = node()->posix_shell_command("git config --global core.symlinks true", e_posix_shell_git_bash, tracefunction);
+         ::i32 iExitCode2 = node()->posix_shell_command("git config --global core.symlinks true", e_posix_shell_git_bash, tracefunction);
 
       }
       catch (...)
@@ -670,7 +670,7 @@ namespace coding
 
       information() << "Gonna run command : " << pathPatchShell;
 
-      int iExitCode = node()->synchronous_posix_terminal("cd " + windows_bash_path(pathPatchShell.folder()) + "; ./" + pathPatchShell.name());
+      ::i32 iExitCode = node()->synchronous_posix_terminal("cd " + windows_bash_path(pathPatchShell.folder()) + "; ./" + pathPatchShell.name());
 
       information() << "patch shell exit code : " << iExitCode;
 
@@ -689,10 +689,10 @@ namespace coding
 
 
 
-   int install::synchronous_posix_terminal(const ::scoped_string& scopedstr)
+   ::i32 install::synchronous_posix_terminal(const ::scoped_string& scopedstr)
    {
 
-      int iExitCode = node()->synchronous_posix_terminal(
+      ::i32 iExitCode = node()->synchronous_posix_terminal(
          scopedstr,
          e_posix_shell_system_default,
          [this](auto etracelevel, auto str, bool bCarriage)

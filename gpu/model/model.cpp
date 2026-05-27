@@ -235,16 +235,16 @@ namespace gpu
 
 
 
-      // ::pointer < ::gpu::texture> model::textureFromFile(const char *fileName, ::string directory, aiTextureType type)
+      // ::pointer < ::gpu::texture> model::textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType type)
       // {
       //
       //    return {};
-      //    // int width, height, numChannels;
+      //    // ::i32 width, height, numChannels;
       //    //
       //    // ::string relativePath = fileName;
       //    // ::string path = directory + '/' + relativePath;
       //    //
-      //    // unsigned char *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
+      //    // ::u8 *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
       //    //
       //    // if (!data)
       //    // {

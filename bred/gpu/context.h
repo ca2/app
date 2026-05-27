@@ -49,11 +49,11 @@ namespace gpu
 
       ::memory       m_memory;
 
-      int m_iWidth;
-      int m_iHeight;
+      ::i32 m_iWidth;
+      ::i32 m_iHeight;
 
-      int width() const { return m_iWidth; }
-      int height() const { return m_iHeight; }
+      ::i32 width() const { return m_iWidth; }
+      ::i32 height() const { return m_iHeight; }
       const void * data() const { return m_memory.data(); }
       void * data() { return m_memory.data(); }
 
@@ -106,11 +106,11 @@ namespace gpu
       ::collection::index                          m_iGpuContext=-1;
 
       ::gpu::enum_api                              m_eapi = e_api_none;
-      //int                                        m_iTopicTexture = -1;
+      //::i32                                        m_iTopicTexture = -1;
       //bool                                       m_bCullFace = false;
       ::gpu::enum_cull_mode                        m_ecullmode;
       //bool                                       m_bOffscreen = true;
-      int                                          m_iOverrideFrame = -1;
+      ::i32                                          m_iOverrideFrame = -1;
       enum_type                                    m_etype;
       enum_output                                  m_eoutput;
       ::gpu::enum_scene                            m_escene;
@@ -120,7 +120,7 @@ namespace gpu
       ::pointer<::gpu::device>                     m_pgpudevice;
       //::i32_rectangle                            m_rectangleNew;
       ::i32_rectangle                              m_rectangle;
-      float                                        m_z;
+      ::f32                                        m_z;
       i32_point                                    m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>                 m_pcpubuffer;
       ::pointer<::gpu::shader>                     m_pshader;
@@ -152,7 +152,7 @@ namespace gpu
       ::pointer_array < ::gpu::texture >           m_textureaAtlas;
       //::pointer < ::mutex >                      m_pmutexOffscreen;
       //::i32_size                                 m_sizeOffscreen;
-      //int                                        m_iScanOffscreen;
+      //::i32                                        m_iScanOffscreen;
       //::memory                                   m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
       ::pointer_array < ::gpu::shader >            m_shaderaRetire;
@@ -321,7 +321,7 @@ namespace gpu
       //virtual ::gpu::renderer* graphics3d_renderer();
 
       //virtual ::gpu::renderer* new_draw2d_renderer();
-      //virtual void set_topic_texture(int iIndex);
+      //virtual void set_topic_texture(::i32 iIndex);
       virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
       virtual ::i32_rectangle rectangle();
@@ -458,7 +458,7 @@ namespace gpu
       // //    const ::scoped_string &name,
       // //    const ::scoped_string &filepath,
       // //    uint32_t gltfFlags,
-      // //    float scale);
+      // //    ::f32 scale);
       //
       //
       // ::pointer<::graphics3d::renderable> loadObjModel(
@@ -472,7 +472,7 @@ namespace gpu
       //    const ::scoped_string &name,
       //    const ::scoped_string &filepath,
       //    uint32_t gltfFlags,
-      //    float scale
+      //    ::f32 scale
       //    );
 
 
@@ -530,10 +530,10 @@ namespace gpu
       // 
       // 
       
-      virtual floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
-                                     float zFar = 1.0f);
+      virtual floating_matrix4 ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear = -1.0f,
+                                     ::f32 zFar = 1.0f);
      
-      //virtual floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+      //virtual floating_matrix4 perspective(::f32 fovyRadians, ::f32 aspect, ::f32 zNear, ::f32 zFar);
 
       //// 
       //// ------------------------------
@@ -543,10 +543,10 @@ namespace gpu
       //virtual floating_matrix4 rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
       //                                const floating_sequence3 &forward);  // OpenGL forward = -f
 
-      //virtual floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center,
+      //virtual floating_matrix4 lookAt(const f32_sequence3 &eye, const f32_sequence3 &center,
       //   
       // 
-      //                            const float_sequence3 &up);
+      //                            const f32_sequence3 &up);
       // 
 virtual void swap_buffers();
 

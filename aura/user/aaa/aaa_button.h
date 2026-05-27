@@ -43,9 +43,9 @@ namespace user
          ::image::image_list_pointer            m_pimagelistNormal;
          ::image::image_list_pointer            m_pimagelistItemHover;
          ::image::image_list_pointer            m_pimagelistSubItemHover;
-         int                              m_iImageNormal;
-         int                              m_iImageItemHover;
-         int                              m_iImageSubItemHover;
+         ::i32                              m_iImageNormal;
+         ::i32                              m_iImageItemHover;
+         ::i32                              m_iImageSubItemHover;
 
       };
 
@@ -57,10 +57,10 @@ namespace user
       ealign                              m_ealignText;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
-      ::double_rectangle                              m_rectangleText;
+      ::f64_rectangle                              m_rectangleText;
       ::collection::index                               m_iClick;
       e_stock_icon                        m_estockicon;
-      ::double_rectangle                              m_rectangleCheckBox;
+      ::f64_rectangle                              m_rectangleCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
@@ -128,7 +128,7 @@ namespace user
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(RECT32 * prect);
 
-      virtual int BaseToolTipGetIndex();
+      virtual ::i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

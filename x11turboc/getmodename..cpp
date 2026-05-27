@@ -30,11 +30,11 @@
 
 //----------------------------------------------------------------------------
 
-extern char *
-getmodename (int mode_number)
+extern char_pointer 
+getmodename (::i32 mode_number)
 {
-  static char ModeName[41];
-  int Xres, Yres, Pcnt;
+  static ::i8 ModeName[41];
+  ::i32 Xres, Yres, Pcnt;
   switch (mode_number % TCX)
     {
     case TC_X_320:

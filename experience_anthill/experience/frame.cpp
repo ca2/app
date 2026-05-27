@@ -79,7 +79,7 @@ namespace experience_anthill
 
       }
 
-      int iInflate = 5; // raio 2 pixels + centro 1 pixel
+      ::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       rectangleInflate = rectangleX;
       rectangleInflate.inflate(iInflate, iInflate);
@@ -105,9 +105,9 @@ namespace experience_anthill
       {
 
          ::image::image_source imagesource(pgraphics,
-            double_rectangle(::i32_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::double_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+            ::f64_rectangle(::i32_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::f64_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-         auto rectangle = double_rectangle_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
+         auto rectangle = f64_rectangle_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -145,7 +145,7 @@ namespace experience_anthill
 
       {
 
-         ::image::image_source imagesource(pimage1, ::double_rectangle(double_point(iInflate, iInflate), rectangleX.size()));
+         ::image::image_source imagesource(pimage1, ::f64_rectangle(::f64_point(iInflate, iInflate), rectangleX.size()));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
@@ -448,10 +448,10 @@ namespace experience_anthill
    {
 
       ::i32_rectangle rectangle(rectangleParam);
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width();
-      int cy = rectangle.height();
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width();
+      ::i32 cy = rectangle.height();
 
 
 
@@ -575,12 +575,12 @@ namespace experience_anthill
          if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(int_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pgraphics->draw_inset_3d_rectangle(i32_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 

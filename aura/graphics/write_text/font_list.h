@@ -32,7 +32,7 @@ namespace write_text
       bool                                      m_bUpdatingFontList : 1;
       string                                    m_strFontFamily;
       string                                    m_strFontBranch;
-      int                                     m_iLayoutSerial;
+      ::i32                                     m_iLayoutSerial;
       ::pointer<font_enumeration>               m_pfontenumeration;
       ::pointer<font_enumeration>               m_pfontenumerationAddRedrawHandler;
       ::pointer<font_enumeration_item_array>    m_pfontenumerationitema;
@@ -51,13 +51,13 @@ namespace write_text
       string                                    m_strTextLayout;
 
       ::i32_rectangle                           m_rectangleMargin;
-      int                                       m_iBaseSizeLayout;
+      ::i32                                       m_iBaseSizeLayout;
       class ::time                                    m_timeLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
       ::i32_array_base                                 m_iaSize;
 
-      int                                       m_iSelUpdateId;
+      ::i32                                       m_iSelUpdateId;
       //::collection::index                                   m_iSel;
       //::collection::index                                   m_iHover;
       bool                                      m_bDarkMode;

@@ -241,7 +241,7 @@ namespace user
    }
 
 
-   //void font_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   //void font_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
    //{
 
    //   ::user::list_impact::set_context_offset(pgraphics, x, y);
@@ -257,7 +257,7 @@ namespace user
    //}
 
 
-   //::double_size font_list_impact::get_total_size()
+   //::f64_size font_list_impact::get_total_size()
    //{
 
    //   return ::user::list_impact::get_total_size();

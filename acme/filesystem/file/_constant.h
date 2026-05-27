@@ -2,7 +2,7 @@
 
 
 
-enum enum_depth : int
+enum enum_depth : ::i32
 {
 
    e_depth_none = 0,

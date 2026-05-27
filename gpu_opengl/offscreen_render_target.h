@@ -22,7 +22,7 @@ namespace gpu_opengl
 		//comptr<ID3D11Texture2D> m_ptextureOffscreen;
 		//comptr< ID3D11SamplerState> m_psamplerstate;
 		//comptr<ID3D11ShaderResourceView>m_pshaderresourceview;
-		//static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
+		//static constexpr ::i32 MAX_FRAMES_IN_FLIGHT = 2;
 
 		offscreen_render_target();
 		//offscreen_render_target(renderer* pgpurenderer, const ::i32_size & size);
@@ -34,17 +34,17 @@ namespace gpu_opengl
 		void initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
 
-		//VkFramebuffer getFramebuffer(int index) { return swapChainFramebuffers[index]; }
+		//VkFramebuffer getFramebuffer(::i32 index) { return swapChainFramebuffers[index]; }
 		//VkRenderPass getRenderPass() { return m_vkrendertargetview; }
-		//VkImageView getImageView(int index) { return m_imageview[index]; }
+		//VkImageView getImageView(::i32 index) { return m_imageview[index]; }
 		//size_t imageCount() { return m_images.size(); }
 		//VkFormat getImageFormat() { return imageFormat; }
 		//VkExtent2D getExtent() { return m_extent; }
 		//uint32_t width() { return m_extent.width; }
 		//uint32_t height() { return m_extent.height; }
 
-		//float extentAspectRatio() {
-		//	return static_cast<float>(m_extent.width) / static_cast<float>(m_extent.height);
+		//::f32 extentAspectRatio() {
+		//	return static_cast<::f32>(m_extent.width) / static_cast<::f32>(m_extent.height);
 		//}
 //		VkFormat findDepthFormat();
 

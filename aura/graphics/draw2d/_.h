@@ -64,13 +64,13 @@ namespace draw2d
    using region_pointer = ::pointer<region>;
 
 
-   CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);
+   CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, ::i32 iCount);
 
 
 } // namespace draw2d
 
 
-CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::color32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc);
+CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::color32_t * pimage32Dst, ::i32 cxParam, ::i32 cyParam, ::i32 iStrideDst, const ::color32_t * pimage32Src, ::i32 iStrideSrc);
 
 
 

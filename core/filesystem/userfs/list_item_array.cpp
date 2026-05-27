@@ -28,7 +28,7 @@ namespace userfs
   /*    add_sort((::i64) ::fs::arrange_by_name, [](auto & pitem1, auto & pitem2)
          {
 
-            int iCompareType = pitem1->get_type_weight() - pitem2->get_type_weight();
+            ::i32 iCompareType = pitem1->get_type_weight() - pitem2->get_type_weight();
 
             if (iCompareType != 0) return iCompareType;
 
@@ -56,7 +56,7 @@ namespace userfs
    ::collection::index list_item_array::find_item_by_path(const ::file::path & path)
    {
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
 
          if(element_at(i)->final_path() == path)

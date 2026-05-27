@@ -57,7 +57,7 @@ namespace ca
          strPath = "lib" + strPath;
 
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-      int iError = errno;
+      ::i32 iError = errno;
 
       const ::scoped_string & scopedstr = strerror(iError);
 

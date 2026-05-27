@@ -6,7 +6,7 @@
 //#include "acme/prototype/collection/string_array_base.h"
 
 
-string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const char ** pszEndPtr)
+string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const_char_pointer * pszEndPtr)
 {
 
    if(scopedstrCommandLine == nullptr)
@@ -367,14 +367,14 @@ CLASS_DECL_ACME string process_version_dir_name()
 }
 
 
-void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
+void prepare_argc_argv(::i32 & argc, char_pointer * argv, char_pointer cmd_line)
 {
 
-   char * pPtr = nullptr;
+   char_pointer pPtr = nullptr;
 
-   char * p;
+   char_pointer p;
 
-   char * psz = cmd_line;
+   char_pointer psz = cmd_line;
 
    enum enum_state
    {
@@ -389,7 +389,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
    enum_state e = e_state_initial;
 
-   char quote = '\0';
+   ::i8 quote = '\0';
 
    while(scopedstr != nullptr && *psz != '\0')
    {
@@ -410,7 +410,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             unicode_increment(scopedstr);
 
-            argv[argc++] =(char *) psz;
+            argv[argc++] =(char_pointer ) psz;
 
             e = state_quote;
 
@@ -422,7 +422,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             unicode_increment(scopedstr);
 
-            argv[argc++] = (char *) psz;
+            argv[argc++] = (char_pointer ) psz;
 
             e = state_quote;
 
@@ -430,7 +430,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            argv[argc++] = (char *) psz;
+            argv[argc++] = (char_pointer ) psz;
 
             unicode_increment(scopedstr);
 
@@ -552,7 +552,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //
 //   string str;
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //
 //   bool bColon = false;
 //
@@ -674,7 +674,7 @@ string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 
    string str;
 
-   int i = 0;
+   ::i32 i = 0;
 
    bool bColon = false;
 
@@ -861,7 +861,7 @@ string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array_base get_c_args(int argc, char** argv)
+string_array_base get_c_args(::i32 argc, char_pointer * argv)
 {
 
    string_array_base straBeforeColon;
@@ -877,7 +877,7 @@ string_array_base get_c_args(int argc, char** argv)
 
    bool bColon = false;
 
-   for (int i = 1; i < argc; i++)
+   for (::i32 i = 1; i < argc; i++)
    {
 
       if (strcmp(argv[i], ":") == 0)
@@ -921,7 +921,7 @@ string_array_base get_c_args(int argc, char** argv)
 }
 
 
-typedef size_t FN_GET_STRING(char* psz, size_t s);
+typedef size_t FN_GET_STRING(char_pointer psz, size_t s);
 
 
 typedef FN_GET_STRING* PFN_GET_STRING;
@@ -938,7 +938,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
    const ::scoped_string & scopedstrParse = psz;
 
-   char chQuote = '\0';
+   ::i8 chQuote = '\0';
 
    while (*pszParse)
    {
@@ -973,7 +973,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
       }
       else if (unicode_is_whitespace(scopedstrParse)
-         || character_isspace((unsigned char)*pszParse)
+         || character_isspace((::u8)*pszParse)
          || *pszParse == ':')
       {
 
@@ -1114,7 +1114,7 @@ string merge_colon_args(const array < string_array_base >& straa)
 #if !defined(WINDOWS_DESKTOP)
 
 
-CLASS_DECL_ACME int get_current_processor_index()
+CLASS_DECL_ACME ::i32 get_current_processor_index()
 {
 
    return 0;
@@ -1122,7 +1122,7 @@ CLASS_DECL_ACME int get_current_processor_index()
 }
 
 
-CLASS_DECL_ACME int get_current_process_maximum_affinity()
+CLASS_DECL_ACME ::i32 get_current_process_maximum_affinity()
 {
 
    return 0;
@@ -1133,7 +1133,7 @@ CLASS_DECL_ACME int get_current_process_maximum_affinity()
 #if !defined(__APPLE__) && !defined(WINDOWS)
 
 
-CLASS_DECL_ACME int get_current_process_affinity_order()
+CLASS_DECL_ACME ::i32 get_current_process_affinity_order()
 {
 
    return 1;
@@ -1147,10 +1147,10 @@ CLASS_DECL_ACME int get_current_process_affinity_order()
 #endif
 
 
-int g_iProcessStatus = 0;
+::i32 g_iProcessStatus = 0;
 
 
-CLASS_DECL_ACME int process_get_status()
+CLASS_DECL_ACME ::i32 process_get_status()
 {
 
    return g_iProcessStatus;
@@ -1158,7 +1158,7 @@ CLASS_DECL_ACME int process_get_status()
 }
 
 
-CLASS_DECL_ACME void process_set_status(int iStatus)
+CLASS_DECL_ACME void process_set_status(::i32 iStatus)
 {
 
    g_iProcessStatus = iStatus;
@@ -1166,13 +1166,13 @@ CLASS_DECL_ACME void process_set_status(int iStatus)
 }
 
 
-int g_argc = 0;
+::i32 g_argc = 0;
 
 
 platform_char ** g_argv = nullptr;
 
 
-CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv)
+CLASS_DECL_ACME void process_set_args(::i32 argc, platform_char ** argv)
 {
 
    g_argc = argc;
@@ -1182,7 +1182,7 @@ CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv)
 }
 
 
-CLASS_DECL_ACME int * process_get_pargc()
+CLASS_DECL_ACME ::i32 * process_get_pargc()
 {
 
    return &g_argc;
@@ -1190,7 +1190,7 @@ CLASS_DECL_ACME int * process_get_pargc()
 }
 
 
-CLASS_DECL_ACME int process_get_argc()
+CLASS_DECL_ACME ::i32 process_get_argc()
 {
 
    return *process_get_pargc();

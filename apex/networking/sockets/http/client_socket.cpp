@@ -17,9 +17,9 @@ namespace hex
 {
 
 
-   inline CLASS_DECL_APEX void upper_case_pad_from(char* sz, const void* p, memsize s)
+   inline CLASS_DECL_APEX void upper_case_pad_from(char_pointer sz, const void* p, memsize s)
    {
-      const unsigned char* pb = (const unsigned char*)p;
+      const ::u8* pb = (const ::u8*)p;
       sz += s * 2;
       while (s)
       {
@@ -39,9 +39,9 @@ string dump_hex(::file::file* pfile)
 
    string strBuffer;
 
-   char* psz = strBuffer.get_buffer((character_count)(pfile->size() / 16 + 1) * 80);
+   char_pointer psz = strBuffer.get_buffer((character_count)(pfile->size() / 16 + 1) * 80);
 
-   unsigned char buf[16];
+   ::u8 buf[16];
 
    memsize iPos = 0;
 
@@ -65,7 +65,7 @@ string dump_hex(::file::file* pfile)
       *psz = ' ';
       psz++;
 
-      for (int i = 0; i < 16; i++)
+      for (::i32 i = 0; i < 16; i++)
       {
 
          if (i < iRead)
@@ -91,7 +91,7 @@ string dump_hex(::file::file* pfile)
 
       }
 
-      for (int i = 0; i < iRead; i++)
+      for (::i32 i = 0; i < iRead; i++)
       {
 
          if (buf[i] < 32)
@@ -104,7 +104,7 @@ string dump_hex(::file::file* pfile)
          else
          {
 
-            *psz = (char) buf[i];
+            *psz = (::i8) buf[i];
             psz++;
 
          }
@@ -305,7 +305,7 @@ namespace sockets
       auto pszKey = atomKey.as_string().c_str();
       auto pszPayload = scopedstr.c_str();
 #if HEAVY_HTTP_LOG
-      informationf("OnHeader %s: %s", (const_char_pointer)atomKey, (const_char_pointer)value);
+      informationf("OnHeader %s: %s", (const_char_pointer )atomKey, (const_char_pointer )value);
 #endif
 
       m_content += atomKey.as_string() + ": " + scopedstr + "\r\n";
@@ -401,7 +401,7 @@ namespace sockets
 
       }
 
-      int iStatusCode = m_response.attr("http_status_code").as_i32();
+      ::i32 iStatusCode = m_response.attr("http_status_code").as_i32();
 
 //      if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
 //      {
@@ -415,7 +415,7 @@ namespace sockets
 //         string str = dump_hex(m_pfile);
 //         informationf("%s", m_strUrl.c_str());
 //         
-//         for (int i = 0; i < str.length(); i+=32 * 100)
+//         for (::i32 i = 0; i < str.length(); i+=32 * 100)
 //         {
 //
 //            ::OutputDebugStringA(str.substr(i, 32*100));
@@ -463,7 +463,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnData(const_char_pointer buf,memsize len)
+   void http_client_socket::OnData(const_char_pointer pszBuffer,memsize len)
    {
 
       if(m_response.attr("http_status_code").as_i32() >= 300 && m_response.attr("http_status_code").as_i32() <= 399)
@@ -479,13 +479,13 @@ namespace sockets
          if(outheader("content-encoding").case_insensitive_equals("gzip"))
          {
 
-            m_pmemoryfile->write({ buf,len });
+            m_pmemoryfile->write({ pszBuffer,len });
 
          }
          else
          {
 
-            m_pfile->write({ buf,len });
+            m_pfile->write({ pszBuffer,len });
 
          }
 
@@ -493,11 +493,11 @@ namespace sockets
       else
       {
 
-         m_pmemoryfile->write({ buf,len });
+         m_pmemoryfile->write({ pszBuffer,len });
 
       }
 
-      OnDataArrived(buf, len);
+      OnDataArrived(pszBuffer, len);
 
       //increment_scalar(scalar_download_size, len);
 
@@ -512,10 +512,10 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnDataArrived(const_char_pointer buf, memsize len)
+   void http_client_socket::OnDataArrived(const_char_pointer pszBuffer, memsize len)
    {
 
-      __UNREFERENCED_PARAMETER(buf);
+      __UNREFERENCED_PARAMETER(pszBuffer);
       __UNREFERENCED_PARAMETER(len);
    }
 
@@ -590,7 +590,7 @@ namespace sockets
    }
 
 
-   const unsigned char *http_client_socket::GetDataPtr() const
+   const ::u8 *http_client_socket::GetDataPtr() const
    {
 
       return m_pmemoryfile ? m_pmemoryfile->full_data_begin() : nullptr;
@@ -689,7 +689,7 @@ namespace sockets
    }
 
 
-   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number::number number,int iFlags)
+   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number::number number,::i32 iFlags)
    {
 
       if (escalar == e_scalar_download_size)

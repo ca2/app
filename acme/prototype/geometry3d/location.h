@@ -10,19 +10,19 @@ using location_type = pole_type < NUMBER >;
 
 using LOCATION_INT = int_pole;
 using LOCATION_LONG_LONG = i64_pole;
-using LOCATION_FLOAT = float_pole;
-using LOCATION_DOUBLE = double_pole;
+using LOCATION_FLOAT = f32_pole;
+using LOCATION_DOUBLE = f64_pole;
 
 
 using int_location = LOCATION_INT;
 using i64_location = LOCATION_LONG_LONG;
-using float_location = LOCATION_FLOAT;
-using double_location = LOCATION_DOUBLE;
+using f32_location = LOCATION_FLOAT;
+using f64_location = LOCATION_DOUBLE;
 
 //{
-//   double x;
-//   double y;
-//   double z;
+//   ::f64 x;
+//   ::f64 y;
+//   ::f64 z;
 //};
 
 //using LPLOCATIOND = LOCATIOND * ;

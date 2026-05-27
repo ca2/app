@@ -22,14 +22,14 @@ public:
 // #if defined(WINDOWS)
 //    void* m_mapping = nullptr;
 // #else
-//    int m_fd = -1;
+//    ::i32 m_fd = -1;
 // #endif
    
    shared_memory();
    ~shared_memory();
 
-   virtual bool CreateSharedMemory(const char* name, memsize size);
-   virtual bool OpenSharedMemory(const char* name, memsize size);
+   virtual bool CreateSharedMemory(const_char_pointer pszName, memsize size);
+   virtual bool OpenSharedMemory(const_char_pointer pszName, memsize size);
 
    //virtual void* Data() const ;
    //virtual memsize Size() const ;

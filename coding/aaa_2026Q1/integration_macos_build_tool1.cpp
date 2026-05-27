@@ -245,7 +245,7 @@ namespace coding
 //
 //      //::string strSerial;
 //
-//      //int iSerial = 1;
+//      //::i32 iSerial = 1;
 //
 //      //for (auto & command : commanda)
 //      //{
@@ -268,7 +268,7 @@ namespace coding
 //
 //      //   auto strCommand = command.m_strCommand;
 //
-//      //   int iExitCode = 0;
+//      //   ::i32 iExitCode = 0;
 //
 //      //   pfileLog = file()->get_writer(m_pathBuildFolder / "time-windows" / (strFileNameTimeBuild + "_log") / (strLogName + ".txt"), ::file::e_open_share_deny_none);
 //
@@ -316,7 +316,7 @@ namespace coding
 //
 //      ////string strError;
 //
-//      ////int iExitCode = 0;
+//      ////::i32 iExitCode = 0;
 //
 //      //
 //
@@ -664,7 +664,7 @@ namespace coding
 //
 //      //auto iProcessorCount = node()->get_processor_count();
 //
-//      //int iParallelization = -1;
+//      //::i32 iParallelization = -1;
 //
 //      //if (iProcessorCount >= m_iTaskCount)
 //      //{
@@ -768,7 +768,7 @@ namespace coding
 //
 //      //         auto strCommand = task.m_strCommand;
 //
-//      //         int iExitCode = 0;
+//      //         ::i32 iExitCode = 0;
 //
 //      //         ploginterface->m_eindexa.clear();
 //      //         ploginterface->m_eindexa.add(::coding::e_index_preparing);
@@ -958,7 +958,7 @@ namespace coding
 //
 //      ////string strError;
 //
-//      ////int iExitCode = 0;
+//      ////::i32 iExitCode = 0;
 //
 //
 //
@@ -1064,7 +1064,7 @@ namespace coding
 //
 //      auto iProcessorCount = node()->performance_core_count();
 //
-//      int iParallelization = -1;
+//      ::i32 iParallelization = -1;
 //
 //      if (iProcessorCount >= ptaskgroup->task_count())
 //      {
@@ -1120,7 +1120,7 @@ namespace coding
 //
 //               auto strCommand = ptask->m_strCommand;
 //
-//               int iExitCode = 0;
+//               ::i32 iExitCode = 0;
 //
 //               //ploginterface->m_eindexa.clear();
 //
@@ -1240,7 +1240,7 @@ namespace coding
 //
 //      //string strError;
 //
-//      //int iExitCode = 0;
+//      //::i32 iExitCode = 0;
 //
 //
 //

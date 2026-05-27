@@ -93,7 +93,7 @@ void apex_main_data::system_construct(const ::main * pmain)
 }
 
 
-//void apex_main_data::system_construct(int argc, char** argv, char ** envp)
+//void apex_main_data::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(argc, argv, envp);
@@ -135,7 +135,7 @@ void apex_main_data::system_construct(const ::main * pmain)
 //}
 //
 //
-//void apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
+//void apex_main_data::system_construct(::i32 argc, wchar_t** argv, wchar_t ** envp)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(argc, argv, envp);
@@ -188,7 +188,7 @@ void apex_main_data::on_system_construct()
 #ifdef WINDOWS_DESKTOP
 
 
-//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow)
+//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(pCmdLine);
@@ -295,7 +295,7 @@ void apex_main_data::set_main_struct(const apex_main_struct & mainstruct)
 }
 
 
-string apex_main_data::get_arg(int i) const
+string apex_main_data::get_arg(::i32 i) const
 {
 
    if (m_wargv)

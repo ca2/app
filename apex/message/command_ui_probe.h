@@ -55,12 +55,12 @@
 //#pragma warning( disable: 4121 )
 //struct CLASS_DECL_APEX __DISPMAP_ENTRY
 //{
-//   const_char_pointer lpszName;       // member/property name
+//   const_char_pointer pszName;       // member/property name
 
 //   long lDispID;           // DISPID (may be DISPID_UNKNOWN)
 //   const ::scoped_string & scopedstrParams;      // member parameter description
 
-//   unsigned short vt;                // return value type / or type of property
+//   ::u16 vt;                // return value type / or type of property
 //   __PMSG pfn;           // normal member On<membercall> or, OnGet<property>
 //   __PMSG pfnSet;        // special member for OnSet<property>
 //   size_t nPropOffset;     // property offset

@@ -96,7 +96,7 @@ public:
    bool                             m_bShowSplash;
    bool                             m_bRunEmbedded;
    bool                             m_bRunAutomated;
-   int                              m_nCmdShow;
+   ::i32                              m_nCmdShow;
    ///::interlocked_count              m_countStack;
    bool                             m_bFinishedStacking = false;
    ::pointer_array < ::request >    m_requesta;

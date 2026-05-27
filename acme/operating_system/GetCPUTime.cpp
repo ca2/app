@@ -25,7 +25,7 @@
  * Returns the amount of CPU time used by the current process,
  * in seconds, or -1.0 if an error occurred.
  */
-double getCPUTime() {
+::f64 getCPUTime() {
 #if defined(_WIN32)
 	/* Windows -------------------------------------------------- */
 	FILETIME createTime;
@@ -59,7 +59,7 @@ double getCPUTime() {
 		id = (clockid_t) - 1;
 #endif
 		if (id != (clockid_t) - 1 && clock_gettime(id, &ts) != -1)
-			return (double) ts.tv_sec + (double) ts.tv_nsec / 1000000000.0;
+			return (::f64) ts.tv_sec + (::f64) ts.tv_nsec / 1000000000.0;
 	}
 #endif
 
@@ -67,16 +67,16 @@ double getCPUTime() {
 	{
 		struct rusage rusage;
 		if (getrusage(RUSAGE_SELF, &rusage) != -1)
-			return (double) rusage.ru_utime.tv_sec + (double) rusage.ru_utime.tv_usec / 1000000.0;
+			return (::f64) rusage.ru_utime.tv_sec + (::f64) rusage.ru_utime.tv_usec / 1000000.0;
 	}
 #endif
 
 #if defined(_SC_CLK_TCK)
 	{
-		const double ticks = (double) sysconf(_SC_CLK_TCK);
+		const ::f64 ticks = (::f64) sysconf(_SC_CLK_TCK);
 		struct tms tms;
 		if (times(&tms) != (clock_t) - 1)
-			return (double) tms.tms_utime / ticks;
+			return (::f64) tms.tms_utime / ticks;
 	}
 #endif
 
@@ -84,7 +84,7 @@ double getCPUTime() {
 	{
 		clock_t cl = clock();
 		if (cl != (clock_t) - 1)
-			return (double) cl / (double) CLOCKS_PER_SEC;
+			return (::f64) cl / (::f64) CLOCKS_PER_SEC;
 	}
 #endif
 
@@ -93,7 +93,7 @@ double getCPUTime() {
 	return -1;        /* Failed. */
 }
 
-double getKernelTime()
+::f64 getKernelTime()
 {
 #if defined(_WIN32)
   /* Windows -------------------------------------------------- */

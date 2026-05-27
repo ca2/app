@@ -163,7 +163,7 @@ public:
 
    string get_string(const ::atom& atom, const ::scoped_string& scopedstrDefault = {}) const;
 
-   int get_int(const ::atom & atom, int iDefault = 0) const;
+   ::i32 get_int(const ::atom & atom, ::i32 iDefault = 0) const;
 
    ::u32 get_unsigned_int(const ::atom & atom, ::u32 uDefault = 0) const;
 

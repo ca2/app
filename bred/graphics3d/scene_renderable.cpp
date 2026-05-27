@@ -72,7 +72,7 @@ namespace graphics3d
    }
 
 
-   void scene_renderable::on_update(float deltaTime)
+   void scene_renderable::on_update(::f32 deltaTime)
    {
    
    

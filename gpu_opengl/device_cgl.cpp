@@ -11,17 +11,17 @@
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 
-int rotating_cube();
+::i32 rotating_cube();
 
 //////#include "_opengl.h"
 //////
 //extern "C"
 //{
-//GLAPI int gladLoadCGL(void);
+//GLAPI ::i32 gladLoadCGL(void);
 //
 //} // extern "C"
 
-//const char* eglErrorString(EGLint error) {
+//const_char_pointer eglErrorString(EGLint error) {
 //   switch (error) {
 //      case EGL_SUCCESS: return "EGL_SUCCESS";
 //      case EGL_NOT_INITIALIZED: return "EGL_NOT_INITIALIZED";
@@ -63,7 +63,7 @@ namespace gpu_opengl
 //// --- Step A: Define a loader function for GLAD ---
 //// CGL doesn't have a simple "GetProcAddress" function, so we use
 //// dlsym to look up symbols from the OpenGL framework.
-//void* GetCGLProcAddress(const char* name) {
+//void* GetCGLProcAddress(const_char_pointer pszName) {
 //    static void* handle = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_NOW);
 //    return dlsym(handle, name);
 //}
@@ -179,7 +179,7 @@ namespace gpu_opengl
 ////       if (!eglChooseConfig(egldisplay, configAttribs, &g_eglconfig, 1, &numConfigs))
 ////       {
 ////
-////          int iError = eglGetError();
+////          ::i32 iError = eglGetError();
 ////
 ////          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 ////
@@ -544,7 +544,7 @@ namespace gpu_opengl
 //       if (!eglChooseConfig(egldisplay, configAttribs2, &m_eglconfigPrimary, 1, &numConfigs2))
 //       {
 //
-//          int iError = eglGetError();
+//          ::i32 iError = eglGetError();
 //
 //          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
 //
@@ -584,7 +584,7 @@ namespace gpu_opengl
       // if (!eglChooseConfig(egldisplay, configAttribs2, &m_eglconfigWindow, 1, &numWindowConfig))
       // {
       //
-      //    int iError = eglGetError();
+      //    ::i32 iError = eglGetError();
       //
       //    const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
       //
@@ -608,7 +608,7 @@ namespace gpu_opengl
       // if (!eglGetConfigAttrib(egldisplay, m_eglconfigWindow, EGL_NATIVE_VISUAL_ID, &visualid))
       // {
       //
-      //    int iError = eglGetError();
+      //    ::i32 iError = eglGetError();
       //
       //    const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
       //
@@ -661,7 +661,7 @@ namespace gpu_opengl
       // if (m_eglsurface == EGL_NO_SURFACE)
       // {
       //
-      //    int iError = eglGetError();
+      //    ::i32 iError = eglGetError();
       //
       //    const ::scoped_string & scopedstrError = eglQueryString(m_egldisplay, iError);
       //
@@ -685,7 +685,7 @@ namespace gpu_opengl
       // if (m_eglcontext == EGL_NO_CONTEXT)
       // {
       //
-      //    int iError = eglGetError();
+      //    ::i32 iError = eglGetError();
       //
       //    const ::scoped_string & scopedstrError = eglQueryString(m_egldisplay, iError);
       //
@@ -766,7 +766,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //      //
 //      information("_simplified_find_config_for_x11_window2 X11 visual id = {}", lX11VisualId);
 //
-//      int depthFind;
+//      ::i32 depthFind;
 //
 //      if (bOpaque)
 //      {
@@ -856,7 +856,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      information("_find_config_for_x11_window X11 visual id = {}", m_lX11NativeVisualId);
 //
-//      int depthFind;
+//      ::i32 depthFind;
 //
 //      if (bOpaque)
 //      {
@@ -901,9 +901,9 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      EGLint bestId = INT_MAX;
 //
-//      //int iBestVisualId = -1;
+//      //::i32 iBestVisualId = -1;
 //
-//      for (int i = 0; i < count; ++i)
+//      for (::i32 i = 0; i < count; ++i)
 //      {
 //
 //         EGLint surfacetype = 0;
@@ -1163,7 +1163,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //            XVisualInfo visualinfoTemplate = {};
 //            visualinfoTemplate.visualid = visualid;
 //
-//            int n = 0;
+//            ::i32 n = 0;
 //            XVisualInfo* pvisualinfo = XGetVisualInfo(
 //                pDisplay,
 //                VisualIDMask,
@@ -1178,7 +1178,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //            }
 //
-//            int iDepth =pvisualinfo->depth;
+//            ::i32 iDepth =pvisualinfo->depth;
 //            XFree(pvisualinfo);
 //            pvisualinfo = nullptr;
 //
@@ -1297,7 +1297,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      information("_simplified_find_config_for_x11_window X11 visual id = {}", argbVisual.visualid);
 //
-//      int depthFind;
+//      ::i32 depthFind;
 //
 //      if (bOpaque)
 //      {
@@ -1385,7 +1385,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //         vtemplate.depth  = 32;
 //         vtemplate.c_class  = TrueColor;
 //
-//         int nvis = 0;
+//         ::i32 nvis = 0;
 //         XVisualInfo* visuals = XGetVisualInfo(
 //             pDisplay,
 //             VisualScreenMask | VisualDepthMask | VisualClassMask,
@@ -1409,7 +1409,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      information("_find_config_for_x11_window X11 visual id = {}", argbVisual.visualid);
 //
-//      int depthFind;
+//      ::i32 depthFind;
 //
 //      if (bOpaque)
 //      {
@@ -1454,9 +1454,9 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      EGLint bestId = INT_MAX;
 //
-//      int iBestVisualId = -1;
+//      ::i32 iBestVisualId = -1;
 //
-//      for (int i = 0; i < count; ++i)
+//      for (::i32 i = 0; i < count; ++i)
 //      {
 //
 //         EGLint surfacetype = 0;
@@ -1716,7 +1716,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //            XVisualInfo visualinfoTemplate = {};
 //            visualinfoTemplate.visualid = visualid;
 //
-//            int n = 0;
+//            ::i32 n = 0;
 //            XVisualInfo* pvisualinfo = XGetVisualInfo(
 //                pDisplay,
 //                VisualIDMask,
@@ -1731,7 +1731,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //            }
 //
-//            int iDepth =pvisualinfo->depth;
+//            ::i32 iDepth =pvisualinfo->depth;
 //            XFree(pvisualinfo);
 //            pvisualinfo = nullptr;
 //
@@ -1827,7 +1827,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //   bool device_cgl::_find_config_for_pbuffer(EGLConfig & eglconfig, bool bOpaque)
 //   {
 //
-//      int depthFind;
+//      ::i32 depthFind;
 //
 //      if (bOpaque)
 //      {
@@ -1884,7 +1884,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      information("eglChooseConfig found {} of up to {} configs", count, 64);
 //
-//      for (int i = 0; i < count; ++i)
+//      for (::i32 i = 0; i < count; ++i)
 //      {
 //
 //         EGLint surfacetype = 0;
@@ -2025,7 +2025,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //         //    XVisualInfo visualinfoTemplate = {};
 //         //    visualinfoTemplate.visualid = visualid;
 //         //
-//         //    int n = 0;
+//         //    ::i32 n = 0;
 //         //    XVisualInfo* pvisualinfo = XGetVisualInfo(
 //         //        pDisplay,
 //         //        VisualIDMask,
@@ -2135,12 +2135,12 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //      eglBindAPI(EGL_OPENGL_ES_API);
 //
-//      int iConfigCount = 0;
+//      ::i32 iConfigCount = 0;
 //
 //      if (!eglChooseConfig(m_display, attribList, &m_config, 1, &iConfigCount))
 //      {
 //
-//         int iError = eglGetError();
+//         ::i32 iError = eglGetError();
 //
 //         const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 //
@@ -2279,12 +2279,12 @@ void * device_cgl::current_operating_system_gpu_context()
    //
    //    eglBindAPI(EGL_OPENGL_ES_API);
    //
-   //    int iConfigCount = 0;
+   //    ::i32 iConfigCount = 0;
    //
    //    if (!eglChooseConfig(m_display, attribList, &m_config, 1, &iConfigCount))
    //    {
    //
-   //       int iError = eglGetError();
+   //       ::i32 iError = eglGetError();
    //
    //       const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
    //
@@ -2464,13 +2464,13 @@ void * device_cgl::current_operating_system_gpu_context()
 //       if(iFindPrecision >= 0)
 //       {
 //
-//          stra[iFindPrecision] = "precision highp float;";
+//          stra[iFindPrecision] = "precision highp ::f32;";
 //
 //       }
 //       else
 //       {
 //
-//          stra.insert_at(1, "precision highp float;");
+//          stra.insert_at(1, "precision highp ::f32;");
 //
 //          iFindPrecision = 1;
 //
@@ -2555,20 +2555,20 @@ void * device_cgl::current_operating_system_gpu_context()
 //          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //          {
-//             float fOpacity = 0.5;
-//             float fRed = 0.5;
-//             float fGreen = 0.75;
-//             float fBlue = 0.95;
-//             auto f32Opacity = (float)fOpacity;
-//             auto f32Red = (float)(fRed * fOpacity);
-//             auto f32Green = (float)(fGreen * fOpacity);
-//             auto f32Blue = (float)(fBlue * fOpacity);
+//             ::f32 fOpacity = 0.5;
+//             ::f32 fRed = 0.5;
+//             ::f32 fGreen = 0.75;
+//             ::f32 fBlue = 0.95;
+//             auto f32Opacity = (::f32)fOpacity;
+//             auto f32Red = (::f32)(fRed * fOpacity);
+//             auto f32Green = (::f32)(fGreen * fOpacity);
+//             auto f32Blue = (::f32)(fBlue * fOpacity);
 //             ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //          }
 //
-//          ::double_polygon polygon;
+//          ::f64_polygon polygon;
 //
-//          ::double_rectangle rectangle(300, 300, 400, 400);
+//          ::f64_rectangle rectangle(300, 300, 400, 400);
 //
 //          polygon = rectangle;
 //

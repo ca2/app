@@ -42,9 +42,9 @@ namespace platform
 //#endif
 
 
-      virtual ::image::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier);
+      virtual ::image::image_pointer get_file_image_by_type_identifier(::i32 iSize, const ::scoped_string & scopedstrTypeIdentifier);
 
-      virtual ::image::image_pointer get_file_image(int iSize, const ::file::path & path);
+      virtual ::image::image_pointer get_file_image(::i32 iSize, const ::file::path & path);
 
       virtual void defer_dock_application(bool bDock);
 

@@ -32,7 +32,7 @@
 //----------------------------------------------------------------------------
 
 void
-ellipse (int x, int y, int stangle, int endangle, int xradius, int yradius)
+ellipse (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 xradius, ::i32 yradius)
 {
   struct linesettingstype Settings;
   getlinesettings (&Settings);

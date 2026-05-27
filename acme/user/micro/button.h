@@ -16,15 +16,15 @@ namespace micro
 
 
       enum_dialog_result      m_edialogresult1 = e_dialog_result_cancel;
-      char                    m_chLetter = '\0';
+      ::i8                    m_chLetter = '\0';
 
 
       button();
       ~button() override;
 
 
-      void on_draw(::nano::graphics::device * pnanodevice) override;
-      void on_char(int iChar) override;
+      void on_draw(::nano::graphics::context * pnanodevice) override;
+      void on_char(::i32 iChar) override;
 
 
       bool is_keyboard_focusable() override;

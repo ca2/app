@@ -29,7 +29,7 @@ namespace innate_subsystem
 
       virtual void initialize_image_list() = 0;
 
-      virtual void create(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) = 0
+      virtual void create(::i32 cx, ::i32 cy, ::i32 flags, ::i32 iInitialSize = 1, ::i32 iGrow = 1) = 0
 
 
 
@@ -48,7 +48,7 @@ namespace innate_subsystem
 
       void initialize_image_list() override;
 
-      void create(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) override;
+      void create(::i32 cx, ::i32 cy, ::i32 flags, ::i32 iInitialSize = 1, ::i32 iGrow = 1) override;
 
 
    };

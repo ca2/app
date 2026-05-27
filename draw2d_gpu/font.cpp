@@ -85,7 +85,7 @@ namespace draw2d_gpu
    }
 
 
-   void font::create(::draw2d::graphics * pgraphics, char iCreate)
+   void font::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
    {
 
       //if (m_hdcFont == nullptr || is_modified(iCreate))

@@ -60,18 +60,18 @@ namespace turboc
       bool                    m_bFirstDone;
       bool                    m_bFastOnEmpty;
 
-      int                     m_cx;
-      int                     m_cy;
-      int                     m_cxCache1;
-      int                     m_cyCache1;
+      ::i32                     m_cx;
+      ::i32                     m_cy;
+      ::i32                     m_cxCache1;
+      ::i32                     m_cyCache1;
 
       bool                    m_bHelloLayoutOn001Layout;
       bool                    m_b001LayoutIgnoreEmpty;
       bool                    m_bHelloRender;
 
 
-      double                  m_dMinRadius;
-      double                  m_dMaxRadius;
+      ::f64                  m_dMinRadius;
+      ::f64                  m_dMaxRadius;
 
       bool                    m_bAlternate;
 

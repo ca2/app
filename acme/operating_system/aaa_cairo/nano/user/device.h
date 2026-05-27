@@ -7,7 +7,7 @@
 //#include "acme/user/micro/_nano.h"
 
 
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 
 
 #include <cairo/cairo-features.h>
@@ -25,7 +25,7 @@ namespace cairo
       namespace user
       {
          class CLASS_DECL_ACME device :
-            virtual public ::nano::graphics::device
+            virtual public ::nano::graphics::context
          {
          public:
 

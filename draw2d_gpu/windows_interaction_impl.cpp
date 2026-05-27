@@ -20,14 +20,14 @@ PIXELFORMATDESCRIPTOR pfd =
 
 HDC ourWindowHandleToDeviceContext = GetDC(hWnd);
 
-int  letWindowsChooseThisPixelFormat;
+::i32  letWindowsChooseThisPixelFormat;
 letWindowsChooseThisPixelFormat = ChoosePixelFormat(ourWindowHandleToDeviceContext, &pfd);
 SetPixelFormat(ourWindowHandleToDeviceContext, letWindowsChooseThisPixelFormat, &pfd);
 
 HGLRC ourOpenGLRenderingContext = wglCreateContext(ourWindowHandleToDeviceContext);
 wglMakeCurrent(ourWindowHandleToDeviceContext, ourOpenGLRenderingContext);
 
-MessageBoxA(0, (char*)glGetString(GL_VERSION), "OPENGL VERSION", 0);
+MessageBoxA(0, (char_pointer )glGetString(GL_VERSION), "OPENGL VERSION", 0);
 
 wglDeleteContext(ourOpenGLRenderingContext);
 PostQuitMessage(0);

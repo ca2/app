@@ -559,13 +559,13 @@ namespace user
 
       pgraphics->draw_rectangle(r);
 
-      int iPad = 5;
+      ::i32 iPad = 5;
 
       r.deflate(iPad);
 
-      int iW = (int) ( r.width() / m_atomaOptions.size()) ;
+      ::i32 iW = (::i32) ( r.width() / m_atomaOptions.size()) ;
 
-      int x = iPad;
+      ::i32 x = iPad;
 
       auto iIndex = selected_index();
 
@@ -710,7 +710,7 @@ namespace user
 //   { ASSERT(false); }
 //   void multiple_option::MeasureItem(LPMEASUREITEMSTRUCT)
 //   { ASSERT(false); }
-//   int multiple_option::CompareItem(LPCOMPAREITEMSTRUCT)
+//   ::i32 multiple_option::CompareItem(LPCOMPAREITEMSTRUCT)
 //   { ASSERT(false); return 0; }
 //   void multiple_option::DeleteItem(LPDELETEITEMSTRUCT)
 //   { /* default to nothing */ }
@@ -777,7 +777,7 @@ namespace user
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
+      //return (::i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
       //auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
       //return iIndex;

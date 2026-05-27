@@ -234,8 +234,8 @@ namespace subsystem
 
    struct codepair
    {
-      unsigned short keysym;
-      unsigned short ucs;
+      ::u16 keysym;
+      ::u16 ucs;
    } keysymtab[] = {
       {0x01a1, 0x0104}, /*                     Aogonek  LATIN CAPITAL LETTER A WITH OGONEK */
       {0x01a2, 0x02d8}, /*                       breve  BREVE */
@@ -1020,11 +1020,11 @@ namespace subsystem
 
                                    XK_Left,      XK_Up,        XK_Right,     XK_Down};
 
-   long keysym2ucs(unsigned short keysym)
+   long keysym2ucs(::u16 keysym)
    {
-      int min = 0;
-      int max = sizeof(keysymtab) / sizeof(struct codepair) - 1;
-      int mid;
+      ::i32 min = 0;
+      ::i32 max = sizeof(keysymtab) / sizeof(struct codepair) - 1;
+      ::i32 mid;
 
       /* first check for Latin-1 characters (1:1 mapping) */
       if ((keysym >= 0x0020 && keysym <= 0x007e) || (keysym >= 0x00a0 && keysym <= 0x00ff))
@@ -1090,7 +1090,7 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::keySymToUnicodeChar(::u32 keySym, int *ch)
+   bool Keymap::keySymToUnicodeChar(::u32 keySym, ::i32 *ch)
    {
       // X sym as unicode with flag.
       // Note this method is valid only for
@@ -1105,7 +1105,7 @@ namespace subsystem
       // Latin-1 characters.
       if ((keySym >= 32 && keySym <= 126) || (keySym >= 160 && keySym <= 255))
       {
-         *ch = (int)keySym;
+         *ch = (::i32)keySym;
 
          return true;
       }
@@ -1117,7 +1117,7 @@ namespace subsystem
 
          if (res != -1)
          {
-            *ch = (int)res;
+            *ch = (::i32)res;
 
             return true;
          }
@@ -1126,7 +1126,7 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::unicodeCharToKeySym(int ch, ::u32 *keySym)
+   bool Keymap::unicodeCharToKeySym(::i32 ch, ::u32 *keySym)
    {
       // Latin-1 characters.
       if ((ch >= 32 && ch <= 126) || (ch >= 160 && ch <= 255))
@@ -1137,7 +1137,7 @@ namespace subsystem
       }
       else
       {
-         for (int i = 0; i < sizeof(keysymtab) / sizeof(struct codepair); i++)
+         for (::i32 i = 0; i < sizeof(keysymtab) / sizeof(struct codepair); i++)
          {
             if (keysymtab[i].ucs == ch)
             {

@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_wavefront_vert[] = R"vert_text(// Input structure from vertex buffer
+const ::i8 g_psz_wavefront_vert[] = R"vert_text(// Input structure from vertex buffer
 struct VS_INPUT {
     float3 position : POSITION;
     float3 color    : COLOR;
@@ -34,7 +34,7 @@ cbuffer GlobalUbo : register(b0)
     float4 ambientLightColor;
     float3 cameraPosition;
     PointLight pointLights[10];
-    int numLights;
+    ::i32 numLights;
 };
 
 // Separate uniforms (can also be placed in their own cbuffer if needed)

@@ -19,12 +19,12 @@ namespace calculator
 
       };
 
-      double      m_dR; // real part
-      double      m_dI; // imaginary part
+      ::f64      m_dR; // real part
+      ::f64      m_dI; // imaginary part
 
 
-      double arg() const;
-      double mod() const;
+      ::f64 arg() const;
+      ::f64 mod() const;
 
 
       result();
@@ -36,7 +36,7 @@ namespace calculator
    };
 
 
-   //CLASS_DECL_AXIS double pi();
+   //CLASS_DECL_AXIS ::f64 pi();
 
    CLASS_DECL_AXIS result operator + (const result & payload1, const result & payload2);
    CLASS_DECL_AXIS result operator - (const result & payload1, const result & payload2);

@@ -221,10 +221,10 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline int string_compare(const CHARACTER * pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept
+//inline ::i32 string_compare(const CHARACTER * pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept
 //{
 //
-//   int iCompare;
+//   ::i32 iCompare;
 //
 //   if (string_compare_prefix(iCompare, pszA, pszB))
 //   {
@@ -239,10 +239,10 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline int case_insensitive_string_order(const array_scopedstr<CHARACTER> & scopedstrA, ) noexcept
+//inline ::i32 case_insensitive_string_order(const array_scopedstr<CHARACTER> & scopedstrA, ) noexcept
 //{
 //
-//   int iCompare;
+//   ::i32 iCompare;
 //
 //   if (string_compare_prefix(iCompare, pszA, pszB))
 //   {
@@ -358,7 +358,7 @@ CLASS_DECL_ACME void foo123();
 
 
 //template < typename ITERATOR_TYPE >
-//template < int t_size >
+//template < ::i32 t_size >
 //inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
 //   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
 //{
@@ -377,7 +377,7 @@ CLASS_DECL_ACME void foo123();
 
 
 //template < typename ITERATOR_TYPE >
-//template < int t_size >
+//template < ::i32 t_size >
 //string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::append(const const_string_range_static_array < const CHARACTER *, t_size >& a)
 //{
 //
@@ -403,7 +403,7 @@ CLASS_DECL_ACME void foo123();
 
 
 //template < typename ITERATOR_TYPE >
-//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, ::i32 t_size >
 //string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::append(const const_string_range_static_array < const OTHER_CHARACTER *, t_size >& a)
 //{
 //
@@ -484,7 +484,7 @@ inline void string_base < ITERATOR_TYPE >::construct2(const ::character_range < 
 //
 
 //template < typename ITERATOR_TYPE >
-//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, ::i32 t_size >
 //inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < const OTHER_CHARACTER *, t_size > & a)
 //{
 //
@@ -635,7 +635,7 @@ inline void string_base < ITERATOR_TYPE >::construct2(const ::character_range < 
 //
 //      auto pSource = sz;
 //
-//      for (int j = 0; j < lenUnit; j++, pSource++)
+//      for (::i32 j = 0; j < lenUnit; j++, pSource++)
 //      {
 //
 //         *pTarget++ = *pSource;
@@ -811,7 +811,7 @@ inline character_count const_string_range < ITERATOR_TYPE >::unichar_count() con
 //
 //
 //template < typename ITERATOR_TYPE >
-//template < int t_nSize >
+//template < ::i32 t_nSize >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =(const static_string<CHARACTER, t_nSize > & ansistrSrc)
 //{
 //
@@ -922,7 +922,7 @@ inline character_count const_string_range < ITERATOR_TYPE >::unichar_count() con
 
 
 //template < typename ITERATOR_TYPE >
-//template < int t_nSize >
+//template < ::i32 t_nSize >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator +=(const static_string<CHARACTER, t_nSize > & ansistrSrc)
 //{
 //
@@ -1332,7 +1332,7 @@ inline bool operator > (::wide_character ch, const typename ::GET_BLOCK_TYPE<CHA
 
 
 template < prototype_character CHARACTER >
-inline bool operator>(int i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
+inline bool operator>(::i32 i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
 {
 
    return ::string_base<CHARACTER>(i) > scopedstr;
@@ -1359,7 +1359,7 @@ inline bool operator<(CHARACTER ch, const typename::GET_BLOCK_TYPE<CHARACTER>::T
 
 
 template < prototype_character CHARACTER >
-inline bool operator<(int i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
+inline bool operator<(::i32 i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
 {
 
    return ::string_base <CHARACTER>(i) < scopedstr;
@@ -1949,7 +1949,7 @@ bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPE
 
 
 //template < typename ITERATOR_TYPE >
-//bool string_base < ITERATOR_TYPE >::contains(int i) const // utf8 CHARACTER index
+//bool string_base < ITERATOR_TYPE >::contains(::i32 i) const // utf8 CHARACTER index
 //{
 //
 //   return find_w(unicode_to_utf8(i), start, count) >= 0;
@@ -2053,7 +2053,7 @@ bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPE
 
 
 //template < typename ITERATOR_TYPE >
-//bool string_base < ITERATOR_TYPE >::case_insensitive_contains(int i) const// utf8 CHARACTER index
+//bool string_base < ITERATOR_TYPE >::case_insensitive_contains(::i32 i) const// utf8 CHARACTER index
 //{
 //
 //   return unicode_case_insensitive_find(unicode_to_utf8(i), start, count) >= 0;
@@ -2283,7 +2283,7 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(con
 
 //
 //template < typename ITERATOR_TYPE >
-//bool string_base < ITERATOR_TYPE >::unicode_case_insensitive_contains(int i) const// utf8 CHARACTER index
+//bool string_base < ITERATOR_TYPE >::unicode_case_insensitive_contains(::i32 i) const// utf8 CHARACTER index
 //{
 //
 //   return unicode_case_insensitive_find(unicode_to_utf8(i), start, count) >= 0;
@@ -2476,7 +2476,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 
    character_count count = 0;
 
-   // short-circuit the nop case
+   // ::i16-circuit the nop case
    if (charOld != charNew)
    {
       // otherwise modify each character that matches in the string_base < ITERATOR_TYPE >
@@ -2891,9 +2891,9 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       auto pszBlock2 = pszBlock;
 
-      int len1;
+      ::i32 len1;
 
-      int len2;
+      ::i32 len2;
 
       do
       {
@@ -2966,9 +2966,9 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       const CHARACTER * pszSub2 = scopedstr;
 
-      int len1;
+      ::i32 len1;
 
-      int len2;
+      ::i32 len2;
 
       while (*psz2 != '\0' && *pszSub2 != '\0') 
       {
@@ -5156,7 +5156,7 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & scopedstrSuffix)
 
 
 
-int get_mem_free_available_kb();
+::i32 get_mem_free_available_kb();
 
 
 template < prototype_character CHARACTER >
@@ -5175,7 +5175,7 @@ unicode_iterator < CHARACTER > & unicode_iterator < CHARACTER > ::operator ++()
 
 
 template < prototype_character CHARACTER >
-unicode_iterator < CHARACTER > unicode_iterator < CHARACTER > ::operator ++(int)
+unicode_iterator < CHARACTER > unicode_iterator < CHARACTER > ::operator ++(::i32)
 {
 
    auto psz = m_psz;
@@ -5204,16 +5204,16 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 
 
 template < character_count n >
-inline ::string_base < const_char_pointer >operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
+inline ::string_base < const_char_pointer >operator +(const ::i8 (&s)[n], const inline_number_string& inlinenumberstring)
 {
 
-   return { ::as_string_literal<char, n>(s), inlinenumberstring };
+   return { ::as_string_literal<::i8, n>(s), inlinenumberstring };
 
 }
 
 
 //template < character_count m_sizeMaximumLength >
-//inline ::string operator +(const ::scoped_string & scopedstr, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::inline_string < ::i8, m_sizeMaximumLength > & inlinestring)
 //{
 //
 //   return str + ::string(inlinestring);
@@ -5222,7 +5222,7 @@ inline ::string_base < const_char_pointer >operator +(const char (&s)[n], const 
 //
 //
 //template < ::collection::count c >
-//inline ::string operator +(const ::scoped_string & scopedstr, const char(&sz)[c])
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::i8(&sz)[c])
 //{
 //
 //   return str + ::string(sz);
@@ -5236,7 +5236,7 @@ inline ::string_base < const_char_pointer >operator +(const char (&s)[n], const 
 
 
 //template < ::collection::count c, character_count m_sizeMaximumLength >
-//inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+//inline ::string operator +(const ::i8(&sz)[c], const ::inline_string < ::i8, m_sizeMaximumLength > & inlinestring)
 //{
 //
 //   return ::transfer(::string(sz) + ::string(inlinestring));
@@ -5246,7 +5246,7 @@ inline ::string_base < const_char_pointer >operator +(const char (&s)[n], const 
 //
 //
 //template < ::collection::count c, character_count m_sizeMaximumLength >
-//inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
+//inline ::string operator +(const ::inline_string < ::i8, m_sizeMaximumLength > & inlinestring, const ::i8(&sz)[c])
 //{
 //
 //   return ::transfer(::string(inlinestring) + ::string(sz));
@@ -5254,7 +5254,7 @@ inline ::string_base < const_char_pointer >operator +(const char (&s)[n], const 
 //}
 
 
-//inline ::string operator + (const ::scoped_string & scopedstr, char ch)
+//inline ::string operator + (const ::scoped_string & scopedstr, ::i8 ch)
 //{
 //
 //   return str + ::string(ch);

@@ -340,18 +340,18 @@ namespace html
 
          auto size = get_bound_size();
 
-         float iColumnWidth = calc_width();
+         ::f32 iColumnWidth = calc_width();
 
-//         float iTableBorder = get_table()->m_iBorder;
+//         ::f32 iTableBorder = get_table()->m_iBorder;
 
          /*if(iTableBorder > 0)
          {
 
             iTableBorder += 2;
 
-            ::float_size.cx = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
+            ::f32_size.cx = (::f32) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
 
-            ::float_size.cy -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            ::f32_size.cy -= (::f32) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
 
          }
          else*/
@@ -404,9 +404,9 @@ namespace html
 
          */
 
-         m_box.set_width((float) iColumnWidth);
+         m_box.set_width((::f32) iColumnWidth);
 
-         m_bound.set_width((float) iColumnWidth);
+         m_bound.set_width((::f32) iColumnWidth);
 
          pdata->m_pcoredata->m_layoutstate1.m_bHasChar = false;
 
@@ -462,31 +462,31 @@ namespace html
       }
 
 
-      ::float_size cell::get_content_size()
+      ::f32_size cell::get_content_size()
       {
 
          auto size = ::html::impl::element::get_content_size();
 
-         //::float_size.cx -= get_table()->m_iCellSpacing;
+         //::f32_size.cx -= get_table()->m_iCellSpacing;
 
          //if(m_iColBeg == 0)
          //{
-         //   ::float_size.cx -= get_table()->m_iCellSpacing / 2.f;
+         //   ::f32_size.cx -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
          //{
-         //   ::float_size.cx -= get_table()->m_iCellSpacing / 2.f;
+         //   ::f32_size.cx -= get_table()->m_iCellSpacing / 2.f;
          //}
 
-         //::float_size.cy -= get_table()->m_iCellSpacing;
+         //::f32_size.cy -= get_table()->m_iCellSpacing;
 
          //if(m_iRowBeg == 0)
          //{
-         //   ::float_size.cy -= get_table()->m_iCellSpacing / 2.f;
+         //   ::f32_size.cy -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
          //{
-         //   ::float_size.cy -= get_table()->m_iCellSpacing / 2.f;
+         //   ::f32_size.cy -= get_table()->m_iCellSpacing / 2.f;
          //}
 
          return size;
@@ -494,7 +494,7 @@ namespace html
       }
 
 
-      float cell::get_extra_content_height()
+      ::f32 cell::get_extra_content_height()
       {
 
          return ::html::impl::element::get_extra_content_height();
@@ -514,27 +514,27 @@ namespace html
       }
 
 
-      ::float_point cell::get_content_top_left()
+      ::f32_point cell::get_content_top_left()
       {
 
          auto point = ::html::impl::element::get_content_top_left();
 
          /*if(m_iColBeg == 0)
          {
-            ::float_point.x += get_table()->m_iCellSpacing;
+            ::f32_point.x += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::float_point.x += get_table()->m_iCellSpacing / 2.f;
+            ::f32_point.x += get_table()->m_iCellSpacing / 2.f;
          }
 
          if(m_iRowBeg == 0)
          {
-            ::float_point.y += get_table()->m_iCellSpacing;
+            ::f32_point.y += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::float_point.y += get_table()->m_iCellSpacing / 2.f;
+            ::f32_point.y += get_table()->m_iCellSpacing / 2.f;
          }*/
 
          return point;
@@ -552,7 +552,7 @@ namespace html
          if(prow != nullptr)
          {
 
-            for(int i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
+            for(::i32 i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
 
                ::html::element * pelement = prow->m_pelemental->m_elementalptra[i];
@@ -605,7 +605,7 @@ namespace html
       }
 
 
-      cell::holder::holder(int iCol, int iRow)
+      cell::holder::holder(::i32 iCol, ::i32 iRow)
       {
 
          m_pcell     = nullptr;
@@ -615,7 +615,7 @@ namespace html
       }
 
 
-      cell::holder::holder(cell * pcell, int iCol, int iRow)
+      cell::holder::holder(cell * pcell, ::i32 iCol, ::i32 iRow)
       {
 
          m_pcell     = pcell;
@@ -692,21 +692,21 @@ namespace html
       }
 
 
-      float cell::calc_width()
+      ::f32 cell::calc_width()
       {
 
-         float iColumnWidth = 0;
+         ::f32 iColumnWidth = 0;
 
-         float cxMax;
+         ::f32 cxMax;
 
          if(get_table() != nullptr)
          {
 
             ::collection::count n = get_table()->m_columna.get_size();
 
-            float cellMax = 0;
+            ::f32 cellMax = 0;
 
-            float sMax = 0;
+            ::f32 sMax = 0;
 
             for(::collection::index iColumn = 0; iColumn < n; iColumn++)
             {
@@ -724,7 +724,7 @@ namespace html
 
             }
 
-            float W = get_table()->calc_width();
+            ::f32 W = get_table()->calc_width();
 
             if(sMax > 0)
             {
@@ -746,7 +746,7 @@ namespace html
       }
 
 
-      float cell::get_table_border()
+      ::f32 cell::get_table_border()
       {
 
          return get_table()->m_iBorder;
@@ -754,7 +754,7 @@ namespace html
       }
 
 
-      float cell::get_cell_spacing()
+      ::f32 cell::get_cell_spacing()
       {
 
          return get_table()->m_iCellSpacing;
@@ -762,7 +762,7 @@ namespace html
       }
 
 
-      float cell::get_cell_padding()
+      ::f32 cell::get_cell_padding()
       {
 
          return get_table()->m_iCellPadding;

@@ -16,10 +16,10 @@
 typedef  uchar GZIP;
 typedef  GZIP* LPGZIP;
 
-//static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
+//static const ::i32 gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
 
 
-compress_gz::compress_gz(int iLevel) 
+compress_gz::compress_gz(::i32 iLevel) 
 {
 
    m_iLevel = iLevel;
@@ -34,7 +34,7 @@ compress_gz::~compress_gz()
 bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   int iLevel = m_iLevel;
+   ::i32 iLevel = m_iLevel;
 
    if (iLevel < 0)
    {
@@ -49,17 +49,17 @@ bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 
    }
 
-   int status;
+   ::i32 status;
 
    class memory memIn;
    memIn.set_size((memsize)maximum(1024, minimum(pfileIn->get_left(), 1024 * 64)));
 
-   long long uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+   ::i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
    z_stream zstream;
    zero(zstream);
-   zstream.next_in = (unsigned char *)memIn.get_data();
-   zstream.avail_in = (unsigned int)uRead;
+   zstream.next_in = (::u8 *)memIn.get_data();
+   zstream.avail_in = (::u32)uRead;
    zstream.total_out = 0;
    zstream.zalloc = Z_NULL;
    zstream.zfree = Z_NULL;
@@ -76,7 +76,7 @@ bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 
 // use deflateSetHeader to set original file params
 
-   int iFlush = Z_NO_FLUSH;
+   ::i32 iFlush = Z_NO_FLUSH;
 
    while (true)
    {
@@ -86,12 +86,12 @@ bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 
          zstream.next_out = memory.get_data();
 
-         zstream.avail_out = (unsigned int)memory.get_size();
+         zstream.avail_out = (::u32)memory.get_size();
 
          // Inflate another chunk.
          status = deflate(&zstream, iFlush);
 
-         pfileOut->write(memory.get_data(), (unsigned int)memory.get_size() - zstream.avail_out);
+         pfileOut->write(memory.get_data(), (::u32)memory.get_size() - zstream.avail_out);
 
          if (status == Z_STREAM_END)
          {
@@ -116,17 +116,17 @@ bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 
          iFlush = Z_FINISH;
 
-         zstream.next_in = (unsigned char *) nullptr;
+         zstream.next_in = (::u8 *) nullptr;
 
-         zstream.avail_in = (unsigned int)0;
+         zstream.avail_in = (::u32)0;
 
       }
       else
       {
 
-         zstream.next_in = (unsigned char *)memIn.get_data();
+         zstream.next_in = (::u8 *)memIn.get_data();
 
-         zstream.avail_in = (unsigned int)uRead;
+         zstream.avail_in = (::u32)uRead;
 
       }
 
@@ -160,21 +160,21 @@ uncompress_gz::~uncompress_gz()
 bool uncompress_gz::transfer(::file::file * pfileUncompressed, ::file::file * pfileGzFileCompressed)
 {
 
-   int status;
+   ::i32 status;
 
    class memory memIn;
 
    memIn.set_size((memsize) minimum(1024 * 4, pfileGzFileCompressed->get_left()));
 
-   unsigned int uRead;
+   ::u32 uRead;
 
-   uRead = (unsigned int) (pfileGzFileCompressed->read(memIn.get_data(), memIn.get_size()));
+   uRead = (::u32) (pfileGzFileCompressed->read(memIn.get_data(), memIn.get_size()));
 
    z_stream zstream;
 
    zero(zstream);
-   zstream.next_in = (unsigned char *)memIn.get_data();
-   zstream.avail_in = (unsigned int)uRead;
+   zstream.next_in = (::u8 *)memIn.get_data();
+   zstream.avail_in = (::u32)uRead;
    zstream.total_out = 0;
    zstream.zalloc = Z_NULL;
    zstream.zfree = Z_NULL;
@@ -200,7 +200,7 @@ bool uncompress_gz::transfer(::file::file * pfileUncompressed, ::file::file * pf
       {
 
          zstream.next_out = memory.get_data();
-         zstream.avail_out = (unsigned int)memory.get_size();
+         zstream.avail_out = (::u32)memory.get_size();
 
          // Inflate another chunk.
          status = inflate(&zstream, Z_NO_FLUSH);
@@ -223,11 +223,11 @@ bool uncompress_gz::transfer(::file::file * pfileUncompressed, ::file::file * pf
       }
       while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
-      uRead = (unsigned int) (pfileGzFileCompressed->read(memIn.get_data(), memIn.get_size()));
+      uRead = (::u32) (pfileGzFileCompressed->read(memIn.get_data(), memIn.get_size()));
 
-      zstream.next_in = (unsigned char *)memIn.get_data();
+      zstream.next_in = (::u8 *)memIn.get_data();
 
-      zstream.avail_in = (unsigned int)uRead;
+      zstream.avail_in = (::u32)uRead;
 
    }
 
@@ -249,10 +249,10 @@ stop1:
 //{
 //
 //
-//   unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
+//   ::u32 crypto::crc32(::u32 dwPrevious, const ::scoped_string & scopedstr)
 //   {
 //
-//      return (unsigned int) ::crc32(dwPrevious, (const unsigned char *)psz, (unsigned int)strlen(scopedstr));
+//      return (::u32) ::crc32(dwPrevious, (const ::u8 *)psz, (::u32)strlen(scopedstr));
 //
 //   }
 //

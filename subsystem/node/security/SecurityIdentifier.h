@@ -205,7 +205,7 @@ public:
     * @return created SID.
     * @throws SystemException on fail.
     */
-   //::pointer SecurityIdentifier *createSidFromString(const char *sidString) override;
+   //::pointer SecurityIdentifier *createSidFromString(const_char_pointer sidString) override;
  //
    /**
     * Returns pointer to WinAPI SID structure.

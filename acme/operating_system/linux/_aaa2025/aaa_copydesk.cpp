@@ -47,7 +47,7 @@ public:
    string                     m_str;
    ::image::image_pointer            m_pimage;
    ::file::path_array              m_patha;
-   int                        m_nTargets;
+   ::i32                        m_nTargets;
    GtkImage *                 m_pgtkimage;
 
 };
@@ -64,7 +64,7 @@ void clipboard_targets_func(GtkClipboard *clipboard, GdkAtom *atoms, gint n_atom
 
    pdata->m_nTargets = 0;
 
-   for(int i = 0; i < n_atoms; i++)
+   for(::i32 i = 0; i < n_atoms; i++)
    {
 
       if(atoms[i] == target)
@@ -87,9 +87,9 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
 
    clipboard_data * pdata = (clipboard_data *) data;
 
-   int iBitsPerSample = gdk_pixbuf_get_bits_per_sample(pixbuf);
+   ::i32 iBitsPerSample = gdk_pixbuf_get_bits_per_sample(pixbuf);
 
-   int iChannels = gdk_pixbuf_get_n_channels (pixbuf);
+   ::i32 iChannels = gdk_pixbuf_get_n_channels (pixbuf);
 
    GdkColorspace space = gdk_pixbuf_get_colorspace (pixbuf);
 
@@ -101,13 +101,13 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
          && (bHasAlpha || !bHasAlpha))
    {
 
-      int w = gdk_pixbuf_get_width(pixbuf);
+      ::i32 w = gdk_pixbuf_get_width(pixbuf);
 
-      int h = gdk_pixbuf_get_height(pixbuf);
+      ::i32 h = gdk_pixbuf_get_height(pixbuf);
 
       color32_t * pimage32Src = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
 
-      int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
+      ::i32 iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 
       pdata->m_pimage->create({w, h});
 
@@ -146,7 +146,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 
    clipboard_data * pdata = (clipboard_data *) data;
 
-   string str = (const char *)gtk_selection_data_get_data(selection_data);
+   string str = (const_char_pointer )gtk_selection_data_get_data(selection_data);
 
    string_array_base stra;
 
@@ -204,7 +204,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 }
 
 
-void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, gunsigned int info, gpointer user_data)
+void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_data, gunsigned ::i32 info, gpointer user_data)
 {
 
    clipboard_data * pdata = (clipboard_data *) user_data;
@@ -256,7 +256,7 @@ void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_d
 
    GdkAtom target = gtk_selection_data_get_target(selection_data);
 
-   gtk_selection_data_set(selection_data, target, 8, (const guchar *) (const char *) str);
+   gtk_selection_data_set(selection_data, target, 8, (const guchar_pointer ) (const_char_pointer ) str);
 
 
 }
@@ -271,7 +271,7 @@ void clipboard_clear_func(GtkClipboard * clipboard, gpointer user_data)
 
 }
 
-void clipboard_text_request_callback(GtkClipboard *clipboard, const gchar * text, gpointer data)
+void clipboard_text_request_callback(GtkClipboard *clipboard, const gchar_pointer text, gpointer data)
 {
 
    clipboard_data * pdata = (clipboard_data *) data;
@@ -310,11 +310,11 @@ gboolean clipboard_callback(gpointer data)
 
       GtkTargetEntry entrya[2];
 
-      entrya[0].target = (char *) "x-special/gnome-copied-files";
+      entrya[0].target = (char_pointer ) "x-special/gnome-copied-files";
       entrya[0].flags = 0;
       entrya[0].info = 0;
 
-      entrya[1].target = (char *) "text/uri-list";
+      entrya[1].target = (char_pointer ) "text/uri-list";
       entrya[1].flags = 0;
       entrya[1].info = 1;
 
@@ -389,9 +389,9 @@ gboolean clipboard_callback(gpointer data)
 //
 //         clipboard_data * pdata = (clipboard_data *) data;
 //
-//         int iBitsPerSample = gdk_pixbuf_get_bits_per_sample(pixbuf);
+//         ::i32 iBitsPerSample = gdk_pixbuf_get_bits_per_sample(pixbuf);
 //
-//         int iChannels = gdk_pixbuf_get_n_channels (pixbuf);
+//         ::i32 iChannels = gdk_pixbuf_get_n_channels (pixbuf);
 //
 //         GdkColorspace space = gdk_pixbuf_get_colorspace (pixbuf);
 //
@@ -403,13 +403,13 @@ gboolean clipboard_callback(gpointer data)
 //            && (bHasAlpha || !bHasAlpha))
 //         {
 //
-//            int w = gdk_pixbuf_get_width(pixbuf);
+//            ::i32 w = gdk_pixbuf_get_width(pixbuf);
 //
-//            int h = gdk_pixbuf_get_height(pixbuf);
+//            ::i32 h = gdk_pixbuf_get_height(pixbuf);
 //
 //            color32_t * pimage32Src = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
 //
-//            int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
+//            ::i32 iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 //
 //            if(pdata->m_pimage = create_image({w,  h)})
 //            {

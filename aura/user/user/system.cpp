@@ -25,11 +25,11 @@ namespace user
       //#ifdef WINDOWS
       //      //m_createstruct = system.m_createstruct;
       //      //set_class_name(string(system.m_createstruct.lpszClass));
-      //      //set_window_name(string(system.m_createstruct.lpszName));
+      //      //set_window_name(string(system.m_createstruct.pszName));
       //#else
       //      //m_createstruct = system.m_createstruct;
       //      //set_class_name(system.m_createstruct.lpszClass);
-      //      //set_window_name(system.m_createstruct.lpszName);
+      //      //set_window_name(system.m_createstruct.pszName);
       //#endif
       m_procedureFailure = system.m_procedureFailure;
       m_procedureSuccess = system.m_procedureSuccess;
@@ -140,7 +140,7 @@ namespace user
 
    //   m_strWindowName = pszWindowName;
 
-   //   m_createstruct.lpszName = m_strWindowName;
+   //   m_createstruct.pszName = m_strWindowName;
 
    //}
 

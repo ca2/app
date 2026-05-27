@@ -129,7 +129,7 @@ public:
    //   }
 
 
-   //   make_iterator operator ++ (int)
+   //   make_iterator operator ++ (::i32)
    //   {
 
    //      make_iterator iterator = this->m_pnode;
@@ -150,7 +150,7 @@ public:
    //   }
 
 
-   //   make_iterator operator -- (int)
+   //   make_iterator operator -- (::i32)
    //   {
 
    //      make_iterator iterator = this->m_pnode;
@@ -2484,10 +2484,10 @@ typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::i
 //inline stream& operator >>(stream& stream, string_list_base& list_base)
 //{
 //
-//   int iSize;
+//   ::i32 iSize;
 //   stream >> iSize;
 //   string str;
-//   for (int i = 0; i < iSize; i++)
+//   for (::i32 i = 0; i < iSize; i++)
 //   {
 //      stream >> str;
 //      list_base.add_tail(str);

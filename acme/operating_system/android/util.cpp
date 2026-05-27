@@ -7,11 +7,11 @@
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
 
-   char szFontInfo[256];
+   ::i8 szFontInfo[256];
    if (!::windows_definition::LoadString(nIDS, szFontInfo,_countof(szFontInfo)))
       return false;
 
-   char * lpszSize = _tcschr(szFontInfo, '\n');
+   char_pointer lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
    {
       // get i32_point i32_size and convert to pixels
@@ -34,15 +34,15 @@
       return false;
 
    // do expensive classname compare next
-   char szCompare[_countof("combobox")+1];
+   ::i8 szCompare[_countof("combobox")+1];
    ::GetClassName(hWnd, szCompare, _countof(szCompare));
    return ::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-::i32_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer lpszClassName)
+::i32_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer pszClassName)
 {
    ASSERT(::IsWindow(hWnd));
-   char szTemp[32];
+   ::i8 szTemp[32];
    ::GetClassName(hWnd, szTemp, _countof(szTemp));
    return ::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
 }
@@ -56,7 +56,7 @@ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWn
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
-      if (_::windows_definition::GetDlgCtrlID(hWndChild) != (unsigned short)0 &&
+      if (_::windows_definition::GetDlgCtrlID(hWndChild) != (::u16)0 &&
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
          // see if i32_point hits the child ::interaction_impl

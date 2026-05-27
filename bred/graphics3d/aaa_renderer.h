@@ -35,7 +35,7 @@
 //      virtual void endFrame();
 //
 //
-//      //virtual void on_layout(int cx, int cy);
+//      //virtual void on_layout(::i32 cx, ::i32 cy);
 //
 //
 //   };

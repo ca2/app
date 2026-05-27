@@ -22,21 +22,21 @@
 
 
 
-static int g_argc;
+static ::i32 g_argc;
 
 
 #ifdef WINDOWS
 static wchar_t ** g_argv;
 static wchar_t ** g_envp;
 #else
-static char ** g_argv;
-static char ** g_envp;
+static char_pointer * g_argv;
+static char_pointer * g_envp;
 #endif
 
 //#ifdef WINDOWS
-//CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp)
+//CLASS_DECL_ACME void set_argc_argv_envp(::i32 argc, wchar_t ** argv, wchar_t ** envp)
 //#else
-//CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
+//CLASS_DECL_ACME void set_argc_argv_envp(::i32 argc, char_pointer * argv, char_pointer * envp)
 //#endif
 //{
 //
@@ -170,13 +170,13 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //
 //
-//static char * g_pchar_binary__matter_zip_start = nullptr;
+//static char_pointer g_pchar_binary__matter_zip_start = nullptr;
 //
 //
-//static char * g_pchar_binary__matter_zip_end = nullptr;
+//static char_pointer g_pchar_binary__matter_zip_end = nullptr;
 
 //
-//embed_resource::embed_resource(char * start, char * end)
+//embed_resource::embed_resource(char_pointer start, char_pointer end)
 //{
 //
 //   g_pchar_binary__matter_zip_start = start;
@@ -186,7 +186,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//char * embed_resource::get_start()
+//char_pointer embed_resource::get_start()
 //{
 //
 //   return g_pchar_binary__matter_zip_start;
@@ -194,7 +194,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//char * embed_resource::get_end()
+//char_pointer embed_resource::get_end()
 //{
 //
 //   return g_pchar_binary__matter_zip_end;
@@ -316,7 +316,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 
-//void apex_main_data::system_construct(int argc, char** argv, char ** envp)
+//void apex_main_data::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(argc, argv, envp);
@@ -358,7 +358,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//void apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
+//void apex_main_data::system_construct(::i32 argc, wchar_t** argv, wchar_t ** envp)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(argc, argv, envp);
@@ -411,7 +411,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 #ifdef WINDOWS_DESKTOP
 
 
-//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow)
+//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(pCmdLine);
@@ -618,7 +618,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 #ifdef __APPLE__
 
 
-char * ns_get_bundle_identifier();
+char_pointer ns_get_bundle_identifier();
 
 
 string apple_get_bundle_identifier();
@@ -874,7 +874,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////      else
 ////      {
 ////
-////         int iErr = errno;
+////         ::i32 iErr = errno;
 ////
 ////         string strError;
 ////
@@ -951,9 +951,9 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////   const ::scoped_string & scopedstr = nullptr;
 ////   const ::scoped_string & scopedstr2 = nullptr;
 ////
-////   int iRef1 = -1;
-////   int iRef2 = -1;
-////   int iRef3 = -1;
+////   ::i32 iRef1 = -1;
+////   ::i32 iRef2 = -1;
+////   ::i32 iRef3 = -1;
 ////
 ////   string strX;
 ////
@@ -1209,13 +1209,13 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////   if (m_bShowApplicationInformation)
 ////   {
 ////
-////      char szEllapsed[MAX_PATH * 2];
+////      ::i8 szEllapsed[MAX_PATH * 2];
 ////
 ////      ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
 ////
 ////      auto tickEnd = ::time::now();
 ////
-////      char szTimeMessage[2108];
+////      ::i8 szTimeMessage[2108];
 ////
 ////      ::posix_time timet = ::time(nullptr);
 ////
@@ -1234,7 +1234,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////      if (is_verbose())
 ////      {
 ////
-////         char szTime[2048];
+////         ::i8 szTime[2048];
 ////
 ////         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 ////
@@ -1248,14 +1248,14 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
-////         int i::times = i::timesTotal.m_i32 % 1000;
-////         int iSecondsTotal = (int)(i::timesTotal.m_i32 / 1000);
-////         int iSeconds = iSecondsTotal % 60;
-////         int iMinutesTotal = iSecondsTotal / 60;
-////         int iMinutes = iMinutesTotal % 60;
-////         int iHoursTotal = iMinutesTotal / 60;
-////         int iHours = iHoursTotal % 24;
-////         int iDays = iHoursTotal / 24;
+////         ::i32 i::times = i::timesTotal.m_i32 % 1000;
+////         ::i32 iSecondsTotal = (::i32)(i::timesTotal.m_i32 / 1000);
+////         ::i32 iSeconds = iSecondsTotal % 60;
+////         ::i32 iMinutesTotal = iSecondsTotal / 60;
+////         ::i32 iMinutes = iMinutesTotal % 60;
+////         ::i32 iHoursTotal = iMinutesTotal / 60;
+////         ::i32 iHours = iHoursTotal % 24;
+////         ::i32 iDays = iHoursTotal / 24;
 ////
 ////         if (iDays > 0)
 ////         {
@@ -1324,7 +1324,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////         if (file_exists_raw(szEllapsed))
 ////         {
 ////
-////            char szUTCTime[2048];
+////            ::i8 szUTCTime[2048];
 ////
 ////            posix_time rawtime;
 ////
@@ -1336,7 +1336,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////            sprintf(szUTCTime, "%04d-%02d-%02d %02d:%02d:%02d UTC", g->tm_year + 1900, g->tm_mon, g->tm_mday, g->tm_hour, g->tm_min, g->tm_sec);
 ////
-////            char szTimeMessage1[2048];
+////            ::i8 szTimeMessage1[2048];
 ////
 ////            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i32);
 ////
@@ -1353,7 +1353,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////            file_add_contents_raw(szEllapsed, "\n");
 ////
-////            char szTimeMessage2[2048];
+////            ::i8 szTimeMessage2[2048];
 ////
 ////            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_timeStart).m_i32);
 ////
@@ -1467,11 +1467,11 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //   virtual public object
 //{
 //
-//   unsigned char m_ucha[1024];
+//   ::u8 m_u8a[1024];
 //
 //};
 //
-//typedef size_t FN_GET_STRING(char * psz, size_t s);
+//typedef size_t FN_GET_STRING(char_pointer psz, size_t s);
 //
 //
 //typedef FN_GET_STRING * PFN_GET_STRING;
@@ -1926,7 +1926,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   ::string str;
 //
-//   for(int i = 0; i < g_argc; i++)
+//   for(::i32 i = 0; i < g_argc; i++)
 //   {
 //
 //      if (str.has_character())

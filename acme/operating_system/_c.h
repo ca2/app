@@ -66,7 +66,7 @@
 #endif
 
 //template < typename PRED >
-//inline bool predicate_Sleep(int iTime, PRED pred);
+//inline bool predicate_Sleep(::i32 iTime, PRED pred);
 
 //CLASS_DECL_ACME void press_any_key_to_exit(const ::scoped_string & scopedstr);
 

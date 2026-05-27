@@ -23,7 +23,7 @@ Copyright (c) 2013  Ingo Thies <ithies@astro.uni-bonn.de>
 These will be interpolated for the actual temperature.
 This table was provided by Ingo Thies, 2013. See
 the file README-colorramp for more information. */
-static const float g_fa_blackbody_color[] =
+static const ::f32 g_fa_blackbody_color[] =
 {
    1.00000000f,  0.18172716f,  0.00000000f, /* 1000K */
    1.00000000f,  0.25503671f,  0.00000000f, /* 1100K */
@@ -270,7 +270,7 @@ static const float g_fa_blackbody_color[] =
 };
 
 static void
-interpolate_color(float a, const float * c1, const float * c2, float * r, float * g, float * b)
+interpolate_color(::f32 a, const ::f32 * c1, const ::f32 * c2, ::f32 * r, ::f32 * g, ::f32 * b)
 {
    *r = (1.0f - a) * c1[0] + a * c2[0];
    *g = (1.0f - a) * c1[1] + a * c2[1];
@@ -279,10 +279,10 @@ interpolate_color(float a, const float * c1, const float * c2, float * r, float 
 
 
 
-CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp)
+CLASS_DECL_AURA void black_body(::f32 * r, ::f32 * g, ::f32 * b, ::u32 dwTemp)
 {
 
-   int temp_index = ((dwTemp - 1000) / 100) * 3;
+   ::i32 temp_index = ((dwTemp - 1000) / 100) * 3;
 
    if (temp_index < 0)
    {
@@ -290,14 +290,14 @@ CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp)
       temp_index = 0;
 
    }
-   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
+   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(::f32)) - 3)
    {
 
-      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
+      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(::f32)) - 3;
 
    }
 
-   float alpha = (dwTemp % 100) / 100.0f;
+   ::f32 alpha = (dwTemp % 100) / 100.0f;
 
    interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
 

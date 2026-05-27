@@ -32,10 +32,10 @@
 //
 //
 //      template < integral_time_unit INTEGRAL_TIME_UNIT >
-//      inline double period_rate(const INTEGRAL_TIME_UNIT & integraltime, const INTEGRAL_TIME_UNIT & period)
+//      inline ::f64 period_rate(const INTEGRAL_TIME_UNIT & integraltime, const INTEGRAL_TIME_UNIT & period)
 //      {
 //
-//         return (double)(elapsed(integraltime).m_i) / (double)(period.m_i);
+//         return (::f64)(elapsed(integraltime).m_i) / (::f64)(period.m_i);
 //
 //      }
 //

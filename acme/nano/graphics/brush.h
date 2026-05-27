@@ -19,11 +19,14 @@ class CLASS_DECL_ACME brush :
 public:
 
 
-   ::color::color       m_color;
+   //::color::color       m_color;
 
 
    brush();
    ~brush() override;
+
+
+   virtual void create_solid_brush(const ::color::color & color);
 
 
 };

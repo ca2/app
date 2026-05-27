@@ -37,8 +37,8 @@ public:
 
    byte2_stream & operator >>(bool &b);
    byte2_stream & operator << (bool b);
-   byte2_stream & operator >>(int & i);
-   byte2_stream & operator << (int  i);
+   byte2_stream & operator >>(::i32 & i);
+   byte2_stream & operator << (::i32  i);
    byte2_stream & operator >>(::i64 & ll);
    byte2_stream & operator << (::i64 ll);
    byte2_stream & operator >>(string & str);

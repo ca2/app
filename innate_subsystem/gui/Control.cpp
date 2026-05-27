@@ -97,14 +97,14 @@ namespace innate_subsystem
 // //   // invalidate();
 // // }
 //
-// /*void ControlComposite::setText(const char *text)
+// /*void ControlComposite::setText(const_char_pointer text)
 // {
 //
 //    m_pparticleThis->setText(text);
 //   ///SetWindowText(m_hwnd, text);
 // }
 //
-// void ControlComposite::setSignedInt(int value)
+// void ControlComposite::setSignedInt(::i32 value)
 // {
 //    m_pparticleThis->setSignedInt(value);
 //   // ::string text;
@@ -168,8 +168,8 @@ namespace innate_subsystem
 //
 // //::string ControlComposite::getText()
 // //{
-// //  // int length = (int)SendMessage(m_hwnd, WM_GETTEXTLENGTH, 0, 0);
-// //  // std::vector<char> buf(length + 1);
+// //  // ::i32 length = (::i32)SendMessage(m_hwnd, WM_GETTEXTLENGTH, 0, 0);
+// //  // std::vector<::i8> buf(length + 1);
 // //  // GetWindowText(m_hwnd, &buf.front(), length + 1);
 // //  // storage->setString(&buf.front());
 // //

@@ -31,10 +31,10 @@ public:
   CharDistributionAnalysis() {Reset();};
 
   //feed a block of data and do distribution analysis
-  void HandleData(const ::string & aBuf, PRunsigned int aLen) {};
+  void HandleData(const ::string & aBuf, PRunsigned ::i32 aLen) {};
   
   //Feed a character with known length
-  void HandleOneChar(const ::string & aStr, PRunsigned int aCharLen)
+  void HandleOneChar(const ::string & aStr, PRunsigned ::i32 aCharLen)
   {
     PRInt32 order;
 
@@ -45,7 +45,7 @@ public:
     {
       mTotalChars++;
       //order is valid
-      if ((PRunsigned int)order < mTableSize)
+      if ((PRunsigned ::i32)order < mTableSize)
       {
         if (512 > mCharToFreqOrder[order])
           mFreqChars++;
@@ -54,7 +54,7 @@ public:
   };
 
   //return confidence base on existing data
-  float GetConfidence();
+  ::f32 GetConfidence();
 
   //Reset analyser, clear any state 
   void      Reset(void) 
@@ -82,20 +82,20 @@ protected:
   PRBool   mDone;
 
   //The number of characters whose frequency order is less than 512
-  PRunsigned int mFreqChars;
+  PRunsigned ::i32 mFreqChars;
 
   //Total character encounted.
-  PRunsigned int mTotalChars;
+  PRunsigned ::i32 mTotalChars;
 
-  //Mapping table to get frequency order from char order (get from GetOrder())
+  //Mapping table to get frequency order from ::i8 order (get from GetOrder())
   const PRInt16  *mCharToFreqOrder;
 
   //Size of above table
-  PRunsigned int mTableSize;
+  PRunsigned ::i32 mTableSize;
 
   //This is a constant value varies from language to language, it is used in 
   //calculating confidence. See my paper for further detail.
-  float    mTypicalDistributionRatio;
+  ::f32    mTypicalDistributionRatio;
 };
 
 
@@ -106,12 +106,12 @@ public:
 protected:
 
   //for euc-TW encoding, we are interested 
-  //  first  unsigned char range: 0xc4 -- 0xfe
-  //  second unsigned char range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xc4 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::scoped_string & scopedstr) 
-  { if ((unsigned char)*str >= (unsigned char)0xc4)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xc4) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((::u8)*str >= (::u8)0xc4)  
+      return 94*((::u8)str[0]-(::u8)0xc4) + (::u8)str[1] - (::u8)0xa1;
     else
       return -1;
   };
@@ -124,12 +124,12 @@ public:
   EUCKRDistributionAnalysis();
 protected:
   //for euc-KR encoding, we are interested 
-  //  first  unsigned char range: 0xb0 -- 0xfe
-  //  second unsigned char range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xb0 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::scoped_string & scopedstr) 
-  { if ((unsigned char)*str >= (unsigned char)0xb0)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xb0) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((::u8)*str >= (::u8)0xb0)  
+      return 94*((::u8)str[0]-(::u8)0xb0) + (::u8)str[1] - (::u8)0xa1;
     else
       return -1;
   };
@@ -141,12 +141,12 @@ public:
   GB2312DistributionAnalysis();
 protected:
   //for GB2312 encoding, we are interested 
-  //  first  unsigned char range: 0xb0 -- 0xfe
-  //  second unsigned char range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xb0 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::scoped_string & scopedstr) 
-  { if ((unsigned char)*str >= (unsigned char)0xb0 && (unsigned char)str[1] >= (unsigned char)0xa1)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xb0) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((::u8)*str >= (::u8)0xb0 && (::u8)str[1] >= (::u8)0xa1)  
+      return 94*((::u8)str[0]-(::u8)0xb0) + (::u8)str[1] - (::u8)0xa1;
     else
       return -1;
   };
@@ -159,15 +159,15 @@ public:
   Big5DistributionAnalysis();
 protected:
   //for big5 encoding, we are interested 
-  //  first  unsigned char range: 0xa4 -- 0xfe
-  //  second unsigned char range: 0x40 -- 0x7e , 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xa4 -- 0xfe
+  //  second ::u8 range: 0x40 -- 0x7e , 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::scoped_string & scopedstr) 
-  { if ((unsigned char)*str >= (unsigned char)0xa4)  
-      if ((unsigned char)str[1] >= (unsigned char)0xa1)
-        return 157*((unsigned char)str[0]-(unsigned char)0xa4) + (unsigned char)str[1] - (unsigned char)0xa1 +63;
+  { if ((::u8)*str >= (::u8)0xa4)  
+      if ((::u8)str[1] >= (::u8)0xa1)
+        return 157*((::u8)str[0]-(::u8)0xa4) + (::u8)str[1] - (::u8)0xa1 +63;
       else
-        return 157*((unsigned char)str[0]-(unsigned char)0xa4) + (unsigned char)str[1] - (unsigned char)0x40;
+        return 157*((::u8)str[0]-(::u8)0xa4) + (::u8)str[1] - (::u8)0x40;
     else
       return -1;
   };
@@ -179,20 +179,20 @@ public:
   SJISDistributionAnalysis();
 protected:
   //for sjis encoding, we are interested 
-  //  first  unsigned char range: 0x81 -- 0x9f , 0xe0 -- 0xfe
-  //  second unsigned char range: 0x40 -- 0x7e,  0x81 -- oxfe
+  //  first  ::u8 range: 0x81 -- 0x9f , 0xe0 -- 0xfe
+  //  second ::u8 range: 0x40 -- 0x7e,  0x81 -- oxfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::scoped_string & scopedstr) 
   { 
     PRInt32 order;
-    if ((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f)  
-      order = 188 * ((unsigned char)str[0]-(unsigned char)0x81);
-    else if ((unsigned char)*str >= (unsigned char)0xe0 && (unsigned char)*str <= (unsigned char)0xef)  
-      order = 188 * ((unsigned char)str[0]-(unsigned char)0xe0 + 31);
+    if ((::u8)*str >= (::u8)0x81 && (::u8)*str <= (::u8)0x9f)  
+      order = 188 * ((::u8)str[0]-(::u8)0x81);
+    else if ((::u8)*str >= (::u8)0xe0 && (::u8)*str <= (::u8)0xef)  
+      order = 188 * ((::u8)str[0]-(::u8)0xe0 + 31);
     else
       return -1;
-    order += (unsigned char)*(str+1) - 0x40;
-    if ((unsigned char)str[1] > (unsigned char)0x7f)
+    order += (::u8)*(str+1) - 0x40;
+    if ((::u8)str[1] > (::u8)0x7f)
       order--;
     return order;
   };
@@ -204,12 +204,12 @@ public:
   EUCJPDistributionAnalysis();
 protected:
   //for euc-JP encoding, we are interested 
-  //  first  unsigned char range: 0xa0 -- 0xfe
-  //  second unsigned char range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xa0 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::scoped_string & scopedstr) 
-  { if ((unsigned char)*str >= (unsigned char)0xa0)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xa1) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((::u8)*str >= (::u8)0xa0)  
+      return 94*((::u8)str[0]-(::u8)0xa1) + (::u8)str[1] - (::u8)0xa1;
     else
       return -1;
   };

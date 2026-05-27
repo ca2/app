@@ -14,7 +14,7 @@ string get_sys_temp_path()
 
 }
 #ifdef __ANDROID__
-char * _android_get_executable_path_dup();
+char_pointer _android_get_executable_path_dup();
 #endif
 
 
@@ -36,7 +36,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //        return false;
 //
 //    }
-//   char * pszRealPath = ::realpath(scopedstr, NULL);
+//   char_pointer pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if(scopedstrRealPath == NULL)
 //   {
@@ -128,7 +128,7 @@ namespace path
    ::file::path module()
    {
 
-      char *pszModuleFilePath = nullptr;
+      char_pointer pszModuleFilePath = nullptr;
 
 #if defined(__APPLE__)
 
@@ -168,7 +168,7 @@ namespace path
 
    ::file::path path;
 
-   char *pszModule;
+   char_pointer pszModule;
 
 #ifdef __ANDROID__
 
@@ -181,9 +181,9 @@ namespace path
 
       if (!br_init_lib(nullptr)) {
 
-         char path[PATH_MAX * 4];
+         ::i8 path[PATH_MAX * 4];
 
-         char dest[PATH_MAX * 4];
+         ::i8 dest[PATH_MAX * 4];
 
          pid_t pid = getpid();
 

@@ -17,7 +17,7 @@ namespace acme
 //#if defined(UNICODE)
 //
 //
-//   void acme::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
+//   void acme::initialize(::i32 argc, wchar_t * argv[], wchar_t * envp[])
 //   {
 //
 //      initialize(argc, argv, envp);
@@ -25,7 +25,7 @@ namespace acme
 //   }
 //
 //
-//   void acme::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
+//   void acme::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, ::i32 nCmdShow)
 //   {
 //
 //      initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
@@ -35,7 +35,7 @@ namespace acme
 //#else
 
 
-   void acme::initialize_system(int argc, char * argv[], char * envp[])
+   void acme::initialize_system(::i32 argc, char_pointer argv[], char_pointer envp[])
    {
 
 ///      initialize_system(argc, argv, envp);

@@ -140,7 +140,7 @@ void directory_context::destroy()
 
 
 
-inline bool myspace(char ch)
+inline bool myspace(::i8 ch)
 {
    return ch == ' ' ||
       ch == '\t' ||
@@ -1470,12 +1470,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, ::u32 & dwLastError)
 //      {
 //
-//         return find(path, bIsDir, dwLastError, (int) path.length());
+//         return find(path, bIsDir, dwLastError, (::i32) path.length());
 //
 //      }
 //
 //
-//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, ::u32 &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, ::u32 &dwLastError, ::i32 iLastChar)
 //      {
 //
 //         if (path.get_length() <= 0)
@@ -1514,7 +1514,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup_dynamic(const ::file::path & path, bool &bIsDir, ::u32 & dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::lookup_dynamic(const ::file::path & path, bool &bIsDir, ::u32 & dwLastError, ::i32 iLastChar)
 //      {
 //
 //         is_dir * pdir = this;
@@ -1590,12 +1590,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,::u32 &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,::u32 &dwLastError, ::i32 iLastChar)
 //      {
 //
 //         const_char_pointer pszEnd = path.c_str() + iLastChar;
 //
-//         char sz[2048];
+//         ::i8 sz[2048];
 //
 //         is_dir_work find;
 //
@@ -1605,14 +1605,14 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         char * psz3 = find.m_psz;
+//         char_pointer psz3 = find.m_psz;
 //
 //         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
-//            char * psz1 = strchr(find.m_psz, '/');
+//            char_pointer psz1 = strchr(find.m_psz, '/');
 //
-//            char * psz2 = strchr(find.m_psz, '\\');
+//            char_pointer psz2 = strchr(find.m_psz, '\\');
 //
 //            psz3 = min_non_null(scopedstr1, psz2);
 //
@@ -3156,7 +3156,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //
 //   string strCandidate;
 //
-//   for (int i = 0; i < stra.get_count(); i++)
+//   for (::i32 i = 0; i < stra.get_count(); i++)
 //   {
 //
 //      strCandidate = stra[i] / pszTopic;

@@ -33,7 +33,7 @@ public:
 #else
       DWORD64 dwLimit= class ::time::now() - 1000;
 #endif
-      for(int i = 0; i < this->get_count();)
+      for(::i32 i = 0; i < this->get_count();)
       {
          if(dwLimit > m_pData[i].m_dwTickCount)
          {
@@ -55,7 +55,7 @@ public:
    {
       __UNREFERENCED_PARAMETER(bRemove);
 
-      for(int mi = 0; mi < this->get_count(); mi++)
+      for(::i32 mi = 0; mi < this->get_count(); mi++)
       {
          if(m_pData[mi].contains(point))
          {

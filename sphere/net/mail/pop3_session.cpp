@@ -3,15 +3,15 @@
 #include <io.h>
 
 
-#define socklen_t int /* actually true on most systems */
+#define socklen_t ::i32 /* actually true on most systems */
 
-extern int pop3_recv (pop3sock_t sock, char* buf, int len);
+extern ::i32 pop3_recv (pop3sock_t sock, char_pointer buf, ::i32 len);
 
 #ifdef USE_SSL
 
-static int SSL_UP = 0;
+static ::i32 SSL_UP = 0;
 
-static char* SSL_CERT = nullptr;
+static char_pointer SSL_CERT = nullptr;
 
 
 void pop3_cert_setup(const ::string &certfile)
@@ -22,9 +22,9 @@ void pop3_cert_setup(const ::string &certfile)
 }
 
 
-int ssl_verify_callback(int ok, X509_STORE_CTX *ctx) {
+::i32 ssl_verify_callback(::i32 ok, X509_STORE_CTX *ctx) {
     if (!ok) {
-        int err;
+        ::i32 err;
         err = X509_STORE_CTX_get_error(ctx);
 #ifdef EBUG
         fprintf(stderr, "SSL error #%d: %s.\n", err,
@@ -37,7 +37,7 @@ int ssl_verify_callback(int ok, X509_STORE_CTX *ctx) {
 
 
 
-pop3sock_t ssl_prepare(const int port)
+pop3sock_t ssl_prepare(const ::i32 port)
 {
    pop3sock_t sock;
 	sock =(pop3sock_t)malloc(sizeof(pop3sock));
@@ -57,11 +57,11 @@ pop3sock_t ssl_prepare(const int port)
 
 #endif
 
-pop3sock_t pop3_prepare(const ::string & servername, const int port, struct sockaddr_in* connection, struct hostent* server){
+pop3sock_t pop3_prepare(const ::string & servername, const ::i32 port, struct sockaddr_in* connection, struct hostent* server){
 /* prepares the pop session and returns a socket descriptor */
 pop3sock_t sock;
 struct hostent* hostent_buf;
-int i;
+::i32 i;
 #ifdef WIN32
 
 	WSADATA wsaData;
@@ -76,7 +76,7 @@ int i;
 
 #endif
 
-	memory_set((char*)connection,0,sizeof(struct sockaddr_in));
+	memory_set((char_pointer )connection,0,sizeof(struct sockaddr_in));
 
 	hostent_buf=gethostbyname(servername);
 	if(!hostent_buf){
@@ -91,7 +91,7 @@ int i;
     i=0;
     while (hostent_buf->h_aliases[i])
     {
-        server->h_aliases=realloc(server->h_aliases,(i+1)*sizeof(char*));
+        server->h_aliases=realloc(server->h_aliases,(i+1)*sizeof(char_pointer ));
         if(hostent_buf->h_aliases[i])
             server->h_aliases[i]=strdup(hostent_buf->h_aliases[i]);
         else server->h_aliases[i]=nullptr;
@@ -101,19 +101,19 @@ int i;
     i=0;
     while (hostent_buf->h_addr_list[i])
     { /* has at least one adress */
-        server->h_addr_list=realloc(server->h_addr_list,(i+1)*sizeof(char*));
+        server->h_addr_list=realloc(server->h_addr_list,(i+1)*sizeof(char_pointer ));
         server->h_addr_list[i]=malloc(server->h_length);
         memory_transfer(server->h_addr_list[i],hostent_buf->h_addr_list[i],server->h_length);
         i++;
     } 
-    server->h_addr_list=realloc(server->h_addr_list, (i+1)*sizeof(char*));
+    server->h_addr_list=realloc(server->h_addr_list, (i+1)*sizeof(char_pointer ));
     server->h_addr_list[i]=malloc(1);
     server->h_addr_list[i]='\0'; 
     /* end hostent deep copy */
 #endif
-	memory_transfer((char*)&(connection->sin_addr.s_addr),server->h_addr,server->h_length);
+	memory_transfer((char_pointer )&(connection->sin_addr.s_addr),server->h_addr,server->h_length);
 	connection->sin_family=AF_INET;
-	connection->sin_port=htons(port?(unsigned short int)port:(unsigned short int)110);	/* integral i32_size mismatch in argument - htons(port)*/
+	connection->sin_port=htons(port?(::u16 ::i32)port:(::u16 ::i32)110);	/* integral i32_size mismatch in argument - htons(port)*/
 
 #ifdef USE_SSL
 	sock = ssl_prepare(port);
@@ -126,10 +126,10 @@ int i;
 	return(sock);
 }
 
-char* pop3_connect(pop3sock_t sock, struct sockaddr_in* connection){
+char_pointer pop3_connect(pop3sock_t sock, struct sockaddr_in* connection){
 /* connects to the server through the sock and returns server's welcome */
-int r;
-char* buf;
+::i32 r;
+char_pointer buf;
 
 #ifdef EBUG
 	fprintf(stderr,"<pop3_connect>\n");
@@ -165,7 +165,7 @@ char* buf;
 	}
 
 
-	buf=(char*)malloc(POPBUF);
+	buf=(char_pointer )malloc(POPBUF);
 	if(!buf){
 		fprintf(stderr,"pop3_connect.malloc");
 		return(nullptr);
@@ -181,7 +181,7 @@ char* buf;
 }
 
 void pop3_disconnect(pop3sock_t sock, struct hostent* server){
-    int i;
+    ::i32 i;
 /* close socket  */
 #ifdef USE_SSL
 	if (sock->sock>0) 

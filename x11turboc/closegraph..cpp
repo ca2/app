@@ -28,14 +28,14 @@
 
 #include "graphics.h"
 
-extern volatile int TcShutdownGraphics;
+extern volatile ::i32 TcShutdownGraphics;
 
 //----------------------------------------------------------------------------
 
 void
 closegraph (void)
 {
-  int i;
+  ::i32 i;
   if (TcGraphicsInitialized)
     {
       TcShutdownGraphics = 1;

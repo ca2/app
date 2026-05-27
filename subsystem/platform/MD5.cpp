@@ -79,7 +79,7 @@ namespace subsystem
    }
 
    // rotateLeft rotates x left n bits.
-   ::u32 MD5::rotateLeft(::u32 x, int n) {
+   ::u32 MD5::rotateLeft(::u32 x, ::i32 n) {
       return (x << n) | (x >> (32-n));
    }
 
@@ -123,14 +123,14 @@ namespace subsystem
       m_state[3] = 0x10325476;
    }
 
-   void MD5::decode(::u32 output[], const unsigned char input[], ::u32 len)
+   void MD5::decode(::u32 output[], const ::u8 input[], ::u32 len)
    {
       for (::u32 i = 0, j = 0; j < len; i++, j += 4)
          output[i] = ((::u32)input[j]) | (((::u32)input[j+1]) << 8) |
            (((::u32)input[j+2]) << 16) | (((::u32)input[j+3]) << 24);
    }
 
-   void MD5::encode(unsigned char output[], const ::u32 input[], ::u32 len)
+   void MD5::encode(::u8 output[], const ::u32 input[], ::u32 len)
    {
       for (::u32 i = 0, j = 0; j < len; i++, j += 4) {
          output[j] = input[i] & 0xff;
@@ -140,7 +140,7 @@ namespace subsystem
       }
    }
 
-   void MD5::transform(const unsigned char block[BLOCKSIZE])
+   void MD5::transform(const ::u8 block[BLOCKSIZE])
    {
       ::u32 a = m_state[0], b = m_state[1], c = m_state[2], d = m_state[3], x[16];
       decode (x, block, BLOCKSIZE);
@@ -226,7 +226,7 @@ namespace subsystem
       memset(x, 0, sizeof(x));
    }
 
-   void MD5::update(const unsigned char input[], ::u32 length)
+   void MD5::update(const ::u8 input[], ::u32 length)
    {
       // compute number of bytes mod 64
       ::u32 index = m_count[0] / 8 % BLOCKSIZE;
@@ -261,14 +261,14 @@ namespace subsystem
       memcpy(&m_buffer[index], &input[i], length-i);
    }
 
-   void MD5::update(const char input[], ::u32 length)
+   void MD5::update(const ::i8 input[], ::u32 length)
    {
-      update((const unsigned char*)input, length);
+      update((const ::u8*)input, length);
    }
 
    MD5& MD5::finalize()
    {
-      unsigned char padding[64] = {
+      ::u8 padding[64] = {
          0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -276,7 +276,7 @@ namespace subsystem
 
       if (!m_finalized) {
          // Save number of bits
-         unsigned char bits[8];
+         ::u8 bits[8];
          encode(bits, m_count, 8);
 
          // pad out to 56 mod 64.
@@ -300,8 +300,8 @@ namespace subsystem
       return *this;
    }
 
-   unsigned char *MD5::getHash()
+   ::u8 *MD5::getHash()
    {
-      return (unsigned char *)&m_digest[0];
+      return (::u8 *)&m_digest[0];
    }
 }

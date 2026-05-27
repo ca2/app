@@ -30,7 +30,7 @@ namespace netserver
 
       on_send_response();
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
       string strStatus;
 
@@ -131,7 +131,7 @@ namespace netserver
 
          auto purl = psystem->url();
 
-         for (int i = 0; i < straValue.get_size(); i++)
+         for (::i32 i = 0; i < straValue.get_size(); i++)
          {
 
             url_domain domain;
@@ -181,7 +181,7 @@ namespace netserver
             
             stra.explode(",", straItem[1]);
 
-            for (int i = 0; i < stra.get_count(); i++)
+            for (::i32 i = 0; i < stra.get_count(); i++)
             {
                
                string_array_base straRange;
@@ -215,7 +215,7 @@ namespace netserver
    }
 
 
-   //void socket::simple_image_server(const ::scoped_string & scopedstrPath, int iMaxWidth, int iMaxHeight)
+   //void socket::simple_image_server(const ::scoped_string & scopedstrPath, ::i32 iMaxWidth, ::i32 iMaxHeight)
    //{
 
    //   if (iMaxWidth <= 0 && iMaxHeight <= 0)
@@ -229,31 +229,31 @@ namespace netserver
 
    //      pimage->load_image(scopedstrPath);
 
-   //      double dRateW = 1.0;
+   //      ::f64 dRateW = 1.0;
 
    //      if (iMaxWidth > 0)
    //      {
    //         if (pimage->width() > iMaxWidth)
    //         {
-   //            dRateW = (double)iMaxWidth / (double)pimage->width();
+   //            dRateW = (::f64)iMaxWidth / (::f64)pimage->width();
    //         }
    //      }
 
-   //      double dRateH = 1.0;
+   //      ::f64 dRateH = 1.0;
 
    //      if (iMaxHeight > 0)
    //      {
    //         if (pimage->height() > iMaxHeight)
    //         {
-   //            dRateH = (double)iMaxHeight / (double)pimage->width();
+   //            dRateH = (::f64)iMaxHeight / (::f64)pimage->width();
    //         }
    //      }
 
-   //      double dRate = minimum(dRateW, dRateH);
+   //      ::f64 dRate = minimum(dRateW, dRateH);
 
    //      ::image::image_pointer pimage;
 
-   //      pimage = create_image({(int)(pimage->width() * dRate),  (int)(pimage->height() * dRate)});
+   //      pimage = create_image({(::i32)(pimage->width() * dRate),  (::i32)(pimage->height() * dRate)});
 
    //      pimage->stretch_image(pimage);
 

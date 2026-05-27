@@ -41,7 +41,7 @@ void ftpfs_file::close()
 
    ::ftp::client_socket * pclient = m_pclient;
 
-   int iTry = 0;
+   ::i32 iTry = 0;
 
 retry:
 

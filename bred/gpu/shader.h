@@ -55,23 +55,23 @@ namespace gpu
       //};
 
 
-      int m_iVertexLevel = -1;
+      ::i32 m_iVertexLevel = -1;
 
       //::u32               m_uId;
       struct constant_buffer
       {
          ::gpu::enum_type m_etype;
          ::memory m_memory;
-         int m_i1VertexShader = -1;
-         int m_i2VertexShader = -1;
-         int m_i1FragmentShader = -1;
-         int m_i2FragmentShader = -1;
+         ::i32 m_i1VertexShader = -1;
+         ::i32 m_i2VertexShader = -1;
+         ::i32 m_i1FragmentShader = -1;
+         ::i32 m_i2FragmentShader = -1;
       };
       //::string_map_base<constant_buffer> m_mapConstantBuffer;
       //struct sampler_and_texture
       //{
 
-      //   int m_i32;
+      //   ::i32 m_i32;
       //};
       //::string_map_base<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;
@@ -117,11 +117,11 @@ namespace gpu
       ::pointer < input_layout > m_pinputlayout;
       class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
-      int                        m_iPushConstants = -1;
+      ::i32                        m_iPushConstants = -1;
       ::string                   m_strPushConstantsDebugging;
 
       ::gpu::texture *           m_pgputextureBound = nullptr;
-      int m_iFrameBound = -1;
+      ::i32 m_iFrameBound = -1;
 
       shader();
       ~shader() override;
@@ -154,17 +154,17 @@ namespace gpu
       virtual void on_initialize_shader();
 
       ::gpu::binding_set_array * binding_set_array();
-      ::gpu::binding_set * binding_set(int iSet = 0, ::gpu::binding_set *pgpubindingset = nullptr);
-      ::gpu::binding * binding(int iSet = 0, int iSlot = 0);
+      ::gpu::binding_set * binding_set(::i32 iSet = 0, ::gpu::binding_set *pgpubindingset = nullptr);
+      ::gpu::binding * binding(::i32 iSet = 0, ::i32 iSlot = 0);
 
       virtual void update_binding_slots();
       ::gpu::binding_slot_set_array * binding_slot_set_array();
-      ::gpu::binding_slot_set * binding_slot_set(int iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
-      ::gpu::binding_slot * binding_slot(int iSet = 0, int iSlot = 0, ::gpu::binding * pgpubinding = nullptr);
+      ::gpu::binding_slot_set * binding_slot_set(::i32 iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
+      ::gpu::binding_slot * binding_slot(::i32 iSet = 0, ::i32 iSlot = 0, ::gpu::binding * pgpubinding = nullptr);
 
       virtual ::gpu::binding_slot *  get_first_image_sampler_binding_slot();
       virtual ::gpu::binding_slot_set * get_first_image_sampler_binding_slot_set();
-      virtual ::gpu::binding_set * _001GetSingularImageBindingSet(int & iSet);
+      virtual ::gpu::binding_set * _001GetSingularImageBindingSet(::i32 & iSet);
       virtual bool has_image_sampler();
       virtual bool has_global_ubo();
       virtual void set_global_ubo();
@@ -173,22 +173,22 @@ namespace gpu
 
       //virtual void setBool(const ::scoped_string & scopedstrName, bool value);
 
-      //virtual void setInt(const ::scoped_string & scopedstrName, int value);
+      //virtual void setInt(const ::scoped_string & scopedstrName, ::i32 value);
 
-      //virtual void setFloat(const ::scoped_string & scopedstrName, float value);
+      //virtual void setFloat(const ::scoped_string & scopedstrName, ::f32 value);
 
       ////virtual void setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value);
-      //virtual void setVec2(const ::scoped_string & scopedstrName, float x, float y);
+      //virtual void setVec2(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y);
 
       ////virtual void setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value);
-      //virtual void setVec3(const ::scoped_string & scopedstrName, float x, float y, float z);
+      //virtual void setVec3(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y, ::f32 z);
 
       ////virtual void setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value);
-      //virtual void setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w);
+      //virtual void setVec4(const ::scoped_string & scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w);
 
-      //virtual void setMat2(const ::scoped_string & scopedstrName, const float p[2*2]);
-      //virtual void setMat3(const ::scoped_string & scopedstrName, const float p[3*3]);
-      //virtual void setMat4(const ::scoped_string & scopedstrName, const float p[4*4]);
+      //virtual void setMat2(const ::scoped_string & scopedstrName, const ::f32 p[2*2]);
+      //virtual void setMat3(const ::scoped_string & scopedstrName, const ::f32 p[3*3]);
+      //virtual void setMat4(const ::scoped_string & scopedstrName, const ::f32 p[4*4]);
 
       //virtual shader * create_shader(const ::scoped_string & scopedstrVertex, enum_shader eshader);
 
@@ -213,14 +213,14 @@ namespace gpu
       //virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
         //                ::gpu::texture *pgputextureSource);
       virtual void bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock,
-                               int iSlot = 0);
-      virtual void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet, ::gpu::binding_slot_set *pgpubindingslotset);
+                               ::i32 iSlot = 0);
+      virtual void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, ::i32 iSet, ::gpu::binding_slot_set *pgpubindingslotset);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource,
-                               int iSlot = 0);
+                               ::i32 iSlot = 0);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource,
-                               int iSlot = 0);
-      virtual void bind_source2(::gpu::command_buffer * pgpucommandbuffer, int iIndex,
-         const char * pszPayloadName, ::gpu::texture * pgputextureSource);
+                               ::i32 iSlot = 0);
+      virtual void bind_source2(::gpu::command_buffer * pgpucommandbuffer, ::i32 iIndex,
+         const_char_pointer pszPayloadName, ::gpu::texture * pgputextureSource);
       //virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer *pgpucommandbuffer);
 
@@ -230,21 +230,21 @@ namespace gpu
       virtual void set_push_properties(::gpu::command_buffer *pgpucommandbuffer, const ::block &block);
 
 
-      //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);
+      //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, ::i32 value);
 
       virtual void set_bool(const ::scoped_string& scopedstrName, bool value);
 
-      virtual void set_int(const ::scoped_string& scopedstrName, int value);
+      virtual void set_int(const ::scoped_string& scopedstrName, ::i32 value);
 
-      virtual void set_float(const ::scoped_string& scopedstrName, float value);
+      virtual void set_float(const ::scoped_string& scopedstrName, ::f32 value);
 
-      virtual void set_sequence2(const ::scoped_string& scopedstrName, float x, float y);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y);
       virtual void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
 
-      virtual void set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z);
       virtual void set_sequence3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
 
-      virtual void set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w);
       virtual void set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
 
       virtual void set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a);

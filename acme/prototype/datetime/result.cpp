@@ -36,7 +36,7 @@ namespace datetime
    }
 
 
-   double result::get_years() const
+   ::f64 result::get_years() const
    {
 
       return m_iYear + m_iMonth / 12.0 +  (m_iDay + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0)) / 365.2425;
@@ -44,7 +44,7 @@ namespace datetime
    }
 
 
-   double result::get_months() const
+   ::f64 result::get_months() const
    {
 
       return m_iYear / 12.0 + m_iMonth +  12.0 * (m_iDay + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0)) / 365.2425;
@@ -52,7 +52,7 @@ namespace datetime
    }
 
 
-   double result::get_days() const
+   ::f64 result::get_days() const
    {
 
       return (m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0);
@@ -60,7 +60,7 @@ namespace datetime
    }
 
 
-   double result::get_hours() const
+   ::f64 result::get_hours() const
    {
 
       return (m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24.0 + m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0);
@@ -68,13 +68,13 @@ namespace datetime
    }
 
 
-   double result::get_minutes() const
+   ::f64 result::get_minutes() const
    {
       return (((m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24  + m_iHour) * 60.0) + m_iMinute + (m_iSecond / 60.0);
    }
 
 
-   double result::get_seconds() const
+   ::f64 result::get_seconds() const
    {
 
       return (((m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24.0  + m_iHour) * 60.0 + m_iMinute) * 60.0 + m_iSecond;
@@ -97,7 +97,7 @@ namespace datetime
 
       ASSERT(m_bSpan);
 
-      return ::earth::time_span((int) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
+      return ::earth::time_span((::i32) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
 
    }
 
@@ -127,10 +127,10 @@ datetime::result operator + (const datetime::result & val1, const datetime::resu
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
-      int iTotalSecond = val1.m_iSecond + val2.m_iSecond;
-      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute + val2.m_iMinute;
-      int iTotalHour = iTotalMinute / 60 + val1.m_iHour + val2.m_iHour;
-      int iTotalDay = iTotalHour / 24 + val1.m_iDay + val2.m_iDay;
+      ::i32 iTotalSecond = val1.m_iSecond + val2.m_iSecond;
+      ::i32 iTotalMinute = iTotalSecond / 60 + val1.m_iMinute + val2.m_iMinute;
+      ::i32 iTotalHour = iTotalMinute / 60 + val1.m_iHour + val2.m_iHour;
+      ::i32 iTotalDay = iTotalHour / 24 + val1.m_iDay + val2.m_iDay;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -172,10 +172,10 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
-      int iTotalSecond = val1.m_iSecond - val2.m_iSecond;
-      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
-      int iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
-      int iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
+      ::i32 iTotalSecond = val1.m_iSecond - val2.m_iSecond;
+      ::i32 iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
+      ::i32 iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
+      ::i32 iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -194,12 +194,12 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    else
    {
       val.m_bSpan = true;
-      int iTotalSecond = val1.m_iSecond - val2.m_iSecond;
-      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
-      int iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
-      int iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
-      int iTotalMonth = iTotalDay / 31 + val1.m_iMonth - val2.m_iMonth;
-      int iTotalYear = iTotalMonth / 12 + val1.m_iYear - val2.m_iYear;
+      ::i32 iTotalSecond = val1.m_iSecond - val2.m_iSecond;
+      ::i32 iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
+      ::i32 iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
+      ::i32 iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
+      ::i32 iTotalMonth = iTotalDay / 31 + val1.m_iMonth - val2.m_iMonth;
+      ::i32 iTotalYear = iTotalMonth / 12 + val1.m_iYear - val2.m_iYear;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -210,21 +210,21 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    return val;
 }
 
-datetime::result operator * (const datetime::result & val1, double d)
+datetime::result operator * (const datetime::result & val1, ::f64 d)
 {
    datetime::result val;
    if(val1.m_bSpan)
    {
       val.m_bSpan = true;
-      double dTotalSecond
+      ::f64 dTotalSecond
          = (val1.m_iSecond + (val1.m_iMinute + (val1.m_iHour + (val1.m_iDay * 24.0)) * 60.0) * 60.0) * d;
-      double dTotalMinute = dTotalSecond / 60.0;
-      double dTotalHour = dTotalMinute / 60.0;
-      double dTotalDay = dTotalHour / 24.0;
-      val.m_iSecond = (int) fmod(dTotalSecond, 60.0);
-      val.m_iMinute = (int) fmod(dTotalMinute, 60.0);
-      val.m_iHour   = (int) fmod(dTotalHour, 24.0);
-      val.m_iDay    = (int) dTotalDay;
+      ::f64 dTotalMinute = dTotalSecond / 60.0;
+      ::f64 dTotalHour = dTotalMinute / 60.0;
+      ::f64 dTotalDay = dTotalHour / 24.0;
+      val.m_iSecond = (::i32) fmod(dTotalSecond, 60.0);
+      val.m_iMinute = (::i32) fmod(dTotalMinute, 60.0);
+      val.m_iHour   = (::i32) fmod(dTotalHour, 24.0);
+      val.m_iDay    = (::i32) dTotalDay;
    }
    else
    {
@@ -234,7 +234,7 @@ datetime::result operator * (const datetime::result & val1, double d)
 }
 
 
-datetime::result operator / (const datetime::result & val1, double d)
+datetime::result operator / (const datetime::result & val1, ::f64 d)
 {
    
    datetime::result val;
@@ -243,18 +243,18 @@ datetime::result operator / (const datetime::result & val1, double d)
    {
 
       val.m_bSpan = true;
-      double dTotalSecond
+      ::f64 dTotalSecond
          = (val1.m_iSecond
          + (val1.m_iMinute
          + (val1.m_iHour
          + (val1.m_iDay * 24.0)) * 60.0) * 60.0) / d;
-      double dTotalMinute = dTotalSecond / 60.0;
-      double dTotalHour = dTotalMinute / 60.0;
-      double dTotalDay = dTotalHour / 24.0;
-      val.m_iSecond = (int) fmod(dTotalSecond, 60.0);
-      val.m_iMinute = (int) fmod(dTotalMinute, 60.0);
-      val.m_iHour   = (int) fmod(dTotalHour, 24.0);
-      val.m_iDay    = (int) dTotalDay;
+      ::f64 dTotalMinute = dTotalSecond / 60.0;
+      ::f64 dTotalHour = dTotalMinute / 60.0;
+      ::f64 dTotalDay = dTotalHour / 24.0;
+      val.m_iSecond = (::i32) fmod(dTotalSecond, 60.0);
+      val.m_iMinute = (::i32) fmod(dTotalMinute, 60.0);
+      val.m_iHour   = (::i32) fmod(dTotalHour, 24.0);
+      val.m_iDay    = (::i32) dTotalDay;
 
    }
    else

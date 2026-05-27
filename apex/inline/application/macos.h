@@ -1,6 +1,6 @@
 
 
-int main(int argc, char * argv[], char ** envp)
+::i32 main(::i32 argc, char_pointer argv[], char_pointer * envp)
 {
    
    string strAppId;
@@ -11,7 +11,7 @@ int main(int argc, char * argv[], char ** envp)
    
 #endif
    
-   int iErrorStatus = -1;
+   ::i32 iErrorStatus = -1;
    
    ::pointer<::platform::node>pacmenode;
    
@@ -39,7 +39,7 @@ int main(int argc, char * argv[], char ** envp)
    //   if (!estatus)
    //   {
    //
-   //      int iErrorStatus = estatus.error_status();
+   //      ::i32 iErrorStatus = estatus.error_status();
    //
    //      return iErrorStatus;
    //
@@ -87,7 +87,7 @@ int main(int argc, char * argv[], char ** envp)
 //
 //   auto estatus = os_application_system_run(psystem);
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 

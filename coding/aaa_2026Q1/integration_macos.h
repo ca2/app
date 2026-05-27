@@ -54,7 +54,7 @@ namespace coding
 
 //       virtual void on_load();
 
-//       virtual void speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string& scopedstrText, int iExitCode);
+//       virtual void speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string& scopedstrText, ::i32 iExitCode);
 
 //       virtual void _speak(const ::scoped_string& scopedstr);
 
@@ -114,7 +114,7 @@ void prepare_build() override;
 
 //       virtual ::file::path path_base_folder();
 
-//       virtual int _do_task(::coding::task* ptask);
+//       virtual ::i32 _do_task(::coding::task* ptask);
 //       //virtual void integrate_openssl(::coding::item* pitem);
 //       //virtual void integrate_ffmpeg(::coding::item* pitem);
 //       virtual void integrate_task_group(enum_task etaskgroup, ::coding::item* pitem);
@@ -166,7 +166,7 @@ void prepare_build() override;
 //       //void start_store_copy(const ::file::path & pathZip, const ::scoped_string & scopedstrAppId);
 
 //       //void store_copy(const ::scoped_string & scopedstrAppId, const ::file::path & pathTarget, const ::file::path & pathSource, const ::scoped_string & scopedstrScheme);
-//       void release_package(const char * pszTitle, const char * pszTarget, const char * pszSource);
+//       void release_package(const_char_pointer pszTitle, const_char_pointer pszTarget, const_char_pointer pszSource);
 
 //       void store_copy(const ::scoped_string & scopedstrAppId, const ::file::path & pathTarget, const ::file::path & pathSource);
 //       void store_copy_to_local_file_system_store(const ::file::path & pathFolder, const ::scoped_string & scopedstrAppId, const ::file::path & pathTarget, ::file::file * pfileSource);

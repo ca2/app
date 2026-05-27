@@ -30,9 +30,9 @@ namespace innate_subsystem
 //    // : m_bitmap(NULL)
 //    // {
 //    //    // Prepare buffer
-//    //    int bpp = 32;
+//    //    ::i32 bpp = 32;
 //    //    size_t size = width * height * (bpp / 8);
-//    //    std::vector<unsigned char> bits(size);
+//    //    std::vector<::u8> bits(size);
 //    //    if (width != 0 && height != 0) {
 //    //       memset(&bits.front(), 0, size);
 //    //       // Create bitmap handle
@@ -78,9 +78,9 @@ namespace innate_subsystem
 //    {
 //       m_pparticleThis->initialize_bitmap(size);
 //       // // Prepare buffer
-//       // int bpp = 32;
+//       // ::i32 bpp = 32;
 //       // size_t size = width * height * (bpp / 8);
-//       // std::vector<unsigned char> bits(size);
+//       // std::vector<::u8> bits(size);
 //       // if (width != 0 && height != 0) {
 //       //    memset(&bits.front(), 0, size);
 //       //    // Create bitmap handle
@@ -121,7 +121,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    // int Bitmap::getHeight() const
+//    // ::i32 Bitmap::getHeight() const
 //    // {
 //    //    BITMAP bitmap;
 //    //    if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {

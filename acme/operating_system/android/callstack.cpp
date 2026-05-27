@@ -36,7 +36,7 @@ namespace
 }
 
 
-void captureBacktrace(void ** buffer, int & framecount)
+void captureBacktrace(void ** buffer, ::i32 & framecount)
 {
 
    BacktraceState state = { buffer, buffer + framecount };
@@ -48,7 +48,7 @@ void captureBacktrace(void ** buffer, int & framecount)
 }
 
 
-void dumpBacktrace(string & str, void ** buffer, int count)
+void dumpBacktrace(string & str, void ** buffer, ::i32 count)
 {
 
    for (size_t idx = 0; idx < count; ++idx)
@@ -67,9 +67,9 @@ void dumpBacktrace(string & str, void ** buffer, int count)
 
       }
 
-      int status = 0;
+      ::i32 status = 0;
 
-      char *demangled = nullptr;
+      char_pointer demangled = nullptr;
 
       if(symbol)
       {
@@ -102,10 +102,10 @@ namespace platform
 {
 
 
-    void node::get_call_stack_frames(void ** stack, int & frame_count)
+    void node::get_call_stack_frames(void ** stack, ::i32 & frame_count)
     {
 
-       const int iMaximumFramesToCapture = 96;
+       const ::i32 iMaximumFramesToCapture = 96;
 
        frame_count = minimum(frame_count, iMaximumFramesToCapture);
 
@@ -120,7 +120,7 @@ namespace platform
 //   }
 
    
-//   string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * /* caller_address */, int iCount)
+//   string node::get_callstack(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * /* caller_address */, ::i32 iCount)
 //   {
 //
 //      string strCallStack;
@@ -137,12 +137,12 @@ namespace platform
 //   }
 //
 
-    string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+    string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
     {
 
       string strCallStack;
 
-      int len = 128;
+      ::i32 len = 128;
 
       ::array < void * > buffer;
 
@@ -157,7 +157,7 @@ namespace platform
     }
 
 
-    string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat, int iSkip, void* caller_address, int iCount)
+    string node::_get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat, ::i32 iSkip, void* caller_address, ::i32 iCount)
     {
 
        string strCallStack;

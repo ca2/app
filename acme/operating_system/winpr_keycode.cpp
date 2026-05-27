@@ -591,7 +591,7 @@ extern "C"
 extern "C"
 ::u32 GetKeycodeFromVirtualKeyCode(::u32 vkcode, ::u32 dwFlags)
 {
-   int index;
+   ::i32 index;
    ::u32 keycode = 0;
    
    if (dwFlags & KEYCODE_TYPE_APPLE)

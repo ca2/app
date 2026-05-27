@@ -26,7 +26,7 @@ public:
 
    void * __win32_HWND() const;
 
-   int get_sort_ezorder() const;
+   ::i32 get_sort_ezorder() const;
 
    bool is_stable() const;
 
@@ -53,7 +53,7 @@ public:
 
    void set_request();
 
-   bool defer_set_request(int iZOrder);
+   bool defer_set_request(::i32 iZOrder);
 
 
 };

@@ -10,7 +10,7 @@
 //namespace linux
 //{
 //
-//   int function()
+//   ::i32 function()
 //   {
 //      return 0;
 //   }
@@ -61,7 +61,7 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName)
         return false;
     }
 
-    char buffer[256];
+    ::i8 buffer[256];
     ::string output;
 
     while (fgets(buffer, sizeof(buffer), pipe))
@@ -69,7 +69,7 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName)
         output += buffer;
     }
 
-    int rc = pclose(pipe);
+    ::i32 rc = pclose(pipe);
     if (rc != 0)
     {
         return false;
@@ -175,7 +175,7 @@ bool rpm_is_package_installed(const ::scoped_string & scopedstrPackageName)
 
    }
 
-   char buffer[256];
+   ::i8 buffer[256];
 
    ::string output;
 
@@ -186,7 +186,7 @@ bool rpm_is_package_installed(const ::scoped_string & scopedstrPackageName)
 
    }
 
-   int rc = pclose(pipe);
+   ::i32 rc = pclose(pipe);
 
    if (rc != 0)
    {
@@ -305,7 +305,7 @@ CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
 
    ::string strMessage(scopedstrMessage);
 
-    int ret;
+    ::i32 ret;
 
     // -------------------------
     // ZENITY
@@ -321,7 +321,7 @@ CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
 
         if (WIFEXITED(ret))
         {
-            int code = WEXITSTATUS(ret);
+            ::i32 code = WEXITSTATUS(ret);
 
             if (code == 0)
                 return e_dialog_result_yes;
@@ -356,7 +356,7 @@ CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
 
         if (WIFEXITED(ret))
         {
-            int code = WEXITSTATUS(ret);
+            ::i32 code = WEXITSTATUS(ret);
 
             if (code == 0)
                 return e_dialog_result_yes;
@@ -388,7 +388,7 @@ CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
     {
         printf("[y/n]: ");
 
-        char c;
+        ::i8 c;
         scanf(" %c", &c);
 
         return (c == 'y' || c == 'Y')

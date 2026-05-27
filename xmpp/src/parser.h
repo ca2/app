@@ -20,10 +20,10 @@
 
 typedef struct _parser_t parser_t;
 
-typedef void (*parser_start_callback)(char *name,
-                                      char **attrs,
+typedef void (*parser_start_callback)(char_pointer name,
+                                      char_pointer *attrs,
                                       void * const userdata);
-typedef void (*parser_end_callback)(char *name, void * const userdata);
+typedef void (*parser_end_callback)(char_pointer name, void * const userdata);
 typedef void (*parser_stanza_callback)(xmpp_stanza_t *stanza,
                                        void * const userdata);
 
@@ -34,8 +34,8 @@ parser_t *parser_new(xmpp_ctx_t *ctx,
                      parser_stanza_callback stanzacb,
                      void *userdata);
 void parser_free(parser_t * const parser);
-char* parser_attr_name(xmpp_ctx_t *ctx, char *nsname);
-int parser_reset(parser_t *parser);
-int parser_feed(parser_t *parser, char *chunk, int len);
+char_pointer parser_attr_name(xmpp_ctx_t *ctx, char_pointer nsname);
+::i32 parser_reset(parser_t *parser);
+::i32 parser_feed(parser_t *parser, char_pointer chunk, ::i32 len);
 
 #endif /* __LIBSTROPHE_PARSER_H__ */

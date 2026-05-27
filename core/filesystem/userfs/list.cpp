@@ -610,7 +610,7 @@ namespace userfs
       ::pointer<::user::button>pbutton =  (pinteraction);
       if(pcallback != nullptr && pbutton != nullptr)
       {
-      pcallback->InitializeActionButton(((int) pinteraction->id()) - 1000, pbutton);
+      pcallback->InitializeActionButton(((::i32) pinteraction->id()) - 1000, pbutton);
       } */
    }
 
@@ -624,8 +624,8 @@ namespace userfs
       if(pcallback != nullptr)
       {
       ::file::item item;
-      int iItem = pinteraction->GetEditItem();
-      int iStrict;
+      ::i32 iItem = pinteraction->GetEditItem();
+      ::i32 iStrict;
       if(m_eview == impact_icon)
       {
       iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -636,7 +636,7 @@ namespace userfs
       }
       item.m_strPath         = pdata->item(iStrict).m_strPath;
       item.m_strExtra        = pdata->item(iStrict).m_strExtra;
-      pcallback->OnButtonAction((int) pinteraction->id() - 1000, item);
+      pcallback->OnButtonAction((::i32) pinteraction->id() - 1000, item);
       } */
    }
 
@@ -784,14 +784,14 @@ namespace userfs
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
       {
-      for(int i = 0; i < m_pitema->get_item_count(); i++)
+      for(::i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.add_request(item(i).m_strPath);
       }
       }
       else
       {
-      for(int i = 0; i < m_pitema->get_item_count(); i++)
+      for(::i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.erase_request(item(i).m_strPath);
       }

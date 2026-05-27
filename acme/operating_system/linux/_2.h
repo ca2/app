@@ -4,7 +4,7 @@
 #include "debug.h"
 
 
-off_t tell64(int fd);
+off_t tell64(::i32 fd);
 
 
 //void aaa_os_defer_init_gtk();

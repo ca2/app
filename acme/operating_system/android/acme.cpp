@@ -8,7 +8,7 @@ namespace acme
 {
 
 
-    void acme::initialize_system(int argc, char *argv[], char *envp[])
+    void acme::initialize_system(::i32 argc, char_pointer argv[], char_pointer envp[])
     {
 
 ///      initialize_system(argc, argv, envp);

@@ -27,7 +27,7 @@ string _001FileSizeText(::i64 i)
 
    }
 
-   double d = ((double) i) / 1024.0;
+   ::f64 d = ((::f64) i) / 1024.0;
 
    if(d < 2)
    {

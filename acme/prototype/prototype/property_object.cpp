@@ -805,7 +805,7 @@ void property_object::defer_run_property(const ::atom& atom)
 //}
 //
 //
-//void property_object::to_sz(char * sz, character_count len) const
+//void property_object::to_sz(char_pointer sz, character_count len) const
 //{
 //
 //   string str;
@@ -905,7 +905,7 @@ string property_object::get_string(const ::atom & atom, const ::scoped_string & 
 }
 
 
-int property_object::get_int(const ::atom & atom, int iDefault) const
+::i32 property_object::get_int(const ::atom & atom, ::i32 iDefault) const
 {
 
    if (!m_ppropertyset)

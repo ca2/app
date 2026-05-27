@@ -63,8 +63,8 @@
 
 //----------------------------------------------------------------------------
 
-extern unsigned
-imagesize (int left, int top, int right, int bottom)
+extern ::u32
+imagesize (::i32 left, ::i32 top, ::i32 right, ::i32 bottom)
 {
    return (sizeof (struct TcImageBuffer));
 }
@@ -72,12 +72,12 @@ imagesize (int left, int top, int right, int bottom)
 //----------------------------------------------------------------------------
 
 extern void
-/*getimage (int left, int top, int right, int bottom, void *bitmap)
+/*getimage (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *bitmap)
 {
 #define Buffer ((struct TcImageBuffer *) bitmap)
    Pixmap Handle;
-   int OldWritemode;
-   int Left, Top, Right, Bottom, Clip;
+   ::i32 OldWritemode;
+   ::i32 Left, Top, Right, Bottom, Clip;
    Buffer->Width = right - left + 1;
    Buffer->Height = bottom - top + 1;
    //Handle = XCreatePixmap (TcDisplay,
@@ -127,11 +127,11 @@ extern void
 //----------------------------------------------------------------------------
 
 extern void
-/*putimage (int left, int top, void *bitmap, int op)
+/*putimage (::i32 left, ::i32 top, void *bitmap, ::i32 op)
 {
 #define Buffer ((struct TcImageBuffer *) bitmap)
-   int OldWritemode;
-   int Left, Top, Right, Bottom, Clip;
+   ::i32 OldWritemode;
+   ::i32 Left, Top, Right, Bottom, Clip;
    if (bitmap == NULL)
       return;
    OldWritemode = TcWritemode;

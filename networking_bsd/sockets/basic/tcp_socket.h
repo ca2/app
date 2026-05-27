@@ -45,13 +45,13 @@ namespace sockets_bsd
 
    //struct OUTPUT {
    //   OUTPUT() : _b(0), _t(0), _q(0) {}
-   //   OUTPUT(const_char_pointer buf, memsize len) : _b(0), _t(len), _q(len) {
+   //   OUTPUT(const_char_pointer pszBuffer, memsize len) : _b(0), _t(len), _q(len) {
    //      ::memory_copy(_buf, buf, len);
    //   }
    //   memsize Space() {
    //      return TCP_OUTPUT_CAPACITY - _t;
    //   }
-   //   void add(const_char_pointer buf, memsize len) {
+   //   void add(const_char_pointer pszBuffer, memsize len) {
    //      ::memory_copy(_buf + _t, buf, len);
    //      _t += len;
    //      _q += len;
@@ -70,7 +70,7 @@ namespace sockets_bsd
    //   memsize _b;
    //   memsize _t;
    //   memsize _q;
-   //   char _buf[TCP_OUTPUT_CAPACITY];
+   //   ::i8 _buf[TCP_OUTPUT_CAPACITY];
    //};
 
 
@@ -112,16 +112,16 @@ namespace sockets_bsd
       memsize m_output_length;
 
       bool     m_bReuseSession;
-      int m_socks4_state; ///< socks4 support
-      char m_socks4_vn; ///< socks4 support, temporary ::payload
-      char m_socks4_cd; ///< socks4 support, temporary ::payload
-      unsigned short m_socks4_dstport; ///< socks4 support
+      ::i32 m_socks4_state; ///< socks4 support
+      ::i8 m_socks4_vn; ///< socks4 support, temporary ::payload
+      ::i8 m_socks4_cd; ///< socks4 support, temporary ::payload
+      ::u16 m_socks4_dstport; ///< socks4 support
       ::u32 m_socks4_dstip; ///< socks4 support
 
       string m_strConnectHost;
       ::networking::port_t m_iConnectPort;
 
-      int m_resolver_id; ///< Resolver atom (if any) for current open call
+      ::i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 
       bool m_bReconnect; ///< Reconnect on lost connection flag
       bool m_bTryingReconnect; ///< Trying to reconnect
@@ -196,7 +196,7 @@ namespace sockets_bsd
       /** This callback is executed after a successful read from the socket.
       \lparam buf Pointer to the data
       \lparam len Length of the data */
-      void OnRawData(char *buf, memsize len) override;
+      void OnRawData(char_pointer buf, memsize len) override;
 
       /** Called when output buffer has been sent.
       Note: Will only be called IF the output buffer has been used.
@@ -231,7 +231,7 @@ namespace sockets_bsd
 #endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      //void OnResolved(int atom, ::networking::address * addr) override;
+      //void OnResolved(::i32 atom, ::networking::address * addr) override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect() override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -259,7 +259,7 @@ namespace sockets_bsd
 
       void DisableInputBuffer(bool = true) override;
 
-      void OnOptions(int, int, int, SOCKET s) override;
+      void OnOptions(::i32, ::i32, ::i32, SOCKET s) override;
 
       void SetLineProtocol(bool = true) override;
 
@@ -269,7 +269,7 @@ namespace sockets_bsd
       virtual string get_connect_host() override;
       virtual ::networking::port_t get_connect_port() override;
 
-      int protocol() override;
+      ::i32 protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
       void SetTransferLimit(memsize sz) override;
@@ -281,8 +281,8 @@ namespace sockets_bsd
       void OnRead() override;
       //using ::file::file::read;
       //using ::object::read;
-      int read(void * buf, int n) override;
-      int recv(void * buf, int n) override;
+      ::i32 read(void * buf, ::i32 n) override;
+      ::i32 recv(void * buf, ::i32 n) override;
       void on_read(const void * buf, memsize n ) override;
       void OnWrite() override;
 
@@ -325,10 +325,10 @@ namespace sockets_bsd
 
       /** the actual send() */
       void flush() override;
-      int try_write(const void* buf, int len) override;
-      int _try_write(const void* buf, int len) override;
+      ::i32 try_write(const void* buf, ::i32 len) override;
+      ::i32 _try_write(const void* buf, ::i32 len) override;
       /** add data to output buffer top */
-      void buffer(const void * buf, int len) override;
+      void buffer(const void * buf, ::i32 len) override;
 
       void InitializeContextTLSClientMethod() override;
 
@@ -341,7 +341,7 @@ namespace sockets_bsd
    };
 
    extern "C"
-   int tcp_socket_SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
+   ::i32 tcp_socket_SSL_password_cb(char_pointer buf,::i32 num,::i32 rwflag,void *userdata);
 
 
 } // namespace sockets_bsd

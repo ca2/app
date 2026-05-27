@@ -24,10 +24,10 @@ namespace graphics
       virtual void initialize(::windowing::window * pimpl);
 
 
-      //virtual void create_window_graphics_x(const ::size & size, int iStride = -1);
+      //virtual void create_window_graphics_x(const ::size & size, ::i32 iStride = -1);
       //virtual void destroy_window_graphics_x();
 
-      //virtual void create_bufferx(const ::size & size, int iStride = -1);
+      //virtual void create_bufferx(const ::size & size, ::i32 iStride = -1);
       //virtual void destroy_bufferx();
 
       virtual bool round_swap_key_buffers();

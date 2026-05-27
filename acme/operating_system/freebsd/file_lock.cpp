@@ -102,7 +102,7 @@ namespace file_lock
 
    //    }
 
-   //    int * pi = allocateø int();
+   //    ::i32 * pi = allocateø ::i32();
 
    //    *pi = fd;
 
@@ -182,7 +182,7 @@ namespace file_lock
 
    // }
 
-//   string file_lock::_get_file_name(const_char_pointer lpszName)
+//   string file_lock::_get_file_name(const_char_pointer pszName)
 //   {
 //
 //      string str;

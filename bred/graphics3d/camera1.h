@@ -22,17 +22,17 @@ namespace graphics3d
 	struct camera_t
 	{
 
-		//void calculateMouseOffset(float xoffset, float yoffset);
+		//void calculateMouseOffset(::f32 xoffset, ::f32 yoffset);
 //private:
 		floating_matrix4		m_matrixProjection{ 1.f };
 		floating_matrix4		m_matrixImpact{ 1.f };
 		floating_matrix4		m_matrixAntImpact{ 1.f };
 
-		//float m_LastX; // Last mouse x position
-		//float m_LastY; // Last mouse y position
-		float				m_MouseSensitivity = 0.1f; // Sensitivity factor for mouse input
+		//::f32 m_LastX; // Last mouse x position
+		//::f32 m_LastY; // Last mouse y position
+		::f32				m_MouseSensitivity = 0.1f; // Sensitivity factor for mouse input
 		// Deadzone
-		float				m_MouseDeadZone;
+		::f32				m_MouseDeadZone;
 		// Inertia
 		floating_sequence3				m_sequence3Velocity;
 		// Camera attributes
@@ -43,12 +43,12 @@ namespace graphics3d
 		floating_sequence3				m_sequence3WorldUp;
 
 		// Euler angles
-		float				m_angleYaw = 0.0f;
-		float				m_anglePitch = glm::radians(-90.0f);
+		::f32				m_angleYaw = 0.0f;
+		::f32				m_anglePitch = glm::radians(-90.0f);
 
 		// Camera options
-		float				m_fZoom;
-		float				m_fMovementSpeed;  // Added movement speed
+		::f32				m_fZoom;
+		::f32				m_fMovementSpeed;  // Added movement speed
 
 		::block as_block()
 		{
@@ -70,35 +70,35 @@ namespace graphics3d
 		::pointer < ::graphics3d::engine > m_pengine;
 		camera();
 		~camera() override;
-		//camera(const ::floating_sequence3 & position, float yaw, float pitch);
+		//camera(const ::floating_sequence3 & position, ::f32 yaw, ::f32 pitch);
 		//camera(const ::floating_sequence3 & position, floating_sequence3 to, floating_sequence3 from);
 
-		virtual void initialize_camera(const ::floating_sequence3 & position, float yaw, float pitch);
+		virtual void initialize_camera(const ::floating_sequence3 & position, ::f32 yaw, ::f32 pitch);
 		virtual void initialize_camera(floating_sequence3 target, floating_sequence3 camera);
 
-		void setOrthographicProjection(float left, float right, float top, float bottom, float near, float far);
+		void setOrthographicProjection(::f32 left, ::f32 right, ::f32 top, ::f32 bottom, ::f32 near, ::f32 far);
 		void setViewDirection(const ::floating_sequence3 & position, const ::floating_sequence3 & direction, const ::floating_sequence3 & up = floating_sequence3{ 0.f, -1.f, 0.f });
 		void setViewTarget(const ::floating_sequence3 & position, const ::floating_sequence3 & target, const ::floating_sequence3 & up = floating_sequence3{ 0.f, -1.f, 0.f });
 
 //		void setViewYXZ(const ::floating_sequence3 & position, floating_sequence3 rotation);
 
-		virtual void setPerspectiveProjection(float fovy, float aspect, float near, float far);
+		virtual void setPerspectiveProjection(::f32 fovy, ::f32 aspect, ::f32 near, ::f32 far);
 		const floating_matrix4& getProjection() const { return m_matrixProjection; }
 		const floating_matrix4& getView() const { return m_matrixImpact; }
 		const floating_matrix4& getInverseView() const { return m_matrixAntImpact; }
 
 		// Get zoom (field of view)
-		float GetZoom() const;
+		::f32 GetZoom() const;
 		// Get the view matrix
 		floating_matrix4 GetViewMatrix() const;
 
 
 		floating_sequence3 GetPosition() const;
 		// Set movement speed
-		void SetMovementSpeed(float speed);
+		void SetMovementSpeed(::f32 speed);
 		// new shit
-		void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
-		void ProcessKeyboardInput(int direction, float deltaTime);
+		void ProcessMouseMovement(::f32 xoffset, ::f32 yoffset, bool constrainPitch = true);
+		void ProcessKeyboardInput(::i32 direction, ::f32 deltaTime);
 
 		//floating_sequence3 pole_up();
 		// Update camera vectors
@@ -106,14 +106,14 @@ namespace graphics3d
 
 
 		// from MyPlace2025@V0idsEmbrace@Twitch
-      void UpdateIdleMovement(float deltaTime); // Add this line
+      void UpdateIdleMovement(::f32 deltaTime); // Add this line
       //// Get zoom (field of view)
-      //float GetZoom() const;
+      //::f32 GetZoom() const;
       //// Set movement speed
-      //void SetMovementSpeed(float speed);
-      void Jump(float jumpHeight);
-      void TeleportDownward(float distance); // Moves the camera down
-      void TeleportInDirection(int direction);
+      //void SetMovementSpeed(::f32 speed);
+      void Jump(::f32 jumpHeight);
+      void TeleportDownward(::f32 distance); // Moves the camera down
+      void TeleportInDirection(::i32 direction);
 		// END from MyPlace2025@V0idsEmbrace@Twitch
 
 

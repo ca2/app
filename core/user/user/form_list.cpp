@@ -543,7 +543,7 @@ namespace user
       if (psubitem->m_bOk)
       {
 
-         double_rectangle rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
+         ::f64_rectangle rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
          auto pointContext = get_context_offset();
 
@@ -1222,7 +1222,7 @@ namespace user
       //{
       //   _001SetEditControl(nullptr);
       //}
-      //for(int i = 0; i < m_controldescriptorset.get_count(); i++)
+      //for(::i32 i = 0; i < m_controldescriptorset.get_count(); i++)
       //{
       //   class ::user::control_descriptor & descriptor = m_controldescriptorset(i);
       //   if(control.m_etype == e_control_type_edit
@@ -1317,8 +1317,8 @@ namespace user
 
       return ::is_subitem(m_pitemControl, pinteraction->m_item.m_iSubItem);
 
-      //int iEditItem;
-      //int iEditSubItem;
+      //::i32 iEditItem;
+      //::i32 iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
@@ -1448,8 +1448,8 @@ namespace user
    //
    //      //else if(emessage == ::user::e_message_left_button_up)
    //      //{
-   //      //int iItem;
-   //      //int iSubItem;
+   //      //::i32 iItem;
+   //      //::i32 iSubItem;
    //      //::user::range range;
    //      //get_selection(range);
    //      //if(_001DisplayHitTest(point, iItem, iSubItem))
@@ -1519,8 +1519,8 @@ namespace user
    //      //screen_to_client()(point);
    //      ///*      if(emessage == ::user::e_message_left_button_down)
    //      //      {
-   //      //      int iItem;
-   //      //      int iSubItem;
+   //      //      ::i32 iItem;
+   //      //      ::i32 iSubItem;
    //      //      ::user::range range;
    //      //      get_selection(range);
    //      //      if(_001DisplayHitTest(point, iItem, iSubItem))
@@ -1539,8 +1539,8 @@ namespace user
    //      //      }
    //      //      else if(emessage == ::user::e_message_left_button_up)
    //      //      {
-   //      //      int iItem;
-   //      //      int iSubItem;
+   //      //      ::i32 iItem;
+   //      //      ::i32 iSubItem;
    //      //      ::user::range range;
    //      //      get_selection(range);
    //      //      if(_001DisplayHitTest(point, iItem, iSubItem))

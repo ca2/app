@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-char g_strDebugPuts[1024];
-int g_iDebugPuts;
+::i8 g_strDebugPuts[1024];
+::i32 g_iDebugPuts;
 // GCC 4.8 doesn't know that puts() is nothrow; we must give it a hint.
 void debug_puts(const ::scoped_string & scopedstr) noexcept
 {

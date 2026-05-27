@@ -57,7 +57,7 @@ namespace file
 
 
 
-   //void item::set_final_path_dir(int iDir)
+   //void item::set_final_path_dir(::i32 iDir)
    //{
 
    //   m_pathFinal.m_iDir = iDir;

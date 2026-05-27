@@ -28,7 +28,7 @@ namespace nanoui
 
 
 
-   void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path);
+   void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<::i32, ::string>> & images, const ::scoped_string & path);
 
 
    ImagePanel::ImagePanel(Widget * parent)
@@ -41,24 +41,24 @@ namespace nanoui
 
    i32_size ImagePanel::grid_size() const
    {
-      int n_cols = 1 + ::maximum(0,
-         (int)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
-            (float)(m_iThumbSize + m_iSpacing)));
-      int n_rows = ((int)m_images.size() + n_cols - 1) / n_cols;
+      ::i32 n_cols = 1 + ::maximum(0,
+         (::i32)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
+            (::f32)(m_iThumbSize + m_iSpacing)));
+      ::i32 n_rows = ((::i32)m_images.size() + n_cols - 1) / n_cols;
       return int_sequence2(n_cols, n_rows);
    }
 
 
-   int ImagePanel::index_for_position(const i32_point & p) const
+   ::i32 ImagePanel::index_for_position(const i32_point & p) const
    {
 
       //auto pointClient = p - m_pos;
 
       auto pointClient = p - i32_size(m_iMargin, m_iMargin);
 
-      float_point cursorrate = pointClient / (float)(m_iThumbSize + m_iSpacing);
+      ::f32_point cursorrate = pointClient / (::f32)(m_iThumbSize + m_iSpacing);
 
-      float icon_region = m_iThumbSize / (float)(m_iThumbSize + m_iSpacing);
+      ::f32 icon_region = m_iThumbSize / (::f32)(m_iThumbSize + m_iSpacing);
 
       bool over_image =
          fmodf(cursorrate.x, 1.f) < icon_region &&
@@ -108,7 +108,7 @@ namespace nanoui
 
       ::collection::index iIndex = index_for_position(p);
 
-      if (iIndex >= 0 && iIndex < (int)m_images.size() && m_callback && down)
+      if (iIndex >= 0 && iIndex < (::i32)m_images.size() && m_callback && down)
       {
 
          m_callback(iIndex);
@@ -174,7 +174,7 @@ namespace nanoui
       for (::collection::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
       {
 
-         i32_point gridindex((int)iImageIndex % gridsize.cx, (int)iImageIndex / gridsize.cx);
+         i32_point gridindex((::i32)iImageIndex % gridsize.cx, (::i32)iImageIndex / gridsize.cx);
 
          i32_point image_top_left =
             m_pos
@@ -194,7 +194,7 @@ namespace nanoui
                image_top_left,
                ::i32_size(m_iThumbSize, m_iThumbSize));
 
-            rectangleImageFinalPlacement.offset_y((int)pvscrollpanel->get_scroll_offset().cy);
+            rectangleImageFinalPlacement.offset_y((::i32)pvscrollpanel->get_scroll_offset().cy);
 
             if (!rectangleViewableImagePanel.intersects(rectangleImageFinalPlacement))
             {
@@ -204,28 +204,28 @@ namespace nanoui
 
          }
 
-         int imgw, imgh;
+         ::i32 imgw, imgh;
 
          pcontext->image_size(m_images[iImageIndex].m_element1, &imgw, &imgh);
 
-         float iw, ih, ix, iy;
+         ::f32 iw, ih, ix, iy;
 
          if (imgh < imgw)
          {
-            iw = (float)m_iThumbSize;
-            ih = iw * (float)imgh / (float)imgw;
+            iw = (::f32)m_iThumbSize;
+            ih = iw * (::f32)imgh / (::f32)imgw;
             ix = 0;
             iy = -(ih - m_iThumbSize) * 0.5f;
          }
          else
          {
-            ih = (float)m_iThumbSize;
-            iw = ih * (float)imgw / (float)imgh;
+            ih = (::f32)m_iThumbSize;
+            iw = ih * (::f32)imgw / (::f32)imgh;
             ix = -(iw - m_iThumbSize) * 0.5f;
             iy = 0;
          }
 
-         float opacity = m_iMouseIndex == iImageIndex ? 1.0f : 0.7f;
+         ::f32 opacity = m_iMouseIndex == iImageIndex ? 1.0f : 0.7f;
 
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
             image_top_left.x + ix,
@@ -237,16 +237,16 @@ namespace nanoui
 
          pcontext->begin_path();
          pcontext->rounded_rectangle(
-                                     (float)image_top_left.x, (float)image_top_left.y, (float)m_iThumbSize, (float)m_iThumbSize, 5);
+                                     (::f32)image_top_left.x, (::f32)image_top_left.y, (::f32)m_iThumbSize, (::f32)m_iThumbSize, 5);
          pcontext->fill_paint(img_paint);
          pcontext->fill();
 
          ::nano2d::paint shadow_paint =
-            pcontext->box_gradient(image_top_left.x - 1.f, (float)image_top_left.y, m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
+            pcontext->box_gradient(image_top_left.x - 1.f, (::f32)image_top_left.y, m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
                ::rgba(0, 0, 0, 128), ::rgba(0, 0, 0, 0));
          pcontext->begin_path();
          pcontext->rectangle(image_top_left.x - 5.f, image_top_left.y - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
-         pcontext->rounded_rectangle((float)image_top_left.x, (float)image_top_left.y, (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
+         pcontext->rounded_rectangle((::f32)image_top_left.x, (::f32)image_top_left.y, (::f32)m_iThumbSize, (::f32)m_iThumbSize, 6.f);
          pcontext->path_winding(::nano2d::e_solidity_hole);
          pcontext->fill_paint(shadow_paint);
          pcontext->fill();

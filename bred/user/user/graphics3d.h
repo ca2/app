@@ -22,9 +22,9 @@ namespace user
    public:
 
       //memory m_memory;
-      //int m_i32;
+      //::i32 m_i32;
 
-      int m_iFrameCounter = 0;
+      ::i32 m_iFrameCounter = 0;
       ::write_text::font_pointer m_pfontThomasBS_;
       ::string_array m_straLineStats;
 
@@ -39,8 +39,8 @@ namespace user
       //::pointer < ::image::target >             m_pimagetarget;
 
       //bool		m_bShouldClose;
-      int		m_iWidth;
-      int		m_iHeight;
+      ::i32		m_iWidth;
+      ::i32		m_iHeight;
       bool		m_bFramebufferResized;
 
 
@@ -129,7 +129,7 @@ namespace user
 
 
       virtual ::pointer < ::graphics3d::key_map > get_default_key_map();
-      virtual float getAspectRatio();
+      virtual ::f32 getAspectRatio();
 
       //virtual void prepare_mouse_input();
       //virtual void process_mouse_input();

@@ -15,7 +15,7 @@ namespace console
       
 
       bool                       m_bAutoHideOnOutClick;
-      int                 m_iAnimateStep;
+      ::i32                 m_iAnimateStep;
       ::image::image_list_pointer          m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;

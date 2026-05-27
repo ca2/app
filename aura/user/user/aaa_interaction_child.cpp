@@ -247,7 +247,7 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::i32_rectangle & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
 //   {
 //
@@ -259,9 +259,9 @@ namespace user
 //
 //      pusersystem->set_rect(&rectangle);
 //
-//      unsigned int nExStyle = 0;
+//      ::u32 nExStyle = 0;
 //
-//      unsigned int nStyle = 0;
+//      ::u32 nStyle = 0;
 //
 //      __synthesizes_creates_styles(pinteraction, nExStyle, nStyle);
 //
@@ -277,7 +277,7 @@ namespace user
 ////
 ////      wstring wstrWindowName(scopedstrWindowName);
 ////
-////      pusersystem->m_createstruct.lpszName = wstrWindowName;
+////      pusersystem->m_createstruct.pszName = wstrWindowName;
 ////
 ////#ifndef UNIVERSAL_WINDOWS
 ////      pusersystem->m_createstruct.hInstance = psystem->m_hinstance;
@@ -286,7 +286,7 @@ namespace user
 ////#else
 ////
 ////      pusersystem->m_createstruct.lpszClass = pszClassName;
-////      pusersystem->m_createstruct.lpszName = pszWindowName;
+////      pusersystem->m_createstruct.pszName = pszWindowName;
 ////
 ////#endif
 //
@@ -345,19 +345,19 @@ namespace user
    }
 
 
-   void interaction_child::__synthesizes_creates_styles(::user::interaction * pinteraction, unsigned int & nExStyle, unsigned int & nStyle)
+   void interaction_child::__synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle)
    {
 
    }
 
 
-   //void interaction_child::CalcWindowRect(::i32_rectangle * pClientRect, unsigned int nAdjustType)
+   //void interaction_child::CalcWindowRect(::i32_rectangle * pClientRect, ::u32 nAdjustType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pClientRect);
 
    //   __UNREFERENCED_PARAMETER(nAdjustType);
-   //   //unsigned int dwExStyle = GetExStyle();
+   //   //::u32 dwExStyle = GetExStyle();
    //   //if (nAdjustType == 0)
    //   //   dwExStyle &= ~WS_EX_CLIENTEDGE;
    //   //::AdjustWindowRectEx(pClientRect, GetStyle(), false, dwExStyle);
@@ -424,7 +424,7 @@ namespace user
    //}
 
 
-   //unsigned int interaction_child::GetStyle() const
+   //::u32 interaction_child::GetStyle() const
    //{
 
    //   return ::user::prototype_impl::GetStyle();
@@ -432,7 +432,7 @@ namespace user
    //}
 
 
-   //unsigned int interaction_child::GetExStyle() const
+   //::u32 interaction_child::GetExStyle() const
    //{
 
    //   return ::user::prototype_impl::GetExStyle();
@@ -610,7 +610,7 @@ namespace user
    }
 
 
-   //iptr interaction_child::get_window_long_ptr(int nIndex) const
+   //iptr interaction_child::get_window_long_ptr(::i32 nIndex) const
    //{
 
    //   return m_longptr[nIndex];
@@ -618,7 +618,7 @@ namespace user
    //}
 
 
-   //void interaction_child::set_window_long_ptr(int nIndex, iptr lValue)
+   //void interaction_child::set_window_long_ptr(::i32 nIndex, iptr lValue)
    //{
 
    //   auto & l = m_longptr[nIndex];
@@ -857,7 +857,7 @@ namespace user
    }
 
 
-   void interaction_child::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void interaction_child::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();

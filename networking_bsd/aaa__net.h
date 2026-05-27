@@ -62,7 +62,7 @@
 //#endif
 //
 //
-//CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname);
+//CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer hostname);
 //
 
 

@@ -1163,7 +1163,7 @@ inline ::std::strong_ordering atom::operator<=>(::enum_message emessage) const
 //}
 //
 
-//inline int atom::order(::enum_topic etopic) const
+//inline ::i32 atom::order(::enum_topic etopic) const
 //{
 //
 //   return __atom_compare_square(m_etype - e_type_subject, m_etopic - etopic);
@@ -1748,7 +1748,7 @@ inline void from_string(::atom & atom, const_char_pointer psz)
 
 
 //template < typename ITERATOR_TYPE >
-//template < int t_size >
+//template < ::i32 t_size >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const CHARACTER *, t_size > & a)
 //{
 //
@@ -1770,7 +1770,7 @@ inline void from_string(::atom & atom, const_char_pointer psz)
 
 
 //template < typename ITERATOR_TYPE >
-//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, ::i32 t_size >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const OTHER_CHARACTER *, t_size >& a)
 //{
 //
@@ -1859,7 +1859,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 
 
 //template < ::collection::count c >
-//inline ::string operator +(const char(&sz)[c], const ::atom & atom)
+//inline ::string operator +(const ::i8(&sz)[c], const ::atom & atom)
 //{
 //
 //   return ::string(sz) + atom.as_string();

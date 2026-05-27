@@ -6,7 +6,7 @@ class CLASS_DECL_ACME what_exclamation_exclamation :
 {
 public:
 
-   what_exclamation_exclamation(const char * payload) :
+   what_exclamation_exclamation(const_char_pointer payload) :
       ::exception(payload)
    {
 

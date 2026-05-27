@@ -12,8 +12,8 @@
 
 struct main_param
 {
-   int argc;
-   char * *argv;
+   ::i32 argc;
+   char_pointer *argv;
    
 };
 

@@ -314,7 +314,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   char ReadChar()
+   ::i8 ReadChar()
    {
 
       if(m_dwBufPos >= m_strBuffer.size())
@@ -325,12 +325,12 @@ public:
    }
 
    /**
-    * Moves the buffer back by one char
+    * Moves the buffer back by one ::i8
     *
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   char UngetChar();
+   ::i8 UngetChar();
 
    /** Other Helpers */
 
@@ -355,7 +355,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool isWhiteSpace(char ch) const;
+   bool isWhiteSpace(::i8 ch) const;
 
 };
 

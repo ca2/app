@@ -69,20 +69,20 @@ namespace subsystem
 
    memsize SocketStream::read(void *buf, memsize wanted)
    {
-      if ((int)wanted < 0) {
+      if ((::i32)wanted < 0) {
          throw ::io_exception(error_io, "Wanted size too big.");
       }
 
-      return (memsize)m_psocket->recv((char *)buf, (int)wanted);
+      return (memsize)m_psocket->recv((char_pointer )buf, (::i32)wanted);
    }
 
    memsize SocketStream::defer_write(const void *buf, memsize size)
    {
-      if ((int)size < 0) {
+      if ((::i32)size < 0) {
          throw ::io_exception(error_io, "Size of buffer is too big.");
       }
 
-      return (memsize)m_psocket->send((char *)buf, (int)size);
+      return (memsize)m_psocket->send((char_pointer )buf, (::i32)size);
 
    }
 

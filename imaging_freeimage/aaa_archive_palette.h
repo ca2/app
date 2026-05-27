@@ -22,20 +22,20 @@ namespace draw2d_gdiplus
 
       
       operator HPALETTE() const;
-      int GetEntryCount();
-      unsigned int GetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries,
+      ::i32 GetEntryCount();
+      ::u32 GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
                              LPPALETTEENTRY pPaletteColors) const;
 
-      unsigned int SetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries,
+      ::u32 SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
                              LPPALETTEENTRY pPaletteColors);
 
 
       
-      void AnimatePalette(unsigned int nStartIndex, unsigned int nNumEntries,
+      void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries,
                           LPPALETTEENTRY pPaletteColors);
 
-      unsigned int GetNearestPaletteIndex(color32_t crColor) const;
-      bool ResizePalette(unsigned int nNumEntries);
+      ::u32 GetNearestPaletteIndex(color32_t crColor) const;
+      bool ResizePalette(::u32 nNumEntries);
 
 
       static palette * from_handle(::aura::application * papp, HPALETTE hPalette);

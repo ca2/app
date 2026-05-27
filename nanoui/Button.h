@@ -55,9 +55,9 @@ namespace nanoui
       /// The caption of this Button.
       ::string m_strCaption;
 
-      float m_fTextWidth;
-      ::float_size m_sizeImage;
-      //float m_ih;
+      ::f32 m_fTextWidth;
+      ::f32_size m_sizeImage;
+      //::f32 m_ih;
 
       /**
        * \brief The icon of this Button (``0`` means no icon).
@@ -70,7 +70,7 @@ namespace nanoui
        * reciprocal counterpart :func:`nanoui::nano2d::IsFontIcon`.
        * \endrst
        */
-      int m_iIcon;
+      ::i32 m_iIcon;
 
       /// The position to draw the icon at.
       IconPosition m_icon_position;
@@ -79,7 +79,7 @@ namespace nanoui
       bool m_bChecked;
 
       /// The current flags of this button (see \::pointer nanoui::Button::Flags for options).
-      int m_flags;
+      ::i32 m_flags;
 
       /// The background color::color of this Button.
       color::color m_colorBackground;
@@ -115,7 +115,7 @@ namespace nanoui
        * \param icon
        *     The icon to display with this Button.  See \::pointer nanoui::Button::mIcon.
        */
-      Button(Widget * parent, const ::scoped_string & caption = "Untitled", int icon = 0);
+      Button(Widget * parent, const ::scoped_string & caption = "Untitled", ::i32 icon = 0);
 
       /// Returns the caption of this Button.
       ::string caption() const { return m_strCaption; }
@@ -135,14 +135,14 @@ namespace nanoui
    
    
       /// Returns the icon of this Button.  See \::pointer nanoui::Button::m_icon.
-      int icon() const { return m_iIcon; }
+      ::i32 icon() const { return m_iIcon; }
       /// Sets the icon of this Button.  See \::pointer nanoui::Button::m_icon.
-      void set_icon(int iIcon) { m_iIcon = iIcon; }
+      void set_icon(::i32 iIcon) { m_iIcon = iIcon; }
 
       /// The current flags of this Button (see \::pointer nanoui::Button::Flags for options).
-      int flags() const { return m_flags; }
+      ::i32 flags() const { return m_flags; }
       /// Sets the flags of this Button (see \::pointer nanoui::Button::Flags for options).
-      void set_flags(int button_flags) { m_flags = button_flags; }
+      void set_flags(::i32 button_flags) { m_flags = button_flags; }
 
       /// The position of the icon for this Button.
       IconPosition icon_position() const { return m_icon_position; }

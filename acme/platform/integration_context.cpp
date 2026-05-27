@@ -242,7 +242,7 @@ namespace integration
    }
 
 
-   int context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   ::i32 context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
 //      auto functionTrace = [&](auto etracelevel, auto & str)
@@ -363,7 +363,7 @@ namespace integration
             ::particle * pparticle = this;
 
             set["transfer_progress_function"] = ::transfer_progress_function(
-               [this](double dRate, filesize done, filesize total)
+               [this](::f64 dRate, filesize done, filesize total)
                {
 
                   if (total > 0)
@@ -408,7 +408,7 @@ namespace integration
             information() << "Uncompressing...";
 
             auto t2= ::transfer_progress_function(
-               [this](double dRate, filesize done, filesize total)
+               [this](::f64 dRate, filesize done, filesize total)
                {
 
                   if (total > 0)
@@ -452,7 +452,7 @@ namespace integration
             ::function<void(const::scoped_string& scopedstr) > callback;
 
             character_count iLastLineLength=0;
-            int iFilesExtracted = 0;
+            ::i32 iFilesExtracted = 0;
             callback = [this,&iLastLineLength, &iFilesExtracted](const ::scoped_string& scopedstr)
                {
                   
@@ -511,7 +511,7 @@ namespace integration
    }
 
 
-   int context::git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout)
+   ::i32 context::git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout)
    {
 
       return bash(scopedstr, timeTimeout);
@@ -519,7 +519,7 @@ namespace integration
    }
 
 
-   int context::bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
+   ::i32 context::bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
    {
 
       throw interface_only();
@@ -529,7 +529,7 @@ namespace integration
    }
 
 
-   int context::zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
+   ::i32 context::zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
    {
 
       throw interface_only();
@@ -539,7 +539,7 @@ namespace integration
    }
 
 
-   void context::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
+   void context::untar(const ::file::path & pathFolder, const ::payload & payloadTar, ::i32 iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
    {
 
       nano()->archive()->untar(
@@ -549,7 +549,7 @@ namespace integration
          functionCallback);
       // struct archive * a;
       // struct archive_entry * entry;
-      // int r;
+      // ::i32 r;
       //
       // a = archive_read_new();
       // archive_read_support_filter_all(a);
@@ -581,7 +581,7 @@ namespace integration
       //
       //       ::file::path path(strPathName);
       //
-      //       for(int i = 0; i < iStripComponent; i++)
+      //       for(::i32 i = 0; i < iStripComponent; i++)
       //       {
       //
       //          auto p = path.find_first_character_in("/\\");

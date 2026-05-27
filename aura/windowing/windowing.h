@@ -194,7 +194,7 @@ namespace windowing
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-      virtual ::i32_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin);
+      virtual ::i32_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, ::i32 iMargin);
 
       //virtual void top_windows_by_z_order(::user::oswindow_array & a);
 
@@ -273,11 +273,11 @@ namespace windowing
 
       virtual void run() override;
 
-      virtual int system_metrics_get_cx_icon_spacing();
-      virtual int system_metrics_get_cy_icon_spacing();
-      virtual int system_metrics_get_cx_icon();
-      virtual int system_metrics_get_cy_icon();
-      virtual int system_metrics_get_cy_caption();
+      virtual ::i32 system_metrics_get_cx_icon_spacing();
+      virtual ::i32 system_metrics_get_cy_icon_spacing();
+      virtual ::i32 system_metrics_get_cx_icon();
+      virtual ::i32 system_metrics_get_cy_icon();
+      virtual ::i32 system_metrics_get_cy_caption();
 
 
 //      virtual ::pointer < ::graphics::graphics > create_graphics();

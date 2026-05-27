@@ -30,12 +30,12 @@ namespace data
 
       virtual void _insert_tree(tree_base * ptree);
 
-      virtual long long increment_reference_count() override
+      virtual ::i64 increment_reference_count() override
       {
          return ::matter::increment_reference_count();
       }
 
-      virtual long long decrement_reference_count() override
+      virtual ::i64 decrement_reference_count() override
       {
          return ::matter::decrement_reference_count();
       }
@@ -283,7 +283,7 @@ namespace data
    //void tree < ::item * >::erase(tree_item_ptr_array<::item *> & itemptra)
    //{
 
-   //   for (int i = 0; i < itemptra.get_count(); i++)
+   //   for (::i32 i = 0; i < itemptra.get_count(); i++)
    //   {
 
    //      erase(itemptra[i]);
@@ -394,7 +394,7 @@ namespace data
    //::collection::index tree < ::item * >::get_proper_item_index(::data::tree_item * pitemParam, ::collection::index * piLevel, ::collection::index * piCount)
    //{
 
-   //   int iIndex = 0;
+   //   ::i32 iIndex = 0;
 
    //   ::collection::count iCount = 0;
 

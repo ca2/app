@@ -39,7 +39,7 @@ namespace user
       //::pointer<flag_map>                 m_mapFlag;
       //::pointer<rect_map>                 m_mapRect;
       //::pointer<::user::i32_map>          m_mapInt;
-      //::pointer<::user::double_map>       m_mapDouble;
+      //::pointer<::user::f64_map>       m_mapDouble;
 
       ::pointer<::user::style>              m_puserstyleComposite;
 
@@ -150,8 +150,8 @@ namespace user
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
       //virtual ::i32_rectangle             _001GetRect(::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
-      //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
-      //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
+      //virtual ::i32                _001GetInt(::user::e_int eint, ::i32 iDefault = 0);
+      //virtual ::f64             _001GetDouble(::user::e_double edouble, ::f64 dDefault = 0.0);
 
 
       //virtual bool _001IsBackgroundBypass(enum_element eelement = e_element_none);
@@ -161,15 +161,15 @@ namespace user
 
 
       ::color::color get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
-      bool get_int(::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) override;
-      bool get_double(::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) override;
+      bool get_int(::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) override;
+      bool get_double(::user::interaction* pinteraction, ::f64 & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) override;
       ::write_text::font_pointer get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
       //bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rectangle, e_rect erect, style_context * pcontext) override;
-      //virtual bool get_int(int & i, e_int eint, style_context * pcontext) override;
-      //virtual bool get_double(double & d, e_double edouble, style_context * pcontext) override;
+      //virtual bool get_int(::i32 & i, e_int eint, style_context * pcontext) override;
+      //virtual bool get_double(::f64 & d, e_double edouble, style_context * pcontext) override;
 
 
       virtual void select(::draw2d::graphics_pointer & pgraphics);

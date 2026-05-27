@@ -91,9 +91,9 @@ namespace nanoui
             pcontext->font_size(font_size());
             pcontext->font_face("sans");
             m_sizePreferred = int_sequence2(
-               (int)(pcontext->text_bounds(0, 0, m_strCaption, nullptr) +
+               (::i32)(pcontext->text_bounds(0, 0, m_strCaption, nullptr) +
                   1.8f * font_size()),
-               (int)(font_size() * 1.3f));
+               (::i32)(font_size() * 1.3f));
          }
       }
 
@@ -194,7 +194,7 @@ namespace nanoui
 
          auto sizeIcon = ::i32_size(m_size.cy, m_size.cy);
 
-         float_point pointText = m_pos + sizeIcon / 2.f;
+         ::f32_point pointText = m_pos + sizeIcon / 2.f;
          
          pointText.x += 1.f;
          

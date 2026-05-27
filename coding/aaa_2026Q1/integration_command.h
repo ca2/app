@@ -27,8 +27,8 @@ namespace coding
 
       trace_function m_tracefunction;
 
-      int     m_iStep;
-      int    m_iExitCode;
+      ::i32     m_iStep;
+      ::i32    m_iExitCode;
       ::file_pointer m_pfileLog;
 
 

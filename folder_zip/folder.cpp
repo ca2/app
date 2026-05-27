@@ -153,7 +153,7 @@ namespace folder_zip
    }
 
 
-   void folder::open_for_reading(::file_pointer pfile, int iBufferLevel)
+   void folder::open_for_reading(::file_pointer pfile, ::i32 iBufferLevel)
    {
 
       auto unzip_file = unzip_Open2("pad", (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
@@ -253,7 +253,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      int err = unzip_GoToFirstFile(pf);
+      ::i32 err = unzip_GoToFirstFile(pf);
 
       ::file::path path;
 
@@ -262,7 +262,7 @@ namespace folder_zip
       while (err == UNZ_OK)
       {
 
-         char szTitle[_MAX_PATH];
+         ::i8 szTitle[_MAX_PATH];
 
          unzip_GetCurrentFileInfo(
             pf,
@@ -642,16 +642,16 @@ namespace folder_zip
 
       }
 
-      int err = unzip_GoToFirstFile(pf);
+      ::i32 err = unzip_GoToFirstFile(pf);
 
       unzip__file_info unzip_fileinfo;
 
-      int i = 0;
+      ::i32 i = 0;
 
       while (err == UNZ_OK)
       {
 
-         char szItem[_MAX_PATH];
+         ::i8 szItem[_MAX_PATH];
 
          unzip_GetCurrentFileInfo(
             pf,
@@ -678,7 +678,7 @@ namespace folder_zip
          //
          //            const_ansi_range rangeBlock(szItem);
          //
-         //            auto equality = ::comparison::comparison < char >();
+         //            auto equality = ::comparison::comparison < ::i8 >();
          //
          //            while (range.begin() < range.end())
          //            {

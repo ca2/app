@@ -26,7 +26,7 @@ namespace typeface_freetype
 
       //   auto_pointer < Gdiplus::PrivateFontCollection >    m_pcollection;
       //   raw_array < Gdiplus::FontFamily >                  m_familya;
-      //   int                                                m_iFamilyCount;
+      //   ::i32                                                m_iFamilyCount;
 
       //   private_font();
       //   ~private_font() override;
@@ -66,7 +66,7 @@ namespace typeface_freetype
 
 
       //virtual private_font * get_file_private_font(::platform::context * pcontext, const ::file::path & path);
-      virtual int  opengl_init();
+      virtual ::i32  opengl_init();
 
 
       void adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle) override;

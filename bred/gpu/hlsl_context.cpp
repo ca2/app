@@ -22,7 +22,7 @@ namespace gpu
    ::memory hlsl_context::rectangle_shader_vert()
    {
 
-      const char proto_vert[] = R"vert(
+      const ::i8 proto_vert[] = R"vert(
 // Vertex input structure
 struct VSInput {
     float2 inPos   : POSITION; // matches location=0 in GLSL
@@ -53,7 +53,7 @@ VSOutput main(VSInput input) {
    ::memory hlsl_context::rectangle_shader_frag()
    {
 
-      const char proto_frag[] = R"frag(
+      const ::i8 proto_frag[] = R"frag(
 struct PSInput {
    float4 pos   : SV_Position; // required for position in HLSL
    float4 color : COLOR0; // Matches VS output COLOR0

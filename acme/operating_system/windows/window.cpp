@@ -79,12 +79,12 @@ namespace windows
    }
 
 
-   int window::_on_non_client_hit_test(const ::i32_point& point)
+   ::i32 window::_on_non_client_hit_test(const ::i32_point& point)
    {
 
       auto rc = get_window_rectangle();
 
-      const int grip = 8;
+      const ::i32 grip = 8;
 
       bool left = point.x < rc.left + grip;
       bool right = point.x >= rc.right - grip;
@@ -157,7 +157,7 @@ namespace windows
 
             ::lparam lparamNcHitTest(point);
 
-            int iHitTest = DefWindowProcW(hwnd, WM_NCHITTEST, 0, lparamNcHitTest);
+            ::i32 iHitTest = (::i32) DefWindowProcW(hwnd, WM_NCHITTEST, 0, lparamNcHitTest);
 
             if (iHitTest == HTCLIENT)
             {
@@ -191,7 +191,7 @@ namespace windows
             }
             else
             {
-               int iEdge = 0;
+               ::i32 iEdge = 0;
                switch (iHitTest)
                {
                   case HTBOTTOM:
@@ -306,7 +306,7 @@ namespace windows
 
       else if (message == WM_MOUSEACTIVATE)
       {
-         int iResult = 0;
+         ::i32 iResult = 0;
 
          if (on_window_mouse_activate(iResult, ::as_operating_system_window(wparam.raw_cast<HWND>()),
             lparam.loword(), lparam.hiword()))
@@ -353,8 +353,8 @@ namespace windows
          bool bRet = false;
 
          lresult = 1;
-         double Δx = 0.;
-         double Δy= 0.;
+         ::f64 Δx = 0.;
+         ::f64 Δy= 0.;
 
          ::SetCursor(::LoadCursor(nullptr, IDC_SIZEALL));
 
@@ -428,9 +428,9 @@ namespace windows
 
                m_bMovingNow = true;
 
-               auto x = (int)(r.left + Δx);
+               auto x = (::i32)(r.left + Δx);
 
-               auto y = (int)(r.top + Δy);
+               auto y = (::i32)(r.top + Δy);
 
                SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
                m_bMovingNow = false;
@@ -685,7 +685,7 @@ namespace windows
    bool window::_on_default_system_menu_command(::lresult & lresult, ::wparam wparam, ::lparam lparam)
    {
 
-      int wmId = LOWORD(wparam);
+      ::i32 wmId = LOWORD(wparam);
 
       if (wmId == ID_SHOW_ABOUT_BOX)
       {
@@ -765,7 +765,7 @@ namespace windows
    }
 
 
-   bool window::is_window_class_registered(const char *pszWindowClassName)
+   bool window::is_window_class_registered(const_char_pointer pszWindowClassName)
    {
       auto hinstance = (HINSTANCE) hinstance_from_function(s_window_procedure);
       WNDCLASSEXW wndclassexw{};
@@ -780,7 +780,7 @@ namespace windows
    }
 
 
-   bool window::_register_window_class(WNDCLASSEX & wndclassex, const char *pszWindowClassName)
+   bool window::_register_window_class(WNDCLASSEX & wndclassex, const_char_pointer pszWindowClassName)
    {
 
       ::wstring wstrWindowClassName;
@@ -807,7 +807,7 @@ namespace windows
    }
 
 
-   bool window::register_window_class(const char *pszWindowClassName, int iWindowClassStyle, void * pHCURSOR, void * pHBRUSH_Background)
+   bool window::register_window_class(const_char_pointer pszWindowClassName, ::i32 iWindowClassStyle, void * pHCURSOR, void * pHBRUSH_Background)
    {
 
       WNDCLASSEXW wndclassexw{};
@@ -1044,14 +1044,14 @@ namespace windows
    }
 
 
-   float window::get_window_scale()
+   ::f32 window::get_window_scale()
    {
 
       auto hwnd = m_windowswindow.as_HWND();
 
       UINT dpi = GetDpiForWindow(hwnd);
 
-      return (float)dpi / 96.0f;
+      return (::f32)dpi / 96.0f;
 
 
    }
@@ -1100,7 +1100,7 @@ namespace windows
 
    }
 
-   void window::show_window(int iShowFlags)
+   void window::show_window(::i32 iShowFlags)
    {
 
       auto hwnd = m_windowswindow.as_HWND();
@@ -1110,7 +1110,7 @@ namespace windows
    }
 
 
-   void window::set_window_style(int iShowFlags)
+   void window::set_window_style(::i32 iShowFlags)
    {
 
       auto hwnd = m_windowswindow.as_HWND();
@@ -1177,7 +1177,7 @@ namespace windows
    }
 
 
-   void window::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, int iSetWindowPosFlags)
+   void window::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags)
    {
 
       auto hwnd = m_windowswindow.as_HWND();
@@ -1223,7 +1223,7 @@ namespace windows
    }
 
 
-   void window::redraw_window(const i32_rectangle *prectangle, void *pHRGN, int iRedrawFlags)
+   void window::redraw_window(const i32_rectangle *prectangle, void *pHRGN, ::i32 iRedrawFlags)
    {
 
       RECT rect;

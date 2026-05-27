@@ -53,7 +53,7 @@ namespace xml
          return;
       }
       
-      int i;
+      ::i32 i;
 
       i = pnode->attribute("type").as_i32();
       

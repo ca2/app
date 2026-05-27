@@ -1104,14 +1104,14 @@ public:
 //         return !operator==(it);
 //      }
 //
-//      ref_iterator operator ++(int)
+//      ref_iterator operator ++(::i32)
 //      {
 //         ref_iterator it = *this;
 //         operator ++();
 //         return it;
 //      }
 //
-//      ref_iterator operator --(int)
+//      ref_iterator operator --(::i32)
 //      {
 //         ref_iterator it = *this;
 //         operator --();

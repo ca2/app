@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_skybox_vert[] = R"vert_text(//------------------------------------------------------------------------------
+const ::i8 g_psz_skybox_vert[] = R"vert_text(//------------------------------------------------------------------------------
 // Skybox Vertex Shader (HLSL, DirectX 11)
 // Equivalent of GLSL version #version 330 core
 //------------------------------------------------------------------------------
@@ -24,10 +24,10 @@ cbuffer GlobalUbo : register(b0)
     float4 ambientLightColor;
     float3 cameraPosition;
     PointLight pointLights[10];
-    int numLights;
-    int padding0;
-    int padding1;
-    int padding2; // pad to 16-byte multiple
+    ::i32 numLights;
+    ::i32 padding0;
+    ::i32 padding1;
+    ::i32 padding2; // pad to 16-byte multiple
 };
 
 // Vertex input structure (matches GLSL locations)

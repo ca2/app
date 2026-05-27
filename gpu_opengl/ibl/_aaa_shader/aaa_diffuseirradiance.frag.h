@@ -3,14 +3,14 @@
 #pragma once
 
 
-const char g_psz_diffuseirradiance_frag[] = R"frag_text(#version 330 core
+const ::i8 g_psz_diffuseirradiance_frag[] = R"frag_text(#version 330 core
 
 out vec4 FragColor;
 in vec3 modelCoordinates;
 
 uniform samplerCube environmentCubemap;
 
-const float PI = 3.14159265359;
+const ::f32 PI = 3.14159265359;
 const vec3 up = vec3(0.0, 0.0, 1.0);
 
 void main() {
@@ -24,11 +24,11 @@ void main() {
 	// over the hemisphere centered around our sample direction
 	// this uses spherical coordinates phi/theta
 
-	float numSamples = 0.0;
-	float delta = 0.025; // radians
+	::f32 numSamples = 0.0;
+	::f32 delta = 0.025; // radians
 
-	for (float phi = 0.0; phi < 2.0 * PI; phi += delta) { // 360 degrees around
-		for (float theta = 0.0; theta < PI / 2.0; theta += delta) { // 90 degrees up/down
+	for (::f32 phi = 0.0; phi < 2.0 * PI; phi += delta) { // 360 degrees around
+		for (::f32 theta = 0.0; theta < PI / 2.0; theta += delta) { // 90 degrees up/down
 
 			vec3 sampleDirectionTangent = vec3(
 				sin(theta) * cos(phi),
@@ -51,11 +51,11 @@ void main() {
     //vec3 mapped = hdrColor / (hdrColor + vec3(1.0));
 
     // Or ACES tonemap (nicer looking, optional):
-    float a = 2.51;
-    float b = 0.03;
-    float c = 2.43;
-    float d = 0.59;
-    float e = 0.14;
+    ::f32 a = 2.51;
+    ::f32 b = 0.03;
+    ::f32 c = 2.43;
+    ::f32 d = 0.59;
+    ::f32 e = 0.14;
     vec3 mapped = clamp((hdrColor*(a*hdrColor+b)) / (hdrColor*(c*hdrColor+d)+e), 0.0, 1.0);
 
     // 3. Gamma correction (convert from linear → sRGB)

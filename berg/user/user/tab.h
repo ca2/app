@@ -56,7 +56,7 @@ namespace user
       ::collection::count                                      m_iRestoredTabCount;
       bool                                         m_bDrawTabAtBackground;
       ::logic::boolean                                    m_bitLastShowTabs;
-      int                                          m_iTabSize;
+      ::i32                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
       //::i32_rectangle                              m_rectangleHosting;
@@ -152,7 +152,7 @@ namespace user
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
-      int auto_hide_threshold_height() override;
+      ::i32 auto_hide_threshold_height() override;
 
       virtual ::user::interaction_array place_holders();
       virtual tab_pane * place_holder_pane(::user::place_holder * pplaceholder);
@@ -168,7 +168,7 @@ namespace user
       virtual bool get_element_rectangle(::collection::index iTab, ::i32_rectangle & rectangle, enum_element eelement);
 
 
-      virtual void get_title(int iPane,string_array_base & stra);
+      virtual void get_title(::i32 iPane,string_array_base & stra);
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 

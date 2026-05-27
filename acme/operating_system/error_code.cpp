@@ -44,7 +44,7 @@ void get_message(::string & strMessage, const ::error_code & errorcode)
    {
       case e_error_code_type_errno:
          textstream << "errno = " << errorcode.m_iOsError << "\n";
-         textstream << ::posix::get_errno_string((int)errorcode.m_iOsError);
+         textstream << ::posix::get_errno_string((::i32)errorcode.m_iOsError);
          break;
       default:
          textstream << "(Unknown error code type :" << (iptr)errorcode.m_etype << ") (Error code :" << errorcode.m_iOsError << ")";
@@ -111,7 +111,7 @@ bool error_code::is_set() const
    else if(m_etype == e_error_code_type_errno)
    {
       
-      strErrorMessage = strerror((int) m_iOsError);
+      strErrorMessage = strerror((::i32) m_iOsError);
       
    }
    else
@@ -152,7 +152,7 @@ bool error_code::is_set() const
    else if(m_etype == e_error_code_type_errno)
    {
       
-      //strErrorMessage = strerror((int) m_iOsError);
+      //strErrorMessage = strerror((::i32) m_iOsError);
       
    }
    else

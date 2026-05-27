@@ -223,25 +223,25 @@ namespace user
 
    //      }
 
-   //      int pad = m_iPad;
+   //      ::i32 pad = m_iPad;
 
-   //      int text_height = m_bNoName ? 0 : m_iTextHeight;
+   //      ::i32 text_height = m_bNoName ? 0 : m_iTextHeight;
 
-   //      int xpad = m_iPad;
+   //      ::i32 xpad = m_iPad;
 
    //      auto rectangleX = this->rectangle();
 
-   //      int cx = rectangleX.width();
+   //      ::i32 cx = rectangleX.width();
 
-   //      int w = m_size.cx;
+   //      ::i32 w = m_size.cx;
 
-   //      int h = m_size.cy;
+   //      ::i32 h = m_size.cy;
 
-   //      int iColCount = (cx - xpad) / (w + xpad);
+   //      ::i32 iColCount = (cx - xpad) / (w + xpad);
 
-   //      int cxInternal = iColCount * (w + xpad) - xpad;
+   //      ::i32 cxInternal = iColCount * (w + xpad) - xpad;
 
-   //      int xLeft;
+   //      ::i32 xLeft;
 
    //      if (m_ealign & e_align_horizontal_center)
    //      {
@@ -256,9 +256,9 @@ namespace user
 
    //      }
 
-   //      int x = xLeft;
+   //      ::i32 x = xLeft;
 
-   //      int y = pad;
+   //      ::i32 y = pad;
 
    //      for (index pos = 0; pos < item.m_iItem; pos++)
    //      {
@@ -526,11 +526,11 @@ namespace user
 
                   ::i32_rectangle rectangleImage;
 
-                  double dW = (double)rectangleForImage.width() / (double)pimageSrc->width();
+                  ::f64 dW = (::f64)rectangleForImage.width() / (::f64)pimageSrc->width();
 
-                  double dH = (double)rectangleForImage.height() / (double)pimageSrc->height();
+                  ::f64 dH = (::f64)rectangleForImage.height() / (::f64)pimageSrc->height();
 
-                  double dMin = minimum(dW, dH);
+                  ::f64 dMin = minimum(dW, dH);
 
                   auto sizeSrc = pimageSrc->get_size();
 
@@ -547,7 +547,7 @@ namespace user
 
                      ::image::image_source imagesource(pimageSrc);
 
-                     double_rectangle rectangleImageNew(szNew);
+                     ::f64_rectangle rectangleImageNew(szNew);
 
                      ::image::image_drawing_options imagedrawingoptions(rectangleImageNew);
 
@@ -721,13 +721,13 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      int left = m_iMargin;
+      ::i32 left = m_iMargin;
 
-      int top = m_iMargin;
+      ::i32 top = m_iMargin;
 
-      int x = left;
+      ::i32 x = left;
 
-      int y = top;
+      ::i32 y = top;
 
       ::i32_rectangle rectangleTotal;
 
@@ -790,7 +790,7 @@ namespace user
 
       //   m_sizeImage = sizeImage;
 
-      //   //m_iWheelDeltaScroll = (short) (sizeImage.cy / 3);
+      //   //m_iWheelDeltaScroll = (::i16) (sizeImage.cy / 3);
 
       //   m_pimageaThumb->m_imagea.erase_all();
 

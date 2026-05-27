@@ -121,7 +121,7 @@ namespace bred
 //
 //      //bool                                                  m_bMatterFromHttpCache;
 //
-//      //unsigned int                                                 m_dwLongPhRESSingTime;
+//      //::u32                                                 m_dwLongPhRESSingTime;
 //
 //
 //      //::pointer<::userex::userex>                        m_puserex;
@@ -158,17 +158,17 @@ namespace bred
 //      virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::scoped_string & scopedstrMatter, ::property_set & propertyset);
 //
 //
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok);
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok);
-//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = ::user::e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok);
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok);
+//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, ::u32 fuStyle = ::user::e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 //
 //      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 //
-//      int track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point, ::pointer<::user::interaction>puie) override;
+//      ::i32 track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point, ::pointer<::user::interaction>puie) override;
 //
 //
 //      virtual bool get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending);
-//      virtual bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+//      virtual bool get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 //
 //      virtual void data_on_after_change(::message::message * pmessage);
 //
@@ -201,7 +201,7 @@ namespace bred
 //      virtual void term_instance() override;
 //
 //
-//      void LoadStdProfileSettings(unsigned int nMaxMRU = 10);
+//      void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 //
 //      ::collection::count get_template_count() const;
 //      ::pointer<::user::impact_system>get_template(::collection::index index) const;
@@ -211,7 +211,7 @@ namespace bred
 //      virtual void initialize(::particle * pparticle) override;
 //
 //
-//      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
+//      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 //
 //
 //      virtual void initialize_userex();
@@ -236,7 +236,7 @@ namespace bred
 //
 //      //virtual bool is_session() const override;
 //
-//      ////void construct(::particle * pparticle, int iPhase) override;
+//      ////void construct(::particle * pparticle, ::i32 iPhase) override;
 //
 //      //virtual void process_init();
 //
@@ -277,8 +277,8 @@ namespace bred
 //      ////virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
 //
 //      //// Long PhRESSing time
-//      //// time in ::times that a pressing is considered a double click
-//      //virtual unsigned int get_Long_PhRESSing_time();
+//      //// time in ::times that a pressing is considered a ::f64 click
+//      //virtual ::u32 get_Long_PhRESSing_time();
 //
 //      //virtual void defer_initialize_user_presence();
 //
@@ -345,7 +345,7 @@ namespace bred
 //
 //      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 //
-//      //virtual ::color::color get_default_color(unsigned long long u);
+//      //virtual ::color::color get_default_color(::u64 u);
 //
 //      ////virtual ::i32_size get_window_minimum_size();
 //

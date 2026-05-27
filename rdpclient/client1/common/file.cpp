@@ -47,7 +47,7 @@
 
 //#define DEBUG_CLIENT_FILE	1
 
-static unsigned char BOM_UTF16_LE[2] = { 0xFF, 0xFE };
+static ::u8 BOM_UTF16_LE[2] = { 0xFF, 0xFE };
 static WCHAR CR_LF_STR_W[] = { '\r', '\n', '\0' };
 
 #define INVALID_INTEGER_VALUE		0xFFFFFFFF
@@ -59,9 +59,9 @@ static WCHAR CR_LF_STR_W[] = { '\r', '\n', '\0' };
  *
  */
 
-static int freerdp_client_rdp_file_set_integer(rdpFile* file, const ::scoped_string & scopedstrName, int value, int index)
+static ::i32 freerdp_client_rdp_file_set_integer(rdpFile* file, const ::scoped_string & scopedstrName, ::i32 value, ::i32 index)
 {
-	int standard = 1;
+	::i32 standard = 1;
 
 #ifdef DEBUG_CLIENT_FILE
 	WLog_DBG(TAG,  "%s:i:%d", name, value);
@@ -217,23 +217,23 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const ::scoped_str
 	return standard;
 }
 
-static BOOL freerdp_client_parse_rdp_file_integer_unicode(rdpFile* file, WCHAR* name, WCHAR* value, int index)
+static BOOL freerdp_client_parse_rdp_file_integer_unicode(rdpFile* file, WCHAR* name, WCHAR* value, ::i32 index)
 {
-	int length;
-	int ivalue;
-	char* nameA;
-	char* valueA;
+	::i32 length;
+	::i32 ivalue;
+	char_pointer nameA;
+	char_pointer valueA;
 	BOOL ret = true;
 
-	length = (int) _wcslen(name);
-	nameA = (char*) malloc(length + 1);
+	length = (::i32) _wcslen(name);
+	nameA = (char_pointer ) malloc(length + 1);
 	if (!nameA)
 		return false;
 	WideCharToMultiByte(CP_UTF8, 0, name, length, nameA, length, nullptr, nullptr);
 	nameA[length] = '\0';
 
-	length = (int) _wcslen(value);
-	valueA = (char*) malloc(length + 1);
+	length = (::i32) _wcslen(value);
+	valueA = (char_pointer ) malloc(length + 1);
 	if (!valueA)
 	{
 		free(nameA);
@@ -251,9 +251,9 @@ static BOOL freerdp_client_parse_rdp_file_integer_unicode(rdpFile* file, WCHAR* 
 	return ret;
 }
 
-static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const ::scoped_string & scopedstrName, const ::string & value, int index)
+static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const ::scoped_string & scopedstrName, const ::string & value, ::i32 index)
 {
-	int ivalue = atoi(value);
+	::i32 ivalue = atoi(value);
 	if (freerdp_client_rdp_file_set_integer(file, name, ivalue, index) < 0)
 		return false;
 	return true;
@@ -268,10 +268,10 @@ static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const ::s
  * @return 0 on success, 1 if the key wasn't found (not a standard key), -1 on error
  */
 
-static int freerdp_client_rdp_file_set_string(rdpFile* file, const ::scoped_string & scopedstrName, const ::string & value, int index)
+static ::i32 freerdp_client_rdp_file_set_string(rdpFile* file, const ::scoped_string & scopedstrName, const ::string & value, ::i32 index)
 {
-	int standard = 0;
-	char * *tmp = nullptr;
+	::i32 standard = 0;
+	char_pointer *tmp = nullptr;
 
 #ifdef DEBUG_CLIENT_FILE
 	WLog_DBG(TAG,  "%s:s:%s", name, value);
@@ -350,15 +350,15 @@ static int freerdp_client_rdp_file_set_string(rdpFile* file, const ::scoped_stri
 	return standard;
 }
 
-static BOOL freerdp_client_add_option(rdpFile* file, char* option)
+static BOOL freerdp_client_add_option(rdpFile* file, char_pointer option)
 {
 	while ((file->argc + 1) > file->argSize)
 	{
-		int new_size;
-		char **new_argv;
+		::i32 new_size;
+		char_pointer *new_argv;
 
 		new_size = file->argSize * 2;
-		new_argv = (char**) realloc(file->argv, new_size * sizeof(char*));
+		new_argv = (char_pointer *) realloc(file->argv, new_size * sizeof(char_pointer ));
 		if (!new_argv)
 			return false;
 		file->argv = new_argv;
@@ -372,14 +372,14 @@ static BOOL freerdp_client_add_option(rdpFile* file, char* option)
 	return true;
 }
 
-static int freerdp_client_parse_rdp_file_add_line(rdpFile* file, char* line, int index)
+static ::i32 freerdp_client_parse_rdp_file_add_line(rdpFile* file, char_pointer line, ::i32 index)
 {
 	if (index < 0)
 		::collection::index = file->lineCount;
 
 	while ((file->lineCount + 1) > file->lineSize)
 	{
-		int new_size;
+		::i32 new_size;
 		rdpFileLine *new_line;
 
 		new_size = file->lineSize * 2;
@@ -401,9 +401,9 @@ static int freerdp_client_parse_rdp_file_add_line(rdpFile* file, char* line, int
 	return index;
 }
 
-static BOOL freerdp_client_parse_rdp_file_add_line_unicode(rdpFile* file, WCHAR* line, int index)
+static BOOL freerdp_client_parse_rdp_file_add_line_unicode(rdpFile* file, WCHAR* line, ::i32 index)
 {
-	char* lineA = nullptr;
+	char_pointer lineA = nullptr;
 	BOOL ret = true;
 
 	ConvertFromUnicode(CP_UTF8, 0, line, -1, &lineA, 0, nullptr, nullptr);
@@ -417,29 +417,29 @@ static BOOL freerdp_client_parse_rdp_file_add_line_unicode(rdpFile* file, WCHAR*
 	return ret;
 }
 
-static BOOL freerdp_client_parse_rdp_file_add_line_ascii(rdpFile* file, char* line, int index)
+static BOOL freerdp_client_parse_rdp_file_add_line_ascii(rdpFile* file, char_pointer line, ::i32 index)
 {
 	if (freerdp_client_parse_rdp_file_add_line(file, line, index) == -1)
 		return false;
 	return true;
 }
 
-static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* name, WCHAR* value, int index)
+static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* name, WCHAR* value, ::i32 index)
 {
-	int length;
-	char* nameA;
-	char* valueA;
+	::i32 length;
+	char_pointer nameA;
+	char_pointer valueA;
 	BOOL ret = true;
 
-	length = (int) _wcslen(name);
-	nameA = (char*) malloc(length + 1);
+	length = (::i32) _wcslen(name);
+	nameA = (char_pointer ) malloc(length + 1);
 	if (!nameA)
 		return false;
 	WideCharToMultiByte(CP_UTF8, 0, name, length, nameA, length, nullptr, nullptr);
 	nameA[length] = '\0';
 
-	length = (int) _wcslen(value);
-	valueA = (char*) malloc(length + 1);
+	length = (::i32) _wcslen(value);
+	valueA = (char_pointer ) malloc(length + 1);
 	if (!valueA)
 	{
 		free(nameA);
@@ -456,10 +456,10 @@ static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* n
 	return ret;
 }
 
-static BOOL freerdp_client_parse_rdp_file_string_ascii(rdpFile* file, char* name, char* value, int index)
+static BOOL freerdp_client_parse_rdp_file_string_ascii(rdpFile* file, char_pointer name, char_pointer value, ::i32 index)
 {
 	BOOL ret = true;
-	char* valueA = _strdup(value);
+	char_pointer valueA = _strdup(value);
 	if (!valueA)
 		return false;
 
@@ -470,9 +470,9 @@ static BOOL freerdp_client_parse_rdp_file_string_ascii(rdpFile* file, char* name
 	return ret;
 }
 
-static BOOL freerdp_client_parse_rdp_file_option_unicode(rdpFile* file, WCHAR* option, int index)
+static BOOL freerdp_client_parse_rdp_file_option_unicode(rdpFile* file, WCHAR* option, ::i32 index)
 {
-	char* optionA = nullptr;
+	char_pointer optionA = nullptr;
 	BOOL ret;
 
 	ConvertFromUnicode(CP_UTF8, 0, option, -1, &optionA, 0, nullptr, nullptr);
@@ -485,28 +485,28 @@ static BOOL freerdp_client_parse_rdp_file_option_unicode(rdpFile* file, WCHAR* o
 	return ret;
 }
 
-static BOOL freerdp_client_parse_rdp_file_option_ascii(rdpFile* file, char* option, int index)
+static BOOL freerdp_client_parse_rdp_file_option_ascii(rdpFile* file, char_pointer option, ::i32 index)
 {
 	return freerdp_client_add_option(file, option);
 }
 
-static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const unsigned char* buffer, size_t size)
+static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const ::u8* buffer, size_t size)
 {
-	int index;
-	int length;
-	char* line;
-	char* type;
-	char* context;
-	char *d1, *d2;
-	char *beg, *end;
-	char *name, *value;
+	::i32 index;
+	::i32 length;
+	char_pointer line;
+	char_pointer type;
+	char_pointer context;
+	char_pointer d1, *d2;
+	char_pointer beg, *end;
+	char_pointer name, *value;
 
 	::collection::index = 0;
-	line = strtok_s((char*) buffer, "\r\n", &context);
+	line = strtok_s((char_pointer ) buffer, "\r\n", &context);
 
 	while (line)
 	{
-		length = (int) strlen(line);
+		length = (::i32) strlen(line);
 
 		if (length > 1)
 		{
@@ -570,10 +570,10 @@ next_line:
 	return true;
 }
 
-static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const unsigned char* buffer, size_t size)
+static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const ::u8* buffer, size_t size)
 {
-	int index;
-	int length;
+	::i32 index;
+	::i32 length;
 	WCHAR* line;
 	WCHAR* type;
 	WCHAR* context;
@@ -586,7 +586,7 @@ static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const un
 
 	while (line != nullptr)
 	{
-		length = (int) _wcslen(line);
+		length = (::i32) _wcslen(line);
 
 		if (length > 1)
 		{
@@ -649,7 +649,7 @@ next_line:
 	return true;
 }
 
-BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const unsigned char* buffer, size_t size)
+BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const ::u8* buffer, size_t size)
 {
 	if (size < 2)
 		return false;
@@ -663,10 +663,10 @@ BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const unsigned char* bu
 BOOL freerdp_client_parse_rdp_file(rdpFile* file, const ::scoped_string & scopedstrName)
 {
 	BOOL status;
-	unsigned char* buffer;
+	::u8* buffer;
 	FILE* fp = nullptr;
 	size_t read_size;
-	long int filesize;
+	long ::i32 filesize;
 
 	fp = fopen(name, "r");
 
@@ -683,7 +683,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const ::scoped_string & scoped
 		return false;
 	}
 
-	buffer = (unsigned char*) malloc(filesize + 2);
+	buffer = (::u8*) malloc(filesize + 2);
 	if (!buffer)
 	{
 		fclose(fp);
@@ -769,12 +769,12 @@ BOOL freerdp_client_populate_rdp_file_from_settings(rdpFile* file, const rdpSett
 BOOL freerdp_client_write_rdp_file(const rdpFile* file, const ::scoped_string & scopedstrName, BOOL unicode)
 {
 	FILE* fp;
-	int length;
-	char* buffer;
-	int status = 0;
+	::i32 length;
+	char_pointer buffer;
+	::i32 status = 0;
 	WCHAR* unicodestr = nullptr;
 
-	length = (int) freerdp_client_write_rdp_file_buffer(file, nullptr, 0);
+	length = (::i32) freerdp_client_write_rdp_file_buffer(file, nullptr, 0);
 
 	if (length < 0)
 	{
@@ -782,7 +782,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const ::scoped_string & 
 		return false;
 	}
 
-	buffer = (char*) malloc((length + 1) * sizeof(char));
+	buffer = (char_pointer ) malloc((length + 1) * sizeof(::i8));
 
 	if (freerdp_client_write_rdp_file_buffer(file, buffer, length + 1) != length)
 	{
@@ -799,8 +799,8 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const ::scoped_string & 
 		{
 			ConvertToUnicode(CP_UTF8, 0, buffer, length, &unicodestr, 0);
 
-			/* Write multi-unsigned char header */
-			if (fwrite(BOM_UTF16_LE, sizeof(unsigned char), 2, fp) != 2 ||
+			/* Write multi-::u8 header */
+			if (fwrite(BOM_UTF16_LE, sizeof(::u8), 2, fp) != 2 ||
 					fwrite(unicodestr, 2, length, fp) != length)
 			{
 				free(buffer);
@@ -830,11 +830,11 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const ::scoped_string & 
 	return (status == 0) ? true : false;
 }
 
-size_t freerdp_client_write_rdp_file_buffer(const rdpFile* file, char* buffer, size_t size)
+size_t freerdp_client_write_rdp_file_buffer(const rdpFile* file, char_pointer buffer, size_t size)
 {
-	int index;
-	int length;
-	char* output;
+	::i32 index;
+	::i32 length;
+	char_pointer output;
 	rdpFileLine* line;
 
 	if (!buffer)
@@ -846,7 +846,7 @@ size_t freerdp_client_write_rdp_file_buffer(const rdpFile* file, char* buffer, s
 	{
 		line = &(file->lines[index]);
 
-		length = (int) strlen(line->text);
+		length = (::i32) strlen(line->text);
 
 		if (!buffer)
 		{
@@ -877,8 +877,8 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (~((size_t) file->Username))
 	{
-		char* user = nullptr;
-		char* domain = nullptr;
+		char_pointer user = nullptr;
+		char_pointer domain = nullptr;
 
 		if (freerdp_parse_username(file->Username, &user, &domain) != 0)
 			return false;
@@ -897,8 +897,8 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (~((size_t) file->FullAddress))
 	{
-		int port = -1;
-		char* host = nullptr;
+		::i32 port = -1;
+		char_pointer host = nullptr;
 
 		if (freerdp_parse_hostname(file->FullAddress, &host, &port) != 0)
 			return false;
@@ -967,10 +967,10 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (~((size_t) file->LoadBalanceInfo))
 	{
-		settings->LoadBalanceInfo = (unsigned char*) _strdup(file->LoadBalanceInfo);
+		settings->LoadBalanceInfo = (::u8*) _strdup(file->LoadBalanceInfo);
 		if (!settings->LoadBalanceInfo)
 			return false;
-		settings->LoadBalanceInfoLength = (int) strlen((char*) settings->LoadBalanceInfo);
+		settings->LoadBalanceInfoLength = (::i32) strlen((char_pointer ) settings->LoadBalanceInfo);
 	}
 
 	if (~file->AuthenticationLevel)
@@ -1019,8 +1019,8 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (~((size_t) file->GatewayHostname))
 	{
-		int port = -1;
-		char* host = nullptr;
+		::i32 port = -1;
+		char_pointer host = nullptr;
 
 		if (freerdp_parse_hostname(file->GatewayHostname, &host, &port) != 0)
 			return false;
@@ -1175,7 +1175,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (file->argc > 1)
 	{
-		char* ConnectionFile = settings->ConnectionFile;
+		char_pointer ConnectionFile = settings->ConnectionFile;
 
 		settings->ConnectionFile = nullptr;
 		if (freerdp_client_settings_parse_command_line(settings, file->argc, file->argv, false) < 0)
@@ -1186,7 +1186,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 	return true;
 }
 
-static rdpFileLine* freerdp_client_rdp_file_find_line_index(rdpFile* file, int index)
+static rdpFileLine* freerdp_client_rdp_file_find_line_index(rdpFile* file, ::i32 index)
 {
 	rdpFileLine* line;
 
@@ -1197,7 +1197,7 @@ static rdpFileLine* freerdp_client_rdp_file_find_line_index(rdpFile* file, int i
 
 static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, const ::scoped_string & scopedstrName)
 {
-	int index;
+	::i32 index;
 	BOOL bFound = false;
 	rdpFileLine* line = nullptr;
 
@@ -1226,15 +1226,15 @@ static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, con
  * @return 0 on success
  */
 
-int freerdp_client_rdp_file_set_string_option(rdpFile* file, const ::scoped_string & scopedstrName, const ::string & value)
+::i32 freerdp_client_rdp_file_set_string_option(rdpFile* file, const ::scoped_string & scopedstrName, const ::string & value)
 {
-	int index;
-	int length;
-	char* text;
+	::i32 index;
+	::i32 length;
+	char_pointer text;
 	rdpFileLine* line;
 
 	length = _scprintf("%s:s:%s", name, value);
-	text = (char*) malloc(length + 1);
+	text = (char_pointer ) malloc(length + 1);
 	if (!text)
 		return -1;
 	sprintf_s(text, length + 1, "%s:s:%s", name, value ? value : "");
@@ -1289,17 +1289,17 @@ const_char_pointer freerdp_client_rdp_file_get_string_option(rdpFile* file, cons
 	return line->sValue;
 }
 
-int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const ::scoped_string & scopedstrName, int value)
+::i32 freerdp_client_rdp_file_set_integer_option(rdpFile* file, const ::scoped_string & scopedstrName, ::i32 value)
 {
-	int index;
-	int length;
-	char* text;
+	::i32 index;
+	::i32 length;
+	char_pointer text;
 	rdpFileLine* line;
 
 	line = freerdp_client_rdp_file_find_line_by_name(file, name);
 
 	length = _scprintf("%s:i:%d", name, value);
-	text = (char*) malloc(length + 1);
+	text = (char_pointer ) malloc(length + 1);
 	sprintf_s(text, length + 1, "%s:i:%d", name, value);
 	text[length] = '\0';
 
@@ -1320,7 +1320,7 @@ int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const ::scoped_str
 		}
 		line = freerdp_client_rdp_file_find_line_index(file, index);
 
-		if (freerdp_client_rdp_file_set_integer(file, (char*) name, value, index) < 0)
+		if (freerdp_client_rdp_file_set_integer(file, (char_pointer ) name, value, index) < 0)
 		{
 			free(text);
 			return -1;
@@ -1332,7 +1332,7 @@ int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const ::scoped_str
 	return 0;
 }
 
-int freerdp_client_rdp_file_get_integer_option(rdpFile* file, const ::scoped_string & scopedstrName)
+::i32 freerdp_client_rdp_file_get_integer_option(rdpFile* file, const ::scoped_string & scopedstrName)
 {
 	rdpFileLine* line;
 
@@ -1347,7 +1347,7 @@ int freerdp_client_rdp_file_get_integer_option(rdpFile* file, const ::scoped_str
 	return line->iValue;
 }
 
-static void freerdp_client_file_string_check_free(char * str)
+static void freerdp_client_file_string_check_free(char_pointer str)
 {
 	if (~((size_t) str))
 		free(str);
@@ -1375,7 +1375,7 @@ rdpFile* freerdp_client_rdp_file_new()
 
 		file->argc = 0;
 		file->argSize = 32;
-		file->argv = (char**) malloc(file->argSize * sizeof(char*));
+		file->argv = (char_pointer *) malloc(file->argSize * sizeof(char_pointer ));
 		if (!file->argv)
 		{
 			free(file->lines);
@@ -1397,7 +1397,7 @@ rdpFile* freerdp_client_rdp_file_new()
 
 void freerdp_client_rdp_file_free(rdpFile* file)
 {
-	int i;
+	::i32 i;
 
 	if (file)
 	{

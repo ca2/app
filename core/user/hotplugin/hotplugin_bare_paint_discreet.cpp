@@ -13,7 +13,7 @@ namespace hotplugin
 
    {
 
-      double dRate = get_progress_rate();
+      ::f64 dRate = get_progress_rate();
 
       if (dRate <= 0.0)
       {
@@ -24,8 +24,8 @@ namespace hotplugin
 
       ::i32_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
-      int cx = rectangleWindow.right - rectangleWindow.left;
-      int cy = rectangleWindow.bottom - rectangleWindow.top;
+      ::i32 cx = rectangleWindow.right - rectangleWindow.left;
+      ::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
       ::i32_rectangle rectangle;
       rectangle.left = 0;
       rectangle.top = 0;
@@ -52,8 +52,8 @@ namespace hotplugin
 
 
 
-      int iDelta = m_iDelta;
-      int iRadius = 8;
+      ::i32 iDelta = m_iDelta;
+      ::i32 iRadius = 8;
       auto iPhase = ((((m_timeSync.elapsed()) % iDelta)) * iRadius * 2) / iDelta;
 
       if (iPhase == 0 && m_timeSync.timeout(2000_tick))
@@ -72,19 +72,19 @@ namespace hotplugin
 
       wstr = m_strStatus;
 
-      int iRate1 = 25;
+      ::i32 iRate1 = 25;
 
-      unsigned char bA;
+      ::u8 bA;
 
       {
 
-         //int iARange = (184 - 23) * 2;
-         //int iAClip = iARange / 2;
-         double period = 8.4; // seconds
-         double frequency = 1.0 / period;
-         //int iA = (iARange * ::get_tick() / 8000) % iARange;
-         double w = 2.0 * 3.1415 * frequency;
-         double t= ::time::now() / 1000.0;
+         //::i32 iARange = (184 - 23) * 2;
+         //::i32 iAClip = iARange / 2;
+         ::f64 period = 8.4; // seconds
+         ::f64 frequency = 1.0 / period;
+         //::i32 iA = (iARange * ::get_tick() / 8000) % iARange;
+         ::f64 w = 2.0 * 3.1415 * frequency;
+         ::f64 t= ::time::now() / 1000.0;
 
 
          /*if(iA < iAClip)
@@ -92,26 +92,26 @@ namespace hotplugin
          else
          bA = 184 * 2 - iA;*/
 
-         bA = minimum(255, maximum(0, (unsigned char)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+         bA = minimum(255, maximum(0, (::u8)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
       }
 
-      unsigned char uchR;
-      unsigned char uchG;
-      unsigned char uchB;
+      ::u8 uchR;
+      ::u8 uchG;
+      ::u8 uchB;
 
       //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-      int iRate = 10;
+      ::i32 iRate = 10;
 
-      const int iRowCount = cx - cx / (iRate / 2);
-      int iProgressCount = maximum(minimum((int)(iRowCount * dRate), iRowCount), 0);
+      const ::i32 iRowCount = cx - cx / (iRate / 2);
+      ::i32 iProgressCount = maximum(minimum((::i32)(iRowCount * dRate), iRowCount), 0);
 
 
 
-      int iBorder1 = maximum(cx / iRate1, cy / iRate1);
+      ::i32 iBorder1 = maximum(cx / iRate1, cy / iRate1);
 
       auto ppathClip1 = createø < ::draw2d::path >();
 
@@ -134,8 +134,8 @@ namespace hotplugin
 
 
 
-      int iRatePercentMillis = ((int)(dRate * 100.0 * 1000.0)) % 1000;
-      int iRatePercent = ((int)(dRate * 100.0));
+      ::i32 iRatePercentMillis = ((::i32)(dRate * 100.0 * 1000.0)) % 1000;
+      ::i32 iRatePercent = ((::i32)(dRate * 100.0));
 
       wstring wstrProgress;
 
@@ -151,11 +151,11 @@ namespace hotplugin
 
       }
 
-      int iBarHeight = 23;
+      ::i32 iBarHeight = 23;
 
 
 
-      int iBorder = 16;
+      ::i32 iBorder = 16;
 
       auto ppathClip = createø < ::draw2d::path >();
 
@@ -189,14 +189,14 @@ namespace hotplugin
 
       pbrush->create_solid(argb(49, 184 + 23, 184 + 23, 184 + 19));
 
-      int mcy = cy / 2;
+      ::i32 mcy = cy / 2;
 
       if (m_iHealingSurface == 1)
       {
 
          pgraphics->SelectObject(br);
 
-         for (int x = 0; x < (cx + cy); x += 46)
+         for (::i32 x = 0; x < (cx + cy); x += 46)
          {
 
             pa[0].x = rectangleParam.left + x;
@@ -266,21 +266,21 @@ namespace hotplugin
       /*for(iRow = 0; iRow < iProgressCount; iRow++)
       {
       {
-      get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
+      get_progress_color(uchR, uchG, uchB, (::f64) iRow / (::f64) iRowCount, 0);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
       graphics2.fill_rectangle(pbr, rectangleParam.left + iRow + cx / iRate , rectangleParam.top + (cy - iBarHeight) / 2, 1, 5);
 
       delete pbr;
       }
       {
-      get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
+      get_progress_color(uchR, uchG, uchB, (::f64) iRow / (::f64) iRowCount, 1);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
       graphics2.fill_rectangle(pbr, rectangleParam.left + iRow + cx / iRate , rectangleParam.top + (cy - iBarHeight) / 2 + 5, 1, 5);
 
       delete pbr;
       }
       {
-      get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
+      get_progress_color(uchR, uchG, uchB, (::f64) iRow / (::f64) iRowCount, 2);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
       graphics2.fill_rectangle(pbr, rectangleParam.left + iRow + cx / iRate , rectangleParam.top + (cy - iBarHeight) / 2 + 10, 1, 13);
 
@@ -291,26 +291,26 @@ namespace hotplugin
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = int_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
+         rect2 = i32_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = int_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         rect2 = i32_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = int_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         rect2 = i32_rectangle_dimension(rectangleParam.left + cx / iRate, rectangleParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
          pgraphics->fill_rectangle(rect2, br);
       }
 
-      int iOffset = 3;
+      ::i32 iOffset = 3;
 
       ppen->create_solid(1.0, argb(220, 180, 180, 180));
       pgraphics->line(rectangleParam.left + cx / iRate - iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left + cx - cx / iRate + iOffset, rectangleParam.top + (cy - iBarHeight) / 2 - iOffset, ppen);

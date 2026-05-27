@@ -65,7 +65,7 @@
 // }
 //
 //
-// void window_interface::on_char(int iChar)
+// void window_interface::on_char(::i32 iChar)
 // {
 //
 //

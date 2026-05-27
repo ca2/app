@@ -333,7 +333,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_length();
 //}
 //
-//void property::string(char * psz) const
+//void property::string(char_pointer psz) const
 //{
 //   string(scopedstr);
 //}
@@ -433,7 +433,7 @@ string & property::get_network_arguments(::string & str) const
 ////}
 //
 //
-//int property::case_insensitive_compare_value(const ::scoped_string & scopedstr) const
+//::i32 property::case_insensitive_compare_value(const ::scoped_string & scopedstr) const
 //{
 //   return case_insensitive_order(scopedstr);
 //}
@@ -472,12 +472,12 @@ string & property::get_network_arguments(::string & str) const
 //   return strict_equal(str);
 //}
 //
-//bool property::strict_equal(double d) const
+//bool property::strict_equal(::f64 d) const
 //{
 //   return strict_equal(d);
 //}
 //
-//bool property::strict_equal(int i) const
+//bool property::strict_equal(::i32 i) const
 //{
 //   return strict_equal(i);
 //}
@@ -508,12 +508,12 @@ string & property::get_network_arguments(::string & str) const
 //   return strict_different(str);
 //}
 //
-//bool property::strict_different(double d) const
+//bool property::strict_different(::f64 d) const
 //{
 //   return strict_different(d);
 //}
 //
-//bool property::strict_different(int i) const
+//bool property::strict_different(::i32 i) const
 //{
 //   return strict_different(i);
 //}
@@ -544,7 +544,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() == str;
 //}
 //
-//bool property::operator == (int i) const
+//bool property::operator == (::i32 i) const
 //{
 //   return get_value() == i;
 //}
@@ -575,7 +575,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() != str;
 //}
 //
-//bool property::operator != (int i) const
+//bool property::operator != (::i32 i) const
 //{
 //   return get_value() != i;
 //}
@@ -612,7 +612,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() < str;
 //}
 //
-//bool property::operator < (int i) const
+//bool property::operator < (::i32 i) const
 //{
 //   return get_value() < i;
 //}
@@ -642,7 +642,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() <= str;
 //}
 //
-//bool property::operator <= (int i) const
+//bool property::operator <= (::i32 i) const
 //{
 //   return get_value() <= i;
 //}
@@ -671,7 +671,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() >= str;
 //}
 //
-//bool property::operator >= (int i) const
+//bool property::operator >= (::i32 i) const
 //{
 //   return get_value() >= i;
 //}
@@ -700,7 +700,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() > str;
 //}
 //
-//bool property::operator > (int i) const
+//bool property::operator > (::i32 i) const
 //{
 //   return get_value() > i;
 //}
@@ -736,7 +736,7 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return payload::operator > (i);
 //}
-//::payload property::operator - (int i) const
+//::payload property::operator - (::i32 i) const
 //{
 //   return get_value() - i;
 //}
@@ -756,7 +756,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() - user;
 //}
 //
-//::payload property::operator - (double d) const
+//::payload property::operator - (::f64 d) const
 //{
 //   return get_value() - d;
 //}
@@ -765,7 +765,7 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() - payload;
 //}
-//::payload property::operator + (int i) const
+//::payload property::operator + (::i32 i) const
 //{
 //   return get_value() + i;
 //}
@@ -785,7 +785,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() + user;
 //}
 //
-//::payload property::operator + (double d) const
+//::payload property::operator + (::f64 d) const
 //{
 //   return get_value() + d;
 //}
@@ -797,7 +797,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload property::operator / (int i) const
+//::payload property::operator / (::i32 i) const
 //{
 //   return get_value() / i;
 //}
@@ -817,7 +817,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() / user;
 //}
 //
-//::payload property::operator / (double d) const
+//::payload property::operator / (::f64 d) const
 //{
 //   return get_value() / d;
 //}
@@ -826,7 +826,7 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() / payload;
 //}
-//::payload property::operator * (int i) const
+//::payload property::operator * (::i32 i) const
 //{
 //   return get_value() * i;
 //}
@@ -846,7 +846,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() * user;
 //}
 //
-//::payload property::operator * (double d) const
+//::payload property::operator * (::f64 d) const
 //{
 //   return get_value() * d;
 //}
@@ -856,7 +856,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() * payload;
 //}
 //
-//property & property::operator -= (int i)
+//property & property::operator -= (::i32 i)
 //{
 //   operator=(*this - i);
 //   return *this;
@@ -880,7 +880,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator -= (double d)
+//property & property::operator -= (::f64 d)
 //{
 //   operator=(*this - d);
 //   return *this;
@@ -900,7 +900,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//property & property::operator += (int i)
+//property & property::operator += (::i32 i)
 //{
 //   operator=(*this + i);
 //   return *this;
@@ -924,7 +924,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (double d)
+//property & property::operator += (::f64 d)
 //{
 //   operator=(*this + d);
 //   return *this;
@@ -954,7 +954,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (int i)
+//property & property::operator /= (::i32 i)
 //{
 //   operator=(*this / i);
 //   return *this;
@@ -978,7 +978,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (double d)
+//property & property::operator /= (::f64 d)
 //{
 //   operator=(*this / d);
 //   return *this;
@@ -996,7 +996,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (int i)
+//property & property::operator *= (::i32 i)
 //{
 //   operator=(*this * i);
 //   return *this;
@@ -1020,7 +1020,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (double d)
+//property & property::operator *= (::f64 d)
 //{
 //   operator=(*this * d);
 //   return *this;
@@ -1058,9 +1058,9 @@ string & property::get_network_arguments(::string & str) const
 //  //   ::text_stream ostring;
 //  //   //ostring << (const_char_pointer )m_strName << "='" << (const_char_pointer )m_strValue << "' ";
 //
-//  //   ostring << (const_char_pointer )m_strName << L"=" << (char)opt->value_quotation_mark
+//  //   ostring << (const_char_pointer )m_strName << L"=" << (::i8)opt->value_quotation_mark
 //  //      << (const_char_pointer )(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-//  //      << (char)opt->value_quotation_mark << L" ";
+//  //      << (::i8)opt->value_quotation_mark << L" ";
 //  //   return ostring.str();
 //
 //  if(opt == ((::xml::disp_option *) 1))
@@ -1145,7 +1145,7 @@ string & property::get_network_arguments(::string & str) const
 
 //
 //
-//::payload  operator - (int i, const property & prop)
+//::payload  operator - (::i32 i, const property & prop)
 //{
 //   return i - (const ::payload &)prop;
 //}
@@ -1169,7 +1169,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator - (double d, const property & prop)
+//::payload  operator - (::f64 d, const property & prop)
 //{
 //   return d - (const & payload) prop;
 //}
@@ -1220,7 +1220,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload  operator + (int i, const property & prop)
+//::payload  operator + (::i32 i, const property & prop)
 //{
 //   return i + prop;
 //}
@@ -1244,7 +1244,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator + (double d, const property & prop)
+//::payload  operator + (::f64 d, const property & prop)
 //{
 //   return d + prop;
 //}
@@ -1295,7 +1295,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload  operator / (int i, const property & prop)
+//::payload  operator / (::i32 i, const property & prop)
 //{
 //   return i / prop;
 //}
@@ -1319,7 +1319,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator / (double d, const property & prop)
+//::payload  operator / (::f64 d, const property & prop)
 //{
 //   return d / prop;
 //}
@@ -1358,7 +1358,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload  operator * (int i, const property & prop)
+//::payload  operator * (::i32 i, const property & prop)
 //{
 //   return i * prop;
 //}
@@ -1382,7 +1382,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator * (double d, const property & prop)
+//::payload  operator * (::f64 d, const property & prop)
 //{
 //   return d * prop;
 //}
@@ -1495,7 +1495,7 @@ void on_property_destruct(property* pproperty)
 
       informationf("PROPS("+as_string(g_propertya.get_size())+")\n");
 
-      int iCount = 250;
+      ::i32 iCount = 250;
 
       for (auto p : g_propertya)
       {

@@ -30,7 +30,7 @@ namespace sockets_bsd
       SetLost();
    }
 
-   void base_socket_handler::pool_socket::OnOptions(int, int, int, SOCKET)
+   void base_socket_handler::pool_socket::OnOptions(::i32, ::i32, ::i32, SOCKET)
    {
 
    }
@@ -78,7 +78,7 @@ namespace sockets_bsd
    }
 
    
-   //void base_socket_handler::__tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage)
+   //void base_socket_handler::__tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, base_socket * psocket, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrMessage)
    //{
 
    //   psocket->__tracef(ecategory, elevel, pszFunction, pszFile, iLine, log_this, strContext, iError, strMessage);
@@ -86,7 +86,7 @@ namespace sockets_bsd
    //}
 
 
-   int base_socket_handler::TriggerID(::sockets::base_socket * src)
+   ::i32 base_socket_handler::TriggerID(::sockets::base_socket * src)
    {
 
       throw interface_only();

@@ -56,7 +56,7 @@ namespace graphics3d
 	//	}
 	//}
 
-	/*void container::framebufferResizeCallback(GLFWwindow* window, int m_iWidth, int m_iHeight) {
+	/*void container::framebufferResizeCallback(GLFWwindow* window, ::i32 m_iWidth, ::i32 m_iHeight) {
 		auto Window = reinterpret_cast<container*>(glfwGetWindowUserPointer(window));
 		Window->framebufferResized = true;
 		Window->m_iWidth = m_iWidth;

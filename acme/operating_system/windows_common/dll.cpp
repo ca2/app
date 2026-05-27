@@ -195,8 +195,8 @@ void module_output_debug_string_w(hinstance hinstance, const WCHAR * pwszPrefix 
 //#ifdef UNIVERSAL_WINDOWS
 //[MTAThread]
 //#endif
-//::i32_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)
-//::i32_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox)
+//::i32_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, ::i32 iLibMainDebugBox, const lib_main_int & intDelayMs)
+//::i32_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, ::i32 iLibMainDebugBox)
 ::i32_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved)
 {
 

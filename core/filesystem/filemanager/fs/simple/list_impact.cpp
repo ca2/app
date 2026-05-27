@@ -371,7 +371,7 @@ namespace filemanager
             {
                strSql += " order by ";
 
-               for(int i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+               for(::i32 i = 0; i < m_sortinfo.m_itema.get_size(); i++)
                {
                   CSortInfoItem & item = m_sortinfo.m_itema[i];
                   switch(item.m_iSubItem)
@@ -438,7 +438,7 @@ namespace filemanager
             MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
             ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-            int iFind;
+            ::i32 iFind;
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
             mediamanager::GetMediaManager()->album_build().add(wstrPath, pdocument->m_fileinfo.m_timeaAdd[iFind]);
@@ -489,18 +489,18 @@ namespace filemanager
             else
             {
             kill_timer(1124);
-            int iTopIndex = _001GetTopIndex();
+            ::i32 iTopIndex = _001GetTopIndex();
             if(m_buildhelper.m_iTopIndex != iTopIndex)
             {
             m_buildhelper.m_iTopIndex = iTopIndex;
             m_buildhelper.m_iStep = 0;
             }
-            int iItem;
+            ::i32 iItem;
 
 
             ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-            int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+            ::i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             ::i32_array_base iaRemove;
             while(true)
@@ -522,7 +522,7 @@ namespace filemanager
             string wstrPath;
             wstrPath = pds->fv("filepath").get_asString();
 
-            int iFind;
+            ::i32 iFind;
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
             PostFillTask(wstrPath, uEvent);
@@ -555,7 +555,7 @@ namespace filemanager
             MediaLibraryDoc * pdocument = get_document();
             ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-            int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+            ::i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             ::i32_array_base iaRemove;
             auto pFind = 0;
@@ -691,7 +691,7 @@ namespace filemanager
 
          }
 
-         void list_impact::start_build(int iItem)
+         void list_impact::start_build(::i32 iItem)
          {
             __UNREFERENCED_PARAMETER(iItem);
             auto iTopIndex = m_iTopDisplayIndex;
@@ -772,7 +772,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             ::collection::index iNode = 0;
-            for(int i = 0 ; i < pnodeFolder->get_children_count(); i++)
+            for(::i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
 
                auto pnodeItem = pnodeFolder->child_at(i);
@@ -819,7 +819,7 @@ namespace filemanager
 
             auto pnodeFile = pxmldocument->get_child("file");
 
-            for(int i = 0; i < pnodeFile->get_children_count(); i++)
+            for(::i32 i = 0; i < pnodeFile->get_children_count(); i++)
             {
                auto pnodeItem = pnodeFile->child_at(i);
                if(pnodeItem->get_name() == "file")
@@ -848,10 +848,10 @@ namespace filemanager
          }
 
 
-         /*int ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
+         /*::i32 ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
 
          {
-            for(int i = 0; i < this->get_size(); i++)
+            for(::i32 i = 0; i < this->get_size(); i++)
             {
                if(this->element_at(i).id() == pszId)
 

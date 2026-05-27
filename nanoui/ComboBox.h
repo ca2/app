@@ -44,7 +44,7 @@ namespace nanoui
       /// The items associated with this ComboBox.
       ::string_array_base m_straItems;
 
-      /// The short descriptions of items associated with this ComboBox.
+      /// The ::i16 descriptions of items associated with this ComboBox.
       ::string_array_base m_straItemsShort;
 
       /// The callback for this ComboBox.
@@ -61,7 +61,7 @@ namespace nanoui
       ComboBox(Widget* parent, const ::string_array_base& items);
 
       /**
-       * \brief Create a ___new combo box with the given items, providing both short and
+       * \brief Create a ___new combo box with the given items, providing both ::i16 and
        * long descriptive labels for each item
        */
       ComboBox(Widget* parent, const ::string_array_base& items,
@@ -79,17 +79,17 @@ namespace nanoui
       /// Sets the callback to execute for this ComboBox.
       void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
-      /// Sets the items for this ComboBox, providing both short and long descriptive lables for each item.
+      /// Sets the items for this ComboBox, providing both ::i16 and long descriptive lables for each item.
       void set_items(const ::string_array_base& items, const ::string_array_base& items_short);
       /// Sets the items for this ComboBox.
       void set_items(const ::string_array_base& items) { set_items(items, items); }
       /// The items associated with this ComboBox.
       const ::string_array_base& items() const { return m_straItems; }
-      /// The short descriptions associated with this ComboBox.
+      /// The ::i16 descriptions associated with this ComboBox.
       const ::string_array_base& items_short() const { return m_straItemsShort; }
 
       /// Handles mouse scrolling happenings for this ComboBox.
-      virtual bool scroll_event(const i32_point& p, const float_size& rel) override;
+      virtual bool scroll_event(const i32_point& p, const ::f32_size& rel) override;
 
    };
 

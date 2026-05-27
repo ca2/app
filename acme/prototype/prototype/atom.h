@@ -53,7 +53,7 @@ inline bool __atom_str_is_empty(const_char_pointer psz)
 
 
 template <typename T>
-int __atom_sgn(T x)
+::i32 __atom_sgn(T x)
 {
 
    return (((T) 0) < x) - (x < ((T) 0));
@@ -87,7 +87,7 @@ int __atom_sgn(T x)
 
 
 
-//inline int __atom_safe_strcmp(const_char_pointer a, const_char_pointer b)
+//inline ::i32 __atom_safe_strcmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -123,7 +123,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline int __atom_safe_stricmp(const_char_pointer a, const_char_pointer b)
+//inline ::i32 __atom_safe_stricmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -240,7 +240,7 @@ public:
 
    using PRIMITIVE_ATOM_TAG = PRIMITIVE_ATOM_TAG_TYPE;
 
-   enum enum_type : int
+   enum enum_type : ::i32
    {
 
       e_type_empty = -2,
@@ -370,7 +370,7 @@ public:
    atom(const_char_pointer psz);
    atom(const inline_number_string & inlinenumberstring);
    atom(const ::platform::type & type);
-   //template <typename ITERATOR_TYPE2, int t_size >
+   //template <typename ITERATOR_TYPE2, ::i32 t_size >
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
 
 
@@ -623,7 +623,7 @@ public:
    // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::user::enum_message)EID); }
 
 
-   //inline int order(::enum_topic etopic) const;
+   //inline ::i32 order(::enum_topic etopic) const;
    //inline bool operator == (::enum_topic etopic) const;
    //inline bool operator != (::enum_topic etopic) const;
    //inline bool operator < (::enum_topic etopic) const;
@@ -683,7 +683,7 @@ public:
    
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
-   inline int as_i32() const { return (int) as_i64(); }
+   inline ::i32 as_i32() const { return (::i32) as_i64(); }
    inline ::u32 as_u32() const { return (::u32) as_i64(); }
    inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
    inline ::u32 as_umessage() const { return as_u32(); }
@@ -783,7 +783,7 @@ public:
 };
 
 
-//template < prototype_character CHARACTER, int t_size >
+//template < prototype_character CHARACTER, ::i32 t_size >
 //inline const_string_range_static_array < const CHARACTER*, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER*, t_size >& a, const ::atom & atom)
 //{
 //

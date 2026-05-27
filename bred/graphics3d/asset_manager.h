@@ -70,7 +70,7 @@ namespace graphics3d
    //       const ::scoped_string &name,
    //       const ::scoped_string &filepath,
    //       uint32_t gltfFlags,
-   //       float scale
+   //       ::f32 scale
    //       );
 
 
@@ -79,7 +79,7 @@ namespace graphics3d
       //::pointer<::graphics3d::renderable> load_model(const ::gpu::load_model_t & loadmodel);
 
       //::pointer<graphics3d::renderable> load_model(const ::scoped_string& name, const ::scoped_string& filepath, bool isSkybox = false);
-      ///::pointer<graphics3d::renderable> loadGLTFmodel(const ::scoped_string& name, const ::scoped_string& filepath, uint32_t gltfFlags = 0u, float scale = 1.f);
+      ///::pointer<graphics3d::renderable> loadGLTFmodel(const ::scoped_string& name, const ::scoped_string& filepath, uint32_t gltfFlags = 0u, ::f32 scale = 1.f);
       ::pointer<gpu::texture> load_cubemap(
          const ::scoped_string& name,
          const ::scoped_string& ktxFilename

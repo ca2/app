@@ -58,7 +58,7 @@ namespace write_text
    }
 
 
-   void text_box::update(font_list* plist, int iBox, const ::scoped_string & scopedstrText)
+   void text_box::update(font_list* plist, ::i32 iBox, const ::scoped_string & scopedstrText)
    {
 
       if (!m_pimage)
@@ -79,7 +79,7 @@ namespace write_text
 
       auto bDarkMode = plist->m_bDarkMode;
 
-      int iColorIndex = 0;
+      ::i32 iColorIndex = 0;
 
       if (bDarkMode)
       {
@@ -120,10 +120,10 @@ namespace write_text
          string str;
 
          str.formatf("item:ARGB(%d,%d,%d,%d):%d, %d, %s",
-            uForegroundColor.m_uchOpacity,
-            uForegroundColor.m_uchRed,
-            uForegroundColor.m_uchGreen,
-            uForegroundColor.m_uchBlue,
+            uForegroundColor.m_u8Opacity,
+            uForegroundColor.m_u8Red,
+            uForegroundColor.m_u8Green,
+            uForegroundColor.m_u8Blue,
             plist->m_rectangleMargin.left, 
             plist->m_rectangleMargin.top, strText.c_str());
          

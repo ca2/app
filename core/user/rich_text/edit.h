@@ -48,7 +48,7 @@ namespace user
 
 
          virtual void on_after_change(const ::atom & atom);
-         double get_rotate() override;
+         ::f64 get_rotate() override;
 
 
          //::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
@@ -67,7 +67,7 @@ namespace user
          bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
 
-         virtual ::double_size get_size() override;
+         virtual ::f64_size get_size() override;
 
          virtual void do_layout();
 
@@ -109,7 +109,7 @@ namespace user
 
          virtual void _001OnDeleteText();
 
-         virtual ::double_rectangle get_drawing_rect();
+         virtual ::f64_rectangle get_drawing_rect();
 
          virtual void internal_update_sel_char();
 
@@ -167,7 +167,7 @@ namespace user
 
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle);
+         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::f64_rectangle & rectangle);
 
          virtual character_count _001GetLayoutTextLength() const;
 
@@ -195,8 +195,8 @@ namespace user
 
          bool has_text_input() override;
 
-         virtual character_count _hit_test(double_point point);
-         virtual character_count _hit_test_line_x(::collection::index iLine, double x);
+         virtual character_count _hit_test(::f64_point point);
+         virtual character_count _hit_test_line_x(::collection::index iLine, ::f64 x);
 
 
       };

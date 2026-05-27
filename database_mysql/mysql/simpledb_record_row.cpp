@@ -21,7 +21,7 @@ namespace simpledb
             }
             else
             {
-               for(int i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
+               for(::i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
                {
                   database::field_definition_item & item = m_ptable->m_fielddefinition[i];
                   ::payload payload = payloada[i];
@@ -30,7 +30,7 @@ namespace simpledb
                      if(item.m_iSize > 0)
                      {
                         character_count iLen = minimum(255, payload.get_string().get_length());
-                        ostream << (char) iLen;
+                        ostream << (::i8) iLen;
                         ostream.write(payload.get_string().left(iLen), iLen);
                         if(iLen < item.m_iSize)
                         {
@@ -50,7 +50,7 @@ namespace simpledb
 
          if(m_straFields.get_size() <= 0 || (m_straFields.get_size() == 1 && m_straFields[0] == "*"))
          {
-            for(int i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
+            for(::i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
             {
                database::field_definition_item & item = m_ptable->m_fielddefinition[i];
                ::payload payload;
@@ -58,7 +58,7 @@ namespace simpledb
                {
                   if(item.m_iSize > 0)
                   {
-                     unsigned char uchLen;
+                     ::u8 uchLen;
                      istream >> uchLen;
                      string str;
                      istream.read(str.get_buffer(uchLen), uchLen);
@@ -66,7 +66,7 @@ namespace simpledb
                      str.ReleaseBuffer(uchLen);
                      if(uchLen < item.m_iSize)
                      {
-                        char sz[255];
+                        ::i8 sz[255];
                         istream.read(sz, item.m_iSize - uchLen);
                      }
                   }

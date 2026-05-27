@@ -78,18 +78,18 @@ public:
 
    }
 
-    bool Exists(const char* pFile) const override {
+    bool Exists(const_char_pointer pFile) const override {
         return m_p->file()->exists(pFile);
     }
 
-    char getOsSeparator() const override {
+    ::i8 getOsSeparator() const override {
         return '/';
     }
 
-    Assimp::IOStream* Open(const char* pFile, const char* pMode = "rb") override {
+    Assimp::IOStream* Open(const_char_pointer pFile, const_char_pointer pMode = "rb") override {
         // In real use, you'd open files from your source (zip, memory, etc.)
         // Here we simulate loading from memory
-        //std::vector<char> fakeData;
+        //std::vector<::i8> fakeData;
 
        ::string strMode(pMode);
 
@@ -120,7 +120,7 @@ public:
     }
 };
 
-// int main() {
+// ::i32 main() {
 //     Assimp::Importer importer;
 //
 //     // Set our custom IO handler

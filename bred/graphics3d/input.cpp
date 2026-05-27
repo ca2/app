@@ -22,7 +22,7 @@ namespace graphics3d
    input::~input() {}
 
 
-   void input::initialize_input(float moveSpeed, const floating_angle &
+   void input::initialize_input(::f32 moveSpeed, const floating_angle &
     angleCursorPixel)
    {
       m_fMoveSpeed = moveSpeed;
@@ -42,7 +42,7 @@ namespace graphics3d
 
    ::user::enum_key_state input::get_key_state(::user::e_key ekey)
    {
-      // int state = glfwGetKey(m_pimpact, key);
+      // ::i32 state = glfwGetKey(m_pimpact, key);
       // return state == GLFW_PRESS || state == GLFW_REPEAT;
 
 
@@ -163,13 +163,13 @@ namespace graphics3d
    }
 
 
-   void input::_017Update(float dt, ::graphics3d::transform &transform)
+   void input::_017Update(::f32 dt, ::graphics3d::transform &transform)
    {
       if (dt <= 0.0f)
          return;
 
       // --- 1) Smooth raw mouse delta ---
-      float alpha = 1.0f - std::exp(-m_smoothing * dt);
+      ::f32 alpha = 1.0f - std::exp(-m_smoothing * dt);
 
       if (alpha < 0.f)
       {
@@ -258,7 +258,7 @@ namespace graphics3d
       if (modulus > 1e-6f)
       {
          dir.normalize();
-         float speed = m_fMoveSpeed * (IsKeyPressed(::user::e_key_left_shift) ? 3.f : 1.f);
+         ::f32 speed = m_fMoveSpeed * (IsKeyPressed(::user::e_key_left_shift) ? 3.f : 1.f);
          transform.m_sequence3Position += dir * speed * dt;
       }
 

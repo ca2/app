@@ -135,13 +135,13 @@ namespace gpu_opengl
 //
 //      }
 //      //glGenBuffers(1, &VAO);
-////      float vertexes[] = {
+////      ::f32 vertexes[] = {
 //         // positions         // colors
 //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
 //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
 //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
 //      //};
-//      float vertexes[] = {
+//      ::f32 vertexes[] = {
 //         // first triangle
 //          1.f,  1.f, 0.0f,  // top right
 //          1.f, -1.f, 0.0f,  // bottom right
@@ -179,10 +179,10 @@ namespace gpu_opengl
 //      glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 //
 //      // position attribute
-//      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+//      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
 //      glEnableVertexAttribArray(0);
 //      // color attribute
-//      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+//      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(::f32), (void*)(3 * sizeof(::f32)));
 //      //glEnableVertexAttribArray(1);
 //
 //      //return ::success;
@@ -194,14 +194,14 @@ namespace gpu_opengl
 //
 //
 //      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
-////int iError16 = glGetError();
+////::i32 iError16 = glGetError();
 //
-////int size = 0; 
+////::i32 size = 0; 
 ////glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-////int iError17 = glGetError();
+////::i32 iError17 = glGetError();
 //
 ////glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
-////int iError18 = glGetError();
+////::i32 iError18 = glGetError();
 //      ASSERT(m_itaskGpu == ::current_itask());
 //
 //      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
@@ -224,9 +224,9 @@ namespace gpu_opengl
 //      //glUseProgram(shaderProgram);
 //
 //      // update the uniform color
-//      //float timeValue = glfwGetTime();
-//      //float greenValue = sin(timeValue) / 2.0f + 0.5f;
-//      //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+//      //::f32 timeValue = glfwGetTime();
+//      //::f32 greenValue = sin(timeValue) / 2.0f + 0.5f;
+//      //::i32 vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 //      //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 //
 //      //return ::success;
@@ -269,14 +269,14 @@ namespace gpu_opengl
 //      //// Initial position : on +Z
 //      //floating_sequence3 position = floating_sequence3(0, 0, 5);
 //      //// Initial horizontal angle : toward -Z
-//      //float horizontalAngle = 3.14f;
+//      //::f32 horizontalAngle = 3.14f;
 //      //// Initial vertical angle : none
-//      //float verticalAngle = 0.0f;
+//      //::f32 verticalAngle = 0.0f;
 //      //// Initial Field of View
-//      //float initialFoV = 45.0f;
+//      //::f32 initialFoV = 45.0f;
 //
-//      //float speed = 3.0f; // 3 units / second
-//      //float mouseSpeed = 0.005f;
+//      //::f32 speed = 3.0f; // 3 units / second
+//      //::f32 mouseSpeed = 0.005f;
 //
 //
 //
@@ -522,17 +522,17 @@ namespace gpu_opengl
 
    //   string strFragment =
    //      "uniform vec2 resolution;\n"
-   //      "uniform float time;\n"
+   //      "uniform ::f32 time;\n"
    //      "uniform vec2 mouse;\n"
    //      "uniform sampler2D backbuffer;\n"
    //      "\n"
    //      "void main(void) {\n"
-   //      "float base_res = min(resolution.x, resolution.y);\n"
+   //      "::f32 base_res = min(resolution.x, resolution.y);\n"
    //      "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
    //      "\n"
    //      //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
-   //      "float posx = max(0.f, uv.x);\n"
-   //      "float posy = max(0.f, uv.y);\n"
+   //      "::f32 posx = max(0.f, uv.x);\n"
+   //      "::f32 posy = max(0.f, uv.y);\n"
    //      "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
    //      "}\n";
 
@@ -563,10 +563,10 @@ namespace gpu_opengl
    //         strFragment =
    //            //"#" + strVersion + "\n"
    //            //"\n"
-   //            //"precision highp float;\n"
+   //            //"precision highp ::f32;\n"
    //            "\n"
    //            "uniform vec2 iResolution;\n"
-   //            "uniform float iTime;\n"
+   //            "uniform ::f32 iTime;\n"
    //            "uniform vec2 iMouse;\n"
    //            "uniform sampler2D backbuffer;\n"
    //            "\n"
@@ -677,7 +677,7 @@ namespace gpu_opengl
    //}
 
 
-   int device::get_frame_index3()
+   ::i32 device::get_frame_index3()
    {
 
       return 0;
@@ -685,7 +685,7 @@ namespace gpu_opengl
    }
 
 
-   int device::get_frame_count()
+   ::i32 device::get_frame_count()
    {
 
       return 1;
@@ -699,7 +699,7 @@ namespace gpu_opengl
 
       //auto fp = file()->get_reader(scopedstrImagePath);
 
-      //unsigned char header[124];
+      //::u8 header[124];
 
       ////FILE * fp;
 
@@ -711,7 +711,7 @@ namespace gpu_opengl
       ////}
 
       ///* verify the type of file */
-      //char filecode[4];
+      //::i8 filecode[4];
       //fread(filecode, 1, 4, fp);
       //if (::string(filecode, 4).case_insensitive_order("DDS ") != 0) {
       //   //fclose(fp);
@@ -728,11 +728,11 @@ namespace gpu_opengl
       //::u32 fourCC = *(::u32*)&(header[80]);
 
 
-      //unsigned char* buffer;
+      //::u8* buffer;
       //::u32 bufsize;
       ///* how big is it going to be including all mipmaps? */
       //bufsize = mipMapCount > 1 ? linearSize * 2 : linearSize;
-      //buffer = (unsigned char*)malloc(bufsize * sizeof(unsigned char));
+      //buffer = (::u8*)malloc(bufsize * sizeof(::u8));
       //fread(buffer, 1, bufsize, fp);
       ///* close the file pointer */
       ////fclose(fp);

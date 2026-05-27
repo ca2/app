@@ -7,7 +7,7 @@
 #include "_mm.h"
 
 void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRef image);
-double font_similarity(const char * pszSystem, const char * pszUser);
+::f64 font_similarity(const char * pszSystem, const char * pszUser);
 
 
 bool similar_font(char sz[256], const char * psz)
@@ -22,7 +22,7 @@ bool similar_font(char sz[256], const char * psz)
       
    }
    
-   double dMaxSimilarity = 0.2;
+   ::f64 dMaxSimilarity = 0.2;
    
    int iFound = -1;
    
@@ -34,7 +34,7 @@ bool similar_font(char sz[256], const char * psz)
       if(family)
       {
        
-         double dSimilarity = font_similarity([family UTF8String], psz);
+         ::f64 dSimilarity = font_similarity([family UTF8String], psz);
          
          if(dSimilarity > dMaxSimilarity)
          {

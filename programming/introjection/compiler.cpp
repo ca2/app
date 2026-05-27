@@ -21,7 +21,7 @@
 
 #ifdef LINUX
 //#include <unistd.h>
-int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId);
+::i32 create_process(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId);
 #elif defined(MACOS)
 #include <unistd.h>
 #endif

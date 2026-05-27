@@ -28,10 +28,10 @@
 
 namespace subsystem
 {
-   bool StringParser::parseInt(const char *str, int *out)
+   bool StringParser::parseInt(const_char_pointer str, ::i32 *out)
    {
-      int value = 0;
-      char c;
+      ::i32 value = 0;
+      ::i8 c;
       if(sscanf(str, "%d%c", &value, &c) != 1) {
          return false;
       }
@@ -42,22 +42,22 @@ namespace subsystem
       return true;
    }
 
-   bool StringParser::parseUInt(const char *str, ::u32 *out)
+   bool StringParser::parseUInt(const_char_pointer str, ::u32 *out)
    {
       // Check the minus sign manually because _tcstoul does not fail on it.
       if (str != 0 && str[0] == '-') {
          return false;
       }
 
-      char *ptr = 0;
+      char_pointer ptr = 0;
       errno = 0;
-      unsigned long ulongValue = strtoul(str, &ptr, 10);
+      ulong ulongValue = strtoul(str, &ptr, 10);
       if (errno != 0 || ptr == 0 || *ptr != '\0') {
          return false;
       }
 
       ::u32 uintValue = (::u32)ulongValue;
-      if ((unsigned long)uintValue != ulongValue) {
+      if ((ulong)uintValue != ulongValue) {
          return false;
       }
 
@@ -68,10 +68,10 @@ namespace subsystem
       return true;
    }
 
-   bool StringParser::parseUInt64(const char *str, ::u64 *out)
+   bool StringParser::parseUInt64(const_char_pointer str, ::u64 *out)
    {
       ::u64 value = 0;
-      char c;
+      ::i8 c;
       if(sscanf(str, "%llu%c", &value, &c) != 1) {
          return false;
       }
@@ -82,14 +82,14 @@ namespace subsystem
       return true;
    }
 
-   bool StringParser::tryParseInt(const char *str)
+   bool StringParser::tryParseInt(const_char_pointer str)
    {
       return parseInt(str, NULL);
    }
 
-   bool StringParser::parseHex(const char *str, ::u32 *out)
+   bool StringParser::parseHex(const_char_pointer str, ::u32 *out)
    {
-      char c;
+      ::i8 c;
       ::u32 val;
       if (sscanf(str, "%x%c", &val, &c) != 1) {
          return false;
@@ -100,28 +100,28 @@ namespace subsystem
       return true;
    }
 
-   bool StringParser::parseByteHex(const char *str, unsigned char *out)
+   bool StringParser::parseByteHex(const_char_pointer str, ::u8 *out)
    {
-      char c;
-      int val = 0;
+      ::i8 c;
+      ::i32 val = 0;
       if (sscanf(str, "%x%c", &val, &c) != 1) {
          return false;
       }
       if (out != NULL) {
-         *out = (unsigned char)val;
+         *out = (::u8)val;
       }
       return true;
    }
 
-   bool StringParser::parseByte(const char *str, unsigned char *out)
+   bool StringParser::parseByte(const_char_pointer str, ::u8 *out)
    {
-      char c;
-      int val = 0;
+      ::i8 c;
+      ::i32 val = 0;
       if (sscanf(str, "%d%c", &val, &c) != 1) {
          return false;
       }
       if (out != NULL) {
-         *out = (unsigned char)val;
+         *out = (::u8)val;
       }
       return true;
    }

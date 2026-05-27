@@ -12,19 +12,19 @@ class file
 {
 public:
 
-    int m_iFile;
+    ::i32 m_iFile;
 
 
     file();
     file(const file & file);
-    file(int iFile);
+    file(::i32 iFile);
     ~file();
 
-    int create_tmpfile_cloexec(char * tmpname);
-    int create_anonymous_file(memsize s);
-    int set_cloexec_or_close();
+    ::i32 create_tmpfile_cloexec(char_pointer tmpname);
+    ::i32 create_anonymous_file(memsize s);
+    ::i32 set_cloexec_or_close();
 
-    int close();
+    ::i32 close();
 
     bool is_opened() const {return m_iFile>=0;}
 

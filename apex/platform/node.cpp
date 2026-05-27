@@ -368,7 +368,7 @@ namespace apex
    }
 
 
-   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco, int iIcon)
+   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco, ::i32 iIcon)
    {
 
       throw ::interface_only();
@@ -386,7 +386,7 @@ namespace apex
    }
 
 
-   bool node::shell_link_icon(::file::path& pathIcon, int& iIcon, const ::file::path& pathLnk)
+   bool node::shell_link_icon(::file::path& pathIcon, ::i32& iIcon, const ::file::path& pathLnk)
    {
 
       throw ::interface_only();
@@ -555,7 +555,7 @@ namespace apex
 
          ::file::path pathIcon;
 
-         int iIcon = -1;
+         ::i32 iIcon = -1;
 
          auto plink = path_system()->resolve_link(pathShortcut);
 
@@ -631,7 +631,7 @@ namespace apex
       if (m_mapCharacterSetEnum.is_empty())
       {
 
-         for (int i = 0; i < e_character_set_count; i++)
+         for (::i32 i = 0; i < e_character_set_count; i++)
          {
 
             auto echaracterset = (enum_character_set)i;

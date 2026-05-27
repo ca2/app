@@ -26,7 +26,7 @@ handler_manager::~handler_manager()
 }
 
 
-void handler_manager::initialize_handler_manager(::particle * pparticle, const ::scoped_string & scopedstrThreadName, int iAliveCount)
+void handler_manager::initialize_handler_manager(::particle * pparticle, const ::scoped_string & scopedstrThreadName, ::i32 iAliveCount)
 {
 
    initialize(pparticle);
@@ -240,7 +240,7 @@ void handler_manager::on_destroy()
 //
 //   on_start_loop();
 //
-//   int iAlive = 0;
+//   ::i32 iAlive = 0;
 //
 //   while (::task_get_run())
 //   {

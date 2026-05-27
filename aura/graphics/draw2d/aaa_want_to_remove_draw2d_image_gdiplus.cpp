@@ -30,9 +30,9 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    }
 
-   unsigned int uWidth;
+   ::u32 uWidth;
 
-   unsigned int uHeight;
+   ::u32 uHeight;
 
    hr = piBmp->GetSize(&uiWidth, &uiHeight);
 
@@ -61,7 +61,7 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    }
 
-   unsigned int cbStride;
+   ::u32 cbStride;
 
    piLock->GetStride(&cbStride);
 
@@ -72,9 +72,9 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    }
 
-   unsigned int uArea;
+   ::u32 uArea;
 
-   unsigned char * pData;
+   ::u8 * pData;
 
    hr = piLock->GetDataPointer(&uiArea, &pData);
 
@@ -133,7 +133,7 @@ bool imaging::load_image(::particle * pparticle, ::image::image *pimage, const :
 
       }
 
-      hr = piStream->InitializeFromMemory(mem.get_data(), (unsigned int) mem.get_size());
+      hr = piStream->InitializeFromMemory(mem.get_data(), (::u32) mem.get_size());
 
       if (FAILED(hr))
       {
@@ -166,7 +166,7 @@ bool imaging::load_image(::particle * pparticle, ::image::image *pimage, const :
 
       }
 
-      int iOrientation = -1;
+      ::i32 iOrientation = -1;
 
       {
 
@@ -273,7 +273,7 @@ throw ::interface_only();
 
 ::aura::Resource resource;
 
-if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(scopedstrId), pszType))
+if(!resource.ReadResource(*file.get_memory(), (::u32) MAKEINTRESOURCE(scopedstrId), pszType))
 
 return false;
 
@@ -442,8 +442,8 @@ bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_ima
    comptr < IPropertyBag2 > pPropertybag = nullptr;
 
    comptr < IWICStream > piStream = nullptr;
-   unsigned int uWidth = pimage->width();
-   unsigned int uHeight = pimage->height();
+   ::u32 uWidth = pimage->width();
+   ::u32 uHeight = pimage->height();
 
    HRESULT hr = CoCreateInstance(
                 CLSID_WICImagingFactory,
@@ -627,7 +627,7 @@ bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_ima
          if (SUCCEEDED(hr))
          {
 
-            hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight*pimage->scan_size(), (unsigned char *)pcr);
+            hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight*pimage->scan_size(), (::u8 *)pcr);
 
          }
 
@@ -646,7 +646,7 @@ bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_ima
                  GUID_WICPixelFormat32bppBGRA,
                  pimage->scan_size(),
                  pimage->scan_size() * pimage->height(),
-                 (unsigned char *)pcr,
+                 (::u8 *)pcr,
                  &pbitmap
                  );
 

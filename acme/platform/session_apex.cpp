@@ -29,7 +29,7 @@ namespace platform
 
    //void apex_session_layer::enum_display_monitors(){}
 
-   ////void construct(::particle * pparticle, int iPhase) override{}
+   ////void construct(::particle * pparticle, ::i32 iPhase) override{}
 
    //virtual ::collection::index get_main_monitor(::i32_rectangle* prectangle){}
 
@@ -101,7 +101,7 @@ namespace platform
    //bool apex_session_layer::file_is_read_only(const ::scoped_string & scopedstrPath){}
 
    // Long PhRESSing time
-   // time in ::times that a pressing is considered a double click
+   // time in ::times that a pressing is considered a ::f64 click
    ::u32 apex_session_layer::get_Long_PhRESSing_time()
    {
 

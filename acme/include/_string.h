@@ -15,7 +15,7 @@
 
 CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus = error_failed, ::task* playeredThreadExit = nullptr, const ::scoped_string& scopedstrMessage = nullptr);
 
-CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessage, const ::scoped_string & strTitle = nullptr, int iMessageBox = 0);
+CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessage, const ::scoped_string & strTitle = nullptr, ::i32 iMessageBox = 0);
 CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);
 CLASS_DECL_ACME void output_debug_string_flush();
 ///CLASS_DECL_ACME void output_debug_string(const ::wide_character * psz);
@@ -38,7 +38,7 @@ inline ::string as_string(bool b) { return b ? "1" : "0"; }
 
 CLASS_DECL_ACME void throw_resource_exception(const ::scoped_string & scopedstrMessage);
 CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage);
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, int iSkip = -1);
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, ::i32 iSkip = -1);
 
 
 template < typename TYPE, enum_type t_etypeContainer >

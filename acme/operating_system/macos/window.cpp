@@ -48,8 +48,8 @@
 //      {
 //
 //         lresult = 1;
-//         double Δx = 0.;
-//         double Δy= 0.;
+//         ::f64 Δx = 0.;
+//         ::f64 Δy= 0.;
 //
 //         ::SetCursor(::LoadCursor(nullptr, IDC_SIZEALL));
 //
@@ -121,9 +121,9 @@
 //
 //               m_bMovingNow = true;
 //
-//               auto x = (int)(r.left + Δx);
+//               auto x = (::i32)(r.left + Δx);
 //
-//               auto y = (int)(r.top + Δy);
+//               auto y = (::i32)(r.top + Δy);
 //
 //               SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 //               m_bMovingNow = false;
@@ -362,7 +362,7 @@
 //   bool window::_on_default_system_menu_command(LRESULT & lresult,WPARAM wparam, LPARAM lparam)
 //   {
 //
-//      int wmId = LOWORD(wparam);
+//      ::i32 wmId = LOWORD(wparam);
 //
 //      if (wmId == 123)
 //      {

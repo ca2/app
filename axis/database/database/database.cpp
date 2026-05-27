@@ -105,7 +105,7 @@ namespace database
    //}
 
 
-   //void     database::set_error_code(int iErrorCode)
+   //void     database::set_error_code(::i32 iErrorCode)
    //{
 
    //   m_iLastError = iErrorCode;

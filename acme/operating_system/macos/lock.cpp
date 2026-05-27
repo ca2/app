@@ -17,7 +17,7 @@
 //
 //
 //
-//int flock(int, int);
+//::i32 flock(::i32, ::i32);
 //
 //
 //
@@ -25,12 +25,12 @@
 //
 //
 //
-//int _c_lock_is_active(const_char_pointer lpszName)
+//::i32 _c_lock_is_active(const_char_pointer pszName)
 //{
 //
-//   int * pfd;
+//   ::i32 * pfd;
 //
-//   if(_c_lock(lpszName, (void **) &pfd))
+//   if(_c_lock(pszName, (void **) &pfd))
 //   {
 //      _c_unlock((void **) &pfd);
 //      return false;
@@ -41,12 +41,12 @@
 //}
 //
 //
-////int _c_lock(const_char_pointer lpszName, void ** pdata)
+////::i32 _c_lock(const_char_pointer pszName, void ** pdata)
 ////{
 ////
-////   int fd;
+////   ::i32 fd;
 ////
-////   _ca_get_file_name(file::path("/var/lib/ca2/")/ lpszName, true, &fd);
+////   _ca_get_file_name(file::path("/var/lib/ca2/")/ pszName, true, &fd);
 ////
 ////   if(fd == -1)
 ////      return 0;
@@ -67,7 +67,7 @@
 ////      }
 ////   }
 ////
-////   int * pi = ___new int();
+////   ::i32 * pi = ___new ::i32();
 ////   *pi = fd;
 ////   *pdata = pi;
 ////
@@ -76,10 +76,10 @@
 ////}
 ////
 ////
-////int _c_unlock(void ** pdata)
+////::i32 _c_unlock(void ** pdata)
 ////{
 ////
-////   int * pfd = (int *) *pdata;
+////   ::i32 * pfd = (::i32 *) *pdata;
 ////
 ////   if(flock(*pfd, LOCK_EX | LOCK_NB | LOCK_UN) == -1)
 ////   {
@@ -100,10 +100,10 @@
 ////
 ////
 ////
-////string _lock_get_file_name(const_char_pointer lpszName, bool bCreate, int * pfd)
+////string _lock_get_file_name(const_char_pointer pszName, bool bCreate, ::i32 * pfd)
 ////{
 ////
-////   string str(lpszName);
+////   string str(pszName);
 ////
 ////   str.replace("\\", "-");
 ////
@@ -118,7 +118,7 @@
 ////   if(bCreate)
 ////   {
 ////
-////      int fd = open(str, O_CREAT | O_RDWR);
+////      ::i32 fd = open(str, O_CREAT | O_RDWR);
 ////
 ////      if(fd == -1)
 ////      {

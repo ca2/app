@@ -45,7 +45,7 @@ namespace libidn
          string idn::idn_to_punycode(const ::scoped_string & scopedstr)
          {
 
-            char *psz = nullptr;
+            char_pointer psz = nullptr;
 
             Idna_rc rc = (Idna_rc) idna_to_ascii_8z(scopedstr, &psz, IDNA_ALLOW_UNASSIGNED);
 
@@ -86,7 +86,7 @@ namespace libidn
 
             }
 
-            char *psz = nullptr;
+            char_pointer psz = nullptr;
 
             Idna_rc rc = (Idna_rc) idna_to_unicode_8z8z(strTrimmed, &psz, IDNA_ALLOW_UNASSIGNED);
 

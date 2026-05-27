@@ -84,7 +84,7 @@ namespace experience_core
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, unsigned char bAlpha);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, ::u8 bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
@@ -94,7 +94,7 @@ namespace experience_core
 
 
       virtual void GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32_rectangle * lprect, enum_border eside);
-      virtual void GetBorderRectangle(const ::i32_rectangle & rectangleOuter, int iDeflate, ::i32_rectangle * lprect, enum_border eside);
+      virtual void GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32 iDeflate, ::i32_rectangle * lprect, enum_border eside);
 
       ::i32_rectangle outer_frame() override;
 

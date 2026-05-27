@@ -49,7 +49,7 @@ namespace subsystem
          /**
           * Windows error code.
           */
-         //int m_errcode;
+         //::i32 m_errcode;
          error_code m_errorcode;
       /**
        * Creates exception with formatted message from system

@@ -13,15 +13,15 @@ namespace write_text
       public:
 
 
-      double         m_dHeight;
-      double         m_dAscent;
-      double         m_dDescent;
-      double         m_dInternalLeading;
-      double         m_dExternalLeading;
-      double         m_dWeight;
-      double         m_dOverhang;
-      double         m_dDigitizedAspectX;
-      double         m_dDigitizedAspectY;
+      ::f64         m_dHeight;
+      ::f64         m_dAscent;
+      ::f64         m_dDescent;
+      ::f64         m_dInternalLeading;
+      ::f64         m_dExternalLeading;
+      ::f64         m_dWeight;
+      ::f64         m_dOverhang;
+      ::f64         m_dDigitizedAspectX;
+      ::f64         m_dDigitizedAspectY;
       ::wide_character       m_wchFirstChar;
       ::wide_character       m_wchLastChar;
       ::wide_character       m_wchDefaultChar;
@@ -29,11 +29,11 @@ namespace write_text
       bool           m_bItalic;
       bool           m_bUnderlined;
       bool           m_bStruckOut;
-      unsigned char           m_uchPitchAndFamily;
-      unsigned char           m_uchCharSet;
+      ::u8           m_u8PitchAndFamily;
+      ::u8           m_u8CharSet;
 
 
-      double get_line_height() const
+      ::f64 get_line_height() const
       {
 
          return m_dInternalLeading + m_dAscent + m_dDescent + m_dExternalLeading;

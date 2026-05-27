@@ -7,15 +7,20 @@
 #include "acme/prototype/numeric/types.h"
 
 
-typedef u32 dword;
-typedef int i32_bool;
+typedef ::u32 dword;
+typedef ::i32 i32_bool;
 
 
-typedef unsigned char         uchar;
+typedef unsigned long ulong;
 
 
-//typedef unsigned char         uch;
+typedef ::u8         uchar;
 
+
+
+//typedef ::u8         uch;
+
+typedef char * char_pointer ;
 typedef const char * const_char_pointer ;
 
 
@@ -42,14 +47,14 @@ inline TYPE minimummax(const TYPE & value, const MINIMUM & minimum, const MAXIMU
 
 }
 
-inline double __rate(double d)
+inline ::f64 __rate(::f64 d)
 {
 
    return minimummax(d, 0., 1.);
 
 }
 
-inline float __rate(float f)
+inline ::f32 __rate(::f32 f)
 {
 
    return minimummax(f, 0.f, 1.f);
@@ -57,8 +62,8 @@ inline float __rate(float f)
 }
 
 
-inline unsigned char as_byte(double d) { return (unsigned char) minimummax(d, 0, 255); }
-inline unsigned char as_byte(::i64 i) { return (unsigned char)minimummax(i, 0, 255); }
+inline ::u8 as_byte(::f64 d) { return (::u8) minimummax(d, 0, 255); }
+inline ::u8 as_byte(::i64 i) { return (::u8)minimummax(i, 0, 255); }
 
 #endif
 

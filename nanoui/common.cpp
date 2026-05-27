@@ -74,7 +74,7 @@ extern void disable_saved_application_sink_osx();
 //#endif
 //
 ////   glfwSetErrorCallback(
-////      [](int error, const_char_pointer descr) {
+////      [](::i32 error, const_char_pointer descr) {
 ////         if (error == GLFW_NOT_INITIALIZED)
 ////            return; /* Ignore */
 ////         std::cerr << "GLFW error " << error << ": " << descr << std::endl;
@@ -94,24 +94,24 @@ extern void disable_saved_application_sink_osx();
 //static bool mainloop_active = false;
 
 #if defined(EMSCRIPTEN)
-static double emscripten_last = 0;
-static float emscripten_refresh = 0;
+static ::f64 emscripten_last = 0;
+static ::f32 emscripten_refresh = 0;
 #endif
 
 //::pointer < ::mutex > m_async_mutex;
 //::array<::function<void()>> m_async_functions;
 
-//void mainloop(float refresh) {
+//void mainloop(::f32 refresh) {
 //   if (mainloop_active)
 //      throw std::runtime_error("Main loop is already running!");
 //
 //   auto mainloop_iteration = []() {
-//      int num_screens = 0;
+//      ::i32 num_screens = 0;
 //
 //#if defined(EMSCRIPTEN)
-//      double emscripten_now = glfwGetTime();
+//      ::f64 emscripten_now = glfwGetTime();
 //      bool emscripten_redraw = false;
-//      if (float((emscripten_now - emscripten_last) * 1000) > emscripten_refresh) {
+//      if (::f32((emscripten_now - emscripten_last) * 1000) > emscripten_refresh) {
 //         emscripten_redraw = true;
 //         emscripten_last = emscripten_now;
 //      }
@@ -254,8 +254,8 @@ static float emscripten_refresh = 0;
 #endif
 
 ::string get_utf8_character(uint32_t pwidgetChild) {
-   char seq[8];
-   int n = 0;
+   ::i8 seq[8];
+   ::i32 n = 0;
    if (pwidgetChild < 0x80) n = 1;
    else if (pwidgetChild < 0x800) n = 2;
    else if (pwidgetChild < 0x10000) n = 3;
@@ -274,12 +274,12 @@ static float emscripten_refresh = 0;
    return ::string(seq, seq + n);
 }
 
-int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
-   static string_map_base < int> icon_cache;
+::i32 __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
+   static string_map_base < ::i32> icon_cache;
    auto iterator = icon_cache.find(name);
    if (iterator)
       return iterator->m_element2;
-   int icon_id = pcontext->create_image_mem(0, data, size);
+   ::i32 icon_id = pcontext->create_image_mem(0, data, size);
    if (icon_id == 0)
       throw ::exception(error_failed, "Unable to load resource data.");
    icon_cache[name] = icon_id;
@@ -290,10 +290,10 @@ int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & na
 
 
 
-void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & scopedstrPath)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<::i32, ::string>> & images, const ::scoped_string & scopedstrPath)
 {
 
-//   ::array<::pair<int, ::string> > result;
+//   ::array<::pair<::i32, ::string> > result;
 //#if !defined(_WIN32)
 //   DIR * dp = opendir(path.c_str());
 //   if (!dp)
@@ -316,7 +316,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
    for (auto & path : listing)
    {
 
-      int iImage = pcontext->create_image(path, 0);
+      ::i32 iImage = pcontext->create_image(path, 0);
 
       if (iImage >= 0)
       {
@@ -341,7 +341,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 //      if (strstr(fname, "png") == nullptr)
 //         continue;
 //      ::string full_name = path + "/" + ::string(fname);
-//      int img = pcontext->create_imagefull_name.c_str(), 0);
+//      ::i32 img = pcontext->create_imagefull_name.c_str(), 0);
 //      if (img == 0)
 //         throw std::runtime_error("Could not open image data!");
 //      result.add(

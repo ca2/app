@@ -111,8 +111,8 @@ namespace browser
                    CefRenderHandler::PaintElementType type,
                    const CefRenderHandler::rectList& dirtyRects,
                    const void* buffer,
-                   int width,
-                   int height);
+                   ::i32 width,
+                   ::i32 height);
 
       void AddRef() const
       {

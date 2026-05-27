@@ -333,7 +333,7 @@ void user::init(){
 //      //         // current application startup won't be
 //      //         // exited by timeout.
 //      //
-//      //         int iRetry = 1;
+//      //         ::i32 iRetry = 1;
 //      //
 //      //retry_license:
 //      //
@@ -665,7 +665,7 @@ void user::destroy()
 //   }
 //
 //
-//   int user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point, ::pointer<::user::interaction>puie)
+//   ::i32 user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point, ::pointer<::user::interaction>puie)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(scopedstrMatter);
@@ -694,7 +694,7 @@ void user::destroy()
 //      if (i64Size > 1024 * 1024 * 1024)
 //      {
 //
-//         double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
+//         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0 * 1024.0);
 //
 //         strSize.formatf("%0.2f GB", d);
 //
@@ -702,7 +702,7 @@ void user::destroy()
 //      else if (i64Size > 1024 * 1024)
 //      {
 //
-//         double d = (double)i64Size / (1024.0 * 1024.0);
+//         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0);
 //
 //         strSize.formatf("%0.1f MB", d);
 //
@@ -710,7 +710,7 @@ void user::destroy()
 //      else if (i64Size > 1024)
 //      {
 //
-//         double d = (double)i64Size / (1024.0);
+//         ::f64 d = (::f64)i64Size / (1024.0);
 //
 //         strSize.formatf("%0.0f KB", d);
 //
@@ -769,7 +769,7 @@ void user::destroy()
 //
 //         
 //
-//         CHANGE_EVENT_DATA_GET(pchange, (int &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
+//         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
 //
 //      }
 //
@@ -784,7 +784,7 @@ void user::destroy()
 //      //CHOOSECOLOR cc;
 //      //::color::color crCustColors[16];
 //
-//      //// init-int this array did not affect the mouse problem
+//      //// init-::i32 this array did not affect the mouse problem
 //      //// ::u32 idx ;
 //      //// for (idx=0; idx<16; idx++) {
 //      //// crCustColors[idx] = rgb(idx, idx, idx) ;
@@ -1398,14 +1398,14 @@ void user::destroy()
 ////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
-////      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
+////      return macos_set_user_wallpaper((::i32)iScreen, strLocalImagePath);
 ////
 ////   }
 ////
 ////   string user::impl_get_wallpaper(::collection::index iScreen)
 ////   {
 ////
-////      return macos_get_user_wallpaper((int)iScreen);
+////      return macos_get_user_wallpaper((::i32)iScreen);
 ////
 ////   }
 ////
@@ -1466,7 +1466,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, ::u32 fuStyle)
+//   //::i32 application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, ::u32 fuStyle)
 //   //{
 //
 //   //   informationf("---->  app_message_box: " + string(scopedstrMessage) + "\n\n");
@@ -1479,7 +1479,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
+//   //::i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
 //   //{
 //
 //   //   if (user() == nullptr)
@@ -1556,7 +1556,7 @@ void user::destroy()
 //   //void user::initialize_bergedge_application_interface()
 //   //{
 //
-//   //   //      int iCount = 32; // todo: get from bergedge profile
+//   //   //      ::i32 iCount = 32; // todo: get from bergedge profile
 //
 //   //   //m_pdocs->m_pnaturedocument = nullptr;
 //

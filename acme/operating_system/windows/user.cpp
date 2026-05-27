@@ -79,12 +79,12 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::user::enum_key virtual_key_code_to_user_key(int iVirtualKey)
+   CLASS_DECL_ACME ::user::enum_key virtual_key_code_to_user_key(::i32 iVirtualKey)
    {
 
-      char ch;
+      ::i8 ch;
 
-      ch = (char)iVirtualKey;
+      ch = (::i8)iVirtualKey;
 
       if (ch >= '0' && ch <= '9')
       {

@@ -22,7 +22,7 @@ namespace gpu
 
       class ::time m_timeLast5s;
 
-      int m_iSentLayerCount = 0;
+      ::i32 m_iSentLayerCount = 0;
       //::pointer<::gpu::layer>                         m_pgpulayer;
 
       ::collection::count     m_iDefaultFrameCount;
@@ -104,7 +104,7 @@ namespace gpu
       virtual ::gpu::texture* current_render_target_texture(::gpu::frame* pgpuframe);
 
       //virtual ::i32_rectangle rectangle();
-      //virtual int height();
+      //virtual ::i32 height();
       virtual ::gpu::command_buffer* getCurrentCommandBuffer2(::gpu::frame* pgpuframe);
       virtual ::gpu::command_buffer* getLoadAssetsCommandBuffer();
       virtual bool render_step();
@@ -143,7 +143,7 @@ namespace gpu
 
       //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, double dStart, double dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
@@ -202,11 +202,11 @@ namespace gpu
       virtual void on_global_transform();
       virtual void on_draw();
       //virtual void render();
-      //virtual int get_frame_index();
-      //virtual int get_frame_count();
-      //virtual int _get_frame_index();
-      //virtual int _default_get_frame_index();
-      //virtual int __default_get_frame_index();
+      //virtual ::i32 get_frame_index();
+      //virtual ::i32 get_frame_count();
+      //virtual ::i32 _get_frame_index();
+      //virtual ::i32 _default_get_frame_index();
+      //virtual ::i32 __default_get_frame_index();
 
 
       virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction);

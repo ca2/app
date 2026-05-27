@@ -65,24 +65,24 @@ namespace XMPP {
 	Stanza *clone();
 	Stanza *copy();
 	
-	int toText(const ::string &* const buf, size_t * const buflen);
+	::i32 toText(const ::string &* const buf, size_t * const buflen);
 	Stanza *getChildren();
 	Stanza *getChildByName(const ::string & const name);
 	Stanza *getNext();
-        char *getAttribute(const ::string & const name);
-	char *getNamespace();
-	char *getText();
-	char *getName();
+        char_pointer getAttribute(const ::string & const name);
+	char_pointer getNamespace();
+	char_pointer getText();
+	char_pointer getName();
 	void addChild(Stanza *child);
 	void setNamespace(const ::string & const ns);
 	void setAttribute(const ::string & const key, const ::string & const value);
 	void setName(const ::string & const name);
 	void setText(const ::string & const text);
 	void setText(const ::string & const text, const size_t size);
-	char *getType();
-	char *getId();
-	char *getTo();
-	char *getFrom();
+	char_pointer getType();
+	char_pointer getId();
+	char_pointer getTo();
+	char_pointer getFrom();
 	void setType(const ::string & const type);
 	void setId(const ::string & const atom);
 	void setTo(const ::string & const to);
@@ -114,7 +114,7 @@ namespace XMPP {
 	void send(Stanza *stanza);
 
 	void addTimedHandler(xmpp_timed_handler handler,
-			     const unsigned long perdio,
+			     const ulong perdio,
 			     void * const userdata);
 	void deleteTimedHandler(xmpp_timed_handler handler);
 	void addHandler(xmpp_handler handler,

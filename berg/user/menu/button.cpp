@@ -168,7 +168,7 @@ namespace user
          rectanglePopupArrow.right = rectangleX.right - 4;
          rectanglePopupArrow.top = ((rectangleX.top + rectangleX.bottom) / 2) - 4;
          rectanglePopupArrow.bottom = ((rectangleX.top + rectangleX.bottom) / 2) + 4;
-         double_point_array pointa;
+         f64_point_array pointa;
          pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
          pointa.add(i32_point(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
          pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.top));
@@ -186,7 +186,7 @@ namespace user
 
       auto colorBackground = ::user::button::_001GetButtonBackgroundColor();
 
-      colorBackground.m_uchOpacity = 200;
+      colorBackground.m_u8Opacity = 200;
 
       return colorBackground;
 
@@ -440,7 +440,7 @@ namespace user
    }
 
 
-   ::double_size menu_button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size menu_button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto size = button::get_preferred_size(pgraphics);

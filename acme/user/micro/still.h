@@ -26,8 +26,8 @@ namespace micro
       virtual ~still();
 
 
-      void on_draw(::nano::graphics::device * pnanodevice) override;
-      void on_char(int iChar) override;
+      void on_draw(::nano::graphics::context * pnanodevice) override;
+      void on_char(::i32 iChar) override;
 
       virtual void set_icon(::nano::graphics::icon * picon);
 

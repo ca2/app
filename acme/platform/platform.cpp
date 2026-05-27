@@ -260,7 +260,7 @@ namespace platform
 
 #endif
 
-      for (int i = 0; i < argc; i++)
+      for (::i32 i = 0; i < argc; i++)
       {
 
          ::string strArg;
@@ -388,7 +388,7 @@ namespace platform
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
-   void platform::initialize_system(int argc, wchar_t * args[], wchar_t * envp[])
+   void platform::initialize_system(::i32 argc, wchar_t * args[], wchar_t * envp[])
    {
 
       m_argc = argc;
@@ -398,7 +398,7 @@ namespace platform
    }
 
 
-   void platform::initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
+   void platform::initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, ::i32 nCmdShow)
    {
 
       m_hinstanceThis = hinstanceThis;
@@ -419,7 +419,7 @@ namespace platform
 #endif
 
 
-   void platform::initialize_system(int argc, char ** args, char ** envp)
+   void platform::initialize_system(::i32 argc, char_pointer * args, char_pointer * envp)
    {
 
       m_argc = argc;
@@ -468,7 +468,7 @@ namespace platform
    //}
 
 
-   void platform::set_args(int argc, char ** args, wchar_t ** wargs)
+   void platform::set_args(::i32 argc, char_pointer * args, wchar_t ** wargs)
    {
 
       m_argc = argc;
@@ -700,7 +700,7 @@ namespace platform
    }
 
 
-   int * platform::get_pargc()
+   ::i32 * platform::get_pargc()
    {
 
       return &m_argc;
@@ -708,7 +708,7 @@ namespace platform
    }
 
 
-   char *** platform::get_pargs()
+   char_pointer ** platform::get_pargs()
    {
 
       return &m_args;
@@ -716,7 +716,7 @@ namespace platform
    }
 
 
-   char ** platform::get_args()
+   char_pointer * platform::get_args()
    {
 
       return *get_pargs();
@@ -857,7 +857,7 @@ namespace platform
    }
 
 
-   int platform::get_status()
+   ::i32 platform::get_status()
    {
 
       return m_iProcessStatus;
@@ -865,7 +865,7 @@ namespace platform
    }
 
 
-   void platform::set_status(int iStatus)
+   void platform::set_status(::i32 iStatus)
    {
 
       m_iProcessStatus = iStatus;

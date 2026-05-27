@@ -38,7 +38,7 @@ namespace subsystem_bsd_sockets
 
 
    // FIXME: Deprecated method, only for testing of old code.
-   void getLocalIPAddrString(char *buffer, int buflen);
+   void getLocalIPAddrString(char_pointer buffer, ::i32 buflen);
 
 
    class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS SocketAddressIPv4 :
@@ -50,7 +50,7 @@ namespace subsystem_bsd_sockets
 
       // SocketAddressIPv4();
       // SocketAddressIPv4(struct sockaddr_in);
-      // SocketAddressIPv4(const ::scoped_string & scopedstrHost, unsigned short port);
+      // SocketAddressIPv4(const ::scoped_string & scopedstrHost, ::u16 port);
       //
       // SocketAddressIPv4(const SocketAddressIPv4 &socketAddressIPv4);
       // SocketAddressIPv4 &operator=(const SocketAddressIPv4 &socketAddressIPv4);
@@ -60,7 +60,7 @@ namespace subsystem_bsd_sockets
 
       void initialize_socket_address_ipv4() override;
       void _initialize_socket_address_ipv4(struct sockaddr_in);
-      void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) override;
+      void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, ::u16 port) override;
       void initialize_socket_address_ipv4(::subsystem::SocketAddressIPv4Interface * psocketAddressIPv4) override;
 
 
@@ -73,15 +73,15 @@ namespace subsystem_bsd_sockets
       ::string toString() const override;
 
       // Returns socket port number
-      unsigned short getPort() const override;
+      ::u16 getPort() const override;
 
       bool isLoopbackAddress() const override;
 
-      /// SocketAddressIPv4 resolve(const ::scoped_string & scopedstrHost, unsigned short port);
+      /// SocketAddressIPv4 resolve(const ::scoped_string & scopedstrHost, ::u16 port);
 
    //protected:
      // WsaStartup m_wsaStartup;
-      unsigned short m_port;
+      ::u16 m_port;
       struct in_addr m_addr;
 
       //static critical_section s_resolveMutex;

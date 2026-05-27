@@ -36,8 +36,8 @@ namespace innate_subsystem
         //ProgressBar();
         //virtual ~ProgressBarInterface() = 0;
 
-        virtual void setRange(unsigned short min, unsigned short max) = 0;
-        virtual void setPos(unsigned short pos) = 0;
+        virtual void setRange(::u16 min, ::u16 max) = 0;
+        virtual void setPos(::u16 pos) = 0;
     };
 
    //using ProgressBarInterface = particle_interface<ProgressBarInterface, ControlInterface>;
@@ -53,8 +53,8 @@ namespace innate_subsystem
         //ProgressBar();
         //~ProgressBar();
 
-        void setRange(unsigned short min, unsigned short max) override {m_pprogressbar->setRange(min, max);}
-        void setPos(unsigned short pos) override{m_pprogressbar->setPos(pos);}
+        void setRange(::u16 min, ::u16 max) override {m_pprogressbar->setRange(min, max);}
+        void setPos(::u16 pos) override{m_pprogressbar->setPos(pos);}
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ProgressBarAggregate :

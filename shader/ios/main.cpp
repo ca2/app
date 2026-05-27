@@ -16,7 +16,7 @@
 //  Love as a service. with tbs in <3
 //
 
-int link_all_please()
+::i32 link_all_please()
 {
    
    return 1;

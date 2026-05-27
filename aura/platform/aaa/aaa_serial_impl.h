@@ -71,7 +71,7 @@ private:
    serial_impl * pimpl_;
 };
 
-serial::serial(::particle * pparticle, const string & port, unsigned int baudrate, serial::Timeout timeout,
+serial::serial(::particle * pparticle, const string & port, ::u32 baudrate, serial::Timeout timeout,
    enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
    enum_flow_control eflowcontrol)
    : ::object(pparticle),
@@ -84,7 +84,7 @@ serial::~serial()
 {
 }
 
-serial::Timeout Timeout::simpleTimeout(unsigned int timeout)
+serial::Timeout Timeout::simpleTimeout(::u32 timeout)
 {
 #ifdef WINDOWS
    return Timeout(MAXDWORD, timeout, MAXDWORD, timeout, 0);
@@ -132,13 +132,13 @@ serial::waitByteTimes(size_t count)
 }
 
 size_t
-serial::read_(unsigned char * buffer, size_t size)
+serial::read_(::u8 * buffer, size_t size)
 {
    return this->pimpl_->read(buffer, size);
 }
 
 size_t
-serial::read(unsigned char * buffer, size_t size)
+serial::read(::u8 * buffer, size_t size)
 {
    scoped_read_lock lock(this->pimpl_);
    return this->pimpl_->read(buffer, size);
@@ -159,9 +159,9 @@ size_t
 serial::read(string & buffer, size_t size)
 {
    scoped_read_lock lock(this->pimpl_);
-   unsigned char * buffer_ = aaa_primitive_new unsigned char[size];
+   ::u8 * buffer_ = aaa_primitive_new ::u8[size];
    size_t bytes_read = this->pimpl_->read(buffer_, size);
-   buffer.append(reinterpret_cast<const char *>(buffer_), bytes_read);
+   buffer.append(reinterpret_cast<const_char_pointer >(buffer_), bytes_read);
    delete[] buffer_;
    return bytes_read;
 }
@@ -182,8 +182,8 @@ serial::readline(string & buffer, size_t size, string eol)
 #else
    scoped_read_lock lock(this->pimpl_);
    size_t eol_len = eol.length();
-   unsigned char * buffer_ = static_cast<unsigned char *>
-      (alloca(size * sizeof(unsigned char)));
+   ::u8 * buffer_ = static_cast<::u8 *>
+      (alloca(size * sizeof(::u8)));
    size_t read_so_far = 0;
    while (true)
    {
@@ -191,9 +191,9 @@ serial::readline(string & buffer, size_t size, string eol)
       read_so_far += bytes_read;
       if (bytes_read == 0)
       {
-         break; // Timeout occured on reading 1 unsigned char
+         break; // Timeout occured on reading 1 ::u8
       }
-      if (string(reinterpret_cast<const char *>
+      if (string(reinterpret_cast<const_char_pointer >
          (buffer_ + read_so_far - eol_len), eol_len) == eol)
       {
          break; // EOL found
@@ -203,7 +203,7 @@ serial::readline(string & buffer, size_t size, string eol)
          break; // Reached the maximum read length
       }
    }
-   buffer.append(reinterpret_cast<const char *> (buffer_), read_so_far);
+   buffer.append(reinterpret_cast<const_char_pointer > (buffer_), read_so_far);
    return read_so_far;
 #endif
 }
@@ -222,8 +222,8 @@ serial::readlines(size_t size, string eol)
    scoped_read_lock lock(this->pimpl_);
    string_array_base lines;
    size_t eol_len = (size_t)eol.length();
-   unsigned char * buffer_ = static_cast<unsigned char *>
-      (alloca(size * sizeof(unsigned char)));
+   ::u8 * buffer_ = static_cast<::u8 *>
+      (alloca(size * sizeof(::u8)));
    size_t read_so_far = 0;
    size_t start_of_line = 0;
    while (read_so_far < size)
@@ -235,17 +235,17 @@ serial::readlines(size_t size, string eol)
          if (start_of_line != read_so_far)
          {
             lines.push_back(
-               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
+               string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line),
                   read_so_far - start_of_line));
          }
-         break; // Timeout occured on reading 1 unsigned char
+         break; // Timeout occured on reading 1 ::u8
       }
-      if (string(reinterpret_cast<const char *>
+      if (string(reinterpret_cast<const_char_pointer >
          (buffer_ + read_so_far - eol_len), eol_len) == eol)
       {
          // EOL found
          lines.push_back(
-            string(reinterpret_cast<const char *> (buffer_ + start_of_line),
+            string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line),
                read_so_far - start_of_line));
          start_of_line = read_so_far;
       }
@@ -254,7 +254,7 @@ serial::readlines(size_t size, string eol)
          if (start_of_line != read_so_far)
          {
             lines.push_back(
-               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
+               string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line),
                   read_so_far - start_of_line));
          }
          break; // Reached the maximum read length
@@ -267,7 +267,7 @@ size_t
 serial::write(const string & data)
 {
    scoped_write_lock lock(this->pimpl_);
-   return this->write_(reinterpret_cast<const unsigned char *>(data.c_str()),
+   return this->write_(reinterpret_cast<const ::u8 *>(data.c_str()),
       (size_t)data.length());
 }
 
@@ -279,14 +279,14 @@ serial::write(const memory & data)
 }
 
 size_t
-serial::write(const unsigned char * data, size_t size)
+serial::write(const ::u8 * data, size_t size)
 {
    scoped_write_lock lock(this->pimpl_);
    return this->write_(data, size);
 }
 
 size_t
-serial::write_(const unsigned char * data, size_t length)
+serial::write_(const ::u8 * data, size_t length)
 {
    return pimpl_->write(data, length);
 }
@@ -321,15 +321,15 @@ serial::getTimeout() const
 }
 
 void
-serial::setBaudrate(unsigned int baudrate)
+serial::setBaudrate(::u32 baudrate)
 {
    pimpl_->setBaudrate(baudrate);
 }
 
-unsigned int
+::u32
 serial::getBaudrate() const
 {
-   return unsigned int(pimpl_->getBaudrate());
+   return ::u32(pimpl_->getBaudrate());
 }
 
 void
@@ -399,7 +399,7 @@ void serial::flushOutput()
    pimpl_->flushOutput();
 }
 
-void serial::sendBreak(int duration)
+void serial::sendBreak(::i32 duration)
 {
    pimpl_->sendBreak(duration);
 }

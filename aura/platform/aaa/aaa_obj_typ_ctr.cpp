@@ -2,12 +2,12 @@
 
 #if OBJECT_TYPE_COUNTER
 
-int g_iObjTypCtrInit = 0;
-long long g_iObjTypCtr = 0;
+::i32 g_iObjTypCtrInit = 0;
+::i64 g_iObjTypCtr = 0;
 
 critical_section g_csObjTypCtr;
 
-map < const char*, const ::string &, long long, long long > * g_pmapObjTypCtr = nullptr;
+map < const_char_pointer , const ::string &, ::i64, ::i64 > * g_pmapObjTypCtr = nullptr;
 
 void object_type_counter_increment(::particle * pparticle)
 {

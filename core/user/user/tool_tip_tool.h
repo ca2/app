@@ -27,7 +27,7 @@ namespace user
       virtual void BaseToolTipGetRect(::i32_rectangle * prectangle);
 
       virtual bool BaseToolTipGetText(string & str);
-      virtual int BaseToolTipGetIndex();
+      virtual ::i32 BaseToolTipGetIndex();
       virtual ::pointer<::user::interaction>BaseToolTipGetWnd();
 
       tool_tip_window *  m_pbasetooltiphdl;      // Base tooltip handler

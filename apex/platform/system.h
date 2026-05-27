@@ -53,7 +53,7 @@ namespace apex
       //       string_array_base                                       m_straCommandLineAccumul;
       //       string_array_base                                       m_straCommandLineExtra;
       //       class ::time                                         m_timeCommandLineLast;
-      //       int                                                m_iCommandLineDelay;
+      //       ::i32                                                m_iCommandLineDelay;
       //
       //       bool                                               m_bSystemSynchronizedCursor;
       //       bool                                               m_bSystemSynchronizedScreen;
@@ -312,20 +312,20 @@ namespace apex
       virtual void process_term() override;
 
 
-      virtual int _001OnDebugReport(int i1, const ::scoped_string& scopedstr1, int i2,
+      virtual ::i32 _001OnDebugReport(::i32 i1, const ::scoped_string& scopedstr1, ::i32 i2,
                                     const ::scoped_string& scopedstr2, const ::scoped_string& scopedstr3,
                                     va_list args) override;
 
 
-      virtual int _debug_logging_report(int iReportType, const ::scoped_string& scopedstrFilename, int iLinenumber,
+      virtual ::i32 _debug_logging_report(::i32 iReportType, const ::scoped_string& scopedstrFilename, ::i32 iLinenumber,
                                         const ::scoped_string& scopedstrModuleName, const_char_pointer pszFormat,
                                         va_list list_base) override;
 
 
-      virtual bool assert_failed_line(const ::scoped_string& scopedstrFileName, int iLine) override;
+      virtual bool assert_failed_line(const ::scoped_string& scopedstrFileName, ::i32 iLine) override;
 
 
-      virtual bool on_assert_failed_line(const ::scoped_string& scopedstrFileName, int iLine) override;
+      virtual bool on_assert_failed_line(const ::scoped_string& scopedstrFileName, ::i32 iLine) override;
 
 
       virtual void initialize_log(const ::scoped_string& scopedstrId) override;
@@ -353,7 +353,7 @@ namespace apex
       virtual ::collection::count get_application_count() override;
 
 
-      void install_progress_add_up(int iAddUp = 1) override;
+      void install_progress_add_up(::i32 iAddUp = 1) override;
 
 
       virtual void on_start_find_applications_from_cache() override;
@@ -475,7 +475,7 @@ namespace apex
       void dump_command_line_and_environment_variables_to_file() override;
 
 
-      //void system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam) override;
+      //void system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam) override;
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 
@@ -497,10 +497,10 @@ namespace apex
       using ::platform::system::application_main;
 
 
-      virtual void application_main(int argc, char* argv[], const ::scoped_string& scopedstrCommandLine) override;
+      virtual void application_main(::i32 argc, char_pointer argv[], const ::scoped_string& scopedstrCommandLine) override;
 
 
-      virtual int console_end(::e_status estatus) override;
+      virtual ::i32 console_end(::e_status estatus) override;
 
 
       //virtual void get_public_internet_domain_extension_list(string_array_base& stra) override;
@@ -565,6 +565,6 @@ CLASS_DECL_APEX ::apex::system* create_apex_system();
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_APEX int app_core_main(const ::scoped_string & scopedstr);
+//CLASS_DECL_APEX ::i32 app_core_main(const ::scoped_string & scopedstr);
 //
 //#endif

@@ -2,7 +2,7 @@
 
 
 //typedef struct st_mysql_res MYSQL_RES;
-//typedef char **MYSQL_ROW;		/* return data as array of strings */
+//typedef char_pointer *MYSQL_ROW;		/* return data as array of strings */
 //
 //#ifndef UNIVERSAL_WINDOWS
 //
@@ -28,9 +28,9 @@
 //
 //
 //      MYSQL_ROW fetch_row();
-//      unsigned long * fetch_lengths();
+//      ulong * fetch_lengths();
 //      ::i64 num_rows();
-//      int num_fields();
+//      ::i32 num_fields();
 //
 //      bool free_result();
 //

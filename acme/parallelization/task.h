@@ -2692,7 +2692,7 @@ public:
 #endif
 
 #ifdef _DEBUG
-   char *                                          m_pszDebug;
+   char_pointer m_pszDebug;
 #endif
    ::pointer < ::parallelization::counter >        m_pcounter;
    ::task_pointer                                  m_ptask;
@@ -2717,7 +2717,7 @@ public:
 
    ::waiting_call_stack                            m_waitingcallstack;
 
-   int m_iExitCode;
+   ::i32 m_iExitCode;
 
 
 
@@ -2729,7 +2729,7 @@ public:
       const ::subparticle *m_psubparticleContext;
       ::subparticle *m_psubparticleSynchronization;
       const_char_pointer m_pszFile;
-      int m_iLine;
+      ::i32 m_iLine;
    };
 
 
@@ -2766,7 +2766,7 @@ private:
    
    virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,
                                             const ::subparticle *psubparticleContext, const_char_pointer pszFile,
-                                            int iLine);
+                                            ::i32 iLine);
    virtual void on_single_lock_unlock(::subparticle *psubparticleSynchronization);
 
 
@@ -2860,7 +2860,7 @@ private:
    virtual bool on_happening(e_happening ehappening);
 
 
-   virtual int __task_main();
+   virtual ::i32 __task_main();
    virtual void __task_init();
    //virtual void __task_main(::procedure & procedureTaskEnded);
    virtual void __task_term();
@@ -2940,7 +2940,7 @@ private:
 
    virtual void kick_thread();
 
-   virtual int call_main();
+   virtual ::i32 call_main();
    virtual void main();
 
    void run() override;
@@ -3058,7 +3058,7 @@ CLASS_DECL_ACME string task_get_name();
 CLASS_DECL_ACME string task_get_name(htask htask);
 
 
-CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
+CLASS_DECL_ACME void thread_name_abbreviate(string & strName, ::i32 len);
 
 
 //CLASS_DECL_ACME ::task * _get_task();

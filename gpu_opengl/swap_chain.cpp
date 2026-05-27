@@ -298,7 +298,7 @@ FragColor = texture(uTexture, TexCoord);
    }
 
 
-void swap_chain::on_gpu_context_render_frame(int w, int h)
+void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 {
    
    auto pshaderRender = render_shader(w, h);
@@ -314,11 +314,11 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    
 #if 1
    auto t = ::time::now().floating_second();
-   float fGreen = ::sin(t * 0.5  * 2.0 * 3.1415) * 0.25 + 0.5;
+   ::f32 fGreen = ::sin(t * 0.5  * 2.0 * 3.1415) * 0.25 + 0.5;
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   float alpha = 0.69;
+   ::f32 alpha = 0.69;
    glClearColor(0.2f * alpha, fGreen * alpha, 0.5f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif
@@ -414,7 +414,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   float alpha = 0.69;
+   ::f32 alpha = 0.69;
    glClearColor(0.2f * alpha, 0.5f * alpha, 1.0f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif
@@ -538,7 +538,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
    {
       construct_newø(m_ptextureaSwapChain);
 
-      for(int i = 0; i < 3; i++)
+      for(::i32 i = 0; i < 3; i++)
       {
          auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
          constructø(ptextureSwapChain);
@@ -601,7 +601,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
 }
 
 
-::gpu::shader * swap_chain::render_shader(int w, int h)
+::gpu::shader * swap_chain::render_shader(::i32 w, ::i32 h)
 {
    
    ::i32_size size(w, h);

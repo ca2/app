@@ -42,7 +42,7 @@ namespace micro
 
          auto pmicrobutton = m_pdialog->micro_button_at(i);
 
-         char ch = pmicrobutton->m_chLetter;
+         ::i8 ch = pmicrobutton->m_chLetter;
 
          m_mapCharIndex[character_tolower(ch)] = i;
 
@@ -99,7 +99,7 @@ namespace micro
 
          printf_out("):");
 
-         char ch;
+         ::i8 ch;
 
          auto iReturnCount = scanf("%c", &ch);
 

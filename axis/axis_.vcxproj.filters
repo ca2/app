@@ -199,7 +199,7 @@
       <UniqueIdentifier>{aaad9d9a-e15b-48d4-92ae-842bc8b1c9c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\geoip">
-      <UniqueIdentifier>{450b1cbc-3f48-42fe-a8b6-c1e36b76f64a}</UniqueIdentifier>
+      <UniqueIdentifier>{450b1cbc-3f48-42fe-a8b6-c1e36b76f64_a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{d54a1f58-033d-4ab9-a817-6baa20632a09}</UniqueIdentifier>

@@ -14,7 +14,7 @@ namespace file_lock
    public:
 
 
-      int         m_iFileDescriptor;
+      ::i32         m_iFileDescriptor;
       ::string    m_strName;
       ::string    m_strPath;
 
@@ -36,7 +36,7 @@ namespace file_lock
       bool close_file();
 
 
-      static string _get_file_name(const_char_pointer lpszName);
+      static string _get_file_name(const_char_pointer pszName);
 
 
    };

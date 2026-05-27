@@ -34,57 +34,57 @@ namespace innate_subsystem
 //    {
 //    }
 //
-//    /*void ListBox::addString(const char *str)
+//    /*void ListBox::addString(const_char_pointer str)
 //    {
 //       //addString(str, 0);
 //       m_pparticleThis->addString(str);
 //    }
 //
-//    void ListBox::addString(const char *str, void *tag)
+//    void ListBox::addString(const_char_pointer str, void *tag)
 //    {
 //       // LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (::lparam)str);
-//       // int i = (int)lresult;
+//       // ::i32 i = (::i32)lresult;
 //       // _ASSERT(i == lresult);
 //       // setItemData(i, (::lparam)tag);
 //       m_pparticleThis->addString(str, tag);
 //    }
 //
-//    void ListBox::removeString(int index)
+//    void ListBox::removeString(::i32 index)
 //    {
-//       // int top = getTopIndex();
+//       // ::i32 top = getTopIndex();
 //       // SendMessage(m_hwnd, LB_DELETESTRING, index, NULL);
 //       // setTopIndex(top);
 //       m_pparticleThis->removeString(index);
 //    }
 //
-//    int ListBox::getTopIndex()
+//    ::i32 ListBox::getTopIndex()
 //    {
-//       //return (int)SendMessage(m_hwnd, LB_GETTOPINDEX, NULL, NULL);
+//       //return (::i32)SendMessage(m_hwnd, LB_GETTOPINDEX, NULL, NULL);
 //       return m_pparticleThis->getTopIndex();
 //    }
 //
-//    void ListBox::setTopIndex(int index)
+//    void ListBox::setTopIndex(::i32 index)
 //    {
 //       //SendMessage(m_hwnd, LB_SETTOPINDEX, index, NULL);
 //       m_pparticleThis->setTopIndex(index);
 //    }
 //
-//    ::string ListBox::getItemText(int index)
+//    ::string ListBox::getItemText(::i32 index)
 //    {
 //       // size_t length = SendMessage(m_hwnd, LB_GETTEXTLEN, index, NULL);
 //       // _ASSERT(length <= 65536);
-//       // std::vector<char> buffer(length + 1);
+//       // std::vector<::i8> buffer(length + 1);
 //       // SendMessage(m_hwnd, LB_GETTEXT, index, (::lparam)&buffer.front());
 //       // storage->setString(&buffer.front());
 //
 //       return m_pparticleThis->getItemText(index);
 //    }
 //
-//    void ListBox::setItemText(int index, const char *str)
+//    void ListBox::setItemText(::i32 index, const_char_pointer str)
 //    {
 //       m_pparticleThis->setItemText(index, str);
-//       // int si = getSelectedIndex();
-//       // int top = getTopIndex();
+//       // ::i32 si = getSelectedIndex();
+//       // ::i32 top = getTopIndex();
 //       // LRESULT lresult = SendMessage(m_hwnd, LB_GETTOPINDEX, NULL, NULL);
 //       // ::u32 topIndex = (::u32)lresult;
 //       // _ASSERT(topIndex == lresult);
@@ -97,46 +97,46 @@ namespace innate_subsystem
 //       // setTopIndex(top);
 //    }
 //
-//    void ListBox::appendString(const char *str, ::lparam data)
+//    void ListBox::appendString(const_char_pointer str, ::lparam data)
 //    {
 //       // LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (::lparam)str);
-//       // int index = (int)lresult;
+//       // ::i32 index = (::i32)lresult;
 //       // _ASSERT(index == lresult);
 //       // setItemData(index, data);
 //       m_pparticleThis->appendString(str, data);
 //    }
 //
-//    void ListBox::insertString(int index, const char *str)
+//    void ListBox::insertString(::i32 index, const_char_pointer str)
 //    {
 //       //SendMessage(m_hwnd, LB_INSERTSTRING, index, (::lparam)str);
 //       m_pparticleThis->insertString(index, str);
 //    }
 //
-//    void ListBox::insertString(int index, const char *str, ::lparam data)
+//    void ListBox::insertString(::i32 index, const_char_pointer str, ::lparam data)
 //    {
 //       // LRESULT lresult = SendMessage(m_hwnd, LB_INSERTSTRING, index, (::lparam)str);
-//       // int i = (int)lresult;
+//       // ::i32 i = (::i32)lresult;
 //       // _ASSERT(i == lresult);
 //       // setItemData(i, data);
 //       m_pparticleThis->insertString(index, str, data);
 //    }
 //
-//    void ListBox::setItemData(int index, ::lparam data)
+//    void ListBox::setItemData(::i32 index, ::lparam data)
 //    {
 //       //SendMessage(m_hwnd, LB_SETITEMDATA, index, data);
 //       m_pparticleThis->setItemData(index, data);
 //    }
 //
-//    ::lparam ListBox::getItemData(int index)
+//    ::lparam ListBox::getItemData(::i32 index)
 //    {
 //       //return SendMessage(m_hwnd, LB_GETITEMDATA, index, NULL);
 //       return m_pparticleThis->getItemData(index);
 //    }
 //
-//    int ListBox::getCount()
+//    ::i32 ListBox::getCount()
 //    {
 //       // LRESULT lresult = SendMessage(m_hwnd, LB_GETCOUNT, NULL, NULL);
-//       // int result = (int)lresult;
+//       // ::i32 result = (::i32)lresult;
 //       // _ASSERT(result == lresult);
 //       // return result;
 //       return m_pparticleThis->getCount();
@@ -148,16 +148,16 @@ namespace innate_subsystem
 //       m_pparticleThis->getCount();
 //    }
 //
-//    int ListBox::getSelectedIndex()
+//    ::i32 ListBox::getSelectedIndex()
 //    {
 // //      LRESULT lresult = SendMessage(m_hwnd, LB_GETCURSEL, NULL, NULL);
-//       // int index = (int)lresult;
+//       // ::i32 index = (::i32)lresult;
 //       // _ASSERT(index == lresult);
 //       // return (index == LB_ERR) ? -1 : index;
 //       return m_pparticleThis->getSelectedIndex();
 //    }
 //
-//    void ListBox::setSelectedIndex(int index)
+//    void ListBox::setSelectedIndex(::i32 index)
 //    {
 //       ///SendMessage(m_hwnd, LB_SETCURSEL, index, NULL);
 //       m_pparticleThis->setSelectedIndex(index);

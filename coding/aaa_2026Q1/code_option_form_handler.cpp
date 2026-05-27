@@ -231,7 +231,7 @@ namespace coding
 //   }
 //
 //
-//   void option_form_handler::start_installation(int iTryCount)
+//   void option_form_handler::start_installation(::i32 iTryCount)
 //   {
 //
 //      if (m_pinstall->has_download_step())
@@ -391,7 +391,7 @@ namespace coding
 //
 //   //   //}
 //
-//   //   ::transfer_progress_function transferprogressfunction = [this](double d, filesize done, filesize total)
+//   //   ::transfer_progress_function transferprogressfunction = [this](::f64 d, filesize done, filesize total)
 //   //      {
 //
 //   //         if (total == 0 || total == (filesize)-1)
@@ -502,7 +502,7 @@ namespace coding
 //
 //   //            strParams = "start /wait msiexec.exe /package \"" + m_path.name() + "\" /quiet /passive";
 //
-//   //            int iExitCode = node()->command_system(strParams, 2_hour, m_path.folder());
+//   //            ::i32 iExitCode = node()->command_system(strParams, 2_hour, m_path.folder());
 //
 //   //            ::string strExit;
 //
@@ -539,7 +539,7 @@ namespace coding
 //   //void install::download()
 //   //{
 //
-//   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+//   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
 //   //      {
 //
 //   //         if (total == 0 || total == (filesize)-1)
@@ -604,7 +604,7 @@ namespace coding
 //
 //   //      set_status2(str2);
 //
-//   //      int iExitCode = node()->command_system(m_path + " /verysilent /loadinf=" + pathInf, 2_hour);
+//   //      ::i32 iExitCode = node()->command_system(m_path + " /verysilent /loadinf=" + pathInf, 2_hour);
 //
 //   //      ::string strExit;
 //
@@ -629,7 +629,7 @@ namespace coding
 //
 //   //      tracefunction.m_timeTimeout = 5_min;
 //
-//   //      int iExitCode2 = node()->unix_shell_command("git config --global core.symlinks true", tracefunction);
+//   //      ::i32 iExitCode2 = node()->unix_shell_command("git config --global core.symlinks true", tracefunction);
 //
 //   //   }
 //   //   catch (...)
@@ -705,7 +705,7 @@ namespace coding
 //
 //   //            m_papp->set_status(m_einstall, "Cloning " + pathUrl + "to " + pathForBash + " ...");
 //
-//   //            int iExitCode = node()->command_system(
+//   //            ::i32 iExitCode = node()->command_system(
 //   //               "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \"git clone " + pathUrl + " " +
 //   //               pathForBash + " --recurse-submodules\"",
 //   //               [this](auto etracelevel, auto str)
@@ -723,7 +723,7 @@ namespace coding
 //   //            if (iExitCode == 0)
 //   //            {
 //
-//   //               int iExitCode2 = node()->command_system(
+//   //               ::i32 iExitCode2 = node()->command_system(
 //   //                  "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \"checkout\"",
 //   //                  [this](auto etracelevel, auto str)
 //   //                  {
@@ -807,7 +807,7 @@ namespace coding
 //
 //   //   //   ::string strName = m_papp->get_title(m_einstall);
 //
-//   //   //   for (int i = 0; i < 10; i++)
+//   //   //   for (::i32 i = 0; i < 10; i++)
 //   //   //   {
 //
 //   //   //      pathUrl = m_papp->http().get("https://ca2.software/code/script/windows/" + strName, set);

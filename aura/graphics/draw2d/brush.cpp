@@ -102,7 +102,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateHatchBrush(int nIndex, ::color::color color)
+   bool brush::CreateHatchBrush(::i32 nIndex, ::color::color color)
    {
 
       __UNREFERENCED_PARAMETER(nIndex);
@@ -131,7 +131,7 @@ namespace draw2d
 //   }
 
 
-   bool brush::CreatePatternBrush(::image::image *pimage, const ::double_size & size)
+   bool brush::CreatePatternBrush(::image::image *pimage, const ::f64_size & size)
    {
 
       if (m_pimage != pimage || m_ebrush != e_brush_pattern)
@@ -166,7 +166,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateSysColorBrush(int nIndex)
+   bool brush::CreateSysColorBrush(::i32 nIndex)
    {
 
       __UNREFERENCED_PARAMETER(nIndex);
@@ -178,7 +178,7 @@ namespace draw2d
    }
 
 
-//   int brush::GetLogBrush(LOGBRUSH* pLogBrush)
+//   ::i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pLogBrush);
@@ -193,7 +193,7 @@ namespace draw2d
    bool brush::CreateLinearGradientBrush(const i32_point & point1,const i32_point & point2,const ::color::color & color1,const ::color::color & color2)
    {
 
-      return CreateLinearGradientBrush(double_point(point1),double_point(point2),color1,color2);
+      return CreateLinearGradientBrush(::f64_point(point1),::f64_point(point2),color1,color2);
 
    }
 
@@ -201,12 +201,12 @@ namespace draw2d
    bool brush::CreateRadialGradientBrush(const i32_point & point1,i32_size point2,const ::color::color & color1,const ::color::color & color2)
    {
 
-      return CreateRadialGradientBrush((double_point)point1,(double_size)point2,color1,color2);
+      return CreateRadialGradientBrush((::f64_point)point1,(::f64_size)point2,color1,color2);
 
    }
 
 
-   bool brush::CreateLinearGradientBrush(double_point point1, double_point point2, const ::color::color & color1, const ::color::color & color2)
+   bool brush::CreateLinearGradientBrush(::f64_point point1, ::f64_point point2, const ::color::color & color1, const ::color::color & color2)
    {
 
       if (m_ebrush == e_brush_linear_gradient_point_color
@@ -228,7 +228,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateRadialGradientBrush(double_point point,double_size s,const ::color::color & color1,const ::color::color & color2)
+   bool brush::CreateRadialGradientBrush(::f64_point point,::f64_size s,const ::color::color & color1,const ::color::color & color2)
    {
 
       if(m_ebrush == e_brush_radial_gradient_color
@@ -248,7 +248,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateBoxGradientBrush(double_point point, double_size s, double dRadius, const ::color::color & colorInner, const ::color::color & colorOuter)
+   bool brush::CreateBoxGradientBrush(::f64_point point, ::f64_size s, ::f64 dRadius, const ::color::color & colorInner, const ::color::color & colorOuter)
    {
 
       if (m_ebrush == e_brush_box_gradient

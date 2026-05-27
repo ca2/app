@@ -27,7 +27,7 @@ public:
 
    bool is_auto_launch() const;
 
-   void exclude_pid(int iPid);
+   void exclude_pid(::i32 iPid);
 
    //virtual void post(const ::atom& idPid);
    virtual void send(const ::atom& idPid);

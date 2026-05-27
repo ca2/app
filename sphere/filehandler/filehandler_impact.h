@@ -42,7 +42,7 @@ namespace filehandler
       {
       public:
 
-         int m_iItemHeight;
+         ::i32 m_iItemHeight;
 
          list_base(::particle * pparticle);
 

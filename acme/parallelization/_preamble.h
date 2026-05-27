@@ -33,7 +33,7 @@ namespace factory
 
 #ifdef PARALLELIZATION_PTHREAD
 
-#define CRITICAL_SECTION_FUNCTION_RETURN int
+#define CRITICAL_SECTION_FUNCTION_RETURN ::i32
 
 //CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t* pmutex);
 

@@ -18,7 +18,7 @@ namespace acme
       }
 
 
-      CLASS_DECL_ACME int profile_sleep()
+      CLASS_DECL_ACME ::i32 profile_sleep()
       {
 
          #ifdef _DEBUG

@@ -7,7 +7,7 @@ class CLASS_DECL_ACME string_buffer
 public:
 
    string_base < TYPE_CHAR >& m_str;
-   char* m_pszBuffer;
+   char_pointer m_pszBuffer;
    character_count m_nLength;
    character_count m_nBufferLength;
 
@@ -61,7 +61,7 @@ public:
    }
 
 
-   operator char* () noexcept
+   operator char_pointer () noexcept
    {
 
       return m_pszBuffer;

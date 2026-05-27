@@ -42,7 +42,7 @@
 // 0, followed by some other code (from fnkeys.h).  The following table
 // converts (where non-zero) from ncurses to the 2nd Borland code.
 
-static const char n2g[] = {
+static const ::i8 n2g[] = {
   /* 0400 */ 0, 0, N_DOWN, N_UP, N_LEFT, N_RIGHT, 0, 0,
   /* 0410 */ 0, N_F1, N_F2, N_F3, N_F4, N_F5, N_F6, N_F7,
   /* 0420 */ N_F8, N_F9, N_F10, 0, 0, S_F1, S_F2, S_F3,
@@ -81,14 +81,14 @@ static const enum N_NAMES AltDigits[] =
 // A buffer, for ungetching.
 
 #define MAX_UNGETCH 128
-static int NumUngetch = 0;
-static char UngetchBuffer[MAX_UNGETCH];
+static ::i32 NumUngetch = 0;
+static ::i8 UngetchBuffer[MAX_UNGETCH];
 FILE *KeyLog = NULL;
 
 //----------------------------------------------------------------------
 // Trap numeric keypad digits.
 void
-KeypadDigit (int *KeyCode)
+KeypadDigit (::i32 *KeyCode)
 {
   switch (*KeyCode)
     {
@@ -128,16 +128,16 @@ KeypadDigit (int *KeyCode)
 }
 
 //-----------------------------------------------------------------------
-int
+::i32
 getchTurbo (void)
 {
 #undef getch
    return get_console_application().console_prompt().getch();
 #define getch getchTurbo
 #define MAX_ESCAPE_SEQUENCE 16
-  char c;
-  int KeyCode;
-  int EscapeSequence[MAX_ESCAPE_SEQUENCE], NumEscapeSequence = 0;
+  ::i8 c;
+  ::i32 KeyCode;
+  ::i32 EscapeSequence[MAX_ESCAPE_SEQUENCE], NumEscapeSequence = 0;
 
   //if (!ConioInitialized)
   //  textmode (LASTMODE);
@@ -415,8 +415,8 @@ getchTurbo (void)
 }
 
 //----------------------------------------------------------------------
-int
-ungetchTurbo (int ch)
+::i32
+ungetchTurbo (::i32 ch)
 {
   if (NumUngetch >= MAX_UNGETCH)
     return (EOF);

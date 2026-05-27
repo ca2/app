@@ -835,7 +835,7 @@ namespace platform
                             const ::procedure& procedureCompletion, ::collection::index iStart)
    {
 
-      int iAffinityOrder = node()->get_current_process_affinity_order();
+      ::i32 iAffinityOrder = node()->get_current_process_affinity_order();
 
       if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
       {

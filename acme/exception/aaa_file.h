@@ -8,11 +8,11 @@ class CLASS_DECL_ACME file_exception :
 public:
 
    
-   int                  m_iOsError;
+   ::i32                  m_iOsError;
    string               m_strPath;
 
 
-   file_exception(::e_status estatus, int iOsError, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMessage);
+   file_exception(::e_status estatus, ::i32 iOsError, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMessage);
 
 
 };

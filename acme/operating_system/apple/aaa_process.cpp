@@ -5,14 +5,14 @@
 #include "acme/platform/static_start.h"
 
 #include <spawn.h>
-extern char * const * environ;
+extern char_pointer const * environ;
 
 
 struct chldstatus
 {
 
    bool m_bRet;
-   int  m_iExitCode;
+   ::i32  m_iExitCode;
 
 
 };
@@ -47,7 +47,7 @@ critical_section * get_pid_cs()
 }
 
 
-chldstatus get_chldstatus(int iPid)
+chldstatus get_chldstatus(::i32 iPid)
 {
 
    cslock synchronouslock(get_pid_cs());
@@ -57,7 +57,7 @@ chldstatus get_chldstatus(int iPid)
 }
 
 // must be called under get_pid_cs lock
-void init_chldstatus(int iPid)
+void init_chldstatus(::i32 iPid)
 {
 
    auto & s = g_ppid->operator[](iPid);
@@ -69,14 +69,14 @@ void init_chldstatus(int iPid)
 }
 
 
-void ansios_sigchld_handler(int sig)
+void ansios_sigchld_handler(::i32 sig)
 {
 
-   int saved_errno = errno;
+   ::i32 saved_errno = errno;
 
-   int iExitCode;
+   ::i32 iExitCode;
 
-   int iPid;
+   ::i32 iPid;
 
    while((iPid = waitpid(-1, &iExitCode,
                          WUNTRACED
@@ -131,7 +131,7 @@ void install_sigchld_handler()
 }
 
 
-CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, int iCa2Priority);
+CLASS_DECL_ACME void process_get_os_priority(::i32 * piOsPolicy, ::i32 iCa2Priority);
 
 
 namespace apple
@@ -162,7 +162,7 @@ namespace apple
 
       string_array_base straParam;
 
-      address_array < char * > argv;
+      address_array < char_pointer > argv;
 
       straParam.explode_command_line(scopedstrCmdLine, &argv);
 
@@ -191,9 +191,9 @@ namespace apple
 //
 //      }
 
-      address_array < char * > env;
+      address_array < char_pointer > env;
 
-      char * const * e = environ;
+      char_pointer const * e = environ;
 
       string strFallback;
 
@@ -208,7 +208,7 @@ namespace apple
 
          ::collection::index i = 0;
 
-         int iPrevious = -1;
+         ::i32 iPrevious = -1;
 
          const ::scoped_string & scopedstr;
 
@@ -217,9 +217,9 @@ namespace apple
             if(i <= iPrevious)
                break;
 
-            env.add((char *) psz);
+            env.add((char_pointer ) psz);
 
-            iPrevious = (int) i;
+            iPrevious = (::i32) i;
 
             i++;
 
@@ -238,34 +238,34 @@ namespace apple
 
          strFallback = string("DYLD_FALLBACK_LIBRARY_PATH=") + strFallback;
 
-         env.add((char *) (const char *) strFallback);
+         env.add((char_pointer ) (const_char_pointer ) strFallback);
 
 #endif
 
          env.add(nullptr);
 
-         e = (char * const *)env.get_data();
+         e = (char_pointer const *)env.get_data();
 
       }
 
 
-      int status = 0;
+      ::i32 status = 0;
 
       {
 
          cslock synchronouslock(get_pid_cs());
 
-         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
+         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char_pointer const *)argv.get_data(),e);
 
          init_chldstatus(m_iPid);
 
       }
 
 
-      if(epriority != (int) ::e_priority_none)
+      if(epriority != (::i32) ::e_priority_none)
       {
 
-         int iOsPriority;
+         ::i32 iOsPriority;
          
          process_get_os_priority(&iOsPriority, epriority);
 
@@ -281,13 +281,13 @@ namespace apple
    bool process::has_exited()
    {
 
-      int iExitCode;
+      ::i32 iExitCode;
 
 #if 0
 
       {
 
-         int iPid;
+         ::i32 iPid;
 
          iPid = waitpid(m_iPid, &iExitCode,
                         WUNTRACED
@@ -375,7 +375,7 @@ namespace apple
    }
 
 
-   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,::i32 iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
 #if defined(MACOS)
@@ -388,7 +388,7 @@ namespace apple
 
          string_array_base stra;
 
-         address_array < char * > argv;
+         address_array < char_pointer > argv;
 
          stra.explode_command_line(str, &argv);
 
@@ -505,7 +505,7 @@ namespace apple
 
 //      string_array_base straParam;
 //
-      address_array < char * > argv;
+      address_array < char_pointer > argv;
 //
 //      straParam.add("/bin/bash");
 //
@@ -519,7 +519,7 @@ namespace apple
 //      for(::collection::index i = 0; i < straParam.get_count(); i++)
 //      {
 //
-//         argv.add((char *)(const char *)straParam[i]);
+//         argv.add((char_pointer )(const_char_pointer )straParam[i]);
 //
 //      }
 //
@@ -535,18 +535,18 @@ namespace apple
       //straParam.add("uid=" + as_string(uid));
       for(::collection::index i = 0; i < straParam.get_count(); i++)
       {
-         char * psz = (char *)(const char *)straParam[i];
+         char_pointer psz = (char_pointer )(const_char_pointer )straParam[i];
          argv.add(scopedstr);
 
       }
 
       argv.add(nullptr);
 
-      char *tool = (char * )argv[0];
-      char **args = (char **) &argv.get_data()[1];
+      char_pointer tool = (char_pointer )argv[0];
+      char_pointer *args = (char_pointer *) &argv.get_data()[1];
       FILE *pipe = nullptr;
 
-//      int uid = getuid();
+//      ::i32 uid = getuid();
 
       informationf("---\n");
       informationf("---\n");
@@ -569,7 +569,7 @@ namespace apple
       informationf("---\n");
       informationf("---\n");
 
-//      int i = setuid(0);
+//      ::i32 i = setuid(0);
 
       //    if(i != 0)
       //  {
@@ -581,7 +581,7 @@ namespace apple
       /*
       string_array_base straParam;
 
-      ref_array < char > argv;
+      ref_array < ::i8 > argv;
 
 
       straParam.explode_command_line(scopedstrCmdLineParam, &argv);
@@ -596,9 +596,9 @@ namespace apple
       posix_spawn_file_actions_init(&actions);
 
 
-      status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+      status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char_pointer const *)argv.get_data(),environ);
 
-      //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
+      //::i32 status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char_pointer const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
 auto tickStart = ::duration::now();
@@ -607,7 +607,7 @@ auto tickStart = ::duration::now();
       {
          sleep(100_ms);
       }
-      unsigned int dwExitCode = 0;
+      ::u32 dwExitCode = 0;
       if(!has_exited(&dwExitCode))
       {
          if(pbTimeOut != nullptr)
@@ -635,8 +635,8 @@ auto tickStart = ::duration::now();
       argv.erase_all();
       straParam.explode_command_line(scopedstrCmdLineParam, &argv);
 
-      tool = (char * )argv[0];
-      args = (char **) &argv.get_data()[1];
+      tool = (char_pointer )argv[0];
+      args = (char_pointer *) &argv.get_data()[1];
       pipe = nullptr;
 
 
@@ -652,14 +652,14 @@ auto tickStart = ::duration::now();
       if(pipe != nullptr)
       {
 
-//        int pptp_pid = 0;
+//        ::i32 pptp_pid = 0;
 
          //       fscanf(pipe, "%d", &pptp_pid);
 //         bool bNewLine = true;
 //         ::collection::index i = 0;
 //         while(i < 1000)
 //         {
-//            char szBuffer[1000];
+//            ::i8 szBuffer[1000];
 //            memory_set(szBuffer, 0, sizeof(szBuffer));
 //            fgets(szBuffer, sizeof(szBuffer), pipe);
 //            if(szBuffer[sizeof(szBuffer)-2] == '\n' || szBuffer[sizeof(szBuffer)-2] == '\0')
@@ -692,18 +692,18 @@ auto tickStart = ::duration::now();
 //          m_iPid = pptp_pid;
 auto tickStart = ::duration::now();
 
-      unsigned int tickTimeout = (unsigned int) durationTimeOut.get_total_milliseconds();
+      ::u32 tickTimeout = (::u32) durationTimeOut.get_total_milliseconds();
 
-      char sz[1025];
+      ::i8 sz[1025];
 
-      int iRead;
+      ::i32 iRead;
 
-      int iCount0 = 100;
+      ::i32 iCount0 = 100;
 
       while(!has_exited() && tickStart.elapsed() < tickTimeout && iCount0 > 0)
       {
          memory_set(sz, 0, sizeof(sz));
-         iRead =(int) fread(sz,1,1024, pipe);
+         iRead =(::i32) fread(sz,1,1024, pipe);
          if(iRead >0)
          {
             ::information(sz);
@@ -731,9 +731,9 @@ auto tickStart = ::duration::now();
          }
       }
 
-      /*         char c;
+      /*         ::i8 c;
 
-               int iRead;
+               ::i32 iRead;
 
                string strRead;
 
@@ -780,7 +780,7 @@ auto tickStart = ::duration::now();
 
       string_array_base straParam;
 
-      address_array < char * > argv;
+      address_array < char_pointer > argv;
 
 #ifdef MACOS
 
@@ -788,9 +788,9 @@ auto tickStart = ::duration::now();
       straParam.add("-e");
       straParam.add("'do shell script \"" + string(scopedstrCmdLineParam) + "\" with administrator privileges'");
 
-      argv.add((char *) (const char *) straParam[0]);
-      argv.add((char *) (const char *) straParam[1]);
-      argv.add((char *) (const char *) straParam[2]);
+      argv.add((char_pointer ) (const_char_pointer ) straParam[0]);
+      argv.add((char_pointer ) (const_char_pointer ) straParam[1]);
+      argv.add((char_pointer ) (const_char_pointer ) straParam[2]);
       argv.add(nullptr);
 
 #else
@@ -822,19 +822,19 @@ auto tickStart = ::duration::now();
 
       posix_spawn_file_actions_init(&actions);
 
-      int status= 0;
+      ::i32 status= 0;
 
       {
 
          cslock synchronouslock(get_pid_cs());
 
-         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+         status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char_pointer const *)argv.get_data(),environ);
 
          init_chldstatus(m_iPid);
 
       }
 
-      //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
+      //::i32 status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char_pointer const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
 auto tickStart = ::duration::now();
@@ -846,7 +846,7 @@ auto tickStart = ::duration::now();
 
       }
 
-      unsigned int dwExitCode = 0;
+      ::u32 dwExitCode = 0;
 
       if(!has_exited())
       {

@@ -30,12 +30,12 @@
 
 //----------------------------------------------------------------------------
 
-unsigned
-getpixel (int x, int y)
+::u32
+getpixel (::i32 x, ::i32 y)
 {
   gint i, maxi, ClosestS, s;
   XColor Color;
-  unsigned RetVal = 0;
+  ::u32 RetVal = 0;
   XImage *Image;
   // Convert to viewport coordinates.
   x += TcViewLeft;

@@ -18,14 +18,14 @@
 ////#define WGL_CONTEXT_FLAGS_ARB 0X2094
 ////#define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
 ////#define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
-////typedef HGLRC(WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int * attribList);
+////typedef HGLRC(WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const ::i32 * attribList);
 //
 ////typedef const_char_pointer (WINAPI * PFNWGLGETEXTENSIONSSTRINGEXTPROC)(void);
-////typedef BOOL(WINAPI * PFNWGLSWAPINTERVALEXTPROC)(int);
-////typedef int (WINAPI * PFNWGLGETSWAPINTERVALEXTPROC) (void);
+////typedef BOOL(WINAPI * PFNWGLSWAPINTERVALEXTPROC)(::i32);
+////typedef ::i32 (WINAPI * PFNWGLGETSWAPINTERVALEXTPROC) (void);
 //
 //
-//HGLRC initialize_opengl_version(HDC hdc, int iMajor, int iMinor)
+//HGLRC initialize_opengl_version(HDC hdc, ::i32 iMajor, ::i32 iMinor)
 //{
 //
 //   // Init GLFW
@@ -48,7 +48,7 @@
 //      return nullptr;
 //
 //   }
-//   int attribs[] =
+//   ::i32 attribs[] =
 //   {
 //      WGL_CONTEXT_MAJOR_VERSION_ARB, iMajor,
 //      WGL_CONTEXT_MINOR_VERSION_ARB, iMinor,

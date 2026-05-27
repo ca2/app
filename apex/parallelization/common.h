@@ -84,7 +84,7 @@ class single_lock;
 //   CLASS_DECL_APEX ::enum_priority priority();
 //
 //
-//   inline int get_priority_none()
+//   inline ::i32 get_priority_none()
 //   {
 //
 //      return e_priority_none;
@@ -92,7 +92,7 @@ class single_lock;
 //   }
 //
 //
-//   inline int get_priority_normal()
+//   inline ::i32 get_priority_normal()
 //   {
 //
 //      return e_priority_normal;
@@ -176,4 +176,4 @@ namespace prototype
 //
 
 
-//CLASS_DECL_APEX thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, int epriority = ::e_priority_normal, ::u32 nStackSize = 0, ::u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_APEX thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, ::i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, ::u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask * puiId = nullptr, error * perror = nullptr);

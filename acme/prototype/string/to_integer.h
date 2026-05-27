@@ -1,16 +1,16 @@
 #pragma once
 
-//CLASS_DECL_ACME int ansi_to_int(const_char_pointer sz, const_char_pointer *pszEnd, int iBase);
-//CLASS_DECL_ACME int ansi_to_int(const_char_pointer sz, const_char_pointer *pszEnd);
-//CLASS_DECL_ACME int ansi_to_int(const_char_pointer sz, int iOnNull = 0);
+//CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer sz, const_char_pointer *pszEnd, ::i32 iBase);
+//CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer sz, const_char_pointer *pszEnd);
+//CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer sz, ::i32 iOnNull = 0);
 
-//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd, int iBase);
+//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd, ::i32 iBase);
 //CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd);
 //CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz);
 
-//CLASS_DECL_ACME int ansi_count_to_long_long(const_char_pointer sz, const_char_pointer *pszEnd, int iBase, size_t iLen);
-//CLASS_DECL_ACME int ansi_count_to_long_long(const_char_pointer sz, const_char_pointer *pszEnd, size_t iLen);
-//CLASS_DECL_ACME int ansi_count_to_long_long(const_char_pointer sz, size_t iLen);
+//CLASS_DECL_ACME ::i32 ansi_count_to_long_long(const_char_pointer sz, const_char_pointer *pszEnd, ::i32 iBase, size_t iLen);
+//CLASS_DECL_ACME ::i32 ansi_count_to_long_long(const_char_pointer sz, const_char_pointer *pszEnd, size_t iLen);
+//CLASS_DECL_ACME ::i32 ansi_count_to_long_long(const_char_pointer sz, size_t iLen);
 
 
 //#define atoint_dup(...) ansi_to_int(__VA_ARGS__)
@@ -19,20 +19,20 @@
 
 
 
-//CLASS_DECL_ACME int wtoi_dup(const unichar * sz);
-//CLASS_DECL_ACME int nwtoi_dup(const unichar * sz, int iCount);
+//CLASS_DECL_ACME ::i32 wtoi_dup(const wide_character * sz);
+//CLASS_DECL_ACME ::i32 nwtoi_dup(const wide_character * sz, ::i32 iCount);
 
 
 
-//CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer sz, char ** pszEnd);
+//CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer sz, char_pointer * pszEnd);
 //CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer sz);
 
 
-//CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz, char ** pszEnd);
+//CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz, char_pointer * pszEnd);
 //CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz);
 
 
-//CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer sz, char ** pszEnd, size_t iLen);
+//CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer sz, char_pointer * pszEnd, size_t iLen);
 //CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer sz, size_t iLen);
 
 
@@ -53,9 +53,9 @@
 //#endif
 
 
-//CLASS_DECL_ACME ::i64 wide_to_long_long(const unichar * sz, const unichar ** pszEnd, int iBase);
-//CLASS_DECL_ACME ::i64 wide_to_long_long(const unichar * sz, const unichar ** pszEnd);
-//CLASS_DECL_ACME ::i64 wide_to_long_long(const unichar * sz);
+//CLASS_DECL_ACME ::i64 wide_to_long_long(const wide_character * sz, const wide_character * * pszEnd, ::i32 iBase);
+//CLASS_DECL_ACME ::i64 wide_to_long_long(const wide_character * sz, const wide_character * * pszEnd);
+//CLASS_DECL_ACME ::i64 wide_to_long_long(const wide_character * sz);
 
 
 #ifdef __cplusplus

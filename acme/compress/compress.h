@@ -15,7 +15,7 @@ public:
    ~compress() override;
 
 
-   virtual void set_level(int iLevel);
+   virtual void set_level(::i32 iLevel);
 
 
    void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;

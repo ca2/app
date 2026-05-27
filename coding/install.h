@@ -38,8 +38,8 @@ namespace coding
 
       manual_reset_happening              m_happeningFinished;
       ::file::path                        m_path;
-      int                                 m_iTry;
-      int                                 m_iTryCount;
+      ::i32                                 m_iTry;
+      ::i32                                 m_iTryCount;
 
       ::task_pointer m_ptaskStart;
       ::string                            m_strStatus;
@@ -80,7 +80,7 @@ namespace coding
 
       virtual void on_finished();
 
-      virtual void start_installation(int iTryCount);
+      virtual void start_installation(::i32 iTryCount);
 
       virtual void wait_installation();
 
@@ -90,7 +90,7 @@ namespace coding
       void set_status2(const ::scoped_string& scopedstr);
       void append_status2(const ::scoped_string& scopedstr);
 
-      int synchronous_posix_terminal(const ::scoped_string& scopedstr);
+      ::i32 synchronous_posix_terminal(const ::scoped_string& scopedstr);
 
   //    ::trace_function task_group_trace_function(task_group* ptaskgroup);
 //
@@ -104,7 +104,7 @@ namespace coding
 
       virtual void unzip(const ::file::path& pathFolder, const ::file::path& pathZip);
 
-      virtual void download_and_gzuntar(const ::file::path& pathUrl, const ::file::path& pathFolder, int iEat = 0);
+      virtual void download_and_gzuntar(const ::file::path& pathUrl, const ::file::path& pathFolder, ::i32 iEat = 0);
 
       virtual bool has_download_step();
 
@@ -133,8 +133,8 @@ namespace coding
       virtual bool are_fonts_installed();
       virtual void install_user_fonts();
       //virtual ::file::path cloud_fonts_folder();
-      //virtual void wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
-      //virtual bool check_whether_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
+      //virtual void wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, ::i32 iMinimumSize);
+      //virtual bool check_whether_folder_contains_files(const ::file::path& path, const ::string_array& straName, ::i32 iMinimumSize);
 
       //virtual ::string cloud_non__empty__file_as_string(const ::file::path& path);
 
@@ -183,7 +183,7 @@ namespace coding
 
       //::file::path _cloud_ensure_file_txt_is_up_to_date_and_present(const ::file::path & pathCloudFile);
       //::file::path _cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
-              //const ::file::path & pathCloudFile, const ::scoped_string & scopedstrFileExtension, int iMinimumFileSize);
+              //const ::file::path & pathCloudFile, const ::scoped_string & scopedstrFileExtension, ::i32 iMinimumFileSize);
 
 #endif
 #ifdef FREEBSD

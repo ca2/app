@@ -39,7 +39,7 @@ namespace innate_subsystem
 {
    typedef struct
    {
-      int index;
+      ::i32 index;
       ::u64 tag;
    } ListViewItem;
 
@@ -53,7 +53,7 @@ namespace innate_subsystem
    public:
 
 
-      //typedef int (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
+      //typedef ::i32 (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
 
 
 
@@ -63,45 +63,45 @@ namespace innate_subsystem
       // Adds new column to list view
       //
 
-      virtual void addColumn(int index, const char *caption, int width, int fmt)= 0;
-      virtual void addColumn(int index, const char *caption, int width)= 0;
+      virtual void addColumn(::i32 index, const_char_pointer caption, ::i32 width, ::i32 fmt)= 0;
+      virtual void addColumn(::i32 index, const_char_pointer caption, ::i32 width)= 0;
 
       //
       // Returns list view item structure with specified index
       //
 
-      virtual ListViewItem getItem(int index)= 0;
+      virtual ListViewItem getItem(::i32 index)= 0;
 
       //
       // Returns list view items count
       //
 
-      virtual int getCount()= 0;
+      virtual ::i32 getCount()= 0;
 
       //
       // Inserts new item to list view with specified index and caption
       //
 
-      virtual void addItem(int index, const char *caption)= 0;
+      virtual void addItem(::i32 index, const_char_pointer caption)= 0;
 
       //
       // Inserts new item to list view with specified index, caption
       // and user data(tag)
       //
 
-      virtual void addItem(int index, const char *caption, ::lparam tag)= 0;
+      virtual void addItem(::i32 index, const_char_pointer caption, ::lparam tag)= 0;
 
       //
       // Inserts new item to list view
       //
 
-      virtual void addItem(int index, const char *caption, ::lparam tag, int imageIndex)= 0;
+      virtual void addItem(::i32 index, const_char_pointer caption, ::lparam tag, ::i32 imageIndex)= 0;
 
       //
       // Removes item with specified index from list view
       //
 
-      virtual void removeItem(int i)= 0;
+      virtual void removeItem(::i32 i)= 0;
 
       //
       // Removes all list view items from list view
@@ -113,19 +113,19 @@ namespace innate_subsystem
       // Changes text of list view item subitem
       //
 
-      virtual void setSubItemText(int index, int subIndex, const char *caption)= 0;
+      virtual void setSubItemText(::i32 index, ::i32 subIndex, const_char_pointer caption)= 0;
 
       //
       // Changes user data (tag) of list view item with specified index
       //
 
-      virtual void setItemData(int index, ::lparam tag)= 0;
+      virtual void setItemData(::i32 index, ::lparam tag)= 0;
 
       //
       // Returns user data of list view item with specified index
       //
 
-      virtual ::lparam getItemData(int index)= 0;
+      virtual ::lparam getItemData(::i32 index)= 0;
 
       //
       // Returns first selected list view item
@@ -137,13 +137,13 @@ namespace innate_subsystem
       // Returns index of first selected list view item
       //
 
-      virtual int getSelectedIndex()= 0;
+      virtual ::i32 getSelectedIndex()= 0;
 
       //
       // Selectes list view item with specified index
       //
 
-      virtual void selectItem(int index)= 0;
+      virtual void selectItem(::i32 index)= 0;
 
       //
       // Changes full row select style of list view
@@ -167,7 +167,7 @@ namespace innate_subsystem
       // Sets selected list view index to output indexes array
       //
 
-      //virtual void getSelectedItemsIndexes(int *indexes)= 0;
+      //virtual void getSelectedItemsIndexes(::i32 *indexes)= 0;
        virtual ::i32_array getSelectedItemsIndexes() = 0;
 
    //protected:
@@ -187,7 +187,7 @@ namespace innate_subsystem
       //
       // For example, you need to call this method, if user changed parameters of sorting.
       //
-      virtual void set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare)= 0;
+      virtual void set_sort(::i32 columnIndex, const ::function < ::i32(::lparam, ::lparam) > & compare)= 0;
 
       //
       // This method sort list of item by column m_sortColumIndex.
@@ -201,7 +201,7 @@ namespace innate_subsystem
 
 
       /// onAction
-      /// at Windows double click/enter key
+      /// at Windows ::f64 click/enter key
       virtual void onAction() = 0;
 
    // private:
@@ -212,7 +212,7 @@ namespace innate_subsystem
    //    // Is list view not sorted, then m_sortClumnIndex is negative,
    //    // else him contained index of column.
    //    //
-   //    int m_sortColumnIndex;
+   //    ::i32 m_sortColumnIndex;
    //
    //    //
    //    // This pointer to compareFunction. By default is 0.
@@ -240,7 +240,7 @@ namespace innate_subsystem
    public:
 
       ImplementCompositeWithCallbackø(ListView, listview)
-      //typedef int (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
+      //typedef ::i32 (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
 
       // ListView();
       //
@@ -250,45 +250,45 @@ namespace innate_subsystem
       // Adds new column to list view
       //
 
-      void addColumn(int index, const char *caption, int width, int fmt) override { m_plistview->addColumn(index, caption, width, fmt); }
-      void addColumn(int index, const char *caption, int width) override { m_plistview->addColumn(index, caption, width); }
+      void addColumn(::i32 index, const_char_pointer caption, ::i32 width, ::i32 fmt) override { m_plistview->addColumn(index, caption, width, fmt); }
+      void addColumn(::i32 index, const_char_pointer caption, ::i32 width) override { m_plistview->addColumn(index, caption, width); }
 
       //
       // Returns list view item structure with specified index
       //
 
-      ListViewItem getItem(int index)  override{ return m_plistview->getItem(index); }
+      ListViewItem getItem(::i32 index)  override{ return m_plistview->getItem(index); }
 
       //
       // Returns list view items count
       //
 
-      int getCount() override { return m_plistview->getCount(); }
+      ::i32 getCount() override { return m_plistview->getCount(); }
 
       //
       // Inserts new item to list view with specified index and caption
       //
 
-      void addItem(int index, const char *caption)  override{ m_plistview->addItem(index, caption); }
+      void addItem(::i32 index, const_char_pointer caption)  override{ m_plistview->addItem(index, caption); }
 
       //
       // Inserts new item to list view with specified index, caption
       // and user data(tag)
       //
 
-      void addItem(int index, const char *caption, ::lparam tag)  override{ m_plistview->addItem(index, caption, tag); }
+      void addItem(::i32 index, const_char_pointer caption, ::lparam tag)  override{ m_plistview->addItem(index, caption, tag); }
 
       //
       // Inserts new item to list view
       //
 
-      void addItem(int index, const char *caption, ::lparam tag, int imageIndex)  override{ m_plistview->addItem(index, caption, tag, imageIndex); }
+      void addItem(::i32 index, const_char_pointer caption, ::lparam tag, ::i32 imageIndex)  override{ m_plistview->addItem(index, caption, tag, imageIndex); }
 
       //
       // Removes item with specified index from list view
       //
 
-      void removeItem(int i) override { m_plistview->removeItem(i); }
+      void removeItem(::i32 i) override { m_plistview->removeItem(i); }
 
       //
       // Removes all list view items from list view
@@ -300,19 +300,19 @@ namespace innate_subsystem
       // Changes text of list view item subitem
       //
 
-      void setSubItemText(int index, int subIndex, const char *caption) override { m_plistview->setSubItemText(index, subIndex, caption); }
+      void setSubItemText(::i32 index, ::i32 subIndex, const_char_pointer caption) override { m_plistview->setSubItemText(index, subIndex, caption); }
 
       //
       // Changes user data (tag) of list view item with specified index
       //
 
-      void setItemData(int index, ::lparam tag)  override{ m_plistview->setItemData(index, tag); }
+      void setItemData(::i32 index, ::lparam tag)  override{ m_plistview->setItemData(index, tag); }
 
       //
       // Returns user data of list view item with specified index
       //
 
-      ::lparam getItemData(int index)  override{ return m_plistview->getItemData(index); }
+      ::lparam getItemData(::i32 index)  override{ return m_plistview->getItemData(index); }
 
       //
       // Returns first selected list view item
@@ -324,13 +324,13 @@ namespace innate_subsystem
       // Returns index of first selected list view item
       //
 
-      int getSelectedIndex() override { return m_plistview->getSelectedIndex(); }
+      ::i32 getSelectedIndex() override { return m_plistview->getSelectedIndex(); }
 
       //
       // Selectes list view item with specified index
       //
 
-      void selectItem(int index) override { m_plistview->selectItem(index); }
+      void selectItem(::i32 index) override { m_plistview->selectItem(index); }
 
       //
       // Changes full row select style of list view
@@ -373,7 +373,7 @@ namespace innate_subsystem
       //
       // For example, you need to call this method, if user changed parameters of sorting.
       //
-      void set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare) override { m_plistview->set_sort(columnIndex, compare); }
+      void set_sort(::i32 columnIndex, const ::function < ::i32(::lparam, ::lparam) > & compare) override { m_plistview->set_sort(columnIndex, compare); }
 
       //
       // This method sort list of item by column m_sortColumIndex.
@@ -400,7 +400,7 @@ namespace innate_subsystem
    //    // Is list view not sorted, then m_sortClumnIndex is negative,
    //    // else him contained index of column.
    //    //
-   //    int m_sortColumnIndex;
+   //    ::i32 m_sortColumnIndex;
    //
    //    //
    //    // This pointer to compareFunction. By default is 0.

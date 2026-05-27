@@ -278,7 +278,7 @@ bool Thread::setThreadPriority(
    throw "todo";
    return false;
    //return m_pthreadimplementation->setThreadPriority(value);
-//    int policy;
+//    ::i32 policy;
 //    sched_param param;
 //
 //    pthread_getschedparam(
@@ -286,13 +286,13 @@ bool Thread::setThreadPriority(
 //        &policy,
 //        &param);
 //
-//    int minPriority =
+//    ::i32 minPriority =
 //        sched_get_priority_min(policy);
 //
-//    int maxPriority =
+//    ::i32 maxPriority =
 //        sched_get_priority_max(policy);
 //
-//    int priority =
+//    ::i32 priority =
 //        (minPriority + maxPriority) / 2;
 //
 //    switch (value)

@@ -85,7 +85,7 @@ namespace nanoui
 
       bool                 m_bMouseHover;
       ::string             m_tooltip;
-      int                  m_font_size;
+      ::i32                  m_font_size;
 
 
 
@@ -112,7 +112,7 @@ namespace nanoui
        *       virtual void draw(::nano2d::context  *ctx) {
        *           // fontSize depends on the kind of Widget.  Search for `FontSize`
        *           // in the Theme class (e.g., standard vs button)
-       *           float ih = font_size;
+       *           ::f32 ih = font_size;
        *           // assuming your Widget has a declared `mIcon`
        *           if (::nano2d::IsFontIcon(mIcon)) {
        *               ih *= icon_scale();
@@ -123,7 +123,7 @@ namespace nanoui
        *       }
        * \endrst
        */
-      float                m_icon_extra_scale;
+      ::f32                m_icon_extra_scale;
       Cursor               m_cursor;
 
       //::function < void(::nano2d::context  *) >    m_callbackSizing;
@@ -212,16 +212,16 @@ namespace nanoui
       virtual void set_size(const i32_size& size);
 
       /// Return the width of the pwidget
-      int width() const { return m_size.cx; }
+      ::i32 width() const { return m_size.cx; }
       /// Set the width of the pwidget
-      void set_width(int width) { m_size.cx = width; }
+      void set_width(::i32 width) { m_size.cx = width; }
 
       /// Return the height of the pwidget
-      int height() const { return m_size.cy; }
+      ::i32 height() const { return m_size.cy; }
       /// Set the height of the pwidget
-      void set_height(int height) { m_size.cy = height; }
+      void set_height(::i32 height) { m_size.cy = height; }
 
-      ::pointer < TextBox > create_in_place_edit(const ::float_rectangle& rectangle, const ::scoped_string & scopedstr);
+      ::pointer < TextBox > create_in_place_edit(const ::f32_rectangle& rectangle, const ::scoped_string & scopedstr);
 
       // returns true if something changed that needs redrawing
       virtual bool end_in_place_edit();
@@ -262,13 +262,13 @@ namespace nanoui
       const i32_size& fixed_size() const { return m_fixed_size; }
 
       // Return the fixed width (see \::pointer set_fixed_size())
-      int fixed_width() const { return m_fixed_size.cx; }
+      ::i32 fixed_width() const { return m_fixed_size.cx; }
       // Return the fixed height (see \::pointer set_fixed_size())
-      int fixed_height() const { return m_fixed_size.cy; }
+      ::i32 fixed_height() const { return m_fixed_size.cy; }
       /// Set the fixed width (see \::pointer set_fixed_size())
-      void set_fixed_width(int width) { m_fixed_size.cx = width; }
+      void set_fixed_width(::i32 width) { m_fixed_size.cx = width; }
       /// Set the fixed height (see \::pointer set_fixed_size())
-      void set_fixed_height(int height) { m_fixed_size.cy = height; }
+      void set_fixed_height(::i32 height) { m_fixed_size.cy = height; }
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual bool visible() const;
@@ -289,7 +289,7 @@ namespace nanoui
       }
       //
       //   /// Return the number of pwidgetChild widgets
-      int child_count() const { return (int)m_children.size(); }
+      ::i32 child_count() const { return (::i32)m_children.size(); }
 
       //::collection::count get_child_as_item_count() override;
       
@@ -334,7 +334,7 @@ namespace nanoui
       Widget* child_at(::collection::index iIndex) { return m_children[(size_t)iIndex]; }
 
       /// Returns the iIndex of a specific pwidgetChild or -1 if not found
-      int child_index(Widget* pwidget) const;
+      ::i32 child_index(Widget* pwidget) const;
 
       /// Variadic shorthand notation to construct and add a pwidgetChild pwidget
       template<typename WidgetClass, typename... Args>
@@ -371,9 +371,9 @@ namespace nanoui
       void set_tooltip(const ::scoped_string& tooltip) { m_tooltip = tooltip; }
       //
       //   /// Return current font size. If not set the default of the current theme will be returned
-      float font_size() const;
+      ::f32 font_size() const;
       /// Set the font size of this pwidget
-      void set_font_size(float font_size);
+      void set_font_size(::f32 font_size);
       /// Return whether the font size is explicitly specified for this pwidget
       bool has_font_size() const { return m_font_size >= 1.f; }
 
@@ -381,13 +381,13 @@ namespace nanoui
        * The amount of extra scaling applied to *icon* fonts.
        * See \::pointer nanoui::Widget::m_icon_extra_scale.
        */
-      float icon_extra_scale() const { return m_icon_extra_scale; }
+      ::f32 icon_extra_scale() const { return m_icon_extra_scale; }
 
       /**
        * Sets the amount of extra scaling applied to *icon* fonts.
        * See \::pointer nanoui::Widget::m_icon_extra_scale.
        */
-      void set_icon_extra_scale(float scale) { m_icon_extra_scale = scale; }
+      void set_icon_extra_scale(::f32 scale) { m_icon_extra_scale = scale; }
 
       /// Return a pointer to the cursor of the pwidget
       Cursor cursor() const { return m_cursor; }
@@ -418,13 +418,13 @@ namespace nanoui
       virtual void release_mouse_capture();
 
       /// Handle a mouse scroll happening (default implementation: propagate to children)
-      virtual bool scroll_event(const i32_point& p, const float_size& rel);
+      virtual bool scroll_event(const i32_point& p, const ::f32_size& rel);
 
       /// Handle a focus change happening (default implementation: record the focus status, but do nothing)
       virtual bool focus_event(bool focused);
 
       /// Handle a keyboard happening (default implementation: do nothing)
-      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText);
+      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText);
 
       /// Handle text input (UTF-32 format) (default implementation: do nothing)
       virtual bool keyboard_character_event(::u32 codepoint);
@@ -465,7 +465,7 @@ namespace nanoui
        *     \::pointer nanoui::Widget::m_icon_extra_scale.  This tiered scaling
        *     strategy may not be appropriate with fonts other than ``entypo.ttf``.
        */
-      float icon_scale() const { return m_ptheme->m_fIconScale * m_icon_extra_scale; }
+      ::f32 icon_scale() const { return m_ptheme->m_fIconScale * m_icon_extra_scale; }
 
 
    };

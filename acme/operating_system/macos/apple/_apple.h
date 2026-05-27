@@ -33,8 +33,8 @@ void screen_coordinates_aware_copy(::i32_rectangle & rectTarget, const CGRect & 
 
 //void copy(CGPoint & pointTarget, const ::i32_point & pointSource);
 //void copy(::i32_point & pointTarget, const CGPoint & pointSource);
-//void copy(CGPoint & pointTarget, const ::double_point & pointSource);
-//void copy(::double_point & pointTarget, const CGPoint & pointSource);
+//void copy(CGPoint & pointTarget, const ::f64_point & pointSource);
+//void copy(::f64_point & pointTarget, const CGPoint & pointSource);
 
 CGRect mm_get_screen_cgrect();
 

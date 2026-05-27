@@ -25,7 +25,7 @@ namespace interprocess
 
 
       virtual void call(const ::scoped_string & scopedstrUri, const class time & timeTimeout);
-      //virtual void send(int message,void * pdata,int len, const class time & timeTimeout);
+      //virtual void send(::i32 message,void * pdata,::i32 len, const class time & timeTimeout);
 
 
       virtual bool is_caller_ok();

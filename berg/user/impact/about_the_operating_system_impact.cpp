@@ -193,7 +193,7 @@ image()->load_image(strOperatingSystemImageUrl,
       //
       //      }
 
-      ::double_rectangle rectangleClipBox;
+      ::f64_rectangle rectangleClipBox;
 
       // pgraphics->reset_clip();
 
@@ -272,9 +272,9 @@ image()->load_image(strOperatingSystemImageUrl,
 
       auto stra = m_papp->get_operating_system_information_lines();
 
-      double x = 0.;
+      ::f64 x = 0.;
 
-      double y = 0.;
+      ::f64 y = 0.;
 
       ::i32_point point;
 
@@ -296,8 +296,8 @@ image()->load_image(strOperatingSystemImageUrl,
       else
       {
 
-         point.x = mathematics()->random(0, (int)(rectangleX.width() - size.cx - 128 - 11));
-         point.y = mathematics()->random(0, (int)(rectangleX.height() - size.cy * 2));
+         point.x = mathematics()->random(0, (::i32)(rectangleX.width() - size.cx - 128 - 11));
+         point.y = mathematics()->random(0, (::i32)(rectangleX.height() - size.cy * 2));
       }
 
       if (::is_ok(m_pimageOperatingSystem))
@@ -307,7 +307,7 @@ image()->load_image(strOperatingSystemImageUrl,
 
          ::image::image_source imagesource(m_pimageOperatingSystem);
 
-         ::image::image_drawing_options imagedrawingoptions(::int_rectangle_dimension(point.x, point.y, m_pimageOperatingSystem->width(), m_pimageOperatingSystem->height()));
+         ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(point.x, point.y, m_pimageOperatingSystem->width(), m_pimageOperatingSystem->height()));
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -323,7 +323,7 @@ image()->load_image(strOperatingSystemImageUrl,
 
          ::image::image_source imagesource(m_pimageOperatingAmbient);
 
-         ::image::image_drawing_options imagedrawingoptions(::int_rectangle_dimension(point.x, point.y + 128+ 11, m_pimageOperatingAmbient->width(), m_pimageOperatingAmbient->height()));
+         ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(point.x, point.y + 128+ 11, m_pimageOperatingAmbient->width(), m_pimageOperatingAmbient->height()));
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -336,7 +336,7 @@ image()->load_image(strOperatingSystemImageUrl,
       point.x += 128+11;
       ::color::color color;
 
-      //int iFont = -1024;
+      //::i32 iFont = -1024;
 
              pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
       //

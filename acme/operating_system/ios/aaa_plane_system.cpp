@@ -63,7 +63,7 @@
 //   ::user::system createstruct;
 //   pusersystem->m_createstruct.dwExStyle = 0;
 //   pusersystem->m_createstruct.lpszClass = 0;
-//   pusersystem->m_createstruct.lpszName = nullptr;
+//   pusersystem->m_createstruct.pszName = nullptr;
 //   pusersystem->m_createstruct.style = 0;
 //   pusersystem->m_createstruct.x = 0;
 //   pusersystem->m_createstruct.y = 0;

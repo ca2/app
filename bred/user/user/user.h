@@ -170,7 +170,7 @@ namespace bred
       //
       //      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
       //
-      //      int track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point,
+      //      ::i32 track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point,
       //      ::pointer<::user::interaction>puie) override;
       //
       //
@@ -254,7 +254,7 @@ namespace bred
       //
       //      //virtual bool is_session() const override;
       //
-      //      ////void construct(::particle * pparticle, int iPhase) override;
+      //      ////void construct(::particle * pparticle, ::i32 iPhase) override;
       //
       //      //virtual void process_init();
       //
@@ -297,7 +297,7 @@ namespace bred
       //      ////virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
       //
       //      //// Long PhRESSing time
-      //      //// time in ::times that a pressing is considered a double click
+      //      //// time in ::times that a pressing is considered a ::f64 click
       //      //virtual ::u32 get_Long_PhRESSing_time();
       //
       //      //virtual void defer_initialize_user_presence();

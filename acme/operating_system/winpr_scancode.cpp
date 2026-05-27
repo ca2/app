@@ -576,7 +576,7 @@ extern "C"
 extern "C"
 ::u32 GetVirtualScanCodeFromVirtualKeyCode(::u32 vkcode, ::u32 dwKeyboardType)
 {
-   int i;
+   ::i32 i;
    ::u32 scancode;
    ::u32 codeIndex;
    

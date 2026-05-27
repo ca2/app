@@ -10,11 +10,11 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(::particle * pparticle, HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, unsigned int, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, unsigned int, WPARAM, LPARAM);
+BOOL                InitInstance(::particle * pparticle, HINSTANCE, ::i32);
+LRESULT CALLBACK    WndProc(HWND, ::u32, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND, ::u32, WPARAM, LPARAM);
 
-int my_main(::particle * pparticle)
+::i32 my_main(::particle * pparticle)
 {
 
    HINSTANCE hInstance = Sys(papp).m_hinstance;
@@ -45,7 +45,7 @@ int my_main(::particle * pparticle)
       }
    }
 
-   return (int)msg.wParam;
+   return (::i32)msg.wParam;
 }
 
 
@@ -77,7 +77,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 }
 
 //
-//   FUNCTION: InitInstance(HINSTANCE, int)
+//   FUNCTION: InitInstance(HINSTANCE, ::i32)
 //
 //   PURPOSE: Saves instance handle and creates main window
 //
@@ -86,7 +86,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        In this function, we save the instance handle in a global variable and
 //        create and display the main program window.
 //
-BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, int nCmdShow)
+BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, ::i32 nCmdShow)
 {
    hInst = hInstance; // Store instance handle in our global variable
 
@@ -105,7 +105,7 @@ BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, int nCmdShow)
 }
 
 //
-//  FUNCTION: WndProc(HWND, unsigned int, WPARAM, LPARAM)
+//  FUNCTION: WndProc(HWND, ::u32, WPARAM, LPARAM)
 //
 //  PURPOSE:  Processes messages for the main window.
 //
@@ -130,7 +130,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
    {
    case ::user::e_message_command:
    {
-      int wmId = LOWORD(wParam);
+      ::i32 wmId = LOWORD(wParam);
       // Parse the menu selections:
       switch (wmId)
       {

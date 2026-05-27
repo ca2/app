@@ -11,13 +11,13 @@ typedef struct _WAVEOUT
 
    void * waveoutcontext;
 
-   int(*waveout_start)(void * waveoutcontext);
+   ::i32(*waveout_start)(void * waveoutcontext);
 
-   int(*waveout_write)(void * waveoutcontext, const void * pdata, ::u32 s);
+   ::i32(*waveout_write)(void * waveoutcontext, const void * pdata, ::u32 s);
 
-   int(*waveout_stop)(void * waveoutcontext);
+   ::i32(*waveout_stop)(void * waveoutcontext);
 
-   int(*waveout_close)(void * waveoutcontext);
+   ::i32(*waveout_close)(void * waveoutcontext);
 
 } WAVEOUT, *LPWAVEOUT;
 
@@ -26,9 +26,9 @@ typedef struct _WAVEOUT
 typedef struct _AUDIOFORMAT
 {
 
-   int   m_iChannels;
-   int   m_iSamplePerSec;
-   int   m_iBitsPerSample;
+   ::i32   m_iChannels;
+   ::i32   m_iSamplePerSec;
+   ::i32   m_iBitsPerSample;
 
 } AUDIOFORMAT, * LPAUDIOFORMAT;
 
@@ -51,18 +51,18 @@ typedef WAVEOUT_CALLBACK * LPWAVEOUT_CALLBACK;
 //#endif
 //#endif
 
-typedef LPWAVEOUT( * LPWAVEOUT_OPEN )(int iChanel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+typedef LPWAVEOUT( * LPWAVEOUT_OPEN )(::i32 iChanel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
-CLASS_DECL_AQUA LPWAVEOUT waveout_open(int iChanel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+CLASS_DECL_AQUA LPWAVEOUT waveout_open(::i32 iChanel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
-CLASS_DECL_AQUA int waveout_start(LPWAVEOUT pwaveout);
+CLASS_DECL_AQUA ::i32 waveout_start(LPWAVEOUT pwaveout);
 
-CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, ::u32 s);
+CLASS_DECL_AQUA ::i32 waveout_write(LPWAVEOUT pwaveout, const void * pdata, ::u32 s);
 
-CLASS_DECL_AQUA int waveout_stop(LPWAVEOUT pwaveout);
+CLASS_DECL_AQUA ::i32 waveout_stop(LPWAVEOUT pwaveout);
 
-CLASS_DECL_AQUA int waveout_close(LPWAVEOUT pwaveout);
+CLASS_DECL_AQUA ::i32 waveout_close(LPWAVEOUT pwaveout);
 
 
 

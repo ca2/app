@@ -19,7 +19,7 @@ namespace sockets
    }
 
 
-   void sip_tcp_client_socket::OnRawData(char * buf, size_t len)
+   void sip_tcp_client_socket::OnRawData(char_pointer buf, size_t len)
    {
 
       sip_base_client_socket::OnRawData(buf, len);

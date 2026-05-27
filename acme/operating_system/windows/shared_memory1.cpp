@@ -28,7 +28,7 @@ namespace windows
    //
    // }
    //
-   // shared_memory::shared_memory(memory_container * pcontainer, double dAllocationRateUp, unsigned int nAllocFlags)
+   // shared_memory::shared_memory(memory_container * pcontainer, ::f64 dAllocationRateUp, ::u32 nAllocFlags)
    // {
    //
    //    m_nAllocFlags = nAllocFlags;
@@ -95,7 +95,7 @@ namespace windows
    }
 
 
-   // unsigned char * shared_memory::detach_shared_memory(HGLOBAL & hglobal)
+   // ::u8 * shared_memory::detach_shared_memory(HGLOBAL & hglobal)
    // {
    //
    //    if (this->offset() > 0)
@@ -115,7 +115,7 @@ namespace windows
    //
    //    }
    //
-   //    unsigned char * pbStorage = m_beginStorage;
+   //    ::u8 * pbStorage = m_beginStorage;
    //
    //    m_hGlobalMemory = nullptr;
    //    m_beginStorage = nullptr;
@@ -146,7 +146,7 @@ namespace windows
    //
    //    m_hGlobalMemory = hGlobalMemory;
    //
-   //    m_beginStorage = (unsigned char *)::GlobalLock(m_hGlobalMemory);
+   //    m_beginStorage = (::u8 *)::GlobalLock(m_hGlobalMemory);
    //
    //    m_begin = m_beginStorage;
    //
@@ -157,7 +157,7 @@ namespace windows
    // }
 
 
-   bool shared_memory::CreateSharedMemory(const char * name, memsize nBytes)
+   bool shared_memory::CreateSharedMemory(const_char_pointer pszName, memsize nBytes)
    {
 
       ASSERT(m_hGlobalMemory == nullptr);        // do once only
@@ -167,13 +167,13 @@ namespace windows
       if (m_hGlobalMemory == nullptr)
          return false;
 
-      m_begin = (unsigned char *) ::GlobalLock(m_hGlobalMemory);
+      m_begin = (::u8 *) ::GlobalLock(m_hGlobalMemory);
       m_end = m_begin + nBytes;
 
       return true;
 
    }
-   bool shared_memory::OpenSharedMemory(const char * name, memsize nBytes)
+   bool shared_memory::OpenSharedMemory(const_char_pointer pszName, memsize nBytes)
    {
 
       ASSERT(m_hGlobalMemory == nullptr);        // do once only
@@ -183,7 +183,7 @@ namespace windows
       if (m_hGlobalMemory == nullptr)
          return false;
 
-      m_begin = (unsigned char *) ::GlobalLock(m_hGlobalMemory);
+      m_begin = (::u8 *) ::GlobalLock(m_hGlobalMemory);
       m_end = m_begin + nBytes;
 
       return true;
@@ -191,7 +191,7 @@ namespace windows
    }
 
 
-   // unsigned char * shared_memory::impl_realloc(void *, memsize nBytes)
+   // ::u8 * shared_memory::impl_realloc(void *, memsize nBytes)
    // {
    //
    //    if (!m_bAllowGrow)
@@ -210,7 +210,7 @@ namespace windows
    //
    //    m_hGlobalMemory = hNew;
    //
-   //    return (unsigned char *) ::GlobalLock(m_hGlobalMemory);
+   //    return (::u8 *) ::GlobalLock(m_hGlobalMemory);
    //
    // }
 
@@ -235,7 +235,7 @@ namespace windows
    }
 
 
-   //unsigned char * * shared_memory::detach()
+   //::u8 * * shared_memory::detach()
    //{
 
    //   throw ::exception(not_supported_exception("not valid for Global Memory(\"HGLOBAL\")"));
@@ -297,26 +297,26 @@ namespace windows
       iStart = maximum(iStart, 0);
       if(iEnd == -1)
          iEnd = this->get_size() - 1;
-      char * pch = (char *) get_data();
+      char_pointer pch = (char_pointer ) get_data();
       for(memsize i = iStart; i <= iEnd; i++)
       {
          if(((pch[i] & 0xf0) >> 4) < 10)
-            str += (char)(((pch[i] & 0xf0) >> 4) + '0');
+            str += (::i8)(((pch[i] & 0xf0) >> 4) + '0');
          else
-            str += (char)(((pch[i] & 0xf0) >> 4) + 'A' - 10);
+            str += (::i8)(((pch[i] & 0xf0) >> 4) + 'A' - 10);
          if(((pch[i] & 0x0f)) < 10)
-            str += (char)((pch[i] & 0x0f) + '0');
+            str += (::i8)((pch[i] & 0x0f) + '0');
          else
-            str += (char)((pch[i] & 0x0f) + 'A' - 10);
+            str += (::i8)((pch[i] & 0x0f) + 'A' - 10);
       }
    }
 
    void shared_memory::From(const ::scoped_string & scopedstr)
    {
-      char ch;
-      int iLen = strlen(psz);
+      ::i8 ch;
+      ::i32 iLen = strlen(psz);
       allocate(iLen / 2);
-      char * pch = (char *) get_data();
+      char_pointer pch = (char_pointer ) get_data();
       while(*psz != '\0')
       {
          ch = 0;
@@ -341,9 +341,9 @@ namespace windows
    {
       string strTo;
       To(strTo);
-      char ch;
-      int iLen = strTo.length() - 1;
-      for(int i = 0; i < iLen; i+=2)
+      ::i8 ch;
+      ::i32 iLen = strTo.length() - 1;
+      for(::i32 i = 0; i < iLen; i+=2)
       {
          if(strTo[i] <= '9')
             ch = (strTo[i] - '0') << 4;
@@ -362,7 +362,7 @@ namespace windows
       string str;
       while(*psz)
       {
-         char ch = ((*psz & 0xf0) >> 4);
+         ::i8 ch = ((*psz & 0xf0) >> 4);
          if(ch < 10)
             ch += '0';
          else
@@ -380,7 +380,7 @@ namespace windows
    }*/
 
 
-   /*void shared_memory::from_string(const unichar * pwsz)
+   /*void shared_memory::from_string(const wide_character * pwsz)
    {
       from_string(unicode_to_utf8(pwsz));
    }
@@ -393,7 +393,7 @@ namespace windows
 
    void shared_memory::to_string(string & str)
    {
-      char * psz = str.get_buffer(this->get_size() + 1);
+      char_pointer psz = str.get_buffer(this->get_size() + 1);
 
       ::memory_copy(psz, get_data(), this->get_size());
 

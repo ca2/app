@@ -26,7 +26,7 @@
 #include "acme_windows/_.h"
 #include "acme_windows/registry.h"
 
-//void command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem, const class time & timeTimeout);
+//void command_system(string_array & straOutput, ::i32 & iExitCode, const_char_pointer psz, enum_command_system ecommandsystem, const class time & timeTimeout);
 
 
 namespace windows
@@ -209,7 +209,7 @@ namespace windows
          //      catch (const ::e_status& estatus)
          //      {
          //
-         //         output_debug_string("failed to setup visual studio environment " + ::as_string((long long)estatus.m_eenum));
+         //         output_debug_string("failed to setup visual studio environment " + ::as_string((::i64)estatus.m_eenum));
          //
          //      }
          //
@@ -376,7 +376,7 @@ namespace windows
 
             main_status("New Release Time:" + strLabel);
 
-            int iExitCode = 0;
+            ::i32 iExitCode = 0;
 
             auto pathLogFolder = integration_folder();
 
@@ -600,7 +600,7 @@ namespace windows
 
          //functionTrace.m_timeTimeout = 1_hour;
 
-         //int iExitCode = 0;
+         //::i32 iExitCode = 0;
 
          //::string strLabel;
 
@@ -662,7 +662,7 @@ namespace windows
 
          ////string strError;
 
-         ////int iExitCode = 0;
+         ////::i32 iExitCode = 0;
 
          //if (bOk)
          //{
@@ -816,7 +816,7 @@ namespace windows
       }
 
 
-      //   int integration::_do_windows_task(::coding::task* ptask)
+      //   ::i32 integration::_do_windows_task(::coding::task* ptask)
       //   {
       //
       //      ::file_pointer pfileLog;
@@ -843,7 +843,7 @@ namespace windows
       //
       //      auto strCommand = ptask->m_strCommand;
       //
-      //      int iExitCode = 0;
+      //      ::i32 iExitCode = 0;
       //
       //      ploginterface->m_iIndex = -1;
       //

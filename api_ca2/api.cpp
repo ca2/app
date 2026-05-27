@@ -135,7 +135,7 @@ namespace api_ca2
    void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      int iRetry = 0;
+      ::i32 iRetry = 0;
 
       while (iRetry < 3)
       {
@@ -158,7 +158,7 @@ namespace api_ca2
 
          http()->get(strNetworkPayload, scopedstrUrl, set);
 
-         int iStatusCode = set["http_status_code"].as_i32();
+         ::i32 iStatusCode = set["http_status_code"].as_i32();
 
          if (iStatusCode >= 400 && iStatusCode <= 499)
          {
@@ -385,7 +385,7 @@ namespace api_ca2
 #else
 
 
-      int iCurrentPort = 0;
+      ::i32 iCurrentPort = 0;
 
       auto papp = get_app();
 

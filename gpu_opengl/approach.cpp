@@ -176,10 +176,10 @@ namespace gpu_opengl
 #define FOURCC_DXT3 0x33545844 // Equivalent to "DXT3" in ASCII
 #define FOURCC_DXT5 0x35545844 // Equivalent to "DXT5" in ASCII
 
-   int approach::fread(void* data, int c, int s, ::file::file* pfile)
+   ::i32 approach::fread(void* data, ::i32 c, ::i32 s, ::file::file* pfile)
    {
 
-      return (int) (pfile->read(data,s * c) / c);
+      return (::i32) (pfile->read(data,s * c) / c);
 
    }
 

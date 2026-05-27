@@ -12,37 +12,37 @@ namespace filemanager
 {
 
 
-   void DoBar(::draw2d::graphics_pointer & pgraphics,int ileft,int iTop,int cx,int cy,double dAnimation);
+   void DoBar(::draw2d::graphics_pointer & pgraphics,::i32 ileft,::i32 iTop,::i32 cx,::i32 cy,::f64 dAnimation);
 
 
-   void DoBar(::draw2d::graphics_pointer & pgraphics,int ileft,int iTop,int cx,int cy,double dAnimation)
+   void DoBar(::draw2d::graphics_pointer & pgraphics,::i32 ileft,::i32 iTop,::i32 cx,::i32 cy,::f64 dAnimation)
    {
-      int iDeltaDark = 23;
-      int iDeltaVermelho = 77;
-      int iDeltaAzul = 84;
-      int iDeltaV1 = 23;
-      int iDeltaV2 = 23;
-      int iW = 49;
-      int x = ileft;
-      double dSoft = 184.6;
-      int iRight = ileft + cx;
-      int iMaxW = iRight - iW;
+      ::i32 iDeltaDark = 23;
+      ::i32 iDeltaVermelho = 77;
+      ::i32 iDeltaAzul = 84;
+      ::i32 iDeltaV1 = 23;
+      ::i32 iDeltaV2 = 23;
+      ::i32 iW = 49;
+      ::i32 x = ileft;
+      ::f64 dSoft = 184.6;
+      ::i32 iRight = ileft + cx;
+      ::i32 iMaxW = iRight - iW;
       ::color32_t color32;
       for(x = ileft; x < iMaxW; x+=iW)
       {
          color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (unsigned char)(255 - (iDeltaV2 / 2.0) + (int)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (::u8)(255 - (iDeltaV2 / 2.0) + (::i32)(sin((::f64)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::double_rectangle_dimension(x,iTop,iW,cy), color32);
+         pgraphics->fill_rectangle(::f64_rectangle_dimension(x,iTop,iW,cy), color32);
       }
       if(x < iRight)
       {
          color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (unsigned char)(255 - (iDeltaV2 / 2.0) + (int)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (::u8)(255 - (iDeltaV2 / 2.0) + (::i32)(sin((::f64)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::double_rectangle_dimension(x,iTop,iRight - x,cy), color32);
+         pgraphics->fill_rectangle(::f64_rectangle_dimension(x,iTop,iRight - x,cy), color32);
       }
    }
 
@@ -66,22 +66,22 @@ namespace filemanager
       rectangleProgress.top++;
       rectangleProgress.bottom--;*/
       auto rectangleX = this->rectangle();
-      int iLineCount = 23;
-      double dBarHeight = (double)rectangleX.height() / (double)iLineCount;
-      double dTop = 0.0;
+      ::i32 iLineCount = 23;
+      ::f64 dBarHeight = (::f64)rectangleX.height() / (::f64)iLineCount;
+      ::f64 dTop = 0.0;
       ::i32_rectangle rectangleProgress;
       rectangleProgress = rectangleX;
       //rectangleProgress.left += 23;
       //rectangleProgress.right -= 23;
-      rectangleProgress.top += (int)dTop;
-      rectangleProgress.bottom = (int)(dTop + dBarHeight);
-      double dProgressL = 0.0;
-      double dProgressU;
-      double dProgressD = 1.0 / (double)iLineCount;
+      rectangleProgress.top += (::i32)dTop;
+      rectangleProgress.bottom = (::i32)(dTop + dBarHeight);
+      ::f64 dProgressL = 0.0;
+      ::f64 dProgressU;
+      ::f64 dProgressD = 1.0 / (::f64)iLineCount;
       ::i32_rectangle rectangleBar;
-      double dProgress;
+      ::f64 dProgress;
       dProgress = get_document()->m_poperationthread->get_progress_rate();
-      for(int iLine = 0; iLine < iLineCount; iLine++)
+      for(::i32 iLine = 0; iLine < iLineCount; iLine++)
       {
 
          rectangleBar = rectangleProgress;
@@ -94,21 +94,21 @@ namespace filemanager
          {
             if(dProgress < dProgressU)
             {
-               rectangleBar.right = ((int)((rectangleProgress.right - rectangleProgress.left) * (dProgress - dProgressL) * ((double)iLineCount))) + rectangleProgress.left;
+               rectangleBar.right = ((::i32)((rectangleProgress.right - rectangleProgress.left) * (dProgress - dProgressL) * ((::f64)iLineCount))) + rectangleProgress.left;
             }
             DoBar(pgraphics,rectangleBar.left,rectangleBar.top,
                   rectangleBar.right - rectangleBar.left,rectangleBar.bottom - rectangleBar.top,m_dAnimation);
          }
          dTop += dBarHeight;
-         rectangleProgress.top = (int)dTop;
-         rectangleProgress.bottom = (int)(dTop + dBarHeight);
+         rectangleProgress.top = (::i32)dTop;
+         rectangleProgress.bottom = (::i32)(dTop + dBarHeight);
          dProgressL = dProgressU;
       }
       //::fill_rectangle(hdc, &rectangleProgress, g_hbrushProgress1);
 
    }
 
-   void operation_info_impact::OnFileOperationStep(int iOperation,bool bFinal)
+   void operation_info_impact::OnFileOperationStep(::i32 iOperation,bool bFinal)
    {
       __UNREFERENCED_PARAMETER(iOperation);
       __UNREFERENCED_PARAMETER(bFinal);

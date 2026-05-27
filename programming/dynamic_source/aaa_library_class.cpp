@@ -9,10 +9,10 @@ namespace dynamic_source
 
    typedef struct tagLOADPARMS32
    {
-      char * lpEnvAddress;  // address of environment strings
-      char * lpCmdLine;     // address of command line
-      char * lpCmdShow;     // how to show aaa_primitive_new program
-      unsigned int dwReserved;    // must be zero
+      char_pointer lpEnvAddress;  // address of environment strings
+      char_pointer lpCmdLine;     // address of command line
+      char_pointer lpCmdShow;     // how to show aaa_primitive_new program
+      ::u32 dwReserved;    // must be zero
    } LOADPARMS32;
 
 
@@ -26,7 +26,7 @@ namespace dynamic_source
    bool library_class::DoesMatchVersion()
    {
 
-      for(int i = 0; i < m_straSourcePath.get_size(); i++)
+      for(::i32 i = 0; i < m_straSourcePath.get_size(); i++)
       {
          struct stat st;
          memory_set(&st, 0, sizeof(st));
@@ -51,7 +51,7 @@ namespace dynamic_source
       m_ftaCreation.allocate(m_straSourcePath.get_size());
       m_ftaAccess.allocate(m_straSourcePath.get_size());
       m_ftaModified.allocate(m_straSourcePath.get_size());
-      for(int i = 0; i < m_straSourcePath.get_size(); i++)
+      for(::i32 i = 0; i < m_straSourcePath.get_size(); i++)
       {
          //HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
          struct stat st;

@@ -12,7 +12,7 @@ inline cairo_surface_t * cairo_surface_for_pixmap(::pixmap & pixmap)
 {
 
    return cairo_image_surface_create_for_data(
-      (unsigned char *) pixmap.m_pimage32,              // Pointer to the raw data in memory
+      (::u8 *) pixmap.m_pimage32,              // Pointer to the raw data in memory
       CAIRO_FORMAT_ARGB32,    // Data format (ARGB32)
       pixmap.width(),                  // Width of the surface
       pixmap.height(),                 // Height of the surface
@@ -30,12 +30,12 @@ inline ::pixmap get_raw_data_from_cairo_surface(::memory & memoryHost, cairo_sur
    }
 
    // Get the width, height, and stride of the surface
-   int width = cairo_image_surface_get_width(surface);
-   int height = cairo_image_surface_get_height(surface);
-   int stride = cairo_image_surface_get_stride(surface);
+   ::i32 width = cairo_image_surface_get_width(surface);
+   ::i32 height = cairo_image_surface_get_height(surface);
+   ::i32 stride = cairo_image_surface_get_stride(surface);
 
    // Get the raw pixel data
-   unsigned char *data = cairo_image_surface_get_data(surface);
+   ::u8 *data = cairo_image_surface_get_data(surface);
 
    // Ensure the data is not NULL
    if (!data) {

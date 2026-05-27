@@ -7,9 +7,9 @@ void unit_test_base_comparable_array_debug();
 void unit_test_base_comparable_array_debug()
 {
 
-   comparable_array<int,int> ia;
+   comparable_array<::i32,::i32> ia;
 
-   int i = 1;
+   ::i32 i = 1;
 
    ia.find_first(i);
 

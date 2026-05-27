@@ -30,7 +30,7 @@ namespace nanoui
 
       Widget* panel1 = allocateø Widget(this);
       panel1->set_layout(__initialize_new BoxLayout(e_orientation_horizontal, e_alignment_middle, ::i32_rectangle(10, 10, 10, 10), 15));
-      int icon = 0;
+      ::i32 icon = 0;
       switch (type) {
       case Type::Information: icon = m_ptheme->m_efontawesomeMessageInformation; break;
       case Type::Question: icon = m_ptheme->m_efontawesomeMessageQuestion; break;

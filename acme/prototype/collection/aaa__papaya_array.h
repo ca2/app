@@ -59,7 +59,7 @@ namespace acme
 //      inline ::collection::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
 //      {
 //
-//         for (unsigned int u = 0; u < ivectorview->Size; u++)
+//         for (::u32 u = 0; u < ivectorview->Size; u++)
 //         {
 //
 //            if (ivectorview->GetAt(u) == item)
@@ -341,7 +341,7 @@ namespace acme
 
          }
 
-         for (int i = 0; i < a1.get_count(); i++)
+         for (::i32 i = 0; i < a1.get_count(); i++)
          {
 
             if (a1.at(i) != a2.at(i))
@@ -591,7 +591,7 @@ namespace acme
 
 
       inline ::collection::index add(string_array_base & stra, const ::scoped_string & scopedstr);
-      inline ::collection::index add(string_array_base & stra, const char & ch);
+      inline ::collection::index add(string_array_base & stra, const ::i8 & ch);
       inline ::collection::index add(string_array_base & stra, const ansi_string & str);
       inline ::collection::index add(string_array_base & stra, const wide_string & str);
       inline ::collection::index add(string_array_base & stra, const ::file::path & path);
@@ -642,10 +642,10 @@ namespace acme
 
 
       template < typename A >
-      ::array < const char * > psza(const A & a)
+      ::array < const_char_pointer > psza(const A & a)
       {
 
-         ::array < const char * > pa;
+         ::array < const_char_pointer > pa;
 
          ptra(pa, a);
 

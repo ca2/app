@@ -6,8 +6,8 @@
 
 
 CLASS_DECL_ACME wstring operator + (const wstring & wstr1, const wstring & wstr2);
-CLASS_DECL_ACME wstring operator + (const wstring & str, const unichar * psz);
-CLASS_DECL_ACME wstring operator + (const unichar * psz, const wstring & str);
+CLASS_DECL_ACME wstring operator + (const wstring & str, const wide_character * psz);
+CLASS_DECL_ACME wstring operator + (const wide_character * psz, const wstring & str);
 
 
 CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
@@ -22,7 +22,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //   friend class wstring_adaptor;
 //
 //
-//   static unichar * get_nil();
+//   static wide_character * get_nil();
 //
 //
 //public:
@@ -49,7 +49,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //   }
 //
 //
-//   inline static unichar * alloc(::collection::count iCount)
+//   inline static wide_character * alloc(::collection::count iCount)
 //   {
 //
 //      wstring_data * pdata = (wstring_data *) aligned_memory_allocate(((iCount + 1) * sizeof(unichar)) + sizeof(count) + sizeof(count) + sizeof(unichar));
@@ -60,13 +60,13 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //
 //   }
 //
-//   inline static void _free(unichar * pwsz)
+//   inline static void _free(wide_character * pwsz)
 //   {
 //      if(pwsz == nullptr)
 //         return;
 //      if (pwsz == get_nil())
 //         return;
-//      wstring_data * pdata = (wstring_data *) (((unsigned char *) pwsz) - sizeof(count) - sizeof(count));
+//      wstring_data * pdata = (wstring_data *) (((::u8 *) pwsz) - sizeof(count) - sizeof(count));
 //      if(pdata->m_iAllocation <= 0)
 //         return;
 //      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdata);
@@ -74,8 +74,8 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //   }
 //
 //
-//   inline operator const unichar * () const { return &m_wchFirst; }
-//   inline operator unichar * () { return &m_wchFirst; }
+//   inline operator const wide_character * () const { return &m_wchFirst; }
+//   inline operator wide_character * () { return &m_wchFirst; }
 //
 //
 //};
@@ -94,7 +94,7 @@ class CLASS_DECL_ACME wstring :
 {
 public:
 
-   static const int npos;
+   static const ::i32 npos;
    typedef wstring_manager manager;
    typedef unichar value_type;
    typedef wstring_data data_type;
@@ -106,16 +106,16 @@ public:
 //
 //   // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap
 //   // better always use wstring_data::alloc and wstring_data::free
-//   unichar * m_pwsz;
+//   wide_character * m_pwsz;
 //
 //   inline wstring_data * get_data()
 //   {
-//      return (wstring_data *)(((unsigned char *) m_pwsz) - sizeof(count) - sizeof(count));
+//      return (wstring_data *)(((::u8 *) m_pwsz) - sizeof(count) - sizeof(count));
 //   }
 //
 //   inline const wstring_data * get_data() const
 //   {
-//      return (wstring_data *)(((unsigned char *) m_pwsz) - sizeof(count) - sizeof(count));
+//      return (wstring_data *)(((::u8 *) m_pwsz) - sizeof(count) - sizeof(count));
 //   }
 //
 //public:
@@ -126,14 +126,14 @@ public:
    void construct(manager * pstringmanager = nullptr);
    wstring(const wstring & strSrc,manager * pstringmanager = nullptr);
    wstring(const ::scoped_string & scopedstrSrc,manager * pstringmanager = nullptr);
-   wstring(const unsigned char * pszSrc,manager * pstringmanager = nullptr);
-   wstring(const unsigned char * pszSrc, character_count nLength, manager * pstringmanager = nullptr);
-   wstring(const unichar * pchSrc, manager * pstringmanager = nullptr);
-   wstring(const unichar * pchSrc, character_count nLength,manager * pstringmanager = nullptr);
+   wstring(const ::u8 * pszSrc,manager * pstringmanager = nullptr);
+   wstring(const ::u8 * pszSrc, character_count nLength, manager * pstringmanager = nullptr);
+   wstring(const wide_character * pchSrc, manager * pstringmanager = nullptr);
+   wstring(const wide_character * pchSrc, character_count nLength,manager * pstringmanager = nullptr);
    inline wstring(const wstring_data * pdata,manager * pstringmanager = nullptr)
    {
       __UNREFERENCED_PARAMETER(pstringmanager);
-      m_pwsz = (unichar *) &pdata->m_wchFirst;
+      m_pwsz = (wide_character * ) &pdata->m_wchFirst;
    }
    ~wstring();
 
@@ -158,26 +158,26 @@ public:
    void reserve(character_count n) { __UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
 
    wstring & operator = (const wstring & wstr);
-   wstring & operator = (const unichar * pwsz);
+   wstring & operator = (const wide_character * pwsz);
    wstring & operator = (const ::scoped_string & scopedstr);
 
 
-   inline operator const unichar * () const { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
-   inline operator const unichar * () { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
+   inline operator const wide_character * () const { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
+   inline operator const wide_character * () { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
 
-   inline operator unichar * () const { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
-   inline operator unichar * () { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
+   inline operator wide_character * () const { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
+   inline operator wide_character * () { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
 
 
-   inline const unichar * c_str() const { return this->operator const unichar *();  }
+   inline const wide_character * c_str() const { return this->operator const wide_character * ();  }
 
 #if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
-   inline operator String ^ () const { return ref aaa_primitive_new String(operator const unichar *()); }
-   inline operator String ^ () { return ref aaa_primitive_new String(operator const unichar *()); }
+   inline operator String ^ () const { return ref aaa_primitive_new String(operator const wide_character * ()); }
+   inline operator String ^ () { return ref aaa_primitive_new String(operator const wide_character * ()); }
 #endif
 
    inline wstring & operator += (unichar wch) { append(wch); return *this; }
-   inline wstring & operator += (const unichar * pwsz) { append(pwsz); return *this; }
+   inline wstring & operator += (const wide_character * pwsz) { append(pwsz); return *this; }
 
 
 
@@ -191,7 +191,7 @@ public:
       return m_pwsz[iIndex];
    }
 
-   unichar * alloc(::collection::count iCount);
+   wide_character * alloc(::collection::count iCount);
 
    inline ::collection::count get_length() const
    {
@@ -228,29 +228,29 @@ public:
       return get_data()->m_iAllocation;
    }
 
-   inline bool operator == (const unichar * pwsz) const
+   inline bool operator == (const wide_character * pwsz) const
    {
       return Compare(pwsz) == 0;
    }
 
    inline bool operator == (const wstring & wstr) const;
 
-   inline int Compare(const unichar * psz) const
+   inline ::i32 Compare(const wide_character * psz) const
    {
       return wide_compare(m_pwsz, psz);
    }
 
-   inline int Compare(const wstring &str) const
+   inline ::i32 Compare(const wstring &str) const
    {
       return wide_compare(m_pwsz, str);
    }
 
-   inline int CompareNoCase(const unichar * psz) const
+   inline ::i32 CompareNoCase(const wide_character * psz) const
    {
       return wide_compare_case_insensitive(m_pwsz, psz);
    }
 
-   inline int CompareNoCase(const wstring &str) const
+   inline ::i32 CompareNoCase(const wstring &str) const
    {
       return wide_compare_case_insensitive(m_pwsz, str);
    }
@@ -319,20 +319,20 @@ public:
 
    }
 
-   inline wstring & append(const unichar * pwsz) { assign(*this + pwsz); return *this; }
+   inline wstring & append(const wide_character * pwsz) { assign(*this + pwsz); return *this; }
 
    wstring substr(::collection::index iStart, ::collection::count c = -1);
-   wstring & replace(::collection::index iStart,::collection::count c, const unichar * psz);
+   wstring & replace(::collection::index iStart,::collection::count c, const wide_character * psz);
 
 
    wstring & operator = (const ::scoped_string & scopedstr);
 
-   void assign(const unichar * pwsz);
+   void assign(const wide_character * pwsz);
    void assign(const ::scoped_string & scopedstr);
 
 
    character_count find(unichar ch,character_count start = 0,character_count count = -1) const RELEASENOTHROW;
-   character_count find(const unichar * pszSub,character_count start = 0,character_count count = -1,const unichar ** pszTail = nullptr) const RELEASENOTHROW;
+   character_count find(const wide_character * pszSub,character_count start = 0,character_count count = -1,const wide_character * * pszTail = nullptr) const RELEASENOTHROW;
 
    bool empty() const { return is_empty();  }
 

@@ -128,9 +128,9 @@ auto m_timeRoll = ::time::now();
       m_pimageTime->Fill(0, 0, 0, 0);
 
 
-      int xOffset;
+      ::i32 xOffset;
 
-      xOffset = int (m_pimageTime->width() * m_frequencyFramesPerSecond * (double)(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
+      xOffset = ::i32 (m_pimageTime->width() * m_frequencyFramesPerSecond * (::f64)(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
 
       xOffset %= m_pimageTime->width();
 
@@ -194,7 +194,7 @@ auto m_timeRoll = ::time::now();
 
       //::u64 microsecond = (endTime - startTime) / 1000;
 
-      //char sz[512];
+      //::i8 sz[512];
 
       //informationf("impact:");
       //::ansi_from_unsigned_long_long(sz, microsecond, 10);
@@ -219,14 +219,14 @@ pdirectorysystem->system() / "obs.png");
       //pdcParam->set_text_color(m_colorDrawStatus);
 
       //string str1;
-      //str1 = "FPS: " + as_string((int) get_wnd()->m_pimpl.cast<::windowing::window>()->m_dUpdateScreenFps);
+      //str1 = "FPS: " + as_string((::i32) get_wnd()->m_pimpl.cast<::windowing::window>()->m_dUpdateScreenFps);
       //m_yDrawStatus = 10;
       //pdcParam->TextOutA(10, m_yDrawStatus, str1);
       //m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //if (m_prender != nullptr)
       //{
       //
-      //   str1 = "Render FPS: " + as_string((int) m_prender->m_dRenderFps);
+      //   str1 = "Render FPS: " + as_string((::i32) m_prender->m_dRenderFps);
       //   pdcParam->TextOutA(10, m_yDrawStatus, str1);
       //   m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //}
@@ -251,8 +251,8 @@ pdirectorysystem->system() / "obs.png");
 
       if (m_eeffect == effect_crt)
       {
-         int iFactor = 2;
-         int iMult = 1 << iFactor;
+         ::i32 iFactor = 2;
+         ::i32 iMult = 1 << iFactor;
 
          auto rectangleX = this->rectangle();
 
@@ -291,7 +291,7 @@ pdirectorysystem->system() / "obs.png");
 
             color32_t color32;
 
-            unsigned char a, r, g, b, rm, gm, bm;
+            ::u8 a, r, g, b, rm, gm, bm;
 
 /*            ::image::image_pointer pimage = pgraphics->m_pimage;
 
@@ -304,24 +304,24 @@ pdirectorysystem->system() / "obs.png");
 
 /*            pimage->map();
 
-            int h = (s.cy / 3) * 3;
+            ::i32 h = (s.cy / 3) * 3;
 
-            int w = (s.cx / 3) * 3;
+            ::i32 w = (s.cx / 3) * 3;
 
-/*            int rstride = pimage->scan_size() / sizeof(color32_t);
+/*            ::i32 rstride = pimage->scan_size() / sizeof(color32_t);
 
 /*            color32_t * pdata = pimage->get_data();
 
-            int i1;
-            int i2;
-            int i3;
+            ::i32 i1;
+            ::i32 i2;
+            ::i32 i3;
             color32_t cr1;
             color32_t cr2;
             color32_t cr3;
 
-            for (int i = 0; i < h; i += 3)
+            for (::i32 i = 0; i < h; i += 3)
             {
-               for (int j = 0; j < w; j += 3)
+               for (::i32 j = 0; j < w; j += 3)
                {
                   i1 = i * rstride + j;
                   i2 = i1 + rstride;
@@ -371,7 +371,7 @@ pdirectorysystem->system() / "obs.png");
 
             pgraphics->SelectObject(pen);
 
-            for (int i = 0; i < s.cy; i += 3)
+            for (::i32 i = 0; i < s.cy; i += 3)
             {
 
                pgraphics->line(0, i, s.cx, i);

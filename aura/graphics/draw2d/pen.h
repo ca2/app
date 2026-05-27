@@ -19,7 +19,7 @@ namespace draw2d
       enum_line_cap           m_elinecapEnd;
       enum_line_join          m_elinejoin;
       enum_pen_align          m_epenalign;
-      double                  m_dWidth;
+      ::f64                  m_dWidth;
       ::color::color                 m_color;
       ::pointer<brush>       m_pbrush;
 
@@ -31,8 +31,8 @@ namespace draw2d
       // void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();
-      virtual bool create_solid(double dWidth, const ::color::color &color);
-      virtual bool create_brush(double dWidth, ::draw2d::brush * pbrush);
+      virtual bool create_solid(::f64 dWidth, const ::color::color &color);
+      virtual bool create_brush(::f64 dWidth, ::draw2d::brush * pbrush);
 
       virtual enum_line_cap get_beg_cap();
       virtual bool set_beg_cap(enum_line_cap ebegcap);
@@ -77,10 +77,10 @@ namespace draw2d
    //   {
    //   }
 
-   //   pen_pointer(const ::allocer & allocer, double dWidth, ::color::color crColor);
+   //   pen_pointer(const ::allocer & allocer, ::f64 dWidth, ::color::color crColor);
    //   /*
-   //         pen_pointer(::particle * pparticle, int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-   //            int nStyleCount = 0, const ::u32* pStyle = nullptr) :
+   //         pen_pointer(::particle * pparticle, ::i32 nPenStyle, ::i32 nWidth, const LOGBRUSH* pLogBrush,
+   //            ::i32 nStyleCount = 0, const ::u32* pStyle = nullptr) :
 
    //            ::pointer<pen>(pparticle)
    //         {
@@ -102,7 +102,7 @@ namespace draw2d
 
    //};
 
-   //inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
+   //inline pen_pointer solid_pen(::f64 dWidth, const ::color::color& color)
    //{
 
    //   auto ppen = ::createø < pen >();

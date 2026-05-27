@@ -1249,7 +1249,7 @@ namespace berg
    }
 
 
-   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::i32_point & point, const ::i32_size & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, ::i32 iFlags, const ::i32_point & point, const ::i32_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
    //      ::pointer<::user::menu> pmenu = createø <  ::user::menu  >();
@@ -1261,7 +1261,7 @@ namespace berg
    //   }
 
 
-   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, int iFlags, const ::i32_point & pointCursor, const ::i32_size & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, ::i32 iFlags, const ::i32_point & pointCursor, const ::i32_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //      
    //      ::string strXml;
@@ -1911,22 +1911,22 @@ namespace berg
 //}
 
 
-//CLASS_DECL_BERG int __c_get_text_length(const ::scoped_string & scopedstr)
+//CLASS_DECL_BERG ::i32 __c_get_text_length(const ::scoped_string & scopedstr)
 //{
 //
 //   string str = __get_text(scopedstr);
 //
-//   return (int)str.length();
+//   return (::i32)str.length();
 //
 //}
 
 
-//CLASS_DECL_BERG void __c_get_text(char* pszText, int iLen, const ::scoped_string & scopedstr)
+//CLASS_DECL_BERG void __c_get_text(char_pointer pszText, ::i32 iLen, const ::scoped_string & scopedstr)
 //{
 //
 //   string str = __get_text(scopedstr);
 //
-//   iLen = minimum(iLen, (int)str.length());
+//   iLen = minimum(iLen, (::i32)str.length());
 //
 //   strncpy(scopedstrText, str, iLen);
 //
@@ -1935,10 +1935,10 @@ namespace berg
 //}
 
 
-//static int g_iWeatherDarkness = 0;
+//static ::i32 g_iWeatherDarkness = 0;
 //
 //
-//CLASS_DECL_BERG int get_simple_ui_darkness()
+//CLASS_DECL_BERG ::i32 get_simple_ui_darkness()
 //{
 //
 //   return g_iWeatherDarkness;
@@ -1946,7 +1946,7 @@ namespace berg
 //}
 //
 //
-//CLASS_DECL_BERG void set_simple_ui_darkness(int iWeatherDarkness)
+//CLASS_DECL_BERG void set_simple_ui_darkness(::i32 iWeatherDarkness)
 //{
 //
 //   g_iWeatherDarkness = iWeatherDarkness;

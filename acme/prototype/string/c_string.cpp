@@ -10,7 +10,7 @@ namespace c
 {
 
 
-   int string::find_replace(const_char_pointer search, const_char_pointer replace)
+   ::i32 string::find_replace(const_char_pointer search, const_char_pointer replace)
    {
 
       const_char_pointer orig = m_psz;
@@ -24,7 +24,7 @@ namespace c
 
 // Count occurrences
       size_t count = 0;
-      const char * tmp = orig;
+      const_char_pointer tmp = orig;
       while ((tmp = strstr(tmp, search))) {
          count++;
          tmp += search_len;
@@ -32,7 +32,7 @@ namespace c
 
       if (count == 0) {
 // No matches, return a copy of the original
-         char * result = (char *) ::malloc(orig_len + 1);
+         char_pointer result = (char_pointer ) ::malloc(orig_len + 1);
          if(!result)
          {
             throw error_no_memory;
@@ -45,7 +45,7 @@ namespace c
 
 // Allocate memory for the new string
       size_t new_len = orig_len + count * (replace_len - search_len);
-      char * result = (char *) ::malloc(new_len + 1);
+      char_pointer result = (char_pointer ) ::malloc(new_len + 1);
       if (!result)
       {
 
@@ -54,9 +54,9 @@ namespace c
       }
 
 // Build the new string
-      char * dst = result;
-      const char * current = orig;
-      const char * match;
+      char_pointer dst = result;
+      const_char_pointer current = orig;
+      const_char_pointer match;
       while ((match = strstr(current, search))) {
          size_t segment_len = match - current;
          memcpy(dst, current, segment_len);
@@ -72,12 +72,12 @@ m_psz = result;
    }
 
 
-   int string::find_replace(char search, char replace)
+   ::i32 string::find_replace(::i8 search, ::i8 replace)
    {
 
       auto p = m_psz;
 
-      int count = 0;
+      ::i32 count = 0;
 
       while (*p) {
 
@@ -95,7 +95,7 @@ m_psz = result;
    }
 
 
-   int string::size() const
+   ::i32 string::size() const
    {
 
       return string_safe_length(m_psz);
@@ -106,7 +106,7 @@ m_psz = result;
    string & string::operator += (const_char_pointer p)
    {
 
-      auto pNew  = (char *)  ::malloc(this->size() + string_safe_length(p) + 1);
+      auto pNew  = (char_pointer )  ::malloc(this->size() + string_safe_length(p) + 1);
 
       strcpy(pNew, m_psz);
       strcat(pNew, p);

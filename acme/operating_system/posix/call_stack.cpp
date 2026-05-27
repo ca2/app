@@ -14,17 +14,17 @@
 //#if defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+//void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char_pointer pmessage, void * address)
 //{
 //
-//   char * pszAddress = pmessage;
+//   char_pointer pszAddress = pmessage;
 //
-//   char * pszMangledName = nullptr;
+//   char_pointer pszMangledName = nullptr;
 //
-//   char * pszOffsetBeg = nullptr;
+//   char_pointer pszOffsetBeg = nullptr;
 //
 //   // find parantheses and +address offset surrounding mangled name
-//   for (char * psz = pmessage; *psz; ++psz)
+//   for (char_pointer psz = pmessage; *psz; ++psz)
 //   {
 //
 //      if (*psz == '<')
@@ -50,16 +50,16 @@
 //      *pszMangledName++ = '\0';
 //      *pszOffsetBeg++ = '\0';
 //
-//      int status;
+//      ::i32 status;
 //
-//      acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
+//      acme::malloc < char_pointer > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 //
 //      const_char_pointer pszSymbolName;
 //
 //      if (status == 0)
 //      {
 //
-//         strSymbolName = (const_char_pointer )(char *) pszRealName;
+//         strSymbolName = (const_char_pointer )(char_pointer ) pszRealName;
 //
 //      }
 //      else
@@ -79,17 +79,17 @@
 //#else
 //
 
-void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char_pointer pmessage, void * address)
 {
 
-    char * pszMangledName = nullptr;
+    char_pointer pszMangledName = nullptr;
 
-    char * pszOffsetBegin = nullptr;
+    char_pointer pszOffsetBegin = nullptr;
 
-    char * pszOffsetEnd = nullptr;
+    char_pointer pszOffsetEnd = nullptr;
 
     // find parantheses and +address offset surrounding mangled name
-    for (char * psz = pmessage; *psz; ++psz)
+    for (char_pointer psz = pmessage; *psz; ++psz)
     {
 
         if (*psz == '(')
@@ -122,16 +122,16 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
         *pszOffsetBegin++ = '\0';
         *pszOffsetEnd++ = '\0';
 
-        int status;
+        ::i32 status;
 
-        acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+        acme::malloc < char_pointer > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 
         const_char_pointer pszSymbolName;
 
         if (status == 0)
         {
 
-            strSymbolName = (const_char_pointer )(char *) pszRealName;
+            strSymbolName = (const_char_pointer )(char_pointer ) pszRealName;
 
         }
         else

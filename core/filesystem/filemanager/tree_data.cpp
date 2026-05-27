@@ -1173,7 +1173,7 @@ return;
 
       get_selection(itemptraSelected);
 
-      for(int i = 0; i < itemptraSelected.get_size(); i++)
+      for(::i32 i = 0; i < itemptraSelected.get_size(); i++)
       {
 
          stra.add(((itemptraSelected[0]->m_pitem.cast < ::userfs::item > ()))->user_path());
@@ -1202,7 +1202,7 @@ return;
 
          /*
          ::i32_rectangle rectangle;
-         int iArrange = (int) lparam;
+         ::i32 iArrange = (::i32) lparam;
 
          if(_001IsItemVisible(iArrange))
          {
@@ -1264,7 +1264,7 @@ return;
 //      }
 //      else
 //      {
-//         int iCSIDL = MapToCSIDL(efolder);
+//         ::i32 iCSIDL = MapToCSIDL(efolder);
 //
 //         ASSERT(iCSIDL >= 0);
 //
@@ -1304,7 +1304,7 @@ return;
 //
 //   }
 
-   //int tree_data::MapToCSIDL(EFolder efolder)
+   //::i32 tree_data::MapToCSIDL(EFolder efolder)
    //{
    //   switch(efolder)
    //   {

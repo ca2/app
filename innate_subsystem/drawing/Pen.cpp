@@ -31,7 +31,7 @@ namespace innate_subsystem
 
 //
 //
-// //Pen::Pen(int type, int width, const ::color::color & color)
+// //Pen::Pen(::i32 type, ::i32 width, const ::color::color & color)
 //    Pen::Pen()
 // //: m_pen(NULL)
 // {
@@ -51,7 +51,7 @@ namespace innate_subsystem
 //    // }
 //
 //
-//    void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
+//    void Pen::initialize_pen(enum_pen epen, ::i32 width, const ::color::color & color)
 //    ///: m_pen(NULL)
 // {
 //

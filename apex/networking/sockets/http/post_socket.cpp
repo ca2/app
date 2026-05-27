@@ -397,7 +397,7 @@ namespace sockets
          //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom.to_string() + "\"\r\n\r\n";
          //   string value = payload.string();
          //   tmp += value + "\r\n";
-         //   //for(int j = 0; j < payload.get_count(); j++)
+         //   //for(::i32 j = 0; j < payload.get_count(); j++)
          //   //{
          //     // string value = payload[j].string();
          //      //tmp += value + "\r\n";

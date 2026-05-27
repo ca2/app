@@ -14,7 +14,7 @@ namespace operating_system
    public:
 
 
-      char *               m_pchBuf;
+      char_pointer m_pchBuf;
       string               m_strRead;
 
       bool                 m_bInherit;

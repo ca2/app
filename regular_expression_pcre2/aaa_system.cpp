@@ -13,14 +13,14 @@ namespace axis
 
    }
 
-   ::pointer<regex_context>system::create_pcre_context(int iCount)
+   ::pointer<regex_context>system::create_pcre_context(::i32 iCount)
    {
 
       return pcre_context::create_context(iCount);
    }
 
 
-   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
    {
 
 

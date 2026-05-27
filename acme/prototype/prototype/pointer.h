@@ -204,7 +204,7 @@ public:
    }
 
 
-   //inline operator int() const
+   //inline operator ::i32() const
    //{
 
    //   return is_set() ? 1 : 0;

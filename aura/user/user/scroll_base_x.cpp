@@ -90,7 +90,7 @@ namespace user
    void scroll_base_x::set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (int)elayout;
+      auto iLayout = (::i32)elayout;
 
       while(iLayout >= 0)
       {
@@ -107,7 +107,7 @@ namespace user
    void scroll_base_x::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (int)elayout;
+      auto iLayout = (::i32)elayout;
 
       while (iLayout >= 0)
       {
@@ -142,7 +142,7 @@ namespace user
 
             auto pstyle = get_style();
 
-            int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
+            ::i32 iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
             rectangleNewPos.left = rectangleX.left;
             rectangleNewPos.top = rectangleX.bottom - iScrollBarWidth;
@@ -220,25 +220,25 @@ namespace user
       //      if (pscroll->m_ecommand == e_scroll_command_line_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x - m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x - m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x - m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x - m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x + m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x + m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_line_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x + m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x + m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -278,7 +278,7 @@ namespace user
    //}
 
 
-   void scroll_base_x::set_scroll_tracking_x(double x, ::user::enum_layout elayout)
+   void scroll_base_x::set_scroll_tracking_x(::f64 x, ::user::enum_layout elayout)
    {
 
       auto iLayout = (::collection::index)elayout;
@@ -295,7 +295,7 @@ namespace user
    }
 
 
-   double scroll_base_x::get_context_offset_x(::user::enum_layout elayout)
+   ::f64 scroll_base_x::get_context_offset_x(::user::enum_layout elayout)
    {
 
       return m_pscrolllayoutX->m_scrollstatea[elayout].m_dPosition;
@@ -303,7 +303,7 @@ namespace user
    }
 
 
-   void scroll_base_x::set_context_offset_x(double x, ::user::enum_layout elayout)
+   void scroll_base_x::set_context_offset_x(::f64 x, ::user::enum_layout elayout)
    {
 
       auto iLayout = (::collection::index)elayout;
@@ -320,7 +320,7 @@ namespace user
    }
 
 
-   void scroll_base_x::constrain_context_offset_x(double & x, ::user::enum_layout elayout)
+   void scroll_base_x::constrain_context_offset_x(::f64 & x, ::user::enum_layout elayout)
    {
 
       auto scrollstatex = get_scroll_state_x(elayout);
@@ -345,7 +345,7 @@ namespace user
       //   if (point.x > maximum(0, sizeTotal.cx - sizePage.cx))
       //   {
 
-      //      point.x = (int)maximum(0, sizeTotal.cx - sizePage.cx);
+      //      point.x = (::i32)maximum(0, sizeTotal.cx - sizePage.cx);
 
       //   }
 
@@ -373,19 +373,19 @@ namespace user
 
       auto scrollstatex = get_scroll_state_x(elayout);
 
-      scrollstatex.m_dThickness = (double) get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatex.m_dThickness = (::f64) get_int(pstyle, e_int_scroll_bar_thickness);
 
       auto rectangleX = this->rectangle();
 
-      int iTotalHeight = (int)sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32)sizeTotal.cy;
 
-      int iTotalWidth = (int)sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32)sizeTotal.cx;
 
-      int iClientHeight = rectangleX.height();
+      ::i32 iClientHeight = rectangleX.height();
 
-      int iClientWidth = rectangleX.width();
+      ::i32 iClientWidth = rectangleX.width();
 
-      int iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_thickness);;
+      ::i32 iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_thickness);;
 
       scrollstatex.m_bHasScroll = false;
 
@@ -425,18 +425,18 @@ namespace user
    }
 
 
-   int scroll_base_x::get_final_scroll_bar_x_thickness(enum_layout elayout)
+   ::i32 scroll_base_x::get_final_scroll_bar_x_thickness(enum_layout elayout)
    {
 
       //return m_pscrollstateHorizontal->m_bScroll && m_pscrollstateHorizontal->m_bScrollEnable ? m_pscrollstateHorizontal->m_iWidth : 0;
 
-      return (int) m_pscrolllayoutX->m_scrollstatea[elayout].m_dThickness;
+      return (::i32) m_pscrolllayoutX->m_scrollstatea[elayout].m_dThickness;
 
    }
 
 
 
-   void scroll_base_x::send_scroll_x_message(enum_scroll_command ecommand, double dPosition)
+   void scroll_base_x::send_scroll_x_message(enum_scroll_command ecommand, ::f64 dPosition)
    {
 
       auto pscroll = allocateø ::message::scroll();
@@ -452,7 +452,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (int)get_context_offset().x;
+      //   pscroll->m_nPos = (::i32)get_context_offset().x;
 
       //}
 
@@ -529,7 +529,7 @@ namespace user
    }
 
 
-   void scroll_base_x::scroll_x(int nPos)
+   void scroll_base_x::scroll_x(::i32 nPos)
    {
 
       send_scroll_x_message(e_scroll_command_thumb_position, nPos);

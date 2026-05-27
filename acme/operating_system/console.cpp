@@ -9,7 +9,7 @@
 #include <conio.h>
 #endif
 #if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
-int getche();
+::i32 getche();
 #endif
 
 
@@ -41,7 +41,7 @@ namespace console
    }
 
 
-   void console::SetWindowSize(int iHeight,int iWidth)
+   void console::SetWindowSize(::i32 iHeight,::i32 iWidth)
    {
 
       throw ::interface_only();
@@ -57,7 +57,7 @@ namespace console
    }
 
 
-   void console::SetCursorPosition(int y,int x)
+   void console::SetCursorPosition(::i32 y,::i32 x)
    {
 
       throw ::interface_only();
@@ -65,7 +65,7 @@ namespace console
    }
 
 
-   void console::SetTextColor(int color)
+   void console::SetTextColor(::i32 color)
    {
 
       throw ::interface_only();
@@ -73,7 +73,7 @@ namespace console
    }
 
 
-   void console::SetScreenColor(::enum_dos_color color,int iLineStart,int iLineCount)
+   void console::SetScreenColor(::enum_dos_color color,::i32 iLineStart,::i32 iLineCount)
    {
 
       throw ::interface_only();
@@ -92,7 +92,7 @@ namespace console
 
 
 
-   ::i32_rectangle console::get_position_rectangle(int y, int x)
+   ::i32_rectangle console::get_position_rectangle(::i32 y, ::i32 x)
    {
     
       throw ::interface_only();
@@ -103,7 +103,7 @@ namespace console
 
    
 
-   ::string console::prompt_line(const char *pszPrompt)
+   ::string console::prompt_line(const_char_pointer pszPrompt)
    {
 
       if (pszPrompt && *pszPrompt)
@@ -114,7 +114,7 @@ namespace console
 
       ::string strLine;
 
-      int iRet;
+      ::i32 iRet;
 
       while (true)
       {
@@ -196,7 +196,7 @@ void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 
    printf("%s\n", strPrompt.c_str());
 
-   int iGetChar = getchar();
+   ::i32 iGetChar = getchar();
 
    if(iGetChar == EOF)
    {
@@ -208,10 +208,10 @@ void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 }
 
 
-int safe_get_any_char(const class time & time)
+::i32 safe_get_any_char(const class time & time)
 {
 
-   int iSafeChar = EOF;
+   ::i32 iSafeChar = EOF;
 
    class ::time timeStart;
 
@@ -237,10 +237,10 @@ int safe_get_any_char(const class time & time)
 }
 
 
-int safe_get_char(FILE * pfile, const class time & time)
+::i32 safe_get_char(FILE * pfile, const class time & time)
 {
 
-   int iSafeChar = EOF;
+   ::i32 iSafeChar = EOF;
 
    class ::time timeStart;
 
@@ -283,7 +283,7 @@ int safe_get_char(FILE * pfile, const class time & time)
 #include <termios.h>
 
 
-int getche()
+::i32 getche()
 {
 
    struct termios termiosOld = {0};
@@ -307,7 +307,7 @@ int getche()
 
    }
 
-   char ch = -1;
+   ::i8 ch = -1;
 
    auto iRead = read(0, &ch, 1);
 
@@ -378,29 +378,29 @@ std_out_buffer::~std_out_buffer()
 //}
 
 
-CLASS_DECL_ACME int current_getch_utf8(::string & strChar)
+CLASS_DECL_ACME ::i32 current_getch_utf8(::string & strChar)
 {
 
    strChar.empty();
 
-   int first = current_getch(); // your existing function
+   ::i32 first = current_getch(); // your existing function
 
    if (first == EOF)
    {
       return EOF;
    }
 
-   unsigned char c = (unsigned char) first;
+   ::u8 c = (::u8) first;
 
    // 1-byte ASCII
    if ((c & 0x80) == 0)
    {
-      strChar += (char)c;
+      strChar += (::i8)c;
       return 1;
    }
 
    // Determine UTF-8 sequence length
-   int extra = 0;
+   ::i32 extra = 0;
 
    if ((c & 0xE0) == 0xC0) extra = 1;        // 2 bytes
    else if ((c & 0xF0) == 0xE0) extra = 2;   // 3 bytes
@@ -410,18 +410,18 @@ CLASS_DECL_ACME int current_getch_utf8(::string & strChar)
       throw ::exception(error_failed, "Invalid UTF-8 start byte");
    }
 
-   strChar += (char)c;
+   strChar += (::i8)c;
 
-   for (int i = 0; i < extra; i++)
+   for (::i32 i = 0; i < extra; i++)
    {
-      int next = current_getch();
+      ::i32 next = current_getch();
 
       if (next == EOF)
       {
          throw ::exception(error_failed, "Unexpected EOF in UTF-8 sequence");
       }
 
-      strChar += (char)next;
+      strChar += (::i8)next;
    }
 
    return 1;

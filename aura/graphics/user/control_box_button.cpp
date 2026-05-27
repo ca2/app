@@ -36,15 +36,15 @@ namespace user
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_button))
       {
 
-         color.m_uchOpacity = 211;
-         colorPen.m_uchOpacity = 211;
+         color.m_u8Opacity = 211;
+         colorPen.m_u8Opacity = 211;
 
       }
       else
       {
 
-         color.m_uchOpacity = 89;
-         colorPen.m_uchOpacity = 89;
+         color.m_u8Opacity = 89;
+         colorPen.m_u8Opacity = 89;
 
       }
 
@@ -93,7 +93,7 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::double_rectangle rectangle(useritem.m_rectangle);
+      //::f64_rectangle rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -106,15 +106,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.m_uchOpacity = 211;
-         //colorPen.m_uchOpacity = 211;
+         color.m_u8Opacity = 211;
+         //colorPen.m_u8Opacity = 211;
 
       }
       else
       {
 
-         color.m_uchOpacity = 89;
-         //colorPen.m_uchOpacity = 89;
+         color.m_u8Opacity = 89;
+         //colorPen.m_u8Opacity = 89;
 
       }
 
@@ -138,7 +138,7 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::double_rectangle rectangle(useritem.m_rectangle);
+      //::f64_rectangle rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -151,15 +151,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.m_uchOpacity = 211;
-         colorPen.m_uchOpacity = 211;
+         color.m_u8Opacity = 211;
+         colorPen.m_u8Opacity = 211;
 
       }
       else
       {
 
-         color.m_uchOpacity = 89;
-         colorPen.m_uchOpacity = 89;
+         color.m_u8Opacity = 89;
+         colorPen.m_u8Opacity = 89;
 
       }
 
@@ -211,7 +211,7 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::double_rectangle rectangle(useritem.m_rectangle);
+      //::f64_rectangle rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -224,15 +224,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.m_uchOpacity = 211;
-         colorPen.m_uchOpacity = 211;
+         color.m_u8Opacity = 211;
+         colorPen.m_u8Opacity = 211;
 
       }
       else
       {
 
-         color.m_uchOpacity = 89;
-         colorPen.m_uchOpacity = 89;
+         color.m_u8Opacity = 89;
+         colorPen.m_u8Opacity = 89;
 
       }
 

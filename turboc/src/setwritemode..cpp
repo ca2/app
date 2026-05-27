@@ -34,7 +34,7 @@
 //----------------------------------------------------------------------------
 
 void
-setwritemode (int mode)
+setwritemode (::i32 mode)
 {
   //XGCValues Values;
   //switch (mode)

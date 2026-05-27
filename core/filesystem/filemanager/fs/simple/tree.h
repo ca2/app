@@ -34,8 +34,8 @@ namespace filemanager
             ::i64            m_iFolder;
             string         m_strName;
             EFolderType    m_etype;
-            int            m_iImage;
-            int            m_iImageSelected;
+            ::i32            m_iImage;
+            ::i32            m_iImageSelected;
 
 
          };
@@ -47,7 +47,7 @@ namespace filemanager
          public:
 
 
-            int find_absolute(::i64 iFolder);
+            ::i32 find_absolute(::i64 iFolder);
 
 
          };
@@ -59,10 +59,10 @@ namespace filemanager
          public:
 
 
-            int                                          m_iIconFolderNormal;
-            int                                          m_iIconFolderSelected;
-            int                                          m_iIconArtistNormal;
-            int                                          m_iIconArtistSelected;
+            ::i32                                          m_iIconFolderNormal;
+            ::i32                                          m_iIconFolderSelected;
+            ::i32                                          m_iIconArtistNormal;
+            ::i32                                          m_iIconArtistSelected;
             ::pointer<::filemanager::fs::simple::impact>  m_pserver;
             FolderArray                                  m_foldera;
             ::i64                                          m_iParentFolder;

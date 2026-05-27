@@ -82,7 +82,7 @@
 //   }
 //
 //
-//   static int s_callback(::dl_phdr_info * info, size_t size, void * data)
+//   static ::i32 s_callback(::dl_phdr_info * info, size_t size, void * data)
 //   {
 //
 //      auto pcallback = (modules_query *) data;
@@ -92,7 +92,7 @@
 //   }
 //
 //
-//   int callback(::dl_phdr_info * info, size_t size)
+//   ::i32 callback(::dl_phdr_info * info, size_t size)
 //   {
 //
 //      if (m_plibrary && m_plibrary == (::library_t *) info->dlpi_addr)
@@ -232,7 +232,7 @@ namespace dl
 
             }
 
-            if (strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+            if (strstr((const_char_pointer ) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
             {
 
                strPath = "lib" + strPath;
@@ -247,9 +247,9 @@ namespace dl
 
                // pubs.opengroup.org contribution
 
-               int iError = errno;
+               ::i32 iError = errno;
 
-               const char * psz = strerror(iError);
+               const_char_pointer psz = strerror(iError);
 
                if (scopedstr != nullptr)
                {
@@ -258,7 +258,7 @@ namespace dl
 
                }
 
-               char * errstr;
+               char_pointer errstr;
 
                errstr = dlerror();
 
@@ -312,9 +312,9 @@ namespace dl
 
             }
 
-            int iError = errno;
+            ::i32 iError = errno;
 
-            const char * psz = strerror(iError);
+            const_char_pointer psz = strerror(iError);
 
             if (scopedstr != nullptr)
             {
@@ -323,7 +323,7 @@ namespace dl
 
             }
 
-            const char * psz2 = dlerror();
+            const_char_pointer psz2 = dlerror();
 
             if (scopedstr2 != nullptr)
             {

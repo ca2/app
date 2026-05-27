@@ -92,7 +92,7 @@ namespace user
 
       }
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
       //::user::e_::color::color colorText = color_text;
@@ -146,13 +146,13 @@ namespace user
 
       //}
 
-      ::double_rectangle rectangleText;
+      ::f64_rectangle rectangleText;
 
       get_element_rectangle(rectangleText, e_element_text);
 
       pgraphics->set_font(this, ::e_element_none);
 
-      int iDrawTextFlags = e_align_left_center;
+      ::i32 iDrawTextFlags = e_align_left_center;
 
       pgraphics->draw_text(strText, rectangleText, iDrawTextFlags);
 
@@ -162,13 +162,13 @@ namespace user
    void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
    {
 
-      ::double_rectangle rectangleDropDown;
+      ::f64_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      int cx = rectangleDropDown.width() / 3;
+      ::i32 cx = rectangleDropDown.width() / 3;
 
-      int cy = cx * 2 / 3;
+      ::i32 cy = cx * 2 / 3;
 
       ::i32_point pointCenter = rectangleDropDown.center();
 
@@ -184,7 +184,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -207,11 +207,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::double_rectangle rectangleDropDown;
+      ::f64_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      ::double_rectangle rectangleDropIn(rectangleDropDown);
+      ::f64_rectangle rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::rgba(127, 127, 127, 255);
@@ -456,7 +456,7 @@ namespace user
    ::item_pointer combo_box::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
-      ::double_rectangle rectangleElement;
+      ::f64_rectangle rectangleElement;
 
       if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
@@ -514,7 +514,7 @@ namespace user
       if (is_drop_down())
       {
 
-         ::double_rectangle rectangleWindow;
+         ::f64_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
@@ -743,7 +743,7 @@ namespace user
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 
-         ::double_rectangle rectangleWindow;
+         ::f64_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
@@ -794,7 +794,7 @@ namespace user
 
       }
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -877,7 +877,7 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::double_rectangle rectangleX;
+            ::f64_rectangle rectangleX;
 
             this->rectangle(rectangleX);
 
@@ -964,7 +964,7 @@ namespace user
    { ASSERT(false); }
    void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
    { ASSERT(false); }
-   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+   ::i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
    { ASSERT(false); return 0; }
    void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
    { /* default to nothing */ }
@@ -1031,7 +1031,7 @@ namespace user
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
    bool combo_box::GetEditSel(character_count & nStartChar, character_count & nEndChar)
    {
-      /*      ASSERT(is_window()); unsigned int dw = unsigned int(send_message( CB_GETEDITSEL, 0, 0));
+      /*      ASSERT(is_window()); ::u32 dw = ::u32(send_message( CB_GETEDITSEL, 0, 0));
             nStartChar = LOWORD(dw);
             nEndChar = LOWORD(dw);*/
       return true;
@@ -1091,7 +1091,7 @@ namespace user
 
    }
 
-   ::collection::index combo_box::GetLBText(index nIndex, char * pszText)
+   ::collection::index combo_box::GetLBText(index nIndex, char_pointer pszText)
 
    {
 
@@ -1141,7 +1141,7 @@ namespace user
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
+      //return (::i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
 
       return -1;
@@ -1256,23 +1256,23 @@ namespace user
 
    }
 
-   int combo_box::SetItemHeight(index nIndex, unsigned int cyItemHeight)
+   ::i32 combo_box::SetItemHeight(index nIndex, ::u32 cyItemHeight)
    {
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
+      //return (::i32)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
 
       return -1;
 
    }
 
-   int combo_box::GetItemHeight(index nIndex)
+   ::i32 combo_box::GetItemHeight(index nIndex)
    {
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
+      //return (::i32)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
 
       return -1;
 
@@ -1291,12 +1291,12 @@ namespace user
 
    }
 
-   int combo_box::SetExtendedUI(bool bExtended)
+   ::i32 combo_box::SetExtendedUI(bool bExtended)
    {
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
+      //return (::i32)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
 
       return -1;
 
@@ -1379,7 +1379,7 @@ namespace user
 
    }
 
-   ::collection::count combo_box::InitStorage(::collection::count nItems, unsigned int nBytes)
+   ::collection::count combo_box::InitStorage(::collection::count nItems, ::u32 nBytes)
    {
 
       //ASSERT(is_window());
@@ -1390,7 +1390,7 @@ namespace user
 
    }
 
-   void combo_box::SetHorizontalExtent(unsigned int nExtent)
+   void combo_box::SetHorizontalExtent(::u32 nExtent)
    {
 
       //ASSERT(is_window());
@@ -1399,34 +1399,34 @@ namespace user
 
    }
 
-   unsigned int combo_box::GetHorizontalExtent()
+   ::u32 combo_box::GetHorizontalExtent()
    {
 
       //ASSERT(is_window());
 
-      //return (unsigned int)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
+      //return (::u32)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
 
       return 0;
 
    }
 
-   int combo_box::SetDroppedWidth(unsigned int nWidth)
+   ::i32 combo_box::SetDroppedWidth(::u32 nWidth)
    {
 
 //      ASSERT(is_window());
 
-//      return (int)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
+//      return (::i32)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
 
       return -1;
 
    }
 
-   int combo_box::GetDroppedWidth()
+   ::i32 combo_box::GetDroppedWidth()
    {
 
 //      ASSERT(is_window());
 
-//      return (int)send_message( CB_GETDROPPEDWIDTH, 0, 0);
+//      return (::i32)send_message( CB_GETDROPPEDWIDTH, 0, 0);
 
       return -1;
 

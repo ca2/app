@@ -6,7 +6,7 @@
 #undef USE_MISC
 
 
-string get_callstack(::particle * pparticle, const_char_pointer pszFormat, int iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle, const_char_pointer pszFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
 {
 
    const size_t iMaximumFramesToCapture = 64;
@@ -77,12 +77,12 @@ static const_char_pointer moda[]= {"/ca2/stage/x86/libapex.so", "/ca2/stage/x86/
 static bfd* abfda[64];
 static asymbol **symsa[64];
 static asection *texta[64];
-static int bfdcount = 0;
+static ::i32 bfdcount = 0;
 
-int free_resolve_addr_file_func_line()
+::i32 free_resolve_addr_file_func_line()
 {
 
-   int i = 0;
+   ::i32 i = 0;
 
    while(i < 64)
    {
@@ -105,7 +105,7 @@ int free_resolve_addr_file_func_line()
 bool prep_resolve_addr_file_func_line(const_char_pointer f)
 {
 
-   int i = free_resolve_addr_file_func_line();
+   ::i32 i = free_resolve_addr_file_func_line();
 
    if(i < 0)
    {
@@ -134,11 +134,11 @@ bool prep_resolve_addr_file_func_line(const_char_pointer f)
    /* oddly, this is required for it to work... */
    bfd_check_format(abfd,bfd_object);
 
-   unsigned storage_needed = bfd_get_symtab_upper_bound(abfd);
+   ::u32 storage_needed = bfd_get_symtab_upper_bound(abfd);
 
    syms = (asymbol **) malloc(storage_needed);
 
-   unsigned cSymbols = bfd_canonicalize_symtab(abfd, syms);
+   ::u32 cSymbols = bfd_canonicalize_symtab(abfd, syms);
 
    text = bfd_get_section_by_name(abfd, ".text");
 
@@ -163,9 +163,9 @@ void init_resolve_addr_file_func_line()
 
    bfd_init();
 
-   char ename[1024];
+   ::i8 ename[1024];
 
-   int l = readlink("/proc/self/exe",ename,sizeof(ename));
+   ::i32 l = readlink("/proc/self/exe",ename,sizeof(ename));
 
    if (l == -1)
    {
@@ -197,7 +197,7 @@ void init_resolve_addr_file_func_line()
 
 }
 
-bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const_char_pointer *filename, const_char_pointer *func, unsigned & iLine)
+bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const_char_pointer *filename, const_char_pointer *func, ::u32 & iLine)
 {
    long offset = ((long)address) - text->vma;
    if (offset > 0)
@@ -213,9 +213,9 @@ bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, voi
 }
 
 
-bool resolve_addr_file_func_line(void *address, const_char_pointer *filename, const_char_pointer *func, unsigned & iLine)
+bool resolve_addr_file_func_line(void *address, const_char_pointer *filename, const_char_pointer *func, ::u32 & iLine)
 {
-   int i;
+   ::i32 i;
    while(i < bfdcount)
    {
 

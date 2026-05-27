@@ -58,7 +58,7 @@ namespace geo
 
 
       ::pointer < ::mutex >                                               m_pmutexLocalityTimeZone;
-      double_map < double_map < ::datetime::time_zone > >   m_localityTimeZone;
+      f64_map < f64_map < ::datetime::time_zone > >   m_localityTimeZone;
       bool                                                  m_bLoadedLocalityTimeZoneFromFile;
       ::file::path                                          m_pathLocalityTimeZoneFile;
       task_pointer                                          m_ptaskSaveLocalityTimeZone;
@@ -78,8 +78,8 @@ namespace geo
       string_array_base                                       m_straCityLo;
       string_array_base                                       m_straCity;
       i64_array_base                                          m_iaIds;
-      double_array                                       m_daLon;
-      double_array                                       m_daLat;
+      f64_array                                       m_daLon;
+      f64_array                                       m_daLat;
 
       string_map_base < openweather_city* >                  m_mapCity;
 
@@ -96,27 +96,27 @@ namespace geo
       ::pointer< ::mutex > get_openweather_city_mutex() { return m_pmutexOpenweatherCity; }
 
       virtual openweather_city* openweather_find_city(const ::scoped_string & scopedstrQuery);
-      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, double& dLat, double& dLon);
-      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, ::i64& iId, double& dLat, double& dLon, bool bPrefix);
+      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, ::f64& dLat, ::f64& dLon);
+      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, ::i64& iId, ::f64& dLat, ::f64& dLon, bool bPrefix);
 
 
 
-      virtual bool locality_sunset(openweather_city* pcity, int& iRise, int& iSet);
-      virtual string initial_locality_time_zone(openweather_city* pcity, double& dZone);
-      virtual bool locality_sunset(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, int& iRise, int& iSet);
-      virtual string initial_locality_time_zone(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, double& dZone);
+      virtual bool locality_sunset(openweather_city* pcity, ::i32& iRise, ::i32& iSet);
+      virtual string initial_locality_time_zone(openweather_city* pcity, ::f64& dZone);
+      virtual bool locality_sunset(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, ::i32& iRise, ::i32& iSet);
+      virtual string initial_locality_time_zone(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, ::f64& dZone);
       virtual string initial_country_time_zone(const ::scoped_string & scopedstrCountry);
-      virtual string utc_offset_string(double dUTCOffset);
-      virtual double time_zone(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrCountryCode);
+      virtual string utc_offset_string(::f64 dUTCOffset);
+      virtual ::f64 time_zone(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrCountryCode);
 
 
       virtual ::datetime::time_zone get_time_zone(openweather_city* pcity);
 
       virtual ::datetime::time_zone _get_time_zone(openweather_city* pcity);
 
-      virtual ::datetime::time_zone get_time_zone(double dLat, double dLng);
+      virtual ::datetime::time_zone get_time_zone(::f64 dLat, ::f64 dLng);
 
-      virtual ::datetime::time_zone _get_time_zone(double dLat, double dLng);
+      virtual ::datetime::time_zone _get_time_zone(::f64 dLat, ::f64 dLng);
 
       virtual ::payload get_weather(openweather_city* pcity);
 
@@ -137,7 +137,7 @@ namespace geo
    };
 
 
-   CLASS_DECL_AXIS bool utc_offset_invalid(double dUTCOffset);
+   CLASS_DECL_AXIS bool utc_offset_invalid(::f64 dUTCOffset);
 
 
 } // namespace geo

@@ -21,24 +21,24 @@ namespace app_core_flag
 {
 
 
-   void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h)
+   void dk(::draw2d::graphics_pointer & pgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h)
    {
 
       ::color::color crDenmarkRoed = argb(255, 200, 16, 46);
 
-      double Δx = w / 90.0;
+      ::f64 Δx = w / 90.0;
 
-      double Δy = h / 70.0;
+      ::f64 Δy = h / 70.0;
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::f64_rectangle_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
    }
 
@@ -49,25 +49,25 @@ namespace graphics
 {
 
 
-   void image_color_with_shade_of_grey(unsigned char & r, unsigned char & g, unsigned char & b, double i, double j, double w, double h)
+   void image_color_with_shade_of_grey(::u8 & r, ::u8 & g, ::u8 & b, ::f64 i, ::f64 j, ::f64 w, ::f64 h)
    {
 
-      double dH = i / w;
+      ::f64 dH = i / w;
 
-      double dS = (h - j) / h;
+      ::f64 dS = (h - j) / h;
 
       ::color::hls hls(dH, 0.5, dS);
 
       ::color::color color(hls);
 
-      r = color.byte_red();
-      g = color.byte_green();
-      b = color.byte_blue();
+      r = color.u8_red();
+      g = color.u8_green();
+      b = color.u8_blue();
 
 
       //dH *= 6.0;
 
-      //double dA = dH - (double)((int)dH);
+      //::f64 dA = dH - (::f64)((::i32)dH);
 
       //if (dH >= 3.0)
       //{
@@ -130,16 +130,16 @@ namespace graphics
       //   }
       //}
 
-      //double dL = 0.5;
+      //::f64 dL = 0.5;
 
-      //double dS = 1.0 - IMAGE_Y(j, h) / h;
+      //::f64 dS = 1.0 - IMAGE_Y(j, h) / h;
       ////#if defined(__APPLE__)
       ////      dS = 1.0 - dS;
       ////#endif
 
-      //double dCMin;
-      //double dCAdd;
-      //double dSL = dS * dL;
+      //::f64 dCMin;
+      //::f64 dCAdd;
+      //::f64 dSL = dS * dL;
       //if (dL >= 0.5)
       //{
       //   dCMin = dL - dS + dSL;
@@ -151,34 +151,34 @@ namespace graphics
       //   dCAdd = 2.0 * dSL;
       //}
 
-      //double _dR = (dCMin + dR * dCAdd);
-      //double _dG = (dCMin + dG * dCAdd);
-      //double _dB = (dCMin + dB * dCAdd);
+      //::f64 _dR = (dCMin + dR * dCAdd);
+      //::f64 _dG = (dCMin + dG * dCAdd);
+      //::f64 _dB = (dCMin + dB * dCAdd);
 
-   /*   r = (unsigned char)(_dR * 255.0);
-      g = (unsigned char)(_dG * 255.0);
-      b = (unsigned char)(_dB * 255.0);*/
+   /*   r = (::u8)(_dR * 255.0);
+      g = (::u8)(_dG * 255.0);
+      b = (::u8)(_dB * 255.0);*/
 
    }
 
 
-   void color_with_shade_of_grey(::color::color & color, double i, double j, double dw, double dh)
+   void color_with_shade_of_grey(::color::color & color, ::f64 i, ::f64 j, ::f64 dw, ::f64 dh)
    {
 
 #ifdef __APPLE__
 
       image_color_with_shade_of_grey(
-         color.m_uchRed,
-         color.m_uchGreen,
-         color.m_uchBlue,
+         color.m_u8Red,
+         color.m_u8Green,
+         color.m_u8Blue,
          i, dh - j - 1, dw, dh);
 
 #else
 
       image_color_with_shade_of_grey(
-         color.m_uchRed,
-         color.m_uchGreen,
-         color.m_uchBlue,
+         color.m_u8Red,
+         color.m_u8Green,
+         color.m_u8Blue,
          i, j, dw, dh);
 
 #endif
@@ -197,17 +197,17 @@ namespace graphics
 
       ::u32 uScan = pimage->scan_size();
 
-      unsigned char * pline;
+      ::u8 * pline;
 
-      auto a = pimage->m_colorindexes.m_uchIndexOpacity;
-      auto r = pimage->m_colorindexes.m_uchIndexRed;
-      auto g = pimage->m_colorindexes.m_uchIndexGreen;
-      auto b = pimage->m_colorindexes.m_uchIndexBlue;
+      auto a = pimage->m_colorindexes.m_u8IndexOpacity;
+      auto r = pimage->m_colorindexes.m_u8IndexRed;
+      auto g = pimage->m_colorindexes.m_u8IndexGreen;
+      auto b = pimage->m_colorindexes.m_u8IndexBlue;
 
       for (::collection::index i = 0; i < w; i++)
       {
 
-         pline = (unsigned char *)(pimage->get_data() + i);
+         pline = (::u8 *)(pimage->get_data() + i);
 
          for (::collection::index j = 0; j < h; j++)
          {
@@ -216,7 +216,7 @@ namespace graphics
                pline[r],
                pline[g],
                pline[b],
-               (double)i, (double)j, (double)w, (double)h);
+               (::f64)i, (::f64)j, (::f64)w, (::f64)h);
 
             pline[a] = 255;
 
@@ -229,7 +229,7 @@ namespace graphics
    }
 
 
-   void shades_of_luminance(::image::image *pimage, double dH, double dS)
+   void shades_of_luminance(::image::image *pimage, ::f64 dH, ::f64 dS)
    {
 
       pimage->map();
@@ -240,21 +240,21 @@ namespace graphics
 
       ::color::color color;
 
-      auto dh = (double)h;
+      auto dh = (::f64)h;
 
       ::u32 uScan;
 
-      //dS = 1.0 - ((double)j / dh);
+      //dS = 1.0 - ((::f64)j / dh);
 
       uScan = pimage->scan_size() / sizeof(::color32_t);
 
       ::image32_t * pline;
 
-      //double dR, dG, dB;
+      //::f64 dR, dG, dB;
 
       //dH *= 6.0;
 
-      //double dA = dH - (double)((int)dH);
+      //::f64 dA = dH - (::f64)((::i32)dH);
 
       //if (dH >= 3.0)
       //{
@@ -319,17 +319,17 @@ namespace graphics
 
       for (::collection::index j = 0; j < h; j++)
       {
-         double dL = 1.0 - ((double)j / dh);
+         ::f64 dL = 1.0 - ((::f64)j / dh);
 //
 //#if defined(__APPLE__)
 //         dL = 1.0 - dL;
 //#endif
 //
-//         //double dS = 1.0 - ((double)j / dh);
+//         //::f64 dS = 1.0 - ((::f64)j / dh);
 //
-//         double dCMin;
-//         double dCAdd;
-//         double dSL = dS * dL;
+//         ::f64 dCMin;
+//         ::f64 dCAdd;
+//         ::f64 dSL = dS * dL;
 //         if (dL >= 0.5)
 //         {
 //            dCMin = dL - dS + dSL;
@@ -342,22 +342,22 @@ namespace graphics
 //         }
 //
 //
-//         double _dR = (dCMin + dR * dCAdd);
-//         double _dG = (dCMin + dG * dCAdd);
-//         double _dB = (dCMin + dB * dCAdd);
+//         ::f64 _dR = (dCMin + dR * dCAdd);
+//         ::f64 _dG = (dCMin + dG * dCAdd);
+//         ::f64 _dB = (dCMin + dB * dCAdd);
 
 
          ::color::hls hls(dH, dL, dS);
 
 
-         //unsigned char uchR = (unsigned char)prototype_color_round(m_dR * 255.0);
-         //m_uchG = (unsigned char)prototype_color_round(m_dG * 255.0);
-         //m_uchB = (unsigned char)prototype_color_round(m_dB * 255.0);
+         //::u8 uchR = (::u8)prototype_color_round(m_dR * 255.0);
+         //m_u8G = (::u8)prototype_color_round(m_dG * 255.0);
+         //m_u8B = (::u8)prototype_color_round(m_dB * 255.0);
 
          ::color::color color(hls);
 
          pline = pimage->get_data() + uScan * j;
-         image32_t color32(argb(255, color.byte_red(), color.byte_green(), color.byte_blue()), pimage->color_indexes());
+         image32_t color32(argb(255, color.u8_red(), color.u8_green(), color.u8_blue()), pimage->color_indexes());
          for (::collection::index i = 0; i < w; i++)
          {
 
@@ -506,7 +506,7 @@ namespace core
 
       //   //m_pimageBeam->g()->set(ppen);
 
-      //   //m_pimageBeam->g()->DrawEllipse(int_rectangle_dimension(0, 0, 32, 32));
+      //   //m_pimageBeam->g()->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
 
 
@@ -544,7 +544,7 @@ namespace core
 
       //   color.set_hls(m_hls);
 
-      //   color.m_uchOpacity = 255;
+      //   color.m_u8Opacity = 255;
 
       //   return color;
 
@@ -593,11 +593,11 @@ namespace core
 
          }
 
-         int iColorsLeft = m_rectangleColors.left;
+         ::i32 iColorsLeft = m_rectangleColors.left;
 
-         int iColorsWidth = m_pimage->width();
+         ::i32 iColorsWidth = m_pimage->width();
 
-         int iColorsRight = iColorsLeft + iColorsWidth;
+         ::i32 iColorsRight = iColorsLeft + iColorsWidth;
 
          if (point.x < iColorsRight)
          {
@@ -659,19 +659,19 @@ namespace core
 
          }
 
-         int iColorsLeft = m_rectangleColors.left;
+         ::i32 iColorsLeft = m_rectangleColors.left;
 
-         int iColorsWidth = m_pimage->width();
+         ::i32 iColorsWidth = m_pimage->width();
 
-         int iColorsRight = iColorsLeft + iColorsWidth;
+         ::i32 iColorsRight = iColorsLeft + iColorsWidth;
 
          //if (point.x < iColorsRight)
          if(m_bLButtonPressedOnHue)
          {
 
-            int x = point.x - m_rectangleColors.left;
+            ::i32 x = point.x - m_rectangleColors.left;
 
-            int y = point.y - m_rectangleColors.top;
+            ::i32 y = point.y - m_rectangleColors.top;
 
             x = minimum_maximum(x, 0, m_pimage->width());
 
@@ -705,9 +705,9 @@ namespace core
 
             auto pointLuminance = point - ::i32_size(m_rectangleColors.center().x, m_rectangleColors.top);
 
-            int y = minimum_maximum(point.y, 0, m_pimage->height());
+            ::i32 y = minimum_maximum(point.y, 0, m_pimage->height());
 
-            m_hls.m_dL = 1.0 - ((double)y / (double)m_pimage->height());
+            m_hls.m_dL = 1.0 - ((::f64)y / (::f64)m_pimage->height());
 
             on_color_change();
 
@@ -767,15 +767,15 @@ namespace core
       void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointParam)
       {
 
-         double_point point(pointParam);
+         ::f64_point point(pointParam);
 
-         double dSize = 17.0;
+         ::f64 dSize = 17.0;
 
-         double_size sizeBeam(dSize, dSize);
+         ::f64_size sizeBeam(dSize, dSize);
 
-         double_rectangle rectangleOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
+         ::f64_rectangle rectangleOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
 
-         double_rectangle rectangleInner(rectangleOuter);
+         ::f64_rectangle rectangleInner(rectangleOuter);
 
          rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
@@ -785,15 +785,15 @@ namespace core
 
          pgraphics->set(pbrush);
 
-         double dHalfTriBase = dSize / 8.0;
+         ::f64 dHalfTriBase = dSize / 8.0;
 
          {
 
-            double_point_array pointa;
+            f64_point_array pointa;
 
-            pointa.add(double_point(rectangleOuter.left, point.y - dHalfTriBase));
-            pointa.add(double_point(rectangleInner.left, point.y));
-            pointa.add(double_point(rectangleOuter.left, point.y + dHalfTriBase));
+            pointa.add(::f64_point(rectangleOuter.left, point.y - dHalfTriBase));
+            pointa.add(::f64_point(rectangleInner.left, point.y));
+            pointa.add(::f64_point(rectangleOuter.left, point.y + dHalfTriBase));
 
             pgraphics->fill_polygon(pointa);
 
@@ -801,23 +801,11 @@ namespace core
 
          {
 
-            double_point_array pointa;
+            f64_point_array pointa;
 
-            pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.top));
-            pointa.add(double_point(point.x, rectangleInner.top));
-            pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.top));
-
-            pgraphics->fill_polygon(pointa);
-
-         }
-
-         {
-
-            double_point_array pointa;
-
-            pointa.add(double_point(rectangleOuter.right, point.y - dHalfTriBase));
-            pointa.add(double_point(rectangleInner.right, point.y));
-            pointa.add(double_point(rectangleOuter.right, point.y + dHalfTriBase));
+            pointa.add(::f64_point(point.x - dHalfTriBase, rectangleOuter.top));
+            pointa.add(::f64_point(point.x, rectangleInner.top));
+            pointa.add(::f64_point(point.x + dHalfTriBase, rectangleOuter.top));
 
             pgraphics->fill_polygon(pointa);
 
@@ -825,11 +813,23 @@ namespace core
 
          {
 
-            double_point_array pointa;
+            f64_point_array pointa;
 
-            pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.bottom));
-            pointa.add(double_point(point.x, rectangleInner.bottom));
-            pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.bottom));
+            pointa.add(::f64_point(rectangleOuter.right, point.y - dHalfTriBase));
+            pointa.add(::f64_point(rectangleInner.right, point.y));
+            pointa.add(::f64_point(rectangleOuter.right, point.y + dHalfTriBase));
+
+            pgraphics->fill_polygon(pointa);
+
+         }
+
+         {
+
+            f64_point_array pointa;
+
+            pointa.add(::f64_point(point.x - dHalfTriBase, rectangleOuter.bottom));
+            pointa.add(::f64_point(point.x, rectangleInner.bottom));
+            pointa.add(::f64_point(point.x + dHalfTriBase, rectangleOuter.bottom));
 
             pgraphics->fill_polygon(pointa);
 
@@ -838,16 +838,16 @@ namespace core
       }
 
 
-      void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, int yParam)
+      void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 yParam)
       {
 
-         double y = yParam;
+         ::f64 y = yParam;
 
-         double dSize = 17.0;
+         ::f64 dSize = 17.0;
 
-         double_rectangle rectangleInner(rectangleW);
+         ::f64_rectangle rectangleInner(rectangleW);
 
-         double_rectangle rectangleOuter(rectangleInner);
+         ::f64_rectangle rectangleOuter(rectangleInner);
 
          rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
@@ -857,15 +857,15 @@ namespace core
 
          pgraphics->set(pbrush);
 
-         double dHalfTriBase = dSize / 8.0;
+         ::f64 dHalfTriBase = dSize / 8.0;
 
          {
 
-            double_point_array pointa;
+            f64_point_array pointa;
 
-            pointa.add(double_point(rectangleOuter.left, y - dHalfTriBase));
-            pointa.add(double_point(rectangleInner.left, y));
-            pointa.add(double_point(rectangleOuter.left, y + dHalfTriBase));
+            pointa.add(::f64_point(rectangleOuter.left, y - dHalfTriBase));
+            pointa.add(::f64_point(rectangleInner.left, y));
+            pointa.add(::f64_point(rectangleOuter.left, y + dHalfTriBase));
 
             pgraphics->fill_polygon(pointa);
 
@@ -873,11 +873,11 @@ namespace core
 
          {
 
-            double_point_array pointa;
+            f64_point_array pointa;
 
-            pointa.add(double_point(rectangleOuter.right, y - dHalfTriBase));
-            pointa.add(double_point(rectangleInner.right, y));
-            pointa.add(double_point(rectangleOuter.right, y + dHalfTriBase));
+            pointa.add(::f64_point(rectangleOuter.right, y - dHalfTriBase));
+            pointa.add(::f64_point(rectangleInner.right, y));
+            pointa.add(::f64_point(rectangleOuter.right, y + dHalfTriBase));
 
             pgraphics->fill_polygon(pointa);
 
@@ -939,9 +939,9 @@ namespace core
 
             //::color::hsv hsv(m_hls);
 
-            point.x = (int)(rTarget.left + rTarget.width() * m_hls.m_dH);
+            point.x = (::i32)(rTarget.left + rTarget.width() * m_hls.m_dH);
 
-            point.y = (int)(rTarget.top + rTarget.height() * (1.0-m_hls.m_dS));
+            point.y = (::i32)(rTarget.top + rTarget.height() * (1.0-m_hls.m_dS));
 
          }
 
@@ -975,7 +975,7 @@ namespace core
 
          pgraphics->fill_rectangle(rTarget, get_sel_color());
 
-         int y = (int)(rectangleLum1.top + (1.0 - m_hls.m_dL) * rectangleLum1.height());
+         ::i32 y = (::i32)(rectangleLum1.top + (1.0 - m_hls.m_dL) * rectangleLum1.height());
 
          draw_level(pgraphics, rectangleLum1, y);
 
@@ -1082,9 +1082,9 @@ namespace core
 
          ::color::hsv hsv(m_hls);
 
-         int x = (int) (hsv.m_dH * m_pimage->width());
+         ::i32 x = (::i32) (hsv.m_dH * m_pimage->width());
 
-         int y = (int) (hsv.m_dS * m_pimage->height());
+         ::i32 y = (::i32) (hsv.m_dS * m_pimage->height());
 
          if (m_callbackHls)
          {

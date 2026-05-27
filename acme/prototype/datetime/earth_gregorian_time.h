@@ -16,16 +16,16 @@ namespace earth
    public:
 
 
-      int m_iDayOfWeek;
+      ::i32 m_iDayOfWeek;
 
 
       ::i64 m_iNanoSecond;
-      int m_iSecond;        /* Seconds.	[0-60] (1 leap second) */
-      int m_iMinute;        /* Minutes.	[0-59] */
-      int m_iHour;          /* Hours.	[0-23] */
-      int m_iDay;           /* Day.		[1-31] */
-      int m_iMonth;         /* Month.	[0-11] */
-      int m_iYear;
+      ::i32 m_iSecond;        /* Seconds.	[0-60] (1 leap second) */
+      ::i32 m_iMinute;        /* Minutes.	[0-59] */
+      ::i32 m_iHour;          /* Hours.	[0-23] */
+      ::i32 m_iDay;           /* Day.		[1-31] */
+      ::i32 m_iMonth;         /* Month.	[0-11] */
+      ::i32 m_iYear;
 
 
       inline gregorian_time()
@@ -87,7 +87,7 @@ namespace earth
 
    };
 
-   constexpr int32_t is_leap_year(int year)
+   constexpr int32_t is_leap_year(::i32 year)
    {
       if (year % 400 == 0)
          return 1;
@@ -99,21 +99,21 @@ namespace earth
    }
 
 
-   constexpr int days_from_0(int year)
+   constexpr ::i32 days_from_0(::i32 year)
    {
       year--;
       return 365 * year + (year / 400) - (year / 100) + (year / 4);
    }
 
 
-   constexpr int days_from_1970(int year)
+   constexpr ::i32 days_from_1970(::i32 year)
    {
       const auto days_from_0_to_1970 = days_from_0(1970);
       return days_from_0(year) - days_from_0_to_1970;
    }
 
 
-   CLASS_DECL_ACME int days_from_1jan(int year, int month, int day);
+   CLASS_DECL_ACME ::i32 days_from_1jan(::i32 year, ::i32 month, ::i32 day);
 
 
 

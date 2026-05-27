@@ -94,11 +94,11 @@ namespace application_build_helper
 
       directory_system()->change_current(pathBinaries);
 
-      int iAdding = 0;
+      ::i32 iAdding = 0;
 
-      int iDeleting = 0;
+      ::i32 iDeleting = 0;
 
-      int iArchiveIsCurrent = 0;
+      ::i32 iArchiveIsCurrent = 0;
 
       auto functionTrace = [&](enum_trace_level etracelevel, const ::scoped_string& str)
       {
@@ -257,7 +257,7 @@ namespace application_build_helper
 
       ::string_array_base straOutput;
 
-      int iExitCode = acmenode()->command_system(strCmd, functionTrace);
+      ::i32 iExitCode = acmenode()->command_system(strCmd, functionTrace);
 
       if (iExitCode != 0)
       {

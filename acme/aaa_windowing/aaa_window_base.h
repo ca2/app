@@ -68,7 +68,7 @@ namespace windowing
       bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
 
-      virtual void on_char(int iChar);
+      virtual void on_char(::i32 iChar);
 //       //
 //       // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 //       //
@@ -101,7 +101,7 @@ namespace windowing
                virtual ::acme::windowing::display * get_display();
 
 
-               //void draw(::nano::graphics::device * pnanodevice) override;
+               //void draw(::nano::graphics::context * pnanodevice) override;
 
                //static ::pointer_array < ::micro::window_implementation > & nanowindowimplementationa();
 
@@ -142,7 +142,7 @@ namespace windowing
                virtual ::i32_size get_main_screen_size();
 
 
-      void _on_window_simple_action(const char * pszActionName) override;
+      void _on_window_simple_action(const_char_pointer pszActionName) override;
 
 
                //virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;

@@ -61,7 +61,7 @@ namespace mathematics
       }
       else
       {
-         double d = 0.0;
+         ::f64 d = 0.0;
          if(m_etype == type_addition)
          {
             d = atof(m_pvalue1->get_value_string(egetvalue).c_str()) +

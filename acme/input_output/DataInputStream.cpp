@@ -72,7 +72,7 @@ DataInputStream::~DataInputStream()
 
    void DataInputStream::readFully(void* buffer, memsize len)
    {
-      char* typedBuffer = (char *)buffer;
+      char_pointer typedBuffer = (char_pointer )buffer;
       memsize totalRead = 0;
       memsize left = len;
       while (totalRead < len)
@@ -84,18 +84,18 @@ DataInputStream::~DataInputStream()
    }
 
 
-   unsigned char DataInputStream::readUInt8()
+   ::u8 DataInputStream::readUInt8()
    {
-      unsigned char x;
+      ::u8 x;
       readFully(&x, 1);
       return x;
    }
 
 
-   unsigned short DataInputStream::readUInt16()
+   ::u16 DataInputStream::readUInt16()
    {
-      unsigned short x = 0;
-      unsigned char buf[2];
+      ::u16 x = 0;
+      ::u8 buf[2];
       readFully(&buf[0], 2);
       x += SETBYTE(buf[0], 1);
       x += SETBYTE(buf[1], 0);
@@ -106,7 +106,7 @@ DataInputStream::~DataInputStream()
    ::u32 DataInputStream::readUInt32()
    {
       ::u32 x = 0;
-      unsigned char buf[4];
+      ::u8 buf[4];
       readFully(&buf[0], 4);
       x += SETBYTE(buf[0], 3);
       x += SETBYTE(buf[1], 2);
@@ -119,7 +119,7 @@ DataInputStream::~DataInputStream()
    ::u64 DataInputStream::readUInt64()
    {
       ::u64 x = 0;
-      unsigned char buf[8];
+      ::u8 buf[8];
       readFully(&buf[0], 8);
       x += (::u64)buf[0] << (7 * 8);
       x += (::u64)buf[1] << (6 * 8);
@@ -133,23 +133,23 @@ DataInputStream::~DataInputStream()
    }
 
 
-   char DataInputStream::readInt8()
+   ::i8 DataInputStream::readInt8()
    {
-      char x;
+      ::i8 x;
       readFully(&x, 1);
       return x;
    }
 
 
-   short DataInputStream::readInt16()
+   ::i16 DataInputStream::readInt16()
    {
-      return (short)readUInt16();
+      return (::i16)readUInt16();
    }
 
 
-   int DataInputStream::readInt32()
+   ::i32 DataInputStream::readInt32()
    {
-      return (int)readUInt32();
+      return (::i32)readUInt32();
    }
 
 
@@ -172,7 +172,7 @@ DataInputStream::~DataInputStream()
       buffer.set_size(sizeInBytes);
 
       readFully(buffer.data(), sizeInBytes);
-      ::string utf8String((const char *) buffer.data(), buffer.size());
+      ::string utf8String((const_char_pointer ) buffer.data(), buffer.size());
       return utf8String;
 
    }

@@ -42,14 +42,14 @@ namespace innate_subsystem
 
       // Override Control::setWindow method
       virtual void setWindow(const ::operating_system::window & operatingsystemwindow) = 0;
-      virtual void setText(char *text) = 0;
+      virtual void setText(char_pointer text) = 0;
       virtual void setErrorBalloonTip(TooltipInterface *tip) = 0;
       //virtual void setErrorToolTip(TooltipInterface *tip) = 0;
       virtual void setStringFilter(StringFilter *filter) = 0;
       virtual ::lresult makeCheck() = 0;
 
    // protected:
-       virtual bool isStringValid(const char *string) = 0;
+       virtual bool isStringValid(const_char_pointer string) = 0;
        virtual ::lresult onKeyDown(::wparam code, ::lparam params) = 0;
    //
    //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam);
@@ -75,14 +75,14 @@ namespace innate_subsystem
 
       // Override Control::setWindow method
       void setWindow(const ::operating_system::window & operatingsystemwindow) override { m_pfilteredtextbox->setWindow(operatingsystemwindow); }
-      void setText(char *text) override { m_pfilteredtextbox->setText(text); }
+      void setText(char_pointer text) override { m_pfilteredtextbox->setText(text); }
       void setErrorBalloonTip(TooltipInterface *tip) override { m_pfilteredtextbox->setErrorBalloonTip(tip); }
       //void setErrorToolTip(TooltipInterface *tip) override;
       void setStringFilter(StringFilter *filter) override { m_pfilteredtextbox->setStringFilter(filter); }
       ::lresult makeCheck() override { return m_pfilteredtextbox->makeCheck(); }
 
       // protected:
-      bool isStringValid(const char *string) override { return m_pfilteredtextbox->isStringValid(string); }
+      bool isStringValid(const_char_pointer string) override { return m_pfilteredtextbox->isStringValid(string); }
       //    virtual LRESULT onKeyDown(::wparam code, ::lparam params);
       //
       //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam);

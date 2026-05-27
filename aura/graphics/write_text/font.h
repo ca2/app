@@ -63,15 +63,15 @@ namespace write_text
          {
          protected:
             bool m_bHasSize = false;
-            double_size m_size;
+            ::f64_size m_size;
             wstring     m_wstr;
          public:
 
             bool has_size() const;
 
-            ::double_size get_size() const;
+            ::f64_size get_size() const;
 
-            void set_size(const ::double_size &size);
+            void set_size(const ::f64_size &size);
 
             void set_text(const ::scoped_string & scopedstr);
 
@@ -103,8 +103,8 @@ namespace write_text
       font_family_pointer           m_pfontfamily;
       ::file::path                  m_path;
       font_descriptor               m_fontdescriptor;
-      //double                        m_dFontSize;
-      double                        m_dFontWidth;
+      //::f64                        m_dFontSize;
+      ::f64                        m_dFontWidth;
       font_size                     m_fontsize;
       font_weight                   m_fontweight;
       bool                          m_bItalic;
@@ -136,7 +136,7 @@ namespace write_text
       bool bItalic = false,
       bool bUnderline = false,
       bool bStrikeOut = false,
-      double dWidth = 1.0);
+      ::f64 dWidth = 1.0);
       
       
       virtual ::string family_name();
@@ -149,12 +149,12 @@ namespace write_text
 
       //virtual bool create_point_font(
       //const font_family_pointer & pfontfamily,
-      //double dSize,
-      //int iWeight = 400,
+      //::f64 dSize,
+      //::i32 iWeight = 400,
       //bool bItalic = false,
       //bool bUnderline = false,
       //bool bStrikeOut = false,
-      //double dWidth = 1.0);
+      //::f64 dWidth = 1.0);
 
       void destroy() override;
 
@@ -177,19 +177,19 @@ namespace write_text
 
       //string get_sample_text(enum_character_set echarsset);
 
-      virtual double get_pixel_font_height(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_pixel_font_height(::draw2d::graphics * pgraphics);
 
       virtual void get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
 
       virtual void _get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
 
-      virtual double get_ascent(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_ascent(::draw2d::graphics * pgraphics);
 
-      virtual double get_descent(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_descent(::draw2d::graphics * pgraphics);
 
-      virtual double get_leading(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_leading(::draw2d::graphics * pgraphics);
 
-      virtual double get_height(::draw2d::graphics * pgraphics);
+      virtual ::f64 get_height(::draw2d::graphics * pgraphics);
 
       inline text_metric * get_text_metric_struct()  { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
       inline const text_metric * get_text_metric_struct() const { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }

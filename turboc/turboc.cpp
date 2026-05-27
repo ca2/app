@@ -2,17 +2,17 @@
 #include "src/graphics.h"
 
 
-volatile int TcGraphicsInitialized = 0;
-int TcCurrentGraphMode,TcGraphResult = grOk;
-int TcXresolution,TcYresolution,TcPageCount,TcPaletteNum;
-//int TcDriver,TcVisualPage = 0,TcActivePage = 0;
-//int TcForegroundColor,TcBackgroundColor,TcDriver;
-int TcForegroundColor,TcBackgroundColor;
-int TcViewLeft,TcViewTop,TcViewRight,TcViewBottom,TcViewClip;
-int Tcx,Tcy,TcViewMaxx,TcViewMaxy;
-int TcLastArcX = 0,TcLastArcY = 0,TcLastStangle = 0;
-int TcLastEndangle = 0,TcLastRadius = 0;
-int TcWritemode = 0,TcTextHoriz = 0,TcTextVert = 0;
+volatile ::i32 TcGraphicsInitialized = 0;
+::i32 TcCurrentGraphMode,TcGraphResult = grOk;
+::i32 TcXresolution,TcYresolution,TcPageCount,TcPaletteNum;
+//::i32 TcDriver,TcVisualPage = 0,TcActivePage = 0;
+//::i32 TcForegroundColor,TcBackgroundColor,TcDriver;
+::i32 TcForegroundColor,TcBackgroundColor;
+::i32 TcViewLeft,TcViewTop,TcViewRight,TcViewBottom,TcViewClip;
+::i32 Tcx,Tcy,TcViewMaxx,TcViewMaxy;
+::i32 TcLastArcX = 0,TcLastArcY = 0,TcLastStangle = 0;
+::i32 TcLastEndangle = 0,TcLastRadius = 0;
+::i32 TcWritemode = 0,TcTextHoriz = 0,TcTextVert = 0;
 struct linesettingstype TcLinestyle ={SOLID_LINE,0xffff,NORM_WIDTH};
 RgbStruct TcColors[256];
 const RgbStruct TcColors2[2] ={XBLACK,XWHITE};
@@ -44,10 +44,10 @@ const struct palettetype TcDefaultPalette16 ={
    YELLOW,WHITE}
 };
 struct palettetype TcCurrentPalette;
-int TcTextFont,TcTextDirection,TcTextCharsize;
-int TcTextMultX,TcTextDivX,TcTextMultY,TcTextDivY;
-int TcFillStyle = SOLID_FILL,TcFillColor = 1;
-char TcUserFillPattern[8] ={255,255,255,255,255,255,255,255};
+::i32 TcTextFont,TcTextDirection,TcTextCharsize;
+::i32 TcTextMultX,TcTextDivX,TcTextMultY,TcTextDivY;
+::i32 TcFillStyle = SOLID_FILL,TcFillColor = 1;
+::i8 TcUserFillPattern[8] ={255,255,255,255,255,255,255,255};
 #ifdef WITH_X
 //struct TcPixmapPoolRecord TcPixmapPool[MAX_TCIMAGEBUFS] = { { 0 } };
 //Display *TcDisplay;
@@ -73,7 +73,7 @@ gint TcVideoMode = 0;
 // that is).  At any rate, I can't find an equivalent for either one.
 // These characters all exist in the so-called GNU unifont, though not 
 // necessarily in Adobe or other unifonts.
-const int TcUnicodeMappings[256] ={
+const ::i32 TcUnicodeMappings[256] ={
    // Row 0x00
    0x0040,	// 0x0
    0x263a,	// 0x1
@@ -349,15 +349,15 @@ const int TcUnicodeMappings[256] ={
 };
 
 
-int directvideo = 1,_directvideo = 1,_wscroll = 1;
-char TcKeybuf[TC_KEYBUF_SIZE];
+::i32 directvideo = 1,_directvideo = 1,_wscroll = 1;
+::i8 TcKeybuf[TC_KEYBUF_SIZE];
 gint TcKeybufStart = 0,TcKeybufSize = 0;
 //pthread_mutex_t TcMutex = PTHREAD_MUTEX_INITIALIZER;
-int ConioInitialized = 0;	// Becomes 1 after initialization.
+::i32 ConioInitialized = 0;	// Becomes 1 after initialization.
 struct text_info CurrentAttributes;
 // CurrentWindow is NULL prior to initialization.  After initialization,
 // it begins as the ncurses stdscr.  After the window function is used, it
 // becomes something else.
 //WINDOW *CurrentWindow = NULL;
-int ColorPairsUsed;
-int ConioRefreshOkay = 1;
+::i32 ColorPairsUsed;
+::i32 ConioRefreshOkay = 1;

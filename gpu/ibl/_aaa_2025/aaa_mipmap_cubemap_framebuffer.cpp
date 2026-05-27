@@ -30,7 +30,7 @@ namespace gpu
 
 
       void mipmap_cubemap_framebuffer::initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base *pscenebase,
-                                                                             int iWidth, int iHeight)
+                                                                             ::i32 iWidth, ::i32 iHeight)
 
       {
 
@@ -57,7 +57,7 @@ namespace gpu
          auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
 
-         int iMipCount = floor(log2(maximum(iWidth, iHeight)));
+         ::i32 iMipCount = floor(log2(maximum(iWidth, iHeight)));
 
          m_ptexture->initialize_mipmap_cubemap_texture(pgpurenderer, {0, 0, iWidth, iHeight}, iMipCount, true,
                                               true);
@@ -121,19 +121,19 @@ namespace gpu
       }
 
 
-      void mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
+      void mipmap_cubemap_framebuffer::set_current_mip(::i32 iCurrentMip)
       {
 
          m_ptexture->m_iCurrentMip = iCurrentMip;
          m_ptexture->m_sizeMip.cx =
-            (int)((double) m_ptexture->width() * ::pow((double)0.5, (double)iCurrentMip));
+            (::i32)((::f64) m_ptexture->width() * ::pow((::f64)0.5, (::f64)iCurrentMip));
          m_ptexture->m_sizeMip.cy =
-            (int)((double) m_ptexture->height() * ::pow((double)0.5, (double)iCurrentMip));
+            (::i32)((::f64) m_ptexture->height() * ::pow((::f64)0.5, (::f64)iCurrentMip));
 
       }
 
 
-      int mipmap_cubemap_framebuffer::mip_width()
+      ::i32 mipmap_cubemap_framebuffer::mip_width()
       {
 
          return m_ptexture->m_sizeMip.width();
@@ -141,7 +141,7 @@ namespace gpu
       }
 
 
-      int mipmap_cubemap_framebuffer::mip_height()
+      ::i32 mipmap_cubemap_framebuffer::mip_height()
       {
 
          return m_ptexture->m_sizeMip.height();
@@ -149,7 +149,7 @@ namespace gpu
       }
 
 
-      void mipmap_cubemap_framebuffer::set_cube_face(int iFace)
+      void mipmap_cubemap_framebuffer::set_cube_face(::i32 iFace)
       {
 
          m_ptexture->set_cube_face(iFace, pgpushader);
@@ -162,7 +162,7 @@ namespace gpu
       }
 
       //
-      // unsigned int mipmap_cubemap_framebuffer::getCubemapTextureId()
+      // ::u32 mipmap_cubemap_framebuffer::getCubemapTextureId()
       // {
       //    //return m_uCubemapTextureId;
       //

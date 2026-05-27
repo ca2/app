@@ -127,7 +127,7 @@ public:
    }
 
 
-   constexpr enumeration & operator ++(int)
+   constexpr enumeration & operator ++(::i32)
    {
 
       m_eenum = (ENUM)((::i64) m_eenum + 1);

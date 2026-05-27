@@ -39,7 +39,7 @@ void CLASS_DECL_ACME __abort()
 //namespace android
 //{
 //
-//   int function()
+//   ::i32 function()
 //   {
 //      return 0;
 //   }
@@ -56,7 +56,7 @@ void CLASS_DECL_ACME __abort()
 
 #include <time.h>
 
-int timespec_get(timespec * ptimespec, int i)
+::i32 timespec_get(timespec * ptimespec, ::i32 i)
 {
 
    if (i == TIME_UTC)

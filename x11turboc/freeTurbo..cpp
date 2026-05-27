@@ -73,7 +73,7 @@ static struct PixmappedBlock *PixmappedRoot = NULL;
 // Pixmap will be freed and then the ___new one added.  Returns 0 on success,
 // non-zero if out of memory.
 
-extern int
+extern ::i32
 AssociatePixmap (void *object, Pixmap handle)
 {
   struct PixmappedBlock *Block, *LastBlock;

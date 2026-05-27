@@ -129,21 +129,21 @@ namespace prompt
       
       rectangleX.deflate(2, 2);
       
-      int iW = rectangleX.width() / 2;
+      ::i32 iW = rectangleX.width() / 2;
       
-      int iH = rectangleX.height() / 2;
+      ::i32 iH = rectangleX.height() / 2;
       
       iH = minimum(iH, 120);
       
-      double r = (double) iW / (double) iH;
-      double rScreen = (double) rectangleDesktop.width() / (double) rectangleDesktop.height();
+      ::f64 r = (::f64) iW / (::f64) iH;
+      ::f64 rScreen = (::f64) rectangleDesktop.width() / (::f64) rectangleDesktop.height();
       if(r < rScreen)
       {
-         iH = (int) (iW / rScreen);
+         iH = (::i32) (iW / rScreen);
       }
       else if(r > rScreen)
       {
-         iW = (int) (iH * rScreen);
+         iW = (::i32) (iH * rScreen);
       }
    }
 
@@ -178,7 +178,7 @@ namespace prompt
    }
 
 
-   void impact::_001OnTabClick(int iTab)
+   void impact::_001OnTabClick(::i32 iTab)
    {
       if(iTab == 1)
       {

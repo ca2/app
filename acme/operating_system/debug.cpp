@@ -26,10 +26,10 @@ CLASS_DECL_ACME const_char_pointer trace_level_name(enum_trace_level elevel)
 }
 
 
-extern char g_chaTraceLevel[];;;
+extern ::i8 g_chaTraceLevel[];;;
 
 
-CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel)
+CLASS_DECL_ACME ::i8 trace_level_char(enum_trace_level elevel)
 {
 
    return g_chaTraceLevel[trace_level_constraint(elevel)];
@@ -132,7 +132,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //}
 
 
-CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessageParam, const ::scoped_string & strTitleParam, int iMessageBox)
+CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessageParam, const ::scoped_string & strTitleParam, ::i32 iMessageBox)
 {
 
    string strMessage(strMessageParam);

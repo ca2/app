@@ -43,7 +43,7 @@ namespace innate_subsystem
 // // {
 // // }
 // //
-// // Dialog::Dialog(const char *resourceName)
+// // Dialog::Dialog(const_char_pointer resourceName)
 // // : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
 // // {
 // //   setResourceName(resourceName);
@@ -66,7 +66,7 @@ namespace innate_subsystem
 //    m_pparticleThis->initialize_dialog(resourceId);
 // }
 //
-//    void Dialog::initialize_dialog(const char *resourceName)
+//    void Dialog::initialize_dialog(const_char_pointer resourceName)
 //    //: m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
 // {
 //    //setResourceName(resourceName);
@@ -74,7 +74,7 @@ namespace innate_subsystem
 // }
 //
 //
-// void Dialog::setResourceName(const char *resourceName)
+// void Dialog::setResourceName(const_char_pointer resourceName)
 // {
 //   // if (m_resourceName != 0) {
 //   //   free(m_resourceName);
@@ -129,7 +129,7 @@ namespace innate_subsystem
 //    m_pparticleThis->hide();
 // }
 //
-// void Dialog::closeDialog(int code)
+// void Dialog::closeDialog(::i32 code)
 // {
 //   // // Destroy dialog
 //   // if (!m_isModal) {
@@ -160,13 +160,13 @@ namespace innate_subsystem
 //    m_pparticleThis->create();
 // }
 //
-// int Dialog::showModal()
+// ::i32 Dialog::showModal()
 // {
-//   // int result = 0;
+//   // ::i32 result = 0;
 //   // if (this->getWindow() == NULL) {
 //   //   m_isModal = true;
 //   //   HWND parentWindow = (m_ctrlParent != NULL) ? m_ctrlParent->getWindow() : NULL;
-//   //   result = (int)DialogBoxParam(GetModuleHandle(NULL),
+//   //   result = (::i32)DialogBoxParam(GetModuleHandle(NULL),
 //   //                                getResouceName(),
 //   //                                parentWindow, dialogProc, (::lparam)this);
 //   // } else {
@@ -255,7 +255,7 @@ namespace innate_subsystem
 // //  return bResult;
 // }
 //
-// char *Dialog::getResouceName()
+// char_pointer Dialog::getResouceName()
 // {
 //   // if (m_resourceId != 0) {
 //   //   return MAKEINTRESOURCE(m_resourceId);

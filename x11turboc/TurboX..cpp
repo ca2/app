@@ -52,8 +52,8 @@
 // In some cases, TurboX may be called with a parameter of 0, and then
 // immediately called again with a parameter of 1.
 
-int
-TurboX (int Forced)
+::i32
+TurboX (::i32 Forced)
 {
   return (0);
 }

@@ -171,7 +171,7 @@ namespace html
 
          string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("i32_size");
 
-         int iSize = 20;
+         ::i32 iSize = 20;
 
          if (strSize.has_character())
             iSize = maximum(1, atoi(strSize));

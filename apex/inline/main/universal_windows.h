@@ -21,21 +21,21 @@ RunBeforeMain go;
 #define _L(x) __L(x)
 
 
-//CLASS_DECL_IMPORT char * c_get_first_argv();
+//CLASS_DECL_IMPORT char_pointer c_get_first_argv();
 
 
-CLASS_DECL_IMPORT int unicode_main(int argc, wchar_t ** argv, const ::scoped_string & scopedstrAppId);
+CLASS_DECL_IMPORT ::i32 unicode_main(::i32 argc, wchar_t ** argv, const ::scoped_string & scopedstrAppId);
 
 
 //[MTAThread]
-int __stdcall wWinMain(HINSTANCE, HINSTANCE, WCHAR * psz, int)
+::i32 __stdcall wWinMain(HINSTANCE, HINSTANCE, WCHAR * psz, ::i32)
 {
    
    auto argc = __argc;
 
    auto wargv = __wargv;
 
-   int iRet = unicode_main(argc, wargv, _APP_ID);
+   ::i32 iRet = unicode_main(argc, wargv, _APP_ID);
 
    return iRet;
 

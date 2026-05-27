@@ -36,16 +36,16 @@ struct CLASS_DECL_SUBSYSTEM PixelFormat
 
   bool operator == (const PixelFormat & pf) const;
 
-  unsigned short bitsPerPixel;
-  unsigned short colorDepth;
+  ::u16 bitsPerPixel;
+  ::u16 colorDepth;
 
-  unsigned short redMax;
-  unsigned short greenMax;
-  unsigned short blueMax;
+  ::u16 redMax;
+  ::u16 greenMax;
+  ::u16 blueMax;
 
-  unsigned short redShift;
-  unsigned short greenShift;
-  unsigned short blueShift;
+  ::u16 redShift;
+  ::u16 greenShift;
+  ::u16 blueShift;
 
   bool bigEndian;
 };

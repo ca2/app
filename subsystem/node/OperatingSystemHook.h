@@ -42,10 +42,10 @@ namespace subsystem
       //virtual ~OperatingSystemHookInterface() = 0;
 
 
-      virtual bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam)  = 0;
+      virtual bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, ::i32 iVkCode, ::lparam lparam)  = 0;
 
    //    // Hook procedure.
-   //    static LRESULT CALLBACK lowLevelKeyboardHook(int nCode,
+   //    static LRESULT CALLBACK lowLevelKeyboardHook(::i32 nCode,
    //                                                 WPARAM wParam,
    //                                                 LPARAM lParam);
    //
@@ -82,10 +82,10 @@ namespace subsystem
       //OperatingSystemHook();
       //~OperatingSystemHook() override;
 
-      //bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode) override;
+      //bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, ::i32 iVkCode) override;
 
       //    // Hook procedure.
-      //    static LRESULT CALLBACK lowLevelKeyboardHook(int nCode,
+      //    static LRESULT CALLBACK lowLevelKeyboardHook(::i32 nCode,
       //                                                 WPARAM wParam,
       //                                                 LPARAM lParam);
       //
@@ -121,7 +121,7 @@ namespace subsystem
       }
 
 
-       bool operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage, int iVkCode,
+       bool operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage, ::i32 iVkCode,
           ::lparam lparam) override
        {
 

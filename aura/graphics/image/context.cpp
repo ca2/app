@@ -18,7 +18,7 @@
 #include "stb/stb_image_write.h"
 
 
-void stb_memory_write(void* context, void* data, int size)
+void stb_memory_write(void* context, void* data, ::i32 size)
 {
 
    auto pmemory = (::memory*)context;
@@ -93,9 +93,9 @@ namespace image
    }
 
 
-   unsigned char * image_context::like_stbi_load_from_memory(
-      const unsigned char * buffer, int len, int * x, int * y,
-                                               int * channels_in_file, int desired_channels)
+   ::u8 * image_context::like_stbi_load_from_memory(
+      const ::u8 * buffer, ::i32 len, ::i32 * x, ::i32 * y,
+                                               ::i32 * channels_in_file, ::i32 desired_channels)
    {
 
       auto pmemoryfile = create_memory_file({buffer, len});
@@ -108,13 +108,13 @@ namespace image
 
       *channels_in_file = 4;
 
-      int target_scan = *x * 4;
+      ::i32 target_scan = *x * 4;
 
       auto pimage32 = (image32_t *) memory_allocate( *y * target_scan);
 
       pimage32->copy({*x, *y}, target_scan, pimage);
 
-      return (unsigned char *) pimage32;
+      return (::u8 *) pimage32;
 
    }
 
@@ -152,7 +152,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::i32_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::i32_size& size, const image32_t* pcolor, ::i32 iScan, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->createø < ::image::image >();
@@ -230,12 +230,12 @@ namespace image
    }
 
 
-   int image_context::image_integer(const ::file::path& path)
+   ::i32 image_context::image_integer(const ::file::path& path)
    {
 
       _synchronous_lock  synchronouslock(this->synchronization());
 
-      int iImage = -1;
+      ::i32 iImage = -1;
 
       if (!m_mapPathInt.find(path, iImage))
       {
@@ -255,7 +255,7 @@ namespace image
    }
 
 
-   int image_context::create_image_integer(int w, int h, const image32_t* pimage32, int iScan)
+   ::i32 image_context::create_image_integer(::i32 w, ::i32 h, const image32_t* pimage32, ::i32 iScan)
    {
 
       if (w <= 0 || h <= 0)
@@ -295,7 +295,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::integer_image(int iImage)
+   ::image::image_pointer image_context::integer_image(::i32 iImage)
    {
 
       _synchronous_lock  synchronouslock(this->synchronization());
@@ -526,7 +526,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_thumbnail(const ::payload& payloadFile, int w, int h)
+   ::image::image_pointer image_context::load_thumbnail(const ::payload& payloadFile, ::i32 w, ::i32 h)
    {
 
       ::image::image_pointer pimage;
@@ -748,7 +748,7 @@ namespace image
    }
 
 
-   void image_context::_load_thumbnail(::image::image* pimage, const ::payload& payloadFile, int w, int h)
+   void image_context::_load_thumbnail(::image::image* pimage, const ::payload& payloadFile, ::i32 w, ::i32 h)
    {
 
       //try
@@ -1381,7 +1381,7 @@ namespace image
       if (payloadEncodingOptions["quality"].is_floating())
       {
 
-         encodingoptions.m_iQuality = (int)(payloadEncodingOptions["quality"].as_double() * 100.0);
+         encodingoptions.m_iQuality = (::i32)(payloadEncodingOptions["quality"].as_f64() * 100.0);
 
       }
       else if (payloadEncodingOptions["quality"].is_integer())

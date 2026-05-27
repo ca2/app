@@ -10,29 +10,29 @@ namespace opengl
 
 
 
-   inline void color(unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue, unsigned char u8Opacity)
+   inline void color(::u8 u8Red, ::u8 u8Green, ::u8 u8Blue, ::u8 u8Opacity)
    {
 
-      //auto fr = (float)r * (float)a / 65355.f;
-      //auto fg = (float)g * (float)a / 65355.f;
-      //auto fb = (float)b * (float)a / 65355.f;
-      //auto f32Red = (float)(u8Red * u8Opacity) / (255.f * 255.f);
-      //auto f32Green = (float)(u8Green * u8Opacity) / (255.f * 255.f);
-      //auto f32Blue = (float)(u8Blue * u8Opacity) / (255.f * 255.f);
+      //auto fr = (::f32)r * (::f32)a / 65355.f;
+      //auto fg = (::f32)g * (::f32)a / 65355.f;
+      //auto fb = (::f32)b * (::f32)a / 65355.f;
+      //auto f32Red = (::f32)(u8Red * u8Opacity) / (255.f * 255.f);
+      //auto f32Green = (::f32)(u8Green * u8Opacity) / (255.f * 255.f);
+      //auto f32Blue = (::f32)(u8Blue * u8Opacity) / (255.f * 255.f);
       
       
-      auto f32Opacity = (float)u8Opacity / 255.f;
-      auto f32Red = (float)(u8Red * u8Opacity) / (255.f * 255.f);
-      auto f32Green = (float)(u8Green * u8Opacity) / (255.f * 255.f);
-      auto f32Blue = (float)(u8Blue * u8Opacity) / (255.f*255.f);
+      auto f32Opacity = (::f32)u8Opacity / 255.f;
+      auto f32Red = (::f32)(u8Red * u8Opacity) / (255.f * 255.f);
+      auto f32Green = (::f32)(u8Green * u8Opacity) / (255.f * 255.f);
+      auto f32Blue = (::f32)(u8Blue * u8Opacity) / (255.f*255.f);
       
   /*    
-      auto f32Opacity = (float)u8Opacity / 255.f;
-      auto f32Red = (float)(u8Red) / (255.f);
-      auto f32Green = (float)(u8Green) / (255.f);
-      auto f32Blue = (float)(u8Blue) / (255.f);
+      auto f32Opacity = (::f32)u8Opacity / 255.f;
+      auto f32Red = (::f32)(u8Red) / (255.f);
+      auto f32Green = (::f32)(u8Green) / (255.f);
+      auto f32Blue = (::f32)(u8Blue) / (255.f);
       */
-      //auto f32Opacity = (float)u8Opacity / 255.f;
+      //auto f32Opacity = (::f32)u8Opacity / 255.f;
 
       //::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 
@@ -44,10 +44,10 @@ namespace opengl
    {
 
       ::opengl::color(
-         color.m_uchRed,
-         color.m_uchGreen,
-         color.m_uchBlue,
-         color.m_uchOpacity);
+         color.m_u8Red,
+         color.m_u8Green,
+         color.m_u8Blue,
+         color.m_u8Opacity);
 
    }
 
@@ -59,10 +59,10 @@ inline void opengl_color(::color::color color)
 {
 
    ::opengl::color(
-      color.byte_red(),
-      color.byte_green(),
-      color.byte_blue(),
-      color.byte_opacity());
+      color.u8_red(),
+      color.u8_green(),
+      color.u8_blue(),
+      color.u8_opacity());
 
 }
 

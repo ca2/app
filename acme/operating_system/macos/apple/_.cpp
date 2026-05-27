@@ -17,8 +17,8 @@
 //aaa_//#include "acme/operating_system/_.h"
 //#include "acme/operating_system/_os.h"
 //#include "acme/update.h"
-//char * ns_realpath(const ::file::path & path);
-//char * mm_ca2_command_line();
+//char_pointer ns_realpath(const ::file::path & path);
+//char_pointer mm_ca2_command_line();
 
 
 #include "acme/_operating_system.h"
@@ -94,7 +94,7 @@ void ReleaseDispatch(void * p)
 static bool g_bRunSystem = false;
 
 
-int defer_run_system()
+::i32 defer_run_system()
 {
 
    if(g_bRunSystem)
@@ -113,7 +113,7 @@ int defer_run_system()
 }
 
 
-//int defer_run_system(const ::file::path & path)
+//::i32 defer_run_system(const ::file::path & path)
 //{
 //
 //   return __start_system_with_file(scopedstrFileName);
@@ -121,7 +121,7 @@ int defer_run_system()
 //}
 //
 //
-//int defer_run_system(char ** pszaFileName, int iFileCount)
+//::i32 defer_run_system(char_pointer * pszaFileName, ::i32 iFileCount)
 //{
 //
 //   return __start_system_with_file((const_char_pointer *) pszaFileName, iFileCount);
@@ -130,7 +130,7 @@ int defer_run_system()
 //
 
 
-char * ns_get_executable_path();
+char_pointer ns_get_executable_path();
 
 string apple_get_executable_path()
 {
@@ -164,12 +164,12 @@ string apple_get_executable_path()
 //}
 
 //// iMillisDelay default 500ms good
-//void apple_accumulate_on_open_file(const_char_pointer *psza, int iCount, const ::scoped_string & scopedstrExtra)
+//void apple_accumulate_on_open_file(const_char_pointer *psza, ::i32 iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
 //   string_array_base stra;
 //
-//   stra.c_add((char **) psza, iCount, false);
+//   stra.c_add((char_pointer *) psza, iCount, false);
 //
 //   for(::collection::index i = 0; i < stra.get_count(); i++)
 //   {
@@ -196,7 +196,7 @@ string apple_get_executable_path()
 
 
 
-//void apple_on_open_file(const_char_pointer *psza, int iCount, const ::scoped_string & scopedstrExtra)
+//void apple_on_open_file(const_char_pointer *psza, ::i32 iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
 //   if(iCount <= 0)
@@ -220,7 +220,7 @@ string apple_get_executable_path()
 //
 //      string_array_base stra;
 //
-//      stra.c_add((char **) psza, iCount, false);
+//      stra.c_add((char_pointer *) psza, iCount, false);
 //
 //      ::acmeacmesystem()->on_open_file(stra, pszExtra);
 //
@@ -241,7 +241,7 @@ string apple_get_executable_path()
 
    //return ::string_from_strdup(ns_realpath(path));
 
-   char sz[4096];
+   ::i8 sz[4096];
 
    zero(sz);
 
@@ -259,7 +259,7 @@ string apple_get_executable_path()
 }
 
 
-//int is_window(oswindow window)
+//::i32 is_window(oswindow window)
 //{
 //   return (window == nullptr) ? false : (window->get_user_interaction() != nullptr);
 //}
@@ -267,7 +267,7 @@ string apple_get_executable_path()
 //
 //
 //
-//int show_window(::acme::windowing::window * pacmewindowingwindow, int iShow)
+//::i32 show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow)
 //{
 //   
 //   if(::is_null(oswindow))
@@ -460,7 +460,7 @@ string apple_get_executable_path()
 //
 //   {
 //
-//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //      //
 //      //         if(str.has_character())
 //      //         {
@@ -470,7 +470,7 @@ string apple_get_executable_path()
 //      //         }
 //      //
 //      //
-//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //      //
 //      //         if(str.has_character())
 //      //         {

@@ -80,7 +80,7 @@ namespace platform
 
       //virtual bool is_session() const override;
 
-      //void construct(::particle * pparticle, int iPhase) override;
+      //void construct(::particle * pparticle, ::i32 iPhase) override;
 
       // virtual void process_init() override;
       //
@@ -118,7 +118,7 @@ namespace platform
       //virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
 
       // Long PhRESSing time
-      // time in ::times that a pressing is considered a double click
+      // time in ::times that a pressing is considered a ::f64 click
       //virtual ::u32 get_Long_PhRESSing_time() override;
 
       //virtual void defer_initialize_user_presence();
@@ -404,8 +404,8 @@ namespace platform
 
 
       //virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
-      //virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
-      //virtual bool get_double(const ::user::interaction* pinteraction, double & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      //virtual bool get_int(const ::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      //virtual bool get_double(const ::user::interaction* pinteraction, ::f64 & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
       //virtual ::user::style * user_style();
 
 

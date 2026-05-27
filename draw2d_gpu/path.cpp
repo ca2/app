@@ -40,15 +40,15 @@ namespace draw2d_gpu
    //}
 
 
-   double_point path::internal_last_point()
+   ::f64_point path::internal_last_point()
    {
 
       if(m_bHasPointInternal)
       {
 
-         //return double_point((int) m_pointInternal.X, (int) m_pointInternal.Y);
+         //return ::f64_point((::i32) m_pointInternal.X, (::i32) m_pointInternal.Y);
 
-         return double_point(0, 0);
+         return ::f64_point(0, 0);
 
       }
       else
@@ -90,7 +90,7 @@ namespace draw2d_gpu
       return true;
    }
 
-   bool path::internal_add_line(int x1, int y1, int x2, int y2)
+   bool path::internal_add_line(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
    {
 
       ////bool bOk1 = true;
@@ -115,7 +115,7 @@ namespace draw2d_gpu
    }
 
 
-   bool path::internal_add_rect(int x,int y,int cx,int cy)
+   bool path::internal_add_rect(::i32 x,::i32 y,::i32 cx,::i32 cy)
    {
 
       //plusplus::i32_rectangle i32_rectangle(x,y,cx,cy);
@@ -128,7 +128,7 @@ namespace draw2d_gpu
       return true;
    }
 
-   bool path::internal_add_line(int x, int y)
+   bool path::internal_add_line(::i32 x, ::i32 y)
    {
 
       //bool bOk1 = true;
@@ -151,7 +151,7 @@ namespace draw2d_gpu
    }
 
 
-   double_point path::internal_current_point()
+   ::f64_point path::internal_current_point()
    {
 
       return m_pointLast;
@@ -159,7 +159,7 @@ namespace draw2d_gpu
    }
 
 
-   bool path::internal_add_move(int x, int y)
+   bool path::internal_add_move(::i32 x, ::i32 y)
    {
 
       m_pointLast.x = x;
@@ -171,7 +171,7 @@ namespace draw2d_gpu
    }
 
 
-   bool path::internal_add_rect(double x,double y,double cx,double cy)
+   bool path::internal_add_rect(::f64 x,::f64 y,::f64 cx,::f64 cy)
    {
 
       return true;
@@ -179,7 +179,7 @@ namespace draw2d_gpu
    }
 
 
-   bool path::internal_add_move(double x,double y)
+   bool path::internal_add_move(::f64 x,::f64 y)
    {
 
       return true;
@@ -195,7 +195,7 @@ namespace draw2d_gpu
 
 
 
-   bool path::internal_add_arc(const ::i32_rectangle & rectangle, double iStart, double iAngle)
+   bool path::internal_add_arc(const ::i32_rectangle & rectangle, ::f64 iStart, ::f64 iAngle)
    {
 
       return true;
@@ -203,7 +203,7 @@ namespace draw2d_gpu
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_arc& parc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_arc& parc)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -213,7 +213,7 @@ namespace draw2d_gpu
    }
 
         
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_line& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_line& pline)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -233,7 +233,7 @@ namespace draw2d_gpu
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_lines& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_lines& pline)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -253,7 +253,7 @@ namespace draw2d_gpu
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_rectangle & prectangle)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_rectangle & prectangle)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -263,7 +263,7 @@ namespace draw2d_gpu
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::double_rectangle& prectangle)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::f64_rectangle& prectangle)
    //{
 
    //   throw ::exception(todo("::opengl::path"));
@@ -273,7 +273,7 @@ namespace draw2d_gpu
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& ppolygon)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_polygon& ppolygon)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -283,7 +283,7 @@ namespace draw2d_gpu
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& ppolygond)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::f64_polygon& ppolygond)
    //{
 
    //   throw ::exception(todo("::opengl::path"));

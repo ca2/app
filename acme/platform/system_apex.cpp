@@ -280,7 +280,7 @@ namespace platform
    // }
 
 
-   int apex_system_layer::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1, int i2, const ::scoped_string & scopedstr2,
+   ::i32 apex_system_layer::_001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1, ::i32 i2, const ::scoped_string & scopedstr2,
                                             const ::scoped_string & scopedstr3,
                                             va_list args)
    {
@@ -288,20 +288,20 @@ namespace platform
    }
 
 
-   int apex_system_layer::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber,
+   ::i32 apex_system_layer::_debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFilename, ::i32 iLinenumber,
                                                 const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
    {
       return 0;
    }
 
 
-   bool apex_system_layer::assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
+   bool apex_system_layer::assert_failed_line(const ::scoped_string & scopedstrFileName, ::i32 iLine)
    {
       return false;
    }
 
 
-   bool apex_system_layer::on_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
+   bool apex_system_layer::on_assert_failed_line(const ::scoped_string & scopedstrFileName, ::i32 iLine)
    {
       return false;
    }
@@ -345,7 +345,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::install_progress_add_up(int iAddUp)
+   void apex_system_layer::install_progress_add_up(::i32 iAddUp)
    {
    }
 
@@ -521,7 +521,7 @@ namespace platform
    }
 
 
-   ::lresult apex_system_layer::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
+   ::lresult apex_system_layer::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    {
       
       return 0;
@@ -569,12 +569,12 @@ namespace platform
    }
 
 
-   void apex_system_layer::application_main(int argc, char* argv[], const ::scoped_string & scopedstrCommandLine)
+   void apex_system_layer::application_main(::i32 argc, char_pointer argv[], const ::scoped_string & scopedstrCommandLine)
    {
    }
 
 
-   int apex_system_layer::console_end(::e_status estatus)
+   ::i32 apex_system_layer::console_end(::e_status estatus)
    {
       return 0;
    }

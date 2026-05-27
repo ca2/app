@@ -34,7 +34,7 @@ namespace dynamic_source
       ::cast < script_interface >                        m_pinstanceParent1;
       ::cast < script >                                  m_pscript1;
 
-      int                                                m_iDebug;
+      ::i32                                                m_iDebug;
 
       ::payload                                          m_varRet;
 
@@ -140,7 +140,7 @@ namespace dynamic_source
       ::payload query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
 
 
-      virtual ::pointer < ::file::listing > folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing);
+      virtual ::pointer < ::file::listing > folder_enumerate(::i32 iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing);
 
 
 

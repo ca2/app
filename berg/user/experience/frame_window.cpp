@@ -459,7 +459,7 @@ namespace experience
    void frame_window::message_handler(::message::message * pusermessage)
    {
 
-      //      int iMessage = pusermessage->id();
+      //      ::i32 iMessage = pusermessage->id();
 
 
             //if (pusermessage->id() == WM_GETTEXT)
@@ -2418,7 +2418,7 @@ namespace experience
 
       auto psystem = system();
 
-      double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
+      ::f64 dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((::f64)rectangle.area() / (::f64)rectangleWorkspace.area()));
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {

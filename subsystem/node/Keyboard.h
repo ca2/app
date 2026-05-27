@@ -53,21 +53,21 @@ namespace subsystem
        * @param state [out] array of 256 virtual key states.
        * @throws SystemException on error.
        */
-      virtual void getState(unsigned char state[256]) = 0;
+      virtual void getState(::u8 state[256]) = 0;
 
       /**
        * Sets current keyboard state.
        * @param state array of 256 virtual key states.
        * @throws SystemException on error.
        */
-      virtual void setState(unsigned char state[256]) = 0;
+      virtual void setState(::u8 state[256]) = 0;
 
       /**
        * Check if specified key is in pressed state.
        * @param vkCode virtual code of key.
        * @return true if key is pressed, false if released.
        */
-      virtual bool isKeyPressed(unsigned char vkCode) = 0;
+      virtual bool isKeyPressed(::u8 vkCode) = 0;
 
    };
 
@@ -92,7 +92,7 @@ namespace subsystem
        * @param state [out] array of 256 virtual key states.
        * @throws SystemException on error.
        */
-      void getState(unsigned char state[256]) override
+      void getState(::u8 state[256]) override
        {
           m_pkeyboard->getState(state);
        }
@@ -102,7 +102,7 @@ namespace subsystem
        * @param state array of 256 virtual key states.
        * @throws SystemException on error.
        */
-      void setState(unsigned char state[256]) override
+      void setState(::u8 state[256]) override
        {
           m_pkeyboard->setState(state);
        }
@@ -112,7 +112,7 @@ namespace subsystem
        * @param vkCode virtual code of key.
        * @return true if key is pressed, false if released.
        */
-      bool isKeyPressed(unsigned char vkCode) override
+      bool isKeyPressed(::u8 vkCode) override
        {
           return m_pkeyboard->isKeyPressed(vkCode);
        }

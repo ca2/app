@@ -84,7 +84,7 @@ namespace subsystem
 
       // Remove bad characters.
 
-      const char badCharacters[] = { 10, 13, '\n', '\t', '\0' };
+      const ::i8 badCharacters[] = { 10, 13, '\n', '\t', '\0' };
 
       strErrorMessage.erase_any_character_in(badCharacters);
 

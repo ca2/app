@@ -48,7 +48,7 @@ namespace console
 
             auto pplatform = psystem;
 
-            for (int i = 0; i < pplatform->get_argument_count1(); i++)
+            for (::i32 i = 0; i < pplatform->get_argument_count1(); i++)
             {
 
                string strArgument = pplatform->get_argument1(i);

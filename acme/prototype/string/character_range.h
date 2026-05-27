@@ -35,7 +35,7 @@ inline const TYPE & for_copy(TYPE && t)
 //
 //
 // //template < character_count n >
-// //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
+// //scoped_string_base(const ::i8 (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
 // //template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
 // template < typename RANGE, typename ITERATOR_TYPE >
 // RANGE & create_string(RANGE & range, ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
@@ -450,7 +450,7 @@ struct character_decay_struct
 template< >
 struct character_decay_struct < ansi_character >
 {
-   typedef char type;
+   typedef ::i8 type;
 };
 
 #if defined(WINDOWS)
@@ -521,12 +521,12 @@ using character_decay = typename character_decay_struct<T>::type;
 //#include <type_traits>
 //
 //template <typename ITERATOR_TYPE>
-//struct std::formatter<::character_range<ITERATOR_TYPE>, char>
+//struct std::formatter<::character_range<ITERATOR_TYPE>, ::i8>
 //{
 //
 //   using character_type_check = ::character_decay < ::non_pointer < ::non_const < ITERATOR_TYPE > > >;
 //
-//   std::formatter<::std::string_view, char> base;
+//   std::formatter<::std::string_view, ::i8> base;
 //
 //   // Must be exactly std::format_parse_context&
 //   constexpr auto parse(std::format_parse_context& ctx) {
@@ -535,8 +535,8 @@ using character_decay = typename character_decay_struct<T>::type;
 //
 //   template <typename FormatContext>
 //   auto format(const ::character_range<ITERATOR_TYPE>& range, FormatContext& ctx) const {
-//      static_assert(std::is_same_v<character_type_check, char>,
-//         "FormatContext char_type must match formatter char");
+//      static_assert(std::is_same_v<character_type_check, ::i8>,
+//         "FormatContext char_type must match formatter ::i8");
 //      ::std::string_view sv(range.begin(), range.end());
 //      return base.format(sv, ctx);
 //   }
@@ -556,7 +556,7 @@ using character_decay = typename character_decay_struct<T>::type;
 //   template <typename FormatContext>
 //   auto format(const ::character_range<ITERATOR_TYPE>& range, FormatContext& ctx) const {
 //      static_assert(std::is_same_v<character_type_check, wchar_t>,
-//         "FormatContext char_type must match formatter char");
+//         "FormatContext char_type must match formatter ::i8");
 //      ::std::wstring_view sv(range.begin(), range.end());
 //      return base.format(sv, ctx);
 //   }
@@ -636,7 +636,7 @@ inline void test_u03485203845()
    a.m_end = a.m_begin + strlen(a.m_begin);
    a.m_erange = e_range_string_literal;
 
-   //::std::basic_format_string<char, character_range<const ansi_character*>&>::basic_format_string<char[11]>(const _Ty(&));
+   //::std::basic_format_string<::i8, character_range<const ansi_character*>&>::basic_format_string<::i8[11]>(const _Ty(&));
 
    auto str = ::std::format("test is {}", a);
 

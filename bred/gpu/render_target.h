@@ -77,13 +77,13 @@ namespace gpu
       virtual void on_create_render_target_texture(::gpu::texture_attributes & textureattributes, ::gpu::texture_flags & textureflags);
 
 
-      virtual int get_frame_index();
-      virtual int get_frame_count();
+      virtual ::i32 get_frame_index();
+      virtual ::i32 get_frame_count();
 
-      //virtual int get_image_index() const;
-      virtual int imageCount();
-      virtual int width();
-      virtual int height();
+      //virtual ::i32 get_image_index() const;
+      virtual ::i32 imageCount();
+      virtual ::i32 width();
+      virtual ::i32 height();
 
 
       virtual void initialize_render_target_image(::gpu::texture *pgputexture);

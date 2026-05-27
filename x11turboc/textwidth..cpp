@@ -34,8 +34,8 @@
 
 //----------------------------------------------------------------------------
 
-int
-textwidth (char * textstring)
+::i32
+textwidth (char_pointer textstring)
 {
   // Handle the bitmapped font separately, since it's so easy.
   if (TcTextFont == DEFAULT_FONT)
@@ -47,8 +47,8 @@ textwidth (char * textstring)
 
 //----------------------------------------------------------------------------
 
-int
-textheight (char * textstring)
+::i32
+textheight (char_pointer textstring)
 {
   // Handle the bitmapped font separately, since it's so easy.
   if (TcTextFont == DEFAULT_FONT)

@@ -171,7 +171,7 @@ namespace write_text
 
    ::collection::index glyph_set::add(class glyph * pglyph)
    {
-      iptr i = (int)pointer_array < class glyph >::add(pglyph);
+      iptr i = (::i32)pointer_array < class glyph >::add(pglyph);
       quick_sort();
       return i;
    }

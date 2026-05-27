@@ -28,19 +28,28 @@ brush::~brush()
 
 
 
+void brush::create_solid_brush(const ::color::color& color)
+{
+
+
+   throw ::interface_only();
+
+
+}
 
 
 
-   ::pointer<brush> create_solid_brush(::particle * pparticle, color32_t color)
-   {
 
-      ::pointer<brush> pbrush(e_create, pparticle, nullptr);
+   //::pointer<brush> create_solid_brush(::particle * pparticle, color32_t color)
+   //{
 
-      pbrush->m_color = color;
+   //   ::pointer<brush> pbrush(e_create, pparticle, nullptr);
 
-      return pbrush;
+   //   pbrush->m_color = color;
 
-   }
+   //   return pbrush;
+
+   //}
 
 
 

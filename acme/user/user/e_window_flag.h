@@ -83,7 +83,7 @@ DECLARE_ENUMERATION(e_window_flag, enum_window_flag);
 //   }
 //
 //
-//   ewindowflag& operator ++(int)
+//   ewindowflag& operator ++(::i32)
 //   {
 //
 //      m_ewindowflag = (enum_window_flag)((::i64) m_ewindowflag + 1);

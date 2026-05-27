@@ -171,7 +171,7 @@ namespace fs
 
 
 
-   int raw_folder::is_dir(const ::file::path & path)
+   ::i32 raw_folder::is_dir(const ::file::path & path)
    {
 
       return directory()->is(raw_path(path)) ? 1 : 0;
@@ -226,7 +226,7 @@ namespace fs
    //}
 
 
-   //string raw_folder::eat_end_level(const ::file::path & path, int iCount)
+   //string raw_folder::eat_end_level(const ::file::path & path, ::i32 iCount)
    //{
 
    //   string strPath(scopedstrPath);

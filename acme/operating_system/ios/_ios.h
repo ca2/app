@@ -15,8 +15,8 @@
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-//CLASS_DECL_ACME void __trace_message(const_char_pointer lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_ACME void __trace_message(const_char_pointer lpszPrefix, MESSAGE * lpmsg);
+//CLASS_DECL_ACME void __trace_message(const_char_pointer pszPrefix, ::message::message * pmessage);
+//CLASS_DECL_ACME void __trace_message(const_char_pointer pszPrefix, MESSAGE * lpmsg);
 
 //#include "implementation.h"
 //#include "directory_system.h"
@@ -60,12 +60,12 @@
 
 
 
-int CLASS_DECL_ACME __ios_main(int argc, char * argv[]);
+::i32 CLASS_DECL_ACME __ios_main(::i32 argc, char_pointer argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const_char_pointer lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
 
-CLASS_DECL_ACME ::file::exception * get_FileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const_char_pointer lpszFileName = nullptr);
+CLASS_DECL_ACME ::file::exception * get_FileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
 
 
 
@@ -77,7 +77,7 @@ namespace ios
 
    class IOS
    {
-      int function();
+      ::i32 function();
    };
 
 

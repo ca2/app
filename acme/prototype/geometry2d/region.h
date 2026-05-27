@@ -23,8 +23,8 @@ namespace geometry2d
       //public:
 
       //   virtual void translate(const ::i32_point & point);
-      //   virtual void expand_bounding_box(::double_rectangle & rectangle);
-      //   virtual bool internal_contains(const ::double_point & p);
+      //   virtual void expand_bounding_box(::f64_rectangle & rectangle);
+      //   virtual bool internal_contains(const ::f64_point & p);
 
       //};
 
@@ -34,11 +34,11 @@ namespace geometry2d
       //{
       //public:
 
-      //   ::double_rectangle m_rectangle;
+      //   ::f64_rectangle m_rectangle;
 
       //   void translate(const ::i32_point & point) override;
-      //   void expand_bounding_box(::double_rectangle & rectangle) override;
-      //   bool internal_contains(const ::double_point & p) override;
+      //   void expand_bounding_box(::f64_rectangle & rectangle) override;
+      //   bool internal_contains(const ::f64_point & p) override;
 
       //};
 
@@ -48,11 +48,11 @@ namespace geometry2d
       //public:
 
 
-      //   ::double_rectangle m_rectangle;
+      //   ::f64_rectangle m_rectangle;
 
       //   void translate(const ::i32_point & point) override;
-      //   void expand_bounding_box(::double_rectangle & rectangle) override;
-      //   bool internal_contains(const ::double_point & p) override;
+      //   void expand_bounding_box(::f64_rectangle & rectangle) override;
+      //   bool internal_contains(const ::f64_point & p) override;
 
 
 
@@ -63,13 +63,13 @@ namespace geometry2d
       //{
       //public:
 
-      //   ::double_polygon m_polygon;
+      //   ::f64_polygon m_polygon;
       //   ::draw2d::enum_fill_mode            m_efillmode;
 
 
       //   void translate(const ::i32_point & point) override;
-      //   void expand_bounding_box(::double_rectangle & rectangle) override;
-      //   bool internal_contains(const ::double_point & p) override;
+      //   void expand_bounding_box(::f64_rectangle & rectangle) override;
+      //   bool internal_contains(const ::f64_point & p) override;
 
 
       //};
@@ -80,12 +80,12 @@ namespace geometry2d
       //{
       //public:
 
-      //   pointer_array < ::double_polygon > m_polygona;
+      //   pointer_array < ::f64_polygon > m_polygona;
       //   ::draw2d::enum_fill_mode            m_efillmode;
 
       //   void translate(const ::i32_point & point) override;
-      //   void expand_bounding_box(::double_rectangle & rectangle) override;
-      //   bool internal_contains(const ::double_point & p) override;
+      //   void expand_bounding_box(::f64_rectangle & rectangle) override;
+      //   bool internal_contains(const ::f64_point & p) override;
 
 
       //};
@@ -95,15 +95,15 @@ namespace geometry2d
       //{
       //public:
 
-      //   pointer_array < ::double_polygon >         m_polygon;
+      //   pointer_array < ::f64_polygon >         m_polygon;
 
       //   ::pointer<::geometry2d::region>     m_pregion1;
       //   ::pointer<::geometry2d::region>     m_pregion2;
       //   ::draw2d::enum_combine              m_ecombine;
 
       //   void translate(const ::i32_point & point) override;
-      //   void expand_bounding_box(::double_rectangle & rectangle) override;
-      //   bool internal_contains(const ::double_point & p) override;
+      //   void expand_bounding_box(::f64_rectangle & rectangle) override;
+      //   bool internal_contains(const ::f64_point & p) override;
 
 
 
@@ -116,13 +116,13 @@ namespace geometry2d
       //public:
 
 
-      //   ::double_rectangle   m_rectangle;
-      //   ::double_size        m_sizeRadius;
+      //   ::f64_rectangle   m_rectangle;
+      //   ::f64_size        m_sizeRadius;
 
 
       //   void translate(const ::i32_point & point) override;
-      //   void expand_bounding_box(::double_rectangle & rectangle) override;
-      //   bool internal_contains(const ::double_point & p) override;
+      //   void expand_bounding_box(::f64_rectangle & rectangle) override;
+      //   bool internal_contains(const ::f64_point & p) override;
 
       //};
 
@@ -143,48 +143,48 @@ namespace geometry2d
       region & operator = (const region & regionSrc);
 
 
-      virtual bool create_rectangle(const ::double_rectangle & rectangle);
+      virtual bool create_rectangle(const ::f64_rectangle & rectangle);
 
-      virtual bool create_ellipse(const ::double_ellipse & ellipse);
+      virtual bool create_ellipse(const ::f64_ellipse & ellipse);
 
-      virtual bool create_polygon(const ::i32_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+      virtual bool create_polygon(const ::i32_point * pPoints, ::i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
-      virtual bool create_polygon(const ::double_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+      virtual bool create_polygon(const ::f64_point * pPoints, ::i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
-      virtual bool create_polygon(const double_polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+      virtual bool create_polygon(const f64_polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
-      virtual bool create_poly_polygon(const ::double_point * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode);
+      virtual bool create_poly_polygon(const ::f64_point * pPoints, const ::i32 * lpPolyCounts, ::i32 nCount, ::draw2d::enum_fill_mode efillmode);
 
-      virtual bool create_poly_polygon(const ::i32_point * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode);
+      virtual bool create_poly_polygon(const ::i32_point * pPoints, const ::i32 * lpPolyCounts, ::i32 nCount, ::draw2d::enum_fill_mode efillmode);
 
-      virtual bool create_poly_polygon(const double_poly_polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+      virtual bool create_poly_polygon(const f64_poly_polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
 
       virtual bool combine(const ::geometry2d::region * prgn1, const ::geometry2d::region * prgn2, ::draw2d::enum_combine ecombine);
-      virtual bool translate(const ::double_point & point);
-      virtual bool get_bounding_box(::double_rectangle & rectangle);
+      virtual bool translate(const ::f64_point & point);
+      virtual bool get_bounding_box(::f64_rectangle & rectangle);
 
 
 
       //virtual bool contains(const ::i32_point & point);
-      virtual bool contains(const ::double_point & point);
+      virtual bool contains(const ::f64_point & point);
 
 
-      bool internal_contains(const ::double_point & point);
+      bool internal_contains(const ::f64_point & point);
 
-      bool internal_rectangle_contains(const ::double_point & point);
+      bool internal_rectangle_contains(const ::f64_point & point);
 
-      bool internal_ellipse_contains(const ::double_point & point);
+      bool internal_ellipse_contains(const ::f64_point & point);
 
-      bool internal_polygon_contains(const ::double_point & point);
+      bool internal_polygon_contains(const ::f64_point & point);
 
-      bool internal_poly_polygon_contains(const ::double_point & point);
+      bool internal_poly_polygon_contains(const ::f64_point & point);
 
-      bool internal_combine_contains(const ::double_point & point);
+      bool internal_combine_contains(const ::f64_point & point);
 
 
 
-      //bool internal_contains(const ::double_point & point);
+      //bool internal_contains(const ::f64_point & point);
 
  
 
@@ -192,7 +192,7 @@ namespace geometry2d
 
     
 
-      virtual void expand_bounding_box(::double_rectangle & rectangle);
+      virtual void expand_bounding_box(::f64_rectangle & rectangle);
 
 
 

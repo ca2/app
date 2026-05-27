@@ -14,7 +14,7 @@ namespace draw2d
    public:
 
 
-      virtual void x_offset(double dx) = 0;
+      virtual void x_offset(::f64 dx) = 0;
 
    };
 
@@ -23,7 +23,7 @@ namespace draw2d
    {
    public:
 
-      virtual void y_offset(double dy) = 0;
+      virtual void y_offset(::f64 dy) = 0;
 
    };
 
@@ -44,14 +44,14 @@ namespace draw2d
       template < prototype_number NUMBER>
       x_offset& operator +=(NUMBER dx)
       {
-         m_pxoffsetable->x_offset((double) dx);
+         m_pxoffsetable->x_offset((::f64) dx);
          return *this;
       }
 
       template < prototype_number NUMBER>
       x_offset& operator -=(NUMBER dx)
       {
-         m_pxoffsetable->x_offset(-(double) dx);
+         m_pxoffsetable->x_offset(-(::f64) dx);
          return *this;
       }
 
@@ -74,7 +74,7 @@ namespace draw2d
       template < prototype_number NUMBER>
       y_offset& operator +=(NUMBER dy)
       {
-         m_pyoffsetable->y_offset((double) dy);
+         m_pyoffsetable->y_offset((::f64) dy);
          return *this;
       }
 
@@ -82,7 +82,7 @@ namespace draw2d
       template < prototype_number NUMBER>
       y_offset& operator -=(NUMBER dy)
       {
-         m_pyoffsetable->y_offset(-(double) dy);
+         m_pyoffsetable->y_offset(-(::f64) dy);
          return *this;
       }
 
@@ -96,8 +96,8 @@ namespace draw2d
    public:
 
       offsetable* m_poffsetable;
-      ::double_point m_point;
-      ::double_size m_size;
+      ::f64_point m_point;
+      ::f64_size m_size;
 
       offset_context(offsetable* poffsetable);
       ~offset_context();
@@ -113,12 +113,12 @@ namespace draw2d
          return this;
       }
 
-      virtual void x_offset(double dx);
-      virtual void y_offset(double dy);
-      virtual void offset(double dx, double dy);
-      virtual void shift_impact_area(double dx, double dy, double w, double h);
+      virtual void x_offset(::f64 dx);
+      virtual void y_offset(::f64 dy);
+      virtual void offset(::f64 dx, ::f64 dy);
+      virtual void shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h);
 
-      offset_context& operator +=(const ::double_size& size)
+      offset_context& operator +=(const ::f64_size& size)
       {
 
          offset(size.cx, size.cy);
@@ -127,7 +127,7 @@ namespace draw2d
 
       }
 
-      offset_context& operator -=(const ::double_size& size)
+      offset_context& operator -=(const ::f64_size& size)
       {
 
          offset(-size.cx, -size.cy);
@@ -137,7 +137,7 @@ namespace draw2d
       }
 
 
-      offset_context& operator +=(const ::double_rectangle& rectangle)
+      offset_context& operator +=(const ::f64_rectangle& rectangle)
       {
 
          shift_impact_area(rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
@@ -164,11 +164,11 @@ namespace draw2d
 
       virtual void _get(::draw2d::offset_context* poffsetcontext) = 0;
       virtual void _set(::draw2d::offset_context* poffsetcontext) = 0;
-      virtual void x_offset(double dx) = 0;
-      virtual void y_offset(double dy) = 0;
-      virtual void offset(double dx, double dy) = 0;
-      virtual void shift_impact_area(double dx, double dy, double w, double h) = 0;
-      //virtual void _set_impact_area(double w, double h) = 0;
+      virtual void x_offset(::f64 dx) = 0;
+      virtual void y_offset(::f64 dy) = 0;
+      virtual void offset(::f64 dx, ::f64 dy) = 0;
+      virtual void shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h) = 0;
+      //virtual void _set_impact_area(::f64 w, ::f64 h) = 0;
       //virtual void _apply_offset() = 0;
 
    };

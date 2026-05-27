@@ -104,7 +104,7 @@ namespace typeface_freetype
          //   if (file)
          //   {
 
-         //      path = (const char * ) file;
+         //      path = (const_char_pointer ) file;
 
          //   }
          //   else
@@ -162,20 +162,20 @@ namespace typeface_freetype
       ch.Size.x = m_face->glyph->bitmap.width;
       ch.Size.y = m_face->glyph->bitmap.rows;
 
-      int w = ch.Size.x;
-      int h = ch.Size.y;
+      ::i32 w = ch.Size.x;
+      ::i32 h = ch.Size.y;
 
       ::memory memory;
 
       memory.set_size(w*h*4);
 
-      auto rgba = (char *) memory.data();
+      auto rgba = (char_pointer ) memory.data();
 
-      for (int y = 0; y < h; ++y)
+      for (::i32 y = 0; y < h; ++y)
       {
-         for (int x = 0; x < w; ++x)
+         for (::i32 x = 0; x < w; ++x)
          {
-            unsigned char a = m_face->glyph->bitmap.buffer[y * m_face->glyph->bitmap.pitch + x];
+            ::u8 a = m_face->glyph->bitmap.buffer[y * m_face->glyph->bitmap.pitch + x];
             rgba[0] = a;
             rgba[1] = a;
             rgba[2] = a;
@@ -211,18 +211,18 @@ namespace typeface_freetype
       //// now store character for later use
       ////aracter = {
       //  //  texture,
-      int iAscender = m_face->size->metrics.ascender;
-      int iAscender2 = (iAscender + 32) >> 6;
-      int iVertAdvance = m_face->glyph->metrics.vertAdvance;
-      int iVertAdvance2 = (iVertAdvance + 32) >> 6;
-      int iBearingY = m_face->glyph->metrics.vertBearingY;
-      int iBearingY2 = (iBearingY + 32) >> 6;
+      ::i32 iAscender = m_face->size->metrics.ascender;
+      ::i32 iAscender2 = (iAscender + 32) >> 6;
+      ::i32 iVertAdvance = m_face->glyph->metrics.vertAdvance;
+      ::i32 iVertAdvance2 = (iVertAdvance + 32) >> 6;
+      ::i32 iBearingY = m_face->glyph->metrics.vertBearingY;
+      ::i32 iBearingY2 = (iBearingY + 32) >> 6;
 
-      char ch1 = *scopedstr.m_begin;
+      ::i8 ch1 = *scopedstr.m_begin;
 
       auto bitmap_top = m_face->glyph->bitmap_top;
 
-      ch.Size = {(int) m_face->glyph->bitmap.width, (int) m_face->glyph->bitmap.rows};
+      ch.Size = {(::i32) m_face->glyph->bitmap.width, (::i32) m_face->glyph->bitmap.rows};
       ch.Bearing = {m_face->glyph->bitmap_left, bitmap_top};
       ch.Advance = static_cast<::u32>(m_face->glyph->advance.x + 32) >> 6;
       //ch.h2 = m_iPixelSize- ch.Bearing.y;
@@ -231,7 +231,7 @@ namespace typeface_freetype
       ch.aHeight2 = m_iCapHeight - bitmap_top;
 
 //      //};
-//      //Characters.insert(std::pair<char, Character>(c, character));
+//      //Characters.insert(std::pair<::i8, Character>(c, character));
 //   //}
 //      glBindTexture(GL_TEXTURE_2D, 0);
 //      //}
@@ -259,7 +259,7 @@ namespace typeface_freetype
 //      //   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //
 //      //   // load first 128 characters of ASCII set
-//      //   for (unsigned char c = 0; c < 128; c++)
+//      //   for (::u8 c = 0; c < 128; c++)
 //      //   {
 //      //      // Load character glyph 
 //      //      if (FT_Load_Char(face, c, FT_LOAD_RENDER))
@@ -294,7 +294,7 @@ namespace typeface_freetype
 //      //          glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
 //      //          static_cast<::u32>(face->glyph->advance.x)
 //      //      };
-//      //      Characters.insert(std::pair<char, Character>(c, character));
+//      //      Characters.insert(std::pair<::i8, Character>(c, character));
 //      //   }
 //      //   glBindTexture(GL_TEXTURE_2D, 0);
 //      //}
@@ -331,8 +331,8 @@ namespace typeface_freetype
    // Configuration (match GDI+ behavior)
    // -----------------------------------------
 
-    double fontSizePt = m_iPixelSize;     // same value you passed to GDI+ Font
-    double dpiY       = 96.0;             // or get from system if you prefer
+    ::f64 fontSizePt = m_iPixelSize;     // same value you passed to GDI+ Font
+    ::f64 dpiY       = 96.0;             // or get from system if you prefer
    //
    // // Set character size in points (26.6 format)
    // FT_Error err = FT_Set_Char_Size(
@@ -355,29 +355,29 @@ namespace typeface_freetype
    // Raw font units
    // -----------------------------------------
 
-   double emHeight     = (double)m_face->units_per_EM;
-   double cellAscent   = (double)m_face->ascender;
-   double cellDescent  = (double)(-m_face->descender);
-   double lineSpacing  = (double)m_face->height;
+   ::f64 emHeight     = (::f64)m_face->units_per_EM;
+   ::f64 cellAscent   = (::f64)m_face->ascender;
+   ::f64 cellDescent  = (::f64)(-m_face->descender);
+   ::f64 lineSpacing  = (::f64)m_face->height;
 
    // -----------------------------------------
    // Convert to pixels (match your math)
    // -----------------------------------------
 
-   double ascentPx =
+   ::f64 ascentPx =
       fontSizePt * cellAscent * dpiY / (emHeight * 72.0 + 0.5);
 
-   double descentPx =
+   ::f64 descentPx =
       fontSizePt * cellDescent * dpiY / (emHeight * 72.0 + 0.5);
 
    // FreeType font height (already scaled)
-   double fontHeightPx =
+   ::f64 fontHeightPx =
       metrics.height / 64.0;
 
-   double lineSpacingPx =
+   ::f64 lineSpacingPx =
       fontSizePt * lineSpacing * dpiY / (emHeight * 72.0 + 0.5);
 
-   double effectiveLineSpacing =
+   ::f64 effectiveLineSpacing =
       std::max(fontHeightPx, lineSpacingPx);
 
    // -----------------------------------------

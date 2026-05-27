@@ -44,8 +44,8 @@ namespace gpu
       ::collection::index                    m_iCurrentImage = -1;
       ::collection::index                    m_iFrameSerial2 = -1;
       ::collection::count                    m_iFrameCount = 3;
-      int                                    m_iLayer;
-      int                                    m_iLayerCount;
+      ::i32                                    m_iLayer;
+      ::i32                                    m_iLayerCount;
       //::pointer < layer > m_playerComposing;
       //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
       ::pointer < ::pointer_array < layer > >     m_playera;
@@ -60,7 +60,7 @@ namespace gpu
       //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
       //::i32_size                             m_size;
-      //float                                  m_z;
+      //::f32                                  m_z;
       //i32_point                              m_pointTranslate;
       //::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
       //::pointer<::gpu::shader>               m_pshader;
@@ -75,7 +75,7 @@ namespace gpu
 
       //::pointer < ::mutex >                  m_pmutexOffscreen;
       //::i32_size                             m_sizeOffscreen;
-      //int                                    m_iScanOffscreen;
+      //::i32                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       enum_device_target                        m_edevicetarget;
       ::procedure_array                         m_procedureaOnTopFrameEnd;
@@ -108,8 +108,8 @@ namespace gpu
       //bool task_iteration() override;
       //void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
-      virtual pool_group* frame_pool_group(int iFrameIndex);
-      virtual ::pointer_array<::particle >* frame_particle_array(int iFrameIndex);
+      virtual pool_group* frame_pool_group(::i32 iFrameIndex);
+      virtual ::pointer_array<::particle >* frame_particle_array(::i32 iFrameIndex);
 
 
       virtual void defer_shader_memory(::memory &memory, const ::file::path &pathShader);
@@ -119,9 +119,9 @@ namespace gpu
 
       virtual void on_new_frame();
       virtual void on_end_frame();
-      virtual int get_frame_index3();
-      virtual int get_image_index();
-      virtual int get_frame_count();
+      virtual ::i32 get_frame_index3();
+      virtual ::i32 get_image_index();
+      virtual ::i32 get_frame_count();
       virtual void restart_frame_counter();
       virtual bool is_starting_frame()const;
 
@@ -236,7 +236,7 @@ namespace gpu
     
       virtual void on_top_end_frame();
 
-      virtual int get_type_size(::gpu::enum_type etype);
+      virtual ::i32 get_type_size(::gpu::enum_type etype);
 
       virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 

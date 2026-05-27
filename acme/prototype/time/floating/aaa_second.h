@@ -15,8 +15,8 @@
 //   constexpr floating_second_t(floating_second second = {}) : floating_second(second) {}
 //   floating_second_t(const class time & time);
 //
-//   integral_second integral_seconds() const { return (integral_second)((long long) m_d); }
-//   integral_nanosecond integral_nanoseconds() const { return (integral_nanosecond)((long long) (fmod(m_d, 1.0) * 1'000'000'000.0)); }
+//   integral_second integral_seconds() const { return (integral_second)((::i64) m_f64); }
+//   integral_nanosecond integral_nanoseconds() const { return (integral_nanosecond)((::i64) (fmod(m_f64, 1.0) * 1'000'000'000.0)); }
 //
 //
 //};
@@ -25,10 +25,10 @@
 //using floating_second = floating_time < floating_second_t >; 
 
 //
-//constexpr floating_second operator""_s(long double d) { return (floating_second)d; }
+//constexpr floating_second operator""_s(::f128 d) { return (floating_second)d; }
 
 
-inline floating_second get_floating_second() { return floating_second(get_floating_nanosecond().m_d / 1'000'000'000.0); }
+inline floating_second get_floating_second() { return floating_second(get_floating_nanosecond().m_f64 / 1'000'000'000.0); }
 
 
 

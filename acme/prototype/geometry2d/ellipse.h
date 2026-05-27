@@ -38,22 +38,22 @@ public:
 
       }
 
-      double x = point.x;
+      ::f64 x = point.x;
 
-      double y = point.y;
+      ::f64 y = point.y;
 
-      double Δx = x - center.x;
+      ::f64 Δx = x - center.x;
 
-      double Δy = y - center.y;
+      ::f64 Δy = y - center.y;
 
       if (radius.cx == radius.cy)
       {
 
-         double r = radius.cx;
+         ::f64 r = radius.cx;
 
-         double square_distance = (Δx * Δx) + (Δy * Δy);
+         ::f64 square_distance = (Δx * Δx) + (Δy * Δy);
 
-         double square_boundary = (r * r);
+         ::f64 square_boundary = (r * r);
 
          return square_distance <= square_boundary;
 
@@ -61,7 +61,7 @@ public:
       else
       {
 
-         double normal_distance = ((Δx * Δx) / (radius.cx * radius.cx) + (Δy * Δy) / (radius.cx * radius.cy));
+         ::f64 normal_distance = ((Δx * Δx) / (radius.cx * radius.cx) + (Δy * Δy) / (radius.cx * radius.cy));
 
          return normal_distance <= 1.0;
 

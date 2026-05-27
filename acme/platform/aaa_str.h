@@ -1,4 +1,4 @@
-// Change to static const char * by camilo on 2022-10-06 10:46 <3ThomasBorregaardSorensen!!
+// Change to static const_char_pointer by camilo on 2022-10-06 10:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
 //
@@ -10,27 +10,27 @@
 //   {
 //
 //
-//      static const char * UifsProtocol = "uifs://";
-//      static const char * IfsProtocol = "ifs://";
-//      static const char * HttpProtocol = "http://";
-//      static const char * HttpsProtocol = "https://";
-//      static const char * FsProtocol = "fs://";
-//      static const char * Slash = "/";
-//      static const char * DoubleBackSlash = "\\\\";
-//      static const char * sSystem = "system";
-//      static const char * ingSysCommand = "syscommand::";
-//      static const char * PassthroughUri = "/passthrough/";
-//      static const char * MatterUri = "/matter/";
-//      static const char * s200Space = "200 ";
-//      static const char * WwwDot = "www.";
-//      static const char * XMLPIOpen = "<?";
-//      static const char * XMLPIClose = "?>";
-//      static const char * XMLDOCTYPEOpen = "<!DOCTYPE";
-//      static const char * XMLDOCTYPEClose = ">";
-//      static const char * XMLCommentOpen = "<!--";
-//      static const char * XMLCommentClose = "-->";
-//      static const char * XMLCDATAOpen = "<![CDATA[";
-//      static const char * XMLCDATAClose = "]]>";
+//      static const_char_pointer UifsProtocol = "uifs://";
+//      static const_char_pointer IfsProtocol = "ifs://";
+//      static const_char_pointer HttpProtocol = "http://";
+//      static const_char_pointer HttpsProtocol = "https://";
+//      static const_char_pointer FsProtocol = "fs://";
+//      static const_char_pointer Slash = "/";
+//      static const_char_pointer DoubleBackSlash = "\\\\";
+//      static const_char_pointer sSystem = "system";
+//      static const_char_pointer ingSysCommand = "syscommand::";
+//      static const_char_pointer PassthroughUri = "/passthrough/";
+//      static const_char_pointer MatterUri = "/matter/";
+//      static const_char_pointer s200Space = "200 ";
+//      static const_char_pointer WwwDot = "www.";
+//      static const_char_pointer XMLPIOpen = "<?";
+//      static const_char_pointer XMLPIClose = "?>";
+//      static const_char_pointer XMLDOCTYPEOpen = "<!DOCTYPE";
+//      static const_char_pointer XMLDOCTYPEClose = ">";
+//      static const_char_pointer XMLCommentOpen = "<!--";
+//      static const_char_pointer XMLCommentClose = "-->";
+//      static const_char_pointer XMLCDATAOpen = "<![CDATA[";
+//      static const_char_pointer XMLCDATAClose = "]]>";
 //
 //
 //

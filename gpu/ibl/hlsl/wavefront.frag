@@ -42,16 +42,16 @@ float4 main(PS_INPUT input) : SV_TARGET
 
         PointLight light = pointLights[i];
         float3 directionToLight = light.position.xyz - input.fragPosWorld;
-        float attenuation = 1.0 / dot(directionToLight, directionToLight);
+        ::f32 attenuation = 1.0 / dot(directionToLight, directionToLight);
         directionToLight = normalize(directionToLight);
 
-        float cosAngIncidence = max(dot(surfaceNormal, directionToLight), 0.0f);
+        ::f32 cosAngIncidence = max(dot(surfaceNormal, directionToLight), 0.0f);
         float3 intensity = light.color.rgb * light.color.a * attenuation;
 
         diffuseLight += intensity * cosAngIncidence;
 
         float3 halfAngle = normalize(directionToLight + viewDirection);
-        float blinnTerm = dot(surfaceNormal, halfAngle);
+        ::f32 blinnTerm = dot(surfaceNormal, halfAngle);
         blinnTerm = saturate(blinnTerm);
         blinnTerm = pow(blinnTerm, 64.0f);
 

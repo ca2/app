@@ -45,7 +45,7 @@ namespace subsystem
    public:
 
 
-      //int m_iExitCode = 0;
+      //::i32 m_iExitCode = 0;
       /**
        * Creates WindowsApplication instance.
        * @param appInstance parameter that passed to WinMain.
@@ -111,14 +111,14 @@ namespace subsystem
       virtual void createApplicationMainTask() = 0;
 
 
-      //virtual void postMainThreadMessage(int iMainThreadMessage) = 0;
+      //virtual void postMainThreadMessage(::i32 iMainThreadMessage) = 0;
 
       // Fills the wndClass argument and registers new class name in the Windows.
       //virtual void registerWindowClass(WNDCLASS *wndClass);
 
       // Runs main messages process cycle. The run() function returns
       // value returned by this function.
-      //virtual int processMessages() = 0;
+      //virtual ::i32 processMessages() = 0;
 
       /**
        * Windows prodecure for main application window.
@@ -140,10 +140,10 @@ namespace subsystem
       //static ::comparable_list_base<HWND> m_modelessDialogList;
 
 
-       virtual int getExitCode() = 0;
+       virtual ::i32 getExitCode() = 0;
 
 
-      virtual void setExitCode(int iExitCode) = 0;
+      virtual void setExitCode(::i32 iExitCode) = 0;
 
       /// <summary>
       /// Callback Function
@@ -180,7 +180,7 @@ namespace subsystem
 
        ImplementCompositeWithCallbackø(OperatingSystemApplication, operatingsystemapplication);
 
-      //int m_iExitCode = 0;
+      //::i32 m_iExitCode = 0;
       /**
        * Creates WindowsApplication instance.
        * @param appInstance parameter that passed to WinMain.
@@ -286,14 +286,14 @@ namespace subsystem
 
       }
 
-      //void postMainThreadMessage(int iMainThreadMessage) override;
+      //void postMainThreadMessage(::i32 iMainThreadMessage) override;
 
       // Fills the wndClass argument and registers new class name in the Windows.
       //virtual void registerWindowClass(WNDCLASS *wndClass);
 
       // Runs main messages process cycle. The run() function returns
       // value returned by this function.
-      //int processMessages() override;
+      //::i32 processMessages() override;
 
       /**
        * Windows prodecure for main application window.
@@ -314,14 +314,14 @@ namespace subsystem
       //static LocalMutex m_MDLMutex; // Modeless dialog ::list_base mutex.
       //static ::comparable_list_base<HWND> m_modelessDialogList;
 
-      int getExitCode() override
+      ::i32 getExitCode() override
       {
 
          return m_poperatingsystemapplication->getExitCode();
 
       }
 
-      void setExitCode(int iExitCode) override
+      void setExitCode(::i32 iExitCode) override
       {
 
          m_poperatingsystemapplication->setExitCode(iExitCode);

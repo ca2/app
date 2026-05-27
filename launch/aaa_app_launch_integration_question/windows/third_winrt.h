@@ -44,7 +44,7 @@ namespace console_integration
 
       void install();
 
-      void speak(::index iIndex, ::index iCount, const ::scoped_string& scopedstrText, int iExitCode);
+      void speak(::index iIndex, ::index iCount, const ::scoped_string& scopedstrText, ::i32 iExitCode);
 
 
    };

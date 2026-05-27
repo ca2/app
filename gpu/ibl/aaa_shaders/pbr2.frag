@@ -65,13 +65,13 @@ cbuffer PushConsts : register(b1)
     int useTextureEmissive;
 
     float3 albedo;
-    float  metallic;
-    float  roughness;
-    float  ambientOcclusion;
+    ::f32  metallic;
+    ::f32  roughness;
+    ::f32  ambientOcclusion;
     float3 emissive;
 
     float3 cameraPosition;
-    float  bloomBrightnessCutoff;
+    ::f32  bloomBrightnessCutoff;
 }
 
 // ---------- Helper functions ----------
@@ -85,7 +85,7 @@ float3 getAlbedo(PSInput input)
     return a;
 }
 
-void getMetallicRoughness(PSInput input, out float m, out float r)
+void getMetallicRoughness(PSInput input, out ::f32 m, out ::f32 r)
 {
     m = metallic;
     r = roughness;
@@ -110,9 +110,9 @@ float3 getNormal(PSInput input)
     return n;
 }
 
-float getAO(PSInput input)
+::f32 getAO(PSInput input)
 {
-    float ao = ambientOcclusion;
+    ::f32 ao = ambientOcclusion;
     if (useTextureAmbientOcclusion != 0)
     {
         ao = textureAmbientOcclusion.Sample(samplerLinear, input.texCoord).r;
@@ -131,36 +131,36 @@ float3 getEmissive(PSInput input)
 }
 
 // PBR helper functions
-float3 fresnelSchlick(float cosTheta, float3 f0)
+float3 fresnelSchlick(::f32 cosTheta, float3 f0)
 {
     return f0 + (1.0f - f0) * pow(1.0f - cosTheta, 5.0f);
 }
 
-float3 fresnelSchlickRoughness(float cosTheta, float3 f0, float rough)
+float3 fresnelSchlickRoughness(::f32 cosTheta, float3 f0, ::f32 rough)
 {
     return f0 + (max(float3(1.0f - rough, 1.0f - rough, 1.0f - rough), f0) - f0) * pow(saturate(1.0f - cosTheta), 5.0f);
 }
 
-float ndfTrowbridgeReitzGGX(float3 n, float3 h, float rough)
+::f32 ndfTrowbridgeReitzGGX(float3 n, float3 h, ::f32 rough)
 {
-    float alpha = rough * rough;
-    float alpha2 = alpha * alpha;
-    float nDotH = max(dot(n,h),0);
-    float denom = nDotH*nDotH*(alpha2-1.0f)+1.0f;
+    ::f32 alpha = rough * rough;
+    ::f32 alpha2 = alpha * alpha;
+    ::f32 nDotH = max(dot(n,h),0);
+    ::f32 denom = nDotH*nDotH*(alpha2-1.0f)+1.0f;
     denom = PI * denom * denom;
     denom = max(denom,0.0001f);
     return alpha2 / denom;
 }
 
-float geometrySchlickGGX(float3 n, float3 v, float k)
+::f32 geometrySchlickGGX(float3 n, float3 v, ::f32 k)
 {
-    float nDotV = max(dot(n,v),0);
+    ::f32 nDotV = max(dot(n,v),0);
     return nDotV / (nDotV*(1.0f - k) + k);
 }
 
-float geometrySmith(float3 n, float3 v, float3 l, float rough)
+::f32 geometrySmith(float3 n, float3 v, float3 l, ::f32 rough)
 {
-    float k = (rough+1)*(rough+1)/8.0f;
+    ::f32 k = (rough+1)*(rough+1)/8.0f;
     return geometrySchlickGGX(n,v,k) * geometrySchlickGGX(n,l,k);
 }
 
@@ -170,11 +170,11 @@ float4 main(PSInput input) : SV_Target
     float3 worldPos = input.worldCoordinates;
     float3 albedoCol = getAlbedo(input);
 
-    float m, r;
+    ::f32 m, r;
     getMetallicRoughness(input, m, r);
 
     float3 n = getNormal(input);
-    float ao = getAO(input);
+    ::f32 ao = getAO(input);
     float3 e = getEmissive(input);
 
     float3 camPos = cameraPosition;
@@ -195,16 +195,16 @@ float4 main(PSInput input) : SV_Target
         float3 l = normalize(lightPos - worldPos);
         float3 h = normalize(v + l);
 
-        float dist = length(lightPos - worldPos);
-        float atten = 1.0f / max(dist*dist, 0.0001f);
+        ::f32 dist = length(lightPos - worldPos);
+        ::f32 atten = 1.0f / max(dist*dist, 0.0001f);
         float3 radiance = lightCol * atten;
 
-        float dTerm = ndfTrowbridgeReitzGGX(n,h,r);
+        ::f32 dTerm = ndfTrowbridgeReitzGGX(n,h,r);
         float3 fTerm = fresnelSchlick(max(dot(h,v),0), f0);
-        float gTerm = geometrySmith(n,v,l,r);
+        ::f32 gTerm = geometrySmith(n,v,l,r);
 
         float3 numerator = dTerm * fTerm * gTerm;
-        float denominator = 4.0f * max(dot(n,v),0) * max(dot(n,l),0);
+        ::f32 denominator = 4.0f * max(dot(n,v),0) * max(dot(n,l),0);
         float3 spec = numerator / max(denominator,0.001f);
 
         float3 kSpec = fTerm;
@@ -212,7 +212,7 @@ float4 main(PSInput input) : SV_Target
 
         float3 diff = kDiff * albedoCol / PI;
         float3 brdf = diff + spec;
-        float nDotL = max(dot(n,l),0);
+        ::f32 nDotL = max(dot(n,l),0);
 
         Lo += brdf * radiance * nDotL;
     }
@@ -225,7 +225,7 @@ float4 main(PSInput input) : SV_Target
     float3 diffuseIBL = irradiance * albedoCol;
 
     float3 prefilterColor = prefilteredEnvMap.SampleLevel(samplerLinear, rVec, r*4.0).rgb;
-    float NdotV = max(dot(n,v),0);
+    ::f32 NdotV = max(dot(n,v),0);
     float2 brdf = brdfConvolutionMap.Sample(samplerLinear, float2(NdotV,r)).rg;
     float3 specularIBL = prefilterColor * (kSpec * brdf.x + brdf.y);
 

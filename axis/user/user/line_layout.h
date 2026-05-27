@@ -25,7 +25,7 @@ namespace user
       enum_orientation        m_eorientation = e_orientation_none;
       enum_align_relative     m_ealignrelativeOrthogonal;
 
-      int m_iPadding = 2;
+      ::i32 m_iPadding = 2;
 
 
       line_layout();

@@ -45,7 +45,7 @@
 //} // namespace handle
 
 //
-//inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
+//inline ::pointer<::handle::ini>operator ""_pini(const_char_pointer psz, size_t s)
 //{
 //
 //   return allocateø ::handle::ini(string(scopedstr, s));

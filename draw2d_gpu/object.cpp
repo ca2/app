@@ -17,7 +17,7 @@ namespace draw2d_gpu
    }
    
    
-   int object::get_object(int nCount, void * lpObject) const
+   ::i32 object::get_object(::i32 nCount, void * lpObject) const
    { 
 
       //return ::GetObject(get_handle(), nCount, lpObject); 
@@ -26,7 +26,7 @@ namespace draw2d_gpu
    }
 
 
-   bool object::CreateStockObject(int nIndex)
+   bool object::CreateStockObject(::i32 nIndex)
    {
       //return (set_handle(::GetStockObject(nIndex))) != nullptr; 
       return 0;

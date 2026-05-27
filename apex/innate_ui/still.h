@@ -14,8 +14,8 @@ namespace innate_ui
    {
    public:
 
-      int m_iLayoutWidth = 0;
-      int m_iLayoutHeight = 0;
+      ::i32 m_iLayoutWidth = 0;
+      ::i32 m_iLayoutHeight = 0;
 
 
 
@@ -29,10 +29,10 @@ namespace innate_ui
       //virtual void create_child(window * pwindowParent);
 
       virtual void set(::simple_dialog_box_line * psimpledialogboxline);
-      virtual void set_font_size(double dSizeEm);
-      virtual void set_font_weight(int iWeight);
-      virtual int layout_width();
-      virtual int layout_height();
+      virtual void set_font_size(::f64 dSizeEm);
+      virtual void set_font_weight(::i32 iWeight);
+      virtual ::i32 layout_width();
+      virtual ::i32 layout_height();
       virtual void layout();
       //virtual void set_text(const ::scoped_string & scopedstr);
 

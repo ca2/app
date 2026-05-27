@@ -133,11 +133,11 @@ namespace experience_core
 
       ::draw2d::brush_pointer pbrushText;
 
-      static int iCurrentTab = -1;
+      static ::i32 iCurrentTab = -1;
 
-      int iTabWidth = 0;
+      ::i32 iTabWidth = 0;
 
-      int iTabHeight = 0;
+      ::i32 iTabHeight = 0;
 
       auto & pholdeeTab = pdata->m_pholdee;
 
@@ -147,7 +147,7 @@ namespace experience_core
 
       defer_construct_newø(pgroupTabTheme);
 
-      for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
+      for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
       {
 
          auto ppane = pdata->m_tabpanea[iPane].get();
@@ -1081,11 +1081,11 @@ namespace experience_core
 
       if (pdata->m_bVertical)
       {
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         int cx;
-         int cy;
-         for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
+         ::i32 iTabWidth = 16;
+         ::i32 iTabHeight = 8;
+         ::i32 cx;
+         ::i32 cy;
+         for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = pdata->m_tabpanea[iPane].get();
@@ -1097,7 +1097,7 @@ namespace experience_core
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1110,7 +1110,7 @@ namespace experience_core
 
             }
 
-            cx = (int) (size.cx + 2);
+            cx = (::i32) (size.cx + 2);
 
             if (!ppane->m_bPermanent)
             {
@@ -1126,7 +1126,7 @@ namespace experience_core
 
             }
 
-            cy = (int) ( size.cy + 2);
+            cy = (::i32) ( size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1183,18 +1183,18 @@ namespace experience_core
       else
       {
 
-         int iTabHeight = 16;
+         ::i32 iTabHeight = 16;
 
-         int cy;
+         ::i32 cy;
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
          //ptab->rectangle(rectangleX);
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
-         for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
+         ::i32 ixAdd;
+         for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = pdata->m_tabpanea[iPane].get();
@@ -1210,7 +1210,7 @@ namespace experience_core
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1221,7 +1221,7 @@ namespace experience_core
 
             }
 
-            cy = (int)(size.cy + 2);
+            cy = (::i32)(size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1252,7 +1252,7 @@ namespace experience_core
 
 
 
-            ppane->m_size.cx = (int) (size.cx + ixAdd
+            ppane->m_size.cx = (::i32) (size.cx + ixAdd
                + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
                + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
                + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
@@ -1272,7 +1272,7 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
+         for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = pdata->m_tabpanea[iPane].get();
@@ -1313,7 +1313,7 @@ namespace experience_core
 
       }
 
-      for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
+      for (::i32 iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_id())
@@ -1334,11 +1334,11 @@ namespace experience_core
       if (pdata->m_bVertical)
       {
 
-         ptab->m_iTabSize = (int)(pdata->m_tabpanea.get_count() * pdata->m_iTabHeight);
+         ptab->m_iTabSize = (::i32)(pdata->m_tabpanea.get_count() * pdata->m_iTabHeight);
 
 //         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
 
-         ptab->m_sizeBarDragScroll.cy = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
+         ptab->m_sizeBarDragScroll.cy = (::i32)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
 
       }
       else
@@ -1966,7 +1966,7 @@ namespace experience_core
 
       ::i32_rectangle rectangleX = pscrollbar->rectangle();
 
-      if (colorBackground.m_uchOpacity != 0)
+      if (colorBackground.m_u8Opacity != 0)
       {
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1976,7 +1976,7 @@ namespace experience_core
          if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
-            colorBackground.m_uchOpacity = 255;
+            colorBackground.m_u8Opacity = 255;
 
          }
 
@@ -2017,7 +2017,7 @@ namespace experience_core
 
          auto periodFadeOut = 490_ms;
 
-         double dRate = maximum(0u, minimum(1.0, pbar->get_unsigned_int("tracking_alpha") / 255.0));
+         ::f64 dRate = maximum(0u, minimum(1.0, pbar->get_unsigned_int("tracking_alpha") / 255.0));
 
          if (pbar->m_bTracking)
          {
@@ -2066,7 +2066,7 @@ namespace experience_core
 
          //    prop("tracking_window").cast < trw >()->point2 = point;
 
-         unsigned char uchAlpha;
+         ::u8 uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {
@@ -2126,15 +2126,15 @@ namespace experience_core
 
             auto dSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
 
-            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::double_size(dSize / 2.0, dSize / 2.0);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::f64_size(dSize / 2.0, dSize / 2.0);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::double_size(dSize, dSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::f64_size(dSize, dSize);
 
             ::i32_rectangle rectangleIntersect;
 
             rectangleIntersect.intersect(rectangleMachineThumb, statusrectangleTrack);
 
-            int iArea = (int)(maximum(1, rectangleIntersect.area()));
+            ::i32 iArea = (::i32)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + dSize * (dSize * dSize) * 4 / (iArea * 5), 1 + dSize * (dSize * dSize) * 2 / (iArea * 3));
 
@@ -2146,9 +2146,9 @@ namespace experience_core
 
             auto dSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
-            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::double_size(dSize / 2., dSize / 2.);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::f64_size(dSize / 2., dSize / 2.);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::double_size(dSize, dSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::f64_size(dSize, dSize);
 
             rectangleMachineThumb.assign_normal(statusrectangleTrack, pbar->m_eorientation);
 

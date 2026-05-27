@@ -50,7 +50,7 @@ namespace user
 
 
 
-   void message_box::add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, char chLetter)
+   void message_box::add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter)
    {
 
       auto pbutton = __initialize_new ::user::button(scopedstrTitle, edialogresult);
@@ -284,7 +284,7 @@ namespace user
 //   void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      int iMaxWidth = 100;
+//      ::i32 iMaxWidth = 100;
 //
 //      for (auto& pbutton : m_buttona)
 //      {
@@ -308,17 +308,17 @@ namespace user
 //
 //      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
 //
-//      int iButtonGroupWidth = (int) (iMaxWidth * 1.25 * m_buttona.get_count());
+//      ::i32 iButtonGroupWidth = (::i32) (iMaxWidth * 1.25 * m_buttona.get_count());
 //
-//      int iWidth = maximum((int)(iButtonGroupWidth * 1.1), rectangleMonitor.width() / 2);
+//      ::i32 iWidth = maximum((::i32)(iButtonGroupWidth * 1.1), rectangleMonitor.width() / 2);
 //
 //      m_pstill->place({ 10, 10, iWidth - 20, 200 });
 //
 //      m_pstill->display();
 //
-//      int right = (int) (iWidth - 10);
+//      ::i32 right = (::i32) (iWidth - 10);
 //
-//      int iButton = (int) m_buttona.get_upper_bound();
+//      ::i32 iButton = (::i32) m_buttona.get_upper_bound();
 //
 //      while(iButton>= 0)
 //      {
@@ -327,7 +327,7 @@ namespace user
 //
 //         pbutton->place({ right - iMaxWidth, 210, right, 280 });
 //         pbutton->display();
-//         right -= (int) (iMaxWidth * 1.25);
+//         right -= (::i32) (iMaxWidth * 1.25);
 //         iButton--;
 //      }
 //
@@ -377,7 +377,7 @@ namespace user
 
       m_pinteractionScaler->on_display_change(this);
 
-      int iMaxWidth = 100;
+      ::i32 iMaxWidth = 100;
 
       for (auto& pbutton : m_buttona)
       {
@@ -397,17 +397,17 @@ namespace user
 
       system()->windowing()->display()->get_main_monitor(rectangleMonitor);
 
-      int iButtonGroupWidth = (int) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
+      ::i32 iButtonGroupWidth = (::i32) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
 
-      int iWidth = maximum((int)(iButtonGroupWidth + 20 * screen_scaler()), rectangleMonitor.width() / 2);
+      ::i32 iWidth = maximum((::i32)(iButtonGroupWidth + 20 * screen_scaler()), rectangleMonitor.width() / 2);
 
       m_pstill->place({ 30 * screen_scaler(), 10 * screen_scaler(), iWidth - 60 * screen_scaler(), 200 * screen_scaler() });
 
       m_pstill->display();
 
-      int right = (int) (iWidth - 20);
+      ::i32 right = (::i32) (iWidth - 20);
 
-      int iButton = (int) m_buttona.get_upper_bound();
+      ::i32 iButton = (::i32) m_buttona.get_upper_bound();
 
       while(iButton>= 0)
       {
@@ -416,14 +416,14 @@ namespace user
 
          pbutton->place({ right - iMaxWidth, 230 * screen_scaler(), right, 280 * screen_scaler() });
          pbutton->display();
-         right -= (int) (iMaxWidth + 20 * screen_scaler());
+         right -= (::i32) (iMaxWidth + 20 * screen_scaler());
          iButton--;
 
       }
 
       ::i32_rectangle r;
 
-      r.set_dimension(0, 0, iWidth, (int) (300 * screen_scaler()));
+      r.set_dimension(0, 0, iWidth, (::i32) (300 * screen_scaler()));
 
       m_pbuttonClose->place({iWidth - 25, 1, iWidth - 1, 25});
 
@@ -481,7 +481,7 @@ namespace user
    }
 
 
-   bool message_box::on_click(int iResult)
+   bool message_box::on_click(::i32 iResult)
    {
 
       m_iResult = iResult;
@@ -504,7 +504,7 @@ namespace user
 
       auto colorBorder = pstyle->get_color(this, e_element_border);
 
-      colorBorder.m_uchOpacity = 100;
+      colorBorder.m_u8Opacity = 100;
 
       pgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
 

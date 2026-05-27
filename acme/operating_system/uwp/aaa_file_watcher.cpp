@@ -89,7 +89,7 @@ namespace file
    bool RefreshWatch(watch_ref ^ pWatch, bool _clear = false);
 
 /// Unpacks happenings and passes them to a user defined callback.
-   /*void CALLBACK WatchCallback(unsigned int dwErrorCode, unsigned int dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
+   /*void CALLBACK WatchCallback(::u32 dwErrorCode, ::u32 dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
    {
    	TCHAR szFile[MAX_PATH];
    	PFILE_NOTIFY_INFORMATION pNotify;
@@ -113,7 +113,7 @@ namespace file
    			}
    #			else
    			{
-   				int count = WideCharToMultiByte2(CP_ACP, 0, pNotify->FileName,
+   				::i32 count = WideCharToMultiByte2(CP_ACP, 0, pNotify->FileName,
    					pNotify->FileNameLength / sizeof(WCHAR),
    					szFile, MAX_PATH - 1, nullptr, nullptr);
    				szFile[count] = TEXT('\0');

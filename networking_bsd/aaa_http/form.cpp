@@ -7,16 +7,16 @@
 
 
 
-long long g_iMaxHttpPost = 1_gb;
+::i64 g_iMaxHttpPost = 1_gb;
 
-void set_max_http_post(long long i)
+void set_max_http_post(::i64 i)
 {
 
    g_iMaxHttpPost = i;
 
 }
 
-long long get_max_http_post()
+::i64 get_max_http_post()
 {
 
    return g_iMaxHttpPost;
@@ -167,7 +167,7 @@ namespace http
 
                                  character_count x = 0;
 
-                                 for (int i = 0; i < current_filename.get_length(); i++)
+                                 for (::i32 i = 0; i < current_filename.get_length(); i++)
                                  {
 
                                     if (current_filename[i] == '/' || current_filename[i] == '\\')
@@ -239,9 +239,9 @@ namespace http
                      // read until m_strBoundary...
 //                     FILE *fil;
 
-                     int out = 0;
+                     ::i32 out = 0;
 
-                     char ca;
+                     ::i8 ca;
 
                      string strFormat;
 
@@ -253,7 +253,7 @@ namespace http
 
                      string strTempFile;
 
-                     int i = 0;
+                     ::i32 i = 0;
 
                      //static ::pointer < ::mutex > s_mutex(nullptr);
 
@@ -419,7 +419,7 @@ namespace http
    }
 
 
-   void form::strcpyval(string & v,const char *value) const
+   void form::strcpyval(string & v,const_char_pointer value) const
    {
       v = "";
       for (character_count i = 0; i < ansi_length(value); i++)

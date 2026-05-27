@@ -13,7 +13,7 @@
 //
 //
 //
-//void nsapp_activate_ignoring_other_apps(int i);
+//void nsapp_activate_ignoring_other_apps(::i32 i);
 //void nsapp_activation_policy_regular();
 //void nsapp_activation_policy_prohibited();
 //void nsapp_activation_policy_accessory();
@@ -23,6 +23,6 @@
 //
 //
 //
-//int run_system();
-//int acme_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
+//::i32 run_system();
+//::i32 acme_main_command_line(const ::scoped_string & scopedstrParams, ::i32 argc, char_pointer argv[]);
 

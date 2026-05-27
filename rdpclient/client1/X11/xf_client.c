@@ -117,8 +117,8 @@ static void xf_draw_screen_scaled(xfContext* xfc, int x, int y, int w, int h)
    Picture primaryPicture;
    XRenderPictureAttributes pa;
    XRenderPictFormat* picFormat;
-   double xScalingFactor;
-   double yScalingFactor;
+   ::f64 xScalingFactor;
+   ::f64 yScalingFactor;
    int x2;
    int y2;
 
@@ -134,8 +134,8 @@ static void xf_draw_screen_scaled(xfContext* xfc, int x, int y, int w, int h)
       return;
    }
 
-   xScalingFactor = xfc->sessionWidth / (double)xfc->scaledWidth;
-   yScalingFactor = xfc->sessionHeight / (double)xfc->scaledHeight;
+   xScalingFactor = xfc->sessionWidth / (::f64)xfc->scaledWidth;
+   yScalingFactor = xfc->sessionHeight / (::f64)xfc->scaledHeight;
 
    XSetFillStyle(xfc->display, xfc->gc, FillSolid);
    XSetForeground(xfc->display, xfc->gc, 0);

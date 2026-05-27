@@ -220,18 +220,18 @@ namespace nanoui
    }
 
 
-   float Widget::font_size() const
+   ::f32 Widget::font_size() const
    {
 
-      return (m_font_size < 0.f && m_ptheme) ? (float)m_ptheme->m_iStandardFontSize : (float)m_font_size;
+      return (m_font_size < 0.f && m_ptheme) ? (::f32)m_ptheme->m_iStandardFontSize : (::f32)m_font_size;
 
    }
 
 
-   void Widget::set_font_size(float font_size)
+   void Widget::set_font_size(::f32 font_size)
    {
 
-      m_font_size = (int)font_size;
+      m_font_size = (::i32)font_size;
 
    }
 
@@ -522,11 +522,11 @@ namespace nanoui
 
          auto pointChildClient = p - posChild - offsetScroll;
 
-         //         int pointY = pointChildClient[1];
+         //         ::i32 pointY = pointChildClient[1];
          //
-         //         int childTop = pchild->m_pos[1];
+         //         ::i32 childTop = pchild->m_pos[1];
          //
-         //         int childBottom = childTop + pchild->m_size[1];
+         //         ::i32 childBottom = childTop + pchild->m_size[1];
 
          bool bHover = pchild->contains(pointChildClient) && this->m_bHoverCache;
 
@@ -557,7 +557,7 @@ namespace nanoui
    }
 
 
-   bool Widget::scroll_event(const i32_point& p, const float_size& rel)
+   bool Widget::scroll_event(const i32_point& p, const ::f32_size& rel)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -634,7 +634,7 @@ namespace nanoui
    }
 
 
-   bool Widget::keyboard_event(::user::enum_key, int, int, const ::user::e_key&, const ::scoped_string & scopedstrText)
+   bool Widget::keyboard_event(::user::enum_key, ::i32, ::i32, const ::user::e_key&, const ::scoped_string & scopedstrText)
    {
 
       return false;
@@ -751,7 +751,7 @@ namespace nanoui
    void Widget::erase_child_at(::collection::index iIndex)
    {
 
-      if (iIndex < 0 || iIndex >= (int)m_children.size())
+      if (iIndex < 0 || iIndex >= (::i32)m_children.size())
       {
 
          throw ::exception(error_index_out_of_bounds, "Widget::erase_child_at(): out of bounds!");
@@ -1036,7 +1036,7 @@ namespace nanoui
 
             //auto pscrollPanel = dynamic_cast <VScrollPanel*>(parent());
 
-            ////float yOffset = 0.f;
+            ////::f32 yOffset = 0.f;
 
             ////if (pscrollPanel)
             ////{
@@ -1045,13 +1045,13 @@ namespace nanoui
 
             ////   yOffset = pscrollPanel->get_y_offset();
 
-            ////   rectangleThis = ::int_rectangle_dimension(0, m_pos.y - yOffset, m_size.cx, m_size.cy);
+            ////   rectangleThis = ::i32_rectangle_dimension(0, m_pos.y - yOffset, m_size.cx, m_size.cy);
 
             ////}
             ////else
             ////{
 
-            //rectangleThis = ::int_rectangle_dimension(0, 0, m_size.cx, m_size.cy);
+            //rectangleThis = ::i32_rectangle_dimension(0, 0, m_size.cx, m_size.cy);
 
             //}
 
@@ -1088,9 +1088,9 @@ namespace nanoui
 
       }
 
-      rectangleThis = ::int_rectangle_dimension(-offsetScroll.cx, -offsetScroll.cy, m_size.cx, m_size.cy);
+      rectangleThis = ::i32_rectangle_dimension(-offsetScroll.cx, -offsetScroll.cy, m_size.cx, m_size.cy);
 
-      pcontext->translate((float)m_pos.x, (float)m_pos.y);
+      pcontext->translate((::f32)m_pos.x, (::f32)m_pos.y);
 
       for (::collection::index i = 0; i < m_children.size(); i++)
       {
@@ -1114,7 +1114,7 @@ namespace nanoui
 
          auto childH = pchild->m_size.cy;
 
-         auto rectangleChild = ::int_rectangle_dimension(childX, childY, childW, childH);
+         auto rectangleChild = ::i32_rectangle_dimension(childX, childY, childW, childH);
 
          if (rectangleChild.intersects(rectangleThis))
          {
@@ -1142,8 +1142,8 @@ namespace nanoui
    //         
    //         pcontext->save();
    //
-   //         pcontext->intersect_scissor((float)pchild->m_pos.x, (float)pchild->m_pos.y,
-   //            (float)pchild->m_size.cx, (float)pchild->m_size.cy);
+   //         pcontext->intersect_scissor((::f32)pchild->m_pos.x, (::f32)pchild->m_pos.y,
+   //            (::f32)pchild->m_size.cx, (::f32)pchild->m_size.cy);
    //
    //#endif
 
@@ -1165,7 +1165,7 @@ namespace nanoui
 
       }
 
-      pcontext->translate((float)-m_pos.x, (float)-m_pos.y);
+      pcontext->translate((::f32)-m_pos.x, (::f32)-m_pos.y);
 
    }
 
@@ -1429,7 +1429,7 @@ namespace nanoui
 //
 //      }
 
-      //int iAddUp = 0;
+      //::i32 iAddUp = 0;
 
       //auto pparent = parent();
 
@@ -1453,7 +1453,7 @@ namespace nanoui
    }
 
 
-   ::pointer < TextBox > Widget::create_in_place_edit(const ::float_rectangle& rectangle, const ::scoped_string& scopedstr)
+   ::pointer < TextBox > Widget::create_in_place_edit(const ::f32_rectangle& rectangle, const ::scoped_string& scopedstr)
    {
 
       if (::is_null(m_pinplaceedit))

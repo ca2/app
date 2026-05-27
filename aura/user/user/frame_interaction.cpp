@@ -1201,7 +1201,7 @@ namespace user
 
          string strName;
 
-         //int iStyle = get_window_long(GWL_STYLE);
+         //::i32 iStyle = get_window_long(GWL_STYLE);
 
          //iStyle |= WS_CHILD;
 

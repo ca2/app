@@ -45,14 +45,14 @@ namespace innate_subsystem
       return nullptr;
    }
 
-   ::pointer < IconInterface > ResourceLoader::loadIcon(const char* iconName)
+   ::pointer < IconInterface > ResourceLoader::loadIcon(const_char_pointer iconName)
    {
       //return LoadIcon(m_appInstance, iconName);
       throw ::interface_only();
       return nullptr;
    }
 
-   ::pointer < IconInterface > ResourceLoader::loadIconByIntResource(int iIconResourceId)
+   ::pointer < IconInterface > ResourceLoader::loadIconByIntResource(::i32 iIconResourceId)
    {
       //return LoadIcon(m_appInstance, iconName);
       throw ::interface_only();
@@ -68,13 +68,13 @@ namespace innate_subsystem
    //    // Strings are stored in groups of 16 strings.
    //    // Group format is:
    //    // | length  |     string     | length  | string  | ...
-   //    // | 2 unsigned chars | len * 2 unsigned chars  | 2 unsigned chars | len * 2 | ...
+   //    // | 2 ::u8s | len * 2 ::u8s  | 2 ::u8s | len * 2 | ...
    //    // Strings stored in the UTF16-encoding.
    //    //
    //
    //
    //    //// Id of string-group, based from 0.
-   //    //int resId = (id / 16) + 1;
+   //    //::i32 resId = (id / 16) + 1;
    //    //HRSRC resHnd = FindResource(m_appInstance,
    //    //   MAKEINTRESOURCE(resId),
    //    //   RT_STRING);

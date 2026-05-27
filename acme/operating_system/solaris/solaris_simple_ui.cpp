@@ -254,8 +254,8 @@ namespace os
 
       XEvent e;
 
-      char buffer[MAX_MAPPED_STRING_LENGTH];
-      int bufsize=MAX_MAPPED_STRING_LENGTH;
+      ::i8 buffer[MAX_MAPPED_STRING_LENGTH];
+      ::i32 bufsize=MAX_MAPPED_STRING_LENGTH;
       KeySym keysym;
       XComposeStatus compose;
 
@@ -367,7 +367,7 @@ namespace os
                         if(e.xkey.type == KeyPress)
                         {
 
-                           int count = XLookupString(&e.xkey, buffer, bufsize, &keysym, &compose);
+                           ::i32 count = XLookupString(&e.xkey, buffer, bufsize, &keysym, &compose);
                            if(keysym == XK_Tab)
                            {
                               //on_key_down(VK_TAB);
@@ -531,12 +531,12 @@ namespace os
       string str;
       //unichar wsz[32];
 
-      unsigned char baState[256];
+      ::u8 baState[256];
 
       zero(baState);
-      for (int i = 0; i < 256; i++)
+      for (::i32 i = 0; i < 256; i++)
       {
-//         baState[i] = (unsigned char)GetAsyncKeyState(i);
+//         baState[i] = (::u8)GetAsyncKeyState(i);
       }
 
       baState[uiKey & 0xff] = 0x80;
@@ -551,13 +551,13 @@ namespace os
          baState[VK_SHIFT] |= 0x80;
       }
 
-      char sz[2];
+      ::i8 sz[2];
 
 
       sz[0] = uiKey;
       sz[1]  = '\0';
 
-      //int iRet = ToUnicodeEx((::u32)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+      //::i32 iRet = ToUnicodeEx((::u32)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
       str = sz;
       on_char(static_cast<::u32>(uiKey), str);
 
@@ -641,7 +641,7 @@ namespace os
 
          //m_pimage->Fill(255, 184, 184, 177);
 
-/*         unsigned char *dst = (unsigned char*) m_pimage->get_data();
+/*         ::u8 *dst = (::u8*) m_pimage->get_data();
 
          ::i64 size = m_size.cx * m_size.cy;
 
@@ -651,46 +651,46 @@ namespace os
 
          while (size >= 8)
          {
-            dst[0] = lower_byte(((int)dst[0] * (int)dst[3]) >> 8);
-            dst[1] = lower_byte(((int)dst[1] * (int)dst[3]) >> 8);
-            dst[2] = lower_byte(((int)dst[2] * (int)dst[3]) >> 8);
+            dst[0] = lower_byte(((::i32)dst[0] * (::i32)dst[3]) >> 8);
+            dst[1] = lower_byte(((::i32)dst[1] * (::i32)dst[3]) >> 8);
+            dst[2] = lower_byte(((::i32)dst[2] * (::i32)dst[3]) >> 8);
 
-            dst[4 + 0] = lower_byte(((int)dst[4 + 0] * (int)dst[4 + 3]) >> 8);
-            dst[4 + 1] = lower_byte(((int)dst[4 + 1] * (int)dst[4 + 3]) >> 8);
-            dst[4 + 2] = lower_byte(((int)dst[4 + 2] * (int)dst[4 + 3]) >> 8);
+            dst[4 + 0] = lower_byte(((::i32)dst[4 + 0] * (::i32)dst[4 + 3]) >> 8);
+            dst[4 + 1] = lower_byte(((::i32)dst[4 + 1] * (::i32)dst[4 + 3]) >> 8);
+            dst[4 + 2] = lower_byte(((::i32)dst[4 + 2] * (::i32)dst[4 + 3]) >> 8);
 
-            dst[8 + 0] = lower_byte(((int)dst[8 + 0] * (int)dst[8 + 3]) >> 8);
-            dst[8 + 1] = lower_byte(((int)dst[8 + 1] * (int)dst[8 + 3]) >> 8);
-            dst[8 + 2] = lower_byte(((int)dst[8 + 2] * (int)dst[8 + 3]) >> 8);
+            dst[8 + 0] = lower_byte(((::i32)dst[8 + 0] * (::i32)dst[8 + 3]) >> 8);
+            dst[8 + 1] = lower_byte(((::i32)dst[8 + 1] * (::i32)dst[8 + 3]) >> 8);
+            dst[8 + 2] = lower_byte(((::i32)dst[8 + 2] * (::i32)dst[8 + 3]) >> 8);
 
-            dst[12 + 0] = lower_byte(((int)dst[12 + 0] * (int)dst[12 + 3]) >> 8);
-            dst[12 + 1] = lower_byte(((int)dst[12 + 1] * (int)dst[12 + 3]) >> 8);
-            dst[12 + 2] = lower_byte(((int)dst[12 + 2] * (int)dst[12 + 3]) >> 8);
+            dst[12 + 0] = lower_byte(((::i32)dst[12 + 0] * (::i32)dst[12 + 3]) >> 8);
+            dst[12 + 1] = lower_byte(((::i32)dst[12 + 1] * (::i32)dst[12 + 3]) >> 8);
+            dst[12 + 2] = lower_byte(((::i32)dst[12 + 2] * (::i32)dst[12 + 3]) >> 8);
 
-            dst[16 + 0] = lower_byte(((int)dst[16 + 0] * (int)dst[16 + 3]) >> 8);
-            dst[16 + 1] = lower_byte(((int)dst[16 + 1] * (int)dst[16 + 3]) >> 8);
-            dst[16 + 2] = lower_byte(((int)dst[16 + 2] * (int)dst[16 + 3]) >> 8);
+            dst[16 + 0] = lower_byte(((::i32)dst[16 + 0] * (::i32)dst[16 + 3]) >> 8);
+            dst[16 + 1] = lower_byte(((::i32)dst[16 + 1] * (::i32)dst[16 + 3]) >> 8);
+            dst[16 + 2] = lower_byte(((::i32)dst[16 + 2] * (::i32)dst[16 + 3]) >> 8);
 
-            dst[20 + 0] = lower_byte(((int)dst[20 + 0] * (int)dst[20 + 3]) >> 8);
-            dst[20 + 1] = lower_byte(((int)dst[20 + 1] * (int)dst[20 + 3]) >> 8);
-            dst[20 + 2] = lower_byte(((int)dst[20 + 2] * (int)dst[20 + 3]) >> 8);
+            dst[20 + 0] = lower_byte(((::i32)dst[20 + 0] * (::i32)dst[20 + 3]) >> 8);
+            dst[20 + 1] = lower_byte(((::i32)dst[20 + 1] * (::i32)dst[20 + 3]) >> 8);
+            dst[20 + 2] = lower_byte(((::i32)dst[20 + 2] * (::i32)dst[20 + 3]) >> 8);
 
-            dst[24 + 0] = lower_byte(((int)dst[24 + 0] * (int)dst[24 + 3]) >> 8);
-            dst[24 + 1] = lower_byte(((int)dst[24 + 1] * (int)dst[24 + 3]) >> 8);
-            dst[24 + 2] = lower_byte(((int)dst[24 + 2] * (int)dst[24 + 3]) >> 8);
+            dst[24 + 0] = lower_byte(((::i32)dst[24 + 0] * (::i32)dst[24 + 3]) >> 8);
+            dst[24 + 1] = lower_byte(((::i32)dst[24 + 1] * (::i32)dst[24 + 3]) >> 8);
+            dst[24 + 2] = lower_byte(((::i32)dst[24 + 2] * (::i32)dst[24 + 3]) >> 8);
 
-            dst[28 + 0] = lower_byte(((int)dst[28 + 0] * (int)dst[28 + 3]) >> 8);
-            dst[28 + 1] = lower_byte(((int)dst[28 + 1] * (int)dst[28 + 3]) >> 8);
-            dst[28 + 2] = lower_byte(((int)dst[28 + 2] * (int)dst[28 + 3]) >> 8);
+            dst[28 + 0] = lower_byte(((::i32)dst[28 + 0] * (::i32)dst[28 + 3]) >> 8);
+            dst[28 + 1] = lower_byte(((::i32)dst[28 + 1] * (::i32)dst[28 + 3]) >> 8);
+            dst[28 + 2] = lower_byte(((::i32)dst[28 + 2] * (::i32)dst[28 + 3]) >> 8);
 
             dst += 4 * 8;
             size -= 8;
          }
          while (size--)
          {
-            dst[0] = lower_byte(((int)dst[0] * (int)dst[3]) >> 8);
-            dst[1] = lower_byte(((int)dst[1] * (int)dst[3]) >> 8);
-            dst[2] = lower_byte(((int)dst[2] * (int)dst[3]) >> 8);
+            dst[0] = lower_byte(((::i32)dst[0] * (::i32)dst[3]) >> 8);
+            dst[1] = lower_byte(((::i32)dst[1] * (::i32)dst[3]) >> 8);
+            dst[2] = lower_byte(((::i32)dst[2] * (::i32)dst[3]) >> 8);
             dst += 4;
          }
 
@@ -700,7 +700,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_move(int x, int y)
+   bool simple_ui::on_move(::i32 x, ::i32 y)
    {
 
       m_point.x = x;
@@ -715,7 +715,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_size(int cx, int cy)
+   bool simple_ui::on_size(::i32 cx, ::i32 cy)
    {
 
       m_size.cx = cx;
@@ -770,7 +770,7 @@ namespace os
    }
 
 
-   bool simple_ui::move_window(int x, int y)
+   bool simple_ui::move_window(::i32 x, ::i32 y)
    {
 
       ::set_window_position(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -788,7 +788,7 @@ namespace os
    }
 
 
-   bool simple_ui::set_window_position(int x, int y, int cx, int cy, bool bShow)
+   bool simple_ui::set_window_position(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, bool bShow)
    {
 
       ::set_window_position(m_window, nullptr, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));
@@ -806,10 +806,10 @@ namespace os
 
 
 
-void wm_nodecorations(oswindow w, int map_base)
+void wm_nodecorations(oswindow w, ::i32 map_base)
 {
    Atom WM_HINTS;
-   int set;
+   ::i32 set;
 
 
    single_lock synchronouslock(&user_synchronization(), true);
@@ -818,7 +818,7 @@ void wm_nodecorations(oswindow w, int map_base)
    Display * dpy = w->display();
    Window window = w->window();
 
-   int scr=DefaultScreen(dpy);
+   ::i32 scr=DefaultScreen(dpy);
    Window rootw=RootWindow(dpy, scr);
 
    WM_HINTS = XInternAtom(dpy, "_MOTIF_WM_HINTS", True);
@@ -827,16 +827,16 @@ void wm_nodecorations(oswindow w, int map_base)
 #define MWM_HINTS_DECORATIONS   (1L << 1)
       struct
       {
-         unsigned long flags;
-         unsigned long functions;
-         unsigned long decorations;
+         ulong flags;
+         ulong functions;
+         ulong decorations;
          long input_mode;
-         unsigned long status;
+         ulong status;
       } MWMHints = { MWM_HINTS_DECORATIONS, 0,
                      MWM_DECOR_NONE, 0, 0
                    };
       XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
-                      PropModeReplace, (unsigned char *)&MWMHints,
+                      PropModeReplace, (::u8 *)&MWMHints,
                       sizeof(MWMHints)/4);
    }
    WM_HINTS = XInternAtom(dpy, "KWM_WIN_DECORATION", True);
@@ -844,7 +844,7 @@ void wm_nodecorations(oswindow w, int map_base)
    {
       long KWMHints = KDE_tinyDecoration;
       XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
-                      PropModeReplace, (unsigned char *)&KWMHints,
+                      PropModeReplace, (::u8 *)&KWMHints,
                       sizeof(KWMHints)/4);
    }
 
@@ -853,7 +853,7 @@ void wm_nodecorations(oswindow w, int map_base)
    {
       long GNOMEHints = 0;
       XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
-                      PropModeReplace, (unsigned char *)&GNOMEHints,
+                      PropModeReplace, (::u8 *)&GNOMEHints,
                       sizeof(GNOMEHints)/4);
    }
    WM_HINTS = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", True);
@@ -865,7 +865,7 @@ void wm_nodecorations(oswindow w, int map_base)
       NET_WMHints[1] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_NORMAL", True);
       XChangeProperty(dpy, window,
                       WM_HINTS, XA_ATOM, 32, PropModeReplace,
-                      (unsigned char *)&NET_WMHints, 2);
+                      (::u8 *)&NET_WMHints, 2);
    }
    XSetTransientForHint(dpy, window, rootw);
    if(map_base)

@@ -19,9 +19,9 @@ CLASS_DECL_ACME void copy(MESSAGE& message, const MSG &msg);
 CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message);
 
 
-inline int width(RECT & r) { return r.right - r.left; }
+inline ::i32 width(RECT & r) { return r.right - r.left; }
 
-inline int height(RECT & r) { return r.bottom - r.top; }
+inline ::i32 height(RECT & r) { return r.bottom - r.top; }
 
 
 inline ::i32_point lparam_as_point(LPARAM lparam)

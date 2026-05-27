@@ -12,7 +12,7 @@ namespace nano
    {
    
 
-void button::on_draw(::nano::graphics::device * pnanodevice)
+void button::on_draw(::nano::graphics::context * pnanodevice)
 {
 
    //::SelectObject(hdc, m_pinterchange->m_hbrushWindow);
@@ -52,7 +52,7 @@ void button::on_draw(::nano::graphics::device * pnanodevice)
 }
 
 
-void button::on_char(int iChar)
+void button::on_char(::i32 iChar)
 {
 
    if (iChar == '\r' || iChar == ' ')
@@ -76,7 +76,7 @@ bool button::is_focusable()
 //void nano_still::resize_to_fit()
 //{
 //
-//   auto pdevice = createø < ::nano::graphics::device >();
+//   auto pdevice = createø < ::nano::graphics::context >();
 //
 //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 //

@@ -54,7 +54,7 @@ public:
       return ::is_null(this);
    }
 
-   Atom get_window_long_atom(int nIndex);
+   Atom get_window_long_atom(::i32 nIndex);
 
 
    Atom intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate);
@@ -66,7 +66,7 @@ public:
 
 
 
-   inline long long get_ref_count()
+   inline ::i64 get_ref_count()
    {
 
       return m_countReference;
@@ -74,7 +74,7 @@ public:
    }
 
 
-   inline long long increment_reference_count()
+   inline ::i64 increment_reference_count()
    {
 
 #ifdef WINDOWS
@@ -94,7 +94,7 @@ public:
    }
 
 
-   inline long long decrement_reference_count()
+   inline ::i64 decrement_reference_count()
    {
 
 #ifdef WINDOWS
@@ -114,10 +114,10 @@ public:
    }
 
 
-   inline long long release()
+   inline ::i64 release()
    {
 
-      long long i = decrement_reference_count();
+      ::i64 i = decrement_reference_count();
 
       if(i == 0)
       {

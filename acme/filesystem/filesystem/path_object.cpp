@@ -75,7 +75,7 @@
 //   }
 //
 //   
-//   void path_object::to_sz(char* sz, character_count len) const
+//   void path_object::to_sz(char_pointer sz, character_count len) const
 //   {
 //
 //      strncpy(sz, c_str(), len);

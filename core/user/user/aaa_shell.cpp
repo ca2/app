@@ -236,7 +236,7 @@ namespace user
 
       }
 
-      bool shell::reserve_image(const image_key & imagekey, int & iImage)
+      bool shell::reserve_image(const image_key & imagekey, ::i32 & iImage)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -255,12 +255,12 @@ namespace user
       }
 
 
-      int shell::_reserve_image(const image_key & key)
+      ::i32 shell::_reserve_image(const image_key & key)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int iImage = -1;
+         ::i32 iImage = -1;
 
          for (auto iSize : m_iaSize)
          {
@@ -278,7 +278,7 @@ namespace user
       }
 
 
-      bool shell::contains_image(const image_key & imagekey, int & iImage)
+      bool shell::contains_image(const image_key & imagekey, ::i32 & iImage)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -444,7 +444,7 @@ namespace user
       }
 
 
-      ::image::image_list * shell::GetImageList(int iSize)
+      ::image::image_list * shell::GetImageList(::i32 iSize)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -489,7 +489,7 @@ namespace user
       }
 
 
-      ::image::image_list * shell::GetImageListHover(int iSize)
+      ::image::image_list * shell::GetImageListHover(::i32 iSize)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -554,7 +554,7 @@ namespace user
       }
 
 
-      int shell::get_file_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      ::i32 shell::get_file_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -566,10 +566,10 @@ namespace user
       }
 
 
-      int shell::get_file_extension_image(const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      ::i32 shell::get_file_extension_image(const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         //int iImage = I32_MINIMUM;
+         //::i32 iImage = I32_MINIMUM;
 
          if (color32_byte_opacity(crBk) != 255)
          {
@@ -599,7 +599,7 @@ namespace user
       }
 
 
-      int shell::get_file_image(const image_key & imagekey)
+      ::i32 shell::get_file_image(const image_key & imagekey)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -611,7 +611,7 @@ namespace user
 
          }
 
-         int iImage;
+         ::i32 iImage;
 
          if (m_imagemap.lookup(imagekey, iImage))
          {
@@ -636,7 +636,7 @@ namespace user
       }
 
 
-      int shell::_get_file_image(const image_key & imagekey)
+      ::i32 shell::_get_file_image(const image_key & imagekey)
       {
 
          {
@@ -686,7 +686,7 @@ namespace user
 
          //iThread = iThread % m_threadptra.get_size();
 
-         //int iImage = m_threadptra[iThread]->_get_file_image(oswindow, imagekey);
+         //::i32 iImage = m_threadptra[iThread]->_get_file_image(oswindow, imagekey);
 
          //iThread++;
 
@@ -718,7 +718,7 @@ namespace user
             try
             {
 
-               int iImage = m_pshell->impl_get_file_image(imagekey);
+               ::i32 iImage = m_pshell->impl_get_file_image(imagekey);
 
                synchronous_lock synchronouslock(m_pshell->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -748,7 +748,7 @@ namespace user
       }
 
 
-      int shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
+      ::i32 shell::add_icon_path(::file::path path, color32_t crBk, ::i32 iImage)
       {
 
          return -1;
@@ -756,12 +756,12 @@ namespace user
       }
 
 
-      int shell::create_file_icon_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
+      ::i32 shell::create_file_icon_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
       {
 
          image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon);
 
-         int iImage;
+         ::i32 iImage;
 
          if (reserve_image(imagekey, iImage))
          {
@@ -778,7 +778,7 @@ namespace user
 
 
 
-   //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
+   //::i32 shell::add_hover_image(::i32 iSize, ::i32 iImage, color32_t crBk)
    //{
 
    //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
@@ -836,7 +836,7 @@ namespace user
 
    //}
 
-   int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
+   ::i32 shell::add_hover_image(::i32 iSize, ::i32 iImage, color32_t crBk)
    {
 
       synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
@@ -870,7 +870,7 @@ namespace user
             m_pimagelistHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
             m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            auto rectangleDraw = ::double_rectangle(::double_point(iImage * 48,0),::double_size( 48, 48));
+            auto rectangleDraw = ::f64_rectangle(::f64_point(iImage * 48,0),::f64_size( 48, 48));
             m_pimagelistHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
 
             m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

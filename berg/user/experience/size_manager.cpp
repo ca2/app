@@ -593,11 +593,11 @@ namespace experience
          if (m_pframewindow->m_bDerivedHeight)
          {
 
-            int iWidth = rectangleWindow.width();
+            ::i32 iWidth = rectangleWindow.width();
 
-            int iDerivedHeight = m_pframewindow->get_derived_height(iWidth);
+            ::i32 iDerivedHeight = m_pframewindow->get_derived_height(iWidth);
 
-            int iHeight = m_pframewindow->m_pframe->adjust_client_height(iDerivedHeight);
+            ::i32 iHeight = m_pframewindow->m_pframe->adjust_client_height(iDerivedHeight);
 
             if (iHeight < sizeMin.cy)
             {
@@ -638,7 +638,7 @@ namespace experience
 
          if (pframewindow->get_int("ysnap") > 1)
          {
-            int h = rectangleWindow.height();
+            ::i32 h = rectangleWindow.height();
             h -= rectangleWindow.height() % pframewindow->get_int("ysnap");
             rectangleWindow.bottom = rectangleWindow.top + h;
          }

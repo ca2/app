@@ -184,7 +184,7 @@ namespace geo
             if (bOk && m_straCity.size() > 20)
             {
 
-               for (int i = 0; i < 20; i++)
+               for (::i32 i = 0; i < 20; i++)
                {
 
                   informationf("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
@@ -299,7 +299,7 @@ namespace geo
 
                DEBUGF_LINE("mnoxxd5");
 
-               int iLine = 1;
+               ::i32 iLine = 1;
 
                for (auto strJson : stra)
                {
@@ -353,7 +353,7 @@ namespace geo
 
                   DEBUGF_OUT("F");
 
-                  double dLon = v["coord"]["lon"].as_double();
+                  ::f64 dLon = v["coord"]["lon"].as_f64();
 
                   DEBUGF_OUT("G");
 
@@ -361,7 +361,7 @@ namespace geo
 
                   DEBUGF_OUT("H");
 
-                  double dLat = v["coord"]["lat"].as_double();
+                  ::f64 dLat = v["coord"]["lat"].as_f64();
 
                   DEBUGF_OUT("I");
 
@@ -449,7 +449,7 @@ namespace geo
    }
 
 
-   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, double& dLat, double& dLon)
+   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, ::f64& dLat, ::f64& dLon)
    {
 
       string_array_base stra;
@@ -509,7 +509,7 @@ namespace geo
 
 
 
-   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, ::i64& iId, double& dLat, double& dLon, bool bPrefix)
+   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, ::i64& iId, ::f64& dLat, ::f64& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -635,14 +635,14 @@ namespace geo
 
       {
 
-         char * out = nullptr;
+         char_pointer out = nullptr;
          size_t out_length = 0;
 
          auto in = strTry.begin();
 
          auto in_length = strTry.size();
 
-         int iError = unac_string("UTF-8", in, in_length, &out, &out_length);
+         ::i32 iError = unac_string("UTF-8", in, in_length, &out, &out_length);
 
          if (iError != 0)
          {
@@ -704,7 +704,7 @@ namespace geo
    }
 
 
-   bool geo::locality_sunset(openweather_city* pcity, int& iRise, int& iSet)
+   bool geo::locality_sunset(openweather_city* pcity, ::i32& iRise, ::i32& iSet)
    {
 
       if (pcity == nullptr)
@@ -718,11 +718,11 @@ namespace geo
 #include "sensitive/openweather.txt"
          ;
 
-      double dZone = 0.0;
+      ::f64 dZone = 0.0;
 
       initial_locality_time_zone(pcity, dZone);
 
-      int iTimeZone = (int)(dZone * 3600.0);
+      ::i32 iTimeZone = (::i32)(dZone * 3600.0);
 
       ::property_set set;
 
@@ -748,9 +748,9 @@ namespace geo
 
       ::earth::zone_time timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_i64() }, iTimeZone);
 
-      iRise = (int)timeSunrise.GetZoneTimeOfDay().m_iSecond;
+      iRise = (::i32)timeSunrise.GetZoneTimeOfDay().m_iSecond;
 
-      iSet = (int)timeSunset.GetZoneTimeOfDay().m_iSecond;
+      iSet = (::i32)timeSunset.GetZoneTimeOfDay().m_iSecond;
 
       string strSunrise(timeSunrise.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
 
@@ -765,7 +765,7 @@ namespace geo
    }
 
 
-   bool  geo::locality_sunset(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, int& iRise, int& iSet)
+   bool  geo::locality_sunset(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, ::i32& iRise, ::i32& iSet)
    {
 
       auto psystem = system();
@@ -785,7 +785,7 @@ namespace geo
    }
 
 
-   string geo::initial_locality_time_zone(openweather_city* pcity, double& dZone)
+   string geo::initial_locality_time_zone(openweather_city* pcity, ::f64& dZone)
    {
 
       ::datetime::time_zone timezone;
@@ -799,7 +799,7 @@ namespace geo
    }
 
 
-   string  geo::initial_locality_time_zone(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, double& dZone)
+   string  geo::initial_locality_time_zone(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, ::f64& dZone)
    {
 
       string str;
@@ -831,9 +831,9 @@ namespace geo
 
       //  ::i64 iId;
 
-//      double dLat;
+//      ::f64 dLat;
 
-      //    double dLon;
+      //    ::f64 dLon;
 
       auto psystem = system();
 
@@ -1188,7 +1188,7 @@ namespace geo
 
 
 
-   string geo::utc_offset_string(double dUTCOffset)
+   string geo::utc_offset_string(::f64 dUTCOffset)
    {
 
       if (dUTCOffset == 1000000.0)
@@ -1214,16 +1214,16 @@ namespace geo
 
          string strUTCOffset;
 
-         strUTCOffset = "UTC " + ::str::signed_int((int)dUTCOffset);
+         strUTCOffset = "UTC " + ::str::signed_int((::i32)dUTCOffset);
 
-         double dMod = fmod(fabs(dUTCOffset), 1.0);
+         ::f64 dMod = fmod(fabs(dUTCOffset), 1.0);
 
          if (dMod > 0.0)
          {
 
             string strMinutes;
 
-            strMinutes.formatf("%02d", (int)(60.0 * dMod));
+            strMinutes.formatf("%02d", (::i32)(60.0 * dMod));
 
             strUTCOffset += ":" + strMinutes;
 
@@ -1236,14 +1236,14 @@ namespace geo
    }
 
 
-   double geo::time_zone(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrCountryCode)
+   ::f64 geo::time_zone(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrCountryCode)
    {
 
       ::string str(scopedstr);
       str.make_lower();
       ::string strCountryCode(scopedstrCountryCode);
       strCountryCode.make_lower();
-      double dTimeZoneOffset = 0.0;
+      ::f64 dTimeZoneOffset = 0.0;
       //"Moscow Time"(TranslateFromRussian) (UTC+3)
       if (str == "msk")
       {
@@ -1465,7 +1465,7 @@ namespace geo
 
   
 
-   bool utc_offset_invalid(double dUTCOffset)
+   bool utc_offset_invalid(::f64 dUTCOffset)
    {
 
       return dUTCOffset < -12.0 || dUTCOffset > 14.0;  // don't know (is invalid?)
@@ -1573,7 +1573,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone geo::get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone geo::get_time_zone(::f64 dLat, ::f64 dLng)
    {
 
       if (!m_bLoadedLocalityTimeZoneFromFile)
@@ -1655,7 +1655,7 @@ namespace geo
    }
 
 
-   ::datetime::time_zone geo::_get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone geo::_get_time_zone(::f64 dLat, ::f64 dLng)
    {
 
       ::datetime::time_zone timezone;
@@ -1694,7 +1694,7 @@ namespace geo
 
          timezone.m_strZone = payload["zone_name"];
 
-         timezone.m_dZone = payload["zone_offset"].as_double();
+         timezone.m_dZone = payload["zone_offset"].as_f64();
 
       }
       catch (...)

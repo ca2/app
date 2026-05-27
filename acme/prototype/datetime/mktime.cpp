@@ -70,7 +70,7 @@ mktime.  */
 //#endif
 //
 //#ifndef INT_MIN
-//#define INT_MIN (~0 << (sizeof (int) * CHAR_BIT - 1))
+//#define INT_MIN (~0 << (sizeof (::i32) * CHAR_BIT - 1))
 //#endif
 //#ifndef INT_MAX
 //#define INT_MAX (~0 - INT_MIN)
@@ -98,7 +98,7 @@ mktime.  */
 //#endif
 //
 //   /* How many days come before each month (0-12).  */
-//   const unsigned short int __mon_yday[2][13] =
+//   const ::u16 ::i32 __mon_yday[2][13] =
 //   {
 //      /* Normal years.  */
 //      {0,31,59,90,120,151,181,212,243,273,304,334,365},
@@ -106,7 +106,7 @@ mktime.  */
 //      {0,31,60,91,121,152,182,213,244,274,305,335,366}
 //   };
 //
-////   static time_t ydhms_tm_diff __P((int,int,int,int,int,const struct tm *));
+////   static time_t ydhms_tm_diff __P((::i32,::i32,::i32,::i32,::i32,const struct tm *));
 ////   time_t __mktime_internal __P((struct tm *,
 //  // struct tm *(*) (const time_t *,struct tm *),
 //    //  time_t *));
@@ -130,20 +130,20 @@ mktime.  */
 //   All values are in range, except possibly YEAR.
 //   If overflow occurs, yield the low order bits of the correct answer.  */
 //   static time_t
-//      ydhms_tm_diff(int year,int yday,int hour,int minimum,int sec,const struct tm * tp)
+//      ydhms_tm_diff(::i32 year,::i32 yday,::i32 hour,::i32 minimum,::i32 sec,const struct tm * tp)
 //   {
 //      /* Compute intervening leap days correctly even if year is negative.
-//      Take care to avoid int overflow.  time_t overflow is OK, since
+//      Take care to avoid ::i32 overflow.  time_t overflow is OK, since
 //      only the low order bits of the correct time_t answer are needed.
 //      Don't convert to time_t until after all divisions are done, since
-//      time_t might be unsigned.  */
-//      int a4 = (year >> 2) + (TM_YEAR_BASE >> 2) - ! (year & 3);
-//      int b4 = (tp->tm_year >> 2) + (TM_YEAR_BASE >> 2) - ! (tp->tm_year & 3);
-//      int a100 = a4 / 25 - (a4 % 25 < 0);
-//      int b100 = b4 / 25 - (b4 % 25 < 0);
-//      int a400 = a100 >> 2;
-//      int b400 = b100 >> 2;
-//      int intervening_leap_days = (a4 - b4) - (a100 - b100) + (a400 - b400);
+//      time_t might be ::u32.  */
+//      ::i32 a4 = (year >> 2) + (TM_YEAR_BASE >> 2) - ! (year & 3);
+//      ::i32 b4 = (tp->tm_year >> 2) + (TM_YEAR_BASE >> 2) - ! (tp->tm_year & 3);
+//      ::i32 a100 = a4 / 25 - (a4 % 25 < 0);
+//      ::i32 b100 = b4 / 25 - (b4 % 25 < 0);
+//      ::i32 a400 = a100 >> 2;
+//      ::i32 b400 = b100 >> 2;
+//      ::i32 intervening_leap_days = (a4 - b4) - (a100 - b100) + (a400 - b400);
 //      time_t years = year - (time_t)tp->tm_year;
 //      time_t days = (365 * years + intervening_leap_days
 //         + (yday - tp->tm_yday));
@@ -185,39 +185,39 @@ mktime.  */
 //      to handle any combinations of time zone rule changes, solar time,
 //      and leap seconds.  Posix.1 prohibits leap seconds, but some hosts
 //      have them anyway.  */
-//      int remaining_probes = 4;
+//      ::i32 remaining_probes = 4;
 //
 //      /* Time requested.  Copy it in case CONVERT modifies *TP; this can
 //      occur if TP is localtime's returned value and CONVERT is localtime.  */
-//      int sec = tp->tm_sec;
-//      int minimum = tp->tm_min;
-//      int hour = tp->tm_hour;
-//      int mday = tp->tm_mday;
-//      int mon = tp->tm_mon;
-//      int year_requested = tp->tm_year;
-//      int isdst = tp->tm_isdst;
+//      ::i32 sec = tp->tm_sec;
+//      ::i32 minimum = tp->tm_min;
+//      ::i32 hour = tp->tm_hour;
+//      ::i32 mday = tp->tm_mday;
+//      ::i32 mon = tp->tm_mon;
+//      ::i32 year_requested = tp->tm_year;
+//      ::i32 isdst = tp->tm_isdst;
 //
 //      /* Ensure that mon is in range, and set year accordingly.  */
-//      int mon_remainder = mon % 12;
-//      int negative_mon_remainder = mon_remainder < 0;
-//      int mon_years = mon / 12 - negative_mon_remainder;
-//      int year = year_requested + mon_years;
+//      ::i32 mon_remainder = mon % 12;
+//      ::i32 negative_mon_remainder = mon_remainder < 0;
+//      ::i32 mon_years = mon / 12 - negative_mon_remainder;
+//      ::i32 year = year_requested + mon_years;
 //
 //      /* The other values need not be in range:
 //      the remaining code handles minor overflows correctly,
-//      assuming int and time_t arithmetic wraps around.
+//      assuming ::i32 and time_t arithmetic wraps around.
 //      Major overflows are caught at the end.  */
 //
 //      /* Calculate day of year from year, month, and day of month.
 //      The result need not be in range.  */
-//      int yday = ((__mon_yday[__isleap(year + TM_YEAR_BASE)]
+//      ::i32 yday = ((__mon_yday[__isleap(year + TM_YEAR_BASE)]
 //         [mon_remainder + 12 * negative_mon_remainder])
 //         + mday - 1);
 //
 //#if LEAP_SECONDS_POSSIBLE
 //      /* Handle out-of-range seconds specially,
 //      since ydhms_tm_diff assumes every minute has 60 seconds.  */
-//      int sec_requested = sec;
+//      ::i32 sec_requested = sec;
 //      if(sec < 0)
 //         sec = 0;
 //      if(59 < sec)
@@ -240,7 +240,7 @@ mktime.  */
 //      /* Check whether tm.tm_isdst has the requested value, if any.  */
 //      if(0 <= isdst && 0 <= tm.tm_isdst)
 //      {
-//         int dst_diff = (isdst != 0) - (tm.tm_isdst != 0);
+//         ::i32 dst_diff = (isdst != 0) - (tm.tm_isdst != 0);
 //         if(dst_diff)
 //         {
 //            /* Move two hours in the direction indicated by the disagreement,
@@ -284,9 +284,9 @@ mktime.  */
 //         TIME_T_MAX - TIME_T_MIN + 1.  So ignore any component of
 //         the difference that is bounded by a small value.  */
 //
-//         double dyear = (double)year_requested + mon_years - tm.tm_year;
-//         double dday = 366 * dyear + mday;
-//         double dsec = 60 * (60 * (24 * dday + hour) + minimum) + sec_requested;
+//         ::f64 dyear = (::f64)year_requested + mon_years - tm.tm_year;
+//         ::f64 dday = 366 * dyear + mday;
+//         ::f64 dsec = 60 * (60 * (24 * dday + hour) + minimum) + sec_requested;
 //
 //         if(TIME_T_MAX / 3 - TIME_T_MIN / 3 < (dsec < 0 ? - dsec : dsec))
 //            return -1;
@@ -302,7 +302,7 @@ mktime.  */
 //
 //#ifdef MKTIME_DEBUG
 //
-//      static int
+//      static ::i32
 //      not_equal_tm(a,b)
 //   struct tm *a;
 //   struct tm *b;
@@ -328,7 +328,7 @@ mktime.  */
 //         tp->tm_yday,tp->tm_wday,tp->tm_isdst);
 //   }
 //
-//   static int
+//   static ::i32
 //      check_result(tick,tmk,tl,tml)
 //      time_t tick;
 //   struct tm tmk;
@@ -348,15 +348,15 @@ mktime.  */
 //      return 0;
 //   }
 //
-//   int
+//   ::i32
 //      main(argc,argv)
-//      int argc;
-//   char **argv;
+//      ::i32 argc;
+//   char_pointer *argv;
 //   {
-//      int status = 0;
+//      ::i32 status = 0;
 //      struct tm tm,tmk,tml;
 //      time_t tick,tl;
-//      char trailer;
+//      ::i8 trailer;
 //
 //      if((argc == 3 || argc == 4)
 //         && (sscanf(argv[1],"%d-%d-%d%c",

@@ -71,14 +71,14 @@
        */
       void readFully(void *buffer, memsize len);
 
-      unsigned char readUInt8();
-      unsigned short readUInt16();
+      ::u8 readUInt8();
+      ::u16 readUInt16();
       ::u32 readUInt32();
       ::u64 readUInt64();
 
-      char readInt8();
-      short readInt16();
-      int readInt32();
+      ::i8 readInt8();
+      ::i16 readInt16();
+      ::i32 readInt32();
       ::i64 readInt64();
 
       ::string readUtf8();

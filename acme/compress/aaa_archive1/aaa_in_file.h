@@ -37,7 +37,7 @@ namespace zip
 
       void *                        m_punzfileinfo;
       string                        m_strFileName;
-      unsigned long long                           m_iPosition;
+      ::u64                           m_iPosition;
       string_array_base                       m_straPath;
       pointer_array < ::zip::file >       m_filea;
       pointer_array < ::zip::in_file >    m_infilea;
@@ -58,14 +58,14 @@ namespace zip
 
       virtual filesize get_position() const override;
 
-      virtual bool zip_open(const char *,unsigned int);
+      virtual bool zip_open(const_char_pointer ,::u32);
       virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 
-      virtual bool unzip_open(::file::file * pfile, const string_array_base & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
+      virtual bool unzip_open(::file::file * pfile, const string_array_base & = {}, ::i32 iBufferLevel = 2, ::file::enum_type * petype = nullptr);
       virtual bool unzip_open(::zip::file * pzfile,const ::file::path & path);
 
-      //virtual bool unzip_open(const char *, ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(const_char_pointer , ::file::enum_type * petype = nullptr);
 
       virtual bool locate(const ::file::path & path);
 

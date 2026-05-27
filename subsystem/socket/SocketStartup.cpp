@@ -29,7 +29,7 @@ namespace subsystem
 {
    bool SocketStartup::m_isStarted = false;
 
-   void SocketStartup::startup(unsigned char loVer, unsigned char hiVer)
+   void SocketStartup::startup(::u8 loVer, ::u8 hiVer)
    {
       if (m_isStarted) {
          //throw ::subsystem::Exception("WindowsSocket already initialized.");

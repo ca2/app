@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-line (int x1, int y1, int x2, int y2)
+line (::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
 {
   // Convert to viewport coordinates.
   x1 += TcViewLeft;
@@ -52,9 +52,9 @@ line (int x1, int y1, int x2, int y2)
 //----------------------------------------------------------------------------
 
 void
-lineto (int x, int y)
+lineto (::i32 x, ::i32 y)
 {
-  int x1, y1;
+  ::i32 x1, y1;
   x1 = Tcx;
   y1 = Tcy;
   Tcx = x;
@@ -65,7 +65,7 @@ lineto (int x, int y)
 //----------------------------------------------------------------------------
 
 void
-linerel (int Δx, int Δy)
+linerel (::i32 Δx, ::i32 Δy)
 {
   lineto (Tcx + Δx, Tcy + Δy);
 }
@@ -73,7 +73,7 @@ linerel (int Δx, int Δy)
 //----------------------------------------------------------------------------
 
 void
-moveto (int x, int y)
+moveto (::i32 x, ::i32 y)
 {
   Tcx = x;
   Tcy = y;
@@ -82,7 +82,7 @@ moveto (int x, int y)
 //----------------------------------------------------------------------------
 
 void
-moverel (int Δx, int Δy)
+moverel (::i32 Δx, ::i32 Δy)
 {
   Tcx += Δx;
   Tcy += Δy;
@@ -90,7 +90,7 @@ moverel (int Δx, int Δy)
 
 //----------------------------------------------------------------------------
 
-int
+::i32
 getx (void)
 {
   return (Tcx);
@@ -98,7 +98,7 @@ getx (void)
 
 //----------------------------------------------------------------------------
 
-int
+::i32
 gety (void)
 {
   return (Tcy);

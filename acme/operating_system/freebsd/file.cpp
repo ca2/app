@@ -33,7 +33,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //        return false;
 //
 //    }
-//   char * pszRealPath = ::realpath(scopedstr, NULL);
+//   char_pointer pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if(scopedstrRealPath == NULL)
 //   {
@@ -96,9 +96,9 @@ namespace path
 
       // https://arstechnica.com/civis/viewtopic.php?t=433790
 
-      char exepath[PATH_MAX];
+      ::i8 exepath[PATH_MAX];
 
-      char temp[PATH_MAX];
+      ::i8 temp[PATH_MAX];
 
       ::snprintf(temp, sizeof(temp),"/proc/%d/file", ::getpid());
 
@@ -113,7 +113,7 @@ namespace path
 } // namespace path
 
 
-char * get_current_dir_name()
+char_pointer get_current_dir_name()
 {
 
     return getcwd(nullptr, 0);
@@ -133,12 +133,12 @@ char * get_current_dir_name()
 //::file::path get_module_path()
 //{
 //
-//   int mib[4];
+//   ::i32 mib[4];
 //   mib[0] = CTL_KERN;
 //   mib[1] = KERN_PROC;
 //   mib[2] = KERN_PROC_PATHNAME;
 //   mib[3] = -1;
-//   char pathbuf[4096];
+//   ::i8 pathbuf[4096];
 //   size_t cb = sizeof(pathbuf);
 //   sysctl(mib, 4, pathbuf, &cb, NULL, 0);
 //

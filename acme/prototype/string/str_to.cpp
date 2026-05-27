@@ -25,7 +25,7 @@ bool str::to(::i64 & i, const ::scoped_string & scopedstr)
 }
 
 
-bool str::to(int & i, const ::scoped_string & scopedstr)
+bool str::to(::i32 & i, const ::scoped_string & scopedstr)
 {
 
    const_char_pointer pszEnd = nullptr;
@@ -44,7 +44,7 @@ bool str::to(int & i, const ::scoped_string & scopedstr)
 }
 
 
-bool str::to(::i64 & i, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::i64 & i, ::i32 iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -54,7 +54,7 @@ bool str::to(::i64 & i, int iBase, const ::scoped_string & scopedstr)
 
    }
 
-   char * pszEnd;
+   char_pointer pszEnd;
 
 #ifdef WINDOWS
 
@@ -79,13 +79,13 @@ bool str::to(::i64 & i, int iBase, const ::scoped_string & scopedstr)
 
 }
 
-bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::i32 & i, ::i32 iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
       return false;
 
-   char * pszEnd;
+   char_pointer pszEnd;
 
 #ifdef WINDOWS
 
@@ -104,14 +104,14 @@ bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
 
    }
 
-   if (iConversion > numeric_info< int >::maximum())
+   if (iConversion > numeric_info< ::i32 >::maximum())
    {
 
       return false;
 
    }
 
-   i = (int)iConversion;
+   i = (::i32)iConversion;
 
    return true;
 
@@ -165,7 +165,7 @@ bool str::to(::u32 & u, const ::scoped_string & scopedstr)
 }
 
 
-bool str::to(::u64 & u, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::u64 & u, ::i32 iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -193,7 +193,7 @@ bool str::to(::u64 & u, int iBase, const ::scoped_string & scopedstr)
 }
 
 
-bool str::to(::u32 & u, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::u32 & u, ::i32 iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)

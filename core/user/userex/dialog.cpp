@@ -187,9 +187,9 @@ namespace userex
 
       m_pframe->best_monitor(&rectangleOpen);
 
-      int iWidth = rectangleOpen.width();
+      ::i32 iWidth = rectangleOpen.width();
 
-      int iHeight = rectangleOpen.height();
+      ::i32 iHeight = rectangleOpen.height();
 
       rectangleOpen.deflate(iWidth / 5, iHeight / 5);
 
@@ -249,11 +249,11 @@ CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, atom idControl, strin
 {
 }
 
-CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, int iMax)
+CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, ::i32 iMax)
 {
 }
 
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, int & iBool)
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, ::i32 & iBool)
 {
 }
 

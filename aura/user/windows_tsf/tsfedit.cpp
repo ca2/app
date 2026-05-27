@@ -334,7 +334,7 @@ void edit_window::_Uninitialize()
         }
 #endif
 
-        int i;
+        ::i32 i;
 
         for (i = 0; i < NUM_SUPPORTED_ATTRS; i++)
         {
@@ -531,7 +531,7 @@ LRESULT edit_window::_OnDestroy(VOID)
 
 **************************************************************************/
 
-//LRESULT edit_window::_OnCommand(unsigned short wID, unsigned short wCmd, HWND hWnd)
+//LRESULT edit_window::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
 //{
 //    switch(wID)
 //    {
@@ -852,7 +852,7 @@ void edit_window::_OnUpdate(void)
 
 void edit_window::_UpdateStatusBar(void)
 {
-    int     nParts[2];
+    ::i32     nParts[2];
     HDC     hdc;
     //HFONT   hFont;
     ::i32_size    size;
@@ -923,7 +923,7 @@ LRESULT edit_window::_OnInitMenuPopup(WPARAM wParam, LPARAM lParam)
 
 void edit_window::_ClearRequestedAttributes(void)
 {
-    int i;
+    ::i32 i;
 
     for (i = 0; i < NUM_SUPPORTED_ATTRS; i++)
     {
@@ -1030,7 +1030,7 @@ void edit_window::_GetDisplayAttributes(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        int        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1163,7 +1163,7 @@ void edit_window::_GetTextOwner(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        int        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1274,7 +1274,7 @@ void edit_window::_GetReadingText(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        int        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1383,7 +1383,7 @@ void edit_window::_GetComposing(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        int        acpEnd;
+        ::i32        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);

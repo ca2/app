@@ -13,10 +13,10 @@ namespace xml
 {
 
 
-   static const char chXMLTagOpen = '<';
-   static const char chXMLTagClose = '>';
-   static const char chXMLTagPre = '/';
-   static const char chXMLEscape = '\\';   // for m_strValue field escape
+   static const ::i8 chXMLTagOpen = '<';
+   static const ::i8 chXMLTagClose = '>';
+   static const ::i8 chXMLTagPre = '/';
+   static const ::i8 chXMLEscape = '\\';   // for m_strValue field escape
 
 
    document::document(parse_info * pparseinfo, string_to_string_base * pentitiesHash)
@@ -429,7 +429,7 @@ namespace xml
       if(strEntityReference.case_insensitive_begins_eat("&#"))
       {
 
-         int i = atoi(strEntityReference);
+         ::i32 i = atoi(strEntityReference);
 
          wchar_t wsz[2];
 
@@ -449,7 +449,7 @@ namespace xml
 
    // the additional parameter must end with , nullptr
    // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
-   char * document::patch_entity_ref(::ansi_range & rangeXml, int bUseExtEnt, ::platform::context * pacmecontext)
+   char_pointer document::patch_entity_ref(::ansi_range & rangeXml, ::i32 bUseExtEnt, ::platform::context * pacmecontext)
    {
 
       // pszXml must be a valid portion of and i32_point to an entity ref in:
@@ -486,7 +486,7 @@ namespace xml
 
       auto iRight = iPos + strName.length() + 2;
 
-      char * pszRight = (char *)m_memoryData.data() + iRight;
+      char_pointer pszRight = (char_pointer )m_memoryData.data() + iRight;
 
       memory_transfer(pszRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
 

@@ -7,9 +7,9 @@
 #include <CoreFoundation/CoreFoundation.h>
 
 
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr);
+bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr);
 
-bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr);
+bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr);
 
 //device_context::device_context()
 //:
@@ -78,11 +78,11 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//HPEN CreatePen(int iPenStyle, int iWidth, color32_t crColor)
+//HPEN CreatePen(::i32 iPenStyle, ::i32 iWidth, color32_t crColor)
 //{
 //   return nullptr;
 //}
-//HGDIOBJ GetStockObject(int iStockObject)
+//HGDIOBJ GetStockObject(::i32 iStockObject)
 //{
 //   return nullptr;
 //}
@@ -90,7 +90,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return false;
 //}
-//int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+//int_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
 //{
 //   return false;
 //}
@@ -102,11 +102,11 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//HBITMAP WINAPI CreateDIBSection(HDC hdc, int cx, int cy, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset)
+//HBITMAP WINAPI CreateDIBSection(HDC hdc, ::i32 cx, ::i32 cy, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset)
 //{
 //   return nullptr;
 //}
-//int_bool SetBkMode(HDC hdc, int iMode)
+//int_bool SetBkMode(HDC hdc, ::i32 iMode)
 //{
 //   return false;
 //}
@@ -114,15 +114,15 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return false;
 //}
-//int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+//int_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn)
 //{
 //   return false;
 //}
-//int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter)
+//int_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter)
 //{
 //   return false;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::i32_size * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize)
 //{
 //   return false;
 //}
@@ -269,7 +269,7 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //}
 
 //
-//bool TextOutU_dup(HDC hdc, int x, int y, const ::scoped_string & scopedstrUtf8, int iSize)
+//bool TextOutU_dup(HDC hdc, ::i32 x, ::i32 y, const ::scoped_string & scopedstrUtf8, ::i32 iSize)
 //{
 //
 //   CGContextRef context = hdc->m_cgcontext;
@@ -352,17 +352,17 @@ HBRUSH CreateSolidBrush(color32_t color32)
 
 HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
 
-HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrFaceName, int BOLD, HDC hdc);
+HFONT CreatePointBoldFont_dup(::i32 nPointSize, const ::scoped_string & scopedstrFaceName, ::i32 BOLD, HDC hdc);
 
 
-//HFONT CreatePointFont_dup(int nPointSize, const ::scoped_string & scopedstrFaceName, HDC hdc)
+//HFONT CreatePointFont_dup(::i32 nPointSize, const ::scoped_string & scopedstrFaceName, HDC hdc)
 //
 //{
 //   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 //
 //}
 //
-//HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrFaceName, int BOLD, HDC hdc)
+//HFONT CreatePointBoldFont_dup(::i32 nPointSize, const ::scoped_string & scopedstrFaceName, ::i32 BOLD, HDC hdc)
 //
 //{
 //   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszFaceName, kCFStringEncodingUTF8);
@@ -431,16 +431,16 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrF
 
 //bool macos_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
-CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
+CGContextRef CreateARGBBitmapContext (CGImageRef inImage, ::i32 cx, ::i32 cy);
+bool GetImagePixelData(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, CGImageRef inImage);
 
 
-bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr);
+bool mm_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr);
 
 
 //
 //
-//bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
+//bool GetImagePixelData(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, CGImageRef inImage)
 //{
 //
 //   CGContextRef cgctx = CreateARGBBitmapContext(inImage, cx, cy);
@@ -458,15 +458,15 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 //
 //   void *data = CGBitmapContextGetData (cgctx);
 //
-//   unsigned char * pdest = (unsigned char * ) pcr;
+//   ::u8 * pdest = (::u8 * ) pcr;
 //
 //   if (data != nullptr)
 //   {
 //
-//      for(int y = cy - 1; y >= 0; y--)
+//      for(::i32 y = cy - 1; y >= 0; y--)
 //      {
 //
-//         unsigned char * pline = (unsigned char *) &((unsigned int*)data)[y * cx];
+//         ::u8 * pline = (::u8 *) &((::u32*)data)[y * cx];
 //
 //         ::memory_copy(pdest, pline, cx* 4);
 //
@@ -483,7 +483,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 //}
 //
 //
-//CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
+//CGContextRef CreateARGBBitmapContext (CGImageRef inImage, ::i32 cx, ::i32 cy)
 //{
 //
 //   CGContextRef    context = nullptr;
@@ -492,9 +492,9 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 //
 //   void *          bitmapData;
 //
-//   int             bitmapByteCount;
+//   ::i32             bitmapByteCount;
 //
-//   int             bitmapBytesPerRow;
+//   ::i32             bitmapBytesPerRow;
 //
 //   bitmapBytesPerRow   = (cx * 4);
 //
@@ -561,14 +561,14 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 
 //bool macos_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
-CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
+CGContextRef CreateARGBBitmapContext (CGImageRef inImage, ::i32 cx, ::i32 cy);
+bool GetImagePixelData(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, CGImageRef inImage);
 
 
-bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr);
+bool mm_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr);
 
 
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr);
+bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr);
 
 
 #include <Carbon/Carbon.h>
@@ -773,7 +773,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 
 /*
- int FillRect(HDC hdc, const ::i32_rectangle & prc, HBRUSH hbr)
+ ::i32 FillRect(HDC hdc, const ::i32_rectangle & prc, HBRUSH hbr)
 
  {
 
@@ -821,7 +821,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 
 
-/*int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+/*::i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
  {
  return 0;
  }*/
@@ -833,11 +833,11 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return nullptr;
 // }
-// HPEN CreatePen(int iPenStyle, int iWidth, color32_t crColor)
+// HPEN CreatePen(::i32 iPenStyle, ::i32 iWidth, color32_t crColor)
 // {
 //     return nullptr;
 // }
-// HGDIOBJ GetStockObject(int iStockObject)
+// HGDIOBJ GetStockObject(::i32 iStockObject)
 // {
 //     return nullptr;
 // }
@@ -845,7 +845,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return false;
 // }
-// int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+// int_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
 // {
 //     return false;
 // }
@@ -857,12 +857,12 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return nullptr;
 // }
-// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset)
+// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset)
 
 // {
 //     return nullptr;
 // }
-// int_bool SetBkMode(HDC hdc, int iMode)
+// int_bool SetBkMode(HDC hdc, ::i32 iMode)
 // {
 //     return false;
 // }
@@ -870,15 +870,15 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return false;
 // }
-// int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+// int_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn)
 // {
 //     return false;
 // }
-// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter)
+// int_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter)
 // {
 //     return false;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::i32_size * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize)
 // {
 //     return false;
 // }
@@ -1024,7 +1024,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //
 //}
 
-// bool TextOutU_dup(HDC hdc, int x, int y, const ::scoped_string & scopedstrUtf8, int iSize)
+// bool TextOutU_dup(HDC hdc, ::i32 x, ::i32 y, const ::scoped_string & scopedstrUtf8, ::i32 iSize)
 // {
 
 //    CGContextRef context = hdc->m_cgcontext;
@@ -1107,17 +1107,17 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
 
-HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrFaceName, int BOLD, HDC hdc);
+HFONT CreatePointBoldFont_dup(::i32 nPointSize, const ::scoped_string & scopedstrFaceName, ::i32 BOLD, HDC hdc);
 
 
-//HFONT CreatePointFont_dup(int nPointSize, const ::scoped_string & scopedstrFaceName, HDC hdc)
+//HFONT CreatePointFont_dup(::i32 nPointSize, const ::scoped_string & scopedstrFaceName, HDC hdc)
 
 //{
 //   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 
 //}
 //
-//HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrFaceName, int BOLD, HDC hdc)
+//HFONT CreatePointBoldFont_dup(::i32 nPointSize, const ::scoped_string & scopedstrFaceName, ::i32 BOLD, HDC hdc)
 
 //{
 //   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszFaceName, kCFStringEncodingUTF8);
@@ -1139,7 +1139,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrF
 
 
 
-bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr)
+bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr)
 {
 
    static ::pointer< ::mutex > pmutex = nullptr;
@@ -1253,7 +1253,7 @@ int_bool delete_hcursor(HCURSOR h)
 }
 
 
-double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
+::f64 font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
 {
 
    if (::is_null(scopedstrSystem) || ::is_null(scopedstrUser))
@@ -1293,7 +1293,7 @@ namespace draw2d
 
 
 
-void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRef image)
+void * cg_image_get_image_data(::i32 & width, ::i32 & height, ::i32 & iScan, CGImageRef image)
 {
 
    if(image == nullptr)
@@ -1305,18 +1305,18 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
 
    //https://www.raywenderlich.com/69855/image-processing-in-ios-part-1-raw-bitmap-modification
    // 1.
-   width = (int) CGImageGetWidth(image);
-   height = (int) CGImageGetHeight(image);
+   width = (::i32) CGImageGetWidth(image);
+   height = (::i32) CGImageGetHeight(image);
 
    // 2.
    long bytesPerPixel = 4;
    long bytesPerRow = bytesPerPixel * width;
    long bitsPerComponent = 8;
 
-   unsigned int * pixels;
-   pixels = (unsigned int *) calloc(height * width, sizeof(unsigned int));
+   ::u32 * pixels;
+   pixels = (::u32 *) calloc(height * width, sizeof(::u32));
    
-   iScan = width * sizeof(unsigned int);
+   iScan = width * sizeof(::u32);
 
    // 3.
    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

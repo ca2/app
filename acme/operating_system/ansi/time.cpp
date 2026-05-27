@@ -8,7 +8,7 @@
 //void system_time_to_tm(tm * ptm, const system_time & systemtime);
 
 //
-//posix_time::posix_time(const system_time & systemtime, int nDST)
+//posix_time::posix_time(const system_time & systemtime, ::i32 nDST)
 //{
 //
 //   struct tm tm;

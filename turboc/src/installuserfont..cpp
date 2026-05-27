@@ -30,8 +30,8 @@
 
 //----------------------------------------------------------------------------
 
-int
-installuserfont (char *name)
+::i32
+installuserfont (char_pointer name)
 {
   return (SANS_SERIF_FONT);
 }

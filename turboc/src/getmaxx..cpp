@@ -41,13 +41,13 @@
 //----------------------------------------------------------------------------
 // This is just a quick and dirty version that doesn't account for viewports
 
-int
+::i32
 turboc_getmaxx (void)
 {
   return (TcXresolution - 1);
 }
 
-int
+::i32
 turboc_getmaxy (void)
 {
   return (TcYresolution - 1);

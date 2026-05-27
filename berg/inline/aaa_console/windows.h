@@ -33,7 +33,7 @@ public:
    }
 
 
-   console(int argc, char ** argv)
+   console(::i32 argc, char_pointer * argv)
    {
 
       common_construct();
@@ -45,7 +45,7 @@ public:
    }
 
 
-   console(int argc, wchar_t ** argv)
+   console(::i32 argc, wchar_t ** argv)
    {
 
       common_construct();
@@ -65,12 +65,12 @@ public:
    }
 
 
-   int result()
+   ::i32 result()
    {
 
       m_estatus = papp->m_estatus;
 
-      int iErrorStatus = m_estatus.error_status();
+      ::i32 iErrorStatus = m_estatus.error_status();
 
       system()->inline_term();
 
@@ -98,7 +98,7 @@ public:
 };
 
 
-//int wmain(int argc, wchar_t* argv[])
+//::i32 wmain(::i32 argc, wchar_t* argv[])
 //{
 //
 //   console console(argc, argv);

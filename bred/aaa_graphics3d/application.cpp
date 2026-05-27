@@ -96,7 +96,7 @@ namespace graphics3d
 
    //   uboBuffers.set_size(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
 
-   //   for (int i = 0; i < uboBuffers.size(); i++)
+   //   for (::i32 i = 0; i < uboBuffers.size(); i++)
    //   {
 
    //      uboBuffers[i] = allocateø buffer();
@@ -118,7 +118,7 @@ namespace graphics3d
 
    //   std::vector<VkDescriptorSet> globalDescriptorSets(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
 
-   //   for (int i = 0; i < globalDescriptorSets.size(); i++)
+   //   for (::i32 i = 0; i < globalDescriptorSets.size(); i++)
    //   {
 
    //      auto bufferInfo = uboBuffers[i]->descriptorInfo();
@@ -164,7 +164,7 @@ namespace graphics3d
 
    //      auto newTime = std::chrono::high_resolution_clock::now();
 
-   //      float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - currentTime).count();
+   //      ::f32 frameTime = std::chrono::duration<::f32, std::chrono::seconds::period>(newTime - currentTime).count();
 
    //      currentTime = newTime;
 
@@ -182,14 +182,14 @@ namespace graphics3d
    //         && m_prenderer->m_pvkcrenderpass->height() > 0)
    //      {
 
-   //         float aspect = m_prenderer->getAspectRatio();
+   //         ::f32 aspect = m_prenderer->getAspectRatio();
 
    //         camera.setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
 
    //         if (auto commandBuffer = m_prenderer->beginFrame())
    //         {
 
-   //            int frameIndex = m_prenderer->getFrameIndex();
+   //            ::i32 frameIndex = m_prenderer->getFrameIndex();
 
    //            FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera, globalDescriptorSets[frameIndex], m_gameObjects };
 
@@ -231,7 +231,7 @@ namespace graphics3d
    //}
 
 
-   //void Application::resize(int cx, int cy)
+   //void Application::resize(::i32 cx, ::i32 cy)
    //{
 
    //   m_prenderer->m_pvkcrenderpass->windowExtent.width = cx;
@@ -294,7 +294,7 @@ namespace graphics3d
 
       //}
 
-      //float fLo = 0.5f;
+      //::f32 fLo = 0.5f;
 
       //std::vector<floating_sequence3> lightColors{
       //      {1.f, fLo, fLo},
@@ -305,12 +305,12 @@ namespace graphics3d
       //      {1.f, 1.f, 1.f}
       //};
 
-      //for (int i = 0; i < lightColors.size(); i++) {
+      //for (::i32 i = 0; i < lightColors.size(); i++) {
       //   auto pointLight = VkcGameObject::makePointLight(0.2f);
       //   pointLight.color = lightColors[i];
       //   auto rotateLight = glm::rotate(
       //      floating_matrix4(1.f),
-      //      (i * glm::two_pi<float>()) / lightColors.size(),
+      //      (i * glm::two_pi<::f32>()) / lightColors.size(),
       //      { 0.f, -1.f, 0.f });
       //   pointLight.pointLight->lightIntensity = 1.0f;
       //   pointLight.transform.translation = floating_sequence3(rotateLight * floating_sequence4(-1.f, -1.f, -1.f, 1.f));
@@ -320,14 +320,14 @@ namespace graphics3d
    }
 
 
-   void application::handle_mouse_move(int x, int y)
+   void application::handle_mouse_move(::i32 x, ::i32 y)
    {
 
 
 
    }
 
-   void application::resize(int cx, int cy)
+   void application::resize(::i32 cx, ::i32 cy)
    {
 
 

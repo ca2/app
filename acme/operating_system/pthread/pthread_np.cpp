@@ -42,16 +42,16 @@
 
 #if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__)
 
-int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
+::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 {
    
    
 #if defined(__APPLE__)
    
-   int iSetCount = 0;
+   ::i32 iSetCount = 0;
    thread_affinity_policy_data_t policydataa[sizeof(dwThreadAffinityMask) * 8];
 
-   for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+   for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
    {
 
          if((1 << i) & dwThreadAffinityMask)
@@ -93,9 +93,9 @@ int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 
     cpuset_zero(pcpuset);
 
-    int iCpuSetErrorCount = 0;
+    ::i32 iCpuSetErrorCount = 0;
 
-    for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+    for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
     {
 
        	if((1 << i) & dwThreadAffinityMask)
@@ -126,7 +126,7 @@ int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 #elif defined(__ANDROID__)
     cpu_set_t c;
     CPU_ZERO(&c);
-    for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+    for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
     {
 
         if((1 << i) & dwThreadAffinityMask)
@@ -140,7 +140,7 @@ int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 
     auto pid = pthread_gettid_np(::literal_cast < pthread_t >(h));
 
-    int iRet = sched_setaffinity(pid, sizeof(c), &c);
+    ::i32 iRet = sched_setaffinity(pid, sizeof(c), &c);
 
     return iRet != 0;
 
@@ -149,7 +149,7 @@ int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 
     CPU_ZERO(&c);
 
-    for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+    for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
     {
 
         if((1 << i) & dwThreadAffinityMask)
@@ -171,14 +171,14 @@ int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 
 #else
 
-int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
+::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 {
 
    cpu_set_t c;
 
    CPU_ZERO(&c);
 
-   for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+   for(::i32 i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
    {
 
       if((1 << i) & dwThreadAffinityMask)
@@ -202,17 +202,17 @@ int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 string task_get_name(htask htask)
 {
 
-   char szThreadName[32];
+   ::i8 szThreadName[32];
 
 #if defined(FREEBSD) || defined(OPENBSD)
 
    pthread_get_name_np(::literal_cast < pthread_t >( htask.m_h), szThreadName, sizeof(szThreadName));
 
-   int error = errno;
+   ::i32 error = errno;
 
 #else
 
-   int error = pthread_getname_np(::literal_cast<pthread_t>(htask.m_h), szThreadName, sizeof(szThreadName));
+   ::i32 error = pthread_getname_np(::literal_cast<pthread_t>(htask.m_h), szThreadName, sizeof(szThreadName));
 
 #endif
 
@@ -249,7 +249,7 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
       
    }
 
-   int error = pthread_setname_np(strName);
+   ::i32 error = pthread_setname_np(strName);
 
 #else
 
@@ -263,19 +263,19 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
 
    pthread_set_name_np(::literal_cast < pthread_t >(pthread), strName);
 
-   int error = errno;
+   ::i32 error = errno;
 
 #elif defined(NETBSD)
 
    thread_name_abbreviate(strName, PTHREAD_MAX_NAMELEN_NP - 1);
 
-   int error = pthread_setname_np(::literal_cast < pthread_t >(pthread), "%s", (void *) strName.c_str());
+   ::i32 error = pthread_setname_np(::literal_cast < pthread_t >(pthread), "%s", (void *) strName.c_str());
 
 #else
 
    thread_name_abbreviate(strName, 15);
 
-   int error = pthread_setname_np(literal_cast<pthread_t>(pthread), strName);
+   ::i32 error = pthread_setname_np(literal_cast<pthread_t>(pthread), strName);
 
 #endif
 

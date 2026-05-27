@@ -30,7 +30,7 @@ namespace database
 
 
       bool              m_bTransactionActive;
-      int               m_iLastError;
+      ::i32               m_iLastError;
       string            m_strLastError;
       class ::time        m_timeLastUse;
 
@@ -56,7 +56,7 @@ namespace database
 
       void     init() override;
       enum_connection connection_status() override { return m_econnection; }
-      void     set_error_code(int iErrorCode) override;
+      void     set_error_code(::i32 iErrorCode) override;
       string get_error_message() override;
       void* get_handle() override = 0;
 

@@ -57,11 +57,11 @@ namespace gpu_opengl
 
       }
 
-      int w = size.cx;
+      ::i32 w = size.cx;
 
-      int h = size.cy;
+      ::i32 h = size.cy;
 
-      int attribList[]=
+      ::i32 attribList[]=
       {
          GLX_RENDER_TYPE, GLX_RGBA_BIT,
          //GLX_MAX_PBUFFER_WIDTH, w,
@@ -92,9 +92,9 @@ namespace gpu_opengl
 
       ::x11::display_lock display(pdisplay);
 
-      int screen = DefaultScreen(pdisplay);
+      ::i32 screen = DefaultScreen(pdisplay);
 
-      int iConfigCount = 0;
+      ::i32 iConfigCount = 0;
 
       m_pconfig = glXChooseFBConfig(pdisplay, screen, attribList, &iConfigCount);
 
@@ -107,7 +107,7 @@ namespace gpu_opengl
 
       }
 
-        int glx_major, glx_minor;
+        ::i32 glx_major, glx_minor;
 
    // FBConfigs were added in GLX version 1.3.
       if ( !glXQueryVersion(pdisplay, &glx_major, &glx_minor ) ||
@@ -121,7 +121,7 @@ namespace gpu_opengl
       }
 
 
-      int bufferAttribList[]=
+      ::i32 bufferAttribList[]=
       {
          GLX_PBUFFER_WIDTH, w,
          GLX_PBUFFER_HEIGHT, h,
@@ -244,7 +244,7 @@ namespace gpu_opengl
 //
 //      }
 
-      int bufferAttribList[]=
+      ::i32 bufferAttribList[]=
       {
          GLX_PBUFFER_WIDTH, size.cx,
          GLX_PBUFFER_HEIGHT, size.cy,
@@ -260,7 +260,7 @@ namespace gpu_opengl
 
       ::x11::display_lock display(pdisplay);
 
-      int screen = DefaultScreen(pdisplay);
+      ::i32 screen = DefaultScreen(pdisplay);
 
       // Create P-Buffer
       auto pbuffer = glXCreatePbuffer(pdisplay, m_pconfig[0], bufferAttribList);
@@ -311,13 +311,13 @@ namespace gpu_opengl
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 

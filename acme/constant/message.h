@@ -4,7 +4,7 @@
 #pragma once
 
 
-enum enum_message : int
+enum enum_message : ::i32
 {
 
    e_message_undefined = -1,

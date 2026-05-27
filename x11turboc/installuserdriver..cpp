@@ -30,8 +30,8 @@
 
 //----------------------------------------------------------------------------
 
-int
-installuserdriver (char *name, int (*detect) (void))
+::i32
+installuserdriver (char_pointer name, ::i32 (*detect) (void))
 {
   return (IBM8514);
 }

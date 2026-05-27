@@ -112,8 +112,8 @@ namespace helloworld
 
       if(get_impact_id() == ::helloworld::PaneImpactHelloWorld
             || get_impact_id() == ::helloworld::PaneImpactHelloWorldSwitcher
-            || stra.contains(as_string((int)::helloworld::PaneImpactHelloWorld))
-            || stra.contains(as_string((int)::helloworld::PaneImpactHelloWorldSwitcher)))
+            || stra.contains(as_string((::i32)::helloworld::PaneImpactHelloWorld))
+            || stra.contains(as_string((::i32)::helloworld::PaneImpactHelloWorldSwitcher)))
       {
 
 
@@ -194,7 +194,7 @@ namespace helloworld
          if (m_pimpactLastBilbo != nullptr)
          {
 
-            int i = 1;
+            ::i32 i = 1;
 
             for (auto & bilbo : m_pimpactLastBilbo->m_prender->m_bilboa)
             {
@@ -315,7 +315,7 @@ namespace helloworld
                try
                {
                   string str;
-                  double d = m_prollfps->get_ex_value()["real"];
+                  ::f64 d = m_prollfps->get_ex_value()["real"];
                   if(m_pimpactLast != nullptr)
                   {
 
@@ -363,7 +363,7 @@ namespace helloworld
             //   {
             //      string str;
             //      m_prollspf->get_text(str);
-            //      double d = atof(str);
+            //      ::f64 d = atof(str);
             //      if(fabs(d) < 0.0000000001)
             //      {
             //         m_prollfps->set_text("",::e_source_initialize);
@@ -396,7 +396,7 @@ namespace helloworld
                      && !ptopic->m_context.is_source(::e_source_sync))
                {
 
-                  int iCheck = atoi(strCheck);
+                  ::i32 iCheck = atoi(strCheck);
 
                   if (m_pimpactLastBilbo != nullptr)
                   {
@@ -463,7 +463,7 @@ namespace helloworld
       if (m_pimpactLastBilbo != nullptr)
       {
 
-         int i = 1;
+         ::i32 i = 1;
 
          for (auto & bilbo : m_pimpactLastBilbo->m_prender->m_bilboa)
          {

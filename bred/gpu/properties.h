@@ -73,10 +73,10 @@ namespace gpu
 		const_char_pointer m_pszName = nullptr;
 		::gpu::enum_type		m_etype =::gpu::e_type_none;
 		const property* m_pproperties = nullptr;
-		int m_iArraySize = 0;
-		int m_iCachedSizeWithSamplers = -1;
-      int m_iCachedSizeWithoutSamplers = -1;
-		int m_iCachedOffset = -1;
+		::i32 m_iArraySize = 0;
+		::i32 m_iCachedSizeWithSamplers = -1;
+      ::i32 m_iCachedSizeWithoutSamplers = -1;
+		::i32 m_iCachedOffset = -1;
 
 		property() {}
         property(nullptr_t) {}
@@ -87,7 +87,7 @@ namespace gpu
 
 		}
 
-		property(const_char_pointer pszName, const property * pproperty, int iSize = 1);
+		property(const_char_pointer pszName, const property * pproperty, ::i32 iSize = 1);
       property(const property &property) :
          m_pszName(property.m_pszName), 
          m_etype(property.m_etype),
@@ -102,15 +102,15 @@ namespace gpu
 
 		inline const property* find(const_char_pointer pszName) const;
 
-		inline int get_size(bool bWithSamplers) const;
+		inline ::i32 get_size(bool bWithSamplers) const;
 
 		inline ::collection::count count() const;
 
-		inline int get_offset(const_char_pointer pszName) const;
+		inline ::i32 get_offset(const_char_pointer pszName) const;
 
-      inline int find_index(const_char_pointer pszName) const;
+      inline ::i32 find_index(const_char_pointer pszName) const;
 
-		inline int get_item_size(bool bWithSamplers) const
+		inline ::i32 get_item_size(bool bWithSamplers) const
 		{
 			if (m_etype == e_type_array)
 			{
@@ -131,7 +131,7 @@ namespace gpu
 
 		auto p = this;
 
-		int iLen = 0;
+		::i32 iLen = 0;
 
 		while (true)
 		{
@@ -179,10 +179,10 @@ namespace gpu
 	}
 
 
-	inline int property::get_size(bool bWithSamplers) const
+	inline ::i32 property::get_size(bool bWithSamplers) const
 	{
 		auto p = this;
-		int iLen = 0;
+		::i32 iLen = 0;
 
 		while (true)
 		{
@@ -240,10 +240,10 @@ namespace gpu
 	}
 
 
-	inline int property::get_offset(const_char_pointer pszName) const
+	inline ::i32 property::get_offset(const_char_pointer pszName) const
 	{
 		auto p = this;
-		int iLen = 0;
+		::i32 iLen = 0;
 
 		while (true)
 		{
@@ -277,11 +277,11 @@ namespace gpu
 
 	}
 
-	inline int property::find_index(const_char_pointer pszName) const
+	inline ::i32 property::find_index(const_char_pointer pszName) const
    {
       auto p = this;
-      int iLen = 0;
-      int iIndex = 0;
+      ::i32 iLen = 0;
+      ::i32 iIndex = 0;
 
       while (true)
       {
@@ -367,7 +367,7 @@ namespace gpu
 		}
 		memsize size(bool bWithSamplers) const { return bWithSamplers? m_blockWithSamplers.size():m_blockWithoutSamplers.size(); }
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
-      unsigned char *data(bool bWithSamplers) const { return bWithSamplers ? m_blockWithSamplers.data():m_blockWithoutSamplers.data(); }
+      ::u8 *data(bool bWithSamplers) const { return bWithSamplers ? m_blockWithSamplers.data():m_blockWithoutSamplers.data(); }
 		void* find(const_char_pointer pszName, bool bWithSamplers = true) {
          auto iIndex = m_pproperties->find_index(pszName);
          if (iIndex < 0)
@@ -408,8 +408,8 @@ namespace gpu
       }
       template<typename T>
 		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
-		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
-		int& as_i32(const_char_pointer pszName) { return as<int>(pszName); }
+		::f32& as_f32(const_char_pointer pszName) { return as<::f32>(pszName); }
+		::i32& as_i32(const_char_pointer pszName) { return as<::i32>(pszName); }
 		floating_sequence2& seq2(const_char_pointer pszName) { return as<floating_sequence2>(pszName); }
 		floating_sequence3& seq3(const_char_pointer pszName) { return as<floating_sequence3>(pszName); }
 		floating_sequence4& seq4(const_char_pointer pszName) { return as<floating_sequence4>(pszName); }
@@ -422,7 +422,7 @@ namespace gpu
 
 		}
 
-		properties_interface array_item(const_char_pointer pszArrayName, int iItem)
+		properties_interface array_item(const_char_pointer pszArrayName, ::i32 iItem)
 		{
 
 			auto pproperty = m_pproperties->find(pszArrayName);
@@ -468,7 +468,7 @@ namespace gpu
 		void _set_matrix4(const ::floating_matrix4& matrix4);
 		void _set_sequence4(const ::floating_sequence4& sequence4);
       void _set_sequence3(const ::floating_sequence3 & sequence3);
-		void _set_int(const int& i);
+		void _set_int(const ::i32& i);
 		
 		template < typename TYPE >
 		properties_reference& operator=(const TYPE& matrix4) requires
@@ -520,7 +520,7 @@ namespace gpu
 
 		template < typename TYPE >
 		properties_reference& operator=(const TYPE& i)requires
-			(::std::is_same_v<TYPE, int >)
+			(::std::is_same_v<TYPE, ::i32 >)
 		{
 			if (m_pproperties->m_etype != ::gpu::e_type_i32)
 			{
@@ -585,7 +585,7 @@ namespace gpu
 	};
 
 
-	inline property::property(const_char_pointer pszName,  const property * pproperty, int iSize):
+	inline property::property(const_char_pointer pszName,  const property * pproperty, ::i32 iSize):
 		m_pszName(pszName), 
 		m_etype(::gpu::e_type_array),
 		m_pproperties(pproperty),
@@ -640,8 +640,8 @@ namespace gpu
 
 		auto pproperty = m_pproperties;
 
-		int iSizeWithSamplers = pproperty->m_pproperties->get_size(true);
-      int iOffset = iSizeWithSamplers * (int)i;
+		::i32 iSizeWithSamplers = pproperty->m_pproperties->get_size(true);
+      ::i32 iOffset = iSizeWithSamplers * (::i32)i;
 
 		return { pproperty->m_pproperties, 
          m_blockWithSamplers(iOffset, iSizeWithSamplers),

@@ -90,7 +90,7 @@
 
 
 
-               int iInflate = 5; // raio 2 pixels + centro 1 pixel
+               ::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
                rectangleInflate = rectangleX;
                rectangleInflate.inflate(iInflate, iInflate);
@@ -157,7 +157,7 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect, color32_t color32, unsigned char bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect, color32_t color32, ::u8 bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -227,10 +227,10 @@
             }
 
 
-            frame::enum_element operator ++(frame::enum_element & eelement, int i)
+            frame::enum_element operator ++(frame::enum_element & eelement, ::i32 i)
             {
                __UNREFERENCED_PARAMETER(i);
-               return (frame::enum_element) (*((int*)&eelement))++;
+               return (frame::enum_element) (*((::i32*)&eelement))++;
             }
 
             bool frame::get_element_rectangle(::i32_rectangle * lprect, enum_element eelement)
@@ -445,10 +445,10 @@
             {
 
                ::i32_rectangle rectangle(rectangleParam);
-               int x = rectangle.left;
-               int y = rectangle.top;
-               int cx = rectangle.width();
-               int cy = rectangle.height();
+               ::i32 x = rectangle.left;
+               ::i32 y = rectangle.top;
+               ::i32 cx = rectangle.width();
+               ::i32 cy = rectangle.height();
 
 
 
@@ -572,7 +572,7 @@
                   if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
                   {
 
-                     int i = 0;
+                     ::i32 i = 0;
 
                      while (i < rectangleGrip.width() - 5 + 1)
                      {

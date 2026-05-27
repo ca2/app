@@ -31,7 +31,7 @@
 *****************************************************************/
 
 //Character Mapping Table:
-unsigned char Latin7_CharToOrderMap[] =
+::u8 Latin7_CharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10
@@ -53,7 +53,7 @@ unsigned char Latin7_CharToOrderMap[] =
 
 
 
-unsigned char win1253_CharToOrderMap[] =
+::u8 win1253_CharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10
@@ -79,7 +79,7 @@ unsigned char win1253_CharToOrderMap[] =
 //first 1024 sequences:1.7001%
 //rest  sequences:     0.0359%
 //negative sequences:  0.0148% 
-char GreekLangModel[] = 
+::i8 GreekLangModel[] = 
 {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -215,7 +215,7 @@ SequenceModel Latin7Model =
 {
   Latin7_CharToOrderMap,
   GreekLangModel,
-  (float)0.982851,
+  (::f32)0.982851,
   PR_FALSE,
   "ISO-8859-7"
 };
@@ -224,7 +224,7 @@ SequenceModel Win1253Model =
 {
   win1253_CharToOrderMap,
   GreekLangModel,
-  (float)0.982851,
+  (::f32)0.982851,
   PR_FALSE,
   "windows-1253"
 };

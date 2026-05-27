@@ -32,7 +32,7 @@ public:
    virtual ::i32_size get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont);
    virtual void rectangle(const ::i32_rectangle & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen);
 
-   virtual void draw(::nano::graphics::icon * picon, int x, int y, int cx, int cy);
+   virtual void draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy);
 
    virtual void _on_cairo_paint(void * p);
    //void set_antialias(bool bAntialiasOn);

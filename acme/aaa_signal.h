@@ -7,12 +7,12 @@ struct asignal
 
 
    enum_id                       m_eid;
-   long long                     m_ll;
-   long long                     m_ll2;
+   ::i64                     m_ll;
+   ::i64                     m_ll2;
    ::subparticle *               m_psubparticle;
 
 
-   asignal(enum_id eid, long long ll = 0ll, long long ll2 = 0ll) :
+   asignal(enum_id eid, ::i64 ll = 0ll, ::i64 ll2 = 0ll) :
       m_eid(eid),
       m_ll(ll),
       m_ll2(ll2),
@@ -23,7 +23,7 @@ struct asignal
    }
 
 
-   asignal(enum_id eid, long long ll, long long ll2, ::subparticle* psubparticle) :
+   asignal(enum_id eid, ::i64 ll, ::i64 ll2, ::subparticle* psubparticle) :
       m_eid(eid),
       m_ll(ll),
       m_ll2(ll2),

@@ -129,7 +129,7 @@ namespace sockets_bsd
 //#ifdef _DEBUG
 //
 //
-//   long long socket_thread::increment_reference_count()
+//   ::i64 socket_thread::increment_reference_count()
 //   {
 //
 //      return ::task::increment_reference_count();
@@ -137,7 +137,7 @@ namespace sockets_bsd
 //   }
 //
 //
-//   long long socket_thread::decrement_reference_count()
+//   ::i64 socket_thread::decrement_reference_count()
 //   {
 //
 //      return ::task::decrement_reference_count();

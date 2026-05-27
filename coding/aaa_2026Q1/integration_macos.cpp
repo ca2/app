@@ -235,7 +235,7 @@ void integration::integrate_main2(::coding::item* pitem)
    
    ::file_pointer pfileLog;
    
-   int iExitCode = 0;
+   ::i32 iExitCode = 0;
    
    ::string strCommand;
    

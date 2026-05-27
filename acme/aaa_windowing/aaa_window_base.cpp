@@ -8,7 +8,7 @@
 #include "window_base.h"
 #include "platform/system.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/user/micro/display.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -444,7 +444,7 @@ void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //}
 
 
-   void window_base::_on_window_simple_action(const char * pszActionName)
+   void window_base::_on_window_simple_action(const_char_pointer pszActionName)
    {
 
       if(!m_puserinteractionbase)
@@ -472,7 +472,7 @@ void window_base::implementation_message_loop_step()
 }
 
 
-void window_base::on_char(int iChar)
+void window_base::on_char(::i32 iChar)
 {
 
 

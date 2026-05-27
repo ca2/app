@@ -72,7 +72,7 @@ namespace experience_tranquillum
 
       return;
 
-      //int iInflate = 5; // raio 2 pixels + centro 1 pixel
+      //::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       //rectangleInflate = rectangleX;
       //rectangleInflate.inflate(iInflate, iInflate);
@@ -419,10 +419,10 @@ namespace experience_tranquillum
 
       ::i32_rectangle rectangle(rectangleParam);
 
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width() - 1;
-      int cy = rectangle.height() - 1;
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width() - 1;
+      ::i32 cy = rectangle.height() - 1;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -515,7 +515,7 @@ namespace experience_tranquillum
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //pgraphics->fill_solid_rectangle(::double_rectangle_dimension(0, 0, 16, 16), ::color::red);
+      //pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(0, 0, 16, 16), ::color::red);
 
       //return;
 
@@ -568,7 +568,7 @@ namespace experience_tranquillum
 
                ::image::image_source imagesource(pdrawicon);
 
-               double_rectangle rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
+               ::f64_rectangle rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
 
                rectangleTarget.CenterOf(rectangleIcon);
 
@@ -591,12 +591,12 @@ namespace experience_tranquillum
          if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               auto rect3d = ::double_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               auto rect3d = ::f64_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
@@ -754,7 +754,7 @@ namespace experience_tranquillum
 
                ::image::image_source imagesource(picon);
 
-               //double_rectangle rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
+               //::f64_rectangle rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
 
                //rectangleTarget.CenterOf(rectangleIcon);
 

@@ -90,8 +90,8 @@ void Window::on_destroy_window()
       }
 
       return i32_size(
-         ::maximum(sizeResult.cx, (int)(m_boundsHeader.width() + 20)),
-         ::maximum(sizeResult.cy, (int)(m_boundsHeader.height()))
+         ::maximum(sizeResult.cx, (::i32)(m_boundsHeader.width() + 20)),
+         ::maximum(sizeResult.cy, (::i32)(m_boundsHeader.height()))
       );
    }
 
@@ -176,16 +176,16 @@ void Window::on_destroy_window()
 
       }
 
-      //int ds = m_ptheme->m_iWindowDropShadowSize;
-      int cr = m_ptheme->m_iWindowCorderRadius;
-      int hh = m_ptheme->m_iWindowHeaderHeight;
+      //::i32 ds = m_ptheme->m_iWindowDropShadowSize;
+      ::i32 cr = m_ptheme->m_iWindowCorderRadius;
+      ::i32 hh = m_ptheme->m_iWindowHeaderHeight;
 
       /* Draw window */
       {
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
          pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
+         pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, (::f32)cr);
 
          pcontext->fill_color(m_bMouseHover ? m_ptheme->m_colorWindowFillFocused
             : m_ptheme->m_colorWindowFillUnfocused);
@@ -210,19 +210,19 @@ void Window::on_destroy_window()
          if (m_title.has_character()) {
             /* Draw header */
             ::nano2d::paint header_paint = pcontext->linear_gradient(
-               (float)m_pos.x, (float)m_pos.y, (float)m_pos.x,
-               (float)m_pos.y + (float)hh,
+               (::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_pos.x,
+               (::f32)m_pos.y + (::f32)hh,
                m_ptheme->m_colorWindowHeaderGradientTop,
                m_ptheme->m_colorWindowHeaderGradientBottom);
 
             pcontext->begin_path();
-            pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)hh, (float)cr);
+            pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)hh, (::f32)cr);
 
             pcontext->fill_paint(header_paint);
             pcontext->fill();
 
             pcontext->begin_path();
-            pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)hh, (float)cr);
+            pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)hh, (::f32)cr);
             pcontext->stroke_color(m_ptheme->m_colorWindowHeaderSeparationTop);
 
             //pcontext->Save();
@@ -532,7 +532,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::scroll_event(const i32_point& pointCursor, const float_size& rel)
+   bool Window::scroll_event(const i32_point& pointCursor, const ::f32_size& rel)
    {
 
       Widget::scroll_event(pointCursor, rel);

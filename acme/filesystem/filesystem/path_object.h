@@ -24,7 +24,7 @@ namespace file
 
 
       inline virtual character_count sz_len() const override;
-      inline virtual void to_sz(char* sz, character_count size) const override;
+      inline virtual void to_sz(char_pointer sz, character_count size) const override;
       
       //using matter::set_flag;
       //using matter::has_flag;
@@ -116,7 +116,7 @@ namespace file
    }
 
 
-   inline void path_object::to_sz(char* sz, character_count len) const
+   inline void path_object::to_sz(char_pointer sz, character_count len) const
    {
 
       ansi_ncpy(sz, c_str(), len);

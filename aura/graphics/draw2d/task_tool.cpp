@@ -18,32 +18,32 @@ namespace draw2d
          }
          else if (m_bA == 255)
          {
-            int y = m_y;
-            int yEnd = m_yEnd;
-            int x = m_x;
-            int xEnd = m_xEnd;
-            int xEnd1 = m_xEnd - 7;
-            int ySkip = m_ySkip;
+            ::i32 y = m_y;
+            ::i32 yEnd = m_yEnd;
+            ::i32 x = m_x;
+            ::i32 xEnd = m_xEnd;
+            ::i32 xEnd1 = m_xEnd - 7;
+            ::i32 ySkip = m_ySkip;
 
-            unsigned char * pdst = m_pdst2;
-            unsigned char * psrc = m_psrc2;
-            unsigned char * pdst2;
-            unsigned char * psrc2;
-            unsigned char * pdst3;
-            unsigned char * psrc3;
-            unsigned char * src_opacity; // xmetrix, xmxstudio contribution
-            unsigned char * src_transparency; // unicorn, zjrosen contribution
-            int w = m_w;
-            unsigned char * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
-            unsigned char * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
+            ::u8 * pdst = m_pdst2;
+            ::u8 * psrc = m_psrc2;
+            ::u8 * pdst2;
+            ::u8 * psrc2;
+            ::u8 * pdst3;
+            ::u8 * psrc3;
+            ::u8 * src_opacity; // xmetrix, xmxstudio contribution
+            ::u8 * src_transparency; // unicorn, zjrosen contribution
+            ::i32 w = m_w;
+            ::u8 * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
+            ::u8 * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 #define DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH 64
 #define DIB_BLEND_ZERO_BLOCK_SIZE 256
             ::color::color craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
 
             zero(craZero);
 
-            int scanDst = m_scanDst;
-            int scanSrc = m_scanSrc;
+            ::i32 scanDst = m_scanDst;
+            ::i32 scanSrc = m_scanSrc;
 
             if (psrcOpacity != nullptr && psrcTransparency != nullptr)
             {
@@ -62,9 +62,9 @@ namespace draw2d
                   pdst3 = pdst2;
 
                   psrc3 = psrc2;
-                  //int x2;
-                  int x = 0;
-                  int x1 = -1;
+                  //::i32 x2;
+                  ::i32 x = 0;
+                  ::i32 x1 = -1;
                   for (; x < xEnd; x++)
                   {
 
@@ -110,7 +110,7 @@ namespace draw2d
                               ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
-                           unsigned char bA2 = (unsigned char)~(unsigned char)psrc2[3];
+                           ::u8 bA2 = (::u8)~(::u8)psrc2[3];
                            pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
                            pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
                            pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
@@ -138,10 +138,10 @@ namespace draw2d
             else
             {
 
-               //unsigned char * pBound1;
-               //unsigned char * pBound8;
-               //unsigned char * pBound;
-               //unsigned char * pEnd8;
+               //::u8 * pBound1;
+               //::u8 * pBound8;
+               //::u8 * pBound;
+               //::u8 * pEnd8;
                for (; y < yEnd; y += ySkip)
                {
 
@@ -152,19 +152,19 @@ namespace draw2d
                   pdst3 = pdst2;
 
                   psrc3 = psrc2;
-                  //int x2;
-                  int x = 0;
-                  int x1 = -1;
-                  //int xDistanceToBoundary1;
-                  //int xDistanceToBoundary8;
-                  int xEnd8;
+                  //::i32 x2;
+                  ::i32 x = 0;
+                  ::i32 x1 = -1;
+                  //::i32 xDistanceToBoundary1;
+                  //::i32 xDistanceToBoundary8;
+                  ::i32 xEnd8;
                   for (; x < xEnd; x++)
                   {
 
 restart:
                      ;
 
-                     unsigned char bA2 = psrc2[3];
+                     ::u8 bA2 = psrc2[3];
                      if (bA2 == 0)
                      {
                         if (x1 >= 0)
@@ -323,15 +323,15 @@ restart:
                         //if (0)
                         {
 
-                           int xDistanceToBoundary8 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4)) / 4;
-                           int xDistanceToBoundary1 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE * 4)) / 4;
-                           int xBoundary8 = minimum(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH - xDistanceToBoundary8);
-                           int xBoundary1 = minimum(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary1);
+                           ::i32 xDistanceToBoundary8 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4)) / 4;
+                           ::i32 xDistanceToBoundary1 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE * 4)) / 4;
+                           ::i32 xBoundary8 = minimum(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH - xDistanceToBoundary8);
+                           ::i32 xBoundary1 = minimum(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary1);
 
                            if (xDistanceToBoundary8 > 0)
                            {
 
-                              while (x < xBoundary8 && !(((::image32_t *)psrc3)[x]).byte_opacity(m_indexes))
+                              while (x < xBoundary8 && !(((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  x++;
@@ -343,7 +343,7 @@ restart:
                                  break;
                               }
 
-                              if ((((::image32_t *)psrc3)[x]).byte_opacity(m_indexes))
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -386,7 +386,7 @@ restart:
 
                               }
 
-                              if ((((::image32_t *)psrc3)[x]).byte_opacity(m_indexes))
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -425,7 +425,7 @@ restart:
 
                               }
 
-                              if ((((::image32_t *)psrc3)[x]).byte_opacity(m_indexes))
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -440,7 +440,7 @@ restart:
 
                            }
 
-                           while (x < xEnd && !(((::image32_t *)psrc3)[x]).byte_opacity(m_indexes))
+                           while (x < xEnd && !(((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                            {
 
                               x++;
@@ -456,7 +456,7 @@ restart:
 
                            psrc2 = &psrc3[x << 2];
 
-                           if ((((::image32_t *)psrc3)[x]).byte_opacity(m_indexes))
+                           if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                            {
 
                               goto restart;
@@ -494,7 +494,7 @@ restart:
                               ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
-                           bA2 = (unsigned char)~bA2;
+                           bA2 = (::u8)~bA2;
                            pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
                            pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
                            pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
@@ -525,28 +525,28 @@ restart:
          else
          {
             //return;
-            unsigned char bA = m_bA;
-            int y = m_y;
-            int yEnd = m_yEnd;
-            int x = m_x;
-            int xEnd = m_xEnd;
-            int xEnd1 = m_xEnd - 7;
-            int ySkip = m_ySkip;
-            //unsigned char * src_opacity; // xmetrix, xmxstudio contribution
-            unsigned char * src_transparency; // unicorn, zjrosen contribution
-            int w = m_w;
-            unsigned char * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
-            unsigned char * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
+            ::u8 bA = m_bA;
+            ::i32 y = m_y;
+            ::i32 yEnd = m_yEnd;
+            ::i32 x = m_x;
+            ::i32 xEnd = m_xEnd;
+            ::i32 xEnd1 = m_xEnd - 7;
+            ::i32 ySkip = m_ySkip;
+            //::u8 * src_opacity; // xmetrix, xmxstudio contribution
+            ::u8 * src_transparency; // unicorn, zjrosen contribution
+            ::i32 w = m_w;
+            ::u8 * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
+            ::u8 * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 
-            unsigned char * pdst = m_pdst2;
-            unsigned char * psrc = m_psrc2;
-            unsigned char * pdst2;
-            unsigned char * psrc2;
-            unsigned char * pdst3;
-            unsigned char * psrc3;
+            ::u8 * pdst = m_pdst2;
+            ::u8 * psrc = m_psrc2;
+            ::u8 * pdst2;
+            ::u8 * psrc2;
+            ::u8 * pdst3;
+            ::u8 * psrc3;
 
-            int scanDst = m_scanDst;
-            int scanSrc = m_scanSrc;
+            ::i32 scanDst = m_scanDst;
+            ::i32 scanSrc = m_scanSrc;
 
             if (psrcTransparency != nullptr)
             {
@@ -565,11 +565,11 @@ restart:
 
                   psrc3 = psrc2;
 
-                  int x = 0;
+                  ::i32 x = 0;
                   for (; x < xEnd; x++)
                   {
 
-                     unsigned char bA2 = psrc2[3];
+                     ::u8 bA2 = psrc2[3];
                      if (src_transparency[x])
                      {
                         x += src_transparency[x] - 1;
@@ -586,7 +586,7 @@ restart:
                      else
                      {
 
-                        unsigned char bA3 = ((unsigned short)~((unsigned short)bA2 * (unsigned short)bA)) >> 8;
+                        ::u8 bA3 = ((::u16)~((::u16)bA2 * (::u16)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
@@ -617,11 +617,11 @@ restart:
 
                   psrc3 = psrc2;
 
-                  int x = 0;
+                  ::i32 x = 0;
                   for (; x < xEnd; x++)
                   {
 
-                     unsigned char bA2 = psrc2[3];
+                     ::u8 bA2 = psrc2[3];
                      if (bA2 == 0)
                      {
                      }
@@ -635,7 +635,7 @@ restart:
                      else
                      {
 
-                        unsigned char bA3 = ((unsigned short)~((unsigned short)bA2 * (unsigned short)bA)) >> 8;
+                        ::u8 bA3 = ((::u16)~((::u16)bA2 * (::u16)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;

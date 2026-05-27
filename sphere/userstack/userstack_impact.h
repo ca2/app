@@ -16,17 +16,17 @@ namespace userstack
 
       ::pointer<pane_impact>   m_ppaneimpact;
 
-      int m_iV;
-      int m_iVH;
-      int m_iVW;
+      ::i32 m_iV;
+      ::i32 m_iVH;
+      ::i32 m_iVW;
       ::image::image_pointer m_pimageV;
-      int m_i_veriwell;
-      int m_i_veriwell_h;
-      int m_i_veriwell_w;
+      ::i32 m_i_veriwell;
+      ::i32 m_i_veriwell_h;
+      ::i32 m_i_veriwell_w;
       ::image::image_pointer m_pimage_veriwell;
-      int m_i_winactionarea;
-      int m_i_winactionarea_h;
-      int m_i_winactionarea_w;
+      ::i32 m_i_winactionarea;
+      ::i32 m_i_winactionarea_h;
+      ::i32 m_i_winactionarea_w;
       ::image::image_pointer m_pimage_winactionarea;
 
 
@@ -68,7 +68,7 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(::i32_rectangle * lprect, int iArea);
+      void GetAreaThumbRect(::i32_rectangle * lprect, ::i32 iArea);
 
       ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
@@ -80,11 +80,11 @@ namespace userstack
       void on_timer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
-      virtual void _001OnTabClick(int iTab);
+      virtual void _001OnTabClick(::i32 iTab);
 
       void check_apps();
 
-      void mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
+      void mt_show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow);
 
       static ::u32 c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 

@@ -164,7 +164,7 @@ namespace filemanager
    }
 
 
-   void file_list::RenameFile(int iLine, string &wstrNameNew, const ::action_context & context)
+   void file_list::RenameFile(::i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
       synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -299,7 +299,7 @@ namespace filemanager
 
    //   DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-   //   int i;
+   //   ::i32 i;
 
    //   while (::task_get_run())
    //   {
@@ -717,7 +717,7 @@ namespace filemanager
 
          string str;
 
-         for (int i = 0; i < iCount; i++)
+         for (::i32 i = 0; i < iCount; i++)
          {
 
             auto pmenuitem = create_newø < ::menu::item > ();
@@ -761,9 +761,9 @@ namespace filemanager
    void file_list::on_command_probe(::message::command * pcommand)
    {
 
-      int iPos = -1;
+      ::i32 iPos = -1;
 
-      for (int i = 0; i < m_straOpenWith.get_size(); i++)
+      for (::i32 i = 0; i < m_straOpenWith.get_size(); i++)
       {
 
          string strId = "open with" + m_straOpenWith[i];
@@ -809,9 +809,9 @@ namespace filemanager
 
       }
 
-      int iPos = -1;
+      ::i32 iPos = -1;
 
-      for (int i = 0; i < m_straOpenWith.get_size(); i++)
+      for (::i32 i = 0; i < m_straOpenWith.get_size(); i++)
       {
 
          string strId = "open with" + m_straOpenWith[i];
@@ -872,7 +872,7 @@ namespace filemanager
 
    //   string strFileList;
    //   string strFileCheck;
-   //   for (int i = 0; i < itema.get_size(); i++)
+   //   for (::i32 i = 0; i < itema.get_size(); i++)
    //   {
 
    //      if (directory()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
@@ -880,7 +880,7 @@ namespace filemanager
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
-   //         for (int j = 0; j < straSub.get_size(); j++)
+   //         for (::i32 j = 0; j < straSub.get_size(); j++)
    //         {
    //            if (!directory()->is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
@@ -947,7 +947,7 @@ namespace filemanager
 
    //   string strFileCheck;
 
-   //   for (int i = 0; i < pdata->m_pitema->get_count(); i++)
+   //   for (::i32 i = 0; i < pdata->m_pitema->get_count(); i++)
    //   {
 
    //      if (fs_data()->is_dir(pdata->item(i)->m_filepathFinal)
@@ -956,7 +956,7 @@ namespace filemanager
 
    //         straSub.rls(pdata->item(i)->m_filepathFinal);
 
-   //         for (int j = 0; j < straSub.get_size(); j++)
+   //         for (::i32 j = 0; j < straSub.get_size(); j++)
    //         {
 
    //            string strExtension = straSub[j].extension();
@@ -1088,7 +1088,7 @@ namespace filemanager
 
          fs_list()->m_pitema->erase_all();
 
-         for (int i = 0; i < stra.get_size(); i++)
+         for (::i32 i = 0; i < stra.get_size(); i++)
          {
 
             item.m_flags.clear();
@@ -1155,11 +1155,11 @@ namespace filemanager
 
       pathParentEx = filemanager_path();
 
-      //int iMaxSize;
+      //::i32 iMaxSize;
 
       //iMaxSize = 1000;
 
-      //int iSize;
+      //::i32 iSize;
 
       //iSize = 0;
 
@@ -1185,7 +1185,7 @@ namespace filemanager
 
          m_pathaStrictOrder = listingUser;
 
-         for (int i = 0; i < cItem; i++)
+         for (::i32 i = 0; i < cItem; i++)
          {
 
             auto & spitem = (*fs_list()->m_pitema)[i];
@@ -1285,7 +1285,7 @@ namespace filemanager
       ///      _001CreateImageList();
 
       //file_size_add_request(true);
-      /*   for(int i = 0; i < m_pitema->get_item_count(); i++)
+      /*   for(::i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.add_request(item(i)->m_strPath);
       }*/
@@ -1335,7 +1335,7 @@ namespace filemanager
 
       }
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
       file_list_callback * pcallback = filemanager_data()->m_pfilelistcallback;
 
@@ -1458,7 +1458,7 @@ namespace filemanager
          pcolumn->m_text = pcontext->__text("file:Name");
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
-         int iIconSize = get_document()->m_iIconSize;
+         ::i32 iIconSize = get_document()->m_iIconSize;
 
          auto pcontext = m_papplication;
          
@@ -1906,7 +1906,7 @@ namespace filemanager
 
    //   single_lock synchronouslock(pset->m_table.mutex(), true);
 
-   //   for (int i = 0; i < fs_list()->m_pitema->get_count(); i++)
+   //   for (::i32 i = 0; i < fs_list()->m_pitema->get_count(); i++)
    //   {
 
    //      //pset->get_cache_fs_size(iSize, item(i)->m_strPath, bPending);

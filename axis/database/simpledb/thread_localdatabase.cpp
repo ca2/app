@@ -77,7 +77,7 @@ namespace simpledb
 
             bool bFound = false;
 
-            for (int i = 1; i < m_itema.get_size(); i++)
+            for (::i32 i = 1; i < m_itema.get_size(); i++)
             {
 
                if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
@@ -152,7 +152,7 @@ namespace simpledb
 //                  if (pstorage->m_pstmtReplace == nullptr)
 //                  {
 //
-//                     int iResult = sqlite3_prepare_v2(
+//                     ::i32 iResult = sqlite3_prepare_v2(
 //                        (sqlite3 *)pdatabase->get_handle(),
 //                        "REPLACE INTO blobtable (atom, value) values (:atom, :value);",
 //                        -1,
@@ -185,7 +185,7 @@ namespace simpledb
 //
 //                  character_count iLength = strKey.length();
 //
-//                  int res = sqlite3_bind_text(pstorage->m_pstmtReplace, pstorage->m_iReplaceId, strKey, (int)iLength, SQLITE_TRANSIENT);
+//                  ::i32 res = sqlite3_bind_text(pstorage->m_pstmtReplace, pstorage->m_iReplaceId, strKey, (::i32)iLength, SQLITE_TRANSIENT);
 //
 //                  if (res != SQLITE_OK)
 //                  {
@@ -196,7 +196,7 @@ namespace simpledb
 //
 //                  }
 //
-//                  res = sqlite3_bind_blob(pstorage->m_pstmtReplace, pstorage->m_iReplaceValue, pitem->m_block.get_data(), (int)pitem->m_block.get_size(), SQLITE_TRANSIENT);
+//                  res = sqlite3_bind_blob(pstorage->m_pstmtReplace, pstorage->m_iReplaceValue, pitem->m_block.get_data(), (::i32)pitem->m_block.get_size(), SQLITE_TRANSIENT);
 //
 //                  if (res != SQLITE_OK)
 //                  {

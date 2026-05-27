@@ -72,7 +72,7 @@ namespace platform
 
    //void acme_application_layer::application_main(){}
 
-   int acme_application_layer::application_main()
+   ::i32 acme_application_layer::application_main()
    {
       return 0;
    }
@@ -172,17 +172,17 @@ namespace platform
    //
    //#else
    //
-   //      void set_args(int argc, char * argv[], char * envpb[]){}
+   //      void set_args(::i32 argc, char_pointer argv[], char_pointer envpb[]){}
    //
    //#endif
 
-   int acme_application_layer::__implement()
+   ::i32 acme_application_layer::__implement()
    {
       return 0;
    }
 
 
-   int acme_application_layer::main_loop()
+   ::i32 acme_application_layer::main_loop()
    {
       return 0;
    }

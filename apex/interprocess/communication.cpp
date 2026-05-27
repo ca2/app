@@ -366,9 +366,9 @@ namespace interprocess
 
             branch_procedure(plauncher);
 
-            int iStep = 0;
+            ::i32 iStep = 0;
 
-            int iSubStep;
+            ::i32 iSubStep;
 
             while (iStep < 8 && ::task_get_run())
             {

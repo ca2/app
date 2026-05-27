@@ -33,7 +33,7 @@ namespace graphics3d
    }
 
 
-   long long scene_object::getId()
+   ::i64 scene_object::getId()
    {
 
       return m_llId;
@@ -56,7 +56,7 @@ namespace graphics3d
    }
 
 
-   void scene_object::on_update(float deltaTime)
+   void scene_object::on_update(::f32 deltaTime)
    {
    }
 

@@ -86,7 +86,7 @@ namespace gpu
 
          ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
          
-         //const char *pszType = strType.c_str();
+         //const_char_pointer pszType = strType.c_str();
 
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
@@ -165,7 +165,7 @@ namespace gpu
 
       strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
 
-      const char *pszType = strType.c_str();
+      const_char_pointer pszType = strType.c_str();
 
       information("gpu::approach::gpu_on_create_window for type {}", pszType);
 

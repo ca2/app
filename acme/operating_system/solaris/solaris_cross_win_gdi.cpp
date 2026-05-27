@@ -7,7 +7,7 @@
 
 
 //    m_display   = nullptr;
-//    m_d         = 0;
+//    m_f64         = 0;
 //    m_gc        = nullptr;
 //    m_hwnd      = nullptr;
 
@@ -25,8 +25,8 @@
 
 //    hdc->m_display    = XOpenxDisplay(nullptr);
 //    hdc->m_hwnd       = hwnd;
-//    hdc->m_d          = (Drawable) (hwnd == nullptr || hwnd->window() == nullptr ? DefaultRootWindow(hdc->m_display) : hwnd->window());
-//    hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
+//    hdc->m_f64          = (Drawable) (hwnd == nullptr || hwnd->window() == nullptr ? DefaultRootWindow(hdc->m_display) : hwnd->window());
+//    hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_f64, 0, 0);
 
 //    return hdc;
 
@@ -116,8 +116,8 @@
 //       return false;
 //    }
 
-//    int x;
-//    int y;
+//    ::i32 x;
+//    ::i32 y;
 //    Window child;
 
 //    if(!XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
@@ -136,13 +136,13 @@
 
 
 
-// int FillRect(HDC hdc, const ::i32_rectangle * lprc, HBRUSH hbr)
+// ::i32 FillRect(HDC hdc, const ::i32_rectangle * lprc, HBRUSH hbr)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
 
 
-//    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
+//    XFillRectangle(hdc->m_display, hdc->m_f64, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
 //    return 1;
 // }
 
@@ -175,8 +175,8 @@
 
 //    Window root_return;
 //    Window child_return;
-//    int win_x_return;
-//    int win_y_return;
+//    ::i32 win_x_return;
+//    ::i32 win_y_return;
 //    ::u32 mask_return;
 
 //    xdisplay display;
@@ -194,7 +194,7 @@
 
 
 
-// ::i32_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
+// ::i32_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -203,7 +203,7 @@
 //    xdisplay display(hwnd->display());
 
 
-//    int value_mask = 0;
+//    ::i32 value_mask = 0;
 
 //    XWindowChanges values;
 
@@ -256,7 +256,7 @@
 
 
 
-int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+::i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
 }

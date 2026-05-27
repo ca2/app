@@ -26,7 +26,7 @@
 #include "conio.h"
 
 void
-window (int left, int top, int right, int bottom)
+window (::i32 left, ::i32 top, ::i32 right, ::i32 bottom)
 {
   if (!ConioInitialized)
     textmode (LASTMODE);

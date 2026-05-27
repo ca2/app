@@ -35,7 +35,7 @@
 #include "programming/heating_up_exception.h"
 
 
-int get_processor_count();
+::i32 get_processor_count();
 
 
 namespace dynamic_source
@@ -992,9 +992,9 @@ namespace dynamic_source
 
    void script_manager::LoadEnv()
    {
-      /*char * buf;
+      /*char_pointer buf;
       ::u32 dwSize = GetDllDirectory(nullptr, nullptr);
-      buf = ___new char[dwSize + 1024];
+      buf = ___new ::i8[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       information(buf);
       //SetDllDirectory(buf);
@@ -1645,7 +1645,7 @@ namespace dynamic_source
       // reading PNG dimensions requires the first 24 bytes of the file
       // reading JPEG dimensions requires scanning through jpeg chunks
       // In all formats, the file is at least 24 bytes big, so we'hi read that always
-      unsigned char buf[24];
+      ::u8 buf[24];
 
       if (pfile->read({ buf, 24 }) < 24)
       {
@@ -1655,8 +1655,8 @@ namespace dynamic_source
       // http://www.64lines.com/jpeg-width-height
       if (buf[0] == 0xFF && buf[1] == 0xD8 && buf[2] == 0xFF && buf[3] == 0xE0 && buf[6] == 'J' && buf[7] == 'F' && buf[8] == 'I' && buf[9] == 'F' && buf[10] == '\0')
       {
-         unsigned short block_length = buf[4] * 256 + buf[5];
-         int i = 4;
+         ::u16 block_length = buf[4] * 256 + buf[5];
+         ::i32 i = 4;
          while (i < len)
          {
 

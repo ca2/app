@@ -57,7 +57,7 @@ namespace gpu_opengl
       if (!m_tex)
       {
          glGenTextures(1, &m_tex);
-         int iGlError = glGetError();
+         ::i32 iGlError = glGetError();
          if (iGlError != 0)
          {
 

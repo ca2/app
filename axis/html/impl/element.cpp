@@ -74,7 +74,7 @@ namespace html
       }
 
 
-      bool element::hit_test(html_data* pdata, const ::float_point& point)
+      bool element::hit_test(html_data* pdata, const ::f32_point& point)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
@@ -95,14 +95,14 @@ namespace html
       }
 
 
-      double element::bound_hit_test(html_data* pdata, const ::float_point& point)
+      ::f64 element::bound_hit_test(html_data* pdata, const ::f32_point& point)
       {
 
          __UNREFERENCED_PARAMETER(pdata);
 
-         float Δx;
+         ::f32 Δx;
 
-         float Δy;
+         ::f32 Δy;
 
          if (point.x < m_box.left)
          {
@@ -197,11 +197,11 @@ namespace html
 
          }
 
-         //::const ::float_point & point = pmouse->m_point;
+         //::const ::f32_point & point = pmouse->m_point;
 
-         //phtml->m_puserinteraction->screen_to_client(&::float_point);
+         //phtml->m_puserinteraction->screen_to_client(&::f32_point);
 
-         //bool bHover = hit_test(phtml->m_pdata, ::float_point) != 0;
+         //bool bHover = hit_test(phtml->m_pdata, ::f32_point) != 0;
 
          //if (bHover != m_bHover)
          //{
@@ -293,13 +293,13 @@ namespace html
 
          //         e_tag etag = m_pelemental->m_etag;
 
-         float cxMax = 0.f;
+         ::f32 cxMax = 0.f;
 
-         float cxMaxMax = 0.f;
+         ::f32 cxMaxMax = 0.f;
 
-         float cxMin = 0.f;
+         ::f32 cxMin = 0.f;
 
-         float cxMinMax = 0.f;
+         ::f32 cxMinMax = 0.f;
 
          for (::collection::index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
          {
@@ -572,13 +572,13 @@ namespace html
          }
 
 
-         float fTotalMax = 0;
+         ::f32 fTotalMax = 0;
 
-         float fTotalMin = 0;
+         ::f32 fTotalMin = 0;
 
          element* pelemental = get_first_sibling();
 
-         int iCount = 0;
+         ::i32 iCount = 0;
 
          while (pelemental != nullptr)
          {
@@ -655,9 +655,9 @@ namespace html
 
          }
 
-         float cxMax = pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() + get_extra_content_width();
+         ::f32 cxMax = pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() + get_extra_content_width();
 
-         float cxTotal = pdata->m_pcoredata->m_layoutstate1.m_cxa.last() + get_extra_content_width();
+         ::f32 cxTotal = pdata->m_pcoredata->m_layoutstate1.m_cxa.last() + get_extra_content_width();
 
          cxMax = maximum(cxMax, cxTotal);
 
@@ -745,7 +745,7 @@ namespace html
 
 
          ::html::impl::cell* pcell = dynamic_cast <::html::impl::cell*> (this);
-         //float iTableBorder = 0;
+         //::f32 iTableBorder = 0;
          //if (pcell != nullptr)
          //{
          //   if (pcell->get_table()->m_iBorder > 0)
@@ -756,9 +756,9 @@ namespace html
 
          string str = m_pelemental->m_strBody;
 
-         float cx = m_box.width();
+         ::f32 cx = m_box.width();
 
-         float cy = m_box.height();
+         ::f32 cy = m_box.height();
 
          m_box.set_width(cx);
 
@@ -781,7 +781,7 @@ namespace html
       void element::move_to(html_data* pdata)
       {
 
-         move_to(pdata, (float)pdata->m_pcoredata->m_layoutstate3.m_x, (float)pdata->m_pcoredata->m_layoutstate3.m_y);
+         move_to(pdata, (::f32)pdata->m_pcoredata->m_layoutstate3.m_x, (::f32)pdata->m_pcoredata->m_layoutstate3.m_y);
 
       }
 
@@ -819,14 +819,14 @@ namespace html
 
          }
 
-         ::float_rectangle bIn;
+         ::f32_rectangle bIn;
 
-         ::float_rectangle bOut;
+         ::f32_rectangle bOut;
 
          if (m_border.left > 0.f || m_border.top > 0.f || m_border.right > 0.f || m_border.bottom > 0.f)
          {
-            ::float_point pIn = get_content_top_left();
-            ::float_size szIn = get_content_size();
+            ::f32_point pIn = get_content_top_left();
+            ::f32_size szIn = get_content_size();
             bIn.move_to(pIn);
             bIn.set_size(szIn);
             bIn.left -= m_padding.left;
@@ -845,8 +845,8 @@ namespace html
          {
             if (m_border.left < 2.f)
             {
-               ::float_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               ::float_point point2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::f32_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::f32_point point2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->createø < ::draw2d::pen >();
                ppen->create_solid(m_border.left, m_border.colorLeft);
                pgraphics->set(ppen);
@@ -854,11 +854,11 @@ namespace html
             }
             else
             {
-               ::double_point pa[4];
-               pa[0] = ::double_point(bOut.left, bOut.top);
-               pa[1] = ::double_point(bIn.left, bIn.top);
-               pa[2] = ::double_point(bIn.left, bIn.bottom);
-               pa[3] = ::double_point(bOut.left, bOut.bottom);
+               ::f64_point pa[4];
+               pa[0] = ::f64_point(bOut.left, bOut.top);
+               pa[1] = ::f64_point(bIn.left, bIn.top);
+               pa[2] = ::f64_point(bIn.left, bIn.bottom);
+               pa[3] = ::f64_point(bOut.left, bOut.bottom);
                auto pbrush = pdata->createø < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorLeft);
                pgraphics->set(pbrush);
@@ -869,8 +869,8 @@ namespace html
          {
             if (m_border.top < 2.f)
             {
-               ::float_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               ::float_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::f32_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::f32_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                auto ppen = pdata->createø < ::draw2d::pen >();
                ppen->create_solid(m_border.top, m_border.colorTop);
                pgraphics->set(ppen);
@@ -878,11 +878,11 @@ namespace html
             }
             else
             {
-               ::double_point pa[4];
-               pa[0] = ::double_point(bOut.left, bOut.top);
-               pa[1] = ::double_point(bOut.right, bOut.top);
-               pa[2] = ::double_point(bIn.right, bIn.top);
-               pa[3] = ::double_point(bIn.left, bIn.top);
+               ::f64_point pa[4];
+               pa[0] = ::f64_point(bOut.left, bOut.top);
+               pa[1] = ::f64_point(bOut.right, bOut.top);
+               pa[2] = ::f64_point(bIn.right, bIn.top);
+               pa[3] = ::f64_point(bIn.left, bIn.top);
                auto pbrush = pdata->createø < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorTop);
                pgraphics->set(pbrush);
@@ -893,8 +893,8 @@ namespace html
          {
             if (m_border.right < 2.f)
             {
-               ::float_point point1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               ::float_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::f32_point point1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::f32_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->createø < ::draw2d::pen >();
                ppen->create_solid(m_border.right, m_border.colorRight);
                pgraphics->set(ppen);
@@ -902,11 +902,11 @@ namespace html
             }
             else
             {
-               ::double_point pa[4];
-               pa[0] = ::double_point(bOut.right, bOut.top);
-               pa[1] = ::double_point(bOut.right, bOut.bottom);
-               pa[2] = ::double_point(bIn.right, bIn.bottom);
-               pa[3] = ::double_point(bIn.right, bIn.top);
+               ::f64_point pa[4];
+               pa[0] = ::f64_point(bOut.right, bOut.top);
+               pa[1] = ::f64_point(bOut.right, bOut.bottom);
+               pa[2] = ::f64_point(bIn.right, bIn.bottom);
+               pa[3] = ::f64_point(bIn.right, bIn.top);
                auto pbrush = pdata->createø < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorRight);
                pgraphics->set(pbrush);
@@ -917,8 +917,8 @@ namespace html
          {
             if (m_border.bottom < 2.f)
             {
-               ::float_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::float_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::f32_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::f32_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->createø < ::draw2d::pen >();
                ppen->create_solid(m_border.bottom, m_border.colorBottom);
                pgraphics->set(ppen);
@@ -926,11 +926,11 @@ namespace html
             }
             else
             {
-               ::double_point pa[4];
-               pa[0] = ::double_point(bIn.left, bIn.bottom);
-               pa[1] = ::double_point(bIn.right, bIn.bottom);
-               pa[2] = ::double_point(bOut.right, bOut.bottom);
-               pa[3] = ::double_point(bOut.left, bOut.bottom);
+               ::f64_point pa[4];
+               pa[0] = ::f64_point(bIn.left, bIn.bottom);
+               pa[1] = ::f64_point(bIn.right, bIn.bottom);
+               pa[2] = ::f64_point(bOut.right, bOut.bottom);
+               pa[3] = ::f64_point(bOut.left, bOut.bottom);
                auto pbrush = pdata->createø < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorBottom);
                pgraphics->set(pbrush);
@@ -997,7 +997,7 @@ namespace html
       }
 
 
-      float element::left()
+      ::f32 element::left()
       {
 
          return m_box.left;
@@ -1005,7 +1005,7 @@ namespace html
       }
 
 
-      float element::top()
+      ::f32 element::top()
       {
 
          return m_box.top;
@@ -1013,7 +1013,7 @@ namespace html
       }
 
 
-      float element::right()
+      ::f32 element::right()
       {
 
          return m_box.right;
@@ -1021,7 +1021,7 @@ namespace html
       }
 
 
-      float element::bottom()
+      ::f32 element::bottom()
       {
 
          return m_box.bottom;
@@ -1029,7 +1029,7 @@ namespace html
       }
 
 
-      float element::height()
+      ::f32 element::height()
       {
 
          return m_box.height();
@@ -1037,7 +1037,7 @@ namespace html
       }
 
 
-      float element::get_first_line_height()
+      ::f32 element::get_first_line_height()
       {
 
          return m_box.height();
@@ -1045,7 +1045,7 @@ namespace html
       }
 
 
-      float element::get_last_line_height()
+      ::f32 element::get_last_line_height()
       {
 
          return m_box.height();
@@ -1053,7 +1053,7 @@ namespace html
       }
 
 
-      float element::width()
+      ::f32 element::width()
       {
 
          return m_box.width();
@@ -1061,7 +1061,7 @@ namespace html
       }
 
 
-      ::float_point element::top_left()
+      ::f32_point element::top_left()
       {
 
          return m_box.top_left();
@@ -1069,7 +1069,7 @@ namespace html
       }
 
 
-      ::float_size element::size()
+      ::f32_size element::size()
       {
 
          return m_box.size();
@@ -1077,7 +1077,7 @@ namespace html
       }
 
 
-      ::float_size element::get_bound_size()
+      ::f32_size element::get_bound_size()
       {
 
          return m_bound.size();
@@ -1085,7 +1085,7 @@ namespace html
       }
 
 
-      void element::set_bound_size(html_data* pdata, const ::float_size& size)
+      void element::set_bound_size(html_data* pdata, const ::f32_size& size)
       {
 
          m_bound.set_size(size);
@@ -1095,7 +1095,7 @@ namespace html
       }
 
 
-      ::float_point element::get_bound_top_left()
+      ::f32_point element::get_bound_top_left()
       {
 
          return m_bound.top_left();
@@ -1103,7 +1103,7 @@ namespace html
       }
 
 
-      void element::move_bound_to(html_data* pdata, const ::float_point& point)
+      void element::move_bound_to(html_data* pdata, const ::f32_point& point)
       {
 
          m_bound.move_to(point);
@@ -1124,7 +1124,7 @@ namespace html
       }
 
 
-      void element::move_left_to(html_data* pdata, float x)
+      void element::move_left_to(html_data* pdata, ::f32 x)
       {
 
          m_box.move_left_to(x);
@@ -1134,7 +1134,7 @@ namespace html
       }
 
 
-      void element::move_top_to(html_data* pdata, float y)
+      void element::move_top_to(html_data* pdata, ::f32 y)
       {
 
          m_box.move_top_to(y);
@@ -1144,7 +1144,7 @@ namespace html
       }
 
 
-      void element::set_width(html_data* pdata, float cx)
+      void element::set_width(html_data* pdata, ::f32 cx)
       {
 
          m_box.set_width(cx);
@@ -1154,7 +1154,7 @@ namespace html
       }
 
 
-      void element::set_height(html_data* pdata, float cy)
+      void element::set_height(html_data* pdata, ::f32 cy)
       {
 
          m_box.set_height(cy);
@@ -1164,7 +1164,7 @@ namespace html
       }
 
 
-      void element::move_to(html_data* pdata, float x, float y)
+      void element::move_to(html_data* pdata, ::f32 x, ::f32 y)
       {
 
          m_box.move_to(x, y);
@@ -1174,7 +1174,7 @@ namespace html
       }
 
 
-      void element::set_size(html_data* pdata, float cx, float cy)
+      void element::set_size(html_data* pdata, ::f32 cx, ::f32 cy)
       {
 
          m_box.set_size(cx, cy);
@@ -1184,7 +1184,7 @@ namespace html
       }
 
 
-      void element::set_dim(html_data* pdata, float l, float t, float w, float h)
+      void element::set_dim(html_data* pdata, ::f32 l, ::f32 t, ::f32 w, ::f32 h)
       {
 
          m_box.set_dimension(l, t, w, h);
@@ -1227,17 +1227,17 @@ namespace html
             || etag == tag_select)
             return;
 
-         float x = 3e33f;
+         ::f32 x = 3e33f;
 
-         float y = 3e33f;
+         ::f32 y = 3e33f;
 
-         float cx = -3e33f;
+         ::f32 cx = -3e33f;
 
-         float cy = -3e33f;
+         ::f32 cy = -3e33f;
 
          bool bOk = false;
 
-         for (int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
+         for (::i32 i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
 
             element* pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
@@ -1273,7 +1273,7 @@ namespace html
       }
 
 
-      float element::calc_width()
+      ::f32 element::calc_width()
       {
 
          if (m_pelemental != nullptr && m_pelemental->m_pparent != nullptr)
@@ -1311,7 +1311,7 @@ namespace html
 
 
 
-      ::float_size element::get_content_size()
+      ::f32_size element::get_content_size()
       {
 
          auto size = m_box.size();
@@ -1324,7 +1324,7 @@ namespace html
       }
 
 
-      ::float_point element::get_content_top_left()
+      ::f32_point element::get_content_top_left()
       {
 
          auto point = m_box.top_left();
@@ -1337,7 +1337,7 @@ namespace html
       }
 
 
-      float element::get_table_border()
+      ::f32 element::get_table_border()
       {
 
          return 0.f;
@@ -1345,7 +1345,7 @@ namespace html
       }
 
 
-      float element::get_cell_spacing()
+      ::f32 element::get_cell_spacing()
       {
 
          return 0.f;
@@ -1353,7 +1353,7 @@ namespace html
       }
 
 
-      float element::get_cell_padding()
+      ::f32 element::get_cell_padding()
       {
 
          return 0.f;
@@ -1361,7 +1361,7 @@ namespace html
       }
 
 
-      float element::get_extra_content_width()
+      ::f32 element::get_extra_content_width()
       {
 
          return m_margin.left
@@ -1374,7 +1374,7 @@ namespace html
       }
 
 
-      float element::get_extra_content_height()
+      ::f32 element::get_extra_content_height()
       {
 
          return m_margin.top

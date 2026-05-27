@@ -46,7 +46,7 @@ CLASS_DECL_ACME void* memory_transfer(void * dst, const void * src, memsize iSiz
 }
 
 
-CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize)
+CLASS_DECL_ACME void * memory_set(void * p, ::i32 i, memsize iSize)
 {
 
    if (iSize <= 0)
@@ -65,7 +65,7 @@ CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize)
 
    if (::is_null(p)) return nullptr;
    return ::memory_set(p, i, (size_t) iSize);
-//   uchar * puch = (uchar * ) p;
+//   ::u8 * puch = (::u8 * ) p;
 //   while(iSize > 0)
 //   {
 //      *puch = static_cast < uchar > (i);
@@ -83,9 +83,9 @@ CLASS_DECL_ACME void * memory_and(void * p, const void * p1, const void * p2, me
    if (is_null(p1)) return nullptr;
    if (is_null(p2)) return nullptr;
 
-   unsigned char * pb = (unsigned char *) p;
-   const unsigned char * pb1 = (const unsigned char *) p1;
-   const unsigned char * pb2 = (const unsigned char *) p2;
+   ::u8 * pb = (::u8 *) p;
+   const ::u8 * pb1 = (const ::u8 *) p1;
+   const ::u8 * pb2 = (const ::u8 *) p2;
 
    while(iSize > 0)
    {
@@ -132,9 +132,9 @@ CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize)
 
    }
 
-   uchar * puchDst = (uchar * ) dst;
+   ::u8 * puchDst = (::u8 * ) dst;
 
-   uchar * puchSrc = (uchar * ) src;
+   ::u8 * puchSrc = (::u8 * ) src;
 
    if (puchDst == puchSrc)
    {
@@ -214,7 +214,7 @@ CLASS_DECL_ACME void * reverse_memory(void * p, memsize iLen)
 
    }
 
-   auto pleft = (unsigned char *) p;
+   auto pleft = (::u8 *) p;
 
    auto pright = pleft + iLen - 1;
 
@@ -256,9 +256,9 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 
    }
 
-   char * pchDst = (char *) dst;
+   char_pointer pchDst = (char_pointer ) dst;
 
-   const char * pchSrc = (const char *) src;
+   const_char_pointer pchSrc = (const_char_pointer ) src;
 
    memsize i = size - 1;
 

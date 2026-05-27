@@ -18,7 +18,7 @@ SharedMemory::SharedMemory()
    
 }
 
-bool SharedMemory::Create(const char* name, size_t size)
+bool SharedMemory::Create(const_char_pointer pszName, size_t size)
 {
     m_size = size;
 
@@ -45,7 +45,7 @@ bool SharedMemory::Create(const char* name, size_t size)
     return m_data != nullptr;
 }
 
-bool SharedMemory::Open(const char* name, size_t size)
+bool SharedMemory::Open(const_char_pointer pszName, size_t size)
 {
     m_size = size;
 

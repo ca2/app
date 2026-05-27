@@ -33,7 +33,7 @@
 void
 cleardevice (void)
 {
-   int Left, Top, Right, Bottom, Clip;
+   ::i32 Left, Top, Right, Bottom, Clip;
    Left = TcViewLeft;
    Top = TcViewTop;
    Right = TcViewRight;
@@ -49,7 +49,7 @@ cleardevice (void)
 void
 clearviewport (void)
 {
-   int Mode;
+   ::i32 Mode;
    Mode = TcWritemode;
    setwritemode (COPY_PUT);
 /*   tc().aimage().Fill(0,0,0,0);

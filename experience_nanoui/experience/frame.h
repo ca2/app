@@ -80,7 +80,7 @@ namespace experience_nanoui
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, unsigned char bAlpha);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color& color, ::u8 bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
@@ -92,7 +92,7 @@ namespace experience_nanoui
    };
 
 
-   //frame::enum_frame operator ++(frame::enum_element & eelement, int i);
+   //frame::enum_frame operator ++(frame::enum_element & eelement, ::i32 i);
 
 
 

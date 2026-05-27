@@ -28,7 +28,7 @@
 class Unicode
 {
 public:
-  static unsigned short SIGNATURE;
+  static ::u16 SIGNATURE;
 
   /**
   @return returns true if application is built with unicode character set enabled.

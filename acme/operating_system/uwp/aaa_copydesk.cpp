@@ -119,7 +119,7 @@ namespace universal_windows
 
             ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
-            for (int i = 0; i < items->Size; i++)
+            for (::i32 i = 0; i < items->Size; i++)
             {
 
                patha.add(items->GetAt(i)->Path->Begin());
@@ -146,7 +146,7 @@ namespace universal_windows
 
       character_count iLen = 0;
 
-      for(int i = 0; i < stra.get_size(); i++)
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
          iLen += utf8_to_unicode_count(stra[i]) + 1;
       }
@@ -160,10 +160,10 @@ namespace universal_windows
       pDropFiles->fWide = true; // ANSI charset
 
       ASSERT(m_p->is_window());
-      char * lptstrCopy = (char *) pDropFiles;
+      char_pointer lptstrCopy = (char_pointer ) pDropFiles;
       lptstrCopy += pDropFiles->pFiles;
-      unichar * lpwstrCopy = (unichar *) lptstrCopy;
-      for(int i = 0; i < stra.get_size(); i++)
+      wide_character * lpwstrCopy = (wide_character * ) lptstrCopy;
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
          ASSERT(m_p->is_window());
          utf8_to_unicode(lpwstrCopy, utf8_to_unicode_count(stra[i]) + 1, stra[i]);

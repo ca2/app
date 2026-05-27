@@ -98,7 +98,7 @@ namespace draw2d
 //   }
 
 
-   int palette::GetEntryCount()
+   ::i32 palette::GetEntryCount()
    {
 
       throw ::interface_only();

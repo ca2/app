@@ -145,7 +145,7 @@ namespace experience
    void control_box::drag(const ::i32_point & point)
    {
 
-      //int x = point.x - m_pointDrag.x;
+      //::i32 x = point.x - m_pointDrag.x;
 
       //if (x < 0)
       //{
@@ -182,7 +182,7 @@ namespace experience
 
       //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x - rectangleWindow.width();
 
-      //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
+      //::i32 iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
       //m_pframewindow->prop("control_box_right_to_right") = iControlBoxRight;
 
@@ -556,7 +556,7 @@ namespace experience
    }
 
 
-   int control_box::auto_hide_threshold_height()
+   ::i32 control_box::auto_hide_threshold_height()
    {
 
       return this->height();
@@ -654,7 +654,7 @@ namespace experience
 
       auto rectangle = this->rectangle(::user::e_layout_lading);
 
-//      int iWidth = rectangleX.width();
+//      ::i32 iWidth = rectangleX.width();
 //
       rectangle.left = rectangle.right;
 
@@ -863,31 +863,31 @@ namespace experience
       switch (ebutton)
       {
          case e_button_close:
-            strCaption = (char) 114;
+            strCaption = (::i8) 114;
             break;
          case e_button_up:
-            strCaption = (char) 53;
+            strCaption = (::i8) 53;
             break;
          case e_button_down:
-            strCaption = (char) 54;
+            strCaption = (::i8) 54;
             break;
          case e_button_minimize:
-            strCaption = (char) 48;
+            strCaption = (::i8) 48;
             break;
          case e_button_maximize:
-            strCaption = (char) 49;
+            strCaption = (::i8) 49;
             break;
          case e_button_restore:
-            strCaption = (char) 50;
+            strCaption = (::i8) 50;
             break;
          case e_button_notify_icon:
-            strCaption = (char) 0x69;
+            strCaption = (::i8) 0x69;
             break;
          case e_button_transparent_frame:
-            strCaption = (char) ' ';
+            strCaption = (::i8) ' ';
             break;
          case e_button_dock:
-            strCaption = (char) 0x6E;
+            strCaption = (::i8) 0x6E;
             break;
 
          default:
@@ -902,7 +902,7 @@ namespace experience
    enum_stock_icon control_box::get_control_box_button_stock_icon(enum_button ebutton)
    {
 
-      return (enum_stock_icon) ((int) ebutton - (int) e_button_begin + (int) e_stock_icon_control_box_begin);
+      return (enum_stock_icon) ((::i32) ebutton - (::i32) e_button_begin + (::i32) e_stock_icon_control_box_begin);
 
    }
 
@@ -1035,7 +1035,7 @@ namespace experience
 //   void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      int iDefaultButtonSize = calculate_button_size(pgraphics);
+//      ::i32 iDefaultButtonSize = calculate_button_size(pgraphics);
 //
 //      m_sizeButtonDefault = ::i32_size(iDefaultButtonSize, iDefaultButtonSize);
 //
@@ -1065,12 +1065,12 @@ namespace experience
    }
 
 
-   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
 
-      int iButtonSize = (int) (dFontHeight + m_iDefaultButtonMargin * 3);
+      ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 
       m_sizeButtonDefault = ::i32_size(iButtonSize, iButtonSize);
 
@@ -1103,12 +1103,12 @@ namespace experience
    }
 
 
-   int control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_iDefaultButtonSize = calculate_button_size(pgraphics);
 
-      int iWidth = 0;
+      ::i32 iWidth = 0;
 
       for (auto & pitem: m_itemmap.payloads())
       {

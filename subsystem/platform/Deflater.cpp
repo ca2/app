@@ -48,7 +48,7 @@ namespace subsystem
    {
       memsize reserve = m_inputSize / 100 + 1024;
       memsize avaliableOutput = m_inputSize + reserve;
-      unsigned long prevTotalOut = m_zlibStream.total_out;
+      ulong prevTotalOut = m_zlibStream.total_out;
 
       ::u32 constrainedValue = (::u32)avaliableOutput;
       ASSERT(avaliableOutput == constrainedValue);

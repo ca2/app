@@ -8,7 +8,7 @@
 #include "acme/operating_system/windows_common/handle.h"
 
 
-int __node_is_debugger_attached()
+::i32 __node_is_debugger_attached()
 {
 
    return ::IsDebuggerPresent();
@@ -105,7 +105,7 @@ void ansi_output_debug_line(const ::scoped_string& str)
       if (len < 16_KiB - 3)
       {
 
-         char sz[16_KiB];
+         ::i8 sz[16_KiB];
 
          memcpy(sz, str.m_begin, len);
 
@@ -238,7 +238,7 @@ namespace windows
    //
    //    wstring wstr;
    //
-   //    unichar* p = nullptr;
+   //    wide_character * p = nullptr;
    //
    //    ::u32 dw = FormatMessageW(
    //       FORMAT_MESSAGE_FROM_SYSTEM
@@ -277,7 +277,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME::e_status wait_result_status(int iResult, int nCount)
+   CLASS_DECL_ACME::e_status wait_result_status(::i32 iResult, ::i32 nCount)
    {
 
       if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))

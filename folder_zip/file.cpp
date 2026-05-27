@@ -92,7 +92,7 @@ namespace folder_zip
 //   }
 
 
-   //bool file::unzip_open(file_pointer pfile, int iBufferLevel)
+   //bool file::unzip_open(file_pointer pfile, ::i32 iBufferLevel)
    //{
 
    //   if (iBufferLevel >= 2)
@@ -197,7 +197,7 @@ memsize file::read(void * p, ::memsize s)
    //   ASSERT_OK(this);
    ASSERT(m_pfolder->m_unzip_file != nullptr);
 
-   auto data = (unsigned char *) p;
+   auto data = (::u8 *) p;
 
    if (s == 0)
       return 0;   // avoid Win32 "nullptr-read"
@@ -219,8 +219,8 @@ void file::write(const void * p, ::memsize s)
 {
 
    return;
-     /* unsigned char buf[1024];
-      int iRead;
+     /* ::u8 buf[1024];
+      ::i32 iRead;
       if(unzip_OpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
 
@@ -246,8 +246,8 @@ void file::write(const void * p, ::memsize s)
    //   str.replace("\\", "/");
    //   if(unzip_LocateFile(m_pfUnzip, str, 1) != UNZ_OK)
    //      return;
-   //   unsigned char buf[1024];
-   //   int iRead;
+   //   ::u8 buf[1024];
+   //   ::i32 iRead;
    //   if(unzip_OpenCurrentFile(m_pfUnzip) != UNZ_OK)
    //      return;
 
@@ -356,9 +356,9 @@ void file::write(const void * p, ::memsize s)
 
          ::i64 iGet;
 
-         int iRead;
+         ::i32 iRead;
 
-         unsigned char pbBuf[1024];
+         ::u8 pbBuf[1024];
 
          while (iRemain > 0)
          {
@@ -419,7 +419,7 @@ void file::write(const void * p, ::memsize s)
 //
 //
 //
-//voidpf fileopen_file_func (voidpf opaque, const_char_pointer filename, int mode)
+//voidpf fileopen_file_func (voidpf opaque, const_char_pointer pszFilename, ::i32 mode)
 //{
 //   __UNREFERENCED_PARAMETER(mode);
 //   __UNREFERENCED_PARAMETER(filename);
@@ -447,7 +447,7 @@ void file::write(const void * p, ::memsize s)
 //   return (long) pfile->get_position();
 //}
 //
-//long   fileseek_file_func (voidpf opaque, voidpf stream, uptr offset, int origin)
+//long   fileseek_file_func (voidpf opaque, voidpf stream, uptr offset, ::i32 origin)
 //{
 //   __UNREFERENCED_PARAMETER(stream);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
@@ -459,7 +459,7 @@ void file::write(const void * p, ::memsize s)
 //
 //}
 //
-//int    fileclose_file_func (voidpf opaque, voidpf stream)
+//::i32    fileclose_file_func (voidpf opaque, voidpf stream)
 //{
 //   __UNREFERENCED_PARAMETER(opaque);
 //   __UNREFERENCED_PARAMETER(stream);
@@ -468,7 +468,7 @@ void file::write(const void * p, ::memsize s)
 //   return 1;
 //}
 //
-//int c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
+//::i32 c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
 //{
 //   __UNREFERENCED_PARAMETER(opaque);
 //   __UNREFERENCED_PARAMETER(stream);

@@ -90,7 +90,7 @@ namespace nanoui
       ::i32_rectangle m_rectangleMargin;
 
       /// The spacing between widgets of this BoxLayout.
-      int m_iSpacing;
+      ::i32 m_iSpacing;
 
       /**
        * \brief Construct a box layout which packs widgets in the given \pwidgetChild enum_orientation
@@ -108,7 +108,7 @@ namespace nanoui
        *     Extra spacing placed between widgets
        */
       BoxLayout(enum_orientation orientation, enum_alignment alignment,
-         ::i32_rectangle margin, int spacing);
+         ::i32_rectangle margin, ::i32 spacing);
 
       /// The enum_orientation this BoxLayout is using.
       enum_orientation orientation() const { return m_eorientation; }
@@ -129,10 +129,10 @@ namespace nanoui
       void set_margin(i32_rectangle margin) { m_rectangleMargin = margin; }
 
       /// The spacing this BoxLayout is using to pad in between widgets.
-      int spacing() const { return m_iSpacing; }
+      ::i32 spacing() const { return m_iSpacing; }
 
       /// Sets the spacing of this BoxLayout.
-      void set_spacing(int spacing) { m_iSpacing = spacing; }
+      void set_spacing(::i32 spacing) { m_iSpacing = spacing; }
 
       /* Implementation of the layout interface */
 
@@ -173,34 +173,34 @@ namespace nanoui
        * \param group_indent
        *     The amount to indent widgets in a group (underneath a Label).
        */
-      GroupLayout(int margin = 15, int spacing = 6, int group_spacing = 14,
-         int group_indent = 20)
+      GroupLayout(::i32 margin = 15, ::i32 spacing = 6, ::i32 group_spacing = 14,
+         ::i32 group_indent = 20)
          : m_iMargin(margin), m_iSpacing(spacing), m_group_spacing(group_spacing),
          m_group_indent(group_indent) {}
 
       /// The margin of this GroupLayout.
-      int margin() const { return m_iMargin; }
+      ::i32 margin() const { return m_iMargin; }
 
       /// Sets the margin of this GroupLayout.
-      void set_margin(int margin) { m_iMargin = margin; }
+      void set_margin(::i32 margin) { m_iMargin = margin; }
 
       /// The spacing between widgets of this GroupLayout.
-      int spacing() const { return m_iSpacing; }
+      ::i32 spacing() const { return m_iSpacing; }
 
       /// Sets the spacing between widgets of this GroupLayout.
-      void set_spacing(int spacing) { m_iSpacing = spacing; }
+      void set_spacing(::i32 spacing) { m_iSpacing = spacing; }
 
       /// The indent of widgets in a group (underneath a Label) of this GroupLayout.
-      int group_indent() const { return m_group_indent; }
+      ::i32 group_indent() const { return m_group_indent; }
 
       /// Sets the indent of widgets in a group (underneath a Label) of this GroupLayout.
-      void set_group_indent(int group_indent) { m_group_indent = group_indent; }
+      void set_group_indent(::i32 group_indent) { m_group_indent = group_indent; }
 
       /// The spacing between groups of this GroupLayout.
-      int group_spacing() const { return m_group_spacing; }
+      ::i32 group_spacing() const { return m_group_spacing; }
 
       /// Sets the spacing between groups of this GroupLayout.
-      void set_group_spacing(int group_spacing) { m_group_spacing = group_spacing; }
+      void set_group_spacing(::i32 group_spacing) { m_group_spacing = group_spacing; }
 
       /* Implementation of the layout interface */
 
@@ -212,16 +212,16 @@ namespace nanoui
 
    protected:
       /// The margin of this GroupLayout.
-      int m_iMargin;
+      ::i32 m_iMargin;
 
       /// The spacing between widgets of this GroupLayout.
-      int m_iSpacing;
+      ::i32 m_iSpacing;
 
       /// The spacing between groups of this GroupLayout.
-      int m_group_spacing;
+      ::i32 m_group_spacing;
 
       /// The indent amount of a group under its defining Label of this GroupLayout.
-      int m_group_indent;
+      ::i32 m_group_indent;
    };
 
    /**
@@ -248,11 +248,11 @@ namespace nanoui
       /// The actual enum_alignment being used for each column/row
       ::array<enum_alignment> m_ealignment[2];
       /// The number of rows or columns before starting a ___new one, depending on the enum_orientation.
-      int m_resolution;
+      ::i32 m_resolution;
       /// The spacing used for each dimension.
       i32_size m_sizeSpacing;
       /// The margin around this GridLayout.
-      int m_iMargin;
+      ::i32 m_iMargin;
       /**
        * Create a 2-column grid layout by default.
        *
@@ -271,9 +271,9 @@ namespace nanoui
        * \param spacing
        *     The amount of spacing between widgets added to the grid.
        */
-      GridLayout(enum_orientation orientation = e_orientation_horizontal, int resolution = 2,
+      GridLayout(enum_orientation orientation = e_orientation_horizontal, ::i32 resolution = 2,
          enum_alignment alignment = e_alignment_middle,
-         int margin = 0, int spacing = 0)
+         ::i32 margin = 0, ::i32 spacing = 0)
          : m_eorientation(orientation), m_resolution(resolution), m_iMargin(margin)
       {
          m_default_alignment[0] = m_default_alignment[1] = alignment;
@@ -289,28 +289,28 @@ namespace nanoui
       }
 
       /// The number of rows or columns (depending on the enum_orientation) of this GridLayout.
-      int resolution() const { return m_resolution; }
+      ::i32 resolution() const { return m_resolution; }
       /// Sets the number of rows or columns (depending on the enum_orientation) of this GridLayout.
-      void set_resolution(int resolution) { m_resolution = resolution; }
+      void set_resolution(::i32 resolution) { m_resolution = resolution; }
 
       /// The spacing at the specified iAxisIndex (row or column number, depending on the enum_orientation).
-      int spacing(int iAxisIndex) const { return m_sizeSpacing[iAxisIndex]; }
+      ::i32 spacing(::i32 iAxisIndex) const { return m_sizeSpacing[iAxisIndex]; }
       /// Sets the spacing for a specific iAxisIndex.
-      void set_spacing(int iAxisIndex, int spacing) { m_sizeSpacing[iAxisIndex] = spacing; }
+      void set_spacing(::i32 iAxisIndex, ::i32 spacing) { m_sizeSpacing[iAxisIndex] = spacing; }
       /// Sets the spacing for all axes.
-      void set_spacing(int spacing) { m_sizeSpacing[0] = m_sizeSpacing[1] = spacing; }
+      void set_spacing(::i32 spacing) { m_sizeSpacing[0] = m_sizeSpacing[1] = spacing; }
 
       /// The margin around this GridLayout.
-      int margin() const { return m_iMargin; }
+      ::i32 margin() const { return m_iMargin; }
       /// Sets the margin of this GridLayout.
-      void set_margin(int margin) { m_iMargin = margin; }
+      void set_margin(::i32 margin) { m_iMargin = margin; }
 
       /**
        * The enum_alignment of the specified iAxisIndex (row or column number, depending on
        * the enum_orientation) at the specified index of that row or column.
        */
-      enum_alignment alignment(int iAxisIndex, int item) const {
-         if (item < (int)m_ealignment[iAxisIndex].size())
+      enum_alignment alignment(::i32 iAxisIndex, ::i32 item) const {
+         if (item < (::i32)m_ealignment[iAxisIndex].size())
             return m_ealignment[iAxisIndex][item];
          else
             return m_default_alignment[iAxisIndex];
@@ -391,7 +391,7 @@ namespace nanoui
          Anchor() { }
 
          /// Create an Anchor at position ``(x, y)`` with specified enum_alignment.
-         Anchor(int x, int y, enum_alignment horiz = e_alignment_fill,
+         Anchor(::i32 x, ::i32 y, enum_alignment horiz = e_alignment_fill,
             enum_alignment vert = e_alignment_fill) {
             pos[0] = (uint8_t)x; pos[1] = (uint8_t)y;
             size[0] = size[1] = 1;
@@ -399,7 +399,7 @@ namespace nanoui
          }
 
          /// Create an Anchor at position ``(x, y)`` of size ``(pwidgetChild, h)`` with specified alignments.
-         Anchor(int x, int y, int pwidgetChild, int h,
+         Anchor(::i32 x, ::i32 y, ::i32 pwidgetChild, ::i32 h,
             enum_alignment horiz = e_alignment_fill,
             enum_alignment vert = e_alignment_fill) {
             pos[0] = (uint8_t)x; pos[1] = (uint8_t)y;
@@ -419,43 +419,43 @@ namespace nanoui
       ::i32_array_base m_rows;
 
       /// The stretch for each column of this AdvancedGridLayout.
-      ::float_array m_col_stretch;
+      ::f32_array m_col_stretch;
 
       /// The stretch for each row of this AdvancedGridLayout.
-      ::float_array m_row_stretch;
+      ::f32_array m_row_stretch;
 
       /// The mapping of widgets to their specified anchor points.
       ::map_base<Widget*, Anchor> m_anchor;
 
       /// The margin around this AdvancedGridLayout.
-      int m_iMargin;
+      ::i32 m_iMargin;
 
 
       /// Creates an AdvancedGridLayout with specified columns, rows, and margin.
-      AdvancedGridLayout(const ::i32_array_base& cols = {}, const ::i32_array_base& rows = {}, int margin = 0);
+      AdvancedGridLayout(const ::i32_array_base& cols = {}, const ::i32_array_base& rows = {}, ::i32 margin = 0);
 
       /// The margin of this AdvancedGridLayout.
-      int margin() const { return m_iMargin; }
+      ::i32 margin() const { return m_iMargin; }
       /// Sets the margin of this AdvancedGridLayout.
-      void set_margin(int margin) { m_iMargin = margin; }
+      void set_margin(::i32 margin) { m_iMargin = margin; }
 
       /// Return the number of cols
-      int col_count() const { return (int)m_cols.size(); }
+      ::i32 col_count() const { return (::i32)m_cols.size(); }
 
       /// Return the number of rows
-      int row_count() const { return (int)m_rows.size(); }
+      ::i32 row_count() const { return (::i32)m_rows.size(); }
 
       /// Append a row of the given size (and stretch factor)
-      void append_row(int size, float stretch = 0.f) { m_rows.add(size); m_row_stretch.add(stretch); };
+      void append_row(::i32 size, ::f32 stretch = 0.f) { m_rows.add(size); m_row_stretch.add(stretch); };
 
       /// Append a column of the given size (and stretch factor)
-      void append_col(int size, float stretch = 0.f) { m_cols.add(size); m_col_stretch.add(stretch); };
+      void append_col(::i32 size, ::f32 stretch = 0.f) { m_cols.add(size); m_col_stretch.add(stretch); };
 
       /// Set the stretch factor of a given row
-      void set_row_stretch(int index, float stretch) { m_row_stretch.element_at(index) = stretch; }
+      void set_row_stretch(::i32 index, ::f32 stretch) { m_row_stretch.element_at(index) = stretch; }
 
       /// Set the stretch factor of a given column
-      void set_col_stretch(int index, float stretch) { m_col_stretch.element_at(index) = stretch; }
+      void set_col_stretch(::i32 index, ::f32 stretch) { m_col_stretch.element_at(index) = stretch; }
 
       /// Specify the anchor data structure for a given pwidget
       void set_anchor(Widget* pwidget, const Anchor& anchor) { m_anchor[pwidget] = anchor; }

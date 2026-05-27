@@ -12,13 +12,13 @@ namespace hotplugin
    CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText)
    {
 
-      int h = 33;
-      int m = 49 * 2;
+      ::i32 h = 33;
+      ::i32 m = 49 * 2;
 
-      int top;
-      int bottom;
-      int left;
-      int right;
+      ::i32 top;
+      ::i32 bottom;
+      ::i32 left;
+      ::i32 right;
 
       if (height(rectangle) < h)
       {
@@ -46,11 +46,11 @@ namespace hotplugin
 
       ::i32_rectangle rectangleBar(left, top, right, bottom);
 
-      int w =300;
+      ::i32 w =300;
 
-      int v = (int) (::i64_millisecond() / 2);
+      ::i32 v = (::i32) (::i64_millisecond() / 2);
 
-      int x = v % rectangleBar.width();
+      ::i32 x = v % rectangleBar.width();
 
       ::i32_rectangle rectangleBrick(left + x, rectangleBar.top, left + x + w, rectangleBar.bottom);
 

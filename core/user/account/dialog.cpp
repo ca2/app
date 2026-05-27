@@ -282,13 +282,13 @@ namespace account
 
       ::i32_rectangle rectangleLogin;
 
-      int stdw = 800;
+      ::i32 stdw = 800;
 
-      int stdh = 400;
+      ::i32 stdh = 400;
 
-      int w = stdw;
+      ::i32 w = stdw;
 
-      int h = stdh;
+      ::i32 h = stdh;
 
       if(w > rectangleDesktop.width())
       {

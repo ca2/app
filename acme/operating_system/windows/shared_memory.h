@@ -14,7 +14,7 @@ namespace windows
    public:
 
 
-      //unsigned int                     m_nAllocFlags;
+      //::u32                     m_nAllocFlags;
       //HGLOBAL                          m_hGlobalMemory;
       memsize m_memsize;
       HANDLE m_hToMap;
@@ -24,7 +24,7 @@ namespace windows
 
 
       //shared_memory(const memory_base & memory);
-      //shared_memory(memory_container * pmsc = nullptr, double dAllocationRateUp = 4096, unsigned int nAllocFlags = 0);
+      //shared_memory(memory_container * pmsc = nullptr, ::f64 dAllocationRateUp = 4096, ::u32 nAllocFlags = 0);
       //shared_memory(memory_container * pmsc, const void * pMemory, memsize dwSize);
       //shared_memory(const void *, memsize iCount);
       shared_memory();
@@ -33,22 +33,22 @@ namespace windows
 
       //virtual void SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow = true);
 
-      bool CreateSharedMemory(const char* name, memsize size) override;
-      bool OpenSharedMemory(const char * name, memsize size) override;
+      bool CreateSharedMemory(const_char_pointer pszName, memsize size) override;
+      bool OpenSharedMemory(const_char_pointer pszName, memsize size) override;
 
-      //virtual unsigned char * impl_alloc(memsize nBytes) override;
-      //virtual unsigned char * impl_realloc(void * pdata, memsize nBytes) override;
-      //virtual void impl_free(unsigned char * pMem) override;
+      //virtual ::u8 * impl_alloc(memsize nBytes) override;
+      //virtual ::u8 * impl_realloc(void * pdata, memsize nBytes) override;
+      //virtual void impl_free(::u8 * pMem) override;
 
 void Close() override;
 
-      //unsigned char * detach_shared_memory(HGLOBAL & hglobal);
-      //unsigned char * detach(HGLOBAL & hglobal);
+      //::u8 * detach_shared_memory(HGLOBAL & hglobal);
+      //::u8 * detach(HGLOBAL & hglobal);
    //      virtual bool allocate_internal(memsize dwNewLength);
 
    protected:
 
-      virtual bool _createFile(const char *name, memsize size);
+      virtual bool _createFile(const_char_pointer pszName, memsize size);
       virtual void _mapViewOfFile();
       virtual void _setAllAccess(HANDLE handle);
 

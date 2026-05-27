@@ -34,9 +34,9 @@ WinTimeMillis::~WinTimeMillis(void)
 {
 }
 
-int WinTimeMillis::diffFrom(const WinTimeMillis *older) const
+::i32 WinTimeMillis::diffFrom(const WinTimeMillis *older) const
 {
-  int olderTime, newTime;
+  ::i32 olderTime, newTime;
   const SYSTEMTIME *oldTime;
 
   oldTime = older->getTime();

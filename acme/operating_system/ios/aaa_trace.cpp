@@ -7,8 +7,8 @@
 //
 //struct CLASS_DECL_ACME __MAP_MESSAGE
 //{
-//   unsigned int    nMsg;
-//   const char *  lpszMsg;
+//   ::u32    nMsg;
+//   const_char_pointer lpszMsg;
 //};
 
 #define DEFINE_MESSAGE(wm)  { wm, #wm }
@@ -16,7 +16,7 @@
 
 
 /*
- static void TraceDDE(const char * lpszPrefix, const MESSAGE* pMsg)
+ static void TraceDDE(const_char_pointer pszPrefix, const MESSAGE* pMsg)
  {
  ENSURE_ARG(pMsg != nullptr);
  if (pMsg->message == WM_DDE_EXECUTE)
@@ -32,7 +32,7 @@
  }
  ASSERT(hCommands != nullptr);
 
- const char * lpszCommands = (const char *)::GlobalLock(hCommands);
+ const_char_pointer pszCommands = (const_char_pointer )::GlobalLock(hCommands);
  ENSURE_THROW(lpszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
  //      ::information(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
  ::GlobalUnlock(hCommands);
@@ -55,16 +55,16 @@
 
  DDEADVISE* lpAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
  ENSURE_THROW(lpAdvise != nullptr, ::windows_definition::ThrowMemoryException() );
- char szItem[80];
+ ::i8 szItem[80];
  szItem[0] = '\0';
 
  if (aItem != 0)
  ::GlobalGetAtomName(aItem, szItem, _countof(szItem));
 
- char szFormat[80];
+ ::i8 szFormat[80];
  szFormat[0] = '\0';
- if (((unsigned int)0xC000 <= (unsigned int)lpAdvise->cfFormat) &&
- ((unsigned int)lpAdvise->cfFormat <= (unsigned int)0xFFFF))
+ if (((::u32)0xC000 <= (::u32)lpAdvise->cfFormat) &&
+ ((::u32)lpAdvise->cfFormat <= (::u32)0xFFFF))
  {
  ::GetClipboardFormatName(lpAdvise->cfFormat,
  szFormat, _countof(szFormat));
@@ -84,7 +84,7 @@
  */
 /////////////////////////////////////////////////////////////////////////////
 //
-//void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
+//void __trace_message(const_char_pointer pszPrefix, ::message::message * pmessage)
 //{
 //   //   ENSURE_ARG(::windows_definition::IsValidString(lpszPrefix));
 //   ENSURE_ARG(pmessage != nullptr);
@@ -106,8 +106,8 @@
 //      return;
 //   }
 //
-//   const char * lpszMsgName = nullptr;
-//   char szBuf[80];
+//   const_char_pointer pszMsgName = nullptr;
+//   ::i8 szBuf[80];
 //
 //   // find message name
 //   if (pusermessage->id() >= 0xC000)
@@ -168,7 +168,7 @@
 //
 //
 //
-//void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg)
+//void __trace_message(const_char_pointer pszPrefix, MESSAGE * lpmsg)
 //{
 //   //ENSURE_ARG(::windows_definition::IsValidString(lpszPrefix));
 //   ENSURE_ARG(lpmsg != nullptr);
@@ -189,8 +189,8 @@
 //      return;
 //   }
 //
-//   const char * lpszMsgName = nullptr;
-//   char szBuf[80];
+//   const_char_pointer pszMsgName = nullptr;
+//   ::i8 szBuf[80];
 //
 //   // find message name
 //   if (lpmsg->message >= 0xC000)

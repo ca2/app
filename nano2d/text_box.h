@@ -14,8 +14,8 @@ namespace nano2d
 		//const_char_pointer start;	// Pointer to the input text where the row starts.
 		//const_char_pointer end;	// Pointer to the input text where the row ends (one past the last character).
 		//const_char_pointer next;	// Pointer to the beginning of the next row.
-		float width;		// Logical width of the row.
-		float minx, maxx;	// Actual bounds of the row. Logical with and bounds can differ because of kerning and some parts over extending.
+		::f32 width;		// Logical width of the row.
+		::f32 minx, maxx;	// Actual bounds of the row. Logical with and bounds can differ because of kerning and some parts over extending.
 	};
 	typedef struct text_row text_row;
 
@@ -25,7 +25,7 @@ namespace nano2d
 	public:
 
 		::pointer_array < text_row >     m_rowa;
-		float                            m_fWidth;
+		::f32                            m_fWidth;
 
 	};
 

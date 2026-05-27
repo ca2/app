@@ -25,19 +25,19 @@ namespace html
 
 
          ::html::element *     m_pelemental;
-         ::float_rectangle                 m_box;
-         ::float_rectangle                 m_bound;
-         ::float_rectangle                 m_padding;
+         ::f32_rectangle                 m_box;
+         ::f32_rectangle                 m_bound;
+         ::f32_rectangle                 m_padding;
          border                  m_border;
-         ::float_rectangle                 m_margin;
-         int                        m_iLayoutChildLineStartIndex;
-         int                        m_iLayoutChildIndex;
+         ::f32_rectangle                 m_margin;
+         ::i32                        m_iLayoutChildLineStartIndex;
+         ::i32                        m_iLayoutChildIndex;
 
          enum_position              m_eposition;
          flags < enum_flag >        m_flags;
-         float                   m_cxMax;
-         float                   m_cxMin;
-         string_map_base < int >      m_mapFont;
+         ::f32                   m_cxMax;
+         ::f32                   m_cxMin;
+         string_map_base < ::i32 >      m_mapFont;
          bool                    m_bHoverEvaluated;
          bool                    m_bHasHover;
          bool                    m_bHover;
@@ -69,47 +69,47 @@ namespace html
          virtual element * get_first_sibling();
          virtual element * get_previous_sibling();
 
-         bool hit_test(html_data * pdata, const ::float_point & point);
-         double bound_hit_test(html_data * pdata, const ::float_point & point);
+         bool hit_test(html_data * pdata, const ::f32_point & point);
+         ::f64 bound_hit_test(html_data * pdata, const ::f32_point & point);
 
 
-         virtual float left();
-         virtual float top();
-         virtual float right();
-         virtual float bottom();
-         virtual float width();
-         virtual float height();
+         virtual ::f32 left();
+         virtual ::f32 top();
+         virtual ::f32 right();
+         virtual ::f32 bottom();
+         virtual ::f32 width();
+         virtual ::f32 height();
 
-         virtual ::float_point top_left();
-         virtual ::float_size size();
+         virtual ::f32_point top_left();
+         virtual ::f32_size size();
 
 
-         virtual ::float_size get_content_size();
-         virtual ::float_point get_content_top_left();
+         virtual ::f32_size get_content_size();
+         virtual ::f32_point get_content_top_left();
 
-         virtual float get_table_border();
-         virtual float get_cell_spacing();
-         virtual float get_cell_padding();
+         virtual ::f32 get_table_border();
+         virtual ::f32 get_cell_spacing();
+         virtual ::f32 get_cell_padding();
 
-         virtual float get_first_line_height();
-         virtual float get_last_line_height();
-         virtual ::float_size get_bound_size();
-         virtual void set_bound_size(html_data * pdocument, const ::float_size & size);
-         virtual ::float_point get_bound_top_left();
-         virtual void move_bound_to(html_data * pdocument, const ::float_point & point);
-         virtual void move_left_to(html_data * pdocument, float l);
-         virtual void move_top_to(html_data * pdocument, float t);
-         virtual void set_width(html_data * pdocument, float w);
-         virtual void set_height(html_data * pdocument, float h);
-         virtual void move_to(html_data * pdocument, float l, float t);
-         virtual void set_size(html_data * pdocument, float w, float h);
-         virtual void set_dim(html_data * pdocument, float l, float t, float w, float h);
+         virtual ::f32 get_first_line_height();
+         virtual ::f32 get_last_line_height();
+         virtual ::f32_size get_bound_size();
+         virtual void set_bound_size(html_data * pdocument, const ::f32_size & size);
+         virtual ::f32_point get_bound_top_left();
+         virtual void move_bound_to(html_data * pdocument, const ::f32_point & point);
+         virtual void move_left_to(html_data * pdocument, ::f32 l);
+         virtual void move_top_to(html_data * pdocument, ::f32 t);
+         virtual void set_width(html_data * pdocument, ::f32 w);
+         virtual void set_height(html_data * pdocument, ::f32 h);
+         virtual void move_to(html_data * pdocument, ::f32 l, ::f32 t);
+         virtual void set_size(html_data * pdocument, ::f32 w, ::f32 h);
+         virtual void set_dim(html_data * pdocument, ::f32 l, ::f32 t, ::f32 w, ::f32 h);
 
          virtual void _001OnDraw(html_data * pdocument);
 
 
-         virtual float get_extra_content_width();
-         virtual float get_extra_content_height();
+         virtual ::f32 get_extra_content_width();
+         virtual ::f32 get_extra_content_height();
 
 
          virtual void implement_phase1(html_data * pdocument, ::html::element * pelemental);
@@ -135,7 +135,7 @@ namespace html
 
          virtual void on_change_layout(html_data * pdocument);
 
-         virtual float calc_width();
+         virtual ::f32 calc_width();
          virtual bool use_in_final_layout(::html::impl::element * pimplChild);
 
          virtual bool is_tag();

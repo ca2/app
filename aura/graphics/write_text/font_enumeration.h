@@ -19,7 +19,7 @@ namespace write_text
       bool                                            m_bRaster : 1;
       bool                                            m_bTrueType : 1;
       bool                                            m_bOther : 1;
-      int                                             m_iUpdateId;
+      ::i32                                             m_iUpdateId;
       ::pointer<font_enumeration_item_array>          m_pfontenumerationitema;
       //bool                                            m_bUpdating;
       bool                                            m_bEnumeratingFonts = false;
@@ -56,9 +56,9 @@ namespace write_text
 
    public:
 
-      //bool similar_font(char sz[256], const ::scoped_string & scopedstr);
-      //void default_font_name(char sz[256]);
-      //double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser);
+      //bool similar_font(::i8 sz[256], const ::scoped_string & scopedstr);
+      //void default_font_name(::i8 sz[256]);
+      //::f64 font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser);
 
 
       virtual ::pointer<font_enumeration_item>similar_font(const ::scoped_string & scopedstr);
@@ -69,7 +69,7 @@ namespace write_text
       //void adapt_font_name(string& str)
       //{
 
-      //   char sz[256];
+      //   ::i8 sz[256];
 
       //   if (!similar_font(sz, str))
       //   {
@@ -83,7 +83,7 @@ namespace write_text
       //}
 
 
-      //double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
+      //::f64 font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
       //{
 
       //   if (!strcmp(scopedstrSystem, pszUser))

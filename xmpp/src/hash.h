@@ -21,7 +21,7 @@ typedef struct _hash_t hash_t;
 typedef void (*hash_free_func)(const xmpp_ctx_t * const ctx, void *p);
 
 /** allocate and initialize a ___new hash table */
-hash_t *hash_new(xmpp_ctx_t * const ctx, const int size,
+hash_t *hash_new(xmpp_ctx_t * const ctx, const ::i32 size,
 		 hash_free_func free);
 
 /** allocate a ___new object to an existing hash table */
@@ -34,16 +34,16 @@ void hash_release(hash_t * const table);
  *  each key can appear only once; the value of any
  *  identical key will be replaced
  */
-int hash_add(hash_t *table, const ::string & const key, void *data);
+::i32 hash_add(hash_t *table, const ::string & const key, void *data);
 
 /** look up a key in a hash table */
 void *hash_get(hash_t *table, const ::string &key);
 
 /** delete a key from a hash table */
-int hash_drop(hash_t *table, const ::string &key);
+::i32 hash_drop(hash_t *table, const ::string &key);
 
 /** return the number of keys in a hash */
-int hash_num_keys(hash_t *table);
+::i32 hash_num_keys(hash_t *table);
 
 /** hash key iterator functions */
 typedef struct _hash_iterator_t hash_iterator_t;

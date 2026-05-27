@@ -16,17 +16,17 @@
 
 typedef struct _tagTT_OFFSET_TABLE
 {
-   unsigned short	uMajorVersion;
-   unsigned short	uMinorVersion;
-   unsigned short	uNumOfTables;
-   unsigned short	uSearchRange;
-   unsigned short	uEntrySelector;
-   unsigned short	uRangeShift;
+   ::u16	uMajorVersion;
+   ::u16	uMinorVersion;
+   ::u16	uNumOfTables;
+   ::u16	uSearchRange;
+   ::u16	uEntrySelector;
+   ::u16	uRangeShift;
 } TT_OFFSET_TABLE;
 
 typedef struct _tagTT_TABLE_DIRECTORY
 {
-   char	szTag[4];			//table name
+   ::i8	szTag[4];			//table name
    ::u32	uCheckSum;			//Check sum
    ::u32	uOffset;			//Offset from beginning of file
    ::u32	uLength;			//length of the table in bytes
@@ -34,19 +34,19 @@ typedef struct _tagTT_TABLE_DIRECTORY
 
 typedef struct _tagTT_NAME_TABLE_HEADER
 {
-   unsigned short	uFSelector;			//format selector. Always 0
-   unsigned short	uNRCount;			//Name Records count
-   unsigned short	uStorageOffset;		//Offset for strings storage, from start of the table
+   ::u16	uFSelector;			//format selector. Always 0
+   ::u16	uNRCount;			//Name Records count
+   ::u16	uStorageOffset;		//Offset for strings storage, from start of the table
 } TT_NAME_TABLE_HEADER;
 
 typedef struct _tagTT_NAME_RECORD
 {
-   unsigned short	uPlatformID;
-   unsigned short	uEncodingID;
-   unsigned short	uLanguageID;
-   unsigned short	uNameID;
-   unsigned short	uStringLength;
-   unsigned short	uStringOffset;	//from start of storage area
+   ::u16	uPlatformID;
+   ::u16	uEncodingID;
+   ::u16	uLanguageID;
+   ::u16	uNameID;
+   ::u16	uStringLength;
+   ::u16	uStringOffset;	//from start of storage area
 } TT_NAME_RECORD;
 
 
@@ -95,7 +95,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
    ::i32_bool bFound = false;
    string csTemp;
 
-   for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)
+   for (::i32 i = 0; i < ttOffsetTable.uNumOfTables; i++)
    {
       f->read({ e_as_block, &tblDir });
       ansi_ncpy(csTemp.get_buffer(5), tblDir.szTag, 4);
@@ -119,7 +119,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
       TT_NAME_RECORD ttRecord;
       bFound = false;
 
-      for (int i = 0; i < ttNTHeader.uNRCount; i++)
+      for (::i32 i = 0; i < ttNTHeader.uNRCount; i++)
       {
          f->read({ e_as_block, ttRecord });
          ttRecord.uNameID = swap_unsigned_short(ttRecord.uNameID);
@@ -133,7 +133,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
             f->set_position(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset);
 
             //bug fix: see the post by SimonSays to read more about it
-            char* lpszNameBuf = csTemp.get_buffer(ttRecord.uStringLength + 1);
+            char_pointer lpszNameBuf = csTemp.get_buffer(ttRecord.uStringLength + 1);
             memory_set(lpszNameBuf, 0, ttRecord.uStringLength + 1);
             f->read({ lpszNameBuf, ttRecord.uStringLength });
             csTemp.release_buffer();

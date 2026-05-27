@@ -77,7 +77,7 @@ namespace simpledb
       {
          outheader("content-type") = "text/html; charset=UTF-8";
       }
-      int iStatusCode;
+      ::i32 iStatusCode;
       string strStatus;
       if(outattr("http_status_code").is_new()
             || outattr("http_status").is_new())
@@ -161,7 +161,7 @@ namespace simpledb
             string strUnit = straItem[0];
             string_array_base stra;
             stra.explode(",", straItem[1]);
-            for(int i = 0; i < stra.get_count(); i++)
+            for(::i32 i = 0; i < stra.get_count(); i++)
             {
                string_array_base straRange;
                straRange.explode("-", stra[i]);
@@ -252,13 +252,13 @@ namespace simpledb
       }
       else
       {
-         int iLen = file()->length(lpcsz);
+         ::i32 iLen = file()->length(lpcsz);
          if(prangea->get_count() > 1)
          {
             memsize uTotal = 0;
             memory mem;
             mem.set_size(128 * 1024 * 1024);
-            for(int i = 0; i < prangea->get_count(); i++)
+            for(::i32 i = 0; i < prangea->get_count(); i++)
             {
                memsize  iStart = prangea->element_at(i)->element_at(0);
                memsize  iEnd = prangea->element_at(i)->element_at(1);

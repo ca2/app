@@ -32,7 +32,7 @@ namespace graphics3d
 		virtual void updateSystems(
 			::gpu::frame * pframe,
 			::gpu::properties * ppropertisGlobalUbo,
-			float deltaTime) {};
+			::f32 deltaTime) {};
 		virtual IFrame * beginFrame() = 0;
 		virtual void beginSwapChainRenderPass(IFrame * pframe) = 0;
 		virtual void endSwapChainRenderPass(IFrame * pframe) = 0;

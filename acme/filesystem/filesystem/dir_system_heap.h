@@ -38,7 +38,7 @@ namespace file
 
 
          bool find(const ::file::path & strPath, bool &bIsDir, ::u32 & dwLastError);
-         bool find(const ::file::path & strPath, bool &bIsDir, ::u32 & dwLastError, int iLast);
+         bool find(const ::file::path & strPath, bool &bIsDir, ::u32 & dwLastError, ::i32 iLast);
          void set(const ::file::path & strPath, bool bIsDir, ::u32 dwLastError);
 
 

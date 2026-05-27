@@ -558,7 +558,7 @@ namespace user
 
                   synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  auto rectangleTarget = ::double_rectangle(rectangle.size());
+                  auto rectangleTarget = ::f64_rectangle(rectangle.size());
 
                   auto pgraphics = pbufferitem->g();
 
@@ -602,13 +602,13 @@ namespace user
 
                   pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  double_rectangle rectangleSource(rectangle.size());
+                  ::f64_rectangle rectangleSource(rectangle.size());
 
                   {
 
                      ::image::image_source imagesource(pimage1, rectangleSource);
 
-                     double_rectangle rectangleTarget(pimage2->size());
+                     ::f64_rectangle rectangleTarget(pimage2->size());
 
                      ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -1062,7 +1062,7 @@ namespace user
    }
 
 
-   int frame_window::OnCreateHelper(::user::system * pusersystem)
+   ::i32 frame_window::OnCreateHelper(::user::system * pusersystem)
    {
 
       if (!on_create_client(pusersystem))
@@ -1445,7 +1445,7 @@ namespace user
       VERIFY(__defer_register_class(__WNDFRAMEORVIEW_REG));
 
       // attempt to create the interaction_impl
-      const_char_pointer lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
+      const_char_pointer pszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
 
       string strTitle = m_strTitle;
       if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectangleDefault,
@@ -1805,7 +1805,7 @@ namespace user
 
          auto ptopic = create_topic(id_on_activate);
 
-         ptopic->payload("eactivate") = (int)pactivate->m_eactivate;
+         ptopic->payload("eactivate") = (::i32)pactivate->m_eactivate;
 
          route(ptopic);
 
@@ -2245,7 +2245,7 @@ namespace user
       __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
       throw ::interface_only();
-      /*   char * psz = rMessage.GetBuffer(255);
+      /*   char_pointer psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
 
@@ -2494,7 +2494,7 @@ namespace user
             // Entering Print Thumbnail
 
 
-            // show any modeless dialogs, popup windows, float tools, etc
+            // show any modeless dialogs, popup windows, ::f32 tools, etc
             ShowOwnedWindows(false);
 
             // Hide the main pane
@@ -2517,7 +2517,7 @@ namespace user
             on_layout(pgraphics);
 
 
-            // show any modeless dialogs, popup windows, float tools, etc
+            // show any modeless dialogs, popup windows, ::f32 tools, etc
             ShowOwnedWindows(true);
          }
       }
@@ -2654,7 +2654,7 @@ namespace user
    }
 
 
-   void frame_window::OnSize(::u32 nType, int cx, int cy)
+   void frame_window::OnSize(::u32 nType, ::i32 cx, ::i32 cy)
    {
 
    }
@@ -2687,7 +2687,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      unsigned short keyState = 0;
+//      ::u16 keyState = 0;
 //
 //      
 //

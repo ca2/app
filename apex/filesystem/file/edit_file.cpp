@@ -20,7 +20,7 @@ namespace file
    }
 
 
-   //bool edit_item_base::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
+   //bool edit_item_base::read_byte(::u8 * pbyte, ::file::edit_file * pfile)
    //{
 
    //   throw ::interface_only();
@@ -36,18 +36,18 @@ namespace file
 
    filesize edit_item_base::get_position(bool bForward) { __UNREFERENCED_PARAMETER(bForward); return m_position; };
 
-   unsigned char * edit_item_base::data() { return nullptr; }
+   ::u8 * edit_item_base::data() { return nullptr; }
    enum_edit_item edit_item_base::get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::get_extent() { return 0; }
    memsize edit_item_base::get_file_extent() { return 0; }
-   unsigned char * edit_item_base::reverse_get_data() { return nullptr; }
+   ::u8 * edit_item_base::reverse_get_data() { return nullptr; }
    enum_edit_item edit_item_base::reverse_get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::reverse_get_extent() { return 0; }
    memsize edit_item_base::reverse_get_file_extent() { return 0; }
    memsize edit_item_base::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
    enum_edit_item edit_item_base::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
    memsize edit_item_base::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
-   unsigned char * edit_item_base::data(bool bForward) { return bForward ? data() : reverse_get_data(); }
+   ::u8 * edit_item_base::data(bool bForward) { return bForward ? data() : reverse_get_data(); }
    memsize edit_item_base::get_delta_length()  { return 0; }
 
 
@@ -67,7 +67,7 @@ namespace file
       return m_memstorage.size();
    }
 
-   unsigned char * delete_item::data()
+   ::u8 * delete_item::data()
    {
       return nullptr;
    }
@@ -93,7 +93,7 @@ namespace file
    }
 
 
-   unsigned char * delete_item::reverse_get_data()
+   ::u8 * delete_item::reverse_get_data()
    {
 
       return m_memstorage.data();
@@ -109,7 +109,7 @@ namespace file
    }
 
 
-   //bool delete_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
+   //bool delete_item::read_byte(::u8 * pbyte, ::file::edit_file * pfile)
    //{
 
    //   if(pfile->m_bRootDirection)
@@ -189,7 +189,7 @@ namespace file
       return 0;
    }
 
-   unsigned char * insert_item::data()
+   ::u8 * insert_item::data()
    {
       return m_memstorage.data();
    }
@@ -209,7 +209,7 @@ namespace file
       return m_memstorage.size();
    }
 
-   unsigned char * insert_item::reverse_get_data()
+   ::u8 * insert_item::reverse_get_data()
    {
       return nullptr;
    }
@@ -221,7 +221,7 @@ namespace file
 
 
 
-   //bool insert_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
+   //bool insert_item::read_byte(::u8 * pbyte, ::file::edit_file * pfile)
    //{
 
    //   if(pfile->m_bRootDirection)
@@ -330,7 +330,7 @@ namespace file
    //   return get_extent();
    //}
 
-   //unsigned char * edit_item::data()
+   //::u8 * edit_item::data()
    //{
    //   return m_memstorage.data();
    //}
@@ -350,7 +350,7 @@ namespace file
    //   return get_extent();
    //}
 
-   //unsigned char * edit_item::reverse_get_data()
+   //::u8 * edit_item::reverse_get_data()
    //{
    //   return m_memstorageReverse.data();
    //}
@@ -386,7 +386,7 @@ namespace file
       return 0;
    }
 
-   unsigned char * edit_group_item::data()
+   ::u8 * edit_group_item::data()
    {
       return 0;
    }
@@ -406,7 +406,7 @@ namespace file
       return 0;
    }
 
-   unsigned char * edit_group_item::reverse_get_data()
+   ::u8 * edit_group_item::reverse_get_data()
    {
       return 0;
    }
@@ -414,7 +414,7 @@ namespace file
    memsize edit_group_item::get_delta_length()
    {
       memsize iLen = 0;
-      for(int i = 0; i < this->m_itema.get_count(); i++)
+      for(::i32 i = 0; i < this->m_itema.get_count(); i++)
       {
          iLen += this->m_itema[i]->get_delta_length();
       }
@@ -422,7 +422,7 @@ namespace file
    }
 
 
-   //bool edit_group_item::read_byte_group(unsigned char * pbyte, ::file::edit_file * pfile)
+   //bool edit_group_item::read_byte_group(::u8 * pbyte, ::file::edit_file * pfile)
    //{
 
    //   if(pfile->m_bRootDirection)
@@ -579,7 +579,7 @@ namespace file
 
       }
 
-      unsigned char * buf = (unsigned char *)pdata;
+      ::u8 * buf = (::u8 *)pdata;
 
       memsize uRead = 0;
 
@@ -596,7 +596,7 @@ namespace file
       //      ::u32 dwFilePosition = m_position;
       //      ::u32 dwMaxCount = m_size;
       //      ::u32 dwUpperLimit = m_size;
-      //      int iOffset =0;
+      //      ::i32 iOffset =0;
 
       ::data::tree_item<edit_item_base> * ptreeitem = nullptr;
 
@@ -628,7 +628,7 @@ namespace file
 
       }
 
-      unsigned char b = 0;
+      ::u8 b = 0;
 
       m_positionIteration = m_position;
 
@@ -898,7 +898,7 @@ m_position += nCount;
 
       auto pinsert = allocateø class insert_item (m_position, pdata, nCount);
 
-      //auto p = (char *) pdata;
+      //auto p = (char_pointer ) pdata;
 
       //pinsert->m_position = m_position;
 
@@ -933,7 +933,7 @@ m_position += nCount;
       pdelete->m_pdata = pdelete->m_memstorage.data();
       pdelete->m_size = pdelete->m_memstorage.size();
       seek((filesize)m_position,::e_seek_set);
-      auto pszData = (char *)pdelete->m_memstorage.data();
+      auto pszData = (char_pointer )pdelete->m_memstorage.data();
       read(pszData,uiCount);
       TreeInsert(pdelete);
       m_sizeEditFile -= uiCount;
@@ -1066,7 +1066,7 @@ m_position += nCount;
       //for (::collection::index i = 0; i < dwNew; i++)
       {
 
-         //unsigned char b;
+         //::u8 b;
 
          //read(&b, 1);
          read(nullptr, dwNew);
@@ -1117,7 +1117,7 @@ m_position += nCount;
    bool edit_file::to(::file::file * pfile)
    {
 
-      char buf[4096];
+      ::i8 buf[4096];
       
       memsize uRead;
       
@@ -1136,7 +1136,7 @@ m_position += nCount;
    bool edit_file::unix2dos_to(::file::file * pfile)
    {
 
-      char buf[4096];
+      ::i8 buf[4096];
       
       string str;
       
@@ -1322,7 +1322,7 @@ m_position += nCount;
    }
 
 
-   bool edit_item_base::read_byte(filesize & next_boundary,unsigned char * pbyte, ::file::edit_file * pfile)
+   bool edit_item_base::read_byte(filesize & next_boundary,::u8 * pbyte, ::file::edit_file * pfile)
    {
 
       if (m_pitema)

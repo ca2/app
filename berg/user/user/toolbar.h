@@ -42,7 +42,7 @@ namespace user
       ::i32_size               m_sizeImage;  // current image i32_size
       ::i32_size               m_sizeButton; // current button i32_size
       bool                 m_bSimpleLayout;
-//      string_to_ptr_base *      m_pStringMap;  // used as CMapStringTounsigned int
+//      string_to_ptr_base *      m_pStringMap;  // used as CMapStringTounsigned ::i32
 //      //index                m_iButtonPressItem;
 
 
@@ -84,7 +84,7 @@ namespace user
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
-      //virtual ::user::enum_state get_button_state(int iItem);
+      //virtual ::user::enum_state get_button_state(::i32 iItem);
 
       // standard control bar things
       //virtual ::collection::index atom_index(const ::atom & atom) const;
@@ -126,7 +126,7 @@ namespace user
 
       virtual ::i32_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
       ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 nMode) override;
+      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 nMode) override;
       //virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction * pinteractionOwner);
 

@@ -7,7 +7,7 @@ $UNICODE = 'd:/usr/doc/unicode/PUBLIC/UNIDATA/UnicodeData.txt';
 $TABLE_SHIFT = 4;
 
 $char_prop_format = '(($v_offs << 16) + ($v_tc << 15) + ($v_mirrored<<14) + ($v_isnumber<<13) + ($v_comb_class<<5) + $v_ctype)';
-$char_prop_format1 = '($v_number?"(float)":"").($v_number)';
+$char_prop_format1 = '($v_number?"(::f32)":"").($v_number)';
 
 $p_warn = '/*
     This file was automatically generated from
@@ -229,12 +229,12 @@ print OUT <<xcharcategory2;
 $p_warn
 
 // char categories bit two stage tables index
-static unsigned short arr_idxCharCategoryIdx[] = {
+static ::u16 arr_idxCharCategoryIdx[] = {
 $categoryClassesIdx
 };
 
 // char categories bit two stage tables
-static unsigned int arr_idxCharCategory[] = {
+static ::u32 arr_idxCharCategory[] = {
 $categoryClasses
 };
 
@@ -267,11 +267,11 @@ print OUT <<xtables;
 $p_warn
 
 // index table
-static unsigned short arr_idxCharInfo[] = {
+static ::u16 arr_idxCharInfo[] = {
 $p_abase
 };
 // referring tables
-static unsigned int arr_CharInfo[] = {
+static ::u32 arr_CharInfo[] = {
 $p_avar0
 $p_avar
 };
@@ -280,11 +280,11 @@ $p_avar
 
 
 // number index table
-static unsigned short arr_idxCharInfo2[] = {
+static ::u16 arr_idxCharInfo2[] = {
 $p_a1base
 };
 // number referring tables
-static float arr_CharInfo2[] = {
+static ::f32 arr_CharInfo2[] = {
 $p_avar0
 $p_a1var
 };

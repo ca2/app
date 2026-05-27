@@ -28,7 +28,7 @@ namespace xml
 
    }
 
-   string tree_base::get_node_name(int iNameIndex)
+   string tree_base::get_node_name(::i32 iNameIndex)
    {
       return m_pschema->get_node_name(iNameIndex);
    }

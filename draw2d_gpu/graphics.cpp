@@ -45,12 +45,12 @@
 //#define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
 #define FONT_POINT_DENOMINATOR 28.0
 #define FONT_PIXEL_DENOMINATOR 35.0
-//int  opengl_init();
+//::i32  opengl_init();
 
 
 
 
-HGLRC initialize_opengl_version(HDC hdc, int iMajor, int iMinor);
+HGLRC initialize_opengl_version(HDC hdc, ::i32 iMajor, ::i32 iMinor);
 
 namespace opengl
 {
@@ -85,7 +85,7 @@ namespace draw2d_gpu
 {
 
 
-   const char proto_vert[] = R"vert(
+   const ::i8 proto_vert[] = R"vert(
 #version 330 core
 
 layout(location = 0) in vec2 inPos;
@@ -97,7 +97,7 @@ void main() {
     gl_Position = vec4(inPos, 0.0, 1.0);
     fragColor = inColor;
 })vert";
-   const char proto_frag[] = R"frag(
+   const ::i8 proto_frag[] = R"frag(
             #version 330 core
 
                in vec4 fragColor;      // Input from the vertex shader (location = 0)
@@ -189,14 +189,14 @@ void main() {
    //}
 
 
-   //bool graphics::CreateDC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer lpszOutput, const void* lpInitData)
+   //bool graphics::CreateDC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer pszOutput, const void* lpInitData)
    //{
    //   //return Attach(::CreateDC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*)lpInitData));
    //   return false;
    //}
 
 
-   //bool graphics::CreateIC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer lpszOutput, const void* lpInitData)
+   //bool graphics::CreateIC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer pszOutput, const void* lpInitData)
    //{
    //   //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
    //   return false;
@@ -435,10 +435,10 @@ void main() {
       ////dwStyle = 0;
       //dwStyle &= ~WS_THICKFRAME;
       //dwStyle &= ~WS_BORDER;
-      //int x = 0;
-      //int y = 0;
-      //int nWidth = size.cx;
-      //int nHeight = size.cy;
+      //::i32 x = 0;
+      //::i32 y = 0;
+      //::i32 nWidth = size.cx;
+      //::i32 nHeight = size.cy;
       //HWND hWndParent = nullptr;
       //HMENU hMenu = nullptr;
       /////HINSTANCE hInstance = psystem->m_hinstance;
@@ -457,7 +457,7 @@ void main() {
       //// create WGL context, make current
 
       //PIXELFORMATDESCRIPTOR pixformat;
-      //int chosenformat;
+      //::i32 chosenformat;
       //HDC hdc = GetDC(window);
       //if (hdc == nullptr)
       //{
@@ -529,7 +529,7 @@ void main() {
       //   return false;
 
       //}
-      //int attribs[] =
+      //::i32 attribs[] =
       //{
       //   WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
       //   WGL_CONTEXT_MINOR_VERSION_ARB, 1,
@@ -620,7 +620,7 @@ void main() {
 
 
 
-   int graphics::ExcludeUpdateRgn(::user::interaction_base* pwindow)
+   ::i32 graphics::ExcludeUpdateRgn(::user::interaction_base* pwindow)
    {
       // ASSERT(m_hdc != nullptr);
       //throw ::interface_only();
@@ -628,7 +628,7 @@ void main() {
       return 0;
    }
 
-   //double graphics::GetDeviceCaps(double nIndex) const
+   //::f64 graphics::GetDeviceCaps(::f64 nIndex) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetDeviceCaps(m_hdc, nIndex);
@@ -643,7 +643,7 @@ void main() {
       return point;
    }
 
-   i32_point graphics::SetBrushOrg(int x, int y)
+   i32_point graphics::SetBrushOrg(::i32 x, ::i32 y)
    {
       // ASSERT(m_hdc != nullptr);
       ::i32_point point;
@@ -659,7 +659,7 @@ void main() {
    }
 
 
-   //int graphics::EnumObjects(int nObjectType, int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+   //::i32 graphics::EnumObjects(::i32 nObjectType, ::i32 (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::EnumObjects(m_hdc, nObjectType, (GOBJENUMPROC)lpfn, lpData);
@@ -782,35 +782,35 @@ void main() {
    }
 
 
-   int graphics::GetPolyFillMode() const
+   ::i32 graphics::GetPolyFillMode() const
    {
       //return ::GetPolyFillMode(m_hdc);
       return 0;
    }
 
 
-   int graphics::GetROP2() const
+   ::i32 graphics::GetROP2() const
    {
       //return ::GetROP2(m_hdc);
       return 0;
    }
 
 
-   int graphics::GetStretchBltMode() const
+   ::i32 graphics::GetStretchBltMode() const
    {
       //return ::GetStretchBltMode(m_hdc);
       return 0;
    }
 
 
-   int graphics::GetMapMode() const
+   ::i32 graphics::GetMapMode() const
    {
       //return ::GetMapMode(m_hdc);
       return 0;
    }
 
 
-   int graphics::GetGraphicsMode() const
+   ::i32 graphics::GetGraphicsMode() const
    {
       //return ::GetGraphicsMode(m_hdc);
       return 0;
@@ -824,17 +824,17 @@ void main() {
 
    //   //m_pgraphics->GetTransform(((graphics *)this)->m_pm);
 
-   //   //plusplus::REAL ::double_rectangle[6];
+   //   //plusplus::REAL ::f64_rectangle[6];
 
    //   //m_pm->GetElements(rectangle);
 
-   //   //pXform->eM11 = ::double_rectangle[0];
-   //   //pXform->eM12 = ::double_rectangle[1];
-   //   //pXform->eM21 = ::double_rectangle[2];
-   //   //pXform->eM22 = ::double_rectangle[3];
+   //   //pXform->eM11 = ::f64_rectangle[0];
+   //   //pXform->eM12 = ::f64_rectangle[1];
+   //   //pXform->eM21 = ::f64_rectangle[2];
+   //   //pXform->eM22 = ::f64_rectangle[3];
 
-   //   //pXform->eDx = ::double_rectangle[4];
-   //   //pXform->eDy = ::double_rectangle[5];
+   //   //pXform->eDx = ::f64_rectangle[4];
+   //   //pXform->eDy = ::f64_rectangle[5];
 
 
    //   return true;
@@ -885,24 +885,24 @@ void main() {
       return set_window_ext(size.cx, size.cy);
    }
 
-   void graphics::DPtoLP(::double_point* lpPoints, ::collection::count nCount)
+   void graphics::DPtoLP(::f64_point* lpPoints, ::collection::count nCount)
    {
-      //::DPtoLP(m_hdc, lpPoints, (int) nCount);
+      //::DPtoLP(m_hdc, lpPoints, (::i32) nCount);
    }
 
-   void graphics::DPtoLP(::double_rectangle* prectangle)
+   void graphics::DPtoLP(::f64_rectangle* prectangle)
    {
-      //::DPtoLP(m_hdc, (::double_point *)rectangle, 2);
+      //::DPtoLP(m_hdc, (::f64_point *)rectangle, 2);
    }
 
-   void graphics::LPtoDP(::double_point* lpPoints, ::collection::count nCount)
+   void graphics::LPtoDP(::f64_point* lpPoints, ::collection::count nCount)
    {
-      //::LPtoDP(m_hdc, lpPoints, (int)  nCount);
+      //::LPtoDP(m_hdc, lpPoints, (::i32)  nCount);
    }
 
-   void graphics::LPtoDP(::double_rectangle* prectangle)
+   void graphics::LPtoDP(::f64_rectangle* prectangle)
    {
-      //::LPtoDP(m_hdc, (::double_point *)rectangle, 2);
+      //::LPtoDP(m_hdc, (::f64_point *)rectangle, 2);
    }
 
    bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
@@ -914,7 +914,7 @@ void main() {
    }
 
 
-   bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int nWidth, int nHeight)
+   bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, ::i32 nWidth, ::i32 nHeight)
    {
 
       //return ::FrameRgn(m_hdc, (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != false;
@@ -944,7 +944,7 @@ void main() {
    //}
 
 
-   bool graphics::PtVisible(int x, int y) const
+   bool graphics::PtVisible(::i32 x, ::i32 y) const
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -966,7 +966,7 @@ void main() {
    }
 
 
-   //bool graphics::rectVisible(const ::double_rectangle & ::double_rectangle) const
+   //bool graphics::rectVisible(const ::f64_rectangle & ::f64_rectangle) const
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -986,7 +986,7 @@ void main() {
    //   return ::draw2d::graphics::G;
    //}
 
-   void graphics::polyline(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::polyline(const ::f64_point* lpPoints, ::collection::count nCount)
    {
 
       if (nCount <= 0)
@@ -1005,13 +1005,13 @@ void main() {
       //try
       //{
 
-      //   for(double i = 0; i < nCount; i++)
+      //   for(::f64 i = 0; i < nCount; i++)
       //   {
       //      ppoints[i].X = lpPoints[i].x;
       //      ppoints[i].Y = lpPoints[i].y;
       //   }
 
-      //   bOk1 = m_pgraphics->DrawLines(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawLines(gl2d_pen(),ppoints,(::::f64) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -1031,17 +1031,17 @@ void main() {
    }
 
 
-   void graphics::arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::arc(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
    {
 
       auto pmathematics = mathematics();
 
-      double centerx = (x2 + x1) / 2.0;
-      double centery = (y2 + y1) / 2.0;
+      ::f64 centerx = (x2 + x1) / 2.0;
+      ::f64 centery = (y2 + y1) / 2.0;
 
-      double start = atan2(y3 - centery, x3 - centerx) * 180.0 / π;
-      double end = atan2(y4 - centery, x4 - centerx) * 180.0 / π;
-      double sweep = fabs(end - start);
+      ::f64 start = atan2(y3 - centery, x3 - centerx) * 180.0 / π;
+      ::f64 end = atan2(y4 - centery, x4 - centerx) * 180.0 / π;
+      ::f64 sweep = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
       {
@@ -1054,15 +1054,15 @@ void main() {
    }
 
 
-   //void graphics::arc(double x1,double y1,double x2,double y2,double x3,double y3,double x4,double y4)
+   //void graphics::arc(::f64 x1,::f64 y1,::f64 x2,::f64 y2,::f64 x3,::f64 y3,::f64 x4,::f64 y4)
    //{
 
-   //   double centerx    = (x2 + x1) / 2.0;
-   //   double centery    = (y2 + y1) / 2.0;
+   //   ::f64 centerx    = (x2 + x1) / 2.0;
+   //   ::f64 centery    = (y2 + y1) / 2.0;
 
-   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / π;
-   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / π;
-   //   double sweep      = fabs(end - start);
+   //   ::f64 start      = atan2(y3 - centery,x3 - centerx) * 180.0 / π;
+   //   ::f64 end        = atan2(y4 - centery,x4 - centerx) * 180.0 / π;
+   //   ::f64 sweep      = fabs(end - start);
 
    //   /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
    //   {
@@ -1075,10 +1075,10 @@ void main() {
    //}
 
 
-   void graphics::arc(double x1, double y1, double w, double h, double start, double extends)
+   void graphics::arc(::f64 x1, ::f64 y1, ::f64 w, ::f64 h, ::f64 start, ::f64 extends)
    {
 
-      //::plusplus::double_rectangle ::double_rectangle(x1,y1,w,h);
+      //::plusplus::f64_rectangle ::f64_rectangle(x1,y1,w,h);
 
       //return m_pgraphics->DrawArc(gl2d_pen(),rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
 
@@ -1087,18 +1087,18 @@ void main() {
    }
 
 
-   //void graphics::arc(double x1,double y1,double w,double h,double start,double extends)
+   //void graphics::arc(::f64 x1,::f64 y1,::f64 w,::f64 h,::f64 start,::f64 extends)
    //{
 
-   //   //::plusplus::rectF float_rectangle((plusplus::REAL) x1,(plusplus::REAL) y1,(plusplus::REAL) w,(plusplus::REAL) h);
+   //   //::plusplus::rectF ::f32_rectangle((plusplus::REAL) x1,(plusplus::REAL) y1,(plusplus::REAL) w,(plusplus::REAL) h);
 
-   //   //return m_pgraphics->DrawArc(gl2d_pen(),float_rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
+   //   //return m_pgraphics->DrawArc(gl2d_pen(),::f32_rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
 
    //   return true;
 
    //}
 
-   //void vertex2f(const ::double_rectangle& rectangle, float fZ)
+   //void vertex2f(const ::f64_rectangle& rectangle, ::f32 fZ)
    //{
 
    //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.top, fZ);
@@ -1109,7 +1109,7 @@ void main() {
    //}
 
 
-   void graphics::fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color)
+   void graphics::fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color)
    {
 
       auto pcontext = gpu_context();
@@ -1125,7 +1125,7 @@ void main() {
       //if (!m_psetdescriptorlayoutRectangle)
       //{
 
-      //   int iFrameCount = prenderer->get_frame_count();
+      //   ::i32 iFrameCount = prenderer->get_frame_count();
 
       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
@@ -1145,7 +1145,7 @@ void main() {
       //if (!m_psetdescriptorlayoutRectangle)
       //{
 
-      //   int iFrameCount = prenderer->get_frame_count();
+      //   ::i32 iFrameCount = prenderer->get_frame_count();
 
       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
@@ -1286,14 +1286,14 @@ void main() {
 
       //}
 
-      double_point points[4] = {
+      ::f64_point points[4] = {
    {rectangle.top_left()},
    {rectangle.top_right()},
    {rectangle.bottom_right()},
    {rectangle.bottom_left()}
       };
 
-      double_point quad[4];
+      ::f64_point quad[4];
 
       quad[0] = points[0];
       m_m1.transform(quad[0]);
@@ -1350,7 +1350,7 @@ void main() {
 
    }
 
-   void graphics::fill_rectangle_2025_06(const ::double_rectangle& rectangle, ::draw2d::brush* pbrush)
+   void graphics::fill_rectangle_2025_06(const ::f64_rectangle& rectangle, ::draw2d::brush* pbrush)
    {
 
       auto pcontext = gpu_context();
@@ -1360,7 +1360,7 @@ void main() {
 
       ::opengl::color(pbrush->m_color);
 
-      ::double_polygon polygon;
+      ::f64_polygon polygon;
 
       polygon = rectangle;
 
@@ -1383,7 +1383,7 @@ void main() {
    }
 
 
-   void graphics::fill_rectangle(const ::double_rectangle& rectangle, ::draw2d::brush* pbrush)
+   void graphics::fill_rectangle(const ::f64_rectangle& rectangle, ::draw2d::brush* pbrush)
    {
 
 
@@ -1392,7 +1392,7 @@ void main() {
    }
 
 
-   void graphics::frame_rectangle(const ::double_rectangle& rectangleParam, ::draw2d::brush* pBrush)
+   void graphics::frame_rectangle(const ::f64_rectangle& rectangleParam, ::draw2d::brush* pBrush)
    {
 
       //// ASSERT(m_hdc != nullptr);
@@ -1402,7 +1402,7 @@ void main() {
    }
 
 
-   void graphics::invert_rectangle(const ::double_rectangle& rectangleParam)
+   void graphics::invert_rectangle(const ::f64_rectangle& rectangleParam)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -1412,7 +1412,7 @@ void main() {
    }
 
 
-   //bool graphics::DrawIcon(double x, double y, ::image::icon * picon)
+   //bool graphics::DrawIcon(::f64 x, ::f64 y, ::image::icon * picon)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1440,7 +1440,7 @@ void main() {
 
    //}
 
-   //bool graphics::DrawIcon(double x, double y, ::image::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+   //bool graphics::DrawIcon(::f64 x, ::f64 y, ::image::icon * picon, ::f64 cx, ::f64 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
    //{
 
    //   //try
@@ -1502,18 +1502,18 @@ void main() {
    //   //   {
 
    //   //      bool bAllZeroAlpha = true;
-   //   //      bool bTheresunsigned int = false;
+   //   //      bool bTheresunsigned ::i32 = false;
 
-   //   //      int area = cx * cy;
+   //   //      ::i32 area = cx * cy;
 
    //   //      color32_t * pc = pimage32;
-   //   //      unsigned char * pA = &((unsigned char *) pimage32)[3];
+   //   //      ::u8 * pA = &((::u8 *) pimage32)[3];
 
-   //   //      for(int i = 0; i < area; i++)
+   //   //      for(::i32 i = 0; i < area; i++)
    //   //      {
    //   //         if(*pc != 0)
    //   //         {
-   //   //            bTheresunsigned int = true;
+   //   //            bTheresunsigned ::i32 = true;
    //   //         }
    //   //         if(*pA != 0)
    //   //         {
@@ -1524,13 +1524,13 @@ void main() {
    //   //         pA +=4;
    //   //      }
 
-   //   //      if(bAllZeroAlpha && bTheresunsigned int)
+   //   //      if(bAllZeroAlpha && bTheresunsigned ::i32)
    //   //      {
 
    //   //         pc = pimage32;
-   //   //         pA = &((unsigned char *)pimage32)[3];
+   //   //         pA = &((::u8 *)pimage32)[3];
 
-   //   //         for(int i = 0; i < area; i++)
+   //   //         for(::i32 i = 0; i < area; i++)
    //   //         {
    //   //            if(*pc != 0)
    //   //            {
@@ -1546,7 +1546,7 @@ void main() {
    //   //      try
    //   //      {
 
-   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (unsigned char *) pimage32);
+   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
 
    //   //         bOk = m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, plusplus::UnitPixel) == plusplus::Ok;
 
@@ -1615,7 +1615,7 @@ void main() {
 //   }
 //
 //
-//   bool graphics::DrawState(const ::i32_point & point, const ::i32_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, double nTextLen, HBRUSH hBrush)
+//   bool graphics::DrawState(const ::i32_point & point, const ::i32_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::f64 nTextLen, HBRUSH hBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1625,7 +1625,7 @@ void main() {
 //   }
 //
 //
-//   bool graphics::DrawState(const ::i32_point & point, const ::i32_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, double nTextLen, ::draw2d::brush* pBrush)
+//   bool graphics::DrawState(const ::i32_point & point, const ::i32_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::f64 nTextLen, ::draw2d::brush* pBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1655,26 +1655,26 @@ void main() {
 //   }
 //
 
-//   bool graphics::DrawEdge(const ::double_rectangle & rectangleParam,::u32 nEdge,::u32 nFlags)
+//   bool graphics::DrawEdge(const ::f64_rectangle & rectangleParam,::u32 nEdge,::u32 nFlags)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawEdge(m_hdc,(::double_rectangle *)&rectangleParam,nEdge,nFlags) != false;
+//      //return ::DrawEdge(m_hdc,(::f64_rectangle *)&rectangleParam,nEdge,nFlags) != false;
 //      return false;
 //
 //   }
 //
 
-//   bool graphics::DrawFrameControl(const ::double_rectangle & rectangleParam,::u32 nType,::u32 nState)
+//   bool graphics::DrawFrameControl(const ::f64_rectangle & rectangleParam,::u32 nType,::u32 nState)
 //   {
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawFrameControl(m_hdc,(::double_rectangle *) &rectangleParam,nType,nState) != false;
+//      //return ::DrawFrameControl(m_hdc,(::f64_rectangle *) &rectangleParam,nType,nState) != false;
 //      return false;
 //
 //   }
 
 
-   bool graphics::Chord(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+   bool graphics::Chord(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::i32 x3, ::i32 y3, ::i32 x4, ::i32 y4)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::Chord(m_hdc, x1, y1, x2, y2, x3, y3, x4, y4) != false;
@@ -1704,7 +1704,7 @@ void main() {
    }
 
 
-   //bool graphics::DrawEllipse(double x1, double y1, double x2, double y2)
+   //bool graphics::DrawEllipse(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
    //{
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1715,7 +1715,7 @@ void main() {
    //}
 
 
-   void graphics::draw_ellipse(const ::double_rectangle& rectangleParam)
+   void graphics::draw_ellipse(const ::f64_rectangle& rectangleParam)
    {
 
       //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1727,7 +1727,7 @@ void main() {
    }
 
 
-   //bool graphics::FillEllipse(double x1, double y1, double x2, double y2)
+   //bool graphics::FillEllipse(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
    //{
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1739,7 +1739,7 @@ void main() {
    //}
 
 
-   void graphics::fill_ellipse(const ::double_rectangle& rectangleParam)
+   void graphics::fill_ellipse(const ::f64_rectangle& rectangleParam)
    {
 
       //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1751,7 +1751,7 @@ void main() {
    }
 
 
-   //bool graphics::draw_ellipse(double x1,double y1,double x2,double y2)
+   //bool graphics::draw_ellipse(::f64 x1,::f64 y1,::f64 x2,::f64 y2)
    //{
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1763,7 +1763,7 @@ void main() {
    //}
 
 
-   //bool graphics::draw_ellipse(const ::double_rectangle & rectectParam)
+   //bool graphics::draw_ellipse(const ::f64_rectangle & rectectParam)
    //{
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1777,7 +1777,7 @@ void main() {
    //}
 
 
-   //bool graphics::FillEllipse(double x1,double y1,double x2,double y2)
+   //bool graphics::FillEllipse(::f64 x1,::f64 y1,::f64 x2,::f64 y2)
    //{
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1789,7 +1789,7 @@ void main() {
    //}
 
 
-   //bool graphics::FillEllipse(const ::double_rectangle & rectectParam)
+   //bool graphics::FillEllipse(const ::f64_rectangle & rectectParam)
    //{
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
@@ -1803,7 +1803,7 @@ void main() {
    //}
 
 
-   //bool graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   //bool graphics::Pie(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
    //{
    //
    //   // ASSERT(m_hdc != nullptr);
@@ -1813,7 +1813,7 @@ void main() {
    //}
 
 
-   //bool graphics::Pie(const ::double_rectangle & rectangleParam,const ::i32_point & pointStart,const ::i32_point & pointEnd)
+   //bool graphics::Pie(const ::f64_rectangle & rectangleParam,const ::i32_point & pointStart,const ::i32_point & pointEnd)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1826,7 +1826,7 @@ void main() {
    //}
 
 
-   void graphics::fill_polygon(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::fill_polygon(const ::f64_point* lpPoints, ::collection::count nCount)
    {
 
       //   if(nCount <= 0)
@@ -1839,7 +1839,7 @@ void main() {
       //   try
       //   {
 
-      //      for(double i = 0; i < nCount; i++)
+      //      for(::f64 i = 0; i < nCount; i++)
       //      {
       //         ppoints[i].X = (plusplus::REAL) lpPoints[i].x;
       //         ppoints[i].Y = (plusplus::REAL) lpPoints[i].y;
@@ -1850,7 +1850,7 @@ void main() {
       //      set_smooth_mode(::draw2d::e_smooth_mode_high);
 
 
-      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::double) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::::f64) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
       //   }
       //   catch(...)
@@ -1873,7 +1873,7 @@ void main() {
    }
 
 
-   //void graphics::fill_polygon(const ::double_point* lpPoints,::collection::count nCount)
+   //void graphics::fill_polygon(const ::f64_point* lpPoints,::collection::count nCount)
    //{
 
    //   //   if(nCount <= 0)
@@ -1886,7 +1886,7 @@ void main() {
    //   //   try
    //   //   {
 
-   //   //      for(double i = 0; i < nCount; i++)
+   //   //      for(::f64 i = 0; i < nCount; i++)
    //   //      {
    //   //         ppoints[i].X = lpPoints[i].x;
    //   //         ppoints[i].Y = lpPoints[i].y;
@@ -1894,7 +1894,7 @@ void main() {
 
    //   //      m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-   //   //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::double)  nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+   //   //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::::f64)  nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
    //   //   }
    //   //   catch(...)
@@ -1917,7 +1917,7 @@ void main() {
    //}
 
 
-   void graphics::draw_polygon(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::draw_polygon(const ::f64_point* lpPoints, ::collection::count nCount)
    {
 
       //if (nCount <= 0)
@@ -1930,7 +1930,7 @@ void main() {
       //try
       //{
 
-      //   for (double i = 0; i < nCount; i++)
+      //   for (::f64 i = 0; i < nCount; i++)
       //   {
       //      ppoints[i].X = lpPoints[i].x;
       //      ppoints[i].Y = lpPoints[i].y;
@@ -1940,7 +1940,7 @@ void main() {
 
       //   set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::double) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::::f64) nCount) == plusplus::Status::Ok;
 
       //}
       //catch (...)
@@ -1962,7 +1962,7 @@ void main() {
    }
 
 
-   //void graphics::draw_polygon(const ::double_point* lpPoints,::collection::count nCount)
+   //void graphics::draw_polygon(const ::f64_point* lpPoints,::collection::count nCount)
    //{
 
    //   //if(nCount <= 0)
@@ -1975,7 +1975,7 @@ void main() {
    //   //try
    //   //{
 
-   //   //   for(double i = 0; i < nCount; i++)
+   //   //   for(::f64 i = 0; i < nCount; i++)
    //   //   {
    //   //      ppoints[i].X = (plusplus::REAL) lpPoints[i].x;
    //   //      ppoints[i].Y = (plusplus::REAL) lpPoints[i].y;
@@ -1983,7 +1983,7 @@ void main() {
 
    //   //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-   //   //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
+   //   //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::::f64) nCount) == plusplus::Status::Ok;
 
    //   //}
    //   //catch(...)
@@ -2006,7 +2006,7 @@ void main() {
    //}
 
 
-   void graphics::polygon(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::polygon(const ::f64_point* lpPoints, ::collection::count nCount)
    {
 
       //if(nCount <= 0)
@@ -2021,7 +2021,7 @@ void main() {
       //try
       //{
 
-      //   for(double i = 0; i < nCount; i++)
+      //   for(::f64 i = 0; i < nCount; i++)
       //   {
       //      ppoints[i].X = lpPoints[i].x;
       //      ppoints[i].Y = lpPoints[i].y;
@@ -2033,9 +2033,9 @@ void main() {
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
 
-      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::double) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::::f64) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
-      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::double) nCount) == plusplus::Status::Ok;
+      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::::f64) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -2058,26 +2058,26 @@ void main() {
    }
 
 
-   void graphics::poly_polygon(const ::double_point* lpPoints, const int* lpPolyCounts, ::collection::count nCount)
+   void graphics::poly_polygon(const ::f64_point* lpPoints, const ::i32* lpPolyCounts, ::collection::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
 
 
-      //return ::PolyPolygon(m_hdc, lpPoints, (const ::double *) lpPolyCounts, (int) nCount) != false;
+      //return ::PolyPolygon(m_hdc, lpPoints, (const ::::f64 *) lpPolyCounts, (::i32) nCount) != false;
       //return false;
 
    }
 
 
-   //bool graphics::double_rectangle(double x1, double y1, double x2, double y2)
+   //bool graphics::f64_rectangle(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
    //{
 
-   //   //plusplus::rectF float_rectangle((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
+   //   //plusplus::rectF ::f32_rectangle((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
 
-   //   //bool bOk1 = m_pgraphics->FillRectangle(gl2d_brush(), float_rectangle) == plusplus::Status::Ok;
+   //   //bool bOk1 = m_pgraphics->FillRectangle(gl2d_brush(), ::f32_rectangle) == plusplus::Status::Ok;
 
-   //   //bool bOk2 = m_pgraphics->DrawRectangle(gl2d_pen(), float_rectangle) == plusplus::Status::Ok;
+   //   //bool bOk2 = m_pgraphics->DrawRectangle(gl2d_pen(), ::f32_rectangle) == plusplus::Status::Ok;
 
    //   //return bOk1 && bOk2;
 
@@ -2086,7 +2086,7 @@ void main() {
    //}
 
 
-   //void graphics::polygon(const ::double_point* lpPoints,::collection::count nCount)
+   //void graphics::polygon(const ::f64_point* lpPoints,::collection::count nCount)
    //{
 
    //   //if(nCount <= 0)
@@ -2101,7 +2101,7 @@ void main() {
    //   //try
    //   //{
 
-   //   //   for(double i = 0; i < nCount; i++)
+   //   //   for(::f64 i = 0; i < nCount; i++)
    //   //   {
    //   //      ppoints[i].X = (plusplus::REAL) lpPoints[i].x;
    //   //      ppoints[i].Y = (plusplus::REAL) lpPoints[i].y;
@@ -2123,9 +2123,9 @@ void main() {
    //   //   }
 
 
-   //   //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(),ppoints,(::double) nCount,gl2d_get_fill_mode()) == plusplus::Status::Ok;
+   //   //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(),ppoints,(::::f64) nCount,gl2d_get_fill_mode()) == plusplus::Status::Ok;
 
-   //   //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
+   //   //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::::f64) nCount) == plusplus::Status::Ok;
 
    //   //}
    //   //catch(...)
@@ -2148,27 +2148,27 @@ void main() {
    //}
 
 
-   void graphics::rectangle(const ::double_rectangle& rectangleParam)
+   void graphics::rectangle(const ::f64_rectangle& rectangleParam)
    {
 
       fill_rectangle(rectangleParam);
 
       draw_rectangle(rectangleParam);
 
-      //return ::double_rectangle(rectangleParam.left, rectangleParam.top, rectangleParam.right, rectangleParam.bottom);
+      //return ::f64_rectangle(rectangleParam.left, rectangleParam.top, rectangleParam.right, rectangleParam.bottom);
 
       //return bOk1 && bOk2;
 
    }
 
 
-   void graphics::draw_rectangle(const ::double_rectangle& rectangle, ::draw2d::pen* ppen)
+   void graphics::draw_rectangle(const ::f64_rectangle& rectangle, ::draw2d::pen* ppen)
    {
 
       if (::is_set(ppen))
       {
 
-         //glLineWidth((float)(ppen->m_dWidth));
+         //glLineWidth((::f32)(ppen->m_dWidth));
 
       }
 
@@ -2190,7 +2190,7 @@ void main() {
    }
 
 
-   void graphics::draw_rectangle(const ::double_rectangle& rectangle)
+   void graphics::draw_rectangle(const ::f64_rectangle& rectangle)
    {
 
       draw_rectangle(rectangle, m_ppen);
@@ -2200,7 +2200,7 @@ void main() {
    }
 
 
-   void graphics::fill_rectangle(const ::double_rectangle& rectangle)
+   void graphics::fill_rectangle(const ::f64_rectangle& rectangle)
    {
 
       fill_rectangle(rectangle, m_pbrush);
@@ -2208,7 +2208,7 @@ void main() {
    }
 
 
-   //void graphics::round_rectangle(double x1, double y1, double x2, double y2, double x3, double y3)
+   //void graphics::round_rectangle(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3)
    //{
    //
    //   //// ASSERT(m_hdc != nullptr);
@@ -2219,7 +2219,7 @@ void main() {
    //}
 
 
-   void graphics::round_rectangle(const ::double_rectangle& rectangleParam, const ::i32_point& point)
+   void graphics::round_rectangle(const ::f64_rectangle& rectangleParam, const ::i32_point& point)
    {
       //// ASSERT(m_hdc != nullptr);
       //return ::RoundRect(m_hdc, rectangleParam.left, rectangleParam.top,
@@ -2230,7 +2230,7 @@ void main() {
    }
 
 
-   //   bool graphics::PatBlt(double x, double y, double nWidth, double nHeight)
+   //   bool graphics::PatBlt(::f64 x, ::f64 y, ::f64 nWidth, ::f64 nHeight)
    //   {
    //      //// ASSERT(m_hdc != nullptr);
    //      //return ::PatBlt(m_hdc, x, y, nWidth, nHeight, dwRop) != false;
@@ -2240,7 +2240,7 @@ void main() {
    //   }
    //
    //
-   //   bool graphics::BitBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc)
+   //   bool graphics::BitBltRaw(::f64 x, ::f64 y, ::f64 nWidth, ::f64 nHeight, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc)
    //   {
    ////      if (m_pgraphics == nullptr)
    ////         return false;
@@ -2317,7 +2317,7 @@ void main() {
    //   }
    //
    //
-   //   bool graphics::StretchBltRaw(double xDst, double yDst, double nDstWidth, double nDstHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, double nSrcWidth, double nSrcHeight)
+   //   bool graphics::StretchBltRaw(::f64 xDst, ::f64 yDst, ::f64 nDstWidth, ::f64 nDstHeight, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc, ::f64 nSrcWidth, ::f64 nSrcHeight)
    //   {
    //
    //      //if(pgraphicsSrc == nullptr)
@@ -2348,7 +2348,7 @@ void main() {
    //   }
 
 
-   ::color::color graphics::GetPixel(int x, int y) const
+   ::color::color graphics::GetPixel(::i32 x, ::i32 y) const
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetPixel(m_hdc, x, y);
@@ -2366,7 +2366,7 @@ void main() {
    }
 
 
-   ::color::color graphics::SetPixel(double x, double y, ::color::color crColor)
+   ::color::color graphics::SetPixel(::f64 x, ::f64 y, ::color::color crColor)
    {
 
       return color::transparent;
@@ -2384,7 +2384,7 @@ void main() {
    }
 
 
-   //   bool graphics::FloodFill(double x, double y, color32_t crColor)
+   //   bool graphics::FloodFill(::f64 x, ::f64 y, color32_t crColor)
    //   {
    //
    //      // ASSERT(m_hdc != nullptr);
@@ -2394,7 +2394,7 @@ void main() {
    //   }
    //
    //
-   //   bool graphics::ExtFloodFill(double x, double y, color32_t crColor, ::u32 nFillType)
+   //   bool graphics::ExtFloodFill(::f64 x, ::f64 y, color32_t crColor, ::u32 nFillType)
    //   {
    //
    //      // ASSERT(m_hdc != nullptr);
@@ -2430,7 +2430,7 @@ void main() {
 
       //   // ASSERT(m_hdc != nullptr);
 
-      //   //return ::GetTabbedTextExtent(m_hdc, lpszString, (double) nCount, (int) nTabPositions, lpnTabStopPositions);
+      //   //return ::GetTabbedTextExtent(m_hdc, lpszString, (::f64) nCount, (::i32) nTabPositions, lpnTabStopPositions);
       //   return nullptr;
 
       //}
@@ -2441,13 +2441,13 @@ void main() {
 
       //   // ASSERT(m_hdc != nullptr);
 
-      //   //return ::GetTabbedTextExtent(m_hdc, str, (double) str.length(), (int) nTabPositions, lpnTabStopPositions);
+      //   //return ::GetTabbedTextExtent(m_hdc, str, (::f64) str.length(), (::i32) nTabPositions, lpnTabStopPositions);
       //   return nullptr;
 
       //}
 
 
-      //bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, double), LPARAM lpData, double nCount,double x, double y, double nWidth, double nHeight)
+      //bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, ::f64), LPARAM lpData, ::f64 nCount,::f64 x, ::f64 y, ::f64 nWidth, ::f64 nHeight)
       //{
 
       //   // ASSERT(m_hdc != nullptr);
@@ -2469,23 +2469,23 @@ void main() {
    }
 
 
-   //double graphics::GetTextFace(::collection::count nCount, char * lpszFacename)
+   //::f64 graphics::GetTextFace(::collection::count nCount, char_pointer lpszFacename)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
 
-   //   //return ::GetTextFace(m_hdc, (int) nCount, lpszFacename);
+   //   //return ::GetTextFace(m_hdc, (::i32) nCount, lpszFacename);
    //   return -1;
 
    //}
 
 
-   //double graphics::GetTextFace(string & rString)
+   //::f64 graphics::GetTextFace(string & rString)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
 
-   //   //double nResult = ::GetTextFace(m_hdc, 256, rString.GetBuffer(256));
+   //   //::f64 nResult = ::GetTextFace(m_hdc, 256, rString.GetBuffer(256));
    //   //rString.ReleaseBuffer();
 
    //   //return nResult;
@@ -2531,39 +2531,39 @@ void main() {
 
       //pfont->GetFamily(&family);
 
-      //::double iStyle = pfont->GetStyle();
+      //::::f64 iStyle = pfont->GetStyle();
 
-      //double dHeight = family.GetEmHeight(iStyle);
+      //::f64 dHeight = family.GetEmHeight(iStyle);
 
-      //double dSize = pfont->GetSize();
+      //::f64 dSize = pfont->GetSize();
 
-      //double dFontHeight = pfont->GetHeight((plusplus::REAL) pgraphics->get_dpiy());
+      //::f64 dFontHeight = pfont->GetHeight((plusplus::REAL) pgraphics->get_dpiy());
 
-      //lpMetrics->tmAscent              = (::double) (dSize * family.GetCellAscent(iStyle) / dHeight);
-      //lpMetrics->tmDescent             = (::double) (dSize * family.GetCellDescent(iStyle) / dHeight);
-      //lpMetrics->tmHeight              = (::double)dFontHeight;
+      //lpMetrics->tmAscent              = (::::f64) (dSize * family.GetCellAscent(iStyle) / dHeight);
+      //lpMetrics->tmDescent             = (::::f64) (dSize * family.GetCellDescent(iStyle) / dHeight);
+      //lpMetrics->tmHeight              = (::::f64)dFontHeight;
 
-      //double dLineSpacing = maximum(dFontHeight, dSize * family.GetLineSpacing(iStyle) / dHeight);
+      //::f64 dLineSpacing = maximum(dFontHeight, dSize * family.GetLineSpacing(iStyle) / dHeight);
 
-      //lpMetrics->tmInternalLeading     = (::double) (lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight);
-      //lpMetrics->tmExternalLeading     = (::double) (dLineSpacing - (lpMetrics->tmAscent + lpMetrics->tmDescent));
+      //lpMetrics->tmInternalLeading     = (::::f64) (lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight);
+      //lpMetrics->tmExternalLeading     = (::::f64) (dLineSpacing - (lpMetrics->tmAscent + lpMetrics->tmDescent));
 
       //const plusplus::FontFamily * pfamilyMono = family.GenericMonospace();
 
       //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gl2d_font()->GetStyle()));
 
       //wstring wstr(L"123AWZwmc123AWZwmcpQg");
-      //plusplus::rectF ::double_rectangle(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
+      //plusplus::rectF ::f64_rectangle(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
       //plusplus::rectF rect2;
       //plusplus::PointF origin(0, 0);
 
-      //m_pgraphics->MeasureString(wstr, (::double) wstr.get_length(), ((graphics * )this)->gl2d_font(), origin, &rectangle);
+      //m_pgraphics->MeasureString(wstr, (::::f64) wstr.get_length(), ((graphics * )this)->gl2d_font(), origin, &rectangle);
 
 
       ///*wstr = L"";
       //m_pgraphics->MeasureString(wstr.m_pwsz, -1, (plusplus::Font *) m_pfont->get_os_data(), origin, &rect2);*/
 
-      //lpMetrics->tmAveCharWidth = (::double) (rectangle.Width * get_current_font()->m_dFontWidth / (double) wstr.get_length());
+      //lpMetrics->tmAveCharWidth = (::::f64) (rectangle.Width * get_current_font()->m_dFontWidth / (::f64) wstr.get_length());
 
       //return true;
 
@@ -2584,7 +2584,7 @@ void main() {
    }
 
 
-   //double graphics::GetTextCharacterExtra()
+   //::f64 graphics::GetTextCharacterExtra()
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetTextCharacterExtra(m_hdc);
@@ -2627,7 +2627,7 @@ void main() {
 
    //   // ASSERT(m_hdc != nullptr);
 
-   //   // return ::GetCharacterPlacement(m_hdc, lpString, (int)nCount, (int)nMaxExtent, lpResults, dwFlags);
+   //   // return ::GetCharacterPlacement(m_hdc, lpString, (::i32)nCount, (::i32)nMaxExtent, lpResults, dwFlags);
    //   return false;
 
    //}
@@ -2638,7 +2638,7 @@ void main() {
 
    //   // ASSERT(m_hdc != nullptr);
 
-   //   //return ::GetCharacterPlacement(m_hdc, (const ::string &)str, (double) str.length(), (int) nMaxExtent, lpResults, dwFlags);
+   //   //return ::GetCharacterPlacement(m_hdc, (const ::string &)str, (::f64) str.length(), (::i32) nMaxExtent, lpResults, dwFlags);
    //   return false;
 
    //}
@@ -2654,9 +2654,9 @@ void main() {
    //}
 
 
-   //bool graphics::ScrollDC(double Δx, double Δy,
-   //                        const ::double_rectangle & lpRectScroll,const ::double_rectangle & rectangleClip,
-   //                        ::draw2d::region* pRgnUpdate, ::double_rectangle * lpRectUpdate)
+   //bool graphics::ScrollDC(::f64 Δx, ::f64 Δy,
+   //                        const ::f64_rectangle & lpRectScroll,const ::f64_rectangle & rectangleClip,
+   //                        ::draw2d::region* pRgnUpdate, ::f64_rectangle * lpRectUpdate)
    //{
    //   
    //   // ASSERT(m_hdc != nullptr);
@@ -2668,7 +2668,7 @@ void main() {
 
 
    //// Printer Escape Functions
-   //int graphics::Escape(int nEscape, int nCount, const ::scoped_string& lpszInData, LPVOID lpOutData)
+   //::i32 graphics::Escape(::i32 nEscape, ::i32 nCount, const ::scoped_string& lpszInData, LPVOID lpOutData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::Escape(m_hdc, nEscape, nCount, lpszInData, lpOutData);
@@ -2678,7 +2678,7 @@ void main() {
 
 
    // graphics 3.1 Specific functions
-   ::u32 graphics::SetBoundsRect(const ::double_rectangle& rectangleBounds, ::u32 flags)
+   ::u32 graphics::SetBoundsRect(const ::f64_rectangle& rectangleBounds, ::u32 flags)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetBoundsRect(m_hdc, &rectangleBounds, flags);
@@ -2687,7 +2687,7 @@ void main() {
    }
 
 
-   ::u32 graphics::GetBoundsRect(::double_rectangle* rectangleBounds, ::u32 flags)
+   ::u32 graphics::GetBoundsRect(::f64_rectangle* rectangleBounds, ::u32 flags)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetBoundsRect(m_hdc, rectangleBounds, flags);
@@ -2745,7 +2745,7 @@ void main() {
    //}
 
 
-   //double graphics::GetKerningPairs(double nPairs, LPKERNINGPAIR lpkrnpair) const
+   //::f64 graphics::GetKerningPairs(::f64 nPairs, LPKERNINGPAIR lpkrnpair) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetKerningPairs(m_hdc, nPairs, lpkrnpair);
@@ -2766,7 +2766,7 @@ void main() {
 
 
    //// ::user::document handling functions
-   //int graphics::StartDoc(LPDOCINFO lpDocInfo)
+   //::i32 graphics::StartDoc(LPDOCINFO lpDocInfo)
    //{
 
    //   //ASSERT(m_hdc != nullptr);
@@ -2777,7 +2777,7 @@ void main() {
    //}
 
 
-   int graphics::StartPage()
+   ::i32 graphics::StartPage()
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2793,7 +2793,7 @@ void main() {
    }
 
 
-   int graphics::EndPage()
+   ::i32 graphics::EndPage()
    {
 
       /* ASSERT(m_hdc != nullptr);
@@ -2807,7 +2807,7 @@ void main() {
    }
 
 
-   //int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
+   //::i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, ::i32))
    //{
 
    //   //ASSERT(m_hdc != nullptr);
@@ -2818,7 +2818,7 @@ void main() {
    //}
 
 
-   int graphics::AbortDoc()
+   ::i32 graphics::AbortDoc()
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2829,7 +2829,7 @@ void main() {
    }
 
 
-   int graphics::EndDoc()
+   ::i32 graphics::EndDoc()
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2840,8 +2840,8 @@ void main() {
    }
 
 
-   //   bool graphics::MaskBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
-   //                          double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
+   //   bool graphics::MaskBlt(::f64 x, ::f64 y, ::f64 nWidth, ::f64 nHeight, ::draw2d::graphics * pgraphicsSrc,
+   //                          ::f64 xSrc, ::f64 ySrc, ::draw2d::bitmap& maskBitmap, ::f64 xMask, ::f64 yMask)
    //   {
    //      // ASSERT(m_hdc != nullptr);
    //      //return ::MaskBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc),
@@ -2851,8 +2851,8 @@ void main() {
    //   }
    //
    //
-   //   bool graphics::PlgBlt(::double_point * lpPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
-   //                         double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
+   //   bool graphics::PlgBlt(::f64_point * lpPoint, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc,
+   //                         ::f64 nWidth, ::f64 nHeight, ::draw2d::bitmap& maskBitmap, ::f64 xMask, ::f64 yMask)
    //   {
    //
    //      /*try
@@ -2890,7 +2890,7 @@ void main() {
 
 
 
-   void graphics::SetPixelV(int x, int y, ::color::color crColor)
+   void graphics::SetPixelV(::i32 x, ::i32 y, ::color::color crColor)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetPixelV(m_hdc, x, y, crColor) != false;
@@ -2908,7 +2908,7 @@ void main() {
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, ::double_angle fStartAngle, ::double_angle fSweepAngle)
+   void graphics::angle_arc(::f64 x, ::f64 y, ::f64 nRadius, ::f64_angle fStartAngle, ::f64_angle fSweepAngle)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::AngleArc(m_hdc, x, y, nRadius, fStartAngle, fSweepAngle) != false;
@@ -2929,7 +2929,7 @@ void main() {
    }
 
 
-   //int graphics::GetArcDirection() const
+   //::i32 graphics::GetArcDirection() const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   // return ::GetArcDirection(m_hdc);
@@ -2938,7 +2938,7 @@ void main() {
    //}
 
 
-   void graphics::poly_polyline(const ::double_point* lpPoints, const int* lpPolyPoints, ::collection::count nCount)
+   void graphics::poly_polyline(const ::f64_point* lpPoints, const ::i32* lpPolyPoints, ::collection::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2994,7 +2994,7 @@ void main() {
    }
 
 
-   void graphics::poly_bezier(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::poly_bezier(const ::f64_point* lpPoints, ::collection::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -3005,7 +3005,7 @@ void main() {
    }
 
 
-   //int graphics::DrawEscape(int nEscape, int nInputSize, const ::scoped_string& lpszInputData)
+   //::i32 graphics::DrawEscape(::i32 nEscape, ::i32 nInputSize, const ::scoped_string& lpszInputData)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -3017,7 +3017,7 @@ void main() {
    //}
 
 
-   //int graphics::Escape(int nEscape, int nInputSize, __in_bcount(nInputSize) const_char_pointer lpszInputData, int nOutputSize, __out_bcount(nOutputSize) char* lpszOutputData)
+   //::i32 graphics::Escape(::i32 nEscape, ::i32 nInputSize, __in_bcount(nInputSize) const_char_pointer pszInputData, ::i32 nOutputSize, __out_bcount(nOutputSize) char_pointer lpszOutputData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::ExtEscape(m_hdc, nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
@@ -3035,7 +3035,7 @@ void main() {
    //}
 
 
-   //bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float* lpFloatBuffer) const
+   //bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, ::f32* lpFloatBuffer) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetCharWidthFloat(m_hdc, nFirstChar, nLastChar, lpFloatBuffer) != false;
@@ -3132,10 +3132,10 @@ void main() {
    }
 
 
-   float graphics::GetMiterLimit()
+   ::f32 graphics::GetMiterLimit()
    {
       // ASSERT(m_hdc != nullptr);
-      //float fMiterLimit;
+      //::f32 fMiterLimit;
       //VERIFY(::GetMiterLimit(m_hdc, &fMiterLimit));
       //::GetMiterLimit(m_hdc, &fMiterLimit);
       //;;; return fMiterLimit;
@@ -3143,19 +3143,19 @@ void main() {
    }
 
 
-   //void graphics::GetPath(::double_point * lpPoints, unsigned char * lpTypes, ::collection::count nCount)
+   //void graphics::GetPath(::f64_point * lpPoints, ::u8 * lpTypes, ::collection::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
 
-   //   //return ::GetPath(m_hdc, lpPoints, lpTypes, (int) nCount);
+   //   //return ::GetPath(m_hdc, lpPoints, lpTypes, (::i32) nCount);
 
-   //   ::GetPath(m_hdc, lpPoints, lpTypes, (int)nCount);
+   //   ::GetPath(m_hdc, lpPoints, lpTypes, (::i32)nCount);
 
    //}
 
 
-   void graphics::SetMiterLimit(float fMiterLimit)
+   void graphics::SetMiterLimit(::f32 fMiterLimit)
    {
       // ASSERT(m_hdc != nullptr);
       ///return ::SetMiterLimit(m_hdc, fMiterLimit, nullptr) != false;
@@ -3215,8 +3215,8 @@ void main() {
    void graphics::draw(::draw2d::path* ppath, ::draw2d::pen* ppen)
    {
       bool bLastPoint = false;
-      ::double_point pointLast;
-      for (int i = 0; i < ppath->m_itema.size(); i++)
+      ::f64_point pointLast;
+      for (::i32 i = 0; i < ppath->m_itema.size(); i++)
       {
          auto& pitem = ppath->m_itema[i];
 
@@ -3231,13 +3231,13 @@ void main() {
             //if (!bLastPoint || !pointLast.is_same_by(0.00001, plineitem->m_item.m_p1))
             //{
             //   glVertex3f(
-            //      (float)plineitem->m_item.m_p1.x,
-            //      (float)plineitem->m_item.m_p1.y,
+            //      (::f32)plineitem->m_item.m_p1.x,
+            //      (::f32)plineitem->m_item.m_p1.y,
             //      0.0f);
             //}
             //glVertex3f(
-            //   (float)plineitem->m_item.m_p2.x,
-            //   (float)plineitem->m_item.m_p2.y,
+            //   (::f32)plineitem->m_item.m_p2.x,
+            //   (::f32)plineitem->m_item.m_p2.y,
             //   0.0f);
             pointLast = plineitem->m_item.m_p2;
          }
@@ -3275,7 +3275,7 @@ void main() {
    }
 
 
-   //void graphics::AddMetaFileComment(::u32 nDataSize, const unsigned char* pCommentData)
+   //void graphics::AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GdiComment(m_hdc, nDataSize, pCommentData) != false;
@@ -3288,7 +3288,7 @@ void main() {
       EmfPlusRecordType recordType,
       ::u32 flags,
       ::u32 dataSize,
-      const uchar* pStr,
+      const ::u8 * pStr,
       void* callbackData)
    {
       // Play only EmfPlusRecordTypeFillEllipse records.
@@ -3307,7 +3307,7 @@ void main() {
       // Create a Metafile object from an existing disk metafile.
       Metafile* pMeta = ___new Metafile(L"SampleMetafile.emf", hdc);
       {
-         // Fill a ::double_rectangle and an ellipse in pMeta.
+         // Fill a ::f64_rectangle and an ellipse in pMeta.
          Graphics metaGraphics(pMeta);
          metaGraphics.FillRectangle(&SolidBrush(Color(255, 0, 0, 0)), 0, 0, 100, 100);
      metaGraphics.FillEllipse(&SolidBrush(Color(255, 255, 0, 0)), 100, 0, 200, 100);
@@ -3324,10 +3324,10 @@ void main() {
    }*/
 
 
-   //bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const ::double_rectangle & rectangleBounds)
+   //bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const ::f64_rectangle & rectangleBounds)
    //{
 
-   //   //plusplus::rectF ::double_rectangle((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
+   //   //plusplus::rectF ::f64_rectangle((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
 
    //   //plusplus::Metafile* pMeta = ___new plusplus::Metafile (hEnhMF, false);
 
@@ -3347,7 +3347,7 @@ void main() {
    // true blend
    // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
-   // double blend
+   // ::f64 blend
    // COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 // Thank you
@@ -3357,7 +3357,7 @@ void main() {
 // Member
 
 
-//   void graphics::alpha_blend(double xDest, double yDest, double nDestWidth, double nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, double nSrcWidth, double nSrcHeight, double dRate)
+//   void graphics::alpha_blend(::f64 xDest, ::f64 yDest, ::f64 nDestWidth, ::f64 nDestHeight, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc, ::f64 nSrcWidth, ::f64 nSrcHeight, ::f64 dRate)
 //   {
 //
 ////      if (m_pgraphics == nullptr)
@@ -3367,7 +3367,7 @@ void main() {
 ////      {
 ////
 ////
-////         ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+////         ::f64_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 ////
 ////
 ////         ::image::image_pointer pimageWork = nullptr;
@@ -3435,7 +3435,7 @@ void main() {
 ////      }
 ////
 ////
-////      float fA = (float) dRate;
+////      ::f32 fA = (::f32) dRate;
 ////
 ////      plusplus::ColorMatrix matrix = {
 ////         1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
@@ -3481,8 +3481,8 @@ void main() {
 //   }
 
 
-   /*bool graphics::alpha_blend(double xDest, double yDest, double nDestWidth, double nDestHeight,
-      ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, double nSrcWidth, double nSrcHeight, BLENDFUNCTION blend)
+   /*bool graphics::alpha_blend(::f64 xDest, ::f64 yDest, ::f64 nDestWidth, ::f64 nDestHeight,
+      ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc, ::f64 nSrcWidth, ::f64 nSrcHeight, BLENDFUNCTION blend)
    {
 
       throw ::interface_only();
@@ -3494,7 +3494,7 @@ void main() {
       {
 
 
-         ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+         ::f64_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
 
          ::image::image_pointer pimageWork = nullptr;
@@ -3567,7 +3567,7 @@ void main() {
    }*/
 
 
-   //bool graphics::TransparentBlt(double xDest, double yDest, double nDestWidth, double nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, double nSrcWidth, double nSrcHeight, ::u32 crTransparent)
+   //bool graphics::TransparentBlt(::f64 xDest, ::f64 yDest, ::f64 nDestWidth, ::f64 nDestHeight, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc, ::f64 nSrcWidth, ::f64 nSrcHeight, ::u32 crTransparent)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -3656,7 +3656,7 @@ void main() {
    //}
 
 
-   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, double cgi, double nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32) const
+   //inline bool graphics::GetTextExtentExPointI(LPWORD pgiIn, ::f64 cgi, ::f64 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32) const
    //{
    //   ENSURE(LPSIZE32 != nullptr);
    //   // ASSERT(m_hdc != nullptr);
@@ -3666,7 +3666,7 @@ void main() {
    //}
 
 
-   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, double cgi, LPSIZE32 LPSIZE32) const
+   //inline bool graphics::GetTextExtentPointI(LPWORD pgiIn, ::f64 cgi, LPSIZE32 LPSIZE32) const
    //{
    //   ENSURE(LPSIZE32 != nullptr);
    //   // ASSERT(m_hdc != nullptr);
@@ -3678,11 +3678,11 @@ void main() {
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
-   void graphics::DPtoHIMETRIC(::double_size* psize)
+   void graphics::DPtoHIMETRIC(::f64_size* psize)
    {
       //      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::i32_size)));
       //
-      //      double nMapMode;
+      //      ::f64 nMapMode;
       //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
       //            nMapMode != MM_TEXT)
       //      {
@@ -3694,7 +3694,7 @@ void main() {
       //      else
       //      {
       //         
-      //         double cxPerInch, cyPerInch;
+      //         ::f64 cxPerInch, cyPerInch;
       //         if (this != nullptr)
       //         {
       //            ASSERT_OK(this);
@@ -3713,11 +3713,11 @@ void main() {
    }
 
 
-   void graphics::HIMETRICtoDP(::double_size* psize)
+   void graphics::HIMETRICtoDP(::f64_size* psize)
    {
       //      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::i32_size)));
       //
-      //      double nMapMode;
+      //      ::f64 nMapMode;
       //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
       //            nMapMode != MM_TEXT)
       //      {
@@ -3729,7 +3729,7 @@ void main() {
       //      else
       //      {
       //         
-      //         double cxPerInch, cyPerInch;
+      //         ::f64 cxPerInch, cyPerInch;
       //         if (this != nullptr)
       //         {
       //            ASSERT_OK(this);
@@ -3748,7 +3748,7 @@ void main() {
    }
 
 
-   void graphics::LPtoHIMETRIC(::double_size* psize)
+   void graphics::LPtoHIMETRIC(::f64_size* psize)
    {
       //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::i32_size)));
 
@@ -3757,7 +3757,7 @@ void main() {
    }
 
 
-   void graphics::HIMETRICtoLP(::double_size* psize)
+   void graphics::HIMETRICtoLP(::f64_size* psize)
    {
       //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::i32_size)));
 
@@ -3774,9 +3774,9 @@ void main() {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
             {
-               unsigned short grayPattern[8];
-               for (double i = 0; i < 8; i++)
-                  grayPattern[i] = (unsigned short)(0x5555 << (i & 1));
+               ::u16 grayPattern[8];
+               for (::f64 i = 0; i < 8; i++)
+                  grayPattern[i] = (::u16)(0x5555 << (i & 1));
                HBITMAP grayBitmap = CreateBitmap(8, 8, 1, 1, grayPattern);
                if (grayBitmap != nullptr)
                {
@@ -3785,7 +3785,7 @@ void main() {
                }
             }
             if (!gen_WingdixTerm)
-               gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
+               gen_WingdixTerm = (::i8)!atexit(&__win_gdi_x_term);
             ::aura::UnlockGlobals(CRIT_HALFTONEBRUSH);
 
       //      return ::draw2d_gpu::brush::from_handle(papp, gen_HalftoneBrush);*/
@@ -3793,22 +3793,22 @@ void main() {
    }
 
 
-   //void graphics::DrawDragRect(const ::double_rectangle & rectangle, const ::i32_size & size, const ::double_rectangle & lpRectLast, const ::i32_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+   //void graphics::DrawDragRect(const ::f64_rectangle & rectangle, const ::i32_size & size, const ::f64_rectangle & lpRectLast, const ::i32_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    //{
 
    //   //throw ::interface_only();
 
    //   /*
 
-   //         ASSERT(is_memory_segment_ok(rectangle, sizeof(::double_rectangle), false));
+   //         ASSERT(is_memory_segment_ok(rectangle, sizeof(::f64_rectangle), false));
    //         ASSERT(lpRectLast == nullptr ||
-   //            is_memory_segment_ok(lpRectLast, sizeof(::double_rectangle), false));
+   //            is_memory_segment_ok(lpRectLast, sizeof(::f64_rectangle), false));
 
    //         // first, determine the update region and select it
    //         ::draw2d::region rgnNew;
    //         ::draw2d::region rgnOutside, rgnInside;
    //         rgnOutside.create_rect(rectangle);
-   //         const ::double_rectangle & rectangle = *rectangle;
+   //         const ::f64_rectangle & rectangle = *rectangle;
    //         rectangle.inflate(-size.cx, -size.cy);
    //         rectangle.intersect(rectangle, rectangle);
    //         rgnInside.create_rect(rectangle);
@@ -3872,15 +3872,15 @@ void main() {
    //   */
    //}
 
-   /*void graphics::FillSolidRect(const ::double_rectangle & rectangle, color32_t clr)
+   /*void graphics::FillSolidRect(const ::f64_rectangle & rectangle, color32_t clr)
    {
       ::SetBkColor(m_hdc, clr);
       ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, rectangle, nullptr, 0, nullptr);
    }*/
 
-   /*void graphics::fill_rectangle(const double_rectangle & rectangle, color32_t clr)
+   /*void graphics::fill_rectangle(const ::f64_rectangle & rectangle, color32_t clr)
    {
-      ::double_rectangle rect32;
+      ::f64_rectangle rect32;
       copy(rect32, rectangle);
       FillSolidRect(rect32, clr);
    }
@@ -3888,17 +3888,17 @@ void main() {
 
 /*
 
-void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t clr)
+void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr)
 {
    ::SetBkColor(m_hdc, clr);
-   ::double_rectangle rectangle(x, y, x + cx, y + cy);
+   ::f64_rectangle rectangle(x, y, x + cx, y + cy);
    ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, &rectangle, nullptr, 0, nullptr);
 }
 
 */
 
 
-//void graphics::draw_inset_3d_rectangle(const ::double_rectangle & rectangleParam,
+//void graphics::draw_inset_3d_rectangle(const ::f64_rectangle & rectangleParam,
 //                          const ::color::color & clrTopLeft, const ::color::color & clrBottomRight,
 //   const ::e_border & eborder)
 //{
@@ -3909,14 +3909,14 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //}
 
 //
-//void graphics::draw_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, const ::e_border & eborder)
+//void graphics::draw_inset_rectangle(const ::f64_rectangle & rectangle, const ::color::color & color, const ::e_border & eborder)
 //{
 
 
 //}
 
 
-//void graphics::Draw3dRect(double x, double y, double cx, double cy,
+//void graphics::Draw3dRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy,
 //                          color32_t clrTopLeft, color32_t clrBottomRight)
 //{
 //   fill_solid_rect_coord(x, y, cx - 1, 1, clrTopLeft);
@@ -4197,7 +4197,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       /////////////////////////////////////////////////////////////////////////////
       // Out-of-line routines
 
-   //int graphics::StartDoc(const ::scoped_string& lpszDocName)
+   //::i32 graphics::StartDoc(const ::scoped_string& lpszDocName)
    //{
    //   //DOCINFO di;
    //   //memory_set(&di, 0, sizeof(DOCINFO));
@@ -4208,7 +4208,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   int graphics::save_graphics_context()
+   ::i32 graphics::save_graphics_context()
    {
       //      return m_pgraphics->Save();
       return 0;
@@ -4216,7 +4216,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::restore_graphics_context(int iSavedContext)
+   void graphics::restore_graphics_context(::i32 iSavedContext)
    {
 
       //return m_pgraphics->Restore(nSavedDC) != false;
@@ -4235,7 +4235,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
    }
 
-   ::draw2d::object* graphics::SelectStockObject(int nIndex)
+   ::draw2d::object* graphics::SelectStockObject(::i32 nIndex)
    {
       /*      HGDIOBJ hObject = ::GetStockObject(nIndex);
             HGDIOBJ hOldObj = nullptr;
@@ -4313,13 +4313,13 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::SelectObject(::draw2d::region* pRgn)
+   ::i32 graphics::SelectObject(::draw2d::region* pRgn)
    {
-      int nRetVal = GDI_ERROR;
+      ::i32 nRetVal = GDI_ERROR;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
-      //   nRetVal = (double)(iptr)::SelectObject(m_hdc, (HGDIOBJ) pRgn->get_os_data());
+      //   nRetVal = (::f64)(iptr)::SelectObject(m_hdc, (HGDIOBJ) pRgn->get_os_data());
       //if(m_hdc != nullptr)
-      //   nRetVal = (double)(iptr)::SelectObject(m_hdc, (HGDIOBJ) pRgn->get_os_data());
+      //   nRetVal = (::f64)(iptr)::SelectObject(m_hdc, (HGDIOBJ) pRgn->get_os_data());
       return nRetVal;
 
    }
@@ -4332,9 +4332,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::SetPolyFillMode(int nPolyFillMode)
+   ::i32 graphics::SetPolyFillMode(::i32 nPolyFillMode)
    {
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::SetPolyFillMode(m_hdc, nPolyFillMode);
       //if(m_hdc != nullptr)
@@ -4344,9 +4344,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::SetROP2(int nDrawMode)
+   ::i32 graphics::SetROP2(::i32 nDrawMode)
    {
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::SetROP2(m_hdc, nDrawMode);
       //if(m_hdc != nullptr)
@@ -4356,7 +4356,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::set_interpolation_mode(int nStretchMode)
+   ::i32 graphics::set_interpolation_mode(::i32 nStretchMode)
    {
 
       //if(m_pgraphics == nullptr)
@@ -4382,7 +4382,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       return true;
 
-      /*double nRetVal = 0;
+      /*::f64 nRetVal = 0;
       if(m_hdc != nullptr && m_hdc != m_hdc)
          nRetVal = ::set_interpolation_mode(m_hdc, nStretchMode);
       if(m_hdc != nullptr)
@@ -4391,10 +4391,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::SetGraphicsMode(int iMode)
+   ::i32 graphics::SetGraphicsMode(::i32 iMode)
    {
 
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //{
       //   nRetVal = ::SetGraphicsMode(m_hdc, iMode);
@@ -4411,19 +4411,19 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //bool graphics::SetWorldTransform(const XFORM* pXform)
    //{
 
-   //   //plusplus::REAL ::double_rectangle[6];
+   //   //plusplus::REAL ::f64_rectangle[6];
 
-   //   //::double_rectangle[0] = pXform->eDx;
-   //   //::double_rectangle[1] = pXform->eDy;
+   //   //::f64_rectangle[0] = pXform->eDx;
+   //   //::f64_rectangle[1] = pXform->eDy;
 
-   //   //::double_rectangle[2] = pXform->eM11;
-   //   //::double_rectangle[3] = pXform->eM12;
-   //   //::double_rectangle[4] = pXform->eM21;
-   //   //::double_rectangle[5] = pXform->eM22;
+   //   //::f64_rectangle[2] = pXform->eM11;
+   //   //::f64_rectangle[3] = pXform->eM12;
+   //   //::f64_rectangle[4] = pXform->eM21;
+   //   //::f64_rectangle[5] = pXform->eM22;
 
    //   //plusplus::Matrix m;
 
-   //   //m.SetElements(::double_rectangle[2],::double_rectangle[3],::double_rectangle[4],::double_rectangle[5],::double_rectangle[0],::double_rectangle[1]);
+   //   //m.SetElements(::f64_rectangle[2],::f64_rectangle[3],::f64_rectangle[4],::f64_rectangle[5],::f64_rectangle[0],::f64_rectangle[1]);
 
    //   //m_pgraphics->SetTransform(&m);
 
@@ -4448,9 +4448,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   int graphics::SetMapMode(int nMapMode)
+   ::i32 graphics::SetMapMode(::i32 nMapMode)
    {
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::SetMapMode(m_hdc, nMapMode);
       //if(m_hdc != nullptr)
@@ -4540,7 +4540,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   //i32_point graphics::set_origin(int x, int y)
+   //i32_point graphics::set_origin(::i32 x, ::i32 y)
    //{
 
    //   return ::draw2d::graphics::set_origin(x, y);
@@ -4548,7 +4548,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   //i32_point graphics::offset_origin(int nWidth, int nHeight)
+   //i32_point graphics::offset_origin(::i32 nWidth, ::i32 nHeight)
    //{
 
    //   return ::draw2d_gpu::graphics::offset_origin(nWidth, nHeight);
@@ -4557,7 +4557,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   //i32_size graphics::set_context_extents(int x, int y)
+   //i32_size graphics::set_context_extents(::i32 x, ::i32 y)
    //{
 
    //   return ::draw2d::graphics::set_context_extents(x, y);
@@ -4572,7 +4572,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   //i32_size graphics::scale_context_extents(int xNum, int xDenom, int yNum, int yDenom)
+   //i32_size graphics::scale_context_extents(::i32 xNum, ::i32 xDenom, ::i32 yNum, ::i32 yDenom)
    //{
 
    //   return ::draw2d::graphics::scale_context_extents(xNum, xDenom, yNum, yDenom);
@@ -4586,7 +4586,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   i32_point graphics::SetWindowOrg(int x, int y)
+   i32_point graphics::SetWindowOrg(::i32 x, ::i32 y)
    {
 
       ::i32_point point;
@@ -4599,7 +4599,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   i32_point graphics::offset_window_org(int nWidth, int nHeight)
+   i32_point graphics::offset_window_org(::i32 nWidth, ::i32 nHeight)
    {
 
       ::i32_point point;
@@ -4612,7 +4612,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   i32_size graphics::set_window_ext(int x, int y)
+   i32_size graphics::set_window_ext(::i32 x, ::i32 y)
    {
 
       i32_size size(0, 0);
@@ -4625,7 +4625,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   i32_size graphics::scale_window_ext(int xNum, int xDenom, int yNum, int yDenom)
+   i32_size graphics::scale_window_ext(::i32 xNum, ::i32 xDenom, ::i32 yNum, ::i32 yDenom)
    {
 
       i32_size size(0, 0);
@@ -4638,10 +4638,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::get_clip_box(::double_rectangle* prectangle) const
+   ::i32 graphics::get_clip_box(::f64_rectangle* prectangle) const
    {
 
-      //plusplus::double_rectangle ::double_rectangle;
+      //plusplus::f64_rectangle ::f64_rectangle;
 
       //m_pgraphics->GetClipBounds(rectangle);
 
@@ -4655,7 +4655,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::SelectClipRgn(::draw2d::region* pregion)
+   ::i32 graphics::SelectClipRgn(::draw2d::region* pregion)
    {
 
       //if(pregion == nullptr)
@@ -4669,7 +4669,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       return 0;
 
-      /*      double nRetVal = ERROR;
+      /*      ::f64 nRetVal = ERROR;
             if(m_hdc != nullptr && m_hdc != m_hdc)
                nRetVal = ::SelectClipRgn(m_hdc, pRgn == nullptr ? nullptr : (HRGN) pRgn->get_os_data());
             if(m_hdc != nullptr)
@@ -4678,10 +4678,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::ExcludeClipRect(int x1, int y1, int x2, int y2)
+   ::i32 graphics::ExcludeClipRect(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
    {
 
-      //double nRetVal = ERROR;
+      //::f64 nRetVal = ERROR;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::ExcludeClipRect(m_hdc, x1, y1, x2, y2);
       //if(m_hdc != nullptr)
@@ -4694,10 +4694,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::ExcludeClipRect(const ::i32_rectangle& rectangleParam)
+   ::i32 graphics::ExcludeClipRect(const ::i32_rectangle& rectangleParam)
    {
 
-      //double nRetVal = ERROR;
+      //::f64 nRetVal = ERROR;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::ExcludeClipRect(m_hdc, rectangleParam.left, rectangleParam.top,
@@ -4713,12 +4713,12 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::IntersectClipRect(int x1, int y1, int x2, int y2)
+   ::i32 graphics::IntersectClipRect(::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
    {
 
-      //double nRetVal = ERROR;
+      //::f64 nRetVal = ERROR;
 
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::IntersectClipRect(m_hdc, x1, y1, x2, y2);
@@ -4730,10 +4730,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::IntersectClipRect(const ::i32_rectangle& rectangleBounds)
+   ::i32 graphics::IntersectClipRect(const ::i32_rectangle& rectangleBounds)
    {
 
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::IntersectClipRect(m_hdc,rectangleBounds.left,rectangleBounds.top,rectangleBounds.right,rectangleBounds.bottom);
@@ -4745,10 +4745,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::OffsetClipRgn(int x, int y)
+   ::i32 graphics::OffsetClipRgn(::i32 x, ::i32 y)
    {
 
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::OffsetClipRgn(m_hdc, x, y);
@@ -4760,10 +4760,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::OffsetClipRgn(const ::i32_size& size)
+   ::i32 graphics::OffsetClipRgn(const ::i32_size& size)
    {
 
-      int nRetVal = 0;
+      ::i32 nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx, size.cy);
@@ -4790,10 +4790,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   //int graphics::SetTextJustification(int nBreakExtra, int nBreakCount)
+   //::i32 graphics::SetTextJustification(::i32 nBreakExtra, ::i32 nBreakCount)
    //{
    // 
-   //   double nRetVal = 0;
+   //   ::f64 nRetVal = 0;
 
    //   //if(m_hdc != nullptr && m_hdc != m_hdc)
    //   //   nRetVal = ::SetTextJustification(m_hdc, nBreakExtra, nBreakCount);
@@ -4805,12 +4805,12 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   //double graphics::SetTextCharacterExtra(double nCharExtra)
+   //::f64 graphics::SetTextCharacterExtra(::f64 nCharExtra)
    //{
    //   
    //   // ASSERT(m_hdc != nullptr);
 
-   //   double nRetVal = 0x8000000;
+   //   ::f64 nRetVal = 0x8000000;
    //   
    //   //if(m_hdc != nullptr && m_hdc != m_hdc)
    //   //   nRetVal = ::SetTextCharacterExtra(m_hdc, nCharExtra);
@@ -4891,29 +4891,29 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
    }
    /*
-   void window::screen_to_client(::double_rectangle * prectangle)
+   void window::screen_to_client(::f64_rectangle * prectangle)
    {
    ASSERT(::IsWindow(m_hdc));
-   ::screen_to_client(m_hdc, (::double_point *)::double_rectangle);
-   ::screen_to_client(m_hdc, ((::double_point *)::double_rectangle)+1);
+   ::screen_to_client(m_hdc, (::f64_point *)::f64_rectangle);
+   ::screen_to_client(m_hdc, ((::f64_point *)::f64_rectangle)+1);
    if (GetExStyle() & WS_EX_LAYOUTRTL)
-   ::double_rectangle::swap_left_right(rectangle);
+   ::f64_rectangle::swap_left_right(rectangle);
    }
 
-   void window::client_to_screen(::double_rectangle * prectangle)
+   void window::client_to_screen(::f64_rectangle * prectangle)
    {
    ASSERT(::IsWindow(m_hdc));
-   ::client_to_screen(m_hdc, (::double_point *)::double_rectangle);
-   ::client_to_screen(m_hdc, ((::double_point *)::double_rectangle)+1);
+   ::client_to_screen(m_hdc, (::f64_point *)::f64_rectangle);
+   ::client_to_screen(m_hdc, ((::f64_point *)::f64_rectangle)+1);
    if (GetExStyle() & WS_EX_LAYOUTRTL)
-   ::double_rectangle::swap_left_right(rectangle);
+   ::f64_rectangle::swap_left_right(rectangle);
    }*/
 
 
    /////////////////////////////////////////////////////////////////////////////
    // Advanced Win32 GDI functions
 
-   void graphics::arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::arc_to(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
    {
       // ASSERT(m_hdc != nullptr);
       bool bResult = false;
@@ -4928,10 +4928,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   //double graphics::SetArcDirection(double nArcDirection)
+   //::f64 graphics::SetArcDirection(::f64 nArcDirection)
    //{
    //   // ASSERT(m_hdc != nullptr);
-   //   double nResult = 0;
+   //   ::f64 nResult = 0;
    //   //if (m_hdc != m_hdc)
    //   //   nResult = ::SetArcDirection(m_hdc, nArcDirection);
    //   //if (m_hdc != nullptr)
@@ -4939,13 +4939,13 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   return nResult;
    //}
 
-   //bool graphics::PolyDraw(const ::double_point* lpPoints, const unsigned char* lpTypes, ::collection::count nCount)
+   //bool graphics::PolyDraw(const ::f64_point* lpPoints, const ::u8* lpTypes, ::collection::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
 
    //   bool bResult = false;
-   //   //bool bResult = ::PolyDraw(m_hdc, lpPoints, lpTypes, (int) nCount) != false;
+   //   //bool bResult = ::PolyDraw(m_hdc, lpPoints, lpTypes, (::i32) nCount) != false;
 
    //   //if (m_hdc != m_hdc)
    //   //{
@@ -4956,7 +4956,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   return bResult;
    //}
 
-   void graphics::polyline_to(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::polyline_to(const ::f64_point* lpPoints, ::collection::count nCount)
    {
       // ASSERT(m_hdc != nullptr);
       //bool bResult = false;
@@ -4983,7 +4983,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   void graphics::poly_bezier_to(const ::double_point* lpPoints, ::collection::count nCount)
+   void graphics::poly_bezier_to(const ::f64_point* lpPoints, ::collection::count nCount)
    {
       // ASSERT(m_hdc != nullptr);
       //bool bResult = false;      //bool bResult = ::poly_bezier_to(m_hdc, lpPoints, (::u32) nCount) != false;
@@ -4997,7 +4997,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::SelectClipPath(int nMode)
+   void graphics::SelectClipPath(::i32 nMode)
    {
       // ASSERT(m_hdc != nullptr);
 
@@ -5023,7 +5023,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int graphics::SelectClipRgn(::draw2d::region* pregion, int nMode)
+   ::i32 graphics::SelectClipRgn(::draw2d::region* pregion, ::i32 nMode)
    {
 
       //if(pregion == nullptr)
@@ -5076,8 +5076,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    /////////////////////////////////////////////////////////////////////////////
    // Special handling for metafile playback
 
-   double CALLBACK __enum_meta_file_procedure(HDC hDC,
-      HANDLETABLE* pHandleTable, METARECORD* pMetaRec, double nHandles, LPARAM lParam)
+   ::f64 CALLBACK __enum_meta_file_procedure(HDC hDC,
+      HANDLETABLE* pHandleTable, METARECORD* pMetaRec, ::f64 nHandles, LPARAM lParam)
    {
       return 1;
       //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)lParam;
@@ -5087,43 +5087,43 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //      {
       //      // these records have effects different for each graphics derived class
       //      case META_SETMAPMODE:
-      //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->SetMapMode((double)(short)pMetaRec->rdParm[0]);
+      //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->SetMapMode((::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SETWINDOWEXT:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->set_window_ext(
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SETWINDOWORG:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->SetWindowOrg(
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SETVIEWPORTEXT:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->set_context_extents(
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SETVIEWPORTORG:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->set_origin(
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SCALEWINDOWEXT:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->scale_window_ext(
-      //         (double)(short)pMetaRec->rdParm[3], (double)(short)pMetaRec->rdParm[2],
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[3], (::f64)(::i16)pMetaRec->rdParm[2],
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SCALEVIEWPORTEXT:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->scale_context_extents(
-      //         (double)(short)pMetaRec->rdParm[3], (double)(short)pMetaRec->rdParm[2],
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[3], (::f64)(::i16)pMetaRec->rdParm[2],
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_OFFSETVIEWPORTORG:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->offset_origin(
-      //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
+      //         (::f64)(::i16)pMetaRec->rdParm[1], (::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SAVEDC:
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->SaveDC();
       //         break;
       //      case META_RESTOREDC:
-      //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->RestoreDC((double)(short)pMetaRec->rdParm[0]);
+      //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->RestoreDC((::f64)(::i16)pMetaRec->rdParm[0]);
       //         break;
       //      case META_SETBKCOLOR:
       //      {
@@ -5204,7 +5204,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    // Coordinate transforms
 
 
-   void graphics::LPtoDP(::double_size* LPSIZE32)
+   void graphics::LPtoDP(::f64_size* LPSIZE32)
    {
 
       //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::i32_size)));
@@ -5217,7 +5217,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::DPtoLP(::double_size* psize)
+   void graphics::DPtoLP(::f64_size* psize)
    {
 
       //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::i32_size)));
@@ -5230,10 +5230,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::draw_text(const ::scoped_string& str, const ::double_rectangle& rectangle, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   void graphics::draw_text(const ::scoped_string& str, const ::f64_rectangle& rectangle, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
 
-      //::double_rectangle rectangle;
+      //::f64_rectangle rectangle;
 
       //copy(rectangle,&rectangleParam);
 
@@ -5343,11 +5343,11 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //   pmNew->Translate((plusplus::REAL) rectangleParam.left,(plusplus::REAL) rectangleParam.top);
       //   pmNew->Scale((plusplus::REAL) m_pfont->m_dFontWidth,(plusplus::REAL) 1.0,plusplus::MatrixOrderAppend);
 
-      //   plusplus::rectF float_rectangle(0,0,(plusplus::REAL) ((rectangleParam.right - rectangleParam.left) * m_pfont->m_dFontWidth),(plusplus::REAL) (rectangleParam.bottom - rectangleParam.top));
+      //   plusplus::rectF ::f32_rectangle(0,0,(plusplus::REAL) ((rectangleParam.right - rectangleParam.left) * m_pfont->m_dFontWidth),(plusplus::REAL) (rectangleParam.bottom - rectangleParam.top));
 
       //   m_pgraphics->SetTransform(pmNew);
 
-      //   m_pgraphics->DrawString(utf8_to_unicode(str),-1,gl2d_font(),float_rectangle,&format,gl2d_brush());
+      //   m_pgraphics->DrawString(utf8_to_unicode(str),-1,gl2d_font(),::f32_rectangle,&format,gl2d_brush());
       //}
       //catch(...)
       //{
@@ -5371,7 +5371,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   //ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
    //   //ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
    //   //wstring wstr = utf8_to_unicode(str);
-   //   //return ::DrawTextExW(m_hdc,const_cast<wchar_t *>((const wchar_t *)wstr),(double)wcslen(wstr),(::double_rectangle *) &rectangleParam,nFormat,lpDTParams);
+   //   //return ::DrawTextExW(m_hdc,const_cast<wchar_t *>((const wchar_t *)wstr),(::f64)wcslen(wstr),(::f64_rectangle *) &rectangleParam,nFormat,lpDTParams);
    //   
    //   //return false;
 
@@ -5386,8 +5386,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   //double_size graphics::get_text_extent(const ::scoped_string & lpszString, character_count nCount, character_count iIndex)
-   double_size graphics::get_text_extent(const ::scoped_string& lpszString)
+   //::f64_size graphics::get_text_extent(const ::scoped_string & lpszString, character_count nCount, character_count iIndex)
+   ::f64_size graphics::get_text_extent(const ::scoped_string& lpszString)
    {
 
       auto pcontext = gpu_context();
@@ -5411,8 +5411,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       ::string str(lpszString);
       auto psz = str.c_str();
   
-      float x = 0.0f;
-      float y = 0.0f;
+      ::f32 x = 0.0f;
+      ::f32 y = 0.0f;
       //glEnable(GL_CULL_FACE);
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -5421,14 +5421,14 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
          auto & ch = pface->get_character(strChar);
 
-         //float xpos = x + ch.Bearing.x * scale;
-         //float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
+         //::f32 xpos = x + ch.Bearing.x * scale;
+         //::f32 ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
-         float w = ch.Size.x;
-         float h = ch.Size.y;
+         ::f32 w = ch.Size.x;
+         ::f32 h = ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
-         //float vertexes[6][4] = {
+         //::f32 vertexes[6][4] = {
          //    { xpos,     ypos + h,   0.0f, 0.0f },
          //    { xpos,     ypos,       0.0f, 1.0f },
          //    { xpos + w, ypos,       1.0f, 1.0f },
@@ -5487,10 +5487,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   //double_size graphics::get_text_extent(const ::scoped_string & scopedstrString, character_count nCount)
+   //::f64_size graphics::get_text_extent(const ::scoped_string & scopedstrString, character_count nCount)
    //{
 
-   //   ::double_size size;
+   //   ::f64_size size;
 
    //   if (!get_text_extent(size, lpszString, nCount, 0))
    //      return ::i32_size(0, 0);
@@ -5500,12 +5500,12 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-  /* double_size graphics::get_text_extent(const ::scoped_string & str)
+  /* ::f64_size graphics::get_text_extent(const ::scoped_string & str)
    {
 
-      ::double_size size;
+      ::f64_size size;
 
-      if(!get_text_extent(size, str, (double) str.length(), 0))
+      if(!get_text_extent(size, str, (::f64) str.length(), 0))
          return ::i32_size(0, 0);
 
       return ::i32_size((long) size.cx, (long) size.cy);
@@ -5519,7 +5519,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   ::i32_size size;
    //   //string str(lpszString, nCount);
    //   //wstring wstr = utf8_to_unicode(str);
-   //   //VERIFY(::GetTextExtentPoint32W(m_hdc, wstr, (double)wstr.get_length(), &size));
+   //   //VERIFY(::GetTextExtentPoint32W(m_hdc, wstr, (::f64)wstr.get_length(), &size));
    //   return size;
 
    //}
@@ -5534,14 +5534,14 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
    //   wstring wstr = utf8_to_unicode(str);
 
-   //   //::GetTextExtentPoint32W(m_hdc, wstr, (double)wstr.get_length(), &size);
+   //   //::GetTextExtentPoint32W(m_hdc, wstr, (::f64)wstr.get_length(), &size);
 
    //   return size;
 
    //}
 
 //
-//   bool graphics::get_text_extent(double_size & size, const ::scoped_string & scopedstrString, character_count nCount, character_count iIndex)
+//   bool graphics::get_text_extent(::f64_size & size, const ::scoped_string & scopedstrString, character_count nCount, character_count iIndex)
 //   {
 //
 //      //// ASSERT(m_hdc != nullptr);
@@ -5554,7 +5554,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //
 //      wstring wstr = utf8_to_unicode(string(&lpszString[iIndex], nCount));
 //
-//      //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
+//      //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (::f64)wstr.get_length(), &s))
 ////         return false;
 //
 //      //// FreeType
@@ -5571,7 +5571,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //      //// Set i32_size to load glyphs as
 //      //FT_Set_Pixel_Sizes(face, 0, 48);
 //
-//      //// Disable unsigned char-alignment restriction
+//      //// Disable ::u8-alignment restriction
 //      //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //
 //      //// Load first 128 characters of ASCII set
@@ -5626,7 +5626,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //   }
 //
 //
-//   bool graphics::get_text_extent(double_size & size, const ::scoped_string & scopedstrString, character_count nCount)
+//   bool graphics::get_text_extent(::f64_size & size, const ::scoped_string & scopedstrString, character_count nCount)
 //   {
 //
 //      //// ASSERT(m_hdc != nullptr);
@@ -5639,7 +5639,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //
 //      wstring wstr = utf8_to_unicode(lpszString, nCount);
 //
-//      //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
+//      //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (::f64)wstr.get_length(), &s))
 //        // return false;
 //
 //      size.cx = s.cx;
@@ -5651,7 +5651,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //   }
 //
 //
-//   bool graphics::get_text_extent(double_size & size, const ::scoped_string & scopedstr)
+//   bool graphics::get_text_extent(::f64_size & size, const ::scoped_string & scopedstr)
 //   {
 //
 //      //// ASSERT(m_hdc != nullptr);
@@ -5664,7 +5664,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //
 //      wstring wstr = utf8_to_unicode(str);
 //
-//      //if (::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
+//      //if (::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (::f64)wstr.get_length(), &s))
 //        // return false;
 //
 //      size.cx = s.cx;
@@ -5676,7 +5676,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //   }
 
 
-   //void graphics::fill_rectangle(const double_rectangle& rectangle, color32_t color32)
+   //void graphics::fill_rectangle(const ::f64_rectangle& rectangle, color32_t color32)
    //{
 
    //   try
@@ -5721,7 +5721,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       // gpu::draw2d
 
-      //::opengl::line(point1.x, point1.y, point2.x, point2.y, (float)(ppen->m_dWidth),
+      //::opengl::line(point1.x, point1.y, point2.x, point2.y, (::f32)(ppen->m_dWidth),
       //   ppen->m_color.f32_red(), ppen->m_color.f32_green(),
       //   ppen->m_color.f32_blue(),
       //   ppen->m_color.f32_opacity(), 0.f, 0.f, true);
@@ -5745,7 +5745,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::line(double x1, double y1, double x2, double y2)
+   void graphics::line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
    {
 
       auto pcontext = gpu_context();
@@ -5755,7 +5755,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //if (::is_set(m_ppen))
       //{
 
-      //   glLineWidth((float)(m_ppen->m_dWidth));
+      //   glLineWidth((::f32)(m_ppen->m_dWidth));
 
       //}
 
@@ -5768,7 +5768,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       //}
 
-      //::double_polygon polygon;
+      //::f64_polygon polygon;
 
       //polygon.add(m_point);
       //polygon.add({ x, y });
@@ -5792,7 +5792,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::text_out(double x, double yParam, const ::scoped_string& scopedstr)
+   void graphics::text_out(::f64 x, ::f64 yParam, const ::scoped_string& scopedstr)
    {
 
       auto pcontext = gpu_context();
@@ -5857,16 +5857,16 @@ color = vec4(c.r,c.g, c.b, c.a);
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      pshader->set_sequence4("textColor", { __expand_float_pre_rgba(color) });
+      pshader->set_sequence4("textColor", { __expand_f32_pre_rgba(color) });
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
 
       //auto pcontext = gpu_context();
 
       floating_matrix4 projection = pcontext->ortho(
          0.0f, 
-         static_cast<float>(pcontext->m_rectangle.width()),
+         static_cast<::f32>(pcontext->m_rectangle.width()),
          0.0f,
-         static_cast<float>(pcontext->m_rectangle.height()));
+         static_cast<::f32>(pcontext->m_rectangle.height()));
       pshader->set_matrix4("projection", projection);
 
       set(m_pfont);
@@ -5899,21 +5899,21 @@ color = vec4(c.r,c.g, c.b, c.a);
 
          warning() << "draw_text: " << str;
       }
-      // float scale;
+      // ::f32 scale;
       //if (pfont->m_fontsize.eunit() == e_unit_point)
       //{
-      //   scale = pfont->m_fontsize.as_float() / FONT_POINT_DENOMINATOR;
+      //   scale = pfont->m_fontsize.as_f32() / FONT_POINT_DENOMINATOR;
       //}
       //else
       //{
-      //   scale = pfont->m_fontsize.as_float() / FONT_PIXEL_DENOMINATOR;
+      //   scale = pfont->m_fontsize.as_f32() / FONT_PIXEL_DENOMINATOR;
       //}
       //auto y = m_pgpucontextCompositor->m_rectangle.height() - yParam - pface->m_iPixelSize;
       auto y = yParam;
 
 
       ::i32_point point(x, y);
-      int Δx = 0;
+      ::i32 Δx = 0;
       m_m1.transform(point);
 
       //auto pcontext = gpu_context();
@@ -5929,11 +5929,11 @@ color = vec4(c.r,c.g, c.b, c.a);
 
          auto & ch = pface->get_character(strChar);
 
-         float xpos = point.x + Δx + ch.Bearing.x;
-         float ypos = point.y - (ch.Size.y - ch.Bearing.y);
+         ::f32 xpos = point.x + Δx + ch.Bearing.x;
+         ::f32 ypos = point.y - (ch.Size.y - ch.Bearing.y);
 
-         float w = ch.Size.x;
-         float h = ch.Size.y;
+         ::f32 w = ch.Size.x;
+         ::f32 h = ch.Size.y;
          // update VBO for each character
          array< ::graphics3d::sequence2_uv> vertexes = {
              {{ xpos,     ypos + h},{   0.0f, 0.0f} },
@@ -5961,7 +5961,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //::opengl::check_error("");
             //// update content of VBO memory
-            //int iVbo = pface->m_FaceVBO;
+            //::i32 iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //::opengl::check_error("");
             //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
@@ -5976,7 +5976,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //::opengl::check_error("");
             //// update content of VBO memory
-            //int iVbo = pface->m_FaceVBO;
+            //::i32 iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //::opengl::check_error("");
             //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
@@ -6001,7 +6001,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   //void graphics::text_out_2024_and_before(double x, double y, const ::scoped_string& scopedstr)
+   //void graphics::text_out_2024_and_before(::f64 x, ::f64 y, const ::scoped_string& scopedstr)
    //{
 
    //   if (m_pfont.is_null())
@@ -6025,7 +6025,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   ::pointer<font>pfont = m_pfont;
 
-   //   float length = 0.f;
+   //   ::f32 length = 0.f;
 
    //   for (::u32 loop = 0; loop < scopedstr.size(); loop++)	// Loop To Find Text Length
    //   {
@@ -6034,14 +6034,14 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   }
 
-   //   glTranslatef((float)(x), (float)(y), 0.0f);					// Center Our Text On The Screen
+   //   glTranslatef((::f32)(x), (::f32)(y), 0.0f);					// Center Our Text On The Screen
 
    //   glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
    //   glListBase(pfont->m_baseFont);									// Sets The Base Character to 0
    //   glCallLists((GLsizei)scopedstr.size(), GL_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
    //   glPopAttrib();										// Pops The Display List Bits      }
 
-   //   glTranslatef((float)(-x), (float)(-y), 0.0f);					// Center Our Text On The Screen
+   //   glTranslatef((::f32)(-x), (::f32)(-y), 0.0f);					// Center Our Text On The Screen
 
    //   //return true;
 
@@ -6110,7 +6110,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   ::draw2d::object* graphics::set_stock_object(int nIndex)
+   ::draw2d::object* graphics::set_stock_object(::i32 nIndex)
    {
 
       return nullptr;
@@ -6215,7 +6215,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   void graphics::_draw_raw(const ::double_rectangle& rectangleTarget, ::image::image* pimage, const ::image::image_drawing_options& imagedrawingoptionsParam, const ::double_point& pointSrc)
+   void graphics::_draw_raw(const ::f64_rectangle& rectangleTarget, ::image::image* pimage, const ::image::image_drawing_options& imagedrawingoptionsParam, const ::f64_point& pointSrc)
    {
 
 
@@ -6247,14 +6247,14 @@ color = vec4(c.r,c.g, c.b, c.a);
    //   }
 
 
-      //void graphics::fill_rectangle(const double_rectangle& rectangle, color32_t color32)
+      //void graphics::fill_rectangle(const ::f64_rectangle& rectangle, color32_t color32)
       //{
 
 
 
       //}
 
-   //   void * graphics::get_os_data_ex(int i) const
+   //   void * graphics::get_os_data_ex(::i32 i) const
    //   {
    //
    //      if(i == 1)
@@ -6271,7 +6271,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    //   }
 
 
-   //   void graphics::release_os_data_ex(int i,void * p)
+   //   void graphics::release_os_data_ex(::i32 i,void * p)
    //   {
    //      if(i == 1)
    //      {
@@ -6414,7 +6414,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    //}
 
 
-   bool graphics::blur(bool bExpand, double dRadius, const ::i32_rectangle& rectangleParam)
+   bool graphics::blur(bool bExpand, ::f64 dRadius, const ::i32_rectangle& rectangleParam)
    {
 
       //   // Commented Out for Running in cosan machine running Windows 2008
@@ -6425,7 +6425,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       //   //plusplus::BlurParams myBlurParams;
 
       //   //myBlurParams.expandEdge    = bExpand ? 1 : 0;
-      //   //myBlurParams.radius        = (float) dRadius;
+      //   //myBlurParams.radius        = (::f32) dRadius;
 
       //   //plusplus::Blur myBlur;
       //   //myBlur.SetParameters(&myBlurParams);
@@ -6444,14 +6444,14 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //   //m.TransformPoints(points, 2);
 
-      //   ////plusplus::rectF float_rectangle(points[0].X, points[0].Y, points[1].X - points[0].X, points[1].Y - points[0].Y);
+      //   ////plusplus::rectF ::f32_rectangle(points[0].X, points[0].Y, points[1].X - points[0].X, points[1].Y - points[0].Y);
 
-      //   //::double_rectangle ::double_rectangle;
+      //   //::f64_rectangle ::f64_rectangle;
 
-      //   //rectangle.left      = (::double) points[0].X;
-      //   //rectangle.top       = (::double) points[0].Y;
-      //   //rectangle.right     = (::double) points[1].X;
-      //   //rectangle.bottom    = (::double) points[1].Y;
+      //   //rectangle.left      = (::::f64) points[0].X;
+      //   //rectangle.top       = (::::f64) points[0].Y;
+      //   //rectangle.right     = (::::f64) points[1].X;
+      //   //rectangle.bottom    = (::::f64) points[1].Y;
 
       //   //plusplus::Bitmap * pbitmap = ((plusplus::Bitmap *) m_pbitmap->get_os_data());
 
@@ -6463,7 +6463,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   double graphics::get_dpix() const
+   ::f64 graphics::get_dpix() const
    {
 
       //if (m_pgraphics == nullptr)
@@ -6476,7 +6476,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   double graphics::get_dpiy() const
+   ::f64 graphics::get_dpiy() const
    {
 
       //if (m_pgraphics == nullptr)
@@ -6608,7 +6608,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
 
       //m_hdc = GetDC(wnd);
-      //int PixelFormat = ChoosePixelFormat(m_hdc, &pfd);
+      //::i32 PixelFormat = ChoosePixelFormat(m_hdc, &pfd);
       //if (PixelFormat == 0)
       //{
       //   ASSERT(0);
@@ -6659,7 +6659,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   //void graphics::_add_clipping_shape(const ::double_rectangle & rectangle, ::draw2d::region * pregion)
+   //void graphics::_add_clipping_shape(const ::f64_rectangle & rectangle, ::draw2d::region * pregion)
    //{
 
 
@@ -6830,11 +6830,11 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //         //m_pgpucontextCompositor->m_prenderer->on_end_draw();
 
-   //         //::double_rectangle r{ 0.0, 0.0, 1920.0, 1080.0 };
+   //         //::f64_rectangle r{ 0.0, 0.0, 1920.0, 1080.0 };
 
    //         //fill_solid_rectangle(r, argb(255, 100, 200, 240));
 
-   //         //::double_rectangle r2{ 100.0, 100.0, 1920.0, 1980.0 };
+   //         //::f64_rectangle r2{ 100.0, 100.0, 1920.0, 1980.0 };
 
    //         //set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -7012,7 +7012,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   void graphics::intersect_clip(const ::double_rectangle& rectangle)
+   void graphics::intersect_clip(const ::f64_rectangle& rectangle)
    {
 
 
@@ -7068,9 +7068,9 @@ namespace opengl
    void resize(const ::i32_size& size, bool bYSwap)
    {
 
-      //double d = 200.0 / 72.0;
+      //::f64 d = 200.0 / 72.0;
 
-      //double d = 1.0;
+      //::f64 d = 1.0;
       ////glViewport(0, 0, size.cx * d, size.cy * d);
       //glglgl glViewport(0, 0, size.cx, size.cy);
       //glMatrixMode(GL_PROJECTION);
@@ -7091,15 +7091,15 @@ namespace opengl
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();
       //auto left = 0.;
-      //auto right = (double) size.cx;
+      //auto right = (::f64) size.cx;
       //auto bottom = 0.;
-      //auto top = (double)size.cy;
-      //double dFar = 1.0;
-      //double dNear = -1.0;
-      //double tx = -(right + left) / (right - left);
-      //double ty = -(top + bottom) / (top - bottom);
-      //double tz = -(dFar + dNear) / (dFar - dNear);
-      //double a[] =
+      //auto top = (::f64)size.cy;
+      //::f64 dFar = 1.0;
+      //::f64 dNear = -1.0;
+      //::f64 tx = -(right + left) / (right - left);
+      //::f64 ty = -(top + bottom) / (top - bottom);
+      //::f64 tz = -(dFar + dNear) / (dFar - dNear);
+      //::f64 a[] =
       //{
       //   2.0/(right - left),0.0,0.0,tx,
       //   0.0,2.0/(top - bottom),0.0,ty,
@@ -7130,25 +7130,25 @@ namespace opengl
 
 
    ////https://community.khronos.org/t/draw-an-arc-in-opengl/57994/2
-   //inline void draw_arc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments, float fZ)
+   //inline void draw_arc(::f32 cx, ::f32 cy, ::f32 r, ::f32 start_angle, ::f32 arc_angle, ::i32 num_segments, ::f32 fZ)
    //{
-   //   float theta = arc_angle / float(num_segments - 1);//theta is now calculated from the arc angle instead, the - 1 bit comes from the fact that the arc is open
+   //   ::f32 theta = arc_angle / ::f32(num_segments - 1);//theta is now calculated from the arc angle instead, the - 1 bit comes from the fact that the arc is open
 
-   //   float tangetial_factor = tanf(theta);
+   //   ::f32 tangetial_factor = tanf(theta);
 
-   //   float radial_factor = cosf(theta);
+   //   ::f32 radial_factor = cosf(theta);
 
 
-   //   float x = r * cosf(start_angle);//we now start at the start angle
-   //   float y = r * sinf(start_angle);
+   //   ::f32 x = r * cosf(start_angle);//we now start at the start angle
+   //   ::f32 y = r * sinf(start_angle);
 
    //   glBegin(GL_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
-   //   for (int ii = 0; ii < num_segments; ii++)
+   //   for (::i32 ii = 0; ii < num_segments; ii++)
    //   {
    //      glVertex3f(x + cx, y + cy, fZ);
 
-   //      float tx = -y;
-   //      float ty = x;
+   //      ::f32 tx = -y;
+   //      ::f32 ty = x;
 
    //      x += tx * tangetial_factor;
    //      y += ty * tangetial_factor;

@@ -90,7 +90,7 @@ namespace zip
 
       string str;
 
-      int i;
+      ::i32 i;
 
       for(i = 1; i < m_straPath.get_size(); i++)
       {
@@ -147,7 +147,7 @@ namespace zip
    }
 
 
-   bool in_file::unzip_open(::file::file * pfile, const string_array_base & straPath, int iBufferLevel, ::file::enum_type * petype)
+   bool in_file::unzip_open(::file::file * pfile, const string_array_base & straPath, ::i32 iBufferLevel, ::file::enum_type * petype)
    {
 
       m_filea.erase_all();
@@ -169,7 +169,7 @@ namespace zip
 
       string str;
 
-      int i;
+      ::i32 i;
 
       for(i = 0; i < m_straPath.get_upper_bound(); i++)
       {
@@ -328,7 +328,7 @@ namespace zip
    {
       if(m_strFileName.is_empty())
          return false;
-      unsigned char buf[1024];
+      ::u8 buf[1024];
       memsize iRead;
       while((iRead = read(buf,sizeof(buf))) > 0)
       {
@@ -341,7 +341,7 @@ namespace zip
    bool in_file::dump(memory & m)
    {
 
-      unsigned char buf[1024];
+      ::u8 buf[1024];
 
       memsize iRead;
 
@@ -448,9 +448,9 @@ namespace zip
 
          ::i64 iGet;
 
-         int iRead;
+         ::i32 iRead;
 
-         unsigned char pbBuf[1024];
+         ::u8 pbBuf[1024];
 
          while(iRemain > 0)
          {
@@ -690,7 +690,7 @@ namespace zip
          while(true)
          {
 
-            char szTitle[_MAX_PATH];
+            ::i8 szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,
@@ -749,7 +749,7 @@ namespace zip
          while (true)
          {
 
-            char szTitle[_MAX_PATH];
+            ::i8 szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
             pf,

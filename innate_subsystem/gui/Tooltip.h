@@ -54,8 +54,8 @@ namespace innate_subsystem
 //
         virtual void showTooltip(ControlInterface *control)= 0;
 
-        //virtual void setText(const char *text)= 0;
-        virtual void setTitle(const char *caption)= 0;
+        //virtual void setText(const_char_pointer text)= 0;
+        virtual void setTitle(const_char_pointer caption)= 0;
 
         //virtual ::string getText() const= 0;
         virtual ::string getTitle() const= 0;
@@ -82,9 +82,9 @@ namespace innate_subsystem
          m_ptooltip->showTooltip(control);
       }
 
-      //void setText(const char* text) override { m_ptooltip->setText(text);
+      //void setText(const_char_pointer text) override { m_ptooltip->setText(text);
       //}
-      void setTitle(const char *caption) override { m_ptooltip->setTitle(caption); }
+      void setTitle(const_char_pointer caption) override { m_ptooltip->setTitle(caption); }
 
       //::string getText() const override { return m_ptooltip->getText();
       //}

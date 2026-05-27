@@ -59,7 +59,7 @@ inline void pthread_recursive_mutex_init(pthread_mutex_t * pmutex)
 
 //#include <sched.h>
 
-void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
+void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 #endif

@@ -144,11 +144,11 @@ namespace subsystem
    ////    // }
    //// }
 
-   //int Screen::findFirstBit(const ::u32 bits)
+   //::i32 Screen::findFirstBit(const ::u32 bits)
    //{
    //   return m_pparticleThis->findFirstBit(bits);
    //   // ::u32 b = bits;
-   //   // int shift;
+   //   // ::i32 shift;
    //   //
    //   // for (shift = 0; (shift < 32) && ((b & 1) == 0); shift++) {
    //   //    b >>= 1;
@@ -168,7 +168,7 @@ namespace subsystem
 
    //memsize Screen::getVisibleMonitorCount()
    //{
-   //   // int monitorCount = GetSystemMetrics(SM_CMONITORS);
+   //   // ::i32 monitorCount = GetSystemMetrics(SM_CMONITORS);
    //   // // Why check for the result? Skip it.
    //   // return (memsize)monitorCount;
    //   return m_pparticleThis->getVisibleMonitorCount();

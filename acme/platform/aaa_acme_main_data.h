@@ -12,7 +12,7 @@ class CLASS_DECL_ACME apex_main_data :
 public:
 
 
-   ///int                              m_iPathInstallFolderExeArg;
+   ///::i32                              m_iPathInstallFolderExeArg;
    bool                             m_bFork;
    string                           m_strStandalone;
    //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
@@ -24,7 +24,7 @@ public:
 //
 //   hinstance                        m_hinstance;
 //   hinstance                        m_hPrevInstance;
-//   int                              m_nCmdShow;
+//   ::i32                              m_nCmdShow;
 //
 //#endif
 
@@ -39,15 +39,15 @@ public:
    void system_construct(const class ::main * pmain) override;
 
 
-   //void system_construct(int argc, char** argv, char ** envp);
-   //void system_construct(int argc, wchar_t** argv, wchar_t ** envp);
+   //void system_construct(::i32 argc, char_pointer * argv, char_pointer * envp);
+   //void system_construct(::i32 argc, wchar_t** argv, wchar_t ** envp);
 
    virtual void on_system_construct();
 
 
 #ifdef WINDOWS_DESKTOP
 
-   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
+   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -59,8 +59,8 @@ public:
 
 #endif
 
-   string get_arg(int i) const;
-   string get_env(const char *pszVariableName) const;
+   string get_arg(::i32 i) const;
+   string get_env(const_char_pointer pszVariableName) const;
 
 
    bool is_console_app() const;

@@ -278,8 +278,8 @@ namespace user
 
       auto &mousestate = pinput->m_mousestate;
 
-      mousestate.m_position.x = (float) point.x;
-      mousestate.m_position.y = (float) point.y;
+      mousestate.m_position.x = (::f32) point.x;
+      mousestate.m_position.y = (::f32) point.y;
       mousestate.m_buttons.left = true;
 
       set_mouse_capture();
@@ -300,8 +300,8 @@ namespace user
 
       host_to_client()(point);
 
-      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x;
-      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y;
+      m_pengine->m_pinput->m_mousestate.m_position.x = (::f32) point.x;
+      m_pengine->m_pinput->m_mousestate.m_position.y = (::f32) point.y;
       m_pengine->m_pinput->m_mousestate.m_buttons.left = false;
 
       
@@ -412,9 +412,9 @@ namespace user
 
          //bool bWhite = true;
 
-         //double x = 0.;
+         //::f64 x = 0.;
 
-         double y = 0.;
+         ::f64 y = 0.;
 
          ::i32_point point;
 
@@ -522,7 +522,7 @@ namespace user
 
             pcompositor->gpu_context()->m_pgpurenderer->frame_suffix();
 
-            //double_rectangle r;
+            //::f64_rectangle r;
 
             //r.left = 400.0;
             //r.top = 200.0;
@@ -657,10 +657,10 @@ namespace user
    }
    
    
-   float graphics3d::getAspectRatio()
+   ::f32 graphics3d::getAspectRatio()
    {
 
-      auto fH = fabs(static_cast<float>(this->height()));
+      auto fH = fabs(static_cast<::f32>(this->height()));
 
       if (fH <= 0.00001)
       {
@@ -669,7 +669,7 @@ namespace user
 
       }
 
-      return static_cast<float>(this->width()) / fH;
+      return static_cast<::f32>(this->width()) / fH;
 
    }
 

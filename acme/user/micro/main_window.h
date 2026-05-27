@@ -94,18 +94,18 @@ namespace micro
 
          //void message_loop() override;
 
-         //void draw(::nano::graphics::device * pnanodevice) override;
+         //void draw(::nano::graphics::context * pnanodevice) override;
 
-         //void on_draw(::nano::graphics::device * pnanodevice) override;
+         //void on_draw(::nano::graphics::context * pnanodevice) override;
 
-         //void draw(::nano::graphics::device * pnanodevice);
+         //void draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_char(int iChar);
+         //virtual void on_char(::i32 iChar);
 
          //bool is_active() override;
          //void set_active() override;
 
-         //virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
          //void delete_drawing_objects() override;
          //bool get_dark_mode() override;
@@ -142,8 +142,8 @@ namespace micro
 
          /// @brief  Child
          /// @param pnanodevice 
-         ////virtual void on_draw(::nano::graphics::device * pnanodevice);
-         ////virtual void on_char(int iChar);
+         ////virtual void on_draw(::nano::graphics::context * pnanodevice);
+         ////virtual void on_char(::i32 iChar);
          //virtual void set_keyboard_focus();
          //virtual bool is_keyboard_focusable();
          ////virtual void on_mouse_move(::user::mouse * pmouse);
@@ -275,16 +275,16 @@ namespace micro
 
          virtual void implementation_message_loop_step() override;
 
-         //virtual void draw(::nano::graphics::device * pnanodevice);
+         //virtual void draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_draw(::nano::graphics::device * pnanodevice);
+         //virtual void on_draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_char(int iChar);
+         //virtual void on_char(::i32 iChar);
 
          //virtual bool is_active();
          //virtual void set_active();
 
-         //virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
          //virtual void delete_drawing_objects();
          //virtual bool get_dark_mode();
@@ -331,7 +331,7 @@ namespace micro
          // virtual void nano_user_add_child(::micro::child * pchild);
 
          //virtual ::payload get_result();
-         //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+         //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
 
          void display_temporary_file_with_text(const ::scoped_string & scopedstr) override;
@@ -375,11 +375,11 @@ namespace micro
          //void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
          //virtual void get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
          //virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-         //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+         //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
          //virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-         //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+         //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
          //virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn);
-         //virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
+         //virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
          //virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
 
 

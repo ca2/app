@@ -24,12 +24,12 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 #endif
 
 
-inline const void * _memory_find_unsigned_char(const void* l, int i, memsize len)
+inline const void * _memory_find_unsigned_char(const void* l, ::i32 i, memsize len)
 {
 
-    auto u = (unsigned char) (*((::u32*)(&i)) & 0xff);
+    auto u = (::u8) (*((::u32*)(&i)) & 0xff);
 
-    auto p = (const unsigned char*)l;
+    auto p = (const ::u8*)l;
 
     while(len > 0)
     {
@@ -53,7 +53,7 @@ inline const void * _memory_find_unsigned_char(const void* l, int i, memsize len
 
 
 
-inline const void * memory_find_unsigned_char(const void* l, int i, memsize len)
+inline const void * memory_find_unsigned_char(const void* l, ::i32 i, memsize len)
 {
 
     if(::is_null(l))
@@ -74,7 +74,7 @@ inline const void * memory_find_unsigned_char(const void* l, int i, memsize len)
 
 
 
-CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize);
+CLASS_DECL_ACME void * memory_set(void * p, ::i32 i, memsize iSize);
 CLASS_DECL_ACME void * memory_and(void * p, const void * point1, const void * point2, memsize iSize);
 CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize);
 CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSize);
@@ -98,7 +98,7 @@ inline void * zero(void * p, memsize size) { memory_set(p, 0, size); return p; }
 inline bool is_zero(const void * p, memsize iSize)
 {
 
-   unsigned char * pb = (unsigned char *)p;
+   ::u8 * pb = (::u8 *)p;
 
    while (*pb == '\0' && iSize > 0)
    {

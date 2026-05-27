@@ -41,7 +41,7 @@ public:
    constexpr e_status(::enum_status estatus): m_eenum(estatus){}
    constexpr e_status(const ::e_status & estatus): m_eenum(estatus.m_eenum){}
    constexpr explicit e_status(bool b) : m_eenum(b ? success : error_failed){}
-   constexpr explicit e_status(int i) : m_eenum((::enum_status) i) {}
+   constexpr explicit e_status(::i32 i) : m_eenum((::enum_status) i) {}
    constexpr explicit e_status(::i64 i) : m_eenum((::enum_status) i) {}
 
 
@@ -56,7 +56,7 @@ public:
 
    constexpr bool is_set() const { return this->succeeded(); }
    
-   //operator int() const { return this->succeeded(); }
+   //operator ::i32() const { return this->succeeded(); }
    
    //bool operator !() const { return failed();}
 
@@ -71,11 +71,11 @@ public:
 
    //bool signaled() const { return ::signaled(*this); }
 
-   //int signaled_index() const { return ::signaled_index(*this); }
+   //::i32 signaled_index() const { return ::signaled_index(*this); }
 
    //bool abandoned() const { return ::abandoned(*this); }
 
-   //int abandoned_index() const { return ::abandoned_index(*this); }
+   //::i32 abandoned_index() const { return ::abandoned_index(*this); }
 
    //bool wait_timeout() const { return ::wait_timeout(*this); }
 
@@ -95,9 +95,9 @@ public:
    }
 
 
-   constexpr int error_status() const { return succeeded() ? 0 : (int)(::i64)m_eenum; }
+   constexpr ::i32 error_status() const { return succeeded() ? 0 : (::i32)(::i64)m_eenum; }
 
-   //int exit_code() const { return succeeded() ? 0 : (int)_status_exit_code(m_eenum); }
+   //::i32 exit_code() const { return succeeded() ? 0 : (::i32)_status_exit_code(m_eenum); }
 
    constexpr e_status& operator =(const e_status & estatus) { m_eenum = estatus.as_estatus(); return *this; }
 
@@ -118,7 +118,7 @@ public:
    }
 
 
-   int exit_code() const
+   ::i32 exit_code() const
    {
 
       if (this->succeeded())
@@ -130,14 +130,14 @@ public:
 
 #ifdef WINDOWS
 
-      return (int)-(::i64)m_eenum;
+      return (::i32)-(::i64)m_eenum;
 
 #else
 
       if (this->m_eenum >= -125)
       {
 
-         return (int)-(::i64)(this->m_eenum);
+         return (::i32)-(::i64)(this->m_eenum);
 
       }
       else
@@ -155,10 +155,10 @@ public:
    
    /// @brief synchronization signaled index
    /// @return signaled index. For single synchronization object 0 if signaled or -1 if not signaled. For array of synchronization objects, the lowest? index of a signaled object or -1 if none of objects are signaled.
-   constexpr int signaled_index() const
+   constexpr ::i32 signaled_index() const
    {
 
-      return (m_eenum >= signaled_base && m_eenum < signaled_end) ? (int)((::i64)m_eenum - (::i64)signaled_base) : -1;
+      return (m_eenum >= signaled_base && m_eenum < signaled_end) ? (::i32)((::i64)m_eenum - (::i64)signaled_base) : -1;
 
    }
 
@@ -174,10 +174,10 @@ public:
 
    /// @brief synchronization abandoned index
    /// @return abandoned index
-   constexpr int abandoned_index()const
+   constexpr ::i32 abandoned_index()const
    {
 
-      return (m_eenum >= abandoned_base && m_eenum < abandoned_end) ? (int)((::i64)m_eenum - (::i64)abandoned_base) : -1;
+      return (m_eenum >= abandoned_base && m_eenum < abandoned_end) ? (::i32)((::i64)m_eenum - (::i64)abandoned_base) : -1;
 
    }
 
@@ -213,7 +213,7 @@ public:
    }
 
 
-   inline void defer_failed(int iRange)
+   inline void defer_failed(::i32 iRange)
    {
 
       defer_failed(FAILURE_STATUS(iRange));
@@ -247,7 +247,7 @@ public:
 //
 //}
 
-//inline bool succeeded(const ::e_status & estatus, int iRange)
+//inline bool succeeded(const ::e_status & estatus, ::i32 iRange)
 //{
 //
 //   return (::i64)estatus.m_eenum >= (::i64)SUCCESS_STATUS(iRange).m_eenum

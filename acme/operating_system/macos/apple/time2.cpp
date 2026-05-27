@@ -18,7 +18,7 @@
 
 namespace acme
 {
-extern double g_machtime_conversion_factor;
+extern ::f64 g_machtime_conversion_factor;
 } // namespace acme
 void ns_Sleep(::u32 uiMillis);
 

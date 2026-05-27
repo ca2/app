@@ -143,10 +143,10 @@ namespace platform
    //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
 
 
-   //void aura_application_layer::process_message_filter(int code, ::message::message * pmessage) override{}
+   //void aura_application_layer::process_message_filter(::i32 code, ::message::message * pmessage) override{}
 
 
-   //void aura_application_layer::DoWaitCursor(int nCode) override{} // 0 => restore, 1=> begin, -1=> end
+   //void aura_application_layer::DoWaitCursor(::i32 nCode) override{} // 0 => restore, 1=> begin, -1=> end
 
    // void aura_application_layer::_001PostTryCloseApplication() override{}
 
@@ -189,8 +189,8 @@ namespace platform
    //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
 
 
-   //virtual int hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
-   //virtual int hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+   //virtual ::i32 hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+   //virtual ::i32 hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
 
    //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
 
@@ -212,9 +212,9 @@ namespace platform
    //bool aura_application_layer::compress_ungz(const ::stream & os, const ::stream & is) override{}
 
    ///bool aura_application_layer::compress_ungz(memory_base & mem) override{}
-   //bool aura_application_layer::compress_gz(const ::stream& os, const ::stream& is, int iLevel = 6) override{}
+   //bool aura_application_layer::compress_gz(const ::stream& os, const ::stream& is, ::i32 iLevel = 6) override{}
 
-   //bool aura_application_layer::compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6) override{}
+   //bool aura_application_layer::compress_gz(::file::file * pfileOut, ::file::file * pfileIn, ::i32 iLevel = 6) override{}
 
 
    //bool aura_application_layer::is_local_data() override{}
@@ -347,13 +347,13 @@ namespace platform
    //virtual ::file::path defer_process_path(::file::path path){}
    //virtual ::file::path full_process_path(::file::path path){}
 
-   //void aura_application_layer::DoWaitCursor(int nCode){} // 0 => restore, 1=> begin, -1=> end
+   //void aura_application_layer::DoWaitCursor(::i32 nCode){} // 0 => restore, 1=> begin, -1=> end
    //void aura_application_layer::show_wait_cursor(bool bShow = true) override{}
 
 
-   //void aura_application_layer::process_message_filter(int code,::message::message * pmessage) override{}
+   //void aura_application_layer::process_message_filter(::i32 code,::message::message * pmessage) override{}
 
-   //void aura_application_layer::on_thread_on_idle(::thread * pthread,int lCount) override{}
+   //void aura_application_layer::on_thread_on_idle(::thread * pthread,::i32 lCount) override{}
 
 
    //bool aura_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override{}
@@ -492,7 +492,7 @@ namespace platform
 
    /// return true if the external additional instance might continue execution
    /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-   //void aura_application_layer::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override{}
+   //void aura_application_layer::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override{}
 
    //void aura_application_layer::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override{}
 
@@ -510,7 +510,7 @@ namespace platform
    //bool aura_application_layer::check_exclusive(bool & bHandled) override{}
    //bool aura_application_layer::release_exclusive() override{}
 
-   //void aura_application_layer::on_set_scalar(e_scalar escalar,::i64 iValue,int iFlags) override{}
+   //void aura_application_layer::on_set_scalar(e_scalar escalar,::i64 iValue,::i32 iFlags) override{}
    //void aura_application_layer::get_scalar_minimum(e_scalar escalar,::i64 & i) override{}
    //void aura_application_layer::get_scalar(e_scalar escalar,::i64 & i) override{}
    //void aura_application_layer::get_scalar_maximum(e_scalar escalar,::i64 & i) override{}
@@ -607,7 +607,7 @@ namespace platform
 
    //bool aura_application_layer::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed){}
 
-   //bool aura_application_layer::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel = 6){}
+   //bool aura_application_layer::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6){}
 
    //void aura_application_layer::interactive_credentials(::account::credentials * pcredentials) override{}
 
@@ -623,7 +623,7 @@ namespace platform
 
 
    //void aura_application_layer::install_trace(const ::scoped_string & scopedstr) override{}
-   //void aura_application_layer::install_trace(double dRate) override{}
+   //void aura_application_layer::install_trace(::f64 dRate) override{}
    //bool aura_application_layer::register_spa_file_type() override{}
 
    //bool aura_application_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
@@ -753,7 +753,7 @@ namespace platform
 
    //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override{}
 
-   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override{}
+   //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override{}
 
    //bool aura_application_layer::is_serviceable() const override{}
    //
@@ -773,7 +773,7 @@ namespace platform
    //DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme){}
 
 
-   //bool aura_application_layer::on_idle(int lCount) override{} // return true if more idle processing
+   //bool aura_application_layer::on_idle(::i32 lCount) override{} // return true if more idle processing
    //void aura_application_layer::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override{}
 
    //      void EnableModelessEx(bool bEnable){}
@@ -847,10 +847,10 @@ namespace platform
    // registered with the doc manager.
    //virtual ::collection::count get_open_document_count(){}
 
-   //static const char gen_FileSection[]{}
-   //static const char gen_FileEntry[]{}
-   //static const char gen_ThumbnailSection[]{}
-   //static const char gen_ThumbnailEntry[]{}
+   //static const ::i8 gen_FileSection[]{}
+   //static const ::i8 gen_FileEntry[]{}
+   //static const ::i8 gen_ThumbnailSection[]{}
+   //static const ::i8 gen_ThumbnailEntry[]{}
 
 
    //
@@ -877,7 +877,7 @@ namespace platform
    //
 
 
-    int aura_application_layer::track_popup_menu(::menu::track_popup* ptrackpopup)
+    ::i32 aura_application_layer::track_popup_menu(::menu::track_popup* ptrackpopup)
    {
       return 0;
    }
@@ -914,13 +914,13 @@ namespace platform
    //void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override{}
 
 
-   int  aura_application_layer::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction> puserinteractionExcept)
+   ::i32  aura_application_layer::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction> puserinteractionExcept)
    {
       return 0;
    }
 
 
-    int  aura_application_layer::GetVisibleFrameCount()
+    ::i32  aura_application_layer::GetVisibleFrameCount()
    {
       return 0;
    }
@@ -931,7 +931,7 @@ namespace platform
    }
 
 
-   // void report_error(const ::exception & exception, int iMessageFlags, const ::scoped_string & scopedstrTopic) override{}
+   // void report_error(const ::exception & exception, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override{}
    //
    //
    // bool can_close_application() override{}
@@ -983,7 +983,7 @@ namespace platform
       return {};
    }
 
-   //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override{}
+   //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override{}
 
 
    //virtual ::user::user * user(){}

@@ -6,8 +6,9 @@
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/font.h"
+#include "acme/nano/graphics/graphics.h"
 #include "acme/nano/graphics/icon.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/nano.h"
 #include "acme/windowing/window.h"
 #include "acme/user/user/mouse.h"
@@ -44,35 +45,40 @@ namespace micro
          if (!m_pfont)
          {
 
-            constructø(m_pfont);
+            m_pfont = nano()->graphics()->create_point_font(m_efont, m_iFontSize);
 
-            m_pfont->m_iFontSize = m_iFontSize;
+            //m_pfont->create_point_font(m_efont, m_iFontSize);
 
-            m_pfont->m_strFontName = node()->font_name(m_efont);
+            //m_pfont->m_iFontSize = m_iFontSize;
+
+            //m_pfont->m_strFontName = node()->font_name(m_efont);
 
          }
 
          if (!m_pfontHyperlink)
          {
 
-            constructø(m_pfontHyperlink);
+            m_pfontHyperlink = nano()->graphics()->create_point_font(m_efont, m_iFontSize);
+            /*constructø(m_pfontHyperlink);
 
             m_pfontHyperlink->m_iFontSize = m_iFontSize;
 
-            m_pfontHyperlink->m_strFontName = node()->font_name(m_efont);
+            m_pfontHyperlink->m_strFontName = node()->font_name(m_efont);*/
          }
 
 
          if (!m_pfontHyperlinkHover)
          {
 
-            constructø(m_pfontHyperlinkHover);
+            m_pfontHyperlinkHover = nano()->graphics()->create_point_font(m_efont, m_iFontSize, false, true);
 
-            m_pfontHyperlinkHover->m_iFontSize = m_iFontSize;
+            //constructø(m_pfontHyperlinkHover);
 
-            m_pfontHyperlinkHover->m_bUnderline = true;
+            //m_pfontHyperlinkHover->m_iFontSize = m_iFontSize;
 
-            m_pfontHyperlinkHover->m_strFontName = node()->font_name(m_efont);
+            //m_pfontHyperlinkHover->m_bUnderline = true;
+
+            //m_pfontHyperlinkHover->m_strFontName = node()->font_name(m_efont);
          }
 
          bool bDarkMode = system()->dark_mode();
@@ -102,21 +108,21 @@ namespace micro
 
          }
 
-         m_pbrushWindow = ::nano::graphics::create_solid_brush(this, m_colorWindow);
+         m_pbrushWindow = nano()->graphics()->create_solid_brush(m_colorWindow);
 
-         m_pbrushText = ::nano::graphics::create_solid_brush(this, m_colorText);
+         m_pbrushText = nano()->graphics()->create_solid_brush(m_colorText);
 
-         m_pbrushHyperlink = ::nano::graphics::create_solid_brush(this, m_colorHyperlink);
+         m_pbrushHyperlink = nano()->graphics()->create_solid_brush(m_colorHyperlink);
 
-         m_pbrushHyperlinkHover = ::nano::graphics::create_solid_brush(this, m_colorHyperlinkHover);
+         m_pbrushHyperlinkHover = nano()->graphics()->create_solid_brush(m_colorHyperlinkHover);
 
-         m_ppenBorder = ::nano::graphics::create_pen(this, 2, m_colorText);
+         m_ppenBorder = nano()->graphics()->create_pen(m_colorText, 2.);
 
-         m_ppenBorderFocus = ::nano::graphics::create_pen(this, 2, m_colorFocus);
+         m_ppenBorderFocus = nano()->graphics()->create_pen(m_colorFocus, 2.);
 
-         m_ppenBorderHover = ::nano::graphics::create_pen(this, 2, m_colorHover);
+         m_ppenBorderHover = nano()->graphics()->create_pen(m_colorHover, 2.);
 
-         m_ppenBorderHoverAndFocus = ::nano::graphics::create_pen(this, 2, m_colorHoverAndFocus);
+         m_ppenBorderHoverAndFocus = nano()->graphics()->create_pen(m_colorHoverAndFocus, 2.);
 
       }
 

@@ -1490,7 +1490,7 @@ namespace data
    ::collection::index tree_item < ITEM >::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
    {
 
-      int iIndex = 0;
+      ::i32 iIndex = 0;
 
       if (piLevel)
       {

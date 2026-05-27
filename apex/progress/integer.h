@@ -15,8 +15,8 @@ namespace progress
    public:
 
 
-      double                     m_dProgressStart;
-      double                     m_dProgressEnd;
+      ::f64                     m_dProgressStart;
+      ::f64                     m_dProgressEnd;
       ::number::scalar           m_scalar;
       ::progress::listener *     m_plistener;
 
@@ -30,7 +30,7 @@ namespace progress
 
       virtual void progress_step();
 
-      virtual bool on_set_scalar(::number::scalar_source * psource, enum_scalar escalar, ::number::number number, int iFlags) override;
+      virtual bool on_set_scalar(::number::scalar_source * psource, enum_scalar escalar, ::number::number number, ::i32 iFlags) override;
 
       //scalar & get_scalar() { return m_scalar; }
 

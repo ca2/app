@@ -47,7 +47,7 @@ namespace console
       simple_frame_window::on_timer(ptimer);;
 
 //      ::u32 uEvent = ptimer->m_uTimer;
-//      static float theta;
+//      static ::f32 theta;
 //      if(uEvent == 3)
 //      {
 //      }
@@ -227,7 +227,7 @@ namespace console
       if(pmessage->m_bRet)
          return;
 
-      if(!datastream()->get("&data_source=local&DockPosition", (int &) m_eposition))
+      if(!datastream()->get("&data_source=local&DockPosition", (::i32 &) m_eposition))
       {
 
          m_eposition = e_position_left;
@@ -276,7 +276,7 @@ namespace console
          ::window_rectangle(oswindowDesktop, rectangleDesktop);
          ::i32_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
-         double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
+         ::f64 a = (::f64) rectangleDesktop.height() / (::f64) rectangleDesktop.width();
          if(rectangleWindow.left < (rectangleDesktop.width() / 2))
          {
             // to the left
@@ -316,7 +316,7 @@ namespace console
                m_eposition = e_position_right;
             }
          }
-         datastream()->set("DockPosition", (int) m_eposition);
+         datastream()->set("DockPosition", (::i32) m_eposition);
       }*/
    }
 
@@ -500,7 +500,7 @@ namespace console
 
       psystem->get_monitor_rectangle(0,i32_rectangle);
 
-      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top;
+      ::i32 iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top;
 
       rectangle.left += 100;
 

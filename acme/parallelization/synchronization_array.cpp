@@ -111,7 +111,7 @@ bool synchronization_array::add_item(::subparticle * psubparticle)
    if (handle != nullptr)
    {
 
-      m_uaIndexes[m_hsynchronizationa.get_size()] = (unsigned char) m_subparticlea.get_size();
+      m_uaIndexes[m_hsynchronizationa.get_size()] = (::u8) m_subparticlea.get_size();
 
       m_hsynchronizationa.add(handle);
 
@@ -177,7 +177,7 @@ void synchronization_array::erase(::collection::index index)
 
    }
 
-   auto sizeOld = (int) this->size();
+   auto sizeOld = (::i32) this->size();
 
    m_subparticlea.erase_at(index);
    m_hsynchronizationa.erase_at(index);
@@ -230,7 +230,7 @@ void synchronization_array::erase(::collection::index index)
 
    }
 
-   auto estatus = ::windows::wait_result_status(windowsWaitResult, (int) uCount);
+   auto estatus = ::windows::wait_result_status(windowsWaitResult, (::i32) uCount);
 
 #else
 
@@ -338,7 +338,7 @@ void synchronization_array::unlock_item(::collection::index index)
 }
 
 
-void synchronization_array::unlock_item(::collection::index index, int lCount, int * pPrevCount)
+void synchronization_array::unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount)
 {
 
    m_subparticlea[index]->unlock(lCount, pPrevCount);
@@ -361,10 +361,10 @@ void synchronization_array::contains(const ::e_status & result) const
    //{
    //   if(!m_waitableelementa[position].m_psynccallback)
    //   {
-   //      int res = ::WaitForSingleObjectEx(m_subparticlea[position], 0, false);
+   //      ::i32 res = ::WaitForSingleObjectEx(m_subparticlea[position], 0, false);
    //      if ( res == WAIT_TIMEOUT )
    //         continue;
-   //      return synchronization_result( static_cast<int>(position), m_subparticlea.get_size() );
+   //      return synchronization_result( static_cast<::i32>(position), m_subparticlea.get_size() );
    //   }
    //}
 

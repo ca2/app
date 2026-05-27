@@ -672,27 +672,27 @@ namespace experience_core
       defer_constructø(m_ppenHollow4);
       defer_constructø(m_ppenHollow5);
 
-      color.m_uchOpacity = 8;
+      color.m_u8Opacity = 8;
 
       m_ppenHollow0->create_solid(1.0,color);
 
-      color.m_uchOpacity = 11;
+      color.m_u8Opacity = 11;
 
       m_ppenHollow1->create_solid(1.0,color);
 
-      color.m_uchOpacity = 23;
+      color.m_u8Opacity = 23;
 
       m_ppenHollow2->create_solid(1.0,color);
 
-      color.m_uchOpacity = 49;
+      color.m_u8Opacity = 49;
 
       m_ppenHollow3->create_solid(1.0,color);
 
-      color.m_uchOpacity = 72;
+      color.m_u8Opacity = 72;
 
       m_ppenHollow4->create_solid(1.0, color);
 
-      color.m_uchOpacity = 255;
+      color.m_u8Opacity = 255;
 
       m_ppenHollow5->create_solid(1.0,color);
 
@@ -712,7 +712,7 @@ namespace experience_core
       //return;
 
 
-      const int size = 16;
+      const ::i32 size = 16;
 
       auto rectangleX(rectangleXParam);
       //            ::i32_rectangle rectangleXB(rectangleX);

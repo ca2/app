@@ -38,7 +38,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //        return false;
 //
 //    }
-//   char * pszRealPath = ::realpath(scopedstr, NULL);
+//   char_pointer pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if(scopedstrRealPath == NULL)
 //   {
@@ -101,9 +101,9 @@ namespace path
 
       // https://arstechnica.com/civis/viewtopic.php?t=433790
 
-      char exepath[PATH_MAX];
+      ::i8 exepath[PATH_MAX];
 
-      char temp[PATH_MAX];
+      ::i8 temp[PATH_MAX];
 
       ::snprintf(temp, sizeof(temp),"/proc/%d/file", ::getpid());
 
@@ -118,7 +118,7 @@ namespace path
 } // namespace path
 
 
-char * get_current_dir_name()
+char_pointer get_current_dir_name()
 {
 
     return getcwd(nullptr, 0);
@@ -143,7 +143,7 @@ char * get_current_dir_name()
 //
 //    /// Test if the given path can be executed.
 //    /// \return 0 on success, an errno value on failure.
-//    auto test_path = [](const wcstring &path) -> int {
+//    auto test_path = [](const wcstring &path) -> ::i32 {
 //        std::string narrow = wcs2string(path);
 //        struct stat buff;
 //        if (access(narrow.c_str(), X_OK) != 0 || stat(narrow.c_str(), &buff) != 0) {
@@ -161,7 +161,7 @@ char * get_current_dir_name()
 //    // looking for a matching command.
 //    if (cmd.find(L'/') != wcstring::npos) {
 //        wcstring abs_cmd = path_apply_working_directory(cmd, vars.get_pwd_slash());
-//        int merr = test_path(abs_cmd);
+//        ::i32 merr = test_path(abs_cmd);
 //        return get_path_result_t{merr, std::move(abs_cmd)};
 //    }
 //
@@ -171,7 +171,7 @@ char * get_current_dir_name()
 //        if (next_path.empty()) continue;
 //        proposed_path = next_path;
 //        append_path_component(proposed_path, cmd);
-//        int merr = test_path(proposed_path);
+//        ::i32 merr = test_path(proposed_path);
 //        if (merr == 0) {
 //            // We found one.
 //            best = get_path_result_t{merr, std::move(proposed_path)};
@@ -206,12 +206,12 @@ char * get_current_dir_name()
 //::file::path get_module_path()
 //{
 /*
-   int mib[4];
+   ::i32 mib[4];
    mib[0] = CTL_KERN;
    mib[1] = KERN_PROC;
    mib[2] = KERN_PROC_PATHNAME;
    mib[3] = -1;
-   char pathbuf[4096];
+   ::i8 pathbuf[4096];
    size_t cb = sizeof(pathbuf);
    sysctl(mib, 4, pathbuf, &cb, NULL, 0);
    */
@@ -220,20 +220,20 @@ char * get_current_dir_name()
 /*
     ::string narrow;
     static kvm_t *kd = nullptr;
-	narrow=  ::::system()->get()->m_argv[0]
+	narrow=  ::system()->get()->m_argv[0]
     // not sure if I am doing this right??
     null_environment_t vars = null_environment_t();
     auto path = path_get_path(wargv0, vars);
     if (path) {
-        int cntp = 0;
+        ::i32 cntp = 0;
         struct stat st;
         kinfo_file *kif = nullptr;
-        char errbuf[_POSIX2_LINE_MAX];
+        ::i8 errbuf[_POSIX2_LINE_MAX];
         narrow = wcs2string(*path); 
         kd = kvm_openfiles(nullptr, nullptr, nullptr, KVM_NO_FILES, errbuf); 
         if (kd) {
             if ((kif = kvm_getfiles(kd, KERN_FILE_BYPID, getpid(), sizeof(struct kinfo_file), &cntp))) {
-                for (int i = 0; i < cntp; i++) {
+                for (::i32 i = 0; i < cntp; i++) {
                     if (kif[i].fd_fd == KERN_FILE_TEXT) {
                         if (!stat(narrow.c_str(), &st)) {
                             if (st.st_dev == (dev_t)kif[i].va_fsid || st.st_ino == (ino_t)kif[i].va_fileid) {

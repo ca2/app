@@ -19,7 +19,7 @@ namespace subsystem
       //virtual ~FileInterface() =0 ;
 
       virtual void * _HANDLE()= 0;
-      virtual int _fd() = 0;
+      virtual ::i32 _fd() = 0;
 
    };
 

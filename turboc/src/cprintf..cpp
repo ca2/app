@@ -26,13 +26,13 @@
 //#include <stdarg.h>
 //#include "conio.h"
 
-static char StringBuffer[1024];
+static ::i8 StringBuffer[1024];
 
-int
+::i32
 cprintf (const ::string &format, ...)
 {
   va_list ap;
-  int ReturnValue = 0;
+  ::i32 ReturnValue = 0;
   if (!ConioInitialized)
     textmode (LASTMODE);
   va_start (ap, format);

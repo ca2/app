@@ -99,7 +99,7 @@ public:
 
    string                                             m_strDebug;
    string                                             m_strFile;
-   int                                                m_iLine;
+   ::i32                                                m_iLine;
 
    bool                                               m_bTemporary;
    ::pointer<::object>                                m_pobjectScript;
@@ -235,7 +235,7 @@ public:
    virtual void on_ping() override;
    virtual bool is_pinging() const override;
 
-   virtual int get_x_window_count() const;
+   virtual ::i32 get_x_window_count() const;
 
    //virtual synchronization_result wait(const class time & time);
 
@@ -269,7 +269,7 @@ public:
 
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   virtual ::i32 _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    //virtual bool has_raw_message() const;
@@ -296,8 +296,8 @@ public:
    //virtual void process_window_message(::user::message * pusermessage);
    virtual bool process_message();     // route message
    virtual bool raw_process_message();     // route message
-   // virtual bool on_idle(int lCount); // return true if more idle processing
-   virtual void on_thread_on_idle(::thread * pthread, int lCount);
+   // virtual bool on_idle(::i32 lCount); // return true if more idle processing
+   virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
@@ -318,7 +318,7 @@ public:
 
    virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage);
 
-   virtual void process_message_filter(int code, ::message::message * pmessage);
+   virtual void process_message_filter(::i32 code, ::message::message * pmessage);
 
    // virtual void add(::user::interaction_base * pinteraction);
    //virtual void erase(::user::interaction_base * pinteraction);
@@ -380,7 +380,7 @@ public:
    //virtual void on_finish() override;
 
 
-   virtual bool post_quit_message(int nExitCode);
+   virtual bool post_quit_message(::i32 nExitCode);
 
 
    //virtual ::collection::index task_add(::task * ptask) override;

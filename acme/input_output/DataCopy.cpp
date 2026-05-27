@@ -20,7 +20,7 @@
       // if (have < len) {
       //   len = have;
       // }
-      // std::copy(buf.begin(), buf.begin() + len, (unsigned char*)buffer);
+      // std::copy(buf.begin(), buf.begin() + len, (::u8*)buffer);
       // std::copy(buf.begin() + len, buf.end(), buf.begin());
       // buf.resize(have - len);
       return read;

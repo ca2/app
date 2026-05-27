@@ -27,12 +27,12 @@ namespace windowing
       };
 
 
-      char * const * m_ppszParent;
-      char * const * m_ppszMenu;
-      char * const * m_ppszId;
+      char_pointer const * m_ppszParent;
+      char_pointer const * m_ppszMenu;
+      char_pointer const * m_ppszId;
       pointer_array < menu_shared_item >         m_shareditema;
-      int * m_statusa;
-      int                                       m_iCount;
+      ::i32 * m_statusa;
+      ::i32                                       m_iCount;
 
 
       menu_shared();

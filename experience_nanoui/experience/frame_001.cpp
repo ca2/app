@@ -1141,7 +1141,7 @@ namespace experience_nanoui
       {
          ::i32_point pointCenter = rectangle.center();
 
-         int iMod;
+         ::i32 iMod;
          if (rectangle.width() % 2 == 1)
             iMod = 1;
          else
@@ -1163,7 +1163,7 @@ namespace experience_nanoui
 
          ::i32_rectangle rectangleB;
 
-         int iMod;
+         ::i32 iMod;
          if (rectangle.width() % 2 == 1)
             iMod = 1;
          else
@@ -1181,7 +1181,7 @@ namespace experience_nanoui
       {
          ::i32_point pointCenter = rectangle.center();
 
-         int iMod;
+         ::i32 iMod;
          if (rectangle.height() % 2 == 1)
             iMod = 1;
          else
@@ -1202,7 +1202,7 @@ namespace experience_nanoui
       {
          ::i32_point pointCenter = rectangle.center();
 
-         int iMod;
+         ::i32 iMod;
          if (rectangle.height() % 2 == 1)
             iMod = 1;
          else

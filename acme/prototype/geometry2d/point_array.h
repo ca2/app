@@ -13,14 +13,14 @@
 ////#include "acme/prototype/collection/comparable_array.h"
 
 
-inline bool tolerance_is_equal(double tolerance, double d1, double d2)
+inline bool tolerance_is_equal(::f64 tolerance, ::f64 d1, ::f64 d2)
 {
    return ::abs(d1 - d2) <= tolerance;
 }
 
 
 template < prototype_number NUMBER >
-class poi32_array_base :
+class point_array_base :
    public ::array_base < ::point_type < NUMBER > >
 {
 public:
@@ -36,12 +36,12 @@ public:
    using BASE_ARRAY::BASE_ARRAY;
    using BASE_ARRAY::operator =;
 
-   //inline poi32_array_base() : ::array < ::point_type < NUMBER > >() {}
+   //inline point_array_base() : ::array < ::point_type < NUMBER > >() {}
    //template < std::size_t n >
-   //inline poi32_array_base(const ::point_type < NUMBER > p[n]) : ::array < ::point_type < NUMBER > >(p, n){ }
-   //inline poi32_array_base(poi32_array_base && pointset) : ::array < ::point_type < NUMBER > >(::transfer(pointset)) { }
-   //inline poi32_array_base(const poi32_array_base & pointset) { operator=(pointset); }
-   //~poi32_array_base() { }
+   //inline point_array_base(const ::point_type < NUMBER > p[n]) : ::array < ::point_type < NUMBER > >(p, n){ }
+   //inline point_array_base(point_array_base && pointset) : ::array < ::point_type < NUMBER > >(::transfer(pointset)) { }
+   //inline point_array_base(const point_array_base & pointset) { operator=(pointset); }
+   //~point_array_base() { }
 
 
    //operator ::point_type < UNIT_TYPE > * () { return this->get_data(); }
@@ -49,9 +49,9 @@ public:
    void offset(UNIT_TYPE x, UNIT_TYPE y);
    void offset(::point_type < UNIT_TYPE > point) { offset(point.x, point.y); }
 
-   void rotate(double dAngle);
+   void rotate(::f64 dAngle);
 
-   void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter);
+   void rotate(::f64 dAngle, ::point_type < UNIT_TYPE > pointCenter);
 
    void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const;
 
@@ -62,7 +62,7 @@ public:
 
    inline ::collection::index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array_base < ::point_type < NUMBER > >::add({x, y}); }
    inline ::collection::index add(const ::point_type < NUMBER > & point) { return ::array_base < ::point_type < NUMBER > >::add(point); }
-   inline poi32_array_base & operator =(const poi32_array_base & pointset) { this->copy(pointset); return *this; }
+   inline point_array_base & operator =(const point_array_base & pointset) { this->copy(pointset); return *this; }
 
    inline ::collection::index tolerance_add_unique(UNIT_TYPE tolerance, const ::point_type < NUMBER > & pointAdd)
    {
@@ -91,7 +91,7 @@ public:
 
 
    ::collection::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
-   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertexes/
+   //https://www.geeksforgeeks.org/area-of-a-i32_polygon-with-given-n-ordered-vertexes/
       // (X[i], Y[i]) are coordinates of i'th point.
 
    UNIT_TYPE polygon_area()
@@ -99,12 +99,12 @@ public:
 
       UNIT_TYPE area = (UNIT_TYPE) 0;
 
-      int n = (int) this->get_count();
+      ::i32 n = (::i32) this->get_count();
 
       // Calculate value of shoelace formula
-      int j = n - 1;
+      ::i32 j = n - 1;
 
-      for (int i = 0; i < n; i++)
+      for (::i32 i = 0; i < n; i++)
       {
 
          area += (this->element_at(j).x + this->element_at(i).x)
@@ -190,9 +190,9 @@ public:
 
 
 template < prototype_number NUMBER >
-void poi32_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
+void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
-   for (int i = 0; i < this->get_size(); i++)
+   for (::i32 i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).x += x;
       this->element_at(i).y += y;
@@ -201,20 +201,20 @@ void poi32_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 
 
 template < prototype_number NUMBER >
-void poi32_array_base < NUMBER >::rotate(double dAngle)
+void point_array_base < NUMBER >::rotate(::f64 dAngle)
 {
 
    UNIT_TYPE x;
    UNIT_TYPE y;
-   double dCos = ::cos(dAngle);
-   double dSin = ::sin(dAngle);
+   ::f64 dCos = ::cos(dAngle);
+   ::f64 dSin = ::sin(dAngle);
 
-   for (int i = 0; i < this->get_count(); i++)
+   for (::i32 i = 0; i < this->get_count(); i++)
    {
       x = this->element_at(i).x;
       y = this->element_at(i).y;
-      this->element_at(i).x = (int)(x * dCos - y * dSin);
-      this->element_at(i).y = (int)(x * dSin + y * dCos);
+      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
    }
 
 }
@@ -224,7 +224,7 @@ void poi32_array_base < NUMBER >::rotate(double dAngle)
 
 //
 //template < typename POINT_TYPE >
-//void poi32_array_base < POINT_TYPE >::get_bounding_box(RECTANGLE_BASE_TYPE & rectangle) const
+//void point_array_base < POINT_TYPE >::get_bounding_box(RECTANGLE_BASE_TYPE & rectangle) const
 //{
 //
 //   ::get_bounding_box(rectangle, this->get_data(), this->get_count());
@@ -234,21 +234,21 @@ void poi32_array_base < NUMBER >::rotate(double dAngle)
 
 
 template < prototype_number NUMBER >
-void poi32_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > pointCenter)
+void point_array_base < NUMBER >::rotate(::f64 dAngle, ::point_type < NUMBER > pointCenter)
 {
 
    UNIT_TYPE x;
    UNIT_TYPE y;
-   double dCos = cos(dAngle);
-   double dSin = sin(dAngle);
+   ::f64 dCos = cos(dAngle);
+   ::f64 dSin = sin(dAngle);
 
-   for (int i = 0; i < this->get_count(); i++)
+   for (::i32 i = 0; i < this->get_count(); i++)
    {
       this->element_at(i) -= pointCenter;
       x = this->element_at(i).x;
       y = this->element_at(i).y;
-      this->element_at(i).x = (int)(x * dCos - y * dSin);
-      this->element_at(i).y = (int)(x * dSin + y * dCos);
+      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
       this->element_at(i) += pointCenter;
    }
 
@@ -256,17 +256,17 @@ void poi32_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > 
 
 
 //template < typename POINT_TYPE >
-//::xml::input_tree & operator >> (::xml::input_tree & xmlif, poi32_array_base < POINT_TYPE > & pointa);
+//::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_array_base < POINT_TYPE > & pointa);
 //
 //template < typename POINT_TYPE >
-//::xml::output_tree & operator << (::xml::output_tree & xmlof, poi32_array_base < POINT_TYPE > & pointa);
+//::xml::output_tree & operator << (::xml::output_tree & xmlof, point_array_base < POINT_TYPE > & pointa);
 
 /*
 http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-i32_point-is-within-a-int_polygon
-int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
+https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-i32_point-is-within-a-i32_polygon
+::i32 pnpoly(::i32 nvert, ::f32 * vertx, ::f32 * verty, ::f32 testx, ::f32 testy)
 {
-   int i, j, c = 0;
+   ::i32 i, j, c = 0;
    for (i = 0, j = nvert - 1; i < nvert; j = i++) {
       if (((verty[i] > testy) != (verty[j] > testy)) &&
          (testx < (vertx[j] - vertx[i]) * (testy - verty[i]) / (verty[j] - verty[i]) + vertx[i]))
@@ -278,7 +278,7 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //template < typename POINT_TYPE >
 //bool polygon_contains_point(const POINT_TYPE * ppointa, ::collection::count c, const POINT_TYPE & point)
 //{
-//   int i, j, c = 0;
+//   ::i32 i, j, c = 0;
 //   for (i = 0, j = nvert - 1; i < nvert; j = i++)
 //   {
 //      if (((ppointa[i].y > point.y) != (ppointa[j].y > point.y)) &&
@@ -289,25 +289,25 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //}
 
 template < prototype_number NUMBER >
-bool poi32_array_base < NUMBER >::polygon_contains_winding(const ::point_type < NUMBER > & point) const
+bool point_array_base < NUMBER >::polygon_contains_winding(const ::point_type < NUMBER > & point) const
 {
 
-   return ::polygon_contains_winding( this->data(), (int)this->size(), point);
+   return ::polygon_contains_winding( this->data(), (::i32)this->size(), point);
 
 }
 
 
 template < prototype_number NUMBER >
-bool poi32_array_base < NUMBER >::polygon_contains_alternate(const ::point_type < NUMBER > & point) const
+bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type < NUMBER > & point) const
 {
 
-   return ::polygon_contains_alternate(this->data(), (int)this->size(), point, true);
+   return ::polygon_contains_alternate(this->data(), (::i32)this->size(), point, true);
 
 }
 
 
 template < prototype_number NUMBER >
-::collection::count poi32_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
+::collection::count point_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
 {
 
    auto x1 = pointBeg.x;
@@ -347,7 +347,7 @@ template < prototype_number NUMBER >
 
 
 template < prototype_number NUMBER >
-void poi32_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+void point_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
 {
 
    ::point_type < NUMBER > ::expand_bounding_box(top_left, bottom_right, this->data(), this->size());
@@ -356,7 +356,7 @@ void poi32_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE >
 
 
 template < prototype_number NUMBER >
-bool poi32_array_base < NUMBER >::get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+bool point_array_base < NUMBER >::get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
 {
    
    if(this->is_empty())

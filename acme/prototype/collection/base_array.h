@@ -652,7 +652,7 @@ public:
    //   }
 
 
-   //   make_iterator operator ++ (int)
+   //   make_iterator operator ++ (::i32)
    //   {
 
    //      auto it = *this;
@@ -1180,7 +1180,7 @@ public:
 
       ::collection::index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
 
-      int cProcessed = 0;
+      ::i32 cProcessed = 0;
 
       for (::collection::index i = iStart; i <= iEnd; i++)
       {
@@ -1389,7 +1389,7 @@ public:
    TYPE * predicate_get_first(PRED pred)
    {
 
-      for (int i = 0; i < get_count(); i++)
+      for (::i32 i = 0; i < get_count(); i++)
       {
 
          if (pred(this->m_begin[i]))
@@ -1412,7 +1412,7 @@ public:
 
       ::collection::count c = 0;
 
-      for (int i = 0; i < get_count(); i++)
+      for (::i32 i = 0; i < get_count(); i++)
       {
 
          if (pred(this->m_begin[i]))
@@ -1435,7 +1435,7 @@ public:
 
       ::collection::count cTotal = 0;
 
-      for (int i = 0; i < get_count();)
+      for (::i32 i = 0; i < get_count();)
       {
 
          if (!pred(this->m_begin[i]))
@@ -1447,9 +1447,9 @@ public:
          else
          {
 
-            int iStart = i;
+            ::i32 iStart = i;
 
-            int iCount = 1;
+            ::i32 iCount = 1;
 
             i++;
 
@@ -2675,7 +2675,7 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE
 //
 //      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 //
-//      ///for(int i = 0; i < nNewSize - this->size(); i++)
+//      ///for(::i32 i = 0; i < nNewSize - this->size(); i++)
 //      // get rid of old stuff (note: no destructors called)
 //      MEMORY::free(this->m_begin);
 //
@@ -3729,7 +3729,7 @@ struct default_constructor_t{};
 
 
 
-//template < typename ARRAY_BASE, int t_preallocated_array_size = 5 >
+//template < typename ARRAY_BASE, ::i32 t_preallocated_array_size = 5 >
 //class preallocated_array_base :
 //   public ARRAY_BASE
 //{

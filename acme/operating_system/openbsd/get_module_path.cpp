@@ -18,7 +18,7 @@ class kvm_type
 {
 public:
 
-   char m_errbuf[_POSIX2_LINE_MAX];
+   ::i8 m_errbuf[_POSIX2_LINE_MAX];
 
    kvm_t * m_pkvm;
    
@@ -61,7 +61,7 @@ public:
    }
    
 
-   kinfo_file * kvm_getfiles_by_pid(pid_t pid, int * piCount)
+   kinfo_file * kvm_getfiles_by_pid(pid_t pid, ::i32 * piCount)
    {
 
        auto pinfofile = kvm_getfiles(m_pkvm, KERN_FILE_BYPID, pid, sizeof(struct kinfo_file), piCount); 
@@ -90,11 +90,11 @@ bool process_contains_module(pid_t pid, const ::file::path & path)
    if (kvm.kvm_openfiles()) 
    {
    
-      int iCount = 0;
+      ::i32 iCount = 0;
    
       auto pfile = kvm.kvm_getfiles_by_pid(getpid(), &iCount);
 	
-      for (int i = 0; i < iCount; i++) 
+      for (::i32 i = 0; i < iCount; i++) 
       {
       
          if (pfile[i].fd_fd == KERN_FILE_TEXT) 

@@ -124,13 +124,13 @@ public:
 };
 
 
-using i32_array_2d = ::array_2d < int, int >;
+using i32_array_2d = ::array_2d < ::i32, ::i32 >;
 
 
-using float_array_2d = ::array_2d < float, float >;
+using f32_array_2d = ::array_2d < ::f32, ::f32 >;
 
 
-using double_array_2d = ::array_2d < double, double >;
+using f64_array_2d = ::array_2d < ::f64, ::f64 >;
 
 
 

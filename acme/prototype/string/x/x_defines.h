@@ -4,7 +4,7 @@
     Do not edit it with hands.
 */
 
-// macroses to access char properties
+// macroses to access ::i8 properties
 #define CHAR_PROP(c) (arr_CharInfo[ (arr_idxCharInfo[(c)>>4]<<4) + ((c) & (0xFFFF>>(16-4)))])
 #define CHAR_PROP2(c) (arr_CharInfo2[ (arr_idxCharInfo2[(c)>>4]<<4) + ((c) & (0xFFFF>>(16-4)))])
 #define TITLE_CASE(c) ((c) & (1 << 15))

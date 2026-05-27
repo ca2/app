@@ -72,7 +72,7 @@ namespace subsystem
        * @param port port to connect.
        * @throws SocketException on fail.
        */
-      virtual void connect(const ::scoped_string & scopedstrHost, unsigned short port) = 0;
+      virtual void connect(const ::scoped_string & scopedstrHost, ::u16 port) = 0;
       /**
        * Connects to remote host.
        * @param paddress address to connect.
@@ -112,7 +112,7 @@ namespace subsystem
        * @param backlog max count of connections in pool.
        * @throws SocketException on fail.
        */
-      virtual void listen(int backlog) = 0;
+      virtual void listen(::i32 backlog) = 0;
 
       /**
        * Accepts incoming connection.
@@ -130,7 +130,7 @@ namespace subsystem
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
-      virtual int send(const char *data, int size, int flags = 0) = 0;
+      virtual ::i32 send(const_char_pointer data, ::i32 size, ::i32 flags = 0) = 0;
       /**
        * Receives data from socket.
        *
@@ -140,9 +140,9 @@ namespace subsystem
        * @return count of read bytes.
        * @throws ::io_exception on fail.
        */
-      virtual int recv(char *buffer, int size, int flags = 0) = 0;
+      virtual ::i32 recv(char_pointer buffer, ::i32 size, ::i32 flags = 0) = 0;
 
-      virtual int available() = 0;
+      virtual ::i32 available() = 0;
 
       /**
        * Returns local address of socket (for listening socket).
@@ -156,8 +156,8 @@ namespace subsystem
       virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() = 0;
 
       /* Auxiliary */
-      virtual void setSocketOptions(int level, int name, void *value, int len) = 0;
-      virtual void getSocketOptions(int level, int name, void *value, int *len) = 0;
+      virtual void setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len) = 0;
+      virtual void getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len) = 0;
 
       virtual void setRcvTimeO(const class ::time &timeTimeout) = 0;
       virtual void setSndTimeO(const class ::time &timeTimeout) = 0;
@@ -228,7 +228,7 @@ namespace subsystem
        * @param port port to connect.
        * @throws SocketException on fail.
        */
-      void connect(const ::scoped_string & scopedstrHost, unsigned short port)  override
+      void connect(const ::scoped_string & scopedstrHost, ::u16 port)  override
       {
 
          m_psocketipv4->connect(scopedstrHost, port);
@@ -303,7 +303,7 @@ namespace subsystem
        * @param backlog max count of connections in pool.
        * @throws SocketException on fail.
        */
-      void listen(int backlog) override
+      void listen(::i32 backlog) override
       {
 
          m_psocketipv4->listen(backlog);
@@ -331,7 +331,7 @@ namespace subsystem
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
-      int send(const char *data, int size, int flags = 0) override
+      ::i32 send(const_char_pointer data, ::i32 size, ::i32 flags = 0) override
       {
 
          return m_psocketipv4->send(data, size, flags);
@@ -346,14 +346,14 @@ namespace subsystem
        * @return count of read bytes.
        * @throws ::io_exception on fail.
        */
-      int recv(char *buffer, int size, int flags = 0) override
+      ::i32 recv(char_pointer buffer, ::i32 size, ::i32 flags = 0) override
       {
 
          return m_psocketipv4->recv(buffer, size, flags);
 
       }
 
-      int available() override
+      ::i32 available() override
       {
 
          return m_psocketipv4->available();
@@ -382,13 +382,13 @@ namespace subsystem
       }
 
       /* Auxiliary */
-      void setSocketOptions(int level, int name, void *value, int len) override
+      void setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len) override
       {
 
          m_psocketipv4->setSocketOptions(level, name, value, len);
 
       }
-      void getSocketOptions(int level, int name, void *value, int *len) override
+      void getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len) override
       {
 
          m_psocketipv4->getSocketOptions(level, name, value, len);

@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < typename ENUM, int m_iBitCount >
+template < typename ENUM, ::i32 m_iBitCount >
 class enum_bitset
 {
 public:

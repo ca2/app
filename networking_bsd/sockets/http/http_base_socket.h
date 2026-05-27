@@ -36,7 +36,7 @@ namespace sockets
    public:
 
 
-      int m_iContentLength;
+      ::i32 m_iContentLength;
 
 
       http_base_socket();
@@ -58,9 +58,9 @@ namespace sockets
       virtual void OnResponseComplete();
 
       //string set_cookie(
-      //const_char_pointer name,
+      //const_char_pointer pszName,
       //::payload payload,
-      //int iExpire,
+      //::i32 iExpire,
       //const ::file::path & path,
       //const_char_pointer domain,
       //bool bSecure);

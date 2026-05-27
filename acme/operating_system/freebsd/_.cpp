@@ -75,7 +75,7 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 
 
 
-// int get_processor_count()
+// ::i32 get_processor_count()
 // {
 
 //    return sysconf(_SC_NPROCESSORS_ONLN);

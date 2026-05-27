@@ -31,12 +31,12 @@
 //----------------------------------------------------------------------------
 // Does nothing, but should make a program using it happy.
 
-static int PreviousBufsize = 4096;
+static ::i32 PreviousBufsize = 4096;
 
-unsigned
-setgraphbufsize (unsigned bufsize)
+::u32
+setgraphbufsize (::u32 bufsize)
 {
-  unsigned u;
+  ::u32 u;
   u = PreviousBufsize;
   PreviousBufsize = bufsize;
   return (u);

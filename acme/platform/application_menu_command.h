@@ -20,10 +20,10 @@
    public: // re-implementations only
       
       
-      int * m_pestatus;
+      ::i32 * m_pestatus;
       
       
-      application_menu_command(int* pestatus);
+      application_menu_command(::i32* pestatus);
       
       virtual void enable(bool bOn = true);
       

@@ -41,7 +41,7 @@ namespace typeface_fontconfig
       if (file)
       {
 
-         path = (const char *)file;
+         path = (const_char_pointer )file;
       }
 
       return path;

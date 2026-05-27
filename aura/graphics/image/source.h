@@ -13,7 +13,7 @@ namespace image
 
 
    template < typename IMAGE_SOURCE_POINTER >
-   concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::i32_size & size, const ::double_size & sizeDst, enum_image_selection eimageselection)
+   concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::i32_size & size, const ::f64_size & sizeDst, enum_image_selection eimageselection)
    {
 
 
@@ -36,7 +36,7 @@ namespace image
       virtual image_pointer image_source_image(const ::i32_size & size) = 0;
 
 
-      virtual ::i32_size image_source_size(const ::double_size & sizeTarget, enum_image_selection eimageselection) const = 0;
+      virtual ::i32_size image_source_size(const ::f64_size & sizeTarget, enum_image_selection eimageselection) const = 0;
       virtual ::i32_size image_source_size() const = 0;
 
 
@@ -50,7 +50,7 @@ namespace image
 
 
       enum_sub_image                      m_esubimage;
-      ::double_rectangle                     m_rectangleSubImage;
+      ::f64_rectangle                     m_rectangleSubImage;
       ::pointer<image_source_interface>  m_pimagesource;
 
 
@@ -89,7 +89,7 @@ namespace image
       }
 
 
-      image_source(image_source_interface * pimagesource, const ::double_rectangle & rectangleSubImage, enum_sub_image esubimage = e_sub_image_coordinates) :
+      image_source(image_source_interface * pimagesource, const ::f64_rectangle & rectangleSubImage, enum_sub_image esubimage = e_sub_image_coordinates) :
          m_esubimage(esubimage),
          m_pimagesource(pimagesource),
          m_rectangleSubImage(rectangleSubImage)
@@ -98,7 +98,7 @@ namespace image
       }
 
 
-      ::double_rectangle source_rectangle() const
+      ::f64_rectangle source_rectangle() const
       {
 
          if (m_esubimage == e_sub_image_coordinates)
@@ -106,7 +106,7 @@ namespace image
 
             auto size = m_pimagesource->image_source_size();
 
-            return ::double_rectangle(
+            return ::f64_rectangle(
                m_rectangleSubImage.left * size.cx,
                m_rectangleSubImage.top * size.cy,
                m_rectangleSubImage.right * size.cx,
@@ -122,7 +122,7 @@ namespace image
          else
          {
 
-            return ::double_rectangle(m_pimagesource->image_source_size());
+            return ::f64_rectangle(m_pimagesource->image_source_size());
 
          }
 

@@ -59,7 +59,7 @@ namespace graphics
 
    //   color.set_hls(m_hls);
 
-   //   color.m_uchOpacity = 255;
+   //   color.m_u8Opacity = 255;
 
    //   return color;
 

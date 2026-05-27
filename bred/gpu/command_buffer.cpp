@@ -91,7 +91,7 @@ namespace gpu
    }
 
 
-   void command_buffer::bind_slot_set(int iSet, ::gpu::binding_slot_set * pgpubindingslotset)
+   void command_buffer::bind_slot_set(::i32 iSet, ::gpu::binding_slot_set * pgpubindingslotset)
    {
 
       auto pgpucontext = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;
@@ -282,21 +282,21 @@ namespace gpu
    //}
 
 
-   void command_buffer::draw_int_a_count(int a)
+   void command_buffer::draw_int_a_count(::i32 a)
    {
 
 
    }
 
 
-   void command_buffer::draw_vertexes(int iVertexCount)
+   void command_buffer::draw_vertexes(::i32 iVertexCount)
    {
 
 
    }
 
 
-   void command_buffer::draw_indexes(int iIndexCount)
+   void command_buffer::draw_indexes(::i32 iIndexCount)
    {
 
 

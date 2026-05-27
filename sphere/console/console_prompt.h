@@ -20,8 +20,8 @@ namespace console
       prompt_impact & impact(bool bShow = true, bool bCreateMini = true);
       
 
-      int getch();
-      void ungetch(int c);
+      ::i32 getch();
+      void ungetch(::i32 c);
 
 
    };

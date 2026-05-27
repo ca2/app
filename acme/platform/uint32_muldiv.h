@@ -37,7 +37,7 @@
                         // it prolog/verbatim/epilog.
                         // So use the Windows function for now
         #if 0
-        INLINE int MulDiv32(int a,int b,int ca)
+        INLINE ::i32 MulDiv32(::i32 a,::i32 b,::i32 ca)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
@@ -106,15 +106,15 @@
         //  Use C9 ::i64 support for Daytona RISC platforms.
         //
 
-        INLINE int MulDiv32( int a, int b, int ca )
+        INLINE ::i32 MulDiv32( ::i32 a, ::i32 b, ::i32 ca )
         {
-           return (int)(((::i64)a * (::i64)b) / (::i64)ca);
+           return (::i32)(((::i64)a * (::i64)b) / (::i64)ca);
         }
 
 
         INLINE ::u32 MulDivRD( ::u32 a, ::u32 b, ::u32 ca )
         {
-           return (int)(((::u64)a * (::u64)b) / (::u64)ca);
+           return (::i32)(((::u64)a * (::u64)b) / (::u64)ca);
         }
 
 
@@ -126,7 +126,7 @@
 
         INLINE ::u32 MulDivRU( ::u32 a, ::u32 b, ::u32 ca )
         {
-           return (int)((((::u64) a * (::i64)b) + ca -1) / (::i64)ca);
+           return (::i32)((((::u64) a * (::i64)b) + ca -1) / (::i64)ca);
         }
 
     #endif
@@ -134,9 +134,9 @@
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 
-inline int MulDiv32(int a, int b, int ca)
+inline ::i32 MulDiv32(::i32 a, ::i32 b, ::i32 ca)
 {
-    return (int) (((::i64) a * (::i64) b) / (::i64) ca);
+    return (::i32) (((::i64) a * (::i64) b) / (::i64) ca);
 }
 
 inline ::u32 MulDivRD(::u32 a, ::u32 b, ::u32 ca)
@@ -171,11 +171,11 @@ inline ::u32 MulDivRU( ::u32 a, ::u32 b, ::u32 ca )
     //       to get 32-bit instructions.
     //
 
-    inline int MulDiv32(int a,int b,int ca)
+    inline ::i32 MulDiv32(::i32 a,::i32 b,::i32 ca)
     {
-        _asm _emit 0x66 _asm    mov     ax,unsigned short ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,unsigned short ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,unsigned short ptr ca   //  mov  ecx, ca
+        _asm _emit 0x66 _asm    mov     ax,::u16 ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,::u16 ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,::u16 ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    imul    bx              //  imul ebx
         _asm _emit 0x66 _asm    idiv    cx              //  idiv ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16
@@ -188,9 +188,9 @@ inline ::u32 MulDivRU( ::u32 a, ::u32 b, ::u32 ca )
 
     INLINE ::u32 MulDivRN(::u32 a,::u32 b,::u32 ca)
     {
-        _asm _emit 0x66 _asm    mov     ax,unsigned short ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,unsigned short ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,unsigned short ptr ca   //  mov  ecx, ca
+        _asm _emit 0x66 _asm    mov     ax,::u16 ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,::u16 ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,::u16 ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    shr     bx,1            //  sar  ebx,1
@@ -207,9 +207,9 @@ inline ::u32 MulDivRU( ::u32 a, ::u32 b, ::u32 ca )
 
     INLINE ::u32 MulDivRU(::u32 a,::u32 b,::u32 ca)
     {
-        _asm _emit 0x66 _asm    mov     ax,unsigned short ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,unsigned short ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,unsigned short ptr ca   //  mov  ecx, ca
+        _asm _emit 0x66 _asm    mov     ax,::u16 ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,::u16 ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,::u16 ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    dec     bx              //  dec  ebx
@@ -227,9 +227,9 @@ inline ::u32 MulDivRU( ::u32 a, ::u32 b, ::u32 ca )
 
     INLINE ::u32 MulDivRD(::u32 a,::u32 b,::u32 ca)
     {
-        _asm _emit 0x66 _asm    mov     ax,unsigned short ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,unsigned short ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,unsigned short ptr ca   //  mov  ecx, ca
+        _asm _emit 0x66 _asm    mov     ax,::u16 ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,::u16 ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,::u16 ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    div     cx              //  div  ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16

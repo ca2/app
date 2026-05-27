@@ -61,7 +61,7 @@ extern "C" {
 #if defined(STRICTZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
     from (void *) without cast */
-typedef struct TagzipFile__ { int unused; } zipFile__;
+typedef struct TagzipFile__ { ::i32 unused; } zipFile__;
 typedef zipFile__ *zipFile;
 #else
 typedef voidp zipFile;
@@ -86,12 +86,12 @@ typedef voidp zipFile;
 /* tm_zip contain date/time info */
 typedef struct tm_zip_s
 {
-   unsigned int tm_sec;            /* seconds after the minute - [0,59] */
-   unsigned int tm_min;            /* minutes after the hour - [0,59] */
-   unsigned int tm_hour;           /* hours since midnight - [0,23] */
-   unsigned int tm_mday;           /* day of the month - [1,31] */
-   unsigned int tm_mon;            /* months since January - [0,11] */
-   unsigned int tm_year;           /* years - [1980..2044] */
+   ::u32 tm_sec;            /* seconds after the minute - [0,59] */
+   ::u32 tm_min;            /* minutes after the hour - [0,59] */
+   ::u32 tm_hour;           /* hours since midnight - [0,23] */
+   ::u32 tm_mday;           /* day of the month - [1,31] */
+   ::u32 tm_mon;            /* months since January - [0,11] */
+   ::u32 tm_year;           /* years - [1980..2044] */
 } tm_zip;
 
 typedef struct
@@ -104,14 +104,14 @@ typedef struct
    uptr       external_fa;    /* external file attributes        4 bytes */
 } zip_fileinfo;
 
-typedef const char* zipcharpc;
+typedef const_char_pointer zipcharpc;
 
 
 #define APPEND_STATUS_CREATE        (0)
 #define APPEND_STATUS_CREATEAFTER   (1)
 #define APPEND_STATUS_ADDINZIP      (2)
 
-extern zipFile CLASS_DECL_ACME zipOpen OF((const char *pathname, int append));
+extern zipFile CLASS_DECL_ACME zipOpen OF((const_char_pointer pszPathname, ::i32 append));
 /*
   create a zipfile.
      pathname contain on Windows XP a filename like "ca:\\zlib\\zlib113.zip" or on
@@ -131,21 +131,21 @@ extern zipFile CLASS_DECL_ACME zipOpen OF((const char *pathname, int append));
    Of couse, you can use RAW reading and writing to copy the file you did not want delte
 */
 
-extern zipFile CLASS_DECL_ACME zipOpen2 OF((const char *pathname,
-      int append,
+extern zipFile CLASS_DECL_ACME zipOpen2 OF((const_char_pointer pszPathname,
+      ::i32 append,
       zipcharpc* globalcomment,
       zlib_filefunc_def* pzlib_filefunc_def));
 
-extern int CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
-      const char* filename,
+extern ::i32 CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
+      const_char_pointer pszFilename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
-      unsigned int size_extrafield_local,
+      ::u32 size_extrafield_local,
       const void * extrafield_global,
-      unsigned int size_extrafield_global,
-      const char* comment,
-      int method,
-      int level));
+      ::u32 size_extrafield_global,
+      const_char_pointer comment,
+      ::i32 method,
+      ::i32 level));
 /*
   open a file in the ZIP for writing.
   filename : the filename in zip (if nullptr, '-' without quote will be used
@@ -160,38 +160,38 @@ extern int CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
 */
 
 
-extern int CLASS_DECL_ACME zipOpenNewFileInZip2 OF((zipFile file,
-      const char* filename,
+extern ::i32 CLASS_DECL_ACME zipOpenNewFileInZip2 OF((zipFile file,
+      const_char_pointer pszFilename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
-      unsigned int size_extrafield_local,
+      ::u32 size_extrafield_local,
       const void * extrafield_global,
-      unsigned int size_extrafield_global,
-      const char* comment,
-      int method,
-      int level,
-      int raw));
+      ::u32 size_extrafield_global,
+      const_char_pointer comment,
+      ::i32 method,
+      ::i32 level,
+      ::i32 raw));
 
 /*
   Same than zipOpenNewFileInZip, except if raw=1, we write raw file
  */
 
-extern int CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
-      const char* filename,
+extern ::i32 CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
+      const_char_pointer pszFilename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
-      unsigned int size_extrafield_local,
+      ::u32 size_extrafield_local,
       const void * extrafield_global,
-      unsigned int size_extrafield_global,
-      const char* comment,
-      int method,
-      int level,
-      int raw,
-      int windowBits,
-      int memLevel,
-      int strategy,
-      const char* password,
-      unsigned int  crcForCtypting));
+      ::u32 size_extrafield_global,
+      const_char_pointer comment,
+      ::i32 method,
+      ::i32 level,
+      ::i32 raw,
+      ::i32 windowBits,
+      ::i32 memLevel,
+      ::i32 strategy,
+      const_char_pointer password,
+      ::u32  crcForCtypting));
 
 /*
   Same than zipOpenNewFileInZip2, except
@@ -201,20 +201,20 @@ extern int CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
  */
 
 
-extern int CLASS_DECL_ACME zipWriteInFileInZip OF((zipFile file,
+extern ::i32 CLASS_DECL_ACME zipWriteInFileInZip OF((zipFile file,
       const void * buf,
-      unsigned int len));
+      ::u32 len));
 /*
   write data in the zipfile
 */
 
-extern int CLASS_DECL_ACME zipCloseFileInZip OF((zipFile file));
+extern ::i32 CLASS_DECL_ACME zipCloseFileInZip OF((zipFile file));
 /*
   close the current file in the zipfile
 */
 
 
-extern int CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
+extern ::i32 CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
       uptr uncompressed_size,
       uptr crc32));
 /*
@@ -223,8 +223,8 @@ extern int CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
   uncompressed_size and crc32 are value for the uncompressed i32_size
 */
 
-extern int CLASS_DECL_ACME zipClose OF((zipFile file,
-      const char* global_comment));
+extern ::i32 CLASS_DECL_ACME zipClose OF((zipFile file,
+      const_char_pointer global_comment));
 /*
   close the zipfile
 */

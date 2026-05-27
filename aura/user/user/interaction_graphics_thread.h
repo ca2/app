@@ -75,7 +75,7 @@ namespace user
       //bool                                      m_bUpdateBufferUpdateWindowPending;
 
       bool                                      m_bFps;
-      int m_iRedrawMessageCount;
+      ::i32 m_iRedrawMessageCount;
 
 
       graphics_thread();

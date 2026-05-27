@@ -74,7 +74,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(double_point_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(f64_point_array& pointa) override;
 
       virtual bool has_action_hover();
 
@@ -160,8 +160,8 @@ namespace user
       ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
       void SetHorizontalExtent(::u32 nExtent);
       ::u32 GetHorizontalExtent();
-      int SetDroppedWidth(::u32 nWidth);
-      int GetDroppedWidth();
+      ::i32 SetDroppedWidth(::u32 nWidth);
+      ::i32 GetDroppedWidth();
 
 //#if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
 //      bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
@@ -177,16 +177,16 @@ namespace user
       ::collection::index SetItemData(::collection::index nIndex, uptr dwItemData);
       void * GetItemDataPtr(::collection::index nIndex);
       ::collection::index SetItemDataPtr(::collection::index nIndex, void * pData);
-      ::collection::index GetLBText(::collection::index nIndex, char * pszText);
+      ::collection::index GetLBText(::collection::index nIndex, char_pointer pszText);
 
       void GetLBText(::collection::index nIndex, string & rString);
       character_count GetLBTextLen(::collection::index nIndex);
 
-      int SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight);
-      int GetItemHeight(::collection::index nIndex);
+      ::i32 SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight);
+      ::i32 GetItemHeight(::collection::index nIndex);
       ::collection::index FindStringExact(::collection::index nIndexStart, const ::scoped_string & scopedstrFind);
 
-      int SetExtendedUI(bool bExtended = true);
+      ::i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
       void GetDroppedControlRect(::i32_rectangle * prectangle);
 
@@ -223,7 +223,7 @@ namespace user
 //
 //      virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
 //
-//      virtual int CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
+//      virtual ::i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
 //
 //      virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
 //

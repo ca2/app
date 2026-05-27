@@ -17,7 +17,7 @@ compress::~compress()
 }
 
 
-void compress::set_level(int iLevel)
+void compress::set_level(::i32 iLevel)
 {
 
    throw ::interface_only();

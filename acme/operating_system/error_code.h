@@ -58,7 +58,7 @@ namespace operating_system
 
 } // namespace operating_system
 
-//inline error_code errno_error_code(int iErrNo)
+//inline error_code errno_error_code(::i32 iErrNo)
 //{
 //
 //   return { e_error_code_type_errno, iErrNo };

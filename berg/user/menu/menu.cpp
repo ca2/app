@@ -476,7 +476,7 @@ namespace user
 
 
 
-   ::menu::item* menu::GetSubMenu(int i)
+   ::menu::item* menu::GetSubMenu(::i32 i)
    {
 
       return get_menu_item()->m_pmenuitema->element_at(i);
@@ -582,7 +582,7 @@ namespace user
    }
 
 
-   void menu::set_minimum_width(int iWidth)
+   void menu::set_minimum_width(::i32 iWidth)
    {
 
       m_sizeMinimum.cx = iWidth;
@@ -655,7 +655,7 @@ namespace user
       if (!is_window())
       {
 
-         //         int iStyleEx = 0;
+         //         ::i32 iStyleEx = 0;
          //
          //         if (puiParent == nullptr)
          //         {
@@ -859,11 +859,11 @@ namespace user
 
    //   auto rectanglePadding = get_padding(pstyle);
 
-   //   //int iElementPadding = rectanglePadding.left;
+   //   //::i32 iElementPadding = rectanglePadding.left;
 
-   //   int x = (int) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
+   //   ::i32 x = (::i32) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 
-   //   int y = (int) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
+   //   ::i32 y = (::i32) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 
    //   class calc_size calcsize;
 
@@ -883,7 +883,7 @@ namespace user
 
    //   }
 
-   //   int yClose = y;
+   //   ::i32 yClose = y;
 
    //   m_iaColumnWidth.set_size(1);
 
@@ -895,12 +895,12 @@ namespace user
 
    //   index iColumn = 0;
 
-   //   for (int i = 0; i < pmenuitema->get_size(); i++)
+   //   for (::i32 i = 0; i < pmenuitema->get_size(); i++)
    //   {
 
    //      string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-   //      pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+   //      pmenuitema->element_at(i)->m_iColumn = (::i32) iColumn;
 
    //      pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
@@ -937,12 +937,12 @@ namespace user
 
    //   }
 
-   //   m_size.cx = (int) (m_iaColumnWidth.get_sum()
+   //   m_size.cx = (::i32) (m_iaColumnWidth.get_sum()
    //               + rectangleMargin.left + rectangleMargin.right
    //               + rectangleBorder.left + rectangleBorder.right
    //               + rectanglePadding.left + rectanglePadding.right);
 
-   //   m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
+   //   m_size.cy = (::i32) (m_iaColumnHeight.get_maximum_value()
    //               + rectangleMargin.top + rectangleMargin.bottom
    //               + rectangleBorder.top + rectangleBorder.bottom
    //               + rectanglePadding.top + rectanglePadding.bottom);
@@ -956,7 +956,7 @@ namespace user
 
    //   ::pointer<::berg::style>pbergstyle = pstyle;
 
-   //   for (int i = 0; i < iItemCount; i++)
+   //   for (::i32 i = 0; i < iItemCount; i++)
    //   {
 
    //      ::menu::item * pitem = pmenuitema->element_at(i);
@@ -1098,7 +1098,7 @@ namespace user
       //if (crBackground.is_translucent())
       //{
 
-      //   ::double_rectangle rectangleClip;
+      //   ::f64_rectangle rectangleClip;
 
       //   pgraphics->get_clip_box(rectangleClip);
 
@@ -1604,7 +1604,7 @@ namespace user
          //{
          //   ::message::command commandui(this);
          //   commandui.m_pitema          = pmenuitema;
-         //   for(int i = 0; i < pmenuitema->get_size(); i++)
+         //   for(::i32 i = 0; i < pmenuitema->get_size(); i++)
          //   {
          //
          //      commandui.m_iIndex    = i;
@@ -1616,7 +1616,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(puserinteractionParent->on_command(0,
-         //          MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
+         //          MAKELONG((::i32)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1672,7 +1672,7 @@ namespace user
    //       {
    //          ::message::command commandui(this);
    //          commandui.m_pitema          = pmenuitema;
-   //          for(int i = 0; i < pmenuitema->get_size(); i++)
+   //          for(::i32 i = 0; i < pmenuitema->get_size(); i++)
    //          {
 
    //             commandui.m_iIndex    = i;
@@ -1684,7 +1684,7 @@ namespace user
    //             {
    //                /*
    //                 if(puserinteractionParent->on_command(0,
-   //                 MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
+   //                 MAKELONG((::i32)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */
@@ -2230,11 +2230,11 @@ namespace user
 
       auto rectanglePadding = get_padding(pstyle);
 
-      //int iElementPadding = rectanglePadding.left;
+      //::i32 iElementPadding = rectanglePadding.left;
 
-      int x = (int)(rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
+      ::i32 x = (::i32)(rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 
-      int y = (int)(rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
+      ::i32 y = (::i32)(rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 
       //class calc_size calcsize;
 
@@ -2258,7 +2258,7 @@ namespace user
 
       }
 
-      int yClose = y;
+      ::i32 yClose = y;
 
       m_iaColumnWidth.set_size(1);
 
@@ -2270,11 +2270,11 @@ namespace user
 
       ::collection::index iColumn = 0;
 
-      int iMaximumButtonHeight = 0;
+      ::i32 iMaximumButtonHeight = 0;
 
       // Calculate buttons sizes
 
-      for (int i = 0; i < pmenuitema->get_size(); i++)
+      for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2309,11 +2309,11 @@ namespace user
 
       }
 
-      int iSeparatorHeight = iMaximumButtonHeight / 3;
+      ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
 
-      int iRow = 0;
+      ::i32 iRow = 0;
 
-      for (int i = 0; i < pmenuitema->get_size(); i++)
+      for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2331,7 +2331,7 @@ namespace user
 
          }
 
-         pmenuitem->m_iColumn = (int)iColumn;
+         pmenuitem->m_iColumn = (::i32)iColumn;
 
          pmenuitem->m_iRow = iRow;
 
@@ -2369,7 +2369,7 @@ namespace user
 
       }
 
-      for (int i = 0; i < pmenuitema->get_size(); i++)
+      for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2385,12 +2385,12 @@ namespace user
 
       //::i32_size sizeSeparator;
 
-      //for (int i = 0; i < pmenuitema->get_size(); i++)
+      //for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       //{
 
       //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-      //   pmenuitema->element_at(i)->m_iColumn = (int)iColumn;
+      //   pmenuitema->element_at(i)->m_iColumn = (::i32)iColumn;
 
       //   auto puserinteraction = pmenuitema->element_at(i)->m_puserinteraction;
 
@@ -2452,12 +2452,12 @@ namespace user
 
       //}
 
-      m_size.cx = (int)(m_iaColumnWidth.get_sum()
+      m_size.cx = (::i32)(m_iaColumnWidth.get_sum()
          + rectangleMargin.left + rectangleMargin.right
          + rectangleBorder.left + rectangleBorder.right
          + rectanglePadding.left + rectanglePadding.right);
 
-      m_size.cy = (int)(m_iaColumnHeight.get_maximum_value()
+      m_size.cy = (::i32)(m_iaColumnHeight.get_maximum_value()
          + rectangleMargin.top + rectangleMargin.bottom
          + rectangleBorder.top + rectangleBorder.bottom
          + rectanglePadding.top + rectanglePadding.bottom);
@@ -2470,7 +2470,7 @@ namespace user
 
       ::pointer<::berg::style>pbergstyle = pstyle;
 
-      for (int i = 0; i < iItemCount; i++)
+      for (::i32 i = 0; i < iItemCount; i++)
       {
 
          ::menu::item* pitem = pmenuitema->element_at(i);
@@ -2659,7 +2659,7 @@ namespace user
    //
    //      ::user::style_pointer pstyle;
    //
-   //      for (int iItem = 0; iItem < m_pmenuitem->m_pmenuitema->get_size(); iItem++)
+   //      for (::i32 iItem = 0; iItem < m_pmenuitem->m_pmenuitema->get_size(); iItem++)
    //      {
    //
    //         auto pitem = m_pmenuitem->m_pmenuitema->element_at(iItem);

@@ -46,8 +46,8 @@ namespace experience
       bool                                   m_bShowAttempt;
       bool                                   m_bDrag;
       i32_point                              m_pointDrag;
-      int                                    m_iDefaultButtonMargin;
-      int                                    m_iDefaultButtonSize;
+      ::i32                                    m_iDefaultButtonMargin;
+      ::i32                                    m_iDefaultButtonSize;
       ::i32_size                             m_sizeButtonDefault;
       ::write_text::font_pointer             m_pfontMarlett;
 
@@ -112,13 +112,13 @@ namespace experience
 
       virtual ::i32_rectangle get_button_margin(enum_button ebutton);
 
-      virtual int calculate_button_size(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32 calculate_button_size(::draw2d::graphics_pointer & pgraphics);
 
-      virtual int calculate_control_box_width(::draw2d::graphics_pointer & pgraphics);
+      virtual ::i32 calculate_control_box_width(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
 
-      int auto_hide_threshold_height() override;
+      ::i32 auto_hide_threshold_height() override;
 
       virtual void _layout_button(enum_button ebutton, ::i32_rectangle & rectangle);
       virtual bool should_show_button(enum_button ebutton) const;

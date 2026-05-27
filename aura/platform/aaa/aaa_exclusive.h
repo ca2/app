@@ -15,13 +15,13 @@ namespace aura
 
 #ifdef WINDOWS
 
-      unsigned int                   m_dwLastError;
+      ::u32                   m_dwLastError;
       bool                    m_bResourceException;
 
 #else
 
-      int                     m_iFile;
-      int                     m_iLock;
+      ::i32                     m_iFile;
+      ::i32                     m_iLock;
 
 #endif
 

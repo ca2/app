@@ -126,7 +126,7 @@
 //    for (auto & pnanobutton : m_pinterface->m_nanobuttona)
 //    {
 //
-//       char ch = pnanobutton->m_chLetter;
+//       ::i8 ch = pnanobutton->m_chLetter;
 //
 //       m_console.m_mapCharIndex[character_tolower(ch)] = i;
 //
@@ -183,7 +183,7 @@
 //
 //       printf("):");
 //
-//       char ch;
+//       ::i8 ch;
 //
 //       auto iReturnCount = scanf("%c", &ch);
 //

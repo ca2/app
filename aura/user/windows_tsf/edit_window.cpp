@@ -321,7 +321,7 @@ namespace tsf
            }
    #endif
 
-           int i;
+           ::i32 i;
 
            for (i = 0; i < NUM_SUPPORTED_ATTRS; i++)
            {
@@ -529,7 +529,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //lresult edit_window::_OnCommand(unsigned short wID, unsigned short wCmd, HWND hWnd)
+   //lresult edit_window::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
    //{
    //    switch(wID)
    //    {
@@ -850,7 +850,7 @@ namespace tsf
 
    void edit_window::_UpdateStatusBar(void)
    {
-       //int     nParts[2];
+       //::i32     nParts[2];
        //HDC     hdc;
        //HFONT   hFont;
        //::i32_size    size;
@@ -912,7 +912,7 @@ namespace tsf
 
    void edit_window::_ClearRequestedAttributes(void)
    {
-       int i;
+       ::i32 i;
 
        for (i = 0; i < NUM_SUPPORTED_ATTRS; i++)
        {
@@ -1019,7 +1019,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1154,7 +1154,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1265,7 +1265,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1374,7 +1374,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            comptr <ITfRangeACP>pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);

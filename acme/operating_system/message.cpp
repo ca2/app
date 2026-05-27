@@ -203,7 +203,7 @@ namespace user
    CLASS_DECL_ACME const_char_pointer get_message_text(::user::enum_message eusermessage)
    {
 
-      auto iFind = (int)eusermessage;
+      auto iFind = (::i32)eusermessage;
 
       auto pmessagename =
          tuple_array_find(

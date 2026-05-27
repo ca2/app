@@ -36,7 +36,7 @@
 //----------------------------------------------------------------------------
 
 void
-detectgraph (int *graphdriver, int *graphmode)
+detectgraph (::i32 *graphdriver, ::i32 *graphmode)
 {
   gint ScreenWidth, ScreenHeight;
   ScreenWidth = 800;

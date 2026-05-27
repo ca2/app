@@ -98,7 +98,7 @@ namespace coding
 
                update_designed_for_rare_calling();
 
-               for (int i = 0; i < 3 * 30; i++)
+               for (::i32 i = 0; i < 3 * 30; i++)
                {
 
                   preempt(333_ms);
@@ -128,7 +128,7 @@ namespace coding
       ::string str1;
       ::string_array straPinned;
       ::string strElapsed;
-      int iMinute = 0;
+      ::i32 iMinute = 0;
 
       if (get_document())
       {
@@ -138,7 +138,7 @@ namespace coding
          if (pintegration)
          {
 
-            iMinute = (int) ( (pintegration->get_build_elapsed_time() .m_iSecond + 30) / 60);
+            iMinute = (::i32) ( (pintegration->get_build_elapsed_time() .m_iSecond + 30) / 60);
 
 
             if (iMinute <= 0)
@@ -210,7 +210,7 @@ namespace coding
    //      erase_children();
    //      //m_papp->m_pintegration->m_pimpactinterface = this;
    //
-   //      int y = 10;
+   //      ::i32 y = 10;
    //
    //      constructø(m_pfontNormal);
    //
@@ -245,7 +245,7 @@ namespace coding
    //
    //      m_pplaineditRepositoryPath->create_control(this, "repository_path");
    //
-   //      m_pplaineditRepositoryPath->place(::int_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 10, y + 10, 400, 28));
+   //      m_pplaineditRepositoryPath->place(::i32_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 10, y + 10, 400, 28));
    //
    //      m_pplaineditRepositoryPath->display();*/
    //
@@ -259,7 +259,7 @@ namespace coding
    //
    //      //m_pbuttonBrowseRepositoryPath->create_control(this, "browse_repository_path");
    //
-   //      //m_pbuttonBrowseRepositoryPath->place(::int_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 420, y, 200, 40));
+   //      //m_pbuttonBrowseRepositoryPath->place(::i32_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 420, y, 200, 40));
    //
    //      //m_pbuttonBrowseRepositoryPath->set_window_text("Browse Repository Path");
    //
@@ -271,9 +271,9 @@ namespace coding
    //
    //      m_pbuttonStartBuild->create_control(this, "start_build");
    //
-   //      //int yStartBuild = y;
+   //      //::i32 yStartBuild = y;
    //
-   //      m_pbuttonStartBuild->place(::int_rectangle_dimension(10, y, 200, 40));
+   //      m_pbuttonStartBuild->place(::i32_rectangle_dimension(10, y, 200, 40));
    //
    //      m_pbuttonStartBuild->set_window_text("Start Integration");
    //
@@ -352,9 +352,9 @@ namespace coding
    //
    //         constructø(pitem->m_pcheckbox);
    //
-   //         pitem->m_pcheckbox->create_control(this, (int)check_box_base + (int)eintegrate);
+   //         pitem->m_pcheckbox->create_control(this, (::i32)check_box_base + (::i32)eintegrate);
    //
-   //         pitem->m_pcheckbox->place(::int_rectangle_dimension(m_iLeftMargin, y + 2, 20, 20));
+   //         pitem->m_pcheckbox->place(::i32_rectangle_dimension(m_iLeftMargin, y + 2, 20, 20));
    //
    //         if (!bCheck)
    //         {
@@ -502,9 +502,9 @@ namespace coding
    //
    //         pitem->m_pstill->m_bDefaultClickHandling = true;
    //
-   //         pitem->m_pstill->create_control(this, (int)still_base + (int)eintegrate);
+   //         pitem->m_pstill->create_control(this, (::i32)still_base + (::i32)eintegrate);
    //
-   //         pitem->m_pstill->place(::int_rectangle_dimension(m_iLeftMargin + 25, y, m_iLeftWidth - 25, 20));
+   //         pitem->m_pstill->place(::i32_rectangle_dimension(m_iLeftMargin + 25, y, m_iLeftWidth - 25, 20));
    //
    //         pitem->m_pstill->set_window_text(strShortName);
    //
@@ -534,9 +534,9 @@ namespace coding
    //
    //            //pstill->m_bClickDefaultMouseHandling = true;
    //
-   //            pitem->m_pstillStatus->create_control(this, (int)still_status_base + (int)eintegrate);
+   //            pitem->m_pstillStatus->create_control(this, (::i32)still_status_base + (::i32)eintegrate);
    //
-   //            pitem->m_pstillStatus->place(::int_rectangle_dimension(m_iLeftMargin + 25, y + 18, m_iLeftWidth - 25, 12));
+   //            pitem->m_pstillStatus->place(::i32_rectangle_dimension(m_iLeftMargin + 25, y + 18, m_iLeftWidth - 25, 12));
    //
    //            pitem->m_pstillStatus->m_ealignText = e_align_left;
    //
@@ -560,9 +560,9 @@ namespace coding
    //
    //            //pstill->m_bClickDefaultMouseHandling = true;
    //
-   //            pitem->m_pstillElapsed->create_control(this, (int)still_elapsed_base + (int)eintegrate);
+   //            pitem->m_pstillElapsed->create_control(this, (::i32)still_elapsed_base + (::i32)eintegrate);
    //
-   //            pitem->m_pstillElapsed->place(::int_rectangle_dimension(m_iLeftMargin + 25, y + 30, m_iLeftWidth - 25, 12));
+   //            pitem->m_pstillElapsed->place(::i32_rectangle_dimension(m_iLeftMargin + 25, y + 30, m_iLeftWidth - 25, 12));
    //
    //            //pstill->set_window_text(m_pintegration->get_name(eintegrate));
    //
@@ -593,7 +593,7 @@ namespace coding
    //
    //      m_pstillFinished->create_control(this, "finished_still");
    //
-   //      m_pstillFinished->place(::int_rectangle_dimension(10, y, 200, 40));
+   //      m_pstillFinished->place(::i32_rectangle_dimension(10, y, 200, 40));
    //
    //      m_pstillFinished->set_window_text_source([this]() {return get_document()->m_pintegration->m_strFinishedStatus; });
    //
@@ -605,7 +605,7 @@ namespace coding
    //
    //      m_pstillFinished->m_pfont = m_pfontFinished;
    //
-   //      int iButton = 0;
+   //      ::i32 iButton = 0;
    //
    //      if (pintegration && pintegration->m_pgroupnetnode)
    //      {
@@ -622,7 +622,7 @@ namespace coding
    //
    //               pbuttonHandlePulseCallIntegration->create_control(this, "pulse_" + strNetnode);
    //
-   //               pbuttonHandlePulseCallIntegration->place(::int_rectangle_dimension(10, iButton * (40 * 2) + m_yStart, 200, 40));
+   //               pbuttonHandlePulseCallIntegration->place(::i32_rectangle_dimension(10, iButton * (40 * 2) + m_yStart, 200, 40));
    //
    //               pbuttonHandlePulseCallIntegration->set_window_text("Pulse " + pintegration->netnode_short_name(strNetnode));
    //
@@ -833,13 +833,13 @@ namespace coding
 
       pgraphics->set(m_pfontTopic);
 
-      ::double_point p1(p.x, 10);
+      ::f64_point p1(p.x, 10);
 
       pgraphics->set_text_color(argb(255, 89, 89, 89));
 
       pgraphics->text_out(p1, strTopic1);
 
-      ::double_point p2(p.x, 50);
+      ::f64_point p2(p.x, 50);
 
       pgraphics->set(m_pfontTopic2);
 
@@ -848,7 +848,7 @@ namespace coding
       pgraphics->text_out(p2, strElapsed);
 
 
-      ::double_point p5(p.x, 200);
+      ::f64_point p5(p.x, 200);
 
       pgraphics->set(m_pfontTopic2);
 
@@ -898,7 +898,7 @@ namespace coding
       //   if (straunion.has_element())
       //   {
 
-      //      int iAlpha = 255;
+      //      ::i32 iAlpha = 255;
 
       //      for (auto i = straunion.get_upper_bound();
       //         i >= 0; i--)
@@ -1394,7 +1394,7 @@ namespace coding
 //
 //      //   {
 //
-//      //      auto rectanglePlacement = ::int_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 10, m_yStart,
+//      //      auto rectanglePlacement = ::i32_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 10, m_yStart,
 //      //         w - (m_iLeftMargin + m_iLeftWidth + 10), h);
 //
 //      //      if (w < 500)
@@ -1413,7 +1413,7 @@ namespace coding
 //
 //      //      auto fontHeight = m_pfontTopic2->get_height(pgraphics);
 //
-//      //      auto rectanglePlacement = ::int_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 10, m_yStart + h,
+//      //      auto rectanglePlacement = ::i32_rectangle_dimension(m_iLeftMargin + m_iLeftWidth + 10, m_yStart + h,
 //      //         rectangleClient.width() -
 //      //         (m_iLeftMargin + m_iLeftWidth + 10), fontHeight);
 //

@@ -44,7 +44,7 @@ void * object::operating_system_data()
 }
 
 
-void object::update(::nano::graphics::device * pnanodevice)
+void object::update(::nano::graphics::context * pnanodevice)
 {
 
 

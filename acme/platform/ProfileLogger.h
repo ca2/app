@@ -11,8 +11,8 @@ namespace platform
 {
    struct ProcessorTimes
    {
-      double                  m_process;
-      double                  m_kernel;
+      ::f64                  m_process;
+      ::f64                  m_kernel;
       ::u64      m_cycle;
       class ::time            m_time;
    };
@@ -26,15 +26,15 @@ namespace platform
 
       ~ProfileLogger();
       // returns cycles and times deltas from previouse checkpoint
-      ProcessorTimes checkPoint(const char *tag);
+      ProcessorTimes checkPoint(const_char_pointer tag);
       ::string_array dropStat();
 
       //private:
       //LocalMutex m_mapMut;
       critical_section m_criticalsection;
-      ::map_base < const char *, ::array_base<ProcessorTimes>> m_checkPoints;
+      ::map_base < const_char_pointer , ::array_base<ProcessorTimes>> m_checkPoints;
       ProcessorTimes m_last;
-      double m_dropRate; // time interval in seconds to log statistics
+      ::f64 m_dropRate; // time interval in seconds to log statistics
       class ::time m_lastDrop;
    };
 

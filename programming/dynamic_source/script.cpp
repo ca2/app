@@ -171,7 +171,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer < ::file::listing > script::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   ::pointer < ::file::listing > script::folder_enumerate(::i32 iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
    {
 
       if(!m_pmutexFolderEnumerate)
@@ -759,7 +759,7 @@ namespace dynamic_source
 
       string str;
 
-      int iRetry = 0;
+      ::i32 iRetry = 0;
 
       bool bHasTempError = false;
 

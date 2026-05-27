@@ -21,7 +21,7 @@
 //#include "c_os_binreloc.h"
 
 
-void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
+void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 ::i64 get_tick();
 
 
@@ -54,7 +54,7 @@ CLASS_DECL_ACME void * __node_library_open(const ::file::path & path, string & s
 //CLASS_DECL_ACME void set_last_error(::u32 dw);
 
 
-CLASS_DECL_ACME bool _istlead(int ch);
+CLASS_DECL_ACME bool _istlead(::i32 ch);
 
 
 

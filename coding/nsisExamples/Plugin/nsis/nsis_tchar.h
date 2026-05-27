@@ -26,7 +26,7 @@
 #ifndef _TCHAR_DEFINED
 #define _TCHAR_DEFINED
 #if !defined(_NATIVE_WCHAR_T_DEFINED) && !defined(_WCHAR_T_DEFINED)
-typedef unsigned short TCHAR;
+typedef ::u16 TCHAR;
 #else
 typedef wchar_t TCHAR;
 #endif
@@ -132,7 +132,7 @@ typedef wchar_t TCHAR;
 
 #ifndef _TCHAR_DEFINED
 #define _TCHAR_DEFINED
-typedef char TCHAR;
+typedef ::i8 TCHAR;
 #endif
 
 // program

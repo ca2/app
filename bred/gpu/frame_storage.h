@@ -34,9 +34,9 @@ namespace gpu
 
       map < particle*, map < enum_resource, ::pointer < object > > > m_mapObject;
 
-      int m_iBuffer;
-      int m_iBufferSize = (int) 1_MiB;
-      int m_iBufferOffset;
+      ::i32 m_iBuffer;
+      ::i32 m_iBufferSize = (::i32) 1_MiB;
+      ::i32 m_iBufferOffset;
 
       
       pointer_array < memory_buffer > m_buffera;
@@ -49,7 +49,7 @@ namespace gpu
 
       virtual void initialize_gpu_frame_storage(::gpu::device* pgpudevice);
 
-      virtual void map_allocate(::gpu::memory_buffer * pbuffer, int size);
+      virtual void map_allocate(::gpu::memory_buffer * pbuffer, ::i32 size);
 
       virtual void on_end_frame();
 

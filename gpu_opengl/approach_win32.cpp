@@ -50,7 +50,7 @@ namespace gpu_opengl
 
       // HDC dc = GetDC(hwnd);
 
-      // int pixelAttribs[] = {
+      // ::i32 pixelAttribs[] = {
       //     WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
       //     WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
       //     WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
@@ -61,14 +61,14 @@ namespace gpu_opengl
       //     0
       // };
 
-      // int format;
+      // ::i32 format;
       // UINT numFormats;
       // loaded_wglChoosePixelFormatARB(dc, pixelAttribs, NULL, 1, &format, &numFormats);
       // PIXELFORMATDESCRIPTOR pfd;
       // DescribePixelFormat(dc, format, sizeof(pfd), &pfd);
       // SetPixelFormat(dc, format, &pfd);
 
-      // int contextAttribs[] = {
+      // ::i32 contextAttribs[] = {
       //     WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
       //     WGL_CONTEXT_MINOR_VERSION_ARB, 3,
       //     WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,

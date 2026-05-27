@@ -289,7 +289,7 @@ namespace networking
 //
 //
 //   /*  virtual  */
-//   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( int lNewNumberOfEntries )
+//   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( ::i32 lNewNumberOfEntries )
 //   {
 //	   string tempStr;
 //	   tempStr.format( "UPnP has detected a machine in the number of port mappings for your router \n"

@@ -36,7 +36,7 @@ namespace graphics3d
    {
       floating_sequence4 position{};
       floating_sequence4 color{};
-      float radius;
+      ::f32 radius;
    };
 
 
@@ -165,7 +165,7 @@ namespace graphics3d
 
    void point_light_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base * pscene)
    {
-      //::map<float, uint32_t> sorted;
+      //::map<::f32, uint32_t> sorted;
 
       auto & pointlighta = pscene->m_pointlighta;
 
@@ -173,7 +173,7 @@ namespace graphics3d
       // {
       //    floating_sequence3 offset = pframe->camera()->getPosition() - pobject->transform().translation;
       //    // need to implement getPosition because ICamera has no defintion
-      //    float distanceSquared = glm::dot(offset, offset);
+      //    ::f32 distanceSquared = glm::dot(offset, offset);
       //    sorted[distanceSquared] = pobject->getId();
       // }
       //
@@ -246,7 +246,7 @@ namespace graphics3d
       //auto rotateLight = floating_matrix4(1.f);
       //rotateLight.rotate(0.5f * dt, { 0.f, -1.f, 0.f });
 
-      int lightIndex = 0;
+      ::i32 lightIndex = 0;
 
       auto & pointlighta = pscene->m_pointlighta;
 
@@ -283,7 +283,7 @@ namespace graphics3d
 
       // auto rotateLight = glm::rotate(floating_matrix4(1.f), m_rotationSpeed * pframe->frameTime(), {0.f, -1.f, 0.f});
       // auto &ubo = (*ppropertiesGlobalUbo);
-      // int lightIndex = 0;
+      // ::i32 lightIndex = 0;
       // auto &sceneobjects = (*pframe->scene_objects());
       // for (auto &[id, pobject]: sceneobjects)
       // {

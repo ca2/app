@@ -14,9 +14,9 @@ namespace graphics3d
    {
    public:
 
-      inline static const int MAX_LIGHTS = 10;
+      inline static const ::i32 MAX_LIGHTS = 10;
 
-      float m_fLightIntensity = 1.0f;
+      ::f32 m_fLightIntensity = 1.0f;
 
    };
 

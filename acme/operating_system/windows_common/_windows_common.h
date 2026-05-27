@@ -36,9 +36,9 @@ using dword_array = ::array_particle < ::dword_array_base >;
 
 
 //CLASS_DECL_ACME string get_mem_info_report1();
-//CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, ::u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_ACME::collection::count get_mem_info(::i32 ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, ::u32 ** ppuiLine, size_t ** ppsize);
 #ifdef WINDOWS
-CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], ::i64 ** ppiStack, int ** ppiLine, ::i64 ** ppiSize);
+CLASS_DECL_ACME::collection::count get_mem_info2(::i32 ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], ::i64 ** ppiStack, ::i32 ** ppiLine, ::i64 ** ppiSize);
 #endif
 
 
@@ -62,7 +62,7 @@ CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_point
 // }
 
 //template < >
-//inline bool gt(DWORD dw, int i)
+//inline bool gt(DWORD dw, ::i32 i)
 //{
 //   return i < 0 ? true : dw >((DWORD)i);
 //}
@@ -105,10 +105,10 @@ namespace windows
    // public:
    //
    //
-   //    inline static PFN get_address(const ::scoped_string & scopedstrModule, const_char_pointer lpszName)
+   //    inline static PFN get_address(const ::scoped_string & scopedstrModule, const_char_pointer pszName)
    //    {
    //
-   //       return (PFN) get_library_symbol_address(scopedstrModule, lpszName);
+   //       return (PFN) get_library_symbol_address(scopedstrModule, pszName);
    //
    //    }
    //
@@ -116,7 +116,7 @@ namespace windows
    // };
 
 
-   // CLASS_DECL_ACME ::e_status wait_result_status(int iResult, int nCount);
+   // CLASS_DECL_ACME ::e_status wait_result_status(::i32 iResult, ::i32 nCount);
    //
    // CLASS_DECL_ACME ::u32 _get_file_attributes(const ::file::path & path);
    //

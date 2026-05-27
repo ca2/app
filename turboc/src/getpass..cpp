@@ -25,16 +25,16 @@
 
 //#include "conio.h"
 
-char *
+char_pointer 
 getpass (const ::string &prompt)
 {
-  extern char CgetsEchoOff;
-  static char str[11];
+  extern ::i8 CgetsEchoOff;
+  static ::i8 str[11];
   str[0] = 9;
   CgetsEchoOff = 1;
   cputs (prompt);
   cgets (str);
   CgetsEchoOff = 0;
-  str[2 + (int) str[1]] = 0;
+  str[2 + (::i32) str[1]] = 0;
   return (&str[2]);
 }

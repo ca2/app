@@ -17,9 +17,9 @@ namespace launch
    public:
 
 
-      //int            m_argc;
-      //char **        m_argv;
-      //int            m_iExitCode;
+      //::i32            m_argc;
+      //char_pointer *        m_argv;
+      //::i32            m_iExitCode;
 
 
       ::pointer < ::operating_system::summary > m_poperatingsystemsummary;

@@ -57,7 +57,7 @@ namespace windowing
    }
 
 
-   bool monitor::adjust_monitor(::u32 dwTemperature, double dBrightness, double dwGamma)
+   bool monitor::adjust_monitor(::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma)
    {
 
       return false;
@@ -166,7 +166,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_left(int left)
+   void monitor::set_workspace_rectangle_left(::i32 left)
    {
 
       m_rectangleFixedWorkspace.left = left;
@@ -176,7 +176,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_top(int top)
+   void monitor::set_workspace_rectangle_top(::i32 top)
    {
 
       m_rectangleFixedWorkspace.top = top;
@@ -186,7 +186,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_right(int right)
+   void monitor::set_workspace_rectangle_right(::i32 right)
    {
 
       m_rectangleFixedWorkspace.right = right;
@@ -196,7 +196,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_bottom(int bottom)
+   void monitor::set_workspace_rectangle_bottom(::i32 bottom)
    {
 
       m_rectangleFixedWorkspace.bottom = bottom;

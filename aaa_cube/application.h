@@ -16,9 +16,9 @@ namespace cube
    public:
 
       
-      //int m_iWidth;
+      //::i32 m_iWidth;
 
-      //int m_iHeight;
+      //::i32 m_iHeight;
 
       //::pointer<impact> m_pimpact;
 
@@ -47,7 +47,7 @@ namespace cube
 
       //virtual void run_application();
 
-      //virtual void on_layout_cube(int cx, int cy);
+      //virtual void on_layout_cube(::i32 cx, ::i32 cy);
 
       virtual ::string graphics3d_get_implementation_name();
 

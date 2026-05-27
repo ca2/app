@@ -51,17 +51,17 @@ namespace compress_bzip2
 
       bool done = false;
 
-      int status;
+      ::i32 status;
 
       class memory memIn;
       memIn.set_size(1024 * 8);
 
-      long long uRead = pfileIn->read(memIn.data(), memIn.size());
+      ::i64 uRead = pfileIn->read(memIn.data(), memIn.size());
 
       bz_stream zstream;
       zero(zstream);
-      zstream.next_in = (char*)memIn.data();
-      zstream.avail_in = (unsigned int)uRead;
+      zstream.next_in = (char_pointer )memIn.data();
+      zstream.avail_in = (::u32)uRead;
 
       class memory memory;
       memory.set_size(1024 * 256);
@@ -81,8 +81,8 @@ namespace compress_bzip2
          do
          {
 
-            zstream.next_out = (char*)memory.data();
-            zstream.avail_out = (unsigned int)memory.size();
+            zstream.next_out = (char_pointer )memory.data();
+            zstream.avail_out = (::u32)memory.size();
 
             // Inflate another chunk.
             status = BZ2_bzDecompress(&zstream);
@@ -115,9 +115,9 @@ namespace compress_bzip2
 
          uRead = pfileIn->read(memIn.data(), memIn.size());
 
-         zstream.next_in = (char*)memIn.data();
+         zstream.next_in = (char_pointer )memIn.data();
 
-         zstream.avail_in = (unsigned int)uRead;
+         zstream.avail_in = (::u32)uRead;
 
       }
 
@@ -140,17 +140,17 @@ namespace compress_bzip2
    }
 
 
-   //const int g_iGzUncompressLen = 1024 * 1024;
-   //char * g_pchGzUncompressBuffer = nullptr;
+   //const ::i32 g_iGzUncompressLen = 1024 * 1024;
+   //char_pointer g_pchGzUncompressBuffer = nullptr;
    //
    //
    //
-   //int bzuncompress(const ::scoped_string & scopedstrUncompressed, const ::scoped_string & scopedstrGzFileCompressed)
+   //::i32 bzuncompress(const ::scoped_string & scopedstrUncompressed, const ::scoped_string & scopedstrGzFileCompressed)
 
    //{
    //   if (g_pchGzUncompressBuffer == nullptr)
    //   {
-   //      g_pchGzUncompressBuffer = ___new char[g_iGzUncompressLen];
+   //      g_pchGzUncompressBuffer = ___new ::i8[g_iGzUncompressLen];
    //   }
    //   BZFILE * file = BZ2_bzopen(pcszGzFileCompressed, "rb");
 
@@ -168,7 +168,7 @@ namespace compress_bzip2
    //      BZ2_bzclose(file);
    //      return -1;
    //   }
-   //   int uncomprLen;
+   //   ::i32 uncomprLen;
    //   while ((uncomprLen = BZ2_bzread(file, g_pchGzUncompressBuffer, g_iGzUncompressLen)) > 0)
    //   {
    //      fwrite_dup(g_pchGzUncompressBuffer, 1, uncomprLen, fileUn);

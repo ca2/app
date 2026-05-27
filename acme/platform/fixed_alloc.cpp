@@ -42,15 +42,15 @@ void fixed_alloc_no_sync::FreeAll()
 void fixed_alloc_no_sync::NewBlock()
 {
 
-   int nAllocSize = m_nAllocSize + 32;
+   ::i32 nAllocSize = m_nAllocSize + 32;
    // add another block
    auto pNewBlock = ::plex::create(m_pBlocks, m_nBlockSize, nAllocSize, m_pallocator);
 
    // chain them into _free list_base
    node* pNode = (node*)pNewBlock->data();
    // _free in reverse order to make it easier to debug
-   (unsigned char*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-   for (int i = m_nBlockSize-1; i >= 0; i--, (unsigned char*&)pNode -= nAllocSize)
+   (::u8*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
+   for (::i32 i = m_nBlockSize-1; i >= 0; i--, (::u8*&)pNode -= nAllocSize)
    {
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
@@ -64,7 +64,7 @@ void fixed_alloc_no_sync::NewBlock()
 // fixed_alloc_sync
 //
 
-fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize, int iShareCount) :
+fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize, ::i32 iShareCount) :
    m_pallocator(pallocator)
 {
 
@@ -76,7 +76,7 @@ fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocS
    
    m_criticalsectiona.set_size(iShareCount);
    
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       
       m_allocptra[i] = øraw_new fixed_alloc_no_sync(m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
@@ -88,7 +88,7 @@ fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocS
 
 fixed_alloc_sync::~fixed_alloc_sync()
 {
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       delete m_allocptra[i];
    }
@@ -98,7 +98,7 @@ fixed_alloc_sync::~fixed_alloc_sync()
 void fixed_alloc_sync::FreeAll()
 {
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
 
       m_criticalsectiona[i].lock();
@@ -153,12 +153,12 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 
 
    m_i32 = 0;
 
-   int iShareCount = 0;
+   ::i32 iShareCount = 0;
 
 //#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
-//   int iShareCount = 0;
+//   ::i32 iShareCount = 0;
 //#else
-//   int iShareCount = system()->node()->get_current_process_maximum_affinity() + 1;
+//   ::i32 iShareCount = system()->node()->get_current_process_maximum_affinity() + 1;
 //#endif
 
    if(iShareCount <= 0)
@@ -170,7 +170,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 
 
    m_allocptra.set_size(iShareCount);
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       
       m_allocptra[i] = øraw_new fixed_alloc_sync (m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
@@ -184,7 +184,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 
 fixed_alloc::~fixed_alloc()
 {
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       delete m_allocptra[i];
    }
@@ -194,7 +194,7 @@ fixed_alloc::~fixed_alloc()
 void fixed_alloc::FreeAll()
 {
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(::i32 i = 0; i < m_allocptra.get_count(); i++)
    {
 #ifdef WINDOWS
       __try
@@ -246,7 +246,7 @@ fixed_alloc_array::fixed_alloc_array(::heap::allocator * pallocator) :
 
 fixed_alloc_array::~fixed_alloc_array()
 {
-   for(int i = 0; i < this->get_count(); i++)
+   for(::i32 i = 0; i < this->get_count(); i++)
    {
       delete this->element_at(i);
    }
@@ -343,8 +343,8 @@ fixed_alloc * fixed_alloc_array::find(size_t nAllocSize, memsize * psizeFound)
 {
    //synchronous_lock lock(m_pmutex, true);
    size_t nFoundSize = UINT_MAX;
-   int iFound = -1;
-   for(int i = 0; i < this->get_count(); i++)
+   ::i32 iFound = -1;
+   for(::i32 i = 0; i < this->get_count(); i++)
    {
       if(this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize >= nAllocSize
             && (nFoundSize == UINT_MAX || this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize < nFoundSize))

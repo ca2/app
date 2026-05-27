@@ -33,7 +33,7 @@ namespace user
 
 
 
-      int                                       m_iStateCount;
+      ::i32                                       m_iStateCount;
       bool                                      m_bRequestReady;
 
 
@@ -51,9 +51,9 @@ namespace user
       bool                                         m_bFillParent;
       ::i32_rectangle                              m_rectangleHint;
       ::i32_rectangle                              m_rectanglePadding;
-      int                                          m_iCellPadding;
+      ::i32                                          m_iCellPadding;
       ::i32_size                                   m_sizeSpan;
-      ::double_size                                   m_sizeWeight;
+      ::f64_size                                   m_sizeWeight;
 
 
       class ::time                                 m_timeLastLadingToLayout;
@@ -117,7 +117,7 @@ namespace user
 
       bool is_top_level() const { return m_iStateCount == e_layout_count_owner; }
 
-      void create_state(int iStateCount);
+      void create_state(::i32 iStateCount);
       void destroy_state();
 
 
@@ -157,8 +157,8 @@ namespace user
       //inline void screen_to_client(::i32_rectangle* prectangle) { ::rect_sub(prectangle, client_screen_top_left()); }
       //inline void client_to_screen(::i32_rectangle* prectangle) { ::rect_add(prectangle, client_screen_top_left()); }
 
-      //inline void this->rectangle(::i32_rectangle* prectangle) { ::set_rect_point_size(prectangle, m_pointClient, client_size()); }
-      //inline void window_rectangle(::i32_rectangle* prectangle) { ::set_rect_point_size(prectangle, m_pointScreenWindow, window_size()); }
+      //inline void this->rectangle(::i32_rectangle* prectangle) { ::set_rect_poi32_size(prectangle, m_pointClient, client_size()); }
+      //inline void window_rectangle(::i32_rectangle* prectangle) { ::set_rect_poi32_size(prectangle, m_pointScreenWindow, window_size()); }
 
       //inline auto this->rectangle() { ::i32_rectangle rectangle; this->rectangle(rectangle); return rectangle; }
       //inline auto window_rectangle() { ::i32_rectangle rectangle; window_rectangle(rectangle); return rectangle; }
@@ -270,7 +270,7 @@ namespace user
 
       inline ::i32_point origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin(); }
 
-      inline int area(enum_layout elayout = e_layout_design) const { return this->size(elayout).area(); }
+      inline ::i32 area(enum_layout elayout = e_layout_design) const { return this->size(elayout).area(); }
 
 
       //inline void raw_rectangle(::i32_rectangle & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).raw_rectangle(rectangle); }

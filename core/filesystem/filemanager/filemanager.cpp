@@ -55,7 +55,7 @@ namespace filemanager
 {
 
 
-   int get_manager_id_byte_len()
+   ::i32 get_manager_id_byte_len()
    {
 
       return 16;
@@ -63,7 +63,7 @@ namespace filemanager
    }
 
 
-   int get_manager_id_len()
+   ::i32 get_manager_id_len()
    {
 
       return get_manager_id_byte_len() * 2;

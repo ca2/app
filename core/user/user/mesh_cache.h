@@ -13,7 +13,7 @@ namespace user
 
 
       bool                                   m_bCaching;
-      int                                    m_iCacheNextIndex;
+      ::i32                                    m_iCacheNextIndex;
       ::i32_map < ::i32_map < CELL > >       m_map;
 
 

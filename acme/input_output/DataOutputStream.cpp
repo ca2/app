@@ -65,7 +65,7 @@ initialize(poutputstream);
 
    void DataOutputStream::write(const void *buffer, memsize len)
    {
-      char *typedBuffer = (char *)buffer;
+      char_pointer typedBuffer = (char_pointer )buffer;
       memsize totalWritten = 0;
       memsize left = len;
       while (totalWritten < len) {
@@ -75,36 +75,36 @@ initialize(poutputstream);
       }
    }
 
-   void DataOutputStream::writeUInt8(unsigned char x)
+   void DataOutputStream::writeUInt8(::u8 x)
    {
-      write((char *)&x, 1);
+      write((char_pointer )&x, 1);
    };
 
-   void DataOutputStream::writeUInt16(unsigned short data)
+   void DataOutputStream::writeUInt16(::u16 data)
    {
-      unsigned char buf[2];
+      ::u8 buf[2];
 
       buf[0] = GETBYTE(data, 1);
       buf[1] = GETBYTE(data, 0);
 
-      write((char *)buf, sizeof(buf));
+      write((char_pointer )buf, sizeof(buf));
    }
 
    void DataOutputStream::writeUInt32(::u32 data)
    {
-      unsigned char buf[4];
+      ::u8 buf[4];
 
       buf[0] = GETBYTE(data, 3);
       buf[1] = GETBYTE(data, 2);
       buf[2] = GETBYTE(data, 1);
       buf[3] = GETBYTE(data, 0);
 
-      write((char *)buf, sizeof(buf));
+      write((char_pointer )buf, sizeof(buf));
    }
 
    void DataOutputStream::writeUInt64(::u64 data)
    {
-      unsigned char buf[8];
+      ::u8 buf[8];
 
       buf[0] = GETBYTE(data, 7);
       buf[1] = GETBYTE(data, 6);
@@ -115,20 +115,20 @@ initialize(poutputstream);
       buf[6] = GETBYTE(data, 1);
       buf[7] = GETBYTE(data, 0);
 
-      write((char *)buf, sizeof(buf));
+      write((char_pointer )buf, sizeof(buf));
    }
 
-   void DataOutputStream::writeInt8(char x)
+   void DataOutputStream::writeInt8(::i8 x)
    {
-      writeUInt8((unsigned char)x);
+      writeUInt8((::u8)x);
    }
 
-   void DataOutputStream::writeInt16(short x)
+   void DataOutputStream::writeInt16(::i16 x)
    {
-      writeUInt16((unsigned short)x);
+      writeUInt16((::u16)x);
    }
 
-   void DataOutputStream::writeInt32(int x)
+   void DataOutputStream::writeInt32(::i32 x)
    {
       writeUInt32((::u32)x);
    }

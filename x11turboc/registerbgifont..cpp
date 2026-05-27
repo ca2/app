@@ -30,7 +30,7 @@
 
 //----------------------------------------------------------------------------
 
-int
+::i32
 registerbgifont (void (*driver) (void))
 {
   return (SANS_SERIF_FONT);

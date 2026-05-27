@@ -27,7 +27,7 @@
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::atom & atom,::i32_point pt);
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode);
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,::u32 scancode,const ::atom & atom,::i32_point pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,::i32 bKey,::i32 down,::u32 scancode,const ::atom & atom,::i32_point pt)
 {
 rdpInput * input = (rdpInput *) vinput;
    if(bKey)
@@ -39,8 +39,8 @@ rdpInput * input = (rdpInput *) vinput;
       ca2rdp_send_mouse_button_event(input,emessage, point);
    }
 }
-//static unsigned char keymap[256];
-//static unsigned char functionmap[128];
+//static ::u8 keymap[256];
+//static ::u8 functionmap[128];
 //
 //void ca2rdp_keyboard_init()
 //{
@@ -231,11 +231,11 @@ void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode)
 /*
 BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* happening)
 {
-	int flags;
+	::i32 flags;
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;
-	int pointer_x;
-	int pointer_y;
+	::i32 pointer_x;
+	::i32 pointer_y;
 	DFBInputEvent* input_event;
 
 	gdi = instance->context->gdi;

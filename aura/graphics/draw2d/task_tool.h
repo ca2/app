@@ -24,24 +24,24 @@ namespace draw2d
 
       };
 
-      int m_ySkip;
-      int m_y;
-      int m_yEnd;
-      int m_x;
-      int m_xEnd;
-      unsigned char * m_pdst2;
-      unsigned char * m_psrc2;
-      unsigned char * m_pdstOpacity; // opacity map if available
-      unsigned char * m_psrcOpacity; // opacity map if available
-      unsigned char * m_pdstTransparency; // transparency map if available
-      unsigned char * m_psrcTransparency; // transparency map if available
+      ::i32 m_ySkip;
+      ::i32 m_y;
+      ::i32 m_yEnd;
+      ::i32 m_x;
+      ::i32 m_xEnd;
+      ::u8 * m_pdst2;
+      ::u8 * m_psrc2;
+      ::u8 * m_pdstOpacity; // opacity map if available
+      ::u8 * m_psrcOpacity; // opacity map if available
+      ::u8 * m_pdstTransparency; // transparency map if available
+      ::u8 * m_psrcTransparency; // transparency map if available
       color_indexes m_indexes = common_system_image_color_indexes();
-      int m_w;
-      int m_h;
+      ::i32 m_w;
+      ::i32 m_h;
       e_op m_eop;
-      int m_scanSrc;
-      int m_scanDst;
-      unsigned char m_bA;
+      ::i32 m_scanSrc;
+      ::i32 m_scanDst;
+      ::u8 m_bA;
 
 
 

@@ -142,7 +142,7 @@ namespace hotplugin
    }
 
 
-   int host::start_ca2_system()
+   ::i32 host::start_ca2_system()
    {
 
       if(m_pplugin != nullptr)
@@ -317,7 +317,7 @@ namespace hotplugin
    }
 
 
-   void host::set_progress_rate(double dRate)
+   void host::set_progress_rate(::f64 dRate)
    {
 
       m_dProgressRate = dRate;
@@ -325,7 +325,7 @@ namespace hotplugin
    }
 
 
-   double host::get_progress_rate()
+   ::f64 host::get_progress_rate()
    {
 
       if(m_dProgressRate < 0.0)
@@ -354,7 +354,7 @@ namespace hotplugin
    }
 
 
-   int host::start_app_install(const ::scoped_string & scopedstrCommandLine)
+   ::i32 host::start_app_install(const ::scoped_string & scopedstrCommandLine)
    {
 
       return start_app_install(scopedstrCommandLine, get_app(), this);
@@ -362,7 +362,7 @@ namespace hotplugin
    }
 
 
-   int host::s_start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   ::i32 host::s_start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->start_app_install(scopedstrCommandLine, papp, pplugin);
@@ -370,7 +370,7 @@ namespace hotplugin
    }
 
 
-   int host::start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
+   ::i32 host::start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if(m_bHostStarterStart)
@@ -395,7 +395,7 @@ namespace hotplugin
    }
 
 
-   int host::s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   ::i32 host::s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->host_starter_start_sync(scopedstrCommandLine, papp, pplugin);
@@ -403,7 +403,7 @@ namespace hotplugin
    }
 
 
-   int host::host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
+   ::i32 host::host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if (m_bHostStarterStart)
@@ -581,7 +581,7 @@ namespace hotplugin
    }
 
 
-   void host::translate_mouse_message(int * px, int * py)
+   void host::translate_mouse_message(::i32 * px, ::i32 * py)
    {
 
    }
@@ -703,7 +703,7 @@ namespace hotplugin
 
 
 
-   //bool host::set_window_position(class ::user::zorder zorder, int x, int y, int cx, int cy, ::u32 nFlags)
+   //bool host::set_window_position(class ::user::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 nFlags)
    //{
 
    //   bool bOk = ::hotplugin::plugin::set_window_position(zorder, x, y, cx, cy, nFlags);

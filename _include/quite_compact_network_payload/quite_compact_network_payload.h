@@ -110,7 +110,7 @@ extern "C" {
 #ifdef _MSC_VER
 #define SNPRINTF _snprintf_s
 #pragma warning(push)
-#pragma warning(disable : 4244) // conversion from int to char
+#pragma warning(disable : 4244) // conversion from ::i32 to ::i8
 #pragma warning(disable : 4127) // conditional expression is constant
 #pragma warning(disable : 4702) // unreachable code
 #pragma warning(disable : 4706) // assignment within conditional expression
@@ -143,7 +143,7 @@ public:
   typedef std::map_base<std::string, value> object;
   union _storage {
     bool boolean_;
-    double number_;
+    ::f64 number_;
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
     ::i64 int64_;
 #endif
@@ -153,17 +153,17 @@ public:
   };
 
 protected:
-  int type_;
+  ::i32 type_;
   _storage u_;
 
 public:
   value();
-  value(int type, bool);
+  value(::i32 type, bool);
   explicit value(bool b);
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
   explicit value(::i64 i);
 #endif
-  explicit value(double n);
+  explicit value(::f64 n);
   explicit value(const std::string &s);
   explicit value(const array &a);
   explicit value(const object &o);
@@ -203,9 +203,9 @@ public:
 
 private:
   template <typename T> value(const T *); // intentionally defined to block implicit conversion of pointer to bool
-  template <typename Iter> static void _indent(Iter os, int indent);
-  template <typename Iter> void _serialize(Iter os, int indent) const;
-  std::string _serialize(int indent) const;
+  template <typename Iter> static void _indent(Iter os, ::i32 indent);
+  template <typename Iter> void _serialize(Iter os, ::i32 indent) const;
+  std::string _serialize(::i32 indent) const;
   void clear();
 };
 
@@ -215,7 +215,7 @@ typedef value::object object;
 inline value::value() : type_(null_type), u_() {
 }
 
-inline value::value(int type, bool) : type_(type), u_() {
+inline value::value(::i32 type, bool) : type_(type), u_() {
   switch (type) {
 #define INIT(p, v)                                                                                                                 \
   case p##type:                                                                                                                    \
@@ -245,7 +245,7 @@ inline value::value(::i64 i) : type_(int64_type), u_() {
 }
 #endif
 
-inline value::value(double n) : type_(number_type), u_() {
+inline value::value(::f64 n) : type_(number_type), u_() {
   if (
 #ifdef _MSC_VER
       !_finite(n)
@@ -364,7 +364,7 @@ IS(std::string, string)
 IS(array, array)
 IS(object, object)
 #undef IS
-template <> inline bool value::is<double>() const {
+template <> inline bool value::is<::f64>() const {
   return type_ == number_type
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
          || type_ == int64_type
@@ -386,12 +386,12 @@ GET(std::string, *u_.string_)
 GET(array, *u_.array_)
 GET(object, *u_.object_)
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-GET(double,
+GET(::f64,
     (type_ == int64_type && (const_cast<value *>(this)->type_ = number_type, (const_cast<value *>(this)->u_.number_ = u_.int64_)),
      u_.number_))
 GET(::i64, u_.int64_)
 #else
-GET(double, u_.number_)
+GET(::f64, u_.number_)
 #endif
 #undef GET
 
@@ -405,7 +405,7 @@ SET(bool, boolean, u_.boolean_ = _val;)
 SET(std::string, string, u_.string_ = ___new std::string (_val);)
 SET(array, array, u_.array_ = ___new array(_val);)
 SET(object, object, u_.object_ = ___new object(_val);)
-SET(double, number, u_.number_ = _val;)
+SET(::f64, number, u_.number_ = _val;)
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
 SET(::i64, int64, u_.int64_ = _val;)
 #endif
@@ -488,20 +488,20 @@ inline std::string value::to_str() const {
     return u_.boolean_ ? "true" : "false";
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
   case int64_type: {
-    char buf[sizeof("-9223372036854775808")];
+    ::i8 buf[sizeof("-9223372036854775808")];
     SNPRINTF(buf, sizeof(buf), "%" PRId64, u_.int64_);
     return buf;
   }
 #endif
   case number_type: {
-    char buf[256];
-    double tmp;
+    ::i8 buf[256];
+    ::f64 tmp;
     SNPRINTF(buf, sizeof(buf), fabs(u_.number_) < (1ULL << 53) && modf(u_.number_, &tmp) == 0 ? "%.f" : "%.17g", u_.number_);
 #if QUITE_COMPACT_NETWORK_PAYLOAD_USE_LOCALE
-    char *decimal_point = localeconv()->decimal_point;
+    char_pointer decimal_point = localeconv()->decimal_point;
     if (strcmp(decimal_point, ".") != 0) {
       size_t decimal_point_len = strlen(decimal_point);
-      for (char *p = buf; *p != '\0'; ++p) {
+      for (char_pointer p = buf; *p != '\0'; ++p) {
         if (strncmp(p, decimal_point, decimal_point_len) == 0) {
           return std::string(buf, p) + "." + (p + decimal_point_len);
         }
@@ -531,7 +531,7 @@ template <typename Iter> void copy(const std::string &s, Iter oi) {
 
 template <typename Iter> struct serialize_str_char {
   Iter oi;
-  void operator()(char c) {
+  void operator()(::i8 c) {
     switch (c) {
 #define MAP(val, sym)                                                                                                              \
   case val:                                                                                                                        \
@@ -547,8 +547,8 @@ template <typename Iter> struct serialize_str_char {
       MAP('\t', "\\t");
 #undef MAP
     default:
-      if (static_cast<unsigned char>(c) < 0x20 || c == 0x7f) {
-        char buf[7];
+      if (static_cast<::u8>(c) < 0x20 || c == 0x7f) {
+        ::i8 buf[7];
         SNPRINTF(buf, sizeof(buf), "\\u%04x", c & 0xff);
         copy(buf, buf + 6, oi);
       } else {
@@ -574,14 +574,14 @@ inline std::string value::serialize(bool prettify) const {
   return _serialize(prettify ? 0 : -1);
 }
 
-template <typename Iter> void value::_indent(Iter oi, int indent) {
+template <typename Iter> void value::_indent(Iter oi, ::i32 indent) {
   *oi++ = '\n';
-  for (int i = 0; i < indent * INDENT_WIDTH; ++i) {
+  for (::i32 i = 0; i < indent * INDENT_WIDTH; ++i) {
     *oi++ = ' ';
   }
 }
 
-template <typename Iter> void value::_serialize(Iter oi, int indent) const {
+template <typename Iter> void value::_serialize(Iter oi, ::i32 indent) const {
   switch (type_) {
   case string_type:
     serialize_str(*u_.string_, oi);
@@ -646,7 +646,7 @@ template <typename Iter> void value::_serialize(Iter oi, int indent) const {
   }
 }
 
-inline std::string value::_serialize(int indent) const {
+inline std::string value::_serialize(::i32 indent) const {
   std::string s;
   _serialize(std::back_inserter(s), indent);
   return s;
@@ -656,12 +656,12 @@ template <typename Iter> class input {
 protected:
   Iter cur_, end_;
   bool consumed_;
-  int line_;
+  ::i32 line_;
 
 public:
   input(const Iter &first, const Iter &last) : cur_(first), end_(last), consumed_(false), line_(1) {
   }
-  int getc() {
+  ::i32 getc() {
     if (consumed_) {
       if (*cur_ == '\n') {
         ++line_;
@@ -686,19 +686,19 @@ public:
     }
     return cur_;
   }
-  int line() const {
+  ::i32 line() const {
     return line_;
   }
   void skip_ws() {
     while (1) {
-      int ch = getc();
+      ::i32 ch = getc();
       if (!(ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r')) {
         ungetc();
         break;
       }
     }
   }
-  bool expect(const int expected) {
+  bool expect(const ::i32 expected) {
     skip_ws();
     if (getc() != expected) {
       ungetc();
@@ -717,9 +717,9 @@ public:
   }
 };
 
-template <typename Iter> inline int _parse_quadhex(input<Iter> &in) {
-  int uni_ch = 0, hex;
-  for (int i = 0; i < 4; i++) {
+template <typename Iter> inline ::i32 _parse_quadhex(input<Iter> &in) {
+  ::i32 uni_ch = 0, hex;
+  for (::i32 i = 0; i < 4; i++) {
     if ((hex = in.getc()) == -1) {
       return -1;
     }
@@ -739,7 +739,7 @@ template <typename Iter> inline int _parse_quadhex(input<Iter> &in) {
 }
 
 template <typename String, typename Iter> inline bool _parse_codepoint(String &out, input<Iter> &in) {
-  int uni_ch;
+  ::i32 uni_ch;
   if ((uni_ch = _parse_quadhex(in)) == -1) {
     return false;
   }
@@ -753,7 +753,7 @@ template <typename String, typename Iter> inline bool _parse_codepoint(String &o
       in.ungetc();
       return false;
     }
-    int second = _parse_quadhex(in);
+    ::i32 second = _parse_quadhex(in);
     if (!(0xdc00 <= second && second <= 0xdfff)) {
       return false;
     }
@@ -761,27 +761,27 @@ template <typename String, typename Iter> inline bool _parse_codepoint(String &o
     uni_ch += 0x10000;
   }
   if (uni_ch < 0x80) {
-    out.push_back(static_cast<char>(uni_ch));
+    out.push_back(static_cast<::i8>(uni_ch));
   } else {
     if (uni_ch < 0x800) {
-      out.push_back(static_cast<char>(0xc0 | (uni_ch >> 6)));
+      out.push_back(static_cast<::i8>(0xc0 | (uni_ch >> 6)));
     } else {
       if (uni_ch < 0x10000) {
-        out.push_back(static_cast<char>(0xe0 | (uni_ch >> 12)));
+        out.push_back(static_cast<::i8>(0xe0 | (uni_ch >> 12)));
       } else {
-        out.push_back(static_cast<char>(0xf0 | (uni_ch >> 18)));
-        out.push_back(static_cast<char>(0x80 | ((uni_ch >> 12) & 0x3f)));
+        out.push_back(static_cast<::i8>(0xf0 | (uni_ch >> 18)));
+        out.push_back(static_cast<::i8>(0x80 | ((uni_ch >> 12) & 0x3f)));
       }
-      out.push_back(static_cast<char>(0x80 | ((uni_ch >> 6) & 0x3f)));
+      out.push_back(static_cast<::i8>(0x80 | ((uni_ch >> 6) & 0x3f)));
     }
-    out.push_back(static_cast<char>(0x80 | (uni_ch & 0x3f)));
+    out.push_back(static_cast<::i8>(0x80 | (uni_ch & 0x3f)));
   }
   return true;
 }
 
 template <typename String, typename Iter> inline bool _parse_string(String &out, input<Iter> &in) {
   while (1) {
-    int ch = in.getc();
+    ::i32 ch = in.getc();
     if (ch < ' ') {
       in.ungetc();
       return false;
@@ -814,7 +814,7 @@ template <typename String, typename Iter> inline bool _parse_string(String &out,
         return false;
       }
     } else {
-      out.push_back(static_cast<char>(ch));
+      out.push_back(static_cast<::i8>(ch));
     }
   }
   return false;
@@ -859,9 +859,9 @@ template <typename Context, typename Iter> inline bool _parse_object(Context &ct
 template <typename Iter> inline std::string _parse_number(input<Iter> &in) {
   std::string num_str;
   while (1) {
-    int ch = in.getc();
+    ::i32 ch = in.getc();
     if (('0' <= ch && ch <= '9') || ch == '+' || ch == '-' || ch == 'e' || ch == 'E') {
-      num_str.push_back(static_cast<char>(ch));
+      num_str.push_back(static_cast<::i8>(ch));
     } else if (ch == '.') {
 #if QUITE_COMPACT_NETWORK_PAYLOAD_USE_LOCALE
       num_str += localeconv()->decimal_point;
@@ -878,7 +878,7 @@ template <typename Iter> inline std::string _parse_number(input<Iter> &in) {
 
 template <typename Context, typename Iter> inline bool _parse(Context &ctx, input<Iter> &in) {
   in.skip_ws();
-  int ch = in.getc();
+  ::i32 ch = in.getc();
   switch (ch) {
 #define IS(ch, text, op)                                                                                                           \
   case ch:                                                                                                                         \
@@ -899,8 +899,8 @@ template <typename Context, typename Iter> inline bool _parse(Context &ctx, inpu
     return _parse_object(ctx, in);
   default:
     if (('0' <= ch && ch <= '9') || ch == '-') {
-      double f;
-      char *endp;
+      ::f64 f;
+      char_pointer endp;
       in.ungetc();
       std::string num_str(_parse_number(in));
       if (num_str.empty()) {
@@ -943,7 +943,7 @@ public:
     return false;
   }
 #endif
-  bool set_number(double) {
+  bool set_number(::f64) {
     return false;
   }
   template <typename Iter> bool parse_string(input<Iter> &) {
@@ -988,7 +988,7 @@ public:
     return true;
   }
 #endif
-  bool set_number(double f) {
+  bool set_number(::f64 f) {
     *out_ = value(f);
     return true;
   }
@@ -1040,7 +1040,7 @@ protected:
 
 public:
   struct dummy_str {
-    void push_back(int) {
+    void push_back(::i32) {
     }
   };
 
@@ -1058,7 +1058,7 @@ public:
     return true;
   }
 #endif
-  bool set_number(double) {
+  bool set_number(::f64) {
     return true;
   }
   template <typename Iter> bool parse_string(input<Iter> &in) {
@@ -1107,15 +1107,15 @@ template <typename Iter> inline std::string parse(value &out, Iter &pos, const I
 template <typename Context, typename Iter> inline Iter _parse(Context &ctx, const Iter &first, const Iter &last, std::string *err) {
   input<Iter> in(first, last);
   if (!_parse(ctx, in) && err != NULL) {
-    char buf[64];
+    ::i8 buf[64];
     SNPRINTF(buf, sizeof(buf), "syntax error at line %d near: ", in.line());
     *err = buf;
     while (1) {
-      int ch = in.getc();
+      ::i32 ch = in.getc();
       if (ch == -1 || ch == '\n') {
         break;
       } else if (ch >= ' ') {
-        err->push_back(static_cast<char>(ch));
+        err->push_back(static_cast<::i8>(ch));
       }
     }
   }
@@ -1135,7 +1135,7 @@ inline std::string parse(value &out, const std::string &s) {
 
 inline std::string parse(value &out, std::istream &is) {
   std::string err;
-  parse(out, std::istreambuf_iterator<char>(is.rdbuf()), std::istreambuf_iterator<char>(), &err);
+  parse(out, std::istreambuf_iterator<::i8>(is.rdbuf()), std::istreambuf_iterator<::i8>(), &err);
   return err;
 }
 
@@ -1157,7 +1157,7 @@ inline bool operator==(const value &x, const value &y) {
   if (x.is<type>())                                                                                                                \
   return y.is<type>() && x.get<type>() == y.get<type>()
   QUITE_COMPACT_NETWORK_PAYLOAD_CMP(bool);
-  QUITE_COMPACT_NETWORK_PAYLOAD_CMP(double);
+  QUITE_COMPACT_NETWORK_PAYLOAD_CMP(::f64);
   QUITE_COMPACT_NETWORK_PAYLOAD_CMP(std::string);
   QUITE_COMPACT_NETWORK_PAYLOAD_CMP(array);
   QUITE_COMPACT_NETWORK_PAYLOAD_CMP(object);
@@ -1193,7 +1193,7 @@ inline std::istream &operator>>(std::istream &is, quite_compact_network_payload:
 }
 
 inline std::ostream &operator<<(std::ostream &os, const quite_compact_network_payload::value &x) {
-  x.serialize(std::ostream_iterator<char>(os));
+  x.serialize(std::ostream_iterator<::i8>(os));
   return os;
 }
 #ifdef _MSC_VER

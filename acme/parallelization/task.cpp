@@ -29,7 +29,7 @@
 
 #ifdef LINUX
 
-int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask);
+::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask);
 
 #endif
 
@@ -629,7 +629,7 @@ bool task::msg_translator_handlers(MSG* pmsg)
    // {
    //
    //    HRESULT hr =
-   for (int i = 0; i < m_msgtranslatora.size(); i++)
+   for (::i32 i = 0; i < m_msgtranslatora.size(); i++)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
@@ -658,7 +658,7 @@ void erase_msg_translator(::function<bool(MSG *)> msgtranslator);
 
 
 void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
-                         const_char_pointer pszFile, int iLine)
+                         const_char_pointer pszFile, ::i32 iLine)
 {
 
 #ifdef _DEBUG
@@ -1676,7 +1676,7 @@ void * task::s_os_task(void * p)
 #endif
 {
 
-   int iExitCode = 0;
+   ::i32 iExitCode = 0;
 
    {
 
@@ -1906,12 +1906,12 @@ CLASS_DECL_ACME bool os_on_init_thread();
 CLASS_DECL_ACME void os_on_term_thread();
 
 
-int task::__task_main()
+::i32 task::__task_main()
 //void task::__task_main(::procedure & procedureTaskEnded)
 //void task::__task_main()
 {
 
-   int iExitCode = -1;
+   ::i32 iExitCode = -1;
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
    ::os_on_init_thread();
@@ -1925,10 +1925,10 @@ int task::__task_main()
 }
 
 
-int task::call_main()
+::i32 task::call_main()
 {
 
-   int iExitCode = -1;
+   ::i32 iExitCode = -1;
    
    try
    {
@@ -2906,9 +2906,9 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
       ULONG BackTraceHash;
 
-      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
 
-      char sz[1024];
+      ::i8 sz[1024];
 
       zero(sz);
 
@@ -3050,7 +3050,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
-   int iError = pthread_create(
+   ::i32 iError = pthread_create(
       (pthread_t *)&m_htask,
       &taskAttr,
       &task::s_os_task,
@@ -3148,9 +3148,9 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 //
 //      ULONG BackTraceHash;
 //
-//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+//      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
 //
-//      char sz[1024];
+//      ::i8 sz[1024];
 //
 //      zero(sz);
 //
@@ -3317,9 +3317,9 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //
    //      ULONG BackTraceHash;
    //
-   //      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+   //      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
    //
-   //      char sz[1024];
+   //      ::i8 sz[1024];
    //
    //      zero(sz);
    //
@@ -3607,7 +3607,7 @@ void task::kick_idle()
    if (m_bMessageThread2)
    {
 
-      ::PostThreadMessage(m_itask, ::user::e_message_kick_idle, 0, 0);
+      ::PostThreadMessage((DWORD) m_itask, ::user::e_message_kick_idle, 0, 0);
 
    }
    else
@@ -3802,7 +3802,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
    }
 
-   auto iTenths = (int)(timeWait.integral_millisecond() / 100);
+   auto iTenths = (::i32)(timeWait.integral_millisecond() / 100);
 
    try
    {
@@ -4129,7 +4129,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //CLASS_DECL_ACME itask main_user_itask();
 
 
-CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
+CLASS_DECL_ACME bool predicate_Sleep(::i32 iTime, ::function < bool(void) > functionOkToSleep)
 {
 
    if (iTime < 100)

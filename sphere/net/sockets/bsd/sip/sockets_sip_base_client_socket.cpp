@@ -53,7 +53,7 @@ namespace sockets
    }
 
 
-   void sip_base_client_socket::OnRawData(char *buf,size_t len)
+   void sip_base_client_socket::OnRawData(char_pointer buf,size_t len)
    {
       if (!m_bHeader)
       {
@@ -80,7 +80,7 @@ namespace sockets
                      {
                         memory mem;
                         mem.set_size(TCP_BUFSIZE_READ);
-                        char * tmp = (char*) mem.get_data();
+                        char_pointer tmp = (char_pointer ) mem.get_data();
                         ::memory_copy(tmp, buf + ptr, len - ptr);
                         tmp[len - ptr] = 0;
                         on_read( tmp, len - ptr );
@@ -166,7 +166,7 @@ namespace sockets
                {
                   memory mem;
                   mem.set_size(TCP_BUFSIZE_READ);
-                  char * tmp = (char*)mem.get_data();
+                  char_pointer tmp = (char_pointer )mem.get_data();
                   ::memory_copy(tmp,buf + sz,len - sz);
                   tmp[len - sz] = 0;
                   on_read( tmp, len - sz );
@@ -472,7 +472,7 @@ namespace sockets
 
    void sip_base_client_socket::OnHeaderComplete()
    {
-      int iStatusCode = m_response.attr("http_status_code").int32();
+      ::i32 iStatusCode = m_response.attr("http_status_code").int32();
       string strMethod = m_response.attr("http_method");
       if(m_estate == state_free)
       {

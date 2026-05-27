@@ -12,7 +12,7 @@
 // 	public:
 //
 // 		virtual void onInit() {};
-// 		virtual void onUpdate(float dt) {};
+// 		virtual void onUpdate(::f32 dt) {};
 // 		virtual void onRender(IFrame * pframe) {};
 // 		virtual ::graphics3d::transform& getTransform() = 0;
 // 		//virtual ~IEntity() = default;

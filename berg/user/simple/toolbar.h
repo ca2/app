@@ -14,7 +14,7 @@ public:
 
    bool                       m_bStyleFlat : 1;
    
-   int                     m_iImageSpacing;
+   ::i32                     m_iImageSpacing;
    ::i32_size                  m_sizePress;
    ::i32_size                  m_sizeSpacing;
    ::i32_size                  m_sizeSeparator;
@@ -44,14 +44,14 @@ public:
    simple_toolbar();
    ~simple_toolbar() override;
 
-   virtual int  get_image_spacing();
+   virtual ::i32  get_image_spacing();
    virtual ::i32_size get_press_shift();
    virtual ::i32_size get_item_spacing();
    virtual ::i32_size get_separator_size();
    virtual ::i32_rectangle get_bar_border();
    virtual ::i32_rectangle get_item_pad();
 
-   virtual double get_pixel_font_size() const;
+   virtual ::f64 get_pixel_font_size() const;
 
    //bool create(::user::interaction * puiParent, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, atom nID = "__IDW_TOOLBAR");
    //using ::user::interaction::create_window_ex;
@@ -61,7 +61,7 @@ public:
    virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nWidth);
    virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 
-   virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 dwMode) override;
+   virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 dwMode) override;
    virtual ::i32_size CalcLayout(::draw2d::graphics_pointer& pgraphics, ::u32 dwMode, ::collection::index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
    virtual ::i32_size CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);

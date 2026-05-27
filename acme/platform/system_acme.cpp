@@ -169,27 +169,27 @@ namespace platform
    //
    // #ifdef _DEBUG
    //       ::atom atom;
-   //       int iAtom1 = sizeof(atom);
-   //       int iAtomType = sizeof(atom.m_etype);
-   //       int iDomainId = sizeof(atom.m_domainid);
+   //       ::i32 iAtom1 = sizeof(atom);
+   //       ::i32 iAtomType = sizeof(atom.m_etype);
+   //       ::i32 iDomainId = sizeof(atom.m_domainid);
    //       ::payload payload;
    //       auto pType = &payload.m_etype;
    //       auto pAll = &payload.m_payloadall;
-   //       int iType = sizeof(payload.m_etype);
-   //       int iAll = sizeof(payload.m_payloadall);
-   //       int iThis = sizeof(payload);
-   //       int iAddUp;
+   //       ::i32 iType = sizeof(payload.m_etype);
+   //       ::i32 iAll = sizeof(payload.m_payloadall);
+   //       ::i32 iThis = sizeof(payload);
+   //       ::i32 iAddUp;
    // #if REFERENCING_DEBUGGING
    //       iAddUp += sizeof(payload.m_preferer);
    // #endif
-   //       int iComputed = (int) (((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
-   //       int iColor = sizeof(payload.m_color);
-   //       int iStr = sizeof(payload.m_str);
-   //       int iHls = sizeof(payload.m_hls);
-   //       int iTime = sizeof(payload.m_time);
-   //       int iAtom = sizeof(payload.id());
-   //       int iFileTime = sizeof(payload.m_filetime);
-   //       int iEarthTime = sizeof(payload.m_earthtime);
+   //       ::i32 iComputed = (::i32) (((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+   //       ::i32 iColor = sizeof(payload.m_color);
+   //       ::i32 iStr = sizeof(payload.m_str);
+   //       ::i32 iHls = sizeof(payload.m_hls);
+   //       ::i32 iTime = sizeof(payload.m_time);
+   //       ::i32 iAtom = sizeof(payload.id());
+   //       ::i32 iFileTime = sizeof(payload.m_filetime);
+   //       ::i32 iEarthTime = sizeof(payload.m_earthtime);
    //       if (iThis != iComputed)
    //       {
    //
@@ -319,7 +319,7 @@ namespace platform
    //
    //       }
    //
-   //       //         for (int i; i < this->get_argument_count1(); i++)
+   //       //         for (::i32 i; i < this->get_argument_count1(); i++)
    //       //         {
    //       //
    //       //            string strArg = this->get_argument1(i);
@@ -766,7 +766,7 @@ namespace platform
    //
    //          string_array_base straArguments;
    //
-   //          for (int i; i < this->get_argument_count1(); i++)
+   //          for (::i32 i; i < this->get_argument_count1(); i++)
    //          {
    //
    //             string strArgument = this->get_argument1(i);
@@ -794,14 +794,14 @@ namespace platform
    //          if (this->m_wenvp)
    //          {
    //
-   //             int iIndex;
+   //             ::i32 iIndex;
    //
    //             for (auto wenv = this->m_wenvp; *wenv != 0; wenv++, iIndex++)
    //             {
    //
    //                auto thisEnv = *wenv;
    //
-   //                int iLen = (int) wcslen(thisEnv);
+   //                ::i32 iLen = (::i32) wcslen(thisEnv);
    //
    //                /*if (iLen >= 42)
    //                {
@@ -1044,7 +1044,7 @@ namespace platform
    //    }
    //
    //
-   //    //void acme_system_layer::system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   //    //void acme_system_layer::system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    //    //{
    //
    //    //   if (!m_ptracelog)
@@ -1803,7 +1803,7 @@ namespace platform
    //    }
    //
    //
-   //    //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //    //   ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
    //    //   {
    //    //
    //    //      throw_todo();
@@ -2148,7 +2148,7 @@ namespace platform
    //
    //             ::string_array_base straFiles;
    //
-   //             for (int iArgument; iArgument < this->m_argc; )
+   //             for (::i32 iArgument; iArgument < this->m_argc; )
    //             {
    //
    //                auto iArgumentBefore = iArgument;
@@ -2288,7 +2288,7 @@ namespace platform
    //    //}
    //
    //
-   //    //void acme_system_layer::system::system_construct(int argc, char** argv, char** envp)
+   //    //void acme_system_layer::system::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
    //    //{
    //
    //    //   throw ::interface_only();
@@ -2296,7 +2296,7 @@ namespace platform
    //    //}
    //
    //
-   //    //void acme_system_layer::system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //    //void acme_system_layer::system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //    //{
    //
    //    //   throw ::interface_only();
@@ -2492,7 +2492,7 @@ namespace platform
    //    }
    //
    //
-   //    //void acme_system_layer::system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //    //void acme_system_layer::system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //    //{
    //
    //    //   acme_main_data::system_construct(argc, argv, envp);
@@ -2530,7 +2530,7 @@ namespace platform
    // #endif
    //
    //
-   //    void acme_system_layer::system::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
+   //    void acme_system_layer::system::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    //    {
    //
    //       call((::enum_id)iId, iPayload);
@@ -3379,7 +3379,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::install_progress_add_up(int iAddUp)
+   //    void acme_system_layer::system::install_progress_add_up(::i32 iAddUp)
    //    {
    //
    //
@@ -3433,7 +3433,7 @@ namespace platform
    //    }
    //
    //
-   //    double system::luminance() const
+   //    ::f64 system::luminance() const
    //    {
    //
    //       return m_dLuminance;
@@ -4334,7 +4334,7 @@ return nullptr;
 
 #ifdef WINDOWS_DESKTOP
 
-   void acme_system_layer::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, int nCmdShow)
+   void acme_system_layer::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
    {
    }
 
@@ -4524,7 +4524,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    // }
 
 
-   //void acme_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override{}
+   //void acme_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override{}
 
 
    //void acme_system_layer::main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal){}
@@ -4679,7 +4679,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount){}
+   //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount){}
    ::pointer<::regular_expression::context> acme_system_layer::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
       return {};
@@ -4698,7 +4698,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //virtual ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
 
    void acme_system_layer::get_public_internet_domain_extension_list(string_array_base& stra)
    {
@@ -4711,7 +4711,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   ::lresult acme_system_layer::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
+   ::lresult acme_system_layer::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    {
       
       return 0;
@@ -4928,7 +4928,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   void acme_system_layer::install_progress_add_up(int iAddUp)
+   void acme_system_layer::install_progress_add_up(::i32 iAddUp)
    {
    }
 
@@ -4945,7 +4945,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   double acme_system_layer::luminance() const
+   ::f64 acme_system_layer::luminance() const
    {
       return 0.;
    }
@@ -4984,9 +4984,9 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   //      virtual int get_simple_ui_darkness(){}
+   //      virtual ::i32 get_simple_ui_darkness(){}
 
-   //      void acme_system_layer::set_simple_ui_darkness(int iWeatherDarkness){}
+   //      void acme_system_layer::set_simple_ui_darkness(::i32 iWeatherDarkness){}
 
    void acme_system_layer::set_dark_mode(bool bDark)
    {
@@ -5178,7 +5178,7 @@ void acme_system_layer::on_open_untitled_file()
 // //
 // //         //   //pfuture->wait(10_s);
 // //
-// //         //   int iDialogResult = pfuture->m_var;
+// //         //   ::i32 iDialogResult = pfuture->m_var;
 // //
 // //         //   informationf("result " + as_string(iDialogResult));
 // //

@@ -4,7 +4,7 @@
 #if defined()
 
 
-int installer_start(const ::scoped_string & scopedstrVersion, const ::scoped_string & scopedstrId);
+::i32 installer_start(const ::scoped_string & scopedstrVersion, const ::scoped_string & scopedstrId);
 
 
 namespace install
@@ -103,7 +103,7 @@ namespace install
 
       virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect);
 
-      virtual double extract_spa_progress_rate();
+      virtual ::f64 extract_spa_progress_rate();
 
       virtual void deferred_prodevian_redraw();
 
@@ -113,7 +113,7 @@ namespace install
 
       using ::hotplugin::plugin::on_receive;
 
-      virtual void on_receive(::aura::ipc::rx * prx, int message, void * pdata, int len);
+      virtual void on_receive(::aura::ipc::rx * prx, ::i32 message, void * pdata, ::i32 len);
 
 #endif
 
@@ -124,7 +124,7 @@ namespace install
       virtual void restart_aura_ipc();
 
       using ::hotplugin::plugin::set_window_position;
-      virtual bool set_window_position(iptr z,int x,int y,int cx,int cy,::u32 nFlags = SWP_SHOWWINDOW);
+      virtual bool set_window_position(iptr z,::i32 x,::i32 y,::i32 cx,::i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
 
       virtual void on_ready();
 

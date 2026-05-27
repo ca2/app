@@ -317,7 +317,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_array(TYPE * 
 
    this->allocate(n);
 
-   for(int i = 0; i < n; i++)
+   for(::i32 i = 0; i < n; i++)
    {
 
       this->element_at(i) = ptypea[i];
@@ -340,9 +340,9 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //{
 //   if (m_pData != nullptr)
 //   {
-//      for( int i = 0; i < m_nSize; i++ )
+//      for( ::i32 i = 0; i < m_nSize; i++ )
 //         destruct_element(m_pData + i)->~TYPE();
-//      delete[] (unsigned char*)m_pData;
+//      delete[] (::u8*)m_pData;
 //      m_pData     = nullptr;
 //      m_nSize     = 0;
 //      m_nMaxSize  = 0;
@@ -396,9 +396,9 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      // shrink to nothing
 //      if (m_pData != nullptr)
 //      {
-////         for( int i = 0; i < m_nSize; i++ )
+////         for( ::i32 i = 0; i < m_nSize; i++ )
 ////            (m_pData + i)->~TYPE();
-//         delete[] (unsigned char*)m_pData;
+//         delete[] (::u8*)m_pData;
 //         m_pData = nullptr;
 //      }
 //      m_nSize = m_nMaxSize = 0;
@@ -414,7 +414,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //#endif
 //      ::collection::count nAllocSize = maximum(nNewSize, m_nGrowBy);
 ////
-//      m_pData = (TYPE*) aaa_primitive_new unsigned char[(size_t)nAllocSize * sizeof(TYPE)];
+//      m_pData = (TYPE*) aaa_primitive_new ::u8[(size_t)nAllocSize * sizeof(TYPE)];
 //      //memory_set((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::collection::index i = 0; i < nNewSize; i++ )
 //  //       ::aaa_primitive_new( (void *)( m_pData + i ) ) TYPE;
@@ -429,7 +429,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      {
 //         // initialize the aaa_primitive_new elements
 ////         memory_set((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-////         for( int i = 0; i < nNewSize-m_nSize; i++ )
+////         for( ::i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////
 ////            ::aaa_primitive_new( (void *)( m_pData + m_nSize + i ) ) TYPE;
 ////
@@ -437,7 +437,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      else if (m_nSize > nNewSize)
 //      {
 //         // destroy the old elements
-////         for( int i = 0; i < m_nSize-nNewSize; i++ )
+////         for( ::i32 i = 0; i < m_nSize-nNewSize; i++ )
 //  //          (m_pData + nNewSize + i)->~TYPE();
 //      }
 //      m_nSize = nNewSize;
@@ -468,7 +468,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
 //
-//      TYPE* pNewData = (TYPE*) aaa_primitive_new unsigned char[(size_t)nNewMax * sizeof(TYPE)];
+//      TYPE* pNewData = (TYPE*) aaa_primitive_new ::u8[(size_t)nNewMax * sizeof(TYPE)];
 //
 //
 //      // copy aaa_primitive_new data from old
@@ -478,12 +478,12 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      // construct remaining elements
 //      ASSERT(nNewSize > m_nSize);
 ////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-////      for( int i = 0; i < nNewSize-m_nSize; i++ )
+////      for( ::i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////
 ////         ::aaa_primitive_new( (void *)( pNewData + m_nSize + i ) ) TYPE;
 ////
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (unsigned char*)m_pData;
+//      delete[] (::u8*)m_pData;
 //      m_pData = pNewData;
 //      m_nSize = nNewSize;
 //      m_nMaxSize = nNewMax;
@@ -507,14 +507,14 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      TYPE* pNewData = nullptr;
 //      if (m_nSize != 0)
 //      {
-//         pNewData = (TYPE*) aaa_primitive_new unsigned char[m_nSize * sizeof(TYPE)];
+//         pNewData = (TYPE*) aaa_primitive_new ::u8[m_nSize * sizeof(TYPE)];
 //         // copy aaa_primitive_new data from old
 //         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 //            m_pData, m_nSize * sizeof(TYPE));
 //      }
 //
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (unsigned char*)m_pData;
+//      delete[] (::u8*)m_pData;
 //      m_pData = pNewData;
 //      m_nMaxSize = m_nSize;
 //   }

@@ -80,7 +80,7 @@ namespace simpledb
 
             bool bFound = false;
 
-            for (int i = 1; i < m_itema.get_size(); i++)
+            for (::i32 i = 1; i < m_itema.get_size(); i++)
             {
 
                if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)

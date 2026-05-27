@@ -326,9 +326,9 @@ namespace user
 //CLASS_DECL_ACME oswindow set_mouse_capture(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME ::i32_bool release_mouse_capture();
 //CLASS_DECL_ACME ::i32_bool destroy_window(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iWindow);
 //CLASS_DECL_ACME oswindow get_desktop_window();
-//CLASS_DECL_ACME ::i32_bool show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
+//CLASS_DECL_ACME ::i32_bool show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow);
 //CLASS_DECL_ACME ::i32_bool set_foreground_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //

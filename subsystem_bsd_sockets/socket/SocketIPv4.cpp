@@ -71,7 +71,7 @@ namespace subsystem_bsd_sockets
    }
 
    
-   void SocketIPv4::connect(const ::scoped_string & scopedstrHost, unsigned short port)
+   void SocketIPv4::connect(const ::scoped_string & scopedstrHost, ::u16 port)
    {
       
       ::subsystem::SocketAddressIPv4 address;
@@ -111,10 +111,10 @@ namespace subsystem_bsd_sockets
    }
 
 
-   int SocketIPv4::available()
+   ::i32 SocketIPv4::available()
    {
-      int result;
-      int err = ::ioctlsocket(m_socket, FIONREAD, reinterpret_cast<u_long*>(&result));
+      ::i32 result;
+      ::i32 err = ::ioctlsocket(m_socket, FIONREAD, reinterpret_cast<u_long*>(&result));
       if (err != 0)
          return 0;
       return result;
@@ -127,7 +127,7 @@ namespace subsystem_bsd_sockets
 
    void SocketIPv4::shutdown(::subsystem::enum_socket_shutdown esocketshutdown)
    {
-      if (::shutdown(m_socket, (int) esocketshutdown) == _SOCKET_ERROR) {
+      if (::shutdown(m_socket, (::i32) esocketshutdown) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
    }
@@ -183,7 +183,7 @@ namespace subsystem_bsd_sockets
       return m_isBound;
    }
 
-   void SocketIPv4::listen(int backlog)
+   void SocketIPv4::listen(::i32 backlog)
    {
       if (::listen(m_socket, backlog) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
@@ -260,7 +260,7 @@ namespace subsystem_bsd_sockets
          // FIXME: The select() and accept() function can provoke an system
          // exception, if it allows by project settings and closesocket() has alredy
          // been called.
-         int ret = select((int)m_socket + 1, &afd, NULL, NULL, &timeout);
+         ::i32 ret = select((::i32)m_socket + 1, &afd, NULL, NULL, &timeout);
 
          if (m_isClosed || ret == _SOCKET_ERROR) {
             throw ::subsystem::SocketException();
@@ -279,9 +279,9 @@ namespace subsystem_bsd_sockets
       return result;
    }
 
-   int SocketIPv4::send(const char *data, int size, int flags)
+   ::i32 SocketIPv4::send(const_char_pointer data, ::i32 size, ::i32 flags)
    {
-      int result;
+      ::i32 result;
 
       result = ::send(m_socket, data, size, flags);
 
@@ -292,12 +292,12 @@ namespace subsystem_bsd_sockets
       return result;
    }
 
-   int SocketIPv4::recv(char *buffer, int size, int flags)
+   ::i32 SocketIPv4::recv(char_pointer buffer, ::i32 size, ::i32 flags)
    {
       
       restart:
       
-      int result;
+      ::i32 result;
       
       result = ::recv(m_socket, buffer, size, flags);
 
@@ -364,22 +364,22 @@ namespace subsystem_bsd_sockets
    }
 
    /* Auxiliary */
-   void SocketIPv4::setSocketOptions(int level, int name, void *value, int len)
+   void SocketIPv4::setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len)
    {
-      if (setsockopt(m_socket, level, name, (char*)value, len) == _SOCKET_ERROR) {
+      if (setsockopt(m_socket, level, name, (char_pointer )value, len) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
    }
 
-   void SocketIPv4::getSocketOptions(int level, int name, void *value, int *len)
+   void SocketIPv4::getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len)
    {
 #ifdef WINDOWS
-      if (getsockopt(m_socket, level, name, (char*)value, len) == _SOCKET_ERROR) {
+      if (getsockopt(m_socket, level, name, (char_pointer )value, len) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
 #else
       socklen_t socklen = *len;
-      if (getsockopt(m_socket, level, name, (char*)value, &socklen) == _SOCKET_ERROR) {
+      if (getsockopt(m_socket, level, name, (char_pointer )value, &socklen) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
       *len=socklen;
@@ -393,7 +393,7 @@ namespace subsystem_bsd_sockets
       struct timeval tv;
       tv.tv_sec = timeTimeout.m_iSecond;
       tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
-      setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char*)&tv, sizeof tv);
+      setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char_pointer )&tv, sizeof tv);
       
    }
 
@@ -405,21 +405,21 @@ namespace subsystem_bsd_sockets
       tv.tv_sec = timeTimeout.m_iSecond;
       tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
 
-      setSocketOptions(SOL_SOCKET, SO_SNDTIMEO,  (char*)&tv, sizeof tv);
+      setSocketOptions(SOL_SOCKET, SO_SNDTIMEO,  (char_pointer )&tv, sizeof tv);
 
    }
 
 
    void SocketIPv4::enableNaggleAlgorithm(bool enabled)
    {
-      int payload = enabled ? 0 : 1;
+      ::i32 payload = enabled ? 0 : 1;
 
       setSocketOptions(IPPROTO_TCP, TCP_NODELAY, &payload, sizeof(payload));
    }
 #ifdef WINDOWS
    void SocketIPv4::setExclusiveAddrUse()
    {
-      int val = 1;
+      ::i32 val = 1;
 
       setSocketOptions(SOL_SOCKET, SO_EXCLUSIVEADDRUSE, &val, sizeof(val));
    }

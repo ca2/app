@@ -7,8 +7,8 @@
 struct DOUBLE_SIZE
 {
 
-   double cx;
-   double cy;
+   ::f64 cx;
+   ::f64 cy;
 
 };
 
@@ -18,8 +18,8 @@ typedef const DOUBLE_SIZE * LPCDOUBLE_SIZE;
 struct DOUBLE_POINT
 {
 
-   double x;
-   double y;
+   ::f64 x;
+   ::f64 y;
 
 };
 
@@ -30,10 +30,10 @@ typedef const DOUBLE_POINT * LPCDOUBLE_POINT;
 struct DOUBLE_RECTANGLE
 {
 
-   double left;
-   double top;
-   double right;
-   double bottom;
+   ::f64 left;
+   ::f64 top;
+   ::f64 right;
+   ::f64 bottom;
 
 };
 

@@ -168,7 +168,7 @@ namespace database
    }
 
 
-   void     composite::set_error_code(int iErrorCode)
+   void     composite::set_error_code(::i32 iErrorCode)
    {
 
       return m_pdatabase->set_error_code(iErrorCode);

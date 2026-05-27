@@ -13,7 +13,7 @@ namespace graphics3d
    //struct PointLightPushConstants {
    //   floating_sequence4 position{};
    //   floating_sequence4 color{};
-   //   float radius;
+   //   ::f32 radius;
    //};
 
    inline ::gpu::properties point_light_properties()
@@ -23,7 +23,7 @@ namespace graphics3d
       {
          {"position", ::gpu::e_type_seq4},
          {"color", ::gpu::e_type_seq4},
-         {"radius", ::gpu::e_type_float},
+         {"radius", ::gpu::e_type_f32},
          { nullptr, ::gpu::e_type_none}
 
       };

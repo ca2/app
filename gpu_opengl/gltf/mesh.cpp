@@ -140,7 +140,7 @@ namespace gpu_opengl
             //pshader->set_sequence3("albedo", seq3Albedo);
             //if (bAlbedo)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_albedo;
+            //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_albedo;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
             //   pshader->set_int("textureAlbedo", iTextureIndex);
@@ -153,7 +153,7 @@ namespace gpu_opengl
             //   !prendersystem->m_bDisableMetallicRoughness && m_pmaterial->useTextureMetallicRoughness;
 
             //pshader->set_int("useTextureMetallicRoughness", bMetallicRoughness);
-            //float fMetallic = 0.0f;
+            //::f32 fMetallic = 0.0f;
             //if (prendersystem->m_bForceDefaultMetallicFactor)
             //{
 
@@ -166,7 +166,7 @@ namespace gpu_opengl
             //   fMetallic = m_pmaterial->m_fMetallic;
 
             //}
-            //float fRoughness = 0.0f;
+            //::f32 fRoughness = 0.0f;
             //if (prendersystem->m_bForceDefaultRoughnessFactor)
             //{
 
@@ -181,7 +181,7 @@ namespace gpu_opengl
             //pshader->set_float("roughness", fRoughness);
             //if (bMetallicRoughness)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+            //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
             //   pshader->set_int("textureMetallicRoughness", iTextureIndex);
@@ -203,7 +203,7 @@ namespace gpu_opengl
             //bool bAmbientOcclusion =
             //   !prendersystem->m_bDisableAmbientOcclusion && m_pmaterial->useTextureAmbientOcclusion;
             //pshader->set_int("useTextureAmbientOcclusion", bAmbientOcclusion);
-            //float fAmbientOcclusion = 0.0f;
+            //::f32 fAmbientOcclusion = 0.0f;
             //if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
             //{
 
@@ -272,7 +272,7 @@ namespace gpu_opengl
             //pshader->set_sequence3("albedo", m_pmaterial->m_seq3Albedo);
             //if (bUseTextureAlbedo)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_albedo;
+            //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_albedo;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
             //   pshader->set_int("textureAlbedo", iTextureIndex);
@@ -292,7 +292,7 @@ namespace gpu_opengl
             //pshader->set_float("roughness", m_pmaterial->m_fRoughness);
             ////if (m_pmaterial->useTextureMetallicRoughness)
             ////{
-            ////   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+            ////   ::i32 iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
             ////   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             ////   glActiveTexture(textureIndex);
             ////   pshader->set_int("material.textureMetallicRoughness", iTextureIndex);

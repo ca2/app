@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-unsigned char OriginalBytes[5] = {0};
+::u8 OriginalBytes[5] = {0};
 
 
-CLASS_DECL_ACME int is_debugger_attached()
+CLASS_DECL_ACME ::i32 is_debugger_attached()
 {
 
    return __node_is_debugger_attached() != false;
@@ -74,10 +74,10 @@ CLASS_DECL_ACME int is_debugger_attached()
 //
 
 
-int g_iDebuggingConsumer = 0;
+::i32 g_iDebuggingConsumer = 0;
 
 
-CLASS_DECL_ACME void this_is_a_debugging_consumer(int & i)
+CLASS_DECL_ACME void this_is_a_debugging_consumer(::i32 & i)
 {
 
    g_iDebuggingConsumer += i;

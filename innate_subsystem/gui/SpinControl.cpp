@@ -45,13 +45,13 @@ namespace innate_subsystem
 //       m_pparticleThis->setBuddy(buddyControl);
 //    }
 //
-//    void SpinControl::setRange(short lower, short upper)
+//    void SpinControl::setRange(::i16 lower, ::i16 upper)
 //    {
 //       //SendMessage(m_hwnd, UDM_SETRANGE, NULL, (::lparam)MAKELONG(upper, lower));
 //       m_pparticleThis->setRange(lower, upper);
 //    }
 //
-//    void SpinControl::setRange32(int lower, int upper)
+//    void SpinControl::setRange32(::i32 lower, ::i32 upper)
 //    {
 //       //SendMessage(m_hwnd, UDM_SETRANGE32, lower, upper);
 //       m_pparticleThis->setRange32(lower, upper);
@@ -76,8 +76,8 @@ namespace innate_subsystem
 //    //    //    return;
 //    //    //     }
 //    //    //
-//    //    // int currentValue;
-//    //    // int delta = m_maxDelta;
+//    //    // ::i32 currentValue;
+//    //    // ::i32 delta = m_maxDelta;
 //    //    //
 //    //    // // Get buddy textbox value
 //    //    // ::string storage;
@@ -107,7 +107,7 @@ namespace innate_subsystem
 //    //    //    } // for
 //    //    // } // if
 //    //    //
-//    //    // int mod = (currentValue + delta) % delta;
+//    //    // ::i32 mod = (currentValue + delta) % delta;
 //    //    // if (mod != 0) {
 //    //    //    delta -= mod;
 //    //    // }
@@ -123,7 +123,7 @@ namespace innate_subsystem
 //
 //    void SpinControl::setAutoAccelerationParams(const i32_array & limitters,
 //                                                const i32_array & deltas,
-//                                                int maxDelta)
+//                                                ::i32 maxDelta)
 //    {
 //       m_pparticleThis->setAutoAccelerationParams(limitters, deltas, maxDelta);
 //       // m_limitters = *limitters;

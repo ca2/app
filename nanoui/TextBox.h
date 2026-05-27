@@ -59,7 +59,7 @@ namespace nanoui
       enum_alignment                                  m_ealignment;
       ::string                                        m_strUnit;
       ::string                                        m_strFormat;
-      int                                             m_iUnitImage;
+      ::i32                                             m_iUnitImage;
       ::function<bool(const ::scoped_string& str) >   m_callback;
       ::function<void() >                             m_callbackEndEdit;
       ::function<void() >                             m_callbackOnEdit;
@@ -73,7 +73,7 @@ namespace nanoui
       i32_point                                        m_pointMouseDown;
       i32_point                                        m_pointMouseDrag;
       ::user::e_key                                   m_ekeyMouseDownModifier;
-      float                                           m_fTextOffset;
+      ::f32                                           m_fTextOffset;
       //class ::time m_timeLast;
       ::color::color                                  m_colorDeepBackground = ::color::transparent;
       ::color::color                                  m_colorBackground = ::color::color(32, 32);
@@ -104,8 +104,8 @@ namespace nanoui
       ::string unit() const { return m_strUnit; }
       void set_unit(const ::scoped_string& units) { m_strUnit = units; }
 
-      int unit_image() const { return m_iUnitImage; }
-      void set_unit_image(int image) { m_iUnitImage = image; }
+      ::i32 unit_image() const { return m_iUnitImage; }
+      void set_unit_image(::i32 image) { m_iUnitImage = image; }
 
       /// Return the underlying regular expression specifying valid formats
       ::string format() const { return m_strFormat; }
@@ -131,7 +131,7 @@ namespace nanoui
       bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
-      bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
+      bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
       bool keyboard_character_event(::u32 codepoint) override;
 
       virtual bool on_command(const ::atom& atom);
@@ -155,11 +155,11 @@ namespace nanoui
       void paste_from_clipboard();
       bool delete_selection();
 
-      void update_cursor(::nano2d::context * pcontext, float lastx,
+      void update_cursor(::nano2d::context * pcontext, ::f32 lastx,
          const ::nano2d::glyphPosition* glyphs, ::character_count size);
-      float cursor_index_to_position(::character_count iIndex, float lastx,
+      ::f32 cursor_index_to_position(::character_count iIndex, ::f32 lastx,
          const ::nano2d::glyphPosition* glyphs, ::character_count size);
-      ::character_count position_to_cursor_index(float posx, float lastx,
+      ::character_count position_to_cursor_index(::f32 posx, ::f32 lastx,
          const ::nano2d::glyphPosition* glyphs, ::character_count size);
 
       /// The location (if any) for the spin area.

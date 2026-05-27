@@ -443,8 +443,8 @@ namespace user
       //return ::is_set(m_pitemControl)
         // && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iEditSubItem;
 
-      //int iEditItem;
-      //int iEditSubItem;
+      //::i32 iEditItem;
+      //::i32 iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
@@ -471,7 +471,7 @@ namespace user
    //void form_mesh::_001OnColumnChange()
    //{
    //   ::user::mesh::_001OnColumnChange();
-   //   for(int i = 0; i < m_columna.get_size(); i++)
+   //   for(::i32 i = 0; i < m_columna.get_size(); i++)
    //   {
    //      if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
    //      {
@@ -510,9 +510,9 @@ namespace user
    //   //if(pmouse->m_emessage == ::user::e_message_left_button_down)
    //   //{
    //   //
-   //   //   int iItem;
+   //   //   ::i32 iItem;
    //   //
-   //   //   int iSubItem;
+   //   //   ::i32 iSubItem;
    //   //
    //   //   ::user::range range;
    //   //
@@ -536,8 +536,8 @@ namespace user
    //   //}
    //   //else if(emessage == ::user::e_message_left_button_up)
    //   //{
-   //   //int iItem;
-   //   //int iSubItem;
+   //   //::i32 iItem;
+   //   //::i32 iSubItem;
    //   //::user::range range;
    //   //get_selection(range);
    //   //if(_001DisplayHitTest(point, iItem, iSubItem))

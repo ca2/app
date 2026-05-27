@@ -53,7 +53,7 @@ namespace acme
       }
 
 
-      void display::_on_monitor(int iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace)
+      void display::_on_monitor(::i32 iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace)
       {
 
          m_rectanglea.atø(iIndex) = rectangle;
@@ -184,7 +184,7 @@ namespace acme
    }
    
    
-   float display::get_main_screen_scaling_factor()
+   ::f32 display::get_main_screen_scaling_factor()
    {
       
       return 1.0f;

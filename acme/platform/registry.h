@@ -265,7 +265,7 @@ namespace platform
 /*
     Writes the in-memory registry to disk.
 */
-//int RegXFlush(registry *reg);
+//::i32 RegXFlush(registry *reg);
 
 /*
     Flushes and destroys the registry object.
@@ -292,7 +292,7 @@ namespace platform
         registry_key *key = NULL;
         RegXOpenKey(reg, "HKCU\\Software\\MyApp", &key);
 */
-//int RegXOpenKey(registry *reg, const char *path, registry_key **out_key);
+//::i32 RegXOpenKey(registry *reg, const_char_pointer pszPath, registry_key **out_key);
 
 /*
     Creates a key and any missing parents.
@@ -300,20 +300,20 @@ namespace platform
     Example:
         RegXCreateKey(reg, "HKCU\\Software\\MyApp", &key);
 */
-//int RegXCreateKey(registry *reg, const char *path, registry_key **out_key);
+//::i32 RegXCreateKey(registry *reg, const_char_pointer pszPath, registry_key **out_key);
 
 /*
     Deletes a key and all descendants.
 */
-//int RegXDeleteKey(registry *reg, const char *path);
+//::i32 RegXDeleteKey(registry *reg, const_char_pointer pszPath);
 
 /* --------------------------------------------------------------------------
    Value set operations
    -------------------------------------------------------------------------- */
 
-// int RegXSetString(registry_key *key, const char *name, const char *value);
-// int RegXSetDword (registry_key *key, const char *name, uint32_t value);
-// int RegXSetBinary(registry_key *key, const char *name, const void *data, size_t size);
+// ::i32 RegXSetString(registry_key *key, const_char_pointer pszName, const_char_pointer value);
+// ::i32 RegXSetDword (registry_key *key, const_char_pointer pszName, uint32_t value);
+// ::i32 RegXSetBinary(registry_key *key, const_char_pointer pszName, const void *data, size_t size);
 
 /* --------------------------------------------------------------------------
    Value get operations
@@ -325,12 +325,12 @@ namespace platform
     Usage pattern:
         size_t len = 0;
         RegXGetString(key, "UserName", NULL, &len);   // query required size
-        char *buf = malloc(len);
+        char_pointer buf = malloc(len);
         RegXGetString(key, "UserName", buf, &len);
 */
-//int RegXGetString(registry_key *key, const char *name, char *buf, size_t *inout_len);
+//::i32 RegXGetString(registry_key *key, const_char_pointer pszName, char_pointer buf, size_t *inout_len);
 
-//int RegXGetDword(registry_key *key, const char *name, uint32_t *out_value);
+//::i32 RegXGetDword(registry_key *key, const_char_pointer pszName, uint32_t *out_value);
 
 /*
     Gets a binary value.
@@ -341,21 +341,21 @@ namespace platform
         void *buf = malloc(size);
         RegXGetBinary(key, "Blob", buf, &size);
 */
-//int RegXGetBinary(registry_key *key, const char *name, void *buf, size_t *inout_len);
+//::i32 RegXGetBinary(registry_key *key, const_char_pointer pszName, void *buf, size_t *inout_len);
 
 /* --------------------------------------------------------------------------
    Value utility
    -------------------------------------------------------------------------- */
 
-//int RegXDeleteValue(registry_key *key, const char *name);
-//int RegXValueExists(registry_key *key, const char *name);
-//int RegXGetValueType(registry_key *key, const char *name, RegXType *out_type);
+//::i32 RegXDeleteValue(registry_key *key, const_char_pointer pszName);
+//::i32 RegXValueExists(registry_key *key, const_char_pointer pszName);
+//::i32 RegXGetValueType(registry_key *key, const_char_pointer pszName, RegXType *out_type);
 
 /* --------------------------------------------------------------------------
    Error strings
    -------------------------------------------------------------------------- */
 
-   //const char * registry_error(int status);
+   //const_char_pointer registry_error(::i32 status);
 
 
 } // namespace platform

@@ -30,15 +30,15 @@
      #include "GZipHelper.h"
     void main()
     {
-        char plainText[]="Plain text here";
+        ::i8 plainText[]="Plain text here";
       CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
       LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-      int len=gzip.Length;      // Length is length of zipped data;
+      ::i32 len=gzip.Length;      // Length is length of zipped data;
 
       CGZIP2A plain(pgzip,len);  // do decompressing here
 
-      char *pplain=plain.psz;    // psz is plain data pointer
-      int  aLen=plain.Length;    // Length is length of unzipped data.
+      char_pointer pplain=plain.psz;    // psz is plain data pointer
+      ::i32  aLen=plain.Length;    // Length is length of unzipped data.
     }
 //////////////////////////////////////////////////////////////////////////////
 */
@@ -51,10 +51,10 @@ class CLASS_DECL_ACME compress_gz :
 public:
 
 
-   int      m_iLevel;
+   ::i32      m_iLevel;
 
 
-   compress_gz(int iLevel = 6);
+   compress_gz(::i32 iLevel = 6);
    virtual ~compress_gz();
 
 
@@ -82,5 +82,5 @@ public:
 
 
 
-int z_compress(void * dest, unsigned long long * destLen, const void * source, unsigned long long sourceLen);
-int z_uncompress(void * dest, unsigned long long * destLen, const void * source, unsigned long long sourceLen);
+::i32 z_compress(void * dest, ::u64 * destLen, const void * source, ::u64 sourceLen);
+::i32 z_uncompress(void * dest, ::u64 * destLen, const void * source, ::u64 sourceLen);

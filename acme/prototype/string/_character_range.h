@@ -63,7 +63,7 @@ template < prototype_character_range RANGE, has_as_string HAS_AS_STRING >
 
 
 
-//template < character_range RANGE, int t_size >
+//template < character_range RANGE, ::i32 t_size >
 //const_string_range_static_array < typename RANGE::const_iterator, t_size + 1 > operator + (const const_string_range_static_array < typename RANGE::const_iterator, t_size >& a, const RANGE& range)
 //{
 //

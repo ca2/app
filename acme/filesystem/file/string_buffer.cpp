@@ -193,7 +193,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 ////      m_iAlloc = iSize + 1024;
 ////      if(m_psz == nullptr)
 ////      {
-////         m_psz = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iAlloc);
+////         m_psz = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iAlloc);
 ////         m_psz[0] = '\0';
 ////      }
 ////      else
@@ -202,7 +202,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 ////         {
 ////            informationf("strange string buffer usage");
 ////         }
-////         m_psz = (char *)memory_reallocate(m_psz,m_iAlloc);
+////         m_psz = (char_pointer )memory_reallocate(m_psz,m_iAlloc);
 ////      }
 ////   }
 //

@@ -35,7 +35,7 @@ namespace acme
          virtual void _enumerate_monitors();
 
 
-         virtual void _on_monitor(int iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace);
+         virtual void _on_monitor(::i32 iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace);
 
 
          virtual bool is_display_opened() const;
@@ -63,7 +63,7 @@ namespace acme
          
          virtual ::i32_size get_main_screen_size_with_scaling_factor();
          
-         virtual float get_main_screen_scaling_factor();
+         virtual ::f32 get_main_screen_scaling_factor();
 
          virtual void * raw_x11_display();
 

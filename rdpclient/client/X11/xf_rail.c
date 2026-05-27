@@ -138,7 +138,7 @@ void xf_rail_end_local_move(xfContext* xfc, xfAppWindow* appWindow)
 	int x, y;
 	int child_x;
 	int child_y;
-	unsigned int mask;
+	::u32 mask;
 	Window root_window;
 	Window child_window;
 	RAIL_WINDOW_MOVE_ORDER windowMove;

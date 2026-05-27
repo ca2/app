@@ -2,8 +2,8 @@
 #pragma once
 
 
-enum enum_method : int;
-enum enum_future : int;
+enum enum_method : ::i32;
+enum enum_future : ::i32;
 
 
 class CLASS_DECL_APEX object :
@@ -188,7 +188,7 @@ public:
    virtual void to_string(const string_exchange& str) const override;
 
    //::image::image_pointer create_image();
-   //::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, ::i32 iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
@@ -409,7 +409,7 @@ public:
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-   //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);
    //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
 

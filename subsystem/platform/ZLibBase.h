@@ -37,20 +37,20 @@ namespace subsystem
         ZLibBase();
         virtual ~ZLibBase();
 
-        void setInput(const char *input, memsize size);
+        void setInput(const_char_pointer input, memsize size);
 
-        const char *getOutput() const;
-        unsigned long getOutputSize() const;
+        const_char_pointer getOutput() const;
+        ulong getOutputSize() const;
 
         //protected:
-        const char *m_input;
+        const_char_pointer m_input;
         memsize m_inputSize;
 
         ::memory m_output;
 
         // Type of m_outputSize must be match with type m_zlibStream.total_out,
         // otherwise may overflow long and value of m_outputSize will be too big.
-        unsigned long m_outputSize;
+        ulong m_outputSize;
 
 
     };

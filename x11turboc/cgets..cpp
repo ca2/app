@@ -33,12 +33,12 @@
 // This global variable exists to allow the cgets code (which echoes
 // to the screen) to be used for getpass (which does not).  0 is the
 // normal state, and non-zero is for getpass.
-char CgetsEchoOff = 0;
+::i8 CgetsEchoOff = 0;
 
-char *
-cgets (char *str)
+char_pointer 
+cgets (char_pointer str)
 {
-  int Len, Max, ch, x, y;
+  ::i32 Len, Max, ch, x, y;
   Max = (guchar) str[0];
   Len = 0;
   while (!CgetsEchoOff || Len < Max - 1)

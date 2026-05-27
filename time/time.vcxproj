@@ -1278,7 +1278,7 @@
     <ClInclude Include="datetime\_.h" />
     <ClInclude Include="datetime\calendar.h" />
     <ClInclude Include="datetime\clock.h" />
-    <ClInclude Include="datetime\float_time.h" />
+    <ClInclude Include="datetime\f32_time.h" />
     <ClInclude Include="datetime\_constant.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphical\calendar.h" />
@@ -1297,7 +1297,7 @@
     <ClCompile Include="calculator\token.cpp" />
     <ClCompile Include="datetime\calendar.cpp" />
     <ClCompile Include="datetime\clock.cpp" />
-    <ClCompile Include="datetime\float_time.cpp" />
+    <ClCompile Include="datetime\f32_time.cpp" />
     <ClCompile Include="datetime\_.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

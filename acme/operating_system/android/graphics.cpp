@@ -9,7 +9,7 @@
 //}
 
 
-//HCURSOR CreateAlphaCursor(oswindow window, const ::image::image *pimage, int xHotSpot, int yHotSpot)
+//HCURSOR CreateAlphaCursor(oswindow window, const ::image::image *pimage, ::i32 xHotSpot, ::i32 yHotSpot)
 //{
 //
 //   return false;

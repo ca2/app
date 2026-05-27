@@ -26,7 +26,7 @@ namespace mathematics
    }
 
    
-   void random_number_generator::seed(int iTwistLen, ::u32 seed)
+   void random_number_generator::seed(::i32 iTwistLen, ::u32 seed)
    {
       
       iTwistLen = maximum(TWIST_IA + 10, iTwistLen);
@@ -35,7 +35,7 @@ namespace mathematics
       
       m_uinta[0]= seed & 0xffffffffUL;
       
-      for (int i = 1; i < m_uinta.get_count(); i++)
+      for (::i32 i = 1; i < m_uinta.get_count(); i++)
       {
          
          m_uinta[i] = (1812433253UL * (m_uinta[i - 1] ^ (m_uinta[i - 1] >> 30)) + i);
@@ -52,7 +52,7 @@ namespace mathematics
       return m_distributionU32(m_generator);
    }
 
-   unsigned char random_number_generator::get_unsigned_char()
+   ::u8 random_number_generator::get_unsigned_char()
    {
       return m_distributionU8(m_generator);
    }
@@ -66,7 +66,7 @@ namespace mathematics
       ++m_value;
       if (m_value == TWIST_LEN)
       {
-         int i = 0;
+         ::i32 i = 0;
          for (i = 0; i < TWIST_IB; ++i)
          {
             ::u32 s = TWIST(m_uinta, i, i + 1);
@@ -88,7 +88,7 @@ namespace mathematics
 } // namespace random_number_generator
 
 
-   ::i64 random_context_entropy64(unsigned char bLevel)
+   ::i64 random_context_entropy64(::u8 bLevel)
    {
 
       bLevel = minimum(bLevel, 3);
@@ -117,7 +117,7 @@ namespace mathematics
    }
 
 
-   int random_context_entropy(int iLevel)
+   ::i32 random_context_entropy(::i32 iLevel)
    {
 
       if (iLevel <= 0)
@@ -142,6 +142,6 @@ namespace mathematics
 
       }
 
-      return (int) iValue;
+      return (::i32) iValue;
 
    }

@@ -12,7 +12,7 @@ public:
 
 
    enum_trace_category        m_etracecategory;
-   const_char_pointer              m_pszName;
+   const_char_pointer m_pszName;
    enum_trace_level           m_etracelevelMinimum;
    bool                       m_bEnabled;
 
@@ -91,7 +91,7 @@ namespace platform
       }
 
 
-      //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::file::path & path, int nLine, const ::scoped_string & scopedstr) override;
+      //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::file::path & path, ::i32 nLine, const ::scoped_string & scopedstr) override;
 
 
    };

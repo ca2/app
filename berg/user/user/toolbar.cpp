@@ -319,9 +319,9 @@ namespace user
          //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
-      m_rectangleBorder.bottom = (int)((cyHeight - m_sizeButton.cy) / 2);
+      m_rectangleBorder.bottom = (::i32)((cyHeight - m_sizeButton.cy) / 2);
       // if there is an extra pixel, m_rectangleBorder.top will get it
-      m_rectangleBorder.top = (int)(cyHeight - m_sizeButton.cy - m_rectangleBorder.bottom);
+      m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy - m_rectangleBorder.bottom);
       if (m_rectangleBorder.top < 0)
       {
          informationf("Warning: toolbar::SetHeight(%d) is smaller than button.",
@@ -434,7 +434,7 @@ namespace user
       //            {
       //               // a command button with image
       //               button.fsStyle = TBSTYLE_BUTTON;
-      //               button.iBitmap = (int) iImage++;
+      //               button.iBitmap = (::i32) iImage++;
       //            }
       //            if (!default_window_procedure(TB_ADDBUTTONS, 1, (LPARAM)&button))
       //               return false;
@@ -769,7 +769,7 @@ namespace user
    //      //   {
    //      //      // a separator represents either a height or width
    //      //      if (pData[i].fsState & TBSTATE_WRAP)
-   //      //         sizeResult.cy = (int) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+   //      //         sizeResult.cy = (::i32) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
    //      //      else
    //      //         sizeResult.cx = maximum(cur.x + pData[i].iBitmap, sizeResult.cx);
    //      //   }
@@ -831,7 +831,7 @@ namespace user
    //   //         Δx = m_sizeButton.cx;
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
-   //   //         //         str = (const unichar *) pData[i].iString;
+   //   //         //         str = (const wide_character * ) pData[i].iString;
    //   //         ::i32_size size;
    //   //         ::GetTextExtentPoint32U(
    //   //         (HDC)pgraphics->get_os_data(),
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   i32_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, ::u32 dwMode)
+   i32_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, ::i32 nLength, ::u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -1285,8 +1285,8 @@ namespace user
    ////      ::memory_copy(&save, &button, sizeof(save));
    ////      button.idCommand = nID;
    ////      button.iBitmap = iImage;
-   ////      button.fsStyle = (unsigned char)LOWORD(nStyle);
-   ////      button.fsState = (unsigned char)HIWORD(nStyle);
+   ////      button.fsStyle = (::u8)LOWORD(nStyle);
+   ////      button.fsState = (::u8)HIWORD(nStyle);
    ////      if (__memcmp(&save, &button, sizeof(save)) != 0)
    ////      {
    ////         _SetButton(nIndex, &button);
@@ -1326,7 +1326,7 @@ namespace user
 //         // add ___new string to toolbar list_base
 //         string strTemp(str);
 //         throw ::interface_only();
-//         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
+//         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const wide_character * )strTemp);
 //         if (nString == -1)
 //            return false;
 //
@@ -1344,7 +1344,7 @@ namespace user
       //   memory_set(&button, 0, sizeof(button));
       //   button.cbSize = sizeof(button);
       //   ::u32 uID = GetItemID(nIndex);
-      //   button.pszText = (unichar *) (const unichar *) wstrText;
+      //   button.pszText = (wide_character * ) (const wide_character * ) wstrText;
       //   button.cchText = wstrText.length();
       //   button.dwMask |= TBIF_TEXT;
       //   GetToolBarCtrl().SetButtonInfo(uId, &button);

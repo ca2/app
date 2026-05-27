@@ -31,8 +31,8 @@ namespace gpu
       }
 
 
-      void cubemap_framebuffer::initialize_cubemap_framebuffer(::gpu::context * pgpucontext, int width,
-                                                               int height)
+      void cubemap_framebuffer::initialize_cubemap_framebuffer(::gpu::context * pgpucontext, ::i32 width,
+                                                               ::i32 height)
       {
 
          initialize_gpu_context_object(pgpucontext);
@@ -55,7 +55,7 @@ namespace gpu
          // m_ptexture->m_bShaderResourceView = true;
          //
 
-         int iMipCount = floor(log2(maximum(width, height)));
+         ::i32 iMipCount = floor(log2(maximum(width, height)));
 
          m_ptexture->initialize_mipmap_cubemap_texture(pgpurenderer, rectangleTarget,
             iMipCount, true, true);
@@ -126,7 +126,7 @@ namespace gpu
       }
 
 
-      void cubemap_framebuffer::set_cube_face(unsigned int iIndex, ::gpu::shader * pgpushader)
+      void cubemap_framebuffer::set_cube_face(::u32 iIndex, ::gpu::shader * pgpushader)
       {
 
          m_ptexture->set_cube_face(iIndex, pgpushader);
@@ -140,7 +140,7 @@ namespace gpu
       }
 
 
-      // unsigned int cubemap_framebuffer::getCubemapTextureId()
+      // ::u32 cubemap_framebuffer::getCubemapTextureId()
       // {
       //    //return m_uCubemapTextureId;
       //    return 0;

@@ -22,7 +22,7 @@ window_xlib::~window_xlib()
 HDC GetDC(oswindow window);
 
 
-void window_xlib::create(oswindow window, ::i64 cxParam, ::i64 cyParam, int iStrideParam)
+void window_xlib::create(oswindow window, ::i64 cxParam, ::i64 cyParam, ::i32 iStrideParam)
 {
 
    if(cxParam <= 0 || cyParam <= 0)
@@ -53,7 +53,7 @@ void window_xlib::create(oswindow window, ::i64 cxParam, ::i64 cyParam, int iStr
 
    m_mem.set_size(cyParam * m_iScan);
 
-/*   m_pimage = XCreateImage(window->display(), window->draw2d(), window->m_iDepth, ZPixmap, 0, (char *) m_mem->get_data(), cxParam, cyParam, sizeof(color32_t) * 8, m_iScan);
+/*   m_pimage = XCreateImage(window->display(), window->draw2d(), window->m_iDepth, ZPixmap, 0, (char_pointer ) m_mem->get_data(), cxParam, cyParam, sizeof(color32_t) * 8, m_iScan);
 
    m_pdc = ___new device_context();
 
@@ -79,7 +79,7 @@ void window_xlib::destroy()
 }
 
 
-void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const ::i32_rectangle * lpcrect, int iStride)
+void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const ::i32_rectangle * lpcrect, ::i32 iStride)
 {
 
    single_lock synchronouslock(&user_synchronization());

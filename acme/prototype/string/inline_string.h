@@ -88,10 +88,10 @@ template < prototype_number NUMBER >
 inline string as_string(NUMBER number, const_char_pointer pszFormat);
 
 // template < prototype_unsigned UNSIGNED >
-// inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
+// inline inline_number_string as_string(UNSIGNED u, ::i32 radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 template < prototype_integral INTEGRAL >
-inline inline_number_string as_string(INTEGRAL i, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
+inline inline_number_string as_string(INTEGRAL i, ::i32 radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 
 

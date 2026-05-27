@@ -10,7 +10,7 @@
 #include "axis/platform/session.h"
 
 
-string chunk_split(const string & body,int chunklen,const string & end)
+string chunk_split(const string & body,::i32 chunklen,const string & end)
 {
 
    character_count pos = 0;
@@ -172,10 +172,10 @@ namespace account
 //      straServer.add("eu-" + strPrefix + strDomain);
 //      straServer.add("asia-" + strPrefix + strDomain);
 //
-//      for(int i = 0; i < 3; i++)
+//      for(::i32 i = 0; i < 3; i++)
 //      {
 //
-//         for(int j = 0; j < straServer.get_size(); j++)
+//         for(::i32 j = 0; j < straServer.get_size(); j++)
 //         {
 //
 //            string strSessId = psession->account()->get_sessid(straServer[j]);
@@ -208,7 +208,7 @@ namespace account
 
       KEEP(m_bOpening);
 
-      int iRetry = bInteractive ? 3 : 1;
+      ::i32 iRetry = bInteractive ? 3 : 1;
 
       m_estatusAuthentication = error_authentication;
 

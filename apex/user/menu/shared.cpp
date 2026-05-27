@@ -14,8 +14,8 @@
 //#include "aura/windowing/windowing.h"
 //
 //
-//void free_c_string_array(char * const * ppszList, int iCount);
-//char * const * alloc_c_string_array(const string_array_base & stra);
+//void free_c_string_array(char_pointer const * ppszList, ::i32 iCount);
+//char_pointer const * alloc_c_string_array(const string_array_base & stra);
 //
 //
 //menu_shared::menu_shared()
@@ -46,7 +46,7 @@
 //::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
 //{
 //
-//   int iCount = (int) straParent.get_count();
+//   ::i32 iCount = (::i32) straParent.get_count();
 //
 //   auto pmenushared = pparticle->create_newø < menu_shared >();
 //
@@ -55,7 +55,7 @@
 //   pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
 //   pmenushared->m_ppszId = alloc_c_string_array(straId);
 //   pmenushared->m_ositema = ___new void *[iCount];
-//   pmenushared->m_statusa = ___new int[iCount];
+//   pmenushared->m_statusa = ___new ::i32[iCount];
 //
 //   memory_set(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
 //   memory_set(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
@@ -68,7 +68,7 @@
 //void * menu_shared::find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId)
 //{
 //
-//   for(int i = 0; i < m_iCount; i++)
+//   for(::i32 i = 0; i < m_iCount; i++)
 //   {
 //
 //      if(!ansi_cmp(scopedstrParent, m_ppszParent[i]))
@@ -99,7 +99,7 @@
 //   
 //   auto pwindowing = system()->windowing();
 //   
-//   for(int i = 0; i < m_iCount; i++)
+//   for(::i32 i = 0; i < m_iCount; i++)
 //   {
 //
 //      void * pitem = m_ositema[i];

@@ -129,14 +129,14 @@ class SolidBrushInterface;
 
    struct toolbar_button_t
    {
-      int iBitmap;
-      int idCommand;
-      unsigned char fsState;
-      unsigned char fsStyle;
+      ::i32 iBitmap;
+      ::i32 idCommand;
+      ::u8 fsState;
+      ::u8 fsStyle;
 // #ifdef _WIN64
-//       unsigned char bReserved[6];          // padding for alignment
+//       ::u8 bReserved[6];          // padding for alignment
 // #elif defined(_WIN32)
-//       unsigned char bReserved[2];          // padding for alignment
+//       ::u8 bReserved[2];          // padding for alignment
 // #endif
       ::uptr  dwData;
       ::iptr iString;

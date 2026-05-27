@@ -39,7 +39,7 @@
 //          StringVector::iterator classNameIter;
 //
 //          const size_t maxTcharCount = 256;
-//          char winName[maxTcharCount];
+//          ::i8 winName[maxTcharCount];
 //          if (GetClassName(hwnd, winName, maxTcharCount) != 0) {
 //             ::string nextWinName(winName);
 //
@@ -76,7 +76,7 @@
 //    {
 //       if (IsWindowVisible(hwnd) != 0) {
 //          const size_t maxTcharCount = 256;
-//          char nameChars[maxTcharCount];
+//          ::i8 nameChars[maxTcharCount];
 //          if (GetWindowText(hwnd, nameChars, maxTcharCount) != 0) {
 //             ::string winName(nameChars);
 //             winName.toLowerCase();

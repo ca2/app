@@ -123,7 +123,7 @@ namespace gpu_opengl
       }
 
 
-      void aaa_mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
+      void aaa_mipmap_cubemap_framebuffer::set_current_mip(::i32 iCurrentMip)
       {
 
          ::gpu::ibl::aaa_mipmap_cubemap_framebuffer::set_current_mip(iCurrentMip);
@@ -131,13 +131,13 @@ namespace gpu_opengl
          // mipWidth = ptexture->rectangle().width() * std::pow(0.5, mipLevel);
          // mipHeight = ptexture->rectangle().height() * std::pow(0.5, mipLevel);
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
-         int iRbo = ptexture->m_gluDepthStencilRBO;
+         ::i32 iRbo = ptexture->m_gluDepthStencilRBO;
          glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
          ::opengl::check_error("");
          if (iRbo > 0)
          {
-            int iMipWidth = ptexture->m_sizeMip.cx;
-            int iMipHeight = ptexture->m_sizeMip.cy;
+            ::i32 iMipWidth = ptexture->m_sizeMip.cx;
+            ::i32 iMipHeight = ptexture->m_sizeMip.cy;
             glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, iMipWidth, iMipHeight);
             ::opengl::check_error("");
          }
@@ -145,17 +145,17 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int mipmap_cubemap_framebuffer::getWidth()
+      // ::u32 mipmap_cubemap_framebuffer::getWidth()
       // {
       //     return mipWidth;
       // }
       //
-      // unsigned int mipmap_cubemap_framebuffer::getHeight()
+      // ::u32 mipmap_cubemap_framebuffer::getHeight()
       // {
       //     return mipHeight;
       // }
 
-      void aaa_mipmap_cubemap_framebuffer::set_cube_face(int iFace)
+      void aaa_mipmap_cubemap_framebuffer::set_cube_face(::i32 iFace)
       {
 
          ::gpu::ibl::aaa_mipmap_cubemap_framebuffer::set_cube_face(iFace);
@@ -174,7 +174,7 @@ namespace gpu_opengl
       }
 
 
-      unsigned int aaa_mipmap_cubemap_framebuffer::getCubemapTextureId()
+      ::u32 aaa_mipmap_cubemap_framebuffer::getCubemapTextureId()
       {
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
          return ptexture->m_gluTextureID;

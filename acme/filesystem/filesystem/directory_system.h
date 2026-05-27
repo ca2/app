@@ -253,7 +253,7 @@ public:
          //virtual void enumerate_directory(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
          //virtual void enumerate_file(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
 
-         virtual int make_path(const ::scoped_string & scopedstr);
+         virtual ::i32 make_path(const ::scoped_string & scopedstr);
 
 
          /*namespace dir
@@ -262,11 +262,11 @@ public:
 
             //virtual string name(const ::file::path & path);
             //virtual bool mk(const ::scoped_string & scopedstrPath);
-            //virtual bool _mk(const  char * path); // makes a directory path (all intermediates too)
+            //virtual bool _mk(const_char_pointer path); // makes a directory path (all intermediates too)
             //virtual bool is(const ::file::path & path);
             //virtual bool _is(const ::file::path & path);
-            //virtual bool mk(const  char * path); // makes a directory path (all intermediates too)
-            //virtual bool mkdir(const  char * path); // only creates if parent dir already exists
+            //virtual bool mk(const_char_pointer path); // makes a directory path (all intermediates too)
+            //virtual bool mkdir(const_char_pointer path); // only creates if parent dir already exists
             //virtual void ls(::file::path_array_base & patha, const ::file::path & path);
             //virtual void ls_dir(::file::path_array_base & patha, const ::file::path & path);
             //virtual void ls_file(::file::path_array_base & patha, const ::file::path & path);
@@ -304,7 +304,7 @@ public:
 
    virtual bool is_accessible(const ::file::path & path);
 
-   virtual bool contains_files(const ::file::path& path, const ::string_array_base& straName, int iMinimumSize);
+   virtual bool contains_files(const ::file::path& path, const ::string_array_base& straName, ::i32 iMinimumSize);
 
 
    //virtual void initialize(::particle * pparticle) override;

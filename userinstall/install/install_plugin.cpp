@@ -16,10 +16,10 @@
 
 
 // #ifndef int_x
-// #define lparam_int_x(lp)                        ((int)(short)LOWORD(lp))
+// #define lparam_int_x(lp)                        ((::i32)(::i16)LOWORD(lp))
 // #endif
 // #ifndef int_y
-// #define lparam_int_y(lp)                        ((int)(short)HIWORD(lp))
+// #define lparam_int_y(lp)                        ((::i32)(::i16)HIWORD(lp))
 // #endif
 
 
@@ -359,9 +359,9 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(int)m_phost->m_pbasecomposer->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(::i32)m_phost->m_pbasecomposer->m_strPluginUrl.length());
 
-               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (int)m_phost->m_memory.get_size());
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (::i32)m_phost->m_memory.get_size());
 
             }
             catch(...)
@@ -394,7 +394,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
 
 
-   int plugin::thread_start_ca2::run()
+   ::i32 plugin::thread_start_ca2::run()
    {
 
 
@@ -477,7 +477,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
          m_bNativeLaunchFail = false;
 
       }
-      else if((int) dwExitCode >= 0)
+      else if((::i32) dwExitCode >= 0)
       {
 
          //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",::user::e_message_box_icon_information | ::user::e_message_box_ok);
@@ -689,7 +689,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                set["raw_http"] = true;
 
-               for(int iAttempt = 0; iAttempt < 3; iAttempt++)
+               for(::i32 iAttempt = 0; iAttempt < 3; iAttempt++)
                {
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
@@ -991,8 +991,8 @@ run_install:
 
       window_rectangle(&rectangleWindow);
 
-      int cx = rectangleWindow.right - rectangleWindow.left;
-      int cy = rectangleWindow.bottom - rectangleWindow.top;
+      ::i32 cx = rectangleWindow.right - rectangleWindow.left;
+      ::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       rectangle.left         = 0;
       rectangle.top          = 0;
@@ -1178,14 +1178,14 @@ run_install:
    }
 
 
-   double plugin::extract_spa_progress_rate()
+   ::f64 plugin::extract_spa_progress_rate()
    {
 
       ::u32 dwRead;
 
       HANDLE hfile = ::create_file(::path::install_log(process_platform_name()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
-      double dRate = 0.0;
+      ::f64 dRate = 0.0;
 
       bool bRate = false;
 
@@ -1194,12 +1194,12 @@ run_install:
       if(hfile != INVALID_HANDLE_VALUE)
       {
 
-         int iTell = ::SetFilePointer(hfile, 0, nullptr, SEEK_END);
+         ::i32 iTell = ::SetFilePointer(hfile, 0, nullptr, SEEK_END);
          iTell--;
          string strLine;
-         int iSkip = 0;
+         ::i32 iSkip = 0;
          bool bStatus2 = false;
-         char ch = '\0';
+         ::i8 ch = '\0';
          bool bFirst = true;
          while(iTell >= 0)
          {
@@ -1234,7 +1234,7 @@ run_install:
                else if(!bRate && strLine.begins_eat("|||"))
                {
                   bRate = true;
-                  dRate = ((double) ansi_to_int(strLine)) / (1000.0 * 1000.0 * 1000.0 );
+                  dRate = ((::f64) ansi_to_int(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
                else if (!bStatus2 && strLine.begins_eat("***"))
                {
@@ -1295,7 +1295,7 @@ run_install:
 #ifndef UNIVERSAL_WINDOWS
 
 
-   void plugin::on_receive(::aura::ipc::rx * prx, int message, void * pdata, int len)
+   void plugin::on_receive(::aura::ipc::rx * prx, ::i32 message, void * pdata, ::i32 len)
    {
 
       if(prx == &m_rx)
@@ -1352,7 +1352,7 @@ run_install:
 
 #endif
 
-   bool plugin::set_window_position(iptr z,int x,int y,int cx,int cy,::u32 nFlags)
+   bool plugin::set_window_position(iptr z,::i32 x,::i32 y,::i32 cx,::i32 cy,::u32 nFlags)
    {
 
       bool bOk = ::hotplugin::plugin::set_window_position(z, x, y, cx, cy, nFlags);
@@ -1406,7 +1406,7 @@ run_install:
          else
          {
 
-            int iTry = 0;
+            ::i32 iTry = 0;
 
 retry_get_prompt:
 
@@ -1529,9 +1529,9 @@ retry_get_prompt:
 
       string str;
 
-      int iAttemptStream = 0;
-      int iAttemptUrl = 0;
-      int iAttempt = 0;
+      ::i32 iAttemptStream = 0;
+      ::i32 iAttemptUrl = 0;
+      ::i32 iAttempt = 0;
 
 restart:
 

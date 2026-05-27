@@ -92,7 +92,7 @@
 
 //CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
 
-//typedef int CALLSYNCONRETRY(int iTry,uptr dwParam);
+//typedef ::i32 CALLSYNCONRETRY(::i32 iTry,uptr dwParam);
 
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 

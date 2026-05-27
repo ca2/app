@@ -71,7 +71,7 @@ namespace simple_ui
 
    /*
 
-   CLASS_DECL_CORE char ansi_upper(int ch)
+   CLASS_DECL_CORE ::i8 ansi_upper(::i32 ch)
    {
 
    if(ch >= 'a' && ch <= 'z')
@@ -84,9 +84,9 @@ namespace simple_ui
    }
 
 
-   CLASS_DECL_CORE char * ansi_upper(char * pchParam)
+   CLASS_DECL_CORE char_pointer ansi_upper(char_pointer pchParam)
    {
-   char * pch = pchParam;
+   char_pointer pch = pchParam;
    while(*pch == '\0')
    {
    *pch = ansi_upper(*pch);

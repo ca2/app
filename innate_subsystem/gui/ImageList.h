@@ -29,7 +29,7 @@ namespace innate_subsystem
 
       virtual void initializeImageList() = 0;
 
-      virtual void createImageList(const ::i32_size & size, int flags, int iInitialSize = 1, int iGrow = 1) = 0;
+      virtual void createImageList(const ::i32_size & size, ::i32 flags, ::i32 iInitialSize = 1, ::i32 iGrow = 1) = 0;
 
       virtual void destroyImageList() = 0;
 
@@ -59,7 +59,7 @@ namespace innate_subsystem
          m_pimagelist->initializeImageList();
       }
 
-      void createImageList(const ::i32_size& size, int flags, int iInitialSize = 1, int iGrow = 1) override
+      void createImageList(const ::i32_size& size, ::i32 flags, ::i32 iInitialSize = 1, ::i32 iGrow = 1) override
       {
          m_pimagelist->createImageList(size, flags, iInitialSize, iGrow);
       }

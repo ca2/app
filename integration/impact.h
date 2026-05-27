@@ -26,7 +26,7 @@ namespace app_integration
       ::file::path      m_pathDownloadURL;
 
 
-      int               m_iExitCode;
+      ::i32               m_iExitCode;
       ::string_array_base    m_straOutput;
       ::file::path      m_pathIntegration;
 

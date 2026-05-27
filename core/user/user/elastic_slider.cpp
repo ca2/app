@@ -57,7 +57,7 @@ namespace user
       if(ptimer->m_uTimer == 333)
       {
 
-         double dScalar = CalcScalar();
+         ::f64 dScalar = CalcScalar();
 
          if(m_bSlide || dScalar > 0.001)
          {
@@ -144,7 +144,7 @@ namespace user
 
       else
       {
-         m_dTensionPosition = ((double) point.x / (double) rectangleX.width());
+         m_dTensionPosition = ((::f64) point.x / (::f64) rectangleX.width());
       }
    }
 
@@ -161,24 +161,24 @@ namespace user
    }
 
 
-   double elastic_slider::GetForce()
+   ::f64 elastic_slider::GetForce()
    {
       return m_dTensionPosition - m_dPosition;
    }
 
-   double elastic_slider::CalcScalar()
+   ::f64 elastic_slider::CalcScalar()
    {
       auto tickNow = ::time::now();
       if(tickNow - m_timeLastTime < 30_ms)
          return m_daScalar.simple_total_mean();
       CalcTension();
-      double dScalar;
+      ::f64 dScalar;
       if(m_bSlide)
       {
-         double dForce = GetForce();
+         ::f64 dForce = GetForce();
          auto dDeltaTime = (tickNow - m_timeLastTime).floating_millisecond();
-         double dFilterLastScalar = m_daScalar.simple_total_mean();
-         double dRate = 1.0 / 100.0;
+         ::f64 dFilterLastScalar = m_daScalar.simple_total_mean();
+         ::f64 dRate = 1.0 / 100.0;
          dScalar = dForce * dDeltaTime * dRate + dFilterLastScalar;
       }
       else
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   void elastic_slider::SetSliderPos(double dPos)
+   void elastic_slider::SetSliderPos(::f64 dPos)
    {
 
       if(dPos < 0.0)
@@ -230,7 +230,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      unsigned char bAlpha = (unsigned char) (128.0 * get_alpha());
+      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
 
@@ -267,15 +267,15 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iWidth = 16;
+      ::i32 iWidth = 16;
       
       rectangle.top = rectangleX.top;
       
       rectangle.bottom = rectangleX.bottom;
       
-      rectangle.left = (int) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
+      rectangle.left = (::i32) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right = (int) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.right = (::i32) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

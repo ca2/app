@@ -20,7 +20,7 @@ namespace sz
       while((*psz != 0) && scopedstrTrimmer.find(*psz) != nullptr)
       {
          
-         psz = (char *) unicode_next(psz);
+         psz = (char_pointer ) unicode_next(psz);
 
       }
 

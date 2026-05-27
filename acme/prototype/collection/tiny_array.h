@@ -11,8 +11,8 @@ public:
 
 
    TYPE *      m_p;
-   int       m_iCount;
-   int       m_iAllocation;
+   ::i32       m_iCount;
+   ::i32       m_iAllocation;
    TYPE        m_typea[TINY_ARRAY_BUILTIN_SIZE];
 
 
@@ -21,17 +21,17 @@ public:
    ~tiny_array() { free(); }
 
 
-   void allocate(int iCount);
+   void allocate(::i32 iCount);
    void free();
    void zero();
-   void set_at_grow(int iIndex, const TYPE& t);
-   void erase_at(int iIndex);
+   void set_at_grow(::i32 iIndex, const TYPE& t);
+   void erase_at(::i32 iIndex);
    void push(const TYPE & t) { set_at_grow(count(), t);}
    TYPE pop() { TYPE t = element_at(count() - 1); erase_at(count() -1); return t;   }
-   int count() const {return m_iCount;}
+   ::i32 count() const {return m_iCount;}
 
-   TYPE& element_at_grow(int iIndex);
-   TYPE& element_at(int iIndex) { return m_p[iIndex];}
+   TYPE& element_at_grow(::i32 iIndex);
+   TYPE& element_at(::i32 iIndex) { return m_p[iIndex];}
 
 
 };
@@ -44,7 +44,7 @@ public:
 
 
 template < typename TYPE >
-void tiny_array < TYPE > ::allocate(int iCount)
+void tiny_array < TYPE > ::allocate(::i32 iCount)
 {
 
    if (iCount < 0)
@@ -66,7 +66,7 @@ void tiny_array < TYPE > ::allocate(int iCount)
 
          auto p = (TYPE *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(TYPE) * iCount, &sizeAllocated);
 
-         auto iAllocation = (int) (sizeAllocated / sizeof(TYPE));
+         auto iAllocation = (::i32) (sizeAllocated / sizeof(TYPE));
 
          ::zero(p, sizeof(TYPE) * iAllocation);
 
@@ -132,7 +132,7 @@ void tiny_array < TYPE > ::zero()
 
 
 template < typename TYPE >
-void tiny_array < TYPE > ::set_at_grow(int iIndex, const TYPE& t)
+void tiny_array < TYPE > ::set_at_grow(::i32 iIndex, const TYPE& t)
 {
 
    element_at_grow(iIndex) = t;
@@ -141,7 +141,7 @@ void tiny_array < TYPE > ::set_at_grow(int iIndex, const TYPE& t)
 
 
 template < typename TYPE >
-void tiny_array < TYPE > ::erase_at(int iIndex)
+void tiny_array < TYPE > ::erase_at(::i32 iIndex)
 {
 
    if(iIndex < 0 || iIndex >= m_iCount)
@@ -168,7 +168,7 @@ void tiny_array < TYPE > ::erase_at(int iIndex)
 
 
 template < typename TYPE >
-TYPE & tiny_array < TYPE > ::element_at_grow(int iIndex)
+TYPE & tiny_array < TYPE > ::element_at_grow(::i32 iIndex)
 {
 
    if (iIndex < 0)

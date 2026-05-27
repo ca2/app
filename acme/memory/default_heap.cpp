@@ -40,7 +40,7 @@
 //{
 //
 //
-//   void * default_heap::allocate_debug(memsize size, int nBlockUse, const_char_pointer pszFile, int iLine)
+//   void * default_heap::allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer pszFile, ::i32 iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -104,7 +104,7 @@
 //#ifdef MEMDLEAK
 //
 //
-//   void * default_heap::reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer pszFile, int iLine)
+//   void * default_heap::reallocate_debug(void * p, memsize size, ::i32 nBlockUse, const_char_pointer pszFile, ::i32 iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -276,7 +276,7 @@
 //
 //
 ////typedef DWORD64[64]
-////::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], ::i64 ** ppiStack, int ** ppiLine, ::i64 ** ppiSize)
+////::collection::count get_mem_info2(::i32 ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], ::i64 ** ppiStack, ::i32 ** ppiLine, ::i64 ** ppiSize)
 ////{
 ////
 ////#ifndef MEMDLEAK
@@ -301,11 +301,11 @@
 ////   }
 ////
 ////
-////   int * piUse = (int *)malloc(sizeof(int) * ca);
+////   ::i32 * piUse = (::i32 *)malloc(sizeof(::i32) * ca);
 ////   const_char_pointer *pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer )* ca);
 ////   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
 ////   ::i64 * piStack = (::i64 *)malloc(sizeof(::i64) * ca);
-////   int * piLine = (int *)malloc(sizeof(int) * ca);
+////   ::i32 * piLine = (::i32 *)malloc(sizeof(::i32) * ca);
 ////   ::i64 * piSize = (::i64 *)malloc(sizeof(::i64) * ca);
 ////
 ////   ::collection::index i = 0;
@@ -353,10 +353,10 @@
 //
 //
 //
-//int g_iGlobalMemdleakEnabled;
+//::i32 g_iGlobalMemdleakEnabled;
 //
 //
-//CLASS_DECL_ACME int  global_memdleak_enabled()
+//CLASS_DECL_ACME ::i32  global_memdleak_enabled()
 //{
 //
 //   if (g_iGlobalMemdleakEnabled == 0)

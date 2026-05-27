@@ -103,7 +103,7 @@ pdirectorysystem->config() / "programming/vs_build.txt";
 
 
 #ifdef MACOS
-int get_processor_count()
+::i32 get_processor_count()
 {
    return 1;
 }

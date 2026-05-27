@@ -70,7 +70,7 @@ namespace coding
 
          ::string strStatus;
 
-         strStatus.formatf("[%d] %s> %s", (int)m_etaskOrdinal + 1, m_strTopic1.c_str(), m_strTopic12.c_str());
+         strStatus.formatf("[%d] %s> %s", (::i32)m_etaskOrdinal + 1, m_strTopic1.c_str(), m_strTopic12.c_str());
 
          m_ptaskgroup->m_straPinnedLast2.set_at_grow(m_etaskOrdinal, strStatus);
 
@@ -90,7 +90,7 @@ namespace coding
    }
 
 
-   void task::on_finished(int iExitCode)
+   void task::on_finished(::i32 iExitCode)
    {
 
       m_timeEnd.Now();

@@ -5,13 +5,13 @@
 
 #if  defined(RASPBERRYPIOS)
 
-standard_exception::standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip, void * caller_address )
+standard_exception::standard_exception(::i32 iSignal, void * psiginfo, void * pc, ::i32 iSkip, void * caller_address )
 {
 
 }
 
 
-standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :
+standard_access_violation::standard_access_violation (::i32 signal, void * psiginfo, void * pc) :
       ::standard_exception(signal, psiginfo, pc)
    {
 
@@ -20,12 +20,12 @@ standard_access_violation::standard_access_violation (int signal, void * psiginf
 
 #elif defined(LINUX)
 
-standard_exception::standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip, void * caller_address )
+standard_exception::standard_exception(::i32 iSignal, void * psiginfo, void * pc, ::i32 iSkip, void * caller_address )
 {
 
 }
 
-standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :
+standard_access_violation::standard_access_violation (::i32 signal, void * psiginfo, void * pc) :
 #if defined(__arm__)
     standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.arm_pc)
 #elif defined(__aarch64__)

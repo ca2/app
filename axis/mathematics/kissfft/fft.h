@@ -21,11 +21,11 @@ extern "C" {
  */
 
 #ifdef FIXED_POINT
-# define kiss_fft_scalar short
+# define kiss_fft_scalar ::i16
 #else
 # ifndef kiss_fft_scalar
-/*  default is double */
-#   define kiss_fft_scalar double
+/*  default is ::f64 */
+#   define kiss_fft_scalar ::f64
 # endif
 #endif
 
@@ -54,7 +54,7 @@ typedef struct kiss_fft_state* kiss_fft_cfg;
  *      buffer i32_size in *lenmem.
  * */
 
-kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem);
+kiss_fft_cfg kiss_fft_alloc(::i32 nfft,::i32 inverse_fft,void * mem,size_t * lenmem);
 
 /*
  * kiss_fft(cfg,in_out_buf)
@@ -68,7 +68,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem)
  * */
 void kiss_fft(kiss_fft_cfg cfg,const COMPLEXD *fin,COMPLEXD *fout);
 
-void kiss_fft_stride(kiss_fft_cfg cfg,const COMPLEXD *fin,COMPLEXD *fout,int fin_stride);
+void kiss_fft_stride(kiss_fft_cfg cfg,const COMPLEXD *fin,COMPLEXD *fout,::i32 fin_stride);
 
 /* If kiss_fft_alloc allocated a buffer, it is one contiguous
    buffer and can be simply free()d when no longer needed*/

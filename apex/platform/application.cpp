@@ -64,8 +64,8 @@
 
 
 //void shell_restart();
-//int shell_pin_to_taskbar(const wchar_t * path);
-//int shell_unpin_from_taskbar(const wchar_t * path);
+//::i32 shell_pin_to_taskbar(const wchar_t * path);
+//::i32 shell_unpin_from_taskbar(const wchar_t * path);
 
 //#include "apex/operating_system/_node.h"
 #include "node.h"
@@ -115,7 +115,7 @@
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags);
 #endif
 
 #if defined(LINUX)
@@ -148,7 +148,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, 
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
-CLASS_DECL_APEX int ui_open_url(const ::scoped_string & scopedstr);
+CLASS_DECL_APEX ::i32 ui_open_url(const ::scoped_string & scopedstr);
 #endif
 
 
@@ -908,7 +908,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //   //            if (::is_set(pFind))
    //   //            {
 
-   //   //               int message = atoi(str(0, pFind));
+   //   //               ::i32 message = atoi(str(0, pFind));
 
    //   //               memory m;
 
@@ -2786,7 +2786,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          // current application startup won't be
          // exited by timeout.
 
-         int iRetry = 1;
+         ::i32 iRetry = 1;
 
          auto psession = session();
 
@@ -4221,15 +4221,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             set["oh_my_god"].as_string_array().add(str1);
             set["oh_my_god2"].i32_array_reference() = ::i32_array_base({ 1, 2, 3 });
 
-            int a1 = 1;
-            int a2 = 2;
-            int a3 = 3;
+            ::i32 a1 = 1;
+            ::i32 a2 = 2;
+            ::i32 a3 = 3;
             set["i1"] = a1;
             set["i2"] = a2;
             set["i3"] = a3;
-            double d1 = 1.1;
-            double d2 = 5.5;
-            double d3 = 9.9;
+            ::f64 d1 = 1.1;
+            ::f64 d2 = 5.5;
+            ::f64 d3 = 9.9;
             set["d1"] = d1;
             set["d2"] = d2;
             set["d3"] = d3;
@@ -4243,13 +4243,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             string str2 = set2["oh_my_god"].as_string_array()[0];
 
 
-            int i1 = set2["oh_my_god2"].as_int_array()[0];
-            int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
-            int i3 = set2["oh_my_god2"][2].as_i32();
+            ::i32 i1 = set2["oh_my_god2"].as_int_array()[0];
+            ::i32 i2 = set2["oh_my_god2"].array_contains("2") ? (::i32)set2["oh_my_god2"][1].as_i32() : -1;
+            ::i32 i3 = set2["oh_my_god2"][2].as_i32();
 
-            int b1 = set["d1"].as_i32();
+            ::i32 b1 = set["d1"].as_i32();
             string b2 = set["d2"];
-            int b3 = set["d3"].as_i32();
+            ::i32 b3 = set["d3"].as_i32();
 
             ASSERT(str1 == str2);
             ASSERT(i1 == 1);
@@ -4475,7 +4475,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
+   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
       auto prequest = create_newø < ::request >();
@@ -4543,7 +4543,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   bool application::on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags)
+   bool application::on_set_scalar(enum_scalar escalar, ::number::number number, ::i32 iFlags)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4675,7 +4675,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, ::u32 fuStyle)
+   //::i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -4728,7 +4728,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
 
 
-   //int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   //::i32 application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    //{
 
    //   return -1;
@@ -4839,7 +4839,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    void application::show_critical_error_log()
    {
 
-      static int g_iCount = 0;
+      static ::i32 g_iCount = 0;
 
       string strFile = directory()->appdata() / (file()->module().name() + "_log_error.txt");
 
@@ -4904,7 +4904,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
+   //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel)
    //{
 
    //   return psystem->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
@@ -5000,7 +5000,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   void application::install_trace(double dRate)
+   void application::install_trace(::f64 dRate)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -5091,7 +5091,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   //LPWAVEOUT application::waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
    //   throw ::exception(interface_only_exception(nullptr));
@@ -6966,7 +6966,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
 
 
-   //void application::process_message_filter(int code, ::message::message * pmessage)
+   //void application::process_message_filter(::i32 code, ::message::message * pmessage)
    //{
 
    //   //::pointer<::user::message>pusermessage(pmessage);
@@ -6984,7 +6984,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
 
 
-   void application::DoWaitCursor(int nCode)
+   void application::DoWaitCursor(::i32 nCode)
    {
 
       if (nCode < 0)
@@ -7158,7 +7158,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //bool application::get_temp_file_name(string & strRet,const ::scoped_string & scopedstrName,const ::scoped_string & scopedstrExtension)
    //{
 
-   //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
+   //   return get_temp_file_name_template(strRet,pszName,pszExtension,nullptr);
 
    //}
 
@@ -7289,7 +7289,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
          pathApp = pathFolder;
 
-         int iExitCode = 0;
+         ::i32 iExitCode = 0;
 
          return pnode->call_sync(pathApp, scopedstrCommandLine, pathFolder, e_display_normal, 2_minute, set, &iExitCode);
 
@@ -7478,7 +7478,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
+   //bool application::compress_gz(const ::stream & os, const ::stream & is, ::i32 iLevel)
 
    //{
 
@@ -7488,7 +7488,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
+   //bool application::compress_gz(const ::stream & os, const ::stream & is, ::i32 iLevel)
    //{
 
    //   return psystem->compress().gz(this, os, is, iLevel);
@@ -7610,7 +7610,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   //LRESULT application::GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
+   //LRESULT application::GetPaintMsgProc(::i32 nCode, WPARAM wParam, LPARAM lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nCode);
@@ -7626,7 +7626,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //{
    //
    //__UNREFERENCED_PARAMETER(nID);
-   //__UNREFERENCED_PARAMETER(pcszType);
+   //__UNREFERENCED_PARAMETER(pszType);
    //__UNREFERENCED_PARAMETER(pcszFilePath);
    //
    //return false;
@@ -7673,7 +7673,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //{
    //
    //__UNREFERENCED_PARAMETER(nID);
-   //__UNREFERENCED_PARAMETER(pcszType);
+   //__UNREFERENCED_PARAMETER(pszType);
    //
    //__UNREFERENCED_PARAMETER(storage);
    //
@@ -7725,7 +7725,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }*/
 
 
-   bool application::on_idle(int lCount)
+   bool application::on_idle(::i32 lCount)
    {
 
       return false;
@@ -7805,10 +7805,10 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ::collection::count count = (len + 1) / 2;
    memory.set_size(count);
    ::collection::index i = 0;
-   unsigned char b;
+   ::u8 b;
    while(*pszHex != '\0')
    {
-   char ch = (char) tolower(*pszHex);
+   ::i8 ch = (::i8) tolower(*pszHex);
    if(ch >= '0' && ch <= '9')
    {
    b = ch - '0';
@@ -7828,7 +7828,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    return true;
    }
    b = b << 4;
-   ch = (char) tolower(*pszHex);
+   ch = (::i8) tolower(*pszHex);
    if(ch >= '0' && ch <= '9')
    {
    b |= (ch - '0');
@@ -7852,13 +7852,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    void application::memory_to_hex(string & strHex, memory & memory)
    {
    ::collection::count count = memory.size();
-   char * psz = strHex.get_buffer(count * 2);
+   char_pointer psz = strHex.get_buffer(count * 2);
 
    for(::collection::index i = 0; i < count; i++)
    {
-   *psz++ = ::hex::lower_from((unsigned char) ((memory.get_data()[i] >> 4) & 0xf));
+   *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
 
-   *psz++ = ::hex::lower_from((unsigned char) (memory.get_data()[i] & 0xf));
+   *psz++ = ::hex::lower_from((::u8) (memory.get_data()[i] & 0xf));
 
    }
    strHex.ReleaseBuffer(count * 2);
@@ -8128,7 +8128,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ////                  pData->szPolicyName,
    ////                  nullptr,
    ////                  &dwType,
-   ////                  (unsigned char*)&dwValue,
+   ////                  (::u8*)&dwValue,
    ////                  &dwDataLen))
    ////         {
    ////            if (dwType == REG_DWORD)
@@ -8189,7 +8189,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
    {
-   for (int i = 1; i < __argc; i++)
+   for (::i32 i = 1; i < __argc; i++)
    {
    const ::scoped_string & scopedstrParam = __targv[i];
    bool bFlag = false;
@@ -8392,7 +8392,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ///////////////////////////////////////////////////////////////////////////////
    //// application idle processing
    //
-   //void application::DevModeChange(char * pDeviceName)
+   //void application::DevModeChange(char_pointer pDeviceName)
    //
    //{
    //__UNREFERENCED_PARAMETER(pDeviceName);
@@ -8464,7 +8464,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    void application::_001OnFileNew()
    {
       //string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if (strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -8675,7 +8675,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //void application::OnAppExit()
    //{
    //
-   //// same as double-clicking on main window close box
+   //// same as ::f64-clicking on main window close box
    //
    ////ASSERT(m_pacmeuserinteractionMain != nullptr);
    //
@@ -8732,7 +8732,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
 
 
-   //   bool application::OnDDECommand(char * pszCommand)
+   //   bool application::OnDDECommand(char_pointer pszCommand)
    //
    //   {
    //      /*      if (m_pdocmanager != nullptr)
@@ -8796,7 +8796,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
    //
    //
-   //int application::get_open_document_count()
+   //::i32 application::get_open_document_count()
    //{
    ////ENSURE(m_pdocmanager != nullptr);
    ////  return document_manager()->get_open_document_count();
@@ -8840,7 +8840,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ////__UNREFERENCED_PARAMETER(nIDRegistryKey);
    ////ASSERT(m_pszRegistryKey == nullptr);
    ////throw ::interface_only();
-   /////*char szRegistryKey[256];
+   /////*::i8 szRegistryKey[256];
    ////VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
    ////SetRegistryKey(szRegistryKey);*/
    //}
@@ -8916,7 +8916,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    /*   ::u32 application::GetProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   int nDefault)
+   ::i32 nDefault)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -8931,9 +8931,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ::u32 dwValue;
    ::u32 dwType;
    ::u32 dwCount = sizeof(::u32);
-   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
-   (unsigned char *)&dwValue, &dwCount);
+   (::u8 *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
    if (lResult == ERROR_SUCCESS)
    {
@@ -8971,15 +8971,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    string strValue;
    ::u32 dwType=REG_NONE;
    ::u32 dwCount=0;
-   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_SZ);
-   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
-   (unsigned char *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
+   (::u8 *)strValue.GetBuffer(dwCount/sizeof(::i8)), &dwCount);
    strValue.ReleaseBuffer();
    }
    RegCloseKey(hSecKey);
@@ -8999,7 +8999,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    pszDefault = "";   // don't pass in nullptr
 
-   char szT[4096];
+   ::i8 szT[4096];
    ::u32 dw = ::GetPrivateProfileString(scopedstrSection, pszEntry,
 
    pszDefault, szT, _countof(szT), m_pszProfileName);
@@ -9011,7 +9011,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    bool application::GetProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   unsigned char** ppData, ::u32* pBytes)
+   ::u8** ppData, ::u32* pBytes)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -9036,14 +9036,14 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    ::u32 dwType=0;
    ::u32 dwCount=0;
-   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   ::i32 lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = ___new unsigned char[*pBytes];
-   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   *ppData = ___new ::u8[*pBytes];
+   lResult = RegQueryValueEx(hSecKey, (char_pointer )pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
    }
@@ -9070,10 +9070,10 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = ___new unsigned char[*pBytes];
-   for (int i=0;i<nLen;i+=2)
+   *ppData = ___new ::u8[*pBytes];
+   for (::i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (unsigned char)
+   (*ppData)[i/2] = (::u8)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return true;
@@ -9083,7 +9083,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    bool application::WriteProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   int nValue)
+   ::i32 nValue)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -9095,9 +9095,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    if (hSecKey == nullptr)
    return false;
-   int lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
+   ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
-   (unsigned char *)&nValue, sizeof(nValue));
+   (::u8 *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
    return lResult == ERROR_SUCCESS;
    }
@@ -9105,7 +9105,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    {
    ASSERT(m_pszProfileName != nullptr);
 
-   char szT[16];
+   ::i8 szT[16];
    _stprintf_s(szT, _countof(szT), "%d", nValue);
    return ::WritePrivateProfileString(scopedstrSection, pszEntry, szT,
 
@@ -9122,7 +9122,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    if (m_pszRegistryKey != nullptr)
    {
-   int lResult;
+   ::i32 lResult;
    if (scopedstrEntry == nullptr) //delete whole department
 
    {
@@ -9141,7 +9141,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    if (hSecKey == nullptr)
    return false;
    // necessary to cast away const below
-   lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
+   lResult = ::RegDeleteValue(hSecKey, (char_pointer )pszEntry);
 
    RegCloseKey(hSecKey);
    }
@@ -9153,7 +9153,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (unsigned char *)pszValue, (lstrlen(scopedstrValue)+1)*sizeof(char));
+   (::u8 *)pszValue, (lstrlen(scopedstrValue)+1)*sizeof(::i8));
 
    RegCloseKey(hSecKey);
    }
@@ -9171,13 +9171,13 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    bool application::WriteProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   unsigned char * pData, ::u32 nBytes)
+   ::u8 * pData, ::u32 nBytes)
    {
    ASSERT(scopedstrSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   int lResult;
+   ::i32 lResult;
    HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
@@ -9190,14 +9190,14 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
    // convert to string and write out
-   char * psz = ___new char[nBytes*2+1];
+   char_pointer psz = ___new ::i8[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
    {
-   psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
+   psz[i*2] = (::i8)((pData[i] & 0x0F) + 'A'); //low nibble
 
-   psz[i*2+1] = (char)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
+   psz[i*2+1] = (::i8)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
 
    }
    psz[i*2] = 0;
@@ -9514,7 +9514,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   string strId = m_strId;
 
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
 
    //   if (strId.length() > 0)
    //   {
@@ -9559,7 +9559,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ////      }
    ////
    ////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-   ////      // short file name so we need to use the short file name.
+   ////      // ::i16 file name so we need to use the ::i16 file name.
    ////      string strShortName;
    ////
    ////      strShortName = file()->module();
@@ -9567,7 +9567,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ////      // strip out path
    ////      //string strFileName = ::PathFindFileName(strShortName);
    ////      // strip out extension
-   ////      //char * pszFileName = strFileName.GetBuffer();
+   ////      //char_pointer pszFileName = strFileName.GetBuffer();
    ////      //::PathRemoveExtension(scopedstrFileName);
    ////      //strFileName.ReleaseBuffer();
    ////
@@ -9590,7 +9590,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   user::window_util::SortByZOrder(oswindowa);
 
-   //   for (int i = 0; i < oswindowa.get_count(); i++)
+   //   for (::i32 i = 0; i < oswindowa.get_count(); i++)
    //   {
 
    //      ::pointer<::user::interaction>puieWindow = wnda.find_first(oswindowa[i]);
@@ -9623,7 +9623,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   string strId = m_strId;
 
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
 
    //   if (strId.length() > 0)
    //   {
@@ -9672,7 +9672,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    //   string strId = m_strId;
 
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
 
    //   if (strId.length() > 0)
    //   {
@@ -9754,7 +9754,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       if (i64Size > 1024 * 1024 * 1024)
       {
 
-         double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
+         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0 * 1024.0);
 
          strSize.formatf("%0.2f GB", d);
 
@@ -9762,7 +9762,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       else if (i64Size > 1024 * 1024)
       {
 
-         double d = (double)i64Size / (1024.0 * 1024.0);
+         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0);
 
          strSize.formatf("%0.1f MB", d);
 
@@ -9770,7 +9770,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       else if (i64Size > 1024)
       {
 
-         double d = (double)i64Size / (1024.0);
+         ::f64 d = (::f64)i64Size / (1024.0);
 
          strSize.formatf("%0.0f KB", d);
 
@@ -9863,7 +9863,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   //   int application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
+   //   ::i32 application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //      string strApp;
    //      string_array_base stra;
@@ -9881,7 +9881,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //   }
    //
    //
-   //   int application::send_simple_command(void* osdata, const ::scoped_string & scopedstr, void* osdataSender)
+   //   ::i32 application::send_simple_command(void* osdata, const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //#ifdef WINDOWS_DESKTOP
    //      ::windowing::window * pwindow = (::oswindow) osdata;
@@ -9893,7 +9893,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //      cds.cbData = (::u32)strlen(scopedstr);
    //      cds.lpData = (PVOID)psz;
    //
-   //      return (int)SendMessage(as_hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
+   //      return (::i32)SendMessage(as_hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
    //#else
    //      throw ::exception(todo);
    //#endif
@@ -9905,7 +9905,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //#ifndef UNIVERSAL_WINDOWS
       //
-      //      for (int i = 0; i < m_straAppInterest.get_count(); i++)
+      //      for (::i32 i = 0; i < m_straAppInterest.get_count(); i++)
       //      {
       //         if (m_straAppInterest[i] != m_strAppName && !::is_window(m_mapAppInterest[m_straAppInterest[i]]))
       //         {
@@ -9961,7 +9961,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    bool bFound = false;
 
-   for(int i  = 0; i < psystem->m_appptra.get_count(); i++)
+   for(::i32 i  = 0; i < psystem->m_appptra.get_count(); i++)
    {
    try
    {
@@ -10056,7 +10056,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   void application::report_error(const ::exception & e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
+   void application::report_error(const ::exception & e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
 
       string strMessage;
@@ -10109,14 +10109,14 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
-   void application::process_message_filter(int code, ::message::message * pmessage)
+   void application::process_message_filter(::i32 code, ::message::message * pmessage)
    {
 
 
    }
 
 
-   void application::on_thread_on_idle(::thread * pthread, int lCount)
+   void application::on_thread_on_idle(::thread * pthread, ::i32 lCount)
    {
 
       throw ::exception(todo, "interaction");
@@ -10480,7 +10480,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          pdialog->create();
          
-         int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
+         ::i32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
          
          ::string strTitle;
          
@@ -10490,7 +10490,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
          
          auto stra = get_about_box_lines();
          
-         int y = 30 * pdialog->get_window_scale();
+         ::i32 y = 30 * pdialog->get_window_scale();
          
          auto pstillIcon = createø < ::innate_ui::still>();
          
@@ -10602,7 +10602,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             pdialog->create();
 
-            int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
+            ::i32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
 
             ::string strTitle;
 
@@ -10612,9 +10612,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             auto stra = straLines;
 
-            int y_text = 30 * pdialog->get_window_scale();
+            ::i32 y_text = 30 * pdialog->get_window_scale();
 
-            int y_icon = 30 * pdialog->get_window_scale();
+            ::i32 y_icon = 30 * pdialog->get_window_scale();
 
             if (straIconUrl.size() >= 1)
             {

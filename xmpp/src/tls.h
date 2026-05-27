@@ -27,18 +27,18 @@ void tls_shutdown(void);
 tls_t *tls_new(xmpp_ctx_t *ctx, sock_t sock);
 void tls_free(tls_t *tls);
 
-int tls_set_credentials(tls_t *tls, const ::string &cafilename);
+::i32 tls_set_credentials(tls_t *tls, const ::string &cafilename);
 
-int tls_start(tls_t *tls);
-int tls_stop(tls_t *tls);
+::i32 tls_start(tls_t *tls);
+::i32 tls_stop(tls_t *tls);
 
-int tls_error(tls_t *tls);
+::i32 tls_error(tls_t *tls);
 
-int tls_pending(tls_t *tls);
-int tls_read(tls_t *tls, void * const buff, const size_t len);
-int tls_write(tls_t *tls, const void * const buff, const size_t len);
+::i32 tls_pending(tls_t *tls);
+::i32 tls_read(tls_t *tls, void * const buff, const size_t len);
+::i32 tls_write(tls_t *tls, const void * const buff, const size_t len);
 
-int tls_clear_pending_write(tls_t *tls);
-int tls_is_recoverable(int error);
+::i32 tls_clear_pending_write(tls_t *tls);
+::i32 tls_is_recoverable(::i32 error);
 
 #endif /* __LIBSTROPHE_TLS_H__ */

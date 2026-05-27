@@ -282,14 +282,14 @@
  * FREERDP/WINPR Key Flags
  */
 
-#define KBDEXT      (unsigned short) 0x0100
-#define KBDMULTIVK   (unsigned short) 0x0200
-#define KBDSPECIAL   (unsigned short) 0x0400
-#define KBDNUMPAD   (unsigned short) 0x0800
-#define KBDUNICODE   (unsigned short) 0x1000
-#define KBDINJECTEDVK   (unsigned short) 0x2000
-#define KBDMAPPEDVK   (unsigned short) 0x4000
-#define KBDBREAK   (unsigned short) 0x8000
+#define KBDEXT      (::u16) 0x0100
+#define KBDMULTIVK   (::u16) 0x0200
+#define KBDSPECIAL   (::u16) 0x0400
+#define KBDNUMPAD   (::u16) 0x0800
+#define KBDUNICODE   (::u16) 0x1000
+#define KBDINJECTEDVK   (::u16) 0x2000
+#define KBDMAPPEDVK   (::u16) 0x4000
+#define KBDBREAK   (::u16) 0x8000
 
 
 /* Browser related keys */
@@ -357,7 +357,7 @@
 /* Windows 2000/XP: For the US standard keyboard, the ']}' key */
 
 #define VK_OEM_7   0xDE /* Used for miscellaneous characters; it can vary by keyboard. */
-/* Windows 2000/XP: For the US standard keyboard, the 'single-quote/double-quote' key */
+/* Windows 2000/XP: For the US standard keyboard, the 'single-quote/::f64-quote' key */
 
 #define VK_OEM_8   0xDF /* Used for miscellaneous characters; it can vary by keyboard. */
 
@@ -416,8 +416,8 @@
 #define VK_DBE_ALPHANUMERIC      0xF0 /* Changes the mode to alphanumeric. */
 #define VK_DBE_KATAKANA         0xF1 /* Changes the mode to Katakana. */
 #define VK_DBE_HIRAGANA         0xF2 /* Changes the mode to Hiragana. */
-#define VK_DBE_SBCSCHAR         0xF3 /* Changes the mode to single-unsigned char characters. */
-#define VK_DBE_DBCSCHAR         0xF4 /* Changes the mode to double-unsigned char characters. */
+#define VK_DBE_SBCSCHAR         0xF3 /* Changes the mode to single-::u8 characters. */
+#define VK_DBE_DBCSCHAR         0xF4 /* Changes the mode to ::f64-::u8 characters. */
 #define VK_DBE_ROMAN         0xF5 /* Changes the mode to Roman characters. */
 #define VK_DBE_NOROMAN         0xF6 /* Changes the mode to non-Roman characters. */
 #define VK_DBE_ENTERWORDREGISTERMODE   0xF7 /* Activates the word registration dialog box. */

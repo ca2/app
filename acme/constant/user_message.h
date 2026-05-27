@@ -170,7 +170,7 @@ namespace user
       e_message_disable_modal,
       // lResult = 1, don't disable
       // #define WM_FLOATSTATUS      0x036D  // wParam combination of FS_* flags below
-      e_message_float_status,
+      e_message_f32_status,
 
       // WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
       //   of mixed processes (as is the case with OLE in-place activation)

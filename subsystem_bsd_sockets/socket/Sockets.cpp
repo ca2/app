@@ -38,7 +38,7 @@ namespace subsystem_bsd_sockets
 //   
 //   
 //   
-//    void Sockets::_startSockets(int loVer, int hiVer)
+//    void Sockets::_startSockets(::i32 loVer, ::i32 hiVer)
 //    {
 //       if (m_bIsStarted) {
 //          throw ::subsystem::Exception("Sockets already initialized.");

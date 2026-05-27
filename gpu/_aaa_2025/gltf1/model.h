@@ -89,7 +89,7 @@ namespace gpu
          virtual ::gpu::texture *loadMaterialTexture(const ::scoped_string & scopedstr, aiTextureType type);
 
 
-         //virtual ::gpu::texture> textureFromFile(const char *fileName, ::string directory, aiTextureType type);
+         //virtual ::gpu::texture> textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType type);
 
          virtual ::gpu::texture *empty_texture();
 

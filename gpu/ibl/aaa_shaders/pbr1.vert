@@ -61,13 +61,13 @@ cbuffer PushConsts : register(b1)
     int useTextureEmissive;
 
     float3 albedo;
-    float metallic;
-    float roughness;
-    float ambientOcclusion;
+    ::f32 metallic;
+    ::f32 roughness;
+    ::f32 ambientOcclusion;
     float3 emissive;
 
     float3 cameraPosition;
-    float bloomBrightnessCutoff;
+    ::f32 bloomBrightnessCutoff;
 };
 
 VSOutput main(VSInput input)

@@ -140,10 +140,10 @@ namespace str
 
          //if(iLen == 4)
          //{
-         //   char ch1 = pszLocale[0];
-         //   char ch2 = pszLocale[1];
-         //   char ch3 = pszLocale[2];
-         //   char ch4 = pszLocale[3];
+         //   ::i8 ch1 = pszLocale[0];
+         //   ::i8 ch2 = pszLocale[1];
+         //   ::i8 ch3 = pszLocale[2];
+         //   ::i8 ch4 = pszLocale[3];
          //   if(ch1 <= '_')
          //   {
          //      if(ch2 <= 's')
@@ -160,10 +160,10 @@ namespace str
          //}
          //else if(iLen == 2 || (iLen == 5 && pszLocale[2] == '-'))
          //{
-         //   char ch1 = pszLocale[0];
-         //   char ch2 = pszLocale[1];
-         //   char ch4;
-         //   char ch5;
+         //   ::i8 ch1 = pszLocale[0];
+         //   ::i8 ch2 = pszLocale[1];
+         //   ::i8 ch4;
+         //   ::i8 ch5;
 
          //   if(iLen == 5)
          //   {
@@ -330,8 +330,8 @@ namespace str
 
          //if(iLen == 2)
          //{
-         //   char ch1 = psz[0];
-         //   char ch2 = psz[1];
+         //   ::i8 ch1 = psz[0];
+         //   ::i8 ch2 = psz[1];
 
          //   if(ch1 != '-' && ch2 != '-')
          //   {
@@ -533,7 +533,7 @@ namespace str
 //               idSchema2 = __id(std);
 //            }
 //
-//            for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
+//            for(::i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
 //            {
 //               if(m_idaLocale[i] == idLocale && m_idaSchema[i] == idSchema2)
 //                  goto step2;
@@ -555,7 +555,7 @@ namespace str
 //            idSchema2 = __id(std);
 //         }
 //
-//         for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
+//         for(::i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
 //         {
 //            if(m_idaLocale[i] == idLocale && m_idaSchema[i] == idSchema2)
 //               return bAdded;
@@ -722,12 +722,12 @@ restart:
 
       }
 
-      long long locale_schema::increment_reference_count()
+      ::i64 locale_schema::increment_reference_count()
       {
          return matter::increment_reference_count();
       }
 
-      long long locale_schema::release()
+      ::i64 locale_schema::release()
       {
          return matter::release();
       }

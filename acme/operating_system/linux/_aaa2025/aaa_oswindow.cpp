@@ -28,7 +28,7 @@ void wm_toolwindow(oswindow w, bool bSet);
 void wm_iconify_window(oswindow w);
 void x11_post_message(MESSAGE & msg);
 
-const char * g_pszaNetWmState[]=
+const_char_pointer g_pszaNetWmState[]=
 {
    "_NET_WM_STATE_ABOVE",
    "_NET_WM_STATE_BELOW",
@@ -53,7 +53,7 @@ e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
 
    auto ppsz = g_pszaNetWmState;
 
-   int i = 0;
+   ::i32 i = 0;
 
    while(ppsz[i] != NULL)
    {
@@ -74,7 +74,7 @@ e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
 }
 
 
-const char * net_wm_state_text(e_net_wm_state estate)
+const_char_pointer net_wm_state_text(e_net_wm_state estate)
 {
 
    if(estate < net_wm_state_above || estate >= net_wm_state_count)
@@ -159,10 +159,10 @@ void oswindow_data::set_wm_class(const ::scoped_string & scopedstr)
 }
 
 
-int oswindow_data::map_window()
+::i32 oswindow_data::map_window()
 {
 
-   int i = 0;
+   ::i32 i = 0;
 
    {
 
@@ -195,14 +195,14 @@ int oswindow_data::map_window()
 
 
 
-int oswindow_data::unmap_window(bool bWithdraw)
+::i32 oswindow_data::unmap_window(bool bWithdraw)
 {
 
    windowing_output_debug_string("\noswindow_data::unmap_window");
 
    xdisplay d(display());
 
-   int i;
+   ::i32 i;
 
    if(bWithdraw)
    {
@@ -230,7 +230,7 @@ oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 ::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
 
 
-int oswindow_find_message_only_window(::windowing::window * pimpl)
+::i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 {
 
    if(pimpl == nullptr)
@@ -238,7 +238,7 @@ int oswindow_find_message_only_window(::windowing::window * pimpl)
 
    single_lock slOsWindow(oswindow_data::s_pmutex, true);
 
-   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(::i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
 
       if(::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
@@ -255,12 +255,12 @@ int oswindow_find_message_only_window(::windowing::window * pimpl)
 
 }
 
-int oswindow_find(Display * pdisplay, Window window)
+::i32 oswindow_find(Display * pdisplay, Window window)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(::i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
       if(!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
             &&  ::oswindow_data::s_pdataptra->element_at(i)->m_osdisplay->display() == pdisplay
@@ -274,12 +274,12 @@ int oswindow_find(Display * pdisplay, Window window)
 
 }
 
-int oswindow_find(Window window)
+::i32 oswindow_find(Window window)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(::i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
       if(!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
             &&  ::oswindow_data::s_pdataptra->element_at(i)->m_window == window)
@@ -349,7 +349,7 @@ oswindow_data * oswindow_defer_get(Display * pdisplay, Window window)
 }
 
 
-oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual, int iDepth, int iScreen, Colormap colormap)
+oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual, ::i32 iDepth, ::i32 iScreen, Colormap colormap)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
@@ -433,7 +433,7 @@ bool oswindow_data::bamf_set_icon()
 }
 
 
-int oswindow_data::x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements)
+::i32 oswindow_data::x_change_property(Atom property, Atom type, ::i32 format, ::i32 mode, const ::u8 * data, ::i32 nelements)
 {
 
    return XChangeProperty(display(), window(), property, type, format, mode, data, nelements);
@@ -465,7 +465,7 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
 #if 0
 
-   unsigned int buffer[] =
+   ::u32 buffer[] =
    {
       16, 16,
       4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 338034905, 3657433343, 0, 184483840, 234881279, 3053453567, 3221225727, 1879048447, 0, 0, 0, 0, 0, 0, 0, 1224737023, 3305111807, 3875537151,0, 0, 2063597823, 1291845887, 0, 67109119, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 50266112, 3422552319, 0, 0, 3070230783, 2063597823, 2986344703, 771752191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3422552319, 0, 0, 3372220671, 1509949695, 704643327, 3355443455, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 3422552319, 0, 134152192, 3187671295, 251658495, 0, 3439329535, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3422552319, 0, 0, 2332033279, 1342177535, 167772415, 3338666239, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 3422552319, 0, 0, 436207871, 3322085628, 3456106751, 1375731967, 4278255360, 4026597120, 3758161664, 3489726208, 3204513536, 2952855296, 2684419840, 2399207168, 2130771712, 1845559040, 1593900800, 1308688128, 1040252672, 755040000, 486604544, 234946304, 4278255360, 4043374336, 3774938880, 3506503424, 3221290752, 2952855296, 2667642624, 2399207168, 2130771712, 1862336256, 1627453957, 1359017481, 1073805064, 788591627, 503379721, 218169088, 4278255360, 4043374336, 3758161664, 3506503424, 3221290752, 2952855296, 2684419840, 2415984384, 2130771712, 1862336256, 1577123584, 1308688128, 1040252672, 755040000, 486604544, 218169088, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2667577599, 2415919359, 2130706687, 1862271231, 1593835775, 1325400319, 1056964863, 771752191, 520093951, 234881279, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2667577599, 2415919359, 2130706687, 1862271231, 1593835775, 1325400319, 1056964863, 771752191, 503316735, 234881279, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2684354815, 2399142143, 2130706687, 1862271231, 1593835775, 1325400319, 1040187647, 771752191, 520093951, 234881279, 4294901760, 4043243520, 3774808064, 3506372608, 3221159936, 2952724480, 2684289024, 2399076352, 2147418112, 1862205440, 1593769984, 1308557312, 1040121856, 771686400, 503250944, 234815488, 4294901760, 4060020736, 3758030848, 3506372608, 3221159936, 2952724480, 2684289024, 2415853568, 2130640896, 1862205440, 1593769984, 1308557312, 1040121856, 771686400, 503250944, 234815488, 4294901760, 4043243520, 3774808064, 3489595392, 3237937152, 2952724480, 2684289024, 2415853568, 2147418112, 1862205440, 1593769984, 1325334528, 1056899072, 788463616, 503250944, 234815488,
@@ -475,15 +475,15 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    xdisplay d(display());
 
-   int iScreen = DefaultScreen(d);
+   ::i32 iScreen = DefaultScreen(d);
 
    Atom net_wm_icon = d.intern_atom("_NET_WM_ICON", False);
 
    Atom cardinal = d.intern_atom("CARDINAL", False);
 
-   int length = 2 + 16 * 16 + 2 + 32 * 32;
+   ::i32 length = 2 + 16 * 16 + 2 + 32 * 32;
 
-   int status = XChangeProperty(d, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) buffer, length);
+   ::i32 status = XChangeProperty(d, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const ::u8*) buffer, length);
 
    if(status != 0)
    {
@@ -509,19 +509,19 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    memory m(m_pimpl->m_puserinteraction->get_app());
 
-   int length = 2 + d1->area();
+   ::i32 length = 2 + d1->area();
 
    m.set_size(length * 4);
 
-   unsigned int * pcr = (unsigned int *) m.get_data();
+   ::u32 * pcr = (::u32 *) m.get_data();
 
    pcr[0] = d1->width();
 
    pcr[1] = d1->height();
 
-   int c = d1->area();
+   ::i32 c = d1->area();
 
-   for(int i = 0; i < c; i++)
+   for(::i32 i = 0; i < c; i++)
    {
 
       pcr[i+2] = d1->colorref()[i];
@@ -536,7 +536,7 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    Atom cardinal = intern_atom("CARDINAL", False);
 
-   int status = x_change_property(net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) pcr, length);
+   ::i32 status = x_change_property(net_wm_icon, cardinal, 32, PropModeReplace, (const ::u8*) pcr, length);
 
    if(status == BadAlloc)
    {
@@ -584,19 +584,19 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    memory m(w->m_pimpl->m_puserinteraction->get_app());
 
-   int length = 2 + d1->area() + 2 + d2->area();
+   ::i32 length = 2 + d1->area() + 2 + d2->area();
 
    m.set_size(length * 4);
 
-   unsigned int * pcr = (unsigned int *) m.get_data();
+   ::u32 * pcr = (::u32 *) m.get_data();
 
    pcr[0] = d1.width();
 
    pcr[1] = d1.height();
 
-   int c = d1->area();
+   ::i32 c = d1->area();
 
-   for(int i = 0; i < c; i++)
+   for(::i32 i = 0; i < c; i++)
    {
 
       pcr[i+2] = d1->m_pcolorref[i];
@@ -613,7 +613,7 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    c = d2->area();
 
-   for(int i = 0; i < c; i++)
+   for(::i32 i = 0; i < c; i++)
    {
 
       pcr[i+o+2] = d2->m_pcolorref[i];
@@ -626,12 +626,12 @@ bool oswindow_data::set_icon(::image::image *pimage)
 
    Atom cardinal = XInternAtom(display, "CARDINAL", False);
 
-   int status = XChangeProperty(display, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) pcr, length);
+   ::i32 status = XChangeProperty(display, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const ::u8*) pcr, length);
 
    if(status != 0)
    {
 
-      //file_system()->put_contents("/home/camilo/window.txt", as_string((int)w->window()));
+      //file_system()->put_contents("/home/camilo/window.txt", as_string((::i32)w->window()));
       return false;
 
    }
@@ -641,14 +641,14 @@ bool oswindow_data::set_icon(::image::image *pimage)
 }
 
 
-int oswindow_data::store_name(const ::scoped_string & scopedstr)
+::i32 oswindow_data::store_name(const ::scoped_string & scopedstr)
 {
 
    windowing_output_debug_string("\noswindow_data::store_name");
 
    xdisplay d(display());
 
-   int i = XStoreName(display(), window(), psz);
+   ::i32 i = XStoreName(display(), window(), psz);
 
    windowing_output_debug_string("\noswindow_data::store_name END");
 
@@ -657,14 +657,14 @@ int oswindow_data::store_name(const ::scoped_string & scopedstr)
 }
 
 
-int oswindow_data::select_input(int iInput)
+::i32 oswindow_data::select_input(::i32 iInput)
 {
 
    windowing_output_debug_string("\noswindow_data::select_input");
 
    xdisplay d(display());
 
-   int i = XSelectInput(display(), window(), iInput);
+   ::i32 i = XSelectInput(display(), window(), iInput);
 
    windowing_output_debug_string("\noswindow_data::select_input END");
 
@@ -673,14 +673,14 @@ int oswindow_data::select_input(int iInput)
 }
 
 
-int oswindow_data::select_all_input()
+::i32 oswindow_data::select_all_input()
 {
 
    windowing_output_debug_string("\noswindow_data::select_all_input");
 
    xdisplay d(display());
 
-   int i = select_input(ExposureMask | ButtonPressMask);
+   ::i32 i = select_input(ExposureMask | ButtonPressMask);
 
    windowing_output_debug_string("\noswindow_data::select_all_input");
 
@@ -727,7 +727,7 @@ void oswindow_data::set_user_interaction(::windowing::window * pimpl)
 
 
 
-bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
+bool oswindow_data::is_child(::acme::windowing::window * pacmewindowingwindow)
 {
 
    if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -799,12 +799,12 @@ oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwin
 
 
 /// Post an happening from the client to the X server
-void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
+void oswindow_data::send_client_event(Atom atom, ::u32 numArgs, ...)
 {
 
    XEvent xevent;
 
-   unsigned int i;
+   ::u32 i;
 
    va_list argp;
 
@@ -823,7 +823,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
    for (i = 0; i < numArgs; i++)
    {
 
-      xevent.xclient.data.l[i] = va_arg(argp, int);
+      xevent.xclient.data.l[i] = va_arg(argp, ::i32);
 
    }
 
@@ -919,7 +919,7 @@ void oswindow_data::full_screen(const ::i32_rectangle & rectangle)
 
    ::i32_rectangle rBest;
 
-   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
+   ::i32 iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
 
    windowing_output_debug_string("::oswindow_data::full_screen 1");
 
@@ -1099,7 +1099,7 @@ void oswindow_data::exit_zoomed()
 }
 
 
-iptr oswindow_data::get_window_long_ptr(int nIndex)
+iptr oswindow_data::get_window_long_ptr(::i32 nIndex)
 {
 
    return m_pimpl->get_window_long_ptr(nIndex);
@@ -1107,7 +1107,7 @@ iptr oswindow_data::get_window_long_ptr(int nIndex)
 }
 
 
-iptr oswindow_data::set_window_long_ptr(int nIndex, iptr i)
+iptr oswindow_data::set_window_long_ptr(::i32 nIndex, iptr i)
 {
 
    return m_pimpl->set_window_long_ptr(nIndex, i);
@@ -1159,19 +1159,19 @@ long oswindow_data::get_state()
 
    static const long WM_STATE_ELEMENTS = 2L;
 
-   unsigned long nitems = 0;
+   ulong nitems = 0;
 
-   unsigned long leftover = 0;
+   ulong leftover = 0;
 
    Atom atomWmState = 0;
 
    Atom actual_type = 0;
 
-   int actual_format = 0;
+   ::i32 actual_format = 0;
 
-   int status = 0;
+   ::i32 status = 0;
 
-   unsigned char* point = nullptr;
+   ::u8* point = nullptr;
 
    if(d.m_pdata->m_atomWmState == None)
    {
@@ -1297,7 +1297,7 @@ bool oswindow_data::is_destroying()
 
 #undef SET_WINDOW_POS_LOG
 
-bool oswindow_data::set_window_position(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
+bool oswindow_data::set_window_position(class ::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 nFlags)
 {
 
    bool bOk = false;
@@ -1314,7 +1314,7 @@ bool oswindow_data::set_window_position(class ::zorder zorder, int x, int y, int
 }
 
 
-bool oswindow_data::_set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
+bool oswindow_data::_set_window_pos(class ::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 nFlags)
 {
 
    synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1558,7 +1558,7 @@ int_bool show_window(::acme::windowing::window * pacmewindowingwindow, const ::e
 
 
 
-iptr get_window_long_ptr(oswindow_data * pdata, int nIndex)
+iptr get_window_long_ptr(oswindow_data * pdata, ::i32 nIndex)
 {
 
    return pdata->get_window_long_ptr(nIndex);
@@ -1566,7 +1566,7 @@ iptr get_window_long_ptr(oswindow_data * pdata, int nIndex)
 }
 
 
-iptr set_window_long_ptr(oswindow_data * pdata, int nIndex, iptr i)
+iptr set_window_long_ptr(oswindow_data * pdata, ::i32 nIndex, iptr i)
 {
 
    return pdata->set_window_long_ptr(nIndex, i);

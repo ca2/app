@@ -307,7 +307,7 @@ namespace interprocess
    //}
 
 
-   //void target::on_interprocess_receive(int message, ::memory && memory)
+   //void target::on_interprocess_receive(::i32 message, ::memory && memory)
    //{
 
    //   ///memory memory(pdata, len);

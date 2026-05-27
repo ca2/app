@@ -31,14 +31,14 @@ string iconv_charset_from_windows_code_page(::u32 CodePage)
 }
 
 
-int
+::i32
 MultiByteToWideChar2(
 ::u32     CodePage,
 ::u32    dwFlags,
 const_char_pointer pMultiByteStr,
-int      cbMultiByte,
+::i32      cbMultiByte,
 ::wd16_character *   pWideCharStr,
-int      cchWideChar)
+::i32      cchWideChar)
 {
   string str(pMultiByteStr, cbMultiByte);
 
@@ -55,15 +55,15 @@ int      cchWideChar)
      {
         if(cbMultiByte < 0)
         {
-           return (int) (wstr.length() + 1);
+           return (::i32) (wstr.length() + 1);
         }
         else
         {
-           return (int) wstr.length();
+           return (::i32) wstr.length();
         }
      }
 
-     int iLen = (int) minimum(cchWideChar, wstr.length());
+     ::i32 iLen = (::i32) minimum(cchWideChar, wstr.length());
 
      if(pWideCharStr != nullptr)
      {
@@ -122,12 +122,12 @@ int      cchWideChar)
 
         size_t sOutIn = sOut;
 
-        iconv(iconvPlease, (char **) &pMultiByteStr, &sIn, (char **) &psz, &sOut);
+        iconv(iconvPlease, (char_pointer *) &pMultiByteStr, &sIn, (char_pointer *) &psz, &sOut);
 
 
         iconv_close(iconvPlease);
 
-        return (int) (((sOutIn - sOut) / sizeof(::wd16_character)) + (cbMultiByte < 0 ? 1 : 0));
+        return (::i32) (((sOutIn - sOut) / sizeof(::wd16_character)) + (cbMultiByte < 0 ? 1 : 0));
 
      }
      else
@@ -142,12 +142,12 @@ int      cchWideChar)
 
         size_t sOutIn = sOut;
 
-        iconv(iconvPlease, (char **) &pMultiByteStr, &sIn, (char **) &psz, &sOut);
+        iconv(iconvPlease, (char_pointer *) &pMultiByteStr, &sIn, (char_pointer *) &psz, &sOut);
 
 
         iconv_close(iconvPlease);
 
-        return (int) (((sOutIn - sOut) / sizeof(::wd16_character))  + (cbMultiByte < 0 ? 1 : 0));
+        return (::i32) (((sOutIn - sOut) / sizeof(::wd16_character))  + (cbMultiByte < 0 ? 1 : 0));
 
      }
 
@@ -156,14 +156,14 @@ int      cchWideChar)
 }
 
 
-int
+::i32
 MultiByteToWideChar2(
 ::u32     CodePage,
 ::u32    dwFlags,
 const_char_pointer pMultiByteStr,
-int      cbMultiByte,
+::i32      cbMultiByte,
 ::wd32_character *   pWideCharStr,
-int      cchWideChar)
+::i32      cchWideChar)
 {
   string str(pMultiByteStr, cbMultiByte);
 
@@ -180,15 +180,15 @@ int      cchWideChar)
      {
         if(cbMultiByte < 0)
         {
-           return (int) (wstr.length() + 1);
+           return (::i32) (wstr.length() + 1);
         }
         else
         {
-           return (int) wstr.length();
+           return (::i32) wstr.length();
         }
      }
 
-     int iLen = (int) minimum(cchWideChar, wstr.length());
+     ::i32 iLen = (::i32) minimum(cchWideChar, wstr.length());
 
      if(pWideCharStr != nullptr)
      {
@@ -247,12 +247,12 @@ int      cchWideChar)
 
         size_t sOutIn = sOut;
 
-        iconv(iconvPlease, (char **) &pMultiByteStr, &sIn, (char **) &psz, &sOut);
+        iconv(iconvPlease, (char_pointer *) &pMultiByteStr, &sIn, (char_pointer *) &psz, &sOut);
 
 
         iconv_close(iconvPlease);
 
-        return (int) (((sOutIn - sOut) / sizeof(::wd32_character)) + (cbMultiByte < 0 ? 1 : 0));
+        return (::i32) (((sOutIn - sOut) / sizeof(::wd32_character)) + (cbMultiByte < 0 ? 1 : 0));
 
      }
      else
@@ -267,12 +267,12 @@ int      cchWideChar)
 
         size_t sOutIn = sOut;
 
-        iconv(iconvPlease, (char **) &pMultiByteStr, &sIn, (char **) &psz, &sOut);
+        iconv(iconvPlease, (char_pointer *) &pMultiByteStr, &sIn, (char_pointer *) &psz, &sOut);
 
 
         iconv_close(iconvPlease);
 
-        return (int) (((sOutIn - sOut) / sizeof(::wd32_character))  + (cbMultiByte < 0 ? 1 : 0));
+        return (::i32) (((sOutIn - sOut) / sizeof(::wd32_character))  + (cbMultiByte < 0 ? 1 : 0));
 
      }
 
@@ -281,13 +281,13 @@ int      cchWideChar)
 }
 
 
-int  WideCharToMultiByte2(
+::i32  WideCharToMultiByte2(
 ::u32     CodePage,
 ::u32    dwFlags,
 const ::wide_character *  pWideCharStr,
-int      cchWideChar,
-char *   pMultiByteStr,
-int      cbMultiByte,
+::i32      cchWideChar,
+char_pointer pMultiByteStr,
+::i32      cbMultiByte,
 const_char_pointer pDefaultChar,
 ::i32_bool *  pUsedDefaultChar)
 {
@@ -301,7 +301,7 @@ const_char_pointer pDefaultChar,
 
      auto len = unichar_to_utf8_len(wstr);
 
-     char * psz = str.get_buffer(len);
+     char_pointer psz = str.get_buffer(len);
 
      unichar_to_utf8(psz, wstr, len);
 
@@ -311,7 +311,7 @@ const_char_pointer pDefaultChar,
 
      size_t sIn = wstr.length() * 2;
 
-     char * psz = str.get_buffer(sIn);
+     char_pointer psz = str.get_buffer(sIn);
 
 
      size_t sOut = wstr.length() * 8;
@@ -320,7 +320,7 @@ const_char_pointer pDefaultChar,
 
      iconv_t iconvPlease = iconv_open(strCodePage, "UTF-16LE");
 
-     iconv(iconvPlease, (char **) &pWideCharStr, &sIn, &psz, &sOut);
+     iconv(iconvPlease, (char_pointer *) &pWideCharStr, &sIn, &psz, &sOut);
 
 
      iconv_close(iconvPlease);
@@ -333,15 +333,15 @@ const_char_pointer pDefaultChar,
   {
      if(cchWideChar < 0)
      {
-        return (int) str.length() + 1;
+        return (::i32) str.length() + 1;
      }
      else
      {
-        return (int) str.length();
+        return (::i32) str.length();
      }
   }
 
-  int iLen = (int) minimum(cbMultiByte, str.length());
+  ::i32 iLen = (::i32) minimum(cbMultiByte, str.length());
 
   if(pMultiByteStr != nullptr)
 

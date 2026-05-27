@@ -2,7 +2,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME enum_rotate_flip exif_orientation_rotate_flip(int orientation);
+CLASS_DECL_ACME enum_rotate_flip exif_orientation_rotate_flip(::i32 orientation);
 
 
 

@@ -9,19 +9,19 @@ namespace universal_windows
 
    class UNIVERSAL_WINDOWS
    {
-      int function();
+      ::i32 function();
    };
 
-   CLASS_DECL_ACME HINSTANCE   LoadLibrary(const char * lpsz);
-   CLASS_DECL_ACME bool        SHGetSpecialFolderPath(oswindow hwnd, string &str, int csidl, bool fCreate);
-   CLASS_DECL_ACME unsigned int       GetFileAttributes(const char * lpFileName);
-   CLASS_DECL_ACME bool        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-   CLASS_DECL_ACME unsigned int       GetCurrentDirectory(string & str);
-   CLASS_DECL_ACME unsigned int       GetTempPath(string & str);
-   CLASS_DECL_ACME int        RegQueryValue(HKEY hkey, const char * lpszSubKey, string & str);
-   CLASS_DECL_ACME HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, unsigned int nIconIndex);
-   CLASS_DECL_ACME bool        DeleteFile(const char * lpFileName);
-   CLASS_DECL_ACME int         GetMenuStringW(HMENU hMenu, unsigned int uDItem, string & str, unsigned int flags);
+   CLASS_DECL_ACME HINSTANCE   LoadLibrary(const_char_pointer psz);
+   CLASS_DECL_ACME bool        SHGetSpecialFolderPath(oswindow hwnd, string &str, ::i32 csidl, bool fCreate);
+   CLASS_DECL_ACME ::u32       GetFileAttributes(const_char_pointer lpFileName);
+   CLASS_DECL_ACME bool        CreateDirectory(const_char_pointer lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+   CLASS_DECL_ACME ::u32       GetCurrentDirectory(string & str);
+   CLASS_DECL_ACME ::u32       GetTempPath(string & str);
+   CLASS_DECL_ACME ::i32        RegQueryValue(HKEY hkey, const_char_pointer pszSubKey, string & str);
+   CLASS_DECL_ACME HICON       ExtractIcon(HINSTANCE hInst, const_char_pointer pszExeFileName, ::u32 nIconIndex);
+   CLASS_DECL_ACME bool        DeleteFile(const_char_pointer lpFileName);
+   CLASS_DECL_ACME ::i32         GetMenuStringW(HMENU hMenu, ::u32 uDItem, string & str, ::u32 flags);
    CLASS_DECL_ACME void        TimeToFileTime(::particle * pparticle, const ::earth::time& time, LPFILETIME pFileTime);
 
 
@@ -32,7 +32,7 @@ namespace universal_windows
 // helpers for registering your own WNDCLASSes
 #ifndef UNIVERSAL_WINDOWS
 
-CLASS_DECL_ACME LRESULT CALLBACK __window_procedure(oswindow hWnd, unsigned int nMsg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_ACME LRESULT CALLBACK __window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 CLASS_DECL_ACME WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
@@ -46,7 +46,7 @@ typedef void (__MSG_CALL ::thread::*__PMSGT)();
 
 
 
-CLASS_DECL_ACME int delete_registry_tree_helper(HKEY hParentKey, const ::scoped_string & scopedstrKeyName);
+CLASS_DECL_ACME ::i32 delete_registry_tree_helper(HKEY hParentKey, const ::scoped_string & scopedstrKeyName);
 
 
 
@@ -54,7 +54,7 @@ CLASS_DECL_ACME ::UNIVERSAL_WINDOWS::thread * __get_thread();
 CLASS_DECL_ACME void __set_thread(::thread * pthread);
 CLASS_DECL_ACME MSG* __get_current_message();
 
-CLASS_DECL_ACME void __end_thread(::particle * pparticle, unsigned int nExitCode, bool bDelete = true);
+CLASS_DECL_ACME void __end_thread(::particle * pparticle, ::u32 nExitCode, bool bDelete = true);
 
 CLASS_DECL_ACME void __init_thread();
 //CLASS_DECL_ACME void __term_thread(::particle * pparticle, HINSTANCE hInstTerm = nullptr);

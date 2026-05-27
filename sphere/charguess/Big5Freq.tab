@@ -37,7 +37,7 @@
  * Typical Distribution Ratio about 25% of Ideal one, still much higher than RDR
  *****************************************************************************/
 
-#define BIG5_TYPICAL_DISTRIBUTION_RATIO (float)0.75
+#define BIG5_TYPICAL_DISTRIBUTION_RATIO (::f32)0.75
 
 
 //Char to FreqOrder table , 

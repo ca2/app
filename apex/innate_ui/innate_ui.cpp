@@ -80,14 +80,14 @@ namespace innate_ui
    }
 
 
-   //void innate_ui::track_popup_menu(int iMenuResourceId, const ::function<void(int)> &functionOnActionId)
+   //void innate_ui::track_popup_menu(::i32 iMenuResourceId, const ::function<void(::i32)> &functionOnActionId)
    //{
 
    //   throw ::interface_only();
 
    //}
 
-   ::pointer<::innate_ui::menu> innate_ui::load_menu_from_resource(int iMenuResourceId)
+   ::pointer<::innate_ui::menu> innate_ui::load_menu_from_resource(::i32 iMenuResourceId)
    {
 
       auto pmenu = createø<::innate_ui::menu>();

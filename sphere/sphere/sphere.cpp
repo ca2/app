@@ -5,7 +5,7 @@
 #ifdef UNIVERSAL_WINDOWS
 [MTAThread]
 #endif
-extern "C" int WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID)
+extern "C" ::i32 WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID)
 {
 
    if (dwReason == DLL_PROCESS_ATTACH)

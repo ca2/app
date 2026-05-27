@@ -5077,7 +5077,7 @@
     <frame>
       <ip>0x5AD038B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2334</line>
@@ -5085,7 +5085,7 @@
     <frame>
       <ip>0x5AD0646</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_synch(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_synch(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2383</line>
@@ -9800,7 +9800,7 @@
     <frame>
       <ip>0x5D41D13</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>prototype_impl.cpp</file>
       <line>838</line>
@@ -9808,7 +9808,7 @@
     <frame>
       <ip>0x5D1E688</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::primitive::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>primitive.cpp</file>
       <line>884</line>
@@ -9816,7 +9816,7 @@
     <frame>
       <ip>0x5CFE51A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>2915</line>
@@ -9832,7 +9832,7 @@
     <frame>
       <ip>0x5D2424E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_child::create_window(user::interaction*, char const*, char const*, unsigned int, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, user::interaction*, id, create*)</fn>
+      <fn>user::interaction_child::create_window(user::interaction*, char const*, char const*, ::u32, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, user::interaction*, id, create*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_child.cpp</file>
       <line>202</line>
@@ -10010,7 +10010,7 @@
     <frame>
       <ip>0x5D30C8D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_impl.cpp</file>
       <line>2069</line>
@@ -10018,7 +10018,7 @@
     <frame>
       <ip>0x58E9E20</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>linux::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>linux::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/node/linux</dir>
       <file>linux_interaction_impl.cpp</file>
       <line>3641</line>
@@ -10026,7 +10026,7 @@
     <frame>
       <ip>0x5CFE51A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>2915</line>
@@ -11204,7 +11204,7 @@
     <frame>
       <ip>0x5802AD7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::timer_array::create_timer(unsigned long, unsigned int, bool (*)(timer*), bool, void*)</fn>
+      <fn>aura::timer_array::create_timer(unsigned long, ::u32, bool (*)(timer*), bool, void*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_timer_array.cpp</file>
       <line>54</line>
@@ -11212,7 +11212,7 @@
     <frame>
       <ip>0x5D423BD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::prototype_impl::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
+      <fn>::user::prototype_impl::SetTimer(unsigned long, ::u32, bool (*)(timer*))</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>prototype_impl.cpp</file>
       <line>993</line>
@@ -11220,7 +11220,7 @@
     <frame>
       <ip>0x5D0684E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
+      <fn>user::interaction::SetTimer(unsigned long, ::u32, bool (*)(timer*))</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>6112</line>
@@ -11976,7 +11976,7 @@
     <frame>
       <ip>0x5D41D13</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>prototype_impl.cpp</file>
       <line>838</line>
@@ -11984,7 +11984,7 @@
     <frame>
       <ip>0x5D1E688</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::primitive::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>primitive.cpp</file>
       <line>884</line>
@@ -11992,7 +11992,7 @@
     <frame>
       <ip>0x5CFE51A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>2915</line>
@@ -12000,7 +12000,7 @@
     <frame>
       <ip>0x5CFE968</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message_to_descendants(unsigned int, unsigned long, lparam, bool, bool)</fn>
+      <fn>user::interaction::send_message_to_descendants(::u32, unsigned long, lparam, bool, bool)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>3043</line>
@@ -14603,7 +14603,7 @@
     <frame>
       <ip>0x5D41D03</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>prototype_impl.cpp</file>
       <line>854</line>
@@ -22197,7 +22197,7 @@
     <frame>
       <ip>0x5D8E28C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -22205,7 +22205,7 @@
     <frame>
       <ip>0x5D8C60F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;::~map()</fn>
+      <fn>map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1207</line>
@@ -22213,7 +22213,7 @@
     <frame>
       <ip>0x5D8C74D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;::~map()</fn>
+      <fn>map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1209</line>
@@ -22245,7 +22245,7 @@
     <frame>
       <ip>0x5D89A4B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt; &gt;(map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;*&amp;)</fn>
+      <fn>long release&lt;map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt; &gt;(map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -22253,7 +22253,7 @@
     <frame>
       <ip>0x5D87507</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt; &gt;::release()</fn>
+      <fn>pointer&lt;map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt; &gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -22261,7 +22261,7 @@
     <frame>
       <ip>0x5D85BA9</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt; &gt;::~pointer()</fn>
+      <fn>pointer&lt;map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt; &gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -22396,7 +22396,7 @@
     <frame>
       <ip>0x5D8C75E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;::~map()</fn>
+      <fn>map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1209</line>
@@ -22428,7 +22428,7 @@
     <frame>
       <ip>0x5D89A4B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt; &gt;(map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;*&amp;)</fn>
+      <fn>long release&lt;map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt; &gt;(map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -22436,7 +22436,7 @@
     <frame>
       <ip>0x5D87507</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt; &gt;::release()</fn>
+      <fn>pointer&lt;map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt; &gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -22444,7 +22444,7 @@
     <frame>
       <ip>0x5D85BA9</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt; &gt;::~pointer()</fn>
+      <fn>pointer&lt;map&lt;user::e_double, user::e_double, ::f64, ::f64, pair&lt;user::e_double, ::f64, user::e_double, ::f64&gt; &gt; &gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -23789,7 +23789,7 @@
     <frame>
       <ip>0x5D9009A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -23797,7 +23797,7 @@
     <frame>
       <ip>0x5D8DDF7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;::~map()</fn>
+      <fn>map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1207</line>
@@ -23805,7 +23805,7 @@
     <frame>
       <ip>0x5D8DF35</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;::~map()</fn>
+      <fn>map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1209</line>
@@ -23837,7 +23837,7 @@
     <frame>
       <ip>0x5D87EC7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt; &gt;(map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;*&amp;)</fn>
+      <fn>long release&lt;map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt; &gt;(map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -23845,7 +23845,7 @@
     <frame>
       <ip>0x5D8746B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt; &gt;::release()</fn>
+      <fn>pointer&lt;map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt; &gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -23853,7 +23853,7 @@
     <frame>
       <ip>0x5D85A7D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt; &gt;::~pointer()</fn>
+      <fn>pointer&lt;map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt; &gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -23988,7 +23988,7 @@
     <frame>
       <ip>0x5D8DF46</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;::~map()</fn>
+      <fn>map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt;::~map()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1209</line>
@@ -24020,7 +24020,7 @@
     <frame>
       <ip>0x5D87EC7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt; &gt;(map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;*&amp;)</fn>
+      <fn>long release&lt;map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt; &gt;(map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt;*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -24028,7 +24028,7 @@
     <frame>
       <ip>0x5D8746B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt; &gt;::release()</fn>
+      <fn>pointer&lt;map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt; &gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -24036,7 +24036,7 @@
     <frame>
       <ip>0x5D85A7D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt; &gt;::~pointer()</fn>
+      <fn>pointer&lt;map&lt;user::e_color, user::e_color, ::u32, ::u32, pair&lt;user::e_color, ::u32, user::e_color, ::u32&gt; &gt; &gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -29560,7 +29560,7 @@
     <frame>
       <ip>0xDA11310</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>map&lt;string, string const&amp;, unsigned int, unsigned int const&amp;, pair&lt;string, unsigned int, string const&amp;, unsigned int const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, ::u32, ::u32 const&amp;, pair&lt;string, ::u32, string const&amp;, ::u32 const&amp;&gt; &gt;::remove_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -29568,7 +29568,7 @@
     <frame>
       <ip>0xDA10D7B</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>map&lt;string, string const&amp;, unsigned int, unsigned int const&amp;, pair&lt;string, unsigned int, string const&amp;, unsigned int const&amp;&gt; &gt;::~map()</fn>
+      <fn>map&lt;string, string const&amp;, ::u32, ::u32 const&amp;, pair&lt;string, ::u32, string const&amp;, ::u32 const&amp;&gt; &gt;::~map()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1207</line>
@@ -54833,7 +54833,7 @@
     <frame>
       <ip>0x586F60C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory&lt;numeric_array&lt;double&gt;, numeric_array&lt;double&gt; &gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;numeric_array&lt;::f64&gt;, numeric_array&lt;::f64&gt; &gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -63136,7 +63136,7 @@
     <frame>
       <ip>0x5950F70</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>raw_array&lt;unsigned int, unsigned int const&amp;, allocator::nodef&lt;unsigned int&gt; &gt;::~raw_array()</fn>
+      <fn>raw_array&lt;::u32, ::u32 const&amp;, allocator::nodef&lt;::u32&gt; &gt;::~raw_array()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_raw_array_impl.inl</file>
       <line>316</line>
@@ -67674,7 +67674,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -67682,7 +67682,7 @@
     <frame>
       <ip>0x5AD0646</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_synch(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_synch(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2383</line>
@@ -67772,7 +67772,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -67780,7 +67780,7 @@
     <frame>
       <ip>0x5AD0646</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_synch(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_synch(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2383</line>
@@ -69198,7 +69198,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -69206,7 +69206,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -69238,7 +69238,7 @@
     <frame>
       <ip>0x120504B7</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>simple_frame_window::LoadFrame(char const*, unsigned int, user::interaction*, create*)</fn>
+      <fn>simple_frame_window::LoadFrame(char const*, ::u32, user::interaction*, create*)</fn>
       <dir>/xcore/app/aura/user/simple</dir>
       <file>simple_frame_window.cpp</file>
       <line>1936</line>
@@ -69479,7 +69479,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -69487,7 +69487,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -69519,7 +69519,7 @@
     <frame>
       <ip>0x120504B7</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>simple_frame_window::LoadFrame(char const*, unsigned int, user::interaction*, create*)</fn>
+      <fn>simple_frame_window::LoadFrame(char const*, ::u32, user::interaction*, create*)</fn>
       <dir>/xcore/app/aura/user/simple</dir>
       <file>simple_frame_window.cpp</file>
       <line>1936</line>
@@ -70924,7 +70924,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -70932,7 +70932,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -71030,7 +71030,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -71038,7 +71038,7 @@
     <frame>
       <ip>0x5AD0646</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_synch(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_synch(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2383</line>
@@ -71136,7 +71136,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -71144,7 +71144,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -74233,7 +74233,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -74241,7 +74241,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -75070,7 +75070,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -75078,7 +75078,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -75246,7 +75246,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -75254,7 +75254,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -75352,7 +75352,7 @@
     <frame>
       <ip>0x5AD00BB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin_thread(bool, e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin_thread(bool, e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2298</line>
@@ -75360,7 +75360,7 @@
     <frame>
       <ip>0x5AD05EA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>thread::begin(e_priority, unsigned int, unsigned int, void*)</fn>
+      <fn>thread::begin(e_priority, ::u32, ::u32, void*)</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_thread.cpp</file>
       <line>2366</line>
@@ -76515,7 +76515,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -86574,7 +86574,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -86582,7 +86582,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -101349,7 +101349,7 @@
     <frame>
       <ip>0x5D30C8D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_impl.cpp</file>
       <line>2069</line>
@@ -101357,7 +101357,7 @@
     <frame>
       <ip>0x58E9E20</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>linux::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>linux::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/node/linux</dir>
       <file>linux_interaction_impl.cpp</file>
       <line>3641</line>
@@ -101365,7 +101365,7 @@
     <frame>
       <ip>0x5CFE51A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>2915</line>
@@ -101455,7 +101455,7 @@
     <frame>
       <ip>0x5D30C8D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_impl.cpp</file>
       <line>2069</line>
@@ -101463,7 +101463,7 @@
     <frame>
       <ip>0x58E9E20</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>linux::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>linux::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/node/linux</dir>
       <file>linux_interaction_impl.cpp</file>
       <line>3641</line>
@@ -101471,7 +101471,7 @@
     <frame>
       <ip>0x5CFE51A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>2915</line>
@@ -101561,7 +101561,7 @@
     <frame>
       <ip>0x5D30C8D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_impl.cpp</file>
       <line>2069</line>
@@ -101569,7 +101569,7 @@
     <frame>
       <ip>0x58E9E20</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>linux::interaction_impl::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>linux::interaction_impl::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/node/linux</dir>
       <file>linux_interaction_impl.cpp</file>
       <line>3641</line>
@@ -101577,7 +101577,7 @@
     <frame>
       <ip>0x5CFE51A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::send_message(unsigned int, unsigned long, lparam)</fn>
+      <fn>user::interaction::send_message(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>2915</line>
@@ -101699,7 +101699,7 @@
     <frame>
       <ip>0x5D41D03</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(::u32, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>prototype_impl.cpp</file>
       <line>854</line>
@@ -102306,7 +102306,7 @@
     <frame>
       <ip>0x5802AD7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::timer_array::create_timer(unsigned long, unsigned int, bool (*)(timer*), bool, void*)</fn>
+      <fn>aura::timer_array::create_timer(unsigned long, ::u32, bool (*)(timer*), bool, void*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_timer_array.cpp</file>
       <line>54</line>
@@ -102314,7 +102314,7 @@
     <frame>
       <ip>0x5D423BD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::prototype_impl::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
+      <fn>::user::prototype_impl::SetTimer(unsigned long, ::u32, bool (*)(timer*))</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>prototype_impl.cpp</file>
       <line>993</line>
@@ -102322,7 +102322,7 @@
     <frame>
       <ip>0x5D0684E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
+      <fn>user::interaction::SetTimer(unsigned long, ::u32, bool (*)(timer*))</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction.cpp</file>
       <line>6112</line>
@@ -102399,7 +102399,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -102407,7 +102407,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -102465,7 +102465,7 @@
     <frame>
       <ip>0x5D84D3E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::style::create_point_font(user::e_font, char const*, double, int)</fn>
+      <fn>user::style::create_point_font(user::e_font, char const*, ::f64, int)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_style.cpp</file>
       <line>1070</line>
@@ -102571,7 +102571,7 @@
     <frame>
       <ip>0x5D84D3E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::style::create_point_font(user::e_font, char const*, double, int)</fn>
+      <fn>user::style::create_point_font(user::e_font, char const*, ::f64, int)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_style.cpp</file>
       <line>1070</line>
@@ -102677,7 +102677,7 @@
     <frame>
       <ip>0x5D84D3E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::style::create_point_font(user::e_font, char const*, double, int)</fn>
+      <fn>user::style::create_point_font(user::e_font, char const*, ::f64, int)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_style.cpp</file>
       <line>1070</line>
@@ -103116,7 +103116,7 @@
     <frame>
       <ip>0x5D84D3E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::style::create_point_font(user::e_font, char const*, double, int)</fn>
+      <fn>user::style::create_point_font(user::e_font, char const*, ::f64, int)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_style.cpp</file>
       <line>1070</line>
@@ -103222,7 +103222,7 @@
     <frame>
       <ip>0x5D84D3E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::style::create_point_font(user::e_font, char const*, double, int)</fn>
+      <fn>user::style::create_point_font(user::e_font, char const*, ::f64, int)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_style.cpp</file>
       <line>1070</line>
@@ -103328,7 +103328,7 @@
     <frame>
       <ip>0x5D84D3E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::style::create_point_font(user::e_font, char const*, double, int)</fn>
+      <fn>user::style::create_point_font(user::e_font, char const*, ::f64, int)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_style.cpp</file>
       <line>1070</line>
@@ -103708,7 +103708,7 @@
     <frame>
       <ip>0x19C15C15</ip>
       <obj>/xcore/time/x64/basis/libdraw2d_cairo.so</obj>
-      <fn>draw2d_cairo::graphics::internal_draw_text_pango(char const*, long, rectangle_type&lt;RECTD, POINTD, SIZED&gt; const&amp;, unsigned int, void (*)(_cairo*, _PangoLayout*))</fn>
+      <fn>draw2d_cairo::graphics::internal_draw_text_pango(char const*, long, rectangle_type&lt;RECTD, POINTD, SIZED&gt; const&amp;, ::u32, void (*)(_cairo*, _PangoLayout*))</fn>
       <dir>/xcore/app/draw2d_cairo</dir>
       <file>draw2d_cairo_graphics.cpp</file>
       <line>3773</line>
@@ -103867,7 +103867,7 @@
     <frame>
       <ip>0x5A7257E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>image_list::create(int, int, unsigned int, int, int)</fn>
+      <fn>image_list::create(int, int, ::u32, int, int)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_image_list.cpp</file>
       <line>77</line>
@@ -106047,7 +106047,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106055,7 +106055,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106358,7 +106358,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106492,7 +106492,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106500,7 +106500,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106580,7 +106580,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106588,7 +106588,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106651,7 +106651,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106659,7 +106659,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -107067,7 +107067,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, ::u32, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>

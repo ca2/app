@@ -957,12 +957,12 @@ public:
 
 
 template < class PAYLOAD >
-using double_map_base = map_base < double, PAYLOAD >;
+using f64_map_base = map_base < ::f64, PAYLOAD >;
 
 template < class PAYLOAD >
-using double_map = map_particle < double_map_base < PAYLOAD > >;
+using f64_map = map_particle < f64_map_base < PAYLOAD > >;
 
-using double_to_double_base = double_map_base < double >;
+using f64_to_f64_base = f64_map_base < ::f64 >;
 
 
 template < class PAYLOAD >

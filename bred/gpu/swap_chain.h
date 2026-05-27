@@ -22,11 +22,11 @@ namespace gpu
       ::pointer < ::gpu::context >                       m_pgpucontext;
       ::pointer < ::gpu::renderer >                      m_pgpurenderer;
       ::pointer < ::windowing::window >                  m_pwindowSwapChain;
-      int                                                m_iSwapChainIndex;
+      ::i32                                                m_iSwapChainIndex;
 
       ::pointer < ::pointer_array < ::gpu::texture > >   m_ptextureaSwapChain;
-      int                                                m_iCurrentSwapChainFrame;
-      int                                                m_iCurrentSwapChainImage;
+      ::i32                                                m_iCurrentSwapChainFrame;
+      ::i32                                                m_iCurrentSwapChainImage;
       ::pointer_array<::gpu::semaphore>                  m_gpusemaphoreaWait;
 
       
@@ -64,12 +64,12 @@ namespace gpu
       virtual void present(::gpu::texture * pgputexture);
       virtual void set_present_state();
       virtual void swap_buffers();
-      virtual int swap_chain_frame_index();
-      virtual int swap_chain_image_index();
-      virtual int swap_chain_frame_count();
+      virtual ::i32 swap_chain_frame_index();
+      virtual ::i32 swap_chain_image_index();
+      virtual ::i32 swap_chain_frame_count();
       virtual ::gpu::texture* current_swap_chain_texture();
 
-      void on_gpu_context_render_frame(int w, int h) override;
+      void on_gpu_context_render_frame(::i32 w, ::i32 h) override;
 
             virtual bool create_frame_sync(frame_sync &frame);
       virtual void destroy_frame_sync(frame_sync &frame);

@@ -92,7 +92,7 @@ namespace user
 
       //throw ::exception(todo("style"));
 
-      //::double_rectangle r(2, 2, 2, 2);
+      //::f64_rectangle r(2, 2, 2, 2);
 
       //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
 
@@ -415,7 +415,7 @@ namespace user
 
       auto ppath = createø < ::draw2d::path > ();
 
-      double_point_array pointa;
+      f64_point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

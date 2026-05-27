@@ -86,7 +86,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand)
+   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, ::i32 iGetWindowCommand)
    {
 
       auto hwndCmd = ::as_HWND(operatingsystemwindowCommand);
@@ -100,7 +100,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, int iGetWindowLong)
+   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, ::i32 iGetWindowLong)
    {
 
       auto hwnd = ::as_HWND(operatingsystemwindow);
@@ -443,7 +443,7 @@ namespace windows
 
    {
 
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero f64_size
 //
 //         if(str.has_character())
 //         {
@@ -453,7 +453,7 @@ namespace windows
 //         }
 //
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero f64_size
 //
 //         if(str.has_character())
 //         {
@@ -673,7 +673,7 @@ string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string
 
    string str;
 
-   char * psz = nullptr;
+   char_pointer psz = nullptr;
 
    if (hres != nullptr)
    {
@@ -706,7 +706,7 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance)
 
 
 // Get the horizontal and vertical screen sizes in pixel
-void operating_system_get_main_screen_size(int& cx, int& cy)
+void operating_system_get_main_screen_size(::i32& cx, ::i32& cy)
 {
    
    const HWND hwndDesktop = GetDesktopWindow();
@@ -995,10 +995,10 @@ namespace windows
 
 
 
-   CLASS_DECL_ACME int message_box_to_windows_message_box(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box(::user::enum_message_box emessagebox)
    {
 
-      int iMessageBox = 0;
+      ::i32 iMessageBox = 0;
 
       iMessageBox |= message_box_to_windows_message_box_type(emessagebox);
 
@@ -1010,7 +1010,7 @@ namespace windows
 
    }
 
-   CLASS_DECL_ACME int message_box_to_windows_message_box_type(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_type(::user::enum_message_box emessagebox)
    {
 
       auto emessageboxType = (::user::enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
@@ -1038,7 +1038,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME int message_box_to_windows_message_box_icon(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_icon(::user::enum_message_box emessagebox)
    {
 
       auto emessageboxIcon = (::user::enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
@@ -1060,7 +1060,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_default_button(::user::enum_message_box emessagebox)
    {
 
       auto emessageboxDefaultButton = (::user::enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
@@ -1085,7 +1085,7 @@ namespace windows
 
 
 
-   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
+   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(::i32 iResult)
    {
 
       switch (iResult)
@@ -1122,7 +1122,7 @@ namespace windows
 
 
 
-int message_box(
+::i32 message_box(
                 HWND hwnd,
                 const ::scoped_string & scopedstrMessage,
                 const ::scoped_string & scopedstrCaption,

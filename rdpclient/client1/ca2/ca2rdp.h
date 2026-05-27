@@ -67,7 +67,7 @@ namespace draw2d
 namespace draw2d
 {
    class cursor;
-   void cursor_alloc(::particle * pparticle,cursor * & pcursor,int xHotspot,int yHotspot);
+   void cursor_alloc(::particle * pparticle,cursor * & pcursor,::i32 xHotspot,::i32 yHotspot);
    ::draw2d::image::image_pointer * cursor_get_dib(cursor * pcursor);
 }
 
@@ -87,7 +87,7 @@ namespace draw2d
 {
 /*   void dib_copy(dib * pimagethis, dib *pimage);
 /*   void dib_alloc(::particle * pparticle, dib * & pimage);
-/*   void dib_create(dib * pimage, int w, int h);
+/*   void dib_create(dib * pimage, ::i32 w, ::i32 h);
 /*   ::u32 * dib_get_data(dib * pimage);
 /*   graphics * dib_get_graphics(dib * pimage);
 }
@@ -99,9 +99,9 @@ struct ca2rdp_context :
    public rdpContext
 #endif
 {
-   int width;
-   int height;
-   int dstBpp;
+   ::i32 width;
+   ::i32 height;
+   ::i32 dstBpp;
 
 
 #ifdef _WIN32
@@ -118,7 +118,7 @@ struct ca2rdp_context :
 
 CLASS_DECL_AXIS_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
 CLASS_DECL_AXIS_RDPCLIENT color32_t * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
-CLASS_DECL_AXIS_RDPCLIENT int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext);
+CLASS_DECL_AXIS_RDPCLIENT ::i32 ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext);
 
 typedef struct ca2rdp_context ca2rdpContext;
 
@@ -133,15 +133,15 @@ typedef struct ca2rdp_pointer ca2rdpPointer;
 
 struct ca2rdp_info
 {
-   int read_fds;
-   int err;
+   ::i32 read_fds;
+   ::i32 err;
    ::user::message * happening;
    //DFBEvent happening;
 //	HCLRCONV clrconv;
-   int x;
-   int y;
-   int w;
-   int h;
+   ::i32 x;
+   ::i32 y;
+   ::i32 w;
+   ::i32 h;
    //DFBSurfaceDescription dsc;
    ::draw2d::image::image_pointer * primary;
    ::draw2d::image::image_pointer * surface;

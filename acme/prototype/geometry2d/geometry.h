@@ -11,12 +11,12 @@ namespace geometry
    class CLASS_DECL_ACME rotation
    {
    public:
-      double   m_dCosPhi;
-      double   m_dSinPhi;
-      int      m_iXCenter;
-      int      m_iYCenter;
+      ::f64   m_dCosPhi;
+      ::f64   m_dSinPhi;
+      ::i32      m_iXCenter;
+      ::i32      m_iYCenter;
 
-      void rotate(::i32_point * ppoint, int iCount);
+      void rotate(::i32_point * ppoint, ::i32 iCount);
 
    };
 
@@ -34,20 +34,20 @@ namespace geometry
       void destroy() override;
 
 
-      double rotate_y(double x, double y, double phi);
-      double rotate_x(double x, double y, double phi);
-      void rotate(int x, int y, ::i32_point * ppoint, int iCount, double phi);
+      ::f64 rotate_y(::f64 x, ::f64 y, ::f64 phi);
+      ::f64 rotate_x(::f64 x, ::f64 y, ::f64 phi);
+      void rotate(::i32 x, ::i32 y, ::i32_point * ppoint, ::i32 iCount, ::f64 phi);
 
-      void rotate(int x, int y, ::i32_point * ppoint, int iCount, double cosphi, double sinphi);
+      void rotate(::i32 x, ::i32 y, ::i32_point * ppoint, ::i32 iCount, ::f64 cosphi, ::f64 sinphi);
 
-      void rotate(int x, int y, ::double_point * ppoint, int iCount, double phi);
+      void rotate(::i32 x, ::i32 y, ::f64_point * ppoint, ::i32 iCount, ::f64 phi);
 
-      void rotate(int x, int y, ::double_point * ppoint, int iCount, double cosphi, double sinphi);
+      void rotate(::i32 x, ::i32 y, ::f64_point * ppoint, ::i32 iCount, ::f64 cosphi, ::f64 sinphi);
 
 
 
       //void RandomPoint(::i32_point * ppoint, const ::i32_rectangle & rectangle);
-      void deflate(::i32_rectangle * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
+      void deflate(::i32_rectangle * prectangle, ::f64 dLeftRate, ::f64 dRightRate, ::f64 dTopRate, ::f64 dBottomRate);
 
 
       template < prototype_rectangle RECTANGLE >
@@ -60,7 +60,7 @@ namespace geometry
 
 
       template < prototype_rectangle RECTANGLE >
-      inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, double dRate)
+      inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, ::f64 dRate)
       {
 
          auto rectangle = r;

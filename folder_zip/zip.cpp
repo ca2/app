@@ -62,7 +62,7 @@ const uLongf * zip_get_crc_table() { return (const uLongf *)get_crc_table(); }
 #  define DEF_MEM_LEVEL  MAX_MEM_LEVEL
 #endif
 #endif
-//const char zip_copyright[] =
+//const ::i8 zip_copyright[] =
 // " zip 1.00 Copyright 1998-2003 Gilles Vollant - http://www.winpimage->com/zLibDll";
 
 
@@ -96,21 +96,21 @@ typedef struct linkedlist_data_s
 typedef struct
 {
    z_stream stream;            /* zLib stream structure for inflate */
-   int  stream_initialised;    /* 1 is stream is initialised */
-   uptr pos_in_buffered_data;  /* last written unsigned char in buffered_data */
+   ::i32  stream_initialised;    /* 1 is stream is initialised */
+   uptr pos_in_buffered_data;  /* last written ::u8 in buffered_data */
 
    uptr pos_local_header;     /* offset of the static header of the file
                                      currenty writing */
-   char* central_header;       /* central header data for the current file */
+   char_pointer central_header;       /* central header data for the current file */
    uptr size_centralheader;   /* i32_size of the central header for cur file */
    uptr flag;                 /* flag of the file currently writing */
 
-   int  method;                /* compression method of file currenty wr.*/
-   int  raw;                   /* 1 for directly writing raw data */
-   unsigned char buffered_data[Z_BUFSIZE];/* buffer contain compressed data to be writ*/
+   ::i32  method;                /* compression method of file currenty wr.*/
+   ::i32  raw;                   /* 1 for directly writing raw data */
+   ::u8 buffered_data[Z_BUFSIZE];/* buffer contain compressed data to be writ*/
    uptr dosDate;
    ::u32 crc32;
-   int  encrypt;
+   ::i32  encrypt;
 #ifndef NOCRYPT
    ::u32  keys[3];     /* keys defining the pseudo-random sequence */
 #if defined(WINDOWS) || defined(LINUX)
@@ -118,7 +118,7 @@ typedef struct
 #else
    const uLongf * pcrc_32_tab;
 #endif
-   int crypt_header_size;
+   ::i32 crypt_header_size;
 #endif
 } curfile_info;
 
@@ -127,7 +127,7 @@ typedef struct
    zlib_filefunc_def z_filefunc;
    voidpf filestream;        /* io structore of the zipfile */
    linkedlist_data central_dir;/* datablock with central dir in construction*/
-   int  in_opened_file_inzip;  /* 1 if a file in the zip is currently writ.*/
+   ::i32  in_opened_file_inzip;  /* 1 if a file in the zip is currently writ.*/
    curfile_info ci;            /* info on the file curretly writing */
 
    uptr begin_pos;            /* position of the beginning of the zipfile */
@@ -185,13 +185,13 @@ linkedlist_data* hi)
 }
 
 
-static int add_data_in_datablock(
+static ::i32 add_data_in_datablock(
 linkedlist_data* hi,
 const void * buf,
 uptr len)
 {
    linkedlist_datablock_internal* ldi;
-   const uchar* from_copy;
+   const ::u8 * from_copy;
 
    if (hi==nullptr)
       return ZIP_INTERNALERROR;
@@ -204,13 +204,13 @@ uptr len)
    }
 
    ldi = hi->last_block;
-   from_copy = (uchar*)buf;
+   from_copy = (::u8 * )buf;
 
    while (len>0)
    {
       ::u32 copy_this;
       ::u32 i;
-      uchar* to_copy;
+      ::u8 * to_copy;
 
       if (ldi->avail_in_this_block==0)
       {
@@ -246,19 +246,19 @@ uptr len)
 #ifndef NO_ADDFILEINEXISTINGZIP
 /* ===========================================================================
    Inputs a long in LSB order to the given file
-   nbByte == 1, 2 or 4 (unsigned char, short or long)
+   nbByte == 1, 2 or 4 (::u8, ::i16 or long)
 */
 
-static int ziplocal_putValue OF((const zlib_filefunc_def* pzlib_filefunc_def,
-                                    voidpf filestream, uptr x, int nbByte));
-static int ziplocal_putValue (
+static ::i32 ziplocal_putValue OF((const zlib_filefunc_def* pzlib_filefunc_def,
+                                    voidpf filestream, uptr x, ::i32 nbByte));
+static ::i32 ziplocal_putValue (
 const zlib_filefunc_def* pzlib_filefunc_def,
 voidpf filestream,
 uptr x,
-int nbByte)
+::i32 nbByte)
 {
    uchar buf[4];
-   int n;
+   ::i32 n;
    for (n = 0; n < nbByte; n++)
    {
       buf[n] = (uchar)(x & 0xff);
@@ -270,14 +270,14 @@ int nbByte)
       return ZIP_OK;
 }
 
-static void ziplocal_putValue_inmemory OF((void * dest, uptr x, int nbByte));
+static void ziplocal_putValue_inmemory OF((void * dest, uptr x, ::i32 nbByte));
 static void ziplocal_putValue_inmemory (
 void * dest,
 uptr x,
-int nbByte)
+::i32 nbByte)
 {
-   uchar* buf=(uchar*)dest;
-   int n;
+   ::u8 * buf=(::u8 * )dest;
+   ::i32 n;
    for (n = 0; n < nbByte; n++)
    {
       buf[n] = (uchar)(x & 0xff);
@@ -304,21 +304,21 @@ uptr dosDate)
 
 /****************************************************************************/
 
-static int ziplocal_getByte OF((
+static ::i32 ziplocal_getByte OF((
                                   const zlib_filefunc_def* pzlib_filefunc_def,
                                   voidpf filestream,
-                                  int *pi));
+                                  ::i32 *pi));
 
-static int ziplocal_getByte(
+static ::i32 ziplocal_getByte(
 const zlib_filefunc_def* pzlib_filefunc_def,
 voidpf filestream,
-int *pi)
+::i32 *pi)
 {
    uchar ca;
-   int err = (int)ZREAD(*pzlib_filefunc_def,filestream,&ca,1);
+   ::i32 err = (::i32)ZREAD(*pzlib_filefunc_def,filestream,&ca,1);
    if (err==1)
    {
-      *pi = (int)ca;
+      *pi = (::i32)ca;
       return ZIP_OK;
    }
    else
@@ -334,19 +334,19 @@ int *pi)
 /* ===========================================================================
    Reads a long in LSB order from the given gz_stream. Sets
 */
-static int ziplocal_getShort OF((
+static ::i32 ziplocal_getShort OF((
                                    const zlib_filefunc_def* pzlib_filefunc_def,
                                    voidpf filestream,
                                    uptr *pX));
 
-static int ziplocal_getShort (
+static ::i32 ziplocal_getShort (
 const zlib_filefunc_def* pzlib_filefunc_def,
 voidpf filestream,
 uptr *pX)
 {
    uptr x ;
-   int i = 0;
-   int err;
+   ::i32 i = 0;
+   ::i32 err;
 
    err = ziplocal_getByte(pzlib_filefunc_def,filestream,&i);
    x = (uptr)i;
@@ -362,19 +362,19 @@ uptr *pX)
    return err;
 }
 
-static int ziplocal_getLong OF((
+static ::i32 ziplocal_getLong OF((
                                   const zlib_filefunc_def* pzlib_filefunc_def,
                                   voidpf filestream,
                                   uptr *pX));
 
-static int ziplocal_getLong (
+static ::i32 ziplocal_getLong (
 const zlib_filefunc_def* pzlib_filefunc_def,
 voidpf filestream,
 uptr *pX)
 {
    uptr x ;
-   int i = 0;
-   int err;
+   ::i32 i = 0;
+   ::i32 err;
 
    err = ziplocal_getByte(pzlib_filefunc_def,filestream,&i);
    x = (uptr)i;
@@ -413,7 +413,7 @@ static uptr ziplocal_SearchCentralDir(
 const zlib_filefunc_def* pzlib_filefunc_def,
 voidpf filestream)
 {
-   uchar* buf;
+   ::u8 * buf;
    uptr uSizeFile;
    uptr uBackRead;
    uptr uMaxBack=0xffff; /* maximum i32_size of global comment */
@@ -428,7 +428,7 @@ voidpf filestream)
    if (uMaxBack>uSizeFile)
       uMaxBack = uSizeFile;
 
-   buf = (uchar*)ALLOC(BUFREADCOMMENT+4);
+   buf = (::u8 * )ALLOC(BUFREADCOMMENT+4);
    if (buf==nullptr)
       return 0;
 
@@ -436,7 +436,7 @@ voidpf filestream)
    while (uBackRead<uMaxBack)
    {
       uptr uReadSize,uReadPos ;
-      int i;
+      ::i32 i;
       if (uBackRead+BUFREADCOMMENT>uMaxBack)
          uBackRead = uMaxBack;
       else
@@ -451,7 +451,7 @@ voidpf filestream)
       if (ZREAD(*pzlib_filefunc_def,filestream,buf,uReadSize)!=uReadSize)
          break;
 
-      for (i=(int)uReadSize-3; (i--)>0;)
+      for (i=(::i32)uReadSize-3; (i--)>0;)
          if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) &&
                ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
          {
@@ -469,15 +469,15 @@ voidpf filestream)
 
 /************************************************************/
 extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen2 (
-const_char_pointer pathname,
-int append,
+const_char_pointer pszPathname,
+::i32 append,
 zipcharpc* globalcomment,
 zlib_filefunc_def* pzlib_filefunc_def,
 void * fstream)
 {
    zip_internal ziinit;
    zip_internal* zi;
-   int err=ZIP_OK;
+   ::i32 err=ZIP_OK;
 
 
    if (pzlib_filefunc_def==nullptr)
@@ -513,7 +513,7 @@ void * fstream)
 #    ifndef NO_ADDFILEINEXISTINGZIP
    if (append == APPEND_STATUS_ADDINZIP)
    {
-      uptr byte_before_the_zipfile;/* unsigned char before the zipfile, (>0 for sfx)*/
+      uptr byte_before_the_zipfile;/* ::u8 before the zipfile, (>0 for sfx)*/
 
       uptr size_central_dir;     /* i32_size of the central directory  */
       uptr offset_central_dir;   /* offset of start of central directory */
@@ -636,27 +636,27 @@ void * fstream)
 }
 
 //extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen (
-//const_char_pointer pathname,
-//int append)
+//const_char_pointer pszPathname,
+//::i32 append)
 //{
 //   return zipOpen2(pathname,append,nullptr,nullptr);
 //}
 
-extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip3 (
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip3 (
 zipFile file,
-const_char_pointer filename,
+const_char_pointer pszFilename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
 ::u32 size_extrafield_local,
 const void * extrafield_global,
 ::u32 size_extrafield_global,
 const_char_pointer comment,
-int method,
-int level,
-int raw,
-int windowBits,
-int memLevel,
-int strategy,
+::i32 method,
+::i32 level,
+::i32 raw,
+::i32 windowBits,
+::i32 memLevel,
+::i32 strategy,
 const_char_pointer password,
 ::u32  crcForCrypting)
 {
@@ -664,7 +664,7 @@ const_char_pointer password,
    ::u32 size_filename;
    ::u32 size_comment;
    ::u32 i;
-   int err = ZIP_OK;
+   ::i32 err = ZIP_OK;
 
 #    ifdef NOCRYPT
    if (password != nullptr)
@@ -686,15 +686,15 @@ const_char_pointer password,
    }
 
 
-   if (filename==nullptr)
-      filename="-";
+   if (pszFilename==nullptr)
+      pszFilename="-";
 
    if (comment==nullptr)
       size_comment = 0;
    else
       size_comment = (::u32) ansi_len(comment);
 
-   size_filename = (::u32) ansi_len(filename);
+   size_filename = (::u32) ansi_len(pszFilename);
 
    if (zipfi == nullptr)
       zi->ci.dosDate = 0;
@@ -724,7 +724,7 @@ const_char_pointer password,
    zi->ci.pos_local_header = ZTELL(zi->z_filefunc,zi->filestream) ;
    zi->ci.size_centralheader = SIZECENTRALHEADER + size_filename +
                                size_extrafield_global + size_comment;
-   zi->ci.central_header = (char*)ALLOC((::u32)zi->ci.size_centralheader);
+   zi->ci.central_header = (char_pointer )ALLOC((::u32)zi->ci.size_centralheader);
 
    ziplocal_putValue_inmemory(zi->ci.central_header,(uptr)CENTRALHEADERMAGIC,4);
    /* version info */
@@ -754,7 +754,7 @@ const_char_pointer password,
    ziplocal_putValue_inmemory(zi->ci.central_header+42,(uptr)zi->ci.pos_local_header- zi->add_position_when_writting_offset,4);
 
    for (i=0; i<size_filename; i++)
-      *(zi->ci.central_header+SIZECENTRALHEADER+i) = *(filename+i);
+      *(zi->ci.central_header+SIZECENTRALHEADER+i) = *(pszFilename+i);
 
    for (i=0; i<size_extrafield_global; i++)
       *(zi->ci.central_header+SIZECENTRALHEADER+size_filename+i) =
@@ -794,7 +794,7 @@ const_char_pointer password,
       err = ziplocal_putValue(&zi->z_filefunc,zi->filestream,(uptr)size_extrafield_local,2);
 
    if ((err==ZIP_OK) && (size_filename>0))
-      if (ZWRITE(zi->z_filefunc,zi->filestream,filename,size_filename)!=size_filename)
+      if (ZWRITE(zi->z_filefunc,zi->filestream,pszFilename,size_filename)!=size_filename)
          err = ZIP_ERRNO;
 
    if ((err==ZIP_OK) && (size_extrafield_local>0))
@@ -846,20 +846,20 @@ const_char_pointer password,
    return err;
 }
 
-extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip2(
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip2(
 zipFile file,
-const_char_pointer filename,
+const_char_pointer pszFilename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
 ::u32 size_extrafield_local,
 const void * extrafield_global,
 ::u32 size_extrafield_global,
 const_char_pointer comment,
-int method,
-int level,
-int raw)
+::i32 method,
+::i32 level,
+::i32 raw)
 {
-   return zipOpenNewFileInZip3 (file, filename, zipfi,
+   return zipOpenNewFileInZip3 (file, pszFilename, zipfi,
                                 extrafield_local, size_extrafield_local,
                                 extrafield_global, size_extrafield_global,
                                 comment, method, level, raw,
@@ -867,34 +867,34 @@ int raw)
                                 nullptr, 0);
 }
 
-extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip (
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip (
 zipFile file,
-const_char_pointer filename,
+const_char_pointer pszFilename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
 ::u32 size_extrafield_local,
 const void * extrafield_global,
 ::u32 size_extrafield_global,
 const_char_pointer comment,
-int method,
-int level)
+::i32 method,
+::i32 level)
 {
-   return zipOpenNewFileInZip2 (file, filename, zipfi,
+   return zipOpenNewFileInZip2 (file, pszFilename, zipfi,
                                 extrafield_local, size_extrafield_local,
                                 extrafield_global, size_extrafield_global,
                                 comment, method, level, 0);
 }
 
-static int zipFlushWriteBuffer(
+static ::i32 zipFlushWriteBuffer(
 zip_internal* zi)
 {
-   int err=ZIP_OK;
+   ::i32 err=ZIP_OK;
 
    if (zi->ci.encrypt != 0)
    {
 #ifndef NOCRYPT
       ::u32 i;
-      int t;
+      ::i32 t;
       for (i=0; i<zi->ci.pos_in_buffered_data; i++)
          zi->ci.buffered_data[i] = zencode(zi->ci.keys, zi->ci.pcrc_32_tab,
                                            zi->ci.buffered_data[i],t);
@@ -907,13 +907,13 @@ zip_internal* zi)
    return err;
 }
 
-extern int CLASS_DECL_FOLDER_ZIP zipWriteInFileInZip (
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipWriteInFileInZip (
 zipFile file,
 const void * buf,
 ::u32 len)
 {
    zip_internal* zi;
-   int err=ZIP_OK;
+   ::i32 err=ZIP_OK;
 
    if (file == nullptr)
       return ZIP_PARAMERROR;
@@ -922,9 +922,9 @@ const void * buf,
    if (zi->in_opened_file_inzip == 0)
       return ZIP_PARAMERROR;
 
-   zi->ci.stream.next_in = (unsigned char *)buf;
+   zi->ci.stream.next_in = (::u8 *)buf;
    zi->ci.stream.avail_in = len;
-   zi->ci.crc32 = (::u32) crc32(zi->ci.crc32, (const unsigned char *) buf,len);
+   zi->ci.crc32 = (::u32) crc32(zi->ci.crc32, (const ::u8 *) buf,len);
 
    while ((err==ZIP_OK) && (zi->ci.stream.avail_in>0))
    {
@@ -955,7 +955,7 @@ const void * buf,
          else
             copy_this = zi->ci.stream.avail_out;
          for (i=0; i<copy_this; i++)
-            *(((char*)zi->ci.stream.next_out)+i) =
+            *(((char_pointer )zi->ci.stream.next_out)+i) =
             *(((const_char_pointer )zi->ci.stream.next_in)+i);
          {
             zi->ci.stream.avail_in -= (::u32) copy_this;
@@ -972,14 +972,14 @@ const void * buf,
    return err;
 }
 
-extern int CLASS_DECL_FOLDER_ZIP zipCloseFileInZipRaw (
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipCloseFileInZipRaw (
 zipFile file,
 uptr uncompressed_size,
 uptr crc32)
 {
    zip_internal* zi;
    uptr compressed_size;
-   int err=ZIP_OK;
+   ::i32 err=ZIP_OK;
 
    if (file == nullptr)
       return ZIP_PARAMERROR;
@@ -1068,18 +1068,18 @@ uptr crc32)
    return err;
 }
 
-extern int CLASS_DECL_FOLDER_ZIP zipCloseFileInZip (
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipCloseFileInZip (
 zipFile file)
 {
    return zipCloseFileInZipRaw (file,0,0);
 }
 
-extern int CLASS_DECL_FOLDER_ZIP zipClose (
+extern ::i32 CLASS_DECL_FOLDER_ZIP zipClose (
 zipFile file,
 const_char_pointer global_comment)
 {
    zip_internal* zi;
-   int err = 0;
+   ::i32 err = 0;
    uptr size_centraldir = 0;
    uptr centraldir_pos_inzip ;
    ::u32 size_global_comment;

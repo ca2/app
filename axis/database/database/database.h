@@ -40,7 +40,7 @@ namespace database
 
       virtual void     init() = 0;
       virtual enum_connection connection_status() = 0;
-      virtual void     set_error_code(int iErrorCode) = 0;
+      virtual void     set_error_code(::i32 iErrorCode) = 0;
       virtual string get_error_message() = 0;
       virtual void * get_handle() = 0;
 

@@ -16,7 +16,7 @@ namespace calculator
    }
 
 
-    double pi();
+    ::f64 pi();
 
    value matter::get_value()
    {

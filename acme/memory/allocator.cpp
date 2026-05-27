@@ -43,7 +43,7 @@ namespace heap
 
    //}
 
-   //void * allocator::allocate(memsize iSize, const_char_pointer pszFile, int iLine)
+   //void * allocator::allocate(memsize iSize, const_char_pointer pszFile, ::i32 iLine)
    //{
 
    //   throw ::interface_only();

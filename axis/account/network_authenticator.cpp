@@ -305,7 +305,7 @@ namespace account
 
       string strNode;
 
-      int iRetry = 2;
+      ::i32 iRetry = 2;
 
       auto timeStart = ::time::now();
 
@@ -422,7 +422,7 @@ namespace account
    }
 
 
-//string department::get_server(::file::path pathUrl, int iRetry)
+//string department::get_server(::file::path pathUrl, ::i32 iRetry)
 //{
 //
 //   string strHost(purl->get_server(scopedstrUrl));

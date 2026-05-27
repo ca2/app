@@ -91,7 +91,7 @@ namespace user
    bool place_holder_container::unplace(::user::interaction * pinteraction)
    {
 
-      for(int i = 0; i < m_placeholdera.get_count(); i++)
+      for(::i32 i = 0; i < m_placeholdera.get_count(); i++)
       {
 
          if(m_placeholdera[i]->is_place_holding(pinteraction))
@@ -163,7 +163,7 @@ namespace user
 
       ::pointer<place_holder>pholder;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
 
          pholder = this->element_at(i)->place_hold(pinteraction,rectangleCreate);
@@ -182,10 +182,10 @@ namespace user
    }
 
 
-   int place_holder_container_ptra::unplace(::user::interaction * pinteraction)
+   ::i32 place_holder_container_ptra::unplace(::user::interaction * pinteraction)
    {
-      int count = 0;
-      for(int i = 0; i < this->get_count(); i++)
+      ::i32 count = 0;
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
          if(this->element_at(i)->unplace(pinteraction))
          {

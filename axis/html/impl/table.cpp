@@ -60,17 +60,17 @@ namespace html
 
             if(ptag->get_attr_value("border").has_character())
             {
-               m_iBorder         = (float) ::str::to_unsigned_int(ptag->get_attr_value("border"));
+               m_iBorder         = (::f32) ::str::to_unsigned_int(ptag->get_attr_value("border"));
             }
 
             if(ptag->get_attr_value("cellspacing").has_character())
             {
-               m_iCellSpacing    = (float) ::str::to_unsigned_int(ptag->get_attr_value("cellspacing"));
+               m_iCellSpacing    = (::f32) ::str::to_unsigned_int(ptag->get_attr_value("cellspacing"));
             }
 
             if(ptag->get_attr_value("cellpadding").has_character())
             {
-               m_iCellPadding    = (float) ::str::to_unsigned_int(ptag->get_attr_value("cellpadding"));
+               m_iCellPadding    = (::f32) ::str::to_unsigned_int(ptag->get_attr_value("cellpadding"));
             }
 
          }
@@ -105,7 +105,7 @@ namespace html
       }
 
 
-      float table::calc_width()
+      ::f32 table::calc_width()
       {
 
          string strWidth;
@@ -119,9 +119,9 @@ namespace html
 //
 //            strWidth.trim();
 //
-//            float percent = payload(strWidth).get_float();
+//            ::f32 percent = payload(strWidth).get_float();
 //
-//            float cx = m_bound.get_cx();
+//            ::f32 cx = m_bound.get_cx();
 //
 //            cx *= percent / 100.0f;
 //
@@ -130,9 +130,9 @@ namespace html
 //
 //         }
 
-         float cx = 0.f;
+         ::f32 cx = 0.f;
 
-         for (int i = 0; i < m_columna.get_size(); i++)
+         for (::i32 i = 0; i < m_columna.get_size(); i++)
          {
 
             cx += m_columna[i].m_cxMax;
@@ -154,9 +154,9 @@ namespace html
 
          }
 
-         float cxMax = 0;
+         ::f32 cxMax = 0;
 
-         float cxMin = 0;
+         ::f32 cxMin = 0;
 
          for(::collection::index i = 0; i < m_cellholdera.get_size(); i++)
          {
@@ -218,13 +218,13 @@ namespace html
          }
 
 
-         float cx = m_iCellSpacing;
+         ::f32 cx = m_iCellSpacing;
 
-         float cy = m_iCellSpacing;
+         ::f32 cy = m_iCellSpacing;
 
-         float x = m_box.left + m_iCellSpacing;
+         ::f32 x = m_box.left + m_iCellSpacing;
 
-         for (int i = 0; i < m_columna.get_size(); i++)
+         for (::i32 i = 0; i < m_columna.get_size(); i++)
          {
 
             m_columna[i].m_x = x;
@@ -235,7 +235,7 @@ namespace html
 
          }
 
-         for (int i = 0; i < m_rowptra.get_size(); i++)
+         for (::i32 i = 0; i < m_rowptra.get_size(); i++)
          {
 
             //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;
@@ -285,13 +285,13 @@ namespace html
 
          move_to(pdata);
 
-//         float cx = m_iCellSpacing;
+//         ::f32 cx = m_iCellSpacing;
 
-         //float cy = m_iCellSpacing;
+         //::f32 cy = m_iCellSpacing;
 
-         float x = m_box.left + m_iCellSpacing + m_border.left + m_margin.left;
+         ::f32 x = m_box.left + m_iCellSpacing + m_border.left + m_margin.left;
 
-         for (int i = 0; i < m_columna.get_size(); i++)
+         for (::i32 i = 0; i < m_columna.get_size(); i++)
          {
 
             m_columna[i].m_x = x;
@@ -300,7 +300,7 @@ namespace html
 
          }
 
-         //for (int i = 0; i < m_rowptra.get_size(); i++)
+         //for (::i32 i = 0; i < m_rowptra.get_size(); i++)
          //{
 
          //   //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;

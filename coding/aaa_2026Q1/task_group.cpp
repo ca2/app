@@ -48,10 +48,10 @@ namespace coding
    }
 
 
-   void task_group::_do_task(::coding::task* ptask, const ::function < int(::coding::task* ptask) >& dotask)
+   void task_group::_do_task(::coding::task* ptask, const ::function < ::i32(::coding::task* ptask) >& dotask)
    {
 
-      int iExitCode = -1;
+      ::i32 iExitCode = -1;
 
       try
       {
@@ -87,7 +87,7 @@ namespace coding
    }
 
 
-   void task_group::do_tasks(const ::file::path& pathBuildFolder, const ::function < int(::coding::task* ptask) >& dotask)
+   void task_group::do_tasks(const ::file::path& pathBuildFolder, const ::function < ::i32(::coding::task* ptask) >& dotask)
    {
 
       m_pathBuildFolder = pathBuildFolder;
@@ -127,7 +127,7 @@ namespace coding
 
       auto iBuildingProcessorCount = node()->building_core_count(true);
 
-      int iParallelization = -1;
+      ::i32 iParallelization = -1;
       
       auto cQueued = queued_count();
 
@@ -390,12 +390,12 @@ namespace coding
 
       strMessage = "Steps ";
 
-      int i = 0;
+      ::i32 i = 0;
 
       for (auto& ptask : taska)
       {
 
-         strMessage += ::string_from((int)ptask->m_etaskOrdinal + 1);
+         strMessage += ::string_from((::i32)ptask->m_etaskOrdinal + 1);
 
          i++;
 
@@ -503,7 +503,7 @@ namespace coding
 
          }
 
-         m_pintegration->speak((int)ptask->m_etaskOrdinal + 1, 8, ptask->m_ptaskgroup->m_strSpeechName + " " + strPlat + " " + strConf, ptask->m_iExitCode);
+         m_pintegration->speak((::i32)ptask->m_etaskOrdinal + 1, 8, ptask->m_ptaskgroup->m_strSpeechName + " " + strPlat + " " + strConf, ptask->m_iExitCode);
 
       }
 

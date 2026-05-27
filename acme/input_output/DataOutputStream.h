@@ -71,14 +71,14 @@
 
       ///void writeFully(const void *buffer, memsize len);
 
-      void writeUInt8(unsigned char x);
-      void writeUInt16(unsigned short x);
+      void writeUInt8(::u8 x);
+      void writeUInt16(::u16 x);
       void writeUInt32(::u32 x);
       void writeUInt64(::u64 x);
 
-      void writeInt8(char x);
-      void writeInt16(short x);
-      void writeInt32(int x);
+      void writeInt8(::i8 x);
+      void writeInt16(::i16 x);
+      void writeInt32(::i32 x);
       void writeInt64(::i64 x);
 
       void writeUTF8(const ::scoped_string & scopedstrString);

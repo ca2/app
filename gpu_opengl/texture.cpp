@@ -54,11 +54,11 @@ namespace gpu_opengl
 
       auto size = block.size();
 
-      int width, height, channels;
+      ::i32 width, height, channels;
 
       stbi_set_flip_vertically_on_load(1);
 
-      auto imagedata = stbi_loadf_from_memory(data, (int) size, &width, &height, &channels, 0);
+      auto imagedata = stbi_loadf_from_memory(data, (::i32) size, &width, &height, &channels, 0);
 
       stbi_set_flip_vertically_on_load(0);
 
@@ -85,12 +85,12 @@ namespace gpu_opengl
       glBindTexture(m_gluType, m_gluTextureID);
       ::opengl::check_error("");
 
-      float *rgbaData = nullptr;
+      ::f32 *rgbaData = nullptr;
       if (channels == 3)
       {
 
          size_t pixelCount = (size_t)width * height;
-         rgbaData = (float *)malloc(pixelCount * 4 * sizeof(float));
+         rgbaData = (::f32 *)malloc(pixelCount * 4 * sizeof(::f32));
 
          for (size_t i = 0; i < pixelCount; ++i)
          {
@@ -131,7 +131,7 @@ namespace gpu_opengl
 
    
    void texture::initialize_with_image_data(::gpu::context *pgpucontext, const ::i32_rectangle &rectangleTarget,
-                                            int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture)
+                                            ::i32 numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture)
    {
 
       //  if (m_rectangleTarget == rectangleTarget)
@@ -273,9 +273,9 @@ namespace gpu_opengl
    //
    //          auto data = memory.data();
    //
-   //          int w = m_rectangleTarget.width();
+   //          ::i32 w = m_rectangleTarget.width();
    //
-   //          int h = m_rectangleTarget.height();
+   //          ::i32 h = m_rectangleTarget.height();
    //
    //          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA,
    //                       GL_UNSIGNED_BYTE, data);
@@ -283,7 +283,7 @@ namespace gpu_opengl
    //
    //
    //
-   //          int samples = 0;
+   //          ::i32 samples = 0;
    //          glGetIntegerv(GL_SAMPLES, &samples);
    //          printf("MSAA samples: %d\n", samples);
    //
@@ -338,9 +338,9 @@ namespace gpu_opengl
    //
    //          ::i32_size size(imagea.first()->size());
    //
-   //          int scan = size.width() * 4;
+   //          ::i32 scan = size.width() * 4;
    //
-   //          int iImage;
+   //          ::i32 iImage;
    //
    //          for (::u32 i = 0; i < 6; i++)
    //          {
@@ -544,9 +544,9 @@ namespace gpu_opengl
 
          }
 
-         int w = m_textureattributes.m_rectangleTarget.width();
+         ::i32 w = m_textureattributes.m_rectangleTarget.width();
 
-         int h = m_textureattributes.m_rectangleTarget.height();
+         ::i32 h = m_textureattributes.m_rectangleTarget.height();
 
          glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format,
                       GL_UNSIGNED_BYTE, pdata);
@@ -554,7 +554,7 @@ namespace gpu_opengl
 
 
 
-         int samples = 0;
+         ::i32 samples = 0;
          glGetIntegerv(GL_SAMPLES, &samples);
          printf("MSAA samples: %d\n", samples);
 
@@ -609,9 +609,9 @@ namespace gpu_opengl
             //::i32_size size(pimagea->first()->size());
          }
 
-         int scan = sizeCurrent.width() * 4;
+         ::i32 scan = sizeCurrent.width() * 4;
 
-         int iImage;
+         ::i32 iImage;
 
          for (::u32 i = 0; i < 6; i++)
          {
@@ -666,10 +666,10 @@ namespace gpu_opengl
             if (m_textureattributes.m_iMipCount > 0)
             {
 
-               int w = sizeCurrent.cx;
-               int h = sizeCurrent.cy;
+               ::i32 w = sizeCurrent.cx;
+               ::i32 h = sizeCurrent.cy;
 
-               for (int level = 1; level < m_textureattributes.m_iMipCount; ++level) {
+               for (::i32 level = 1; level < m_textureattributes.m_iMipCount; ++level) {
                   w = std::max(1, w / 2);
                   h = std::max(1, h / 2);
                   glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, level, GL_BGRA,
@@ -861,9 +861,9 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
    void texture::create_depth_resources()
    {
 
-      int width = m_textureattributes.m_rectangleTarget.width();
+      ::i32 width = m_textureattributes.m_rectangleTarget.width();
 
-      int height = m_textureattributes.m_rectangleTarget.height();
+      ::i32 height = m_textureattributes.m_rectangleTarget.height();
 
       if (!m_gluDepthStencilRBO)
       {
@@ -884,7 +884,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
    }
 
-int g_iGpuOpenGlFramebufferObject = 0;
+::i32 g_iGpuOpenGlFramebufferObject = 0;
    GLuint texture::frame_buffer_object()
    {
       g_iGpuOpenGlFramebufferObject++;
@@ -949,7 +949,7 @@ int g_iGpuOpenGlFramebufferObject = 0;
 
    }
 
-int g_iGpuOpenGlBindRenderTarget = 0;
+::i32 g_iGpuOpenGlBindRenderTarget = 0;
    void texture::bind_render_target()
    {
       g_iGpuOpenGlBindRenderTarget++;
@@ -1015,21 +1015,21 @@ int g_iGpuOpenGlBindRenderTarget = 0;
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       ::opengl::check_error("");
 
-      // int w = rectangle.width();
-      // int h = rectangle.height();
+      // ::i32 w = rectangle.width();
+      // ::i32 h = rectangle.height();
       //
       // ::memory memory;
       //
       // memory.set_size(w*h*4);
       //
-      // auto src = (char*)data);
-      // auto rgba = (char *) memory.data();
+      // auto src = (char_pointer )data);
+      // auto rgba = (char_pointer ) memory.data();
       //
-      // for (int y = 0; y < h; ++y)
+      // for (::i32 y = 0; y < h; ++y)
       // {
-      //    for (int x = 0; x < w; ++x)
+      //    for (::i32 x = 0; x < w; ++x)
       //    {
-      //       unsigned char a = bm->buffer[y * bm->pitch + x];
+      //       ::u8 a = bm->buffer[y * bm->pitch + x];
       //       rgba[(y*w + x)*4 + 0] = 255;
       //       rgba[(y*w + x)*4 + 1] = 255;
       //       rgba[(y*w + x)*4 + 2] = 255;
@@ -1275,7 +1275,7 @@ int g_iGpuOpenGlBindRenderTarget = 0;
       //    pphysicaldevice->m_vkphysicaldevicefeatures.samplerAnisotropy ? VK_TRUE : VK_FALSE;
       // samplerCreateInfo.compareOp = VK_COMPARE_OP_NEVER;
       // samplerCreateInfo.minLod = 0.0f;
-      // samplerCreateInfo.maxLod = (float)m_iMipCount;
+      // samplerCreateInfo.maxLod = (::f32)m_iMipCount;
       // samplerCreateInfo.borderColor = VK_BORDER_COLOR_FLOAT_OPAQUE_WHITE;
       // VK_CHECK_RESULT(vkCreateSampler(pcontext->logicalDevice(), &samplerCreateInfo, nullptr,
       // &m_vksamplerDedicated));
@@ -1302,7 +1302,7 @@ int g_iGpuOpenGlBindRenderTarget = 0;
    }
 
 
-   void texture::set_cube_face(int iFace,::gpu::shader * pgpushader)
+   void texture::set_cube_face(::i32 iFace,::gpu::shader * pgpushader)
    {
       //   ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
 
@@ -1323,7 +1323,7 @@ int g_iGpuOpenGlBindRenderTarget = 0;
    }
 
 
-   void texture::set_current_mip(int iCurrentMip) { ::gpu::texture::set_current_mip(iCurrentMip); }
+   void texture::set_current_mip(::i32 iCurrentMip) { ::gpu::texture::set_current_mip(iCurrentMip); }
 
 
    void texture::generate_mipmap(::gpu::command_buffer * pcommandbuffer)

@@ -15,13 +15,13 @@ public:
   ~bit_array();
 
   /** Sets bit at position @ca pos */
-  void set_bit(int pos);
+  void set_bit(::i32 pos);
   /** Clears bit at position @ca pos */
-  void clear_bit(int pos);
+  void clear_bit(::i32 pos);
   /** Sets bit range */
-  void add_range(int s, int e);
+  void add_range(::i32 s, ::i32 e);
   /** Clears bit range */
-  void clear_range(int s, int e);
+  void clear_range(::i32 s, ::i32 e);
   /** Sets bits to 1, whose corresponding values
       in passed bit array are also 1 (bitwize OR) */
   void add_bit_array(bit_array &);
@@ -31,24 +31,24 @@ public:
   /** Makes intersection of current and
       the passed bit array (bitwize AND) */
   void intersect_bit_array(bit_array &);
-  /** Adds bit array from the passed unsigned char stream. */
-  void add_bit_array(char*, int);
-  /** Clears bit array from the passed unsigned char stream. */
-  void clear_bit_array(char*, int);
+  /** Adds bit array from the passed ::u8 stream. */
+  void add_bit_array(char_pointer , ::i32);
+  /** Clears bit array from the passed ::u8 stream. */
+  void clear_bit_array(char_pointer , ::i32);
   /** Returns bit value at position @ca pos. */
-  bool get_bit(int pos) const;
+  bool get_bit(::i32 pos) const;
 
 
 
 
-  void ensure_size(int iSize, bool bSet = false);
-  void set_size(int iBitCount, bool set = false);
-  int get_size();
+  void ensure_size(::i32 iSize, bool bSet = false);
+  void set_size(::i32 iBitCount, bool set = false);
+  ::i32 get_size();
 
 private:
-  int * m_pdata;
-  int m_iDataCount;
-  int m_iBitCount;
+  ::i32 * m_pdata;
+  ::i32 m_iDataCount;
+  ::i32 m_iBitCount;
 
 };
 

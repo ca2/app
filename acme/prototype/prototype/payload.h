@@ -43,8 +43,8 @@ ENUM enum_default()
 struct payload_all_t
 {
 
-   //unsigned char     m_ua[32]; // it would work at 4-byte alignment?
-   unsigned char     m_ua[40];
+   //::u8     m_ua[32]; // it would work at 4-byte alignment?
+   ::u8     m_ua[40];
 
 };
 
@@ -77,27 +77,27 @@ public:
       ::i32                                  m_i32;
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
       //long                                   m_l;
-      //unsigned long                          m_ul;
+      //ulong                          m_ul;
 #endif
       ::u32                           m_u32;
       ::i64                           m_i64;
       ::u64                           m_u64;
-      ::i8 *                                 m_pi8;
-      ::u8 * m_pu8;
-      ::i16 * m_pi16;
-      ::u16 * m_pu16;
-      ::i32 * m_pi32;
-      ::u32 * m_pu32;
-      ::i64 * m_pi64;
-      ::u64 * m_pu64;
-      ::string * m_pstr;
-      float                                  m_f;
-      float * m_pf;
-      double                                  m_d;
-      double * m_pd;
+      ::i8 *                            m_pi8;
+      ::u8 *                                m_pu8;
+      ::i16 *                               m_pi16;
+      ::u16 *                               m_pu16;
+      ::i32 *                               m_pi32;
+      ::u32 *                               m_pu32;
+      ::i64 *                               m_pi64;
+      ::u64 *                               m_pu64;
+      ::string *                            m_pstr;
+      ::f32                                 m_f32;
+      ::f32 *                               m_pf32;
+      ::f64                                 m_f64;
+      ::f64 *                               m_pf64;
       //payload * m_ppayload;
-      ::earth::time                          m_earthtime;
-      file_time                              m_filetime;
+      ::earth::time                         m_earthtime;
+      file_time                             m_filetime;
       atom * m_patom;
       //::property * m_pproperty;
       //integral_nanosecond                    m_integralnanosecond;
@@ -144,8 +144,8 @@ public:
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
       ::i64_array * m_plonglonga;
-      ::float_array * m_pfloata;
-      ::double_array * m_pdoublea;
+      ::f32_array * m_pfloata;
+      ::f64_array * m_pdoublea;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
       payload_all_t                          m_payloadall;
@@ -170,7 +170,7 @@ public:
    payload(enum_type etype);
    payload(nullptr_t);
    payload(const ::payload & payload);
-   //template < typename ITERATOR_TYPE, int t_size >
+   //template < typename ITERATOR_TYPE, ::i32 t_size >
    //payload(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
    //   payload(::string(a))
    //{  }
@@ -186,28 +186,28 @@ public:
       payload.m_payloadall = {};
    }
    template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
-   template < same_as < char > CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
+   template < same_as < ::i8 > CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
    //template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
-   template < same_as < unsigned char > UNSIGNED_CHAR > payload(UNSIGNED_CHAR uch) : m_etype(e_type_u8) {m_u8 = uch;}
-   template < same_as < short > SHORT > payload(SHORT sh) : m_etype(e_type_i16) {m_i16 = sh;}
-   template < same_as < unsigned short > UNSIGNED_SHORT > payload(UNSIGNED_SHORT ush) : m_etype(e_type_u16) {m_u16 = ush;}
-   template < same_as < int > INT > payload(INT i) : m_etype(e_type_i32) {m_i32 = i;}
+   template < same_as < ::u8 > UNSIGNED_CHAR > payload(UNSIGNED_CHAR uch) : m_etype(e_type_u8) {m_u8 = uch;}
+   template < same_as < ::i16 > SHORT > payload(SHORT sh) : m_etype(e_type_i16) {m_i16 = sh;}
+   template < same_as < ::u16 > UNSIGNED_SHORT > payload(UNSIGNED_SHORT ush) : m_etype(e_type_u16) {m_u16 = ush;}
+   template < same_as < ::i32 > INT > payload(INT i) : m_etype(e_type_i32) {m_i32 = i;}
    template < same_as < ::u32 > UNSIGNED_INT > payload(UNSIGNED_INT ui) : m_etype(e_type_u32) {m_u32 = ui;}
    template < same_as < ::i64 > LONG_LONG > payload(LONG_LONG ll) : m_etype(e_type_i64) {m_i64 = ll;}
    template < same_as < ::u64 > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG ull) : m_etype(e_type_u64) {m_u64 = ull;}
-   template < same_as < float > FLOAT > payload(FLOAT f) : m_etype(e_type_float) {m_f = f;}
-   template < same_as < double > DOUBLE > payload(DOUBLE d) : m_etype(e_type_double) {m_d = d;}
+   template < same_as < ::f32 > FLOAT > payload(FLOAT f) : m_etype(e_type_f32) {m_f32 = f;}
+   template < same_as < ::f64 > DOUBLE > payload(DOUBLE d) : m_etype(e_type_f64) {m_f64 = d;}
 #ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
 #endif
 #endif
-   payload(int * pi);
+   payload(::i32 * pi);
    payload(::u32 * pu);
    payload(::i64 * pi);
    payload(::u64 * pu);
-   payload(float * pf);
-   payload(double * pd);
+   payload(::f32 * pf);
+   payload(::f64 * pd);
    payload(bool * pb);
    payload(::string * pstr);
    //payload(::payload * ppayload);
@@ -233,8 +233,8 @@ public:
    payload(const ::string_array_base & stra);
    payload(const ::i32_array_base & ia);
    payload(const ::i64_array_base & lla);
-   payload(const ::float_array_base & floata);
-   payload(const ::double_array_base & doublea);
+   payload(const ::f32_array_base & floata);
+   payload(const ::f64_array_base & doublea);
    payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
    //payload(const ::property & property);
@@ -460,31 +460,31 @@ public:
 
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long get_long(long lDefault = 0) const;
-   unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
+   ulong get_unsigned_long(ulong ulDefault = 0) const;
 #endif
 
-   char & as(char & i) const { return i = as_i8(); }
-   unsigned char & as(unsigned char & u) const { return u = as_u8(); }
-   short & as(short & i) const { return i = as_i16(); }
-   unsigned short & as(unsigned short & u) const { return u = as_u16(); }
-   int & as(int & i)  const { return i = as_i32(); }
+   ::i8 & as(::i8 & i) const { return i = as_i8(); }
+   ::u8 & as(::u8 & u) const { return u = as_u8(); }
+   ::i16 & as(::i16 & i) const { return i = as_i16(); }
+   ::u16 & as(::u16 & u) const { return u = as_u16(); }
+   ::i32 & as(::i32 & i)  const { return i = as_i32(); }
    ::u32 & as(::u32 & u)  const { return u = as_u32(); }
    ::i64 & as(::i64 & i)  const { return i = as_i64(); }
    ::u64 & as(::u64 & u)  const { return u = as_u64(); }
-   float & as(float & f) const { return f = as_float(); }
-   double & as(double & f) const { return f = as_double(); }
+   ::f32 & as(::f32 & f) const { return f = as_f32(); }
+   ::f64 & as(::f64 & f) const { return f = as_f64(); }
 
 
-   char as_i8(char iDefault = 0) const;
-   unsigned char as_u8(unsigned char uDefault = 0) const;
-   short as_i16(short iDefault = 0) const;
-   unsigned short as_u16(unsigned short uDefault = 0) const;
-   int as_i32(int iDefault = 0)  const;
+   ::i8 as_i8(::i8 iDefault = 0) const;
+   ::u8 as_u8(::u8 uDefault = 0) const;
+   ::i16 as_i16(::i16 iDefault = 0) const;
+   ::u16 as_u16(::u16 uDefault = 0) const;
+   ::i32 as_i32(::i32 iDefault = 0)  const;
    ::u32 as_u32(::u32 uiDefault = 0)  const;
    ::i64 as_i64(::i64 iDefault = 0)  const;
    ::u64 as_u64(::u64 uiDefault = 0)  const;
-   float as_float(float fDefault = 0) const;
-   double as_double(double fDefault = 0) const;
+   ::f32 as_f32(::f32 fDefault = 0) const;
+   ::f64 as_f64(::f64 fDefault = 0) const;
 
 
    inline ::iptr as_iptr(::iptr iDefault = 0)  const;
@@ -522,8 +522,8 @@ public:
    ::string_array_base as_string_array() const;
    ::i32_array_base as_int_array() const;
    ::i64_array_base as_i64_array() const;
-   ::float_array_base as_float_array() const;
-   ::double_array_base as_double_array() const;
+   ::f32_array_base as_f32_array() const;
+   ::f64_array_base as_f64_array() const;
    ::payload_array_base as_payload_array()  const;
    ::property_set as_property_set() const;
    class ::time as_time() const;
@@ -606,7 +606,7 @@ public:
    payload get_topic(const ::atom & atom) const;
    //payload defer_get(const ::atom & atom) const;
 
-   payload & operator ++(int);
+   payload & operator ++(::i32);
 
    //payload operator +(const ::payload & payload) const;
    payload operator -(const ::payload & payload) const;
@@ -641,19 +641,19 @@ public:
 
    operator bool() const { return this->as_bool(); }
 
-   operator char() const { return this->as_i8(); }
-   operator unsigned char() const { return this->as_u8(); }
-   operator short() const { return this->as_i16(); }
-   operator unsigned short() const { return this->as_u16(); }
-   operator int() const { return this->as_i32(); }
+   operator ::i8() const { return this->as_i8(); }
+   operator ::u8() const { return this->as_u8(); }
+   operator ::i16() const { return this->as_i16(); }
+   operator ::u16() const { return this->as_u16(); }
+   operator ::i32() const { return this->as_i32(); }
    operator ::u32() const { return this->as_u32(); }
    operator ::i64()const { return this->as_i64(); }
    operator ::u64() const { return this->as_u64(); }
 
 
 
-   operator float() const { return this->as_float(); }
-   operator double() const { return this->as_double(); }
+   operator ::f32() const { return this->as_f32(); }
+   operator ::f64() const { return this->as_f64(); }
    //operator ::string() const;
    //::memory memory() const;
    //operator ::file::path() const { return this->as_file_path(); }
@@ -679,8 +679,8 @@ public:
    ::string_array & string_array_reference();
    ::i32_array & i32_array_reference();
    ::i64_array & i64_array_reference();
-   ::float_array & float_array_reference();
-   ::double_array & double_array_reference();
+   ::f32_array & f32_array_reference();
+   ::f64_array & f64_array_reference();
    ::payload_array & payload_array_reference();
    class ::time & time_reference();
    ::property_set & property_set_reference();
@@ -696,8 +696,8 @@ public:
    const ::string_array & string_array_reference() const;
    const ::i32_array & i32_array_reference() const;
    const ::i64_array & i64_array_reference() const;
-   const ::float_array & float_array_reference() const;
-   const ::double_array & double_array_reference() const;
+   const ::f32_array & f32_array_reference() const;
+   const ::f64_array & f64_array_reference() const;
    const ::payload_array & payload_array_reference() const;
    const class time & time_reference() const;
    const ::property_set & property_set_reference() const;
@@ -719,18 +719,18 @@ public:
    bool & bool_reference();
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long & long_reference();
-   unsigned long & unsigned_long_reference();
+   ulong & unsigned_long_reference();
 #endif
-   char & i8_reference();
-   unsigned char & u8_reference();
-   short & i16_reference();
-   unsigned short & u16_reference();
-   int & i32_reference();
+   ::i8 & i8_reference();
+   ::u8 & u8_reference();
+   ::i16 & i16_reference();
+   ::u16 & u16_reference();
+   ::i32 & i32_reference();
    ::u32 & u32_reference();
    ::i64 & i64_reference();
    ::u64 & u64_reference();
-   float & float_reference();
-   double & double_reference();
+   ::f32 & f32_reference();
+   ::f64 & f64_reference();
 
 
    template < prototype_signed SIGNED >
@@ -896,7 +896,7 @@ public:
 
    void payload_increment_reference_count();
 
-   int & _as(int & i) const
+   ::i32 & _as(::i32 & i) const
    {
 
       i = as_i32();
@@ -952,29 +952,29 @@ public:
 payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assign_primitive(m_## NUMBER_SHORT_NAME , e_type_## NUMBER_NAME, NUMBER_SHORT_NAME ); }
    DO_FOR_NUMBER_TYPES(NUMBER_TYPE_OPERATION)
 #undef NUMBER_TYPE_OPERATION
-   //payload & assign_char            (char              ch)   { return __assign_primitive( m_i8 , e_type_i8    , i ); }
-   //payload & assign_unsigned_char   (unsigned char    uch)   { return __assign_primitive(m_u8 , e_type_u8    , u ); }
-   //payload & assign_short           (short             sh)   { return __assign_primitive( m_i16 , e_type_i16   , i ); }
-   //payload & assign_unsigned_short  (unsigned short   ush)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
-   //payload & assign_int             (int                i)   { return __assign_primitive(  m_i32 , e_type_i32   , i ); }
+   //payload & assign_char            (::i8              ch)   { return __assign_primitive( m_i8 , e_type_i8    , i ); }
+   //payload & assign_unsigned_char   (::u8    uch)   { return __assign_primitive(m_u8 , e_type_u8    , u ); }
+   //payload & assign_short           (::i16             sh)   { return __assign_primitive( m_i16 , e_type_i16   , i ); }
+   //payload & assign_unsigned_short  (::u16   ush)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
+   //payload & assign_int             (::i32                i)   { return __assign_primitive(  m_i32 , e_type_i32   , i ); }
    //payload & assign_unsigned_int    (::u32       u)   { return __assign_primitive( m_u32 , e_type_u32   , u ); }
    //payload & assign_long_long    (::i64      ll)   { return __assign_primitive( m_i64 , e_type_i64   , i ); }
    //payload & assign_unsigned_long_long    (::u64      ull)   { return __assign_primitive( m_u64 , e_type_u64   , u ); }
-   //payload & assign_float             (float              f)   { return __assign_primitive(  m_f , e_type_float   , f ); }
-   //payload & assign_double             (double             d)   { return __assign_primitive(  m_d , e_type_double   , f ); }
+   //payload & assign_float             (::f32              f)   { return __assign_primitive(  m_f32 , e_type_f32   , f ); }
+   //payload & assign_double             (::f64             d)   { return __assign_primitive(  m_f64 , e_type_f64   , f ); }
 
 
    payload & assign_pbool  (bool  * pb)   { return __assign_primitive_pointer(m_pb     , e_type_pbool , pb); }
-   payload & assign_pi8    (char  * pi)   { return __assign_primitive_pointer(m_pi8    , e_type_pchar   , pi); }
-   payload & assign_pu8    (unsigned char  * pu)   { return __assign_primitive_pointer(m_pu8    , e_type_punsigned_char   , pu); }
-   payload & assign_pi16   (short * pi)   { return __assign_primitive_pointer(m_pi16   , e_type_pshort  , pi); }
-   payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_pu16   , e_type_punsigned_short  , pu); }
-   payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi32   , e_type_pi32  , pi); }
+   payload & assign_pi8    (::i8 * pi)   { return __assign_primitive_pointer(m_pi8    , e_type_pi8   , pi); }
+   payload & assign_pu8    (::u8  * pu)   { return __assign_primitive_pointer(m_pu8    , e_type_pu8   , pu); }
+   payload & assign_pi16   (::i16 * pi)   { return __assign_primitive_pointer(m_pi16   , e_type_pi16  , pi); }
+   payload & assign_pu16   (::u16 * pu)   { return __assign_primitive_pointer(m_pu16   , e_type_pu16  , pu); }
+   payload & assign_pi32   (::i32 * pi)   { return __assign_primitive_pointer(m_pi32   , e_type_pi32  , pi); }
    payload & assign_pu32   (::u32 * pu)   { return __assign_primitive_pointer(m_pu32   , e_type_pu32  , pu); }
    payload & assign_pi64   (::i64 * pll)   { return __assign_primitive_pointer(m_pi64   , e_type_pi64  , pll); }
    payload & assign_pu64   (::u64 * pull)   { return __assign_primitive_pointer(m_pu64   , e_type_pu64  , pull); }
-   payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf   , e_type_pfloat  , pf); }
-   payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pd   , e_type_pdouble  , pf); }
+   payload & assign_pf32   (::f32 * pf)   { return __assign_primitive_pointer(m_pf32   , e_type_pf32  , pf); }
+   payload & assign_pf64   (::f64 * pf)   { return __assign_primitive_pointer(m_pf64   , e_type_pf64  , pf); }
 
 protected:
 
@@ -989,28 +989,28 @@ protected:
          *m_pb = (bool) prototype;
 
       }
-      else if(get_type() == e_type_punsigned_char)
+      else if(get_type() == e_type_pu8)
       {
 
-         *m_pu8 = (unsigned char) prototype;
+         *m_pu8 = (::u8) prototype;
 
       }
-      else if(get_type() == e_type_pchar)
+      else if(get_type() == e_type_pi8)
       {
 
-         *m_pi8 = (char) prototype;
+         *m_pi8 = (::i8) prototype;
 
       }
-      else if(get_type() == e_type_punsigned_short)
+      else if(get_type() == e_type_pu16)
       {
 
-         *m_pu16 = (unsigned short) prototype;
+         *m_pu16 = (::u16) prototype;
 
       }
-      else if(get_type() == e_type_pshort)
+      else if(get_type() == e_type_pi16)
       {
 
-         *m_pi16 = (short) prototype;
+         *m_pi16 = (::i16) prototype;
 
       }
       else if(get_type() == e_type_pu32)
@@ -1022,7 +1022,7 @@ protected:
       else if(get_type() == e_type_pi32)
       {
 
-         *m_pi32 = (int) prototype;
+         *m_pi32 = (::i32) prototype;
 
       }
       else if(get_type() == e_type_pu64)
@@ -1037,16 +1037,16 @@ protected:
          *m_pi64 = (::i64) prototype;
 
       }
-      else if(get_type() == e_type_pfloat)
+      else if(get_type() == e_type_pf32)
       {
 
-         *m_pf = (float) prototype;
+         *m_pf32 = (::f32) prototype;
 
       }
-      else if(get_type() == e_type_pdouble)
+      else if(get_type() == e_type_pf64)
       {
 
-         *m_pd = (double) prototype;
+         *m_pf64 = (::f64) prototype;
 
       }
       else
@@ -1088,27 +1088,27 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    //template < char_type CHAR > payload & operator=(CHAR c) { return assign_char(c); }
    //template < i8_type I8 > payload & operator=(I8 i) { return assign_char(i); }
-   //template < same_as < unsigned char > U8 > payload & operator=(U8 u) { return assign_unsigned_char(u); }
-   //template < same_as < short > I16 > payload & operator=(I16 i) { return assign_short(i); }
-   //template < same_as < unsigned short > U16 > payload & operator=(U16 u) { return assign_unsigned_short(u); }
-   //template < same_as < int > I32 > payload & operator=(I32 i) { return assign_int(i); }
+   //template < same_as < ::u8 > U8 > payload & operator=(U8 u) { return assign_unsigned_char(u); }
+   //template < same_as < ::i16 > I16 > payload & operator=(I16 i) { return assign_short(i); }
+   //template < same_as < ::u16 > U16 > payload & operator=(U16 u) { return assign_unsigned_short(u); }
+   //template < same_as < ::i32 > I32 > payload & operator=(I32 i) { return assign_int(i); }
    //template < same_as < ::u32 > U32 > payload & operator=(U32 u) { return assign_unsigned_int(u); }
    //template < same_as < ::i64 > I64 > payload & operator=(I64 i) { return assign_long_long(i); }
    //template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_unsigned_long_long(u); }
-   //template < same_as < float > F32 > payload & operator=(F32 f) { return assign_float(f); }
-   //template < same_as < double > F64 > payload & operator=(F64 f) { return assign_double(f); }
+   //template < same_as < ::f32 > F32 > payload & operator=(F32 f) { return assign_float(f); }
+   //template < same_as < ::f64 > F64 > payload & operator=(F64 f) { return assign_double(f); }
 
 
-   payload & assign_pointer(char * pi) { return assign_pi8(pi); }
-   payload & assign_pointer(unsigned char * pu) { return assign_pu8(pu); }
-   payload & assign_pointer(short * pi) { return assign_pi16(pi); }
-   payload & assign_pointer(unsigned short * pu) { return assign_pu16(pu); }
-   payload & assign_pointer(int * pi) { return assign_pi32(pi); }
+   payload & assign_pointer(::i8 * pi) { return assign_pi8(pi); }
+   payload & assign_pointer(::u8 * pu) { return assign_pu8(pu); }
+   payload & assign_pointer(::i16 * pi) { return assign_pi16(pi); }
+   payload & assign_pointer(::u16 * pu) { return assign_pu16(pu); }
+   payload & assign_pointer(::i32 * pi) { return assign_pi32(pi); }
    payload & assign_pointer(::u32 * pu) { return assign_pu32(pu); }
    payload & assign_pointer(::i64 * pi) { return assign_pi64(pi); }
    payload & assign_pointer(::u64 * pu) { return assign_pu64(pu); }
-   payload & assign_pointer(float * pf) { return assign_pf32(pf); }
-   payload & assign_pointer(double * pf) { return assign_pf64(pf); }
+   payload & assign_pointer(::f32 * pf) { return assign_pf32(pf); }
+   payload & assign_pointer(::f64 * pf) { return assign_pf64(pf); }
 
 #ifdef WINDOWS
    payload & operator = (long l);
@@ -1130,7 +1130,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::property & prop);
    //payload & operator = (const ::property * pproperty);
 
-   //template < prototype_character CHARACTER, int t_size >
+   //template < prototype_character CHARACTER, ::i32 t_size >
    //payload & operator = (const const_string_range_static_array< const CHARACTER *, t_size > & a)
    //{
 
@@ -1141,8 +1141,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::i32_array_base & ia);
    payload & operator = (const ::string_array_base & stra);
    payload & operator = (const ::i64_array_base & longlonga);
-   payload & operator = (const ::float_array_base & floata);
-   payload & operator = (const ::double_array_base & doublea);
+   payload & operator = (const ::f32_array_base & floata);
+   payload & operator = (const ::f64_array_base & doublea);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);
    payload & operator = (const ::property_set & propset);
@@ -1168,7 +1168,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
       auto count = this->array_get_count();
 
-      for (int i = 0; i < count; i++)
+      for (::i32 i = 0; i < count; i++)
       {
 
          ::payload payloadItem = at(i);
@@ -1237,7 +1237,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
    template < character_count n >
-   payload & operator = (const char(&cha)[n]);
+   payload & operator = (const ::i8(&cha)[n]);
 
 
    //template < prototype_subparticle T >
@@ -1305,27 +1305,27 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //   bool strictly_equal(const payload & payload) const;
    //   bool strictly_equal(const ::scoped_string & scopedstr) const;
    //   bool strictly_equal(const ::scoped_string & scopedstr) const;
-   //   bool strictly_equal(double d) const;
-   //   bool strictly_equal(int i) const;
+   //   bool strictly_equal(::f64 d) const;
+   //   bool strictly_equal(::i32 i) const;
    //   bool strictly_equal(bool b) const;
    //
    //   bool strictly_different(const payload & payload) const;
    //   bool strictly_different(const ::scoped_string & scopedstr) const;
    //   bool strictly_different(const ::scoped_string & scopedstr) const;
-   //   bool strictly_different(double d) const;
-   //   bool strictly_different(int i) const;
+   //   bool strictly_different(::f64 d) const;
+   //   bool strictly_different(::i32 i) const;
    //   bool strictly_different(bool b) const;
 
       //friend bool CLASS_DECL_ACME strict_equal(const ::scoped_string & scopedstr,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_equal(const ::scoped_string & scopedstr,const payload & payload);
-      //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
-      //friend bool CLASS_DECL_ACME strict_equal(int i,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(::f64 d,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
 
       //friend bool CLASS_DECL_ACME strict_different(const ::scoped_string & scopedstr,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_different(const ::scoped_string & scopedstr,const payload & payload);
-      //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
-      //friend bool CLASS_DECL_ACME strict_different(int i,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(::f64 d,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
 
    //bool equals(const payload & payload) const;
@@ -1359,42 +1359,42 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    bool operator == (SIGNED i) const { return equals_signed(i); }
    template < prototype_unsigned UNSIGNED >
    bool operator == (UNSIGNED u) const { return equals_unsigned(u); }
-   //bool operator == (int i) const;
+   //bool operator == (::i32 i) const;
    //bool operator == (bool b) const;
 
    //bool operator != (const payload & payload) const;
    //bool operator != (const ::scoped_string & scopedstr) const;
    //bool operator != (const ::scoped_string & scopedstr) const;
    //bool operator != (::i64 i) const;
-   //bool operator != (int i) const;
+   //bool operator != (::i32 i) const;
    //bool operator != (bool b) const;
 
    ::std::strong_ordering operator <=> (const payload & payload) const;
    ::std::strong_ordering operator <=> (const ::string & str) const;
    ::std::strong_ordering operator <=> (const ::scoped_string & scopedstr) const;
    ::std::strong_ordering operator <=> (::i64 i) const;
-   ::std::strong_ordering operator <=> (int i) const;
+   ::std::strong_ordering operator <=> (::i32 i) const;
    ::std::strong_ordering operator <=> (bool b) const;
 
    //bool operator <= (const payload & payload) const;
    //bool operator <= (const ::scoped_string & scopedstr) const;
    //bool operator <= (const ::scoped_string & scopedstr) const;
    //bool operator <= (::i64 i) const;
-   //bool operator <= (int i) const;
+   //bool operator <= (::i32 i) const;
    //bool operator <= (bool b) const;
 
    //bool operator >= (const payload & payload) const;
    //bool operator >= (const ::scoped_string & scopedstr) const;
    //bool operator >= (const ::scoped_string & scopedstr) const;
    //bool operator >= (::i64 i) const;
-   //bool operator >= (int i) const;
+   //bool operator >= (::i32 i) const;
    //bool operator >= (bool b) const;
 
    //bool operator > (const payload & payload) const;
    //bool operator > (const ::scoped_string & scopedstr) const;
    //bool operator > (const ::scoped_string & scopedstr) const;
    //bool operator > (::i64 i) const;
-   //bool operator > (int i) const;
+   //bool operator > (::i32 i) const;
    //bool operator > (bool b) const;
 
 
@@ -1482,8 +1482,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
 //#if OSBIT == 64
 //
-//   inline ::property & operator[] (int i) { return get_property(::atom(i)); }
-//   inline ::payload operator[] (int i) const { return find_property(::atom(i)); }
+//   inline ::property & operator[] (::i32 i) { return get_property(::atom(i)); }
+//   inline ::payload operator[] (::i32 i) const { return find_property(::atom(i)); }
 //
 //#endif
 
@@ -1537,7 +1537,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < character_count n >
    //::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
 
-   //template < typename ITERATOR_TYPE, int t_size >
+   //template < typename ITERATOR_TYPE, ::i32 t_size >
    //::payload & operator += (const const_string_range_static_array < ITERATOR_TYPE, t_size > & a) { return *this += ::string(a);}
 
    template < prototype_integral INTEGRAL >
@@ -1557,12 +1557,12 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //void consume_identifier((::ansi_range & range);
    void parse_network_payload(::ansi_range & range);
    //void parse_network_payload((::ansi_range & range);
-   const char * parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
+   const_char_pointer parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
    ::enum_type find_network_payload_child(::ansi_range & range, const payload & payload);
    //::enum_type find_network_payload_child((::ansi_range & range, const payload & payload);
    ::enum_type find_network_payload_id(::ansi_range & range, const payload & payload);
    bool parse_network_payload_step(::ansi_range & range);
-   // bool parse_network_payload_step(const char *& pszJson, const ::ansi_character * pszEnd);
+   // bool parse_network_payload_step(const_char_pointer & pszJson, const ::ansi_character * pszEnd);
 
    ::string & get_network_payload(::string & str, bool bNewLine = true) const;
    ::string get_network_payload(bool bNewLine = true) const;
@@ -1612,11 +1612,11 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 //} // namespace str
 
 
-//CLASS_DECL_ACME void var_skip_number(const char *& psz);
+//CLASS_DECL_ACME void var_skip_number(const_char_pointer & psz);
 CLASS_DECL_ACME void payload_skip_number(::ansi_range & range);
-//CLASS_DECL_ACME void var_skip_identifier(const char *& psz);
+//CLASS_DECL_ACME void var_skip_identifier(const_char_pointer & psz);
 CLASS_DECL_ACME void payload_skip_identifier(::ansi_range & range);
-//CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson);
+//CLASS_DECL_ACME void var_skip_network_payload(const_char_pointer & pszJson);
 CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
@@ -1635,12 +1635,12 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //}
 //
 //
-//inline payload::operator unsigned long &()
+//inline payload::operator ulong &()
 //{
 //
 //   set_type(e_type_u64);
 //
-//   return (unsigned long &) m_u64;
+//   return (ulong &) m_u64;
 //
 //}
 //
@@ -1649,36 +1649,36 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 // returns 0 for unknown conversions
-//inline payload::operator char() const
+//inline payload::operator ::i8() const
 //{
-//   return char();
+//   return ::i8();
 //}
 
 // returns 0 for unknown conversions
-//inline payload::operator unsigned char() const
+//inline payload::operator ::u8() const
 //{
-//   return unsigned char();
+//   return ::u8();
 //}
 
 
 // returns 0 for unknown conversions
-//inline payload::operator short() const
+//inline payload::operator ::i16() const
 //{
-//   return short();
+//   return ::i16();
 //}
 
 // returns 0 for unknown conversions
-//inline payload::operator unsigned short() const
+//inline payload::operator ::u16() const
 //{
-//   return unsigned short();
+//   return ::u16();
 //}
 
 
 
 // returns 0 for unknown conversions
-//inline payload::operator int() const
+//inline payload::operator ::i32() const
 //{
-//   return int();
+//   return ::i32();
 //}
 
 // returns 0 for unknown conversions
@@ -1705,7 +1705,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 // returns 0.0 for unknown conversions?
-//inline payload::operator float() const
+//inline payload::operator ::f32() const
 //{
 //
 //   return get_float();
@@ -1714,7 +1714,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 // returns 0.0 for unknown conversions?
-//inline payload::operator double() const
+//inline payload::operator ::f64() const
 //{
 //
 //   return get_double();
@@ -1818,7 +1818,7 @@ inline payload::operator long() const
 
 
 // returns 0 for unknown conversions
-inline payload::operator unsigned long() const
+inline payload::operator ulong() const
 {
 #if LONG_IS_32BIT
    return as_u32();
@@ -1833,7 +1833,7 @@ inline payload::operator unsigned long() const
 //inline payload::operator long() const
 //{
 //
-//   return int();
+//   return ::i32();
 //
 //}
 
@@ -1919,7 +1919,7 @@ inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 
 
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
-CLASS_DECL_ACME void copy(::payload & payload, const int & i);
+CLASS_DECL_ACME void copy(::payload & payload, const ::i32 & i);
 CLASS_DECL_ACME  void copy(::payload & payload, const ::scoped_string & scopedstr);
 
 

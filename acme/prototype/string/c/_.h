@@ -29,9 +29,9 @@ template < prototype_character CHARACTER >
 inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
-   int len1;
+   ::i32 len1;
 
-   int len2;
+   ::i32 len2;
 
    while (*psz)
    {
@@ -90,7 +90,7 @@ template < prototype_character CHARACTER >
 const CHARACTER * _string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
-   //int len1;
+   //::i32 len1;
 
    while (*psz)
    {
@@ -149,9 +149,9 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 //{
 //
-//   int len1;
+//   ::i32 len1;
 //
-//   int len2;
+//   ::i32 len2;
 //
 //   while (*psz)
 //   {
@@ -212,7 +212,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //
 //   a
 //
-//   int len1;
+//   ::i32 len1;
 //
 //   while (*psz)
 //   {
@@ -273,7 +273,7 @@ consteval auto string_order_folder_first()
    return [](const_char_pointer pszA, const_char_pointer pszB)
    {
 
-      int i = 0;
+      ::i32 i = 0;
 
       while (*pszA && *pszB && ((i = *pszA - *pszB) == 0))
       {

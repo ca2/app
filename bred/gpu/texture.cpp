@@ -69,7 +69,7 @@ namespace gpu
 
    void texture::initialize_with_image_data(::gpu::context * pgpucontext,
                                               const ::i32_rectangle & rectangleTarget,
-                                     int numChannels, bool bSrgb, const void * pdata,
+                                     ::i32 numChannels, bool bSrgb, const void * pdata,
                                      enum_texture etexture)
    {
 
@@ -154,7 +154,7 @@ namespace gpu
 
 
    //void texture::initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle &rectangleTarget,
-   //                                       int iMipCount, bool bRenderTarget, bool bShaderResource)
+   //                                       ::i32 iMipCount, bool bRenderTarget, bool bShaderResource)
    //{
 
    //   ::gpu::texture_attributes textureattributes(rectangleTarget, 8, 4, 0, e_texture_cube_map, 6, iMipCount);
@@ -212,7 +212,7 @@ namespace gpu
    }
 
 
-   int texture::width() const
+   ::i32 texture::width() const
    {
 
       return m_textureattributes.m_rectangleTarget.width();
@@ -220,7 +220,7 @@ namespace gpu
    }
 
 
-   int texture::height() const
+   ::i32 texture::height() const
    {
 
       return m_textureattributes.m_rectangleTarget.height();
@@ -228,7 +228,7 @@ namespace gpu
    }
 
 
-   int texture::mip_count() const
+   ::i32 texture::mip_count() const
    {
 
       if (m_textureattributes.m_iMipCount < -1)
@@ -266,7 +266,7 @@ namespace gpu
    }
 
 
-   int texture::maximum_mip_count() const
+   ::i32 texture::maximum_mip_count() const
    {
 
       return m_textureattributes.maximum_mip_count();
@@ -275,7 +275,7 @@ namespace gpu
 
 
    // Helper: compute integer mip size (never below 1)
-   int texture::mip_width_for_mip(int baseWidth, int level) const
+   ::i32 texture::mip_width_for_mip(::i32 baseWidth, ::i32 level) const
    {
       
       return ::maximum(1, baseWidth >> level);
@@ -283,7 +283,7 @@ namespace gpu
    }
 
    
-   int texture::mip_height_for_mip(int baseHeight, int level) const
+   ::i32 texture::mip_height_for_mip(::i32 baseHeight, ::i32 level) const
    {
       
       return ::maximum(1, baseHeight >> level);
@@ -291,7 +291,7 @@ namespace gpu
    }
 
 
-   //int texture::render_target_view_index(int iFace, int iMip) const
+   //::i32 texture::render_target_view_index(::i32 iFace, ::i32 iMip) const
    //{
    //   
    //   auto iMipCount = iMip;
@@ -315,7 +315,7 @@ namespace gpu
    //}
 
 
-   //int texture::current_render_target_view_index() const
+   //::i32 texture::current_render_target_view_index() const
    //{
 
    //   return this->render_target_view_index(m_iCurrentLayer, m_iCurrentMip);
@@ -323,7 +323,7 @@ namespace gpu
    //}
 
 
-   int texture::layer_count() const
+   ::i32 texture::layer_count() const
    {
 
       if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
@@ -354,7 +354,7 @@ namespace gpu
 
    }
    
-   int texture::mip_width() const
+   ::i32 texture::mip_width() const
    {
 
       return this->mip_width_for_mip(this->width(), m_iCurrentMip);
@@ -362,7 +362,7 @@ namespace gpu
    }
 
 
-   int texture::mip_height() const 
+   ::i32 texture::mip_height() const 
    {
       
       return this->mip_height_for_mip(this->height(), m_iCurrentMip); 
@@ -476,9 +476,9 @@ namespace gpu
 
       }
 
-      int iAtlasX = m_iAtlasX;
-      int iAtlasY = m_iAtlasY;
-      int iAtlasH = m_iAtlasCurrentRowHeight;
+      ::i32 iAtlasX = m_iAtlasX;
+      ::i32 iAtlasY = m_iAtlasY;
+      ::i32 iAtlasH = m_iAtlasCurrentRowHeight;
 
       if (size.cx > m_textureattributes.m_rectangleTarget.width() - iAtlasX)
       {
@@ -651,7 +651,7 @@ namespace gpu
    }
 
 
-   void texture::set_current_mip(int iCurrentMip)
+   void texture::set_current_mip(::i32 iCurrentMip)
    {
 
       m_iCurrentMip = iCurrentMip;
@@ -659,13 +659,13 @@ namespace gpu
    }
 
 
-   int texture::mip_width()
+   ::i32 texture::mip_width()
    {
 
       if (m_sizeMip.width() < 0)
       {
 
-         return (int)((double)this->width() * ::pow((double)0.5, (double)maximum(m_iCurrentMip, 0)));
+         return (::i32)((::f64)this->width() * ::pow((::f64)0.5, (::f64)maximum(m_iCurrentMip, 0)));
 
       }
            
@@ -674,13 +674,13 @@ namespace gpu
    }
 
 
-   int texture::mip_height() 
+   ::i32 texture::mip_height() 
    {
       
       if (m_sizeMip.height() < 0)
       {
 
-         return  (int)((double)this->height() * ::pow((double)0.5, (double)maximum(m_iCurrentMip, 0)));
+         return  (::i32)((::f64)this->height() * ::pow((::f64)0.5, (::f64)maximum(m_iCurrentMip, 0)));
 
 
       }
@@ -690,7 +690,7 @@ namespace gpu
    }
 
 
-   void texture::set_current_layer(int iLayer)
+   void texture::set_current_layer(::i32 iLayer)
    {
 
       m_iCurrentLayer = iLayer;

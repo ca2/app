@@ -43,7 +43,7 @@ namespace sockets
 
 			m_strError += "smtp_socket::OnException while connecting\n";
 
-			int iError = this->socket_handler()->m_iSelectErrno;
+			::i32 iError = this->socket_handler()->m_iSelectErrno;
 
 			if (iError == 0)
 			{
@@ -66,9 +66,9 @@ namespace sockets
 
 			}
 
-			//int iGetConnectionRetry = GetMaximumConnectionRetryCount();
+			//::i32 iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-			//int iGetConnectionRetries = GetConnectionRetryCount();
+			//::i32 iGetConnectionRetries = GetConnectionRetryCount();
 
 			//if (Socks4())
 			//{
@@ -81,13 +81,13 @@ namespace sockets
 			//           iGetConnectionRetries < iGetConnectionRetry))
 			//{
 
-			//   const int nBufSize = 1024;
+			//   const ::i32 nBufSize = 1024;
 
-			//   char buf[nBufSize];
+			//   ::i8 buf[nBufSize];
 
 			//   socket_id iGetSocket = get_socket_id();
 
-			//   int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+			//   ::i32 n = ::recv(iGetSocket, (char_pointer )buf, (::i32)nBufSize, MSG_OOB);
 
 			//   information() << "got " << n << " bytes of Out of Band Data";
 
@@ -106,7 +106,7 @@ namespace sockets
 		}
 		//// %! exception doesn't always mean something bad happened, this code should be reworked
 		//// errno valid here?
-		int err = SoError();
+		::i32 err = SoError();
 
 		::string strBsdSocketError;
 		
@@ -269,7 +269,7 @@ namespace sockets
 				strBody.replace_with("\n", "\r\n");
 				string_array stra;
 				stra.add_tokens(strBody, "\n", true);
-				for (int i = 0; i < stra.get_count(); i++)
+				for (::i32 i = 0; i < stra.get_count(); i++)
 				{
 					if (stra[i].substr(0, 1) == ".")
 					{

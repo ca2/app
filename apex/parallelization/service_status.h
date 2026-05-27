@@ -19,7 +19,7 @@ class CLASS_DECL_APEX service_status :
 public:
 
    
-   char sz[80];
+   ::i8 sz[80];
 
 
    service_status()

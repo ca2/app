@@ -33,14 +33,14 @@
 #define SURE_NO  0.01f
 
 //return confidence base on received data
-float CharDistributionAnalysis::GetConfidence()
+::f32 CharDistributionAnalysis::GetConfidence()
 { 
   //if we didn't receive any character in our consideration range, return negative answer
   if (mTotalChars <= 0)
     return SURE_NO;
 
   if (mTotalChars != mFreqChars) {
-    float r = mFreqChars / ((mTotalChars - mFreqChars) * mTypicalDistributionRatio);
+    ::f32 r = mFreqChars / ((mTotalChars - mFreqChars) * mTypicalDistributionRatio);
 
     if (r < SURE_YES)
       return r;

@@ -34,7 +34,7 @@ namespace fs
 
       bool fast_has_subdir(const ::file::path & path) override;
 
-      int is_dir(const ::file::path & path) override;
+      ::i32 is_dir(const ::file::path & path) override;
       ::file::listing_base & root_ones(::file::listing_base & listing) override;
 
       bool file_exists(const ::file::path & path) override;

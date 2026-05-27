@@ -21,7 +21,7 @@
 
 
 
-int main(int argc, char *argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
 
    if (!defer_core_init())
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
    }
 
-   int iResult = aura_main_command_line(": app=app-core/hellomultiverse", argc, argv);
+   ::i32 iResult = aura_main_command_line(": app=app-core/hellomultiverse", argc, argv);
 
    try
    {

@@ -437,7 +437,7 @@ namespace inner_detail
    }; // or use std::type_identity (since C++20)
 
    template<class T>
-   auto try_add_pointer(int) -> type_identity<non_reference<T> *>;
+   auto try_add_pointer(::i32) -> type_identity<non_reference<T> *>;
 
 
    template<class T>
@@ -1096,7 +1096,7 @@ using hinstance = void *;
 #ifdef UNICODE
 using tchar = wchar_t;
 #else
-using tchar = char;
+using tchar = ::i8;
 #endif
 
 
@@ -1664,7 +1664,7 @@ namespace file
    class file;
 
 
-   enum enum_type : int
+   enum enum_type : ::i32
    {
 
       e_type_unknown = 0,
@@ -1809,7 +1809,7 @@ struct system_time_t;
 //class scalar_base;
 
 
-CLASS_DECL_ACME int __node_is_debugger_attached();
+CLASS_DECL_ACME ::i32 __node_is_debugger_attached();
 
 
 struct create_task_attributes_t;
@@ -2874,8 +2874,8 @@ namespace aqua
 
 
 
-enum enum_method : int;
-enum enum_future : int;
+enum enum_method : ::i32;
+enum enum_future : ::i32;
 
 
 

@@ -1539,7 +1539,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 
 
 
-//particle::particle(const_char_pointer lpszName)
+//particle::particle(const_char_pointer pszName)
 //{
 //
 //   m_bOwner = true;
@@ -1550,7 +1550,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //
 //#endif
 //
-//   if (lpszName == nullptr)
+//   if (pszName == nullptr)
 //   {
 //
 //      m_pszName = nullptr;
@@ -1559,7 +1559,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //   else
 //   {
 //
-//      m_pszName = strdup(lpszName);
+//      m_pszName = strdup(pszName);
 //
 //   }
 //
@@ -1569,13 +1569,13 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //#ifdef WINDOWS
 //
 //
-//particle::particle(hsynchronization hsyncobject, const_char_pointer lpszName) :
+//particle::particle(hsynchronization hsyncobject, const_char_pointer pszName) :
 //   m_hsync(hsyncobject)
 //{
 //
 //   m_bOwner = false;
 //
-//   if (lpszName == nullptr)
+//   if (pszName == nullptr)
 //   {
 //
 //      m_pszName = nullptr;
@@ -1584,7 +1584,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //   else
 //   {
 //
-//      m_pszName = strdup(lpszName);
+//      m_pszName = strdup(pszName);
 //
 //   }
 //
@@ -1660,7 +1660,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //}
 
 
-//bool particle::unlock(int /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool particle::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //

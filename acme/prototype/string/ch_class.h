@@ -8,7 +8,7 @@
       - ch_class allows to store enumerations of characters in compact
       form (two-stage bit-field tables).
       - This class supports logical operations over it's instances,
-      char category -> enumeration conversion.
+      ::i8 category -> enumeration conversion.
       @ingroup unicode
 */
 class CLASS_DECL_ACME ch_class

@@ -186,7 +186,7 @@ CLASS_DECL_ACME ::string international_date_time_with_milliseconds(const class :
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const char * g_pszTopLevelDomainList[];
+//extern const_char_pointer g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
@@ -243,28 +243,28 @@ namespace platform
 
 #ifdef _DEBUG
       ::atom atom;
-      int iAtom1 = sizeof(atom);
-      int iAtomType = sizeof(atom.m_etype);
-      int iDomainId = sizeof(atom.m_domainid);
+      ::i32 iAtom1 = sizeof(atom);
+      ::i32 iAtomType = sizeof(atom.m_etype);
+      ::i32 iDomainId = sizeof(atom.m_domainid);
       ::payload payload;
       auto pType = &payload.m_etype;
       auto pAll = &payload.m_payloadall;
-      int iType = sizeof(payload.m_etype);
-      int iAll = sizeof(payload.m_payloadall);
-      int iThis = sizeof(payload);
-      int iAddUp = 0;
+      ::i32 iType = sizeof(payload.m_etype);
+      ::i32 iAll = sizeof(payload.m_payloadall);
+      ::i32 iThis = sizeof(payload);
+      ::i32 iAddUp = 0;
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iETypeSizeHere = (int)((unsigned char*)pAll - (unsigned char*)pType);
-      int iComputed = (int)(((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
-      int iColor = sizeof(payload.m_color);
-      int iStr = sizeof(payload.m_str);
-      int iHls = sizeof(payload.m_hls);
-      int iTime = sizeof(payload.m_time);
-      int iAtom = sizeof(payload.m_atomPayload);
-      int iFileTime = sizeof(payload.m_filetime);
-      int iEarthTime = sizeof(payload.m_earthtime);
+      ::i32 iETypeSizeHere = (::i32)((::u8*)pAll - (::u8*)pType);
+      ::i32 iComputed = (::i32)(((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+      ::i32 iColor = sizeof(payload.m_color);
+      ::i32 iStr = sizeof(payload.m_str);
+      ::i32 iHls = sizeof(payload.m_hls);
+      ::i32 iTime = sizeof(payload.m_time);
+      ::i32 iAtom = sizeof(payload.m_atomPayload);
+      ::i32 iFileTime = sizeof(payload.m_filetime);
+      ::i32 iEarthTime = sizeof(payload.m_earthtime);
       if (iThis != iComputed)
       {
 
@@ -454,7 +454,7 @@ namespace platform
 
       }
 
-      //         for (int i = 0; i < this->get_argument_count1(); i++)
+      //         for (::i32 i = 0; i < this->get_argument_count1(); i++)
       //         {
       //
       //            string strArg = this->get_argument1(i);
@@ -690,7 +690,7 @@ namespace platform
       //
       //      //papplication->is_console() = false;
       //
-      //      //int iExitCode = papplication->main_loop();
+      //      //::i32 iExitCode = papplication->main_loop();
       //
       //      //return iExitCode;
       //
@@ -1362,7 +1362,7 @@ namespace platform
 
          string_array straArguments;
 
-         for (int i = 0; i < this->get_argument_count1(); i++)
+         for (::i32 i = 0; i < this->get_argument_count1(); i++)
          {
 
             string strArgument = this->get_argument1(i);
@@ -1390,14 +1390,14 @@ namespace platform
          if (this->m_wenvp)
          {
 
-            int iIndex = 0;
+            ::i32 iIndex = 0;
 
             for (auto wenv = this->m_wenvp; *wenv != 0; wenv++, iIndex++)
             {
 
                auto thisEnv = *wenv;
 
-               int iLen = (int)wcslen(thisEnv);
+               ::i32 iLen = (::i32)wcslen(thisEnv);
 
                /*if (iLen >= 42)
                {
@@ -1970,7 +1970,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    //{
 
    //   if (!m_ptracelog)
@@ -2793,7 +2793,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //   ::i32 system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
    //   {
    //
    //      throw_todo();
@@ -3204,7 +3204,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //         ::string_array straFiles;
 
-   //         for (int iArgument = 1; iArgument < this->m_argc;)
+   //         for (::i32 iArgument = 1; iArgument < this->m_argc;)
    //         {
 
    //            auto iArgumentBefore = iArgument;
@@ -3323,7 +3323,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //      //   ::string_array straFiles;
 
-   //      //   for (int iArgument = 1; iArgument < this->m_argc;)
+   //      //   for (::i32 iArgument = 1; iArgument < this->m_argc;)
    //      //   {
 
    //      //      auto iArgumentBefore = iArgument;
@@ -3489,7 +3489,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //void system::system_construct(int argc, char** argv, char** envp)
+   //void system::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
    //{
 
    //   throw ::interface_only();
@@ -3497,7 +3497,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //void system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //{
 
    //   throw ::interface_only();
@@ -3695,7 +3695,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //void system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //{
 
    //   acme_main_data::system_construct(argc, argv, envp);
@@ -3732,7 +3732,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
 
-   ::lresult system::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
+   ::lresult system::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    {
 
       auto lresult = call_id_topic((::enum_id)iId, llWparam, llLparam, nullptr);
@@ -4694,7 +4694,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::install_progress_add_up(int iAddUp)
+   void system::install_progress_add_up(::i32 iAddUp)
    {
 
 
@@ -4858,7 +4858,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       defer_run_operating_system_package_installation_update_and_or_upgrade();
 
-      //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+      //::i32 iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
 
       ::string_array_base straCommands;
 
@@ -4866,7 +4866,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -4935,9 +4935,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          straCommandLine.add("exit");
 
-         //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+         //::i32 iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
 
-         int iExitCode = node()->pty2(straCommandLine);
+         ::i32 iExitCode = node()->pty2(straCommandLine);
 
          if (iExitCode != 0)
          {
@@ -5000,7 +5000,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   double system::luminance() const
+   ::f64 system::luminance() const
    {
 
       return m_dLuminance;
@@ -5821,7 +5821,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 //}
 
 
-::i64 system_id_topic(::platform::system* psystem, int iId, ::i64 llWparam, ::i64 llLparam)
+::i64 system_id_topic(::platform::system* psystem, ::i32 iId, ::i64 llWparam, ::i64 llLparam)
 {
 
    auto ll = psystem->call_id_topic((::enum_id) iId, llWparam, llLparam);
@@ -5839,7 +5839,7 @@ void node_did_finish_launching(::platform::system* psystem);
 void system_on_open_untitled_file(::platform::system* psystem);
 
 
-void system_on_open_file(::platform::system* psystem, const char* pszFile);
+void system_on_open_file(::platform::system* psystem, const_char_pointer pszFile);
 
 
 void node_will_finish_launching(::platform::system* psystem)
@@ -5866,7 +5866,7 @@ void system_on_open_untitled_file(::platform::system* psystem)
 }
 
 
-void system_on_open_file(::platform::system* psystem, const char* pszFile)
+void system_on_open_file(::platform::system* psystem, const_char_pointer pszFile)
 {
 
    psystem->on_open_file(pszFile);
@@ -5907,7 +5907,7 @@ void system_on_open_file(::platform::system* psystem, const char* pszFile)
 //
 //         //   //pfuture->wait(10_s);
 //
-//         //   int iDialogResult = pfuture->m_var;
+//         //   ::i32 iDialogResult = pfuture->m_var;
 //
 //         //   informationf("result " + as_string(iDialogResult));
 //

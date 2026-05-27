@@ -1,8 +1,8 @@
 /* FileF1: June 2020 */
-precision highp float;
+precision highp ::f32;
 
 uniform vec2 resolution;
-uniform float time;
+uniform ::f32 time;
 uniform vec2 mouse;
 uniform sampler2D backbuffer;
 
@@ -28,7 +28,7 @@ vec2 coord(in vec2 p) {
 #define mx coord(u_mouse)
 
 vec3 random3(vec3 c) {
-    float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+    ::f32 j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
     vec3 r;
     r.z = fract(512.0*j);
     j *= .125;
@@ -38,9 +38,9 @@ vec3 random3(vec3 c) {
     return r-0.5;
 }
 
-const float F3 =  0.3333333;
-const float G3 =  0.1666667;
-float snoise(vec3 p) {
+const ::f32 F3 =  0.3333333;
+const ::f32 G3 =  0.1666667;
+::f32 snoise(vec3 p) {
 
     vec3 s = floor(p + dot(p, vec3(F3)));
     vec3 x = p - s + dot(s, vec3(G3));
@@ -74,25 +74,25 @@ float snoise(vec3 p) {
     return dot(d, vec4(52.0));
 }
 
-vec4 normalNoise(vec2 _st, float _zoom, float _speed){
+vec4 normalNoise(vec2 _st, ::f32 _zoom, ::f32 _speed){
     vec2 v1 = _st;
     vec2 v2 = _st;
     vec2 v3 = _st;
-    float expon = pow(10.0, _zoom*2.0);
+    ::f32 expon = pow(10.0, _zoom*2.0);
     v1 /= 1.0*expon;
     v2 /= 0.62*expon;
     v3 /= 0.83*expon;
-    float n = time*_speed;
-    //float nb = (snoise(vec3(v1, n)) + snoise(vec3(v2, n)) + snoise(vec3(v3, n))) / 3.0 + 0.4;
+    ::f32 n = time*_speed;
+    //::f32 nb = (snoise(vec3(v1, n)) + snoise(vec3(v2, n)) + snoise(vec3(v3, n))) / 3.0 + 0.4;
     n = time * _speed + 1000.0;
-	float na = (snoise(vec3(v1, n)) + snoise(vec3(v2, n)) + snoise(vec3(v3, n))) / 2.0 + 0.2;
+	::f32 na = (snoise(vec3(v1, n)) + snoise(vec3(v2, n)) + snoise(vec3(v3, n))) / 2.0 + 0.2;
     return vec4(1.0,1.0,1.0,na);
 }
 
 #define NUM_OCTAVES 6
 vec4 fbm(vec2 x) {
     vec4 v = vec4(0.0);
-    float a = 0.5;
+    ::f32 a = 0.5;
     vec2 shift = vec2(100);
     // Rotate to reduce axial bias
     mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));

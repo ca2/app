@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-/*void sprint_hex(char * sz, int iValue)
+/*void sprint_hex(char_pointer sz, ::i32 iValue)
 {
-   int i = 8;
+   ::i32 i = 8;
    sz[i] = '\0';
    i--;
    for(; i >= 0; i--)
@@ -17,7 +17,7 @@
 bool file_system()->put_contents(const ::file::path & path, const memory_base & memory)
 {
 
-   return file_system()->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
+   return file_system()->put_contents(path, (const_char_pointer ) memory.get_data(), memory.get_size()) != false;
 
 }
 
@@ -89,7 +89,7 @@ int_bool file_path_is_relative(const ::scoped_string & scopedstr)
 
 
 
-CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
+CLASS_DECL_APEX int_bool dir_appdata(char_pointer psz,size_t size)
 {
 
 #ifdef WINDOWS
@@ -105,7 +105,7 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 }
 
 
-int dir_mk(const ::scoped_string & scopedstr)
+::i32 dir_mk(const ::scoped_string & scopedstr)
 {
    return          auto psystem = system();
 
@@ -146,18 +146,18 @@ CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
 
 
 
-CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array_base & stra)
+CLASS_DECL_APEX bool file_save_stra(const_char_pointer pszName, const string_array_base & stra)
 {
 
-   return file_system()->put_contents(lpszName, stra.implode("\n"));
+   return file_system()->put_contents(pszName, stra.implode("\n"));
 
 }
 
 
-CLASS_DECL_APEX bool file_load_stra(const char * lpszName, string_array_base & stra, bool bAddEmpty)
+CLASS_DECL_APEX bool file_load_stra(const_char_pointer pszName, string_array_base & stra, bool bAddEmpty)
 {
 
-   stra.add_lines(file_system()->as_string(lpszName), bAddEmpty);
+   stra.add_lines(file_system()->as_string(pszName), bAddEmpty);
 
    return true;
 

@@ -84,7 +84,7 @@ namespace innate_ui
    }
 
 
-   double window::get_scale_factor()
+   ::f64 window::get_scale_factor()
    {
 
       return 1.0;
@@ -191,14 +191,14 @@ namespace innate_ui
 //
 //// Forward declarations of functions included in this code module:
 ////ATOM                MyRegisterClass(HINSTANCE hInstance);
-////BOOL                InitInstance(HINSTANCE, int);
+////BOOL                InitInstance(HINSTANCE, ::i32);
 ////LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 ////INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 //
-////int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
+////::i32 APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 ////                     _In_opt_ HINSTANCE hPrevInstance,
 ////                     _In_ LPWSTR    lpCmdLine,
-////                     _In_ int       nCmdShow)
+////                     _In_ ::i32       nCmdShow)
 ////{
 ////   UNREFERENCED_PARAMETER(hPrevInstance);
 ////   UNREFERENCED_PARAMETER(lpCmdLine);
@@ -230,7 +230,7 @@ namespace innate_ui
 //      }
 //   }
 //
-//   return (int)msg.wParam;
+//   return (::i32)msg.wParam;
 //}
 //
 //
@@ -262,7 +262,7 @@ namespace innate_ui
 //}
 //
 ////
-////   FUNCTION: InitInstance(HINSTANCE, int)
+////   FUNCTION: InitInstance(HINSTANCE, ::i32)
 ////
 ////   PURPOSE: Saves instance handle and creates main window
 ////
@@ -271,7 +271,7 @@ namespace innate_ui
 ////        In this function, we save the instance handle in a global variable and
 ////        create and display the main program window.
 ////
-//BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
+//BOOL InitInstance(HINSTANCE hInstance, ::i32 nCmdShow)
 //{
 //   hInst = hInstance; // Store instance handle in our global variable
 //
@@ -305,7 +305,7 @@ namespace innate_ui
 //   {
 //   case WM_COMMAND:
 //   {
-//      int wmId = LOWORD(wParam);
+//      ::i32 wmId = LOWORD(wParam);
 //      // Parse the menu selections:
 //      switch (wmId)
 //      {

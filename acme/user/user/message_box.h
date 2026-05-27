@@ -41,7 +41,7 @@ namespace acme
          void display(::dialog * pdialog) override;
 
 
-         virtual void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) = 0;
+         virtual void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter) = 0;
 
          
          void set_dialog_result(const ::payload & payloadResult) override;

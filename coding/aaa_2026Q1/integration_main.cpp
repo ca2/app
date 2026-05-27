@@ -2008,7 +2008,7 @@ namespace coding
       // }
 
 
-      // void integration::release_package(const char* pszAppId, const char* pszTarget, const char* pszSource)
+      // void integration::release_package(const_char_pointer pszAppId, const_char_pointer pszTarget, const_char_pointer pszSource)
       // {
       //
       //    ::string strAppId(pszAppId);
@@ -2157,7 +2157,7 @@ namespace coding
       //    }
       //
       //    set["transfer_progress_function"] = ::transfer_progress_function(
-      //       [this, scopedstrAppId](double dRate, filesize done, filesize total)
+      //       [this, scopedstrAppId](::f64 dRate, filesize done, filesize total)
       //       {
       //
       //          if (total > 0)
@@ -2482,7 +2482,7 @@ namespace coding
       //
       //    information(strCommand);
       //
-      //    int iExitCode = node()->command_system(strCommand, tracefunction);
+      //    ::i32 iExitCode = node()->command_system(strCommand, tracefunction);
       //
       //    if (iExitCode != 0)
       //    {
@@ -2878,7 +2878,7 @@ namespace coding
       //
       //    m_pathLogFolder = pathLogFolder;
       //
-      //    int iExitCode = 0;
+      //    ::i32 iExitCode = 0;
       //
       //    string strStep;
       //
@@ -3257,7 +3257,7 @@ namespace coding
 //       }
 
 
-      // void integration::speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string & scopedstrText, int iExitCode)
+      // void integration::speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string & scopedstrText, ::i32 iExitCode)
       // {
       //
       //    ::string strMessage;
@@ -3450,7 +3450,7 @@ namespace coding
    // }
 
 
-// int integration::_do_task(::coding::task* ptask)
+// ::i32 integration::_do_task(::coding::task* ptask)
 // {
 //
 //    ::file_pointer pfileLog;
@@ -3477,7 +3477,7 @@ namespace coding
 //
 //    auto strCommand = ptask->m_strCommand;
 //
-//    int iExitCode = 0;
+//    ::i32 iExitCode = 0;
 //
 //    ploginterface->m_iIndex = -1;
 //

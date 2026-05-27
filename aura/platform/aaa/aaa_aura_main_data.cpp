@@ -26,7 +26,7 @@ aura_main_data::~aura_main_data()
 }
 
 
-void aura_main_data::system_construct(int argc, char** argv)
+void aura_main_data::system_construct(::i32 argc, char_pointer * argv)
 {
 
    m_argc = argc;
@@ -58,7 +58,7 @@ void aura_main_data::system_construct(int argc, char** argv)
 }
 
 
-void aura_main_data::system_construct(int argc, wchar_t** argv)
+void aura_main_data::system_construct(::i32 argc, wchar_t** argv)
 {
 
    m_argc = argc;
@@ -120,7 +120,7 @@ void aura_main_data::system_construct(os_local* poslocal, const ::e_display& edi
 #ifdef WINDOWS_DESKTOP
 
 
-void aura_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+void aura_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
 {
 
    m_hinstance = hinstance;
@@ -192,7 +192,7 @@ void aura_main_data::set_main_struct(const aura_main_struct & mainstruct)
 }
 
 
-string aura_main_data::get_arg(int i)
+string aura_main_data::get_arg(::i32 i)
 {
 
    if (m_wargv)

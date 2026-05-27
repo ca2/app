@@ -22,11 +22,11 @@ namespace image
 
       ~targeting();
 
-      int width() const;
+      ::i32 width() const;
 
-      int height() const;
+      ::i32 height() const;
 
-      int scan() const;
+      ::i32 scan() const;
 
       image32_t* data();
 
@@ -60,7 +60,7 @@ namespace image
 
       virtual void set_size(const ::i32_size & size);
       
-      virtual void set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride, bool bYSwap);
+      virtual void set_image_pixels(const ::image32_t* pimage32, ::i32 w, ::i32 h, ::i32 stride, bool bYSwap);
 
       virtual void on_image_pixels();
 

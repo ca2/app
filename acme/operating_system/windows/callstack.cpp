@@ -78,7 +78,7 @@ namespace platform
 {
 
 
-   int node::get_call_stack_default_frame_count()
+   ::i32 node::get_call_stack_default_frame_count()
    {
 
       return 62;
@@ -115,7 +115,7 @@ namespace platform
    }
 
 
-   void node::get_call_stack_frames(void** stack, int& frame_count)
+   void node::get_call_stack_frames(void** stack, ::i32& frame_count)
    {
 
       critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
@@ -134,16 +134,16 @@ namespace platform
 
 
 
-   string node::get_call_stack_trace(const ::scoped_string& scopedstrFormat, int iSkip, void* caller_address, int iCount)
+   string node::get_call_stack_trace(const ::scoped_string& scopedstrFormat, ::i32 iSkip, void* caller_address, ::i32 iCount)
    {
 
       critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
 
-      const int iMaximumFrameCount = 62; // does not support more then 62 frames of stackbacktrace
+      const ::i32 iMaximumFrameCount = 62; // does not support more then 62 frames of stackbacktrace
 
       void* stack[iMaximumFrameCount];
 
-      int frame_count = iMaximumFrameCount;
+      ::i32 frame_count = iMaximumFrameCount;
 
       get_call_stack_frames(stack, frame_count);
 
@@ -152,7 +152,7 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, int iSkip, void* caller_address, int iCount)
+   string node::get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string & scopedstrFormat, ::i32 iSkip, void* caller_address, ::i32 iCount)
    {
 
       critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
@@ -167,9 +167,9 @@ namespace platform
 
       //auto frames = CaptureStackBackTrace(0, iMaximumFramesToCapture, stack, NULL);
 
-      int iMaximumNameLength = 1024;
+      ::i32 iMaximumNameLength = 1024;
 
-      memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(char));
+      memory memory(sizeof(SYMBOL_INFO) + iMaximumNameLength * sizeof(::i8));
 
       SYMBOL_INFO* psymbolinfo = (SYMBOL_INFO*)memory.data();
 

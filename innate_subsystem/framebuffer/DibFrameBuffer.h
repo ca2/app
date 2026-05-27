@@ -42,20 +42,20 @@ namespace innate_subsystem
       DibFramebuffer();
       ~DibFramebuffer() override;
 
-      virtual void setColor(unsigned char reg, unsigned char green, unsigned char blue) override;
+      virtual void setColor(::u8 reg, ::u8 green, ::u8 blue) override;
       virtual void fillRect(const ::i32_rectangle &rectangleTarget, ::u32 color) override;
 
       virtual bool isEqualTo(const Framebuffer * pframebuffer) override;
 
       virtual bool copyFrom(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                            int srcX, int srcY) override;
+                            ::i32 srcX, ::i32 srcY) override;
       virtual bool copyFrom(const Framebuffer * pframebufferSource,
-                            int srcX, int srcY) override;
+                            ::i32 srcX, ::i32 srcY) override;
       virtual bool overlay(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                           int srcX, int srcY, const char *andMask) override;
-      virtual void move(const ::i32_rectangle &rectangleTarget, const int srcX, const int srcY) override;
+                           ::i32 srcX, ::i32 srcY, const_char_pointer andMask) override;
+      virtual void move(const ::i32_rectangle &rectangleTarget, const ::i32 srcX, const ::i32 srcY) override;
       virtual bool cmpFrom(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                           const int srcX, const int srcY) override;
+                           const ::i32 srcX, const ::i32 srcY) override;
 
       virtual ::i32_size getDimension() const override;
 
@@ -75,16 +75,16 @@ namespace innate_subsystem
       // got from a compatible window on object creation. This function can be call many times.
       void setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext);
 
-      unsigned char getBitsPerPixel() const override;
+      ::u8 getBitsPerPixel() const override;
 
-      virtual unsigned char getBytesPerPixel() const;
+      virtual ::u8 getBytesPerPixel() const;
 
       void *getBuffer() const override;
 
-      virtual void *getBufferPtr(int x, int y) const;
+      virtual void *getBufferPtr(::i32 x, ::i32 y) const;
 
-      int getBufferSize() const override;
-      int getBytesPerRow() const override;
+      ::i32 getBufferSize() const override;
+      ::i32 getBytesPerRow() const override;
 
       // This function copies a block of bits from a source DC (that has been used to create the
       // DIB section) to the DIB section.

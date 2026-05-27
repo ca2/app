@@ -25,8 +25,8 @@
 
 #define SAMPLE_SIZE 64
 #define SB_ENOUGH_REL_THRESHOLD  1024
-#define POSITIVE_SHORTCUT_THRESHOLD  (float)0.95
-#define NEGATIVE_SHORTCUT_THRESHOLD  (float)0.05
+#define POSITIVE_SHORTCUT_THRESHOLD  (::f32)0.95
+#define NEGATIVE_SHORTCUT_THRESHOLD  (::f32)0.05
 #define SYMBOL_CAT_ORDER  250
 #define NUMBER_OF_SEQ_CAT 4
 #define POSITIVE_CAT   (NUMBER_OF_SEQ_CAT-1)
@@ -34,9 +34,9 @@
 
 typedef struct
 {
-  unsigned char *charToOrderMap;     //[256] table use to find a char's order
-  char *precedenceMatrix;           //[SAMPLE_SIZE][SAMPLE_SIZE]; table to find a 2-char sequence's frequency
-  float  mTypicalPositiveRatio;     // = freqSeqs / totalSeqs 
+  ::u8 *charToOrderMap;     //[256] table use to find a ::i8's order
+  char_pointer precedenceMatrix;           //[SAMPLE_SIZE][SAMPLE_SIZE]; table to find a 2-::i8 sequence's frequency
+  ::f32  mTypicalPositiveRatio;     // = freqSeqs / totalSeqs 
   PRBool keepEnglishLetter;         //it says if this script contains latin letters
   const_char_pointer charsetName;
 } SequenceModel;
@@ -46,10 +46,10 @@ class nsSingleByteCharSetProber : public nsCharSetProber{
 public:
   nsSingleByteCharSetProber(SequenceModel *model){mModel = model; Reset();};
   const_char_pointer GetCharSetName() {return mModel->charsetName;};
-  nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
+  nsProbingState HandleData(const ::string & aBuf, PRunsigned ::i32 aLen);
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
-  float     GetConfidence(void);
+  ::f32     GetConfidence(void);
   void      SetOpion() {};
   PRBool KeepEnglishLetters() {return mModel->keepEnglishLetter;};
 
@@ -61,15 +61,15 @@ protected:
   nsProbingState mState;
   SequenceModel *mModel;
 
-  //char order of last character
-  unsigned char mLastOrder;
+  //::i8 order of last character
+  ::u8 mLastOrder;
 
-  PRunsigned int mTotalSeqs;
-  PRunsigned int mSeqCounters[NUMBER_OF_SEQ_CAT];
+  PRunsigned ::i32 mTotalSeqs;
+  PRunsigned ::i32 mSeqCounters[NUMBER_OF_SEQ_CAT];
 
-  PRunsigned int mTotalChar;
+  PRunsigned ::i32 mTotalChar;
   //characters that fall in our sampling range
-  PRunsigned int mFreqChar;
+  PRunsigned ::i32 mFreqChar;
 };
 
 

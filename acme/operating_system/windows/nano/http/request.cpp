@@ -202,8 +202,8 @@ namespace windows
                      if (contentLength > 0)
                      {
 
-                        transferprogressfunction((double)defer_get->get_memory_response()->size() /
-                           (double)contentLength, defer_get->get_memory_response()->size(),
+                        transferprogressfunction((::f64)defer_get->get_memory_response()->size() /
+                           (::f64)contentLength, defer_get->get_memory_response()->size(),
                            contentLength);
                      }
                      else
@@ -226,7 +226,7 @@ namespace windows
                //   //printf("%s", pszOutBuffer); 
                //   DWORD wmWritten;
                //   bool fr = WriteFile(hFile, pszOutBuffer, dwSize, &wmWritten, NULL);
-               //   int n = GetLastError();
+               //   ::i32 n = GetLastError();
                ////}
                // Free the memory allocated to the buffer.            
                //delete[] pszOutBuffer;

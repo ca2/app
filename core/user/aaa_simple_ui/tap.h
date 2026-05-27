@@ -11,7 +11,7 @@ namespace simple_ui
    public:
 
       bool                 m_bAutoStockIconPenWidth;
-      double               m_dStockIconPenWidth;
+      ::f64               m_dStockIconPenWidth;
       e_stock_icon         m_estockicon;
       bool                 m_bDown;
       bool                 m_bMouseMove;

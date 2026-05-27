@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_brdf_convolution_map_vert[] = R"vert_text(// fullscreenquad_vs.hlsl
+const ::i8 g_psz_brdf_convolution_map_vert[] = R"vert_text(// fullscreenquad_vs.hlsl
 // Converted from GLSL (version 330 core) to HLSL for DirectX 11
 
 struct VSInput

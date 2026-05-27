@@ -45,7 +45,7 @@ namespace graphics3d
 
    }
 
-   void point_light::defer_animate(float Δt)
+   void point_light::defer_animate(::f32 Δt)
    {
 
       if (!m_panimation)
@@ -93,5 +93,5 @@ END_GPU_PROPERTIES()
 BEGIN_GPU_PROPERTIES(::gpu::point_light_push_constants)
 GPU_PROPERTY("position", ::gpu::e_type_seq4)
 GPU_PROPERTY("color", ::gpu::e_type_seq4)
-GPU_PROPERTY("radius", ::gpu::e_type_float)
+GPU_PROPERTY("radius", ::gpu::e_type_f32)
 END_GPU_PROPERTIES()

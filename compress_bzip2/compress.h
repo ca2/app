@@ -30,15 +30,15 @@ Exmaple:
 #include "GZipHelper.h"
 void main()
 {
-char plainText[]="Plain text here";
+::i8 plainText[]="Plain text here";
 CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
 LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-int len=gzip.Length;      // Length is length of zipped data;
+::i32 len=gzip.Length;      // Length is length of zipped data;
 
 CGZIP2A plain(pgzip,len);  // do decompressing here
 
-char *pplain=plain.psz;    // psz is plain data pointer
-int  aLen=plain.Length;    // Length is length of unzipped data.
+char_pointer pplain=plain.psz;    // psz is plain data pointer
+::i32  aLen=plain.Length;    // Length is length of unzipped data.
 }
 //////////////////////////////////////////////////////////////////////////////
 */
@@ -60,9 +60,9 @@ namespace compress_bzip2
    public:
 
 
-      int m_iBlockSize;
-      int m_iVerbosity;
-      int m_iWorkFactor;
+      ::i32 m_iBlockSize;
+      ::i32 m_iVerbosity;
+      ::i32 m_iWorkFactor;
 
 
       compress();
@@ -72,7 +72,7 @@ namespace compress_bzip2
       void initialize(::particle * pparticle) override;
 
 
-      void set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor);
+      void set_bzip2_parameters(::i32 iBlockSize, ::i32 iVerbosity, ::i32 iWorkFactor);
 
 
       void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;

@@ -118,8 +118,8 @@ static void xf_draw_screen_scaled(xfContext* xfc, int x, int y, int w, int h)
    Picture primaryPicture;
    XRenderPictureAttributes pa;
    XRenderPictFormat* picFormat;
-   double xScalingFactor;
-   double yScalingFactor;
+   ::f64 xScalingFactor;
+   ::f64 yScalingFactor;
    int x2;
    int y2;
    rdpSettings* settings = xfc->context.settings;
@@ -136,8 +136,8 @@ static void xf_draw_screen_scaled(xfContext* xfc, int x, int y, int w, int h)
       return;
    }
 
-   xScalingFactor = settings->DesktopWidth / (double)xfc->scaledWidth;
-   yScalingFactor = settings->DesktopHeight / (double)xfc->scaledHeight;
+   xScalingFactor = settings->DesktopWidth / (::f64)xfc->scaledWidth;
+   yScalingFactor = settings->DesktopHeight / (::f64)xfc->scaledHeight;
    XSetFillStyle(xfc->display, xfc->gc, FillSolid);
    XSetForeground(xfc->display, xfc->gc, 0);
    /* Black out possible space between desktop and window borders */

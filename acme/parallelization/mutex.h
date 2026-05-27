@@ -25,7 +25,7 @@ public:
 //#if defined(MUTEX_COND_TIMED) || defined(MUTEX_NAMED_FD)
 //
 //   pthread_t               m_thread;
-//   int                     m_count;
+//   ::i32                     m_count;
 //
 //#endif
 //
@@ -35,12 +35,12 @@ public:
 //   // not implemented (err=38) on android-19
 //#elif defined(MUTEX_NAMED_FD)
 //
-//   int                     m_iFd;
+//   ::i32                     m_iFd;
 //
 //#elif defined(MUTEX_NAMED_VSEM)
 //
 //   key_t                   m_key;
-//   int                     m_semid;
+//   ::i32                     m_semid;
 //
 //#endif
 //
@@ -54,11 +54,11 @@ public:
 //#elif defined(MUTEX_NAMED_POSIX)
 //   mutex(enum_create_new ecreatenew = create_new, const ::scoped_string & scopedstr = nullptr, const_char_pointer pstrName,sem_t * psem,bool bOwner = true);
 //#elif defined(MUTEX_NAMED_FD)
-//   mutex(enum_create_new ecreatenew, const_char_pointer pstrName, int iFd, bool bOwner = true);
+//   mutex(enum_create_new ecreatenew, const_char_pointer pstrName, ::i32 iFd, bool bOwner = true);
 //#elif defined(MUTEX_NAMED_VSEM)
-//   mutex(enum_create_new ecreatenew, const_char_pointer pstrName,key_t key, int semid, bool bOwner = true);
+//   mutex(enum_create_new ecreatenew, const_char_pointer pstrName,key_t key, ::i32 semid, bool bOwner = true);
 //#endif
-   //mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer lpszName ARG_SEC_ATTRS_DEF);
+   //mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer pszName ARG_SEC_ATTRS_DEF);
    //mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);
    mutex();
    ~mutex() override;
@@ -82,13 +82,13 @@ public:
    //virtual bool already_exists();
 
 
-   ///static ::pointer < ::mutex >open_mutex(::matter * pmatter, const_char_pointer lpszName) {return ::open_mutex(pmatter, lpszName);}
+   ///static ::pointer < ::mutex >open_mutex(::matter * pmatter, const_char_pointer pszName) {return ::open_mutex(pmatter, pszName);}
 
 
 };
 
 
-CLASS_DECL_ACME void wait_until_mutex_does_not_exist(const_char_pointer lpszName);
+CLASS_DECL_ACME void wait_until_mutex_does_not_exist(const_char_pointer pszName);
 
 
 

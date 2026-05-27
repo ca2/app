@@ -5,26 +5,26 @@
 inline  void           from_string(::ansi_character & ch, const_char_pointer psz);
 inline  void           from_string(::wide_character & ch, const_char_pointer psz);
 
-inline  void           from_string(char & i, const_char_pointer psz);
-inline  void           from_string(short & i, const_char_pointer psz);
-inline  void           from_string(int & i, const_char_pointer psz);
+inline  void           from_string(::i8 & i, const_char_pointer psz);
+inline  void           from_string(::i16 & i, const_char_pointer psz);
+inline  void           from_string(::i32 & i, const_char_pointer psz);
 inline  void           from_string(::i64 & i, const_char_pointer psz);
-inline  void           from_string(int & i, int iBase, const_char_pointer psz);
-inline  void           from_string(::i64 & i, int iBase, const_char_pointer psz);
-inline  void           from_string(unsigned char & i, const_char_pointer psz);
-inline  void           from_string(unsigned short & i, const_char_pointer psz);
+inline  void           from_string(::i32 & i, ::i32 iBase, const_char_pointer psz);
+inline  void           from_string(::i64 & i, ::i32 iBase, const_char_pointer psz);
+inline  void           from_string(::u8 & i, const_char_pointer psz);
+inline  void           from_string(::u16 & i, const_char_pointer psz);
 inline  void           from_string(::u32 & i, const_char_pointer psz);
 inline  void           from_string(::u64 & i, const_char_pointer psz);
-inline  void           from_string(::u32 & i, int iBase, const_char_pointer psz);
-inline  void           from_string(::u64 & i, int iBase, const_char_pointer psz);
+inline  void           from_string(::u32 & i, ::i32 iBase, const_char_pointer psz);
+inline  void           from_string(::u64 & i, ::i32 iBase, const_char_pointer psz);
 
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 inline  void           from_string(long & l, const_char_pointer psz);
-inline  void           from_string(long & l, int iBase, const_char_pointer psz);
+inline  void           from_string(long & l, ::i32 iBase, const_char_pointer psz);
 #endif
 
-inline  void           from_string(float & f, const_char_pointer psz);
-inline  void           from_string(double & d, const_char_pointer psz);
+inline  void           from_string(::f32 & f, const_char_pointer psz);
+inline  void           from_string(::f64 & d, const_char_pointer psz);
 
 
 inline  void           from_string(::ansi_character * sz, const_char_pointer psz);

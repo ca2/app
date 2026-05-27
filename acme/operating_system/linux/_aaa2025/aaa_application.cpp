@@ -74,14 +74,14 @@ namespace acme
 
       throw ::exception(todo);
 
-      /*      char pszModuleFilePath[MAX_PATH + 1];
+      /*      ::i8 pszModuleFilePath[MAX_PATH + 1];
 
             GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
 
 
-            unsigned int dw;
+            ::u32 dw;
 
-            unsigned int dwResSize = GetFileVersionInfoSize(
+            ::u32 dwResSize = GetFileVersionInfoSize(
                pszModuleFilePath,
 
                &dw);
@@ -89,7 +89,7 @@ namespace acme
 
             if(dwResSize > 0)
             {
-               LPVOID pdata = aaa_primitive_new unsigned char[dwResSize];
+               LPVOID pdata = aaa_primitive_new ::u8[dwResSize];
 
                if(GetFileVersionInfo(
                   pszModuleFilePath,
@@ -99,10 +99,10 @@ namespace acme
                   pdata))
 
                {
-                  unsigned int cbTranslate;
+                  ::u32 cbTranslate;
                   struct LANGANDCODEPAGE {
-                     unsigned short wLanguage;
-                     unsigned short wCodePage;
+                     ::u16 wLanguage;
+                     ::u16 wCodePage;
                   } *pTranslate;
 
 
@@ -117,11 +117,11 @@ namespace acme
 
                   string strKey;
                   //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-                  for(int i=0; i < 1; i++ )
+                  for(::i32 i=0; i < 1; i++ )
                   {
-                     char * psz;
+                     char_pointer psz;
 
-                     unsigned int uSize;
+                     ::u32 uSize;
 
                      strKey.formatf(
                         TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
@@ -143,7 +143,7 @@ namespace acme
                      // Retrieve file description for language and code page "i".
                      VerQueryValue(pdata,
 
-                        (char *) (const char *) strKey,
+                        (char_pointer ) (const_char_pointer ) strKey,
                         (LPVOID *)&psz,
 
                         &uiSize);
@@ -155,7 +155,7 @@ namespace acme
                      return strVersion;
                   }
                }
-               delete [] (unsigned char *) pdata;
+               delete [] (::u8 *) pdata;
 
             }
       */
@@ -242,7 +242,7 @@ namespace acme
 //      //m_pimpl->m_bRun = false;
 //      //LNX_THREAD(m_pimpl->::thread_pointer::m_p)->m_bRun = false;
 //
-//      //int iRet = ::platform::application::term_instance();
+//      //::i32 iRet = ::platform::application::term_instance();
 //
 //      //::ca2pointer<::ca2::application>::destroy();
 //
@@ -259,7 +259,7 @@ namespace acme
 
 
       // Advanced: handling messages sent to message filter hook
-      bool application::ProcessMessageFilter(int code, LPMESSAGE pMsg)
+      bool application::ProcessMessageFilter(::i32 code, LPMESSAGE pMsg)
 
       {
          return  ::win::thread::ProcessMessageFilter(code, pMsg);
@@ -354,14 +354,14 @@ namespace acme
 //      // the memory.
 //
 //      // get path of executable
-//   /*   char szBuff[_MAX_PATH];
-//      unsigned int dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//   /*   ::i8 szBuff[_MAX_PATH];
+//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //         throw ::exception(aura_exception());*/
 //
 //      /*
-//      char * pszExt = ::PathFindExtension(szBuff);
+//      char_pointer pszExt = ::PathFindExtension(szBuff);
 
 //      ASSERT(scopedstrExt != nullptr);
 
@@ -393,7 +393,7 @@ namespace acme
 //
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      unsigned long long tt;
+//      ::u64 tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
 //      point->tv_sec = (long)tt / 1000000;
@@ -412,19 +412,19 @@ namespace acme
 //   {
 //#if (defined(SOLARIS8) || defined(SOLARIS))
 //      {
-//         static std::collection::map<string, char *> vmap;
+//         static std::collection::map<string, char_pointer > vmap;
 //         if (vmap.find(payload) != vmap.end())
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = aaa_primitive_new char[payload.get_length() + 1 + value.get_length() + 1];
+//         vmap[::payload] = aaa_primitive_new ::i8[payload.get_length() + 1 + value.get_length() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }
 //#elif defined _WIN32
 //      {
 //         string slask = payload + "=" + value;
-//         _putenv( (const char *)slask);
+//         _putenv( (const_char_pointer )slask);
 //      }
 //#else
 //      setenv(payload, value, 1);

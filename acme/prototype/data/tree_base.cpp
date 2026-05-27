@@ -172,7 +172,7 @@ namespace data
    void tree_base::_erase(::data::tree_item_base_ptr_array & itemptra)
    {
 
-      for(int i = 0; i < itemptra.get_count(); i++)
+      for(::i32 i = 0; i < itemptra.get_count(); i++)
       {
 
          _erase(itemptra[i]);
@@ -288,7 +288,7 @@ namespace data
    ::collection::index tree_base::_get_proper_item_index(::data::tree_item_base *pitemParam, ::collection::index * piLevel, ::collection::index * piCount)
    {
 
-      int iIndex = 0;
+      ::i32 iIndex = 0;
 
       ::collection::count iCount = 0;
 

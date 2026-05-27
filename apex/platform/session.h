@@ -142,7 +142,7 @@ namespace apex
 
       //virtual void enum_display_monitors();
 
-      ////void construct(::particle * pparticle, int iPhase) override;
+      ////void construct(::particle * pparticle, ::i32 iPhase) override;
 
       //virtual ::collection::index get_main_monitor(::i32_rectangle* prectangle = nullptr);
 
@@ -203,7 +203,7 @@ namespace apex
       //virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
 
       // Long PhRESSing time
-      // time in ::times that a pressing is considered a double click
+      // time in ::times that a pressing is considered a ::f64 click
       virtual ::u32 get_Long_PhRESSing_time() override;
 
       //virtual void defer_initialize_user_presence();

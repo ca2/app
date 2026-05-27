@@ -53,7 +53,7 @@ paged_memory::paged_memory(memory_container * pcontainer, const void * pdata, me
 }
 
 
-paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
+paged_memory::paged_memory(memory_container * pcontainer, ::f64 dAllocationRateUp, ::u32 nAllocFlags)
 {
 
    __UNREFERENCED_PARAMETER(nAllocFlags);
@@ -88,10 +88,10 @@ paged_memory::~paged_memory()
 }
 
 
-//unsigned char * paged_memory::detach()
+//::u8 * paged_memory::detach()
 //{
 
-//   unsigned char * i32_point          = storage_begin();
+//   ::u8 * i32_point          = storage_begin();
 
 //   if(m_iOffset > 0)
 //   {
@@ -118,23 +118,23 @@ paged_memory::~paged_memory()
 //}
 
 
-unsigned char * paged_memory::impl_alloc(memsize dwAllocation)
+::u8 * paged_memory::impl_alloc(memsize dwAllocation)
 {
 
-   return (unsigned char *) ::paged_allocate((size_t)dwAllocation);
+   return (::u8 *) ::paged_allocate((size_t)dwAllocation);
 
 }
 
 
-unsigned char * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
+::u8 * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
-   return (unsigned char *) ::paged_reallocate(pdata, (size_t)size(), (size_t)dwAllocation);
+   return (::u8 *) ::paged_reallocate(pdata, (size_t)size(), (size_t)dwAllocation);
 
 }
 
 
-void paged_memory::impl_free(unsigned char * pdata)
+void paged_memory::impl_free(::u8 * pdata)
 {
 
    return ::paged_free(pdata);

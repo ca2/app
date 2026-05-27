@@ -117,7 +117,7 @@
 //      //return m_pimpl->open(ad, bind_ad, skip_socks);
 //      //string strIp = ad.get_display_number();
 //
-//      //int iPort = ad.get_service_number();
+//      //::i32 iPort = ad.get_service_number();
 //
 //      //information() << "open address = " << strIp << ":" << iPort;
 //
@@ -185,7 +185,7 @@
 ////      }
 ////      SetIsClient(); // client because we connect
 ////      SetClientRemoteAddress(ad);
-////      int n = 0;
+////      ::i32 n = 0;
 ////      if(bind_ad.get_service_number() != 0)
 ////      {
 ////         bind(s,bind_ad.sa(),bind_ad.sa_len());
@@ -224,10 +224,10 @@
 ////      {
 ////#ifdef _WIN32
 ////         // check error code that means a connect is in progress
-////         int iError = ::WSAGetLastError();
+////         ::i32 iError = ::WSAGetLastError();
 ////         if(iError == WSAEWOULDBLOCK || iError == 0)
 ////#else
-////         int iError = Errno;
+////         ::i32 iError = Errno;
 ////         if(iError == EINPROGRESS)
 ////#endif
 ////         {
@@ -363,7 +363,7 @@
 //   }
 //
 //
-////   void tcp_socket_impl::OnResolved(int atom,::networking::address * a)
+////   void tcp_socket_impl::OnResolved(::i32 atom,::networking::address * a)
 ////   {
 ////
 ////      auto paddressdepartment = ::networking::address_department();
@@ -399,11 +399,11 @@
 ////         SetCloseAndDelete();
 ////      }
 ////   }
-//   int tcp_socket_impl::recv(void * buf, int nBufSize)
+//   ::i32 tcp_socket_impl::recv(void * buf, ::i32 nBufSize)
 //   {
 //      return -1;
 ////
-////      int n = nBufSize;
+////      ::i32 n = nBufSize;
 ////
 ////#ifdef HAVE_OPENSSL
 ////
@@ -425,7 +425,7 @@
 ////            if (m_psslcontext->m_ssl == nullptr)
 ////            {
 ////
-////               error() <<"tcp_socket_impl::recv(ssl)" << (int)n << "SSL context is nullptr";
+////               error() <<"tcp_socket_impl::recv(ssl)" << (::i32)n << "SSL context is nullptr";
 ////
 ////               information() << "tcp_socket_impl::recv ssl SSL context is nullptr(0)";
 ////
@@ -438,11 +438,11 @@
 ////            else
 ////            {
 ////
-////               n = SSL_read(m_psslcontext->m_ssl, buf, (int)nBufSize);
+////               n = SSL_read(m_psslcontext->m_ssl, buf, (::i32)nBufSize);
 ////
 ////               if (n <= 0)
 ////               {
-////                  n = SSL_get_error(m_psslcontext->m_ssl, (int)n);
+////                  n = SSL_get_error(m_psslcontext->m_ssl, (::i32)n);
 ////                  switch (n)
 ////                  {
 ////                  case SSL_ERROR_NONE:
@@ -493,7 +493,7 @@
 ////
 ////
 ////
-////                  error() <<"tcp_socket_impl::recv(ssl) " <<  (int)n <<  " abnormal value from SSL_read";
+////                  error() <<"tcp_socket_impl::recv(ssl) " <<  (::i32)n <<  " abnormal value from SSL_read";
 ////
 ////
 ////
@@ -519,11 +519,11 @@
 ////#endif // HAVE_OPENSSL
 ////      {
 ////#if defined(__APPLE__) || defined(SOLARIS)
-////         //         n = (int) recv(get_socket_id(), buf, nBufSize, SO_NOSIGPIPE);
-////         n = (int) ::recv(get_socket_id(),buf,nBufSize,0);
+////         //         n = (::i32) recv(get_socket_id(), buf, nBufSize, SO_NOSIGPIPE);
+////         n = (::i32) ::recv(get_socket_id(),buf,nBufSize,0);
 ////
 ////#else
-////         n = ::recv(get_socket_id(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
+////         n = ::recv(get_socket_id(),(char_pointer )buf,(::i32)nBufSize,MSG_NOSIGNAL);
 ////#endif
 ////         if(n == -1)
 ////         {
@@ -538,7 +538,7 @@
 ////         }
 ////         else if(!n)
 ////         {
-//////            int iError = get_error();
+//////            ::i32 iError = get_error();
 //////            #ifdef WINDOWS
 //////            if (iError == WSAEWOULDBLOCK)
 //////            #else
@@ -567,7 +567,7 @@
 ////
 ////
 ////
-////            error() <<"tcp_socket_impl::recv " << (int)n << " abnormal value from recv";
+////            error() <<"tcp_socket_impl::recv " << (::i32)n << " abnormal value from recv";
 ////
 ////
 ////
@@ -582,10 +582,10 @@
 //   }
 //
 //
-//   int tcp_socket_impl::read(void * buf, int nBufSize)
+//   ::i32 tcp_socket_impl::read(void * buf, ::i32 nBufSize)
 //   {
 //
-//      int n = (int) nBufSize;
+//      ::i32 n = (::i32) nBufSize;
 //
 //      n = recv(buf,nBufSize);
 //
@@ -625,7 +625,7 @@
 //      else if(n < 0)
 //      {
 //
-//         error() <<"tcp_socket_impl::read " << (int)n << " abnormal value from rcv";
+//         error() <<"tcp_socket_impl::read " << (::i32)n << " abnormal value from rcv";
 //
 //      }
 //
@@ -637,9 +637,9 @@
 //   void tcp_socket_impl::OnRead()
 //   {
 //
-//      char * buf = (char *) m_memRead.get_data();
+//      char_pointer buf = (char_pointer ) m_memRead.get_data();
 //
-//      int n = 0;
+//      ::i32 n = 0;
 //
 //      try
 //      {
@@ -718,7 +718,7 @@
 //      //}
 //      //if(is_connecting())
 //      //{
-//      //   int err = SoError();
+//      //   ::i32 err = SoError();
 //
 //      //   // don't reset connecting flag on error here, we want the OnConnectFailed timeout later on
 //      //   if(!err) // ok
@@ -778,7 +778,7 @@
 //
 //      //   repeat = false;
 //
-//      //   int n = (int)try_write(poutput->Buf(), poutput->Len());
+//      //   ::i32 n = (::i32)try_write(poutput->Buf(), poutput->Len());
 //
 //      //   if(n > 0)
 //      //   {
@@ -833,10 +833,10 @@
 //   }
 //
 //
-//   int tcp_socket_impl::try_write(const void * buf,int len)
+//   ::i32 tcp_socket_impl::try_write(const void * buf,::i32 len)
 //   {
 //
-//      int n = 0;
+//      ::i32 n = 0;
 //
 ////
 ////#ifdef HAVE_OPENSSL
@@ -844,16 +844,16 @@
 ////      if(IsSSL())
 ////      {
 ////
-////         n = SSL_write(m_psslcontext->m_ssl,buf,(int)len);
+////         n = SSL_write(m_psslcontext->m_ssl,buf,(::i32)len);
 ////
 ////         if(n == -1)
 ////         {
-////            int errnr = SSL_get_error(m_psslcontext->m_ssl,(int)n);
+////            ::i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(::i32)n);
 ////            if(errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE)
 ////            {
 ////               if(errnr == SSL_ERROR_SYSCALL)
 ////               {
-////                  int iError = errno;
+////                  ::i32 iError = errno;
 ////
 ////                  const ::scoped_string & scopedstrError = strerror(iError);
 ////                  information() << pszError;
@@ -876,7 +876,7 @@
 ////            SetCloseAndDelete(true);
 ////            SetFlushBeforeClose(false);
 ////            SetLost();
-////            int errnr = SSL_get_error(m_psslcontext->m_ssl,(int)n);
+////            ::i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(::i32)n);
 ////            const_char_pointer errbuf = ERR_error_string(errnr,nullptr);
 ////            information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
 ////            //throw ::exception(io_exception(errbuf));
@@ -888,16 +888,16 @@
 ////      {
 //////         retry:
 ////#if defined(__APPLE__)
-////         int iSocket = get_socket_id();
-////         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
+////         ::i32 iSocket = get_socket_id();
+////         n = (::i32) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 ////#elif defined(SOLARIS)
-////         n = ::send(get_socket_id(),(const_char_pointer )buf,(int)len,0);
+////         n = ::send(get_socket_id(),(const_char_pointer )buf,(::i32)len,0);
 ////#else
-////         n = ::send(get_socket_id(),(const_char_pointer )buf,(int)len,MSG_NOSIGNAL);
+////         n = ::send(get_socket_id(),(const_char_pointer )buf,(::i32)len,MSG_NOSIGNAL);
 ////#endif
 ////         if(n == -1)
 ////         {
-////            int iError = Errno;
+////            ::i32 iError = Errno;
 ////            // normal error codes:
 ////            // WSAEWOULDBLOCK
 ////            //       EAGAIN or EWOULDBLOCK
@@ -927,7 +927,7 @@
 ////            //   struct timeval tv;
 ////            //   tv.tv_sec = 1;
 ////            //   tv.tv_usec = 0;
-////            //   ::select((int) (get_socket_id() + 1), nullptr, &w, &e, &tv);
+////            //   ::select((::i32) (get_socket_id() + 1), nullptr, &w, &e, &tv);
 ////            //   goto retry;
 ////            //}
 ////
@@ -943,14 +943,14 @@
 ////         }
 ////         set_connection_last_operation();
 ////      }
-//      return (int)n;
+//      return (::i32)n;
 //   }
 //
 //
-//   void tcp_socket_impl::buffer(const void * pdata,int len)
+//   void tcp_socket_impl::buffer(const void * pdata,::i32 len)
 //   {
 //
-//      const_char_pointer buf = (const_char_pointer )pdata;
+//      const_char_pointer pszBuffer = (const_char_pointer )pdata;
 //
 //      memsize ptr = 0;
 //
@@ -959,12 +959,12 @@
 //      while(::comparison::lt(ptr, len))
 //      {
 //         // buf/len => pbuf/sz
-//         int space = 0;
+//         ::i32 space = 0;
 //         
 //         if(m_obuf_top && (space = m_obuf_top -> Space()) > 0)
 //         {
 //            const_char_pointer pbuf = buf + ptr;
-//            int sz = (int)(len - ptr);
+//            ::i32 sz = (::i32)(len - ptr);
 //            if(space >= sz)
 //            {
 //               m_obuf_top -> add(pbuf,sz);
@@ -998,14 +998,14 @@
 //   /*
 //      void tcp_socket_impl::write(const ::scoped_string & scopedstr)
 //      {
-//         write(str,  (int) str.length());
+//         write(str,  (::i32) str.length());
 //      }
 //   */
 //
 //   void tcp_socket_impl::write(const void * pdata,memsize len)
 //   {
 //
-//      //const unsigned char * buf = (const unsigned char *)pdata;
+//      //const ::u8 * buf = (const ::u8 *)pdata;
 //
 //      //if(!Ready() && !is_connecting())
 //      //{
@@ -1043,20 +1043,20 @@
 //
 //      //   warning() <<"write: Attempt to write to a non-connected socket, will be sent on connect"; // warning
 //
-//      //   buffer(buf,(int) len);
+//      //   buffer(buf,(::i32) len);
 //      //   return;
 //      //}
 //      //if(m_obuf_top)
 //      //{
-//      //   buffer(buf,(int) len);
+//      //   buffer(buf,(::i32) len);
 //      //   return;
 //      //}
 //      //else
 //      //{
-//      //   int n = (int)try_write(buf,(int) len);
-//      //   if(n >= 0 && n < (int)len)
+//      //   ::i32 n = (::i32)try_write(buf,(::i32) len);
+//      //   if(n >= 0 && n < (::i32)len)
 //      //   {
-//      //      buffer(buf + n,(int) (len - n));
+//      //      buffer(buf + n,(::i32) (len - n));
 //      //   }
 //      //}
 //      //// if ( data in buffer || !IsConnected )
@@ -1089,7 +1089,7 @@
 //
 //   //void tcp_socket_impl::OnSocks4Connect()
 //   //{
-//   //   char request[1000];
+//   //   ::i8 request[1000];
 //   //   memory_set(request,0,sizeof(request));
 //   //   request[0] = 4; // socks v4
 //   //   request[1] = 1; // command code: CONNECT
@@ -1156,7 +1156,7 @@
 //   //   case 2:
 //   //      if(GetInputLength() > 1)
 //   //      {
-//   //         ibuf.read((char *)&m_socks4_dstport,2);
+//   //         ibuf.read((char_pointer )&m_socks4_dstport,2);
 //   //         m_socks4_state = 3;
 //   //      }
 //   //      else
@@ -1167,7 +1167,7 @@
 //   //   case 3:
 //   //      if(GetInputLength() > 3)
 //   //      {
-//   //         ibuf.read((char *)&m_socks4_dstip,4);
+//   //         ibuf.read((char_pointer )&m_socks4_dstip,4);
 //   //         SetSocks4(false);
 //
 //   //         switch(m_socks4_cd)
@@ -1237,7 +1237,7 @@
 ////      if(!m_ssl_ctx)
 //      //    {
 //
-//      int iError = 0;
+//      ::i32 iError = 0;
 //
 ////retry_init_ssl_client:
 //
@@ -1272,7 +1272,7 @@
 //      //      if (m_strTlsHostName.has_character())
 //      //      {
 //
-//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const_char_pointer )m_strTlsHostName);
+//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char_pointer )(const_char_pointer )m_strTlsHostName);
 //
 //      //      }
 //
@@ -1280,7 +1280,7 @@
 //
 //      //   }
 //
-//      //   m_psslcontext->m_sbio = BIO_new_socket((int)get_socket_id(),BIO_NOCLOSE);
+//      //   m_psslcontext->m_sbio = BIO_new_socket((::i32)get_socket_id(),BIO_NOCLOSE);
 //
 //      //   if(!m_psslcontext->m_sbio)
 //      //   {
@@ -1351,7 +1351,7 @@
 //      //   }
 //      //   SSL_set_app_data2(m_psslcontext->m_ssl, this);
 //      //   //SSL_set_mode(m_psslcontext->m_ssl,SSL_MODE_AUTO_RETRY);
-//      //   m_psslcontext->m_sbio = BIO_new_socket((int)get_socket_id(),BIO_NOCLOSE);
+//      //   m_psslcontext->m_sbio = BIO_new_socket((::i32)get_socket_id(),BIO_NOCLOSE);
 //      //   if(!m_psslcontext->m_sbio)
 //      //   {
 //      //      information() << "m_sbio is nullptr";
@@ -1384,7 +1384,7 @@
 //
 //      //   }
 //
-//      //   int r = SSL_connect(m_psslcontext->m_ssl);
+//      //   ::i32 r = SSL_connect(m_psslcontext->m_ssl);
 //
 //      //   if(r > 0)
 //      //   {
@@ -1471,7 +1471,7 @@
 //      //      const_char_pointer error_str = ERR_error_string(error, nullptr);
 //      //      warning() <<"could not SSL_connect: " << error_str;
 //
-//      //      int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
+//      //      ::i32 iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
 //
 //      //      //if(m_spsslclientcontext.is_set() &&
 //      //      if (m_psslcontext->m_pclientcontext->m_psslcontext != nullptr &&
@@ -1539,7 +1539,7 @@
 //      //      else
 //      //      {
 //
-//      //         char msg[1024];
+//      //         ::i8 msg[1024];
 //
 //      //         ERR_error_string_n(ERR_get_error(), msg, sizeof(msg));
 //
@@ -1563,8 +1563,8 @@
 //      //}
 //      //else // server
 //      //{
-//      //   int r = SSL_accept(m_psslcontext->m_ssl);
-//      //   int iError = Errno;
+//      //   ::i32 r = SSL_accept(m_psslcontext->m_ssl);
+//      //   ::i32 iError = Errno;
 //      //   if(r > 0)
 //      //   {
 //      //      SetSSLNegotiate(false);
@@ -1689,12 +1689,12 @@
 ////      SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS) ;
 ////      SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
 ////      // session atom
-////      int iSetSessionResult = -1;
+////      ::i32 iSetSessionResult = -1;
 ////      ::u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
 ////      if (context.get_length())
-////         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, minimum((::u32)context.get_length(), uSessionIdMaxLen));
+////         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const ::u8 * )(const_char_pointer )context, minimum((::u32)context.get_length(), uSessionIdMaxLen));
 ////      else
-////         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
+////         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const ::u8 * )"--is_empty--", 9);
 ////
 ////      if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
 ////      {
@@ -1864,13 +1864,13 @@
 ////
 ////      {
 ////         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-////         int i;
+////         ::i32 i;
 ////
 ////         auto psystem = system();
 ////
-////         int cnt = sizeof(psystem->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
+////         ::i32 cnt = sizeof(psystem->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
 ////         m_ticketkeya.set_size(cnt);
-////         int j;
+////         ::i32 j;
 ////         for (i = 0; i < cnt; ++i)
 ////         {
 ////            j = (SSL_SESSION_TICKET_KEY_SIZE * i);
@@ -1903,9 +1903,9 @@
 //   //   SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
 //   //   // session atom
 //   //   if (context.get_length())
-//   //      SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, (::u32)context.get_length());
+//   //      SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const ::u8 * )(const_char_pointer )context, (::u32)context.get_length());
 //   //   else
-//   //      SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
+//   //      SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const ::u8 * )"--is_empty--", 9);
 //
 //   //   /* Load our keys and certificates*/
 //   //   if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, certfile, SSL_FILETYPE_PEM)))
@@ -1925,7 +1925,7 @@
 //   //}
 //
 //
-//   //int tcp_socket_SSL_password_cb(char *buf,int num,int rwflag,void *userdata)
+//   //::i32 tcp_socket_SSL_password_cb(char_pointer buf,::i32 num,::i32 rwflag,void *userdata)
 //   //{
 //
 //   //   __UNREFERENCED_PARAMETER(rwflag);
@@ -1945,7 +1945,7 @@
 //
 //   //   strcpy(buf, strPassword);
 //
-//   //   return (int)strPassword.length();
+//   //   return (::i32)strPassword.length();
 //
 //   //}
 //
@@ -1964,7 +1964,7 @@
 ////
 ////      }
 ////
-////      int n;
+////      ::i32 n;
 ////
 ////      SetNonblocking(true);
 ////
@@ -1985,9 +1985,9 @@
 ////
 ////      }
 ////
-////      char tmp[1000];
+////      ::i8 tmp[1000];
 ////
-////      if (!Lost() && (n = (int) ::recv(get_socket_id(), tmp, 1000, 0)) >= 0)
+////      if (!Lost() && (n = (::i32) ::recv(get_socket_id(), tmp, 1000, 0)) >= 0)
 ////      {
 ////
 ////         if (n)
@@ -2047,7 +2047,7 @@
 //   }
 //
 //
-//   void tcp_socket_impl::OnRawData(char * buf_in, memsize len)
+//   void tcp_socket_impl::OnRawData(char_pointer buf_in, memsize len)
 //   {
 //
 //      socket::OnRawData(buf_in,len);
@@ -2125,7 +2125,7 @@
 //   }
 //
 //
-////   void tcp_socket_impl::OnOptions(int family,int type,int protocol,socket_id s)
+////   void tcp_socket_impl::OnOptions(::i32 family,::i32 type,::i32 protocol,socket_id s)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(family);
@@ -2151,8 +2151,8 @@
 //   bool tcp_socket_impl::SetTcpNodelay(bool x)
 //   {
 //#ifdef TCP_NODELAY
-//      int optval = x ? 1 : 0;
-//      if(setsockopt(get_socket_id(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
+//      ::i32 optval = x ? 1 : 0;
+//      if(setsockopt(get_socket_id(),IPPROTO_TCP,TCP_NODELAY,(char_pointer )&optval,sizeof(optval)) == -1)
 //      {
 //
 //
@@ -2230,7 +2230,7 @@
 //      if(is_connecting())
 //      {
 //
-//         //int iError = this->socket_handler()->m_iSelectErrno;
+//         //::i32 iError = this->socket_handler()->m_iSelectErrno;
 //
 //         //if(iError == ETIMEDOUT)
 //         //{
@@ -2243,9 +2243,9 @@
 //         //   //m_estatus = status_failed;
 //         //}
 //
-//         //int iGetConnectionRetry = GetMaximumConnectionRetryCount();
+//         //::i32 iGetConnectionRetry = GetMaximumConnectionRetryCount();
 //
-//         //int iGetConnectionRetries = GetConnectionRetryCount();
+//         //::i32 iGetConnectionRetries = GetConnectionRetryCount();
 //
 //         //if (Socks4())
 //         //{
@@ -2258,13 +2258,13 @@
 //         //           iGetConnectionRetries < iGetConnectionRetry))
 //         //{
 //
-//         //   const int nBufSize = 1024;
+//         //   const ::i32 nBufSize = 1024;
 //
-//         //   char buf[nBufSize];
+//         //   ::i8 buf[nBufSize];
 //
 //         //   socket_id iGetSocket = get_socket_id();
 //
-//         //   int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+//         //   ::i32 n = ::recv(iGetSocket, (char_pointer )buf, (::i32)nBufSize, MSG_OOB);
 //
 //         //   information() << "got " << n << " bytes of Out of Band Data";
 //
@@ -2283,7 +2283,7 @@
 //      }
 //      //// %! exception doesn't always mean something bad happened, this code should be reworked
 //      //// errno valid here?
-//      //int err = SoError();
+//      //::i32 err = SoError();
 //
 //      //fatal() <<"exception on select " << err << bsd_socket_error(err);
 //
@@ -2294,7 +2294,7 @@
 //#endif // _WIN32
 //
 //
-//   int tcp_socket_impl::Protocol()
+//   ::i32 tcp_socket_impl::Protocol()
 //   {
 //
 //      //return IPPROTO_TCP;
@@ -2363,7 +2363,7 @@
 ////      if(cert != nullptr && strlen(common_name) > 0)
 ////      {
 ////
-////         char data[256];
+////         ::i8 data[256];
 ////
 ////         if((topic = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(topic,NID_commonName,data,256) > 0)
 ////         {
@@ -2420,9 +2420,9 @@
 ////         if (!ok)
 ////         {
 ////
-////            int i;
+////            ::i32 i;
 ////
-////            int san_names_nb = -1;
+////            ::i32 san_names_nb = -1;
 ////
 ////            STACK_OF(GENERAL_NAME) *san_names = nullptr;
 ////

@@ -84,13 +84,13 @@ namespace acme
 //       bool                                            m_bGraphicsAndWindowingSystemInitialized;
 //
 //       ::int_sz* m_pintstringLanguageResourceMap;
-//       int                              m_iMatterFromHttpCache;
+//       ::i32                              m_iMatterFromHttpCache;
 //
-//       const char* m_pszMain;
+//       const_char_pointer m_pszMain;
 //
 //       bool                                                  m_bDarkMode;
 //       ::color::color                                        m_colorBackground;
-//       double                                                m_dLuminance;
+//       ::f64                                                m_dLuminance;
 //       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
 //
 //       ::pointer < ::micro::user >                           m_pmicrouser;
@@ -105,7 +105,7 @@ namespace acme
 //       class ::time                              m_timeStart;
 //       class ::time                              m_timeAfterApplicationFirstRequest;
 //
-//       int                                       m_iExitCode = 0;
+//       ::i32                                       m_iExitCode = 0;
 //       enum_trace_level                          m_etracelevelMinimum;
 //       ::pointer < ::platform::system_factory >      m_psystemfactory;
 //       // END FROM ::main (Now main2)
@@ -154,7 +154,7 @@ namespace acme
 //       class ::time                                                        m_timeFileListingCache;
 //       //critical_section                                                  m_csEnumText;
 //       //string_map < i64_map < string > >                                 m_mapEnumToText;
-//       //string_map < string_map < long long > >                                 m_mapTextToEnum;
+//       //string_map < string_map < ::i64 > >                                 m_mapTextToEnum;
 //
 //
 //       ::pointer<::internet::internet>                                   m_pinternet;
@@ -223,10 +223,10 @@ namespace acme
 #ifdef _DEBUG
 
 
-      long long increment_reference_count() override;
+      ::i64 increment_reference_count() override;
 
 
-      long long decrement_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
 #endif
@@ -346,7 +346,7 @@ namespace acme
       }
 
 
-      virtual unsigned int crc32(unsigned int uCrc, const ::block & block);
+      virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
 
       virtual void create_session(::collection::index iEdge = 0);
@@ -380,7 +380,7 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
+      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -461,7 +461,7 @@ namespace acme
       virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
-      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
+      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 
 
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
@@ -484,7 +484,7 @@ namespace acme
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 
 
    //virtual void on_initialize_window_object();
@@ -497,9 +497,9 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(::i64)e] = psz;
 //
-//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (::i64)e;
 //
 //   }
 
@@ -510,7 +510,7 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[::type<e>().name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(::i64)e];
 //
 //   }
 
@@ -521,7 +521,7 @@ namespace acme
 //
 //      critical_section_lock lock(&m_csEnumText);
 //
-//      long long iValue;
+//      ::i64 iValue;
 //
 //      if (m_mapTextToEnum[::type<e>().name()].lookup(scopedstr, iValue))
 //      {
@@ -554,7 +554,7 @@ namespace acme
 //   inline string enum_text(const base_enum < ENUM, edefault >& b)
 //   {
 //
-//      return enum_text(b.m_evalue, (long long)(ENUM)b);
+//      return enum_text(b.m_evalue, (::i64)(ENUM)b);
 //
 //   }
 
@@ -568,7 +568,7 @@ namespace acme
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(const ::scoped_string & scopedstr);
-      static inline ::atom atom(long long i);
+      static inline ::atom atom(::i64 i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);
@@ -576,17 +576,17 @@ namespace acme
       virtual void check_exit();
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle);
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
       virtual ::pointer<::regular_expression::context> get_pcre_context();
-      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual void system_id_update(long long iUpdate, long long iPayload);
+      virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
       
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -693,7 +693,7 @@ namespace acme
       virtual ::file::path local_get_matter_path();
       virtual ::file::path local_get_matter_path(string strMatter);
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      virtual void install_progress_add_up(::i32 iAddUp = 1);
 
 
       virtual ::string get_application_server_name();
@@ -701,7 +701,7 @@ namespace acme
 
       virtual ::color::color background_color() const;
 
-      virtual double luminance() const;
+      virtual ::f64 luminance() const;
 
       virtual void set_background_color(const ::color::color & color);
       
@@ -709,9 +709,9 @@ namespace acme
       virtual bool dark_mode() const;
       virtual void on_application_dark_mode_change();
 
-//      virtual int get_simple_ui_darkness();
+//      virtual ::i32 get_simple_ui_darkness();
 
-//      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+//      virtual void set_simple_ui_darkness(::i32 iWeatherDarkness);
 
       virtual void set_dark_mode(bool bDark);
 
@@ -730,13 +730,13 @@ namespace acme
       
       //::pointer < ::message_box_payload > & realize(::pointer < ::message_box_payload > & pmessagebox);
       
-      //::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box_payload > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box_payload > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box_payload > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 
@@ -819,20 +819,20 @@ namespace acme
 //       //virtual string install_get_version() override;
 //       //virtual void install_set_version(const ::scoped_string & scopedstrVersion) override;
 //       //virtual string install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override;
-//       //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
-//       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
+//       //virtual ::i32 install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
+//       //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override;
 //
 //       //virtual ::install::canvas * install_create_canvas();
 //       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-//       //virtual int install_canvas_increment_mode();
+//       //virtual ::i32 install_canvas_increment_mode();
 //
 //       //virtual string install_get_platform() override;
 //       //virtual void install_set_platform(const ::scoped_string & scopedstrPlatform) override;
 //       //virtual string install_get_version() override;
 //       //virtual void install_set_version(const ::scoped_string & scopedstrVersion) override;
 //       //virtual string install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override;
-//       //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
-//       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
+//       //virtual ::i32 install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
+//       //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override;
 //
 //       //virtual ::pointer<::factory::factory> & node_factory() override;
 //
@@ -864,8 +864,8 @@ namespace acme
 //       virtual string crypto_md5_text(const ::scoped_string & scopedstr) override;
 //
 //
-//       //virtual pointer< ::extended::future < ::conversation > > _message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
-//       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
+//       //virtual pointer< ::extended::future < ::conversation > > _message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+//       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
 //
 //
 //       //virtual void create_html();
@@ -878,7 +878,7 @@ namespace acme
 //
 //       //virtual bool initialize_application() override;
 //
-//       //virtual int exit_instance();
+//       //virtual ::i32 exit_instance();
 //       //virtual bool destroy();
 //
 //       //virtual void destroy() override;
@@ -909,7 +909,7 @@ namespace acme
 //       //virtual void on_request(::request * prequest) override;
 //
 //
-//       //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr);
+//       //virtual ::u32 crc32(::u32 dwPrevious, const ::scoped_string & scopedstr);
 //
 //
 //       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
@@ -1070,7 +1070,7 @@ namespace acme
 //       //virtual ::acme::library * get_library(const ::scoped_string & scopedstrLibrary, bool bOpenCa2 = false) override;
 //
 //
-//       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
+//       //virtual ::u32 os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
 //
 //
 //       //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;
@@ -1122,17 +1122,17 @@ namespace acme
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
-//       static inline ::atom atom(long long i);
+//       static inline ::atom atom(::i64 i);
 //       static inline ::atom_space & atom();
 //       inline ::atom atom(const ::payload & payload);
 //       inline ::atom atom(const property & prop);*/
 //
 //
-//       //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
-//       //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::string & iModuleName, const ::scoped_string & scopedstrFormat, va_list list) override;
-//       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
+//       //virtual ::i32 _001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1,::i32 i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
+//       //virtual ::i32 _debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFilename, ::i32 iLinenumber, const ::string & iModuleName, const ::scoped_string & scopedstrFormat, va_list list) override;
+//       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine) override;
 //
-//       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
+//       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine) override;
 //
 //
 //       //virtual void initialize_log(const ::scoped_string & scopedstrId) override;
@@ -1172,7 +1172,7 @@ namespace acme
 // //virtual bool map_application_library(const ::scoped_string & scopedstrLibrary) override;
 //
 //
-// //virtual void install_progress_add_up(int iAddUp = 1) override;
+// //virtual void install_progress_add_up(::i32 iAddUp = 1) override;
 //
 // //virtual void create_session(::collection::index iEdge = 0) override;
 //
@@ -1183,8 +1183,8 @@ namespace acme
 // //virtual void on_request(::request * prequest) override;
 //
 // //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-// //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
-// //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
+// //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount);
+// //virtual ::i32 pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount);
 //
 //
 // //virtual string get_system_platform() override;
@@ -1213,8 +1213,8 @@ namespace acme
 //       //virtual void defer_check_openweather_city_list();
 //
 //       //virtual openweather_city * openweather_find_city(string strQuery);
-//       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-//       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+//       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, ::i64 & iId, ::f64 & dLat, ::f64 & dLon);
+//       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, ::i64 & iId, ::f64 & dLat, ::f64 & dLon, bool bPrefix);
 //
 // //#ifdef __ANDROID__
 // ////#pragma message("at macos??")
@@ -1229,7 +1229,7 @@ namespace acme
 // //
 // //      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
 // //
-//       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+//       //virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //
 //       //virtual bool initialize_native_window1();
 //
@@ -1246,7 +1246,7 @@ namespace acme
 //       //virtual bool set_standalone_setting(string str, string strSetting) override;
 //
 //
-//       //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
+//       //virtual void on_event(::u64 u, ::particle * pparticle) override;
 //
 //
 //       virtual void on_initial_frame_position(::user::frame_interaction * pframe);
@@ -1257,7 +1257,7 @@ namespace acme
 //
 //
 //
-//       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
+//       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 //
 //
 //       //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
@@ -1286,7 +1286,7 @@ namespace acme
 //       //virtual void term_system() override;
 //
 //
-//       //virtual int main();
+//       //virtual ::i32 main();
 //       ///virtual void InitApplication() override;
 //
 //       //virtual void init() override;
@@ -1323,7 +1323,7 @@ namespace acme
 //
 //       //      virtual ::pointer<::handler>handler();
 //
-//       //virtual int main();
+//       //virtual ::i32 main();
 //
 //       //virtual void on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override;
 //
@@ -1353,7 +1353,7 @@ namespace acme
 //
 //
 //
-//       //      unsigned int guess_code_page(const ::scoped_string & scopedstr);
+//       //      ::u32 guess_code_page(const ::scoped_string & scopedstr);
 //
 // //#ifdef UNIVERSAL_WINDOWS
 // //
@@ -1427,12 +1427,12 @@ namespace acme
 //       //virtual ::pointer<::aura::session>on_create_session() override;
 //       //virtual ::install::canvas * install_create_canvas() override;
 //       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
-//       //virtual int install_canvas_increment_mode() override;
+//       //virtual ::i32 install_canvas_increment_mode() override;
 //
 //
 //
-//       //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor);
-//       //virtual bool adju(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma);
+//       //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor);
+//       //virtual bool adju(::collection::index iMonitor, ::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma);
 //       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle) override;
 //
 //       //virtual ::collection::count get_monitor_count() override;
@@ -1451,7 +1451,7 @@ namespace acme
 //
 //       virtual void _001AddPacks(string_to_string & base64map, string & str);
 //
-//       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+//       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 //
 //       //void windowing_send(const ::procedure & procedure) override;
 //       //void windowing_post(const ::procedure & procedure) override;

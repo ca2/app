@@ -12,14 +12,14 @@ class simple_array
 public:
 
    T* m_p;
-   int m_c;
-   int m_cAlloc;
+   ::i32 m_c;
+   ::i32 m_cAlloc;
 
 
    simple_array() { m_p = nullptr; m_c = 0; m_cAlloc = 0; }
    ~simple_array() { if (m_p) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p); m_p = nullptr; m_c = 0; m_cAlloc = 0; }
 
-   void allocate_for_size(int s)
+   void allocate_for_size(::i32 s)
    {
 
       if (s > m_cAlloc)

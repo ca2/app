@@ -35,19 +35,19 @@
 //        AD || BD
 //  AC || CB || 0
 
-//  where A and B are the high and low short words of V1,
-//  C and D are the short words of V2, AD is the product of
+//  where A and B are the high and low ::i16 words of V1,
+//  C and D are the ::i16 words of V2, AD is the product of
 //  A and D, and X || Y is (X << 16) + Y.
 //  Since the algorithm is programmed in C, we need to be
 //  careful not to overflow.
 // */
 
 
-// void mul64(unsigned long long v1, unsigned long long v2, unsigned long long & hi, unsigned long long & lo)
+// void mul64(::u64 v1, ::u64 v2, ::u64 & hi, ::u64 & lo)
 // {
-//   unsigned long long a, ca;
-//    unsigned long long b, d;
-//    unsigned long long x, y;
+//   ::u64 a, ca;
+//    ::u64 b, d;
+//    ::u64 x, y;
 
 //   a = (v1 >> 32) & 0xffffffff;
 //   b = v1 & 0xffffffff;
@@ -64,48 +64,48 @@
 //   hi += a * ca;                  /* AC */
 // }
 
-// void mul64(long long v1, long long v2, long long & hi, unsigned long long & lo)
+// void mul64(::i64 v1, ::i64 v2, ::i64 & hi, ::u64 & lo)
 // {
 //    if(v1 > 0)
 //    {
 //       if(v2 > 0)
 //       {
-//          mul64((unsigned long long) v1, (unsigned long long) v2, (unsigned long long &) hi, lo);
+//          mul64((::u64) v1, (::u64) v2, (::u64 &) hi, lo);
 //       }
 //       else
 //       {
-//          mul64((unsigned long long) v1, (unsigned long long) -(long long)v2, (unsigned long long &) hi, lo);
+//          mul64((::u64) v1, (::u64) -(::i64)v2, (::u64 &) hi, lo);
 //          hi = -hi;
-//          lo = (unsigned long long)-(long long)lo;
+//          lo = (::u64)-(::i64)lo;
 //       }
 //    }
 //    else
 //    {
 //       if(v2 > 0)
 //       {
-//          mul64((unsigned long long) -v1, (unsigned long long) v2, (unsigned long long &) hi, lo);
+//          mul64((::u64) -v1, (::u64) v2, (::u64 &) hi, lo);
 //          hi = -hi;
-//          lo = (unsigned long long)-(long long)lo;
+//          lo = (::u64)-(::i64)lo;
 //       }
 //       else
 //       {
-//          mul64((unsigned long long) -(long long)v1, (unsigned long long) -(long long)v2, (unsigned long long &) hi, lo);
+//          mul64((::u64) -(::i64)v1, (::u64) -(::i64)v2, (::u64 &) hi, lo);
 //       }
 //    }
 // }
 
 
-// // http://stackoverflow.com/questions/1870158/unsigned int-128-bit-division-on-64-bit-machine
+// // http://stackoverflow.com/questions/1870158/::u32-128-bit-division-on-64-bit-machine
 //    //64t hi, lo;
 //    //32t div;
 
 //    //64t rhi = hi/div;
 //    //64t rlo = hi % div + lo /div;
-// unsigned long long div128_64(unsigned long long hi, unsigned long long lo, unsigned long long div, unsigned long long & remainder)
+// ::u64 div128_64(::u64 hi, ::u64 lo, ::u64 div, ::u64 & remainder)
 // {
 //    for(size_t i = 1; i <= 64; ++i)
 //    {
-//       unsigned long long t = long long(hi) >> 63;
+//       ::u64 t = ::i64(hi) >> 63;
 //       // t is all ones if x(63) = 1
 //       // Shift the hi|lo left one bit
 //       hi = (hi << 1) | (lo >> 63);
@@ -121,28 +121,28 @@
 //    return lo;
 // }
 
-// long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder)
+// ::i64 div128_64(::i64 hi, ::u64 lo, ::i64 div, ::u64 & remainder)
 // {
 //    if(hi > 0)
 //    {
 //       if(div > 0)
 //       {
-//          return div128_64((unsigned long long) hi, lo, (unsigned long long) div, remainder);
+//          return div128_64((::u64) hi, lo, (::u64) div, remainder);
 //       }
 //       else
 //       {
-//          return -(long long)div128_64((unsigned long long) hi, lo, (unsigned long long) -(long long)div, remainder);
+//          return -(::i64)div128_64((::u64) hi, lo, (::u64) -(::i64)div, remainder);
 //       }
 //    }
 //    else
 //    {
 //       if(div > 0)
 //       {
-//          return -(long long)div128_64((unsigned long long) -(long long)hi, (unsigned long long)-(long long)lo, (unsigned long long) div, remainder);
+//          return -(::i64)div128_64((::u64) -(::i64)hi, (::u64)-(::i64)lo, (::u64) div, remainder);
 //       }
 //       else
 //       {
-//          return div128_64((unsigned long long) -(long long)hi, (unsigned long long)-(long long)lo, (unsigned long long) -(long long)div, remainder);
+//          return div128_64((::u64) -(::i64)hi, (::u64)-(::i64)lo, (::u64) -(::i64)div, remainder);
 //       }
 //    }
 // }
@@ -151,21 +151,21 @@
 
 // /** the two 32 bit parts of an 64 bit integer */
 // typedef struct  {
-//     unsigned int l : 32;
-//     unsigned int h : 32;
+//     ::u32 l : 32;
+//     ::u32 h : 32;
 // } ::u64_unsigned_int;
 
 // /**
 //  * determine the msb of a value in O(log log n)
 //  * @author Sean Eron Anderson
 //  */
-// inline unsigned int msb(unsigned long long value)
+// inline ::u32 msb(::u64 value)
 // {
-//     const int MAX_LOGLOG = 6;
-//     const unsigned long long BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
-//     const unsigned int EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
-//     unsigned int r = 0;
-//     for (int i = MAX_LOGLOG-1; i >= 0; i--)  {
+//     const ::i32 MAX_LOGLOG = 6;
+//     const ::u64 BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
+//     const ::u32 EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
+//     ::u32 r = 0;
+//     for (::i32 i = MAX_LOGLOG-1; i >= 0; i--)  {
 //         if (value & BIT_LL[i])  {
 //             value >>= EXP_LL[i];
 //             r |= EXP_LL[i];
@@ -176,16 +176,16 @@
 
 
 
-// static unsigned long long const g_base = 1ULL<<32;
-// static unsigned long long const g_maxdiv = (g_base-1)*g_base + (g_base-1);
+// static ::u64 const g_base = 1ULL<<32;
+// static ::u64 const g_maxdiv = (g_base-1)*g_base + (g_base-1);
 
-// unsigned long long my_multdiv_64(unsigned long long a, unsigned long long b, unsigned long long c)
+// ::u64 my_multdiv_64(::u64 a, ::u64 b, ::u64 c)
 // {
 //     // First get the easy thing
 //     if(c == 0)
 //       return 0;
 
-//     unsigned long long res = (a/c) * b + (a%c) * (b/c);
+//     ::u64 res = (a/c) * b + (a%c) * (b/c);
 //     a %= c;
 //     b %= c;
 //     // Are we done?
@@ -196,31 +196,31 @@
 //         return res + (a*b/c);
 //     // Now 0 < a < c, 0 < b < c, c >= 1ULL
 //     // Normalize
-//     unsigned long long norm = g_maxdiv/c;
+//     ::u64 norm = g_maxdiv/c;
 //     c *= norm;
 //     a *= norm;
 //     // split into 2 digits
-//     unsigned long long ah = a / g_base, al = a % g_base;
-//     unsigned long long bh = b / g_base, bl = b % g_base;
-//     unsigned long long ch = c / g_base, cl = c % g_base;
+//     ::u64 ah = a / g_base, al = a % g_base;
+//     ::u64 bh = b / g_base, bl = b % g_base;
+//     ::u64 ch = c / g_base, cl = c % g_base;
 //     // compute the product
-//     unsigned long long p0 = al*bl;
-//     unsigned long long u1 = p0 / g_base + al*bh;
+//     ::u64 p0 = al*bl;
+//     ::u64 u1 = p0 / g_base + al*bh;
 //     p0 %= g_base;
-//     unsigned long long u2 = u1 / g_base + ah*bh;
+//     ::u64 u2 = u1 / g_base + ah*bh;
 //     u1 = (u1 % g_base) + ah * bl;
 //     u2 += u1 / g_base;
 //     u1 %= g_base;
 //     // u2 holds 2 digits, u1 and p0 one
 
 //     // first digit is easy, not null only in case of overflow
-// //    unsigned long long q2 = u2 / c;
+// //    ::u64 q2 = u2 / c;
 //     u2 = u2 % c;
 
 //     // second digit, estimate
-//     unsigned long long q1 = u2 / ch;
+//     ::u64 q1 = u2 / ch;
 //     // and now adjust
-//     unsigned long long rhat = u2 % ch;
+//     ::u64 rhat = u2 % ch;
 //     // the loop can be unrolled, it will be executed at most twice for
 //     // even g_bases -- three times for odd one -- due to the normalisation above
 //     while (q1 >= g_base || (rhat < g_base && q1*cl > rhat*g_base+u1)) {
@@ -233,7 +233,7 @@
 //     u1 = u1 % g_base + (u2 % g_base) * g_base;
 
 //     // now u1 hold 2 digits, p0 one and u2 is to be ignored
-//     unsigned long long q0 = u1 / ch;
+//     ::u64 q0 = u1 / ch;
 //     rhat = u1 % ch;
 //     while (q0 >= g_base || (rhat < g_base && q0*cl > rhat*g_base+p0)) {
 //         q0--;
@@ -246,14 +246,14 @@
 
 
 // //
-// long long _stdcall muldiv64(long long number, long long numerator, long long denominator)
+// ::i64 _stdcall muldiv64(::i64 number, ::i64 numerator, ::i64 denominator)
 // {
 //    return my_multdiv_64(number, numerator, denominator);
 
-// //   long long hi;
-// //   unsigned long long lo;
+// //   ::i64 hi;
+// //   ::u64 lo;
 // //   mul64(number, numerator, hi, lo);
-// //   unsigned long long remainder;
+// //   ::u64 remainder;
 // //   return div128_64(hi, lo, denominator, remainder);
 // }
 
@@ -264,12 +264,12 @@
 //  *     Xscaled = (Xstart * Multiplier) SHR rshift
 //  * Uses 128 bit intermediate result
 //  */
-// long long _stdcall mulshr64(long long operant, long long multiplier, uchar rshift)
+// ::i64 _stdcall mulshr64(::i64 operant, ::i64 multiplier, uchar rshift)
 // {
 //    return (operant * multiplier) >> rshift;
 // /*   // Declare 128bit storage
 //    struct{
-//       unsigned long DW[4];
+//       ulong DW[4];
 //    }var128;
 
 //    // Save combined sign on stack
@@ -279,13 +279,13 @@
 //       pushfd
 //    }
 
-//    // Take absolute values because algorithm is for unsigned int only
+//    // Take absolute values because algorithm is for ::u32 only
 //    operant      = ABS64(operant);
 //    multiplier   = ABS64(multiplier);
 
 //    _asmxxx{
 //       // Test rshift for >128
-//       mov      al, unsigned char ptr[rshift]
+//       mov      al, ::u8 ptr[rshift]
 //       cmp      al, 80
 //       jl      shiftOK
 //       popfd                           // cleanup stack
@@ -363,7 +363,7 @@
 //       // Divide: var128 = var128 / (2^rshift)
 //       //
 //       xor      eax, eax
-//       mov      al, unsigned char ptr[rshift]
+//       mov      al, ::u8 ptr[rshift]
 //       cmp      al, 0
 //       jz      applySign
 
@@ -373,7 +373,7 @@
 //       mov      cl, 0x20
 //       div      cl
 //       mov      cl, al                  // Store number of 32 blocks in counter
-//       mov      char ptr[rshift], ah      // Store remaining number of shifts
+//       mov      ::i8 ptr[rshift], ah      // Store remaining number of shifts
 //       // Test shift not equal or larger than 4*32 already done at the begining
 //       // Do dword shift cl times (maximum = 3)
 //       xor      ch, ch
@@ -401,7 +401,7 @@
 
 // bitShift:
 //       // Do multiple precision bitshift
-//       mov      cl, unsigned char ptr[rshift]
+//       mov      cl, ::u8 ptr[rshift]
 //       mov      eax, dword ptr[edi+4]
 //       shrd   dword ptr[edi], eax, cl
 //       mov      eax, dword ptr[edi+8]

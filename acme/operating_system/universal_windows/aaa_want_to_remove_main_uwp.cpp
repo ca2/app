@@ -4,10 +4,10 @@
 #include "acme/operating_system/_application.h"
 
 
-CLASS_DECL_ACME int main_uwp(Array < String^ >^ stra, const ::scoped_string & scopedstrCommandLine)
+CLASS_DECL_ACME ::i32 main_uwp(Array < String^ >^ stra, const ::scoped_string & scopedstrCommandLine)
 {
 
-   //int iStatus = -1;
+   //::i32 iStatus = -1;
 
    //::aura_main_struct mainstruct = {};
 

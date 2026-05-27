@@ -45,7 +45,7 @@ namespace experience
       bool                                         m_bUseNc;
 
       comparable_array < enum_button >             m_ebuttonaHide;
-      int                                          m_iIndex;
+      ::i32                                          m_iIndex;
       bool                                         m_bFullScreenOnZoom;
       bool                                         m_bInitialFramePosition;
          
@@ -189,7 +189,7 @@ namespace experience
       void FrameWnd(::user::interaction * pframewindow);
       bool Start();
 
-      void Setframe_Style(int nStyle);
+      void Setframe_Style(::i32 nStyle);
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 

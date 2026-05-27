@@ -66,7 +66,7 @@ namespace subsystem
 ////       }
 //   }
 //
-//   void SocketIPv4::connect(const ::scoped_string & scopedstrHost, unsigned short port)
+//   void SocketIPv4::connect(const ::scoped_string & scopedstrHost, ::u16 port)
 //   {
 //      m_pparticleThis->connect(scopedstrHost, port);
 //      //SocketAddressIPv4 address(scopedstrHost, port);
@@ -95,11 +95,11 @@ namespace subsystem
 //      // m_isBound = false;
 //   }
 //
-//   int SocketIPv4::available()
+//   ::i32 SocketIPv4::available()
 //   {
 //      return m_pparticleThis->available();
-//      // int result;
-//      // int err = ::ioctlsocket(m_socket, FIONREAD, reinterpret_cast<u_long*>(&result));
+//      // ::i32 result;
+//      // ::i32 err = ::ioctlsocket(m_socket, FIONREAD, reinterpret_cast<u_long*>(&result));
 //      // if (err != 0)
 //      //    return 0;
 //      // return result;
@@ -156,7 +156,7 @@ namespace subsystem
 //      return m_pparticleThis->isBound();
 //   }
 //
-//   void SocketIPv4::listen(int backlog)
+//   void SocketIPv4::listen(::i32 backlog)
 //   {
 //      //if (::listen(m_socket, backlog) == SOCKET_ERROR) {
 //        // throw SocketException();
@@ -204,7 +204,7 @@ namespace subsystem
 ////
 ////       // Set local and peer addresses for new socket
 ////       struct sockaddr_in addr;
-////       int addrlen = sizeof(struct sockaddr_in);
+////       ::i32 addrlen = sizeof(struct sockaddr_in);
 ////       if (getsockname(socket, (struct sockaddr *)&addr, &addrlen) == 0) {
 ////          m_localAddr = new SocketAddressIPv4(addr);
 ////       }
@@ -216,7 +216,7 @@ namespace subsystem
 ////
 ////    SOCKET SocketIPv4::getAcceptedSocket(struct sockaddr_in *addr)
 ////    {
-////       int addrlen = sizeof(struct sockaddr_in);
+////       ::i32 addrlen = sizeof(struct sockaddr_in);
 ////       fd_set afd;
 ////
 ////       timeval timeout;
@@ -231,7 +231,7 @@ namespace subsystem
 ////          // FIXME: The select() and accept() function can provoke an system
 ////          // exception, if it allows by project settings and closesocket() has alredy
 ////          // been called.
-////          int ret = select((int)m_socket + 1, &afd, NULL, NULL, &timeout);
+////          ::i32 ret = select((::i32)m_socket + 1, &afd, NULL, NULL, &timeout);
 ////
 ////          if (m_isClosed || ret == SOCKET_ERROR) {
 ////             throw SocketException();
@@ -250,10 +250,10 @@ namespace subsystem
 ////       return result;
 ////    }
 //
-//   int SocketIPv4::send(const char *data, int size, int flags)
+//   ::i32 SocketIPv4::send(const_char_pointer data, ::i32 size, ::i32 flags)
 //   {
 //      return m_pparticleThis->send(data, size, flags);
-//      // int result;
+//      // ::i32 result;
 //      //
 //      // result = ::send(m_socket, data, size, flags);
 //      //
@@ -264,10 +264,10 @@ namespace subsystem
 //      // return result;
 //   }
 //
-//   int SocketIPv4::recv(char *buffer, int size, int flags)
+//   ::i32 SocketIPv4::recv(char_pointer buffer, ::i32 size, ::i32 flags)
 //   {
 //      return m_pparticleThis->recv(buffer, size, flags);
-//      // int result;
+//      // ::i32 result;
 //      //
 //      // result = ::recv(m_socket, buffer, size, flags);
 //      //
@@ -315,17 +315,17 @@ namespace subsystem
 //   }
 //
 //   /* Auxiliary */
-//   void SocketIPv4::setSocketOptions(int level, int name, void *value, int len)
+//   void SocketIPv4::setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len)
 //   {
-//      // if (setsockopt(m_socket, level, name, (char*)value, len) == SOCKET_ERROR) {
+//      // if (setsockopt(m_socket, level, name, (char_pointer )value, len) == SOCKET_ERROR) {
 //      //    throw SocketException();
 //      // }
 //      m_pparticleThis->setSocketOptions(level, name, value, len);
 //   }
 //
-//   void SocketIPv4::getSocketOptions(int level, int name, void *value, int *len)
+//   void SocketIPv4::getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len)
 //   {
-//      // if (getsockopt(m_socket, level, name, (char*)value, len) == SOCKET_ERROR) {
+//      // if (getsockopt(m_socket, level, name, (char_pointer )value, len) == SOCKET_ERROR) {
 //      //    throw SocketException();
 //      // }
 //      m_pparticleThis->getSocketOptions(level, name, value, len);
@@ -341,7 +341,7 @@ namespace subsystem
 //
 //   void SocketIPv4::setExclusiveAddrUse()
 //   {
-//      // int val = 1;
+//      // ::i32 val = 1;
 //      //
 //      // setSocketOptions(SOL_SOCKET, SO_EXCLUSIVEADDRUSE, &val, sizeof(val));
 //      m_pparticleThis->setExclusiveAddrUse();

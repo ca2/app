@@ -49,7 +49,7 @@ bool CLASS_DECL_ACME __windows_init();
 CLASS_DECL_ACME HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 
-//CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);
+//CLASS_DECL_ACME ::i32 WINAPI GetSystemMetrics(::i32 i);
 
 namespace user
 {
@@ -101,7 +101,7 @@ namespace user
 //#endif
 
 /*#define GetAValue(rgb)      (lower_byte((rgb)>>24))
-#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((::u32)(unsigned char)(b))<<16)|(((::u32)(unsigned char)(a))<<24)))*/
+#define argb(a, r,g,b)          ((color32_t)(((::u8)(r)|((::u16)((::u8)(g))<<8))|(((::u32)(::u8)(b))<<16)|(((::u32)(::u8)(a))<<24)))*/
 
 
 //CLASS_DECL_ACME ::i32_bool os_initialize();
@@ -120,7 +120,7 @@ CLASS_DECL_ACME itask main_itask();
 //CLASS_DECL_ACME oswindow get_focus();
 //CLASS_DECL_ACME oswindow set_keyboard_focus(::acme::windowing::window * pacmewindowingwindow);
 
-//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iWindow);
 
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(::i32_bool bAttach);
 
@@ -130,7 +130,7 @@ CLASS_DECL_ACME itask main_itask();
 
 
 
-//CLASS_DECL_ACME char* getenv(const_char_pointer name);
+//CLASS_DECL_ACME char_pointer getenv(const_char_pointer pszName);
 //CLASS_DECL_ACME HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ const_char_pointer lpName  );
 
 //CLASS_DECL_ACME HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ const ::wide_character * lpName    );

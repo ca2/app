@@ -37,7 +37,7 @@
 //   // messageHandler is an external message handler that replace the
 //   // wndProc() function on message processing. If
 //   // messageHandler == 0 the wndProc() function will be used.
-//   MessageWindow(const HINSTANCE hinst, const char *windowClassName,
+//   MessageWindow(const HINSTANCE hinst, const_char_pointer windowClassName,
 //                 WindowMessageHandler *messageHandler = 0);
 //   virtual ~MessageWindow(void);
 //
@@ -54,10 +54,10 @@
 //   WindowMessageHandler *m_pwindowmessagehandler;
 //
 //   HINSTANCE m_hinst;
-//   char *m_windowClassName;
+//   char_pointer m_windowClassName;
 //
 // private:
-//   ATOM regClass(HINSTANCE hinst, char *windowClassName);
+//   ATOM regClass(HINSTANCE hinst, char_pointer windowClassName);
 //
 //   static LRESULT CALLBACK staticWndProc(const ::operating_system::window & operatingsystemwindow,
 //                                         ::u32 message,

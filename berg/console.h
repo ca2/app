@@ -13,9 +13,9 @@
 //typedef AURA_MAIN* PFN_AURA_MAIN;
 //
 //#ifdef UNICODE
-//int wmain(int argc, wchar_t* argv[])
+//::i32 wmain(::i32 argc, wchar_t* argv[])
 //#else
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //#endif
 //{
 //   
@@ -25,9 +25,9 @@
 //
 //   main();
 //
-//   int iStatus = (int)papp->m_estatus;
+//   ::i32 iStatus = (::i32)papp->m_estatus;
 //
-//   int iError = 0;
+//   ::i32 iError = 0;
 //
 //   if (iStatus < 0)
 //   {

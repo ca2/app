@@ -85,7 +85,7 @@ namespace user
 
 
    void tool_tip_window::ShowTip(
-   int iTool,    // [in] item selected
+   ::i32 iTool,    // [in] item selected
    bool bForce)
    {
       if(!IsTipEnabled())
@@ -237,11 +237,11 @@ namespace user
       {
          prectangle->right = m_point.x - (m_point.x - rectangleTool.left) / 2;
 
-         prectangle->left = (int) (prectangle->right - size.cx - m_sizeArrow.cx - 4);
+         prectangle->left = (::i32) (prectangle->right - size.cx - m_sizeArrow.cx - 4);
 
          prectangle->bottom = m_point.y - (m_point.y - rectangleTool.top) / 2;
 
-         prectangle->top = (int) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
+         prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
@@ -251,9 +251,9 @@ namespace user
 
          prectangle->bottom = m_point.y - (m_point.y - rectangleTool.top) / 2;
 
-         prectangle->right = (int) (prectangle->left + size.cx + m_sizeArrow.cx + 4);
+         prectangle->right = (::i32) (prectangle->left + size.cx + m_sizeArrow.cx + 4);
 
-         prectangle->top = (int) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
+         prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
 
       }
       else
@@ -262,9 +262,9 @@ namespace user
 
          prectangle->top = prectangle->bottom + m_pointOffset.y;
 
-         prectangle->right = (int)(prectangle->left + size.cx + m_sizeArrow.cx + 4);
+         prectangle->right = (::i32)(prectangle->left + size.cx + m_sizeArrow.cx + 4);
 
-         prectangle->bottom = (int) (prectangle->top + size.cy + m_sizeArrow.cy + 4);
+         prectangle->bottom = (::i32) (prectangle->top + size.cy + m_sizeArrow.cy + 4);
 
       }
       return true;
@@ -395,7 +395,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnSize(::u32 nType, int cx, int cy)
+   void tool_tip_window::OnSize(::u32 nType, ::i32 cx, ::i32 cy)
    {
       update_drawing_objects();
    }
@@ -578,7 +578,7 @@ namespace user
 
 
 
-   bool tool_tip_window::GetToolRect(int iTool, ::i32_rectangle * prectangle)
+   bool tool_tip_window::GetToolRect(::i32 iTool, ::i32_rectangle * prectangle)
 
    {
       GetTool(iTool)->BaseToolTipGetRect(prectangle);
@@ -599,7 +599,7 @@ namespace user
       set_at(ptool->BaseToolTipGetIndex(), ptool);
    }
 
-   bool tool_tip_window::GetToolText(int iTool, string &str)
+   bool tool_tip_window::GetToolText(::i32 iTool, string &str)
    {
       ::user::tool_tip_tool * ptool = GetTool(iTool);
 
@@ -633,7 +633,7 @@ namespace user
       return true;
    }
 
-   ::user::tool_tip_tool * tool_tip_window::GetTool(int iTool)
+   ::user::tool_tip_tool * tool_tip_window::GetTool(::i32 iTool)
    {
       return m_toolmap[iTool];
    }

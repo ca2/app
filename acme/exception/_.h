@@ -13,12 +13,12 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::scoped_string & scopedstrMe
 CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::scoped_string & scopedstrMessage);
 
 
-CLASS_DECL_ACME void get_call_stack_frames(void ** stack, int & c);
+CLASS_DECL_ACME void get_call_stack_frames(void ** stack, ::i32 & c);
 
 
 #if MEMDLEAK
 
-::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, ::u32** ppuiLine, memsize** ppsize);
+::collection::count get_mem_info(::i32** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, ::u32** ppuiLine, memsize** ppsize);
 
 #endif
 
@@ -29,7 +29,7 @@ CLASS_DECL_ACME void get_call_stack_frames(void ** stack, int & c);
 
 #define __output_debug_string information
 
-// turn on/off tracking for a short while
+// turn on/off tracking for a ::i16 while
 CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is true
@@ -75,7 +75,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 
 
 #define ENSURE_THROW(cond, exception)   \
-   do { int _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
+   do { ::i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
 #define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
@@ -91,16 +91,16 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
    ASSERT(((p) == nullptr) || is_memory_segment_ok((p), sizeof(type), false))
 
 
-//using c_errno = int;
+//using c_errno = ::i32;
 
 //CLASS_DECL_ACME c_errno c_runtime_error_check(c_errno error);
 //CLASS_DECL_ACME void __clearerr_s(FILE *stream);
 
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int nLine);
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, ::i32 nLine);
 
-CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, int nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, ::i32 nLine);
 
 //CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 

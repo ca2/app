@@ -14,8 +14,8 @@ namespace file
    public:
 
 
-   //   int                m_lOsError;
-   //   int                  m_iErrNo;
+   //   ::i32                m_lOsError;
+   //   ::i32                  m_iErrNo;
       ::file::path            m_path;
    //   string               m_strAdd;
       ::file::e_open          m_eopen;
@@ -37,7 +37,7 @@ namespace file
 //
 //
 //      virtual void     get_status();
-//      virtual int get_os_error();
+//      virtual ::i32 get_os_error();
 //      virtual string get_file_path();
 //
 //#ifdef WINDOWS
@@ -52,11 +52,11 @@ namespace file
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status& estatus);
 
-   //CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, int lOsError, int iErrNo, const ::file::path& path, ::file::e_open eopen);
+   //CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, ::i32 lOsError, ::i32 iErrNo, const ::file::path& path, ::file::e_open eopen);
 
-   //CLASS_DECL_ACME void throw_::exception(const ::e_status& estatus, int lOsError, const ::file::path& path = nullptr);
+   //CLASS_DECL_ACME void throw_::exception(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
 
-   //CLASS_DECL_ACME void throw_stdio_exception(const ::e_status& estatus, int lDOSError, const ::file::path& path);
+   //CLASS_DECL_ACME void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path);
 
 //#ifdef WINDOWS
 //
@@ -64,9 +64,9 @@ namespace file
 //
 //#endif
 
-   //CLASS_DECL_ACME void throw ::file::exception(errno_status(errno), (int iErrNo, const ::file::path& path = nullptr);
+   //CLASS_DECL_ACME void throw ::file::exception(errno_status(errno), (::i32 iErrNo, const ::file::path& path = nullptr);
 
-   CLASS_DECL_ACME int dos_to_os_error(int lDosErr);
+   CLASS_DECL_ACME ::i32 dos_to_os_error(::i32 lDosErr);
 
    const_char_pointer status_short_description(const ::e_status& estatus);
 

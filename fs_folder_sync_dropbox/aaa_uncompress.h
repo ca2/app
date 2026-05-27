@@ -30,15 +30,15 @@ Exmaple:
 #include "GZipHelper.h"
 void main()
 {
-char plainText[]="Plain text here";
+::i8 plainText[]="Plain text here";
 CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
 LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-int len=gzip.Length;      // Length is length of zipped data;
+::i32 len=gzip.Length;      // Length is length of zipped data;
 
 CGZIP2A plain(pgzip,len);  // do decompressing here
 
-char *pplain=plain.psz;    // psz is plain data pointer
-int  aLen=plain.Length;    // Length is length of unzipped data.
+char_pointer pplain=plain.psz;    // psz is plain data pointer
+::i32  aLen=plain.Length;    // Length is length of unzipped data.
 }
 //////////////////////////////////////////////////////////////////////////////
 */

@@ -276,7 +276,7 @@ namespace graphics
 
       }
 
-      //int iAge;
+      //::i32 iAge;
 
       //if (iGot < 0)
       //{
@@ -287,13 +287,13 @@ namespace graphics
       //else if (iGot <= m_iDone)
       //{
 
-      //   //iAge = (int)(m_iDone - iGot);
+      //   //iAge = (::i32)(m_iDone - iGot);
 
       //}
       //else
       //{
 
-      //   //iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
+      //   //iAge = (::i32)(m_bufferitema.size() - iGot + m_iDone);
 
       //}
 

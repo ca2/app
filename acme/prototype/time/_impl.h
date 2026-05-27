@@ -46,7 +46,7 @@ constexpr class ::time & time::operator = (const ::earth::time_span & timespan)
 
 }
 
-constexpr double time::ramp_up(const class time & timePeriod, const class time & time) const
+constexpr ::f64 time::ramp_up(const class time & timePeriod, const class time & time) const
 {
 
    auto elapsed = this->elapsed(time);

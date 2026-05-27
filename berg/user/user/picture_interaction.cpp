@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   ::double_size picture_interaction::get_request_size()
+   ::f64_size picture_interaction::get_request_size()
    {
 
       return const_layout().sketch().size();

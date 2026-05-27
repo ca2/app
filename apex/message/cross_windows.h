@@ -11,14 +11,14 @@
 //   HINSTANCE   hInstance;
 //   HMENU       hMenu;
 //   oswindow        hwndParent;
-//   int         cy;
-//   int         cx;
-//   int         y;
-//   int         x;
-//   int        style;
-//   const_char_pointer     lpszName;
+//   ::i32         cy;
+//   ::i32         cx;
+//   ::i32         y;
+//   ::i32         x;
+//   ::i32        style;
+//   const_char_pointer pszName;
 //
-//   const_char_pointer     lpszClass;
+//   const_char_pointer pszClass;
 //
 //   ::u32       dwExStyle;
 //} CREATESTRUCTA,*LPCREATESTRUCTA;
@@ -30,12 +30,12 @@
 //   HINSTANCE   hInstance;
 //   HMENU       hMenu;
 //   oswindow    hwndParent;
-//   int         cy;
-//   int         cx;
-//   int         y;
-//   int         x;
-//   int        style;
-//   const ::wide_character *     lpszName;
+//   ::i32         cy;
+//   ::i32         cx;
+//   ::i32         y;
+//   ::i32         x;
+//   ::i32        style;
+//   const ::wide_character *     pszName;
 //
 //   const ::wide_character *     lpszClass;
 //

@@ -25,7 +25,7 @@ namespace innate_subsystem
    bool keyboard_state_t::isPressed(::user::enum_key ekey) { return (m_serverKeyState[ekey] & 128) != 0; }
 
    // void clearKeyState();
-   int keyboard_state_t::GettingCharFromCtrlSymbol(int ch)
+   ::i32 keyboard_state_t::GettingCharFromCtrlSymbol(::i32 ch)
    {
       bool ctrlPressed = isPressed(::user::e_key_left_control) || isPressed(::user::e_key_right_control);
       bool altPressed = isPressed(::user::e_key_left_alt) || isPressed(::user::e_key_right_alt);
@@ -41,7 +41,7 @@ namespace innate_subsystem
          {
             ch += 64;
          }
-         ::debugf("The %u char is a control symbol then"
+         ::debugf("The %u ::i8 is a control symbol then"
                  " it will be increased to %u",
                  oldCh, (::u32)ch);
       }

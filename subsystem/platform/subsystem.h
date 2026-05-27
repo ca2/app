@@ -81,7 +81,7 @@ namespace subsystem
       virtual pointer<CommandLineArguments> getCommandLineArguments(const ::scoped_string &scopedstrCommandLine);
 
       virtual pointer<::subsystem::FileInterface> fileFrom_HANDLE(void *pHANDLE);
-      virtual pointer<::subsystem::FileInterface> fileFrom_fd(int fd);
+      virtual pointer<::subsystem::FileInterface> fileFrom_fd(::i32 fd);
 
       /**
        * Creates SID from sid string.
@@ -102,9 +102,9 @@ namespace subsystem
       virtual bool DecryptData(const memory & input, ::string& output);
 
 
-      virtual int get_last_socket_error();
-      virtual ::string get_socket_error_message_text(int iError);
-      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port);
+      virtual ::i32 get_last_socket_error();
+      virtual ::string get_socket_error_message_text(::i32 iError);
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, ::u16 port);
 
 
       virtual ::u32 internet_address4(const ::scoped_string &scopedstr);
@@ -125,8 +125,8 @@ namespace subsystem
 
 
 
-      virtual int get_LOADER_CLOSE_CODE();
-      virtual int get_SPEC_IPC_CODE();
+      virtual ::i32 get_LOADER_CLOSE_CODE();
+      virtual ::i32 get_SPEC_IPC_CODE();
       // RegisterWindowMessage("TVN.HOOK.LOADER.CLOSE.CODE");
       // const ::u32 HookDefinitions::SPEC_IPC_CODE =
       // RegisterWindowMessage("TVN.HOOK.MESSAGE.CODE");

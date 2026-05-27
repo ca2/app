@@ -35,8 +35,8 @@
          AD || BD
    AC || CB || 0
 
-   where A and B are the high and low short words of V1,
-   C and D are the short words of V2, AD is the product of
+   where A and B are the high and low ::i16 words of V1,
+   C and D are the ::i16 words of V2, AD is the product of
    A and D, and X || Y is (X << 16) + Y.
    Since the algorithm is programmed in C, we need to be
    careful not to overflow.
@@ -161,11 +161,11 @@ struct  u64_unsigned_int {
  */
 inline ::u32 msb(::u64 value)
 {
-   const int MAX_LOGLOG = 6;
+   const ::i32 MAX_LOGLOG = 6;
    const ::u64 BIT_LL[MAX_LOGLOG] = { 0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL };
    const ::u32 EXP_LL[MAX_LOGLOG] = { 1, 2, 4, 8, 16, 32 };
    ::u32 r = 0;
-   for (int i = MAX_LOGLOG - 1; i >= 0; i--) {
+   for (::i32 i = MAX_LOGLOG - 1; i >= 0; i--) {
       if (value & BIT_LL[i]) {
          value >>= EXP_LL[i];
          r |= EXP_LL[i];
@@ -269,7 +269,7 @@ static ::u64 const g_maxdiv = (g_base - 1) * g_base + (g_base - 1);
 //    return (operant * multiplier) >> rshift;
 // /*   // Declare 128bit storage
 //    struct{
-//       unsigned long DW[4];
+//       ulong DW[4];
 //    }var128;
 
 //    // Save combined sign on stack
@@ -285,7 +285,7 @@ static ::u64 const g_maxdiv = (g_base - 1) * g_base + (g_base - 1);
 
 //    _asmxxxx{
 //       // Test rshift for >128
-//       mov      al, unsigned char ptr[rshift]
+//       mov      al, ::u8 ptr[rshift]
 //       cmp      al, 80
 //       jl      shiftOK
 //       popfd                           // cleanup stack
@@ -363,7 +363,7 @@ static ::u64 const g_maxdiv = (g_base - 1) * g_base + (g_base - 1);
 //       // Divide: var128 = var128 / (2^rshift)
 //       //
 //       xor      eax, eax
-//       mov      al, unsigned char ptr[rshift]
+//       mov      al, ::u8 ptr[rshift]
 //       cmp      al, 0
 //       jz      applySign
 
@@ -373,7 +373,7 @@ static ::u64 const g_maxdiv = (g_base - 1) * g_base + (g_base - 1);
 //       mov      cl, 0x20
 //       div      cl
 //       mov      cl, al                  // Store number of 32 blocks in counter
-//       mov      char ptr[rshift], ah      // Store remaining number of shifts
+//       mov      ::i8 ptr[rshift], ah      // Store remaining number of shifts
 //       // Test shift not equal or larger than 4*32 already done at the begining
 //       // Do dword shift cl times (maximum = 3)
 //       xor      ch, ch
@@ -401,7 +401,7 @@ static ::u64 const g_maxdiv = (g_base - 1) * g_base + (g_base - 1);
 
 // bitShift:
 //       // Do multiple precision bitshift
-//       mov      cl, unsigned char ptr[rshift]
+//       mov      cl, ::u8 ptr[rshift]
 //       mov      eax, dword ptr[edi+4]
 //       shrd   dword ptr[edi], eax, cl
 //       mov      eax, dword ptr[edi+8]

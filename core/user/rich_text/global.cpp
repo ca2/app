@@ -20,7 +20,7 @@ namespace user
       }
 
 
-      bool is_similar_font_size(double d1, double d2)
+      bool is_similar_font_size(::f64 d1, ::f64 d2)
       {
 
          return fabs(d2 - d1) < 0.25;
@@ -121,7 +121,7 @@ namespace user
       }
 
 
-      ::collection::index sel_line_x666(pointer_array < line > & linea, ::collection::index iSel, double & x)
+      ::collection::index sel_line_x666(pointer_array < line > & linea, ::collection::index iSel, ::f64 & x)
       {
 
          if (iSel < 0)
@@ -150,44 +150,44 @@ namespace user
 
                   character_count iPos = iSel;
 
-                  int xLeft;
-                  int xRight;
+                  ::i32 xLeft;
+                  ::i32 xRight;
 
                   if (iPos - 1 <= pbox->m_iPosBeg)
                   {
 
-                     xLeft = (int)pbox->m_rectangleBox.left;
+                     xLeft = (::i32)pbox->m_rectangleBox.left;
 
                   }
                   else if((iPos - 1) >= pbox->m_iPosEnd)
                   {
 
-                     xLeft = (int)pbox->get_last_pos();
+                     xLeft = (::i32)pbox->get_last_pos();
 
                   }
                   else
                   {
 
-                     xLeft = (int)pbox->get_pos(iPos - 1);
+                     xLeft = (::i32)pbox->get_pos(iPos - 1);
 
                   }
 
                   if (iPos <= pbox->m_iPosBeg)
                   {
 
-                     xRight = (int)pbox->m_rectangleBox.left;
+                     xRight = (::i32)pbox->m_rectangleBox.left;
 
                   }
                   else if (iPos >= pbox->m_iPosEnd)
                   {
 
-                     xRight = (int)pbox->get_last_pos();
+                     xRight = (::i32)pbox->get_last_pos();
 
                   }
                   else
                   {
 
-                     xRight = (int)pbox->get_pos(iPos);
+                     xRight = (::i32)pbox->get_pos(iPos);
 
                   }
 
@@ -206,7 +206,7 @@ namespace user
       }
 
 
-      ::collection::index line_caret_x(pointer_array < line >& linea, ::collection::index iSel, double& x)
+      ::collection::index line_caret_x(pointer_array < line >& linea, ::collection::index iSel, ::f64& x)
       {
 
          if (iSel < 0)
@@ -236,26 +236,26 @@ namespace user
 
                   character_count iPos = iSel;
 
-                  int xLeft;
-                  //int xRight;
+                  ::i32 xLeft;
+                  //::i32 xRight;
 
                   if (iPos <= pbox->m_iPosBeg)
                   {
 
-                     xLeft = (int)pbox->m_rectangleBox.left;
+                     xLeft = (::i32)pbox->m_rectangleBox.left;
 
                   }
                   else if (iPos >= pbox->m_iPosEnd)
                   {
 
-                     //xLeft = (int)pbox->get_last_pos();
-                     xLeft = (int)pbox->m_rectangleBox.right;
+                     //xLeft = (::i32)pbox->get_last_pos();
+                     xLeft = (::i32)pbox->m_rectangleBox.right;
 
                   }
                   else
                   {
 
-                     xLeft = (int)pbox->get_pos(iPos);
+                     xLeft = (::i32)pbox->get_pos(iPos);
 
                   }
 
@@ -352,7 +352,7 @@ namespace user
       void update_span_cache(pointer_array < span > & spana)
       {
 
-         int iPos = 0;
+         ::i32 iPos = 0;
 
          ::pointer<span>pspanNext;
 
@@ -363,7 +363,7 @@ namespace user
 
             pspan->m_iPosBeg = iPos;
 
-            iPos += (int) pspan->m_str.length();
+            iPos += (::i32) pspan->m_str.length();
 
             if (pspan->is_end_of_line())
             {
@@ -506,7 +506,7 @@ namespace user
       }
 
 
-      void align(line * pline, const ::double_rectangle & rectangle)
+      void align(line * pline, const ::f64_rectangle & rectangle)
       {
 
          if (pline->is_empty())
@@ -532,9 +532,9 @@ namespace user
          else
          {
 
-            int iWidth = (int)pline->last()->m_rectangleBox.right;
+            ::i32 iWidth = (::i32)pline->last()->m_rectangleBox.right;
 
-            int iOffset = (int)(rectangle.right - iWidth);
+            ::i32 iOffset = (::i32)(rectangle.right - iWidth);
 
             if (ealign == e_align_center)
             {
@@ -556,7 +556,7 @@ namespace user
                //for (auto & d : pbox->m_daPosition)
                //{
 
-               //   d += (double)iOffset;
+               //   d += (::f64)iOffset;
 
                //}
 

@@ -3822,9 +3822,6 @@
     <ClInclude Include="nano\graphics\brush.h">
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="nano\graphics\device.h">
-      <Filter>Header Files\nano\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="nano\graphics\font.h">
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
@@ -4424,6 +4421,12 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows_common\com\_.h">
       <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\context.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\path.h">
+      <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5882,9 +5885,6 @@
     <ClCompile Include="nano\graphics\brush.cpp">
       <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="nano\graphics\device.cpp">
-      <Filter>Source Files\nano\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="nano\graphics\font.cpp">
       <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
@@ -6394,6 +6394,12 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\apartment_thread.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\context.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\path.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

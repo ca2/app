@@ -32,9 +32,9 @@
 //----------------------------------------------------------------------------
 
 void
-sector (int x, int y, int stangle, int endangle, int xradius, int yradius)
+sector (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 xradius, ::i32 yradius)
 {
-  int StartX, StartY, EndX, EndY, CenterX, CenterY, xdiam, ydiam;
+  ::i32 StartX, StartY, EndX, EndY, CenterX, CenterY, xdiam, ydiam;
   struct linesettingstype Settings;
   getlinesettings (&Settings);
   if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)

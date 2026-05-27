@@ -33,12 +33,12 @@
 
 #define INCLUDECRYPTINGCODE_IFCRYPTALLOWED
 
-#define CRC32(ca, b) ((*(pcrc_32_tab+(((int)(ca) ^ (b)) & 0xff))) ^ ((ca) >> 8))
+#define CRC32(ca, b) ((*(pcrc_32_tab+(((::i32)(ca) ^ (b)) & 0xff))) ^ ((ca) >> 8))
 
 /***********************************************************************
- * Return the next unsigned char in the pseudo-random sequence
+ * Return the next ::u8 in the pseudo-random sequence
  */
-static int decrypt_byte(::u32  * pkeys,
+static ::i32 decrypt_byte(::u32  * pkeys,
 #if defined(WINDOWS) || defined(LINUX)
                         const z_crc_t * pcrc_32_tab
 #else
@@ -52,23 +52,23 @@ static int decrypt_byte(::u32  * pkeys,
                       * with any known compiler so far, though */
 
    temp = ((::u32)(*(pkeys+2)) & 0xffff) | 2;
-   return (int)(((temp * (temp ^ 1)) >> 8) & 0xff);
+   return (::i32)(((temp * (temp ^ 1)) >> 8) & 0xff);
 }
 
 /***********************************************************************
- * Update the encryption keys with the next unsigned char of plain text
+ * Update the encryption keys with the next ::u8 of plain text
  */
 #if defined(WINDOWS) || defined(LINUX)
-static int update_keys(::u32 * pkeys, const z_crc_t * pcrc_32_tab, int ca)
+static ::i32 update_keys(::u32 * pkeys, const z_crc_t * pcrc_32_tab, ::i32 ca)
 #else
-static int update_keys(::u32 * pkeys, const uLongf * pcrc_32_tab, int ca)
+static ::i32 update_keys(::u32 * pkeys, const uLongf * pcrc_32_tab, ::i32 ca)
 #endif
 {
    (*(pkeys+0)) = (::u32) CRC32((*(pkeys+0)), ca);
    (*(pkeys+1)) += (*(pkeys+0)) & 0xff;
    (*(pkeys+1)) = (*(pkeys+1)) * 134775813L + 1;
    {
-      int keyshift = (int)((*(pkeys+1)) >> 24);
+      ::i32 keyshift = (::i32)((*(pkeys+1)) >> 24);
       (*(pkeys+2)) = (::u32) CRC32((*(pkeys+2)), keyshift);
    }
    return ca;
@@ -90,7 +90,7 @@ static void init_keys(const_char_pointer passwd, ::u32 * pkeys, const uLongf * p
    *(pkeys+2) = 878082192L;
    while (*passwd != '\0')
    {
-      update_keys(pkeys,pcrc_32_tab,(int)*passwd);
+      update_keys(pkeys,pcrc_32_tab,(::i32)*passwd);
       passwd++;
    }
 }
@@ -109,10 +109,10 @@ static void init_keys(const_char_pointer passwd, ::u32 * pkeys, const uLongf * p
 #    define ZCR_SEED2 3141592654UL     /* use PI as default pattern */
 #  endif
 
-inline int crypthead(
+inline ::i32 crypthead(
 const_char_pointer passwd,         /* password string */
-uchar *buf,         /* where to write header */
-int bufSize,
+::u8 * buf,         /* where to write header */
+::i32 bufSize,
 ::u32 * pkeys,
 #if defined(WINDOWS) || defined(LINUX)
 const z_crc_t * pcrc_32_tab,
@@ -121,9 +121,9 @@ const uLongf * pcrc_32_tab,
 #endif
 ::u32  crcForCrypting)
 {
-   int n;                       /* index in random header */
-   int t;                       /* temporary */
-   int ca;                       /* random unsigned char */
+   ::i32 n;                       /* index in random header */
+   ::i32 t;                       /* temporary */
+   ::i32 ca;                       /* random ::u8 */
    uchar header[RAND_HEAD_LEN-2]; /* random header */
    static ::u32 calls = 0;   /* ensure different random header each time */
 
@@ -144,14 +144,14 @@ const uLongf * pcrc_32_tab,
       ca = (rand() >> 7) & 0xff;
       header[n] = (uchar)zencode(pkeys, pcrc_32_tab, ca, t);
    }
-   /* Encrypt random header (last two bytes is high unsigned short of crc) */
+   /* Encrypt random header (last two bytes is high ::u16 of crc) */
    init_keys(passwd, pkeys, pcrc_32_tab);
    for (n = 0; n < RAND_HEAD_LEN-2; n++)
    {
       buf[n] = (uchar)zencode(pkeys, pcrc_32_tab, header[n], t);
    }
-   buf[n++] = zencode(pkeys, pcrc_32_tab, (int)(crcForCrypting >> 16) & 0xff, t);
-   buf[n++] = zencode(pkeys, pcrc_32_tab, (int)(crcForCrypting >> 24) & 0xff, t);
+   buf[n++] = zencode(pkeys, pcrc_32_tab, (::i32)(crcForCrypting >> 16) & 0xff, t);
+   buf[n++] = zencode(pkeys, pcrc_32_tab, (::i32)(crcForCrypting >> 24) & 0xff, t);
    return n;
 }
 

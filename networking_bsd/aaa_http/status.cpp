@@ -22,7 +22,7 @@ namespace http
 //   }
 
 
-//   bool status_succeeded(long long i)
+//   bool status_succeeded(::i64 i)
 //   {
 //
 //      return succeeded((void    ) i);
@@ -38,7 +38,7 @@ namespace http
 //   }
 
 //
-//   bool status_failed(long long i)
+//   bool status_failed(::i64 i)
 //   {
 //
 //      return !status_succeeded(i);

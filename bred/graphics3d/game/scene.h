@@ -33,7 +33,7 @@ namespace sandbox_game
 		floating_sequence3													            m_initialCameraPosition{ 0.f };
 		floating_sequence3													            m_initialCameraRotation{ 0.f };
 
-		int															            m_iSkyboxId = -1;
+		::i32															            m_iSkyboxId = -1;
 		::pointer<::graphics3d::scene_object>							      m_psceneobjectSkybox;
 		::string													               m_strSkyboxCubemapName;
 
@@ -46,7 +46,7 @@ namespace sandbox_game
 
 
 		void init() override;                 // load models, spawn entities
-		void update(float dt) override;        // advance all entities
+		void update(::f32 dt) override;        // advance all entities
 
 		void loadSceneFile(const ::scoped_string& fileName);
 
@@ -75,7 +75,7 @@ namespace sandbox_game
 	   ::pointer<::graphics3d::scene_object> create_skybox_object();
 
 
-		::pointer<::graphics3d::scene_object> create_point_light(float intensity = 10.f, float radius = 0.1f, floating_sequence3 color = floating_sequence3(1.f));
+		::pointer<::graphics3d::scene_object> create_point_light(::f32 intensity = 10.f, ::f32 radius = 0.1f, floating_sequence3 color = floating_sequence3(1.f));
 
 
 

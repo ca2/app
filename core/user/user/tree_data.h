@@ -22,9 +22,9 @@ namespace user
       ::pointer < ::draw2d::graphics >             m_pdc;
       ::collection::index                          m_iItem;
       ::collection::index                          m_iIndentation;
-      double                                       m_dItemHeight;
-      ::double_rectangle                           m_rectangleX;
-      ::double_rectangle                           m_rectangle;
+      ::f64                                       m_dItemHeight;
+      ::f64_rectangle                           m_rectangleX;
+      ::f64_rectangle                           m_rectangle;
    };
 
    class CLASS_DECL_CORE tree_data_base :

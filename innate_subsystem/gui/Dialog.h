@@ -42,12 +42,12 @@ namespace innate_subsystem
 
       // Dialog();
       // Dialog(::u32 resourceId);
-      // Dialog(const char *resourceName);
+      // Dialog(const_char_pointer resourceName);
       //virtual ~DialogInterface() = 0;
 //   public:
 
       virtual void initialize_dialog(::u32 resourceId) = 0;
-      virtual void initialize_dialog(const char *resourceName) = 0;
+      virtual void initialize_dialog(const_char_pointer resourceName) = 0;
 
       // Method creates non modal window but not shows it
       virtual void create() = 0;
@@ -57,9 +57,9 @@ namespace innate_subsystem
       //
 
       //virtual void show() = 0;
-      virtual int showModal() = 0;
+      virtual ::i32 showModal() = 0;
       
-      virtual void doAttachedModal(const ::function < void(int) > & callback) = 0;
+      virtual void doAttachedModal(const ::function < void(::i32) > & callback) = 0;
 
       // Returns true if dialog is already created.
       virtual bool isCreated() = 0;
@@ -67,11 +67,11 @@ namespace innate_subsystem
       // Method hides window
       //virtual void hide() = 0;
       // Method closes dialog
-      virtual void closeDialog(int code) = 0;
+      virtual void closeDialog(::i32 code) = 0;
       // Method sets parent window
       //virtual void setParent(ControlInterface *ctrlParent) = 0;
 //      // Set resource name for dialog
-//      virtual void setResourceName(const char *resourceName) = 0;
+//      virtual void setResourceName(const_char_pointer resourceName) = 0;
 //      // Set resource id for dialog.
 //      virtual void setResourceId(::u32 id) = 0;
       // Return
@@ -107,8 +107,8 @@ namespace innate_subsystem
       virtual bool onDestroy() = 0;
 
       //virtual bool setChildDoubleClick(::u32 controlID, const ::function < bool() > & callback);
-      //virtual bool setChildListViewKeyDown(::u32 controlID, const ::function < bool(int) > & callback);
-      //virtual bool setChildListViewKeyDown(::u32 controlID, const ::function < bool(int) > & callback);
+      //virtual bool setChildListViewKeyDown(::u32 controlID, const ::function < bool(::i32) > & callback);
+      //virtual bool setChildListViewKeyDown(::u32 controlID, const ::function < bool(::i32) > & callback);
 
       //
       // This methods can be overrided by child classes.
@@ -131,7 +131,7 @@ namespace innate_subsystem
 
    //protected:
 
-     // char *m_resourceName;        // Name of dialog resource
+     // char_pointer m_resourceName;        // Name of dialog resource
       //::u32 m_resourceId;            // Id of dialog resouce
       //Control m_ctrlThis;           // This dialog control
       //Control *m_ctrlParent;        // Parent dialog or NULL if no parent
@@ -162,12 +162,12 @@ namespace innate_subsystem
 
 //       DialogComposite();
 //       // Dialog(::u32 resourceId);
-//       // Dialog(const char *resourceName);
+//       // Dialog(const_char_pointer resourceName);
 //       ~DialogComposite();
 // //   public:
 
       void initialize_dialog(::u32 resourceId) override { m_pdialog->initialize_dialog(resourceId); }
-      void initialize_dialog(const char *resourceName) override { m_pdialog->initialize_dialog(resourceName); }
+      void initialize_dialog(const_char_pointer resourceName) override { m_pdialog->initialize_dialog(resourceName); }
 
       // Method creates non modal window but not shows it
       void create() override { m_pdialog->create(); }
@@ -177,9 +177,9 @@ namespace innate_subsystem
       //
 
       //void show() override { m_pdialog->show(); }
-      int showModal() override { return m_pdialog->showModal(); }
+      ::i32 showModal() override { return m_pdialog->showModal(); }
       
-      void doAttachedModal(const ::function < void(int) > & callback)
+      void doAttachedModal(const ::function < void(::i32) > & callback)
       {
          
          return m_pdialog->doAttachedModal(callback);
@@ -192,11 +192,11 @@ namespace innate_subsystem
       // Method hides window
       //void hide() override { m_pdialog->hide(); }
       // Method closes dialog
-      void closeDialog(int code) override { m_pdialog->closeDialog(code); }
+      void closeDialog(::i32 code) override { m_pdialog->closeDialog(code); }
       // Method sets parent window
       //void setParent(ControlInterface *ctrlParent);
       // Set resource name for dialog
-//      void setResourceName(const char *resourceName) override { m_pdialog->setResourceName(resourceName); }
+//      void setResourceName(const_char_pointer resourceName) override { m_pdialog->setResourceName(resourceName); }
 //      // Set resource id for dialog.
 //      void setResourceId(::u32 id) override { m_pdialog->setResourceId(id); }
       // Return
@@ -208,7 +208,7 @@ namespace innate_subsystem
       void updateIcon() override { m_pdialog->updateIcon(); }
 
       //template<typename WIDGET_TYPE>
-      //::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, int iDlgItem)
+      //::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, ::i32 iDlgItem)
       //{
 
       //   return m_pdialog->dialog_item(pwidget, iDlgItem);
@@ -216,7 +216,7 @@ namespace innate_subsystem
       //}
 
       //template<typename WIDGET_TYPE>
-      //composite<WIDGET_TYPE> &dialog_item(composite<WIDGET_TYPE> &widget, int iDlgItem)
+      //composite<WIDGET_TYPE> &dialog_item(composite<WIDGET_TYPE> &widget, ::i32 iDlgItem)
       //{
 
       //   // constructø(pwidget);
@@ -226,7 +226,7 @@ namespace innate_subsystem
       //}
 
       //template<typename WIDGET_TYPE = ::innate_subsystem::Control>
-      //::pointer<WIDGET_TYPE> dialog_item(int iDlgItem)
+      //::pointer<WIDGET_TYPE> dialog_item(::i32 iDlgItem)
       //{
 
       //   return m_pdialog->dialog_item<WIDGET_TYPE>(iDlgItem);
@@ -234,7 +234,7 @@ namespace innate_subsystem
       //}
 
       // template < typename WIDGET_TYPE >
-      // ::pointer < WIDGET_TYPE > & dialog_item(::pointer < WIDGET_TYPE > & pwidget, int iDlgItem)
+      // ::pointer < WIDGET_TYPE > & dialog_item(::pointer < WIDGET_TYPE > & pwidget, ::i32 iDlgItem)
       // {
       //
       //    constructø(pwidget);
@@ -249,7 +249,7 @@ namespace innate_subsystem
       // }
       //
       // template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
-      // ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
+      // ::pointer < WIDGET_TYPE > dialog_item(::i32 iDlgItem)
       // {
       //
       //    ::pointer < WIDGET_TYPE> pwidget;
@@ -309,7 +309,7 @@ namespace innate_subsystem
 
    //protected:
 
-     // char *m_resourceName;        // Name of dialog resource
+     // char_pointer m_resourceName;        // Name of dialog resource
       //::u32 m_resourceId;            // Id of dialog resouce
       //Control m_ctrlThis;           // This dialog control
       //Control *m_ctrlParent;        // Parent dialog or NULL if no parent
@@ -330,7 +330,7 @@ namespace innate_subsystem
       ImplementAggregateø(Dialog, Control)
 
       template<typename WIDGET_TYPE>
-      ::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, int iDlgItem)
+      ::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, ::i32 iDlgItem)
       {
 
          constructø(pwidget);
@@ -343,7 +343,7 @@ namespace innate_subsystem
       }
 
       // template<typename WIDGET_TYPE>
-      // composite<WIDGET_TYPE> &dialog_item(composite<WIDGET_TYPE> &widget, int iDlgItem)
+      // composite<WIDGET_TYPE> &dialog_item(composite<WIDGET_TYPE> &widget, ::i32 iDlgItem)
       // {
       //
       //    // constructø(pwidget);
@@ -356,7 +356,7 @@ namespace innate_subsystem
       // }
 
       template < typename COMPOSITE, typename BASE_AGGREGATE >
-      Aggregate<COMPOSITE, BASE_AGGREGATE> &dialog_item(Aggregate<COMPOSITE, BASE_AGGREGATE> &widget, int iDlgItem)
+      Aggregate<COMPOSITE, BASE_AGGREGATE> &dialog_item(Aggregate<COMPOSITE, BASE_AGGREGATE> &widget, ::i32 iDlgItem)
       {
 
          // constructø(pwidget);
@@ -369,7 +369,7 @@ namespace innate_subsystem
       }
 
       template<typename WIDGET_TYPE = ::innate_subsystem::Control>
-      ::pointer<WIDGET_TYPE> dialog_item(int iDlgItem)
+      ::pointer<WIDGET_TYPE> dialog_item(::i32 iDlgItem)
       {
 
          ::pointer<WIDGET_TYPE> pwidget;

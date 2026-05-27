@@ -121,7 +121,7 @@ namespace user
 
          //get_window_text(strText);
 
-         ::double_rectangle rectangleX;
+         ::f64_rectangle rectangleX;
 
          rectangleX = this->rectangle();
 
@@ -460,7 +460,7 @@ namespace user
    //}
 
 
-   ::double_size still::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size still::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (pgraphics.is_null())
@@ -484,7 +484,7 @@ namespace user
 
       pgraphics->get_text_metrics(&tm);
 
-      ::double_size sizeTotal;
+      ::f64_size sizeTotal;
 
       sizeTotal.cx = size.cx;
 
@@ -511,8 +511,8 @@ namespace user
 
          ::i32_rectangle rectangle(0, 0, 0, 0);
 
-         rectangle.right = int(size.cx * 1.6);
-         rectangle.bottom = int(size.cy * 1.4);
+         rectangle.right = ::i32(size.cx * 1.6);
+         rectangle.bottom = ::i32(size.cy * 1.4);
 
          const_layout().sketch().size() = rectangle.size();
 
@@ -771,17 +771,17 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         ::double_size sizeText = get_fitting_size(pgraphics);
+         ::f64_size sizeText = get_fitting_size(pgraphics);
 
          //::i32_rectangle rectangle;
 
-         //rectangle.left = (int)(rectangleX.left + (rectangleX.width() - sizeText.cx) / 2);
+         //rectangle.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeText.cx) / 2);
 
-         //rectangle.top = (int)(rectangleX.top + (rectangleX.height() - sizeText.cy) / 2);
+         //rectangle.top = (::i32)(rectangleX.top + (rectangleX.height() - sizeText.cy) / 2);
 
-         //rectangle.right = (int)(rectangle.left + sizeText.cx);
+         //rectangle.right = (::i32)(rectangle.left + sizeText.cx);
 
-         //rectangle.bottom = (int)(rectangle.top + sizeText.cy);
+         //rectangle.bottom = (::i32)(rectangle.top + sizeText.cy);
 
          //m_rectangleText = rectangle;
 
@@ -1119,23 +1119,23 @@ namespace user
 
          rectangleAspect.top = 0;
 
-         double dW = (double)rectangleX.width() / (double)pimage->width();
+         ::f64 dW = (::f64)rectangleX.width() / (::f64)pimage->width();
 
-         double dH = (double)rectangleX.height() / (double)pimage->height();
+         ::f64 dH = (::f64)rectangleX.height() / (::f64)pimage->height();
 
-         double dMin = maximum(minimum(dW, dH), 1.0);
+         ::f64 dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (int) (pimage->width() * dMin);
+         rectangleAspect.right = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (int) (pimage->height() * dMin);
+         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
          {
 
-            ::image::image_source imagesource(pimage, ::double_rectangle(pimage->get_size()));
+            ::image::image_source imagesource(pimage, ::f64_rectangle(pimage->get_size()));
 
-            double_rectangle rectangle(rectangleX);
+            ::f64_rectangle rectangle(rectangleX);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1300,7 +1300,7 @@ namespace user
    }
 
 
-   int still::BaseToolTipGetIndex()
+   ::i32 still::BaseToolTipGetIndex()
    {
       // use window dialog control atom as the index
       return GetDlgCtrlId().as_i32();

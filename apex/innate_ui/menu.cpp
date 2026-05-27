@@ -13,20 +13,20 @@ namespace innate_ui
    menu::~menu() {}
 
 
-   void menu::load_menu_from_resource(int iMenuResourceId)
+   void menu::load_menu_from_resource(::i32 iMenuResourceId)
    {
 
       throw ::interface_only();
 
    }
-   void menu::set_default_menu_item_command_id(int iDefaultMenuItemCommandId)
+   void menu::set_default_menu_item_command_id(::i32 iDefaultMenuItemCommandId)
    {
 
       throw ::interface_only();
 
    }
 
-   void menu::erase_menu_item_by_command_id(int iDefaultMenuItemCommandId)
+   void menu::erase_menu_item_by_command_id(::i32 iDefaultMenuItemCommandId)
    {
 
       throw ::interface_only();
@@ -34,7 +34,7 @@ namespace innate_ui
    }
    
    void menu::track_popup_menu(const ::operating_system::window &operatingsystemwindow,
-                               const ::function<void(int)> &functionOnActionId)
+                               const ::function<void(::i32)> &functionOnActionId)
    {
       throw ::interface_only(); 
           

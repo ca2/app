@@ -1,6 +1,6 @@
 #include "framework.h"
 
-int my_main(::particle * pparticle);
+::i32 my_main(::particle * pparticle);
 
 namespace helloaxis
 {
@@ -78,7 +78,7 @@ namespace helloaxis
    }
 
 
-   int application::exit_application()
+   ::i32 application::exit_application()
    {
 
       return ::axis::application::exit_application();

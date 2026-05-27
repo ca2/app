@@ -32,7 +32,7 @@ MEMORY::MEMORY()
    m_sizeStorage = 0;
    m_end = 0;
    m_dwAllocationAddUp = 4096;
-   m_dAllocationRateUp = (double)(1.0 - ((double)m_dwAllocationAddUp / 2.0) * ::log((double)m_dwAllocationAddUp - 1.0)) / (1 - ::log((double)m_dwAllocationAddUp - 1.0));
+   m_dAllocationRateUp = (::f64)(1.0 - ((::f64)m_dwAllocationAddUp / 2.0) * ::log((::f64)m_dwAllocationAddUp - 1.0)) / (1 - ::log((::f64)m_dwAllocationAddUp - 1.0));
    m_pcontainer = nullptr;
    m_pprimitivememory = nullptr;
    m_psharedmemory = nullptr;
@@ -54,20 +54,20 @@ memory_base::~memory_base()
 
 memory_base & memory_base::prefix_der_length()
 {
-   int msb = ::most_significant_bit_index(size());
+   ::i32 msb = ::most_significant_bit_index(size());
    if(msb < 7)
    {
       move_and_grow(1);
-      data()[0] = (unsigned char)(size() - 1);
+      data()[0] = (::u8)(size() - 1);
    }
    else
    {
-      int iLen = (msb + 8) / 8;
+      ::i32 iLen = (msb + 8) / 8;
       move_and_grow(1 + iLen);
       data()[0] = 0x80 | iLen;
       auto s = size() - 1 - iLen;
-      unsigned char * p = (unsigned char *)&s;
-      for(int i = 1; i <= iLen; i++)
+      ::u8 * p = (::u8 *)&s;
+      for(::i32 i = 1; i <= iLen; i++)
       {
          data()[i] = p[iLen - i];
       }
@@ -89,7 +89,7 @@ memory_base & memory_base::prefix_der_uint_content()
    return *this;
 }
 
-memory_base & memory_base::prefix_der_type(int iType)
+memory_base & memory_base::prefix_der_type(::i32 iType)
 {
 
    move_and_grow(1);
@@ -176,21 +176,21 @@ void memory_base::set_size(memsize dwNewLength)
 }
 
 
-unsigned char * memory_base::impl_alloc(memsize dwAllocation)
+::u8 * memory_base::impl_alloc(memsize dwAllocation)
 {
 
    return nullptr;
 
 }
 
-unsigned char * memory_base::impl_realloc(void * pdata, memsize dwAllocation)
+::u8 * memory_base::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
    return nullptr;
 
 }
 
-void memory_base::impl_free(unsigned char * pdata)
+void memory_base::impl_free(::u8 * pdata)
 {
 
 }
@@ -223,9 +223,9 @@ void memory_base::allocate_internal(memsize sizeNew)
 
    }
 
-   unsigned char * pOldStorage = this->storage_begin();
+   ::u8 * pOldStorage = this->storage_begin();
 
-   unsigned char * pNewStorage = nullptr;
+   ::u8 * pNewStorage = nullptr;
 
    memsize sizeOld = this->size();
 
@@ -234,7 +234,7 @@ void memory_base::allocate_internal(memsize sizeNew)
    if(::is_null(pOldStorage) || !this->m_bOwner || this->m_bReadOnly)
    {
 
-      pNewStorage = (unsigned char *) impl_alloc(sizeNewStorage);
+      pNewStorage = (::u8 *) impl_alloc(sizeNewStorage);
 
       if (pOldStorage && (!this->m_bOwner || this->m_bReadOnly))
       {
@@ -415,8 +415,8 @@ void memory_base::delete_begin(memsize iSize)
 //      if(pfileOut->get_internal_data() == data())
 //         return;
 //
-//      memory_transfer(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
-//      ::memory_copy(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
+//      memory_transfer(((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
+//      ::memory_copy(((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
 //
 //      pfileOut->position() += size();
 //
@@ -537,7 +537,7 @@ void memory_base::append_entire_file(::file::file * pfileIn, memsize uiBufferSiz
 //         if(::ferror(pfile))
 //         {
 //
-//            int iErrNo = errno;
+//            ::i32 iErrNo = errno;
 //            
 //            auto errorcode = cerrno.error_code();
 //            
@@ -661,9 +661,9 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       auto lengthSrc = srclen;
 
-      mem.set_size(utf_to_utf_length2((char *) data(),(const ::wd16_character *)&data()[2], lengthSrc));
+      mem.set_size(utf_to_utf_length2((char_pointer ) data(),(const ::wd16_character *)&data()[2], lengthSrc));
 
-      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],lengthSrc);
+      utf_to_utf((char_pointer ) mem.data(),(const ::wide_character *)&data()[2],lengthSrc);
 
       return { (const_char_pointer )mem.data(), mem.size() };
 
@@ -677,9 +677,9 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       auto lengthSrc = srclen;
 
-      mem.set_size(utf_to_utf_length2((char *) data(),(const ::wd16_character *)&data()[3],lengthSrc));
+      mem.set_size(utf_to_utf_length2((char_pointer ) data(),(const ::wd16_character *)&data()[3],lengthSrc));
 
-      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],lengthSrc);
+      utf_to_utf((char_pointer )mem.data(),(const ::wd16_character *)&data()[3],lengthSrc);
 
       return { (const_char_pointer )mem.data(), mem.size() };
 
@@ -765,7 +765,7 @@ string memory_base::as_utf8() const
 #ifdef __ANDROID__
       //for (::collection::index i = 2; i < storage.size(); i += 2)
       //{
-      //   unsigned char b = storage.data()[i];
+      //   ::u8 b = storage.data()[i];
       //   storage.data()[i] = storage.data()[i + 1];
       //   storage.data()[i + 1] = b;
       //}
@@ -790,13 +790,13 @@ string memory_base::as_utf8() const
             && data()[2] == 0xbf)
    {
 
-      strResult = string((const_char_pointer )&data()[3], (int)(size() - 3));
+      strResult = string((const_char_pointer )&data()[3], (::i32)(size() - 3));
 
    }
    else
    {
 
-      strResult = string((const_char_pointer )data(), (int)size());
+      strResult = string((const_char_pointer )data(), (::i32)size());
 
    }
 
@@ -805,7 +805,7 @@ string memory_base::as_utf8() const
 }
 
 
-//char * memory_base::c_str()
+//char_pointer memory_base::c_str()
 //{
 //
 //   if (size() <= 0)
@@ -824,7 +824,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return (char *)data();
+//   return (char_pointer )data();
 //
 //}
 
@@ -1126,7 +1126,7 @@ void memory_base::set_at(::collection::index i, const void * pdata, memsize uiSi
 }
 
 
-void memory_base::set(unsigned char b, memsize iStart, memsize uiSize)
+void memory_base::set(::u8 b, memsize iStart, memsize uiSize)
 {
 
    if (uiSize + iStart > size())
@@ -1221,9 +1221,9 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
 
    }
 
-   char * pchSrc = (char *)data();
+   char_pointer pchSrc = (char_pointer )data();
 
-   char * pchDst = str.get_buffer(count * 2);
+   char_pointer pchDst = str.get_buffer(count * 2);
 
    ::u64 tickEnd = pos + count;
 
@@ -1233,13 +1233,13 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
       if (((pchSrc[dw] & 0xf0) >> 4) < 10)
       {
 
-         *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + '0');
+         *pchDst = (::i8)(((pchSrc[dw] & 0xf0) >> 4) + '0');
 
       }
       else
       {
 
-         *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + 'A' - 10);
+         *pchDst = (::i8)(((pchSrc[dw] & 0xf0) >> 4) + 'A' - 10);
 
       }
 
@@ -1248,13 +1248,13 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
       if (((pchSrc[dw] & 0x0f)) < 10)
       {
 
-         *pchDst = (char)((pchSrc[dw] & 0x0f) + '0');
+         *pchDst = (::i8)((pchSrc[dw] & 0x0f) + '0');
 
       }
       else
       {
 
-         *pchDst = (char)((pchSrc[dw] & 0x0f) + 'A' - 10);
+         *pchDst = (::i8)((pchSrc[dw] & 0x0f) + 'A' - 10);
 
       }
 
@@ -1282,7 +1282,7 @@ string memory_base::to_hex(memsize pos, memsize size)
 character_count memory_base::from_hex(const ::block & block)
 {
 
-   char ch;
+   ::i8 ch;
 
    bool bOdd = false;
 
@@ -1301,11 +1301,11 @@ character_count memory_base::from_hex(const ::block & block)
 
    set_size(iLen / 2);
 
-   char * pch = (char *)data();
+   char_pointer pch = (char_pointer )data();
 
    character_count i = 0;
 
-   char ch2;
+   ::i8 ch2;
 
    while (i < iLen)
    {
@@ -1554,7 +1554,7 @@ string memory_base::get_string(memsize iStart, memsize iCount) const
 
    }
 
-   char * psz = str.get_buffer(iCount + 1);
+   char_pointer psz = str.get_buffer(iCount + 1);
 
    ::memory_copy(psz, &data()[iStart], iCount);
 
@@ -1635,7 +1635,7 @@ void memory_base::transfer(memsize offset, bool bGrow)
 
 }
 
-void memory_base::append(unsigned char b)
+void memory_base::append(::u8 b)
 {
 
    append(&b, 1);
@@ -1731,7 +1731,7 @@ void memory_base::assign(const void * pdata, memsize iStart, memsize iCount)
 
    set_size(iCount);
 
-   ::memory_copy(data(), &((unsigned char *)pdata)[iStart], (size_t)iCount);
+   ::memory_copy(data(), &((::u8 *)pdata)[iStart], (size_t)iCount);
 
 }
 
@@ -1755,7 +1755,7 @@ void memory_base::append(memsize iCount, uchar uch)
 }
 
 
-void memory_base::splice(const unsigned char * pbMemory, memsize iCountSrc, memsize iStartDst, memsize iCountDst)
+void memory_base::splice(const ::u8 * pbMemory, memsize iCountSrc, memsize iStartDst, memsize iCountDst)
 {
 
    if (iCountSrc <= 0)
@@ -1867,7 +1867,7 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 
    }
 
-   return ref ___new Array < uchar, 1U ((uchar *)&data >()[pos], size);
+   return ref ___new Array < uchar, 1U ((::u8 * )&data >()[pos], size);
 
 }
 
@@ -2001,7 +2001,7 @@ memsize memory_base::length() const
 }
 
 
-unsigned char* memory_base::find_line_prefix(const ::block& blockPrefix, ::collection::index iStart)
+::u8* memory_base::find_line_prefix(const ::block& blockPrefix, ::collection::index iStart)
 {
 
    auto iFind = find_line_prefix_index(blockPrefix, iStart);
@@ -2100,7 +2100,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
    set_size(iNewSize);
 
-   auto pdata = (unsigned char*)data();
+   auto pdata = (::u8*)data();
 
    if (iNewLen != iOldLen)
    {
@@ -2145,7 +2145,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 //
 //   }
 //
-//   int iMemcmp = memcmp(data(), block.data(), block.size());
+//   ::i32 iMemcmp = memcmp(data(), block.data(), block.size());
 //
 //   return iMemcmp == 0;
 //
@@ -2162,7 +2162,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 //
 //   }
 //
-//   int iMemcmp = memcmp(data() + size() - block.size(), block.data(), block.size());
+//   ::i32 iMemcmp = memcmp(data() + size() - block.size(), block.data(), block.size());
 //
 //   return iMemcmp == 0;
 //
@@ -2170,18 +2170,18 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
 
 
-unsigned char * memory_base::find(const ::block & block, ::collection::index iStart) const
+::u8 * memory_base::find(const ::block & block, ::collection::index iStart) const
 {
 
-   return (unsigned char *)memory_find(data() + iStart, size() - iStart, (unsigned char *)block.data(), block.size());
+   return (::u8 *)memory_find(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
 
 }
 
 
-::collection::index memory_base::find_index(char ch, ::collection::index iStart) const
+::collection::index memory_base::find_index(::i8 ch, ::collection::index iStart) const
 {
 
-   auto p = memory_find(data() + iStart, size() - iStart, (unsigned char *)&ch, 1);
+   auto p = memory_find(data() + iStart, size() - iStart, (::u8 *)&ch, 1);
 
    if (!p)
    {
@@ -2190,7 +2190,7 @@ unsigned char * memory_base::find(const ::block & block, ::collection::index iSt
 
    }
 
-   return ((unsigned char *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
@@ -2207,15 +2207,15 @@ unsigned char * memory_base::find(const ::block & block, ::collection::index iSt
 
    }
 
-   return ((unsigned char *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
 
-unsigned char * memory_base::rear_find(const ::block & block, ::collection::index iStart) const
+::u8 * memory_base::rear_find(const ::block & block, ::collection::index iStart) const
 {
 
-   return (unsigned char *)reverse_memmem(data() + iStart, size() - iStart, (unsigned char *)block.data(), block.size());
+   return (::u8 *)reverse_memmem(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
 
 }
 
@@ -2232,15 +2232,15 @@ unsigned char * memory_base::rear_find(const ::block & block, ::collection::inde
 
    }
 
-   return ((unsigned char *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
 
-unsigned char * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::collection::index iStart) const
+::u8 * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::collection::index iStart) const
 {
 
-   return (unsigned char *)reverse_byte_not_in_block(data() + iStart, size() - iStart, (unsigned char *)block.data(), block.size());
+   return (::u8 *)reverse_byte_not_in_block(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
 
 }
 
@@ -2257,7 +2257,7 @@ unsigned char * memory_base::reverse_find_byte_not_in_block(const ::block & bloc
 
    }
 
-   return ((unsigned char *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
@@ -2283,9 +2283,9 @@ namespace acme
    //      if (pfileOut->get_internal_data() == mem.data())
    //         return;
 
-   //      memory_transfer(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
+   //      memory_transfer(((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
 
-   //      ::memory_copy(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
+   //      ::memory_copy(((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
 
    //      pfileOut->position() += mem.size();
 
@@ -2316,7 +2316,7 @@ namespace acme
    //   if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
    //   {
 
-   //      mem.append((unsigned char *)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+   //      mem.append((::u8 *)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
 
    //   }
    //   else

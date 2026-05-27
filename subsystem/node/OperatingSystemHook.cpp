@@ -45,7 +45,7 @@ namespace subsystem
    //}
 
 
-   //bool OperatingSystemHookInterface::operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam)
+   //bool OperatingSystemHookInterface::operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, ::i32 iVkCode, ::lparam lparam)
    //{
 
    //   for (auto plistener : m_listenera)
@@ -152,7 +152,7 @@ namespace subsystem
    //         }
 
    //// }
-   //// LRESULT CALLBACK WinHooks::lowLevelKeyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
+   //// LRESULT CALLBACK WinHooks::lowLevelKeyboardHook(::i32 nCode, WPARAM wParam, LPARAM lParam)
    //// {
    ////   if (nCode < 0) {
    ////     return CallNextHookEx(s_hooks, nCode, wParam, lParam);
@@ -187,7 +187,7 @@ namespace subsystem
    //// }
 
    //bool OperatingSystemHook::operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage,
-   //   int iVkCode, ::lparam lparam)
+   //   ::i32 iVkCode, ::lparam lparam)
    //{
 
    //   return false;

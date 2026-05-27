@@ -19,7 +19,7 @@ namespace gpu_opengl
    public:
 
 
-      int instanceCount = 0;
+      ::i32 instanceCount = 0;
 
       ::pointer < ::gpu::shader > m_pshaderBlend; 
       ::pointer < ::gpu_opengl::shader > m_pshaderBlend2;
@@ -55,7 +55,7 @@ namespace gpu_opengl
       //void Clear() const;
 
 
-      //int get_frame_count() override;
+      //::i32 get_frame_count() override;
       // Draws the skybox using the given mesh and shader
       //void DrawSkybox(const mesh *pskyboxMesh, ::gpu::shader * pshader) const;
 
@@ -74,7 +74,7 @@ namespace gpu_opengl
 
       //void endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction) override;
 
-      //virtual void on_layout(int cx, int cy);
+      //virtual void on_layout(::i32 cx, ::i32 cy);
 
       //void on_start_layer(::gpu::layer* player) override;
       //void on_end_layer(::gpu::layer* player) override;

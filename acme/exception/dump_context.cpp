@@ -5,7 +5,7 @@
 //#ifdef LINUX
 //
 //
-//inline int _stprintf_s(char * pszBuffer, int iBufferLen, const ::scoped_string & scopedstrFormat, ...)
+//inline ::i32 _stprintf_s(char_pointer pszBuffer, ::i32 iBufferLen, const ::scoped_string & scopedstrFormat, ...)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iBufferLen);
@@ -30,7 +30,7 @@
 //#endif
 //
 //
-//int dump_context::GetDepth() const
+//::i32 dump_context::GetDepth() const
 //{
 //   
 //   return m_nDepth;
@@ -38,7 +38,7 @@
 //}
 //
 //
-//void dump_context::SetDepth(int nNewDepth)
+//void dump_context::SetDepth(::i32 nNewDepth)
 //{
 //   
 //   m_nDepth = nNewDepth;
@@ -69,7 +69,7 @@
 //   //}
 //
 //   // otherwise, write the string to the file
-//   //m_p->write(scopedstr, strlen(scopedstr)*sizeof(char));
+//   //m_p->write(scopedstr, strlen(scopedstr)*sizeof(::i8));
 //
 //}
 //
@@ -137,9 +137,9 @@
 ////   if (!m_p)
 ////   {
 ////
-////      char szBuffer[512];
+////      ::i8 szBuffer[512];
 ////
-////      char * pdata = szBuffer;
+////      char_pointer pdata = szBuffer;
 ////
 ////      while (*psz != '\0')
 ////      {
@@ -174,19 +174,19 @@
 ////
 ////   }
 ////
-////   m_p->write(scopedstr, strlen(scopedstr)*sizeof(char));
+////   m_p->write(scopedstr, strlen(scopedstr)*sizeof(::i8));
 ////
 ////   return;
 ////
 ////}
 ////
 ////
-////void dump_context::write(char i)
+////void dump_context::write(::i8 i)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("%d", (int) i);
+////   str.formatf("%d", (::i32) i);
 ////
 ////   output_string(str);
 ////
@@ -195,12 +195,12 @@
 ////}
 ////
 ////
-////void dump_context::write(unsigned char u)
+////void dump_context::write(::u8 u)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("%u", (int) u);
+////   str.formatf("%u", (::i32) u);
 ////
 ////   output_string(str);
 ////
@@ -209,12 +209,12 @@
 ////}
 ////
 ////
-////void dump_context::write(short i)
+////void dump_context::write(::i16 i)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("%d", (int) i);
+////   str.formatf("%d", (::i32) i);
 ////
 ////   output_string(str);
 ////
@@ -223,12 +223,12 @@
 ////}
 ////
 ////
-////void dump_context::write(unsigned short u)
+////void dump_context::write(::u16 u)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("%u", (unsigned short) u);
+////   str.formatf("%u", (::u16) u);
 ////
 ////   output_string(str);
 ////
@@ -237,7 +237,7 @@
 ////}
 ////
 ////
-////void dump_context::write(int i)
+////void dump_context::write(::i32 i)
 ////{
 ////
 ////   string str;
@@ -293,7 +293,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(char i)
+////void dump_context::hex_dump(::i8 i)
 ////{
 ////
 ////   string str;
@@ -307,7 +307,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(unsigned char u)
+////void dump_context::hex_dump(::u8 u)
 ////{
 ////
 ////   string str;
@@ -321,7 +321,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(short i)
+////void dump_context::hex_dump(::i16 i)
 ////{
 ////
 ////   string str;
@@ -335,7 +335,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(unsigned short u)
+////void dump_context::hex_dump(::u16 u)
 ////{
 ////
 ////   string str;
@@ -349,7 +349,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(int i)
+////void dump_context::hex_dump(::i32 i)
 ////{
 ////
 ////   string str;
@@ -500,7 +500,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 ////// Formatted output
 ////
-////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, unsigned char* pby, int nBytes, int nWidth)
+////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, ::u8* pby, ::i32 nBytes, ::i32 nWidth)
 ////// do a simple hex-dump (8 per line) to a dump_context
 //////  the "pszLine" is a string to print at the start of each line
 //////    (%lx should be used to expand the current address)
@@ -537,7 +537,7 @@
 ////   if( pby == nullptr )
 ////      throw ::exception(error_bad_argument);
 ////
-////   int nRow = 0;
+////   ::i32 nRow = 0;
 ////   string str;
 ////
 ////
@@ -570,7 +570,7 @@
 ////#ifdef WINDOWS
 ////
 ////
-////void dump_context::write(const unichar * psz)
+////void dump_context::write(const wide_character * psz)
 ////{
 ////
 ////   if (scopedstr == nullptr)

@@ -29,8 +29,8 @@ namespace account
       bool                          m_bSubmitted;
       
       bool                          m_bSelfLayout;
-      double                        m_dRateX;
-      double                        m_dRateY;
+      ::f64                        m_dRateX;
+      ::f64                        m_dRateY;
 
       bool                          m_bCred;
       string                        m_strCred;

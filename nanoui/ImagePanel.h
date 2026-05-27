@@ -29,15 +29,15 @@ namespace nanoui
    {
    public:
 
-      typedef ::array<::pair<int, ::string>> Images;
+      typedef ::array<::pair<::i32, ::string>> Images;
       ::string m_strLoadDirectory;
       bool m_bPendingLoad = false;
 
       Images m_images;
       ::function<void(::collection::index)> m_callback;
-      int m_iThumbSize;
-      int m_iSpacing;
-      int m_iMargin;
+      ::i32 m_iThumbSize;
+      ::i32 m_iSpacing;
+      ::i32 m_iMargin;
       ::collection::index m_iMouseIndex;
 
 
@@ -62,7 +62,7 @@ namespace nanoui
 
       i32_size grid_size() const;
       
-      int index_for_position(const i32_point& p) const;
+      ::i32 index_for_position(const i32_point& p) const;
       
       
    };

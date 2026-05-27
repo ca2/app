@@ -17,7 +17,7 @@ namespace hwid
         CPUVendorID();
         ::string toString() const
         {
-            char str[12];
+            ::i8 str[12];
             ::memory_copy(str, &regs, sizeof(str)); //this way avoid all kinds of UB
             return ::string(str, 12);
         }

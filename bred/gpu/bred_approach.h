@@ -32,7 +32,7 @@ namespace gpu
 //      //::i32_size                        m_sizeNew;
 //      //::i32_size                        m_size;
 //      //HDC                           m_hdcGraphics;
-//      //float                         m_z;
+//      //::f32                         m_z;
 //      //i32_point                         m_pointTranslate;
 //      //::pointer<::opengl::buffer>  m_pbuffer;
 //      //::pointer<::opengl::program> m_pprogram;

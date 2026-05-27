@@ -118,7 +118,7 @@ namespace message
 
 
       enum_scroll_command    m_ecommand;
-      double                    m_dPosition;
+      ::f64                    m_dPosition;
 #ifdef WINDOWS_DESKTOP
       ::acme::windowing::window * m_pacmewindowingwindowScrollBar;
 #endif
@@ -187,13 +187,13 @@ namespace message
    {
    public:
 
-      short m_Δ;
+      ::i16 m_Δ;
 
       mouse_wheel();
 
       ::u32 GetFlags();
 
-      //short GetDelta();
+      //::i16 GetDelta();
 
       i32_point GetPoint();
 
@@ -382,7 +382,7 @@ namespace message
       notify() { }
 
 
-      int get_ctrl_id();
+      ::i32 get_ctrl_id();
 
 
    };
@@ -462,7 +462,7 @@ namespace message
    public:
 
 
-      int m_i32;
+      ::i32 m_i32;
       void * m_LPMEASUREITEMSTRUCT;
 
       measure_item() { }

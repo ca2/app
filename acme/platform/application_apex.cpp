@@ -348,10 +348,10 @@ void apex_application_layer::setResourceName(::i32 iId
    //user bool apex_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
 
 
-   //void apex_application_layer::process_message_filter(int code, ::message::message * pmessage) override{}
+   //void apex_application_layer::process_message_filter(::i32 code, ::message::message * pmessage) override{}
 
 
-   void apex_application_layer::DoWaitCursor(int nCode)
+   void apex_application_layer::DoWaitCursor(::i32 nCode)
    {
    } // 0 => restore, 1=> begin, -1=> end
 
@@ -584,13 +584,13 @@ void apex_application_layer::setResourceName(::i32 iId
    //::file::path apex_application_layer::defer_process_path(::file::path path){}
    //::file::path apex_application_layer::full_process_path(::file::path path){}
 
-   //void apex_application_layer::DoWaitCursor(int nCode){} // 0 => restore, 1=> begin, -1=> end
+   //void apex_application_layer::DoWaitCursor(::i32 nCode){} // 0 => restore, 1=> begin, -1=> end
    //void apex_application_layer::show_wait_cursor(bool bShow){}
 
 
-   //void apex_application_layer::process_message_filter(int code,::message::message * pmessage) override{}
+   //void apex_application_layer::process_message_filter(::i32 code,::message::message * pmessage) override{}
 
-   //void apex_application_layer::on_thread_on_idle(::thread * pthread, int lCount) override{}
+   //void apex_application_layer::on_thread_on_idle(::thread * pthread, ::i32 lCount) override{}
 
 
    void apex_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
@@ -819,7 +819,7 @@ void apex_application_layer::setResourceName(::i32 iId
 
    /// return true if the external additional instance might continue execution
    /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-   void apex_application_layer::on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, int iPid,
+   void apex_application_layer::on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid,
                                                              const ::scoped_string & scopedstrCommandLine)
    {
    }
@@ -898,7 +898,7 @@ void apex_application_layer::setResourceName(::i32 iId
    }
 
 
-   // bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override{}
+   // bool on_set_scalar(enum_scalar escalar, ::number::number number, ::i32 iFlags) override{}
    //
    //
    // ::number::number get_scalar_minimum(enum_scalar escalar) override{}
@@ -1029,7 +1029,7 @@ void apex_application_layer::setResourceName(::i32 iId
 
    //bool apex_application_layer::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed){}
 
-   //bool apex_application_layer::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel = 6){}
+   //bool apex_application_layer::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6){}
 
    //void apex_application_layer::interactive_credentials(::account::credentials * pcredentials) override{}
 
@@ -1074,7 +1074,7 @@ void apex_application_layer::setResourceName(::i32 iId
    }
 
 
-   void apex_application_layer::install_trace(double dRate)
+   void apex_application_layer::install_trace(::f64 dRate)
    {
    }
 
@@ -1129,7 +1129,7 @@ void apex_application_layer::setResourceName(::i32 iId
 
 
    // apex commented
-   //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback){}
+   //virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback){}
 
 
    ::string apex_application_layer::apex_application_layer::preferred_experience()
@@ -1211,7 +1211,7 @@ void apex_application_layer::setResourceName(::i32 iId
 
    //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr){}
 
-   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, ::u32 fuStyle) override{}
+   //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, ::u32 fuStyle) override{}
 
 
    //void apex_application_layer::pre_translate_message(::message::message* pmessage) override{}
@@ -1266,7 +1266,7 @@ void apex_application_layer::setResourceName(::i32 iId
    //void apex_application_layer::on_request(::create* pcreate) override{}
 
    //for implementation
-   bool apex_application_layer::on_idle(int lCount)
+   bool apex_application_layer::on_idle(::i32 lCount)
    {
       return false;
    } // return tr(ue if more idle processing
@@ -1288,7 +1288,7 @@ void apex_application_layer::setResourceName(::i32 iId
 
    //bool CreateFileFromRawResource(::u32 nID, const ::string apex_application_layer::& lcszType, const ::string apex_application_layer::& pcszFilePath){}
 
-   //virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam){}
+   //virtual LRESULT GetPaintMsgProc(::i32 nCode, WPARAM wParam, LPARAM lParam){}
 
 
    //void OnUpdateRecentFileMenu(::message::command* pcommand){}
@@ -1304,8 +1304,8 @@ void apex_application_layer::setResourceName(::i32 iId
    //void EnableHtmlHelp(){}
 
 
-   //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,::u32 fuStyle = ::user::e_message_box_ok) override{}
-   //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, ::u32 fuStyle = ::user::e_message_box_ok) override{}
+   //virtual ::i32 sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,::u32 fuStyle = ::user::e_message_box_ok) override{}
+   //virtual ::i32 sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, ::u32 fuStyle = ::user::e_message_box_ok) override{}
 
 
    //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}
@@ -1374,7 +1374,7 @@ void apex_application_layer::setResourceName(::i32 iId
    //void apex_application_layer::close(::apex::e_end eend) override{} // close documents before exiting
 
    // Advanced: to override message boxes and other hooks
-   //virtual int DoMessageBox(const ::string apex_application_layer::& pszPrompt,::u32 nType,::u32 nIDPrompt){}
+   //virtual ::i32 DoMessageBox(const ::string apex_application_layer::& pszPrompt,::u32 nType,::u32 nIDPrompt){}
 
 
    // Advanced: process async DDE request
@@ -1459,7 +1459,7 @@ void apex_application_layer::setResourceName(::i32 iId
    //                        ::topic* ptopic) override{}
 
 
-   void apex_application_layer::report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
+   void apex_application_layer::report_error(const ::exception& e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
    }
 

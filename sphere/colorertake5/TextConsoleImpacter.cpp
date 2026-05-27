@@ -3,7 +3,7 @@
 namespace colorertake5
 {
 
-text_console_impacter::text_console_impacter(base_editor *be, text_lines *ts, int background, int encoding){
+text_console_impacter::text_console_impacter(base_editor *be, text_lines *ts, ::i32 background, ::i32 encoding){
   textLinesStore = ts;
   baseEditor = be;
   if(encoding == -1) encoding = Encodings::getDefaultEncodingIndex();
@@ -15,7 +15,7 @@ text_console_impacter::~text_console_impacter(){};
 void text_console_impacter::impact()
 {
 #ifdef _WIN32
-int topline, leftpos;
+::i32 topline, leftpos;
 leftpos = topline = 0;
 INPUT_RECORD ir;
 
@@ -37,14 +37,14 @@ INPUT_RECORD ir;
   CHAR_INFO *buffer = ___new CHAR_INFO[csbi.dwSize.X * csbi.dwSize.Y];
   bool unc_fault = false;
   do{
-    int lline = csbi.dwSize.Y;
+    ::i32 lline = csbi.dwSize.Y;
     if (topline+lline > textLinesStore->getLineCount()) lline = textLinesStore->getLineCount()-topline;
     baseEditor->visibleTextEvent(topline, lline);
 
-    for(int i = topline; i < topline + csbi.dwSize.Y; i++){
-      int Y = i-topline;
+    for(::i32 i = topline; i < topline + csbi.dwSize.Y; i++){
+      ::i32 Y = i-topline;
 
-      int li;
+      ::i32 li;
       for(li = 0; li < csbi.dwSize.X; li++){
         buffer[Y*csbi.dwSize.X + li].Char.UnicodeChar = ' ';
         buffer[Y*csbi.dwSize.X + li].Attributes = background;
@@ -61,20 +61,20 @@ INPUT_RECORD ir;
       };
       for(LineRegion *l1 = baseEditor->getLineRegions(i); l1 != nullptr; l1 = l1->next){
         if (l1->special || l1->rdef == nullptr) continue;
-        int end = l1->end;
+        ::i32 end = l1->end;
         if (end == -1) end = iLine.GetLength();
-        int X = l1->start - leftpos;
-        int len = end - l1->start;
+        ::i32 X = l1->start - leftpos;
+        ::i32 len = end - l1->start;
         if (X < 0){
           len += X;
           X = 0;
         };
         if (len < 0 || X >= csbi.dwSize.X) continue;
         if (len+X > csbi.dwSize.X) len = csbi.dwSize.X-X;
-        unsigned short color = (unsigned short)(l1->styled()->fore + (l1->styled()->back<<4));
+        ::u16 color = (::u16)(l1->styled()->fore + (l1->styled()->back<<4));
         if (!l1->styled()->bfore) color = (color&0xF0) + (background&0xF);
         if (!l1->styled()->bback) color = (color&0xF) + (background&0xF0);
-        for(int li = 0; li < len; li++)
+        for(::i32 li = 0; li < len; li++)
           buffer[Y*csbi.dwSize.X + X + li].Attributes = color;
       };
     };
@@ -167,7 +167,7 @@ INPUT_RECORD ir;
 
   printf("unix edition doesn't support interactive text viewing\n\n");
 
-  for(int i = 0; i < textLinesStore->getLineCount(); i++){
+  for(::i32 i = 0; i < textLinesStore->getLineCount(); i++){
     string line = textLinesStore->getLine(i);
     printf("%s\n", line.getChars());
   };

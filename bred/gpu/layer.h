@@ -12,8 +12,8 @@ namespace gpu
    {
    public:
 
-      int m_iFrameIndex = -1;
-      int m_iLayerIndex = -1;
+      ::i32 m_iFrameIndex = -1;
+      ::i32 m_iLayerIndex = -1;
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
       bool m_bRenderTargetFramebufferInitialized;
       //::pointer < renderer >        m_pgpurendererTarget;
@@ -43,7 +43,7 @@ namespace gpu
       virtual ::gpu::command_buffer* getCurrentCommandBuffer4();
 
 
-      virtual void initialize_gpu_layer(::gpu::renderer * pgpurenderer, int iFrameIndex, int iLayerIndex);
+      virtual void initialize_gpu_layer(::gpu::renderer * pgpurenderer, ::i32 iFrameIndex, ::i32 iLayerIndex);
 
 
       virtual void create_command_buffers();

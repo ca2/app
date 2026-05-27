@@ -18,7 +18,7 @@ class CLASS_DECL_ACME pen :
 public:
 
 
-   int                  m_iWidth;
+   ::i32                  m_iWidth;
    ::color::color       m_color;
 
 

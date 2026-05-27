@@ -114,7 +114,7 @@ namespace user
       }
 
    }
-   inline int as_length(enum_line eline)
+   inline ::i32 as_length(enum_line eline)
    {
       return eline & e_line_end_length;
    }
@@ -255,7 +255,7 @@ namespace user
 
       //};
       //::draw2d::graphics_pointer             m_pgraphicsPlainEdit;
-      int                                    m_iDrawTextFlags;
+      ::i32                                    m_iDrawTextFlags;
       class ::time                           m_timeLastDraw;
       ::pointer_array < plain_edit_error >   m_errora;
       ::pointer<::message::key>              m_pmessagekeyLast;
@@ -272,17 +272,17 @@ namespace user
       ::pointer<plain_edit_style>        m_pcontrolstyle;
       bool                                m_bNeedCalcLayout;
       bool                                m_bCalcLayoutHintNoTextChange;
-      int                                 m_iInputConnectionBatch;
+      ::i32                                 m_iInputConnectionBatch;
       bool                                m_bSetTextSelectionUpdatePending;
       
       //bool                              m_bLastSelectionWasAtEnd;
       
       ::collection::index                 m_iLastSelectionBeginLine;
-      int                               m_iLastSelectionBeginX;
+      ::i32                               m_iLastSelectionBeginX;
       ::collection::index                 m_iLastSelectionEndLine;
-      int                               m_iLastSelectionEndX;
+      ::i32                               m_iLastSelectionEndX;
       
-      int                                 m_iTabWidth;
+      ::i32                                 m_iTabWidth;
       bool                                m_bColorerTake5;
       ::collection::index                             m_iCurrentPageLineStart;
       ::collection::index                             m_iCurrentPageLineEnd;
@@ -308,15 +308,15 @@ namespace user
       i32_point                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;
       string_array_base                        m_straLines;
-      double                              m_dy;
+      ::f64                              m_dy;
       //bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
       character_count                             m_iImpactOffset; // in bytes
       character_count                             m_iImpactSize; // in bytes
-      double                              m_dLineHeight;
+      ::f64                              m_dLineHeight;
       ::collection::index                               m_iColumn;
-      int                                 m_iColumnX;
+      ::i32                                 m_iColumnX;
       bool                                m_bMultiLine;
       bool                                m_bSendEnterKey;
       bool                                m_bReadOnly;
@@ -336,7 +336,7 @@ namespace user
 
 
       //bool                              m_bActionHover;
-      array_base < double_array_base >    m_daExtent;
+      array_base < f64_array_base >    m_daExtent;
       ::file::insert_item *               m_pinsert;
       ::pointer < plain_text_set_sel_command >       m_ppropertysetsel;
       bool                                m_bParseDataPacks;
@@ -395,7 +395,7 @@ namespace user
       void queue_selection_synchronization() override;
 
 
-      void constrain_context_offset(double_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      void constrain_context_offset(::f64_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics) override;
       virtual void _001OnClip(::draw2d::graphics_pointer& pgraphics) override;
@@ -422,7 +422,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
 
-      status < ::double_rectangle > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
+      status < ::f64_rectangle > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
   
       
       void on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage) override;
@@ -487,7 +487,7 @@ namespace user
       bool keyboard_focus_is_focusable() override;
 
 
-      virtual int get_wheel_scroll_delta() override;
+      virtual ::i32 get_wheel_scroll_delta() override;
 
       virtual void clipboard_copy();
       virtual void clipboard_paste();
@@ -511,7 +511,7 @@ namespace user
       string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, array < character_count * > intptra = array < character_count * >());
 
       string plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
-      double plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, character_count iChar);
+      ::f64 plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, character_count iChar);
 
       virtual void _update_line_start_array(::collection::index iLineStart = 0, ::collection::index iAccumul = -1);
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
@@ -522,14 +522,14 @@ namespace user
       virtual bool has_text_input() override;
 
 
-      virtual void on_updata_data(::data::simple_data * pdata, int iHint);
+      virtual void on_updata_data(::data::simple_data * pdata, ::i32 iHint);
 
 
       //virtual bool create_interaction(::user::interaction * pinteraction) override;
 
 
       virtual character_count plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::i32_point & point);
-      virtual character_count plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, int x, ::collection::index iLine);
+      virtual character_count plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, ::i32 x, ::collection::index iLine);
 
       //colorertake5::file_type * colorer_select_type();
 
@@ -592,12 +592,12 @@ namespace user
       void plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
 
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
       ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
       character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
-      virtual character_count _plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
+      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x) override;
+      virtual character_count _plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
       bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, character_count iSel);
       bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, character_count iSel);
@@ -637,7 +637,7 @@ namespace user
 
       void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual ::double_size get_total_size(::user::enum_layout = ::user::e_layout_sketch) override;
+      //virtual ::f64_size get_total_size(::user::enum_layout = ::user::e_layout_sketch) override;
 
       virtual ::payload get_payload();
 

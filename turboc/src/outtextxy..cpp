@@ -33,14 +33,14 @@
 //----------------------------------------------------------------------------
 
 void
-outtextxy (int x, int y, char * textstring)
+outtextxy (::i32 x, ::i32 y, char_pointer textstring)
 {
  // XPoint Points[64], DumPoints[64];
- // int NumPoints;
- // int CharX, CharY, DeltaCharX, DeltaCharY;
- // int RowX, RowY, DeltaRowX, DeltaRowY, DeltaX, DeltaY;
- // int OffX, OffY;
- // int i, j, Mask;
+ // ::i32 NumPoints;
+ // ::i32 CharX, CharY, DeltaCharX, DeltaCharY;
+ // ::i32 RowX, RowY, DeltaRowX, DeltaRowY, DeltaX, DeltaY;
+ // ::i32 OffX, OffY;
+ // ::i32 i, j, Mask;
  // // We need to convert x,y to where it is the upper-left corner of the
  // // first character of the string (if viewed comfortably for reading).
  // if (TcTextDirection == HORIZ_DIR)
@@ -127,7 +127,7 @@ outtextxy (int x, int y, char * textstring)
 	//for (; *textstring; textstring++)
 	//  {
 	//    // Here's the basic idea.  For each character, we set up the
-	//    // Points array to contain all of the visible pixels in the char.
+	//    // Points array to contain all of the visible pixels in the ::i8.
 	//    // This entire set of pixels is drawn at once with XDrawPoints.
 	//    // If the chracter i32_size has been magnified, so that each 
 	//    // "pixel" is really an NxN block of pixels, we modify the
@@ -204,7 +204,7 @@ outtextxy (int x, int y, char * textstring)
 //-------------------------------------------------------------------------
 
 void
-outtext (char *textstring)
+outtext (char_pointer textstring)
 {
   outtextxy (Tcx, Tcy, textstring);
   if (TcTextDirection == HORIZ_DIR && TcTextHoriz == LEFT_TEXT)

@@ -190,8 +190,8 @@ void xf_event_adjust_coordinates(xfContext* xfc, int* x, int *y)
 #ifdef WITH_XRENDER
 		if (xf_picture_transform_required(xfc))
 		{
-			double xScalingFactor = xfc->sessionWidth / (double)xfc->scaledWidth;
-			double yScalingFactor = xfc->sessionHeight / (double)xfc->scaledHeight;
+			::f64 xScalingFactor = xfc->sessionWidth / (::f64)xfc->scaledWidth;
+			::f64 yScalingFactor = xfc->sessionHeight / (::f64)xfc->scaledHeight;
 			*x = (int)((*x - xfc->offset_x) * xScalingFactor);
 			*y = (int)((*y - xfc->offset_y) * yScalingFactor);
 		}

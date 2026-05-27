@@ -23,19 +23,19 @@ namespace windowing
       ::i32_point m_point;
       ::i32_size m_size;
 
-      int m_iLineHeight;
-      int m_iTextAscent;
+      ::i32 m_iLineHeight;
+      ::i32 m_iTextAscent;
 
       pointer_array < ::windowing::button > m_buttona;
 
-      int m_iButtonTop;
-      int m_iButtonHeight;
-      int m_iButtonWidth;
+      ::i32 m_iButtonTop;
+      ::i32 m_iButtonHeight;
+      ::i32 m_iButtonWidth;
 
       //XftFont *                        m_pfont;
       //XftDraw *                        m_pdraw;
       //XFontSet                         m_fs;
-      //char **                          m_listMissingCharset;
+      //char_pointer *                          m_listMissingCharset;
       //GC                               m_gcText;
       //GC                               m_gcTextHover;
       //GC                               m_gcBar;
@@ -50,17 +50,17 @@ namespace windowing
 //   XftColor                         m_colorBorderHover3;
 
 //   Colormap                         m_colormap;
-      int m_iScreen;
+      ::i32 m_iScreen;
 //   Visual *                         m_pvisual;
-      int m_iMarginTop;
-      int m_iMarginLeft;
-      int m_iMarginRight;
-      int m_iMarginBottom;
-      int m_iLineSpacing;
-      int m_iButtonHSpacing;
-      int m_iButtonHPadding;
-      int m_iButtonVPadding;
-      int m_iMidSpacing;
+      ::i32 m_iMarginTop;
+      ::i32 m_iMarginLeft;
+      ::i32 m_iMarginRight;
+      ::i32 m_iMarginBottom;
+      ::i32 m_iLineSpacing;
+      ::i32 m_iButtonHSpacing;
+      ::i32 m_iButtonHPadding;
+      ::i32 m_iButtonVPadding;
+      ::i32 m_iMidSpacing;
 
 //   XftColor                         m_colorBack;
 //   XftColor                         m_colorFace;
@@ -69,7 +69,7 @@ namespace windowing
 //   XftColor                         m_colorFaceHover;
 //   XftColor                         m_colorFacePress;
 
-      int m_iResult;
+      ::i32 m_iResult;
 
 
       simple_ui_display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box &emessagebox);
@@ -111,11 +111,11 @@ namespace windowing
 
       virtual bool process_event(display *pdisplay, happening * phappening) override;
 
-      int show();
+      ::i32 show();
 
       void on_show();
 
-      bool on_click(int iResult);
+      bool on_click(::i32 iResult);
 
       virtual void close_window();
 

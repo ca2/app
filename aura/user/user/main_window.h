@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      ::double_rectangle                                   m_rectangleInitialRateOrSize;
+      ::f64_rectangle                                   m_rectangleInitialRateOrSize;
 
 
       main_window();

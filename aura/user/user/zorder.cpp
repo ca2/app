@@ -93,7 +93,7 @@ void zorder::set_request()
 }
 
 
-bool zorder::defer_set_request(int iZOrder)
+bool zorder::defer_set_request(::i32 iZOrder)
 {
 
    if (iZOrder == m_iZOrder)
@@ -135,7 +135,7 @@ bool zorder::is_set() const
 }
 
 
-int zorder::get_sort_ezorder() const
+::i32 zorder::get_sort_ezorder() const
 {
 
    if (m_ezorder == e_zorder_normal_anchor)

@@ -117,7 +117,7 @@ namespace appearance
    //}
 
 
-   bool appearance::on_scroll_event(const ::i32_point & point, double x, double y)
+   bool appearance::on_scroll_event(const ::i32_point & point, ::f64 x, ::f64 y)
    {
 
       return false;
@@ -141,7 +141,7 @@ namespace appearance
    }
 
 
-   void appearance::on_character(int iCharacter)
+   void appearance::on_character(::i32 iCharacter)
    {
 
    }

@@ -441,8 +441,8 @@ namespace experience_tranquillum
 
    enum_grip egrip)
    {
-      //            const int size1 = 14;
-      //      const int size2 = 15;
+      //            const ::i32 size1 = 14;
+      //      const ::i32 size2 = 15;
 
       ::i32_rectangle rectangleX(rectangleXParam);
 

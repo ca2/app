@@ -3,14 +3,14 @@
 #include "acme/_operating_system.h"
 
 
-int debug_string_iterator()
+::i32 debug_string_iterator()
 {
 
    string str = "This is a phrase this is a link http://test.com/test_file?test_parameter=test_value";
 
-   int iLinkLen = 0;
+   ::i32 iLinkLen = 0;
 
-   int iColon = 0;
+   ::i32 iColon = 0;
 
    for(auto character : str)
    {
@@ -180,7 +180,7 @@ void assert_atom_with_e_range_string_literal(const ::atom& atom)
 //
 //}
 
-CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
+CLASS_DECL_ACME void log_const_ansi_range_literal(::i32 n)
 {
 
    printf_line("ansi=%d", n);

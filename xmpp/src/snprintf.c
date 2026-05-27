@@ -99,9 +99,9 @@
 #endif
 
 #ifdef HAVE_LONG_DOUBLE
-#define LDOUBLE long double
+#define LDOUBLE ::f128
 #else
-#define LDOUBLE double
+#define LDOUBLE ::f64
 #endif
 
 int xmpp_snprintf (char *str, size_t count, const char *fmt, ...);
@@ -293,7 +293,7 @@ static int dopr (char *buffer, size_t maxlen, const char *format, va_list args)
 	else if (cflags == DP_C_LONG)
 	  value = va_arg (args, unsigned long int);
 	else
-	  value = va_arg (args, unsigned int);
+	  value = va_arg (args, ::u32);
 	total += fmtint (buffer, &currlen, maxlen, value, 8, min, max, flags);
 	break;
       case 'u':
@@ -303,7 +303,7 @@ static int dopr (char *buffer, size_t maxlen, const char *format, va_list args)
 	else if (cflags == DP_C_LONG)
 	  value = va_arg (args, unsigned long int);
 	else
-	  value = va_arg (args, unsigned int);
+	  value = va_arg (args, ::u32);
 	total += fmtint (buffer, &currlen, maxlen, value, 10, min, max, flags);
 	break;
       case 'X':
@@ -315,14 +315,14 @@ static int dopr (char *buffer, size_t maxlen, const char *format, va_list args)
 	else if (cflags == DP_C_LONG)
 	  value = va_arg (args, unsigned long int);
 	else
-	  value = va_arg (args, unsigned int);
+	  value = va_arg (args, ::u32);
 	total += fmtint (buffer, &currlen, maxlen, value, 16, min, max, flags);
 	break;
       case 'f':
 	if (cflags == DP_C_LDOUBLE)
 	  fvalue = va_arg (args, LDOUBLE);
 	else
-	  fvalue = va_arg (args, double);
+	  fvalue = va_arg (args, ::f64);
 	/* um, floating point? */
 	total += fmtfp (buffer, &currlen, maxlen, fvalue, min, max, flags);
 	break;
@@ -332,7 +332,7 @@ static int dopr (char *buffer, size_t maxlen, const char *format, va_list args)
 	if (cflags == DP_C_LDOUBLE)
 	  fvalue = va_arg (args, LDOUBLE);
 	else
-	  fvalue = va_arg (args, double);
+	  fvalue = va_arg (args, ::f64);
 	break;
       case 'G':
 	flags |= DP_F_UP;
@@ -340,7 +340,7 @@ static int dopr (char *buffer, size_t maxlen, const char *format, va_list args)
 	if (cflags == DP_C_LDOUBLE)
 	  fvalue = va_arg (args, LDOUBLE);
 	else
-	  fvalue = va_arg (args, double);
+	  fvalue = va_arg (args, ::f64);
 	break;
       case 'c':
 	total += dopr_outch (buffer, &currlen, maxlen, va_arg (args, int));
@@ -784,7 +784,7 @@ int main (void)
     "%.1f",
     NULL
   };
-  double fp_nums[] = { -1.5, 134.21, 91340.2, 341.1234, 0203.9, 0.96, 0.996, 
+  ::f64 fp_nums[] = { -1.5, 134.21, 91340.2, 341.1234, 0203.9, 0.96, 0.996, 
     0.9996, 1.996, 4.136, 0};
   char *int_fmt[] = {
     "%-1.5d",

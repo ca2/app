@@ -41,7 +41,7 @@ const_char_pointer GuessChardet(charguess_det p, const ::scoped_string & scopeds
    nsUniversalDetector* det = (nsUniversalDetector*) p;
 
    det->Reset();
-   det->HandleData(str, (PRunsigned int) str.length());
+   det->HandleData(str, (PRunsigned ::i32) str.length());
    det->DataEnd();
 
    return det->GetCharset();

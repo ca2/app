@@ -3762,7 +3762,7 @@ Type string_base_array < Type, RawType, t_etypeContainer > ::encode_v16()
    //   strEncode += "00";
    //   /*      for(::collection::index uj = 0; uj < str.size(); uj++)
    //   {
-   //   char sz[32];
+   //   ::i8 sz[32];
    //   ansi_from_long_long(sz, str[uj], 16);
    //   if(ansi_length(sz) == 0)
    //   {
@@ -3793,7 +3793,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_base_array < Type, RawType, t_etypeContainer > ::decode_v16(const SCOPED_STRING& str)
 {
    //::collection::index iSize = 1024;
-   //char * str = nullptr;
+   //char_pointer str = nullptr;
    //if(scopedstr == nullptr)
    //   return;
    //while(*psz != '\0')
@@ -3801,13 +3801,13 @@ void string_base_array < Type, RawType, t_etypeContainer > ::decode_v16(const SC
    //   psz++;
    //   if(*psz == '\0')
    //      break;
-   //   char sz[3];
+   //   ::i8 sz[3];
    //   sz[0] = psz[-1];
    //   sz[1] = psz[0];
    //   sz[2] = '\0';
    //   const SCOPED_STRING &strEnd;
    //   ::collection::index iConversion = ::ansi_to_int(sz,&pszEnd,16);
-   //   char ch = static_cast <char> (iConversion);
+   //   ::i8 ch = static_cast <::i8> (iConversion);
    //   if(ch == '\0')
    //   {
    //      add(str);
@@ -3818,13 +3818,13 @@ void string_base_array < Type, RawType, t_etypeContainer > ::decode_v16(const SC
    //   {
    //      if(str == nullptr)
    //      {
-   //         str = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+   //         str = (char_pointer )::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
    //      }
    //      else if(iSize < (ansi_length(str) + 1))
    //      {
-   //         char * strOld = str;
+   //         char_pointer strOld = str;
    //         iSize += 1024;
-   //         char * strNew = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+   //         char_pointer strNew = (char_pointer )::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
    //         ansi_copy(strNew,strOld);
    //         str = strNew;
    //      }
@@ -4111,7 +4111,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
    for (::collection::index i = 0; i < get_size(); i++)
    {
 
-      char* psz = nullptr;
+      char_pointer psz = nullptr;
 
       if (bMemoryAlloc)
       {
@@ -4171,7 +4171,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char** ppsz, ::collection::count c, bool bMemoryAlloc)
+void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char_pointer * ppsz, ::collection::count c, bool bMemoryAlloc)
 {
 
    for (::collection::index i = 0; i < c; i++)
@@ -4223,7 +4223,7 @@ void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char** ppsz, 
 
 /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char** ppszParam, bool bMemoryAlloc)
+void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char_pointer * ppszParam, bool bMemoryAlloc)
 {
 
    auto ppsz = ppszParam;
@@ -4572,13 +4572,13 @@ const Type& string_base_array < Type, RawType, t_etypeContainer >::element_at(::
 //
 //   memory mem;
 //
-//   mem.set_size(iTotalLength * sizeof(char));
+//   mem.set_size(iTotalLength * sizeof(::i8));
 //
-//   char * lpsz = (char *)mem.get_data();
+//   char_pointer lpsz = (char_pointer )mem.get_data();
 //
-//   memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
+//   memory_set(lpsz, 0x00, iTotalLength * sizeof(::i8));
 //
-//   char * lpszN = lpsz;
+//   char_pointer lpszN = lpsz;
 //
 //   character_count iLength;
 //
@@ -4603,17 +4603,17 @@ const Type& string_base_array < Type, RawType, t_etypeContainer >::element_at(::
 //      iLength = strlen(lpszN);
 //#endif
 //
-//      lpszN = (char *)((unsigned char *)lpszN) + iLength + sizeof(char);
+//      lpszN = (char_pointer )((::u8 *)lpszN) + iLength + sizeof(::i8);
 //
 //   }
 //
 //   if (iTotalLength == 2)
 //   {
-//      memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
+//      memory_set(lpsz, 0x00, iTotalLength * sizeof(::i8));
 //   }
 //   else
 //   {
-//      memory_set(lpszN, 0x00, sizeof(char));
+//      memory_set(lpszN, 0x00, sizeof(::i8));
 //   }
 //
 //   return mem;

@@ -69,7 +69,7 @@ void html_data::initialize_html_data(::html_data * phtmldata)
 }
 
 
-int html_data::create_font(::html::element* pelemental)
+::i32 html_data::create_font(::html::element* pelemental)
 {
 
    return m_pcoredata->create_font(pelemental);

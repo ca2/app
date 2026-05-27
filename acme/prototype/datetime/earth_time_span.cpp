@@ -79,7 +79,7 @@ namespace earth
          // string hmsFormats [_CTIMESPANFORMATS] = {"%ca","%02ld","%d"};
          //   string dayFormats [_CTIMESPANFORMATS] = {"%ca","%I64d","%I64d"};
          //strBuffer.Preallocate(maxTimeBufferSize);
-         char ch;
+         ::i8 ch;
 
          while ((ch = *pFormat++) != '\0')
          {

@@ -38,7 +38,7 @@
 //   }
 //
 //
-//   void pixmap::set_pixels(const void* data, int w, int h)
+//   void pixmap::set_pixels(const void* data, ::i32 w, ::i32 h)
 //   {
 //
 //      glBindTexture(GL_TEXTURE_2D, m_gluTexture);

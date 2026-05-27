@@ -78,22 +78,22 @@
 //   {
 //      setInt(scopedstrName, value != false);
 //   }
-//   void shader::setInt(const ::scoped_string& scopedstrName, int value)
+//   void shader::setInt(const ::scoped_string& scopedstrName, ::i32 value)
 //   {
 //      ::string strName(scopedstrName);
 //      auto& a = m_properties.as_i32(strName);
 //      a = value;
 //
 //   }
-//   void shader::setFloat(const ::scoped_string& scopedstrName, float value)
+//   void shader::setFloat(const ::scoped_string& scopedstrName, ::f32 value)
 //   {
 //      ::string strName(scopedstrName);
-//      auto& a = m_properties.as_float(strName);
+//      auto& a = m_properties.as_f32(strName);
 //      a = value;
 //
 //   }
 //   //void shader::setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value) override;
-//   void shader::setVec2(const ::scoped_string& scopedstrName, float x, float y)
+//   void shader::setVec2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y)
 //   {
 //      ::string strName(scopedstrName);
 //      auto& a = m_properties.seq2(strName);
@@ -108,7 +108,7 @@
 //
 //   }
 //   //void shader::setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value) override;
-//   void shader::setVec3(const ::scoped_string& scopedstrName, float x, float y, float z)
+//   void shader::setVec3(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z)
 //   {
 //      ::string strName(scopedstrName);
 //      auto& a = m_properties.seq3(strName);
@@ -125,7 +125,7 @@
 //
 //   }
 //   //void shader::setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value) override;
-//   void shader::setVec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+//   void shader::setVec4(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w)
 //   {
 //      ::string strName(scopedstrName);
 //      auto& a = m_properties.seq4(strName);

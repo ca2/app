@@ -27,7 +27,7 @@ CLASS_DECL_ACME string_array_base stringa_from_strdupa(::ansi_character ** ppPar
 }
 
 
-CLASS_DECL_ACME ::collection::count explode_command_line(string_array_base & stra, const ::scoped_string & scopedstr, address_array_base < char * > * argv)
+CLASS_DECL_ACME ::collection::count explode_command_line(string_array_base & stra, const ::scoped_string & scopedstr, address_array_base < char_pointer > * argv)
 {
 
    auto range = scopedstr();
@@ -45,7 +45,7 @@ CLASS_DECL_ACME ::collection::count explode_command_line(string_array_base & str
       for (::collection::index i = 0; i < stra.get_count(); i++)
       {
 
-         char * pch = (char *)stra.element_at(i).c_str();
+         char_pointer pch = (char_pointer )stra.element_at(i).c_str();
 
          argv->add(pch);
 
@@ -60,14 +60,14 @@ CLASS_DECL_ACME ::collection::count explode_command_line(string_array_base & str
 }
 
 
-CLASS_DECL_ACME string_array_base & csstidy_explode_ws(string_array_base & stra, char sep, const ::scoped_string & scopedstr)
+CLASS_DECL_ACME string_array_base & csstidy_explode_ws(string_array_base & stra, ::i8 sep, const ::scoped_string & scopedstr)
 {
 
    ::string istring(scopedstr);
 
    // 1 = st // 2 = str
    ::collection::index status = 1;
-   char to = '\0';
+   ::i8 to = '\0';
 
    stra.add("");
    character_count num = 0;
@@ -111,10 +111,10 @@ CLASS_DECL_ACME string_array_base & csstidy_explode_ws(string_array_base & stra,
 }
 
 
-CLASS_DECL_ACME char ** strdupa_from_stringa(const ::string_array_base & stra)
+CLASS_DECL_ACME char_pointer * strdupa_from_stringa(const ::string_array_base & stra)
 {
    
-   auto pp = (char **) malloc((stra.size() + 1) * sizeof(char*));
+   auto pp = (char_pointer *) malloc((stra.size() + 1) * sizeof(char_pointer ));
    
    ::collection::index i = 0;
    

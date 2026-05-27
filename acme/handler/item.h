@@ -190,7 +190,7 @@ public:
    }
 
 
-   void get_debug_title(char *sz, character_count c) const override;
+   void get_debug_title(char_pointer sz, character_count c) const override;
 
    bool _is_set() const override;
 
@@ -307,14 +307,14 @@ public:
 //   bool operator < (::collection::index iItem)  const { return m_iItem < iItem; }
 //   bool operator > (::collection::index iItem)  const { return m_iItem > iItem; }
 
-   ::collection::index operator + (int iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
-   ::collection::index operator - (int iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
+   ::collection::index operator + (::i32 iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
+   ::collection::index operator - (::i32 iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
    ::collection::index operator + (::i64 iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
    ::collection::index operator - (::i64 iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
 
-   bool in_element_range(enum_element eelement, int iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }
+   bool in_element_range(enum_element eelement, ::i32 iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }
 
    //bool is_valid_item(::collection::count c) const { return m_item.m_iItem >= 0 && m_item.m_iItem < c; }
    
@@ -390,7 +390,7 @@ inline bool is_subitem(const ::item * pitem, ::collection::index iSubItem)
 //}
 
 
-inline bool in_element_range(const ::item * pitem, enum_element eelement, int iCount)
+inline bool in_element_range(const ::item * pitem, enum_element eelement, ::i32 iCount)
 {
 
    return ::is_set((const void *)pitem) && pitem->is_item_set() &&

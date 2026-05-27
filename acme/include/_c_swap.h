@@ -29,8 +29,8 @@
 //
 //#define first_unsigned_short(u) ((u) & 0xffff)
 //#define second_unsigned_short(u) (((u) >> 16) & 0xffff)
-//#define first_short(u) ((short)(((int)(u)) & 0xffff)) // signed first_unsigned_short or at least should be designed to be signed
-//#define second_short(u) ((short)((((int)(u)) >> 16) & 0xffff)) // signed second_unsigned_short or at least should be designed to be signed
+//#define first_short(u) ((::i16)(((::i32)(u)) & 0xffff)) // signed first_unsigned_short or at least should be designed to be signed
+//#define second_short(u) ((::i16)((((::i32)(u)) >> 16) & 0xffff)) // signed second_unsigned_short or at least should be designed to be signed
 //#define x_short(u) first_short(u)
 //#define y_short(u) second_short(u)
 //#define lower32_from64(u) ((u) & 0xffffffff)

@@ -34,7 +34,7 @@ CLASS_DECL_AURA string url_decode(const ::scoped_string & scopedstr)
       else
       {
 
-         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
+         ::i8 ch = (::i8)strtol(str.substr(iFind + 1,2),nullptr,16);
 
          if(ch != 0)
          {
@@ -61,7 +61,7 @@ string url_decode(const ::scoped_string & scopedstrUrl,character_count iLen)
 
    string strDecode;
 
-   char * psz = strDecode.get_buffer(iLen * 4);
+   char_pointer psz = strDecode.get_buffer(iLen * 4);
 
    character_count i = 0;
 
@@ -96,7 +96,7 @@ string url_decode(const ::scoped_string & scopedstrUrl,character_count iLen)
          {
             i++;
             iLen--;
-            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
+            *psz = (::i8)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 
             psz++;
             pszUrl += 2;
@@ -246,12 +246,12 @@ string url_encode(const ::scoped_string & scopedstr)
 
    string str;
 
-   char sz[256];
+   ::i8 sz[256];
 
    while(*psz != '\0')
    {
 
-      char uch = *psz;
+      ::i8 uch = *psz;
 
       if(ansi_char_isdigit(uch)
             || ansi_char_isalpha(uch)
@@ -383,7 +383,7 @@ void openURL(const string &url_str)
 
 void openURL(const string &url_str);
 
-int ui_open_url(const ::scoped_string & scopedstr);
+::i32 ui_open_url(const ::scoped_string & scopedstr);
 
 void openURL(const string &url_str)
 {
@@ -419,7 +419,7 @@ void openURL(const string &url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
+//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
 //{
 //
 //   ::aura::application * papp = (::aura::application *) instance;

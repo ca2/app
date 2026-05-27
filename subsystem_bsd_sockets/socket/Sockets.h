@@ -52,7 +52,7 @@ namespace subsystem_bsd_sockets
       // Initializes Windows sockets subsystem.
       // Throws exception if winsock already initialized or
       // if was error during winsock startup.
-      void _startSockets(int loVer, int hiVer) override;
+      void _startSockets(::i32 loVer, ::i32 hiVer) override;
 
       //  Deinitializes Windows sockets subsystem.
       // Throws exception if winsock does not initialized or

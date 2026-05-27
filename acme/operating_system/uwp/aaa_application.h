@@ -23,7 +23,7 @@
 //
 //      HINSTANCE   m_hInstance;
 //      HINSTANCE   m_hPrevInstance;
-//      int         m_nCmdShow;
+//      ::i32         m_nCmdShow;
 //
 //
 //   };
@@ -57,24 +57,24 @@
 //      virtual void _001OnFileNew();
 //
 //      // Loads a cursor resource.
-//      HCURSOR LoadCursor(const char * lpszResourceName) const;
-//      HCURSOR LoadCursor(unsigned int nIDResource) const;
+//      HCURSOR LoadCursor(const_char_pointer pszResourceName) const;
+//      HCURSOR LoadCursor(::u32 nIDResource) const;
 //
 //      // Loads a stock cursor resource; for for IDC_* values.
-//      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
+//      HCURSOR LoadStandardCursor(const_char_pointer pszCursorName) const;
 //
 //      // Loads an OEM cursor; for all OCR_* values.
-//      HCURSOR LoadOEMCursor(unsigned int nIDCursor) const;
+//      HCURSOR LoadOEMCursor(::u32 nIDCursor) const;
 //
 //      // Loads an icon resource.
-//      HICON LoadIcon(const char * lpszResourceName) const;
-//      HICON LoadIcon(unsigned int nIDResource) const;
+//      HICON LoadIcon(const_char_pointer pszResourceName) const;
+//      HICON LoadIcon(::u32 nIDResource) const;
 //
 //      // Loads an icon resource; for stock IDI_ values.
-//      HICON LoadStandardIcon(const char * lpszIconName) const;
+//      HICON LoadStandardIcon(const_char_pointer pszIconName) const;
 //
 //      // Loads an OEM icon resource; for all OIC_* values.
-//      HICON LoadOEMIcon(unsigned int nIDIcon) const;
+//      HICON LoadOEMIcon(::u32 nIDIcon) const;
 //
 //      virtual string get_version();
 //
@@ -91,27 +91,27 @@
 //      virtual bool init1();
 //      virtual bool init2();
 //      virtual bool init3();
-//      virtual int  term_instance() override;
+//      virtual ::i32  term_instance() override;
 //      virtual bool win_init(main_init_data * pdata);
 //
 //      /*virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 //
-//      virtual bool begin(int nPriority = THREAD_PRIORITY_NORMAL, unsigned int nStackSize = 0,
-//         unsigned int dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
+//      virtual bool begin(::i32 nPriority = THREAD_PRIORITY_NORMAL, ::u32 nStackSize = 0,
+//         ::u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
 //
-//      bool CreateThread(unsigned int dwCreateFlags = 0, unsigned int nStackSize = 0,
+//      bool CreateThread(::u32 dwCreateFlags = 0, ::u32 nStackSize = 0,
 //         LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
 //
 //      virtual iptr get_os_data();
 //      virtual iptr get_os_int();
 //
 //
-//      int GetThreadPriority();
-//      bool SetThreadPriority(int nPriority);
+//      ::i32 GetThreadPriority();
+//      bool SetThreadPriority(::i32 nPriority);
 //
 //   
-//      unsigned int SuspendThread();
-//      unsigned int ResumeThread();
+//      ::u32 SuspendThread();
+//      ::u32 ResumeThread();
 //      bool post_message(::user::interaction * pguie, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
 //
 //      virtual bool PreInitInstance();
@@ -124,23 +124,23 @@
 //      // thread initialization
 //      virtual bool init_application();
 //
-//      virtual ::message::e_prototype GetMessagePrototype(const ::atom & atom, unsigned int uCode);
+//      virtual ::message::e_prototype GetMessagePrototype(const ::atom & atom, ::u32 uCode);
 //
 //      // running and idle processing
-//      virtual int run();
+//      virtual ::i32 run();
 //      virtual void pre_translate_message(::message::message * pmessage);
 //      virtual bool pump_message();     // low level message pump
-//      virtual bool on_idle(int lCount); // return true if more idle processing
+//      virtual bool on_idle(::i32 lCount); // return true if more idle processing
 //      virtual bool is_idle_message(MSG* pMsg);  // checks for special messages
 //
 //      // thread termination
-//      virtual int term_instance() override; // default will 'delete this'
+//      virtual ::i32 term_instance() override; // default will 'delete this'
 //
 //      // Advanced: exception handling
 //      virtual LRESULT ProcessWndProcException(::exception::acme* e, const MSG* pMsg);
 //
 //      // Advanced: handling messages sent to message filter hook
-//      virtual bool ProcessMessageFilter(int code, LPMSG lpMsg);
+//      virtual bool ProcessMessageFilter(::i32 code, LPMSG lpMsg);
 //
 //      // Advanced: virtual access to GetMainWnd()
 //      virtual ::user::interaction* GetMainWnd();
@@ -162,12 +162,12 @@
 //      //::pointer<::user::interaction>window_from_os_data_permanent(void * pdata);
 //
 //
-//      //virtual ::pointer<::user::interaction>FindWindow(const char * lpszClassName, const char * lpszWindowName);
-//      //virtual ::pointer<::user::interaction>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+//      //virtual ::pointer<::user::interaction>FindWindow(const_char_pointer pszClassName, const_char_pointer pszWindowName);
+//      //virtual ::pointer<::user::interaction>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const_char_pointer pszClass, const_char_pointer pszWindow);
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
-//      virtual unsigned int get_thread_id();
+//      virtual ::u32 get_thread_id();
 //
 //      //::pointer<::user::printer>get_printer(const ::scoped_string & scopedstrDeviceName);
 //

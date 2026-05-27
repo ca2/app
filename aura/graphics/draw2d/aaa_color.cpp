@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-double prototype_color_round(double d);
+::f64 prototype_color_round(::f64 d);
 
 ::color::color color::transparent(0, 0, 0, 0);
 ::color::color color::black(0, 0, 0, 255);
@@ -39,7 +39,7 @@ color::color::color(color32_t color32)
 }
 
 
-color::color::color(enum_plain_color ecolor, int A)
+color::color::color(enum_plain_color ecolor, ::i32 A)
 {
 
    set_rgb(pure_color(ecolor));
@@ -49,14 +49,14 @@ color::color::color(enum_plain_color ecolor, int A)
 }
 
 
-color::color::color(int R, int G, int B, int A)
+color::color::color(::i32 R, ::i32 G, ::i32 B, ::i32 A)
 {
 
    set(R, G, B, A);
 
 }
 
-color::color::color(const hls & hls, int A)
+color::color::color(const hls & hls, ::i32 A)
 {
 
    operator = (hls);
@@ -89,9 +89,9 @@ proc hls2rgb {h l s} {
 1    set b [expr {  $h6 <= 1 ? -$h6
                             : $h6 <= 4 ? $h6-2
                             : 6-$h6}]
-    set rectangle [expr {$rectangle < 0.0 ? 0.0 : $rectangle > 1.0 ? 1.0 : double($rectangle)}]
-    set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : double($g)}]
-    set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : double($b)}]
+    set rectangle [expr {$rectangle < 0.0 ? 0.0 : $rectangle > 1.0 ? 1.0 : ::f64($rectangle)}]
+    set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : ::f64($g)}]
+    set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : ::f64($b)}]
 
     set rectangle [expr {(($rectangle-1)*$s+1)*$l}]
     set g [expr {(($g-1)*$s+1)*$l}]
@@ -101,26 +101,26 @@ proc hls2rgb {h l s} {
 
   */
 
-void color::get_hls(double & h, double & l, double & s) const
+void color::get_hls(::f64 & h, ::f64 & l, ::f64 & s) const
 {
 
-   double rectangle = m_iR / 255.0;
-   double g = m_iG / 255.0;
-   double b = m_iB / 255.0;
+   ::f64 rectangle = m_iR / 255.0;
+   ::f64 g = m_iG / 255.0;
+   ::f64 b = m_iB / 255.0;
 
-   //double rectangle = rgb.R / 255.0;
+   //::f64 rectangle = rgb.R / 255.0;
 
-   //double g = rgb.G / 255.0;
+   //::f64 g = rgb.G / 255.0;
 
-   //double b = rgb.B / 255.0;
+   //::f64 b = rgb.B / 255.0;
 
-   double v;
+   ::f64 v;
 
-   double m;
+   ::f64 m;
 
-   double vm;
+   ::f64 vm;
 
-   double r2, g2, b2;
+   ::f64 r2, g2, b2;
 
 
 
@@ -200,9 +200,9 @@ void color::get_hls(double & h, double & l, double & s) const
 
    h /= 6.0;
 
-   /*double dCMin = minimum(dR, minimum(dG, dB));;
-   double dCMax = maximum(dR, maximum(dG, dB));
-   double dA;
+   /*::f64 dCMin = minimum(dR, minimum(dG, dB));;
+   ::f64 dCMax = maximum(dR, maximum(dG, dB));
+   ::f64 dA;
 
    if(dR > dB)
    {
@@ -328,8 +328,8 @@ void color::get_hls(double & h, double & l, double & s) const
       }
    }
 
-   double dCDiff = dCMax - dCMin;
-   double dCSum = dCMax + dCMin;
+   ::f64 dCDiff = dCMax - dCMin;
+   ::f64 dCSum = dCMax + dCMin;
    dLParam = dCSum / 2.0;
    dSParam = dLParam < 0.5 ?
               dCDiff / dCSum :
@@ -352,10 +352,10 @@ void color::get_hls(double & h, double & l, double & s) const
 }
 
 
-double prototype_color_round(double d)
+::f64 prototype_color_round(::f64 d)
 {
-   double n;
-   double f;
+   ::f64 n;
+   ::f64 f;
    f = modf(d, &n);
    if (f > 0.5)
       return n + 1.0;
@@ -368,9 +368,9 @@ double prototype_color_round(double d)
 #define dsin(x) (sin(((x) *2.0 * 3.1415) / 360.0))
 
 void color::set_hls(
-double dH,
-double dL,
-double dS)
+::f64 dH,
+::f64 dL,
+::f64 dS)
 {
    //ASSERT(dH >= 0.0);
    //ASSERT(dH <= 1.0);
@@ -380,7 +380,7 @@ double dS)
    //ASSERT(dS <= 1.0);
 
 
-   double dR, dG, dB;
+   ::f64 dR, dG, dB;
 
 
    if (dH >= 1.0)
@@ -401,7 +401,7 @@ double dS)
 
    dH *= 6.0;
 
-   double dA = dH - (double)((int)dH);
+   ::f64 dA = dH - (::f64)((::i32)dH);
 
    if (dH >= 3.0)
    {
@@ -464,9 +464,9 @@ double dS)
       }
    }
 
-   double dCMin;
-   double dCAdd;
-   double dSL = dS * dL;
+   ::f64 dCMin;
+   ::f64 dCAdd;
+   ::f64 dSL = dS * dL;
    if (dL >= 0.5)
    {
       dCMin = dL - dS + dSL;
@@ -479,51 +479,51 @@ double dS)
    }
 
 
-   double dFinalR = (dCMin + dR * dCAdd);
-   double dFinalG = (dCMin + dG * dCAdd);
-   double dFinalB = (dCMin + dB * dCAdd);
+   ::f64 dFinalR = (dCMin + dR * dCAdd);
+   ::f64 dFinalG = (dCMin + dG * dCAdd);
+   ::f64 dFinalB = (dCMin + dB * dCAdd);
 
-   m_iR = (unsigned char)prototype_color_round(dFinalR * 255.0);
-   m_iG = (unsigned char)prototype_color_round(dFinalG * 255.0);
-   m_iB = (unsigned char)prototype_color_round(dFinalB * 255.0);
+   m_iR = (::u8)prototype_color_round(dFinalR * 255.0);
+   m_iG = (::u8)prototype_color_round(dFinalG * 255.0);
+   m_iB = (::u8)prototype_color_round(dFinalB * 255.0);
 
-   /*   double H = dH * 360.0;
+   /*   ::f64 H = dH * 360.0;
 
 
-      double d360 = dsin(360.0);
+      ::f64 d360 = dsin(360.0);
 
-      double R1 = dsin(H) * dL;
-      double G1 = dsin(H + 120.0) * dL;
-      double B1 = dsin(H + 240.0) * dL;
+      ::f64 R1 = dsin(H) * dL;
+      ::f64 G1 = dsin(H + 120.0) * dL;
+      ::f64 B1 = dsin(H + 240.0) * dL;
 
-      double AVERAGE = (R1 + G1 + B1) / 3;
+      ::f64 AVERAGE = (R1 + G1 + B1) / 3;
 
       m_dR = ((R1 - AVERAGE) * dS) + AVERAGE;
       m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
       m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-      m_iR      = (unsigned char)prototype_color_round(m_dR * 255.0);
-      m_iG      = (unsigned char)prototype_color_round(m_dG * 255.0);
-      m_iB      = (unsigned char)prototype_color_round(m_dB * 255.0);*/
+      m_iR      = (::u8)prototype_color_round(m_dR * 255.0);
+      m_iG      = (::u8)prototype_color_round(m_dG * 255.0);
+      m_iB      = (::u8)prototype_color_round(m_dB * 255.0);*/
 
 }
 
-unsigned int color::get_rgb() const
+::u32 color::get_rgb() const
 {
    return m_iR | (m_iG << 8) | (m_iB << 16);
 }
 
-unsigned int color::get_bgr() const
+::u32 color::get_bgr() const
 {
    return m_iB | (m_iG << 8) | (m_iR << 16);
 }
 
-unsigned int color::get_rgba() const
+::u32 color::get_rgba() const
 {
    return m_iR | (m_iG << 8) | (m_iB << 16) | (m_iA << 24);
 }
 
-unsigned int color::get_bgra() const
+::u32 color::get_bgra() const
 {
    return m_iB | (m_iG << 8) | (m_iR << 16) | (m_iA << 24);
 }
@@ -573,7 +573,7 @@ void color::set_COLORREF(color32_t color32)
 }
 
 
-void color::hue_offset(double dRadians)
+void color::hue_offset(::f64 dRadians)
 {
 
    if (dRadians >= 0.0)
@@ -591,12 +591,12 @@ void color::hue_offset(double dRadians)
 
    //http://stackoverflow.com/questions/8507885/shift-hue-of-an-rgb-color
    //http://stackoverflow.com/users/630989/jacob-eggers
-   double U = ::cos(dRadians);
-   double W = ::sin(dRadians);
+   ::f64 U = ::cos(dRadians);
+   ::f64 W = ::sin(dRadians);
 
-   double oldr = m_iR;
-   double oldg = m_iG;
-   double oldb = m_iB;
+   ::f64 oldr = m_iR;
+   ::f64 oldg = m_iG;
+   ::f64 oldb = m_iB;
    m_iR = clampAndConvert((.299 + .701*U + .168*W)*oldr
                           + (.587 - .587*U + .330*W)*oldg
                           + (.114 - .114*U - .497*W)*oldb);
@@ -610,7 +610,7 @@ void color::hue_offset(double dRadians)
 }
 
 
-void color::set_bgr(unsigned int bgr)
+void color::set_bgr(::u32 bgr)
 {
    m_iR = bgr_byte_red(bgr);
    m_iG = bgr_byte_green(bgr);
@@ -631,9 +631,9 @@ void color::set_bgr(unsigned int bgr)
 //   m_dA     = m_iA / 255.0;
 //}
 
-void color::hls_rate(double dRateH, double dRateL, double dRateS)
+void color::hls_rate(::f64 dRateH, ::f64 dRateL, ::f64 dRateS)
 {
-   double dH, dL, dS;
+   ::f64 dH, dL, dS;
 
    get_hls(dH, dL, dS);
 
@@ -665,9 +665,9 @@ void color::hls_rate(double dRateH, double dRateL, double dRateS)
    set_hls(dH, dL, dS);
 }
 
-void color::hls_mult(double dMultH, double dMultL, double dMultS)
+void color::hls_mult(::f64 dMultH, ::f64 dMultL, ::f64 dMultS)
 {
-   double dH, dL, dS;
+   ::f64 dH, dL, dS;
 
    get_hls(dH, dL, dS);
 
@@ -726,21 +726,21 @@ const hls & hls)
 
 
 /*
-void CColor::get_hls(unsigned char * H, unsigned char * L, unsigned char * S)
+void CColor::get_hls(::u8 * H, ::u8 * L, ::u8 * S)
 {
-   double dHue, dLightness, dSaturation;
+   ::f64 dHue, dLightness, dSaturation;
    // input rgb values
-   double dRed = m_bRed;
-   double dGreen = m_bGreen;
-   double dBlue = m_bBlue;
+   ::f64 dRed = m_bRed;
+   ::f64 dGreen = m_bGreen;
+   ::f64 dBlue = m_bBlue;
    // maximum and minimum rgb values
-   double dMax, dMin;
+   ::f64 dMax, dMin;
    // intermediate value: % of spread from maximum
-   double dRedDelta, dGreenDelta, dBlueDelta;
+   ::f64 dRedDelta, dGreenDelta, dBlueDelta;
    // calculate lightness
    dMax = maximum(maximum(dRed, dGreen), dBlue);
    dMin = minimum(minimum(dRed, dGreen), dBlue);
-   dLightness = (unsigned char) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
+   dLightness = (::u8) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {
       // rectangle=g=b --> achromatic case
@@ -774,18 +774,18 @@ void CColor::get_hls(unsigned char * H, unsigned char * L, unsigned char * S)
       if (dHue > HLSMAX)
          dHue -= HLSMAX;
    }
-   *H = (unsigned char) dHue;
-   *L = (unsigned char) dLightness;
-   *S = (unsigned char) dSaturation;
+   *H = (::u8) dHue;
+   *L = (::u8) dLightness;
+   *S = (::u8) dSaturation;
 }*/
 
 /*
 // utility routine for HLStoRGB
 
-double HueToRGB(
-   double d1,
-   double d2,
-   double dHue)
+::f64 HueToRGB(
+   ::f64 d1,
+   ::f64 d2,
+   ::f64 dHue)
 {
    // range check: note values passed add/subtract thirds of range
    if (dHue < 0.0)
@@ -804,12 +804,12 @@ double HueToRGB(
 }
 
 void CColor::set_hls(
-   double dHue,
-   double dLightness,
-   double dSaturation)
+   ::f64 dHue,
+   ::f64 dLightness,
+   ::f64 dSaturation)
 {
-   double dRed, dGreen, dBlue;        // rgb component values
-   double dMagic1, dMagic2;       // calculated magic numbers (really!)
+   ::f64 dRed, dGreen, dBlue;        // rgb component values
+   ::f64 dMagic1, dMagic2;       // calculated magic numbers (really!)
 
    if (dSaturation == 0.0)
    {
@@ -837,14 +837,14 @@ void CColor::set_hls(
       dBlue   = (HueToRGB(dMagic1, dMagic2, dHue-(HLSMAX/3.0))*RGBMAX +
          (HLSMAX/2))/HLSMAX;
    }
-   m_bBlue      = (unsigned char) dBlue;
-   m_bGreen   = (unsigned char) dGreen;
-   m_bRed      = (unsigned char) dRed;
+   m_bBlue      = (::u8) dBlue;
+   m_bGreen   = (::u8) dGreen;
+   m_bRed      = (::u8) dRed;
 
 
 }
 
-unsigned int CColor::get_rgb()
+::u32 CColor::get_rgb()
 {
    return rgb(m_bRed, m_bGreen, m_bBlue);
 }*/
@@ -920,14 +920,14 @@ bool color::parse_color(const ::scoped_string & scopedstr)
    {
       if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
       {
-         int iA, iR, iG, iB;
+         ::i32 iA, iR, iG, iB;
          sscanf(str, "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
          set_COLORREF(argb(iA, iR, iG, iB));
          return true;
       }
       else if (!ishexdigit(str[7]))
       {
-         int iR, iG, iB;
+         ::i32 iR, iG, iB;
          sscanf(str, "#%02x%02x%02x", &iR, &iG, &iB);
          set_COLORREF(argb(255, iR, iG, iB));
          return true;
@@ -937,7 +937,7 @@ bool color::parse_color(const ::scoped_string & scopedstr)
    {
       if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
       {
-         int iA, iR, iG, iB;
+         ::i32 iA, iR, iG, iB;
          sscanf(str, "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
          set_COLORREF(argb(
                       duplicate_color_nible(iA),
@@ -948,7 +948,7 @@ bool color::parse_color(const ::scoped_string & scopedstr)
       }
       else if (!ishexdigit(str[4]))
       {
-         int iR, iG, iB;
+         ::i32 iR, iG, iB;
          sscanf(str, "#%1x%1x%1x", &iR, &iG, &iB);
          set_COLORREF(argb(255,
                            duplicate_color_nible(iR),
@@ -988,14 +988,14 @@ bool color::parse_color(const ::scoped_string & scopedstr)
 }
 
 
-CLASS_DECL_AURA color32_t color_with_byte_opacity(unsigned char bAlpha, color32_t color32)
+CLASS_DECL_AURA color32_t color_with_byte_opacity(::u8 bAlpha, color32_t color32)
 {
 
    return (color32 & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
-CLASS_DECL_AURA color32_t color_with_byte_opacity(unsigned char bAlpha, enum_plain_color ecolor)
+CLASS_DECL_AURA color32_t color_with_byte_opacity(::u8 bAlpha, enum_plain_color ecolor)
 {
 
    return color_with_byte_opacity(bAlpha, pure_color(ecolor));
@@ -1060,7 +1060,7 @@ CLASS_DECL_AURA color32_t opaque_color(enum_plain_color ecolor)
 }
 
 
-void color::set(int R, int G, int B, int A)
+void color::set(::i32 R, ::i32 G, ::i32 B, ::i32 A)
 {
 
    m_iR = R;
@@ -1071,7 +1071,7 @@ void color::set(int R, int G, int B, int A)
 }
 
 
-void color::set(int R, int G, int B)
+void color::set(::i32 R, ::i32 G, ::i32 B)
 {
 
    m_iR = R;
@@ -1083,7 +1083,7 @@ void color::set(int R, int G, int B)
 
 
 
-CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, int iCount)
+CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, ::i32 iCount)
 {
 
    colorrefa.set_size(iCount);

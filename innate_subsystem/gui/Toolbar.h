@@ -36,8 +36,8 @@
 namespace innate_subsystem
 {
 
-          static const int TB_Style_sep = 0;
-      static const int TB_Style_gap = 1;
+          static const ::i32 TB_Style_sep = 0;
+      static const ::i32 TB_Style_gap = 1;
 
    class ToolbarInterface :
       virtual  public ::Particle
@@ -54,7 +54,7 @@ namespace innate_subsystem
       // setViewAutoButtons()
       // It used only for auto buttons creation from
       // bitmap and making gaps or separators.
-      virtual void setViewAutoButtons(int iButton, int style) = 0;
+      virtual void setViewAutoButtons(::i32 iButton, ::i32 style) = 0;
 
       // loadToolbarfromRes()
       // This procedure will load a toolbar image from resource
@@ -83,14 +83,14 @@ namespace innate_subsystem
       // create() creates a windows toolbar. dwStyle is a combination of
       // the toolbar control and button styles. It returns true if successful,
       // or false otherwise.
-      virtual bool create(int tbID, const ::operating_system::window & operatingsystemwindowParent,
+      virtual bool create(::i32 tbID, const ::operating_system::window & operatingsystemwindowParent,
            ::u32 dwStyle = e_style_child | e_style_visible | e_style_flat_toolbar) = 0;
 
       // addBitmap() adds one or more images from resources to
       // the list of button images available for a toolbar.
       // Returns the index of the first new image if successful,
       // or -1 otherwise.
-      virtual ::lresult addBitmap(int nButtons, ::u32 bitmapID) = 0;
+      virtual ::lresult addBitmap(::i32 nButtons, ::u32 bitmapID) = 0;
 
       // addSystemBitmap() adds the system-defined button bitmaps to the list
       // of the toolbar button specifying by stdBitmapID. Returns the index of
@@ -98,24 +98,24 @@ namespace innate_subsystem
       virtual ::lresult addSystemBitmap(::u32 stdBitmapID) = 0;
 
       // addNButton() adds nButtons buttons to a toolbar.
-      virtual bool addNButton(int nButtons, toolbar_button_t * ptoolbarbutton) = 0;
+      virtual bool addNButton(::i32 nButtons, toolbar_button_t * ptoolbarbutton) = 0;
 
       // addButton() adds one button.
-      virtual bool addButton(int iBitmap, int idCommand, unsigned char state = e_toolbar_item_state_enabled,
-                     unsigned char style= e_toolbar_item_style_button,  ::u32 dwData=0, int iString=0) = 0;
+      virtual bool addButton(::i32 iBitmap, ::i32 idCommand, ::u8 state = e_toolbar_item_state_enabled,
+                     ::u8 style= e_toolbar_item_style_button,  ::u32 dwData=0, ::i32 iString=0) = 0;
 
       // checkButton() checks or unchecks a given button in a toolbar control.
-      virtual bool checkButton(int idButton, bool check) = 0;
+      virtual bool checkButton(::i32 idButton, bool check) = 0;
 
       // enableButton() enables or disables the specified button
       // in the toolbar.
-      virtual bool enableButton(int idButton, bool enable) = 0;
+      virtual bool enableButton(::i32 idButton, bool enable) = 0;
 
       // pressButton() presses or releases the specified button in the toolbar.
-      virtual bool pressButton(int idButton, bool press) = 0;
+      virtual bool pressButton(::i32 idButton, bool press) = 0;
 
       // getButtonRect() gets the bounding rectangle of a button in a toolbar.
-      virtual bool getButtonRect(int nIndex, ::i32_rectangle & buttonRect) = 0;
+      virtual bool getButtonRect(::i32 nIndex, ::i32_rectangle & buttonRect) = 0;
 
       // setButtonSize() sets the size of the buttons to be added to a toolbar.
       // Button size must be largen the button bitmap.
@@ -125,10 +125,10 @@ namespace innate_subsystem
       virtual void autoSize() = 0;
 
       // getButtonsHeight() retrieves the height of the toolbar buttons.
-      virtual int getButtonsHeight() = 0;
+      virtual ::i32 getButtonsHeight() = 0;
 
       // getButtonsWidth() retrieves the width of the toolbar buttons.
-      virtual int getButtonsWidth() = 0;
+      virtual ::i32 getButtonsWidth() = 0;
 
       // isVisible() check the toolbar window on visible.
       //virtual bool isVisible() = 0;
@@ -141,22 +141,22 @@ namespace innate_subsystem
 
       // getTotalWidth() returns the total size of all buttons and
       // separators in the toolbar.
-      virtual int getTotalWidth() = 0;
+      virtual ::i32 getTotalWidth() = 0;
 
       // getHeight() returns the toolbar window height.
-      virtual int getHeight() = 0;
+      virtual ::i32 getHeight() = 0;
 
       // getState() gets button state
-      virtual ::lresult getState(int idButton) = 0;
+      virtual ::lresult getState(::i32 idButton) = 0;
 
    // private:
-   //    int m_initialStr;
-   //    int m_numberTB;
+   //    ::i32 m_initialStr;
+   //    ::i32 m_numberTB;
    //    ::u32 m_id;
-   //    int m_width, m_height;
+   //    ::i32 m_width, m_height;
    //    HWND m_hWndToolbar;
    //
-   //    std::map<int, int> m_autoButtons;
+   //    std::map<::i32, ::i32> m_autoButtons;
    };
 
    //using ToolbarInterface = particle_interface<ToolbarInterface, ControlInterface>;
@@ -172,8 +172,8 @@ namespace innate_subsystem
       //Toolbar();
       //~Toolbar() override;
 
-      // static const int TB_Style_sep override;
-      // static const int TB_Style_gap = 1;
+      // static const ::i32 TB_Style_sep override;
+      // static const ::i32 TB_Style_gap = 1;
 
       /////////////////////////////////////////////////////////
       // Auto mode procedures
@@ -182,7 +182,7 @@ namespace innate_subsystem
       // setViewAutoButtons()
       // It used only for auto buttons creation from
       // bitmap and making gaps or separators.
-      void setViewAutoButtons(int iButton, int style) override { m_ptoolbar->setViewAutoButtons(iButton, style); }
+      void setViewAutoButtons(::i32 iButton, ::i32 style) override { m_ptoolbar->setViewAutoButtons(iButton, style); }
 
       // loadToolbarfromRes()
       // This procedure will load a toolbar image from resource
@@ -211,14 +211,14 @@ namespace innate_subsystem
       // create() creates a windows toolbar. dwStyle is a combination of
       // the toolbar control and button styles. It returns true if successful,
       // or false otherwise.
-      bool create(int tbID, const ::operating_system::window & operatingsystemwindowParent,
+      bool create(::i32 tbID, const ::operating_system::window & operatingsystemwindowParent,
            ::u32 dwStyle = e_style_child | e_style_visible | e_style_flat_toolbar) override { return m_ptoolbar->create(tbID, operatingsystemwindowParent, dwStyle); }
 
       // addBitmap() adds one or more images from resources to
       // the list of button images available for a toolbar.
       // Returns the index of the first new image if successful,
       // or -1 otherwise.
-      ::lresult addBitmap(int nButtons, ::u32 bitmapID) override { return m_ptoolbar->addBitmap(nButtons, bitmapID); }
+      ::lresult addBitmap(::i32 nButtons, ::u32 bitmapID) override { return m_ptoolbar->addBitmap(nButtons, bitmapID); }
 
       // addSystemBitmap() adds the system-defined button bitmaps to the list
       // of the toolbar button specifying by stdBitmapID. Returns the index of
@@ -226,24 +226,24 @@ namespace innate_subsystem
       ::lresult addSystemBitmap(::u32 stdBitmapID) override { return m_ptoolbar->addSystemBitmap(stdBitmapID); }
 
       // addNButton() adds nButtons buttons to a toolbar.
-      bool addNButton(int nButtons, toolbar_button_t * ptoolbarbutton) override { return m_ptoolbar->addNButton(nButtons, ptoolbarbutton); }
+      bool addNButton(::i32 nButtons, toolbar_button_t * ptoolbarbutton) override { return m_ptoolbar->addNButton(nButtons, ptoolbarbutton); }
 
       // addButton() adds one button.
-      bool addButton(int iBitmap, int idCommand, unsigned char state = e_toolbar_item_state_enabled,
-                     unsigned char style= e_toolbar_item_style_button,  ::u32 dwData=0, int iString=0) override { return m_ptoolbar->addButton(iBitmap, idCommand, state, style, dwData, iString); }
+      bool addButton(::i32 iBitmap, ::i32 idCommand, ::u8 state = e_toolbar_item_state_enabled,
+                     ::u8 style= e_toolbar_item_style_button,  ::u32 dwData=0, ::i32 iString=0) override { return m_ptoolbar->addButton(iBitmap, idCommand, state, style, dwData, iString); }
 
       // checkButton() checks or unchecks a given button in a toolbar control.
-      bool checkButton(int idButton, bool check) override { return m_ptoolbar->checkButton(idButton, check); }
+      bool checkButton(::i32 idButton, bool check) override { return m_ptoolbar->checkButton(idButton, check); }
 
       // enableButton() enables or disables the specified button
       // in the toolbar.
-      bool enableButton(int idButton, bool enable) override { return m_ptoolbar->enableButton(idButton, enable); }
+      bool enableButton(::i32 idButton, bool enable) override { return m_ptoolbar->enableButton(idButton, enable); }
 
       // pressButton() presses or releases the specified button in the toolbar.
-      bool pressButton(int idButton, bool press) override { return m_ptoolbar->pressButton(idButton, press); }
+      bool pressButton(::i32 idButton, bool press) override { return m_ptoolbar->pressButton(idButton, press); }
 
       // getButtonRect() gets the bounding rectangle of a button in a toolbar.
-      bool getButtonRect(int nIndex, ::i32_rectangle & buttonRect) override { return m_ptoolbar->getButtonRect(nIndex, buttonRect); }
+      bool getButtonRect(::i32 nIndex, ::i32_rectangle & buttonRect) override { return m_ptoolbar->getButtonRect(nIndex, buttonRect); }
 
       // setButtonSize() sets the size of the buttons to be added to a toolbar.
       // Button size must be largen the button bitmap.
@@ -253,10 +253,10 @@ namespace innate_subsystem
       void autoSize() override { m_ptoolbar->autoSize(); }
 
       // getButtonsHeight() retrieves the height of the toolbar buttons.
-      int getButtonsHeight() override { return m_ptoolbar->getButtonsHeight(); }
+      ::i32 getButtonsHeight() override { return m_ptoolbar->getButtonsHeight(); }
 
       // getButtonsWidth() retrieves the width of the toolbar buttons.
-      int getButtonsWidth() override { return m_ptoolbar->getButtonsWidth(); }
+      ::i32 getButtonsWidth() override { return m_ptoolbar->getButtonsWidth(); }
 
       // isVisible() check the toolbar window on visible.
       //bool isVisible() override { return m_ptoolbar->isVisible(); }
@@ -269,22 +269,22 @@ namespace innate_subsystem
 
       // getTotalWidth() returns the total size of all buttons and
       // separators in the toolbar.
-      int getTotalWidth() override { return m_ptoolbar->getTotalWidth(); }
+      ::i32 getTotalWidth() override { return m_ptoolbar->getTotalWidth(); }
 
       // getHeight() returns the toolbar window height.
-      int getHeight() override { return m_ptoolbar->getHeight(); }
+      ::i32 getHeight() override { return m_ptoolbar->getHeight(); }
 
       // getState() gets button state
-      ::lresult getState(int idButton) override { return m_ptoolbar->getState(idButton); }
+      ::lresult getState(::i32 idButton) override { return m_ptoolbar->getState(idButton); }
 
    // private:
-   //    int m_initialStr;
-   //    int m_numberTB;
+   //    ::i32 m_initialStr;
+   //    ::i32 m_numberTB;
    //    ::u32 m_id;
-   //    int m_width, m_height;
+   //    ::i32 m_width, m_height;
    //    HWND m_hWndToolbar;
    //
-   //    std::map<int, int> m_autoButtons;
+   //    std::map<::i32, ::i32> m_autoButtons;
    };
 
 

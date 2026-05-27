@@ -33,7 +33,7 @@ namespace nanoui
       ::pointer<::user::box>           m_pbox;
       ::pointer_array<PopupButton>     m_popupbuttona;
       bool                             m_bPendingCentering;
-      ::float_rectangle                  m_boundsHeader;
+      ::f32_rectangle                  m_boundsHeader;
       ::string                         m_title;
       ::pointer< Widget >              m_button_panel;
       bool                             m_bModal;
@@ -79,7 +79,7 @@ namespace nanoui
       
       void on_begin_draw(::nano2d::context  * pcontext) override;
             
-   virtual bool scroll_event(const i32_point & p, const float_size & rel) override;
+   virtual bool scroll_event(const i32_point & p, const ::f32_size & rel) override;
    /// Compute the preferred size of the pwidget
    virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any

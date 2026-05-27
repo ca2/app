@@ -17,13 +17,13 @@ namespace draw2d_cairo
       //delete_object();
    }
 
-   int object::get_object(int nCount, void * lpObject) const
+   ::i32 object::get_object(::i32 nCount, void * lpObject) const
    {
       //return ::GetObject(get_handle(), nCount, lpObject);
       return 0;
    }
 
-//   bool object::CreateStockObject(int nIndex)
+//   bool object::CreateStockObject(::i32 nIndex)
 //   {
 //      //return (set_handle(::GetStockObject(nIndex))) != nullptr;
 //      return 0;

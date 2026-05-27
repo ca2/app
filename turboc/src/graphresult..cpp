@@ -30,10 +30,10 @@
 
 //----------------------------------------------------------------------------
 
-int
+::i32
 graphresult (void)
 {
-  int i;
+  ::i32 i;
   i = TcGraphResult;
   TcGraphResult = grOk;
   return (i);

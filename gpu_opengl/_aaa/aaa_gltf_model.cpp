@@ -51,14 +51,14 @@ void gltf_model::loadgltf_model(std::string path, bool flipTexturesVertically)
 void gltf_model::processNode(aiNode *node, const aiScene *scene)
 {
    // process all of this node's meshes if it has any
-   for (unsigned int i = 0; i < node->mNumMeshes; i++)
+   for (::u32 i = 0; i < node->mNumMeshes; i++)
    {
       aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
       mMeshes.push_back(processMesh(mesh, scene));
    }
 
    // continue with children
-   for (unsigned int i = 0; i < node->mNumChildren; i++)
+   for (::u32 i = 0; i < node->mNumChildren; i++)
    {
       processNode(node->mChildren[i], scene);
    }
@@ -68,7 +68,7 @@ void gltf_model::processNode(aiNode *node, const aiScene *scene)
 Mesh gltf_model::processMesh(aiMesh *mesh, const aiScene *scene)
 {
    std::vector<Vertex> vertices;
-   std::vector<unsigned int> indices;
+   std::vector<::u32> indices;
    Material material;
 
    if (mMaterialOverride)
@@ -77,7 +77,7 @@ Mesh gltf_model::processMesh(aiMesh *mesh, const aiScene *scene)
    }
 
    // vertices
-   for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+   for (::u32 i = 0; i < mesh->mNumVertices; i++)
    {
       Vertex vertex;
 
@@ -128,11 +128,11 @@ Mesh gltf_model::processMesh(aiMesh *mesh, const aiScene *scene)
    }
 
    // indices
-   for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+   for (::u32 i = 0; i < mesh->mNumFaces; i++)
    {
       aiFace face = mesh->mFaces[i];
 
-      for (unsigned int j = 0; j < face.mNumIndices; j++)
+      for (::u32 j = 0; j < face.mNumIndices; j++)
       {
          indices.push_back(face.mIndices[j]);
       }
@@ -212,14 +212,14 @@ std::shared_ptr<Texture> gltf_model::loadMaterialTexture(aiMaterial *material, a
    return texture;
 }
 
-unsigned int gltf_model::textureFromFile(const char *fileName, std::string directory, aiTextureType type)
+::u32 gltf_model::textureFromFile(const_char_pointer fileName, std::string directory, aiTextureType type)
 {
-   int width, height, numChannels;
+   ::i32 width, height, numChannels;
 
    std::string relativePath = fileName;
    std::string path = directory + '/' + relativePath;
 
-   unsigned char *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
+   ::u8 *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
 
    if (!data)
    {
@@ -261,7 +261,7 @@ unsigned int gltf_model::textureFromFile(const char *fileName, std::string direc
       }
    }
 
-   unsigned int textureId;
+   ::u32 textureId;
    glGenTextures(1, &textureId);
    glBindTexture(GL_TEXTURE_2D, textureId);
 

@@ -45,7 +45,7 @@
 struct rgba_from_b_g_push_constants
 {
 
-   int mipLevel;
+   ::i32 mipLevel;
 };
 
 
@@ -495,16 +495,16 @@ namespace gpu
 
       //::collection::index i = 0;
 
-      // int iSizeWithSamplers = 0;
+      // ::i32 iSizeWithSamplers = 0;
 
-      // int iSizeWithoutSamplers = 0;
+      // ::i32 iSizeWithoutSamplers = 0;
 
       // while (pproperty->m_pszName)
       //{
 
-      //   int iItemSize = pproperty->get_item_size(true);
+      //   ::i32 iItemSize = pproperty->get_item_size(true);
 
-      //   int iSize = iItemSize;
+      //   ::i32 iSize = iItemSize;
 
       //   //if (pproperty->m_etype == ::gpu::e_type_seq3)
       //   //{
@@ -560,16 +560,16 @@ namespace gpu
 
       ::collection::index i = 0;
 
-      int iSizeWithSamplers = 0;
+      ::i32 iSizeWithSamplers = 0;
 
-      int iSizeWithoutSamplers = 0;
+      ::i32 iSizeWithoutSamplers = 0;
 
       while (pproperty->m_pszName)
       {
 
-         int iItemSize = pproperty->get_item_size(true);
+         ::i32 iItemSize = pproperty->get_item_size(true);
 
-         int iSize = iItemSize;
+         ::i32 iSize = iItemSize;
 
          // if (pproperty->m_etype == ::gpu::e_type_seq3)
          //{
@@ -625,16 +625,16 @@ namespace gpu
 
       ::collection::index i = 0;
 
-      int iSizeWithSamplers = 0;
+      ::i32 iSizeWithSamplers = 0;
 
-      int iSizeWithoutSamplers = 0;
+      ::i32 iSizeWithoutSamplers = 0;
 
       while (pproperty->m_pszName)
       {
 
-         int iItemSize = pproperty->get_item_size(true);
+         ::i32 iItemSize = pproperty->get_item_size(true);
 
-         int iSize = iItemSize;
+         ::i32 iSize = iItemSize;
 
          if (pproperty->m_etype == ::gpu::e_type_array)
          {
@@ -646,7 +646,7 @@ namespace gpu
 
             }
 
-            //for (int i = 0; i < pproperty->m_iArraySize; i++)
+            //for (::i32 i = 0; i < pproperty->m_iArraySize; i++)
             //{
 
                
@@ -1107,8 +1107,8 @@ namespace gpu
    }
 
 
-   floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
-                           float zFar)
+   floating_matrix4 context::ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear,
+                           ::f32 zFar)
    {
 
       throw ::interface_only();
@@ -1126,9 +1126,9 @@ namespace gpu
    //}
 
 
-   //floating_matrix4 context::lookAt(const float_sequence3 & eye, const float_sequence3 & center,
+   //floating_matrix4 context::lookAt(const f32_sequence3 & eye, const f32_sequence3 & center,
 
-   //                         const float_sequence3 & up)
+   //                         const f32_sequence3 & up)
    //{
 
 
@@ -1813,7 +1813,7 @@ namespace gpu
    }
 
 
-   //void context::set_topic_texture(int iIndex)
+   //void context::set_topic_texture(::i32 iIndex)
    //{
 
    //   m_iTopicTexture = iIndex;
@@ -2093,7 +2093,7 @@ namespace gpu
       }
 
 
-      int iGpuContextInnerStart = pcontextInnerStart->m_iGpuContext;
+      ::i32 iGpuContextInnerStart = pcontextInnerStart->m_iGpuContext;
       //::procedure procedureOnContext = [this, pcontextInnerStart, bForDrawing, procedure]()
         // {
 
@@ -2197,7 +2197,7 @@ namespace gpu
 
                         {
 
-                           // int iLayer = 0;
+                           // ::i32 iLayer = 0;
                            //
                            // for (auto player: layera)
                            // {
@@ -2583,7 +2583,7 @@ namespace gpu
 //
 //                            {
 //
-//                               int iLayer = 0;
+//                               ::i32 iLayer = 0;
 //
 //                               for (auto player: layera)
 //                               {
@@ -2888,7 +2888,7 @@ namespace gpu
 
       string strFragment =
          "uniform floating_sequence2 resolution;\n"
-         "uniform float time;\n"
+         "uniform ::f32 time;\n"
          "uniform floating_sequence2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
@@ -2930,10 +2930,10 @@ namespace gpu
          strFragment =
             //"#" + strVersion + "\n"
             //"\n"
-            //"precision highp float;\n"
+            //"precision highp ::f32;\n"
             "\n"
             "uniform floating_sequence2 iResolution;\n"
-            "uniform float iTime;\n"
+            "uniform ::f32 iTime;\n"
             "uniform floating_sequence2 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
@@ -3038,10 +3038,10 @@ namespace gpu
             for (auto x = 0; x < pimage->width(); x++)
             {
 
-               *p++ = psource->byte_red(pimage->color_indexes());
-               *p++ = psource->byte_green(pimage->color_indexes());
-               *p++ = psource->byte_blue(pimage->color_indexes());
-               *p++ = psource->byte_opacity(pimage->color_indexes());
+               *p++ = psource->u8_red(pimage->color_indexes());
+               *p++ = psource->u8_green(pimage->color_indexes());
+               *p++ = psource->u8_blue(pimage->color_indexes());
+               *p++ = psource->u8_opacity(pimage->color_indexes());
 
                psource++;
 
@@ -3081,9 +3081,9 @@ namespace gpu
             for (auto x = 0; x < pimage->width(); x++)
             {
 
-               *p++ = psource->byte_red(pimage->color_indexes());
-               *p++ = psource->byte_green(pimage->color_indexes());
-               *p++ = psource->byte_blue(pimage->color_indexes());
+               *p++ = psource->u8_red(pimage->color_indexes());
+               *p++ = psource->u8_green(pimage->color_indexes());
+               *p++ = psource->u8_blue(pimage->color_indexes());
 
                psource++;
 
@@ -3310,7 +3310,7 @@ namespace gpu
          if (!m_pshaderBlend3)
          {
 
-            const char full_screen_triangle_vertex_shader[] = R"vert(
+            const ::i8 full_screen_triangle_vertex_shader[] = R"vert(
 #version 330 core
 
 out vec2 uv;
@@ -3333,7 +3333,7 @@ void main() {
 }
 )vert";
 
-            const char full_screen_triangle_fragment_shader[] = R"frag(
+            const ::i8 full_screen_triangle_fragment_shader[] = R"frag(
 #version 330 core
 
 uniform sampler2D uTexture;
@@ -3415,7 +3415,7 @@ void main() {
 
          ::cast<::gpu::texture> ptextureDst = ptextureTarget;
 
-         // int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+         // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
          //
          // ptextureDst->bind_render_target();
          //
@@ -3456,7 +3456,7 @@ void main() {
          if (1)
          {
 
-            int iLayer = 0;
+            ::i32 iLayer = 0;
 
             pcommandbuffer.m_p->begin_render(m_pshaderBlend3.m_p, ptextureDst.m_p);
 
@@ -3492,9 +3492,9 @@ void main() {
 
                   auto r = ptextureSrc->rectangle();
 
-                  int h = r.height();
+                  ::i32 h = r.height();
 
-                  int iH = ptextureDst->height();
+                  ::i32 iH = ptextureDst->height();
 
                   r.top = iH - r.bottom;
 
@@ -3567,8 +3567,8 @@ void main() {
                   //D3D12_VIEWPORT viewport = {};
                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
-                  //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
-                  //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
+                  //viewport.Width = static_cast<::f32>(ptextureSrc->m_rectangleTarget.width());
+                  //viewport.Height = static_cast<::f32>(ptextureSrc->m_rectangleTarget.height());
                   //viewport.MinDepth = 0.0f;
                   //viewport.MaxDepth = 1.0f;
 
@@ -3585,8 +3585,8 @@ void main() {
                   //D3D11_VIEWPORT vp = {};
                   //vp.TopLeftX = ptexture->rectangle().left;
                   //vp.TopLeftY = ptexture->rectangle().top;
-                  //vp.Width = static_cast<float>(ptexture->rectangle().width());
-                  //vp.Height = static_cast<float>(ptexture->rectangle().height());
+                  //vp.Width = static_cast<::f32>(ptexture->rectangle().width());
+                  //vp.Height = static_cast<::f32>(ptexture->rectangle().height());
                   //vp.MinDepth = 0.0f;
                   //vp.MaxDepth = 1.0f;
                   //m_pcontext->RSSetViewports(1, &vp);
@@ -3614,7 +3614,7 @@ void main() {
          ////::cast <texture > ptextureDst = ptextureTarget;
          //{
          //
-         //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
+         //   ::f32 clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
          //
          //   D3D12_RECT r[1];
          //
@@ -3798,7 +3798,7 @@ void main() {
 
       pgpurenderer->frame_prefix();
 
-      int iGpuContext = m_iGpuContext;
+      ::i32 iGpuContext = m_iGpuContext;
 
       auto estate = pgpurenderer->m_prenderstate->m_estate;
 
@@ -3997,7 +3997,7 @@ void main() {
          // {
          //
          //    //uint32_t flags = entry.get("flags", 0); // Optional flags
-         //    //float scale = entry.get("scale", 1.0f); // Optional scale
+         //    //::f32 scale = entry.get("scale", 1.0f); // Optional scale
          //    prenderable = load_gltf_model(model);
          //
          //    //name, path, flags, scale);
@@ -4154,10 +4154,10 @@ return {};
       ::gpu::binding *pbindingMetallic = m_pgpushaderRgbaFromB_G->binding(0, 0);
       ::gpu::binding *pbindingRoughness = m_pgpushaderRgbaFromB_G->binding(0, 1);
 
-      int w1 = pgputextureMetallic->width();
-      int h1 = pgputextureMetallic->height();
-      int w2 = pgputextureRoughness->width();
-      int h2 = pgputextureRoughness->height();
+      ::i32 w1 = pgputextureMetallic->width();
+      ::i32 h1 = pgputextureMetallic->height();
+      ::i32 w2 = pgputextureRoughness->width();
+      ::i32 h2 = pgputextureRoughness->height();
       ASSERT(w1 == w2 && h1 == h2);
 
       auto pgputextureMetallicRoughness = createø<::gpu::texture>();
@@ -4201,7 +4201,7 @@ return {};
 
       auto pbindingslotset = m_pgpushaderRgbaFromB_G->binding_slot_set(0, pbindingset);
 
-      for (int iMip = 0; iMip < textureattributes.m_iMipCount; iMip++)
+      for (::i32 iMip = 0; iMip < textureattributes.m_iMipCount; iMip++)
       {
          pgputextureMetallicRoughness->set_current_mip(iMip);
          pgputextureMetallicRoughness->set_current_layer(0);

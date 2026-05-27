@@ -55,7 +55,7 @@ namespace  innate_subsystem
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFramebuffer::clone() function.");
    }
 
-   void DibFramebuffer::setColor(unsigned char reg, unsigned char green, unsigned char blue)
+   void DibFramebuffer::setColor(::u8 reg, ::u8 green, ::u8 blue)
    {
       m_fb.setColor(reg, green, blue);
    }
@@ -71,29 +71,29 @@ namespace  innate_subsystem
    }
 
    bool DibFramebuffer::copyFrom(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                                 int srcX, int srcY)
+                                 ::i32 srcX, ::i32 srcY)
    {
       return m_fb.copyFrom(rectangleTarget, pframebufferSource, srcX, srcY);
    }
 
-   bool DibFramebuffer::copyFrom(const Framebuffer * pframebufferSource, int srcX, int srcY)
+   bool DibFramebuffer::copyFrom(const Framebuffer * pframebufferSource, ::i32 srcX, ::i32 srcY)
    {
       return m_fb.copyFrom(pframebufferSource, srcX, srcY);
    }
 
    bool DibFramebuffer::overlay(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                                int srcX, int srcY, const char *andMask)
+                                ::i32 srcX, ::i32 srcY, const_char_pointer andMask)
    {
       return m_fb.overlay(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
    }
 
-   void DibFramebuffer::move(const ::i32_rectangle &rectangleTarget, const int srcX, const int srcY)
+   void DibFramebuffer::move(const ::i32_rectangle &rectangleTarget, const ::i32 srcX, const ::i32 srcY)
    {
       m_fb.move(rectangleTarget, srcX, srcY);
    }
 
    bool DibFramebuffer::cmpFrom(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                                const int srcX, const int srcY)
+                                const ::i32 srcX, const ::i32 srcY)
    {
       return m_fb.cmpFrom(rectangleTarget, pframebufferSource, srcX, srcY);
    }
@@ -148,12 +148,12 @@ namespace  innate_subsystem
       throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFramebuffer::setProperties() function.");
    }
 
-   unsigned char DibFramebuffer::getBitsPerPixel() const
+   ::u8 DibFramebuffer::getBitsPerPixel() const
    {
       return m_fb.getBitsPerPixel();
    }
 
-   unsigned char DibFramebuffer::getBytesPerPixel() const
+   ::u8 DibFramebuffer::getBytesPerPixel() const
    {
       return m_fb.getBytesPerPixel();
    }
@@ -168,17 +168,17 @@ namespace  innate_subsystem
       return m_fb.getBuffer();
    }
 
-   void *DibFramebuffer::getBufferPtr(int x, int y) const
+   void *DibFramebuffer::getBufferPtr(::i32 x, ::i32 y) const
    {
       return m_fb.getBufferPtr(x, y);
    }
 
-   inline int DibFramebuffer::getBufferSize() const
+   inline ::i32 DibFramebuffer::getBufferSize() const
    {
       return m_fb.getBufferSize();
    }
 
-   inline int DibFramebuffer::getBytesPerRow() const
+   inline ::i32 DibFramebuffer::getBytesPerRow() const
    {
       return m_fb.getBytesPerRow();
    }

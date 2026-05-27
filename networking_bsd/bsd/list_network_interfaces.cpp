@@ -39,7 +39,7 @@ namespace networking_bsd
 
       struct ifaddrs *curr, *list_base = NULL;
 
-//      int result = 0;
+//      ::i32 result = 0;
 
 //      if (!name || !(*name)) 
 //      {

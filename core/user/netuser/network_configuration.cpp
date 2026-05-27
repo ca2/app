@@ -100,7 +100,7 @@ namespace usernet
          
       string strProxy(doc.root()->attribute("server").as_string());
 
-      int iProxyPort;
+      ::i32 iProxyPort;
 
       iProxyPort = doc.root()->attribute("port");
          

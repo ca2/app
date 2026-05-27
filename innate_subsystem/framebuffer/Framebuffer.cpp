@@ -60,7 +60,7 @@ namespace innate_subsystem
       return true;
    }
 
-   void Framebuffer::setColor(unsigned char red, unsigned char green, unsigned char blue)
+   void Framebuffer::setColor(::u8 red, ::u8 green, ::u8 blue)
    {
       if (!m_buffer)
       {
@@ -73,7 +73,7 @@ namespace innate_subsystem
          return;
 
       }
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
       if (!pixelSize)
       {
          return;
@@ -87,8 +87,8 @@ namespace innate_subsystem
                        m_pixelformat.blueShift;
       ::u32 color = redPix | greenPix | bluePix;
 
-      unsigned char *endPixPtr = (unsigned char *)m_buffer + getBufferSize();
-      unsigned char *pixPtr = (unsigned char *)m_buffer;
+      ::u8 *endPixPtr = (::u8 *)m_buffer + getBufferSize();
+      ::u8 *pixPtr = (::u8 *)m_buffer;
       for (; pixPtr <= endPixPtr - pixelSize; pixPtr += pixelSize) {
          memcpy(pixPtr, &color, pixelSize);
       }
@@ -98,21 +98,21 @@ namespace innate_subsystem
    {
       ::i32_rectangle clipRect = ::i32_rectangle(m_size).intersection(rectangleTarget);
 
-      int pixelSize = getBytesPerPixel();
+      ::i32 pixelSize = getBytesPerPixel();
       size_t sizeLineFb = getBytesPerRow();
       size_t sizeLineRect = clipRect.width() * pixelSize;
 
       // it's pointer to first line of rect
-      unsigned char *srcLinePtr = reinterpret_cast<unsigned char *>(getBufferPtr(clipRect.left, clipRect.top));
+      ::u8 *srcLinePtr = reinterpret_cast<::u8 *>(getBufferPtr(clipRect.left, clipRect.top));
 
       // it's pointer to pixel in first line
-      unsigned char *pixPtr = srcLinePtr;
-      for (int x = clipRect.left; x < clipRect.right; x++, pixPtr += pixelSize)
+      ::u8 *pixPtr = srcLinePtr;
+      for (::i32 x = clipRect.left; x < clipRect.right; x++, pixPtr += pixelSize)
          memcpy(pixPtr, &color, pixelSize);
 
       // it's pointer to next line of rect
-      unsigned char *dstLinePtr = srcLinePtr + sizeLineFb;
-      for (int y = clipRect.top + 1; y < clipRect.bottom; y++, dstLinePtr += sizeLineFb)
+      ::u8 *dstLinePtr = srcLinePtr + sizeLineFb;
+      for (::i32 y = clipRect.top + 1; y < clipRect.bottom; y++, dstLinePtr += sizeLineFb)
          memcpy(dstLinePtr, srcLinePtr, sizeLineRect);
    }
 
@@ -123,7 +123,7 @@ namespace innate_subsystem
    }
 
    void Framebuffer::clipRect(const ::i32_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
-                              const int srcX, const int srcY,
+                              const ::i32 srcX, const ::i32 srcY,
                               ::i32_rectangle & rectangleTargetClipped, ::i32_rectangle & rectangleSourceClipped)
    {
       ::i32_rectangle srcBufferRect(pframebufferSource->getDimension());
@@ -131,7 +131,7 @@ namespace innate_subsystem
    }
 
    void Framebuffer::clipRect(const ::i32_rectangle & rectangleTarget, const ::i32_rectangle & srcBufferRect,
-                              const int srcX, const int srcY,
+                              const ::i32 srcX, const ::i32 srcY,
                               ::i32_rectangle & rectangleTargetClipped, ::i32_rectangle & rectangleSourceClipped)
    {
       ::i32_rectangle dstBufferRect(m_size);
@@ -162,8 +162,8 @@ namespace innate_subsystem
 
    bool Framebuffer::overlay(const ::i32_rectangle & rectangleTarget,
                              const Framebuffer * pframebufferSource,
-                             int srcX, int srcY,
-                             const char *andMask)
+                             ::i32 srcX, ::i32 srcY,
+                             const_char_pointer andMask)
    {
       if (m_pixelformat != pframebufferSource->getPixelFormat()) {
          return false;
@@ -171,9 +171,9 @@ namespace innate_subsystem
       if (m_pixelformat.bitsPerPixel == 32) {
          return overlayT<::u32>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else if (m_pixelformat.bitsPerPixel == 16) {
-         return overlayT<unsigned short>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
+         return overlayT<::u16>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else if (m_pixelformat.bitsPerPixel == 8) {
-         return overlayT<unsigned char>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
+         return overlayT<::u8>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else {
          ASSERT(false);
       }
@@ -182,8 +182,8 @@ namespace innate_subsystem
 
    template<class PIXEL_T> bool Framebuffer::overlayT(const ::i32_rectangle & rectangleTarget,
                                                       const Framebuffer * pframebufferSource,
-                                                      int srcX, int srcY,
-                                                      const char *andMask)
+                                                      ::i32 srcX, ::i32 srcY,
+                                                      const_char_pointer andMask)
    {
       ::i32_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
@@ -194,20 +194,20 @@ namespace innate_subsystem
 
       PIXEL_T *dstPixels = (PIXEL_T *)getBuffer();
       PIXEL_T *srcPixels = (PIXEL_T *)pframebufferSource->getBuffer();
-      int srcWidth = pframebufferSource->getDimension().cx;
-      int dstWidth = getDimension().cx;
+      ::i32 srcWidth = pframebufferSource->getDimension().cx;
+      ::i32 dstWidth = getDimension().cx;
       size_t bytesPerRow = (srcWidth + 7) / 8;
-      for (int iRow = rectangleSourceClipped.top; iRow < rectangleSourceClipped.bottom; iRow++) {
-         for (int iCol = rectangleSourceClipped.left; iCol < rectangleSourceClipped.right; iCol++) {
-            unsigned char curByte = andMask[iRow * bytesPerRow + iCol / 8];
+      for (::i32 iRow = rectangleSourceClipped.top; iRow < rectangleSourceClipped.bottom; iRow++) {
+         for (::i32 iCol = rectangleSourceClipped.left; iCol < rectangleSourceClipped.right; iCol++) {
+            ::u8 curByte = andMask[iRow * bytesPerRow + iCol / 8];
             bool andBit = (curByte & 128 >> iCol % 8) != 0;
             if (andBit) {
                
-               int iDstRow = rectangleTargetClipped.top + iRow - srcY - rectangleSourceClipped.top;
+               ::i32 iDstRow = rectangleTargetClipped.top + iRow - srcY - rectangleSourceClipped.top;
 //#ifdef __APPLE__
 //               iDstRow = m_size.height() - iDstRow - 1;
 //#endif
-               int iDstCol = rectangleTargetClipped.left + iCol - srcX - rectangleSourceClipped.left;
+               ::i32 iDstCol = rectangleTargetClipped.left + iCol - srcX - rectangleSourceClipped.left;
                dstPixels[iDstRow * dstWidth + iDstCol] = srcPixels[iRow * srcWidth + iCol];
             }
          }
@@ -216,7 +216,7 @@ namespace innate_subsystem
    }
 
    bool Framebuffer::copyFrom(const ::i32_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
-                              int srcX, int srcY)
+                              ::i32 srcX, ::i32 srcY)
    {
       if (m_pixelformat != pframebufferSource->getPixelFormat()) {
          return false;
@@ -230,27 +230,27 @@ namespace innate_subsystem
       }
 
       // Shortcuts
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytes = m_size.cx * pixelSize;
-      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 dstStrideBytes = m_size.cx * pixelSize;
+      ::i32 srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      int resultHeight = rectangleTargetClipped.height();
-      int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
+      ::i32 resultHeight = rectangleTargetClipped.height();
+      ::i32 resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
-      int iDstRow = rectangleTargetClipped.top;
+      ::i32 iDstRow = rectangleTargetClipped.top;
 //#ifdef __APPLE__
   //             iDstRow = m_size.height() - iDstRow - resultHeight;
 //#endif
 
-      unsigned char *pdst = (unsigned char *)m_buffer
+      ::u8 *pdst = (::u8 *)m_buffer
                     + iDstRow * dstStrideBytes
                     + pixelSize * rectangleTargetClipped.left;
 
-      unsigned char *psrc = (unsigned char *)pframebufferSource->getBuffer()
+      ::u8 *psrc = (::u8 *)pframebufferSource->getBuffer()
                     + rectangleSourceClipped.top * srcStrideBytes
                     + pixelSize * rectangleSourceClipped.left;
 
-      for (int i = 0; i < resultHeight; i++, pdst += dstStrideBytes, psrc += srcStrideBytes) {
+      for (::i32 i = 0; i < resultHeight; i++, pdst += dstStrideBytes, psrc += srcStrideBytes) {
          memcpy(pdst, psrc, resultWidthBytes);
       }
 
@@ -258,13 +258,13 @@ namespace innate_subsystem
    }
 
    bool Framebuffer::copyFrom(const Framebuffer * pframebufferSource,
-                              int srcX, int srcY)
+                              ::i32 srcX, ::i32 srcY)
    {
       return copyFrom(m_size, pframebufferSource, srcX, srcY);
    }
 
    bool Framebuffer::copyFromRotated90(const ::i32_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
-                                       int srcX, int srcY)
+                                       ::i32 srcX, ::i32 srcY)
    {
       if (m_pixelformat.bitsPerPixel != 32 || m_pixelformat != pframebufferSource->getPixelFormat())
       {
@@ -272,9 +272,9 @@ namespace innate_subsystem
       }
 
       // Shortcuts
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytesByX = m_size.cx * pixelSize;
-      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 dstStrideBytesByX = m_size.cx * pixelSize;
+      ::i32 srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       ::i32_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
@@ -282,8 +282,8 @@ namespace innate_subsystem
       ::i32_rectangle srcBuffTransposedRect = srcBuffTransposedDim;
       ::i32_rectangle srcRotatedCoordinates(srcX, srcY, srcX + rectangleTarget.height(), srcY + rectangleTarget.width());
       srcRotatedCoordinates.rotateOn90InsideDimension(pframebufferSource->getDimension().cy);
-      int srcXinDstRotation = srcRotatedCoordinates.left;
-      int srcYinDstRotation = srcRotatedCoordinates.top;
+      ::i32 srcXinDstRotation = srcRotatedCoordinates.left;
+      ::i32 srcYinDstRotation = srcRotatedCoordinates.top;
       clipRect(rectangleTarget, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, rectangleTargetClipped, rectangleSourceClipped);
       if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
@@ -291,21 +291,21 @@ namespace innate_subsystem
       // Rotate source rect back in source rotation.
       rectangleSourceClipped.rotateOn270InsideDimension(srcBuffTransposedDim.cx);
 
-      int resultHeight = rectangleSourceClipped.height();
-      int resultWidth = rectangleSourceClipped.width();
+      ::i32 resultHeight = rectangleSourceClipped.height();
+      ::i32 resultWidth = rectangleSourceClipped.width();
 
-      unsigned char *pBaseDst = (unsigned char *)m_buffer
+      ::u8 *pBaseDst = (::u8 *)m_buffer
                         + rectangleTargetClipped.top * dstStrideBytesByX
                         + pixelSize * (rectangleTargetClipped.right - 1);
 
-      unsigned char *pBaseSrc = (unsigned char *)pframebufferSource->getBuffer()
+      ::u8 *pBaseSrc = (::u8 *)pframebufferSource->getBuffer()
                         + rectangleSourceClipped.top * srcStrideBytes
                         + pixelSize * rectangleSourceClipped.left;
 
-      for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= pixelSize, pBaseSrc += srcStrideBytes) {
+      for (::i32 iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= pixelSize, pBaseSrc += srcStrideBytes) {
          ::u32 *pSrc = (::u32 *)pBaseSrc;
-         unsigned char *pDst = pBaseDst;
-         for (int iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst += dstStrideBytesByX) {
+         ::u8 *pDst = pBaseDst;
+         for (::i32 iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst += dstStrideBytesByX) {
             *(::u32 *)pDst = *pSrc;
          }
       }
@@ -314,7 +314,7 @@ namespace innate_subsystem
    }
 
    bool Framebuffer::copyFromRotated180(const ::i32_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
-                                       int srcX, int srcY)
+                                       ::i32 srcX, ::i32 srcY)
    {
       if (m_pixelformat.bitsPerPixel != 32 || m_pixelformat != pframebufferSource->getPixelFormat())
       {
@@ -322,9 +322,9 @@ namespace innate_subsystem
       }
 
       // Shortcuts
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytesByX = m_size.cx * pixelSize;
-      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 dstStrideBytesByX = m_size.cx * pixelSize;
+      ::i32 srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       ::i32_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
@@ -333,8 +333,8 @@ namespace innate_subsystem
       ::i32_rectangle srcRotatedCoordinates(srcX, srcY, srcX + rectangleTarget.width(), srcY + rectangleTarget.height());
       srcRotatedCoordinates.rotateOn180InsideDimension(pframebufferSource->getDimension().cx,
                                                        pframebufferSource->getDimension().cy);
-      int srcXinDstRotation = srcRotatedCoordinates.left;
-      int srcYinDstRotation = srcRotatedCoordinates.top;
+      ::i32 srcXinDstRotation = srcRotatedCoordinates.left;
+      ::i32 srcYinDstRotation = srcRotatedCoordinates.top;
       clipRect(rectangleTarget, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, rectangleTargetClipped, rectangleSourceClipped);
       if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
@@ -343,21 +343,21 @@ namespace innate_subsystem
       rectangleSourceClipped.rotateOn180InsideDimension(pframebufferSource->getDimension().cx,
                                                 pframebufferSource->getDimension().cy);
 
-      int resultHeight = rectangleSourceClipped.height();
-      int resultWidth = rectangleSourceClipped.width();
+      ::i32 resultHeight = rectangleSourceClipped.height();
+      ::i32 resultWidth = rectangleSourceClipped.width();
 
-      unsigned char *pBaseDst = (unsigned char *)m_buffer
+      ::u8 *pBaseDst = (::u8 *)m_buffer
         + (rectangleTargetClipped.bottom - 1) * dstStrideBytesByX
         + pixelSize * (rectangleTargetClipped.right - 1);
 
-      unsigned char *pBaseSrc = (unsigned char *)pframebufferSource->getBuffer()
+      ::u8 *pBaseSrc = (::u8 *)pframebufferSource->getBuffer()
         + rectangleSourceClipped.top * srcStrideBytes
         + pixelSize * rectangleSourceClipped.left;
 
-      for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= dstStrideBytesByX , pBaseSrc += srcStrideBytes) {
+      for (::i32 iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= dstStrideBytesByX , pBaseSrc += srcStrideBytes) {
          ::u32 *pSrc = (::u32 *)pBaseSrc;
          ::u32 *pDst = (::u32 *)pBaseDst;
-         for (int iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst--) {
+         for (::i32 iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst--) {
             *(::u32 *)pDst = *pSrc;
          }
       }
@@ -366,7 +366,7 @@ namespace innate_subsystem
    }
 
    bool Framebuffer::copyFromRotated270(const ::i32_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
-                                       int srcX, int srcY)
+                                       ::i32 srcX, ::i32 srcY)
    {
       if (m_pixelformat.bitsPerPixel != 32 || m_pixelformat != pframebufferSource->getPixelFormat())
       {
@@ -374,9 +374,9 @@ namespace innate_subsystem
       }
 
       // Shortcuts
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytesByX = m_size.cx * pixelSize;
-      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 dstStrideBytesByX = m_size.cx * pixelSize;
+      ::i32 srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       ::i32_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
@@ -384,8 +384,8 @@ namespace innate_subsystem
       ::i32_rectangle srcBuffTransposedRect = srcBuffTransposedDim;
       ::i32_rectangle srcRotatedCoordinates(srcX, srcY, srcX + rectangleTarget.height(), srcY + rectangleTarget.width());
       srcRotatedCoordinates.rotateOn270InsideDimension(pframebufferSource->getDimension().cx);
-      int srcXinDstRotation = srcRotatedCoordinates.left;
-      int srcYinDstRotation = srcRotatedCoordinates.top;
+      ::i32 srcXinDstRotation = srcRotatedCoordinates.left;
+      ::i32 srcYinDstRotation = srcRotatedCoordinates.top;
       clipRect(rectangleTarget, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, rectangleTargetClipped, rectangleSourceClipped);
       if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
@@ -393,21 +393,21 @@ namespace innate_subsystem
       // Rotate source rect back in source rotation.
       rectangleSourceClipped.rotateOn90InsideDimension(srcBuffTransposedDim.cy);
 
-      int resultHeight = rectangleSourceClipped.height();
-      int resultWidth = rectangleSourceClipped.width();
+      ::i32 resultHeight = rectangleSourceClipped.height();
+      ::i32 resultWidth = rectangleSourceClipped.width();
 
-      unsigned char *pBaseDst = (unsigned char *)m_buffer
+      ::u8 *pBaseDst = (::u8 *)m_buffer
         + (rectangleTargetClipped.bottom - 1) * dstStrideBytesByX
         + pixelSize * rectangleTargetClipped.left;
 
-      unsigned char *pBaseSrc = (unsigned char *)pframebufferSource->getBuffer()
+      ::u8 *pBaseSrc = (::u8 *)pframebufferSource->getBuffer()
         + rectangleSourceClipped.top * srcStrideBytes
         + pixelSize * rectangleSourceClipped.left;
 
-      for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst += pixelSize, pBaseSrc += srcStrideBytes) {
+      for (::i32 iRow = 0; iRow < resultHeight; iRow++, pBaseDst += pixelSize, pBaseSrc += srcStrideBytes) {
          ::u32 *pSrc = (::u32 *)pBaseSrc;
-         unsigned char *pDst = pBaseDst;
-         for (int iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst -= dstStrideBytesByX) {
+         ::u8 *pDst = pBaseDst;
+         for (::i32 iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst -= dstStrideBytesByX) {
             *(::u32 *)pDst = *pSrc;
          }
       }
@@ -416,7 +416,7 @@ namespace innate_subsystem
    }
 
    bool Framebuffer::cmpFrom(const ::i32_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
-                             const int srcX, const int srcY)
+                             const ::i32 srcX, const ::i32 srcY)
    {
       if (m_pixelformat != pframebufferSource->getPixelFormat())
       {
@@ -431,22 +431,22 @@ namespace innate_subsystem
       }
 
       // Shortcuts
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytes = m_size.cx * pixelSize;
-      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 dstStrideBytes = m_size.cx * pixelSize;
+      ::i32 srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      int resultHeight = rectangleTargetClipped.height();
-      int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
+      ::i32 resultHeight = rectangleTargetClipped.height();
+      ::i32 resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
-      unsigned char *pdst = (unsigned char *)m_buffer
+      ::u8 *pdst = (::u8 *)m_buffer
                     + rectangleTargetClipped.top * dstStrideBytes
                     + pixelSize * rectangleTargetClipped.left;
 
-      unsigned char *psrc = (unsigned char *)pframebufferSource->getBuffer()
+      ::u8 *psrc = (::u8 *)pframebufferSource->getBuffer()
                     + rectangleSourceClipped.top * srcStrideBytes
                     + pixelSize * rectangleSourceClipped.left;
 
-      for (int i = 0; i < resultHeight; i++, pdst += dstStrideBytes, psrc += srcStrideBytes) {
+      for (::i32 i = 0; i < resultHeight; i++, pdst += dstStrideBytes, psrc += srcStrideBytes) {
          if (memcmp(pdst, psrc, resultWidthBytes) != 0) {
             return false;
          }
@@ -455,7 +455,7 @@ namespace innate_subsystem
       return true;
    }
 
-   void Framebuffer::move(const ::i32_rectangle & rectangleTarget, const int srcX, const int srcY)
+   void Framebuffer::move(const ::i32_rectangle & rectangleTarget, const ::i32 srcX, const ::i32 srcY)
    {
       ::i32_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
@@ -465,33 +465,33 @@ namespace innate_subsystem
       }
 
       // Data copy
-      int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int strideBytes = m_size.cx * pixelSize;
+      ::i32 pixelSize = m_pixelformat.bitsPerPixel / 8;
+      ::i32 strideBytes = m_size.cx * pixelSize;
 
-      int resultHeight = rectangleTargetClipped.height();
-      int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
+      ::i32 resultHeight = rectangleTargetClipped.height();
+      ::i32 resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
-      unsigned char *pdst, *psrc;
+      ::u8 *pdst, *psrc;
 
       if (srcY > rectangleTarget.top) {
          // Pointers set to first string of the rectanles
-         pdst = (unsigned char *)m_buffer + rectangleTargetClipped.top * strideBytes
+         pdst = (::u8 *)m_buffer + rectangleTargetClipped.top * strideBytes
                 + pixelSize * rectangleTargetClipped.left;
-         psrc = (unsigned char *)m_buffer + rectangleSourceClipped.top * strideBytes
+         psrc = (::u8 *)m_buffer + rectangleSourceClipped.top * strideBytes
                 + pixelSize * rectangleSourceClipped.left;
 
-         for (int i = 0; i < resultHeight; i++, pdst += strideBytes, psrc += strideBytes) {
+         for (::i32 i = 0; i < resultHeight; i++, pdst += strideBytes, psrc += strideBytes) {
             memcpy(pdst, psrc, resultWidthBytes);
          }
 
       } else {
          // Pointers set to last string of the rectanles
-         pdst = (unsigned char *)m_buffer + (rectangleTargetClipped.bottom - 1) * strideBytes
+         pdst = (::u8 *)m_buffer + (rectangleTargetClipped.bottom - 1) * strideBytes
                 + pixelSize * rectangleTargetClipped.left;
-         psrc = (unsigned char *)m_buffer + (rectangleSourceClipped.bottom - 1) * strideBytes
+         psrc = (::u8 *)m_buffer + (rectangleSourceClipped.bottom - 1) * strideBytes
                 + pixelSize * rectangleSourceClipped.left;
 
-         for (int i = resultHeight - 1; i >= 0; i--, pdst -= strideBytes, psrc -= strideBytes) {
+         for (::i32 i = resultHeight - 1; i >= 0; i--, pdst -= strideBytes, psrc -= strideBytes) {
             memmove(pdst, psrc, resultWidthBytes);
          }
       }
@@ -541,15 +541,15 @@ namespace innate_subsystem
       return resizeBuffer();
    }
 
-   unsigned char Framebuffer::getBitsPerPixel() const
+   ::u8 Framebuffer::getBitsPerPixel() const
    {
-      ASSERT((unsigned char)m_pixelformat.bitsPerPixel == m_pixelformat.bitsPerPixel);
-      return (unsigned char)m_pixelformat.bitsPerPixel;
+      ASSERT((::u8)m_pixelformat.bitsPerPixel == m_pixelformat.bitsPerPixel);
+      return (::u8)m_pixelformat.bitsPerPixel;
    }
 
-   int Framebuffer::getBufferSize() const
+   ::i32 Framebuffer::getBufferSize() const
    {
-      return (int)((::u64)m_size.area() * m_pixelformat.bitsPerPixel / 8);
+      return (::i32)((::u64)m_size.area() * m_pixelformat.bitsPerPixel / 8);
    }
 
    bool Framebuffer::resizeBuffer()
@@ -557,7 +557,7 @@ namespace innate_subsystem
       if (m_buffer != 0) {
          delete []m_buffer;
       }
-      if ((m_buffer = new unsigned char[getBufferSize()]) == 0) {
+      if ((m_buffer = new ::u8[getBufferSize()]) == 0) {
          return false;
       }
       return true;

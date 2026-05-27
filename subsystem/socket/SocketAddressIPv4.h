@@ -36,7 +36,7 @@
 namespace subsystem
 {
    // // FIXME: Deprecated method, only for testing of old code.
-   // void getLocalIPAddrString(char *buffer, int buflen);
+   // void getLocalIPAddrString(char_pointer buffer, ::i32 buflen);
 
    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
    virtual public ::Particle
@@ -48,7 +48,7 @@ namespace subsystem
 
       virtual void initialize_socket_address_ipv4() = 0;
       //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
-      virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) = 0;
+      virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, ::u16 port) = 0;
       virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface * psocketAddressIPv4) = 0;
 
 
@@ -62,14 +62,14 @@ namespace subsystem
       virtual ::string toString() const = 0;
 
       // Returns socket port number
-      virtual unsigned short getPort() const = 0;
+      virtual ::u16 getPort() const = 0;
 
 
       virtual bool isLoopbackAddress() const = 0;
 
    // //protected:
    //    //WsaStartup m_wsaStartup;
-   //    unsigned short m_port;
+   //    ::u16 m_port;
    //    struct in_addr m_addr;
 
 
@@ -100,7 +100,7 @@ namespace subsystem
 
       }
       //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
-      virtual void initialize_socket_address_ipv4(const ::scoped_string& scopedstrHost, unsigned short port) override
+      virtual void initialize_socket_address_ipv4(const ::scoped_string& scopedstrHost, ::u16 port) override
       {
 
          m_psocketaddressipv4->initialize_socket_address_ipv4(scopedstrHost, port);
@@ -133,7 +133,7 @@ namespace subsystem
       }
 
       // Returns socket port number
-      unsigned short getPort() const override
+      ::u16 getPort() const override
       {
 
          return m_psocketaddressipv4->getPort();
@@ -149,7 +149,7 @@ namespace subsystem
       }
       // //protected:
       //    //WsaStartup m_wsaStartup;
-      //    unsigned short m_port;
+      //    ::u16 m_port;
       //    struct in_addr m_addr;
 
 

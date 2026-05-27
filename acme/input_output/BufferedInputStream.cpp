@@ -72,7 +72,7 @@ void BufferedInputStream::_initialize_buffered_input_stream(InputStream * pinput
 
 
    memsize BufferedInputStream::read(void *buffer, memsize len) {
-      char *buf = (char *)buffer;
+      char_pointer buf = (char_pointer )buffer;
 
       if (m_have == 0) {
          m_pos = 0;

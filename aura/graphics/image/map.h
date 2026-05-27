@@ -107,10 +107,10 @@ namespace image
       using BASE_PAIR_MAP = map_base < image_header, ::image::image_pointer >;
 
 
-      int m_iLimitCount;
+      ::i32 m_iLimitCount;
 
 
-      image_descriptor_map_base(int iLimitCount = 500)
+      image_descriptor_map_base(::i32 iLimitCount = 500)
       {
 
          m_iLimitCount = iLimitCount;

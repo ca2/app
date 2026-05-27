@@ -21,8 +21,8 @@ template<typename T, template<typename...> class Template>
 concept is_specialization_of = is_specialization_of_t<std::decay_t<T>, Template>::payload;
 
 // Example Usage:
-//static_assert(is_specialization_of<array_base<int>, array_base>); // Passes
-//static_assert(!is_specialization_of<int, array_base); // Fails
+//static_assert(is_specialization_of<array_base<::i32>, array_base>); // Passes
+//static_assert(!is_specialization_of<::i32, array_base); // Fails
 
 //// 1. Helper type trait to detect instantiation
 //template<typename T, template<typename...> class Template>

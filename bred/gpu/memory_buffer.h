@@ -43,8 +43,8 @@ namespace gpu
       void* m_pMap;
       bool m_bDynamic;
 
-      int m_iBufferOffset;
-      int m_iSizeMapped;
+      ::i32 m_iBufferOffset;
+      ::i32 m_iSizeMapped;
 
 
       memory_buffer();
@@ -89,7 +89,7 @@ namespace gpu
       virtual void unbind();
 
 
-      virtual void _complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage * pgpuframestorage, int size);
+      virtual void _complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage * pgpuframestorage, ::i32 size);
 
       virtual void set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_buffer_state etexturestate);
 

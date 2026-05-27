@@ -82,12 +82,12 @@ namespace subsystem
       // Windows contain both visible and invisible pseudo-monitors
       // that are associated with mirroring drivers.
       // The function returns only visible monitor count.
-      virtual int getVisibleMonitorCount() = 0;
+      virtual ::i32 getVisibleMonitorCount() = 0;
 
       //private:
       // void fillPixelFormat(const BMI *bmi);
       // Find position of first true bit
-      virtual int findFirstBit(const ::u32 bits) = 0;
+      virtual ::i32 findFirstBit(const ::u32 bits) = 0;
 
       virtual void fillScreenRect() = 0;
 
@@ -166,7 +166,7 @@ namespace subsystem
       // Windows contain both visible and invisible pseudo-monitors
       // that are associated with mirroring drivers.
       // The function returns only visible monitor count.
-       int getVisibleMonitorCount() override
+       ::i32 getVisibleMonitorCount() override
        {
 
           return m_pscreen->getVisibleMonitorCount();
@@ -176,7 +176,7 @@ namespace subsystem
    //private:
       //void fillPixelFormat(const BMI *bmi);
       // Find position of first true bit
-       int findFirstBit(const ::u32 bits) override
+       ::i32 findFirstBit(const ::u32 bits) override
        {
 
           return m_pscreen->findFirstBit(bits);

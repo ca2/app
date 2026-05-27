@@ -191,19 +191,19 @@ namespace html
 
          pgraphics->m_puserinteractionDraw2dGraphics = pdata->m_pcoredata->m_puserinteraction;
 
-         ::float_size size = pgraphics->get_text_extent(strMax);
+         ::f32_size size = pgraphics->get_text_extent(strMax);
 
-         m_cxMax = (float) size.cx;
+         m_cxMax = (::f32) size.cx;
 
          //character_count iLastSpace = 0;
 
-         char ch;
+         ::i8 ch;
 
-         int iSpace = 0;
+         ::i32 iSpace = 0;
 
          string strLine;
 
-         for (int i = 0; i < str.length();)
+         for (::i32 i = 0; i < str.length();)
          {
 
             iSpace = 0;
@@ -274,7 +274,7 @@ namespace html
 
          m_cxMin = 0;
 
-         for (int i = 0; i < m_straWordSpace.get_size(); i++)
+         for (::i32 i = 0; i < m_straWordSpace.get_size(); i++)
          {
 
             ch = m_straWordSpace[i][0];
@@ -287,7 +287,7 @@ namespace html
                if (size.cx > m_cxMin)
                {
 
-                  m_cxMin = (float)size.cx;
+                  m_cxMin = (::f32)size.cx;
 
                }
 
@@ -339,17 +339,17 @@ namespace html
 
                pgraphics->get_text_metrics(&textmetric);
 
-               double dLineHeight = textmetric.get_line_height();
+               ::f64 dLineHeight = textmetric.get_line_height();
 
-               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) dLineHeight;
+               pdata->m_pcoredata->m_layoutstate1.m_cy = (::f32) dLineHeight;
 
-               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) dLineHeight;
+               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (::f32) dLineHeight;
 
-               m_box.set_height((float) dLineHeight);
+               m_box.set_height((::f32) dLineHeight);
 
             }
 
-            m_box.set_height((float)pdata->m_pcoredata->m_layoutstate1.m_cy);
+            m_box.set_height((::f32)pdata->m_pcoredata->m_layoutstate1.m_cy);
 
             return true;
 
@@ -383,13 +383,13 @@ namespace html
 
          m_sizea.erase_all();
 
-         ::float_size sizeText;
+         ::f32_size sizeText;
 
-         int iSpace;
+         ::i32 iSpace;
 
          string strLine;
 
-         char ch;
+         ::i8 ch;
 
          character_count iLastSpace = 0;
 
@@ -397,15 +397,15 @@ namespace html
 
          pointBound.x += m_margin.left + m_border.left + m_padding.left;
 
-         float x = pointBound.x;
+         ::f32 x = pointBound.x;
 
-         ::float_size sizeContent = ::float_size(get_bound_size());
+         ::f32_size sizeContent = ::f32_size(get_bound_size());
 
          sizeContent.cx = maximum(0.f, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
 
          sizeContent.cy = maximum(0.f, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
-         for (int i = 0; i < str.length();)
+         for (::i32 i = 0; i < str.length();)
          {
 
             iSpace = 0;
@@ -476,7 +476,7 @@ namespace html
 
                   pgraphics->get_text_metrics(&textmetric);
 
-                  sizeText.cy = (float) textmetric.get_line_height();
+                  sizeText.cy = (::f32) textmetric.get_line_height();
 
                   m_straLines.add(strLine.left(iLastSpace));
 
@@ -492,7 +492,7 @@ namespace html
 
                }
 
-               m_sizea.add(::float_size(sizeText));
+               m_sizea.add(::f32_size(sizeText));
 
                iLastSpace = 0;
 
@@ -511,11 +511,11 @@ namespace html
 
             pgraphics->get_text_metrics(&textmetric);
 
-            sizeText.cy = (float) textmetric.get_line_height();
+            sizeText.cy = (::f32) textmetric.get_line_height();
 
             m_straLines.add(strLine);
 
-            m_sizea.add(::float_size(sizeText));
+            m_sizea.add(::f32_size(sizeText));
 
          }
 
@@ -524,7 +524,7 @@ namespace html
 
             m_straLines.add("");
 
-            m_sizea.add(::float_size(0.f, 0.f));
+            m_sizea.add(::f32_size(0.f, 0.f));
 
          }
 
@@ -532,7 +532,7 @@ namespace html
                || (!m_pelemental->m_bParent && m_pelemental->m_pstyle->m_edisplay != display_table_cell))
          {
 
-            float cx = 0.f;
+            ::f32 cx = 0.f;
 
             if (m_straLines.get_size() > 1)
             {
@@ -551,9 +551,9 @@ namespace html
 
          }
 
-         float cy = 0.f;
+         ::f32 cy = 0.f;
 
-         int i;
+         ::i32 i;
 
          for (i = 0; i < m_sizea.get_size(); i++)
          {
@@ -699,7 +699,7 @@ namespace html
 
             ::color32_t color32 = 0;
 
-            double d;
+            ::f64 d;
 
             if (m_pelemental->m_pstyle->get_alpha("", pdata, m_pelemental, d))
             {
@@ -709,7 +709,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (unsigned char)(d * 255))));
+                  maximum(0, minimum(255, (::u8)(d * 255))));
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
                {
@@ -717,7 +717,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (unsigned char)(d * 255))));
+                  maximum(0, minimum(255, (::u8)(d * 255))));
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
                {
@@ -725,7 +725,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (unsigned char)(d * 255))));
+                  maximum(0, minimum(255, (::u8)(d * 255))));
                }
             }
             else
@@ -808,9 +808,9 @@ namespace html
 
          character_count iSelStart;
          character_count iSelEnd;
-         ::float_size size3;
+         ::f32_size size3;
          draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIp"), size3);
-         int maxcy = size3.cy;
+         ::i32 maxcy = size3.cy;
 
          get_text_selection(iSelStart, iSelEnd);
          character_count iCursor = iSelEnd;
@@ -825,11 +825,11 @@ namespace html
 
          }
 
-         const ::float_point & point = get_content_xy();
+         const ::f32_point & point = get_content_xy();
 
-         float x = ::float_point.x;
+         ::f32 x = ::f32_point.x;
 
-         float y = ::float_point.y;
+         ::f32 y = ::f32_point.y;
 
          if(m_pelemental->m_pparent != nullptr)
          {
@@ -840,7 +840,7 @@ namespace html
 
          /*}
 
-         float cy = 0;
+         ::f32 cy = 0;
          string str1;
          string str2;
          string str3;
@@ -861,14 +861,14 @@ namespace html
          if(m_straLines.get_size() == m_sizea.get_size())
          {
 
-            for(int i = 0; i < m_straLines.get_size(); i++)
+            for(::i32 i = 0; i < m_straLines.get_size(); i++)
             {
                string strLine = m_straLines[i];
-               float left = i == 0 ? x : m_bound.left;
-               float top = y + cy;
+               ::f32 left = i == 0 ? x : m_bound.left;
+               ::f32 top = y + cy;
                if(pdata->m_pcoredata->m_bEdit)
                {
-                  float y = top;
+                  ::f32 y = top;
                   string_array_base stra;
                   character_count i1 = iSelStart - lim;
                   character_count i2 = iSelEnd - lim;
@@ -889,13 +889,13 @@ namespace html
                   pgraphics->set(pbrushText);
                   //pgraphics->SetBkColor(crBkSel);
                   pgraphics->text_out(left,y,strExtent1);
-                  ::float_size size1 = pgraphics->get_text_extent(strExtent1);
+                  ::f32_size size1 = pgraphics->get_text_extent(strExtent1);
 
                   pbrushBackground->create_solid(crBkSel);
                   //pgraphics->SetBkMode(OPAQUE);
                   pgraphics->set(pbrushBackground);
-                  ::float_size size2 = pgraphics->get_text_extent(strExtent2);
-                  pgraphics->fill_solid_rect_dim((int)(left + size1.cx),(int)y,size2.cx,size2.cy,crBkSel);
+                  ::f32_size size2 = pgraphics->get_text_extent(strExtent2);
+                  pgraphics->fill_solid_rect_dim((::i32)(left + size1.cx),(::i32)y,size2.cx,size2.cy,crBkSel);
 
                   //pgraphics->set_text_color(crSel);
                   pbrushText->create_solid(crSel);
@@ -940,7 +940,7 @@ namespace html
       }
 
 
-      float text::get_first_line_height()
+      ::f32 text::get_first_line_height()
       {
 
          if(m_sizea.get_size() > 0)
@@ -959,7 +959,7 @@ namespace html
       }
 
 
-      float text::get_last_line_height()
+      ::f32 text::get_last_line_height()
       {
 
          if(m_sizea.get_size() > 0)
@@ -1054,17 +1054,17 @@ namespace html
       }
 
 
-      int text::hit_test(html_data * pdocument, const ::float_point & point)
+      ::i32 text::hit_test(html_data * pdocument, const ::f32_point & point)
       {
 
          __UNREFERENCED_PARAMETER(pdocument);
 
-         float x = this->left();
-         float cy = 0.f;
-         float x1;
-         float x2;
+         ::f32 x = this->left();
+         ::f32 cy = 0.f;
+         ::f32 x1;
+         ::f32 x2;
 
-         for(int i = 0; i < m_straLines.get_size(); i++)
+         for(::i32 i = 0; i < m_straLines.get_size(); i++)
          {
 
             x1 = i == 0 ? x : m_bound.left;
@@ -1173,18 +1173,18 @@ namespace html
       }
 
 
-      character_count text::char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, int py)
+      character_count text::char_hit_test(::draw2d::graphics_pointer & pgraphics, ::i32 px, ::i32 py)
       {
 
          ::i32_rectangle rectangle(m_box);
 
          pgraphics->set(m_pelemental->m_pdata->get_font(m_pelemental)->m_pfont);
 
-         float x = this->left();
+         ::f32 x = this->left();
 
-         float y = this->top();
+         ::f32 y = this->top();
 
-         float cy = 0;
+         ::f32 cy = 0;
 
          if(py < y)
          {
@@ -1197,7 +1197,7 @@ namespace html
 
          character_count iLen = 0;
 
-         for(int i = 0; i < m_straLines.get_size(); i++)
+         for(::i32 i = 0; i < m_straLines.get_size(); i++)
          {
 
             string str = m_straLines[i];
@@ -1206,12 +1206,12 @@ namespace html
 
             const_char_pointer pszEnd = pszStart;
 
-            float cur_x = i == 0 ? x : m_bound.left;
-//            int cur_y = y + cy;
+            ::f32 cur_x = i == 0 ? x : m_bound.left;
+//            ::i32 cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy))
             {
 
-               ::float_size size;
+               ::f32_size size;
 
                character_count iChar = 0;
 

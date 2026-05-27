@@ -59,10 +59,10 @@ inline floating_matrix4 aiMatrix4x4ToColumnMajorScalar(const aiMatrix4x4 &m)
 }
 
 #if defined(__SSE__)
-inline float_matrix4 aiMatrix4x4ToColumnMajorSSE(const aiMatrix4x4 &from)
+inline f32_matrix4 aiMatrix4x4ToColumnMajorSSE(const aiMatrix4x4 &from)
 {
 
-   float_matrix4 to;
+   f32_matrix4 to;
 
    // Load rows of the aiMatrix4x4 into __m128 registers
    __m128 row0 = _mm_set_ps(from.a4, from.a3, from.a2, from.a1); // row 0
@@ -95,9 +95,9 @@ inline float_matrix4 aiMatrix4x4ToColumnMajorSSE(const aiMatrix4x4 &from)
 
 #if defined(__AVX2__)
 
-inline float_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
+inline f32_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
 {
-   float_matrix4 to;
+   f32_matrix4 to;
 
    // Load 4 rows into two 256-bit registers (two rows per register)
    // Layout in memory: row0 = a1 a2 a3 a4, row1 = b1 b2 b3 b4, etc.
@@ -127,9 +127,9 @@ inline float_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
 
 #if defined(__AVX__)
 
-inline float_matrix4 aiMatrix4x4ToColumnMajorAVX(const aiMatrix4x4 &from)
+inline f32_matrix4 aiMatrix4x4ToColumnMajorAVX(const aiMatrix4x4 &from)
 {
-   float_matrix4 to;
+   f32_matrix4 to;
 
    // Load two rows per 128-bit lane into two 256-bit registers
    __m256 row01 = _mm256_set_ps(from.b4, from.b3, from.b2, from.b1, from.a4, from.a3, from.a2, from.a1);

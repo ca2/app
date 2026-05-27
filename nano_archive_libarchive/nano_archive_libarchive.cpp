@@ -34,11 +34,11 @@ namespace libarchive
          }
 
 
-         void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
+         void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, ::i32 iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
          {
             struct ::archive * a;
             struct ::archive_entry * entry;
-            int r;
+            ::i32 r;
 
             a = archive_read_new();
             archive_read_support_filter_all(a);
@@ -70,7 +70,7 @@ namespace libarchive
 
                   ::file::path path(strPathName);
 
-                  for(int i = 0; i < iStripComponent; i++)
+                  for(::i32 i = 0; i < iStripComponent; i++)
                   {
 
                      auto p = path.find_first_character_in("/\\");
@@ -95,7 +95,7 @@ namespace libarchive
 
                      ::file::path pathSymlinkSource(strSymlink);
 
-                     for(int i = 0; i < iStripComponent; i++)
+                     for(::i32 i = 0; i < iStripComponent; i++)
                      {
 
                         auto p = pathSymlinkSource.find_first_character_in("/\\");

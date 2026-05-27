@@ -60,7 +60,7 @@ namespace coding
    void group_netnode::start_integration(::coding::integration * pintegration)
    {
 
-      m_psemaphore = allocateø::semaphore(0, (int)m_straNetnode.size());
+      m_psemaphore = allocateø::semaphore(0, (::i32)m_straNetnode.size());
 
       for (auto strNetnode : m_straNetnode)
       {

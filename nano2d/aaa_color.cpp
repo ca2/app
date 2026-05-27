@@ -7,22 +7,22 @@
 //{
 //
 //
-//   //::color::color context::RGB(unsigned char r, unsigned char g, unsigned char b)
-//   ::color::color RGB_color(unsigned char r, unsigned char g, unsigned char b)
+//   //::color::color context::RGB(::u8 r, ::u8 g, ::u8 b)
+//   ::color::color RGB_color(::u8 r, ::u8 g, ::u8 b)
 //   {
 //      ///return context::RGBA)(r, g, b, 255);
 //      return { r / 255.f, g / 255.f, b / 255.f, 1.0f };
 //   }
 //
-//   //::color::color context::RGBf)(float r, float g, float b)
-//   ::color::color RGBf_color(float r, float g, float b)
+//   //::color::color context::RGBf)(::f32 r, ::f32 g, ::f32 b)
+//   ::color::color RGBf_color(::f32 r, ::f32 g, ::f32 b)
 //   {
 //      //return context::RGBAf)(r, g, b, 1.0f);
 //      return { r , g, b, 1.0f };
 //   }
 //
-//   //::color::color context::RGBA)(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
-//   ::color::color RGBA_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+//   //::color::color context::RGBA)(::u8 r, ::u8 g, ::u8 b, ::u8 a)
+//   ::color::color RGBA_color(::u8 r, ::u8 g, ::u8 b, ::u8 a)
 //   {
 //      ::color::color color;
 //      // Use longer initialization to suppress warning.
@@ -33,8 +33,8 @@
 //      return color;
 //   }
 //
-//   //::color::color context::RGBAf)(float r, float g, float b, float a)
-//   ::color::color RGBAf_color(float r, float g, float b, float a)
+//   //::color::color context::RGBAf)(::f32 r, ::f32 g, ::f32 b, ::f32 a)
+//   ::color::color RGBAf_color(::f32 r, ::f32 g, ::f32 b, ::f32 a)
 //   {
 //      ::color::color color;
 //      // Use longer initialization to suppress warning.
@@ -45,24 +45,24 @@
 //      return color;
 //   }
 //
-//   //::color::color context::TransRGBA)(::color::color c, unsigned char a)
-//   ::color::color TransRGBA_color(::color::color c, unsigned char a)
+//   //::color::color context::TransRGBA)(::color::color c, ::u8 a)
+//   ::color::color TransRGBA_color(::color::color c, ::u8 a)
 //   {
 //      c.a = a / 255.0f;
 //      return c;
 //   }
 //
-//   //::color::color context::TransRGBAf)(::color::color c, float a)
-//   ::color::color TransRGBAf_color(::color::color c, float a)
+//   //::color::color context::TransRGBAf)(::color::color c, ::f32 a)
+//   ::color::color TransRGBAf_color(::color::color c, ::f32 a)
 //   {
 //      c.a = a;
 //      return c;
 //   }
 //
-//   //::color::color context::LerpRGBA)(::color::color c0, ::color::color c1, float u)
+//   //::color::color context::LerpRGBA)(::color::color c0, ::color::color c1, ::f32 u)
 //   //{
-//   //	int i;
-//   //	float oneminu;
+//   //	::i32 i;
+//   //	::f32 oneminu;
 //   //	::color::color cint = { {{0}} };
 //   //
 //   //	u = context::__clampf)(u, 0.0f, 1.0f);
@@ -75,8 +75,8 @@
 //   //	return cint;
 //   //}
 //
-//   //::color::color context::HSL)(float h, float s, float l)
-//   ::color::color HSL_color(float h, float s, float l)
+//   //::color::color context::HSL)(::f32 h, ::f32 s, ::f32 l)
+//   ::color::color HSL_color(::f32 h, ::f32 s, ::f32 l)
 //   {
 //      //return context::HSLA)(h, s, l, 255);
 //      ::color::color color;
@@ -86,7 +86,7 @@
 //
 //   }
 //
-//   //static float context::__hue)(float h, float m1, float m2)
+//   //static ::f32 context::__hue)(::f32 h, ::f32 m1, ::f32 m2)
 //   //{
 //   //	if (h < 0) h += 1;
 //   //	if (h > 1) h -= 1;
@@ -99,10 +99,10 @@
 //   //	return m1;
 //   //}
 //
-//   //::color::color context::HSLA)(float h, float s, float l, unsigned char a)
-//   ::color::color HSLA_color(float h, float s, float l, unsigned char a)
+//   //::color::color context::HSLA)(::f32 h, ::f32 s, ::f32 l, ::u8 a)
+//   ::color::color HSLA_color(::f32 h, ::f32 s, ::f32 l, ::u8 a)
 //   {
-//      //float m1, m2;
+//      //::f32 m1, m2;
 //      //::color::color col;
 //      //h = context::__modf)(h, 1.0f);
 //      //if (h < 0.0f) h += 1.0f;

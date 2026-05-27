@@ -43,7 +43,7 @@
 
     void cube::initialize_gpu_cube(::gpu::context* pgpucontext)
     {
-       static const float cubeVertices[] =
+       static const ::f32 cubeVertices[] =
        {
           // +X (right)
           1, -1, -1,
@@ -96,7 +96,7 @@
 
        m_modeldata.m_vertexes.set_size(36);
 
-       for (int i = 0; i < 36; i++)
+       for (::i32 i = 0; i < 36; i++)
        {
 
          m_modeldata.m_vertexes[i].position.x = cubeVertices[i*3 +0];
@@ -140,12 +140,12 @@
        //glBindVertexArray(mVAO); // use this VAO for subsequent calls
 
        //glBindBuffer(GL_ARRAY_BUFFER, mVBO); // use this VBO for subsequent calls
-       //glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(float), &mVertices[0], GL_STATIC_DRAW); // copy over the vertex data
+       //glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(::f32), &mVertices[0], GL_STATIC_DRAW); // copy over the vertex data
 
        //// setup the locations of vertex data
        //// positions
        //glEnableVertexAttribArray(0);
-       //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+       //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
 
        //glBindVertexArray(0);
     }

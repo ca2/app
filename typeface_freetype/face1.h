@@ -30,7 +30,7 @@ namespace typeface_freetype
 
       void create_draw_buffers();
 
-      void create_texture(::typeface::character& ch, const unsigned char* p);
+      void create_texture(::typeface::character& ch, const ::u8* p);
 
 
    };

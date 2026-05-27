@@ -55,7 +55,7 @@ public:
   // @return The function returns the handle that assigned for another process
   // @throws ::subsystem::Exception on a fail.
   static HANDLE assignHandleFor(HANDLE hSource,
-                                unsigned int procId,
+                                ::u32 procId,
                                 bool neededToCloseSource,
                                 bool keepCloseRight);
 

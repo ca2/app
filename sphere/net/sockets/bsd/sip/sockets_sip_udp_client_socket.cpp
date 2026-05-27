@@ -17,7 +17,7 @@ namespace sockets
    }
 
 
-   void sip_udp_client_socket::OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len)
+   void sip_udp_client_socket::OnRawData(char_pointer buf,size_t len,struct sockaddr *sa,socklen_t sa_len)
    {
 
       __UNREFERENCED_PARAMETER(sa);
@@ -28,7 +28,7 @@ namespace sockets
    }
 
 
-   void sip_udp_client_socket::OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len,struct timeval *ts)
+   void sip_udp_client_socket::OnRawData(char_pointer buf,size_t len,struct sockaddr *sa,socklen_t sa_len,struct timeval *ts)
    {
       
       __UNREFERENCED_PARAMETER(sa);

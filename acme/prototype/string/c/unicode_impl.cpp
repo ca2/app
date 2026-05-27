@@ -7,7 +7,7 @@
 #include <string.h>
 #include <wchar.h>
 
-//CLASS_DECL_ACME bool _str_safe_precmp(int & i, const_char_pointer pszA, const_char_pointer pszB)
+//CLASS_DECL_ACME bool _str_safe_precmp(::i32 & i, const_char_pointer pszA, const_char_pointer pszB)
 //{
 //
 //   if (::is_null(scopedstrA))
@@ -62,7 +62,7 @@ CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const_cha
 }
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer, const_char_pointer psource,
+CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer , const_char_pointer psource,
                                                    character_count & srclen)
 {
 
@@ -153,7 +153,7 @@ CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const ::w
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer, const ::wd16_character *psource,
+CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer , const ::wd16_character *psource,
                                                    character_count & srclen)
 {
 
@@ -189,7 +189,7 @@ CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const ::w
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer, const ::wd32_character *psource,
+CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer , const ::wd32_character *psource,
                                                    character_count & srclen)
 {
 

@@ -9,8 +9,8 @@
 //   {
 //   public:
 //
-//      stream & operator <<(int  i);
-//      stream & operator >>(int & i);
+//      stream & operator <<(::i32  i);
+//      stream & operator >>(::i32 & i);
 //
 //   };
 //

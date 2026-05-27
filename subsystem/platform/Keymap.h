@@ -36,8 +36,8 @@ namespace subsystem
     * FIXME: Update documentation (e.g. methods are not static any more).
     * Class with static methods that allows to make 3 type of translations:
     * 1) X11 key sym to virtual key code;
-    * 2) X11 key sym to char.
-    * 3) char to X11 key sym.
+    * 2) X11 key sym to ::i8.
+    * 3) ::i8 to X11 key sym.
     */
    class CLASS_DECL_SUBSYSTEM Keymap
    {
@@ -62,17 +62,17 @@ namespace subsystem
       /**
        * Converts X11 key sym to TCHAR.
        * @param keySym X11 key sym.
-       * @param ch [out] char.
-       * @return true if keySym is translated into char, false otherwise.
+       * @param ch [out] ::i8.
+       * @return true if keySym is translated into ::i8, false otherwise.
        */
-      bool keySymToUnicodeChar(::u32 keySym, int *ch);
+      bool keySymToUnicodeChar(::u32 keySym, ::i32 *ch);
 
       /**
-       * Converts char to X11 key sym.
-       * @param ch unicode char.
+       * Converts ::i8 to X11 key sym.
+       * @param ch unicode ::i8.
        * @param keySym [out] X11 key sym.
-       * @return true if char is translated to key sym, false otherwise.
+       * @return true if ::i8 is translated to key sym, false otherwise.
        */
-      bool unicodeCharToKeySym(int ch, ::u32 *keySym);
+      bool unicodeCharToKeySym(::i32 ch, ::u32 *keySym);
    };
 } // namespace subsystem

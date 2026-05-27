@@ -12,7 +12,7 @@ namespace nano2d
 
 
    void __font_face(::write_text::font * pfont, const_char_pointer font);
-   void __font_size(::write_text::font * pfont, float size);
+   void __font_size(::write_text::font * pfont, ::f32 size);
 
 
    class CLASS_DECL_NANOUI draw2d_context :
@@ -23,7 +23,7 @@ namespace nano2d
       
       ::draw2d::graphics_pointer       m_pgraphics;
       ::pointer<::nano2d::font_sink>  m_pfontsink;
-      int                              m_iPaint = -1;
+      ::i32                              m_iPaint = -1;
 
       
    public:
@@ -42,11 +42,11 @@ namespace nano2d
          ::draw2d::path_pointer        m_ppath;
 
          string                        m_strFontFace;
-         float                         m_fFontSize;
+         ::f32                         m_fFontSize;
 
          ::e_align                     m_ealignText;
 
-         ::double_point                   m_pointCurrent;
+         ::f64_point                   m_pointCurrent;
 
          ::geometry2d::matrix              m_matrix;
 
@@ -67,7 +67,7 @@ namespace nano2d
       {
       public:
 
-         int                           m_iImage;
+         ::i32                           m_iImage;
          ::draw2d::brush_pointer       m_pbrush;
          ::image::image_pointer               m_pimage;
          ::image::image_drawing_options       m_imagedrawingoptions;
@@ -77,7 +77,7 @@ namespace nano2d
 
       pointer_array < state >           m_statea;
       ::pointer<state>                m_pstate;
-      int                            m_iPaintImageSeed;
+      ::i32                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
 
@@ -105,70 +105,70 @@ namespace nano2d
 
 
       void begin_path() override;
-      void path_winding(int dir) override;
+      void path_winding(::i32 dir) override;
       void close_path() override;
 
 
-      void translate(float x, float y) override;
-      void rotate(float angle) override;
+      void translate(::f32 x, ::f32 y) override;
+      void rotate(::f32 angle) override;
 
 
-      void rounded_rect(float x, float y, float w, float h, float r) override;
+      void rounded_rect(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r) override;
 
 
       void fill() override;
       void stroke() override;
 
 
-      ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey,
+      ::nano2d::paint linear_gradient(::f32 sx, ::f32 sy, ::f32 ex, ::f32 ey,
          ::nano2d::color icol, ::nano2d::color ocol) override;
-      ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f,
+      ::nano2d::paint box_gradient(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::f32 r, ::f32 f,
          ::nano2d::color icol, ::nano2d::color ocol) override;
-      ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr,
+      ::nano2d::paint radial_gradient(::f32 cx, ::f32 cy, ::f32 inr, ::f32 outr,
          ::nano2d::color icol, ::nano2d::color ocol) override;
-      ::nano2d::paint image_pattern(float cx, float cy, float w, float h, float angle,
-         int image, float alpha) override;
+      ::nano2d::paint image_pattern(::f32 cx, ::f32 cy, ::f32 w, ::f32 h, ::f32 angle,
+         ::i32 image, ::f32 alpha) override;
 
 
 
       void font_face(const_char_pointer font) override;
-      void font_size(float size) override;
+      void font_size(::f32 size) override;
       void fill_color(::nano2d::color color) override;
-      void stroke_width(float width) override;
+      void stroke_width(::f32 width) override;
       void stroke_color(::nano2d::color color) override;
-      void text_align(int align) override;
+      void text_align(::i32 align) override;
 
 
       void fill_paint(::nano2d::paint paint) override;
       void stroke_paint(::nano2d::paint paint) override;
 
 
-      void scissor(float x, float y, float w, float h) override;
-      void intersect_scissor(float x, float y, float w, float h) override;
+      void scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h) override;
+      void intersect_scissor(::f32 x, ::f32 y, ::f32 w, ::f32 h) override;
       void reset_scissor() override;
 
 
-      float text(float x, float y, const_char_pointer string, const_char_pointer end) override;
-      int text_glyph_positions(float x, float y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, int maxPositions) override;
-      float text_bounds(float x, float y, const_char_pointer string, const_char_pointer end, float * bounds) override;
+      ::f32 text(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end) override;
+      ::i32 text_glyph_positions(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, ::i32 maxPositions) override;
+      ::f32 text_bounds(::f32 x, ::f32 y, const_char_pointer string, const_char_pointer end, ::f32 * bounds) override;
 
 
-      void move_to(float x, float y) override;
-      void line_to(float x, float y) override;
+      void move_to(::f32 x, ::f32 y) override;
+      void line_to(::f32 x, ::f32 y) override;
 
 
-      void rect(float x, float y, float w, float h) override;
-      void ellipse(float cx, float cy, float rx, float ry) override;
-      void arc(float cx, float cy, float r, float a0, float a1, int dir) override;
+      void rect(::f32 x, ::f32 y, ::f32 w, ::f32 h) override;
+      void ellipse(::f32 cx, ::f32 cy, ::f32 rx, ::f32 ry) override;
+      void arc(::f32 cx, ::f32 cy, ::f32 r, ::f32 a0, ::f32 a1, ::i32 dir) override;
 
 
-      int create_image(const_char_pointer filename, int imageFlags) override;
-      int create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan) override;
-      void image_size(int image, int * w, int * h) override;
+      ::i32 create_image(const_char_pointer pszFilename, ::i32 imageFlags) override;
+      ::i32 create_image_rgba(::i32 w, ::i32 h, ::i32 imageFlags, const void * data, ::i32 iScan) override;
+      void image_size(::i32 image, ::i32 * w, ::i32 * h) override;
 
 
-      void update_image(int image, const void * data) override;
-      void _draw_image(float x, float y, float w, float h, ::image::image *pimage) override;
+      void update_image(::i32 image, const void * data) override;
+      void _draw_image(::f32 x, ::f32 y, ::f32 w, ::f32 h, ::image::image *pimage) override;
 
 
    };

@@ -36,11 +36,11 @@ public:
   nsEUCJPProber(void){mCodingSM = ___new nsCodingStateMachine(&EUCJPSMModel);
                       Reset();};
   virtual ~nsEUCJPProber(void){delete mCodingSM;};
-  nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
+  nsProbingState HandleData(const ::string & aBuf, PRunsigned ::i32 aLen);
   const_char_pointer GetCharSetName() {return "EUC-JP";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
-  float     GetConfidence(void);
+  ::f32     GetConfidence(void);
   void      SetOpion() {};
 
 protected:
@@ -50,7 +50,7 @@ protected:
   EUCJPContextAnalysis mContextAnalyser;
   EUCJPDistributionAnalysis mDistributionAnalyser;
 
-  char mLastChar[2];
+  ::i8 mLastChar[2];
 };
 
 

@@ -56,7 +56,7 @@ void defer_term_ui();
 //CLASS_DECL_ACME bool is_verbose();
 
 
-::i32_bool point_is_window_origin(::i32_point ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
+::i32_bool point_is_window_origin(::i32_point ptHitTest, ::windowing::window * pwindowExclude, ::i32 iMargin);
 
 #ifdef UNIVERSAL_WINDOWS
 

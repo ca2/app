@@ -35,12 +35,12 @@ namespace gpu
             
             ::floating_matrix4 mvp;
 
-            float roughness;
+            ::f32 roughness;
          };
 
 
          // prefiltered environment map
-         int m_iPrefilteredEnvMapMipCount = -1;
+         ::i32 m_iPrefilteredEnvMapMipCount = -1;
          const ::u32 m_uPrefilteredEnvMapWidth = 128;
          const ::u32 m_uPrefilteredEnvMapHeight = 128;
 

@@ -16,7 +16,7 @@ constexpr CHARACTER * __zerotosz(CHARACTER * & p)
 
 
 template < prototype_unsigned UNSIGNED, prototype_character CHARACTER >
-constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & pParam, int base, enum_digit_case edigitcase)
+constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & pParam, ::i32 base, enum_digit_case edigitcase)
 {
 
    auto & p = (::non_const < CHARACTER * > &) pParam;
@@ -48,15 +48,15 @@ constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & pParam, int base, enum
 }
 
 
-/// @brief compute string representation of unsigned number
-/// @tparam UNSIGNED /p u type (unsigned constraint)
+/// @brief compute string representation of ::u32 number
+/// @tparam UNSIGNED /p u type (::u32 constraint)
 /// @tparam CHARACTER /p buf character type (character constraint)
 /// @param u number to convert
 /// @param p [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
 /// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 
 template < prototype_unsigned UNSIGNED, prototype_character CHARACTER >
-constexpr void __rear_tosz(UNSIGNED u, CHARACTER *& p, int base, enum_digit_case edigitcase)
+constexpr void __rear_tosz(UNSIGNED u, CHARACTER *& p, ::i32 base, enum_digit_case edigitcase)
 {
 
    __utosz_internal(u, p, base, edigitcase);
@@ -65,7 +65,7 @@ constexpr void __rear_tosz(UNSIGNED u, CHARACTER *& p, int base, enum_digit_case
 
 
 template < prototype_signed SIGNED, prototype_character CHARACTER >
-constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, int base, enum_digit_case edigitcase)
+constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, ::i32 base, enum_digit_case edigitcase)
 {
 
    auto [u, bNegative] = as_absolute_unsigned(i);
@@ -77,15 +77,15 @@ constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, int base, enum_digit_case e
 }
 
 
-/// @brief compute string representation of unsigned number
-/// @tparam INTEGRAL /p u type (unsigned constraint)
+/// @brief compute string representation of ::u32 number
+/// @tparam INTEGRAL /p u type (::u32 constraint)
 /// @tparam CHARACTER /p buf character type (character constraint)
 /// @param i number to convert
 /// @param pcharacter [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
 /// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 
 template < prototype_integral INTEGRAL, prototype_character CHARACTER >
-constexpr void __tosz(INTEGRAL i, CHARACTER * & pcharacter, int base, enum_digit_case edigitcase)
+constexpr void __tosz(INTEGRAL i, CHARACTER * & pcharacter, ::i32 base, enum_digit_case edigitcase)
 {
 
    auto & p = (non_const <CHARACTER> * &) pcharacter;
@@ -109,7 +109,7 @@ constexpr void __tosz(INTEGRAL i, CHARACTER * & pcharacter, int base, enum_digit
 
 }
 
-//::pair <int,int> ia;
+//::pair <::i32,::i32> ia;
 
 
 

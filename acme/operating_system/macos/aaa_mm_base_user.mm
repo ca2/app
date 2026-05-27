@@ -392,17 +392,17 @@
 //}
 //
 //
-//long long mm_get_user_wallpaper(long long llScreen, char ** ppsz);
+//::i64 mm_get_user_wallpaper(::i64 llScreen, char ** ppsz);
 //
 //
-//long long mm_get_user_wallpaper(long long llScreen, char ** ppsz)
+//::i64 mm_get_user_wallpaper(::i64 llScreen, char ** ppsz)
 //{
 //   
 //   mmos * p = [mmos get];
 //   
 //   [p->theLock lock];
 //   
-//   long long llCount = p->m_llWallpaper;
+//   ::i64 llCount = p->m_llWallpaper;
 //
 //   if(llScreen < 0 || llScreen >= llCount || p->m_ppszWallpaper == NULL)
 //   {

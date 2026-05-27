@@ -115,7 +115,7 @@ namespace operating_system
 //
 //
 //       ::operating_system::windows_window m_windowswindow;
-//       double m_dVelocity;
+//       ::f64 m_dVelocity;
 //       class ::time m_timeLastSizeMove;
 //       ::i32_point m_pointSizeMoveStart;
 //       bool m_bMovingNow;
@@ -123,7 +123,7 @@ namespace operating_system
 //       bool m_bSizeMoveMode;
 //       //HWND m_hwnd;
 //       HMENU m_hmenuSystem;
-//       int m_iDebugAtom = 0;
+//       ::i32 m_iDebugAtom = 0;
 //
 //       window();
 //       ~window() override;

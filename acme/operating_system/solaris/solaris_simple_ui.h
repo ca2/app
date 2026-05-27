@@ -17,8 +17,8 @@ namespace os
       string                     m_strTitle;
       string                     m_strWindowClass;
 
-      int                        m_w;
-      int                        m_h;
+      ::i32                        m_w;
+      ::i32                        m_h;
 /*      ::image::image_pointer           m_pimage;
       ::i32_size                       m_size;
       ::i32_point                      m_point;
@@ -30,9 +30,9 @@ namespace os
       ::i32_rectangle                     m_rectangleDesktop;
 
       XWindowAttributes          m_attr;
-      int                    m_iDepth;
+      ::i32                    m_iDepth;
       XVisualInfo                m_visualinfo;
-      int                        m_iScreen;
+      ::i32                        m_iScreen;
 
 
       window_graphics *          m_pgraphics;
@@ -78,8 +78,8 @@ namespace os
       virtual bool on_key_up(::u32 uiKey);
 
 
-      virtual bool on_move(int x, int y);
-      virtual bool on_size(int cx, int cy);
+      virtual bool on_move(::i32 x, ::i32 y);
+      virtual bool on_size(::i32 cx, ::i32 cy);
 
 
       virtual void run_loop();
@@ -90,8 +90,8 @@ namespace os
       virtual void set_mouse_capture();
       virtual void release_mouse_capture();
 
-      virtual bool move_window(int x, int y);
-      virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
+      virtual bool move_window(::i32 x, ::i32 y);
+      virtual bool set_window_position(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, bool bShow);
 
    };
 
@@ -102,7 +102,7 @@ namespace os
 
 
 
-CLASS_DECL_ACME void wm_nodecorations(oswindow w, int map_base);
+CLASS_DECL_ACME void wm_nodecorations(oswindow w, ::i32 map_base);
 
 
 

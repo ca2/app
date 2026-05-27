@@ -46,10 +46,10 @@
    * Win32 and OS/2 don't know C99, so define [u]int_16/32 here. The bool
    * is predefined tho, both in C and C++.
    */
-  //typedef short int16_t;
-  //typedef unsigned short ::u3216_t;
-  //typedef int int32_t;
-  //typedef unsigned int unsigned int;
+  //typedef ::i16 int16_t;
+  //typedef ::u16 ::u3216_t;
+  //typedef ::i32 int32_t;
+  //typedef ::u32 ::u32;
 #elif defined(_AIX) || defined(__sun) || defined(__osf__) || defined(IRIX) || defined(HPUX)
   /*
    * AIX and SunOS ship a inttypes.h header that defines [u]int32_t,
@@ -58,7 +58,7 @@
   #include "_inttypes.h"
 
   #ifndef __cplusplus
-    typedef int bool;
+    typedef ::i32 bool;
     #define true   1
     #define false  0
   #endif
@@ -70,19 +70,19 @@
   #include <sys/types.h>
 
   /*
-   * BSD/OS ships no header that defines unsigned int, nor bool (for C)
+   * BSD/OS ships no header that defines ::u32, nor bool (for C)
    */
   #if defined(bsdi)
-  typedef u_int32_t unsigned int;
+  typedef u_int32_t ::u32;
 
   #if !defined(__cplusplus)
-    typedef int bool;
+    typedef ::i32 bool;
     #define true   1
     #define false  0
   #endif
   #else
   /*
-   * FreeBSD and OpenBSD define unsigned int and bool.
+   * FreeBSD and OpenBSD define ::u32 and bool.
    */
     #include "_inttypes.h"
     #include <stdbool.h
@@ -105,7 +105,7 @@
        * GCC 2.91 can't deal with a typedef for bool, but a #define
        * works.
        */
-      #define bool int
+      #define bool ::i32
       #define true   1
       #define false  0
     #endif

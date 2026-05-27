@@ -14,8 +14,8 @@ namespace message
 
    struct set_editor_selection {
 
-      int m_iSelectionStart;
-      int m_iSelectionEnd;
+      ::i32 m_iSelectionStart;
+      ::i32 m_iSelectionEnd;
 
       void byte2_exchange(byte2_stream & stream)
       {
@@ -30,8 +30,8 @@ namespace message
    struct editor_text_and_selection {
 
       ::string m_strEditorText;
-      int m_iSelectionStart;
-      int m_iSelectionEnd;
+      ::i32 m_iSelectionStart;
+      ::i32 m_iSelectionEnd;
 
       void byte2_exchange(byte2_stream & stream)
       {
@@ -87,7 +87,7 @@ namespace message
       ::i64 m_llMessageBoxSequence;
       ::string m_strMessage;
       ::string m_strTitle;
-      int m_iButton;
+      ::i32 m_iButton;
 
       message_box()
       {

@@ -13,7 +13,7 @@ namespace filemanager
    public:
 
 
-      int         m_iIcon;
+      ::i32         m_iIcon;
       string      m_strPath;
       string      m_strExtension;
 
@@ -38,7 +38,7 @@ namespace filemanager
    public:
 
 
-      int                 m_iImage;
+      ::i32                 m_iImage;
       ::image::icon *        m_picon;
 
       icon();

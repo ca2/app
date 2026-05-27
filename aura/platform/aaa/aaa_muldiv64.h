@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_AURA long long _stdcall muldiv64(long long operant, long long multiplier, long long divider);
+CLASS_DECL_AURA ::i64 _stdcall muldiv64(::i64 operant, ::i64 multiplier, ::i64 divider);
 
 
 /*
@@ -33,22 +33,22 @@ CLASS_DECL_AURA long long _stdcall muldiv64(long long operant, long long multipl
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_AURA long long _stdcall mulshr64(long long operant, long long multiplier, unsigned char rshift);
+CLASS_DECL_AURA ::i64 _stdcall mulshr64(::i64 operant, ::i64 multiplier, ::u8 rshift);
 
 
-CLASS_DECL_AURA void mul64(unsigned long long v1, unsigned long long v2, unsigned long long & hi, unsigned long long & lo);
+CLASS_DECL_AURA void mul64(::u64 v1, ::u64 v2, ::u64 & hi, ::u64 & lo);
 
 
-CLASS_DECL_AURA void mul64(long long v1, long long v2, long long & hi, unsigned long long & lo);
+CLASS_DECL_AURA void mul64(::i64 v1, ::i64 v2, ::i64 & hi, ::u64 & lo);
 
 
-CLASS_DECL_AURA unsigned long long div128_64(unsigned long long hi, unsigned long long lo, unsigned long long div, unsigned long long & remainder);
+CLASS_DECL_AURA ::u64 div128_64(::u64 hi, ::u64 lo, ::u64 div, ::u64 & remainder);
 
 
-CLASS_DECL_AURA long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder);
+CLASS_DECL_AURA ::i64 div128_64(::i64 hi, ::u64 lo, ::i64 div, ::u64 & remainder);
 
 
-CLASS_DECL_AURA long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder);
+CLASS_DECL_AURA ::i64 div128_64(::i64 hi, ::u64 lo, ::i64 div, ::u64 & remainder);
 
 
 #endif //__FULL_MULDIV64_

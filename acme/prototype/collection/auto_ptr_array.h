@@ -82,7 +82,7 @@ namespace acme
 
       dsta.set_size(srca.get_size());
 
-      for (int i = 0; i < srca.get_size(); i++)
+      for (::i32 i = 0; i < srca.get_size(); i++)
       {
          
          dsta[i] = ___new TDST(*srca[i]);

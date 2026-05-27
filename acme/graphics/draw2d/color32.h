@@ -4,17 +4,17 @@
 #pragma once
 
 
-//COLOR32_T_ENDIANESS             (*(const_char_pointer )&(const int){0xAABBGGRR})
+//COLOR32_T_ENDIANESS             (*(const_char_pointer )&(const ::i32){0xAABBGGRR})
 
 
 
 struct color32_t
 {
 
-   //static inline const int m_iRedIndex = ENDIAN_ARRAY[0];
-   //static inline const int m_iGreenIndex = ENDIAN_ARRAY[1];
-   //static inline const int m_iBlueIndex = ENDIAN_ARRAY[2];
-   //static inline const int m_iOpacityIndex = ENDIAN_ARRAY[3];
+   //static inline const ::i32 m_iRedIndex = ENDIAN_ARRAY[0];
+   //static inline const ::i32 m_iGreenIndex = ENDIAN_ARRAY[1];
+   //static inline const ::i32 m_iBlueIndex = ENDIAN_ARRAY[2];
+   //static inline const ::i32 m_iOpacityIndex = ENDIAN_ARRAY[3];
 
    union
    {
@@ -24,34 +24,34 @@ struct color32_t
       struct
       {
 
-         unsigned char  m_uchRed;
-         unsigned char  m_uchGreen;
-         unsigned char  m_uchBlue;
-         unsigned char  m_uchOpacity;
+         ::u8  m_u8Red;
+         ::u8  m_u8Green;
+         ::u8  m_u8Blue;
+         ::u8  m_u8Opacity;
 
       };
 
-      unsigned char m_ua[4];
+      ::u8 m_ua[4];
 
    };
 
 
-   constexpr unsigned char byte_red() const { return m_uchRed; }
-   constexpr unsigned char byte_green() const { return m_uchGreen; }
-   constexpr unsigned char byte_blue() const { return m_uchBlue; }
-   constexpr unsigned char byte_opacity() const { return m_uchOpacity; }
+   constexpr ::u8 u8_red() const { return m_u8Red; }
+   constexpr ::u8 u8_green() const { return m_u8Green; }
+   constexpr ::u8 u8_blue() const { return m_u8Blue; }
+   constexpr ::u8 u8_opacity() const { return m_u8Opacity; }
 
 
-   constexpr unsigned char & byte_red() { return m_uchRed; }
-   constexpr unsigned char & byte_green() { return m_uchGreen; }
-   constexpr unsigned char & byte_blue() { return m_uchBlue; }
-   constexpr unsigned char & byte_opacity() { return m_uchOpacity; }
+   constexpr ::u8 & u8_red() { return m_u8Red; }
+   constexpr ::u8 & u8_green() { return m_u8Green; }
+   constexpr ::u8 & u8_blue() { return m_u8Blue; }
+   constexpr ::u8 & u8_opacity() { return m_u8Opacity; }
 
 
-   constexpr float f32_red() const { return m_uchRed / 255.f; }
-   constexpr float f32_green() const { return m_uchGreen / 255.f; }
-   constexpr float f32_blue() const { return m_uchBlue / 255.f; }
-   constexpr float f32_opacity() const { return m_uchOpacity / 255.f; }
+   constexpr ::f32 f32_red() const { return m_u8Red / 255.f; }
+   constexpr ::f32 f32_green() const { return m_u8Green / 255.f; }
+   constexpr ::f32 f32_blue() const { return m_u8Blue / 255.f; }
+   constexpr ::f32 f32_opacity() const { return m_u8Opacity / 255.f; }
 
 
 };
@@ -74,10 +74,10 @@ public:
       struct
       {
 
-         unsigned char           m_uchRed;
-         unsigned char           m_uchGreen;
-         unsigned char           m_uchBlue;
-         unsigned char           m_uchOpacity;
+         ::u8           m_u8Red;
+         ::u8           m_u8Green;
+         ::u8           m_u8Blue;
+         ::u8           m_u8Opacity;
 
       };
 
@@ -100,16 +100,16 @@ public:
 #endif
 
 
-CLASS_DECL_ACME color32_t make_colorref(int a, int r, int g, int b);
+CLASS_DECL_ACME color32_t make_colorref(::i32 a, ::i32 r, ::i32 g, ::i32 b);
 
 CLASS_DECL_ACME color32_t argb_swap_red_blue(color32_t color32);
 
 
 typedef struct tagWINRGBQUAD {
-   unsigned char    rgbBlue;
-   unsigned char    rgbGreen;
-   unsigned char    rgbRed;
-   unsigned char    rgbReserved;
+   ::u8    rgbBlue;
+   ::u8    rgbGreen;
+   ::u8    rgbRed;
+   ::u8    rgbReserved;
 } WINRGBQUAD, * LPWINRGBQUAD;
 
 

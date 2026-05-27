@@ -19,7 +19,7 @@ namespace helloworld
       };
 
 
-      int                     m_yDrawStatus;
+      ::i32                     m_yDrawStatus;
       ::write_text::font_pointer       m_pfontDrawStatus;
       color32_t                m_colorDrawStatus;
 

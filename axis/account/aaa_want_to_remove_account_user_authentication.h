@@ -1,13 +1,13 @@
 #pragma once
 
-template < int t_iTimeout = ((5000) * 2) >
+template < ::i32 t_iTimeout = ((5000) * 2) >
 class string_timeout
 {
 public:
 
 
    string      m_str;
-   unsigned int       m_dwExpire;
+   ::u32       m_dwExpire;
 
    bool expired();
    bool valid();
@@ -26,19 +26,19 @@ public:
 
 };
 
-template < int t_iTimeout >
+template < ::i32 t_iTimeout >
 bool string_timeout < t_iTimeout >::expired()
 {
 
-   int iCur = (int) ::get_tick();
+   ::i32 iCur = (::i32) ::get_tick();
 
-   int iExp = (int)m_dwExpire;
+   ::i32 iExp = (::i32)m_dwExpire;
 
    return (iCur - iExp) > 0;
 
 }
 
-template < int t_iTimeout >
+template < ::i32 t_iTimeout >
 bool string_timeout < t_iTimeout >::valid()
 {
 
@@ -46,7 +46,7 @@ bool string_timeout < t_iTimeout >::valid()
 
 }
 
-template < int t_iTimeout >
+template < ::i32 t_iTimeout >
 string_timeout< t_iTimeout > & string_timeout < t_iTimeout >::operator = (const ::scoped_string & scopedstr)
 {
 

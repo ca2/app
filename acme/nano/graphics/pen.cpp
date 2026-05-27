@@ -35,6 +35,15 @@ void pen::create_pen(const ::color::color& color, ::f64 fWidth)
 
 }
 
+
+   void pen::set_start_cap(enum_line_cap elinecap) { throw ::interface_only(); }
+
+   void pen::set_end_cap(enum_line_cap elinecap) {
+   
+      throw ::interface_only();
+   
+   }
+
    //::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, ::i32 iWidth, color32_t color)
    //{
 

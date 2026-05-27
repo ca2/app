@@ -170,6 +170,8 @@ namespace nano
       ::i32_size context::get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont)
       {
 
+         throw ::interface_only();
+
          return {};
 
       }
@@ -179,12 +181,29 @@ namespace nano
                              ::nano::graphics::pen * pnanopen)
       {
 
+         throw ::interface_only();
 
       }
 
-      void context::draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+
+            void context::ellipse(const ::f64_rectangle &rectangle, ::nano::graphics::brush *pnanobrush,
+                              ::nano::graphics::pen *pnanopen)
       {
 
+               throw ::interface_only();
+      }
+
+            void context::line(const ::f64_point& point1, const ::f64_point& point2, ::nano::graphics::pen* pnanopen)
+            {
+
+               throw ::interface_only();
+
+                     }
+
+
+      void context::draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      {
+         throw ::interface_only();
 
       }
 
@@ -203,7 +222,7 @@ namespace nano
       }
 
 
-      void context::fill_path(::nano::graphics::path* ppath, ::nano::graphics::brush* pbrush)
+      void context::do_path(::nano::graphics::path *ppath, ::nano::graphics::brush *pbrush, ::nano::graphics::pen *ppen)
       {
 
          throw ::interface_only();
@@ -211,12 +230,12 @@ namespace nano
       }
 
 
-      void context::draw_path(::nano::graphics::path* ppath, ::nano::graphics::pen* ppen)
-      {
+      //void context::draw_path(::nano::graphics::path* ppath, ::nano::graphics::pen* ppen)
+      //{
 
-         throw ::interface_only();
+      //   throw ::interface_only();
 
-      }
+      //}
 
 
 

@@ -83,6 +83,10 @@ namespace nano
 
          virtual void rectangle(const ::f64_rectangle & rectangle, ::nano::graphics::brush * pnanobrush,
                                 ::nano::graphics::pen * pnanopen);
+         virtual void ellipse(const ::f64_rectangle &rectangle, ::nano::graphics::brush *pnanobrush,
+                                ::nano::graphics::pen *pnanopen);
+         virtual void line(const ::f64_point &point1, const ::f64_point &point2,
+                              ::nano::graphics::pen *pnanopen);
 
          virtual void draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy);
 
@@ -91,9 +95,9 @@ namespace nano
          
          virtual void translate(::f64 x, ::f64 y);
 
-         virtual void fill_path(::nano::graphics::path *ppath, ::nano::graphics::brush *pbrush);
+         virtual void do_path(::nano::graphics::path *ppath, ::nano::graphics::brush *pbrush, ::nano::graphics::pen * ppen);
 
-         virtual void draw_path(::nano::graphics::path *ppath, ::nano::graphics::pen *ppen);
+//         virtual void draw_path(::nano::graphics::path *ppath, ::nano::graphics::pen *ppen);
          
 
       };

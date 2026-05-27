@@ -148,13 +148,13 @@ namespace user
          case ::user::e_message_mouse_move:
          case ::user::e_message_left_button_down:
          case ::user::e_message_left_button_up:
-         case ::user::e_message_left_button_f64_click:
+         case ::user::e_message_left_button_double_click:
          case ::user::e_message_right_button_down:
          case ::user::e_message_right_button_up:
-         case ::user::e_message_right_button_f64_click:
+         case ::user::e_message_right_button_double_click:
          case ::user::e_message_middle_button_down:
          case ::user::e_message_middle_button_up:
-         case ::user::e_message_middle_button_f64_click:
+         case ::user::e_message_middle_button_double_click:
          case ::user::e_message_non_client_mouse_move:
          case ::user::e_message_non_client_left_button_down:
          case ::user::e_message_non_client_left_button_up:

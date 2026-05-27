@@ -3678,7 +3678,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
 //         puser->track_popup_menu(this, pmenu, 0, pointCursor, i32_size(), m_pnotifyicon);
 
       }
-      else if (ptopic->id() == ::id_left_button_f64_click)
+      else if (ptopic->id() == ::id_left_button_double_click)
       {
 
          //OnNotifyIconLButtonDblClk(ptopic->user_interaction_id());

@@ -146,7 +146,7 @@ namespace user
 
       USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list2::on_message_left_button_down);
       USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list2::on_message_left_button_up);
-      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &list2::on_message_left_button_f64_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list2::on_message_left_button_double_click);
       USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list2::on_message_right_button_down);
 
       USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list2::on_message_mouse_move);
@@ -4139,7 +4139,7 @@ namespace user
 
                      pmessage->m_pwindow = window();
 
-                     pmessage->m_emessage = ::user::e_message_left_button_f64_click;
+                     pmessage->m_emessage = ::user::e_message_left_button_double_click;
 
                      pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -4463,7 +4463,7 @@ namespace user
    }
 
 
-   void list2::on_message_left_button_f64_click(::message::message* pmessage)
+   void list2::on_message_left_button_double_click(::message::message* pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;

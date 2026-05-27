@@ -39,7 +39,7 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
 
-      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &folder_list::on_message_left_button_f64_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &folder_list::on_message_left_button_double_click);
 
 //#ifdef WINDOWS_DESKTOP
 //      USER_MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
@@ -65,7 +65,7 @@ namespace filemanager
 
 
 
-   void folder_list::on_message_left_button_f64_click(::message::message * pmessage)
+   void folder_list::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;

@@ -24,7 +24,7 @@ namespace user
       
       
       e_notification_list_box_selection_change = 1, // _LBN_SELCHANGE
-      e_notification_list_box_f64_click = 2, // LBN_DBLCLK
+      e_notification_list_box_double_click = 2, // LBN_DBLCLK
 
    };
 

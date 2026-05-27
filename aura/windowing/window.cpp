@@ -603,7 +603,7 @@ namespace windowing
          pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
          pmessage->m_eusermessage == ::user::e_message_right_button_down ||
          pmessage->m_eusermessage == ::user::e_message_right_button_up ||
-         pmessage->m_eusermessage == ::user::e_message_left_button_f64_click ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
          pmessage->m_eusermessage == ::user::e_message_mouse_move ||
          pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
       {
@@ -6209,7 +6209,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
          pmessage->m_eusermessage == ::user::e_message_right_button_down ||
          pmessage->m_eusermessage == ::user::e_message_right_button_up ||
-         pmessage->m_eusermessage == ::user::e_message_left_button_f64_click ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
          pmessage->m_eusermessage == ::user::e_message_mouse_move ||
          pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
       {
@@ -6365,10 +6365,10 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       m_pointCursor2 = pmouse->m_pointHost;
 
-      if (pmouse->m_eusermessage == ::user::e_message_left_button_f64_click)
+      if (pmouse->m_eusermessage == ::user::e_message_left_button_double_click)
       {
 
-         information() << "::user::e_message_left_button_f64_click";
+         information() << "::user::e_message_left_button_double_click";
 
       }
       else if (pmouse->m_eusermessage == ::user::e_message_left_button_down)
@@ -6668,7 +6668,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
       //if (puserinteractionMouse)
       //{
 
-      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_f64_click && puserinteractionMouse->m_bEatsDoubleClick)
+      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
       //   //            {
       //   //
       //   //               pmouse->m_bRet = true;

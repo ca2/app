@@ -3241,8 +3241,8 @@ namespace user
          USER_MESSAGE_LINK(::user::e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          USER_MESSAGE_LINK(::user::e_message_subject, pchannel, this, &interaction::on_message_subject);
          USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-         USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this,
-                      &::user::interaction::on_message_left_button_f64_click);
+         USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this,
+                      &::user::interaction::on_message_left_button_double_click);
          //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
          if (m_bDefaultParentMouseMessageHandling)
@@ -14797,7 +14797,7 @@ if(get_parent())
              pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
              pmessage->m_eusermessage == ::user::e_message_right_button_down ||
              pmessage->m_eusermessage == ::user::e_message_right_button_up ||
-             pmessage->m_eusermessage == ::user::e_message_left_button_f64_click ||
+             pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
              pmessage->m_eusermessage == ::user::e_message_mouse_move ||
              pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
          {
@@ -27608,14 +27608,14 @@ __check_refdbg;
 
 
 
-   void interaction::on_message_left_button_f64_click(::message::message * pmessage)
+   void interaction::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
       auto pszType = typeid(*this).name();
 
-      information("interaction::on_message_left_button_f64_click" + ::string(pszType));
+      information("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -27647,7 +27647,7 @@ __check_refdbg;
       if (::is_item_set(pitemLeftButtonDoubleClick))
       {
 
-         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_f64_click_as_second_click)
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_as_second_click)
          {
 
             ::pointer<::message::mouse> pmouseUp1 = this->øcreate_new_clone(pmouse);
@@ -27676,7 +27676,7 @@ __check_refdbg;
 
          }
 
-         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_eat_f64_click)
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_eat_double_click)
          {
 
             pmouse->m_bRet = true;
@@ -27730,7 +27730,7 @@ __check_refdbg;
             if (has_handler())
             {
 
-               auto ptopic = create_topic(id_left_button_f64_click);
+               auto ptopic = create_topic(id_left_button_double_click);
 
                ptopic->m_puserelement = this;
 

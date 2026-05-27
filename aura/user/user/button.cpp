@@ -139,7 +139,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       USER_MESSAGE_LINK(::user::e_message_create    , pchannel, this, &button::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &button::on_message_left_button_f64_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &button::on_message_left_button_double_click);
       USER_MESSAGE_LINK(::user::e_message_key_down  , pchannel, this, &button::on_message_key_down);
 
       //install_click_default_mouse_handling(pchannel);
@@ -320,7 +320,7 @@ namespace user
    }
 
 
-   void button::on_message_left_button_f64_click(::message::message * pmessage)
+   void button::on_message_left_button_double_click(::message::message * pmessage)
    {
    
       pmessage->m_bRet = true;

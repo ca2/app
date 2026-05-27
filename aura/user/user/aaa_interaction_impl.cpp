@@ -2442,7 +2442,7 @@ namespace user
           pmessage->m_emessage == ::user::e_message_middle_button_up ||
           pmessage->m_emessage == ::user::e_message_right_button_down ||
           pmessage->m_emessage == ::user::e_message_right_button_up ||
-          pmessage->m_emessage == ::user::e_message_left_button_f64_click ||
+          pmessage->m_emessage == ::user::e_message_left_button_double_click ||
           pmessage->m_emessage == ::user::e_message_mouse_move ||
           pmessage->m_emessage == ::user::e_message_mouse_wheel)
       {
@@ -2594,10 +2594,10 @@ namespace user
 
       pmouse->m_pwindow->m_pointCursor2 = pmouse->m_pointHost;
 
-      if (pmouse->m_emessage == ::user::e_message_left_button_f64_click)
+      if (pmouse->m_emessage == ::user::e_message_left_button_double_click)
       {
 
-         information() << "::user::e_message_left_button_f64_click";
+         information() << "::user::e_message_left_button_double_click";
 
       } else if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
@@ -2883,7 +2883,7 @@ namespace user
       //if (puserinteractionMouse)
       //{
 
-      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_f64_click && puserinteractionMouse->m_bEatsDoubleClick)
+      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
       //   //            {
       //   //
       //   //               pmouse->m_bRet = true;

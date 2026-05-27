@@ -127,7 +127,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_f64_click);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
 
       ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;

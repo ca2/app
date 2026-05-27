@@ -692,7 +692,7 @@ namespace user
    }
 
 
-   void check_box::on_message_left_button_f64_click(::message::message * pmessage)
+   void check_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -732,7 +732,7 @@ namespace user
       //install_click_default_mouse_handling(pchannel);
       
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &check_box::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &check_box::on_message_left_button_f64_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &check_box::on_message_left_button_double_click);
 
    }
 

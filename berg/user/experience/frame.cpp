@@ -436,7 +436,7 @@ namespace experience
    }
 
 
-   bool frame::on_message_left_button_f64_click(::message::mouse * pmouse)
+   bool frame::on_message_left_button_double_click(::message::mouse * pmouse)
    {
 
       auto eframeHittest = experience_frame_hit_test(pmouse->m_pointAbsolute, ::user::e_zorder_any);

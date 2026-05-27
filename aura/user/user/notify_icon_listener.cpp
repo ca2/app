@@ -30,7 +30,7 @@ namespace user
 
    //      break;
 
-   //   case ::user::e_message_left_button_f64_click:
+   //   case ::user::e_message_left_button_double_click:
 
    //      OnNotifyIconLButtonDblClk(uNotifyIcon);
 

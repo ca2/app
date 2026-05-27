@@ -2,7 +2,7 @@
 // Created by camilo on 31/01/2022 21:27 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "device.h"
+#include "context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/graphics/image/pixmap.h"
@@ -17,23 +17,47 @@ namespace nano
    {
 
 
-      device::device()
+      context::context()
       {
 
 
       }
 
 
-      device::~device()
+      context::~context()
       {
 
+
+      }
+
+
+      void context::set_smoothing_mode(enum_smoothing_mode esmoothingmode)
+      {
+
+         throw ::interface_only();
+
+      }
+
+
+      void context::set_text_rendering_hint(enum_text_rendering_hint etextrenderinghint)
+      {
+
+         throw ::interface_only();
+
+      }
+
+
+   void context::clear(const ::color::color & color) {
+
+
+         throw ::interface_only();
 
       }
 
 
 #ifdef HAS_X11
 
-      void device::create_for_x11(const ::x11::handle_t & handle, int w, int h)
+      void context::create_for_x11(const ::x11::handle_t & handle, ::i32 w, ::i32 h)
       {
 
          throw ::interface_only();
@@ -43,40 +67,40 @@ namespace nano
 #endif
 
 
-      void device::resize(const ::i32_size & size)
+      void context::resize(const ::i32_size & size)
       {
 
 
       }
 
 
-      void device::create(int cx, int cy)
+      void context::create(::i32 cx, ::i32 cy)
       {
 
       }
 
-      void device::attach(void * posdata, const ::i32_size & size)
-      {
-
-
-      }
-
-
-      void device::on_begin_draw()
+      void context::attach(void * posdata, const ::i32_size & size, ::i32 iType)
       {
 
 
       }
 
 
-      void device::on_end_draw()
+      void context::on_begin_draw()
       {
 
 
       }
 
 
-      void device::draw_text123(const ::scoped_string & scopedstr, const ::i32_rectangle & rectangleText, const ::e_align & ealign,
+      void context::on_end_draw()
+      {
+
+
+      }
+
+
+      void context::draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign,
                                 const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
                                 ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
       {
@@ -95,7 +119,7 @@ namespace nano
 
             auto r = rectangleText;
 
-            int iLastCy = 0;
+            ::i32 iLastCy = 0;
 
             for (auto & strLine: straLines)
             {
@@ -134,7 +158,7 @@ namespace nano
       }
 
 
-      void device::_draw_text(const ::scoped_string & scopedstr, const ::i32_rectangle & rectangleText, const ::e_align & ealign,
+      void context::_draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign,
                               const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
                               ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
       {
@@ -143,7 +167,7 @@ namespace nano
       }
 
 
-      ::i32_size device::get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont)
+      ::i32_size context::get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont)
       {
 
          return {};
@@ -151,20 +175,20 @@ namespace nano
       }
 
 
-      void device::rectangle(const ::i32_rectangle & rectangle, ::nano::graphics::brush * pnanobrush,
+      void context::rectangle(const ::f64_rectangle & rectangle, ::nano::graphics::brush * pnanobrush,
                              ::nano::graphics::pen * pnanopen)
       {
 
 
       }
 
-      void device::draw(::nano::graphics::icon * picon, int x, int y, int cx, int cy)
+      void context::draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
       {
 
 
       }
 
-      ::pixmap device::pixmap()
+      ::pixmap context::pixmap()
       {
 
          return {};
@@ -172,11 +196,30 @@ namespace nano
       }
    
    
-      void device::translate(int x, int y)
+      void context::translate(::f64 x, ::f64 y)
       {
          
          
       }
+
+
+      void context::fill_path(::nano::graphics::path* ppath, ::nano::graphics::brush* pbrush)
+      {
+
+         throw ::interface_only();
+
+      }
+
+
+      void context::draw_path(::nano::graphics::path* ppath, ::nano::graphics::pen* ppen)
+      {
+
+         throw ::interface_only();
+
+      }
+
+
+
 
 
    } // namespace graphics

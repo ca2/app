@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      ::int_sz *                                      m_pintstring;
+      ::i32_sz *                                      m_pintstring;
       string_map_base < ::pointer<::user::language >>      m_languagemap;
       string_array_base                                    m_straLang;
       string                                          m_strLang;
@@ -31,7 +31,7 @@ namespace user
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual bool set_language_resource_map(::int_sz * pstringintLanguageResourceMap);
+      virtual bool set_language_resource_map(::i32_sz * pstringintLanguageResourceMap);
 
       virtual string load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader = false);
 

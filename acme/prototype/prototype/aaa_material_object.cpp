@@ -152,7 +152,7 @@
 //   pprocedurea->add(procedure);
 //
 //}
-//::long_long_array & material_object::idarray() const
+//::i64_array & material_object::idarray() const
 //{
 //
 //   m_papplication->defer_construct_newø(((material_object *)this)->m_pia); return *m_pia;

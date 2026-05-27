@@ -7,7 +7,7 @@
 #if OSBIT == 64
 
 // memory must be aligned
-class INLINE_CLASS_DECL_ACME interlocked_long_long
+class INLINE_CLASS_DECL_ACME interlocked_i64
 {
 protected:
 
@@ -21,16 +21,16 @@ public:
 
 
 
-   inline interlocked_long_long(::i64 i = 0);
+   inline interlocked_i64(::i64 i = 0);
 
 
-   inline interlocked_long_long(const interlocked_long_long& ll);
+   inline interlocked_i64(const interlocked_i64& ll);
 
 
-   inline interlocked_long_long(interlocked_long_long && ll);
+   inline interlocked_i64(interlocked_i64 && ll);
 
 
-   inline interlocked_long_long& operator = (::i64 i);
+   inline interlocked_i64& operator = (::i64 i);
 
 
    inline operator ::i64() const;
@@ -41,8 +41,8 @@ public:
    inline ::i64 operator ++(::i32);
    inline ::i64 operator--(::i32);
 
-   inline interlocked_long_long& operator +=(::i64 l);
-   inline interlocked_long_long& operator-=(::i64 l);
+   inline interlocked_i64& operator +=(::i64 l);
+   inline interlocked_i64& operator-=(::i64 l);
 
 
    inline ::i64 as_integer() const { return m_i64;}
@@ -96,7 +96,7 @@ using interlocked_count = ::interlocked_int;
 
 #else
 
-using interlocked_count = ::interlocked_long_long;
+using interlocked_count = ::interlocked_i64;
 
 #endif
 
@@ -104,28 +104,28 @@ using interlocked_count = ::interlocked_long_long;
 #if OSBIT == 64
 
 
-inline interlocked_long_long::interlocked_long_long(::i64 i) :
+inline interlocked_i64::interlocked_i64(::i64 i) :
    m_i64(i)
 {
 
 }
 
 
-inline interlocked_long_long::interlocked_long_long(const interlocked_long_long & ll) :
+inline interlocked_i64::interlocked_i64(const interlocked_i64 & ll) :
    m_i64(ll.m_i64)
 {
 
 }
 
 
-inline interlocked_long_long::interlocked_long_long(interlocked_long_long && ll) :
+inline interlocked_i64::interlocked_i64(interlocked_i64 && ll) :
    m_i64(ll.m_i64)
 {
    ll.m_i64 = 0;
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator = (::i64 i)
+inline interlocked_i64& interlocked_i64::operator = (::i64 i)
 {
 
    atomic_assign64(&m_i64, i);
@@ -135,7 +135,7 @@ inline interlocked_long_long& interlocked_long_long::operator = (::i64 i)
 }
 
 
-inline interlocked_long_long::operator ::i64() const
+inline interlocked_i64::operator ::i64() const
 {
 
    return m_i64;
@@ -143,7 +143,7 @@ inline interlocked_long_long::operator ::i64() const
 }
 
 
-inline ::i64 interlocked_long_long::operator ++()
+inline ::i64 interlocked_i64::operator ++()
 {
 
    return atomic_increment64(&m_i64);
@@ -151,7 +151,7 @@ inline ::i64 interlocked_long_long::operator ++()
 }
 
 
-inline ::i64 interlocked_long_long::operator--()
+inline ::i64 interlocked_i64::operator--()
 {
 
    return atomic_decrement64(&m_i64);
@@ -159,7 +159,7 @@ inline ::i64 interlocked_long_long::operator--()
 }
 
 
-inline ::i64 interlocked_long_long::operator ++(::i32)
+inline ::i64 interlocked_i64::operator ++(::i32)
 {
 
    auto ll = m_i64;
@@ -171,7 +171,7 @@ inline ::i64 interlocked_long_long::operator ++(::i32)
 }
 
 
-inline ::i64 interlocked_long_long::operator--(::i32)
+inline ::i64 interlocked_i64::operator--(::i32)
 {
 
    auto ll = m_i64;
@@ -183,7 +183,7 @@ inline ::i64 interlocked_long_long::operator--(::i32)
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator +=(::i64 ll)
+inline interlocked_i64& interlocked_i64::operator +=(::i64 ll)
 {
 
    atomic_add64(&m_i64, ll);
@@ -193,7 +193,7 @@ inline interlocked_long_long& interlocked_long_long::operator +=(::i64 ll)
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator-=(::i64 ll)
+inline interlocked_i64& interlocked_i64::operator-=(::i64 ll)
 {
 
    atomic_subtract64(&m_i64, ll);

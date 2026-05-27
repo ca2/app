@@ -65,7 +65,7 @@ namespace helloworld
 
       datastream()->get("cur_per_second", v);
 
-      m_frequencyFramesPerSecond = v.get_double();
+      m_frequencyFramesPerSecond = v.get_f64();
 auto m_timeRoll = ::time::now();
 
    }
@@ -197,7 +197,7 @@ auto m_timeRoll = ::time::now();
       //::i8 sz[512];
 
       //informationf("impact:");
-      //::ansi_from_unsigned_long_long(sz, microsecond, 10);
+      //::ansi_from_u64(sz, microsecond, 10);
       //::information(sz);
       //informationf(", ");
 
@@ -327,10 +327,10 @@ pdirectorysystem->system() / "obs.png");
                   i2 = i1 + rstride;
                   i3 = i2 + rstride;
                   color32 = pdata[i1];
-                  a = color32_byte_opacity(color32);
-                  r = color32_byte_red(color32);
-                  g = color32_byte_green(color32);
-                  b = color32_byte_blue(color32);
+                  a = color32_u8_opacity(color32);
+                  r = color32_u8_red(color32);
+                  g = color32_u8_green(color32);
+                  b = color32_u8_blue(color32);
                   rm = (g + b) / 4;
                   gm = (r + b) / 4;
                   bm = (r + g) / 4;

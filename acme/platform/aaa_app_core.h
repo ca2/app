@@ -2,9 +2,9 @@
 #pragma once
 
 
-typedef int_bool DEFER_INIT();
+typedef i32_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
-typedef int_bool DEFER_TERM();
+typedef i32_bool DEFER_TERM();
 typedef DEFER_TERM * PFN_DEFER_TERM;
 
 

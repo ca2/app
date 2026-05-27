@@ -470,8 +470,8 @@ namespace write_text
 //            pgraphics,
 //            pcrect,
 
-//            floatRateX,
-//            floatHeight,
+//            f32RateX,
+//            f32Height,
 //            str,
 //            piCharsPositions,
 

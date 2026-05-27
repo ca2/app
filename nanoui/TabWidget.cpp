@@ -233,7 +233,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             width += m_iCloseButtonWidth;
       }
 
-      return int_sequence2(width + 1,
+      return i32_sequence2(width + 1,
          (::i32)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
    }
 
@@ -444,7 +444,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
       auto pitem = hit_test(p);
@@ -477,7 +477,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       {
 
          m_ppopup = m_popupcallback(tab_id(pitem->m_item.m_iItem), pscreen);
-         m_ppopup->set_position(p + int_sequence2(8, -6));
+         m_ppopup->set_position(p + i32_sequence2(8, -6));
          m_ppopup->set_anchor_offset(8);
          m_ppopup->set_anchor_size(8);
          
@@ -730,9 +730,9 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       for (Widget* pwidgetChild : m_children) 
       {
 
-         pwidgetChild->set_position(int_sequence2(m_iPadding, m_iPadding + tab_height + 1));
+         pwidgetChild->set_position(i32_sequence2(m_iPadding, m_iPadding + tab_height + 1));
 
-         pwidgetChild->set_size(m_size - int_sequence2(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
+         pwidgetChild->set_size(m_size - i32_sequence2(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
 
          pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
 

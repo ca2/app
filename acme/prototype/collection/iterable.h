@@ -3469,7 +3469,7 @@ end:
          /*      for(::i32 uj = 0; uj < str.length(); uj++)
          {
          ::i8 sz[32];
-         ansi_from_long_long(sz, str[uj], 16);
+         ansi_from_i64(sz, str[uj], 16);
          if(ansi_length(sz) == 0)
          {
          strEncode += "00";

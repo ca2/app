@@ -353,7 +353,7 @@ distribute, and modify this file as you see fit.
 // appropriately).
 //
 // Additionally, there is a aaa_primitive_new, parallel interface for loading files as
-// (linear) floats to preserve the full dynamic range:
+// (linear) f32s to preserve the full dynamic range:
 //
 //    ::f32 *data = stbi_loadf(filename, &x, &y, &n, 0);
 //
@@ -1403,7 +1403,7 @@ static ::f32 * stbi__ldr_to_hdr(stbi_uc * data, ::i32 x, ::i32 y, ::i32 comp)
 #endif
 
 #ifndef STBI_NO_HDR
-#define stbi__float2int(x)   ((::i32) (x))
+#define stbi__f322int(x)   ((::i32) (x))
 static stbi_uc * stbi__hdr_to_ldr(::f32 * data, ::i32 x, ::i32 y, ::i32 comp)
 {
    ::i32 i, k, n;
@@ -1416,13 +1416,13 @@ static stbi_uc * stbi__hdr_to_ldr(::f32 * data, ::i32 x, ::i32 y, ::i32 comp)
          ::f32 z = (::f32)pow(data[i * comp + k] * stbi__h2l_scale_i, stbi__h2l_gamma_i) * 255 + 0.5f;
          if (z < 0) z = 0;
          if (z > 255) z = 255;
-         output[i * comp + k] = (stbi_uc)stbi__float2int(z);
+         output[i * comp + k] = (stbi_uc)stbi__f322int(z);
       }
       if (k < comp) {
          ::f32 z = data[i * comp + k] * 255 + 0.5f;
          if (z < 0) z = 0;
          if (z > 255) z = 255;
-         output[i * comp + k] = (stbi_uc)stbi__float2int(z);
+         output[i * comp + k] = (stbi_uc)stbi__f322int(z);
       }
    }
    STBI_FREE(data);
@@ -3083,7 +3083,7 @@ static stbi_uc * stbi__resample_row_generic(stbi_uc * out, stbi_uc * in_near, st
 #ifdef STBI_JPEG_OLD
 // this is the same YCbCr-to-RGB calculation that stb_image has used
 // historically before the algorithm changes in 1.49
-#define float2fixed(x)  ((::i32) ((x) * 65536 + 0.5))
+#define f322fixed(x)  ((::i32) ((x) * 65536 + 0.5))
 static void stbi__YCbCr_to_RGB_row(stbi_uc * out, const stbi_uc * y, const stbi_uc * pcb, const stbi_uc * pcr, ::i32 count, ::i32 step)
 {
    ::i32 i;
@@ -3092,9 +3092,9 @@ static void stbi__YCbCr_to_RGB_row(stbi_uc * out, const stbi_uc * y, const stbi_
       ::i32 r, g, b;
       ::i32 cr = pcr[i] - 128;
       ::i32 cb = pcb[i] - 128;
-      r = y_fixed + cr * float2fixed(1.40200f);
-      g = y_fixed - cr * float2fixed(0.71414f) - cb * float2fixed(0.34414f);
-      b = y_fixed + cb * float2fixed(1.77200f);
+      r = y_fixed + cr * f322fixed(1.40200f);
+      g = y_fixed - cr * f322fixed(0.71414f) - cb * f322fixed(0.34414f);
+      b = y_fixed + cb * f322fixed(1.77200f);
       r >>= 16;
       g >>= 16;
       b >>= 16;
@@ -3111,7 +3111,7 @@ static void stbi__YCbCr_to_RGB_row(stbi_uc * out, const stbi_uc * y, const stbi_
 #else
 // this is a reduced-precision calculation of YCbCr-to-RGB introduced
 // to make sure the code produces the same results in both SIMD and scalar
-#define float2fixed(x)  (((::i32) ((x) * 4096.0f + 0.5f)) << 8)
+#define f322fixed(x)  (((::i32) ((x) * 4096.0f + 0.5f)) << 8)
 static void stbi__YCbCr_to_RGB_row(stbi_uc * out, const stbi_uc * y, const stbi_uc * pcb, const stbi_uc * pcr, ::i32 count, ::i32 step)
 {
    ::i32 i;
@@ -3120,9 +3120,9 @@ static void stbi__YCbCr_to_RGB_row(stbi_uc * out, const stbi_uc * y, const stbi_
       ::i32 r, g, b;
       ::i32 cr = pcr[i] - 128;
       ::i32 cb = pcb[i] - 128;
-      r = y_fixed + cr * float2fixed(1.40200f);
-      g = y_fixed + (cr * -float2fixed(0.71414f)) + ((cb * -float2fixed(0.34414f)) & 0xffff0000);
-      b = y_fixed + cb * float2fixed(1.77200f);
+      r = y_fixed + cr * f322fixed(1.40200f);
+      g = y_fixed + (cr * -f322fixed(0.71414f)) + ((cb * -f322fixed(0.34414f)) & 0xffff0000);
+      b = y_fixed + cb * f322fixed(1.77200f);
       r >>= 20;
       g >>= 20;
       b >>= 20;
@@ -3255,9 +3255,9 @@ static void stbi__YCbCr_to_RGB_simd(stbi_uc * out, stbi_uc const * y, stbi_uc co
       ::i32 r, g, b;
       ::i32 cr = pcr[i] - 128;
       ::i32 cb = pcb[i] - 128;
-      r = y_fixed + cr * float2fixed(1.40200f);
-      g = y_fixed + cr * -float2fixed(0.71414f) + ((cb * -float2fixed(0.34414f)) & 0xffff0000);
-      b = y_fixed + cb * float2fixed(1.77200f);
+      r = y_fixed + cr * f322fixed(1.40200f);
+      g = y_fixed + cr * -f322fixed(0.71414f) + ((cb * -f322fixed(0.34414f)) & 0xffff0000);
+      b = y_fixed + cb * f322fixed(1.77200f);
       r >>= 20;
       g >>= 20;
       b >>= 20;

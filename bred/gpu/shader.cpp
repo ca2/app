@@ -782,7 +782,7 @@ namespace gpu
    }
 
 
-   void shader::set_float(const ::scoped_string& scopedstrName, ::f32 value)
+   void shader::set_f32(const ::scoped_string& scopedstrName, ::f32 value)
    {
       
       ::string strName(scopedstrName);

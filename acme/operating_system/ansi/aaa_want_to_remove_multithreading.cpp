@@ -25,9 +25,9 @@
 //   }
 //
 //
-//   int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
-////   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
-////   int_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
+//   i32_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
+////   i32_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
+////   i32_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
 //
 //   timespec delay;
 //
@@ -97,7 +97,7 @@
 //
 //}
 //
-//::u32 MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, ::u32 dwWakeMask)
+//::u32 MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, i32_bool bWaitForAll, ::u32 dwTimeout, ::u32 dwWakeMask)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -105,7 +105,7 @@
 //}
 //
 //
-//::u32 WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, int_bool bAlertable)
+//::u32 WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pwaitableptra, i32_bool bWaitForAll, ::u32 dwTimeout, i32_bool bAlertable)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -113,7 +113,7 @@
 //}
 //
 //
-//::u32 WaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout)
+//::u32 WaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, i32_bool bWaitForAll, ::u32 dwTimeout)
 //{
 //
 //   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, false);
@@ -121,7 +121,7 @@
 //}
 //
 //
-//::u32 WaitForSingleObjectEx(hsynchronization  pwaitable, ::u32 dwTimeout, int_bool bAlertable)
+//::u32 WaitForSingleObjectEx(hsynchronization  pwaitable, ::u32 dwTimeout, i32_bool bAlertable)
 //{
 //
 //   return WaitForMultipleObjectsEx(1, &pwaitable, true, dwTimeout, bAlertable);
@@ -526,7 +526,7 @@
 ////}
 ////
 ////
-////int_bool WINAPI TlsFree(::u32 dwTlsIndex)
+////i32_bool WINAPI TlsFree(::u32 dwTlsIndex)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -634,7 +634,7 @@
 ////}
 ////
 ////
-////int_bool WINAPI TlsSetValue(::u32 dwTlsIndex,LPVOID lpTlsValue)
+////i32_bool WINAPI TlsSetValue(::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   ThreadLocalData* threadData = currentThreadData;
@@ -668,7 +668,7 @@
 ////   return true;
 ////}
 ////
-////int_bool WINAPI TlsSetValue(htask htask,::u32 dwTlsIndex,LPVOID lpTlsValue)
+////i32_bool WINAPI TlsSetValue(htask htask,::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1119,7 +1119,7 @@
 ////*/
 ////
 /////*
-////CLASS_DECL_ACME int_bool WINAPI PostThreadMessageW(::u32 idThread,::u32 Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_ACME i32_bool WINAPI PostThreadMessageW(::u32 idThread,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   htask h = ::get_thread_handle(idThread);
@@ -1157,7 +1157,7 @@
 ////}
 ////*/
 ////
-////CLASS_DECL_ACME int_bool WINAPI PostMessageW(::acme::windowing::window * pacmewindowingwindow,::u32 Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_ACME i32_bool WINAPI PostMessageW(::acme::windowing::window * pacmewindowingwindow,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   htask  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
@@ -1337,7 +1337,7 @@ LPVOID TlsGetValue(thread_data_index dwTlsIndex)
 	return value;
 }
 
-int_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
+i32_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 {
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;
@@ -1345,7 +1345,7 @@ int_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 	return true;
 }
 
-int_bool TlsFree(thread_data_index dwTlsIndex)
+i32_bool TlsFree(thread_data_index dwTlsIndex)
 {
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;

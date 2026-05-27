@@ -75,7 +75,7 @@ namespace image
    //
    //   //      ::color::color crBack = pframea->m_colorBack;
    //
-   //   //      ::u8 bAlpha = color32_byte_opacity(crBack);
+   //   //      ::u8 bAlpha = color32_u8_opacity(crBack);
    //
    //   //      if (bAlpha == 0)
    //   //      {
@@ -241,7 +241,7 @@ namespace image
    //
    //         ::color::color crBack = pframea->m_colorBack;
    //
-   //         ::u8 bAlpha = color32_byte_opacity(crBack);
+   //         ::u8 bAlpha = color32_u8_opacity(crBack);
    //
    //         if (bAlpha == 0)
    //         {
@@ -332,9 +332,9 @@ namespace image
             // __ANDROID__ -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
             //#if defined(__APPLE__) || defined(__ANDROID__)
             //
-            //         //::u8 bR = color32_byte_red(color32);
-            //         //::u8 bG = color32_byte_green(color32);
-            //         //::u8 bB = color32_byte_blue(color32);
+            //         //::u8 bR = color32_u8_red(color32);
+            //         //::u8 bG = color32_u8_green(color32);
+            //         //::u8 bB = color32_u8_blue(color32);
             //
             //         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
             //

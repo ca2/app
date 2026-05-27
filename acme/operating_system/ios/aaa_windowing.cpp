@@ -93,7 +93,7 @@ CLASS_DECL_ACME ::windowing::window * oswindow_get(::acme::windowing::window * p
 //
 //   m_nswindow  = nullptr;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = aaa_primitive_new int_to_int;
+//   m_plongmap  = aaa_primitive_new i32_to_int;
 //
 //}
 //
@@ -103,7 +103,7 @@ CLASS_DECL_ACME ::windowing::window * oswindow_get(::acme::windowing::window * p
 //
 //   m_nswindow  = window;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = aaa_primitive_new int_to_int;
+//   m_plongmap  = aaa_primitive_new i32_to_int;
 //
 //}
 //
@@ -322,7 +322,7 @@ oswindow set_capture(oswindow window)
 }
 
 
-int_bool release_capture()
+i32_bool release_capture()
 {
 
    g_oswindowCapture = nullptr;
@@ -443,7 +443,7 @@ oswindow set_active_window(oswindow window)
 
 
 
-int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
+i32_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
 {
    
    main_async([=]()
@@ -463,7 +463,7 @@ int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32
 
 
 
-int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * lprect)
+i32_bool window_rectangle(oswindow hwnd, ::i32_rectangle * lprect)
 {
 
    if(void_ptr_is_null(hwnd))
@@ -479,7 +479,7 @@ int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * lprect)
 }
 
 
-int_bool SetWindowRect(oswindow hwnd, ::i32_rectangle * lprect)
+i32_bool SetWindowRect(oswindow hwnd, ::i32_rectangle * lprect)
 {
 
    if(hwnd == nullptr)
@@ -492,7 +492,7 @@ int_bool SetWindowRect(oswindow hwnd, ::i32_rectangle * lprect)
 }
 
 
-int_bool EnableWindow(oswindow hwnd, int_bool bEnable)
+i32_bool EnableWindow(oswindow hwnd, i32_bool bEnable)
 {
 
    if(hwnd == nullptr)
@@ -506,7 +506,7 @@ int_bool EnableWindow(oswindow hwnd, int_bool bEnable)
 
 
 
-void defer_dock_application(int_bool bDock)
+void defer_dock_application(i32_bool bDock)
 {
 
    //   if (bDock)
@@ -535,7 +535,7 @@ void defer_dock_application(int_bool bDock)
 }
 
 
-int_bool destroy_window(oswindow window)
+i32_bool destroy_window(oswindow window)
 {
 
    __UNREFERENCED_PARAMETER(window);
@@ -550,7 +550,7 @@ int_bool destroy_window(oswindow window)
 
 void mm_init_workspace_rect();
 
-int_bool os_init_windowing()
+i32_bool os_init_windowing()
 {
 
 //   set_TranslateMessage(&axis_TranslateMessage);
@@ -597,7 +597,7 @@ void os_term_windowing()
 // }
 
 
-int_bool point_is_window_origin(::i32_point ptHitTest, oswindow oswindowExclude, ::i32 iMargin)
+i32_bool point_is_window_origin(::i32_point ptHitTest, oswindow oswindowExclude, ::i32 iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
@@ -613,7 +613,7 @@ void defer_term_ui()
 }
 
 
-int_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
+i32_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
 {
 
    return false;

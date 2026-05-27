@@ -294,7 +294,7 @@ namespace user
 
    //      // Use Good Variable Names instead of the following
 
-   enum enum_double
+   enum enum_f64
    {
 
       e_f64_none,

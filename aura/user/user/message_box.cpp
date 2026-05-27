@@ -463,7 +463,7 @@ namespace user
    //   if (ptopic->id() == ::id_click)
    //   {
 
-   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().long_long;
+   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().i64;
 
    //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 

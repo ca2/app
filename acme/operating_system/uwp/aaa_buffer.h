@@ -6,7 +6,7 @@ namespace universal_windows
 
 
    class CLASS_DECL_ACME buffer :
-      //virtual public ::graphics::double_buffer,
+      //virtual public ::graphics::f64_buffer,
       virtual public ::graphics::bitmap_source_buffer
    {
    public:

@@ -134,7 +134,7 @@ typedef struct _NPVariant {
     union {
         bool boolValue;
         int32_t intValue;
-        ::f64 doubleValue;
+        ::f64 f64Value;
         NPString stringValue;
         NPObject *objectValue;
     } value;
@@ -162,7 +162,7 @@ void NPN_ReleaseVariantValue(NPVariant *variant);
 
 #define NPVARIANT_TO_BOOLEAN(_v) ((_v).value.boolValue)
 #define NPVARIANT_TO_INT32(_v)   ((_v).value.intValue)
-#define NPVARIANT_TO_DOUBLE(_v)  ((_v).value.doubleValue)
+#define NPVARIANT_TO_DOUBLE(_v)  ((_v).value.f64Value)
 #define NPVARIANT_TO_STRING(_v)  ((_v).value.stringValue)
 #define NPVARIANT_TO_OBJECT(_v)  ((_v).value.objectValue)
 
@@ -193,7 +193,7 @@ NP_END_MACRO
 #define DOUBLE_TO_NPVARIANT(_val, _v)                                         \
 NP_BEGIN_MACRO                                                                \
     (_v).type = NPVariantType_Double;                                         \
-    (_v).value.doubleValue = _val;                                            \
+    (_v).value.f64Value = _val;                                            \
 NP_END_MACRO
 
 #define STRINGZ_TO_NPVARIANT(_val, _v)                                        \

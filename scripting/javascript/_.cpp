@@ -83,7 +83,7 @@
    Version 0.23 :  Allowed evaluate[Complex] to take in semi-colon separated
                      statements and then only return the value from the last one.
                      Also checks to make sure *everything* was parsed.
-                   Ints + doubles are now stored in binary form (faster + more precise)
+                   Ints + f64s are now stored in binary form (faster + more precise)
    Version 0.24 :  More useful error for maths ops
                    Don't dump everything on a match  < 0.
    Version 0.25 :  Better string escaping
@@ -873,7 +873,7 @@ CScriptVar::CScriptVar(const string &varData, ::i32 varFlags)
    }
    else if (varFlags & SCRIPTVAR_DOUBLE)
    {
-      doubleData = strtod(varData.c_str(),0);
+      f64Data = strtod(varData.c_str(),0);
    }
    else
       data = varData;
@@ -916,7 +916,7 @@ void CScriptVar::init()
    jsCallbackUserData = 0;
    data = TINYJS_BLANK_DATA;
    intData = 0;
-   doubleData = 0;
+   f64Data = 0;
 }
 
 
@@ -1197,13 +1197,13 @@ void CScriptVar::setArrayIndex(::i32 idx, CScriptVar *value)
    if (isInt()) return (::i32) intData;
    if (isNull()) return 0;
    if (isUndefined()) return 0;
-   if (isDouble()) return (::i32)doubleData;
+   if (isDouble()) return (::i32)f64Data;
    return 0;
 }
 
 ::f64 CScriptVar::getDouble()
 {
-   if (isDouble()) return doubleData;
+   if (isDouble()) return f64Data;
    if (isInt()) return intData;
    if (isNull()) return 0;
    if (isUndefined()) return 0;
@@ -1226,7 +1226,7 @@ const string &CScriptVar::getString()
    if (isDouble())
    {
       ::i8 buffer[32];
-      sprintf_s(buffer, sizeof(buffer), "%f", doubleData);
+      sprintf_s(buffer, sizeof(buffer), "%f", f64Data);
       data = buffer;
       return data;
    }
@@ -1240,14 +1240,14 @@ void CScriptVar::setInt(::i32 val)
 {
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_INTEGER;
    intData = val;
-   doubleData = 0;
+   f64Data = 0;
    data = TINYJS_BLANK_DATA;
 }
 
 void CScriptVar::setDouble(::f64 val)
 {
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_DOUBLE;
-   doubleData = val;
+   f64Data = val;
    intData = 0;
    data = TINYJS_BLANK_DATA;
 }
@@ -1258,7 +1258,7 @@ void CScriptVar::setString(const ::scoped_string & scopedstr)
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_STRING;
    data = scopedstr;
    intData = 0;
-   doubleData = 0;
+   f64Data = 0;
 }
 
 void CScriptVar::setUndefined()
@@ -1267,7 +1267,7 @@ void CScriptVar::setUndefined()
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_UNDEFINED;
    data = TINYJS_BLANK_DATA;
    intData = 0;
-   doubleData = 0;
+   f64Data = 0;
    eraseAllChildren();
 }
 
@@ -1277,7 +1277,7 @@ void CScriptVar::setArray()
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_ARRAY;
    data = TINYJS_BLANK_DATA;
    intData = 0;
-   doubleData = 0;
+   f64Data = 0;
    eraseAllChildren();
 }
 
@@ -1340,7 +1340,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, ::i32 op)
       }
       else
       {
-         // use doubles
+         // use f64s
          ::f64 da = a->getDouble();
          ::f64 db = b->getDouble();
          switch (op)
@@ -1404,7 +1404,7 @@ void CScriptVar::copySimpleData(CScriptVar *val)
 {
    data = val->data;
    intData = val->intData;
-   doubleData = val->doubleData;
+   f64Data = val->f64Data;
    flags = (flags & ~SCRIPTVAR_VARTYPEMASK) | (val->flags & SCRIPTVAR_VARTYPEMASK);
 }
 

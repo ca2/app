@@ -38,7 +38,7 @@ UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow);
 
 //oswindow get_capture();
 //oswindow set_capture(oswindow window);
-//int_bool release_capture();
+//i32_bool release_capture();
 //oswindow set_focus(oswindow window);
 //oswindow get_focus();
 //oswindow get_active_window();
@@ -47,8 +47,8 @@ UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow);
 
 //void get_main_screen_rectangle(::i32_rectangle * lprect);
 
-int_bool set_foreground_window(oswindow window);
-int_bool BringWindowToTop(oswindow window);
+i32_bool set_foreground_window(oswindow window);
+i32_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);
 

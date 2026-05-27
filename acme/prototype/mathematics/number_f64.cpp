@@ -1,18 +1,18 @@
 #include "framework.h"
-#include "number_double.h"
+#include "number_f64.h"
 
 
 namespace mathematics
 {
 
 
-   void number_double::set_value_string(const ::scoped_string & scopedstr)
+   void number_f64::set_value_string(const ::scoped_string & scopedstr)
    {
 
    }
 
 
-   string number_double::get_value_string()
+   string number_f64::get_value_string()
    {
       
       return "";
@@ -20,7 +20,7 @@ namespace mathematics
    }
 
    
-   CLASS_DECL_ACME bool convert_to_double(::f64 & d, const ::scoped_string & scopedstr)
+   CLASS_DECL_ACME bool convert_to_f64(::f64 & d, const ::scoped_string & scopedstr)
    {
 
       ::string str(scopedstr);

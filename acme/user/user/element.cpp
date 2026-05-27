@@ -298,7 +298,7 @@ namespace user
    }
 
 
-   //bool element::Redraw(int_rectangle_array_base & recta)
+   //bool element::Redraw(i32_rectangle_array_base & recta)
    //{
 
    //   bool bOk = true;
@@ -1983,7 +1983,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(::int_sequence2 & sequence)
+   void element::viewport_client_to_screen(::i32_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -1991,7 +1991,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(::int_sequence2 & sequence)
+   void element::viewport_screen_to_client(::i32_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -3917,7 +3917,7 @@ namespace user
 //
 //      ::pointer<::message::message>pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) atom.long_long, 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64, 0);
 //
 //      switch (eprototype)
 //      {
@@ -4706,7 +4706,7 @@ namespace user
 
 
    void element::set_need_redraw(
-      const ::int_rectangle_array_base & rectangleaNeedRedraw,
+      const ::i32_rectangle_array_base & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function, 
       bool bAscendants)

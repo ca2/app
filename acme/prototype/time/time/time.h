@@ -908,7 +908,7 @@ public:
 };
 
 
-//inline doubled floatingtime() { return ::get_floating_second(); }
+//inline f64d floatingtime() { return ::get_floating_second(); }
 
 //template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
 //constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)

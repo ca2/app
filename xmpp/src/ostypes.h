@@ -18,7 +18,7 @@
 #define __LIBSTROPHE_OSTYPES_H__
 
 #if defined (_MSC_VER) && _MSC_VER < 1600
-typedef signed ::i8 ::i8;
+typedef ::i8 ::i8;
 typedef ::i16 ::i32 ::i16;
 typedef ::i32 ::i32;
 typedef ::i64 hi;

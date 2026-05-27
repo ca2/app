@@ -13,7 +13,7 @@
 
 CLASS_DECL_ACME bool is_verbose();
 
-CLASS_DECL_ACME int_bool os_init_windowing();
+CLASS_DECL_ACME i32_bool os_init_windowing();
 CLASS_DECL_ACME void os_term_windowing();
 
 #ifdef RASPBERRYPIOS
@@ -72,7 +72,7 @@ CLASS_DECL_ACME void os_term_windowing();
 //}
 
 
-typedef int_bool DEFER_INIT();
+typedef i32_bool DEFER_INIT();
 
 
 typedef DEFER_INIT * PFN_DEFER_INIT;
@@ -869,7 +869,7 @@ void app_core::system_end()
 }
 
 
-//typedef int_bool DEFER_INIT();
+//typedef i32_bool DEFER_INIT();
 
 
 //typedef DEFER_INIT * PFN_DEFER_INIT;

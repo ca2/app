@@ -413,14 +413,14 @@ inline bool __sort(T1& t1, T2& t2)
 
 
 //
-//inline ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
+//inline ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //   return strtoll(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
+//inline ::u64 ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //   return strtoull(scopedstr, (::ansi_character **) ppszEnd, iBase);

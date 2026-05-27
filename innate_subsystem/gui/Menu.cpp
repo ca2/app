@@ -115,7 +115,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getMenuItemCount();
 //    }
 //
-//    // bool Menu::appendMenu(::u32 uFlags, ::u32 int_PTR uIDNewItem, LPCTSTR lpNewItem)
+//    // bool Menu::appendMenu(::u32 uFlags, ::u32 i32_PTR uIDNewItem, LPCTSTR lpNewItem)
 //    // {
 //    //    // _ASSERT(m_menu != 0);
 //    //    //
@@ -216,7 +216,7 @@ namespace innate_subsystem
 //    bool Menu::appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pmenu)
 //    {
 //       return m_pparticleThis->appendSubMenu(scopedstr, pmenu);
-//       //return appendMenu(MF_POPUP, (::u32 int_PTR)pMenu->getMenu(), strVal.getString());
+//       //return appendMenu(MF_POPUP, (::u32 i32_PTR)pMenu->getMenu(), strVal.getString());
 //    }
 //
 //    bool Menu::insertMenuItem(::u32 uItem, const ::scoped_string & scopedstr, ::u32 uID)

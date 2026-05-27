@@ -29,7 +29,7 @@ namespace innate_subsystem
 
        bool m_allowProcessCharEvent;
        bool m_allowProcessDoubleChar;
-       bool m_doubleDeadCatched;
+       bool m_f64DeadCatched;
 
        keyboard_state_t();
 

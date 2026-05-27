@@ -806,7 +806,7 @@ namespace filemanager
 
       }
 
-      return ansi_to_long_long(strResult);
+      return ansi_to_i64(strResult);
 
    }
 

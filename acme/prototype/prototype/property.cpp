@@ -426,7 +426,7 @@ string & property::get_network_arguments(::string & str) const
 ////   if(pchannel)
 ////   {
 ////
-////      pchannel->send_update((::enum_id) m_atom.long_long, context);
+////      pchannel->send_update((::enum_id) m_atom.i64, context);
 ////
 ////   }
 ////

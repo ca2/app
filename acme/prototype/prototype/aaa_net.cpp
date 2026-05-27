@@ -300,7 +300,7 @@ string url_encode(const ::scoped_string & scopedstr)
       else
       {
 
-         ansi_from_long_long(sz,(::i64)(::u8) ch,16);
+         ansi_from_i64(sz,(::i64)(::u8) ch,16);
 
          ansi_upper(sz);
 
@@ -430,7 +430,7 @@ void openURL(const string &url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
+//CLASS_DECL_ACME i32_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
 //{
 //
 //   ::platform::application * papp = (::platform::application *) instance;
@@ -851,7 +851,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      else
 //      {
 //
-//         ansi_from_long_long(sz, uch, 16);
+//         ansi_from_i64(sz, uch, 16);
 //
 //         ansi_upper(sz);
 //
@@ -998,7 +998,7 @@ void openURL(const string& url_str);
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
+//CLASS_DECL_ACME i32_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
 //{
 //
 //   ::application * papp = (::apex::application *) instance;

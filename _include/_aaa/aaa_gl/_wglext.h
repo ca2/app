@@ -178,7 +178,7 @@ extern "C" {
 #define WGL_AUX9_ARB                   0x2090
 #endif
 
-#ifndef WGL_ARB_pixel_format_float
+#ifndef WGL_ARB_pixel_format_f32
 #define WGL_TYPE_RGBA_FLOAT_ARB        0x21A0
 #endif
 
@@ -274,7 +274,7 @@ extern "C" {
 #define WGL_PBUFFER_HEIGHT_EXT         0x2035
 #endif
 
-#ifndef WGL_EXT_depth_float
+#ifndef WGL_EXT_depth_f32
 #define WGL_DEPTH_FLOAT_EXT            0x2040
 #endif
 
@@ -334,7 +334,7 @@ extern "C" {
 #define WGL_TEXTURE_RECTANGLE_NV       0x20A2
 #endif
 
-#ifndef WGL_ATI_pixel_format_float
+#ifndef WGL_ATI_pixel_format_f32
 #define WGL_TYPE_RGBA_FLOAT_ATI        0x21A0
 #endif
 
@@ -357,7 +357,7 @@ extern "C" {
 #define WGL_STEREO_POLARITY_INVERT_3DL 0x2058
 #endif
 
-#ifndef WGL_EXT_pixel_format_packed_float
+#ifndef WGL_EXT_pixel_format_packed_f32
 #define WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT 0x20A8
 #endif
 
@@ -542,8 +542,8 @@ typedef BOOL (WINAPI * PFNWGLRELEASETEXIMAGEARBPROC) (HPBUFFERARB hPbuffer, ::i3
 typedef BOOL (WINAPI * PFNWGLSETPBUFFERATTRIBARBPROC) (HPBUFFERARB hPbuffer, const ::i32 *piAttribList);
 #endif
 
-#ifndef WGL_ARB_pixel_format_float
-#define WGL_ARB_pixel_format_float 1
+#ifndef WGL_ARB_pixel_format_f32
+#define WGL_ARB_pixel_format_f32 1
 #endif
 
 #ifndef WGL_ARB_framebuffer_sRGB
@@ -636,17 +636,17 @@ typedef BOOL (WINAPI * PFNWGLSWAPINTERVALEXTPROC) (::i32 interval);
 typedef ::i32 (WINAPI * PFNWGLGETSWAPINTERVALEXTPROC) (void);
 #endif
 
-#ifndef WGL_EXT_depth_float
-#define WGL_EXT_depth_float 1
+#ifndef WGL_EXT_depth_f32
+#define WGL_EXT_depth_f32 1
 #endif
 
 #ifndef WGL_NV_vertex_array_range
 #define WGL_NV_vertex_array_range 1
 #ifdef WGL_WGLEXT_PROTOTYPES
-extern void* WINAPI wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
+extern void* WINAPI wglAllocateMemoryNV (GLsizei size, GLf32 readfreq, GLf32 writefreq, GLf32 priority);
 extern void WINAPI wglFreeMemoryNV (void *pointer);
 #endif /* WGL_WGLEXT_PROTOTYPES */
-typedef void* (WINAPI * PFNWGLALLOCATEMEMORYNVPROC) (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
+typedef void* (WINAPI * PFNWGLALLOCATEMEMORYNVPROC) (GLsizei size, GLf32 readfreq, GLf32 writefreq, GLf32 priority);
 typedef void (WINAPI * PFNWGLFREEMEMORYNVPROC) (void *pointer);
 #endif
 
@@ -772,8 +772,8 @@ typedef BOOL (WINAPI * PFNWGLENDFRAMETRACKINGI3DPROC) (void);
 typedef BOOL (WINAPI * PFNWGLQUERYFRAMETRACKINGI3DPROC) (::u32 *pFrameCount, ::u32 *pMissedFrames, ::f32 *pLastMissedUsage);
 #endif
 
-#ifndef WGL_ATI_pixel_format_float
-#define WGL_ATI_pixel_format_float 1
+#ifndef WGL_ATI_pixel_format_f32
+#define WGL_ATI_pixel_format_f32 1
 #endif
 
 #ifndef WGL_NV_f32_buffer
@@ -788,8 +788,8 @@ extern BOOL WINAPI wglSetStereoEmitterState3DL (HDC hDC, ::u32 uState);
 typedef BOOL (WINAPI * PFNWGLSETSTEREOEMITTERSTATE3DLPROC) (HDC hDC, ::u32 uState);
 #endif
 
-#ifndef WGL_EXT_pixel_format_packed_float
-#define WGL_EXT_pixel_format_packed_float 1
+#ifndef WGL_EXT_pixel_format_packed_f32
+#define WGL_EXT_pixel_format_packed_f32 1
 #endif
 
 #ifndef WGL_EXT_framebuffer_sRGB

@@ -752,7 +752,7 @@ namespace axis
    //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, ::u64 u)
    //{
 
-   //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -896,7 +896,7 @@ namespace axis
    //}
 
 
-   //bool style::create_double(e_double edouble, ::f64 d)
+   //bool style::create_f64(e_f64 ef64, ::f64 d)
    //{
 
    //   if (userstyle()->m_mapDouble.is_null())
@@ -906,7 +906,7 @@ namespace axis
 
    //   }
 
-   //   (*userstyle()->m_mapDouble)[edouble] = d;
+   //   (*userstyle()->m_mapDouble)[ef64] = d;
 
    //   return true;
 
@@ -1363,7 +1363,7 @@ namespace axis
    //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, ::u64 u)
    //{
 
-   //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -1507,7 +1507,7 @@ namespace axis
    //}
 
 
-   //bool style::create_double(e_double edouble, ::f64 d)
+   //bool style::create_f64(e_f64 ef64, ::f64 d)
    //{
 
    //   if (userstyle()->m_mapDouble.is_null())
@@ -1517,7 +1517,7 @@ namespace axis
 
    //   }
 
-   //   (*userstyle()->m_mapDouble)[edouble] = d;
+   //   (*userstyle()->m_mapDouble)[ef64] = d;
 
    //   return true;
 

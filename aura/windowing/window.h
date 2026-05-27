@@ -469,7 +469,7 @@ namespace windowing
       virtual void _window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation);
 
 
-      virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
+      virtual void non_top_most_upper_window_rects(::i32_rectangle_array_base & recta);
 
       void default_message_handler(::message::message * pmessage) override;
 
@@ -1269,7 +1269,7 @@ namespace windowing
 
       //virtual void on_visual_applied();
 
-      virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::i32_rectangle_array_base & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
       //virtual bool needs_to_draw(const ::i32_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
@@ -1293,12 +1293,12 @@ namespace windowing
       virtual ::i64 _001GetRectTopLeftWeightedArea(const ::i32_rectangle & rect);
 
       virtual ::i64 opaque_area(const ::i32_rectangle & rect);
-      virtual void approximate_occlusion_rects(int_rectangle_array_base & raTest);
+      virtual void approximate_occlusion_rects(i32_rectangle_array_base & raTest);
 
       virtual ::i64 opaque_area();
 
       /// from top to bottom
-      //virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
+      //virtual void non_top_most_upper_window_rects(::i32_rectangle_array_base & recta);
 
 
       virtual void android_fill_plasma(const void * pixels, ::i32 width, ::i32 height, ::i32 stride, ::i64 time_ms);
@@ -1557,7 +1557,7 @@ namespace windowing
       virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
 
 
-      //virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
+      //virtual void set_need_redraw(const ::i32_rectangle_array_base & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
 
 
       //virtual bool RedrawWindow(const ::i32_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
@@ -1595,8 +1595,8 @@ namespace windowing
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
-      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
+      virtual void viewport_screen_to_client(::i32_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::i32_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::i32_rectangle & rectangle) override;
       virtual void viewport_screen_to_client(::i32_rectangle & rectangle) override;
 

@@ -435,7 +435,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -588,7 +588,7 @@ namespace nanoui
    }
 
 
-   //bool Widget::mouse_drag_event(const int_sequence2&, const int_sequence2&, const ::user::e_key&)
+   //bool Widget::mouse_drag_event(const i32_sequence2&, const i32_sequence2&, const ::user::e_key&)
    //{
 
    //   return false;
@@ -1447,7 +1447,7 @@ namespace nanoui
 
       //}
 
-      //int_sequence2 d = p - m_pos;
+      //i32_sequence2 d = p - m_pos;
       return p.x >= 0 && p.y >= 0 && p.x < (m_size.cx) && p.y < m_size.cy;
 
    }

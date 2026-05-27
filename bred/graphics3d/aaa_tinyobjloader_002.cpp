@@ -645,7 +645,7 @@ namespace graphics3d
          for (size_t s = 0; s < shapes.size(); s++)
          {
             //DrawObject o;
-            std::vector<::f32> buffer; // pos(3float), normal(3float), color(3float)
+            std::vector<::f32> buffer; // pos(3f32), normal(3f32), color(3f32)
 
             // Check for smoothing group and compute smoothing normals
             std::map<::i32, vec3> smoothVertexNormals;

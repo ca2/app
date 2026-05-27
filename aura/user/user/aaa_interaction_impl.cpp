@@ -2442,7 +2442,7 @@ namespace user
           pmessage->m_emessage == ::user::e_message_middle_button_up ||
           pmessage->m_emessage == ::user::e_message_right_button_down ||
           pmessage->m_emessage == ::user::e_message_right_button_up ||
-          pmessage->m_emessage == ::user::e_message_left_button_double_click ||
+          pmessage->m_emessage == ::user::e_message_left_button_f64_click ||
           pmessage->m_emessage == ::user::e_message_mouse_move ||
           pmessage->m_emessage == ::user::e_message_mouse_wheel)
       {
@@ -2594,10 +2594,10 @@ namespace user
 
       pmouse->m_pwindow->m_pointCursor2 = pmouse->m_pointHost;
 
-      if (pmouse->m_emessage == ::user::e_message_left_button_double_click)
+      if (pmouse->m_emessage == ::user::e_message_left_button_f64_click)
       {
 
-         information() << "::user::e_message_left_button_double_click";
+         information() << "::user::e_message_left_button_f64_click";
 
       } else if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
@@ -2883,7 +2883,7 @@ namespace user
       //if (puserinteractionMouse)
       //{
 
-      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
+      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_f64_click && puserinteractionMouse->m_bEatsDoubleClick)
       //   //            {
       //   //
       //   //               pmouse->m_bRet = true;
@@ -4314,7 +4314,7 @@ namespace user
 
 
    void
-   interaction_impl::set_need_redraw(const ::int_rectangle_array &rectangleaHostNeedRedraw, function<void()> function,
+   interaction_impl::set_need_redraw(const ::i32_rectangle_array &rectangleaHostNeedRedraw, function<void()> function,
                                      bool bAscendants)
    {
 
@@ -4363,7 +4363,7 @@ namespace user
 
          bool bContainsAll = true;
 
-         //int_rectangle_array rectangleaUnion;
+         //i32_rectangle_array rectangleaUnion;
 
          for (auto &rectangle: rectangleaHostNeedRedraw)
          {
@@ -9183,7 +9183,7 @@ namespace user
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::int_rectangle_array &recta)
+   void interaction_impl::non_top_most_upper_window_rects(::i32_rectangle_array &recta)
    {
 
       m_pwindow->non_top_most_upper_window_rects(recta);
@@ -9194,7 +9194,7 @@ namespace user
    bool interaction_impl::is_occluded()
    {
 
-      ::int_rectangle_array recta;
+      ::i32_rectangle_array recta;
 
       non_top_most_upper_window_rects(recta);
 
@@ -9221,12 +9221,12 @@ namespace user
    }
 
 
-   void interaction_impl::approximate_occlusion_rects(int_rectangle_array &raTest)
+   void interaction_impl::approximate_occlusion_rects(i32_rectangle_array &raTest)
    {
 
       raTest.erase_all();
 
-      ::int_rectangle_array ra;
+      ::i32_rectangle_array ra;
 
       non_top_most_upper_window_rects(ra);
 
@@ -9340,7 +9340,7 @@ namespace user
    ::i64 interaction_impl::approximate_occlusion_area()
    {
 
-      int_rectangle_array ra;
+      i32_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -9434,7 +9434,7 @@ namespace user
    ::i64 interaction_impl::approximate_occlusion_area_except_self_transparent()
    {
 
-      int_rectangle_array ra;
+      i32_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -9463,7 +9463,7 @@ namespace user
    ::i64 interaction_impl::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
-      int_rectangle_array ra;
+      i32_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 

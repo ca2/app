@@ -425,7 +425,7 @@ return nullptr;
 
    //virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override{}
    //virtual bool get_int(const ::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override{}
-   //virtual bool get_double(const ::user::interaction* pinteraction, ::f64 & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override{}
+   //virtual bool get_f64(const ::user::interaction* pinteraction, ::f64 & i, ::user::enum_f64 eint, ::user::enum_state estate = ::user::e_state_none) const override{}
    //virtual ::user::style * user_style(){}
 
 

@@ -123,9 +123,9 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
-      ::i64 iMin = m_scalar.minimum().get_long_long();
-      ::i64 iMax = m_scalar.maximum().get_long_long();
-      ::i64 iVal = m_scalar.get().get_long_long();
+      ::i64 iMin = m_scalar.minimum().get_i64();
+      ::i64 iMax = m_scalar.maximum().get_i64();
+      ::i64 iVal = m_scalar.get().get_i64();
 
       ::i32_rectangle rectangle;
       for(::i64 i = iMin; i <= iMax; i++)
@@ -226,9 +226,9 @@ namespace user
 
       ::i64 iMin, iMax;
 
-      iMin = m_scalar.minimum().get_long_long();
+      iMin = m_scalar.minimum().get_i64();
 
-      iMax = m_scalar.maximum().get_long_long();
+      iMax = m_scalar.maximum().get_i64();
 
       return allocateø ::item(e_element_item, (::collection::index) (iMin + (((point.x - rectangleX.left) * (iMax - iMin)) / rectangleX.width())));
 

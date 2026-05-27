@@ -28,7 +28,7 @@ namespace windowing
       ::collection::index              m_iMainWorkspace;
       ::f64                           m_dpi;
 
-      ::int_rectangle_array_base            m_rectangleaWorkAreas;
+      ::i32_rectangle_array_base            m_rectangleaWorkAreas;
 
 
 
@@ -90,7 +90,7 @@ namespace windowing
 
       virtual monitor * get_best_monitor(const ::i32_rectangle & rectangle);
 
-      virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::i32_rectangle & rectangle);
+      virtual void  get_monitor(i32_rectangle_array_base & rectaMonitor, i32_rectangle_array_base & rectaIntersect, const ::i32_rectangle & rectangle);
 
       virtual ::collection::index initial_frame_position(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);
 

@@ -172,10 +172,10 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
-      if (!m_bEnabled || emouse != ::user::e_mouse_left_button)
+      if (!m_bEnabled || ebuttonstate != ::user::e_button_state_left)
       {
 
          return false;

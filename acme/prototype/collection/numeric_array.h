@@ -25,7 +25,7 @@ template < typename ARG_TYPE >
 //template < >
 //inline ::i64 from_string(const ::scoped_string & scopedstr)
 //{
-//   return to_long_long(string(scopedstr));
+//   return to_i64(string(scopedstr));
 //}
 
 
@@ -1339,7 +1339,7 @@ namespace acme
 //}
 
 
-// using int_2a = array < i32_array_base >;
+// using i32_2a = array < i32_array_base >;
 
 
 // using f32_2a = array < f32_array >;

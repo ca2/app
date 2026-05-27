@@ -255,7 +255,7 @@ inline f32_angle operator""_f_degrees(long double degrees)
 }
 
 
-inline f64_angle operator""_degree(unsigned long long degrees)
+inline f64_angle operator""_degree(::u64 degrees)
 {
 
    return radians(degrees_to_radians((::f64)degrees));
@@ -263,7 +263,7 @@ inline f64_angle operator""_degree(unsigned long long degrees)
 }
 
 
-inline f64_angle operator""_degrees(unsigned long long hn)
+inline f64_angle operator""_degrees(::u64 hn)
 {
 
    return operator""_degree(hn);
@@ -271,7 +271,7 @@ inline f64_angle operator""_degrees(unsigned long long hn)
 }
 
 
-inline f32_angle operator""_f_degree(unsigned long long degrees)
+inline f32_angle operator""_f_degree(::u64 degrees)
 {
 
    return radians(degrees_to_radians((::f32)degrees));
@@ -279,7 +279,7 @@ inline f32_angle operator""_f_degree(unsigned long long degrees)
 }
 
 
-inline f32_angle operator""_f_degrees(unsigned long long hn)
+inline f32_angle operator""_f_degrees(::u64 hn)
 {
    
    return operator""_f_degree(hn);

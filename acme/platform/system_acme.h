@@ -76,7 +76,7 @@ namespace platform
       ::pointer < manual_reset_happening >                m_pmanualresethappeningSystemTaskFinished;
       //::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
 
-      ::int_sz *                                      m_pintstringLanguageResourceMap;
+      ::i32_sz *                                      m_pintstringLanguageResourceMap;
       ::i32                                             m_iMatterFromHttpCache;
 
       const_char_pointer m_pszMain;

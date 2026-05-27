@@ -28,7 +28,7 @@ namespace sockets
    \ingroup http */
    class CLASS_DECL_APEX http_client_socket :
       virtual public http_tunnel,
-      virtual public int_scalar_source
+      virtual public i32_scalar_source
    {
    public:
 

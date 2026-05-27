@@ -7,24 +7,24 @@
 //#pragma comment(lib, "d3dcompiler.lib")
 //const_char_pointer fullscreen_vertex_shader = R"shader(// fullscreen_vs.hlsl
 //      struct VSOut {
-//         float4 pos : SV_POSITION;
-//         float2 uv : TEXCOORD0;
+//         f324 pos : SV_POSITION;
+//         f322 uv : TEXCOORD0;
 //      };
 //
 //      VSOut main(uint vid : SV_VertexID) {
-//         float2 verts[3] = {
-//             float2(-1, -1),
-//             float2(-1, +3),
-//             float2(+3, -1)
+//         f322 verts[3] = {
+//             f322(-1, -1),
+//             f322(-1, +3),
+//             f322(+3, -1)
 //         };
-//         float2 uvs[3] = {
-//             float2(0, 1),
-//             float2(0, -1),
-//             float2(2, 1)
+//         f322 uvs[3] = {
+//             f322(0, 1),
+//             f322(0, -1),
+//             f322(2, 1)
 //         };
 //
 //         VSOut o;
-//         o.pos = float4(verts[vid], 0, 1);
+//         o.pos = f324(verts[vid], 0, 1);
 //         o.uv = 0.5 * (verts[vid] + 1.0);
 //         return o;
 //      }
@@ -34,7 +34,7 @@
 //Texture2D tex : register(t0);
 //SamplerState samp : register(s0);
 //
-//float4 main(float4 pos : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target {
+//f324 main(f324 pos : SV_POSITION, f322 uv : TEXCOORD0) : SV_Target {
 //    return tex.Sample(samp, uv);
 //}
 //)shader";

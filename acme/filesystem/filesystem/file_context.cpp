@@ -2909,7 +2909,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //      MD5_Update((MD5_CTX *)pctx, &ch, 1);
 //   }
 //
-//   iNumber = ::str::to_long_long(str);
+//   iNumber = ::str::to_i64(str);
 //
 //}
 

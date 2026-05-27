@@ -380,8 +380,8 @@ namespace graphics3d
                //z_multiplier = -1.f;
             }
          }
-         //m_pshader->set_float("y_multiplier", y_multiplier);
-         //m_pshader->set_float("z_multiplier", z_multiplier);
+         //m_pshader->set_f32("y_multiplier", y_multiplier);
+         //m_pshader->set_f32("z_multiplier", z_multiplier);
 
          floating_sequence3 sequence3Multiplier;
 

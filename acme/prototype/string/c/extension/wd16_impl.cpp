@@ -753,7 +753,7 @@ CLASS_DECL_ACME void wd16_from_i64_base(::wd16_character * sz, ::i64 i, ::i32 iB
 
    wd16_character * pend = nullptr;
 
-   __long_longtowd16(i, sz, iBase, edigitcase, pend);
+   __i64towd16(i, sz, iBase, edigitcase, pend);
 
 }
 
@@ -761,7 +761,7 @@ CLASS_DECL_ACME void wd16_from_i64_base(::wd16_character * sz, ::i64 i, ::i32 iB
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::i64 wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::i64 wd16_to_i64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
 {
 
    return wcstoll(psz, (::wd16_character **) ppszEnd, iBase);
@@ -769,7 +769,7 @@ CLASS_DECL_ACME ::i64 wd16_to_long_long(const ::wd16_character * psz, const ::wd
 }
 
 
-CLASS_DECL_ACME ::u64 wd16_to_unsigned_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u64 wd16_to_u64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
 {
 
    return wcstoull(psz, (::wd16_character **) ppszEnd, iBase);
@@ -797,7 +797,7 @@ CLASS_DECL_ACME ::u32 wd16_to_unsigned_int(const ::wd16_character * psz, const :
 
 
 
-CLASS_DECL_ACME ::i64 wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::i64 wd16_to_i64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
 {
 
    return __wd16toi64(psz, (::wd16_character **) ppszEnd, iBase);
@@ -805,7 +805,7 @@ CLASS_DECL_ACME ::i64 wd16_to_long_long(const ::wd16_character * psz, const ::wd
 }
 
 
-CLASS_DECL_ACME ::u64 wd16_to_unsigned_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u64 wd16_to_u64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, ::i32 iBase)
 {
 
    return __wd16tou64(psz, (::wd16_character **) ppszEnd, iBase);

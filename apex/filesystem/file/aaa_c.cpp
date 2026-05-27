@@ -72,7 +72,7 @@ string file_path_title(const ::file::path & path)
 }
 
 
-int_bool file_path_is_relative(const ::scoped_string & scopedstr)
+i32_bool file_path_is_relative(const ::scoped_string & scopedstr)
 {
 
    string strPath(scopedstr);
@@ -89,7 +89,7 @@ int_bool file_path_is_relative(const ::scoped_string & scopedstr)
 
 
 
-CLASS_DECL_APEX int_bool dir_appdata(char_pointer psz,size_t size)
+CLASS_DECL_APEX i32_bool dir_appdata(char_pointer psz,size_t size)
 {
 
 #ifdef WINDOWS
@@ -114,7 +114,7 @@ CLASS_DECL_APEX int_bool dir_appdata(char_pointer psz,size_t size)
 pdirectorysystem->create(scopedstr) != 0;
 }
 
-int_bool is_absolute_path(const ::scoped_string & scopedstr)
+i32_bool is_absolute_path(const ::scoped_string & scopedstr)
 {
    if(scopedstr == nullptr)
       return false;
@@ -133,7 +133,7 @@ int_bool is_absolute_path(const ::scoped_string & scopedstr)
 
 }
 
-CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
+CLASS_DECL_APEX i32_bool file_is_true_dup(const ::file::path & path)
 {
 
    return ::str::is_true(::file_system()->as_string(path));

@@ -113,7 +113,7 @@ namespace user
       virtual void update_region();
       virtual void update_placement();
 
-      virtual void set_drag_point(const ::f64_point & ::f64_point);
+      virtual void set_drag_point(const ::f64_point & point);
       virtual ::f64_point get_drag_point();
 
       virtual void _transform_sequence(f64_sequence2 & sequence) const;

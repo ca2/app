@@ -196,7 +196,7 @@ namespace gpu
             // each mip level has increasing roughness
             ::f32 roughness = (::f32)iCurrentMip / (::f32)(mipCount - 1);
 
-            m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
+            m_pshaderPrefilteredEnvMap->set_f32("roughness", roughness);
 
             for (auto iLayer = 0; iLayer < 6; iLayer++)
             {

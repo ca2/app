@@ -334,7 +334,7 @@ struct matrix_type
    //   __m256 bz = _mm256_broadcast_ss(&s.z);
    //   __m256 bw = _mm256_broadcast_ss(&s.w);
 
-   //   // Load two columns at a time (2×8 floats)
+   //   // Load two columns at a time (2×8 f32s)
    //   __m256 col01 = _mm256_loadu_ps(&M.fa[0]); // columns 0 & 1
    //   __m256 col23 = _mm256_loadu_ps(&M.fa[8]); // columns 2 & 3
 
@@ -343,7 +343,7 @@ struct matrix_type
    //      _mm256_mul_ps(col01, _mm256_permute2f128_ps(_mm256_castps256_ps128(bx), _mm256_castps256_ps128(by), 0x20)),
    //      _mm256_mul_ps(col23, _mm256_permute2f128_ps(_mm256_castps256_ps128(bz), _mm256_castps256_ps128(bw), 0x20)));
 
-   //   // Now we have results in 8 floats; we only need the lower 4 (the multiplication pattern fits that)
+   //   // Now we have results in 8 f32s; we only need the lower 4 (the multiplication pattern fits that)
 
    //   __m128 low = _mm256_castps256_ps128(mul01);
    //   __m128 high = _mm256_extractf128_ps(mul01, 1);
@@ -502,7 +502,7 @@ struct matrix_type
          // Sum contributions
          __m256 total = _mm256_add_ps(mul01, mul23);
 
-         // Add low/high 128-bit lanes to get final 4 floats
+         // Add low/high 128-bit lanes to get final 4 f32s
          __m128 result = _mm_add_ps(_mm256_castps256_ps128(total), _mm256_extractf128_ps(total, 1));
 
          // Store result column
@@ -1170,7 +1170,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
          };
 
          //
-         // ---- AVX multiply first 8 floats ----
+         // ---- AVX multiply first 8 f32s ----
          //
          __m256 scale = _mm256_set1_ps(invdet);
          __m256 adj_lo = _mm256_loadu_ps(&adj[0]); // adj[0..7]
@@ -1265,7 +1265,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       __m128 col2 = _mm_loadu_ps(&a.fa[8]);
       __m128 col3 = _mm_loadu_ps(&a.fa[12]);
 
-      // Unpack into scalar floats for fully unrolled computation
+      // Unpack into scalar f32s for fully unrolled computation
       ::f32 m[16];
       _mm_storeu_ps(&m[0], col0);
       _mm_storeu_ps(&m[4], col1);
@@ -1344,7 +1344,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       __m256 col01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
       __m256 col23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
 
-      // Unpack into scalar floats for full unrolled computation
+      // Unpack into scalar f32s for full unrolled computation
       ::f32 m[16];
       _mm256_storeu_ps(&m[0], col01);
       _mm256_storeu_ps(&m[8], col23);

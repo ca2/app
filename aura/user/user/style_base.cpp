@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   bool style_base::get_double(::user::interaction* pinteraction, ::f64 & d, ::user::enum_double edouble, ::user::enum_state estate)
+   bool style_base::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, ::user::enum_state estate)
    {
 
       return false;

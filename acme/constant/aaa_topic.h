@@ -22,7 +22,7 @@ enum enum_topic
    id_initialize_control = 1'073'741'824, // 0x40000000
    id_action,
    id_left_button_down,
-   id_left_button_double_click,
+   id_left_button_f64_click,
    id_click,
    id_context_menu,
    //subjectnt_m_button_down,

@@ -12,7 +12,7 @@ namespace acme
    namespace bit
    {
 
-      void int_aligned_copy(::i32 * pDest, ::i32 iDest, ::i32 * pSrc, ::i32 iSrc, ::i32 iCount)
+      void i32_aligned_copy(::i32 * pDest, ::i32 iDest, ::i32 * pSrc, ::i32 iSrc, ::i32 iCount)
       {
          
          if((iDest % INT_ALIGN) != (iSrc %INT_ALIGN))
@@ -34,15 +34,15 @@ namespace acme
          ::memory_copy(pFullDest, pFullSrc, iFullCount2);
          if(pFullDest > pDest)
          {
-            int_aligned_copy(pFullDest - 1, pFullSrc - 1, iDest % INT_ALIGN, INT_ALIGN - 1);
+            i32_aligned_copy(pFullDest - 1, pFullSrc - 1, iDest % INT_ALIGN, INT_ALIGN - 1);
          }
          if((iFullCount1 % INT_ALIGN) > 0)
          {
-            int_aligned_copy(pFullDest + iFullCount2, pFullSrc + iFullCount2, 0, (iFullCount1 % INT_ALIGN) - 1);
+            i32_aligned_copy(pFullDest + iFullCount2, pFullSrc + iFullCount2, 0, (iFullCount1 % INT_ALIGN) - 1);
          }
       }
 
-      void int_aligned_copy(::i32 * pDest, ::i32 * pSrc, ::i32 start, ::i32 end)
+      void i32_aligned_copy(::i32 * pDest, ::i32 * pSrc, ::i32 start, ::i32 end)
       {
          for(::i32 i = start; i <= end; i++)
          {

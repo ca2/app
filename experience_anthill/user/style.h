@@ -55,7 +55,7 @@ namespace experience_anthill
       virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout) override;
 
       //      virtual bool get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
-      //      virtual bool get_double(::f64 & d, ::user::e_double edouble, ::user::style_context * pcontext) override;
+      //      virtual bool get_f64(::f64 & d, ::user::e_f64 ef64, ::user::style_context * pcontext) override;
 
 
    };

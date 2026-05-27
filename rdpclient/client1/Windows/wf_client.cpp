@@ -489,7 +489,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //		return false;
 //
 //	if (wfc->fullscreen)
-//		floatbar_window_create(wfc);
+//		f32bar_window_create(wfc);
 //
 //	return true;
 //}

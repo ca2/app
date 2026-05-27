@@ -2469,10 +2469,10 @@ namespace experience_anthill
    //   }
 
    //
-   //   bool style::get_double(::f64 & d, ::user::e_double edouble, ::user::style_context * pcontext)
+   //   bool style::get_f64(::f64 & d, ::user::e_f64 ef64, ::user::style_context * pcontext)
    //   {
    //
-   //      if (edouble == ::user::f64_list_item_height_rate)
+   //      if (ef64 == ::user::f64_list_item_height_rate)
    //      {
    //
    //         d = 1.65;
@@ -2481,7 +2481,7 @@ namespace experience_anthill
    //
    //      }
    //
-   //      return ::user::style::get_double(d, edouble, pcontext);
+   //      return ::user::style::get_f64(d, ef64, pcontext);
    //
    //   }
 

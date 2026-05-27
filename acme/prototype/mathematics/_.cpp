@@ -1,4 +1,4 @@
-// Created int_to_string_bases_table.dynamically_generated generator by camilo on 2023-02-02 14:38 <3ThomasBorregaardSorensen!!
+// Created i32_to_string_bases_table.dynamically_generated generator by camilo on 2023-02-02 14:38 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include <math.h>
 
@@ -79,7 +79,7 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 
 
 
-#include "int_to_string_bases_table.dynamically_generated"
+#include "integer_to_string_bases_table.dynamically_generated"
 
 
 ::i32 type_maximum_digits(enum_integer_type etype, ::i32 iBase)
@@ -110,9 +110,9 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 //::i32 i16_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_short, iBase); }
 //::i32 u16_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_short, iBase); }
 //
-//::i32 int_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
+//::i32 i32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
 //::i32 u32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_int, iBase); }
 //
-//::i32 i64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_long_long, iBase); }
-//::i32 u64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_long_long, iBase); }
+//::i32 i64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }
+//::i32 u64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_u64, iBase); }
 //

@@ -43,9 +43,9 @@ namespace sockets
          Initializer();
          virtual ~Initializer() {}
 
-         int_to_string Method;
-         int_to_string header;
-         int_to_string Attribute;
+         i32_to_string Method;
+         i32_to_string header;
+         i32_to_string Attribute;
          string_map_base < ::i32 > ResponseHeader;
 
       };

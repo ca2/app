@@ -45,7 +45,7 @@ namespace nanoui
          (::i32)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
             (::f32)(m_iThumbSize + m_iSpacing)));
       ::i32 n_rows = ((::i32)m_images.size() + n_cols - 1) / n_cols;
-      return int_sequence2(n_cols, n_rows);
+      return i32_sequence2(n_cols, n_rows);
    }
 
 
@@ -103,7 +103,7 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_button_event(const i32_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool ImagePanel::mouse_button_event(const i32_point & p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
    {
 
       ::collection::index iIndex = index_for_position(p);

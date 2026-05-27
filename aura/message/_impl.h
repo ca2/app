@@ -4,8 +4,8 @@
 //#define MSG_TYPE_LINK(emessagetype, pchannel, preceiver, phandler) \
 //   pchannel->add_route(preceiver, phandler, ::atom((::message::enum_type)(emessagetype)))
 //
-//#define USER_MESSAGE_LINK(int_message, pchannel, preceiver, phandler) \
-//   pchannel->add_route(preceiver, phandler, ::atom(::atom((index) (int_message)), ::message::e_type_message))
+//#define USER_MESSAGE_LINK(i32_message, pchannel, preceiver, phandler) \
+//   pchannel->add_route(preceiver, phandler, ::atom(::atom((index) (i32_message)), ::message::e_type_message))
 //
 //#define ON_TYPED_MESSAGE(atom, MESSAGE, name) \
 //   this->get_typed_route < typename ::non_reference < decltype(*this) >::TYPE, MESSAGE >(atom, this) = [this](MESSAGE * p ## name)

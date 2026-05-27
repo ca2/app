@@ -90,8 +90,8 @@ namespace user
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //int_rectangle_array_base                                            m_rectangleaMonitor;
-      //int_rectangle_array_base                                            m_rectangleaWorkspace;
+      //i32_rectangle_array_base                                            m_rectangleaMonitor;
+      //i32_rectangle_array_base                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 

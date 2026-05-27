@@ -156,7 +156,7 @@ namespace user
 
       USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
       USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &list::on_message_left_button_f64_click);
       USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
 
       USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
@@ -1584,7 +1584,7 @@ namespace user
    ::i32 list::_001CalcItemHeight(::user::style * pstyle, ::i32 iBaseHeight)
    {
 
-      return (::i32) (iBaseHeight * get_double(pstyle, ::user::e_f64_list_item_height_rate, ::user::e_state_none, 1.0));
+      return (::i32) (iBaseHeight * get_f64(pstyle, ::user::e_f64_list_item_height_rate, ::user::e_state_none, 1.0));
 
    }
 
@@ -4298,7 +4298,7 @@ namespace user
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
+                      pmessage->m_eusermessage = ::user::e_message_left_button_f64_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -4625,7 +4625,7 @@ namespace user
    }
 
 
-   void list::on_message_left_button_double_click(::message::message * pmessage)
+   void list::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -5970,7 +5970,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      return (::i32)(cx * get_double(pstyle, ::user::e_f64_width_rate, ::user::e_state_none, 1.2));
+      return (::i32)(cx * get_f64(pstyle, ::user::e_f64_width_rate, ::user::e_state_none, 1.2));
 
    }
 

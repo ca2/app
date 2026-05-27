@@ -228,7 +228,7 @@ namespace mathematics
       ::i8 random_char();
       ::u8 random_u8();
       ::u32 random_ui();
-      ::u64 random_unsigned_long_long();
+      ::u64 random_u64();
 
       ::i32 rand_max();
 
@@ -310,7 +310,7 @@ namespace mathematics
 
          ::largest_type < INTEGRAL1, INTEGRAL2 > iRange = iMax - iMin;
 
-         auto u = random_unsigned_long_long();
+         auto u = random_u64();
 
          return(::largest_type < INTEGRAL1, INTEGRAL2 >) ((u % (iRange + 1)) + iMin);
 

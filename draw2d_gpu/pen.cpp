@@ -369,10 +369,10 @@ namespace draw2d_gpu
       //   else
       //   {
       //      ((pen *) this)->m_ppen = allocateø< plusplus::Pen(plusplus::Color >(
-      //         color32_byte_opacity(m_color),
-      //         color32_byte_red(m_color),
-      //         color32_byte_green(m_color),
-      //         color32_byte_blue(m_color)), (plusplus::REAL) m_dWidth);
+      //         color32_u8_opacity(m_color),
+      //         color32_u8_red(m_color),
+      //         color32_u8_green(m_color),
+      //         color32_u8_blue(m_color)), (plusplus::REAL) m_dWidth);
 
       //   }
       //   switch(m_elinejoin)

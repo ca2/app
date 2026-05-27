@@ -60,7 +60,7 @@ namespace nanoui
 
       virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
       virtual bool mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const i32_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const i32_point & p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       virtual void draw(::nano2d::context  * pcontext) override;
 
    };

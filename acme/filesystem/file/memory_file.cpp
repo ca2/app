@@ -276,10 +276,10 @@ void memory_file::write_from_hex(const ::block & block)
 }
 
 
-bool memory_file::get_unsigned_long_long(::u64 & hn)
+bool memory_file::get_u64(::u64 & hn)
 {
 
-   return _get_unsigned_long_long(hn);
+   return _get_u64(hn);
 
 }
 

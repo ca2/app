@@ -47,7 +47,7 @@ CLASS_DECL_ACME string process_platform_name();
 CLASS_DECL_ACME string process_platform_name();
 CLASS_DECL_ACME string process_version_dir_name();
 
-//CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
+//CLASS_DECL_ACME i32_bool is_process_running(::u32 pid);
 
 //CLASS_DECL_ACME ::file::path core_app_path(string strApp);
 

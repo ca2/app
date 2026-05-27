@@ -158,9 +158,9 @@ namespace berg
 //
 //      theme_current_control(control_menu);
 //
-//      create_int(int_menu_check_padding, 3);
-//      create_int(int_button_draw_text_flags, e_align_center | DT_SINGLELINE);
-//      create_int(int_menu_item_draw_text_flags, e_align_left_center | DT_SINGLELINE);
+//      create_int(i32_menu_check_padding, 3);
+//      create_int(i32_button_draw_text_flags, e_align_center | DT_SINGLELINE);
+//      create_int(i32_menu_item_draw_text_flags, e_align_left_center | DT_SINGLELINE);
 //
 //      create_rect_coord(rect_menu_margin, 4, 4, 4, 4);
 //      create_rect_coord(rect_menu_border, 0, 0, 0, 0);
@@ -192,9 +192,9 @@ namespace berg
 //
 //      create_point_font(font_default, pnode->font_name(e_font_sans), 12.0);
 //
-//      create_color(color_text_normal, color_with_byte_opacity(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, color_with_byte_opacity(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_color(color_background, argb(100, 180, 192, 255));
 //      create_color(color_background_press, argb(200, 180, 192, 255));
@@ -208,9 +208,9 @@ namespace berg
 //      theme_current_control(control_menu_popup);
 //
 //      create_point_font(font_default, pnode->font_name(e_font_sans), 9.0, e_font_weight_bold);
-//      create_color(color_text_normal, color_with_byte_opacity(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, color_with_byte_opacity(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_session_default_color(color_background, 200, COLOR_3DHIGHLIGHT);
 //      create_session_default_color(color_background_press, 200, COLOR_3DHIGHLIGHT);
@@ -225,9 +225,9 @@ namespace berg
 //
 //      create_point_font(font_default, "Marlett", 11.0);
 //
-//      create_color(color_text_normal, color_with_byte_opacity(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, color_with_byte_opacity(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_session_default_color(color_background, 200, COLOR_3DFACE);
 //      create_session_default_color(color_background_press, 200, COLOR_3DFACE);
@@ -256,9 +256,9 @@ namespace berg
 //
 //      create_point_font(font_default, "Marlett", 11.0);
 //
-//      create_color(color_text_normal, color_with_byte_opacity(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, color_with_byte_opacity(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_session_default_color(color_background, 200, COLOR_3DFACE);
 //      create_session_default_color(color_background_press, 200, COLOR_3DFACE);
@@ -321,7 +321,7 @@ namespace berg
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
 //   //virtual const i32_rectangle &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
 //   //virtual ::i32                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, ::i32 iDefault = 0);
-//   //virtual ::f64             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, ::f64 dDefault = 0.0);
+//   //virtual ::f64             _001GetDouble(::user::interaction * pinteraction, ::user::e_f64 ef64, ::f64 dDefault = 0.0);
 //
 //   //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, enum_element eelement = e_element_none);
 //   //virtual bool _001IsTransparent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
@@ -347,7 +347,7 @@ namespace berg
 //   //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_rect(const i32_rectangle & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_int(::i32 & i, ::user::e_int eint, ::user::interaction * pinteraction);
-//   //virtual bool userstyle_double(::f64 & d, ::user::e_double edouble, ::user::interaction * pinteraction);
+//   //virtual bool userstyle_f64(::f64 & d, ::user::e_f64 ef64, ::user::interaction * pinteraction);
 //
 //
 //   //virtual bool style_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction);
@@ -356,7 +356,7 @@ namespace berg
 //   //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool style_rect(const i32_rectangle & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool style_int(::i32 & i, ::user::e_int eint, ::user::interaction * pinteraction);
-//   //virtual bool style_double(::f64 & d, ::user::e_double edouble, ::user::interaction * pinteraction);
+//   //virtual bool style_f64(::f64 & d, ::user::e_f64 ef64, ::user::interaction * pinteraction);
 //
 //   void style::theme_current_control(e_control econtrol)
 //   {

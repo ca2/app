@@ -106,7 +106,7 @@ namespace user
 //   }
 //
 //
-//   void interaction_base::RedrawOptimize(int_rectangle_array_base &array)
+//   void interaction_base::RedrawOptimize(i32_rectangle_array_base &array)
 //   {
 //
 //      ::i32_rectangle rectangle;
@@ -372,7 +372,7 @@ namespace user
    }
 
 
-   //bool interaction_base::Redraw(int_rectangle_array_base & recta)
+   //bool interaction_base::Redraw(i32_rectangle_array_base & recta)
    //{
 
    //   bool bOk = true;
@@ -2103,7 +2103,7 @@ namespace user
    }
 
 
-   void interaction_base::viewport_client_to_screen(::int_sequence2 & sequence)
+   void interaction_base::viewport_client_to_screen(::i32_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2111,7 +2111,7 @@ namespace user
    }
 
 
-   void interaction_base::viewport_screen_to_client(::int_sequence2 & sequence)
+   void interaction_base::viewport_screen_to_client(::i32_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -3699,7 +3699,7 @@ namespace user
 //
 //      ::pointer<::message::message>pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) atom.long_long, 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64, 0);
 //
 //      switch (eprototype)
 //      {

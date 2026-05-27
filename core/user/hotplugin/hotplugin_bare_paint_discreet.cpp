@@ -143,11 +143,11 @@ namespace hotplugin
 
          stringtow strProgress(wstrProgress);
 
-         string strDecimal = ansi_string_from_long_long(iRatePercentMillis);
+         string strDecimal = ansi_string_from_i64(iRatePercentMillis);
 
          ansi_zero_pad(strDecimal, 3);
 
-         strProgress = ansi_string_from_long_long(iRatePercent) + "." + strDecimal + "%";
+         strProgress = ansi_string_from_i64(iRatePercent) + "." + strDecimal + "%";
 
       }
 

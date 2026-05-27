@@ -109,13 +109,13 @@ namespace nanoui
             if (m_ppopup->side() == Popup::Right)
             {
 
-               m_ppopup->set_anchor_pos(int_sequence2(parent_window->width() + anchor_size, pos_y));
+               m_ppopup->set_anchor_pos(i32_sequence2(parent_window->width() + anchor_size, pos_y));
 
             }
             else
             {
 
-               m_ppopup->set_anchor_pos(int_sequence2(-anchor_size, pos_y));
+               m_ppopup->set_anchor_pos(i32_sequence2(-anchor_size, pos_y));
 
             }
 
@@ -123,7 +123,7 @@ namespace nanoui
          else
          {
 
-            m_ppopup->set_position(absolute_position() + int_sequence2(width() + anchor_size + 1, m_size.cy / 2 - anchor_size));
+            m_ppopup->set_position(absolute_position() + i32_sequence2(width() + anchor_size + 1, m_size.cy / 2 - anchor_size));
 
          }
 

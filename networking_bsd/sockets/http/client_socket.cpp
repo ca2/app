@@ -639,7 +639,7 @@ namespace sockets
       else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
+         return ::i32_scalar_source::on_set_scalar(escalar, iValue, iFlags);
 
       }
 
@@ -658,7 +658,7 @@ namespace sockets
       else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         ::i32_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 
@@ -676,7 +676,7 @@ namespace sockets
       else
       {
 
-         ::int_scalar_source::get_scalar(escalar, i);
+         ::i32_scalar_source::get_scalar(escalar, i);
 
       }
 
@@ -694,7 +694,7 @@ namespace sockets
       else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         ::i32_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 

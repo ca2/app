@@ -647,7 +647,7 @@ template <class TYPEA, class TYPEB, class ARRAYA = array < TYPEA >, class ARRAYB
 class spreadset;
 
 
-using int_spreadset = spreadset < ::i32, ::i32, unique_int_sort_array, unique_int_sort_array >;
+using i32_spreadset = spreadset < ::i32, ::i32, unique_int_sort_array, unique_int_sort_array >;
 
 using i64_spreadset = spreadset < ::i64, ::i64, unique_i64_sort_array, unique_i64_sort_array >;
 

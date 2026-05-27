@@ -72,7 +72,7 @@ inline void to_string(string& str, ::wd16_character * const psz);
 inline void to_string(string& str, const ::wd32_character * psz);
 inline void to_string(string& str, ::wd32_character * const psz);
 
-inline void to_string(string& str, const signed ::i8 & ch);
+inline void to_string(string& str, const ::i8 & ch);
 
 
 inline void to_string(string& str, const ::ansi_character& ch);

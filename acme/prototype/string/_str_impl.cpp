@@ -128,7 +128,7 @@ CLASS_DECL_ACME void from_string(::i32 & i, ::i32 iBase, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::i64 & i, ::i32 iBase, const_char_pointer psz)
 {
 
-   i = ansi_to_long_long(psz, nullptr, iBase);
+   i = ansi_to_i64(psz, nullptr, iBase);
 
 }
 
@@ -160,7 +160,7 @@ CLASS_DECL_ACME void from_string(::u32 & u, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::u64 & u, const_char_pointer psz)
 {
 
-   u = ansi_to_unsigned_long_long(psz, nullptr, 10);
+   u = ansi_to_u64(psz, nullptr, 10);
 
 }
 
@@ -176,7 +176,7 @@ CLASS_DECL_ACME void from_string(::u32 & u, ::i32 iBase, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(::u64 & u, ::i32 iBase, const_char_pointer psz)
 {
 
-   u = ansi_to_unsigned_long_long(psz, nullptr, iBase);
+   u = ansi_to_u64(psz, nullptr, iBase);
 
 }
 
@@ -185,7 +185,7 @@ CLASS_DECL_ACME void from_string(::u64 & u, ::i32 iBase, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(long & l, const_char_pointer psz)
 {
 
-   l = ansi_to_long_long(psz, nullptr, 10);
+   l = ansi_to_i64(psz, nullptr, 10);
 
 }
 #elif defined(WINDOWS)
@@ -203,7 +203,7 @@ CLASS_DECL_ACME void from_string(long & l, const_char_pointer psz)
 CLASS_DECL_ACME void from_string(long & l, ::i32 iBase, const_char_pointer psz)
 {
 
-   l = ansi_to_long_long(psz, nullptr, iBase);
+   l = ansi_to_i64(psz, nullptr, iBase);
 
 }
 #elif defined(WINDOWS)
@@ -227,7 +227,7 @@ CLASS_DECL_ACME void from_string(::i32 & i, const ::wd16_character * psz)
 CLASS_DECL_ACME void from_string(::i64 & i, const ::wd16_character * psz)
 {
 
-   i = wd16_to_long_long(psz);
+   i = wd16_to_i64(psz);
 
 }
 
@@ -243,7 +243,7 @@ CLASS_DECL_ACME void from_string(::i32 & i, const ::wd32_character * psz)
 CLASS_DECL_ACME void from_string(::i64 & i, const ::wd32_character * psz)
 {
 
-   i = wd32_to_long_long(psz);
+   i = wd32_to_i64(psz);
 
 }
 

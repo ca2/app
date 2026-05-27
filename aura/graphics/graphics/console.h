@@ -6,7 +6,7 @@
 #include "acme/operating_system/console.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/size.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 //#include "acme/prototype/collection/string_array.h"
 
 

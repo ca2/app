@@ -39,7 +39,7 @@ namespace hex
 {
 
 
-   ::i64 to_long_long(const ::scoped_string & scopedstr)
+   ::i64 to_i64(const ::scoped_string & scopedstr)
    {
 
       ::i64 r = 0, num = 0;
@@ -73,7 +73,7 @@ namespace hex
       return r;
    }
 
-   ::u64 to_unsigned_long_long(const ::scoped_string & scopedstr)
+   ::u64 to_u64(const ::scoped_string & scopedstr)
    {
       ::u64 r = 0;
       for(::i32 i = 0; i < scopedstr.length(); i++)

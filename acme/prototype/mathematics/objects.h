@@ -11,8 +11,8 @@
 
 
 #include "number_integer.h"
-#include "number_float.h"
-#include "number_double.h"
+#include "number_f32.h"
+#include "number_f64.h"
 
 
 #include "binary_operation.h"

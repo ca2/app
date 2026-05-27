@@ -138,7 +138,7 @@ namespace user
          if (m_estockicon == stock_icon_none)
          {
 
-            ::i32 iDrawTextFlags =  get_int(pstyle, ::user::int_edit_draw_text_flags,e_align_left_center, e_draw_text_single_line);
+            ::i32 iDrawTextFlags =  get_int(pstyle, ::user::i32_edit_draw_text_flags,e_align_left_center, e_draw_text_single_line);
 
             if(m_pfont)
             {

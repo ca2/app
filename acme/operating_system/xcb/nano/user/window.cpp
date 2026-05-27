@@ -407,12 +407,12 @@ namespace nano
       //
       //}
 
-      //#ifndef int_x
+      //#ifndef i32_x
       //#define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
       //#endif
       //
       //
-      //#ifndef int_y
+      //#ifndef i32_y
       //#define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
       //#endif
       //

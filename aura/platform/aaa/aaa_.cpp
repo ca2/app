@@ -15,10 +15,10 @@
 
 
 //extern "C"
-CLASS_DECL_AURA int_bool defer_aura_init();
+CLASS_DECL_AURA i32_bool defer_aura_init();
 
 //extern "C"
-CLASS_DECL_AURA int_bool defer_aura_term();
+CLASS_DECL_AURA i32_bool defer_aura_term();
 
 
 namespace aura
@@ -106,7 +106,7 @@ void gen_CrtErrorCheck(::i32 i)
 
 
 //extern "C"
-//int_bool defer_aura_init()
+//i32_bool defer_aura_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -122,7 +122,7 @@ void gen_CrtErrorCheck(::i32 i)
 //}
 
 //extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term()
+//CLASS_DECL_AURA i32_bool defer_aura_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -302,7 +302,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 
 ////extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_init()
+//CLASS_DECL_AURA i32_bool defer_aura_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -333,7 +333,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 
 //extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term()
+//CLASS_DECL_AURA i32_bool defer_aura_term()
 //{
 //
 //   g_iAuraRefCount--;

@@ -966,7 +966,7 @@ void main() {
    }
 
 
-   //bool graphics::rectVisible(const ::f64_rectangle & ::f64_rectangle) const
+   //bool graphics::rectVisible(const ::f64_rectangle & rectangle) const
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1101,10 +1101,10 @@ void main() {
    //void vertex2f(const ::f64_rectangle& rectangle, ::f32 fZ)
    //{
 
-   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.top, fZ);
-   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.top, fZ);
-   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.bottom, fZ);
-   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.bottom, fZ);
+   //   glVertex3f((GLf32)rectangle.left, (GLf32)rectangle.top, fZ);
+   //   glVertex3f((GLf32)rectangle.right, (GLf32)rectangle.top, fZ);
+   //   glVertex3f((GLf32)rectangle.right, (GLf32)rectangle.bottom, fZ);
+   //   glVertex3f((GLf32)rectangle.left, (GLf32)rectangle.bottom, fZ);
 
    //}
 
@@ -4500,7 +4500,7 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();
 
-      ///      GLdouble m[16];
+      ///      GLf64 m[16];
 
             //glGetDoublev(GL_MODELVIEW_MATRIX, m);
 
@@ -4509,7 +4509,7 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
             //glGetDoublev(GL_MODELVIEW_MATRIX, m);
 
 
-      //GLdouble m[16];
+      //GLf64 m[16];
 
       //m[0] = matrix.a1;
       //m[1] = matrix.b1;
@@ -4533,7 +4533,7 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
       //m[14] = 0.0;
       //m[15] = 1.0;
 
-      //glLoadMatrixd((const GLdouble*)m);
+      //glLoadMatrixd((const GLf64*)m);
 
       ////return false;
 

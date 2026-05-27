@@ -695,7 +695,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         m_content_ptr = (memsize) number.get_long_long();
+         m_content_ptr = (memsize) number.get_i64();
 
          return true;
 

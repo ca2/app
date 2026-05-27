@@ -135,7 +135,7 @@ namespace user
 
       //virtual bool client_to_screen(::i32_point * ppoint) override;
 
-      //virtual bool client_to_screen(::long_long_point * ppoint) override;
+      //virtual bool client_to_screen(::i64_point * ppoint) override;
 
       //virtual bool screen_to_client(::f64_rectangle * prectangle) override;
 
@@ -147,7 +147,7 @@ namespace user
 
       //virtual bool screen_to_client(::i32_point * ppoint) override;
 
-      //virtual bool screen_to_client(::long_long_point * ppoint) override;
+      //virtual bool screen_to_client(::i64_point * ppoint) override;
 
 
       bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;

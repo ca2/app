@@ -156,7 +156,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       m_pointCurrentLocalCursor = p;
@@ -353,7 +353,7 @@ namespace nanoui
       //::i32 yoffset = 0;
       //if (m_child_preferred_height > m_size.cy)
         // yoffset = (::i32)get_y_offset(m_scroll);
-      //pwidgetChild->set_position(int_sequence2(0, yoffset));
+      //pwidgetChild->set_position(i32_sequence2(0, yoffset));
 
       if (m_update_layout)
       {

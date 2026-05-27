@@ -157,23 +157,23 @@ using f32_size_array = ::array_particle < f32_size_array_base >;
 using f64_size_array = ::array_particle < f64_size_array_base >;
 
 
-using int_rectangle_array_base = rectangle_array_base < ::i32 >;
+using i32_rectangle_array_base = rectangle_array_base < ::i32 >;
 using i64_rectangle_array_base = rectangle_array_base < ::i64 >;
 using f32_rectangle_array_base = rectangle_array_base < ::f32 >;
 using f64_rectangle_array_base = rectangle_array_base < ::f64 >;
 
 
-using int_rectangle_array = ::array_particle < int_rectangle_array_base >;
+using i32_rectangle_array = ::array_particle < i32_rectangle_array_base >;
 using i64_rectangle_array = ::array_particle < i64_rectangle_array_base >;
 using f32_rectangle_array = ::array_particle < f32_rectangle_array_base >;
 using f64_rectangle_array = ::array_particle < f64_rectangle_array_base >;
 
-using int_lines_base = lines_base < ::i32 >;
+using i32_lines_base = lines_base < ::i32 >;
 using i64_lines_base = lines_base < ::i64 >;
 using f32_lines_base = lines_base < ::f32 >;
 using f64_lines_base = lines_base < ::f64 >;
 
-using int_lines = ::array_particle < int_lines_base >;
+using i32_lines = ::array_particle < i32_lines_base >;
 using i64_lines = ::array_particle < i64_lines_base >;
 using f32_lines = ::array_particle < f32_lines_base >;
 using f64_lines = ::array_particle < f64_lines_base >;

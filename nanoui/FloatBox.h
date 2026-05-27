@@ -86,7 +86,7 @@ namespace nanoui
       }
 
 
-      bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      bool mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
       {
 
          if ((m_bEditable || m_bSpinnable) && down)

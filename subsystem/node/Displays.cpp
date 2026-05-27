@@ -86,7 +86,7 @@ namespace subsystem
 //   // }
 // }
 //
-// ::int_rectangle_array_base Displays::getDisplaysCoords()
+// ::i32_rectangle_array_base Displays::getDisplaysCoords()
 // {
 //   //AutoLock al(&m_displayRectsMutex);
 //   //m_pparticleThis->update();
@@ -105,7 +105,7 @@ namespace subsystem
 //    return m_pparticleThis->isAlreadyUpdated();
 // }
 //
-// ::int_rectangle_array_base Displays::getDisplays()
+// ::i32_rectangle_array_base Displays::getDisplays()
 // {
 //    return m_pparticleThis->getDisplays();
 // }

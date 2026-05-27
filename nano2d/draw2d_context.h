@@ -3,7 +3,7 @@
 
 #include "acme/prototype/geometry2d/matrix.h"
 #include "aura/graphics/image/drawing.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "context.h"
 #include "font_sink.h"
 

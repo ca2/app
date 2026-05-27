@@ -16,7 +16,7 @@
 * i.e., to specify the size of the result of each expression.
 */
 
-/*typedef signed ::i8 s8;
+/*typedef ::i8 s8;
 typedef uchar uch;
 
 #if UINT_MAX >= 4294967295UL

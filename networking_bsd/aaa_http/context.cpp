@@ -312,7 +312,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str::to_long_long(strCache);
+               return ::str::to_i64(strCache);
 
             }
 
@@ -331,7 +331,7 @@ namespace http
       else
       {
 
-         strCache = as_string(len.long_long);
+         strCache = as_string(len.i64);
 
       }
 
@@ -1342,16 +1342,16 @@ namespace http
 
          }
 
-         if (set.has_property("int_scalar_source_listener"))
+         if (set.has_property("i32_scalar_source_listener"))
          {
 
-            psession->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+            psession->::i32_scalar_source::m_plistener = set["i32_scalar_source_listener"].cast < i32_scalar_source::listener >();
 
          }
          else
          {
 
-            psession->::int_scalar_source::m_plistener = nullptr;
+            psession->::i32_scalar_source::m_plistener = nullptr;
 
          }
 
@@ -1388,7 +1388,7 @@ namespace http
 
          psession->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 
-         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::i32_scalar_source::listener >();
 
          psession->m_scalarsourceDownloaded.id() = set["http_downloaded_id"].atom();
 
@@ -1489,9 +1489,9 @@ namespace http
 
             ::f64 dRateDownloaded = 0.0;
 
-            ::i64 iContentLength = set["http_content_length"].long_long;
+            ::i64 iContentLength = set["http_content_length"].i64;
 
-            ::i64 iBodySizeDownloaded = set["http_body_size_downloaded"].long_long;
+            ::i64 iBodySizeDownloaded = set["http_body_size_downloaded"].i64;
 
             if (iContentLength > 0)
             {
@@ -2002,10 +2002,10 @@ namespace http
 
       }
 
-      if (set.has_property("int_scalar_source_listener"))
+      if (set.has_property("i32_scalar_source_listener"))
       {
 
-         psocket->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+         psocket->::i32_scalar_source::m_plistener = set["i32_scalar_source_listener"].cast < i32_scalar_source::listener >();
 
       }
 
@@ -2098,7 +2098,7 @@ namespace http
 
       psocket->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 
-      psocket->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+      psocket->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::i32_scalar_source::listener >();
 
       psocket->m_scalarsourceDownloaded.id() = set["http_downloaded_id"].atom();
 
@@ -2228,7 +2228,7 @@ namespace http
 
          ::f64 dRateDownloaded = 0.0;
 
-         ::i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].long_long;
+         ::i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].i64;
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2341,9 +2341,9 @@ namespace http
 
       set["http_status"] = strStatus;
 
-      iContentLength = set["http_content_length"].long_long;
+      iContentLength = set["http_content_length"].i64;
 
-      iBodySizeDownloaded = set["http_body_size_downloaded"].long_long;
+      iBodySizeDownloaded = set["http_body_size_downloaded"].i64;
 
       log_information((LOG_HTTP_PREFIX
          << strUrl
@@ -2633,7 +2633,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].long_long;
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64;
 
          pmessageMessage->m_bRet = false;
 
@@ -2641,7 +2641,7 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].long_long;
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64;
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 

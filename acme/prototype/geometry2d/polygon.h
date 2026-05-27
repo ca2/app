@@ -218,7 +218,7 @@ polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (polygon_base&& po
 }
 
 
-inline bool int_lineersection(::f64_point & point, const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3, const ::f64_point & pt4);
+inline bool i32_lineersection(::f64_point & point, const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3, const ::f64_point & pt4);
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
@@ -334,7 +334,7 @@ inline bool inBoundedBox1(const ::f64_point & pt1, const ::f64_point & pt2, cons
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
-inline bool int_lineersection(::f64_point & point, const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3, const ::f64_point & pt4)
+inline bool i32_lineersection(::f64_point & point, const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3, const ::f64_point & pt4)
 {
 
    //Line segment 1 (point1, point2)
@@ -374,7 +374,7 @@ inline void get_intersection_points(f64_point_array_base & pa, const ::f64_point
    for (iptr i = 0; i < paPolygon.get_count(); i++)
    {
 
-      if (int_lineersection(point, point1, point2, i % paPolygon, (i + 1) % paPolygon))
+      if (i32_lineersection(point, point1, point2, i % paPolygon, (i + 1) % paPolygon))
       {
 
          pa.tolerance_add_unique(0.001, point);
@@ -514,7 +514,7 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon) const
          for (::i32 k = 0; k < c2; k++)
          {
 
-            if (int_lineersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
+            if (i32_lineersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
             {
 
                return true;

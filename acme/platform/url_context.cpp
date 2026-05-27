@@ -3449,7 +3449,7 @@ namespace url
 //         }
 //         //psz + len
 //
-//         //ansi_from_long_long(sz, uch, 16);
+//         //ansi_from_i64(sz, uch, 16);
 //
 //         //ansi_upper(sz);
 //

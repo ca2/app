@@ -139,8 +139,8 @@ namespace draw2d
             pgraphics,
             pcrect,
 
-            floatRateX,
-            floatHeight,
+            f32RateX,
+            f32Height,
             str,
             piCharsPositions,
 

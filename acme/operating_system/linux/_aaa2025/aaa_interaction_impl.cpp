@@ -11,7 +11,7 @@
 
 void x11_store_name(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrName);
 void x11_defer_check_configuration(::acme::windowing::window * pacmewindowingwindow);
-void upper_window_rects(::acme::windowing::window * pacmewindowingwindow, int_rectangle_array & ra);
+void upper_window_rects(::acme::windowing::window * pacmewindowingwindow, i32_rectangle_array & ra);
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
@@ -77,11 +77,11 @@ struct __CTLCOLOR
 //extern cairo_surface_t *  g_cairosurface;
 //extern cairo_t *  g_cairo;
 
-// int_bool PeekMessage(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+// i32_bool PeekMessage(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
 
 
-// int_bool GetMessage(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+// i32_bool GetMessage(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 
 /*
@@ -3908,7 +3908,7 @@ send(pmessageboxpayload);
 //   */
 //
 //   /*
-//      ::u32 interaction_impl::GetDlgItemInt(::i32 nID, int_bool * pTrans, bool bSigned) const
+//      ::u32 interaction_impl::GetDlgItemInt(::i32 nID, i32_bool * pTrans, bool bSigned) const
 //
 //      {
 //
@@ -4860,7 +4860,7 @@ send(pmessageboxpayload);
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::int_rectangle_array& recta)
+   void interaction_impl::non_top_most_upper_window_rects(::i32_rectangle_array& recta)
    {
 
       upper_window_rects(get_safe_handle(), recta);

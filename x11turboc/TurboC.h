@@ -116,7 +116,7 @@
 // Integer-type stuff that differs depending on whether the original
 // source code was for a 16-bit compiler (default) or 32-bit.
 typedef ::i8 gchar;
-typedef signed ::i8 gschar;
+typedef ::i8 gschar;
 typedef ::u8 guchar;
 typedef ::i16 gshort;
 typedef ::u16 gushort;

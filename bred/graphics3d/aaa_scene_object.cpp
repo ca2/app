@@ -7,7 +7,7 @@
 namespace graphics3d
 {
 
-	//interlocked_long_long scene_object::s_interlockedll;
+	//interlocked_i64 scene_object::s_interlockedll;
 
 	//floating_matrix4 ::graphics3d::transform::floating_matrix4()
 	//{

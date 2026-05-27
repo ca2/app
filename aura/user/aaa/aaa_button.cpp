@@ -38,7 +38,7 @@ namespace user
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;
       //m_erectPadding = rect_button_padding;
-      //m_eintTextAlign = int_button_draw_text_flags;
+      //m_eintTextAlign = i32_button_draw_text_flags;
 
 
       m_estockicon = stock_icon_none;
@@ -572,7 +572,7 @@ namespace user
 
          colorBack.hls_rate(0.0, -0.1, 0.0);
 
-         if (color32_byte_opacity(crBackground) > 0)
+         if (color32_u8_opacity(crBackground) > 0)
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -601,7 +601,7 @@ namespace user
       else
       {
 
-         if (color32_byte_opacity(crBackground) > 0)
+         if (color32_u8_opacity(crBackground) > 0)
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

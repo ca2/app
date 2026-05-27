@@ -787,7 +787,7 @@ namespace universal_windows
 
    //   //   pimpl->_001UpdateBuffer();
 
-   //   //   ::pointer<::window_double_buffer>pbuffer = pimpl->m_spgraphics;
+   //   //   ::pointer<::window_f64_buffer>pbuffer = pimpl->m_spgraphics;
 
    //   //   if (pbuffer.is_set())
    //   //   {

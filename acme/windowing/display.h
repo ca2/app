@@ -22,7 +22,7 @@ namespace acme
 
          ::i32_point                      m_pointCursor2;
          ::string                         m_strDarkModeAnnotation;
-         ::int_rectangle_array_base       m_rectanglea;
+         ::i32_rectangle_array_base       m_rectanglea;
 
 
          display();

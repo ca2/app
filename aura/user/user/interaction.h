@@ -34,7 +34,7 @@ namespace user
    struct set_need_redraw
    {
 
-      ::int_rectangle_array_base      m_rectangleaNeedRedraw;
+      ::i32_rectangle_array_base      m_rectangleaNeedRedraw;
       function<void()>           m_function;
       bool                       m_bAscendants;
 
@@ -753,7 +753,7 @@ namespace user
       virtual enum_translucency get_translucency(::user::style* pstyle);
       using ::user::interaction_base::get_int;
       virtual ::i32 get_int(::user::style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, ::i32 iDefault = 0);
-      virtual ::f64 get_double(::user::style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, ::f64 dDefault = 0.);
+      virtual ::f64 get_f64(::user::style* pstyle, enum_f64 ef64, ::user::enum_state estate = e_state_none, ::f64 dDefault = 0.);
       virtual status < ::f64_rectangle > get_border(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
       inline status < ::f64_rectangle > get_border(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_border(pstyle, get_default_element(), estate); }
       virtual status < ::f64_rectangle > get_padding(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none);
@@ -940,7 +940,7 @@ namespace user
       virtual void set_need_layout();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::int_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
+      void set_need_redraw(const ::i32_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::i32_rectangle& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -1832,7 +1832,7 @@ namespace user
       
       
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_f64_click);
 
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
@@ -2045,8 +2045,8 @@ namespace user
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
-      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
+      virtual void viewport_screen_to_client(::i32_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::i32_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::i32_rectangle & rect) override;
       virtual void viewport_screen_to_client(::i32_rectangle & rect) override;
 

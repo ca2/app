@@ -250,7 +250,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////
 ////
-////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,::i64 real,::i32 iFlags)
+////void i32_scalar_source::listener::on_set_scalar(i32_scalar_source * psource,enum_scalar escalar,::i64 real,::i32 iFlags)
 ////{
 ////
 ////   __UNREFERENCED_PARAMETER(psource);
@@ -261,7 +261,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////int_scalar_source::int_scalar_source()
+////i32_scalar_source::i32_scalar_source()
 ////{
 ////
 ////   m_plistener = nullptr;
@@ -269,7 +269,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////bool int_scalar_source::set_scalar(enum_scalar escalar,::i64 real,bool bForce,::i32 iFlags)
+////bool i32_scalar_source::set_scalar(enum_scalar escalar,::i64 real,bool bForce,::i32 iFlags)
 ////{
 ////
 ////   if (!bForce)
@@ -291,7 +291,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////bool int_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & real)
+////bool i32_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & real)
 ////{
 ////
 ////   bool bConstrain;
@@ -314,7 +314,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////void int_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
+////void i32_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
 ////{
 ////
 ////   ::i64 i = 0;
@@ -325,7 +325,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////bool int_scalar_source::contains(enum_scalar escalar, ::i64 real)
+////bool i32_scalar_source::contains(enum_scalar escalar, ::i64 real)
 ////{
 ////
 ////   ::i64 iMin = 0;
@@ -346,7 +346,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////bool int_scalar_source::constrain(enum_scalar escalar, ::i64 & real)
+////bool i32_scalar_source::constrain(enum_scalar escalar, ::i64 & real)
 ////{
 ////
 ////   ::i64 iMin = 0;
@@ -381,7 +381,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////
 ////
-////void int_scalar_source::on_set_scalar(enum_scalar escalar,::i64 real,::i32 iFlags)
+////void i32_scalar_source::on_set_scalar(enum_scalar escalar,::i64 real,::i32 iFlags)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -394,7 +394,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
+////void i32_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -403,7 +403,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
+////void i32_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -412,7 +412,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
+////void i32_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -421,7 +421,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////::f64 int_scalar_source::get_rate(enum_scalar escalar, ::f64 dDefault)
+////::f64 i32_scalar_source::get_rate(enum_scalar escalar, ::f64 dDefault)
 ////{
 ////
 ////   ::i64 iMax = 0;
@@ -448,7 +448,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////bool int_scalar_source::set_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags)
+////bool i32_scalar_source::set_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags)
 ////{
 ////
 ////   if(dValue < 0.0)
@@ -602,7 +602,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////}
 ////
-////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
+////i32_scalar::i32_scalar(i32_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -612,7 +612,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////void int_scalar::set(::i64 real)
+////void i32_scalar::set(::i64 real)
 ////{
 ////
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -623,7 +623,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////::i64 int_scalar::get()
+////::i64 i32_scalar::get()
 ////{
 ////
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -638,7 +638,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////::f64 int_scalar::get_rate(::f64 dDefault)
+////::f64 i32_scalar::get_rate(::f64 dDefault)
 ////{
 ////   
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -649,7 +649,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////bool int_scalar::set_rate(::f64 dValue,::i32 iFlags)
+////bool i32_scalar::set_rate(::f64 dValue,::i32 iFlags)
 ////{
 ////
 ////   if(m_psource == nullptr || m_escalar == scalar_none)
@@ -660,7 +660,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////::i64 int_scalar::minimum()
+////::i64 i32_scalar::minimum()
 ////{
 ////   
 ////   if (is_null())
@@ -675,7 +675,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////}
 ////
 ////
-////::i64 int_scalar::maximum()
+////::i64 i32_scalar::maximum()
 ////{
 ////
 ////   if (is_null())
@@ -693,7 +693,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,::i32 iFlags
 ////
 ////
 ////
-////string int_scalar::Format(const ::scoped_string & scopedstrFormat)
+////string i32_scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;

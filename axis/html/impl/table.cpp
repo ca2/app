@@ -119,7 +119,7 @@ namespace html
 //
 //            strWidth.trim();
 //
-//            ::f32 percent = payload(strWidth).get_float();
+//            ::f32 percent = payload(strWidth).get_f32();
 //
 //            ::f32 cx = m_bound.get_cx();
 //

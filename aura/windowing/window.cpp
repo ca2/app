@@ -603,7 +603,7 @@ namespace windowing
          pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
          pmessage->m_eusermessage == ::user::e_message_right_button_down ||
          pmessage->m_eusermessage == ::user::e_message_right_button_up ||
-         pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_f64_click ||
          pmessage->m_eusermessage == ::user::e_message_mouse_move ||
          pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
       {
@@ -2288,7 +2288,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
    }
 
 
-   //void window::non_top_most_upper_window_rects(::int_rectangle_array_base & recta)
+   //void window::non_top_most_upper_window_rects(::i32_rectangle_array_base & recta)
    //{
 
    //   throw ::interface_only();
@@ -6209,7 +6209,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
          pmessage->m_eusermessage == ::user::e_message_right_button_down ||
          pmessage->m_eusermessage == ::user::e_message_right_button_up ||
-         pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_f64_click ||
          pmessage->m_eusermessage == ::user::e_message_mouse_move ||
          pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
       {
@@ -6365,10 +6365,10 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       m_pointCursor2 = pmouse->m_pointHost;
 
-      if (pmouse->m_eusermessage == ::user::e_message_left_button_double_click)
+      if (pmouse->m_eusermessage == ::user::e_message_left_button_f64_click)
       {
 
-         information() << "::user::e_message_left_button_double_click";
+         information() << "::user::e_message_left_button_f64_click";
 
       }
       else if (pmouse->m_eusermessage == ::user::e_message_left_button_down)
@@ -6668,7 +6668,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
       //if (puserinteractionMouse)
       //{
 
-      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
+      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_f64_click && puserinteractionMouse->m_bEatsDoubleClick)
       //   //            {
       //   //
       //   //               pmouse->m_bRet = true;
@@ -8101,7 +8101,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
 
    void
-      window::set_need_redraw(const ::int_rectangle_array_base& rectangleaHostNeedRedraw, function<void()> function,
+      window::set_need_redraw(const ::i32_rectangle_array_base& rectangleaHostNeedRedraw, function<void()> function,
          bool bAscendants)
    {
 
@@ -8150,7 +8150,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
          bool bContainsAll = true;
 
-         //int_rectangle_array_base rectangleaUnion;
+         //i32_rectangle_array_base rectangleaUnion;
 
          for (auto& rectangle : rectangleaHostNeedRedraw)
          {
@@ -15757,7 +15757,7 @@ slGraphics.unlock();
    }
 
 
-   void window::non_top_most_upper_window_rects(::int_rectangle_array_base& recta)
+   void window::non_top_most_upper_window_rects(::i32_rectangle_array_base& recta)
    {
 
       //non_top_most_upper_window_rects(recta);
@@ -15768,7 +15768,7 @@ slGraphics.unlock();
    bool window::is_occluded()
    {
 
-      ::int_rectangle_array_base recta;
+      ::i32_rectangle_array_base recta;
 
       non_top_most_upper_window_rects(recta);
 
@@ -15795,12 +15795,12 @@ slGraphics.unlock();
    }
 
 
-   void window::approximate_occlusion_rects(int_rectangle_array_base& raTest)
+   void window::approximate_occlusion_rects(i32_rectangle_array_base& raTest)
    {
 
       raTest.erase_all();
 
-      ::int_rectangle_array_base ra;
+      ::i32_rectangle_array_base ra;
 
       non_top_most_upper_window_rects(ra);
 
@@ -15916,7 +15916,7 @@ slGraphics.unlock();
    ::i64 window::approximate_occlusion_area()
    {
 
-      int_rectangle_array_base ra;
+      i32_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
@@ -16023,7 +16023,7 @@ slGraphics.unlock();
    ::i64 window::approximate_occlusion_area_except_self_transparent()
    {
 
-      int_rectangle_array_base ra;
+      i32_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
@@ -16052,7 +16052,7 @@ slGraphics.unlock();
    ::i64 window::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
-      int_rectangle_array_base ra;
+      i32_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
@@ -17003,7 +17003,7 @@ slGraphics.unlock();
    }
 
 
-   void window::viewport_client_to_screen(::int_sequence2& sequence)
+   void window::viewport_client_to_screen(::i32_sequence2& sequence)
    {
 
       if (user_interaction())
@@ -17016,7 +17016,7 @@ slGraphics.unlock();
    }
 
 
-   void window::viewport_screen_to_client(::int_sequence2& sequence)
+   void window::viewport_screen_to_client(::i32_sequence2& sequence)
    {
 
       if (user_interaction())
@@ -17925,7 +17925,7 @@ slGraphics.unlock();
    }
 
 
-   //void window::set_need_redraw(const ::int_rectangle_array_base & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   //void window::set_need_redraw(const ::i32_rectangle_array_base & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    //{
 
 

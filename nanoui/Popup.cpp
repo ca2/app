@@ -88,7 +88,7 @@ namespace nanoui
       
       auto posParent = m_parent_window->position();
       
-      m_pos = posParent + m_anchor_pos - int_sequence2(0, m_anchor_offset);
+      m_pos = posParent + m_anchor_pos - i32_sequence2(0, m_anchor_offset);
       
       if(iMaxH > 0 && (m_pos.y + m_size.height() > iMaxH))
       {
@@ -138,7 +138,7 @@ namespace nanoui
          pcontext->begin_path();
          pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, (::f32)cr);
 
-         auto base = m_pos + int_sequence2(0, m_anchor_offset);
+         auto base = m_pos + i32_sequence2(0, m_anchor_offset);
          ::i32 sign = -1;
          if (m_side == Side::Left) {
             base.x += m_size.cx;

@@ -137,7 +137,7 @@ namespace windows
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
          ::u32 dwStyle,
-         const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+         const ::i32_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr,
          ::hinstance hinstance = nullptr,
@@ -147,7 +147,7 @@ namespace windows
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
          ::u32 dwStyle,
-         const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+         const ::i32_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr,
          ::hinstance hinstance = nullptr,
@@ -170,7 +170,7 @@ namespace windows
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
          ::u32 dwStyle,
-         const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+         const ::i32_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr);
 
@@ -178,7 +178,7 @@ namespace windows
               const ::scoped_string & scopedstrWindowClassName,
               const ::scoped_string & scopedstrWindowName,
               ::u32 dwStyle,
-              const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+              const ::i32_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
               const ::operating_system::window & operatingsystemwindowParent = nullptr,
               void * pHMENU = nullptr)
       {

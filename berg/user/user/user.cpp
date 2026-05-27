@@ -1958,10 +1958,10 @@ namespace berg
 //::color::color argb_swap_red_blue(::color32_t color32)
 //{
 //   return argb(
-//      color32_byte_opacity(color32),
-//      color32_byte_blue(color32),
-//      color32_byte_green(color32),
-//      color32_byte_red(color32));
+//      color32_u8_opacity(color32),
+//      color32_u8_blue(color32),
+//      color32_u8_green(color32),
+//      color32_u8_red(color32));
 //}
 
 

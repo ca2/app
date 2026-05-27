@@ -77,7 +77,7 @@ oswindow oswindow_get(::user::interaction * pinteraction)
 
 
 
-int_bool oswindow_erase(::user::interaction * pinteraction)
+i32_bool oswindow_erase(::user::interaction * pinteraction)
 {
 
    auto pFind = oswindow_find(pinteraction);

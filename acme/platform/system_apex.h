@@ -418,7 +418,7 @@ namespace platform
 
       virtual bool _handle_uri(const ::block & block);
 
-      virtual void application_main(::i32 argc, char * args[], const ::scoped_string & scopedstrCommandLine);
+      virtual void application_main(::i32 argc, ::i8 * args[], const ::scoped_string & scopedstrCommandLine);
 
       virtual ::i32 console_end(::e_status estatus);
 

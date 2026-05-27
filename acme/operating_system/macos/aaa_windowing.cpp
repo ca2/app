@@ -352,10 +352,10 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//int_bool release_capture()
+//i32_bool release_capture()
 //{
 //
-//   int_bool bRet = true;
+//   i32_bool bRet = true;
 //
 //   if(bRet)
 //   {
@@ -416,7 +416,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //}
 //
-//int_bool session_accepts_first_responder()
+//i32_bool session_accepts_first_responder()
 //{
 //
 //   return ::acmeacmesystem()->get_session()->m_bAcceptsFirstResponder ? 1 : 0;
@@ -482,7 +482,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//void defer_dock_application(int_bool bDock)
+//void defer_dock_application(i32_bool bDock)
 //{
 //
 ////   if (bDock)
@@ -517,7 +517,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//int_bool destroy_window(oswindow w)
+//i32_bool destroy_window(oswindow w)
 //{
 //
 //   if(is_null(w))
@@ -586,7 +586,7 @@ void ns_main_async(dispatch_block_t block);
 //#include <CoreFoundation/CoreFoundation.h>
 //
 //
-//int_bool set_need_redraw(oswindow hWnd, const ::i32_rectangle * pcrect, HRGN hrgnUpdate, ::u32 flags)
+//i32_bool set_need_redraw(oswindow hWnd, const ::i32_rectangle * pcrect, HRGN hrgnUpdate, ::u32 flags)
 //{
 //
 //   return true;
@@ -632,13 +632,13 @@ void ns_main_async(dispatch_block_t block);
 ////   return nullptr;
 ////
 ////}
-////int_bool axis_TranslateMessage(const MESSAGE * pmessage);
+////i32_bool axis_TranslateMessage(const MESSAGE * pmessage);
 //
 ////LRESULT axis_DispatchMessage(const MESSAGE * pmessage);
 //
 //void mm_init_workspace_rect();
 //
-//int_bool os_init_windowing()
+//i32_bool os_init_windowing()
 //{
 //
 ////   set_TranslateMessage(&axis_TranslateMessage);
@@ -667,10 +667,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //// front first
-//int_rectangle_array cg_get_window_rect_list_above(CGWindowID windowid)
+//i32_rectangle_array cg_get_window_rect_list_above(CGWindowID windowid)
 //{
 //
-//   int_rectangle_array recta;
+//   i32_rectangle_array recta;
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenAboveWindow, windowid);
 //
@@ -796,7 +796,7 @@ void ns_main_async(dispatch_block_t block);
 //#undef FUNCTION_TRACE
 //
 //
-//int_rectangle_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
+//i32_rectangle_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
 //{
 //
 //   bool bFound = false;
@@ -811,7 +811,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#endif
 //
-//   int_rectangle_array recta;
+//   i32_rectangle_array recta;
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
 //
@@ -1065,7 +1065,7 @@ void ns_main_async(dispatch_block_t block);
 //#undef FUNCTION_TRACE
 //
 //
-//void cg_get_window_rect_list(int_rectangle_array & recta, array < CGWindowID > & windowida)
+//void cg_get_window_rect_list(i32_rectangle_array & recta, array < CGWindowID > & windowida)
 //{
 //
 //   bool bFound = false;
@@ -1273,7 +1273,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //CGWindowID get_os_window_window_number(::acme::windowing::window * pacmewindowingwindow);
 //
-//int_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
+//i32_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //
@@ -1286,7 +1286,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   }
 //
-//   int_rectangle_array recta = cg_get_window_rect_list_intersect_above(windowid);
+//   i32_rectangle_array recta = cg_get_window_rect_list_intersect_above(windowid);
 //
 //
 //   if(recta.is_empty())
@@ -1323,14 +1323,14 @@ void ns_main_async(dispatch_block_t block);
 //
 //}
 //
-//void cg_get_window_rect_list(int_rectangle_array & recta, array < CGWindowID > & windowida);
+//void cg_get_window_rect_list(i32_rectangle_array & recta, array < CGWindowID > & windowida);
 //
-//int_bool point_is_window_origin(::i32_point pointHitTest, oswindow oswindowExclude, ::i32 iMargin)
+//i32_bool point_is_window_origin(::i32_point pointHitTest, oswindow oswindowExclude, ::i32 iMargin)
 //{
 //
 //   CGWindowID windowidExclude = get_os_window_window_number(oswindowExclude);
 //
-//   int_rectangle_array recta;
+//   i32_rectangle_array recta;
 //
 //   array < CGWindowID > windowida;
 //

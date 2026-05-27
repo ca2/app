@@ -212,7 +212,7 @@ namespace aura
 ////} // namespace opengl
 ////
 ////
-////struct ::int_sz
+////struct ::i32_sz
 ////{
 ////
 ////   ::i32            m_i32;
@@ -321,10 +321,10 @@ namespace aura
 ////#define __CONCATENATE3(xxx, yyy, zzz) xxx ## yyy ## zzz
 ////
 ////
-////#define color32_byte_red(rgb)    (lower_byte(rgb))
-////#define color32_byte_green(rgb)    (lower_byte((rgb)>>8))
-////#define color32_byte_blue(rgb)    (lower_byte((rgb)>>16))
-////#define color32_byte_opacity(rgb)    (lower_byte((rgb)>>24))
+////#define color32_u8_red(rgb)    (lower_byte(rgb))
+////#define color32_u8_green(rgb)    (lower_byte((rgb)>>8))
+////#define color32_u8_blue(rgb)    (lower_byte((rgb)>>16))
+////#define color32_u8_opacity(rgb)    (lower_byte((rgb)>>24))
 ////#define RGBA(r, g, b, a)         ((::color::color)((lower_byte(r)|((::u16)(lower_byte(g))<<8))|(((::u32)lower_byte(b))<<16)|(((::u32)lower_byte(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
@@ -451,12 +451,12 @@ namespace aura
 ////#define __u64xy(u)                                    u64_x(u), u64_y(u)
 ////
 ////
-////#ifndef int_x
+////#ifndef i32_x
 ////#define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
 ////#endif
 ////
 ////
-////#ifndef int_y
+////#ifndef i32_y
 ////#define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 ////#endif
 ////
@@ -1115,7 +1115,7 @@ namespace aura
 //////   //using flag_map = map_base < enum_flag, enum_flag, bool, bool >;
 //////   //using rect_map = ::map_base < e_rect, e_rect, style_rect >;
 //////   //using i32_map = ::map_base < e_int, e_int, ::i32, ::i32 >;
-//////   //using f64_map = ::map_base < e_double, e_double, ::f64, ::f64 >;
+//////   //using f64_map = ::map_base < e_f64, e_f64, ::f64, ::f64 >;
 //////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;
 //////   //using translucency_map = ::map_base < enum_element, enum_element, enum_translucency, enum_translucency >;

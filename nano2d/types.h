@@ -511,7 +511,7 @@ namespace nano2d
 //		//   [a c e]
 //		//   [b d f]
 //		//   [0 0 1]
-//		// There should be space for 6 floats in the return buffer for the values a-f.
+//		// There should be space for 6 f32s in the return buffer for the values a-f.
 //		void current_transform(::f32* xform);
 //
 //		//

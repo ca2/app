@@ -10,8 +10,8 @@
 
 
 #include "math_number_integer.h"
-#include "math_number_float.h"
-#include "math_number_double.h"
+#include "math_number_f32.h"
+#include "math_number_f64.h"
 
 
 #include "math_binary_operation.h"

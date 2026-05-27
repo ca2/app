@@ -2489,7 +2489,7 @@ string utf8_previous_char(const_char_pointer pszBeg, const_char_pointer psz, ::c
 
             }
 
-            ::i64 hex = ::hex::to_long_long(val);
+            ::i64 hex = ::hex::to_i64(val);
 
             character_count val_len = val.length();
 
@@ -2508,7 +2508,7 @@ string utf8_previous_char(const_char_pointer pszBeg, const_char_pointer psz, ::c
          else
          {
 
-            ::i64 hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
+            ::i64 hex = ::hex::to_i64(string(&psz[pos + 2], 2));
 
             if ((::i64)(strlen(psz)) <= pos + 2 || hex == -1)
             {
@@ -3020,12 +3020,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ::u32 str::to_unsigned_int(const ::scoped_string & scopedstr)
 {
 
-   return (::u32)ansi_to_long_long(scopedstr);
+   return (::u32)ansi_to_i64(scopedstr);
 
 }
 
 
-::i64 str::to_long_long(const ::scoped_string & scopedstr)
+::i64 str::to_i64(const ::scoped_string & scopedstr)
 {
 
    ::i32 i = 0;
@@ -3066,7 +3066,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-//::i64 to_long_long(const ::scoped_string & scopedstr)
+//::i64 to_i64(const ::scoped_string & scopedstr)
 //{
 
 //   ::i32 i = 0;
@@ -3092,7 +3092,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //}
 
-::u64 str::to_unsigned_long_long(const ::scoped_string & scopedstr)
+::u64 str::to_u64(const ::scoped_string & scopedstr)
 {
 
    ::i32 i = 0;
@@ -3110,7 +3110,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 }
 
-//::u64 to_unsigned_long_long(const ::scoped_string & scopedstrParam)
+//::u64 to_u64(const ::scoped_string & scopedstrParam)
 //{
 
 //   ::i32 i = 0;
@@ -3665,7 +3665,7 @@ string str::q_valid(const ::scoped_string & scopedstr)
 }
 
 
-string str::signed_double(::f64 d)
+string str::signed_f64(::f64 d)
 {
 
    if (d > 0.0)

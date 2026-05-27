@@ -94,8 +94,8 @@ namespace core
       //
       //
       // //bool                                                  m_bSystemSynchronizedScreen;
-      // //int_rectangle_array_base                                            m_rectangleaMonitor;
-      // //int_rectangle_array_base                                            m_rectangleaWorkspace;
+      // //i32_rectangle_array_base                                            m_rectangleaMonitor;
+      // //i32_rectangle_array_base                                            m_rectangleaWorkspace;
       // //index                                                 m_iMainMonitor;
       // //index                                                 m_iMainWorkspace;
       //
@@ -462,7 +462,7 @@ namespace core
       // virtual ::collection::count get_desk_monitor_count();
       // virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle * prectangle);
 
-      // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base &
+      // virtual void  get_monitor(i32_rectangle_array_base & rectaMonitor, i32_rectangle_array_base &
       // rectaIntersect, const ::i32_rectangle & rectangle);
 
       // virtual ::collection::index initial_frame_position(::i32_rectangle * prectangle, const ::i32_rectangle &

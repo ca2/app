@@ -132,7 +132,7 @@ namespace sandbox_windowing
       //virtual ulong x11_get_long_property( windowing_android_WINDOW_MEMBER char_pointer property_name);
       //virtual string x11_get_name(windowing_android_WINDOW_MEMBER);
       //virtual ::e_status set_active_window();
-      //virtual void upper_window_rects(windowing_android_WINDOW_MEMBER  int_rectangle_array_base & ra);
+      //virtual void upper_window_rects(windowing_android_WINDOW_MEMBER  i32_rectangle_array_base & ra);
       //virtual oswindow set_active_window( windowing_android_WINDOW_MEMBER );
 //      virtual  windowing_android_WINDOW_MEMBER _get_if_found(Window w);
       //virtual oswindow get_parent( windowing_android_WINDOW_MEMBER );

@@ -225,7 +225,7 @@ public:
    }
 
 
-   inline bool _get_unsigned_long_long(::u64 & hn)
+   inline bool _get_u64(::u64 & hn)
    {
 
       if (_get_left() < 8)
@@ -258,7 +258,7 @@ public:
 
    ::i32 get_unsigned_char() override;
    ::i32 get_unsigned_short() override;
-   bool get_unsigned_long_long(::u64 & hn) override;
+   bool get_u64(::u64 & hn) override;
    bool is_end_of_file() const override;
 
 

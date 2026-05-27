@@ -207,8 +207,8 @@ namespace file
       virtual ::i32 get_unsigned_short(); // 0-255 - -1 if eof otherwise exception?
       inline ::u16 get_u16_unbounded() { return get_unsigned_short(); }
 
-      virtual bool get_unsigned_long_long(::u64 & hn); // 0-255 - -1 if eof otherwise exception?
-      inline ::u64 get_u64_unbounded() { ::u64 ull; get_unsigned_long_long(ull); return ull; }
+      virtual bool get_u64(::u64 & hn); // 0-255 - -1 if eof otherwise exception?
+      inline ::u64 get_u64_unbounded() { ::u64 ull; get_u64(ull); return ull; }
 
 
       virtual bool unget_if(::ansi_character ch);

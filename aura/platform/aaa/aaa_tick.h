@@ -11,7 +11,7 @@ class duration;
 
 class ::duration;
 
-inline ::f64 __double(const ::duration & duration);
+inline ::f64 __f64(const ::duration & duration);
 
 // ::durations
 //
@@ -67,14 +67,14 @@ public:
    inline ::f64 sawtooth(const ::duration & tickPeriod)
    {
 
-      return __double(elapsed() % tickPeriod) / __double(tickPeriod);
+      return __f64(elapsed() % tickPeriod) / __f64(tickPeriod);
 
    }
 
    inline ::f64 period_rate(const ::duration & tickPeriod)
    {
 
-      return __double(elapsed()) / __double(tickPeriod);
+      return __f64(elapsed()) / __f64(tickPeriod);
 
    }
 
@@ -210,7 +210,7 @@ namespace papaya
 
 #define __prtick "%" PRtick " ms"
 
-inline ::f64 __double(const ::duration & duration) { return (::f64) ::duration.m_i; }
+inline ::f64 __f64(const ::duration & duration) { return (::f64) ::duration.m_i; }
 
 inline auto __pr(const ::duration & duration) { return ::duration.m_i; }
 
@@ -218,7 +218,7 @@ inline ::u32 __os(const ::duration & duration) { return ::duration.m_i > (::i64)
 
 inline ::i32 __int(const ::duration & duration) { return (::i32) ::duration.m_i; }
 
-inline ::i64 __long_long(const ::duration & duration) { return (::i64) ::duration.m_i; }
+inline ::i64 __i64(const ::duration & duration) { return (::i64) ::duration.m_i; }
 
 inline ::u8 as_byte(const ::duration & duration) { return (::u8) minimummax(::duration.m_i, 0, 255); }
 

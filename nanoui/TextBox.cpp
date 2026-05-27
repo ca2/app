@@ -46,9 +46,9 @@ namespace nanoui
       m_strValueEdit(value),
       m_iSelectionStart(-1),
       m_iSelectionEnd(-1),
-      m_mouse_pos(int_sequence2(-1, -1)),
-      m_pointMouseDown(int_sequence2(-1, -1)),
-      m_pointMouseDrag(int_sequence2(-1, -1)),
+      m_mouse_pos(i32_sequence2(-1, -1)),
+      m_pointMouseDown(i32_sequence2(-1, -1)),
+      m_pointMouseDrag(i32_sequence2(-1, -1)),
       m_ekeyMouseDownModifier(::user::e_key_none),
       m_fTextOffset(0)
    {
@@ -387,7 +387,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (emouse == ::user::e_mouse_left_button && down && !focused())
@@ -410,9 +410,9 @@ namespace nanoui
 
             release_mouse_capture();
 
-            m_pointMouseDown = int_sequence2(-1, -1);
+            m_pointMouseDown = i32_sequence2(-1, -1);
 
-            m_pointMouseDrag = int_sequence2(-1, -1);
+            m_pointMouseDrag = i32_sequence2(-1, -1);
 
             return true;
 
@@ -432,7 +432,7 @@ namespace nanoui
 
             m_iSelectionEnd = (::i32)m_strValueEdit.size();
 
-            m_pointMouseDown = int_sequence2(-1, -1);
+            m_pointMouseDown = i32_sequence2(-1, -1);
 
             set_need_redraw();
 
@@ -498,7 +498,7 @@ namespace nanoui
 
                   post_redraw();
 
-                  m_pointMouseDown = int_sequence2(-1, -1);
+                  m_pointMouseDown = i32_sequence2(-1, -1);
 
                }
 
@@ -508,9 +508,9 @@ namespace nanoui
             else
             {
 
-               m_pointMouseDown = int_sequence2(-1, -1);
+               m_pointMouseDown = i32_sequence2(-1, -1);
 
-               m_pointMouseDrag = int_sequence2(-1, -1);
+               m_pointMouseDrag = i32_sequence2(-1, -1);
 
             }
 
@@ -518,9 +518,9 @@ namespace nanoui
          else
          {
 
-            m_pointMouseDown = int_sequence2(-1, -1);
+            m_pointMouseDown = i32_sequence2(-1, -1);
 
-            m_pointMouseDrag = int_sequence2(-1, -1);
+            m_pointMouseDrag = i32_sequence2(-1, -1);
 
          }
 
@@ -1217,7 +1217,7 @@ namespace nanoui
 
          }
 
-         m_pointMouseDown = int_sequence2(-1, -1);
+         m_pointMouseDown = i32_sequence2(-1, -1);
 
       }
       else

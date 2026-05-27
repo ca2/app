@@ -42,7 +42,7 @@ constexpr ::u16 make_unsigned_short(::iptr a, ::iptr b) { return (::u16)((::u8)a
 constexpr ::i32 make_int(::iptr a, ::iptr b) { return (::i32)((::u16)a) | ((::u32)((::u16)b) << 16); }
 constexpr ::u32 make_unsigned_int(::iptr a, ::iptr b) { return (::u32) make_int(a, b); }
 constexpr ::u32 make_unsigned_int(::iptr a, ::iptr b, ::iptr c, ::iptr d) { return make_unsigned_int(make_unsigned_short(a, b), make_unsigned_short(c, d)); }
-constexpr ::u64 make_unsigned_long_long(::u32 a, ::u32 b) { return ((::u64)a) | (((::u64)b) << 32ull); }
+constexpr ::u64 make_u64(::u32 a, ::u32 b) { return ((::u64)a) | (((::u64)b) << 32ull); }
 
 
 constexpr ::u16 swap_unsigned_short(::u16 u) { return make_unsigned_short(upper_byte(u), lower_byte(u)); }

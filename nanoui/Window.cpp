@@ -332,7 +332,7 @@ void Window::on_destroy_window()
                         rectangleOld.right,
                         rectangleOld.bottom);
             
-            ::int_rectangle_array_base rectanglea;
+            ::i32_rectangle_array_base rectanglea;
             
             rectanglea.add(rectangleOld);
 
@@ -466,7 +466,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_button_event(const i32_point& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_button_event(const i32_point& pointCursor, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (Widget::mouse_button_event(pointCursor, emouse, down, bDoubleClick, ekeyModifiers))

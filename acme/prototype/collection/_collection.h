@@ -169,7 +169,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 
 
 #include "attrib_map.h"
-#include "int_map.h"
+#include "integer_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "strid_map.h"
 #include "map_to_smart_pointer.h"

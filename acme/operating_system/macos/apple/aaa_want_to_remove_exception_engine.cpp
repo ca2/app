@@ -304,7 +304,7 @@
 // // ///////////////////////////////////////////////////////////////////////
 
 // // HANDLE SymGetProcessHandle();
-// // int_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
+// // i32_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
 // //                                         DWORD64     qwBaseAddress,
 // //                                         PVOID       pBuffer,
 
@@ -333,7 +333,7 @@
 // // );*/
 
 
-// // int_bool __stdcall My_ReadProcessMemory (
+// // i32_bool __stdcall My_ReadProcessMemory (
 // // HANDLE      hProcess,
 // // DWORD64     qwBaseAddress,
 // // PVOID       pBuffer,
@@ -362,7 +362,7 @@
 
 // // #ifndef FAST_STACK_TRACE
 
-// // int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, PVOID pBuffer, ::u32 nSize, LPDWORD lpNumberOfBytesRead)
+// // i32_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, PVOID pBuffer, ::u32 nSize, LPDWORD lpNumberOfBytesRead)
 
 // // {
 
@@ -385,7 +385,7 @@
 
 // // /*
 // // #else
-// // int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, ::u32 nSize, SIZE_T * lpNumberOfBytesRead)
+// // i32_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, ::u32 nSize, SIZE_T * lpNumberOfBytesRead)
 
 // // {
 // // return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != false;
@@ -406,7 +406,7 @@
 // // //
 // // //   }
 
-// //    typedef int_bool (__stdcall *PReadProcessMemoryRoutine)(
+// //    typedef i32_bool (__stdcall *PReadProcessMemoryRoutine)(
 // //    HANDLE      hProcess,
 // //    DWORD64     qwBaseAddress,
 // //    PVOID       pBuffer,
@@ -1589,13 +1589,13 @@
 //                }
 //                if (*(point + 1) == 'd')
 //                {
-//                   ansi_from_unsigned_long_long(_strBuf, uiLineDisplacement, 10);
+//                   ansi_from_u64(_strBuf, uiLineDisplacement, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                   ++point;
 //                }
 //                else
 //                {
-//                   ansi_from_unsigned_long_long(_strBuf, uiLineNumber, 10);
+//                   ansi_from_u64(_strBuf, uiLineNumber, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                }
 //                break;
@@ -1609,7 +1609,7 @@
 //                }
 //                if (*(point + 1) == 'd')
 //                {
-//                   ansi_from_unsigned_long_long(_strBuf, uiSymbolDisplacement, 10);
+//                   ansi_from_u64(_strBuf, uiSymbolDisplacement, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                   ++point;
 //                }
@@ -1720,7 +1720,7 @@
 //             string real_name = get_demangle(mangled_name);
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1738,7 +1738,7 @@
 //          {
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1792,7 +1792,7 @@
 
 //             ansi_concatenate(_strS, file);
 //             ansi_concatenate(_strS, ":");
-//             ansi_from_unsigned_long_long(szN, iLine, 10);
+//             ansi_from_u64(szN, iLine, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ":1: warning: ");
 
@@ -1840,7 +1840,7 @@
 //             char_pointer real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1876,7 +1876,7 @@
 //          {
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);

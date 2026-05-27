@@ -212,7 +212,7 @@ inline ::i32_point as_i32_point(const POLE & pole)
 }
 
 
-using int_pole = ::pole_type < ::i32 >;
+using i32_pole = ::pole_type < ::i32 >;
 using i64_pole = ::pole_type < ::i64>;
 using f32_pole = ::pole_type < ::f32 >;
 using f64_pole = ::pole_type < ::f64 >;

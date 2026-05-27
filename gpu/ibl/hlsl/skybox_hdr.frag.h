@@ -14,18 +14,18 @@ SamplerState linearSampler : register(s0);
 // Point light struct (matching vertex shader)
 struct PointLight
 {
-    float4 position;
-    float4 color;
+    f324 position;
+    f324 color;
 };
 
 // Global constant buffer (same as GLSL std140 UBO)
 cbuffer GlobalUbo : register(b0)
 {
-    float4x4 projection;
-    float4x4 view;
-    float4x4 invView;
-    float4 ambientLightColor;
-    float3 cameraPosition;
+    f324x4 projection;
+    f324x4 view;
+    f324x4 invView;
+    f324 ambientLightColor;
+    f323 cameraPosition;
     PointLight pointLights[10];
     ::i32 numLights;
     ::i32 padding0;
@@ -36,19 +36,19 @@ cbuffer GlobalUbo : register(b0)
 // Input from vertex shader
 struct PS_INPUT
 {
-    float4 position     : SV_Position;
-    float4 vDirection   : TEXCOORD0;
+    f324 position     : SV_Position;
+    f324 vDirection   : TEXCOORD0;
 };
 
 
 // register(b1) for "push constants"
 cbuffer MatrixBuffer : register(b1)
 {
-    float3 multiplier;
+    f323 multiplier;
 };
 
 
-float3 ACESFilmTonemap(float3 color)
+f323 ACESFilmTonemap(f323 color)
 {
     // ACES tonemapping constants
     ::f32 a = 2.51;
@@ -59,31 +59,31 @@ float3 ACESFilmTonemap(float3 color)
     return clamp((color*(a*color+b)) / (color*(c*color+d)+e), 0.0f, 1.0f);
 }
 
-float3 LinearToSRGB(float3 color)
+f323 LinearToSRGB(f323 color)
 {
     return pow(color, 1.0f / 2.2f);
 }
 
-float4 main(PS_INPUT input) : SV_TARGET
+f324 main(PS_INPUT input) : SV_TARGET
 {
     // Normalize direction
-    float3 dir = normalize(input.vDirection);
+    f323 dir = normalize(input.vDirection);
 
     // Flip Y if your cube map was loaded OpenGL-style
     //dir.y = -dir.y;
     //dir.x = -dir.x;
-    //dir = float3(-dir.x, -dir.y, -dir.z);
+    //dir = f323(-dir.x, -dir.y, -dir.z);
     dir *= multiplier;
     // Sample HDR cube map
-    float3 hdrColor = skybox.Sample(linearSampler, dir).rgb;
+    f323 hdrColor = skybox.Sample(linearSampler, dir).rgb;
 
     // Apply tonemapping (ACES)
-    float3 mapped = ACESFilmTonemap(hdrColor);
+    f323 mapped = ACESFilmTonemap(hdrColor);
 
     // Convert from linear to sRGB
     mapped = LinearToSRGB(mapped);
 
-    return float4(mapped, 1.0f);
+    return f324(mapped, 1.0f);
 }
 )frag_text";
 

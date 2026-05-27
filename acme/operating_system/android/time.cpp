@@ -44,7 +44,7 @@ CLASS_DECL_ACME ::i64 i64_nanosecond()
 
 //#include "linux/byteorder/swab.h"
 //#include <math.h>
-//#include <float.h>
+//#include <::f32.h>
 
 
 //extern "C"

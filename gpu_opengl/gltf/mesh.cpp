@@ -177,8 +177,8 @@ namespace gpu_opengl
 
             //   fRoughness = m_pmaterial->m_fRoughness;
             //}
-            //pshader->set_float("metallic", fMetallic);
-            //pshader->set_float("roughness", fRoughness);
+            //pshader->set_f32("metallic", fMetallic);
+            //pshader->set_f32("roughness", fRoughness);
             //if (bMetallicRoughness)
             //{
             //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
@@ -214,7 +214,7 @@ namespace gpu_opengl
 
             //   fAmbientOcclusion = m_pmaterial->m_fAmbientOcclusion;
             //}
-            //pshader->set_float("ambientOcclusion", fAmbientOcclusion);
+            //pshader->set_f32("ambientOcclusion", fAmbientOcclusion);
             //if (bAmbientOcclusion)
             //{
             //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
@@ -257,7 +257,7 @@ namespace gpu_opengl
 
             //   auto alphaMaskCutoff = m_pmaterial->alphaCutoff;
 
-            //   pshader->set_float("alphaMaskCutoff", alphaMaskCutoff);
+            //   pshader->set_f32("alphaMaskCutoff", alphaMaskCutoff);
 
 
             //}
@@ -288,8 +288,8 @@ namespace gpu_opengl
             //}
 
             ////pshader->set_int("material.useTextureMetallicRoughness", m_pmaterial->useTextureMetallicRoughness);
-            //pshader->set_float("metallic", m_pmaterial->m_fMetallic);
-            //pshader->set_float("roughness", m_pmaterial->m_fRoughness);
+            //pshader->set_f32("metallic", m_pmaterial->m_fMetallic);
+            //pshader->set_f32("roughness", m_pmaterial->m_fRoughness);
             ////if (m_pmaterial->useTextureMetallicRoughness)
             ////{
             ////   ::i32 iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
@@ -316,7 +316,7 @@ namespace gpu_opengl
             //}
 
             ////pshader->set_int("material.useTextureAmbientOcclusion", m_pmaterial->useTextureAmbientOcclusion);
-            //pshader->set_float("ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
+            //pshader->set_f32("ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
             ////if (m_pmaterial->useTextureAmbientOcclusion)
             ////{
             ////   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);

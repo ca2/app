@@ -745,7 +745,7 @@ namespace user
       pmessage->m_bRet = true;
    }
 
-   void tree::on_message_left_button_double_click(::message::message * pmessage)
+   void tree::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1025,7 +1025,7 @@ namespace user
       ::user::scroll_base::install_message_routing(pchannel);
 
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &tree::on_message_left_button_f64_click);
       USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
       USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
       USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
@@ -1730,7 +1730,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      m_dItemHeight = dFontHeight * get_double(pstyle, ::user::e_f64_tree_item_height_rate, ::user::e_state_none, 1.0);
+      m_dItemHeight = dFontHeight * get_f64(pstyle, ::user::e_f64_tree_item_height_rate, ::user::e_state_none, 1.0);
 
    }
 

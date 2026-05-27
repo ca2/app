@@ -236,7 +236,7 @@ namespace gpu
 
       virtual void set_int(const ::scoped_string& scopedstrName, ::i32 value);
 
-      virtual void set_float(const ::scoped_string& scopedstrName, ::f32 value);
+      virtual void set_f32(const ::scoped_string& scopedstrName, ::f32 value);
 
       virtual void set_sequence2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y);
       virtual void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);

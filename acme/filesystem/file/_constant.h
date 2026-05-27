@@ -90,7 +90,7 @@ enum enum_stream
       separated = 0x00010000,
       adjustfield = left | right | internal,
       basefield = dec | oct | hex,
-      floatfield = scientific | fixed
+      f32field = scientific | fixed
    };
 
 

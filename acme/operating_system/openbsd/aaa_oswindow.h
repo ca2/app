@@ -2,7 +2,7 @@
 
 
 // define portable types for 32-bit / 64-bit OS
-//typedef ::i32 int_bool;
+//typedef ::i32 i32_bool;
 typedef ::u8 uch;
 //typedef ::u16 ush;
 typedef ::u32 ::u32;

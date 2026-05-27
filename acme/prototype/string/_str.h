@@ -253,7 +253,7 @@ public:
 
 
 
-   static string signed_double(::f64 d);
+   static string signed_f64(::f64 d);
 
    static string signed_int(::i32 i);
 
@@ -288,8 +288,8 @@ public:
    static ::u32          to_unsigned_int(const ::scoped_string & scopedstr);
 
 
-   static ::i64           to_long_long(const ::scoped_string & scopedstr);
-   static ::u64           to_unsigned_long_long(const ::scoped_string & scopedstr);
+   static ::i64           to_i64(const ::scoped_string & scopedstr);
+   static ::u64           to_u64(const ::scoped_string & scopedstr);
 
 
 

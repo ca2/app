@@ -272,7 +272,7 @@ namespace account
          if (bOk)
          {
 
-            auto estatus = (::e_status) ::ansi_to_long_long(strOpen);
+            auto estatus = (::e_status) ::ansi_to_i64(strOpen);
 
             if (estatus == ::success_credentials || estatus == ::success_authenticated)
             {

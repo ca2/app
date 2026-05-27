@@ -32,7 +32,7 @@ namespace gpu
    }
 
 
-   ::interlocked_long_long g_iGpuCommandBufferSerialSeed;
+   ::interlocked_i64 g_iGpuCommandBufferSerialSeed;
 
 
    command_buffer::command_buffer()

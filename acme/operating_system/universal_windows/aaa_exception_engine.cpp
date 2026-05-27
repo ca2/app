@@ -29,7 +29,7 @@ namespace universal_windows
 {
 
 
-   typedef int_bool(__stdcall *PReadProcessMemoryRoutine)(
+   typedef i32_bool(__stdcall *PReadProcessMemoryRoutine)(
    HANDLE      hProcess,
    DWORD64     qwBaseAddress,
    PVOID       lpBuffer,

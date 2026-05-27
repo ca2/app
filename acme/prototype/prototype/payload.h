@@ -144,8 +144,8 @@ public:
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
       ::i64_array * m_plonglonga;
-      ::f32_array * m_pfloata;
-      ::f64_array * m_pdoublea;
+      ::f32_array * m_pf32a;
+      ::f64_array * m_pf64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
       payload_all_t                          m_payloadall;
@@ -233,8 +233,8 @@ public:
    payload(const ::string_array_base & stra);
    payload(const ::i32_array_base & ia);
    payload(const ::i64_array_base & lla);
-   payload(const ::f32_array_base & floata);
-   payload(const ::f64_array_base & doublea);
+   payload(const ::f32_array_base & f32a);
+   payload(const ::f64_array_base & f64a);
    payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
    //payload(const ::property & property);
@@ -536,7 +536,7 @@ public:
    bool is_integer() const;
    bool is_natural() const;
    bool is_boolean() const;
-   bool is_double() const;
+   bool is_f64() const;
    bool is_time() const;
    bool is_text() const;
    bool is_fairly_convertible_to_text() const;
@@ -958,10 +958,10 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    //payload & assign_unsigned_short  (::u16   ush)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
    //payload & assign_int             (::i32                i)   { return __assign_primitive(  m_i32 , e_type_i32   , i ); }
    //payload & assign_unsigned_int    (::u32       u)   { return __assign_primitive( m_u32 , e_type_u32   , u ); }
-   //payload & assign_long_long    (::i64      ll)   { return __assign_primitive( m_i64 , e_type_i64   , i ); }
-   //payload & assign_unsigned_long_long    (::u64      ull)   { return __assign_primitive( m_u64 , e_type_u64   , u ); }
-   //payload & assign_float             (::f32              f)   { return __assign_primitive(  m_f32 , e_type_f32   , f ); }
-   //payload & assign_double             (::f64             d)   { return __assign_primitive(  m_f64 , e_type_f64   , f ); }
+   //payload & assign_i64    (::i64      ll)   { return __assign_primitive( m_i64 , e_type_i64   , i ); }
+   //payload & assign_u64    (::u64      ull)   { return __assign_primitive( m_u64 , e_type_u64   , u ); }
+   //payload & assign_f32             (::f32              f)   { return __assign_primitive(  m_f32 , e_type_f32   , f ); }
+   //payload & assign_f64             (::f64             d)   { return __assign_primitive(  m_f64 , e_type_f64   , f ); }
 
 
    payload & assign_pbool  (bool  * pb)   { return __assign_primitive_pointer(m_pb     , e_type_pbool , pb); }
@@ -1093,10 +1093,10 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < same_as < ::u16 > U16 > payload & operator=(U16 u) { return assign_unsigned_short(u); }
    //template < same_as < ::i32 > I32 > payload & operator=(I32 i) { return assign_int(i); }
    //template < same_as < ::u32 > U32 > payload & operator=(U32 u) { return assign_unsigned_int(u); }
-   //template < same_as < ::i64 > I64 > payload & operator=(I64 i) { return assign_long_long(i); }
-   //template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_unsigned_long_long(u); }
-   //template < same_as < ::f32 > F32 > payload & operator=(F32 f) { return assign_float(f); }
-   //template < same_as < ::f64 > F64 > payload & operator=(F64 f) { return assign_double(f); }
+   //template < same_as < ::i64 > I64 > payload & operator=(I64 i) { return assign_i64(i); }
+   //template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
+   //template < same_as < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }
+   //template < same_as < ::f64 > F64 > payload & operator=(F64 f) { return assign_f64(f); }
 
 
    payload & assign_pointer(::i8 * pi) { return assign_pi8(pi); }
@@ -1141,8 +1141,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::i32_array_base & ia);
    payload & operator = (const ::string_array_base & stra);
    payload & operator = (const ::i64_array_base & longlonga);
-   payload & operator = (const ::f32_array_base & floata);
-   payload & operator = (const ::f64_array_base & doublea);
+   payload & operator = (const ::f32_array_base & f32a);
+   payload & operator = (const ::f64_array_base & f64a);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);
    payload & operator = (const ::property_set & propset);
@@ -1691,13 +1691,13 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 // returns 0 for unknown conversions
 //inline payload::operator ::i64()const
 //{
-//   return long_long;
+//   return i64;
 //}
 
 // returns 0 for unknown conversions
 //inline payload::operator ::u64() const
 //{
-//   return unsigned_long_long;
+//   return u64;
 //}
 
 
@@ -1708,7 +1708,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //inline payload::operator ::f32() const
 //{
 //
-//   return get_float();
+//   return get_f32();
 //
 //}
 
@@ -1717,7 +1717,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //inline payload::operator ::f64() const
 //{
 //
-//   return get_double();
+//   return get_f64();
 //
 //}
 

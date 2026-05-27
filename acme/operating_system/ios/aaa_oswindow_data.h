@@ -2,7 +2,7 @@
 
 #ifdef __OBJECTIVE_CPP__
 
-typedef void * int_to_int;
+typedef void * i32_to_int;
 
 #else
 

@@ -81,7 +81,7 @@ namespace user
 
       virtual ::color::color get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
       virtual bool get_int(::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none);
-      virtual bool get_double(::user::interaction* pinteraction, ::f64 & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none);
+      virtual bool get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 eint, ::user::enum_state estate = ::user::e_state_none);
       virtual ::write_text::font_pointer get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
 
 

@@ -25,7 +25,7 @@ typedef signed long   PRInt32;
 typedef ulong PRunsigned ::i32;
 typedef ::i16    PRInt16;
 typedef ::u16  PR::u3216;
-typedef signed ::i8   PRInt8;
+typedef ::i8   PRInt8;
 typedef ::u8 PR::u328;
 typedef ::u32 PR::u32n;
 typedef ::i8 PRBool;

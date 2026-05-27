@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 
 
-//int_bool file_exists_raw(const ::file::path & path1)
+//i32_bool file_exists_raw(const ::file::path & path1)
 //{
 //
 //#ifdef WINDOWS

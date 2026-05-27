@@ -5,7 +5,7 @@
 #include "apex/message/channel.h"
 #include "apex/handler/manager.h"
 #include "acme/prototype/geometry2d/rectangle_array.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/platform/auto_pointer.h"
 
 
@@ -296,7 +296,7 @@ namespace user
       virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, ::i32 iLevel = -1);
 
 
-      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::i32_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
       virtual void RedrawWindow(const ::i32_rectangle& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
@@ -334,8 +334,8 @@ namespace user
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::int_sequence2 & sequence);
-      virtual void viewport_client_to_screen(::int_sequence2 & sequence);
+      virtual void viewport_screen_to_client(::i32_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::i32_sequence2 & sequence);
       virtual void viewport_client_to_screen(::i32_rectangle & rectangle);
       virtual void viewport_screen_to_client(::i32_rectangle & rectangle);
 

@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "apex/platform/api.h"
 #include "apex/platform/api_client.h"

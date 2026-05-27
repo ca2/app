@@ -3,7 +3,7 @@
 
 //#include "acme/prototype/prototype/matter.h"
 #include "acme/prototype/collection/map.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 
 
 template < class T, class T_to_T = map_base < T, T > >
@@ -811,14 +811,14 @@ public:
 };
 
 
-class CLASS_DECL_ACME int_biunique :
-   public biunique < ::i32, int_to_int >
+class CLASS_DECL_ACME i32_biunique :
+   public biunique < ::i32, i32_to_int >
 {
 public:
 
 
-   int_biunique();
-   virtual ~int_biunique() {}
+   i32_biunique();
+   virtual ~i32_biunique() {}
 
 
 };

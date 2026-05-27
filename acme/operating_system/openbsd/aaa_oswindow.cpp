@@ -1543,7 +1543,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, ::i32 x, ::i32 y, ::i
 
 
 
-int_bool show_window(::acme::windowing::window * pacmewindowingwindow, const ::e_display & edisplay, const ::user::e_activation & useractivation)
+i32_bool show_window(::acme::windowing::window * pacmewindowingwindow, const ::e_display & edisplay, const ::user::e_activation & useractivation)
 {
 
    x11_sync([oswindow, edisplay, useractivation]()

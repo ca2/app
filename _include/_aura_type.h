@@ -20,8 +20,8 @@ typedef ::u8         uchar;
 
 //typedef ::u8         uch;
 
-typedef char * char_pointer ;
-typedef const char * const_char_pointer ;
+typedef ::i8 * char_pointer ;
+typedef const ::i8 * const_char_pointer ;
 
 
 #ifdef __cplusplus

@@ -47,7 +47,7 @@ namespace graphics3d
 	//
 	// 	//using map_base = index_map_base < ::pointer < scene_object > >;
 	//
-	// 	//static interlocked_long_long s_interlockedll;
+	// 	//static interlocked_i64 s_interlockedll;
 	//
 	//
 	// 	scene_object() :

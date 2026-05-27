@@ -229,8 +229,8 @@ public:
 
    const ::payload & get(const ::atom & atom) const;
 
-   ::f32_array_base get(const ::atom & atom, const ::f32_array_base & floata) const;
-   ::f64_array_base get(const ::atom& atom, const ::f64_array_base& doublea) const;
+   ::f32_array_base get(const ::atom & atom, const ::f32_array_base & f32a) const;
+   ::f64_array_base get(const ::atom& atom, const ::f64_array_base& f64a) const;
    ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
    ::i32 get(const ::atom& atom, const ::i32 & i) const;
    ::i64 get(const ::atom& atom, const ::i64 & ll) const;

@@ -79,7 +79,7 @@ public:
    constexpr bool is_null_or_positive() { return is_floating() ? m_f64 >= 0.0 : m_hi >= 0; }
    constexpr bool is_positive() { return is_floating() ? m_f64 > 0.0 : m_hi > 0; }
 
-//   constexpr operator ::i64()const { return long_long; }
+//   constexpr operator ::i64()const { return i64; }
 //   constexpr operator ::f64() const { return ::f64(); }
 //   constexpr operator ENUM() const { return eunit(); }
 

@@ -54,8 +54,8 @@ enum enum_integer_type : ::i32
    e_integer_type_unsigned_short = 3,
    e_integer_type_int = 4,
    e_integer_type_unsigned_int = 5,
-   e_integer_type_long_long = 6,
-   e_integer_type_unsigned_long_long = 7,
+   e_integer_type_i64 = 6,
+   e_integer_type_u64 = 7,
 
 };
 

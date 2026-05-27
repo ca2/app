@@ -17,10 +17,10 @@ const ::i32 sbAttrib[] = { GLX_DOUBLEBUFFER, 0, GLX_RED_SIZE, 1,GLX_GREEN_SIZE, 
 #endif
 
 //extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-//glglgl GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
-//glglgl GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
-//glglgl GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
-//GLfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
+//glglgl GLf32 LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
+//glglgl GLf32 LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
+//glglgl GLf32 LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
+//GLf32 LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
 
 //#ifdef WINDOWS
 //typedef BOOL(WINAPI * PFNWGLDESTROYPBUFFERARBPROC) (HPBUFFERARB hPbuffer);
@@ -520,7 +520,7 @@ namespace draw2d_gpu
 //                        glLoadIdentity();									// Reset The Projection Matrix
 //
 //                        // Calculate The Aspect Ratio Of The Window
-//                        gluPerspective(45.0f, (GLfloat)m_sizeOut.cx / (GLfloat)m_sizeOut.cy, 0.1f, 100.0f);
+//                        gluPerspective(45.0f, (GLf32)m_sizeOut.cx / (GLf32)m_sizeOut.cy, 0.1f, 100.0f);
 //
 //                        glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
 //                        glLoadIdentity();									// Reset The Modelview Matrix

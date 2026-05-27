@@ -15,9 +15,9 @@ namespace hex
    CLASS_DECL_ACME string from_asc(const ::scoped_string & scopedstrAsc);
 
 
-   CLASS_DECL_ACME ::i64 to_long_long(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::i64 to_i64(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME ::u64 to_unsigned_long_long(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::u64 to_u64(const ::scoped_string & scopedstr);
 
    CLASS_DECL_ACME ::u32 to_unsigned_int(const ::scoped_string & scopedstr);
 
@@ -204,9 +204,9 @@ namespace hex
 
 
    inline void to(::u32 & u,const ::scoped_string & scopedstr) { u = to_unsigned_int(scopedstr); }
-   inline void to(::u64 & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
+   inline void to(::u64 & u,const ::scoped_string & scopedstr) { u = to_u64(scopedstr); }
 #ifdef __APPLE__
-   inline void to(ulong & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
+   inline void to(ulong & u,const ::scoped_string & scopedstr) { u = to_u64(scopedstr); }
 #endif
    inline uptr to_uptr(const ::scoped_string & scopedstr) { uptr u; to(u,scopedstr); return u; }
 

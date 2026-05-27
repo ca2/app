@@ -746,7 +746,7 @@ namespace user
    }
 
 
-   void tab::on_message_left_button_double_click(::message::message * pmessage)
+   void tab::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       pmessage->m_bRet = m_pitemClick.is_set();
@@ -1657,7 +1657,7 @@ namespace user
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab::on_message_create);
       USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &tab::on_message_left_button_f64_click);
       USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
       USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
       USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &tab::on_message_show_window);

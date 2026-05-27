@@ -450,16 +450,16 @@ payload::payload(const ::i64_array_base& longlonga) :
 
 }
 
-payload::payload(const ::f32_array_base& floata) :
+payload::payload(const ::f32_array_base& f32a) :
    m_etype(e_type_f32_array),
-   m_pfloata(__new__prefix(&m_preferer) new ::f32_array(floata))
+   m_pf32a(__new__prefix(&m_preferer) new ::f32_array(f32a))
 {
 
 }
 
-payload::payload(const ::f64_array_base& doublea) :
+payload::payload(const ::f64_array_base& f64a) :
    m_etype(e_type_f64_array),
-   m_pdoublea(__new__prefix(&m_preferer) new ::f64_array(doublea))
+   m_pf64a(__new__prefix(&m_preferer) new ::f64_array(f64a))
 {
 
 }
@@ -1650,7 +1650,7 @@ void payload::payload_increment_reference_count()
          if (m_pia) m_pia->increment_reference_count();
          break;
       case e_type_f32_array:
-         if (m_pfloata) m_pfloata->increment_reference_count();
+         if (m_pf32a) m_pf32a->increment_reference_count();
          break;
       case e_type_payload_array:
          if (m_ppayloada) m_ppayloada->increment_reference_count();
@@ -1662,7 +1662,7 @@ void payload::payload_increment_reference_count()
          if (m_plonglonga) m_plonglonga->increment_reference_count();
          break;
       case e_type_f64_array:
-         if (m_pdoublea) m_pdoublea->increment_reference_count();
+         if (m_pf64a) m_pf64a->increment_reference_count();
          break;
       case e_type_memory:
          if (m_pmemory) m_pmemory->increment_reference_count();
@@ -1755,13 +1755,13 @@ class ::payload & payload::operator = (const class ::payload & payload)
       else if (etypeSource == e_type_f32_array)
       {
 
-         m_pfloata = __new__prefix(&m_preferer) new ::f32_array(*payload.m_pfloata);
+         m_pf32a = __new__prefix(&m_preferer) new ::f32_array(*payload.m_pf32a);
 
       }
       else if (etypeSource == e_type_f64_array)
       {
 
-         m_pdoublea = __new__prefix(&m_preferer) new ::f64_array(*payload.m_pdoublea);
+         m_pf64a = __new__prefix(&m_preferer) new ::f64_array(*payload.m_pf64a);
 
       }
       else if (etypeSource == e_type_payload_array)
@@ -1968,7 +1968,7 @@ class ::payload& payload::operator = (const ::i64_array_base& longlonga)
 }
 
 
-class ::payload& payload::operator = (const ::f32_array_base& floata)
+class ::payload& payload::operator = (const ::f32_array_base& f32a)
 {
 
    //if (m_etype == e_type_payload_pointer)
@@ -1993,16 +1993,16 @@ class ::payload& payload::operator = (const ::f32_array_base& floata)
 
       }
 
-      if (::is_null(m_pfloata))
+      if (::is_null(m_pf32a))
       {
 
-         m_pfloata = ___new f32_array(floata);
+         m_pf32a = ___new f32_array(f32a);
 
       }
       else
       {
 
-         *m_pfloata = floata;
+         *m_pf32a = f32a;
 
       }
 
@@ -2015,7 +2015,7 @@ class ::payload& payload::operator = (const ::f32_array_base& floata)
 
 
 
-class ::payload& payload::operator = (const ::f64_array_base& doublea)
+class ::payload& payload::operator = (const ::f64_array_base& f64a)
 {
 
    //if (m_etype == e_type_payload_pointer)
@@ -2040,16 +2040,16 @@ class ::payload& payload::operator = (const ::f64_array_base& doublea)
 
       }
 
-      if (::is_null(m_pdoublea))
+      if (::is_null(m_pf64a))
       {
 
-         m_pdoublea = ___new f64_array(doublea);
+         m_pf64a = ___new f64_array(f64a);
 
       }
       else
       {
 
-         *m_pdoublea = doublea;
+         *m_pf64a = f64a;
 
       }
 
@@ -2060,7 +2060,7 @@ class ::payload& payload::operator = (const ::f64_array_base& doublea)
 }
 
 
-//class ::payload& payload::operator = (const ::f32_array_base& floata)
+//class ::payload& payload::operator = (const ::f32_array_base& f32a)
 //{
 //
 //   //if (m_etype == e_type_payload_pointer)
@@ -2085,16 +2085,16 @@ class ::payload& payload::operator = (const ::f64_array_base& doublea)
 //
 //      }
 //
-//      if (::is_null(m_pfloata))
+//      if (::is_null(m_pf32a))
 //      {
 //
-//         m_pfloata = ___new f32_array(floata);
+//         m_pf32a = ___new f32_array(f32a);
 //
 //      }
 //      else
 //      {
 //
-//         *m_pfloata = floata;
+//         *m_pf32a = f32a;
 //
 //      }
 //
@@ -2599,7 +2599,7 @@ bool payload::is_empty() const
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_f32_array:
-      return ::is_null(m_pfloata) || m_pfloata->is_empty();
+      return ::is_null(m_pf32a) || m_pf32a->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
    case e_type_property_set:
@@ -2607,7 +2607,7 @@ bool payload::is_empty() const
    case e_type_i64_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
    case e_type_f64_array:
-      return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
+      return ::is_null(m_pf64a) || m_pf64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -2661,7 +2661,7 @@ bool payload::has_character() const
    case e_type_int_array:
       return ::is_set(m_pia) && m_pia->has_element();
    case e_type_f32_array:
-      return ::is_set(m_pfloata) && m_pfloata->has_element();
+      return ::is_set(m_pf32a) && m_pf32a->has_element();
    case e_type_payload_array:
       return ::is_set(m_ppayloada) && m_ppayloada->has_element();
    case e_type_property_set:
@@ -2669,7 +2669,7 @@ bool payload::has_character() const
    case e_type_i64_array:
       return ::is_set(m_plonglonga) && m_plonglonga->has_element();
    case e_type_f64_array:
-      return ::is_set(m_pdoublea) && m_pdoublea->has_element();
+      return ::is_set(m_pf64a) && m_pf64a->has_element();
    case e_type_memory:
       return ::is_set(m_pmemory) && !m_pmemory->is_empty();
    case e_type_path:
@@ -4007,7 +4007,7 @@ string & payload::string_reference()
       case e_type_empty:
          return iDefault;
       case e_type_string:
-         return ansi_to_long_long(m_str);
+         return ansi_to_i64(m_str);
       case e_type_i8:
          return m_i8;
       case e_type_u8:
@@ -5297,7 +5297,7 @@ i64_array_base payload::as_i64_array() const
       else*/ if (m_etype != e_type_f32_array)
       {
 
-         ::f32_array_base floata;
+         ::f32_array_base f32a;
 
          try
          {
@@ -5307,7 +5307,7 @@ i64_array_base payload::as_i64_array() const
             for (::collection::index i = 0; i < c; i++)
             {
 
-               floata.add(at(i).as_f32());
+               f32a.add(at(i).as_f32());
 
             }
 
@@ -5317,17 +5317,17 @@ i64_array_base payload::as_i64_array() const
 
          }
 
-         return ::transfer(floata);
+         return ::transfer(f32a);
 
       }
-      else if (::is_null(m_pfloata))
+      else if (::is_null(m_pf32a))
       {
 
          return {};
 
       }
 
-      return *m_pfloata;
+      return *m_pf32a;
 
 }
 
@@ -5350,7 +5350,7 @@ f32_array & payload::f32_array_reference()
       else*/ if (m_etype != e_type_f32_array)
       {
 
-         auto pfloata = __new__prefix(&m_preferer) new ::f32_array();
+         auto pf32a = __new__prefix(&m_preferer) new ::f32_array();
 
          try
          {
@@ -5360,7 +5360,7 @@ f32_array & payload::f32_array_reference()
             for (::collection::index i = 0; i < c; i++)
             {
 
-               pfloata->add(at(i).as_f32());
+               pf32a->add(at(i).as_f32());
 
             }
 
@@ -5372,17 +5372,17 @@ f32_array & payload::f32_array_reference()
 
          set_type(e_type_f32_array, false);
 
-         m_pfloata = pfloata;
+         m_pf32a = pf32a;
 
       }
-      else if (::is_null(m_pfloata))
+      else if (::is_null(m_pf32a))
       {
 
-         m_pfloata = __new__prefix(&m_preferer) new ::f32_array();
+         m_pf32a = __new__prefix(&m_preferer) new ::f32_array();
 
       }
 
-      return *m_pfloata;
+      return *m_pf32a;
 
 }
 
@@ -5406,7 +5406,7 @@ f32_array & payload::f32_array_reference()
       else*/ if (m_etype != e_type_f64_array)
       {
 
-         ::f64_array_base doublea;
+         ::f64_array_base f64a;
 
          try
          {
@@ -5416,7 +5416,7 @@ f32_array & payload::f32_array_reference()
             for (::collection::index i = 0; i < c; i++)
             {
 
-               doublea.add(at(i).as_f64());
+               f64a.add(at(i).as_f64());
 
             }
 
@@ -5426,17 +5426,17 @@ f32_array & payload::f32_array_reference()
 
          }
 
-         return ::transfer(doublea);
+         return ::transfer(f64a);
 
       }
-      else if (::is_null(m_pdoublea))
+      else if (::is_null(m_pf64a))
       {
 
          return {};
 
       }
 
-      return *m_pdoublea;
+      return *m_pf64a;
 
 }
 
@@ -5459,7 +5459,7 @@ f64_array & payload::f64_array_reference()
       else*/ if (m_etype != e_type_f64_array)
       {
 
-         auto pdoublea = __new__prefix(&m_preferer) new ::f64_array();
+         auto pf64a = __new__prefix(&m_preferer) new ::f64_array();
 
          try
          {
@@ -5469,7 +5469,7 @@ f64_array & payload::f64_array_reference()
             for (::collection::index i = 0; i < c; i++)
             {
 
-               pdoublea->add(at(i).as_f64());
+               pf64a->add(at(i).as_f64());
 
             }
 
@@ -5481,17 +5481,17 @@ f64_array & payload::f64_array_reference()
 
          set_type(e_type_f64_array, false);
 
-         m_pdoublea = pdoublea;
+         m_pf64a = pf64a;
 
       }
-      else if (::is_null(m_pdoublea))
+      else if (::is_null(m_pf64a))
       {
 
-         m_pdoublea = __new__prefix(&m_preferer) new ::f64_array();
+         m_pf64a = __new__prefix(&m_preferer) new ::f64_array();
 
       }
 
-      return *m_pdoublea;
+      return *m_pf64a;
 
 }
 
@@ -6573,11 +6573,11 @@ property & payload::get_property(const ::atom & atom)
    case e_type_int_array:
       return &m_pia->element_at(i);
    case e_type_f32_array:
-      return &m_pfloata->element_at(i);
+      return &m_pf32a->element_at(i);
    case e_type_i64_array:
       return &m_plonglonga->element_at(i);
    case e_type_f64_array:
-      return &m_pdoublea->element_at(i);
+      return &m_pf64a->element_at(i);
    case e_type_string_array:
       return &m_pstra->element_at(i);
    case e_type_payload_array:
@@ -6721,7 +6721,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //      if (::str::is_integer(str))
 //      {
 //
-//         varRet += ansi_to_long_long(str);
+//         varRet += ansi_to_i64(str);
 //
 //      }
 //      else
@@ -7404,7 +7404,7 @@ bool payload::is_boolean() const
    return false;
 }
 
-bool payload::is_double() const
+bool payload::is_f64() const
 {
    if(m_etype == e_type_f64)
    {
@@ -8952,7 +8952,7 @@ const ::f32_array & payload::f32_array_reference() const
    if (m_etype == e_type_f32_array)
    {
 
-      return *m_pfloata;
+      return *m_pf32a;
 
    }
    //else if(m_etype == e_type_payload_pointer)
@@ -8983,7 +8983,7 @@ const ::f64_array & payload::f64_array_reference() const
    if (m_etype == e_type_f64_array)
    {
 
-      return *m_pdoublea;
+      return *m_pf64a;
 
    }
    //else if(m_etype == e_type_payload_pointer)
@@ -9356,13 +9356,13 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (get_type() == ::e_type_f32_array)
    {
 
-      return ::get_network_payload(str, *m_pfloata, bNewLine);
+      return ::get_network_payload(str, *m_pf32a, bNewLine);
 
    }
    else if (get_type() == ::e_type_f64_array)
    {
 
-      return ::get_network_payload(str, *m_pdoublea, bNewLine);
+      return ::get_network_payload(str, *m_pf64a, bNewLine);
 
    }
    else if (get_type() == ::e_type_payload_array)
@@ -9675,7 +9675,7 @@ bool payload::is_false() const
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_f32_array:
-      return ::is_null(m_pfloata) || m_pfloata->is_empty();
+      return ::is_null(m_pf32a) || m_pf32a->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
    case e_type_property_set:
@@ -9683,7 +9683,7 @@ bool payload::is_false() const
    case e_type_i64_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
    case e_type_f64_array:
-      return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
+      return ::is_null(m_pf64a) || m_pf64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -9722,31 +9722,31 @@ bool payload::is_false() const
    //      return !m_pintegralday || !m_pintegralday->m_i32;
    //   case e_type_floating_nanosecond:
    //      return !m_fingnanosecond.m_f64;
-   //   case e_type_pf32ing_nanosecond:
+   //   case e_type_pfloating_nanosecond:
    //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
    //      case e_type_floating_microsecond:
    //         return !m_fingmicrosecond.m_f64;
-   //      case e_type_pf32ing_microsecond:
+   //      case e_type_pfloating_microsecond:
    //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
    //      case e_type_floating_millisecond:
    //         return !m_fingmillisecond.m_f64;
-   //      case e_type_pf32ing_millisecond:
+   //      case e_type_pfloating_millisecond:
    //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
    //      case e_type_floating_second:
    //         return !m_fingsecond.m_f64;
-   //      case e_type_pf32ing_second:
+   //      case e_type_pfloating_second:
    //         return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
    //      case e_type_floating_minute:
    //         return !m_fingminute.m_f64;
-   //      case e_type_pf32ing_minute:
+   //      case e_type_pfloating_minute:
    //         return !m_pfloatingminute || !m_pfloatingminute->m_f64;
    //      case e_type_floating_hour:
    //         return !m_finghour.m_f64;
-   //      case e_type_pf32ing_hour:
+   //      case e_type_pfloating_hour:
    //         return !m_pfloatinghour || !m_pfloatinghour->m_f64;
    //      case e_type_floating_day:
    //         return !m_fingday.m_f64;
-   //      case e_type_pf32ing_day:
+   //      case e_type_pfloating_day:
    //         return !m_pfloatingday || !m_pfloatingday->m_f64;
 //   case e_type_enum_command:
 //   case e_type_enum_status:
@@ -9866,7 +9866,7 @@ bool payload::is_set_false() const
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_f32_array:
-      return ::is_null(m_pfloata) || m_pfloata->is_empty();
+      return ::is_null(m_pf32a) || m_pf32a->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
    case e_type_property_set:
@@ -9874,7 +9874,7 @@ bool payload::is_set_false() const
    case e_type_i64_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
    case e_type_f64_array:
-      return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
+      return ::is_null(m_pf64a) || m_pf64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -9913,31 +9913,31 @@ bool payload::is_set_false() const
       //      return !m_pintegralday || !m_pintegralday->m_i32;
       //   case e_type_floating_nanosecond:
       //      return !m_fingnanosecond.m_f64;
-      //   case e_type_pf32ing_nanosecond:
+      //   case e_type_pfloating_nanosecond:
       //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
       //      case e_type_floating_microsecond:
       //         return !m_fingmicrosecond.m_f64;
-      //      case e_type_pf32ing_microsecond:
+      //      case e_type_pfloating_microsecond:
       //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
       //      case e_type_floating_millisecond:
       //         return !m_fingmillisecond.m_f64;
-      //      case e_type_pf32ing_millisecond:
+      //      case e_type_pfloating_millisecond:
       //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
       //      case e_type_floating_second:
       //         return !m_fingsecond.m_f64;
-      //      case e_type_pf32ing_second:
+      //      case e_type_pfloating_second:
       //         return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
       //      case e_type_floating_minute:
       //         return !m_fingminute.m_f64;
-      //      case e_type_pf32ing_minute:
+      //      case e_type_pfloating_minute:
       //         return !m_pfloatingminute || !m_pfloatingminute->m_f64;
       //      case e_type_floating_hour:
       //         return !m_finghour.m_f64;
-      //      case e_type_pf32ing_hour:
+      //      case e_type_pfloating_hour:
       //         return !m_pfloatinghour || !m_pfloatinghour->m_f64;
       //      case e_type_floating_day:
       //         return !m_fingday.m_f64;
-      //      case e_type_pf32ing_day:
+      //      case e_type_pfloating_day:
       //         return !m_pfloatingday || !m_pfloatingday->m_f64;
 //   case e_type_enum_command:
 //   case e_type_enum_status:
@@ -10562,7 +10562,7 @@ return m_pstra;
 case e_type_int_array:
 return m_pia;
 case e_type_f32_array:
-   return m_pfloata;
+   return m_pf32a;
 case e_type_payload_array:
 return m_ppayloada;
 case e_type_property_set:
@@ -10570,7 +10570,7 @@ return m_ppropertyset;
 case e_type_i64_array:
 return m_plonglonga;
 case e_type_f64_array:
-   return m_pdoublea;
+   return m_pf64a;
 case e_type_memory:
 return m_pmemory;
 case e_type_path:
@@ -10783,11 +10783,11 @@ CLASS_DECL_ACME ::u64 & copy(::u64 & u, const payload & payload)
       case e_type_int_array:
          return ::is_null(m_pia) ? 0 : m_pia->get_count();
       case e_type_f32_array:
-         return ::is_null(m_pfloata) ? 0 : m_pfloata->get_count();
+         return ::is_null(m_pf32a) ? 0 : m_pf32a->get_count();
       case e_type_i64_array:
          return ::is_null(m_plonglonga) ? 0 : m_plonglonga->get_count();
       case e_type_f64_array:
-         return ::is_null(m_pdoublea) ? 0 : m_pdoublea->get_count();
+         return ::is_null(m_pf64a) ? 0 : m_pf64a->get_count();
       case e_type_string_array:
          return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
       case e_type_payload_array:
@@ -10972,7 +10972,7 @@ bool payload::is_array() const
 //         payload.payloada().erase(payload2);
 //      }
 //   }
-//   else if (is_double() || payload2.is_double())
+//   else if (is_f64() || payload2.is_f64())
 //   {
 //      payload = as_f64() - payload2.as_f64();
 //   }
@@ -11093,7 +11093,7 @@ bool payload::is_array() const
 //      }
 //
 //   }
-//   else if ((is_double() && payload2.is_number()) || (is_number() && payload2.is_double()))
+//   else if ((is_f64() && payload2.is_number()) || (is_number() && payload2.is_f64()))
 //   {
 //
 //      payload = as_f64() + payload2.as_f64();
@@ -11169,7 +11169,7 @@ bool payload::is_array() const
 //         payload.payloada().erase(payload2);
 //      }
 //   }
-//   else if (is_double() || payload2.is_double())
+//   else if (is_f64() || payload2.is_f64())
 //   {
 //      payload = as_f64() / payload2.as_f64();
 //   }
@@ -11214,7 +11214,7 @@ bool payload::is_array() const
 //      ::acme::array::intersection(payload.payloada(), payloada(), payload2.payloada());
 //
 //   }
-//   else if (is_double() || payload2.is_double())
+//   else if (is_f64() || payload2.is_f64())
 //   {
 //
 //      payload = as_f64() * payload2.as_f64();

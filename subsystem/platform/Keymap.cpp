@@ -258,7 +258,7 @@ namespace subsystem
       {0x01ba, 0x015f}, /*                    scedilla  LATIN SMALL LETTER S WITH CEDILLA */
       {0x01bb, 0x0165}, /*                      tcaron  LATIN SMALL LETTER T WITH CARON */
       {0x01bc, 0x017a}, /*                      zacute  LATIN SMALL LETTER Z WITH ACUTE */
-      {0x01bd, 0x02dd}, /*                 doubleacute  DOUBLE ACUTE ACCENT */
+      {0x01bd, 0x02dd}, /*                 f64acute  DOUBLE ACUTE ACCENT */
       {0x01be, 0x017e}, /*                      zcaron  LATIN SMALL LETTER Z WITH CARON */
       {0x01bf, 0x017c}, /*                   zabovedot  LATIN SMALL LETTER Z WITH DOT ABOVE */
       {0x01c0, 0x0154}, /*                      Racute  LATIN CAPITAL LETTER R WITH ACUTE */
@@ -272,10 +272,10 @@ namespace subsystem
       {0x01d0, 0x0110}, /*                     Dstroke  LATIN CAPITAL LETTER D WITH STROKE */
       {0x01d1, 0x0143}, /*                      Nacute  LATIN CAPITAL LETTER N WITH ACUTE */
       {0x01d2, 0x0147}, /*                      Ncaron  LATIN CAPITAL LETTER N WITH CARON */
-      {0x01d5, 0x0150}, /*                Odoubleacute  LATIN CAPITAL LETTER O WITH DOUBLE ACUTE */
+      {0x01d5, 0x0150}, /*                Of64acute  LATIN CAPITAL LETTER O WITH DOUBLE ACUTE */
       {0x01d8, 0x0158}, /*                      Rcaron  LATIN CAPITAL LETTER R WITH CARON */
       {0x01d9, 0x016e}, /*                       Uring  LATIN CAPITAL LETTER U WITH RING ABOVE */
-      {0x01db, 0x0170}, /*                Udoubleacute  LATIN CAPITAL LETTER U WITH DOUBLE ACUTE */
+      {0x01db, 0x0170}, /*                Uf64acute  LATIN CAPITAL LETTER U WITH DOUBLE ACUTE */
       {0x01de, 0x0162}, /*                    Tcedilla  LATIN CAPITAL LETTER T WITH CEDILLA */
       {0x01e0, 0x0155}, /*                      racute  LATIN SMALL LETTER R WITH ACUTE */
       {0x01e3, 0x0103}, /*                      abreve  LATIN SMALL LETTER A WITH BREVE */
@@ -288,10 +288,10 @@ namespace subsystem
       {0x01f0, 0x0111}, /*                     dstroke  LATIN SMALL LETTER D WITH STROKE */
       {0x01f1, 0x0144}, /*                      nacute  LATIN SMALL LETTER N WITH ACUTE */
       {0x01f2, 0x0148}, /*                      ncaron  LATIN SMALL LETTER N WITH CARON */
-      {0x01f5, 0x0151}, /*                odoubleacute  LATIN SMALL LETTER O WITH DOUBLE ACUTE */
+      {0x01f5, 0x0151}, /*                of64acute  LATIN SMALL LETTER O WITH DOUBLE ACUTE */
       {0x01f8, 0x0159}, /*                      rcaron  LATIN SMALL LETTER R WITH CARON */
       {0x01f9, 0x016f}, /*                       uring  LATIN SMALL LETTER U WITH RING ABOVE */
-      {0x01fb, 0x0171}, /*                udoubleacute  LATIN SMALL LETTER U WITH DOUBLE ACUTE */
+      {0x01fb, 0x0171}, /*                uf64acute  LATIN SMALL LETTER U WITH DOUBLE ACUTE */
       {0x01fe, 0x0163}, /*                    tcedilla  LATIN SMALL LETTER T WITH CEDILLA */
       {0x01ff, 0x02d9}, /*                    abovedot  DOT ABOVE */
       {0x02a1, 0x0126}, /*                     Hstroke  LATIN CAPITAL LETTER H WITH STROKE */
@@ -740,8 +740,8 @@ namespace subsystem
       {0x0acf, 0x25af}, /*             emopenrectangle  WHITE VERTICAL RECTANGLE */
       {0x0ad0, 0x2018}, /*         leftsinglequotemark  LEFT SINGLE QUOTATION MARK */
       {0x0ad1, 0x2019}, /*        rightsinglequotemark  RIGHT SINGLE QUOTATION MARK */
-      {0x0ad2, 0x201c}, /*         leftdoublequotemark  LEFT DOUBLE QUOTATION MARK */
-      {0x0ad3, 0x201d}, /*        rightdoublequotemark  RIGHT DOUBLE QUOTATION MARK */
+      {0x0ad2, 0x201c}, /*         leftf64quotemark  LEFT DOUBLE QUOTATION MARK */
+      {0x0ad3, 0x201d}, /*        rightf64quotemark  RIGHT DOUBLE QUOTATION MARK */
       {0x0ad4, 0x211e}, /*                prescription  PRESCRIPTION TAKE */
       {0x0ad6, 0x2032}, /*                     minutes  PRIME */
       {0x0ad7, 0x2033}, /*                     seconds  DOUBLE PRIME */
@@ -769,7 +769,7 @@ namespace subsystem
       {0x0aee, 0x2665}, /*                       heart  BLACK HEART SUIT */
       {0x0af0, 0x2720}, /*                maltesecross  MALTESE CROSS */
       {0x0af1, 0x2020}, /*                      dagger  DAGGER */
-      {0x0af2, 0x2021}, /*                doubledagger  DOUBLE DAGGER */
+      {0x0af2, 0x2021}, /*                f64dagger  DOUBLE DAGGER */
       {0x0af3, 0x2713}, /*                   checkmark  CHECK MARK */
       {0x0af4, 0x2717}, /*                 ballotcross  BALLOT X */
       {0x0af5, 0x266f}, /*                musicalsharp  MUSIC SHARP SIGN */
@@ -781,7 +781,7 @@ namespace subsystem
       {0x0afb, 0x2117}, /*         phonographcopyright  SOUND RECORDING COPYRIGHT */
       {0x0afc, 0x2038}, /*                       caret  CARET */
       {0x0afd, 0x201a}, /*          singlelowquotemark  SINGLE LOW-9 QUOTATION MARK */
-      {0x0afe, 0x201e}, /*          doublelowquotemark  DOUBLE LOW-9 QUOTATION MARK */
+      {0x0afe, 0x201e}, /*          f64lowquotemark  DOUBLE LOW-9 QUOTATION MARK */
       /*  0x0aff                                    cursor  ??? */
       {0x0ba3, 0x003c}, /*                   leftcaret  LESS-THAN SIGN */
       {0x0ba6, 0x003e}, /*                  rightcaret  GREATER-THAN SIGN */
@@ -802,7 +802,7 @@ namespace subsystem
       {0x0bda, 0x2282}, /*                    leftshoe  SUBSET OF */
       {0x0bdc, 0x22a2}, /*                    lefttack  RIGHT TACK */
       {0x0bfc, 0x22a3}, /*                   righttack  LEFT TACK */
-      {0x0cdf, 0x2017}, /*        hebrew_doublelowline  DOUBLE LOW LINE */
+      {0x0cdf, 0x2017}, /*        hebrew_f64lowline  DOUBLE LOW LINE */
       {0x0ce0, 0x05d0}, /*                hebrew_aleph  HEBREW LETTER ALEF */
       {0x0ce1, 0x05d1}, /*                  hebrew_bet  HEBREW LETTER BET */
       {0x0ce2, 0x05d2}, /*                hebrew_gimel  HEBREW LETTER GIMEL */

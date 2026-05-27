@@ -75,7 +75,7 @@ color::~color()
 
 proc hls2rgb {h l s} {
     # Posted by frederic.bonnet@ciril.fr
-    # h, l and s are floats between 0.0 and 1.0, ditto for rectangle, g and b
+    # h, l and s are f32s between 0.0 and 1.0, ditto for rectangle, g and b
     # h = 0   => red
     # h = 1/3 => green
     # h = 2/3 => blue
@@ -547,9 +547,9 @@ color::operator color32_t() const
 void color::set_rgb(color32_t color32)
 {
 
-   m_iR = color32_byte_red(color32);
-   m_iG = color32_byte_green(color32);
-   m_iB = color32_byte_blue(color32);
+   m_iR = color32_u8_red(color32);
+   m_iG = color32_u8_green(color32);
+   m_iB = color32_u8_blue(color32);
 
 }
 
@@ -557,10 +557,10 @@ void color::set_rgb(color32_t color32)
 void color::set_argb(color32_t color32)
 {
 
-   m_iR = color32_byte_red(color32);
-   m_iG = color32_byte_green(color32);
-   m_iB = color32_byte_blue(color32);
-   m_iA = color32_byte_opacity(color32);
+   m_iR = color32_u8_red(color32);
+   m_iG = color32_u8_green(color32);
+   m_iB = color32_u8_blue(color32);
+   m_iA = color32_u8_opacity(color32);
 
 }
 
@@ -612,10 +612,10 @@ void color::hue_offset(::f64 dRadians)
 
 void color::set_bgr(::u32 bgr)
 {
-   m_iR = bgr_byte_red(bgr);
-   m_iG = bgr_byte_green(bgr);
-   m_iB = bgr_byte_blue(bgr);
-   m_iA = bgr_byte_opacity(bgr);
+   m_iR = bgr_u8_red(bgr);
+   m_iG = bgr_u8_green(bgr);
+   m_iB = bgr_u8_blue(bgr);
+   m_iA = bgr_u8_opacity(bgr);
 }
 
 
@@ -988,17 +988,17 @@ bool color::parse_color(const ::scoped_string & scopedstr)
 }
 
 
-CLASS_DECL_AURA color32_t color_with_byte_opacity(::u8 bAlpha, color32_t color32)
+CLASS_DECL_AURA color32_t color_with_u8_opacity(::u8 bAlpha, color32_t color32)
 {
 
    return (color32 & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
-CLASS_DECL_AURA color32_t color_with_byte_opacity(::u8 bAlpha, enum_plain_color ecolor)
+CLASS_DECL_AURA color32_t color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor)
 {
 
-   return color_with_byte_opacity(bAlpha, pure_color(ecolor));
+   return color_with_u8_opacity(bAlpha, pure_color(ecolor));
 
 }
 
@@ -1048,7 +1048,7 @@ CLASS_DECL_AURA color32_t pure_color(enum_plain_color ecolor)
 CLASS_DECL_AURA color32_t opaque_color(color32_t color32)
 {
 
-   return color_with_byte_opacity(255, color32);
+   return color_with_u8_opacity(255, color32);
 
 }
 

@@ -2,7 +2,7 @@
 
 
 #include "aura/graphics/image/image.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "aura/graphics/image/load_options.h"
 #include "aura/graphics/image/encoding_options.h"

@@ -16,11 +16,11 @@ using iptr_map = map_base < iptr, PAYLOAD >;
 template < class PAYLOAD >
 using index_map_base = map_base < ::collection::index, PAYLOAD >;
 
-using int_to_int = i32_map < ::i32 >;
+using i32_to_int = i32_map < ::i32 >;
 
-using i64_to_long_long = i64_map < ::i64 >;
+using i64_to_i64 = i64_map < ::i64 >;
 
-using int_to_string =  i32_map < string > ;
+using i32_to_string =  i32_map < string > ;
 
 using i64_to_string = i64_map < string >;
 

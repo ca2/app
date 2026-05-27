@@ -45,7 +45,7 @@ typedef struct wf_context wfContext;
 #include "rdpclient/client/common/graphics.h"
 
 /*#include "wf_channels.h"
-#include "wf_floatbar.h"
+#include "wf_f32bar.h"
 #include "wf_event.h"
 #include "wf_cliprdr.h"
 
@@ -128,7 +128,7 @@ struct wf_context :
 	wfClipboard* clipboard;
 	CliprdrClientContext* cliprdr;
 
-	FloatBar* floatbar;
+	FloatBar* f32bar;
 
 	RailClientContext* rail;
 	wHashTable* railWindows;

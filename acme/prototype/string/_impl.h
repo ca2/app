@@ -262,7 +262,7 @@ inline inline_number_string as_string(INTEGRAL i, ::i32 radix, enum_digit_case e
 
 //   inline_number_string numberstring;
 
-//   __long_longtoansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+//   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
 
 //   return numberstring;
 

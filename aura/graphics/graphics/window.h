@@ -15,7 +15,7 @@
 #include "window_buffer.h"
 
 
-#include "double_buffer.h"
+#include "f64_buffer.h"
 
 
 #include "multiple_buffer.h"

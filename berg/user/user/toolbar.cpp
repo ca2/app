@@ -109,7 +109,7 @@ namespace user
       USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
       USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &toolbar::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &toolbar::on_message_left_button_f64_click);
       //#ifdef WINDOWS_DESKTOP
 //      USER_MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
 //      USER_MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
@@ -1573,7 +1573,7 @@ namespace user
    }
 
 
-   void toolbar::on_message_left_button_double_click(::message::message * pmessage)
+   void toolbar::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       //auto pwindowimpl = get_host_user_interaction_impl();

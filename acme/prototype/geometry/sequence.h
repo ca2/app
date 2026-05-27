@@ -209,9 +209,9 @@ struct std::hash<::sequence_t_type<NUMBER, 4>>
    }
 };
 
-using int_sequence2_t = sequence_t_type<::i32, 2>;
-using int_sequence3_t = sequence_t_type<::i32, 3>;
-using int_sequence4_t = sequence_t_type<::i32, 4>;
+using i32_sequence2_t = sequence_t_type<::i32, 2>;
+using i32_sequence3_t = sequence_t_type<::i32, 3>;
+using i32_sequence4_t = sequence_t_type<::i32, 4>;
 
 
 using i64_sequence2_t = sequence_t_type<::i64, 2>;
@@ -1191,9 +1191,9 @@ struct sequence_type :
 //};
 
 // Import some common Enoki types
-using int_sequence2 = sequence_type<::i32, 2>;
-using int_sequence3 = sequence_type<::i32, 3>;
-using int_sequence4 = sequence_type<::i32, 4>;
+using i32_sequence2 = sequence_type<::i32, 2>;
+using i32_sequence3 = sequence_type<::i32, 3>;
+using i32_sequence4 = sequence_type<::i32, 4>;
 
 using i64_sequence2 = sequence_type<::i64, 2>;
 using i64_sequence3 = sequence_type<::i64, 3>;

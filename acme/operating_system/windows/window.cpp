@@ -825,7 +825,7 @@ namespace windows
       const ::scoped_string & scopedstrWindowClassName,
       const ::scoped_string & scopedstrWindowName,
       ::u32 dwStyle,
-      const ::int_origin_size & originsize,
+      const ::i32_origin_size & originsize,
       const ::operating_system::window & operatingsystemwindowParent,
       void * pHMENU,
       ::hinstance hinstance,
@@ -864,7 +864,7 @@ namespace windows
       const ::scoped_string & scopedstrWindowClassName,
       const ::scoped_string & scopedstrWindowName,
       ::u32 dwStyle,
-      const ::int_origin_size & originsize,
+      const ::i32_origin_size & originsize,
       const ::operating_system::window & operatingsystemwindowParent ,
       void * pHMENU )
    {

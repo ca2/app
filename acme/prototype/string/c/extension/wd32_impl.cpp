@@ -754,7 +754,7 @@ CLASS_DECL_ACME void wd32_from_i64_base(::wd32_character * sz, ::i64 i, ::i32 iB
 
    wd32_character * pend = nullptr;
 
-   __long_longtowd32(i, sz, iBase, edigitcase, pend);
+   __i64towd32(i, sz, iBase, edigitcase, pend);
 
 }
 
@@ -762,7 +762,7 @@ CLASS_DECL_ACME void wd32_from_i64_base(::wd32_character * sz, ::i64 i, ::i32 iB
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::i64 wd32_to_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
    return __wd32toi64(psz, (::wd32_character **) ppszEnd, iBase);
@@ -770,7 +770,7 @@ CLASS_DECL_ACME ::i64 wd32_to_long_long(const ::wd32_character * psz, const ::wd
 }
 
 
-CLASS_DECL_ACME ::u64 wd32_to_unsigned_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
    return __wd32tou64(psz, (::wd32_character **) ppszEnd, iBase);
@@ -795,7 +795,7 @@ CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const :
 #else
 
 
-CLASS_DECL_ACME ::i64 wd32_to_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
    return wcstoll(psz, (::wd32_character **) ppszEnd, iBase);
@@ -803,7 +803,7 @@ CLASS_DECL_ACME ::i64 wd32_to_long_long(const ::wd32_character * psz, const ::wd
 }
 
 
-CLASS_DECL_ACME ::u64 wd32_to_unsigned_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
+CLASS_DECL_ACME ::u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, ::i32 iBase)
 {
 
    return wcstoull(psz, (::wd32_character **) ppszEnd, iBase);

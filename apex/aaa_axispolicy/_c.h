@@ -38,9 +38,9 @@
 
 CLASS_DECL_APEX ::i32 get_axis_init();
 extern "C"
-CLASS_DECL_APEX int_bool defer_axis_init();
+CLASS_DECL_APEX i32_bool defer_axis_init();
 extern "C"
-CLASS_DECL_APEX int_bool defer_axis_term();
+CLASS_DECL_APEX i32_bool defer_axis_term();
 
 
 

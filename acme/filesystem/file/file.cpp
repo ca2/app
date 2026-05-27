@@ -539,7 +539,7 @@ namespace file
    }
 
 
-   bool file::get_unsigned_long_long(::u64 & u)
+   bool file::get_u64(::u64 & u)
    {
 
       if (read({ &u, 8 }) != 8)

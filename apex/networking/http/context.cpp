@@ -343,7 +343,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str::to_long_long(strCache);
+               return ::str::to_i64(strCache);
 
             }
 
@@ -1363,16 +1363,16 @@ namespace http
 //
 //         }
 //
-//         if (set.has_property("int_scalar_source_listener"))
+//         if (set.has_property("i32_scalar_source_listener"))
 //         {
 //
-//            psession->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+//            psession->::i32_scalar_source::m_plistener = set["i32_scalar_source_listener"].cast < i32_scalar_source::listener >();
 //
 //         }
 //         else
 //         {
 //
-//            psession->::int_scalar_source::m_plistener = nullptr;
+//            psession->::i32_scalar_source::m_plistener = nullptr;
 //
 //         }
 //
@@ -1409,7 +1409,7 @@ namespace http
 //
 //         psession->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 //
-//         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+//         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::i32_scalar_source::listener >();
 //
 //         psession->m_scalarsourceDownloaded.id() = set["http_downloaded_id"].atom();
 //
@@ -2050,10 +2050,10 @@ namespace http
 
       }
 
-      //if (set.has_property("int_scalar_source_listener"))
+      //if (set.has_property("i32_scalar_source_listener"))
       //{
 
-      //   psocket->::int_scalar_manager::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+      //   psocket->::i32_scalar_manager::m_plistener = set["i32_scalar_source_listener"].cast < i32_scalar_source::listener >();
 
       //}
 

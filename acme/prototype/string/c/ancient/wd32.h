@@ -61,7 +61,7 @@ CLASS_DECL_ACME const ::wd32_character * __wd32istr(const ::wd32_character * psz
 
 CLASS_DECL_ACME ::wd32_character * __u64towd32(::u64 u, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd32_character *& end);
 
-CLASS_DECL_ACME ::wd32_character * __long_longtowd32(::i64 i, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd32_character *& end);
+CLASS_DECL_ACME ::wd32_character * __i64towd32(::i64 i, ::wd32_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd32_character *& end);
 
 CLASS_DECL_ACME ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszDst, const ::wd32_character * pszSrc, character_count srclen);
 

@@ -43,7 +43,7 @@
 
 #if defined(WIN32) || defined(OS2)
   /*
-   * Win32 and OS/2 don't know C99, so define [u]int_16/32 here. The bool
+   * Win32 and OS/2 don't know C99, so define [u]i32_16/32 here. The bool
    * is predefined tho, both in C and C++.
    */
   //typedef ::i16 int16_t;

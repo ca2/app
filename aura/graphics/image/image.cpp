@@ -9857,7 +9857,7 @@ void image::on_exif_orientation()
 //      || varOptions["quality"].get_type() == e_type_f32)
 //   {
 //
-//      m_iQuality = (::i32) (varOptions["quality"].get_double() * 100.0);
+//      m_iQuality = (::i32) (varOptions["quality"].get_f64() * 100.0);
 //
 //   }
 //   else

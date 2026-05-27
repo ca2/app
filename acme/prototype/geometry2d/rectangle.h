@@ -39,7 +39,7 @@ public:
 
 };
 
-using int_origin_size = origin_size<::i32>;
+using i32_origin_size = origin_size<::i32>;
 
 
 template < prototype_number NUMBER >

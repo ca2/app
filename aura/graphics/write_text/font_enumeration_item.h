@@ -9,7 +9,7 @@
 
 
 #include "font.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 ////#include "acme/prototype/prototype/object.h"
 
 
@@ -26,7 +26,7 @@ namespace write_text
       // 101 Ultra Light Italic
       // 200 Light
       // 201 Light Italic
-      int_to_string              m_mapFileName;
+      i32_to_string              m_mapFileName;
       string                     m_strName;
       string                     m_strBranch;
    #ifdef WINDOWS

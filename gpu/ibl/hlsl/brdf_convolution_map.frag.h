@@ -13,16 +13,16 @@ cbuffer Constants : register(b0)
 
 struct PSInput
 {
-    float4 position : SV_POSITION;
-    float2 texcoord : TEXCOORD0;
+    f324 position : SV_POSITION;
+    f322 texcoord : TEXCOORD0;
 };
 
 
 // regular output
 struct PSOutput
 {
-    float2 brdfcolor : SV_Target0;
-    //float4 BloomColor : SV_Target1; // output to be used by bloom shader
+    f322 brdfcolor : SV_Target0;
+    //f324 BloomColor : SV_Target1; // output to be used by bloom shader
 };
 
 ::f32 radicalInverseVanDerCorput(uint bits)
@@ -35,12 +35,12 @@ struct PSOutput
     return ::f32(bits) * 2.3283064365386963e-10;
 }
 
-float2 hammersley(uint i, uint N)
+f322 hammersley(uint i, uint N)
 {
-    return float2(::f32(i) / ::f32(N), radicalInverseVanDerCorput(i));
+    return f322(::f32(i) / ::f32(N), radicalInverseVanDerCorput(i));
 }
 
-float3 importanceSampleGGX(float2 unitSquareSample, float3 N, ::f32 roughness)
+f323 importanceSampleGGX(f322 unitSquareSample, f323 N, ::f32 roughness)
 {
     ::f32 alpha = roughness * roughness;
 
@@ -49,20 +49,20 @@ float3 importanceSampleGGX(float2 unitSquareSample, float3 N, ::f32 roughness)
                           (1.0 + (alpha * alpha - 1.0) * unitSquareSample.y));
     ::f32 sinTheta = sqrt(1.0 - cosTheta * cosTheta);
 
-    float3 H;
+    f323 H;
     H.x = cos(phi) * sinTheta;
     H.y = sin(phi) * sinTheta;
     H.z = cosTheta;
 
-    float3 up = abs(N.z) < 0.999 ? float3(0.0, 0.0, 1.0) : float3(1.0, 0.0, 0.0);
-    float3 tangent = normalize(cross(up, N));
-    float3 bitangent = cross(N, tangent);
+    f323 up = abs(N.z) < 0.999 ? f323(0.0, 0.0, 1.0) : f323(1.0, 0.0, 0.0);
+    f323 tangent = normalize(cross(up, N));
+    f323 bitangent = cross(N, tangent);
 
-    float3 sampleVector = tangent * H.x + bitangent * H.y + N * H.z;
+    f323 sampleVector = tangent * H.x + bitangent * H.y + N * H.z;
     return normalize(sampleVector);
 }
 
-::f32 geometrySchlickGGX(float3 n, float3 v, ::f32 k)
+::f32 geometrySchlickGGX(f323 n, f323 v, ::f32 k)
 {
     ::f32 nDotV = max(dot(n, v), 0.0);
     ::f32 numerator = nDotV;
@@ -70,7 +70,7 @@ float3 importanceSampleGGX(float2 unitSquareSample, float3 N, ::f32 roughness)
     return numerator / denominator;
 }
 
-::f32 geometrySmith(float3 n, float3 v, float3 l, ::f32 roughness)
+::f32 geometrySmith(f323 n, f323 v, f323 l, ::f32 roughness)
 {
     ::f32 k = (roughness * roughness) / 2.0;
     return geometrySchlickGGX(n, v, k) * geometrySchlickGGX(n, l, k);
@@ -84,8 +84,8 @@ PSOutput main(PSInput input)
     ::f32 NdotV = input.texcoord.x;
     ::f32 roughness = 1.0 - input.texcoord.y;
 
-    float3 N = float3(0.0, 0.0, 1.0);
-    float3 V = float3(sqrt(1.0 - NdotV * NdotV), 0.0, NdotV);
+    f323 N = f323(0.0, 0.0, 1.0);
+    f323 V = f323(sqrt(1.0 - NdotV * NdotV), 0.0, NdotV);
 
     ::f32 F0Scale = 0.0;
     ::f32 F0Bias = 0.0;
@@ -93,9 +93,9 @@ PSOutput main(PSInput input)
     [loop]
     for (uint i = 0; i < SAMPLE_COUNT; i++)
     {
-        float2 unitSquareSample = hammersley(i, SAMPLE_COUNT);
-        float3 H = importanceSampleGGX(unitSquareSample, N, roughness);
-        float3 L = normalize(2.0 * dot(V, H) * H - V);
+        f322 unitSquareSample = hammersley(i, SAMPLE_COUNT);
+        f323 H = importanceSampleGGX(unitSquareSample, N, roughness);
+        f323 L = normalize(2.0 * dot(V, H) * H - V);
 
         ::f32 NdotL = max(L.z, 0.0);
         ::f32 NdotH = max(H.z, 0.0);
@@ -115,9 +115,9 @@ PSOutput main(PSInput input)
     F0Scale /= SAMPLE_COUNT;
     F0Bias /= SAMPLE_COUNT;
 
-    output.brdfcolor= float2(F0Scale, F0Bias);
+    output.brdfcolor= f322(F0Scale, F0Bias);
 
-    //output.brdfcolor= float2(0.5, 0.5);
+    //output.brdfcolor= f322(0.5, 0.5);
 
     return output;
 

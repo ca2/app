@@ -48,10 +48,10 @@ enum enum_number : ::u8
    e_number_unsigned_short = 4 | 8,
    e_number_int = 2 | 16,
    e_number_unsigned_int = 4 | 16,
-   e_number_long_long = 2 | 32,
-   e_number_unsigned_long_long = 4 | 32,
-   e_number_float = 64,
-   e_number_double = 65,
+   e_number_i64 = 2 | 32,
+   e_number_u64 = 4 | 32,
+   e_number_f32 = 64,
+   e_number_f64 = 65,
 };
 
 

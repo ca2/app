@@ -50,10 +50,10 @@ bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const :
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { color32_byte_red(color32) / 255.0,
-//                            color32_byte_green(color32) / 255.0,
-//                            color32_byte_blue(color32) / 255.0,
-//                            color32_byte_opacity(color32) / 255.0
+//   CGFloat components[] = { color32_u8_red(color32) / 255.0,
+//                            color32_u8_green(color32) / 255.0,
+//                            color32_u8_blue(color32) / 255.0,
+//                            color32_u8_opacity(color32) / 255.0
 //                          };
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);
@@ -64,7 +64,7 @@ bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const :
 //}
 //
 //
-//int_bool cg_release_color(CGColorRef colorref)
+//i32_bool cg_release_color(CGColorRef colorref)
 //{
 //   CGColorRelease(colorref);
 //   return true;
@@ -86,15 +86,15 @@ bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const :
 //{
 //   return nullptr;
 //}
-//int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+//i32_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 //{
 //   return false;
 //}
-//int_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
+//i32_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
 //{
 //   return false;
 //}
-//int_bool DeleteObject(HGDIOBJ hgdiobj)
+//i32_bool DeleteObject(HGDIOBJ hgdiobj)
 //{
 //   return false;
 //}
@@ -106,30 +106,30 @@ bool macos1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const :
 //{
 //   return nullptr;
 //}
-//int_bool SetBkMode(HDC hdc, ::i32 iMode)
+//i32_bool SetBkMode(HDC hdc, ::i32 iMode)
 //{
 //   return false;
 //}
-//int_bool DeleteDC(HDC hdc)
+//i32_bool DeleteDC(HDC hdc)
 //{
 //   return false;
 //}
-//int_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn)
+//i32_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn)
 //{
 //   return false;
 //}
-//int_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter)
+//i32_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter)
 //{
 //   return false;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize)
+//i32_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize)
 //{
 //   return false;
 //}
 //
 //
 
-//int_bool SetTextColor(HDC hdc, color32_t crText)
+//i32_bool SetTextColor(HDC hdc, color32_t crText)
 //{
 //
 //   cg_release_color(hdc->m_cgcolorrefText);
@@ -615,10 +615,10 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { color32_byte_red(color32) / 255.0,
-//      color32_byte_green(color32) / 255.0,
-//      color32_byte_blue(color32) / 255.0,
-//      color32_byte_opacity(color32) / 255.0};
+//   CGFloat components[] = { color32_u8_red(color32) / 255.0,
+//      color32_u8_green(color32) / 255.0,
+//      color32_u8_blue(color32) / 255.0,
+//      color32_u8_opacity(color32) / 255.0};
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);
 //
@@ -628,7 +628,7 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 //}
 
 
-//int_bool cg_release_color(CGColorRef colorref)
+//i32_bool cg_release_color(CGColorRef colorref)
 //{
 //   CGColorRelease(colorref);
 //   return true;
@@ -676,7 +676,7 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 // }
 
 
-// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
+// i32_bool ReleaseDC(oswindow hwnd, HDC hdc)
 // {
 
 //    if(hdc == nullptr)
@@ -695,7 +695,7 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 // }
 
 
-//int_bool this->rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
+//i32_bool this->rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
 //
 //{
 //   /*   XWindowAttributes attrs;
@@ -731,7 +731,7 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 //}
 
 //
-//int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
+//i32_bool window_rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -788,7 +788,7 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
  rectangle.size.height  = prc->bottom - lprc->top;
 
 
- CGContextSetRGBFillColor(hdc->m_cgcontext, color32_byte_red(hbr->lbColor), color32_byte_green(hbr->lbColor), color32_byte_blue(hbr->lbColor), color32_byte_opacity(hbr->lbColor));
+ CGContextSetRGBFillColor(hdc->m_cgcontext, color32_u8_red(hbr->lbColor), color32_u8_green(hbr->lbColor), color32_u8_blue(hbr->lbColor), color32_u8_opacity(hbr->lbColor));
 
  CGContextFillRect(hdc->m_cgcontext, rectangle);
 
@@ -808,7 +808,7 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 // }
 
 
-// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+// i32_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 // {
 
 //    return ReleaseDC(hwnd, ps->hdc);
@@ -841,15 +841,15 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 // {
 //     return nullptr;
 // }
-// int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+// i32_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 // {
 //     return false;
 // }
-// int_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
+// i32_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
 // {
 //     return false;
 // }
-// int_bool DeleteObject(HGDIOBJ hgdiobj)
+// i32_bool DeleteObject(HGDIOBJ hgdiobj)
 // {
 //     return false;
 // }
@@ -862,30 +862,30 @@ bool mm1_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::sc
 // {
 //     return nullptr;
 // }
-// int_bool SetBkMode(HDC hdc, ::i32 iMode)
+// i32_bool SetBkMode(HDC hdc, ::i32 iMode)
 // {
 //     return false;
 // }
-// int_bool DeleteDC(HDC hdc)
+// i32_bool DeleteDC(HDC hdc)
 // {
 //     return false;
 // }
-// int_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn)
+// i32_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn)
 // {
 //     return false;
 // }
-// int_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter)
+// i32_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter)
 // {
 //     return false;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize)
+// i32_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize)
 // {
 //     return false;
 // }
 
 
 
-// int_bool SetTextColor(HDC hdc, color32_t crText)
+// i32_bool SetTextColor(HDC hdc, color32_t crText)
 // {
 
 //    cg_release_color(hdc->m_cgcolorrefText);
@@ -1201,7 +1201,7 @@ void os_term_imaging()
 
 
 
-//int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
+//i32_bool window_rectangle(oswindow hwnd, ::i32_rectangle * prectangle)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -1245,7 +1245,7 @@ void os_term_imaging()
 //
 
 
-int_bool delete_hcursor(HCURSOR h)
+i32_bool delete_hcursor(HCURSOR h)
 {
    
    return 1;

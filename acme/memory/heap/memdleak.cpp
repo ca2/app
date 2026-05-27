@@ -851,11 +851,11 @@
 //      {
 //         informationf("----> ");
 //         informationf("--------------------------------------------------------\n");
-//         ansi_from_unsigned_long_long(sz, ++i, 10);
+//         ansi_from_u64(sz, ++i, 10);
 //         informationf("Index : ");
 //         information(sz);
 //         informationf("----> ");
-//         ansi_from_unsigned_long_long(sz, pblock->m_size, 10);
+//         ansi_from_u64(sz, pblock->m_size, 10);
 //         informationf("Size : ");
 //         information(sz);
 //         informationf("----> ");
@@ -869,7 +869,7 @@
 //   }
 //   informationf("----> ");
 //   informationf("--------------------------------------------------------\n");
-//   ansi_from_unsigned_long_long(sz, i, 10);
+//   ansi_from_u64(sz, i, 10);
 //   informationf("----> Found ");
 //   information(sz);
 //   informationf(" memory leaks.");

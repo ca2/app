@@ -810,7 +810,7 @@ CLASS_DECL_ACME const_char_pointer ansi_find_char_reverse(const_char_pointer psz
 //CLASS_DECL_ACME const_char_pointer ansi_concatenate_duplicate_and_free(const_char_pointer psz1, ::ansi_character * psz2);
 
 
-CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, ::u64 u, ::i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, ::u64 u, ::i32 iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -820,12 +820,12 @@ CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, ::u64 u
 }
 
 
-CLASS_DECL_ACME void ansi_from_long_long(::ansi_character * sz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
 
-  __long_longtoansi(i, sz, iBase, edigitcase, end);
+  __i64toansi(i, sz, iBase, edigitcase, end);
 
 }
 
@@ -845,12 +845,12 @@ CLASS_DECL_ACME void ansi_from_i(::ansi_character * sz, ::i32 i, ::i32 iBase, en
 
   ::ansi_character * end;
 
-  __long_longtoansi(i, sz, iBase, edigitcase, end);
+  __i64toansi(i, sz, iBase, edigitcase, end);
 
 }
 
 
-CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen)
+CLASS_DECL_ACME ::i64 ansi_count_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen)
 {
 
   auto len = ansi_length(psz);
@@ -870,7 +870,7 @@ CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer psz, const_char
 
         auto pszDup = ansi_count_duplicate(psz, srclen);
 
-        auto i = ansi_to_long_long(pszDup, ppszEnd, iBase);
+        auto i = ansi_to_i64(pszDup, ppszEnd, iBase);
 
         if (ppszEnd)
         {
@@ -887,7 +887,7 @@ CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer psz, const_char
 
   }
 
-  return ansi_to_long_long(psz, ppszEnd, iBase);
+  return ansi_to_i64(psz, ppszEnd, iBase);
 
 }
 

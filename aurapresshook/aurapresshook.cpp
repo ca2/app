@@ -16,7 +16,7 @@
     }
 
     ::i32 l, m, r;
-    signed ::i8 x, y;
+    ::i8 x, y;
     ::i32 last_l=0, last_m=0, last_r=0;
     while(1)
     {

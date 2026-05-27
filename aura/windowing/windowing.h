@@ -5,7 +5,7 @@
 
 
 #include "acme/windowing/windowing.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/list.h"
 
 

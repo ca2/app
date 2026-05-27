@@ -19,13 +19,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //   ::color::color crBack = imagea.m_colorTransparent;
 //
-//   ::f64 dA1 = color32_byte_opacity(crBack);
+//   ::f64 dA1 = color32_u8_opacity(crBack);
 //
-//   ::f64 dR1 = color32_byte_red(crBack);
+//   ::f64 dR1 = color32_u8_red(crBack);
 //
-//   ::f64 dG1 = color32_byte_green(crBack);
+//   ::f64 dG1 = color32_u8_green(crBack);
 //
-//   ::f64 dB1 = color32_byte_blue(crBack);
+//   ::f64 dB1 = color32_u8_blue(crBack);
 //
 //   bool bUnequal = true;
 //
@@ -68,13 +68,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -148,13 +148,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -232,13 +232,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -311,13 +311,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -399,13 +399,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -478,13 +478,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -565,13 +565,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -644,13 +644,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -732,13 +732,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -811,13 +811,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -897,13 +897,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -976,13 +976,13 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            ::f64 dA = color32_byte_opacity(color32);
+//            ::f64 dA = color32_u8_opacity(color32);
 //
-//            ::f64 dR = color32_byte_red(color32);
+//            ::f64 dR = color32_u8_red(color32);
 //
-//            ::f64 dG = color32_byte_green(color32);
+//            ::f64 dG = color32_u8_green(color32);
 //
-//            ::f64 dB = color32_byte_blue(color32);
+//            ::f64 dB = color32_u8_blue(color32);
 //
 //            if (dA <= dTransparent)
 //            {

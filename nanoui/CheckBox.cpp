@@ -28,7 +28,7 @@ namespace nanoui
    }
 
 
-   bool CheckBox::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool CheckBox::mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
@@ -90,7 +90,7 @@ namespace nanoui
          {
             pcontext->font_size(font_size());
             pcontext->font_face("sans");
-            m_sizePreferred = int_sequence2(
+            m_sizePreferred = i32_sequence2(
                (::i32)(pcontext->text_bounds(0, 0, m_strCaption, nullptr) +
                   1.8f * font_size()),
                (::i32)(font_size() * 1.3f));

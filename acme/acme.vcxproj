@@ -2666,6 +2666,7 @@
     <ClInclude Include="prototype\geometry\quaternion.h" />
     <ClInclude Include="prototype\geometry\_.h" />
     <ClInclude Include="prototype\geometry\_payload.h" />
+    <ClInclude Include="prototype\mathematics\integer_biunique.h" />
     <ClInclude Include="prototype\prototype\address_object.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
@@ -4583,14 +4584,14 @@
     <ClCompile Include="prototype\mathematics\binary_operation.cpp" />
     <ClCompile Include="prototype\mathematics\cvt.cpp" />
     <ClCompile Include="prototype\mathematics\cvt_g.cpp" />
-    <ClCompile Include="prototype\mathematics\int_biunique.cpp" />
+    <ClCompile Include="prototype\mathematics\integer_biunique.cpp" />
     <ClCompile Include="prototype\mathematics\mathematics.cpp" />
     <ClCompile Include="prototype\mathematics\mkint_c.cpp" />
     <ClCompile Include="prototype\mathematics\natural.cpp" />
     <ClCompile Include="prototype\mathematics\number.cpp" />
-    <ClCompile Include="prototype\mathematics\number_double.cpp" />
-    <ClCompile Include="prototype\mathematics\number_float.cpp" />
-    <ClCompile Include="prototype\mathematics\number_integer.cpp" />
+    <ClCompile Include="prototype\mathematics\number_f64.cpp" />
+    <ClCompile Include="prototype\mathematics\number_f32.cpp" />
+    <ClCompile Include="prototype\mathematics\number_i32.cpp" />
     <ClCompile Include="prototype\mathematics\random_number_generator.cpp" />
     <ClCompile Include="prototype\mathematics\value.cpp" />
     <ClCompile Include="prototype\mathematics\_.cpp" />
@@ -5601,9 +5602,9 @@
     <ClInclude Include="prototype\mathematics\mkint_c.h" />
     <ClInclude Include="prototype\mathematics\natural.h" />
     <ClInclude Include="prototype\mathematics\number.h" />
-    <ClInclude Include="prototype\mathematics\number_double.h" />
-    <ClInclude Include="prototype\mathematics\number_float.h" />
-    <ClInclude Include="prototype\mathematics\number_integer.h" />
+    <ClInclude Include="prototype\mathematics\number_f64.h" />
+    <ClInclude Include="prototype\mathematics\number_f32.h" />
+    <ClInclude Include="prototype\mathematics\number_i32.h" />
     <ClInclude Include="prototype\mathematics\number_limits.h" />
     <ClInclude Include="prototype\mathematics\numeric_info.h" />
     <ClInclude Include="prototype\mathematics\objects.h" />
@@ -5866,7 +5867,7 @@
     <None Include="memory\namespace_heap.inl" />
     <ClCompile Include="prototype\mathematics\scalar.cpp" />
     <None Include="memory\_new.inl" />
-    <None Include="prototype\mathematics\int_to_string_bases_table.dynamically_generated" />
+    <None Include="prototype\mathematics\integer_to_string_bases_table.dynamically_generated" />
     <None Include="prototype\prototype\_impl.h" />
     <None Include="prototype\string\_defer.h" />
   </ItemGroup>

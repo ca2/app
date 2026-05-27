@@ -99,7 +99,7 @@ namespace geometry2d
       virtual void SetElements(::f32* fa);
 
 
-      void transform(int_sequence2& point);
+      void transform(i32_sequence2& point);
 
       void transform(f64_sequence2& point);
       void transform(f64_sequence2 * ppoint, ::collection::count c);

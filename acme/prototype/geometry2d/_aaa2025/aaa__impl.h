@@ -20,10 +20,10 @@
 //inline i32_point& bottom_right(const ::i32_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline long_long_point& top_left(const ::i64_rectangle* prectangle) { return *(long_long_point*)prectangle; }
-//inline long_long_point& bottom_right(const ::i64_rectangle* prectangle) { return *(long_long_point*)& prectangle->right; }
-//inline long_long_point& top_left(const ::i64_rectangle& rectangle) { return top_left(&rectangle); }
-//inline long_long_point& bottom_right(const ::i64_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline i64_point& top_left(const ::i64_rectangle* prectangle) { return *(i64_point*)prectangle; }
+//inline i64_point& bottom_right(const ::i64_rectangle* prectangle) { return *(i64_point*)& prectangle->right; }
+//inline i64_point& top_left(const ::i64_rectangle& rectangle) { return top_left(&rectangle); }
+//inline i64_point& bottom_right(const ::i64_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
 //inline ::f64_point& top_left(const ::f64_rectangle* prectangle) { return *(::f64_point*)prectangle; }

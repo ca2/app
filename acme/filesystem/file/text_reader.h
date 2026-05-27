@@ -202,7 +202,7 @@ public:
    text_reader & operator >>(::f32 & f)
    {
 
-      read_float(f, m_psz);
+      read_f32(f, m_psz);
 
       return *this;
 
@@ -212,7 +212,7 @@ public:
    text_reader & operator >>(::f64 & d)
    {
 
-      read_float(d, m_psz);
+      read_f32(d, m_psz);
 
       return *this;
 
@@ -362,7 +362,7 @@ public:
 
 
    template < typename TYPE >
-   void read_float(TYPE & t, const_char_pointer &psz)
+   void read_f32(TYPE & t, const_char_pointer &psz)
    {
 
       skip_whitespace(psz);
@@ -374,7 +374,7 @@ public:
       if (psz == pszStart)
       {
 
-         throw parsing_exception("cannot text_reader::read_float from \"" + ellipsis(pszStart, 32) + "\"");
+         throw parsing_exception("cannot text_reader::read_f32 from \"" + ellipsis(pszStart, 32) + "\"");
 
       }
 

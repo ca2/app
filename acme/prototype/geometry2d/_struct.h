@@ -2,10 +2,10 @@
 #pragma once
 
 
-#include "__double.h"
-#include "__float.h"
-#include "__long_long.h"
-#include "__int.h"
+#include "__f64.h"
+#include "__f32.h"
+#include "__i64.h"
+#include "__i32.h"
 
 
 

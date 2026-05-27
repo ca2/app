@@ -152,7 +152,7 @@ bool __os_term_thread()
 
    //thread_shutdown();
 
-   //if(SUCCEEDED(thread_property("hresult_co_initialize").long_long))
+   //if(SUCCEEDED(thread_property("hresult_co_initialize").i64))
    //{
 
    //   CoUninitialize();

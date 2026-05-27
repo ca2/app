@@ -7,7 +7,7 @@ void progress_listener::on_progress(::f64 dRate)
 }
 
 
-int_progress::int_progress()
+i32_progress::i32_progress()
 {
 
    m_plistener          = nullptr;
@@ -17,7 +17,7 @@ int_progress::int_progress()
 }
 
 
-int_progress::~int_progress()
+i32_progress::~i32_progress()
 {
 
    m_plistener          = nullptr;
@@ -25,14 +25,14 @@ int_progress::~int_progress()
 }
 
 
-void int_progress::trace_progress(::i64 iStep)
+void i32_progress::trace_progress(::i64 iStep)
 {
 
    m_scalar.set(iStep);
 
 }
 
-void int_progress::trace_progress()
+void i32_progress::trace_progress()
 {
 
    if (m_plistener != nullptr)
@@ -44,7 +44,7 @@ void int_progress::trace_progress()
 
 }
 
-void int_progress::progress_step()
+void i32_progress::progress_step()
 {
 
    m_scalar++;
@@ -55,7 +55,7 @@ void int_progress::progress_step()
 
 
 
-void int_progress::on_set_scalar(int_scalar_source * psource,e_scalar escalar,::i64 iValue,::i32 iFlags)
+void i32_progress::on_set_scalar(i32_scalar_source * psource,e_scalar escalar,::i64 iValue,::i32 iFlags)
 {
 
    if (m_scalar.m_psource == psource)

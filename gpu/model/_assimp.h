@@ -105,7 +105,7 @@ inline f32_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
 
    __m256 row23 = _mm256_set_ps(from.d4, from.d3, from.d2, from.d1, from.c4, from.c3, from.c2, from.c1);
 
-   // Unpack 32-bit floats to interleave
+   // Unpack 32-bit f32s to interleave
    __m256 t0 = _mm256_unpacklo_ps(row01, row23); // a1 c1 a2 c2 b1 d1 b2 d2
    __m256 t1 = _mm256_unpackhi_ps(row01, row23); // a3 c3 a4 c4 b3 d3 b4 d4
 
@@ -113,7 +113,7 @@ inline f32_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
    __m256 col01 = _mm256_permute2f128_ps(t0, t1, 0x20); // column 0 + column 1
    __m256 col23 = _mm256_permute2f128_ps(t0, t1, 0x31); // column 2 + column 3
 
-   // Store each column (4 floats each) into floating_matrix4
+   // Store each column (4 f32s each) into floating_matrix4
    _mm_storeu_ps(&to.fa[0], _mm256_castps256_ps128(col01)); // column 0
    _mm_storeu_ps(&to.fa[4], _mm256_extractf128_ps(col01, 1)); // column 1
    _mm_storeu_ps(&to.fa[8], _mm256_castps256_ps128(col23)); // column 2
@@ -136,7 +136,7 @@ inline f32_matrix4 aiMatrix4x4ToColumnMajorAVX(const aiMatrix4x4 &from)
 
    __m256 row23 = _mm256_set_ps(from.d4, from.d3, from.d2, from.d1, from.c4, from.c3, from.c2, from.c1);
 
-   // Interleave pairs of floats
+   // Interleave pairs of f32s
    __m256 t0 = _mm256_unpacklo_ps(row01, row23); // a1 c1 a2 c2 b1 d1 b2 d2
    __m256 t1 = _mm256_unpackhi_ps(row01, row23); // a3 c3 a4 c4 b3 d3 b4 d4
 

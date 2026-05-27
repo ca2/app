@@ -326,9 +326,9 @@ void wf_toggle_fullscreen(wfContext* wfc)
 	}
 
 	if (wfc->fullscreen)
-		floatbar_show(wfc->floatbar);
+		f32bar_show(wfc->f32bar);
 	else
-		floatbar_hide(wfc->floatbar);
+		f32bar_hide(wfc->f32bar);
 
 	SetParent(wfc->hwnd, wfc->fullscreen ? nullptr : wfc->hWndParent);
 	wf_resize_window(wfc);

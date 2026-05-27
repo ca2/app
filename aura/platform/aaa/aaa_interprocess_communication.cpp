@@ -579,7 +579,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       ::atom idPidFrom = strFrom;
 
-      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.long_long == 0))
+      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.i64 == 0))
       {
 
          return;
@@ -725,7 +725,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
          if(case_insensitive_string_begins(strMember, "reply."))
          {
 
-            ::i64 iTask = payloada[0].long_long;
+            ::i64 iTask = payloada[0].i64;
 
             auto pobjectTask = get_task(iTask);
 
@@ -879,7 +879,7 @@ repeat:
 
       pathModule /= m_strApp + ".module_list";
 
-      ::file::path pathPid = module_path_from_pid((::u32)idPid.long_long);
+      ::file::path pathPid = module_path_from_pid((::u32)idPid.i64);
 
       string strModuleList = file_system()->as_string(pathModule);
 

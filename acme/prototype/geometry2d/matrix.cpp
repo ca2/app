@@ -98,10 +98,10 @@ namespace geometry2d
    }
 
 
-   void matrix::transform(int_sequence2 & sequence)
+   void matrix::transform(i32_sequence2 & sequence)
    {
 
-      ::int_sequence2 s;
+      ::i32_sequence2 s;
 
       s.x = (::i32) (sequence.x * a1 + sequence.y * b1 + c1);
       s.y = (::i32) (sequence.x * a2 + sequence.y * b2 + c2);

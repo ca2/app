@@ -41,7 +41,7 @@ namespace userfs
 
       //m_pfsdata = nullptr;
 
-      //create_int(::user::int_list_item_draw_text_flags, e_align_left_center | DT_SINGLELINE | DT_PATH_ELLIPSIS);
+      //create_int(::user::i32_list_item_draw_text_flags, e_align_left_center | DT_SINGLELINE | DT_PATH_ELLIPSIS);
 
    }
 
@@ -61,7 +61,7 @@ namespace userfs
       USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
       USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list::on_message_show_window);
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &list::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &list::on_message_left_button_f64_click);
 
    }
 
@@ -212,7 +212,7 @@ namespace userfs
 
    }
 
-   void list::on_message_left_button_double_click(::message::message * pmessage)
+   void list::on_message_left_button_f64_click(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //      auto pmouse = pmessage->m_union.m_pmouse;

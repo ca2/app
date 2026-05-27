@@ -98,7 +98,7 @@ typedef wchar_t TCHAR;
 // conversion from numbers to strings
 #define _itot       _itow
 #define _ltot       _ltow
-#define _long_longtot     _long_longtow
+#define _i64tot     _i64tow
 #define _ui64tot    _ui64tow
 
 // file manipulations
@@ -191,7 +191,7 @@ typedef ::i8 TCHAR;
 #define _ttol       atol
 
 // conversion from numbers to strings
-#define _long_longtot     _long_longtoa
+#define _i64tot     _i64toa
 #define _itot       _itoa
 #define _ltot       _ltoa
 #define _ui64tot    _ui64toa

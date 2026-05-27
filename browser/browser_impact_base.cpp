@@ -62,7 +62,7 @@ namespace browser
 
       datastream()->get("cur_per_second", v);
 
-      m_frequencyFramesPerSecond = v.get_double();
+      m_frequencyFramesPerSecond = v.get_f64();
 auto m_timeRoll = ::time::now();
 
    }
@@ -149,7 +149,7 @@ auto m_timeRoll = ::time::now();
 
          ::i32 xOffset;
 
-         xOffset = ::i32(m_pimageTime->width() * m_frequencyFramesPerSecond * __double(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
+         xOffset = ::i32(m_pimageTime->width() * m_frequencyFramesPerSecond * __f64(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
 
          xOffset %= m_pimageTime->width();
 
@@ -220,7 +220,7 @@ auto m_timeRoll = ::time::now();
       //::i8 sz[512];
 
       //informationf("impact:");
-      //::ansi_from_unsigned_long_long(sz, microsecond, 10);
+      //::ansi_from_u64(sz, microsecond, 10);
       //::information(sz);
       //informationf(", ");
 

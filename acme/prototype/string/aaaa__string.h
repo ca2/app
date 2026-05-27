@@ -33,7 +33,7 @@
 ////CLASS_DECL_ACME ::string as_string(::wd32_character * const psz);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const signed ::i8 & ch);
+////CLASS_DECL_ACME ::string as_string(const ::i8 & ch);
 //
 //
 ////CLASS_DECL_ACME ::string as_string(const ::ansi_character & ch);

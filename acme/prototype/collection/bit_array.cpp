@@ -45,7 +45,7 @@ void bit_array::set_size(::i32 iBitCount, bool bSet)
          }
          else if(pdataOld != nullptr)
          {
-            ::acme::bit::int_aligned_copy(m_pdata, 0, pdataOld, 0, iOldBitCount - 1);
+            ::acme::bit::i32_aligned_copy(m_pdata, 0, pdataOld, 0, iOldBitCount - 1);
             delete [] pdataOld;
          }
          if(iOldBitCount < m_iBitCount)

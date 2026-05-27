@@ -462,7 +462,7 @@ namespace user
 
 //      ::i32_rectangle rectangle;
 
-      int_rectangle_array_base raMenu;
+      i32_rectangle_array_base raMenu;
 
       ::i32 iPos = 0;
 

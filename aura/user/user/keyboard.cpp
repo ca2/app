@@ -219,7 +219,7 @@ namespace user
 //            {
 //               string str(wstring(&wsz[4],4)); // least significant four digits
 //
-//               w = (::u16) ::hex::to_long_long(str);
+//               w = (::u16) ::hex::to_i64(str);
 //
 //            }
 //

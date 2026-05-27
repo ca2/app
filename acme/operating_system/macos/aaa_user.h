@@ -83,7 +83,7 @@
 ////CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 ////
 ////
-////int_bool get_nswindow_rect(oswindow hwnd,::i32_rectangle * prectangle);
+////i32_bool get_nswindow_rect(oswindow hwnd,::i32_rectangle * prectangle);
 ////
 //
 //
@@ -322,7 +322,7 @@
 ////
 ////
 ////CGColorRef cg_create_color(color32_t crText);
-////int_bool cg_release_color(CGColorRef colorref);
+////i32_bool cg_release_color(CGColorRef colorref);
 //
 ////
 ////  c_os_win_user.h
@@ -331,14 +331,14 @@
 ////  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/30/11.
 ////  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //////
-////int_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle * prectangle, ::i32 iDisplay);
-////int_bool move_nswindow(oswindow hwnd,::i32 x,::i32 y);
-////int_bool make_key_and_order_front_nswindow(oswindow hwnd);
-////int_bool order_front_nswindow(oswindow hwnd);
-////int_bool nswindow_set_level_normal(oswindow hwnd);
-////int_bool nswindow_set_level_floating(oswindow hwnd);
-////int_bool nswindow_set_level_main_menu(oswindow hwnd);
-////int_bool nswindow_is_level_normal(oswindow hwnd);
-////int_bool nswindow_is_level_floating(oswindow hwnd);
-////int_bool nswindow_is_level_main_menu(oswindow hwnd);
+////i32_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle * prectangle, ::i32 iDisplay);
+////i32_bool move_nswindow(oswindow hwnd,::i32 x,::i32 y);
+////i32_bool make_key_and_order_front_nswindow(oswindow hwnd);
+////i32_bool order_front_nswindow(oswindow hwnd);
+////i32_bool nswindow_set_level_normal(oswindow hwnd);
+////i32_bool nswindow_set_level_floating(oswindow hwnd);
+////i32_bool nswindow_set_level_main_menu(oswindow hwnd);
+////i32_bool nswindow_is_level_normal(oswindow hwnd);
+////i32_bool nswindow_is_level_floating(oswindow hwnd);
+////i32_bool nswindow_is_level_main_menu(oswindow hwnd);
 //

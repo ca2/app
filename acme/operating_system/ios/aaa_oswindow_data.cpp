@@ -69,7 +69,7 @@ bool oswindow_data::screen_to_client(::i32_point *lppoint)
 
 
 
-int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
+i32_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
 {
    
    return true;

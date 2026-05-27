@@ -506,7 +506,7 @@ namespace user
       ::user::box::install_message_routing(pchannel);
       USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
       USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_header::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &list_header::on_message_left_button_f64_click);
       USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
    }
 
@@ -704,7 +704,7 @@ namespace user
    }
 
 
-   void list_header::on_message_left_button_double_click(::message::message * pmessage)
+   void list_header::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;

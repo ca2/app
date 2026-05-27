@@ -634,7 +634,7 @@ namespace draw2d_cairo
    }
 
 
-   ::f64_size graphics::set_context_extents(const ::f64_size & ::f64_size)
+   ::f64_size graphics::set_context_extents(const ::f64_size & size)
    {
 
       return ::f64_size(0, 0);
@@ -650,7 +650,7 @@ namespace draw2d_cairo
    }
 
 
-   ::f64_size graphics::set_window_ext(const ::f64_size & ::f64_size)
+   ::f64_size graphics::set_window_ext(const ::f64_size & size)
    {
 
       return ::f64_size(0, 0);
@@ -1060,7 +1060,7 @@ namespace draw2d_cairo
 //#endif
 
 
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1070,7 +1070,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1080,7 +1080,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, HBRUSH hBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1090,7 +1090,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -3178,7 +3178,7 @@ namespace draw2d_cairo
 //}
 
 
-//   void graphics::DrawDragRect(const ::i32_rectangle & rectangle, const ::f64_size & ::f64_size, const ::i32_rectangle & rectangleLast, const ::f64_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+//   void graphics::DrawDragRect(const ::i32_rectangle & rectangle, const ::f64_size & size, const ::i32_rectangle & rectangleLast, const ::f64_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
 //   {
 //
 //      throw ::interface_only();
@@ -3569,7 +3569,7 @@ namespace draw2d_cairo
 //}
 
 
-//::i32 graphics::OffsetClipRgn(const ::f64_size & ::f64_size)
+//::i32 graphics::OffsetClipRgn(const ::f64_size & size)
 //{
 //
 //    //throw ::interface_only();
@@ -4625,7 +4625,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::get_text_extent(::f64_size & ::f64_size, const_char_pointer pszString, character_count nCount)
+   void graphics::get_text_extent(::f64_size & size, const_char_pointer pszString, character_count nCount)
    {
 
       return get_text_extent(::f64_size, lpszString, nCount, -1);
@@ -4633,7 +4633,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::get_text_extent(::f64_size & ::f64_size, const ::scoped_string & scopedstr)
+   void graphics::get_text_extent(::f64_size & size, const ::scoped_string & scopedstr)
    {
 
       return get_text_extent(::f64_size, str, str.length());
@@ -6301,13 +6301,13 @@ namespace draw2d_cairo
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto r = color32_byte_red(color32);
+      auto r = color32_u8_red(color32);
 
-      auto g = color32_byte_green(color32);
+      auto g = color32_u8_green(color32);
 
-      auto b = color32_byte_blue(color32);
+      auto b = color32_u8_blue(color32);
 
-      auto a = color32_byte_opacity(color32);
+      auto a = color32_u8_opacity(color32);
 
       cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 

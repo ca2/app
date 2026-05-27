@@ -656,7 +656,7 @@ constexpr ::i16 __hiword(INTEGRAL_NUMBER i)
 //
 //   const_char_pointer pszEnd = nullptr;
 //
-//   return ansi_to_long_long(scopedstr, &pszEnd, iBase);
+//   return ansi_to_i64(scopedstr, &pszEnd, iBase);
 //
 //}
 
@@ -689,7 +689,7 @@ inline ::i32 maximum_digits(::i32 iBase)
    else if constexpr (sizeof(SIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_long_long, iBase);
+      return type_maximum_digits(e_integer_type_i64, iBase);
 
    }
    else
@@ -729,7 +729,7 @@ inline ::i32 maximum_digits(::i32 iBase)
    else if constexpr (sizeof(UNSIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_unsigned_long_long, iBase);
+      return type_maximum_digits(e_integer_type_u64, iBase);
 
    }
    else
@@ -750,7 +750,7 @@ inline ::i32 maximum_digits(::i32 iBase)
 //CLASS_DECL_ACME ::i32 i16_maximum_digits(::i32 iBase);
 //CLASS_DECL_ACME ::i32 u16_maximum_digits(::i32 iBase);
 //
-//CLASS_DECL_ACME ::i32 int_maximum_digits(::i32 iBase);
+//CLASS_DECL_ACME ::i32 i32_maximum_digits(::i32 iBase);
 //CLASS_DECL_ACME ::i32 u32_maximum_digits(::i32 iBase);
 //
 //CLASS_DECL_ACME ::i32 i64_maximum_digits(::i32 iBase);

@@ -10,12 +10,12 @@
 //CLASS_DECL_ACME char_pointer strdup2(const_char_pointer psz1, const_char_pointer psz2);
 
 
-CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
-CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
-CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u64 ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
 CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
@@ -274,15 +274,15 @@ inline bool exists(const ::file::enum_type& etype);
 // CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
-CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
+CLASS_DECL_ACME ::u64 ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 CLASS_DECL_ACME ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase);
 
 
 CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::ansi_character * & end);
 
-CLASS_DECL_ACME ::ansi_character * __long_longtoansi(::i64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::ansi_character * & end);
+CLASS_DECL_ACME ::ansi_character * __i64toansi(::i64 u, ::ansi_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::ansi_character * & end);
 
 
 template<typename T1, typename T2>

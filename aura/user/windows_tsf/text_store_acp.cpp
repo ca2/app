@@ -841,7 +841,7 @@ namespace tsf
 
        //::i32 cch = GetWindowTextLength(m_hwndEdit);
 
-       ::i32 cch = (int_cast) get_text_length();
+       ::i32 cch = (i32_cast) get_text_length();
 
        if(acpPos < 0 || acpPos > cch)
        {

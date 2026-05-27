@@ -104,7 +104,7 @@ string i64toa_dup(::i64 i, ::i32 iBase)
 
 
 
-// void ansi_from_unsigned_long_long(char_pointer sz, ::u64 u, ::i32 iBase)
+// void ansi_from_u64(char_pointer sz, ::u64 u, ::i32 iBase)
 //{
 //   if(u == 0)
 //   {
@@ -135,7 +135,7 @@ string i64toa_dup(::i64 i, ::i32 iBase)
 //
 //
 //
-//void ansi_from_long_long(char_pointer sz, ::i64 i, ::i32 iBase)
+//void ansi_from_i64(char_pointer sz, ::i64 i, ::i32 iBase)
 //{
 //   if(i == 0)
 //   {

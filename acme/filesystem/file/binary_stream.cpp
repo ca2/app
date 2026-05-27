@@ -124,7 +124,7 @@ bool binary_stream::is_end_of_file() const
 
          ::u64 ull;
 
-         if (!m_pfile->get_unsigned_long_long(ull))
+         if (!m_pfile->get_u64(ull))
          {
 
             set_nok();

@@ -24,7 +24,7 @@ namespace user
 
          e_line_height_single,
          e_line_height_one_and_a_half,
-         e_line_height_double
+         e_line_height_f64
 
       };
 

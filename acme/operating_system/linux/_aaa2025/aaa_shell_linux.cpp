@@ -916,7 +916,7 @@ pdirectorysystem->is(strPath))
 //         ::i32 iImage = I32_MINIMUM;
 //
 //         {
-//            if (color32_byte_opacity(crBk) != 255)
+//            if (color32_u8_opacity(crBk) != 255)
 //            {
 //
 //               crBk = 0;
@@ -990,7 +990,7 @@ pdirectorysystem->is(strPath))
 
          {
 
-            if (color32_byte_opacity(imagekey.m_cr) != 255)
+            if (color32_u8_opacity(imagekey.m_cr) != 255)
             {
 
                imagekey.m_cr = 0;
@@ -1062,7 +1062,7 @@ pdirectorysystem->is(strPath))
 //
 //               ::image::image_pointer pimage;
 //               pimage = create_image({iSize,  iSize});
-//               pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
+//               pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //               m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::i32_point(), 0);
@@ -1077,10 +1077,10 @@ pdirectorysystem->is(strPath))
 //               size s = m_pimagelist[iSize]->m_pimage->get_size();
 //               ::image::image_pointer pimage;
 //               pimage = __create_image(d->size());
-//               pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
+//               pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //               pimage->get_graphics()->draw(::i32_point(), d->size(), d->get_graphics());
-//               pimage->get_graphics()->fill_rectangle(rectangle(d->size()), argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
+//               pimage->get_graphics()->fill_rectangle(rectangle(d->size()), argb(123, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk)));
 //               m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //               m_pimagelist[iSize]->m_pimage->g()->draw(::i32_point(), d->size(), pimage->get_graphics());
 //               m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

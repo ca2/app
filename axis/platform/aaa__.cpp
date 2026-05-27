@@ -15,10 +15,10 @@
 //
 //
 ////extern "C"
-//CLASS_DECL_AXIS int_bool defer_aura_init();
+//CLASS_DECL_AXIS i32_bool defer_aura_init();
 
 //extern "C"
-CLASS_DECL_AXIS int_bool defer_aura_term();
+CLASS_DECL_AXIS i32_bool defer_aura_term();
 //
 //
 //namespace axis

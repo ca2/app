@@ -30,13491 +30,13491 @@ const_char_pointer GeoIP_region_name_by_code(const_char_pointer country_code,con
   if (strcmp(country_code,"CA") == 0) {
     switch (region_code2) {
       case 849:
-      name = "Alberta";
+      pszName = "Alberta";
       break;
       case 893:
-      name = "British Columbia";
+      pszName = "British Columbia";
       break;
       case 1365:
-      name = "Manitoba";
+      pszName = "Manitoba";
       break;
       case 1408:
-      name = "New Brunswick";
+      pszName = "New Brunswick";
       break;
       case 1418:
-      name = "Newfoundland";
+      pszName = "Newfoundland";
       break;
       case 1425:
-      name = "Nova Scotia";
+      pszName = "Nova Scotia";
       break;
       case 1427:
-      name = "Nunavut";
+      pszName = "Nunavut";
       break;
       case 1463:
-      name = "Ontario";
+      pszName = "Ontario";
       break;
       case 1497:
-      name = "Prince Edward Island";
+      pszName = "Prince Edward Island";
       break;
       case 1538:
-      name = "Quebec";
+      pszName = "Quebec";
       break;
       case 1632:
-      name = "Saskatchewan";
+      pszName = "Saskatchewan";
       break;
       case 1426:
-      name = "Northwest Territories";
+      pszName = "Northwest Territories";
       break;
       case 1899:
-      name = "Yukon Territory";
+      pszName = "Yukon Territory";
       break;
     }
   }
   if (strcmp(country_code,"US") == 0) {
     switch (region_code2) {
       case 848:
-      name = "Armed Forces Americas";
+      pszName = "Armed Forces Americas";
       break;
       case 852:
-      name = "Armed Forces Europe, Middle East, & Canada";
+      pszName = "Armed Forces Europe, Middle East, & Canada";
       break;
       case 858:
-      name = "Alaska";
+      pszName = "Alaska";
       break;
       case 859:
-      name = "Alabama";
+      pszName = "Alabama";
       break;
       case 863:
-      name = "Armed Forces Pacific";
+      pszName = "Armed Forces Pacific";
       break;
       case 865:
-      name = "Arkansas";
+      pszName = "Arkansas";
       break;
       case 866:
-      name = "American Samoa";
+      pszName = "American Samoa";
       break;
       case 873:
-      name = "Arizona";
+      pszName = "Arizona";
       break;
       case 934:
-      name = "California";
+      pszName = "California";
       break;
       case 948:
-      name = "Colorado";
+      pszName = "Colorado";
       break;
       case 953:
-      name = "Connecticut";
+      pszName = "Connecticut";
       break;
       case 979:
-      name = "District of Columbia";
+      pszName = "District of Columbia";
       break;
       case 981:
-      name = "Delaware";
+      pszName = "Delaware";
       break;
       case 1074:
-      name = "Florida";
+      pszName = "Florida";
       break;
       case 1075:
-      name = "Federated States of Micronesia";
+      pszName = "Federated States of Micronesia";
       break;
       case 1106:
-      name = "Georgia";
+      pszName = "Georgia";
       break;
       case 1126:
-      name = "Guam";
+      pszName = "Guam";
       break;
       case 1157:
-      name = "Hawaii";
+      pszName = "Hawaii";
       break;
       case 1192:
-      name = "Iowa";
+      pszName = "Iowa";
       break;
       case 1195:
-      name = "Idaho";
+      pszName = "Idaho";
       break;
       case 1203:
-      name = "Illinois";
+      pszName = "Illinois";
       break;
       case 1205:
-      name = "Indiana";
+      pszName = "Indiana";
       break;
       case 1296:
-      name = "Kansas";
+      pszName = "Kansas";
       break;
       case 1302:
-      name = "Kentucky";
+      pszName = "Kentucky";
       break;
       case 1321:
-      name = "Louisiana";
+      pszName = "Louisiana";
       break;
       case 1364:
-      name = "Massachusetts";
+      pszName = "Massachusetts";
       break;
       case 1367:
-      name = "Maryland";
+      pszName = "Maryland";
       break;
       case 1368:
-      name = "Maine";
+      pszName = "Maine";
       break;
       case 1371:
-      name = "Marshall Islands";
+      pszName = "Marshall Islands";
       break;
       case 1372:
-      name = "Michigan";
+      pszName = "Michigan";
       break;
       case 1377:
-      name = "Minnesota";
+      pszName = "Minnesota";
       break;
       case 1378:
-      name = "Missouri";
+      pszName = "Missouri";
       break;
       case 1379:
-      name = "Northern Mariana Islands";
+      pszName = "Northern Mariana Islands";
       break;
       case 1382:
-      name = "Mississippi";
+      pszName = "Mississippi";
       break;
       case 1383:
-      name = "Montana";
+      pszName = "Montana";
       break;
       case 1409:
-      name = "North Carolina";
+      pszName = "North Carolina";
       break;
       case 1410:
-      name = "North Dakota";
+      pszName = "North Dakota";
       break;
       case 1411:
-      name = "Nebraska";
+      pszName = "Nebraska";
       break;
       case 1414:
-      name = "New Hampshire";
+      pszName = "New Hampshire";
       break;
       case 1416:
-      name = "New Jersey";
+      pszName = "New Jersey";
       break;
       case 1419:
-      name = "New Mexico";
+      pszName = "New Mexico";
       break;
       case 1428:
-      name = "Nevada";
+      pszName = "Nevada";
       break;
       case 1431:
-      name = "New York";
+      pszName = "New York";
       break;
       case 1457:
-      name = "Ohio";
+      pszName = "Ohio";
       break;
       case 1460:
-      name = "Oklahoma";
+      pszName = "Oklahoma";
       break;
       case 1467:
-      name = "Oregon";
+      pszName = "Oregon";
       break;
       case 1493:
-      name = "Pennsylvania";
+      pszName = "Pennsylvania";
       break;
       case 1510:
-      name = "Puerto Rico";
+      pszName = "Puerto Rico";
       break;
       case 1515:
-      name = "Palau";
+      pszName = "Palau";
       break;
       case 1587:
-      name = "Rhode Island";
+      pszName = "Rhode Island";
       break;
       case 1624:
-      name = "South Carolina";
+      pszName = "South Carolina";
       break;
       case 1625:
-      name = "South Dakota";
+      pszName = "South Dakota";
       break;
       case 1678:
-      name = "Tennessee";
+      pszName = "Tennessee";
       break;
       case 1688:
-      name = "Texas";
+      pszName = "Texas";
       break;
       case 1727:
-      name = "Utah";
+      pszName = "Utah";
       break;
       case 1751:
-      name = "Virginia";
+      pszName = "Virginia";
       break;
       case 1759:
-      name = "Virgin Islands";
+      pszName = "Virgin Islands";
       break;
       case 1770:
-      name = "Vermont";
+      pszName = "Vermont";
       break;
       case 1794:
-      name = "Washington";
+      pszName = "Washington";
       break;
       case 1815:
-      name = "West Virginia";
+      pszName = "West Virginia";
       break;
       case 1802:
-      name = "Wisconsin";
+      pszName = "Wisconsin";
       break;
       case 1818:
-      name = "Wyoming";
+      pszName = "Wyoming";
       break;
     }
   }
   if (strcmp(country_code,"AD") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Canillo";
+      pszName = "Canillo";
       break;
       case 3:
-      name = "Encamp";
+      pszName = "Encamp";
       break;
       case 4:
-      name = "La Massana";
+      pszName = "La Massana";
       break;
       case 5:
-      name = "Ordino";
+      pszName = "Ordino";
       break;
       case 6:
-      name = "Sant Julia de Loria";
+      pszName = "Sant Julia de Loria";
       break;
       case 7:
-      name = "Andorra la Vella";
+      pszName = "Andorra la Vella";
       break;
       case 8:
-      name = "Escaldes-Engordany";
+      pszName = "Escaldes-Engordany";
       break;
     }
   }
   if (strcmp(country_code,"AE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Abu Dhabi";
+      pszName = "Abu Dhabi";
       break;
       case 2:
-      name = "Ajman";
+      pszName = "Ajman";
       break;
       case 3:
-      name = "Dubai";
+      pszName = "Dubai";
       break;
       case 4:
-      name = "Fujairah";
+      pszName = "Fujairah";
       break;
       case 5:
-      name = "Ras Al Khaimah";
+      pszName = "Ras Al Khaimah";
       break;
       case 6:
-      name = "Sharjah";
+      pszName = "Sharjah";
       break;
       case 7:
-      name = "Umm Al Quwain";
+      pszName = "Umm Al Quwain";
       break;
     }
   }
   if (strcmp(country_code,"AF") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Badakhshan";
+      pszName = "Badakhshan";
       break;
       case 2:
-      name = "Badghis";
+      pszName = "Badghis";
       break;
       case 3:
-      name = "Baghlan";
+      pszName = "Baghlan";
       break;
       case 5:
-      name = "Bamian";
+      pszName = "Bamian";
       break;
       case 6:
-      name = "Farah";
+      pszName = "Farah";
       break;
       case 7:
-      name = "Faryab";
+      pszName = "Faryab";
       break;
       case 8:
-      name = "Ghazni";
+      pszName = "Ghazni";
       break;
       case 9:
-      name = "Ghowr";
+      pszName = "Ghowr";
       break;
       case 10:
-      name = "Helmand";
+      pszName = "Helmand";
       break;
       case 11:
-      name = "Herat";
+      pszName = "Herat";
       break;
       case 13:
-      name = "Kabol";
+      pszName = "Kabol";
       break;
       case 14:
-      name = "Kapisa";
+      pszName = "Kapisa";
       break;
       case 15:
-      name = "Konar";
+      pszName = "Konar";
       break;
       case 16:
-      name = "Laghman";
+      pszName = "Laghman";
       break;
       case 17:
-      name = "Lowgar";
+      pszName = "Lowgar";
       break;
       case 18:
-      name = "Nangarhar";
+      pszName = "Nangarhar";
       break;
       case 19:
-      name = "Nimruz";
+      pszName = "Nimruz";
       break;
       case 21:
-      name = "Paktia";
+      pszName = "Paktia";
       break;
       case 22:
-      name = "Parvan";
+      pszName = "Parvan";
       break;
       case 23:
-      name = "Kandahar";
+      pszName = "Kandahar";
       break;
       case 24:
-      name = "Kondoz";
+      pszName = "Kondoz";
       break;
       case 26:
-      name = "Takhar";
+      pszName = "Takhar";
       break;
       case 27:
-      name = "Vardak";
+      pszName = "Vardak";
       break;
       case 28:
-      name = "Zabol";
+      pszName = "Zabol";
       break;
       case 29:
-      name = "Paktika";
+      pszName = "Paktika";
       break;
       case 30:
-      name = "Balkh";
+      pszName = "Balkh";
       break;
       case 31:
-      name = "Jowzjan";
+      pszName = "Jowzjan";
       break;
       case 32:
-      name = "Samangan";
+      pszName = "Samangan";
       break;
       case 33:
-      name = "Sar-e Pol";
+      pszName = "Sar-e Pol";
       break;
       case 34:
-      name = "Konar";
+      pszName = "Konar";
       break;
       case 35:
-      name = "Laghman";
+      pszName = "Laghman";
       break;
       case 36:
-      name = "Paktia";
+      pszName = "Paktia";
       break;
       case 37:
-      name = "Khowst";
+      pszName = "Khowst";
       break;
       case 38:
-      name = "Nurestan";
+      pszName = "Nurestan";
       break;
       case 39:
-      name = "Oruzgan";
+      pszName = "Oruzgan";
       break;
       case 40:
-      name = "Parvan";
+      pszName = "Parvan";
       break;
       case 41:
-      name = "Daykondi";
+      pszName = "Daykondi";
       break;
       case 42:
-      name = "Panjshir";
+      pszName = "Panjshir";
       break;
     }
   }
   if (strcmp(country_code,"AG") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Barbuda";
+      pszName = "Barbuda";
       break;
       case 3:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 4:
-      name = "Saint John";
+      pszName = "Saint John";
       break;
       case 5:
-      name = "Saint Mary";
+      pszName = "Saint Mary";
       break;
       case 6:
-      name = "Saint Paul";
+      pszName = "Saint Paul";
       break;
       case 7:
-      name = "Saint Peter";
+      pszName = "Saint Peter";
       break;
       case 8:
-      name = "Saint Philip";
+      pszName = "Saint Philip";
       break;
     }
   }
   if (strcmp(country_code,"AL") == 0) {
     switch (region_code2) {
       case 40:
-      name = "Berat";
+      pszName = "Berat";
       break;
       case 41:
-      name = "Diber";
+      pszName = "Diber";
       break;
       case 42:
-      name = "Durres";
+      pszName = "Durres";
       break;
       case 43:
-      name = "Elbasan";
+      pszName = "Elbasan";
       break;
       case 44:
-      name = "Fier";
+      pszName = "Fier";
       break;
       case 45:
-      name = "Gjirokaster";
+      pszName = "Gjirokaster";
       break;
       case 46:
-      name = "Korce";
+      pszName = "Korce";
       break;
       case 47:
-      name = "Kukes";
+      pszName = "Kukes";
       break;
       case 48:
-      name = "Lezhe";
+      pszName = "Lezhe";
       break;
       case 49:
-      name = "Shkoder";
+      pszName = "Shkoder";
       break;
       case 50:
-      name = "Tirane";
+      pszName = "Tirane";
       break;
       case 51:
-      name = "Vlore";
+      pszName = "Vlore";
       break;
     }
   }
   if (strcmp(country_code,"AM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aragatsotn";
+      pszName = "Aragatsotn";
       break;
       case 2:
-      name = "Ararat";
+      pszName = "Ararat";
       break;
       case 3:
-      name = "Armavir";
+      pszName = "Armavir";
       break;
       case 4:
-      name = "Geghark'unik'";
+      pszName = "Geghark'unik'";
       break;
       case 5:
-      name = "Kotayk'";
+      pszName = "Kotayk'";
       break;
       case 6:
-      name = "Lorri";
+      pszName = "Lorri";
       break;
       case 7:
-      name = "Shirak";
+      pszName = "Shirak";
       break;
       case 8:
-      name = "Syunik'";
+      pszName = "Syunik'";
       break;
       case 9:
-      name = "Tavush";
+      pszName = "Tavush";
       break;
       case 10:
-      name = "Vayots' Dzor";
+      pszName = "Vayots' Dzor";
       break;
       case 11:
-      name = "Yerevan";
+      pszName = "Yerevan";
       break;
     }
   }
   if (strcmp(country_code,"AO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Benguela";
+      pszName = "Benguela";
       break;
       case 2:
-      name = "Bie";
+      pszName = "Bie";
       break;
       case 3:
-      name = "Cabinda";
+      pszName = "Cabinda";
       break;
       case 4:
-      name = "Cuando Cubango";
+      pszName = "Cuando Cubango";
       break;
       case 5:
-      name = "Cuanza Norte";
+      pszName = "Cuanza Norte";
       break;
       case 6:
-      name = "Cuanza Sul";
+      pszName = "Cuanza Sul";
       break;
       case 7:
-      name = "Cunene";
+      pszName = "Cunene";
       break;
       case 8:
-      name = "Huambo";
+      pszName = "Huambo";
       break;
       case 9:
-      name = "Huila";
+      pszName = "Huila";
       break;
       case 10:
-      name = "Luanda";
+      pszName = "Luanda";
       break;
       case 12:
-      name = "Malanje";
+      pszName = "Malanje";
       break;
       case 13:
-      name = "Namibe";
+      pszName = "Namibe";
       break;
       case 14:
-      name = "Moxico";
+      pszName = "Moxico";
       break;
       case 15:
-      name = "Uige";
+      pszName = "Uige";
       break;
       case 16:
-      name = "Zaire";
+      pszName = "Zaire";
       break;
       case 17:
-      name = "Lunda Norte";
+      pszName = "Lunda Norte";
       break;
       case 18:
-      name = "Lunda Sul";
+      pszName = "Lunda Sul";
       break;
       case 19:
-      name = "Bengo";
+      pszName = "Bengo";
       break;
       case 20:
-      name = "Luanda";
+      pszName = "Luanda";
       break;
     }
   }
   if (strcmp(country_code,"AR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Buenos Aires";
+      pszName = "Buenos Aires";
       break;
       case 2:
-      name = "Catamarca";
+      pszName = "Catamarca";
       break;
       case 3:
-      name = "Chaco";
+      pszName = "Chaco";
       break;
       case 4:
-      name = "Chubut";
+      pszName = "Chubut";
       break;
       case 5:
-      name = "Cordoba";
+      pszName = "Cordoba";
       break;
       case 6:
-      name = "Corrientes";
+      pszName = "Corrientes";
       break;
       case 7:
-      name = "Distrito Federal";
+      pszName = "Distrito Federal";
       break;
       case 8:
-      name = "Entre Rios";
+      pszName = "Entre Rios";
       break;
       case 9:
-      name = "Formosa";
+      pszName = "Formosa";
       break;
       case 10:
-      name = "Jujuy";
+      pszName = "Jujuy";
       break;
       case 11:
-      name = "La Pampa";
+      pszName = "La Pampa";
       break;
       case 12:
-      name = "La Rioja";
+      pszName = "La Rioja";
       break;
       case 13:
-      name = "Mendoza";
+      pszName = "Mendoza";
       break;
       case 14:
-      name = "Misiones";
+      pszName = "Misiones";
       break;
       case 15:
-      name = "Neuquen";
+      pszName = "Neuquen";
       break;
       case 16:
-      name = "Rio Negro";
+      pszName = "Rio Negro";
       break;
       case 17:
-      name = "Salta";
+      pszName = "Salta";
       break;
       case 18:
-      name = "San Juan";
+      pszName = "San Juan";
       break;
       case 19:
-      name = "San Luis";
+      pszName = "San Luis";
       break;
       case 20:
-      name = "Santa Cruz";
+      pszName = "Santa Cruz";
       break;
       case 21:
-      name = "Santa Fe";
+      pszName = "Santa Fe";
       break;
       case 22:
-      name = "Santiago del Estero";
+      pszName = "Santiago del Estero";
       break;
       case 23:
-      name = "Tierra del Fuego";
+      pszName = "Tierra del Fuego";
       break;
       case 24:
-      name = "Tucuman";
+      pszName = "Tucuman";
       break;
     }
   }
   if (strcmp(country_code,"AT") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Burgenland";
+      pszName = "Burgenland";
       break;
       case 2:
-      name = "Karnten";
+      pszName = "Karnten";
       break;
       case 3:
-      name = "Niederosterreich";
+      pszName = "Niederosterreich";
       break;
       case 4:
-      name = "Oberosterreich";
+      pszName = "Oberosterreich";
       break;
       case 5:
-      name = "Salzburg";
+      pszName = "Salzburg";
       break;
       case 6:
-      name = "Steiermark";
+      pszName = "Steiermark";
       break;
       case 7:
-      name = "Tirol";
+      pszName = "Tirol";
       break;
       case 8:
-      name = "Vorarlberg";
+      pszName = "Vorarlberg";
       break;
       case 9:
-      name = "Wien";
+      pszName = "Wien";
       break;
     }
   }
   if (strcmp(country_code,"AU") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Australian Capital Territory";
+      pszName = "Australian Capital Territory";
       break;
       case 2:
-      name = "New South Wales";
+      pszName = "New South Wales";
       break;
       case 3:
-      name = "Northern Territory";
+      pszName = "Northern Territory";
       break;
       case 4:
-      name = "Queensland";
+      pszName = "Queensland";
       break;
       case 5:
-      name = "South Australia";
+      pszName = "South Australia";
       break;
       case 6:
-      name = "Tasmania";
+      pszName = "Tasmania";
       break;
       case 7:
-      name = "Victoria";
+      pszName = "Victoria";
       break;
       case 8:
-      name = "Western Australia";
+      pszName = "Western Australia";
       break;
     }
   }
   if (strcmp(country_code,"AZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Abseron";
+      pszName = "Abseron";
       break;
       case 2:
-      name = "Agcabadi";
+      pszName = "Agcabadi";
       break;
       case 3:
-      name = "Agdam";
+      pszName = "Agdam";
       break;
       case 4:
-      name = "Agdas";
+      pszName = "Agdas";
       break;
       case 5:
-      name = "Agstafa";
+      pszName = "Agstafa";
       break;
       case 6:
-      name = "Agsu";
+      pszName = "Agsu";
       break;
       case 7:
-      name = "Ali Bayramli";
+      pszName = "Ali Bayramli";
       break;
       case 8:
-      name = "Astara";
+      pszName = "Astara";
       break;
       case 9:
-      name = "Baki";
+      pszName = "Baki";
       break;
       case 10:
-      name = "Balakan";
+      pszName = "Balakan";
       break;
       case 11:
-      name = "Barda";
+      pszName = "Barda";
       break;
       case 12:
-      name = "Beylaqan";
+      pszName = "Beylaqan";
       break;
       case 13:
-      name = "Bilasuvar";
+      pszName = "Bilasuvar";
       break;
       case 14:
-      name = "Cabrayil";
+      pszName = "Cabrayil";
       break;
       case 15:
-      name = "Calilabad";
+      pszName = "Calilabad";
       break;
       case 16:
-      name = "Daskasan";
+      pszName = "Daskasan";
       break;
       case 17:
-      name = "Davaci";
+      pszName = "Davaci";
       break;
       case 18:
-      name = "Fuzuli";
+      pszName = "Fuzuli";
       break;
       case 19:
-      name = "Gadabay";
+      pszName = "Gadabay";
       break;
       case 20:
-      name = "Ganca";
+      pszName = "Ganca";
       break;
       case 21:
-      name = "Goranboy";
+      pszName = "Goranboy";
       break;
       case 22:
-      name = "Goycay";
+      pszName = "Goycay";
       break;
       case 23:
-      name = "Haciqabul";
+      pszName = "Haciqabul";
       break;
       case 24:
-      name = "Imisli";
+      pszName = "Imisli";
       break;
       case 25:
-      name = "Ismayilli";
+      pszName = "Ismayilli";
       break;
       case 26:
-      name = "Kalbacar";
+      pszName = "Kalbacar";
       break;
       case 27:
-      name = "Kurdamir";
+      pszName = "Kurdamir";
       break;
       case 28:
-      name = "Lacin";
+      pszName = "Lacin";
       break;
       case 29:
-      name = "Lankaran";
+      pszName = "Lankaran";
       break;
       case 30:
-      name = "Lankaran";
+      pszName = "Lankaran";
       break;
       case 31:
-      name = "Lerik";
+      pszName = "Lerik";
       break;
       case 32:
-      name = "Masalli";
+      pszName = "Masalli";
       break;
       case 33:
-      name = "Mingacevir";
+      pszName = "Mingacevir";
       break;
       case 34:
-      name = "Naftalan";
+      pszName = "Naftalan";
       break;
       case 35:
-      name = "Naxcivan";
+      pszName = "Naxcivan";
       break;
       case 36:
-      name = "Neftcala";
+      pszName = "Neftcala";
       break;
       case 37:
-      name = "Oguz";
+      pszName = "Oguz";
       break;
       case 38:
-      name = "Qabala";
+      pszName = "Qabala";
       break;
       case 39:
-      name = "Qax";
+      pszName = "Qax";
       break;
       case 40:
-      name = "Qazax";
+      pszName = "Qazax";
       break;
       case 41:
-      name = "Qobustan";
+      pszName = "Qobustan";
       break;
       case 42:
-      name = "Quba";
+      pszName = "Quba";
       break;
       case 43:
-      name = "Qubadli";
+      pszName = "Qubadli";
       break;
       case 44:
-      name = "Qusar";
+      pszName = "Qusar";
       break;
       case 45:
-      name = "Saatli";
+      pszName = "Saatli";
       break;
       case 46:
-      name = "Sabirabad";
+      pszName = "Sabirabad";
       break;
       case 47:
-      name = "Saki";
+      pszName = "Saki";
       break;
       case 48:
-      name = "Saki";
+      pszName = "Saki";
       break;
       case 49:
-      name = "Salyan";
+      pszName = "Salyan";
       break;
       case 50:
-      name = "Samaxi";
+      pszName = "Samaxi";
       break;
       case 51:
-      name = "Samkir";
+      pszName = "Samkir";
       break;
       case 52:
-      name = "Samux";
+      pszName = "Samux";
       break;
       case 53:
-      name = "Siyazan";
+      pszName = "Siyazan";
       break;
       case 54:
-      name = "Sumqayit";
+      pszName = "Sumqayit";
       break;
       case 55:
-      name = "Susa";
+      pszName = "Susa";
       break;
       case 56:
-      name = "Susa";
+      pszName = "Susa";
       break;
       case 57:
-      name = "Tartar";
+      pszName = "Tartar";
       break;
       case 58:
-      name = "Tovuz";
+      pszName = "Tovuz";
       break;
       case 59:
-      name = "Ucar";
+      pszName = "Ucar";
       break;
       case 60:
-      name = "Xacmaz";
+      pszName = "Xacmaz";
       break;
       case 61:
-      name = "Xankandi";
+      pszName = "Xankandi";
       break;
       case 62:
-      name = "Xanlar";
+      pszName = "Xanlar";
       break;
       case 63:
-      name = "Xizi";
+      pszName = "Xizi";
       break;
       case 64:
-      name = "Xocali";
+      pszName = "Xocali";
       break;
       case 65:
-      name = "Xocavand";
+      pszName = "Xocavand";
       break;
       case 66:
-      name = "Yardimli";
+      pszName = "Yardimli";
       break;
       case 67:
-      name = "Yevlax";
+      pszName = "Yevlax";
       break;
       case 68:
-      name = "Yevlax";
+      pszName = "Yevlax";
       break;
       case 69:
-      name = "Zangilan";
+      pszName = "Zangilan";
       break;
       case 70:
-      name = "Zaqatala";
+      pszName = "Zaqatala";
       break;
       case 71:
-      name = "Zardab";
+      pszName = "Zardab";
       break;
     }
   }
   if (strcmp(country_code,"BA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Federation of Bosnia and Herzegovina";
+      pszName = "Federation of Bosnia and Herzegovina";
       break;
       case 2:
-      name = "Republika Srpska";
+      pszName = "Republika Srpska";
       break;
     }
   }
   if (strcmp(country_code,"BB") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Christ Church";
+      pszName = "Christ Church";
       break;
       case 2:
-      name = "Saint Andrew";
+      pszName = "Saint Andrew";
       break;
       case 3:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 4:
-      name = "Saint James";
+      pszName = "Saint James";
       break;
       case 5:
-      name = "Saint John";
+      pszName = "Saint John";
       break;
       case 6:
-      name = "Saint Joseph";
+      pszName = "Saint Joseph";
       break;
       case 7:
-      name = "Saint Lucy";
+      pszName = "Saint Lucy";
       break;
       case 8:
-      name = "Saint Michael";
+      pszName = "Saint Michael";
       break;
       case 9:
-      name = "Saint Peter";
+      pszName = "Saint Peter";
       break;
       case 10:
-      name = "Saint Philip";
+      pszName = "Saint Philip";
       break;
       case 11:
-      name = "Saint Thomas";
+      pszName = "Saint Thomas";
       break;
     }
   }
   if (strcmp(country_code,"BD") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Barisal";
+      pszName = "Barisal";
       break;
       case 4:
-      name = "Bandarban";
+      pszName = "Bandarban";
       break;
       case 5:
-      name = "Comilla";
+      pszName = "Comilla";
       break;
       case 12:
-      name = "Mymensingh";
+      pszName = "Mymensingh";
       break;
       case 13:
-      name = "Noakhali";
+      pszName = "Noakhali";
       break;
       case 15:
-      name = "Patuakhali";
+      pszName = "Patuakhali";
       break;
       case 22:
-      name = "Bagerhat";
+      pszName = "Bagerhat";
       break;
       case 23:
-      name = "Bhola";
+      pszName = "Bhola";
       break;
       case 24:
-      name = "Bogra";
+      pszName = "Bogra";
       break;
       case 25:
-      name = "Barguna";
+      pszName = "Barguna";
       break;
       case 26:
-      name = "Brahmanbaria";
+      pszName = "Brahmanbaria";
       break;
       case 27:
-      name = "Chandpur";
+      pszName = "Chandpur";
       break;
       case 28:
-      name = "Chapai Nawabganj";
+      pszName = "Chapai Nawabganj";
       break;
       case 29:
-      name = "Chattagram";
+      pszName = "Chattagram";
       break;
       case 30:
-      name = "Chuadanga";
+      pszName = "Chuadanga";
       break;
       case 31:
-      name = "Cox's Bazar";
+      pszName = "Cox's Bazar";
       break;
       case 32:
-      name = "Dhaka";
+      pszName = "Dhaka";
       break;
       case 33:
-      name = "Dinajpur";
+      pszName = "Dinajpur";
       break;
       case 34:
-      name = "Faridpur";
+      pszName = "Faridpur";
       break;
       case 35:
-      name = "Feni";
+      pszName = "Feni";
       break;
       case 36:
-      name = "Gaibandha";
+      pszName = "Gaibandha";
       break;
       case 37:
-      name = "Gazipur";
+      pszName = "Gazipur";
       break;
       case 38:
-      name = "Gopalganj";
+      pszName = "Gopalganj";
       break;
       case 39:
-      name = "Habiganj";
+      pszName = "Habiganj";
       break;
       case 40:
-      name = "Jaipurhat";
+      pszName = "Jaipurhat";
       break;
       case 41:
-      name = "Jamalpur";
+      pszName = "Jamalpur";
       break;
       case 42:
-      name = "Jessore";
+      pszName = "Jessore";
       break;
       case 43:
-      name = "Jhalakati";
+      pszName = "Jhalakati";
       break;
       case 44:
-      name = "Jhenaidah";
+      pszName = "Jhenaidah";
       break;
       case 45:
-      name = "Khagrachari";
+      pszName = "Khagrachari";
       break;
       case 46:
-      name = "Khulna";
+      pszName = "Khulna";
       break;
       case 47:
-      name = "Kishorganj";
+      pszName = "Kishorganj";
       break;
       case 48:
-      name = "Kurigram";
+      pszName = "Kurigram";
       break;
       case 49:
-      name = "Kushtia";
+      pszName = "Kushtia";
       break;
       case 50:
-      name = "Laksmipur";
+      pszName = "Laksmipur";
       break;
       case 51:
-      name = "Lalmonirhat";
+      pszName = "Lalmonirhat";
       break;
       case 52:
-      name = "Madaripur";
+      pszName = "Madaripur";
       break;
       case 53:
-      name = "Magura";
+      pszName = "Magura";
       break;
       case 54:
-      name = "Manikganj";
+      pszName = "Manikganj";
       break;
       case 55:
-      name = "Meherpur";
+      pszName = "Meherpur";
       break;
       case 56:
-      name = "Moulavibazar";
+      pszName = "Moulavibazar";
       break;
       case 57:
-      name = "Munshiganj";
+      pszName = "Munshiganj";
       break;
       case 58:
-      name = "Naogaon";
+      pszName = "Naogaon";
       break;
       case 59:
-      name = "Narail";
+      pszName = "Narail";
       break;
       case 60:
-      name = "Narayanganj";
+      pszName = "Narayanganj";
       break;
       case 61:
-      name = "Narsingdi";
+      pszName = "Narsingdi";
       break;
       case 62:
-      name = "Nator";
+      pszName = "Nator";
       break;
       case 63:
-      name = "Netrakona";
+      pszName = "Netrakona";
       break;
       case 64:
-      name = "Nilphamari";
+      pszName = "Nilphamari";
       break;
       case 65:
-      name = "Pabna";
+      pszName = "Pabna";
       break;
       case 66:
-      name = "Panchagar";
+      pszName = "Panchagar";
       break;
       case 67:
-      name = "Parbattya Chattagram";
+      pszName = "Parbattya Chattagram";
       break;
       case 68:
-      name = "Pirojpur";
+      pszName = "Pirojpur";
       break;
       case 69:
-      name = "Rajbari";
+      pszName = "Rajbari";
       break;
       case 70:
-      name = "Rajshahi";
+      pszName = "Rajshahi";
       break;
       case 71:
-      name = "Rangpur";
+      pszName = "Rangpur";
       break;
       case 72:
-      name = "Satkhira";
+      pszName = "Satkhira";
       break;
       case 73:
-      name = "Shariyatpur";
+      pszName = "Shariyatpur";
       break;
       case 74:
-      name = "Sherpur";
+      pszName = "Sherpur";
       break;
       case 75:
-      name = "Sirajganj";
+      pszName = "Sirajganj";
       break;
       case 76:
-      name = "Sunamganj";
+      pszName = "Sunamganj";
       break;
       case 77:
-      name = "Sylhet";
+      pszName = "Sylhet";
       break;
       case 78:
-      name = "Tangail";
+      pszName = "Tangail";
       break;
       case 79:
-      name = "Thakurgaon";
+      pszName = "Thakurgaon";
       break;
       case 81:
-      name = "Dhaka";
+      pszName = "Dhaka";
       break;
       case 82:
-      name = "Khulna";
+      pszName = "Khulna";
       break;
       case 83:
-      name = "Rajshahi";
+      pszName = "Rajshahi";
       break;
       case 84:
-      name = "Chittagong";
+      pszName = "Chittagong";
       break;
       case 85:
-      name = "Barisal";
+      pszName = "Barisal";
       break;
       case 86:
-      name = "Sylhet";
+      pszName = "Sylhet";
       break;
     }
   }
   if (strcmp(country_code,"BE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Antwerpen";
+      pszName = "Antwerpen";
       break;
       case 2:
-      name = "Brabant";
+      pszName = "Brabant";
       break;
       case 3:
-      name = "Hainaut";
+      pszName = "Hainaut";
       break;
       case 4:
-      name = "Liege";
+      pszName = "Liege";
       break;
       case 5:
-      name = "Limburg";
+      pszName = "Limburg";
       break;
       case 6:
-      name = "Luxembourg";
+      pszName = "Luxembourg";
       break;
       case 7:
-      name = "Namur";
+      pszName = "Namur";
       break;
       case 8:
-      name = "Oost-Vlaanderen";
+      pszName = "Oost-Vlaanderen";
       break;
       case 9:
-      name = "West-Vlaanderen";
+      pszName = "West-Vlaanderen";
       break;
       case 10:
-      name = "Brabant Wallon";
+      pszName = "Brabant Wallon";
       break;
       case 11:
-      name = "Brussels Hoofdstedelijk Gewest";
+      pszName = "Brussels Hoofdstedelijk Gewest";
       break;
       case 12:
-      name = "Vlaams-Brabant";
+      pszName = "Vlaams-Brabant";
       break;
     }
   }
   if (strcmp(country_code,"BF") == 0) {
     switch (region_code2) {
       case 15:
-      name = "Bam";
+      pszName = "Bam";
       break;
       case 19:
-      name = "Boulkiemde";
+      pszName = "Boulkiemde";
       break;
       case 20:
-      name = "Ganzourgou";
+      pszName = "Ganzourgou";
       break;
       case 21:
-      name = "Gnagna";
+      pszName = "Gnagna";
       break;
       case 28:
-      name = "Kouritenga";
+      pszName = "Kouritenga";
       break;
       case 33:
-      name = "Oudalan";
+      pszName = "Oudalan";
       break;
       case 34:
-      name = "Passore";
+      pszName = "Passore";
       break;
       case 36:
-      name = "Sanguie";
+      pszName = "Sanguie";
       break;
       case 40:
-      name = "Soum";
+      pszName = "Soum";
       break;
       case 42:
-      name = "Tapoa";
+      pszName = "Tapoa";
       break;
       case 44:
-      name = "Zoundweogo";
+      pszName = "Zoundweogo";
       break;
       case 45:
-      name = "Bale";
+      pszName = "Bale";
       break;
       case 46:
-      name = "Banwa";
+      pszName = "Banwa";
       break;
       case 47:
-      name = "Bazega";
+      pszName = "Bazega";
       break;
       case 48:
-      name = "Bougouriba";
+      pszName = "Bougouriba";
       break;
       case 49:
-      name = "Boulgou";
+      pszName = "Boulgou";
       break;
       case 50:
-      name = "Gourma";
+      pszName = "Gourma";
       break;
       case 51:
-      name = "Houet";
+      pszName = "Houet";
       break;
       case 52:
-      name = "Ioba";
+      pszName = "Ioba";
       break;
       case 53:
-      name = "Kadiogo";
+      pszName = "Kadiogo";
       break;
       case 54:
-      name = "Kenedougou";
+      pszName = "Kenedougou";
       break;
       case 55:
-      name = "Komoe";
+      pszName = "Komoe";
       break;
       case 56:
-      name = "Komondjari";
+      pszName = "Komondjari";
       break;
       case 57:
-      name = "Kompienga";
+      pszName = "Kompienga";
       break;
       case 58:
-      name = "Kossi";
+      pszName = "Kossi";
       break;
       case 59:
-      name = "Koulpelogo";
+      pszName = "Koulpelogo";
       break;
       case 60:
-      name = "Kourweogo";
+      pszName = "Kourweogo";
       break;
       case 61:
-      name = "Leraba";
+      pszName = "Leraba";
       break;
       case 62:
-      name = "Loroum";
+      pszName = "Loroum";
       break;
       case 63:
-      name = "Mouhoun";
+      pszName = "Mouhoun";
       break;
       case 64:
-      name = "Namentenga";
+      pszName = "Namentenga";
       break;
       case 65:
-      name = "Naouri";
+      pszName = "Naouri";
       break;
       case 66:
-      name = "Nayala";
+      pszName = "Nayala";
       break;
       case 67:
-      name = "Noumbiel";
+      pszName = "Noumbiel";
       break;
       case 68:
-      name = "Oubritenga";
+      pszName = "Oubritenga";
       break;
       case 69:
-      name = "Poni";
+      pszName = "Poni";
       break;
       case 70:
-      name = "Sanmatenga";
+      pszName = "Sanmatenga";
       break;
       case 71:
-      name = "Seno";
+      pszName = "Seno";
       break;
       case 72:
-      name = "Sissili";
+      pszName = "Sissili";
       break;
       case 73:
-      name = "Sourou";
+      pszName = "Sourou";
       break;
       case 74:
-      name = "Tuy";
+      pszName = "Tuy";
       break;
       case 75:
-      name = "Yagha";
+      pszName = "Yagha";
       break;
       case 76:
-      name = "Yatenga";
+      pszName = "Yatenga";
       break;
       case 77:
-      name = "Ziro";
+      pszName = "Ziro";
       break;
       case 78:
-      name = "Zondoma";
+      pszName = "Zondoma";
       break;
     }
   }
   if (strcmp(country_code,"BG") == 0) {
     switch (region_code2) {
       case 33:
-      name = "Mikhaylovgrad";
+      pszName = "Mikhaylovgrad";
       break;
       case 38:
-      name = "Blagoevgrad";
+      pszName = "Blagoevgrad";
       break;
       case 39:
-      name = "Burgas";
+      pszName = "Burgas";
       break;
       case 40:
-      name = "Dobrich";
+      pszName = "Dobrich";
       break;
       case 41:
-      name = "Gabrovo";
+      pszName = "Gabrovo";
       break;
       case 42:
-      name = "Grad Sofiya";
+      pszName = "Grad Sofiya";
       break;
       case 43:
-      name = "Khaskovo";
+      pszName = "Khaskovo";
       break;
       case 44:
-      name = "Kurdzhali";
+      pszName = "Kurdzhali";
       break;
       case 45:
-      name = "Kyustendil";
+      pszName = "Kyustendil";
       break;
       case 46:
-      name = "Lovech";
+      pszName = "Lovech";
       break;
       case 47:
-      name = "Montana";
+      pszName = "Montana";
       break;
       case 48:
-      name = "Pazardzhik";
+      pszName = "Pazardzhik";
       break;
       case 49:
-      name = "Pernik";
+      pszName = "Pernik";
       break;
       case 50:
-      name = "Pleven";
+      pszName = "Pleven";
       break;
       case 51:
-      name = "Plovdiv";
+      pszName = "Plovdiv";
       break;
       case 52:
-      name = "Razgrad";
+      pszName = "Razgrad";
       break;
       case 53:
-      name = "Ruse";
+      pszName = "Ruse";
       break;
       case 54:
-      name = "Shumen";
+      pszName = "Shumen";
       break;
       case 55:
-      name = "Silistra";
+      pszName = "Silistra";
       break;
       case 56:
-      name = "Sliven";
+      pszName = "Sliven";
       break;
       case 57:
-      name = "Smolyan";
+      pszName = "Smolyan";
       break;
       case 58:
-      name = "Sofiya";
+      pszName = "Sofiya";
       break;
       case 59:
-      name = "Stara Zagora";
+      pszName = "Stara Zagora";
       break;
       case 60:
-      name = "Turgovishte";
+      pszName = "Turgovishte";
       break;
       case 61:
-      name = "Varna";
+      pszName = "Varna";
       break;
       case 62:
-      name = "Veliko Turnovo";
+      pszName = "Veliko Turnovo";
       break;
       case 63:
-      name = "Vidin";
+      pszName = "Vidin";
       break;
       case 64:
-      name = "Vratsa";
+      pszName = "Vratsa";
       break;
       case 65:
-      name = "Yambol";
+      pszName = "Yambol";
       break;
     }
   }
   if (strcmp(country_code,"BH") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Al Hadd";
+      pszName = "Al Hadd";
       break;
       case 2:
-      name = "Al Manamah";
+      pszName = "Al Manamah";
       break;
       case 3:
-      name = "Al Muharraq";
+      pszName = "Al Muharraq";
       break;
       case 5:
-      name = "Jidd Hafs";
+      pszName = "Jidd Hafs";
       break;
       case 6:
-      name = "Sitrah";
+      pszName = "Sitrah";
       break;
       case 7:
-      name = "Ar Rifa' wa al Mintaqah al Janubiyah";
+      pszName = "Ar Rifa' wa al Mintaqah al Janubiyah";
       break;
       case 8:
-      name = "Al Mintaqah al Gharbiyah";
+      pszName = "Al Mintaqah al Gharbiyah";
       break;
       case 9:
-      name = "Mintaqat Juzur Hawar";
+      pszName = "Mintaqat Juzur Hawar";
       break;
       case 10:
-      name = "Al Mintaqah ash Shamaliyah";
+      pszName = "Al Mintaqah ash Shamaliyah";
       break;
       case 11:
-      name = "Al Mintaqah al Wusta";
+      pszName = "Al Mintaqah al Wusta";
       break;
       case 12:
-      name = "Madinat";
+      pszName = "Madinat";
       break;
       case 13:
-      name = "Ar Rifa";
+      pszName = "Ar Rifa";
       break;
       case 14:
-      name = "Madinat Hamad";
+      pszName = "Madinat Hamad";
       break;
       case 15:
-      name = "Al Muharraq";
+      pszName = "Al Muharraq";
       break;
       case 16:
-      name = "Al Asimah";
+      pszName = "Al Asimah";
       break;
       case 17:
-      name = "Al Janubiyah";
+      pszName = "Al Janubiyah";
       break;
       case 18:
-      name = "Ash Shamaliyah";
+      pszName = "Ash Shamaliyah";
       break;
       case 19:
-      name = "Al Wusta";
+      pszName = "Al Wusta";
       break;
     }
   }
   if (strcmp(country_code,"BI") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Bujumbura";
+      pszName = "Bujumbura";
       break;
       case 9:
-      name = "Bubanza";
+      pszName = "Bubanza";
       break;
       case 10:
-      name = "Bururi";
+      pszName = "Bururi";
       break;
       case 11:
-      name = "Cankuzo";
+      pszName = "Cankuzo";
       break;
       case 12:
-      name = "Cibitoke";
+      pszName = "Cibitoke";
       break;
       case 13:
-      name = "Gitega";
+      pszName = "Gitega";
       break;
       case 14:
-      name = "Karuzi";
+      pszName = "Karuzi";
       break;
       case 15:
-      name = "Kayanza";
+      pszName = "Kayanza";
       break;
       case 16:
-      name = "Kirundo";
+      pszName = "Kirundo";
       break;
       case 17:
-      name = "Makamba";
+      pszName = "Makamba";
       break;
       case 18:
-      name = "Muyinga";
+      pszName = "Muyinga";
       break;
       case 19:
-      name = "Ngozi";
+      pszName = "Ngozi";
       break;
       case 20:
-      name = "Rutana";
+      pszName = "Rutana";
       break;
       case 21:
-      name = "Ruyigi";
+      pszName = "Ruyigi";
       break;
       case 22:
-      name = "Muramvya";
+      pszName = "Muramvya";
       break;
       case 23:
-      name = "Mwaro";
+      pszName = "Mwaro";
       break;
     }
   }
   if (strcmp(country_code,"BJ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Atakora";
+      pszName = "Atakora";
       break;
       case 2:
-      name = "ca_antique";
+      pszName = "ca_antique";
       break;
       case 3:
-      name = "Borgou";
+      pszName = "Borgou";
       break;
       case 4:
-      name = "Mono";
+      pszName = "Mono";
       break;
       case 5:
-      name = "Oueme";
+      pszName = "Oueme";
       break;
       case 6:
-      name = "Zou";
+      pszName = "Zou";
       break;
       case 7:
-      name = "Alibori";
+      pszName = "Alibori";
       break;
       case 8:
-      name = "Atakora";
+      pszName = "Atakora";
       break;
       case 9:
-      name = "ca_anyique";
+      pszName = "ca_anyique";
       break;
       case 10:
-      name = "Borgou";
+      pszName = "Borgou";
       break;
       case 11:
-      name = "Collines";
+      pszName = "Collines";
       break;
       case 12:
-      name = "Kouffo";
+      pszName = "Kouffo";
       break;
       case 13:
-      name = "Donga";
+      pszName = "Donga";
       break;
       case 14:
-      name = "Littoral";
+      pszName = "Littoral";
       break;
       case 15:
-      name = "Mono";
+      pszName = "Mono";
       break;
       case 16:
-      name = "Oueme";
+      pszName = "Oueme";
       break;
       case 17:
-      name = "Plateau";
+      pszName = "Plateau";
       break;
       case 18:
-      name = "Zou";
+      pszName = "Zou";
       break;
     }
   }
   if (strcmp(country_code,"BM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Devonshire";
+      pszName = "Devonshire";
       break;
       case 2:
-      name = "Hamilton";
+      pszName = "Hamilton";
       break;
       case 3:
-      name = "Hamilton";
+      pszName = "Hamilton";
       break;
       case 4:
-      name = "Paget";
+      pszName = "Paget";
       break;
       case 5:
-      name = "Pembroke";
+      pszName = "Pembroke";
       break;
       case 6:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 7:
-      name = "Saint George's";
+      pszName = "Saint George's";
       break;
       case 8:
-      name = "Sandys";
+      pszName = "Sandys";
       break;
       case 9:
-      name = "Smiths";
+      pszName = "Smiths";
       break;
       case 10:
-      name = "Southampton";
+      pszName = "Southampton";
       break;
       case 11:
-      name = "Warwick";
+      pszName = "Warwick";
       break;
     }
   }
   if (strcmp(country_code,"BN") == 0) {
     switch (region_code2) {
       case 7:
-      name = "Alibori";
+      pszName = "Alibori";
       break;
       case 8:
-      name = "Belait";
+      pszName = "Belait";
       break;
       case 9:
-      name = "Brunei and Muara";
+      pszName = "Brunei and Muara";
       break;
       case 10:
-      name = "Temburong";
+      pszName = "Temburong";
       break;
       case 11:
-      name = "Collines";
+      pszName = "Collines";
       break;
       case 12:
-      name = "Kouffo";
+      pszName = "Kouffo";
       break;
       case 13:
-      name = "Donga";
+      pszName = "Donga";
       break;
       case 14:
-      name = "Littoral";
+      pszName = "Littoral";
       break;
       case 15:
-      name = "Tutong";
+      pszName = "Tutong";
       break;
       case 16:
-      name = "Oueme";
+      pszName = "Oueme";
       break;
       case 17:
-      name = "Plateau";
+      pszName = "Plateau";
       break;
       case 18:
-      name = "Zou";
+      pszName = "Zou";
       break;
     }
   }
   if (strcmp(country_code,"BO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Chuquisaca";
+      pszName = "Chuquisaca";
       break;
       case 2:
-      name = "Cochabamba";
+      pszName = "Cochabamba";
       break;
       case 3:
-      name = "El Beni";
+      pszName = "El Beni";
       break;
       case 4:
-      name = "La Paz";
+      pszName = "La Paz";
       break;
       case 5:
-      name = "Oruro";
+      pszName = "Oruro";
       break;
       case 6:
-      name = "Pando";
+      pszName = "Pando";
       break;
       case 7:
-      name = "Potosi";
+      pszName = "Potosi";
       break;
       case 8:
-      name = "Santa Cruz";
+      pszName = "Santa Cruz";
       break;
       case 9:
-      name = "Tarija";
+      pszName = "Tarija";
       break;
     }
   }
   if (strcmp(country_code,"BR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Acre";
+      pszName = "Acre";
       break;
       case 2:
-      name = "Alagoas";
+      pszName = "Alagoas";
       break;
       case 3:
-      name = "Amapa";
+      pszName = "Amapa";
       break;
       case 4:
-      name = "Amazonas";
+      pszName = "Amazonas";
       break;
       case 5:
-      name = "Bahia";
+      pszName = "Bahia";
       break;
       case 6:
-      name = "Ceara";
+      pszName = "Ceara";
       break;
       case 7:
-      name = "Distrito Federal";
+      pszName = "Distrito Federal";
       break;
       case 8:
-      name = "Espirito Santo";
+      pszName = "Espirito Santo";
       break;
       case 11:
-      name = "Mato Grosso do Sul";
+      pszName = "Mato Grosso do Sul";
       break;
       case 13:
-      name = "Maranhao";
+      pszName = "Maranhao";
       break;
       case 14:
-      name = "Mato Grosso";
+      pszName = "Mato Grosso";
       break;
       case 15:
-      name = "Minas Gerais";
+      pszName = "Minas Gerais";
       break;
       case 16:
-      name = "Para";
+      pszName = "Para";
       break;
       case 17:
-      name = "Paraiba";
+      pszName = "Paraiba";
       break;
       case 18:
-      name = "Parana";
+      pszName = "Parana";
       break;
       case 20:
-      name = "Piaui";
+      pszName = "Piaui";
       break;
       case 21:
-      name = "Rio de Janeiro";
+      pszName = "Rio de Janeiro";
       break;
       case 22:
-      name = "Rio Grande do Norte";
+      pszName = "Rio Grande do Norte";
       break;
       case 23:
-      name = "Rio Grande do Sul";
+      pszName = "Rio Grande do Sul";
       break;
       case 24:
-      name = "Rondonia";
+      pszName = "Rondonia";
       break;
       case 25:
-      name = "Roraima";
+      pszName = "Roraima";
       break;
       case 26:
-      name = "Santa Catarina";
+      pszName = "Santa Catarina";
       break;
       case 27:
-      name = "Sao Paulo";
+      pszName = "Sao Paulo";
       break;
       case 28:
-      name = "Sergipe";
+      pszName = "Sergipe";
       break;
       case 29:
-      name = "Goias";
+      pszName = "Goias";
       break;
       case 30:
-      name = "Pernambuco";
+      pszName = "Pernambuco";
       break;
       case 31:
-      name = "Tocantins";
+      pszName = "Tocantins";
       break;
     }
   }
   if (strcmp(country_code,"BS") == 0) {
     switch (region_code2) {
       case 5:
-      name = "Bimini";
+      pszName = "Bimini";
       break;
       case 6:
-      name = "Cat Island";
+      pszName = "Cat Island";
       break;
       case 10:
-      name = "Exuma";
+      pszName = "Exuma";
       break;
       case 13:
-      name = "Inagua";
+      pszName = "Inagua";
       break;
       case 15:
-      name = "Long Island";
+      pszName = "Long Island";
       break;
       case 16:
-      name = "Mayaguana";
+      pszName = "Mayaguana";
       break;
       case 18:
-      name = "Ragged Island";
+      pszName = "Ragged Island";
       break;
       case 22:
-      name = "Harbour Island";
+      pszName = "Harbour Island";
       break;
       case 23:
-      name = "New Providence";
+      pszName = "New Providence";
       break;
       case 24:
-      name = "Acklins and Crooked Islands";
+      pszName = "Acklins and Crooked Islands";
       break;
       case 25:
-      name = "Freeport";
+      pszName = "Freeport";
       break;
       case 26:
-      name = "Fresh Creek";
+      pszName = "Fresh Creek";
       break;
       case 27:
-      name = "Governor's Harbour";
+      pszName = "Governor's Harbour";
       break;
       case 28:
-      name = "Green Turtle Cay";
+      pszName = "Green Turtle Cay";
       break;
       case 29:
-      name = "High Rock";
+      pszName = "High Rock";
       break;
       case 30:
-      name = "Kemps Bay";
+      pszName = "Kemps Bay";
       break;
       case 31:
-      name = "Marsh Harbour";
+      pszName = "Marsh Harbour";
       break;
       case 32:
-      name = "Nichollstown and Berry Islands";
+      pszName = "Nichollstown and Berry Islands";
       break;
       case 33:
-      name = "Rock Sound";
+      pszName = "Rock Sound";
       break;
       case 34:
-      name = "Sandy Point";
+      pszName = "Sandy Point";
       break;
       case 35:
-      name = "San Salvador and Rum Cay";
+      pszName = "San Salvador and Rum Cay";
       break;
     }
   }
   if (strcmp(country_code,"BT") == 0) {
     switch (region_code2) {
       case 5:
-      name = "Bumthang";
+      pszName = "Bumthang";
       break;
       case 6:
-      name = "Chhukha";
+      pszName = "Chhukha";
       break;
       case 7:
-      name = "Chirang";
+      pszName = "Chirang";
       break;
       case 8:
-      name = "Daga";
+      pszName = "Daga";
       break;
       case 9:
-      name = "Geylegphug";
+      pszName = "Geylegphug";
       break;
       case 10:
-      name = "Ha";
+      pszName = "Ha";
       break;
       case 11:
-      name = "Lhuntshi";
+      pszName = "Lhuntshi";
       break;
       case 12:
-      name = "Mongar";
+      pszName = "Mongar";
       break;
       case 13:
-      name = "Paro";
+      pszName = "Paro";
       break;
       case 14:
-      name = "Pemagatsel";
+      pszName = "Pemagatsel";
       break;
       case 15:
-      name = "Punakha";
+      pszName = "Punakha";
       break;
       case 16:
-      name = "Samchi";
+      pszName = "Samchi";
       break;
       case 17:
-      name = "Samdrup";
+      pszName = "Samdrup";
       break;
       case 18:
-      name = "Shemgang";
+      pszName = "Shemgang";
       break;
       case 19:
-      name = "Tashigang";
+      pszName = "Tashigang";
       break;
       case 20:
-      name = "Thimphu";
+      pszName = "Thimphu";
       break;
       case 21:
-      name = "Tongsa";
+      pszName = "Tongsa";
       break;
       case 22:
-      name = "Wangdi Phodrang";
+      pszName = "Wangdi Phodrang";
       break;
     }
   }
   if (strcmp(country_code,"BW") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Central";
+      pszName = "Central";
       break;
       case 3:
-      name = "Ghanzi";
+      pszName = "Ghanzi";
       break;
       case 4:
-      name = "Kgalagadi";
+      pszName = "Kgalagadi";
       break;
       case 5:
-      name = "Kgatleng";
+      pszName = "Kgatleng";
       break;
       case 6:
-      name = "Kweneng";
+      pszName = "Kweneng";
       break;
       case 8:
-      name = "North-East";
+      pszName = "North-East";
       break;
       case 9:
-      name = "South-East";
+      pszName = "South-East";
       break;
       case 10:
-      name = "Southern";
+      pszName = "Southern";
       break;
       case 11:
-      name = "North-West";
+      pszName = "North-West";
       break;
     }
   }
   if (strcmp(country_code,"BY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Brestskaya Voblasts'";
+      pszName = "Brestskaya Voblasts'";
       break;
       case 2:
-      name = "Homyel'skaya Voblasts'";
+      pszName = "Homyel'skaya Voblasts'";
       break;
       case 3:
-      name = "Hrodzyenskaya Voblasts'";
+      pszName = "Hrodzyenskaya Voblasts'";
       break;
       case 4:
-      name = "Minsk";
+      pszName = "Minsk";
       break;
       case 5:
-      name = "Minskaya Voblasts'";
+      pszName = "Minskaya Voblasts'";
       break;
       case 6:
-      name = "Mahilyowskaya Voblasts'";
+      pszName = "Mahilyowskaya Voblasts'";
       break;
       case 7:
-      name = "Vitsyebskaya Voblasts'";
+      pszName = "Vitsyebskaya Voblasts'";
       break;
     }
   }
   if (strcmp(country_code,"BZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Belize";
+      pszName = "Belize";
       break;
       case 2:
-      name = "Cayo";
+      pszName = "Cayo";
       break;
       case 3:
-      name = "Corozal";
+      pszName = "Corozal";
       break;
       case 4:
-      name = "Orange Walk";
+      pszName = "Orange Walk";
       break;
       case 5:
-      name = "Stann Creek";
+      pszName = "Stann Creek";
       break;
       case 6:
-      name = "Toledo";
+      pszName = "Toledo";
       break;
     }
   }
   if (strcmp(country_code,"CD") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bandundu";
+      pszName = "Bandundu";
       break;
       case 2:
-      name = "Equateur";
+      pszName = "Equateur";
       break;
       case 4:
-      name = "Kasai-Oriental";
+      pszName = "Kasai-Oriental";
       break;
       case 5:
-      name = "Katanga";
+      pszName = "Katanga";
       break;
       case 6:
-      name = "Kinshasa";
+      pszName = "Kinshasa";
       break;
       case 7:
-      name = "Kivu";
+      pszName = "Kivu";
       break;
       case 8:
-      name = "Bas-Congo";
+      pszName = "Bas-Congo";
       break;
       case 9:
-      name = "Orientale";
+      pszName = "Orientale";
       break;
       case 10:
-      name = "Maniema";
+      pszName = "Maniema";
       break;
       case 11:
-      name = "Nord-Kivu";
+      pszName = "Nord-Kivu";
       break;
       case 12:
-      name = "Sud-Kivu";
+      pszName = "Sud-Kivu";
       break;
       case 13:
-      name = "Cuvette";
+      pszName = "Cuvette";
       break;
     }
   }
   if (strcmp(country_code,"CF") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bamingui-Bangoran";
+      pszName = "Bamingui-Bangoran";
       break;
       case 2:
-      name = "Basse-Kotto";
+      pszName = "Basse-Kotto";
       break;
       case 3:
-      name = "Haute-Kotto";
+      pszName = "Haute-Kotto";
       break;
       case 4:
-      name = "Mambere-Kadei";
+      pszName = "Mambere-Kadei";
       break;
       case 5:
-      name = "Haut-Mbomou";
+      pszName = "Haut-Mbomou";
       break;
       case 6:
-      name = "Kemo";
+      pszName = "Kemo";
       break;
       case 7:
-      name = "Lobaye";
+      pszName = "Lobaye";
       break;
       case 8:
-      name = "Mbomou";
+      pszName = "Mbomou";
       break;
       case 9:
-      name = "Nana-Mambere";
+      pszName = "Nana-Mambere";
       break;
       case 11:
-      name = "Ouaka";
+      pszName = "Ouaka";
       break;
       case 12:
-      name = "Ouham";
+      pszName = "Ouham";
       break;
       case 13:
-      name = "Ouham-Pende";
+      pszName = "Ouham-Pende";
       break;
       case 14:
-      name = "Cuvette-Ouest";
+      pszName = "Cuvette-Ouest";
       break;
       case 15:
-      name = "Nana-Grebizi";
+      pszName = "Nana-Grebizi";
       break;
       case 16:
-      name = "Sangha-Mbaere";
+      pszName = "Sangha-Mbaere";
       break;
       case 17:
-      name = "Ombella-Mpoko";
+      pszName = "Ombella-Mpoko";
       break;
       case 18:
-      name = "Bangui";
+      pszName = "Bangui";
       break;
     }
   }
   if (strcmp(country_code,"CG") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bouenza";
+      pszName = "Bouenza";
       break;
       case 3:
-      name = "Cuvette";
+      pszName = "Cuvette";
       break;
       case 4:
-      name = "Kouilou";
+      pszName = "Kouilou";
       break;
       case 5:
-      name = "Lekoumou";
+      pszName = "Lekoumou";
       break;
       case 6:
-      name = "Likouala";
+      pszName = "Likouala";
       break;
       case 7:
-      name = "Niari";
+      pszName = "Niari";
       break;
       case 8:
-      name = "Plateaux";
+      pszName = "Plateaux";
       break;
       case 10:
-      name = "Sangha";
+      pszName = "Sangha";
       break;
       case 11:
-      name = "Pool";
+      pszName = "Pool";
       break;
       case 12:
-      name = "Brazzaville";
+      pszName = "Brazzaville";
       break;
     }
   }
   if (strcmp(country_code,"CH") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aargau";
+      pszName = "Aargau";
       break;
       case 2:
-      name = "Ausser-Rhoden";
+      pszName = "Ausser-Rhoden";
       break;
       case 3:
-      name = "Basel-Landschaft";
+      pszName = "Basel-Landschaft";
       break;
       case 4:
-      name = "Basel-Stadt";
+      pszName = "Basel-Stadt";
       break;
       case 5:
-      name = "Bern";
+      pszName = "Bern";
       break;
       case 6:
-      name = "Fribourg";
+      pszName = "Fribourg";
       break;
       case 7:
-      name = "Geneve";
+      pszName = "Geneve";
       break;
       case 8:
-      name = "Glarus";
+      pszName = "Glarus";
       break;
       case 9:
-      name = "Graubunden";
+      pszName = "Graubunden";
       break;
       case 10:
-      name = "Inner-Rhoden";
+      pszName = "Inner-Rhoden";
       break;
       case 11:
-      name = "Luzern";
+      pszName = "Luzern";
       break;
       case 12:
-      name = "Neuchatel";
+      pszName = "Neuchatel";
       break;
       case 13:
-      name = "Nidwalden";
+      pszName = "Nidwalden";
       break;
       case 14:
-      name = "Obwalden";
+      pszName = "Obwalden";
       break;
       case 15:
-      name = "Sankt Gallen";
+      pszName = "Sankt Gallen";
       break;
       case 16:
-      name = "Schaffhausen";
+      pszName = "Schaffhausen";
       break;
       case 17:
-      name = "Schwyz";
+      pszName = "Schwyz";
       break;
       case 18:
-      name = "Solothurn";
+      pszName = "Solothurn";
       break;
       case 19:
-      name = "Thurgau";
+      pszName = "Thurgau";
       break;
       case 20:
-      name = "Ticino";
+      pszName = "Ticino";
       break;
       case 21:
-      name = "Uri";
+      pszName = "Uri";
       break;
       case 22:
-      name = "Valais";
+      pszName = "Valais";
       break;
       case 23:
-      name = "Vaud";
+      pszName = "Vaud";
       break;
       case 24:
-      name = "Zug";
+      pszName = "Zug";
       break;
       case 25:
-      name = "Zurich";
+      pszName = "Zurich";
       break;
       case 26:
-      name = "Jura";
+      pszName = "Jura";
       break;
     }
   }
   if (strcmp(country_code,"CI") == 0) {
     switch (region_code2) {
       case 51:
-      name = "Sassandra";
+      pszName = "Sassandra";
       break;
       case 61:
-      name = "Abidjan";
+      pszName = "Abidjan";
       break;
       case 74:
-      name = "Agneby";
+      pszName = "Agneby";
       break;
       case 75:
-      name = "Bafing";
+      pszName = "Bafing";
       break;
       case 76:
-      name = "Bas-Sassandra";
+      pszName = "Bas-Sassandra";
       break;
       case 77:
-      name = "Denguele";
+      pszName = "Denguele";
       break;
       case 78:
-      name = "Dix-Huit Montagnes";
+      pszName = "Dix-Huit Montagnes";
       break;
       case 79:
-      name = "Fromager";
+      pszName = "Fromager";
       break;
       case 80:
-      name = "Haut-Sassandra";
+      pszName = "Haut-Sassandra";
       break;
       case 81:
-      name = "Lacs";
+      pszName = "Lacs";
       break;
       case 82:
-      name = "Lagunes";
+      pszName = "Lagunes";
       break;
       case 83:
-      name = "Marahoue";
+      pszName = "Marahoue";
       break;
       case 84:
-      name = "Moyen-Cavally";
+      pszName = "Moyen-Cavally";
       break;
       case 85:
-      name = "Moyen-Comoe";
+      pszName = "Moyen-Comoe";
       break;
       case 86:
-      name = "N'zi-Comoe";
+      pszName = "N'zi-Comoe";
       break;
       case 87:
-      name = "Savanes";
+      pszName = "Savanes";
       break;
       case 88:
-      name = "Sud-Bandama";
+      pszName = "Sud-Bandama";
       break;
       case 89:
-      name = "Sud-Comoe";
+      pszName = "Sud-Comoe";
       break;
       case 90:
-      name = "Vallee du Bandama";
+      pszName = "Vallee du Bandama";
       break;
       case 91:
-      name = "Worodougou";
+      pszName = "Worodougou";
       break;
       case 92:
-      name = "Zanzan";
+      pszName = "Zanzan";
       break;
     }
   }
   if (strcmp(country_code,"CL") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Valparaiso";
+      pszName = "Valparaiso";
       break;
       case 2:
-      name = "Aisen del General Carlos Ibanez del Campo";
+      pszName = "Aisen del General Carlos Ibanez del Campo";
       break;
       case 3:
-      name = "Antofagasta";
+      pszName = "Antofagasta";
       break;
       case 4:
-      name = "Araucania";
+      pszName = "Araucania";
       break;
       case 5:
-      name = "Atacama";
+      pszName = "Atacama";
       break;
       case 6:
-      name = "Bio-Bio";
+      pszName = "Bio-Bio";
       break;
       case 7:
-      name = "Coquimbo";
+      pszName = "Coquimbo";
       break;
       case 8:
-      name = "Libertador General Bernardo O'Higgins";
+      pszName = "Libertador General Bernardo O'Higgins";
       break;
       case 9:
-      name = "Los Lagos";
+      pszName = "Los Lagos";
       break;
       case 10:
-      name = "Magallanes y de la Antartica Chilena";
+      pszName = "Magallanes y de la Antartica Chilena";
       break;
       case 11:
-      name = "Maule";
+      pszName = "Maule";
       break;
       case 12:
-      name = "Region Metropolitana";
+      pszName = "Region Metropolitana";
       break;
       case 13:
-      name = "Tarapaca";
+      pszName = "Tarapaca";
       break;
     }
   }
   if (strcmp(country_code,"CM") == 0) {
     switch (region_code2) {
       case 4:
-      name = "Est";
+      pszName = "Est";
       break;
       case 5:
-      name = "Littoral";
+      pszName = "Littoral";
       break;
       case 7:
-      name = "Nord-Ouest";
+      pszName = "Nord-Ouest";
       break;
       case 8:
-      name = "Ouest";
+      pszName = "Ouest";
       break;
       case 9:
-      name = "Sud-Ouest";
+      pszName = "Sud-Ouest";
       break;
       case 10:
-      name = "Adamaoua";
+      pszName = "Adamaoua";
       break;
       case 11:
-      name = "Centre";
+      pszName = "Centre";
       break;
       case 12:
-      name = "Extreme-Nord";
+      pszName = "Extreme-Nord";
       break;
       case 13:
-      name = "Nord";
+      pszName = "Nord";
       break;
       case 14:
-      name = "Sud";
+      pszName = "Sud";
       break;
     }
   }
   if (strcmp(country_code,"CN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Anhui";
+      pszName = "Anhui";
       break;
       case 2:
-      name = "Zhejiang";
+      pszName = "Zhejiang";
       break;
       case 3:
-      name = "Jiangxi";
+      pszName = "Jiangxi";
       break;
       case 4:
-      name = "Jiangsu";
+      pszName = "Jiangsu";
       break;
       case 5:
-      name = "Jilin";
+      pszName = "Jilin";
       break;
       case 6:
-      name = "Qinghai";
+      pszName = "Qinghai";
       break;
       case 7:
-      name = "Fujian";
+      pszName = "Fujian";
       break;
       case 8:
-      name = "Heilongjiang";
+      pszName = "Heilongjiang";
       break;
       case 9:
-      name = "Henan";
+      pszName = "Henan";
       break;
       case 10:
-      name = "Hebei";
+      pszName = "Hebei";
       break;
       case 11:
-      name = "Hunan";
+      pszName = "Hunan";
       break;
       case 12:
-      name = "Hubei";
+      pszName = "Hubei";
       break;
       case 13:
-      name = "Xinjiang";
+      pszName = "Xinjiang";
       break;
       case 14:
-      name = "Xizang";
+      pszName = "Xizang";
       break;
       case 15:
-      name = "Gansu";
+      pszName = "Gansu";
       break;
       case 16:
-      name = "Guangxi";
+      pszName = "Guangxi";
       break;
       case 18:
-      name = "Guizhou";
+      pszName = "Guizhou";
       break;
       case 19:
-      name = "Liaoning";
+      pszName = "Liaoning";
       break;
       case 20:
-      name = "Nei Mongol";
+      pszName = "Nei Mongol";
       break;
       case 21:
-      name = "Ningxia";
+      pszName = "Ningxia";
       break;
       case 22:
-      name = "Beijing";
+      pszName = "Beijing";
       break;
       case 23:
-      name = "Shanghai";
+      pszName = "Shanghai";
       break;
       case 24:
-      name = "Shanxi";
+      pszName = "Shanxi";
       break;
       case 25:
-      name = "Shandong";
+      pszName = "Shandong";
       break;
       case 26:
-      name = "Shaanxi";
+      pszName = "Shaanxi";
       break;
       case 28:
-      name = "Tianjin";
+      pszName = "Tianjin";
       break;
       case 29:
-      name = "Yunnan";
+      pszName = "Yunnan";
       break;
       case 30:
-      name = "Guangdong";
+      pszName = "Guangdong";
       break;
       case 31:
-      name = "Hainan";
+      pszName = "Hainan";
       break;
       case 32:
-      name = "Sichuan";
+      pszName = "Sichuan";
       break;
       case 33:
-      name = "Chongqing";
+      pszName = "Chongqing";
       break;
     }
   }
   if (strcmp(country_code,"CO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Amazonas";
+      pszName = "Amazonas";
       break;
       case 2:
-      name = "Antioquia";
+      pszName = "Antioquia";
       break;
       case 3:
-      name = "Arauca";
+      pszName = "Arauca";
       break;
       case 4:
-      name = "Atlantico";
+      pszName = "Atlantico";
       break;
       case 5:
-      name = "Bolivar Department";
+      pszName = "Bolivar Department";
       break;
       case 6:
-      name = "Boyaca Department";
+      pszName = "Boyaca Department";
       break;
       case 7:
-      name = "Caldas Department";
+      pszName = "Caldas Department";
       break;
       case 8:
-      name = "Caqueta";
+      pszName = "Caqueta";
       break;
       case 9:
-      name = "Cauca";
+      pszName = "Cauca";
       break;
       case 10:
-      name = "Cesar";
+      pszName = "Cesar";
       break;
       case 11:
-      name = "Choco";
+      pszName = "Choco";
       break;
       case 12:
-      name = "Cordoba";
+      pszName = "Cordoba";
       break;
       case 14:
-      name = "Guaviare";
+      pszName = "Guaviare";
       break;
       case 15:
-      name = "Guainia";
+      pszName = "Guainia";
       break;
       case 16:
-      name = "Huila";
+      pszName = "Huila";
       break;
       case 17:
-      name = "La Guajira";
+      pszName = "La Guajira";
       break;
       case 18:
-      name = "Magdalena Department";
+      pszName = "Magdalena Department";
       break;
       case 19:
-      name = "Meta";
+      pszName = "Meta";
       break;
       case 20:
-      name = "Narino";
+      pszName = "Narino";
       break;
       case 21:
-      name = "Norte de Santander";
+      pszName = "Norte de Santander";
       break;
       case 22:
-      name = "Putumayo";
+      pszName = "Putumayo";
       break;
       case 23:
-      name = "Quindio";
+      pszName = "Quindio";
       break;
       case 24:
-      name = "Risaralda";
+      pszName = "Risaralda";
       break;
       case 25:
-      name = "San Andres y Providencia";
+      pszName = "San Andres y Providencia";
       break;
       case 26:
-      name = "Santander";
+      pszName = "Santander";
       break;
       case 27:
-      name = "Sucre";
+      pszName = "Sucre";
       break;
       case 28:
-      name = "Tolima";
+      pszName = "Tolima";
       break;
       case 29:
-      name = "Valle del Cauca";
+      pszName = "Valle del Cauca";
       break;
       case 30:
-      name = "Vaupes";
+      pszName = "Vaupes";
       break;
       case 31:
-      name = "Vichada";
+      pszName = "Vichada";
       break;
       case 32:
-      name = "Casanare";
+      pszName = "Casanare";
       break;
       case 33:
-      name = "Cundinamarca";
+      pszName = "Cundinamarca";
       break;
       case 34:
-      name = "Distrito Especial";
+      pszName = "Distrito Especial";
       break;
       case 35:
-      name = "Bolivar";
+      pszName = "Bolivar";
       break;
       case 36:
-      name = "Boyaca";
+      pszName = "Boyaca";
       break;
       case 37:
-      name = "Caldas";
+      pszName = "Caldas";
       break;
       case 38:
-      name = "Magdalena";
+      pszName = "Magdalena";
       break;
     }
   }
   if (strcmp(country_code,"CR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Alajuela";
+      pszName = "Alajuela";
       break;
       case 2:
-      name = "Cartago";
+      pszName = "Cartago";
       break;
       case 3:
-      name = "Guanacaste";
+      pszName = "Guanacaste";
       break;
       case 4:
-      name = "Heredia";
+      pszName = "Heredia";
       break;
       case 6:
-      name = "Limon";
+      pszName = "Limon";
       break;
       case 7:
-      name = "Puntarenas";
+      pszName = "Puntarenas";
       break;
       case 8:
-      name = "San Jose";
+      pszName = "San Jose";
       break;
     }
   }
   if (strcmp(country_code,"CU") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Pinar del Rio";
+      pszName = "Pinar del Rio";
       break;
       case 2:
-      name = "Ciudad de la Habana";
+      pszName = "Ciudad de la Habana";
       break;
       case 3:
-      name = "Matanzas";
+      pszName = "Matanzas";
       break;
       case 4:
-      name = "Isla de la Juventud";
+      pszName = "Isla de la Juventud";
       break;
       case 5:
-      name = "Camaguey";
+      pszName = "Camaguey";
       break;
       case 7:
-      name = "Ciego de Avila";
+      pszName = "Ciego de Avila";
       break;
       case 8:
-      name = "Cienfuegos";
+      pszName = "Cienfuegos";
       break;
       case 9:
-      name = "Granma";
+      pszName = "Granma";
       break;
       case 10:
-      name = "Guantanamo";
+      pszName = "Guantanamo";
       break;
       case 11:
-      name = "La Habana";
+      pszName = "La Habana";
       break;
       case 12:
-      name = "Holguin";
+      pszName = "Holguin";
       break;
       case 13:
-      name = "Las Tunas";
+      pszName = "Las Tunas";
       break;
       case 14:
-      name = "Sancti Spiritus";
+      pszName = "Sancti Spiritus";
       break;
       case 15:
-      name = "Santiago de Cuba";
+      pszName = "Santiago de Cuba";
       break;
       case 16:
-      name = "Villa Clara";
+      pszName = "Villa Clara";
       break;
     }
   }
   if (strcmp(country_code,"CV") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Boa Vista";
+      pszName = "Boa Vista";
       break;
       case 2:
-      name = "Brava";
+      pszName = "Brava";
       break;
       case 4:
-      name = "Maio";
+      pszName = "Maio";
       break;
       case 5:
-      name = "Paul";
+      pszName = "Paul";
       break;
       case 7:
-      name = "Ribeira Grande";
+      pszName = "Ribeira Grande";
       break;
       case 8:
-      name = "Sal";
+      pszName = "Sal";
       break;
       case 10:
-      name = "Sao Nicolau";
+      pszName = "Sao Nicolau";
       break;
       case 11:
-      name = "Sao Vicente";
+      pszName = "Sao Vicente";
       break;
       case 13:
-      name = "Mosteiros";
+      pszName = "Mosteiros";
       break;
       case 14:
-      name = "Praia";
+      pszName = "Praia";
       break;
       case 15:
-      name = "Santa Catarina";
+      pszName = "Santa Catarina";
       break;
       case 16:
-      name = "Santa Cruz";
+      pszName = "Santa Cruz";
       break;
       case 17:
-      name = "Sao Domingos";
+      pszName = "Sao Domingos";
       break;
       case 18:
-      name = "Sao Filipe";
+      pszName = "Sao Filipe";
       break;
       case 19:
-      name = "Sao Miguel";
+      pszName = "Sao Miguel";
       break;
       case 20:
-      name = "Tarrafal";
+      pszName = "Tarrafal";
       break;
     }
   }
   if (strcmp(country_code,"CY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Famagusta";
+      pszName = "Famagusta";
       break;
       case 2:
-      name = "Kyrenia";
+      pszName = "Kyrenia";
       break;
       case 3:
-      name = "Larnaca";
+      pszName = "Larnaca";
       break;
       case 4:
-      name = "Nicosia";
+      pszName = "Nicosia";
       break;
       case 5:
-      name = "Limassol";
+      pszName = "Limassol";
       break;
       case 6:
-      name = "Paphos";
+      pszName = "Paphos";
       break;
     }
   }
   if (strcmp(country_code,"CZ") == 0) {
     switch (region_code2) {
       case 3:
-      name = "Blansko";
+      pszName = "Blansko";
       break;
       case 4:
-      name = "Breclav";
+      pszName = "Breclav";
       break;
       case 20:
-      name = "Hradec Kralove";
+      pszName = "Hradec Kralove";
       break;
       case 21:
-      name = "Jablonec nad Nisou";
+      pszName = "Jablonec nad Nisou";
       break;
       case 23:
-      name = "Jicin";
+      pszName = "Jicin";
       break;
       case 24:
-      name = "Jihlava";
+      pszName = "Jihlava";
       break;
       case 30:
-      name = "Kolin";
+      pszName = "Kolin";
       break;
       case 33:
-      name = "Liberec";
+      pszName = "Liberec";
       break;
       case 36:
-      name = "Melnik";
+      pszName = "Melnik";
       break;
       case 37:
-      name = "Mlada Boleslav";
+      pszName = "Mlada Boleslav";
       break;
       case 39:
-      name = "Nachod";
+      pszName = "Nachod";
       break;
       case 41:
-      name = "Nymburk";
+      pszName = "Nymburk";
       break;
       case 45:
-      name = "Pardubice";
+      pszName = "Pardubice";
       break;
       case 52:
-      name = "Hlavni mesto Praha";
+      pszName = "Hlavni mesto Praha";
       break;
       case 61:
-      name = "Semily";
+      pszName = "Semily";
       break;
       case 70:
-      name = "Trutnov";
+      pszName = "Trutnov";
       break;
       case 78:
-      name = "Jihomoravsky kraj";
+      pszName = "Jihomoravsky kraj";
       break;
       case 79:
-      name = "Jihocesky kraj";
+      pszName = "Jihocesky kraj";
       break;
       case 80:
-      name = "Vysocina";
+      pszName = "Vysocina";
       break;
       case 81:
-      name = "Karlovarsky kraj";
+      pszName = "Karlovarsky kraj";
       break;
       case 82:
-      name = "Kralovehradecky kraj";
+      pszName = "Kralovehradecky kraj";
       break;
       case 83:
-      name = "Liberecky kraj";
+      pszName = "Liberecky kraj";
       break;
       case 84:
-      name = "Olomoucky kraj";
+      pszName = "Olomoucky kraj";
       break;
       case 85:
-      name = "Moravskoslezsky kraj";
+      pszName = "Moravskoslezsky kraj";
       break;
       case 86:
-      name = "Pardubicky kraj";
+      pszName = "Pardubicky kraj";
       break;
       case 87:
-      name = "Plzensky kraj";
+      pszName = "Plzensky kraj";
       break;
       case 88:
-      name = "Stredocesky kraj";
+      pszName = "Stredocesky kraj";
       break;
       case 89:
-      name = "Ustecky kraj";
+      pszName = "Ustecky kraj";
       break;
       case 90:
-      name = "Zlinsky kraj";
+      pszName = "Zlinsky kraj";
       break;
     }
   }
   if (strcmp(country_code,"DE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Baden-Wurttemberg";
+      pszName = "Baden-Wurttemberg";
       break;
       case 2:
-      name = "Bayern";
+      pszName = "Bayern";
       break;
       case 3:
-      name = "Bremen";
+      pszName = "Bremen";
       break;
       case 4:
-      name = "Hamburg";
+      pszName = "Hamburg";
       break;
       case 5:
-      name = "Hessen";
+      pszName = "Hessen";
       break;
       case 6:
-      name = "Niedersachsen";
+      pszName = "Niedersachsen";
       break;
       case 7:
-      name = "Nordrhein-Westfalen";
+      pszName = "Nordrhein-Westfalen";
       break;
       case 8:
-      name = "Rheinland-Pfalz";
+      pszName = "Rheinland-Pfalz";
       break;
       case 9:
-      name = "Saarland";
+      pszName = "Saarland";
       break;
       case 10:
-      name = "Schleswig-Holstein";
+      pszName = "Schleswig-Holstein";
       break;
       case 11:
-      name = "Brandenburg";
+      pszName = "Brandenburg";
       break;
       case 12:
-      name = "Mecklenburg-Vorpommern";
+      pszName = "Mecklenburg-Vorpommern";
       break;
       case 13:
-      name = "Sachsen";
+      pszName = "Sachsen";
       break;
       case 14:
-      name = "Sachsen-Anhalt";
+      pszName = "Sachsen-Anhalt";
       break;
       case 15:
-      name = "Thuringen";
+      pszName = "Thuringen";
       break;
       case 16:
-      name = "Berlin";
+      pszName = "Berlin";
       break;
     }
   }
   if (strcmp(country_code,"DJ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ali Sabieh";
+      pszName = "Ali Sabieh";
       break;
       case 4:
-      name = "Obock";
+      pszName = "Obock";
       break;
       case 5:
-      name = "Tadjoura";
+      pszName = "Tadjoura";
       break;
       case 6:
-      name = "Dikhil";
+      pszName = "Dikhil";
       break;
       case 7:
-      name = "Djibouti";
+      pszName = "Djibouti";
       break;
       case 8:
-      name = "Arta";
+      pszName = "Arta";
       break;
     }
   }
   if (strcmp(country_code,"DK") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Arhus";
+      pszName = "Arhus";
       break;
       case 2:
-      name = "Bornholm";
+      pszName = "Bornholm";
       break;
       case 3:
-      name = "Frederiksborg";
+      pszName = "Frederiksborg";
       break;
       case 4:
-      name = "Fyn";
+      pszName = "Fyn";
       break;
       case 5:
-      name = "Kobenhavn";
+      pszName = "Kobenhavn";
       break;
       case 6:
-      name = "Staden Kobenhavn";
+      pszName = "Staden Kobenhavn";
       break;
       case 7:
-      name = "Nordjylland";
+      pszName = "Nordjylland";
       break;
       case 8:
-      name = "Ribe";
+      pszName = "Ribe";
       break;
       case 9:
-      name = "Ringkobing";
+      pszName = "Ringkobing";
       break;
       case 10:
-      name = "Roskilde";
+      pszName = "Roskilde";
       break;
       case 11:
-      name = "Sonderjylland";
+      pszName = "Sonderjylland";
       break;
       case 12:
-      name = "Storstrom";
+      pszName = "Storstrom";
       break;
       case 13:
-      name = "Vejle";
+      pszName = "Vejle";
       break;
       case 14:
-      name = "Vestsjalland";
+      pszName = "Vestsjalland";
       break;
       case 15:
-      name = "Viborg";
+      pszName = "Viborg";
       break;
       case 17:
-      name = "Hovedstaden";
+      pszName = "Hovedstaden";
       break;
       case 18:
-      name = "Midtjyllen";
+      pszName = "Midtjyllen";
       break;
       case 19:
-      name = "Nordjylland";
+      pszName = "Nordjylland";
       break;
       case 20:
-      name = "Sjelland";
+      pszName = "Sjelland";
       break;
       case 21:
-      name = "Syddanmark";
+      pszName = "Syddanmark";
       break;
     }
   }
   if (strcmp(country_code,"DM") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Saint Andrew";
+      pszName = "Saint Andrew";
       break;
       case 3:
-      name = "Saint David";
+      pszName = "Saint David";
       break;
       case 4:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 5:
-      name = "Saint John";
+      pszName = "Saint John";
       break;
       case 6:
-      name = "Saint Joseph";
+      pszName = "Saint Joseph";
       break;
       case 7:
-      name = "Saint Luke";
+      pszName = "Saint Luke";
       break;
       case 8:
-      name = "Saint Mark";
+      pszName = "Saint Mark";
       break;
       case 9:
-      name = "Saint Patrick";
+      pszName = "Saint Patrick";
       break;
       case 10:
-      name = "Saint Paul";
+      pszName = "Saint Paul";
       break;
       case 11:
-      name = "Saint Peter";
+      pszName = "Saint Peter";
       break;
     }
   }
   if (strcmp(country_code,"DO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Azua";
+      pszName = "Azua";
       break;
       case 2:
-      name = "Baoruco";
+      pszName = "Baoruco";
       break;
       case 3:
-      name = "Barahona";
+      pszName = "Barahona";
       break;
       case 4:
-      name = "Dajabon";
+      pszName = "Dajabon";
       break;
       case 5:
-      name = "Distrito Nacional";
+      pszName = "Distrito Nacional";
       break;
       case 6:
-      name = "Duarte";
+      pszName = "Duarte";
       break;
       case 8:
-      name = "Espaillat";
+      pszName = "Espaillat";
       break;
       case 9:
-      name = "Independencia";
+      pszName = "Independencia";
       break;
       case 10:
-      name = "La Altagracia";
+      pszName = "La Altagracia";
       break;
       case 11:
-      name = "Elias Pina";
+      pszName = "Elias Pina";
       break;
       case 12:
-      name = "La Romana";
+      pszName = "La Romana";
       break;
       case 14:
-      name = "Maria Trinidad Sanchez";
+      pszName = "Maria Trinidad Sanchez";
       break;
       case 15:
-      name = "Monte Cristi";
+      pszName = "Monte Cristi";
       break;
       case 16:
-      name = "Pedernales";
+      pszName = "Pedernales";
       break;
       case 17:
-      name = "Peravia";
+      pszName = "Peravia";
       break;
       case 18:
-      name = "Puerto Plata";
+      pszName = "Puerto Plata";
       break;
       case 19:
-      name = "Salcedo";
+      pszName = "Salcedo";
       break;
       case 20:
-      name = "Samana";
+      pszName = "Samana";
       break;
       case 21:
-      name = "Sanchez Ramirez";
+      pszName = "Sanchez Ramirez";
       break;
       case 23:
-      name = "San Juan";
+      pszName = "San Juan";
       break;
       case 24:
-      name = "San Pedro De Macoris";
+      pszName = "San Pedro De Macoris";
       break;
       case 25:
-      name = "Santiago";
+      pszName = "Santiago";
       break;
       case 26:
-      name = "Santiago Rodriguez";
+      pszName = "Santiago Rodriguez";
       break;
       case 27:
-      name = "Valverde";
+      pszName = "Valverde";
       break;
       case 28:
-      name = "El Seibo";
+      pszName = "El Seibo";
       break;
       case 29:
-      name = "Hato Mayor";
+      pszName = "Hato Mayor";
       break;
       case 30:
-      name = "La Vega";
+      pszName = "La Vega";
       break;
       case 31:
-      name = "Monsenor Nouel";
+      pszName = "Monsenor Nouel";
       break;
       case 32:
-      name = "Monte Plata";
+      pszName = "Monte Plata";
       break;
       case 33:
-      name = "San Cristobal";
+      pszName = "San Cristobal";
       break;
       case 34:
-      name = "Distrito Nacional";
+      pszName = "Distrito Nacional";
       break;
       case 35:
-      name = "Peravia";
+      pszName = "Peravia";
       break;
       case 36:
-      name = "San Jose de Ocoa";
+      pszName = "San Jose de Ocoa";
       break;
       case 37:
-      name = "Santo Domingo";
+      pszName = "Santo Domingo";
       break;
     }
   }
   if (strcmp(country_code,"DZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Alger";
+      pszName = "Alger";
       break;
       case 3:
-      name = "Batna";
+      pszName = "Batna";
       break;
       case 4:
-      name = "Constantine";
+      pszName = "Constantine";
       break;
       case 6:
-      name = "Medea";
+      pszName = "Medea";
       break;
       case 7:
-      name = "Mostaganem";
+      pszName = "Mostaganem";
       break;
       case 9:
-      name = "Oran";
+      pszName = "Oran";
       break;
       case 10:
-      name = "Saida";
+      pszName = "Saida";
       break;
       case 12:
-      name = "Setif";
+      pszName = "Setif";
       break;
       case 13:
-      name = "Tiaret";
+      pszName = "Tiaret";
       break;
       case 14:
-      name = "Tizi Ouzou";
+      pszName = "Tizi Ouzou";
       break;
       case 15:
-      name = "Tlemcen";
+      pszName = "Tlemcen";
       break;
       case 18:
-      name = "Bejaia";
+      pszName = "Bejaia";
       break;
       case 19:
-      name = "Biskra";
+      pszName = "Biskra";
       break;
       case 20:
-      name = "Blida";
+      pszName = "Blida";
       break;
       case 21:
-      name = "Bouira";
+      pszName = "Bouira";
       break;
       case 22:
-      name = "Djelfa";
+      pszName = "Djelfa";
       break;
       case 23:
-      name = "Guelma";
+      pszName = "Guelma";
       break;
       case 24:
-      name = "Jijel";
+      pszName = "Jijel";
       break;
       case 25:
-      name = "Laghouat";
+      pszName = "Laghouat";
       break;
       case 26:
-      name = "Mascara";
+      pszName = "Mascara";
       break;
       case 27:
-      name = "M'sila";
+      pszName = "M'sila";
       break;
       case 29:
-      name = "Oum el Bouaghi";
+      pszName = "Oum el Bouaghi";
       break;
       case 30:
-      name = "Sidi Bel Abbes";
+      pszName = "Sidi Bel Abbes";
       break;
       case 31:
-      name = "Skikda";
+      pszName = "Skikda";
       break;
       case 33:
-      name = "Tebessa";
+      pszName = "Tebessa";
       break;
       case 34:
-      name = "Adrar";
+      pszName = "Adrar";
       break;
       case 35:
-      name = "Ain Defla";
+      pszName = "Ain Defla";
       break;
       case 36:
-      name = "Ain Temouchent";
+      pszName = "Ain Temouchent";
       break;
       case 37:
-      name = "Annaba";
+      pszName = "Annaba";
       break;
       case 38:
-      name = "Bechar";
+      pszName = "Bechar";
       break;
       case 39:
-      name = "Bordj Bou Arreridj";
+      pszName = "Bordj Bou Arreridj";
       break;
       case 40:
-      name = "Boumerdes";
+      pszName = "Boumerdes";
       break;
       case 41:
-      name = "Chlef";
+      pszName = "Chlef";
       break;
       case 42:
-      name = "El Bayadh";
+      pszName = "El Bayadh";
       break;
       case 43:
-      name = "El Oued";
+      pszName = "El Oued";
       break;
       case 44:
-      name = "El Tarf";
+      pszName = "El Tarf";
       break;
       case 45:
-      name = "Ghardaia";
+      pszName = "Ghardaia";
       break;
       case 46:
-      name = "Illizi";
+      pszName = "Illizi";
       break;
       case 47:
-      name = "Khenchela";
+      pszName = "Khenchela";
       break;
       case 48:
-      name = "Mila";
+      pszName = "Mila";
       break;
       case 49:
-      name = "Naama";
+      pszName = "Naama";
       break;
       case 50:
-      name = "Ouargla";
+      pszName = "Ouargla";
       break;
       case 51:
-      name = "Relizane";
+      pszName = "Relizane";
       break;
       case 52:
-      name = "Souk Ahras";
+      pszName = "Souk Ahras";
       break;
       case 53:
-      name = "Tamanghasset";
+      pszName = "Tamanghasset";
       break;
       case 54:
-      name = "Tindouf";
+      pszName = "Tindouf";
       break;
       case 55:
-      name = "Tipaza";
+      pszName = "Tipaza";
       break;
       case 56:
-      name = "Tissemsilt";
+      pszName = "Tissemsilt";
       break;
     }
   }
   if (strcmp(country_code,"EC") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Galapagos";
+      pszName = "Galapagos";
       break;
       case 2:
-      name = "Azuay";
+      pszName = "Azuay";
       break;
       case 3:
-      name = "Bolivar";
+      pszName = "Bolivar";
       break;
       case 4:
-      name = "Canar";
+      pszName = "Canar";
       break;
       case 5:
-      name = "Carchi";
+      pszName = "Carchi";
       break;
       case 6:
-      name = "Chimborazo";
+      pszName = "Chimborazo";
       break;
       case 7:
-      name = "Cotopaxi";
+      pszName = "Cotopaxi";
       break;
       case 8:
-      name = "El Oro";
+      pszName = "El Oro";
       break;
       case 9:
-      name = "Esmeraldas";
+      pszName = "Esmeraldas";
       break;
       case 10:
-      name = "Guayas";
+      pszName = "Guayas";
       break;
       case 11:
-      name = "Imbabura";
+      pszName = "Imbabura";
       break;
       case 12:
-      name = "Loja";
+      pszName = "Loja";
       break;
       case 13:
-      name = "Los Rios";
+      pszName = "Los Rios";
       break;
       case 14:
-      name = "Manabi";
+      pszName = "Manabi";
       break;
       case 15:
-      name = "Morona-Santiago";
+      pszName = "Morona-Santiago";
       break;
       case 17:
-      name = "Pastaza";
+      pszName = "Pastaza";
       break;
       case 18:
-      name = "Pichincha";
+      pszName = "Pichincha";
       break;
       case 19:
-      name = "Tungurahua";
+      pszName = "Tungurahua";
       break;
       case 20:
-      name = "Zamora-Chinchipe";
+      pszName = "Zamora-Chinchipe";
       break;
       case 22:
-      name = "Sucumbios";
+      pszName = "Sucumbios";
       break;
       case 23:
-      name = "Napo";
+      pszName = "Napo";
       break;
       case 24:
-      name = "Orellana";
+      pszName = "Orellana";
       break;
     }
   }
   if (strcmp(country_code,"EE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Harjumaa";
+      pszName = "Harjumaa";
       break;
       case 2:
-      name = "Hiiumaa";
+      pszName = "Hiiumaa";
       break;
       case 3:
-      name = "Ida-Virumaa";
+      pszName = "Ida-Virumaa";
       break;
       case 4:
-      name = "Jarvamaa";
+      pszName = "Jarvamaa";
       break;
       case 5:
-      name = "Jogevamaa";
+      pszName = "Jogevamaa";
       break;
       case 6:
-      name = "Kohtla-Jarve";
+      pszName = "Kohtla-Jarve";
       break;
       case 7:
-      name = "Laanemaa";
+      pszName = "Laanemaa";
       break;
       case 8:
-      name = "Laane-Virumaa";
+      pszName = "Laane-Virumaa";
       break;
       case 9:
-      name = "Narva";
+      pszName = "Narva";
       break;
       case 10:
-      name = "Parnu";
+      pszName = "Parnu";
       break;
       case 11:
-      name = "Parnumaa";
+      pszName = "Parnumaa";
       break;
       case 12:
-      name = "Polvamaa";
+      pszName = "Polvamaa";
       break;
       case 13:
-      name = "Raplamaa";
+      pszName = "Raplamaa";
       break;
       case 14:
-      name = "Saaremaa";
+      pszName = "Saaremaa";
       break;
       case 15:
-      name = "Sillamae";
+      pszName = "Sillamae";
       break;
       case 16:
-      name = "Tallinn";
+      pszName = "Tallinn";
       break;
       case 17:
-      name = "Tartu";
+      pszName = "Tartu";
       break;
       case 18:
-      name = "Tartumaa";
+      pszName = "Tartumaa";
       break;
       case 19:
-      name = "Valgamaa";
+      pszName = "Valgamaa";
       break;
       case 20:
-      name = "Viljandimaa";
+      pszName = "Viljandimaa";
       break;
       case 21:
-      name = "Vorumaa";
+      pszName = "Vorumaa";
       break;
     }
   }
   if (strcmp(country_code,"EG") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ad Daqahliyah";
+      pszName = "Ad Daqahliyah";
       break;
       case 2:
-      name = "Al Bahr al Ahmar";
+      pszName = "Al Bahr al Ahmar";
       break;
       case 3:
-      name = "Al Buhayrah";
+      pszName = "Al Buhayrah";
       break;
       case 4:
-      name = "Al Fayyum";
+      pszName = "Al Fayyum";
       break;
       case 5:
-      name = "Al Gharbiyah";
+      pszName = "Al Gharbiyah";
       break;
       case 6:
-      name = "Al Iskandariyah";
+      pszName = "Al Iskandariyah";
       break;
       case 7:
-      name = "Al Isma'iliyah";
+      pszName = "Al Isma'iliyah";
       break;
       case 8:
-      name = "Al Jizah";
+      pszName = "Al Jizah";
       break;
       case 9:
-      name = "Al Minufiyah";
+      pszName = "Al Minufiyah";
       break;
       case 10:
-      name = "Al Minya";
+      pszName = "Al Minya";
       break;
       case 11:
-      name = "Al Qahirah";
+      pszName = "Al Qahirah";
       break;
       case 12:
-      name = "Al Qalyubiyah";
+      pszName = "Al Qalyubiyah";
       break;
       case 13:
-      name = "Al Wadi al Jadid";
+      pszName = "Al Wadi al Jadid";
       break;
       case 14:
-      name = "Ash Sharqiyah";
+      pszName = "Ash Sharqiyah";
       break;
       case 15:
-      name = "As Suways";
+      pszName = "As Suways";
       break;
       case 16:
-      name = "Aswan";
+      pszName = "Aswan";
       break;
       case 17:
-      name = "Asyut";
+      pszName = "Asyut";
       break;
       case 18:
-      name = "Bani Suwayf";
+      pszName = "Bani Suwayf";
       break;
       case 19:
-      name = "Bur Sa'atom";
+      pszName = "Bur Sa'atom";
       break;
       case 20:
-      name = "Dumyat";
+      pszName = "Dumyat";
       break;
       case 21:
-      name = "Kafr ash Shaykh";
+      pszName = "Kafr ash Shaykh";
       break;
       case 22:
-      name = "Matruh";
+      pszName = "Matruh";
       break;
       case 23:
-      name = "Qina";
+      pszName = "Qina";
       break;
       case 24:
-      name = "Suhaj";
+      pszName = "Suhaj";
       break;
       case 26:
-      name = "Janub Sina'";
+      pszName = "Janub Sina'";
       break;
       case 27:
-      name = "Shamal Sina'";
+      pszName = "Shamal Sina'";
       break;
     }
   }
   if (strcmp(country_code,"ER") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Anseba";
+      pszName = "Anseba";
       break;
       case 2:
-      name = "Debub";
+      pszName = "Debub";
       break;
       case 3:
-      name = "Debubawi K'eyih Bahri";
+      pszName = "Debubawi K'eyih Bahri";
       break;
       case 4:
-      name = "Gash Barka";
+      pszName = "Gash Barka";
       break;
       case 5:
-      name = "Ma'akel";
+      pszName = "Ma'akel";
       break;
       case 6:
-      name = "Semenawi K'eyih Bahri";
+      pszName = "Semenawi K'eyih Bahri";
       break;
     }
   }
   if (strcmp(country_code,"ES") == 0) {
     switch (region_code2) {
       case 7:
-      name = "Islas Baleares";
+      pszName = "Islas Baleares";
       break;
       case 27:
-      name = "La Rioja";
+      pszName = "La Rioja";
       break;
       case 29:
-      name = "Madrid";
+      pszName = "Madrid";
       break;
       case 31:
-      name = "Murcia";
+      pszName = "Murcia";
       break;
       case 32:
-      name = "Navarra";
+      pszName = "Navarra";
       break;
       case 34:
-      name = "Asturias";
+      pszName = "Asturias";
       break;
       case 39:
-      name = "Cantabria";
+      pszName = "Cantabria";
       break;
       case 51:
-      name = "Andalucia";
+      pszName = "Andalucia";
       break;
       case 52:
-      name = "Aragon";
+      pszName = "Aragon";
       break;
       case 53:
-      name = "Canarias";
+      pszName = "Canarias";
       break;
       case 54:
-      name = "Castilla-La Mancha";
+      pszName = "Castilla-La Mancha";
       break;
       case 55:
-      name = "Castilla y Leon";
+      pszName = "Castilla y Leon";
       break;
       case 56:
-      name = "Catalonia";
+      pszName = "Catalonia";
       break;
       case 57:
-      name = "Extremadura";
+      pszName = "Extremadura";
       break;
       case 58:
-      name = "Galicia";
+      pszName = "Galicia";
       break;
       case 59:
-      name = "Pais Vasco";
+      pszName = "Pais Vasco";
       break;
       case 60:
-      name = "Comunidad Valenciana";
+      pszName = "Comunidad Valenciana";
       break;
     }
   }
   if (strcmp(country_code,"ET") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Amhara";
+      pszName = "Amhara";
       break;
       case 7:
-      name = "Somali";
+      pszName = "Somali";
       break;
       case 8:
-      name = "Gambella";
+      pszName = "Gambella";
       break;
       case 10:
-      name = "Addis Abeba";
+      pszName = "Addis Abeba";
       break;
       case 11:
-      name = "Southern";
+      pszName = "Southern";
       break;
       case 12:
-      name = "Tigray";
+      pszName = "Tigray";
       break;
       case 13:
-      name = "Benishangul";
+      pszName = "Benishangul";
       break;
       case 14:
-      name = "Afar";
+      pszName = "Afar";
       break;
       case 44:
-      name = "Adis Abeba";
+      pszName = "Adis Abeba";
       break;
       case 45:
-      name = "Afar";
+      pszName = "Afar";
       break;
       case 46:
-      name = "Amara";
+      pszName = "Amara";
       break;
       case 47:
-      name = "Binshangul Gumuz";
+      pszName = "Binshangul Gumuz";
       break;
       case 48:
-      name = "Dire Dawa";
+      pszName = "Dire Dawa";
       break;
       case 49:
-      name = "Gambela Hizboch";
+      pszName = "Gambela Hizboch";
       break;
       case 50:
-      name = "Hareri Hizb";
+      pszName = "Hareri Hizb";
       break;
       case 51:
-      name = "Oromiya";
+      pszName = "Oromiya";
       break;
       case 52:
-      name = "Sumale";
+      pszName = "Sumale";
       break;
       case 53:
-      name = "Tigray";
+      pszName = "Tigray";
       break;
       case 54:
-      name = "YeDebub Biheroch Bihereseboch na Hizboch";
+      pszName = "YeDebub Biheroch Bihereseboch na Hizboch";
       break;
     }
   }
   if (strcmp(country_code,"FI") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aland";
+      pszName = "Aland";
       break;
       case 6:
-      name = "Lapland";
+      pszName = "Lapland";
       break;
       case 8:
-      name = "Oulu";
+      pszName = "Oulu";
       break;
       case 13:
-      name = "Southern Finland";
+      pszName = "Southern Finland";
       break;
       case 14:
-      name = "Eastern Finland";
+      pszName = "Eastern Finland";
       break;
       case 15:
-      name = "Western Finland";
+      pszName = "Western Finland";
       break;
     }
   }
   if (strcmp(country_code,"FJ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Central";
+      pszName = "Central";
       break;
       case 2:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 3:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 4:
-      name = "Rotuma";
+      pszName = "Rotuma";
       break;
       case 5:
-      name = "Western";
+      pszName = "Western";
       break;
     }
   }
   if (strcmp(country_code,"FM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Kosrae";
+      pszName = "Kosrae";
       break;
       case 2:
-      name = "Pohnpei";
+      pszName = "Pohnpei";
       break;
       case 3:
-      name = "Chuuk";
+      pszName = "Chuuk";
       break;
       case 4:
-      name = "Yap";
+      pszName = "Yap";
       break;
     }
   }
   if (strcmp(country_code,"FR") == 0) {
     switch (region_code2) {
       case 97:
-      name = "Aquitaine";
+      pszName = "Aquitaine";
       break;
       case 98:
-      name = "Auvergne";
+      pszName = "Auvergne";
       break;
       case 99:
-      name = "Basse-Normandie";
+      pszName = "Basse-Normandie";
       break;
       case 832:
-      name = "Bourgogne";
+      pszName = "Bourgogne";
       break;
       case 833:
-      name = "Bretagne";
+      pszName = "Bretagne";
       break;
       case 834:
-      name = "Centre";
+      pszName = "Centre";
       break;
       case 835:
-      name = "Champagne-Ardenne";
+      pszName = "Champagne-Ardenne";
       break;
       case 836:
-      name = "Corse";
+      pszName = "Corse";
       break;
       case 837:
-      name = "Franche-Comte";
+      pszName = "Franche-Comte";
       break;
       case 838:
-      name = "Haute-Normandie";
+      pszName = "Haute-Normandie";
       break;
       case 839:
-      name = "Ile-de-France";
+      pszName = "Ile-de-France";
       break;
       case 840:
-      name = "Languedoc-Roussillon";
+      pszName = "Languedoc-Roussillon";
       break;
       case 875:
-      name = "Limousin";
+      pszName = "Limousin";
       break;
       case 876:
-      name = "Lorraine";
+      pszName = "Lorraine";
       break;
       case 877:
-      name = "Midi-Pyrenees";
+      pszName = "Midi-Pyrenees";
       break;
       case 878:
-      name = "Nord-Pas-de-Calais";
+      pszName = "Nord-Pas-de-Calais";
       break;
       case 879:
-      name = "Pays de la Loire";
+      pszName = "Pays de la Loire";
       break;
       case 880:
-      name = "Picardie";
+      pszName = "Picardie";
       break;
       case 881:
-      name = "Poitou-Charentes";
+      pszName = "Poitou-Charentes";
       break;
       case 882:
-      name = "Provence-Alpes-Cote d'Azur";
+      pszName = "Provence-Alpes-Cote d'Azur";
       break;
       case 883:
-      name = "Rhone-Alpes";
+      pszName = "Rhone-Alpes";
       break;
       case 918:
-      name = "Alsace";
+      pszName = "Alsace";
       break;
     }
   }
   if (strcmp(country_code,"GA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Estuaire";
+      pszName = "Estuaire";
       break;
       case 2:
-      name = "Haut-Ogooue";
+      pszName = "Haut-Ogooue";
       break;
       case 3:
-      name = "Moyen-Ogooue";
+      pszName = "Moyen-Ogooue";
       break;
       case 4:
-      name = "Ngounie";
+      pszName = "Ngounie";
       break;
       case 5:
-      name = "Nyanga";
+      pszName = "Nyanga";
       break;
       case 6:
-      name = "Ogooue-Ivindo";
+      pszName = "Ogooue-Ivindo";
       break;
       case 7:
-      name = "Ogooue-Lolo";
+      pszName = "Ogooue-Lolo";
       break;
       case 8:
-      name = "Ogooue-Maritime";
+      pszName = "Ogooue-Maritime";
       break;
       case 9:
-      name = "Woleu-Ntem";
+      pszName = "Woleu-Ntem";
       break;
     }
   }
   if (strcmp(country_code,"GB") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Avon";
+      pszName = "Avon";
       break;
       case 3:
-      name = "Berkshire";
+      pszName = "Berkshire";
       break;
       case 7:
-      name = "Cleveland";
+      pszName = "Cleveland";
       break;
       case 17:
-      name = "Greater London";
+      pszName = "Greater London";
       break;
       case 18:
-      name = "Greater Manchester";
+      pszName = "Greater Manchester";
       break;
       case 20:
-      name = "Hereford and Worcester";
+      pszName = "Hereford and Worcester";
       break;
       case 22:
-      name = "Humberside";
+      pszName = "Humberside";
       break;
       case 28:
-      name = "Merseyside";
+      pszName = "Merseyside";
       break;
       case 37:
-      name = "South Yorkshire";
+      pszName = "South Yorkshire";
       break;
       case 41:
-      name = "Tyne and Wear";
+      pszName = "Tyne and Wear";
       break;
       case 43:
-      name = "West Midlands";
+      pszName = "West Midlands";
       break;
       case 45:
-      name = "West Yorkshire";
+      pszName = "West Yorkshire";
       break;
       case 79:
-      name = "Central";
+      pszName = "Central";
       break;
       case 82:
-      name = "Grampian";
+      pszName = "Grampian";
       break;
       case 84:
-      name = "Lothian";
+      pszName = "Lothian";
       break;
       case 87:
-      name = "Strathclyde";
+      pszName = "Strathclyde";
       break;
       case 88:
-      name = "Tayside";
+      pszName = "Tayside";
       break;
       case 90:
-      name = "Clwyd";
+      pszName = "Clwyd";
       break;
       case 91:
-      name = "Dyfed";
+      pszName = "Dyfed";
       break;
       case 92:
-      name = "Gwent";
+      pszName = "Gwent";
       break;
       case 94:
-      name = "Mid Glamorgan";
+      pszName = "Mid Glamorgan";
       break;
       case 96:
-      name = "South Glamorgan";
+      pszName = "South Glamorgan";
       break;
       case 97:
-      name = "West Glamorgan";
+      pszName = "West Glamorgan";
       break;
       case 832:
-      name = "Barking and Dagenham";
+      pszName = "Barking and Dagenham";
       break;
       case 833:
-      name = "Barnet";
+      pszName = "Barnet";
       break;
       case 834:
-      name = "Barnsley";
+      pszName = "Barnsley";
       break;
       case 835:
-      name = "Bath and North East Somerset";
+      pszName = "Bath and North East Somerset";
       break;
       case 836:
-      name = "Bedfordshire";
+      pszName = "Bedfordshire";
       break;
       case 837:
-      name = "Bexley";
+      pszName = "Bexley";
       break;
       case 838:
-      name = "Birmingham";
+      pszName = "Birmingham";
       break;
       case 839:
-      name = "Blackburn with Darwen";
+      pszName = "Blackburn with Darwen";
       break;
       case 840:
-      name = "Blackpool";
+      pszName = "Blackpool";
       break;
       case 875:
-      name = "Bolton";
+      pszName = "Bolton";
       break;
       case 876:
-      name = "Bournemouth";
+      pszName = "Bournemouth";
       break;
       case 877:
-      name = "Bracknell Forest";
+      pszName = "Bracknell Forest";
       break;
       case 878:
-      name = "Bradford";
+      pszName = "Bradford";
       break;
       case 879:
-      name = "Brent";
+      pszName = "Brent";
       break;
       case 880:
-      name = "Brighton and Hove";
+      pszName = "Brighton and Hove";
       break;
       case 881:
-      name = "Bristol, City of";
+      pszName = "Bristol, City of";
       break;
       case 882:
-      name = "Bromley";
+      pszName = "Bromley";
       break;
       case 883:
-      name = "Buckinghamshire";
+      pszName = "Buckinghamshire";
       break;
       case 918:
-      name = "Bury";
+      pszName = "Bury";
       break;
       case 919:
-      name = "Calderdale";
+      pszName = "Calderdale";
       break;
       case 920:
-      name = "Cambridgeshire";
+      pszName = "Cambridgeshire";
       break;
       case 921:
-      name = "Camden";
+      pszName = "Camden";
       break;
       case 922:
-      name = "Cheshire";
+      pszName = "Cheshire";
       break;
       case 923:
-      name = "Cornwall";
+      pszName = "Cornwall";
       break;
       case 924:
-      name = "Coventry";
+      pszName = "Coventry";
       break;
       case 925:
-      name = "Croydon";
+      pszName = "Croydon";
       break;
       case 926:
-      name = "Cumbria";
+      pszName = "Cumbria";
       break;
       case 961:
-      name = "Darlington";
+      pszName = "Darlington";
       break;
       case 962:
-      name = "Derby";
+      pszName = "Derby";
       break;
       case 963:
-      name = "Derbyshire";
+      pszName = "Derbyshire";
       break;
       case 964:
-      name = "Devon";
+      pszName = "Devon";
       break;
       case 965:
-      name = "Doncaster";
+      pszName = "Doncaster";
       break;
       case 966:
-      name = "Dorset";
+      pszName = "Dorset";
       break;
       case 967:
-      name = "Dudley";
+      pszName = "Dudley";
       break;
       case 968:
-      name = "Durham";
+      pszName = "Durham";
       break;
       case 969:
-      name = "Ealing";
+      pszName = "Ealing";
       break;
       case 1004:
-      name = "East Riding of Yorkshire";
+      pszName = "East Riding of Yorkshire";
       break;
       case 1005:
-      name = "East Sussex";
+      pszName = "East Sussex";
       break;
       case 1006:
-      name = "Enfield";
+      pszName = "Enfield";
       break;
       case 1007:
-      name = "Essex";
+      pszName = "Essex";
       break;
       case 1008:
-      name = "Gateshead";
+      pszName = "Gateshead";
       break;
       case 1009:
-      name = "Gloucestershire";
+      pszName = "Gloucestershire";
       break;
       case 1010:
-      name = "Greenwich";
+      pszName = "Greenwich";
       break;
       case 1011:
-      name = "Hackney";
+      pszName = "Hackney";
       break;
       case 1012:
-      name = "Halton";
+      pszName = "Halton";
       break;
       case 1047:
-      name = "Hammersmith and Fulham";
+      pszName = "Hammersmith and Fulham";
       break;
       case 1048:
-      name = "Hampshire";
+      pszName = "Hampshire";
       break;
       case 1049:
-      name = "Haringey";
+      pszName = "Haringey";
       break;
       case 1050:
-      name = "Harrow";
+      pszName = "Harrow";
       break;
       case 1051:
-      name = "Hartlepool";
+      pszName = "Hartlepool";
       break;
       case 1052:
-      name = "Havering";
+      pszName = "Havering";
       break;
       case 1053:
-      name = "Herefordshire";
+      pszName = "Herefordshire";
       break;
       case 1054:
-      name = "Hertford";
+      pszName = "Hertford";
       break;
       case 1055:
-      name = "Hillingdon";
+      pszName = "Hillingdon";
       break;
       case 1090:
-      name = "Hounslow";
+      pszName = "Hounslow";
       break;
       case 1091:
-      name = "Isle of Wight";
+      pszName = "Isle of Wight";
       break;
       case 1092:
-      name = "Islington";
+      pszName = "Islington";
       break;
       case 1093:
-      name = "Kensington and Chelsea";
+      pszName = "Kensington and Chelsea";
       break;
       case 1094:
-      name = "Kent";
+      pszName = "Kent";
       break;
       case 1095:
-      name = "Kingston upon Hull, City of";
+      pszName = "Kingston upon Hull, City of";
       break;
       case 1096:
-      name = "Kingston upon Thames";
+      pszName = "Kingston upon Thames";
       break;
       case 1097:
-      name = "Kirklees";
+      pszName = "Kirklees";
       break;
       case 1098:
-      name = "Knowsley";
+      pszName = "Knowsley";
       break;
       case 1133:
-      name = "Lambeth";
+      pszName = "Lambeth";
       break;
       case 1134:
-      name = "Lancashire";
+      pszName = "Lancashire";
       break;
       case 1135:
-      name = "Leeds";
+      pszName = "Leeds";
       break;
       case 1136:
-      name = "Leicester";
+      pszName = "Leicester";
       break;
       case 1137:
-      name = "Leicestershire";
+      pszName = "Leicestershire";
       break;
       case 1138:
-      name = "Lewisham";
+      pszName = "Lewisham";
       break;
       case 1139:
-      name = "Lincolnshire";
+      pszName = "Lincolnshire";
       break;
       case 1140:
-      name = "Liverpool";
+      pszName = "Liverpool";
       break;
       case 1141:
-      name = "London, City of";
+      pszName = "London, City of";
       break;
       case 1176:
-      name = "Luton";
+      pszName = "Luton";
       break;
       case 1177:
-      name = "Manchester";
+      pszName = "Manchester";
       break;
       case 1178:
-      name = "Medway";
+      pszName = "Medway";
       break;
       case 1179:
-      name = "Merton";
+      pszName = "Merton";
       break;
       case 1180:
-      name = "Middlesbrough";
+      pszName = "Middlesbrough";
       break;
       case 1181:
-      name = "Milton Keynes";
+      pszName = "Milton Keynes";
       break;
       case 1182:
-      name = "Newcastle upon Tyne";
+      pszName = "Newcastle upon Tyne";
       break;
       case 1183:
-      name = "Newham";
+      pszName = "Newham";
       break;
       case 1184:
-      name = "Norfolk";
+      pszName = "Norfolk";
       break;
       case 1219:
-      name = "Northamptonshire";
+      pszName = "Northamptonshire";
       break;
       case 1220:
-      name = "North East Lincolnshire";
+      pszName = "North East Lincolnshire";
       break;
       case 1221:
-      name = "North Lincolnshire";
+      pszName = "North Lincolnshire";
       break;
       case 1222:
-      name = "North Somerset";
+      pszName = "North Somerset";
       break;
       case 1223:
-      name = "North Tyneside";
+      pszName = "North Tyneside";
       break;
       case 1224:
-      name = "Northumberland";
+      pszName = "Northumberland";
       break;
       case 1225:
-      name = "North Yorkshire";
+      pszName = "North Yorkshire";
       break;
       case 1226:
-      name = "Nottingham";
+      pszName = "Nottingham";
       break;
       case 1227:
-      name = "Nottinghamshire";
+      pszName = "Nottinghamshire";
       break;
       case 1262:
-      name = "Oldham";
+      pszName = "Oldham";
       break;
       case 1263:
-      name = "Oxfordshire";
+      pszName = "Oxfordshire";
       break;
       case 1264:
-      name = "Peterborough";
+      pszName = "Peterborough";
       break;
       case 1265:
-      name = "Plymouth";
+      pszName = "Plymouth";
       break;
       case 1266:
-      name = "Poole";
+      pszName = "Poole";
       break;
       case 1267:
-      name = "Portsmouth";
+      pszName = "Portsmouth";
       break;
       case 1268:
-      name = "Reading";
+      pszName = "Reading";
       break;
       case 1269:
-      name = "Redbridge";
+      pszName = "Redbridge";
       break;
       case 1270:
-      name = "Redcar and Cleveland";
+      pszName = "Redcar and Cleveland";
       break;
       case 1305:
-      name = "Richmond upon Thames";
+      pszName = "Richmond upon Thames";
       break;
       case 1306:
-      name = "Rochdale";
+      pszName = "Rochdale";
       break;
       case 1307:
-      name = "Rotherham";
+      pszName = "Rotherham";
       break;
       case 1308:
-      name = "Rutland";
+      pszName = "Rutland";
       break;
       case 1309:
-      name = "Salford";
+      pszName = "Salford";
       break;
       case 1310:
-      name = "Shropshire";
+      pszName = "Shropshire";
       break;
       case 1311:
-      name = "Sandwell";
+      pszName = "Sandwell";
       break;
       case 1312:
-      name = "Sefton";
+      pszName = "Sefton";
       break;
       case 1313:
-      name = "Sheffield";
+      pszName = "Sheffield";
       break;
       case 1348:
-      name = "Slough";
+      pszName = "Slough";
       break;
       case 1349:
-      name = "Solihull";
+      pszName = "Solihull";
       break;
       case 1350:
-      name = "Somerset";
+      pszName = "Somerset";
       break;
       case 1351:
-      name = "Southampton";
+      pszName = "Southampton";
       break;
       case 1352:
-      name = "Southend-on-Sea";
+      pszName = "Southend-on-Sea";
       break;
       case 1353:
-      name = "South Gloucestershire";
+      pszName = "South Gloucestershire";
       break;
       case 1354:
-      name = "South Tyneside";
+      pszName = "South Tyneside";
       break;
       case 1355:
-      name = "Southwark";
+      pszName = "Southwark";
       break;
       case 1356:
-      name = "Staffordshire";
+      pszName = "Staffordshire";
       break;
       case 1391:
-      name = "St. Helens";
+      pszName = "St. Helens";
       break;
       case 1392:
-      name = "Stockport";
+      pszName = "Stockport";
       break;
       case 1393:
-      name = "Stockton-on-Tees";
+      pszName = "Stockton-on-Tees";
       break;
       case 1394:
-      name = "Stoke-on-Trent";
+      pszName = "Stoke-on-Trent";
       break;
       case 1395:
-      name = "Suffolk";
+      pszName = "Suffolk";
       break;
       case 1396:
-      name = "Sunderland";
+      pszName = "Sunderland";
       break;
       case 1397:
-      name = "Surrey";
+      pszName = "Surrey";
       break;
       case 1398:
-      name = "Sutton";
+      pszName = "Sutton";
       break;
       case 1399:
-      name = "Swindon";
+      pszName = "Swindon";
       break;
       case 1434:
-      name = "Tameside";
+      pszName = "Tameside";
       break;
       case 1435:
-      name = "Telford and Wrekin";
+      pszName = "Telford and Wrekin";
       break;
       case 1436:
-      name = "Thurrock";
+      pszName = "Thurrock";
       break;
       case 1437:
-      name = "Torbay";
+      pszName = "Torbay";
       break;
       case 1438:
-      name = "Tower Hamlets";
+      pszName = "Tower Hamlets";
       break;
       case 1439:
-      name = "Trafford";
+      pszName = "Trafford";
       break;
       case 1440:
-      name = "Wakefield";
+      pszName = "Wakefield";
       break;
       case 1441:
-      name = "Walsall";
+      pszName = "Walsall";
       break;
       case 1442:
-      name = "Waltham Forest";
+      pszName = "Waltham Forest";
       break;
       case 1477:
-      name = "Wandsworth";
+      pszName = "Wandsworth";
       break;
       case 1478:
-      name = "Warrington";
+      pszName = "Warrington";
       break;
       case 1479:
-      name = "Warwickshire";
+      pszName = "Warwickshire";
       break;
       case 1480:
-      name = "West Berkshire";
+      pszName = "West Berkshire";
       break;
       case 1481:
-      name = "Westminster";
+      pszName = "Westminster";
       break;
       case 1482:
-      name = "West Sussex";
+      pszName = "West Sussex";
       break;
       case 1483:
-      name = "Wigan";
+      pszName = "Wigan";
       break;
       case 1484:
-      name = "Wiltshire";
+      pszName = "Wiltshire";
       break;
       case 1485:
-      name = "Windsor and Maidenhead";
+      pszName = "Windsor and Maidenhead";
       break;
       case 1520:
-      name = "Wirral";
+      pszName = "Wirral";
       break;
       case 1521:
-      name = "Wokingham";
+      pszName = "Wokingham";
       break;
       case 1522:
-      name = "Wolverhampton";
+      pszName = "Wolverhampton";
       break;
       case 1523:
-      name = "Worcestershire";
+      pszName = "Worcestershire";
       break;
       case 1524:
-      name = "York";
+      pszName = "York";
       break;
       case 1525:
-      name = "Antrim";
+      pszName = "Antrim";
       break;
       case 1526:
-      name = "Ards";
+      pszName = "Ards";
       break;
       case 1527:
-      name = "Armagh";
+      pszName = "Armagh";
       break;
       case 1528:
-      name = "Ballymena";
+      pszName = "Ballymena";
       break;
       case 1563:
-      name = "Ballymoney";
+      pszName = "Ballymoney";
       break;
       case 1564:
-      name = "Banbridge";
+      pszName = "Banbridge";
       break;
       case 1565:
-      name = "Belfast";
+      pszName = "Belfast";
       break;
       case 1566:
-      name = "Carrickfergus";
+      pszName = "Carrickfergus";
       break;
       case 1567:
-      name = "Castlereagh";
+      pszName = "Castlereagh";
       break;
       case 1568:
-      name = "Coleraine";
+      pszName = "Coleraine";
       break;
       case 1569:
-      name = "Cookstown";
+      pszName = "Cookstown";
       break;
       case 1570:
-      name = "Craigavon";
+      pszName = "Craigavon";
       break;
       case 1571:
-      name = "Down";
+      pszName = "Down";
       break;
       case 1606:
-      name = "Dungannon";
+      pszName = "Dungannon";
       break;
       case 1607:
-      name = "Fermanagh";
+      pszName = "Fermanagh";
       break;
       case 1608:
-      name = "Larne";
+      pszName = "Larne";
       break;
       case 1609:
-      name = "Limavady";
+      pszName = "Limavady";
       break;
       case 1610:
-      name = "Lisburn";
+      pszName = "Lisburn";
       break;
       case 1611:
-      name = "Derry";
+      pszName = "Derry";
       break;
       case 1612:
-      name = "Magherafelt";
+      pszName = "Magherafelt";
       break;
       case 1613:
-      name = "Moyle";
+      pszName = "Moyle";
       break;
       case 1614:
-      name = "Newry and Mourne";
+      pszName = "Newry and Mourne";
       break;
       case 1649:
-      name = "Newtownabbey";
+      pszName = "Newtownabbey";
       break;
       case 1650:
-      name = "North Down";
+      pszName = "North Down";
       break;
       case 1651:
-      name = "Omagh";
+      pszName = "Omagh";
       break;
       case 1652:
-      name = "Strabane";
+      pszName = "Strabane";
       break;
       case 1653:
-      name = "Aberdeen City";
+      pszName = "Aberdeen City";
       break;
       case 1654:
-      name = "Aberdeenshire";
+      pszName = "Aberdeenshire";
       break;
       case 1655:
-      name = "Angus";
+      pszName = "Angus";
       break;
       case 1656:
-      name = "Argyll and Bute";
+      pszName = "Argyll and Bute";
       break;
       case 1657:
-      name = "Scottish Borders, The";
+      pszName = "Scottish Borders, The";
       break;
       case 1692:
-      name = "Clackmannanshire";
+      pszName = "Clackmannanshire";
       break;
       case 1693:
-      name = "Dumfries and Galloway";
+      pszName = "Dumfries and Galloway";
       break;
       case 1694:
-      name = "Dundee City";
+      pszName = "Dundee City";
       break;
       case 1695:
-      name = "East Ayrshire";
+      pszName = "East Ayrshire";
       break;
       case 1696:
-      name = "East Dunbartonshire";
+      pszName = "East Dunbartonshire";
       break;
       case 1697:
-      name = "East Lothian";
+      pszName = "East Lothian";
       break;
       case 1698:
-      name = "East Renfrewshire";
+      pszName = "East Renfrewshire";
       break;
       case 1699:
-      name = "Edinburgh, City of";
+      pszName = "Edinburgh, City of";
       break;
       case 1700:
-      name = "Falkirk";
+      pszName = "Falkirk";
       break;
       case 1735:
-      name = "Fife";
+      pszName = "Fife";
       break;
       case 1736:
-      name = "Glasgow City";
+      pszName = "Glasgow City";
       break;
       case 1737:
-      name = "Highland";
+      pszName = "Highland";
       break;
       case 1738:
-      name = "Inverclyde";
+      pszName = "Inverclyde";
       break;
       case 1739:
-      name = "Midlothian";
+      pszName = "Midlothian";
       break;
       case 1740:
-      name = "Moray";
+      pszName = "Moray";
       break;
       case 1741:
-      name = "North Ayrshire";
+      pszName = "North Ayrshire";
       break;
       case 1742:
-      name = "North Lanarkshire";
+      pszName = "North Lanarkshire";
       break;
       case 1743:
-      name = "Orkney";
+      pszName = "Orkney";
       break;
       case 1778:
-      name = "Perth and Kinross";
+      pszName = "Perth and Kinross";
       break;
       case 1779:
-      name = "Renfrewshire";
+      pszName = "Renfrewshire";
       break;
       case 1780:
-      name = "Shetland Islands";
+      pszName = "Shetland Islands";
       break;
       case 1781:
-      name = "South Ayrshire";
+      pszName = "South Ayrshire";
       break;
       case 1782:
-      name = "South Lanarkshire";
+      pszName = "South Lanarkshire";
       break;
       case 1783:
-      name = "Stirling";
+      pszName = "Stirling";
       break;
       case 1784:
-      name = "West Dunbartonshire";
+      pszName = "West Dunbartonshire";
       break;
       case 1785:
-      name = "Eilean Siar";
+      pszName = "Eilean Siar";
       break;
       case 1786:
-      name = "West Lothian";
+      pszName = "West Lothian";
       break;
       case 1821:
-      name = "Isle of Anglesey";
+      pszName = "Isle of Anglesey";
       break;
       case 1822:
-      name = "Blaenau Gwent";
+      pszName = "Blaenau Gwent";
       break;
       case 1823:
-      name = "Bridgend";
+      pszName = "Bridgend";
       break;
       case 1824:
-      name = "Caerphilly";
+      pszName = "Caerphilly";
       break;
       case 1825:
-      name = "Cardiff";
+      pszName = "Cardiff";
       break;
       case 1826:
-      name = "Ceredigion";
+      pszName = "Ceredigion";
       break;
       case 1827:
-      name = "Carmarthenshire";
+      pszName = "Carmarthenshire";
       break;
       case 1828:
-      name = "Conwy";
+      pszName = "Conwy";
       break;
       case 1829:
-      name = "Denbighshire";
+      pszName = "Denbighshire";
       break;
       case 1864:
-      name = "Flintshire";
+      pszName = "Flintshire";
       break;
       case 1865:
-      name = "Gwynedd";
+      pszName = "Gwynedd";
       break;
       case 1866:
-      name = "Merthyr Tydfil";
+      pszName = "Merthyr Tydfil";
       break;
       case 1867:
-      name = "Monmouthshire";
+      pszName = "Monmouthshire";
       break;
       case 1868:
-      name = "Neath Port Talbot";
+      pszName = "Neath Port Talbot";
       break;
       case 1869:
-      name = "Newport";
+      pszName = "Newport";
       break;
       case 1870:
-      name = "Pembrokeshire";
+      pszName = "Pembrokeshire";
       break;
       case 1871:
-      name = "Powys";
+      pszName = "Powys";
       break;
       case 1872:
-      name = "Rhondda Cynon Taff";
+      pszName = "Rhondda Cynon Taff";
       break;
       case 1907:
-      name = "Swansea";
+      pszName = "Swansea";
       break;
       case 1908:
-      name = "Torfaen";
+      pszName = "Torfaen";
       break;
       case 1909:
-      name = "Vale of Glamorgan, The";
+      pszName = "Vale of Glamorgan, The";
       break;
       case 1910:
-      name = "Wrexham";
+      pszName = "Wrexham";
       break;
     }
   }
   if (strcmp(country_code,"GD") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Saint Andrew";
+      pszName = "Saint Andrew";
       break;
       case 2:
-      name = "Saint David";
+      pszName = "Saint David";
       break;
       case 3:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 4:
-      name = "Saint John";
+      pszName = "Saint John";
       break;
       case 5:
-      name = "Saint Mark";
+      pszName = "Saint Mark";
       break;
       case 6:
-      name = "Saint Patrick";
+      pszName = "Saint Patrick";
       break;
     }
   }
   if (strcmp(country_code,"GE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Abashis Raioni";
+      pszName = "Abashis Raioni";
       break;
       case 2:
-      name = "Abkhazia";
+      pszName = "Abkhazia";
       break;
       case 3:
-      name = "Adigenis Raioni";
+      pszName = "Adigenis Raioni";
       break;
       case 4:
-      name = "Ajaria";
+      pszName = "Ajaria";
       break;
       case 5:
-      name = "Akhalgoris Raioni";
+      pszName = "Akhalgoris Raioni";
       break;
       case 6:
-      name = "Akhalk'alak'is Raioni";
+      pszName = "Akhalk'alak'is Raioni";
       break;
       case 7:
-      name = "Akhalts'ikhis Raioni";
+      pszName = "Akhalts'ikhis Raioni";
       break;
       case 8:
-      name = "Akhmetis Raioni";
+      pszName = "Akhmetis Raioni";
       break;
       case 9:
-      name = "Ambrolauris Raioni";
+      pszName = "Ambrolauris Raioni";
       break;
       case 10:
-      name = "Aspindzis Raioni";
+      pszName = "Aspindzis Raioni";
       break;
       case 11:
-      name = "Baghdat'is Raioni";
+      pszName = "Baghdat'is Raioni";
       break;
       case 12:
-      name = "Bolnisis Raioni";
+      pszName = "Bolnisis Raioni";
       break;
       case 13:
-      name = "Borjomis Raioni";
+      pszName = "Borjomis Raioni";
       break;
       case 14:
-      name = "Chiat'ura";
+      pszName = "Chiat'ura";
       break;
       case 15:
-      name = "Ch'khorotsqus Raioni";
+      pszName = "Ch'khorotsqus Raioni";
       break;
       case 16:
-      name = "Ch'okhatauris Raioni";
+      pszName = "Ch'okhatauris Raioni";
       break;
       case 17:
-      name = "Dedop'listsqaros Raioni";
+      pszName = "Dedop'listsqaros Raioni";
       break;
       case 18:
-      name = "Dmanisis Raioni";
+      pszName = "Dmanisis Raioni";
       break;
       case 19:
-      name = "Dushet'is Raioni";
+      pszName = "Dushet'is Raioni";
       break;
       case 20:
-      name = "Gardabanis Raioni";
+      pszName = "Gardabanis Raioni";
       break;
       case 21:
-      name = "Gori";
+      pszName = "Gori";
       break;
       case 22:
-      name = "Goris Raioni";
+      pszName = "Goris Raioni";
       break;
       case 23:
-      name = "Gurjaanis Raioni";
+      pszName = "Gurjaanis Raioni";
       break;
       case 24:
-      name = "Javis Raioni";
+      pszName = "Javis Raioni";
       break;
       case 25:
-      name = "K'arelis Raioni";
+      pszName = "K'arelis Raioni";
       break;
       case 26:
-      name = "Kaspis Raioni";
+      pszName = "Kaspis Raioni";
       break;
       case 27:
-      name = "Kharagaulis Raioni";
+      pszName = "Kharagaulis Raioni";
       break;
       case 28:
-      name = "Khashuris Raioni";
+      pszName = "Khashuris Raioni";
       break;
       case 29:
-      name = "Khobis Raioni";
+      pszName = "Khobis Raioni";
       break;
       case 30:
-      name = "Khonis Raioni";
+      pszName = "Khonis Raioni";
       break;
       case 31:
-      name = "K'ut'aisi";
+      pszName = "K'ut'aisi";
       break;
       case 32:
-      name = "Lagodekhis Raioni";
+      pszName = "Lagodekhis Raioni";
       break;
       case 33:
-      name = "Lanch'khut'is Raioni";
+      pszName = "Lanch'khut'is Raioni";
       break;
       case 34:
-      name = "Lentekhis Raioni";
+      pszName = "Lentekhis Raioni";
       break;
       case 35:
-      name = "Marneulis Raioni";
+      pszName = "Marneulis Raioni";
       break;
       case 36:
-      name = "Martvilis Raioni";
+      pszName = "Martvilis Raioni";
       break;
       case 37:
-      name = "Mestiis Raioni";
+      pszName = "Mestiis Raioni";
       break;
       case 38:
-      name = "Mts'khet'is Raioni";
+      pszName = "Mts'khet'is Raioni";
       break;
       case 39:
-      name = "Ninotsmindis Raioni";
+      pszName = "Ninotsmindis Raioni";
       break;
       case 40:
-      name = "Onis Raioni";
+      pszName = "Onis Raioni";
       break;
       case 41:
-      name = "Ozurget'is Raioni";
+      pszName = "Ozurget'is Raioni";
       break;
       case 42:
-      name = "P'ot'i";
+      pszName = "P'ot'i";
       break;
       case 43:
-      name = "Qazbegis Raioni";
+      pszName = "Qazbegis Raioni";
       break;
       case 44:
-      name = "Qvarlis Raioni";
+      pszName = "Qvarlis Raioni";
       break;
       case 45:
-      name = "Rust'avi";
+      pszName = "Rust'avi";
       break;
       case 46:
-      name = "Sach'kheris Raioni";
+      pszName = "Sach'kheris Raioni";
       break;
       case 47:
-      name = "Sagarejos Raioni";
+      pszName = "Sagarejos Raioni";
       break;
       case 48:
-      name = "Samtrediis Raioni";
+      pszName = "Samtrediis Raioni";
       break;
       case 49:
-      name = "Senakis Raioni";
+      pszName = "Senakis Raioni";
       break;
       case 50:
-      name = "Sighnaghis Raioni";
+      pszName = "Sighnaghis Raioni";
       break;
       case 51:
-      name = "T'bilisi";
+      pszName = "T'bilisi";
       break;
       case 52:
-      name = "T'elavis Raioni";
+      pszName = "T'elavis Raioni";
       break;
       case 53:
-      name = "T'erjolis Raioni";
+      pszName = "T'erjolis Raioni";
       break;
       case 54:
-      name = "T'et'ritsqaros Raioni";
+      pszName = "T'et'ritsqaros Raioni";
       break;
       case 55:
-      name = "T'ianet'is Raioni";
+      pszName = "T'ianet'is Raioni";
       break;
       case 56:
-      name = "Tqibuli";
+      pszName = "Tqibuli";
       break;
       case 57:
-      name = "Ts'ageris Raioni";
+      pszName = "Ts'ageris Raioni";
       break;
       case 58:
-      name = "Tsalenjikhis Raioni";
+      pszName = "Tsalenjikhis Raioni";
       break;
       case 59:
-      name = "Tsalkis Raioni";
+      pszName = "Tsalkis Raioni";
       break;
       case 60:
-      name = "Tsqaltubo";
+      pszName = "Tsqaltubo";
       break;
       case 61:
-      name = "Vanis Raioni";
+      pszName = "Vanis Raioni";
       break;
       case 62:
-      name = "Zestap'onis Raioni";
+      pszName = "Zestap'onis Raioni";
       break;
       case 63:
-      name = "Zugdidi";
+      pszName = "Zugdidi";
       break;
       case 64:
-      name = "Zugdidis Raioni";
+      pszName = "Zugdidis Raioni";
       break;
     }
   }
   if (strcmp(country_code,"GH") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Greater Accra";
+      pszName = "Greater Accra";
       break;
       case 2:
-      name = "Ashanti";
+      pszName = "Ashanti";
       break;
       case 3:
-      name = "Brong-Ahafo";
+      pszName = "Brong-Ahafo";
       break;
       case 4:
-      name = "Central";
+      pszName = "Central";
       break;
       case 5:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 6:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 8:
-      name = "Volta";
+      pszName = "Volta";
       break;
       case 9:
-      name = "Western";
+      pszName = "Western";
       break;
       case 10:
-      name = "Upper East";
+      pszName = "Upper East";
       break;
       case 11:
-      name = "Upper West";
+      pszName = "Upper West";
       break;
     }
   }
   if (strcmp(country_code,"GL") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Nordgronland";
+      pszName = "Nordgronland";
       break;
       case 2:
-      name = "Ostgronland";
+      pszName = "Ostgronland";
       break;
       case 3:
-      name = "Vestgronland";
+      pszName = "Vestgronland";
       break;
     }
   }
   if (strcmp(country_code,"GM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Banjul";
+      pszName = "Banjul";
       break;
       case 2:
-      name = "Lower River";
+      pszName = "Lower River";
       break;
       case 3:
-      name = "Central River";
+      pszName = "Central River";
       break;
       case 4:
-      name = "Upper River";
+      pszName = "Upper River";
       break;
       case 5:
-      name = "Western";
+      pszName = "Western";
       break;
       case 7:
-      name = "North Bank";
+      pszName = "North Bank";
       break;
     }
   }
   if (strcmp(country_code,"GN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Beyla";
+      pszName = "Beyla";
       break;
       case 2:
-      name = "Boffa";
+      pszName = "Boffa";
       break;
       case 3:
-      name = "Boke";
+      pszName = "Boke";
       break;
       case 4:
-      name = "Conakry";
+      pszName = "Conakry";
       break;
       case 5:
-      name = "Dabola";
+      pszName = "Dabola";
       break;
       case 6:
-      name = "Dalaba";
+      pszName = "Dalaba";
       break;
       case 7:
-      name = "Dinguiraye";
+      pszName = "Dinguiraye";
       break;
       case 9:
-      name = "Faranah";
+      pszName = "Faranah";
       break;
       case 10:
-      name = "Forecariah";
+      pszName = "Forecariah";
       break;
       case 11:
-      name = "Fria";
+      pszName = "Fria";
       break;
       case 12:
-      name = "Gaoual";
+      pszName = "Gaoual";
       break;
       case 13:
-      name = "Gueckedou";
+      pszName = "Gueckedou";
       break;
       case 15:
-      name = "Kerouane";
+      pszName = "Kerouane";
       break;
       case 16:
-      name = "Kindia";
+      pszName = "Kindia";
       break;
       case 17:
-      name = "Kissidougou";
+      pszName = "Kissidougou";
       break;
       case 18:
-      name = "Koundara";
+      pszName = "Koundara";
       break;
       case 19:
-      name = "Kouroussa";
+      pszName = "Kouroussa";
       break;
       case 21:
-      name = "Macenta";
+      pszName = "Macenta";
       break;
       case 22:
-      name = "Mali";
+      pszName = "Mali";
       break;
       case 23:
-      name = "Mamou";
+      pszName = "Mamou";
       break;
       case 25:
-      name = "Pita";
+      pszName = "Pita";
       break;
       case 27:
-      name = "Telimele";
+      pszName = "Telimele";
       break;
       case 28:
-      name = "Tougue";
+      pszName = "Tougue";
       break;
       case 29:
-      name = "Yomou";
+      pszName = "Yomou";
       break;
       case 30:
-      name = "Coyah";
+      pszName = "Coyah";
       break;
       case 31:
-      name = "Dubreka";
+      pszName = "Dubreka";
       break;
       case 32:
-      name = "Kankan";
+      pszName = "Kankan";
       break;
       case 33:
-      name = "Koubia";
+      pszName = "Koubia";
       break;
       case 34:
-      name = "Labe";
+      pszName = "Labe";
       break;
       case 35:
-      name = "Lelouma";
+      pszName = "Lelouma";
       break;
       case 36:
-      name = "Lola";
+      pszName = "Lola";
       break;
       case 37:
-      name = "Mandiana";
+      pszName = "Mandiana";
       break;
       case 38:
-      name = "Nzerekore";
+      pszName = "Nzerekore";
       break;
       case 39:
-      name = "Siguiri";
+      pszName = "Siguiri";
       break;
     }
   }
   if (strcmp(country_code,"GQ") == 0) {
     switch (region_code2) {
       case 3:
-      name = "Annobon";
+      pszName = "Annobon";
       break;
       case 4:
-      name = "Bioko Norte";
+      pszName = "Bioko Norte";
       break;
       case 5:
-      name = "Bioko Sur";
+      pszName = "Bioko Sur";
       break;
       case 6:
-      name = "Centro Sur";
+      pszName = "Centro Sur";
       break;
       case 7:
-      name = "Kie-Ntem";
+      pszName = "Kie-Ntem";
       break;
       case 8:
-      name = "Litoral";
+      pszName = "Litoral";
       break;
       case 9:
-      name = "Wele-Nzas";
+      pszName = "Wele-Nzas";
       break;
     }
   }
   if (strcmp(country_code,"GR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Evros";
+      pszName = "Evros";
       break;
       case 2:
-      name = "Rodhopi";
+      pszName = "Rodhopi";
       break;
       case 3:
-      name = "Xanthi";
+      pszName = "Xanthi";
       break;
       case 4:
-      name = "Drama";
+      pszName = "Drama";
       break;
       case 5:
-      name = "Serrai";
+      pszName = "Serrai";
       break;
       case 6:
-      name = "Kilkis";
+      pszName = "Kilkis";
       break;
       case 7:
-      name = "Pella";
+      pszName = "Pella";
       break;
       case 8:
-      name = "Florina";
+      pszName = "Florina";
       break;
       case 9:
-      name = "Kastoria";
+      pszName = "Kastoria";
       break;
       case 10:
-      name = "Grevena";
+      pszName = "Grevena";
       break;
       case 11:
-      name = "Kozani";
+      pszName = "Kozani";
       break;
       case 12:
-      name = "Imathia";
+      pszName = "Imathia";
       break;
       case 13:
-      name = "Thessaloniki";
+      pszName = "Thessaloniki";
       break;
       case 14:
-      name = "Kavala";
+      pszName = "Kavala";
       break;
       case 15:
-      name = "Khalkidhiki";
+      pszName = "Khalkidhiki";
       break;
       case 16:
-      name = "Pieria";
+      pszName = "Pieria";
       break;
       case 17:
-      name = "Ioannina";
+      pszName = "Ioannina";
       break;
       case 18:
-      name = "Thesprotia";
+      pszName = "Thesprotia";
       break;
       case 19:
-      name = "Preveza";
+      pszName = "Preveza";
       break;
       case 20:
-      name = "Arta";
+      pszName = "Arta";
       break;
       case 21:
-      name = "Larisa";
+      pszName = "Larisa";
       break;
       case 22:
-      name = "Trikala";
+      pszName = "Trikala";
       break;
       case 23:
-      name = "Kardhitsa";
+      pszName = "Kardhitsa";
       break;
       case 24:
-      name = "Magnisia";
+      pszName = "Magnisia";
       break;
       case 25:
-      name = "Kerkira";
+      pszName = "Kerkira";
       break;
       case 26:
-      name = "Levkas";
+      pszName = "Levkas";
       break;
       case 27:
-      name = "Kefallinia";
+      pszName = "Kefallinia";
       break;
       case 28:
-      name = "Zakinthos";
+      pszName = "Zakinthos";
       break;
       case 29:
-      name = "Fthiotis";
+      pszName = "Fthiotis";
       break;
       case 30:
-      name = "Evritania";
+      pszName = "Evritania";
       break;
       case 31:
-      name = "Aitolia kai Akarnania";
+      pszName = "Aitolia kai Akarnania";
       break;
       case 32:
-      name = "Fokis";
+      pszName = "Fokis";
       break;
       case 33:
-      name = "Voiotia";
+      pszName = "Voiotia";
       break;
       case 34:
-      name = "Evvoia";
+      pszName = "Evvoia";
       break;
       case 35:
-      name = "Attiki";
+      pszName = "Attiki";
       break;
       case 36:
-      name = "Argolis";
+      pszName = "Argolis";
       break;
       case 37:
-      name = "Korinthia";
+      pszName = "Korinthia";
       break;
       case 38:
-      name = "Akhaia";
+      pszName = "Akhaia";
       break;
       case 39:
-      name = "Ilia";
+      pszName = "Ilia";
       break;
       case 40:
-      name = "Messinia";
+      pszName = "Messinia";
       break;
       case 41:
-      name = "Arkadhia";
+      pszName = "Arkadhia";
       break;
       case 42:
-      name = "Lakonia";
+      pszName = "Lakonia";
       break;
       case 43:
-      name = "Khania";
+      pszName = "Khania";
       break;
       case 44:
-      name = "Rethimni";
+      pszName = "Rethimni";
       break;
       case 45:
-      name = "Iraklion";
+      pszName = "Iraklion";
       break;
       case 46:
-      name = "Lasithi";
+      pszName = "Lasithi";
       break;
       case 47:
-      name = "Dhodhekanisos";
+      pszName = "Dhodhekanisos";
       break;
       case 48:
-      name = "Samos";
+      pszName = "Samos";
       break;
       case 49:
-      name = "Kikladhes";
+      pszName = "Kikladhes";
       break;
       case 50:
-      name = "Khios";
+      pszName = "Khios";
       break;
       case 51:
-      name = "Lesvos";
+      pszName = "Lesvos";
       break;
     }
   }
   if (strcmp(country_code,"GT") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Alta Verapaz";
+      pszName = "Alta Verapaz";
       break;
       case 2:
-      name = "Baja Verapaz";
+      pszName = "Baja Verapaz";
       break;
       case 3:
-      name = "Chimaltenango";
+      pszName = "Chimaltenango";
       break;
       case 4:
-      name = "Chiquimula";
+      pszName = "Chiquimula";
       break;
       case 5:
-      name = "El Progreso";
+      pszName = "El Progreso";
       break;
       case 6:
-      name = "Esc::u32la";
+      pszName = "Esc::u32la";
       break;
       case 7:
-      name = "Guatemala";
+      pszName = "Guatemala";
       break;
       case 8:
-      name = "Huehuetenango";
+      pszName = "Huehuetenango";
       break;
       case 9:
-      name = "Izabal";
+      pszName = "Izabal";
       break;
       case 10:
-      name = "Jalapa";
+      pszName = "Jalapa";
       break;
       case 11:
-      name = "Jutiapa";
+      pszName = "Jutiapa";
       break;
       case 12:
-      name = "Peten";
+      pszName = "Peten";
       break;
       case 13:
-      name = "Quetzaltenango";
+      pszName = "Quetzaltenango";
       break;
       case 14:
-      name = "Quiche";
+      pszName = "Quiche";
       break;
       case 15:
-      name = "Retalhuleu";
+      pszName = "Retalhuleu";
       break;
       case 16:
-      name = "Sacatepequez";
+      pszName = "Sacatepequez";
       break;
       case 17:
-      name = "San Marcos";
+      pszName = "San Marcos";
       break;
       case 18:
-      name = "Santa Rosa";
+      pszName = "Santa Rosa";
       break;
       case 19:
-      name = "Solola";
+      pszName = "Solola";
       break;
       case 20:
-      name = "Suchitepequez";
+      pszName = "Suchitepequez";
       break;
       case 21:
-      name = "Totonicapan";
+      pszName = "Totonicapan";
       break;
       case 22:
-      name = "Zacapa";
+      pszName = "Zacapa";
       break;
     }
   }
   if (strcmp(country_code,"GW") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bafata";
+      pszName = "Bafata";
       break;
       case 2:
-      name = "Quinara";
+      pszName = "Quinara";
       break;
       case 4:
-      name = "Oio";
+      pszName = "Oio";
       break;
       case 5:
-      name = "Bolama";
+      pszName = "Bolama";
       break;
       case 6:
-      name = "Cacheu";
+      pszName = "Cacheu";
       break;
       case 7:
-      name = "Tombali";
+      pszName = "Tombali";
       break;
       case 10:
-      name = "Gabu";
+      pszName = "Gabu";
       break;
       case 11:
-      name = "Bissau";
+      pszName = "Bissau";
       break;
       case 12:
-      name = "Biombo";
+      pszName = "Biombo";
       break;
     }
   }
   if (strcmp(country_code,"GY") == 0) {
     switch (region_code2) {
       case 10:
-      name = "Barima-Waini";
+      pszName = "Barima-Waini";
       break;
       case 11:
-      name = "Cuyuni-Mazaruni";
+      pszName = "Cuyuni-Mazaruni";
       break;
       case 12:
-      name = "Demerara-Mahaica";
+      pszName = "Demerara-Mahaica";
       break;
       case 13:
-      name = "East Berbice-Corentyne";
+      pszName = "East Berbice-Corentyne";
       break;
       case 14:
-      name = "Essequibo Islands-West Demerara";
+      pszName = "Essequibo Islands-West Demerara";
       break;
       case 15:
-      name = "Mahaica-Berbice";
+      pszName = "Mahaica-Berbice";
       break;
       case 16:
-      name = "Pomeroon-Supenaam";
+      pszName = "Pomeroon-Supenaam";
       break;
       case 17:
-      name = "Potaro-Siparuni";
+      pszName = "Potaro-Siparuni";
       break;
       case 18:
-      name = "Upper Demerara-Berbice";
+      pszName = "Upper Demerara-Berbice";
       break;
       case 19:
-      name = "Upper Takutu-Upper Essequibo";
+      pszName = "Upper Takutu-Upper Essequibo";
       break;
     }
   }
   if (strcmp(country_code,"HN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "ca_antida";
+      pszName = "ca_antida";
       break;
       case 2:
-      name = "Choluteca";
+      pszName = "Choluteca";
       break;
       case 3:
-      name = "Colon";
+      pszName = "Colon";
       break;
       case 4:
-      name = "Comayagua";
+      pszName = "Comayagua";
       break;
       case 5:
-      name = "Copan";
+      pszName = "Copan";
       break;
       case 6:
-      name = "Cortes";
+      pszName = "Cortes";
       break;
       case 7:
-      name = "El Paraiso";
+      pszName = "El Paraiso";
       break;
       case 8:
-      name = "Francisco Morazan";
+      pszName = "Francisco Morazan";
       break;
       case 9:
-      name = "Gracias a Dios";
+      pszName = "Gracias a Dios";
       break;
       case 10:
-      name = "Intibuca";
+      pszName = "Intibuca";
       break;
       case 11:
-      name = "Islas de la Bahia";
+      pszName = "Islas de la Bahia";
       break;
       case 12:
-      name = "La Paz";
+      pszName = "La Paz";
       break;
       case 13:
-      name = "Lempira";
+      pszName = "Lempira";
       break;
       case 14:
-      name = "Ocotepeque";
+      pszName = "Ocotepeque";
       break;
       case 15:
-      name = "Olancho";
+      pszName = "Olancho";
       break;
       case 16:
-      name = "Santa Barbara";
+      pszName = "Santa Barbara";
       break;
       case 17:
-      name = "Valle";
+      pszName = "Valle";
       break;
       case 18:
-      name = "Yoro";
+      pszName = "Yoro";
       break;
     }
   }
   if (strcmp(country_code,"HR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bjelovarsko-Bilogorska";
+      pszName = "Bjelovarsko-Bilogorska";
       break;
       case 2:
-      name = "Brodsko-Posavska";
+      pszName = "Brodsko-Posavska";
       break;
       case 3:
-      name = "Dubrovacko-Neretvanska";
+      pszName = "Dubrovacko-Neretvanska";
       break;
       case 4:
-      name = "Istarska";
+      pszName = "Istarska";
       break;
       case 5:
-      name = "Karlovacka";
+      pszName = "Karlovacka";
       break;
       case 6:
-      name = "Koprivnicko-Krizevacka";
+      pszName = "Koprivnicko-Krizevacka";
       break;
       case 7:
-      name = "Krapinsko-Zagorska";
+      pszName = "Krapinsko-Zagorska";
       break;
       case 8:
-      name = "Licko-Senjska";
+      pszName = "Licko-Senjska";
       break;
       case 9:
-      name = "Medimurska";
+      pszName = "Medimurska";
       break;
       case 10:
-      name = "Osjecko-Baranjska";
+      pszName = "Osjecko-Baranjska";
       break;
       case 11:
-      name = "Pozesko-Slavonska";
+      pszName = "Pozesko-Slavonska";
       break;
       case 12:
-      name = "Primorsko-Goranska";
+      pszName = "Primorsko-Goranska";
       break;
       case 13:
-      name = "Sibensko-Kninska";
+      pszName = "Sibensko-Kninska";
       break;
       case 14:
-      name = "Sisacko-Moslavacka";
+      pszName = "Sisacko-Moslavacka";
       break;
       case 15:
-      name = "Splitsko-Dalmatinska";
+      pszName = "Splitsko-Dalmatinska";
       break;
       case 16:
-      name = "Varazdinska";
+      pszName = "Varazdinska";
       break;
       case 17:
-      name = "Viroviticko-Podravska";
+      pszName = "Viroviticko-Podravska";
       break;
       case 18:
-      name = "Vukovarsko-Srijemska";
+      pszName = "Vukovarsko-Srijemska";
       break;
       case 19:
-      name = "Zadarska";
+      pszName = "Zadarska";
       break;
       case 20:
-      name = "Zagrebacka";
+      pszName = "Zagrebacka";
       break;
       case 21:
-      name = "Grad Zagreb";
+      pszName = "Grad Zagreb";
       break;
     }
   }
   if (strcmp(country_code,"HT") == 0) {
     switch (region_code2) {
       case 3:
-      name = "Nord-Ouest";
+      pszName = "Nord-Ouest";
       break;
       case 6:
-      name = "Artibonite";
+      pszName = "Artibonite";
       break;
       case 7:
-      name = "Centre";
+      pszName = "Centre";
       break;
       case 9:
-      name = "Nord";
+      pszName = "Nord";
       break;
       case 10:
-      name = "Nord-Est";
+      pszName = "Nord-Est";
       break;
       case 11:
-      name = "Ouest";
+      pszName = "Ouest";
       break;
       case 12:
-      name = "Sud";
+      pszName = "Sud";
       break;
       case 13:
-      name = "Sud-Est";
+      pszName = "Sud-Est";
       break;
       case 14:
-      name = "Grand' Anse";
+      pszName = "Grand' Anse";
       break;
       case 15:
-      name = "Nippes";
+      pszName = "Nippes";
       break;
     }
   }
   if (strcmp(country_code,"HU") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bacs-Kiskun";
+      pszName = "Bacs-Kiskun";
       break;
       case 2:
-      name = "Baranya";
+      pszName = "Baranya";
       break;
       case 3:
-      name = "Bekes";
+      pszName = "Bekes";
       break;
       case 4:
-      name = "Borsod-Abauj-Zemplen";
+      pszName = "Borsod-Abauj-Zemplen";
       break;
       case 5:
-      name = "Budapest";
+      pszName = "Budapest";
       break;
       case 6:
-      name = "Csongrad";
+      pszName = "Csongrad";
       break;
       case 7:
-      name = "Debrecen";
+      pszName = "Debrecen";
       break;
       case 8:
-      name = "Fejer";
+      pszName = "Fejer";
       break;
       case 9:
-      name = "Gyor-Moson-Sopron";
+      pszName = "Gyor-Moson-Sopron";
       break;
       case 10:
-      name = "Hajdu-Bihar";
+      pszName = "Hajdu-Bihar";
       break;
       case 11:
-      name = "Heves";
+      pszName = "Heves";
       break;
       case 12:
-      name = "Komarom-Esztergom";
+      pszName = "Komarom-Esztergom";
       break;
       case 13:
-      name = "Miskolc";
+      pszName = "Miskolc";
       break;
       case 14:
-      name = "Nograd";
+      pszName = "Nograd";
       break;
       case 15:
-      name = "Pecs";
+      pszName = "Pecs";
       break;
       case 16:
-      name = "Pest";
+      pszName = "Pest";
       break;
       case 17:
-      name = "Somogy";
+      pszName = "Somogy";
       break;
       case 18:
-      name = "Szabolcs-Szatmar-Bereg";
+      pszName = "Szabolcs-Szatmar-Bereg";
       break;
       case 19:
-      name = "Szeged";
+      pszName = "Szeged";
       break;
       case 20:
-      name = "Jasz-Nagykun-Szolnok";
+      pszName = "Jasz-Nagykun-Szolnok";
       break;
       case 21:
-      name = "Tolna";
+      pszName = "Tolna";
       break;
       case 22:
-      name = "Vas";
+      pszName = "Vas";
       break;
       case 23:
-      name = "Veszprem";
+      pszName = "Veszprem";
       break;
       case 24:
-      name = "Zala";
+      pszName = "Zala";
       break;
       case 25:
-      name = "Gyor";
+      pszName = "Gyor";
       break;
       case 26:
-      name = "Bekescsaba";
+      pszName = "Bekescsaba";
       break;
       case 27:
-      name = "Dunaujvaros";
+      pszName = "Dunaujvaros";
       break;
       case 28:
-      name = "Eger";
+      pszName = "Eger";
       break;
       case 29:
-      name = "Hodmezovasarhely";
+      pszName = "Hodmezovasarhely";
       break;
       case 30:
-      name = "Kaposvar";
+      pszName = "Kaposvar";
       break;
       case 31:
-      name = "Kecskemet";
+      pszName = "Kecskemet";
       break;
       case 32:
-      name = "Nagykanizsa";
+      pszName = "Nagykanizsa";
       break;
       case 33:
-      name = "Nyiregyhaza";
+      pszName = "Nyiregyhaza";
       break;
       case 34:
-      name = "Sopron";
+      pszName = "Sopron";
       break;
       case 35:
-      name = "Szekesfehervar";
+      pszName = "Szekesfehervar";
       break;
       case 36:
-      name = "Szolnok";
+      pszName = "Szolnok";
       break;
       case 37:
-      name = "Szombathely";
+      pszName = "Szombathely";
       break;
       case 38:
-      name = "Tatabanya";
+      pszName = "Tatabanya";
       break;
       case 39:
-      name = "Veszprem";
+      pszName = "Veszprem";
       break;
       case 40:
-      name = "Zalaegerszeg";
+      pszName = "Zalaegerszeg";
       break;
       case 41:
-      name = "Salgotarjan";
+      pszName = "Salgotarjan";
       break;
       case 42:
-      name = "Szekszard";
+      pszName = "Szekszard";
       break;
     }
   }
   if (strcmp(country_code,"ID") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aceh";
+      pszName = "Aceh";
       break;
       case 2:
-      name = "Bali";
+      pszName = "Bali";
       break;
       case 3:
-      name = "Bengkulu";
+      pszName = "Bengkulu";
       break;
       case 4:
-      name = "Jakarta Raya";
+      pszName = "Jakarta Raya";
       break;
       case 5:
-      name = "Jambi";
+      pszName = "Jambi";
       break;
       case 6:
-      name = "Jawa Barat";
+      pszName = "Jawa Barat";
       break;
       case 7:
-      name = "Jawa Tengah";
+      pszName = "Jawa Tengah";
       break;
       case 8:
-      name = "Jawa Timur";
+      pszName = "Jawa Timur";
       break;
       case 9:
-      name = "Papua";
+      pszName = "Papua";
       break;
       case 10:
-      name = "Yogyakarta";
+      pszName = "Yogyakarta";
       break;
       case 11:
-      name = "Kalimantan Barat";
+      pszName = "Kalimantan Barat";
       break;
       case 12:
-      name = "Kalimantan Selatan";
+      pszName = "Kalimantan Selatan";
       break;
       case 13:
-      name = "Kalimantan Tengah";
+      pszName = "Kalimantan Tengah";
       break;
       case 14:
-      name = "Kalimantan Timur";
+      pszName = "Kalimantan Timur";
       break;
       case 15:
-      name = "Lampung";
+      pszName = "Lampung";
       break;
       case 16:
-      name = "Maluku";
+      pszName = "Maluku";
       break;
       case 17:
-      name = "Nusa Tenggara Barat";
+      pszName = "Nusa Tenggara Barat";
       break;
       case 18:
-      name = "Nusa Tenggara Timur";
+      pszName = "Nusa Tenggara Timur";
       break;
       case 19:
-      name = "Riau";
+      pszName = "Riau";
       break;
       case 20:
-      name = "Sulawesi Selatan";
+      pszName = "Sulawesi Selatan";
       break;
       case 21:
-      name = "Sulawesi Tengah";
+      pszName = "Sulawesi Tengah";
       break;
       case 22:
-      name = "Sulawesi Tenggara";
+      pszName = "Sulawesi Tenggara";
       break;
       case 23:
-      name = "Sulawesi Utara";
+      pszName = "Sulawesi Utara";
       break;
       case 24:
-      name = "Sumatera Barat";
+      pszName = "Sumatera Barat";
       break;
       case 25:
-      name = "Sumatera Selatan";
+      pszName = "Sumatera Selatan";
       break;
       case 26:
-      name = "Sumatera Utara";
+      pszName = "Sumatera Utara";
       break;
       case 28:
-      name = "Maluku";
+      pszName = "Maluku";
       break;
       case 29:
-      name = "Maluku Utara";
+      pszName = "Maluku Utara";
       break;
       case 30:
-      name = "Jawa Barat";
+      pszName = "Jawa Barat";
       break;
       case 31:
-      name = "Sulawesi Utara";
+      pszName = "Sulawesi Utara";
       break;
       case 32:
-      name = "Sumatera Selatan";
+      pszName = "Sumatera Selatan";
       break;
       case 33:
-      name = "Banten";
+      pszName = "Banten";
       break;
       case 34:
-      name = "Gorontalo";
+      pszName = "Gorontalo";
       break;
       case 35:
-      name = "Kepulauan Bangka Belitung";
+      pszName = "Kepulauan Bangka Belitung";
       break;
       case 36:
-      name = "Papua";
+      pszName = "Papua";
       break;
       case 37:
-      name = "Riau";
+      pszName = "Riau";
       break;
       case 38:
-      name = "Sulawesi Selatan";
+      pszName = "Sulawesi Selatan";
       break;
       case 39:
-      name = "Irian Jaya Barat";
+      pszName = "Irian Jaya Barat";
       break;
       case 40:
-      name = "Kepulauan Riau";
+      pszName = "Kepulauan Riau";
       break;
       case 41:
-      name = "Sulawesi Barat";
+      pszName = "Sulawesi Barat";
       break;
     }
   }
   if (strcmp(country_code,"IE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Carlow";
+      pszName = "Carlow";
       break;
       case 2:
-      name = "Cavan";
+      pszName = "Cavan";
       break;
       case 3:
-      name = "Clare";
+      pszName = "Clare";
       break;
       case 4:
-      name = "Cork";
+      pszName = "Cork";
       break;
       case 6:
-      name = "Donegal";
+      pszName = "Donegal";
       break;
       case 7:
-      name = "Dublin";
+      pszName = "Dublin";
       break;
       case 10:
-      name = "Galway";
+      pszName = "Galway";
       break;
       case 11:
-      name = "Kerry";
+      pszName = "Kerry";
       break;
       case 12:
-      name = "Kildare";
+      pszName = "Kildare";
       break;
       case 13:
-      name = "Kilkenny";
+      pszName = "Kilkenny";
       break;
       case 14:
-      name = "Leitrim";
+      pszName = "Leitrim";
       break;
       case 15:
-      name = "Laois";
+      pszName = "Laois";
       break;
       case 16:
-      name = "Limerick";
+      pszName = "Limerick";
       break;
       case 18:
-      name = "Longford";
+      pszName = "Longford";
       break;
       case 19:
-      name = "Louth";
+      pszName = "Louth";
       break;
       case 20:
-      name = "Mayo";
+      pszName = "Mayo";
       break;
       case 21:
-      name = "Meath";
+      pszName = "Meath";
       break;
       case 22:
-      name = "Monaghan";
+      pszName = "Monaghan";
       break;
       case 23:
-      name = "Offaly";
+      pszName = "Offaly";
       break;
       case 24:
-      name = "Roscommon";
+      pszName = "Roscommon";
       break;
       case 25:
-      name = "Sligo";
+      pszName = "Sligo";
       break;
       case 26:
-      name = "Tipperary";
+      pszName = "Tipperary";
       break;
       case 27:
-      name = "Waterford";
+      pszName = "Waterford";
       break;
       case 29:
-      name = "Westmeath";
+      pszName = "Westmeath";
       break;
       case 30:
-      name = "Wexford";
+      pszName = "Wexford";
       break;
       case 31:
-      name = "Wicklow";
+      pszName = "Wicklow";
       break;
     }
   }
   if (strcmp(country_code,"IL") == 0) {
     switch (region_code2) {
       case 1:
-      name = "HaDarom";
+      pszName = "HaDarom";
       break;
       case 2:
-      name = "HaMerkaz";
+      pszName = "HaMerkaz";
       break;
       case 3:
-      name = "HaZafon";
+      pszName = "HaZafon";
       break;
       case 4:
-      name = "Hefa";
+      pszName = "Hefa";
       break;
       case 5:
-      name = "Tel Aviv";
+      pszName = "Tel Aviv";
       break;
       case 6:
-      name = "Yerushalayim";
+      pszName = "Yerushalayim";
       break;
     }
   }
   if (strcmp(country_code,"IN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Andaman and Nicobar Islands";
+      pszName = "Andaman and Nicobar Islands";
       break;
       case 2:
-      name = "Andhra Pradesh";
+      pszName = "Andhra Pradesh";
       break;
       case 3:
-      name = "Assam";
+      pszName = "Assam";
       break;
       case 5:
-      name = "Chandigarh";
+      pszName = "Chandigarh";
       break;
       case 6:
-      name = "Dadra and Nagar Haveli";
+      pszName = "Dadra and Nagar Haveli";
       break;
       case 7:
-      name = "Delhi";
+      pszName = "Delhi";
       break;
       case 9:
-      name = "Gujarat";
+      pszName = "Gujarat";
       break;
       case 10:
-      name = "Haryana";
+      pszName = "Haryana";
       break;
       case 11:
-      name = "Himachal Pradesh";
+      pszName = "Himachal Pradesh";
       break;
       case 12:
-      name = "Jammu and Kashmir";
+      pszName = "Jammu and Kashmir";
       break;
       case 13:
-      name = "Kerala";
+      pszName = "Kerala";
       break;
       case 14:
-      name = "Lakshadweep";
+      pszName = "Lakshadweep";
       break;
       case 16:
-      name = "Maharashtra";
+      pszName = "Maharashtra";
       break;
       case 17:
-      name = "Manipur";
+      pszName = "Manipur";
       break;
       case 18:
-      name = "Meghalaya";
+      pszName = "Meghalaya";
       break;
       case 19:
-      name = "Karnataka";
+      pszName = "Karnataka";
       break;
       case 20:
-      name = "Nagaland";
+      pszName = "Nagaland";
       break;
       case 21:
-      name = "Orissa";
+      pszName = "Orissa";
       break;
       case 22:
-      name = "Puducherry";
+      pszName = "Puducherry";
       break;
       case 23:
-      name = "Punjab";
+      pszName = "Punjab";
       break;
       case 24:
-      name = "Rajasthan";
+      pszName = "Rajasthan";
       break;
       case 25:
-      name = "Tamil Nadu";
+      pszName = "Tamil Nadu";
       break;
       case 26:
-      name = "Tripura";
+      pszName = "Tripura";
       break;
       case 28:
-      name = "West Bengal";
+      pszName = "West Bengal";
       break;
       case 29:
-      name = "Sikkim";
+      pszName = "Sikkim";
       break;
       case 30:
-      name = "Arunachal Pradesh";
+      pszName = "Arunachal Pradesh";
       break;
       case 31:
-      name = "Mizoram";
+      pszName = "Mizoram";
       break;
       case 32:
-      name = "Daman and Diu";
+      pszName = "Daman and Diu";
       break;
       case 33:
-      name = "Goa";
+      pszName = "Goa";
       break;
       case 34:
-      name = "Bihar";
+      pszName = "Bihar";
       break;
       case 35:
-      name = "Madhya Pradesh";
+      pszName = "Madhya Pradesh";
       break;
       case 36:
-      name = "Uttar Pradesh";
+      pszName = "Uttar Pradesh";
       break;
       case 37:
-      name = "Chhattisgarh";
+      pszName = "Chhattisgarh";
       break;
       case 38:
-      name = "Jharkhand";
+      pszName = "Jharkhand";
       break;
       case 39:
-      name = "Uttarakhand";
+      pszName = "Uttarakhand";
       break;
     }
   }
   if (strcmp(country_code,"IQ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Al Anbar";
+      pszName = "Al Anbar";
       break;
       case 2:
-      name = "Al Basrah";
+      pszName = "Al Basrah";
       break;
       case 3:
-      name = "Al Muthanna";
+      pszName = "Al Muthanna";
       break;
       case 4:
-      name = "Al Qadisiyah";
+      pszName = "Al Qadisiyah";
       break;
       case 5:
-      name = "As Sulaymaniyah";
+      pszName = "As Sulaymaniyah";
       break;
       case 6:
-      name = "Babil";
+      pszName = "Babil";
       break;
       case 7:
-      name = "Baghdad";
+      pszName = "Baghdad";
       break;
       case 8:
-      name = "Dahuk";
+      pszName = "Dahuk";
       break;
       case 9:
-      name = "Dhi Qar";
+      pszName = "Dhi Qar";
       break;
       case 10:
-      name = "Diyala";
+      pszName = "Diyala";
       break;
       case 11:
-      name = "Arbil";
+      pszName = "Arbil";
       break;
       case 12:
-      name = "Karbala'";
+      pszName = "Karbala'";
       break;
       case 13:
-      name = "At Ta'mim";
+      pszName = "At Ta'mim";
       break;
       case 14:
-      name = "Maysan";
+      pszName = "Maysan";
       break;
       case 15:
-      name = "Ninawa";
+      pszName = "Ninawa";
       break;
       case 16:
-      name = "Wasit";
+      pszName = "Wasit";
       break;
       case 17:
-      name = "An Najaf";
+      pszName = "An Najaf";
       break;
       case 18:
-      name = "Salah ad Din";
+      pszName = "Salah ad Din";
       break;
     }
   }
   if (strcmp(country_code,"IR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Azarbayjan-e Bakhtari";
+      pszName = "Azarbayjan-e Bakhtari";
       break;
       case 2:
-      name = "Azarbayjan-e Khavari";
+      pszName = "Azarbayjan-e Khavari";
       break;
       case 3:
-      name = "Chahar Mahall va Bakhtiari";
+      pszName = "Chahar Mahall va Bakhtiari";
       break;
       case 4:
-      name = "Sistan va Baluchestan";
+      pszName = "Sistan va Baluchestan";
       break;
       case 5:
-      name = "Kohkiluyeh va Buyer Ahmadi";
+      pszName = "Kohkiluyeh va Buyer Ahmadi";
       break;
       case 7:
-      name = "Fars";
+      pszName = "Fars";
       break;
       case 8:
-      name = "Gilan";
+      pszName = "Gilan";
       break;
       case 9:
-      name = "Hamadan";
+      pszName = "Hamadan";
       break;
       case 10:
-      name = "Ilam";
+      pszName = "Ilam";
       break;
       case 11:
-      name = "Hormozgan";
+      pszName = "Hormozgan";
       break;
       case 12:
-      name = "Kerman";
+      pszName = "Kerman";
       break;
       case 13:
-      name = "Bakhtaran";
+      pszName = "Bakhtaran";
       break;
       case 15:
-      name = "Khuzestan";
+      pszName = "Khuzestan";
       break;
       case 16:
-      name = "Kordestan";
+      pszName = "Kordestan";
       break;
       case 17:
-      name = "Mazandaran";
+      pszName = "Mazandaran";
       break;
       case 18:
-      name = "Semnan Province";
+      pszName = "Semnan Province";
       break;
       case 19:
-      name = "Markazi";
+      pszName = "Markazi";
       break;
       case 21:
-      name = "Zanjan";
+      pszName = "Zanjan";
       break;
       case 22:
-      name = "Bushehr";
+      pszName = "Bushehr";
       break;
       case 23:
-      name = "Lorestan";
+      pszName = "Lorestan";
       break;
       case 24:
-      name = "Markazi";
+      pszName = "Markazi";
       break;
       case 25:
-      name = "Semnan";
+      pszName = "Semnan";
       break;
       case 26:
-      name = "Tehran";
+      pszName = "Tehran";
       break;
       case 27:
-      name = "Zanjan";
+      pszName = "Zanjan";
       break;
       case 28:
-      name = "Esfahan";
+      pszName = "Esfahan";
       break;
       case 29:
-      name = "Kerman";
+      pszName = "Kerman";
       break;
       case 30:
-      name = "Khorasan";
+      pszName = "Khorasan";
       break;
       case 31:
-      name = "Yazd";
+      pszName = "Yazd";
       break;
       case 32:
-      name = "Ardabil";
+      pszName = "Ardabil";
       break;
       case 33:
-      name = "East Azarbaijan";
+      pszName = "East Azarbaijan";
       break;
       case 34:
-      name = "Markazi";
+      pszName = "Markazi";
       break;
       case 35:
-      name = "Mazandaran";
+      pszName = "Mazandaran";
       break;
       case 36:
-      name = "Zanjan";
+      pszName = "Zanjan";
       break;
       case 37:
-      name = "Golestan";
+      pszName = "Golestan";
       break;
       case 38:
-      name = "Qazvin";
+      pszName = "Qazvin";
       break;
       case 39:
-      name = "Qom";
+      pszName = "Qom";
       break;
       case 40:
-      name = "Yazd";
+      pszName = "Yazd";
       break;
       case 41:
-      name = "Khorasan-e Janubi";
+      pszName = "Khorasan-e Janubi";
       break;
       case 42:
-      name = "Khorasan-e Razavi";
+      pszName = "Khorasan-e Razavi";
       break;
       case 43:
-      name = "Khorasan-e Shemali";
+      pszName = "Khorasan-e Shemali";
       break;
     }
   }
   if (strcmp(country_code,"IS") == 0) {
     switch (region_code2) {
       case 3:
-      name = "Arnessysla";
+      pszName = "Arnessysla";
       break;
       case 5:
-      name = "Austur-Hunavatnssysla";
+      pszName = "Austur-Hunavatnssysla";
       break;
       case 6:
-      name = "Austur-Skaftafellssysla";
+      pszName = "Austur-Skaftafellssysla";
       break;
       case 7:
-      name = "Borgarfjardarsysla";
+      pszName = "Borgarfjardarsysla";
       break;
       case 9:
-      name = "Eyjafjardarsysla";
+      pszName = "Eyjafjardarsysla";
       break;
       case 10:
-      name = "Gullbringusysla";
+      pszName = "Gullbringusysla";
       break;
       case 15:
-      name = "Kjosarsysla";
+      pszName = "Kjosarsysla";
       break;
       case 17:
-      name = "Myrasysla";
+      pszName = "Myrasysla";
       break;
       case 20:
-      name = "Nordur-Mulasysla";
+      pszName = "Nordur-Mulasysla";
       break;
       case 21:
-      name = "Nordur-Tingeyjarsysla";
+      pszName = "Nordur-Tingeyjarsysla";
       break;
       case 23:
-      name = "Rangarvallasysla";
+      pszName = "Rangarvallasysla";
       break;
       case 28:
-      name = "Skagafjardarsysla";
+      pszName = "Skagafjardarsysla";
       break;
       case 29:
-      name = "Snafellsnes- og Hnappadalssysla";
+      pszName = "Snafellsnes- og Hnappadalssysla";
       break;
       case 31:
-      name = "Sudur-Mulasysla";
+      pszName = "Sudur-Mulasysla";
       break;
       case 32:
-      name = "Sudur-Tingeyjarsysla";
+      pszName = "Sudur-Tingeyjarsysla";
       break;
       case 34:
-      name = "Vestur-Bardastrandarsysla";
+      pszName = "Vestur-Bardastrandarsysla";
       break;
       case 35:
-      name = "Vestur-Hunavatnssysla";
+      pszName = "Vestur-Hunavatnssysla";
       break;
       case 36:
-      name = "Vestur-Isafjardarsysla";
+      pszName = "Vestur-Isafjardarsysla";
       break;
       case 37:
-      name = "Vestur-Skaftafellssysla";
+      pszName = "Vestur-Skaftafellssysla";
       break;
       case 40:
-      name = "Norourland Eystra";
+      pszName = "Norourland Eystra";
       break;
       case 41:
-      name = "Norourland Vestra";
+      pszName = "Norourland Vestra";
       break;
       case 42:
-      name = "Suourland";
+      pszName = "Suourland";
       break;
       case 43:
-      name = "Suournes";
+      pszName = "Suournes";
       break;
       case 44:
-      name = "Vestfiroir";
+      pszName = "Vestfiroir";
       break;
       case 45:
-      name = "Vesturland";
+      pszName = "Vesturland";
       break;
     }
   }
   if (strcmp(country_code,"IT") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Abruzzi";
+      pszName = "Abruzzi";
       break;
       case 2:
-      name = "Basilicata";
+      pszName = "Basilicata";
       break;
       case 3:
-      name = "Calabria";
+      pszName = "Calabria";
       break;
       case 4:
-      name = "Campania";
+      pszName = "Campania";
       break;
       case 5:
-      name = "Emilia-Romagna";
+      pszName = "Emilia-Romagna";
       break;
       case 6:
-      name = "Friuli-Venezia Giulia";
+      pszName = "Friuli-Venezia Giulia";
       break;
       case 7:
-      name = "Lazio";
+      pszName = "Lazio";
       break;
       case 8:
-      name = "Liguria";
+      pszName = "Liguria";
       break;
       case 9:
-      name = "Lombardia";
+      pszName = "Lombardia";
       break;
       case 10:
-      name = "Marche";
+      pszName = "Marche";
       break;
       case 11:
-      name = "Molise";
+      pszName = "Molise";
       break;
       case 12:
-      name = "Piemonte";
+      pszName = "Piemonte";
       break;
       case 13:
-      name = "Puglia";
+      pszName = "Puglia";
       break;
       case 14:
-      name = "Sardegna";
+      pszName = "Sardegna";
       break;
       case 15:
-      name = "Sicilia";
+      pszName = "Sicilia";
       break;
       case 16:
-      name = "Toscana";
+      pszName = "Toscana";
       break;
       case 17:
-      name = "Trentino-Alto Adige";
+      pszName = "Trentino-Alto Adige";
       break;
       case 18:
-      name = "Umbria";
+      pszName = "Umbria";
       break;
       case 19:
-      name = "Valle d'Aosta";
+      pszName = "Valle d'Aosta";
       break;
       case 20:
-      name = "Veneto";
+      pszName = "Veneto";
       break;
     }
   }
   if (strcmp(country_code,"JM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Clarendon";
+      pszName = "Clarendon";
       break;
       case 2:
-      name = "Hanover";
+      pszName = "Hanover";
       break;
       case 4:
-      name = "Manchester";
+      pszName = "Manchester";
       break;
       case 7:
-      name = "Portland";
+      pszName = "Portland";
       break;
       case 8:
-      name = "Saint Andrew";
+      pszName = "Saint Andrew";
       break;
       case 9:
-      name = "Saint Ann";
+      pszName = "Saint Ann";
       break;
       case 10:
-      name = "Saint Catherine";
+      pszName = "Saint Catherine";
       break;
       case 11:
-      name = "Saint Elizabeth";
+      pszName = "Saint Elizabeth";
       break;
       case 12:
-      name = "Saint James";
+      pszName = "Saint James";
       break;
       case 13:
-      name = "Saint Mary";
+      pszName = "Saint Mary";
       break;
       case 14:
-      name = "Saint Thomas";
+      pszName = "Saint Thomas";
       break;
       case 15:
-      name = "Trelawny";
+      pszName = "Trelawny";
       break;
       case 16:
-      name = "Westmoreland";
+      pszName = "Westmoreland";
       break;
       case 17:
-      name = "Kingston";
+      pszName = "Kingston";
       break;
     }
   }
   if (strcmp(country_code,"JO") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Al Balqa'";
+      pszName = "Al Balqa'";
       break;
       case 7:
-      name = "Ma";
+      pszName = "Ma";
       break;
       case 9:
-      name = "Al Karak";
+      pszName = "Al Karak";
       break;
       case 10:
-      name = "Al Mafraq";
+      pszName = "Al Mafraq";
       break;
       case 11:
-      name = "Amman Governorate";
+      pszName = "Amman Governorate";
       break;
       case 12:
-      name = "At Tafilah";
+      pszName = "At Tafilah";
       break;
       case 13:
-      name = "Az Zarqa";
+      pszName = "Az Zarqa";
       break;
       case 14:
-      name = "Irbid";
+      pszName = "Irbid";
       break;
       case 16:
-      name = "Amman";
+      pszName = "Amman";
       break;
     }
   }
   if (strcmp(country_code,"JP") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aichi";
+      pszName = "Aichi";
       break;
       case 2:
-      name = "Akita";
+      pszName = "Akita";
       break;
       case 3:
-      name = "Aomori";
+      pszName = "Aomori";
       break;
       case 4:
-      name = "Chiba";
+      pszName = "Chiba";
       break;
       case 5:
-      name = "Ehime";
+      pszName = "Ehime";
       break;
       case 6:
-      name = "Fukui";
+      pszName = "Fukui";
       break;
       case 7:
-      name = "Fukuoka";
+      pszName = "Fukuoka";
       break;
       case 8:
-      name = "Fukushima";
+      pszName = "Fukushima";
       break;
       case 9:
-      name = "Gifu";
+      pszName = "Gifu";
       break;
       case 10:
-      name = "Gumma";
+      pszName = "Gumma";
       break;
       case 11:
-      name = "Hiroshima";
+      pszName = "Hiroshima";
       break;
       case 12:
-      name = "Hokkaido";
+      pszName = "Hokkaido";
       break;
       case 13:
-      name = "Hyogo";
+      pszName = "Hyogo";
       break;
       case 14:
-      name = "Ibaraki";
+      pszName = "Ibaraki";
       break;
       case 15:
-      name = "Ishikawa";
+      pszName = "Ishikawa";
       break;
       case 16:
-      name = "Iwate";
+      pszName = "Iwate";
       break;
       case 17:
-      name = "Kagawa";
+      pszName = "Kagawa";
       break;
       case 18:
-      name = "Kagoshima";
+      pszName = "Kagoshima";
       break;
       case 19:
-      name = "Kanagawa";
+      pszName = "Kanagawa";
       break;
       case 20:
-      name = "Kochi";
+      pszName = "Kochi";
       break;
       case 21:
-      name = "Kumamoto";
+      pszName = "Kumamoto";
       break;
       case 22:
-      name = "Kyoto";
+      pszName = "Kyoto";
       break;
       case 23:
-      name = "Mie";
+      pszName = "Mie";
       break;
       case 24:
-      name = "Miyagi";
+      pszName = "Miyagi";
       break;
       case 25:
-      name = "Miyazaki";
+      pszName = "Miyazaki";
       break;
       case 26:
-      name = "Nagano";
+      pszName = "Nagano";
       break;
       case 27:
-      name = "Nagasaki";
+      pszName = "Nagasaki";
       break;
       case 28:
-      name = "Nara";
+      pszName = "Nara";
       break;
       case 29:
-      name = "Niigata";
+      pszName = "Niigata";
       break;
       case 30:
-      name = "Oita";
+      pszName = "Oita";
       break;
       case 31:
-      name = "Okayama";
+      pszName = "Okayama";
       break;
       case 32:
-      name = "Osaka";
+      pszName = "Osaka";
       break;
       case 33:
-      name = "Saga";
+      pszName = "Saga";
       break;
       case 34:
-      name = "Saitama";
+      pszName = "Saitama";
       break;
       case 35:
-      name = "Shiga";
+      pszName = "Shiga";
       break;
       case 36:
-      name = "Shimane";
+      pszName = "Shimane";
       break;
       case 37:
-      name = "Shizuoka";
+      pszName = "Shizuoka";
       break;
       case 38:
-      name = "Tochigi";
+      pszName = "Tochigi";
       break;
       case 39:
-      name = "Tokushima";
+      pszName = "Tokushima";
       break;
       case 40:
-      name = "Tokyo";
+      pszName = "Tokyo";
       break;
       case 41:
-      name = "Tottori";
+      pszName = "Tottori";
       break;
       case 42:
-      name = "Toyama";
+      pszName = "Toyama";
       break;
       case 43:
-      name = "Wakayama";
+      pszName = "Wakayama";
       break;
       case 44:
-      name = "Yamagata";
+      pszName = "Yamagata";
       break;
       case 45:
-      name = "Yamaguchi";
+      pszName = "Yamaguchi";
       break;
       case 46:
-      name = "Yamanashi";
+      pszName = "Yamanashi";
       break;
       case 47:
-      name = "Okinawa";
+      pszName = "Okinawa";
       break;
     }
   }
   if (strcmp(country_code,"KE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Central";
+      pszName = "Central";
       break;
       case 2:
-      name = "Coast";
+      pszName = "Coast";
       break;
       case 3:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 5:
-      name = "Nairobi Area";
+      pszName = "Nairobi Area";
       break;
       case 6:
-      name = "North-Eastern";
+      pszName = "North-Eastern";
       break;
       case 7:
-      name = "Nyanza";
+      pszName = "Nyanza";
       break;
       case 8:
-      name = "Rift Valley";
+      pszName = "Rift Valley";
       break;
       case 9:
-      name = "Western";
+      pszName = "Western";
       break;
     }
   }
   if (strcmp(country_code,"KG") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bishkek";
+      pszName = "Bishkek";
       break;
       case 2:
-      name = "Chuy";
+      pszName = "Chuy";
       break;
       case 3:
-      name = "Jalal-Abad";
+      pszName = "Jalal-Abad";
       break;
       case 4:
-      name = "Naryn";
+      pszName = "Naryn";
       break;
       case 5:
-      name = "Osh";
+      pszName = "Osh";
       break;
       case 6:
-      name = "Talas";
+      pszName = "Talas";
       break;
       case 7:
-      name = "Ysyk-Kol";
+      pszName = "Ysyk-Kol";
       break;
       case 8:
-      name = "Osh";
+      pszName = "Osh";
       break;
       case 9:
-      name = "Batken";
+      pszName = "Batken";
       break;
     }
   }
   if (strcmp(country_code,"KH") == 0) {
     switch (region_code2) {
       case 0:
-      name = "Banteay Meanchey";
+      pszName = "Banteay Meanchey";
       break;
       case 1:
-      name = "Batdambang";
+      pszName = "Batdambang";
       break;
       case 2:
-      name = "Kampong Cham";
+      pszName = "Kampong Cham";
       break;
       case 3:
-      name = "Kampong Chhnang";
+      pszName = "Kampong Chhnang";
       break;
       case 4:
-      name = "Kampong Speu";
+      pszName = "Kampong Speu";
       break;
       case 5:
-      name = "Kampong Thum";
+      pszName = "Kampong Thum";
       break;
       case 6:
-      name = "Kampot";
+      pszName = "Kampot";
       break;
       case 7:
-      name = "Kandal";
+      pszName = "Kandal";
       break;
       case 8:
-      name = "Koh Kong";
+      pszName = "Koh Kong";
       break;
       case 9:
-      name = "Kracheh";
+      pszName = "Kracheh";
       break;
       case 10:
-      name = "Mondulkiri";
+      pszName = "Mondulkiri";
       break;
       case 11:
-      name = "Phnum Penh";
+      pszName = "Phnum Penh";
       break;
       case 12:
-      name = "Pursat";
+      pszName = "Pursat";
       break;
       case 13:
-      name = "Preah Vihear";
+      pszName = "Preah Vihear";
       break;
       case 14:
-      name = "Prey Veng";
+      pszName = "Prey Veng";
       break;
       case 15:
-      name = "Ratanakiri Kiri";
+      pszName = "Ratanakiri Kiri";
       break;
       case 16:
-      name = "Siem Reap";
+      pszName = "Siem Reap";
       break;
       case 17:
-      name = "Stung Treng";
+      pszName = "Stung Treng";
       break;
       case 18:
-      name = "Svay Rieng";
+      pszName = "Svay Rieng";
       break;
       case 19:
-      name = "Takeo";
+      pszName = "Takeo";
       break;
       case 29:
-      name = "Batdambang";
+      pszName = "Batdambang";
       break;
       case 30:
-      name = "Pailin";
+      pszName = "Pailin";
       break;
     }
   }
   if (strcmp(country_code,"KI") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Gilbert Islands";
+      pszName = "Gilbert Islands";
       break;
       case 2:
-      name = "Line Islands";
+      pszName = "Line Islands";
       break;
       case 3:
-      name = "Phoenix Islands";
+      pszName = "Phoenix Islands";
       break;
     }
   }
   if (strcmp(country_code,"KM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Anjouan";
+      pszName = "Anjouan";
       break;
       case 2:
-      name = "Grande Comore";
+      pszName = "Grande Comore";
       break;
       case 3:
-      name = "Moheli";
+      pszName = "Moheli";
       break;
     }
   }
   if (strcmp(country_code,"KN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Christ Church Nichola Town";
+      pszName = "Christ Church Nichola Town";
       break;
       case 2:
-      name = "Saint Anne Sandy Point";
+      pszName = "Saint Anne Sandy Point";
       break;
       case 3:
-      name = "Saint George Basseterre";
+      pszName = "Saint George Basseterre";
       break;
       case 4:
-      name = "Saint George Gingerland";
+      pszName = "Saint George Gingerland";
       break;
       case 5:
-      name = "Saint James Windward";
+      pszName = "Saint James Windward";
       break;
       case 6:
-      name = "Saint John Capisterre";
+      pszName = "Saint John Capisterre";
       break;
       case 7:
-      name = "Saint John Figtree";
+      pszName = "Saint John Figtree";
       break;
       case 8:
-      name = "Saint Mary Cayon";
+      pszName = "Saint Mary Cayon";
       break;
       case 9:
-      name = "Saint Paul Capisterre";
+      pszName = "Saint Paul Capisterre";
       break;
       case 10:
-      name = "Saint Paul Charlestown";
+      pszName = "Saint Paul Charlestown";
       break;
       case 11:
-      name = "Saint Peter Basseterre";
+      pszName = "Saint Peter Basseterre";
       break;
       case 12:
-      name = "Saint Thomas vulkan_land";
+      pszName = "Saint Thomas vulkan_land";
       break;
       case 13:
-      name = "Saint Thomas Middle Island";
+      pszName = "Saint Thomas Middle Island";
       break;
       case 15:
-      name = "Trinity Palmetto Point";
+      pszName = "Trinity Palmetto Point";
       break;
     }
   }
   if (strcmp(country_code,"KP") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Chagang-do";
+      pszName = "Chagang-do";
       break;
       case 3:
-      name = "Hamgyong-namdo";
+      pszName = "Hamgyong-namdo";
       break;
       case 6:
-      name = "Hwanghae-namdo";
+      pszName = "Hwanghae-namdo";
       break;
       case 7:
-      name = "Hwanghae-bukto";
+      pszName = "Hwanghae-bukto";
       break;
       case 8:
-      name = "Kaesong-si";
+      pszName = "Kaesong-si";
       break;
       case 9:
-      name = "Kangwon-do";
+      pszName = "Kangwon-do";
       break;
       case 11:
-      name = "P'yongan-bukto";
+      pszName = "P'yongan-bukto";
       break;
       case 12:
-      name = "P'yongyang-si";
+      pszName = "P'yongyang-si";
       break;
       case 13:
-      name = "Yanggang-do";
+      pszName = "Yanggang-do";
       break;
       case 14:
-      name = "Namp'o-si";
+      pszName = "Namp'o-si";
       break;
       case 15:
-      name = "P'yongan-namdo";
+      pszName = "P'yongan-namdo";
       break;
       case 17:
-      name = "Hamgyong-bukto";
+      pszName = "Hamgyong-bukto";
       break;
       case 18:
-      name = "Najin Sonbong-si";
+      pszName = "Najin Sonbong-si";
       break;
     }
   }
   if (strcmp(country_code,"KR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Cheju-do";
+      pszName = "Cheju-do";
       break;
       case 3:
-      name = "Cholla-bukto";
+      pszName = "Cholla-bukto";
       break;
       case 5:
-      name = "Ch'ungch'ong-bukto";
+      pszName = "Ch'ungch'ong-bukto";
       break;
       case 6:
-      name = "Kangwon-do";
+      pszName = "Kangwon-do";
       break;
       case 10:
-      name = "Pusan-jikhalsi";
+      pszName = "Pusan-jikhalsi";
       break;
       case 11:
-      name = "Seoul-t'ukpyolsi";
+      pszName = "Seoul-t'ukpyolsi";
       break;
       case 12:
-      name = "Inch'on-jikhalsi";
+      pszName = "Inch'on-jikhalsi";
       break;
       case 13:
-      name = "Kyonggi-do";
+      pszName = "Kyonggi-do";
       break;
       case 14:
-      name = "Kyongsang-bukto";
+      pszName = "Kyongsang-bukto";
       break;
       case 15:
-      name = "Taegu-jikhalsi";
+      pszName = "Taegu-jikhalsi";
       break;
       case 16:
-      name = "Cholla-namdo";
+      pszName = "Cholla-namdo";
       break;
       case 17:
-      name = "Ch'ungch'ong-namdo";
+      pszName = "Ch'ungch'ong-namdo";
       break;
       case 18:
-      name = "Kwangju-jikhalsi";
+      pszName = "Kwangju-jikhalsi";
       break;
       case 19:
-      name = "Taejon-jikhalsi";
+      pszName = "Taejon-jikhalsi";
       break;
       case 20:
-      name = "Kyongsang-namdo";
+      pszName = "Kyongsang-namdo";
       break;
       case 21:
-      name = "Ulsan-gwangyoksi";
+      pszName = "Ulsan-gwangyoksi";
       break;
     }
   }
   if (strcmp(country_code,"KW") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Al Ahmadi";
+      pszName = "Al Ahmadi";
       break;
       case 2:
-      name = "Al Kuwayt";
+      pszName = "Al Kuwayt";
       break;
       case 5:
-      name = "Al Jahra";
+      pszName = "Al Jahra";
       break;
       case 7:
-      name = "Al Farwaniyah";
+      pszName = "Al Farwaniyah";
       break;
       case 8:
-      name = "Hawalli";
+      pszName = "Hawalli";
       break;
       case 9:
-      name = "Mubarak al Kabir";
+      pszName = "Mubarak al Kabir";
       break;
     }
   }
   if (strcmp(country_code,"KY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Creek";
+      pszName = "Creek";
       break;
       case 2:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 3:
-      name = "Midland";
+      pszName = "Midland";
       break;
       case 4:
-      name = "South Town";
+      pszName = "South Town";
       break;
       case 5:
-      name = "Spot Bay";
+      pszName = "Spot Bay";
       break;
       case 6:
-      name = "Stake Bay";
+      pszName = "Stake Bay";
       break;
       case 7:
-      name = "West End";
+      pszName = "West End";
       break;
       case 8:
-      name = "Western";
+      pszName = "Western";
       break;
     }
   }
   if (strcmp(country_code,"KZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Almaty";
+      pszName = "Almaty";
       break;
       case 2:
-      name = "Almaty City";
+      pszName = "Almaty City";
       break;
       case 3:
-      name = "Aqmola";
+      pszName = "Aqmola";
       break;
       case 4:
-      name = "Aqtobe";
+      pszName = "Aqtobe";
       break;
       case 5:
-      name = "Astana";
+      pszName = "Astana";
       break;
       case 6:
-      name = "Atyrau";
+      pszName = "Atyrau";
       break;
       case 7:
-      name = "West Kazakhstan";
+      pszName = "West Kazakhstan";
       break;
       case 8:
-      name = "Bayqonyr";
+      pszName = "Bayqonyr";
       break;
       case 9:
-      name = "Mangghystau";
+      pszName = "Mangghystau";
       break;
       case 10:
-      name = "South Kazakhstan";
+      pszName = "South Kazakhstan";
       break;
       case 11:
-      name = "Pavlodar";
+      pszName = "Pavlodar";
       break;
       case 12:
-      name = "Qaraghandy";
+      pszName = "Qaraghandy";
       break;
       case 13:
-      name = "Qostanay";
+      pszName = "Qostanay";
       break;
       case 14:
-      name = "Qyzylorda";
+      pszName = "Qyzylorda";
       break;
       case 15:
-      name = "East Kazakhstan";
+      pszName = "East Kazakhstan";
       break;
       case 16:
-      name = "North Kazakhstan";
+      pszName = "North Kazakhstan";
       break;
       case 17:
-      name = "Zhambyl";
+      pszName = "Zhambyl";
       break;
     }
   }
   if (strcmp(country_code,"LA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Attapu";
+      pszName = "Attapu";
       break;
       case 2:
-      name = "Champasak";
+      pszName = "Champasak";
       break;
       case 3:
-      name = "Houaphan";
+      pszName = "Houaphan";
       break;
       case 4:
-      name = "Khammouan";
+      pszName = "Khammouan";
       break;
       case 5:
-      name = "Louang Namtha";
+      pszName = "Louang Namtha";
       break;
       case 7:
-      name = "Oudomxai";
+      pszName = "Oudomxai";
       break;
       case 8:
-      name = "Phongsali";
+      pszName = "Phongsali";
       break;
       case 9:
-      name = "Saravan";
+      pszName = "Saravan";
       break;
       case 10:
-      name = "Savannakhet";
+      pszName = "Savannakhet";
       break;
       case 11:
-      name = "Vientiane";
+      pszName = "Vientiane";
       break;
       case 13:
-      name = "Xaignabouri";
+      pszName = "Xaignabouri";
       break;
       case 14:
-      name = "Xiangkhoang";
+      pszName = "Xiangkhoang";
       break;
       case 17:
-      name = "Louangphrabang";
+      pszName = "Louangphrabang";
       break;
     }
   }
   if (strcmp(country_code,"LB") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Beqaa";
+      pszName = "Beqaa";
       break;
       case 3:
-      name = "Liban-Nord";
+      pszName = "Liban-Nord";
       break;
       case 4:
-      name = "Beyrouth";
+      pszName = "Beyrouth";
       break;
       case 5:
-      name = "Mont-Liban";
+      pszName = "Mont-Liban";
       break;
       case 6:
-      name = "Liban-Sud";
+      pszName = "Liban-Sud";
       break;
       case 7:
-      name = "Nabatiye";
+      pszName = "Nabatiye";
       break;
       case 8:
-      name = "Beqaa";
+      pszName = "Beqaa";
       break;
       case 9:
-      name = "Liban-Nord";
+      pszName = "Liban-Nord";
       break;
       case 10:
-      name = "Aakk,r";
+      pszName = "Aakk,r";
       break;
       case 11:
-      name = "Baalbek-Hermel";
+      pszName = "Baalbek-Hermel";
       break;
     }
   }
   if (strcmp(country_code,"LC") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Anse-la-Raye";
+      pszName = "Anse-la-Raye";
       break;
       case 2:
-      name = "Dauphin";
+      pszName = "Dauphin";
       break;
       case 3:
-      name = "Castries";
+      pszName = "Castries";
       break;
       case 4:
-      name = "Choiseul";
+      pszName = "Choiseul";
       break;
       case 5:
-      name = "Dennery";
+      pszName = "Dennery";
       break;
       case 6:
-      name = "Gros-Islet";
+      pszName = "Gros-Islet";
       break;
       case 7:
-      name = "Laborie";
+      pszName = "Laborie";
       break;
       case 8:
-      name = "Micoud";
+      pszName = "Micoud";
       break;
       case 9:
-      name = "Soufriere";
+      pszName = "Soufriere";
       break;
       case 10:
-      name = "Vieux-Fort";
+      pszName = "Vieux-Fort";
       break;
       case 11:
-      name = "Praslin";
+      pszName = "Praslin";
       break;
     }
   }
   if (strcmp(country_code,"LI") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Balzers";
+      pszName = "Balzers";
       break;
       case 2:
-      name = "Eschen";
+      pszName = "Eschen";
       break;
       case 3:
-      name = "Gamprin";
+      pszName = "Gamprin";
       break;
       case 4:
-      name = "Mauren";
+      pszName = "Mauren";
       break;
       case 5:
-      name = "Planken";
+      pszName = "Planken";
       break;
       case 6:
-      name = "Ruggell";
+      pszName = "Ruggell";
       break;
       case 7:
-      name = "Schaan";
+      pszName = "Schaan";
       break;
       case 8:
-      name = "Schellenberg";
+      pszName = "Schellenberg";
       break;
       case 9:
-      name = "Triesen";
+      pszName = "Triesen";
       break;
       case 10:
-      name = "Triesenberg";
+      pszName = "Triesenberg";
       break;
       case 11:
-      name = "Vaduz";
+      pszName = "Vaduz";
       break;
       case 21:
-      name = "Gbarpolu";
+      pszName = "Gbarpolu";
       break;
       case 22:
-      name = "River Gee";
+      pszName = "River Gee";
       break;
     }
   }
   if (strcmp(country_code,"LK") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Amparai";
+      pszName = "Amparai";
       break;
       case 2:
-      name = "Anuradhapura";
+      pszName = "Anuradhapura";
       break;
       case 3:
-      name = "Badulla";
+      pszName = "Badulla";
       break;
       case 4:
-      name = "Batticaloa";
+      pszName = "Batticaloa";
       break;
       case 6:
-      name = "Galle";
+      pszName = "Galle";
       break;
       case 7:
-      name = "Hambantota";
+      pszName = "Hambantota";
       break;
       case 9:
-      name = "Kalutara";
+      pszName = "Kalutara";
       break;
       case 10:
-      name = "Kandy";
+      pszName = "Kandy";
       break;
       case 11:
-      name = "Kegalla";
+      pszName = "Kegalla";
       break;
       case 12:
-      name = "Kurunegala";
+      pszName = "Kurunegala";
       break;
       case 14:
-      name = "Matale";
+      pszName = "Matale";
       break;
       case 15:
-      name = "Matara";
+      pszName = "Matara";
       break;
       case 16:
-      name = "Moneragala";
+      pszName = "Moneragala";
       break;
       case 17:
-      name = "Nuwara Eliya";
+      pszName = "Nuwara Eliya";
       break;
       case 18:
-      name = "Polonnaruwa";
+      pszName = "Polonnaruwa";
       break;
       case 19:
-      name = "Puttalam";
+      pszName = "Puttalam";
       break;
       case 20:
-      name = "Ratnapura";
+      pszName = "Ratnapura";
       break;
       case 21:
-      name = "Trincomalee";
+      pszName = "Trincomalee";
       break;
       case 23:
-      name = "Colombo";
+      pszName = "Colombo";
       break;
       case 24:
-      name = "Gampaha";
+      pszName = "Gampaha";
       break;
       case 25:
-      name = "Jaffna";
+      pszName = "Jaffna";
       break;
       case 26:
-      name = "Mannar";
+      pszName = "Mannar";
       break;
       case 27:
-      name = "Mullaittivu";
+      pszName = "Mullaittivu";
       break;
       case 28:
-      name = "Vavuniya";
+      pszName = "Vavuniya";
       break;
       case 29:
-      name = "Central";
+      pszName = "Central";
       break;
       case 30:
-      name = "North Central";
+      pszName = "North Central";
       break;
       case 31:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 32:
-      name = "North Western";
+      pszName = "North Western";
       break;
       case 33:
-      name = "Sabaragamuwa";
+      pszName = "Sabaragamuwa";
       break;
       case 34:
-      name = "Southern";
+      pszName = "Southern";
       break;
       case 35:
-      name = "Uva";
+      pszName = "Uva";
       break;
       case 36:
-      name = "Western";
+      pszName = "Western";
       break;
     }
   }
   if (strcmp(country_code,"LR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bong";
+      pszName = "Bong";
       break;
       case 4:
-      name = "Grand Cape Mount";
+      pszName = "Grand Cape Mount";
       break;
       case 6:
-      name = "Maryland";
+      pszName = "Maryland";
       break;
       case 7:
-      name = "Monrovia";
+      pszName = "Monrovia";
       break;
       case 9:
-      name = "Nimba";
+      pszName = "Nimba";
       break;
       case 10:
-      name = "Sino";
+      pszName = "Sino";
       break;
       case 11:
-      name = "Grand Bassa";
+      pszName = "Grand Bassa";
       break;
       case 14:
-      name = "Montserrado";
+      pszName = "Montserrado";
       break;
       case 19:
-      name = "Grand Gedeh";
+      pszName = "Grand Gedeh";
       break;
       case 20:
-      name = "Lofa";
+      pszName = "Lofa";
       break;
     }
   }
   if (strcmp(country_code,"LS") == 0) {
     switch (region_code2) {
       case 10:
-      name = "Berea";
+      pszName = "Berea";
       break;
       case 11:
-      name = "Butha-Buthe";
+      pszName = "Butha-Buthe";
       break;
       case 12:
-      name = "Leribe";
+      pszName = "Leribe";
       break;
       case 13:
-      name = "Mafeteng";
+      pszName = "Mafeteng";
       break;
       case 14:
-      name = "Maseru";
+      pszName = "Maseru";
       break;
       case 15:
-      name = "Mohales Hoek";
+      pszName = "Mohales Hoek";
       break;
       case 16:
-      name = "Mokhotlong";
+      pszName = "Mokhotlong";
       break;
       case 17:
-      name = "Qachas Nek";
+      pszName = "Qachas Nek";
       break;
       case 18:
-      name = "Quthing";
+      pszName = "Quthing";
       break;
       case 19:
-      name = "Thaba-Tseka";
+      pszName = "Thaba-Tseka";
       break;
     }
   }
   if (strcmp(country_code,"LT") == 0) {
     switch (region_code2) {
       case 56:
-      name = "Alytaus Apskritis";
+      pszName = "Alytaus Apskritis";
       break;
       case 57:
-      name = "Kauno Apskritis";
+      pszName = "Kauno Apskritis";
       break;
       case 58:
-      name = "Klaipedos Apskritis";
+      pszName = "Klaipedos Apskritis";
       break;
       case 59:
-      name = "Marijampoles Apskritis";
+      pszName = "Marijampoles Apskritis";
       break;
       case 60:
-      name = "Panevezio Apskritis";
+      pszName = "Panevezio Apskritis";
       break;
       case 61:
-      name = "Siauliu Apskritis";
+      pszName = "Siauliu Apskritis";
       break;
       case 62:
-      name = "Taurages Apskritis";
+      pszName = "Taurages Apskritis";
       break;
       case 63:
-      name = "Telsiu Apskritis";
+      pszName = "Telsiu Apskritis";
       break;
       case 64:
-      name = "Utenos Apskritis";
+      pszName = "Utenos Apskritis";
       break;
       case 65:
-      name = "Vilniaus Apskritis";
+      pszName = "Vilniaus Apskritis";
       break;
     }
   }
   if (strcmp(country_code,"LU") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Diekirch";
+      pszName = "Diekirch";
       break;
       case 2:
-      name = "Grevenmacher";
+      pszName = "Grevenmacher";
       break;
       case 3:
-      name = "Luxembourg";
+      pszName = "Luxembourg";
       break;
     }
   }
   if (strcmp(country_code,"LV") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aizkraukles";
+      pszName = "Aizkraukles";
       break;
       case 2:
-      name = "Aluksnes";
+      pszName = "Aluksnes";
       break;
       case 3:
-      name = "Balvu";
+      pszName = "Balvu";
       break;
       case 4:
-      name = "Bauskas";
+      pszName = "Bauskas";
       break;
       case 5:
-      name = "Cesu";
+      pszName = "Cesu";
       break;
       case 6:
-      name = "Daugavpils";
+      pszName = "Daugavpils";
       break;
       case 7:
-      name = "Daugavpils";
+      pszName = "Daugavpils";
       break;
       case 8:
-      name = "Dobeles";
+      pszName = "Dobeles";
       break;
       case 9:
-      name = "Gulbenes";
+      pszName = "Gulbenes";
       break;
       case 10:
-      name = "Jekabpils";
+      pszName = "Jekabpils";
       break;
       case 11:
-      name = "Jelgava";
+      pszName = "Jelgava";
       break;
       case 12:
-      name = "Jelgavas";
+      pszName = "Jelgavas";
       break;
       case 13:
-      name = "Jurmala";
+      pszName = "Jurmala";
       break;
       case 14:
-      name = "Kraslavas";
+      pszName = "Kraslavas";
       break;
       case 15:
-      name = "Kuldigas";
+      pszName = "Kuldigas";
       break;
       case 16:
-      name = "Liepaja";
+      pszName = "Liepaja";
       break;
       case 17:
-      name = "Liepajas";
+      pszName = "Liepajas";
       break;
       case 18:
-      name = "Limbazu";
+      pszName = "Limbazu";
       break;
       case 19:
-      name = "Ludzas";
+      pszName = "Ludzas";
       break;
       case 20:
-      name = "Madonas";
+      pszName = "Madonas";
       break;
       case 21:
-      name = "Ogres";
+      pszName = "Ogres";
       break;
       case 22:
-      name = "Preilu";
+      pszName = "Preilu";
       break;
       case 23:
-      name = "Rezekne";
+      pszName = "Rezekne";
       break;
       case 24:
-      name = "Rezeknes";
+      pszName = "Rezeknes";
       break;
       case 25:
-      name = "Riga";
+      pszName = "Riga";
       break;
       case 26:
-      name = "Rigas";
+      pszName = "Rigas";
       break;
       case 27:
-      name = "Saldus";
+      pszName = "Saldus";
       break;
       case 28:
-      name = "Talsu";
+      pszName = "Talsu";
       break;
       case 29:
-      name = "Tukuma";
+      pszName = "Tukuma";
       break;
       case 30:
-      name = "Valkas";
+      pszName = "Valkas";
       break;
       case 31:
-      name = "Valmieras";
+      pszName = "Valmieras";
       break;
       case 32:
-      name = "Ventspils";
+      pszName = "Ventspils";
       break;
       case 33:
-      name = "Ventspils";
+      pszName = "Ventspils";
       break;
     }
   }
   if (strcmp(country_code,"LY") == 0) {
     switch (region_code2) {
       case 3:
-      name = "Al Aziziyah";
+      pszName = "Al Aziziyah";
       break;
       case 5:
-      name = "Al Jufrah";
+      pszName = "Al Jufrah";
       break;
       case 8:
-      name = "Al Kufrah";
+      pszName = "Al Kufrah";
       break;
       case 13:
-      name = "Ash Shati'";
+      pszName = "Ash Shati'";
       break;
       case 30:
-      name = "Murzuq";
+      pszName = "Murzuq";
       break;
       case 34:
-      name = "Sabha";
+      pszName = "Sabha";
       break;
       case 41:
-      name = "Tarhunah";
+      pszName = "Tarhunah";
       break;
       case 42:
-      name = "Tubruq";
+      pszName = "Tubruq";
       break;
       case 45:
-      name = "Zlitan";
+      pszName = "Zlitan";
       break;
       case 47:
-      name = "Ajdabiya";
+      pszName = "Ajdabiya";
       break;
       case 48:
-      name = "Al Fatih";
+      pszName = "Al Fatih";
       break;
       case 49:
-      name = "Al Jabal al Akhdar";
+      pszName = "Al Jabal al Akhdar";
       break;
       case 50:
-      name = "Al Khums";
+      pszName = "Al Khums";
       break;
       case 51:
-      name = "An Nuqat al Khams";
+      pszName = "An Nuqat al Khams";
       break;
       case 52:
-      name = "Awbari";
+      pszName = "Awbari";
       break;
       case 53:
-      name = "Az Zawiyah";
+      pszName = "Az Zawiyah";
       break;
       case 54:
-      name = "Banghazi";
+      pszName = "Banghazi";
       break;
       case 55:
-      name = "Darnah";
+      pszName = "Darnah";
       break;
       case 56:
-      name = "Ghadamis";
+      pszName = "Ghadamis";
       break;
       case 57:
-      name = "Gharyan";
+      pszName = "Gharyan";
       break;
       case 58:
-      name = "Misratah";
+      pszName = "Misratah";
       break;
       case 59:
-      name = "Sawfajjin";
+      pszName = "Sawfajjin";
       break;
       case 60:
-      name = "Surt";
+      pszName = "Surt";
       break;
       case 61:
-      name = "Tarabulus";
+      pszName = "Tarabulus";
       break;
       case 62:
-      name = "Yafran";
+      pszName = "Yafran";
       break;
     }
   }
   if (strcmp(country_code,"MA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Agadir";
+      pszName = "Agadir";
       break;
       case 2:
-      name = "Al Hoceima";
+      pszName = "Al Hoceima";
       break;
       case 3:
-      name = "Azilal";
+      pszName = "Azilal";
       break;
       case 4:
-      name = "Ben Slimane";
+      pszName = "Ben Slimane";
       break;
       case 5:
-      name = "Beni Mellal";
+      pszName = "Beni Mellal";
       break;
       case 6:
-      name = "Boulemane";
+      pszName = "Boulemane";
       break;
       case 7:
-      name = "Casablanca";
+      pszName = "Casablanca";
       break;
       case 8:
-      name = "Chaouen";
+      pszName = "Chaouen";
       break;
       case 9:
-      name = "El Jadida";
+      pszName = "El Jadida";
       break;
       case 10:
-      name = "El Kelaa des Srarhna";
+      pszName = "El Kelaa des Srarhna";
       break;
       case 11:
-      name = "Er Rachidia";
+      pszName = "Er Rachidia";
       break;
       case 12:
-      name = "Essaouira";
+      pszName = "Essaouira";
       break;
       case 13:
-      name = "Fes";
+      pszName = "Fes";
       break;
       case 14:
-      name = "Figuig";
+      pszName = "Figuig";
       break;
       case 15:
-      name = "Kenitra";
+      pszName = "Kenitra";
       break;
       case 16:
-      name = "Khemisset";
+      pszName = "Khemisset";
       break;
       case 17:
-      name = "Khenifra";
+      pszName = "Khenifra";
       break;
       case 18:
-      name = "Khouribga";
+      pszName = "Khouribga";
       break;
       case 19:
-      name = "Marrakech";
+      pszName = "Marrakech";
       break;
       case 20:
-      name = "Meknes";
+      pszName = "Meknes";
       break;
       case 21:
-      name = "Nador";
+      pszName = "Nador";
       break;
       case 22:
-      name = "Ouarzazate";
+      pszName = "Ouarzazate";
       break;
       case 23:
-      name = "Oujda";
+      pszName = "Oujda";
       break;
       case 24:
-      name = "Rabat-Sale";
+      pszName = "Rabat-Sale";
       break;
       case 25:
-      name = "Safi";
+      pszName = "Safi";
       break;
       case 26:
-      name = "Settat";
+      pszName = "Settat";
       break;
       case 27:
-      name = "Tanger";
+      pszName = "Tanger";
       break;
       case 29:
-      name = "Tata";
+      pszName = "Tata";
       break;
       case 30:
-      name = "Taza";
+      pszName = "Taza";
       break;
       case 32:
-      name = "Tiznit";
+      pszName = "Tiznit";
       break;
       case 33:
-      name = "Guelmim";
+      pszName = "Guelmim";
       break;
       case 34:
-      name = "Ifrane";
+      pszName = "Ifrane";
       break;
       case 35:
-      name = "Laayoune";
+      pszName = "Laayoune";
       break;
       case 36:
-      name = "Tan-Tan";
+      pszName = "Tan-Tan";
       break;
       case 37:
-      name = "Taounate";
+      pszName = "Taounate";
       break;
       case 38:
-      name = "Sidi Kacem";
+      pszName = "Sidi Kacem";
       break;
       case 39:
-      name = "Taroudannt";
+      pszName = "Taroudannt";
       break;
       case 40:
-      name = "Tetouan";
+      pszName = "Tetouan";
       break;
       case 41:
-      name = "Larache";
+      pszName = "Larache";
       break;
       case 45:
-      name = "Grand Casablanca";
+      pszName = "Grand Casablanca";
       break;
       case 46:
-      name = "Fes-Boulemane";
+      pszName = "Fes-Boulemane";
       break;
       case 47:
-      name = "Marrakech-Tensift-Al Haouz";
+      pszName = "Marrakech-Tensift-Al Haouz";
       break;
       case 48:
-      name = "Meknes-Tafilalet";
+      pszName = "Meknes-Tafilalet";
       break;
       case 49:
-      name = "Rabat-Sale-Zemmour-Zaer";
+      pszName = "Rabat-Sale-Zemmour-Zaer";
       break;
       case 50:
-      name = "Chaouia-Ouardigha";
+      pszName = "Chaouia-Ouardigha";
       break;
       case 51:
-      name = "Doukkala-Abda";
+      pszName = "Doukkala-Abda";
       break;
       case 52:
-      name = "Gharb-Chrarda-Beni Hssen";
+      pszName = "Gharb-Chrarda-Beni Hssen";
       break;
       case 53:
-      name = "Guelmim-Es Smara";
+      pszName = "Guelmim-Es Smara";
       break;
       case 54:
-      name = "Oriental";
+      pszName = "Oriental";
       break;
       case 55:
-      name = "Souss-Massa-Dr,a";
+      pszName = "Souss-Massa-Dr,a";
       break;
       case 56:
-      name = "Tadla-Azilal";
+      pszName = "Tadla-Azilal";
       break;
       case 57:
-      name = "Tanger-Tetouan";
+      pszName = "Tanger-Tetouan";
       break;
       case 58:
-      name = "Taza-Al Hoceima-Taounate";
+      pszName = "Taza-Al Hoceima-Taounate";
       break;
       case 59:
-      name = "La,youne-Boujdour-Sakia El Hamra";
+      pszName = "La,youne-Boujdour-Sakia El Hamra";
       break;
     }
   }
   if (strcmp(country_code,"MC") == 0) {
     switch (region_code2) {
       case 1:
-      name = "La Condamine";
+      pszName = "La Condamine";
       break;
       case 2:
-      name = "Monaco";
+      pszName = "Monaco";
       break;
       case 3:
-      name = "Monte-Carlo";
+      pszName = "Monte-Carlo";
       break;
     }
   }
   if (strcmp(country_code,"MD") == 0) {
     switch (region_code2) {
       case 46:
-      name = "Balti";
+      pszName = "Balti";
       break;
       case 47:
-      name = "Cahul";
+      pszName = "Cahul";
       break;
       case 48:
-      name = "Chisinau";
+      pszName = "Chisinau";
       break;
       case 49:
-      name = "Stinga Nistrului";
+      pszName = "Stinga Nistrului";
       break;
       case 50:
-      name = "Edinet";
+      pszName = "Edinet";
       break;
       case 51:
-      name = "Gagauzia";
+      pszName = "Gagauzia";
       break;
       case 52:
-      name = "Lapusna";
+      pszName = "Lapusna";
       break;
       case 53:
-      name = "Orhei";
+      pszName = "Orhei";
       break;
       case 54:
-      name = "Soroca";
+      pszName = "Soroca";
       break;
       case 55:
-      name = "Tighina";
+      pszName = "Tighina";
       break;
       case 56:
-      name = "Ungheni";
+      pszName = "Ungheni";
       break;
       case 58:
-      name = "Stinga Nistrului";
+      pszName = "Stinga Nistrului";
       break;
       case 59:
-      name = "Anenii Noi";
+      pszName = "Anenii Noi";
       break;
       case 60:
-      name = "Balti";
+      pszName = "Balti";
       break;
       case 61:
-      name = "Basarabeasca";
+      pszName = "Basarabeasca";
       break;
       case 62:
-      name = "Bender";
+      pszName = "Bender";
       break;
       case 63:
-      name = "Briceni";
+      pszName = "Briceni";
       break;
       case 64:
-      name = "Cahul";
+      pszName = "Cahul";
       break;
       case 65:
-      name = "Cantemir";
+      pszName = "Cantemir";
       break;
       case 66:
-      name = "Calarasi";
+      pszName = "Calarasi";
       break;
       case 67:
-      name = "Causeni";
+      pszName = "Causeni";
       break;
       case 68:
-      name = "Cimislia";
+      pszName = "Cimislia";
       break;
       case 69:
-      name = "Criuleni";
+      pszName = "Criuleni";
       break;
       case 70:
-      name = "Donduseni";
+      pszName = "Donduseni";
       break;
       case 71:
-      name = "Drochia";
+      pszName = "Drochia";
       break;
       case 72:
-      name = "Dubasari";
+      pszName = "Dubasari";
       break;
       case 73:
-      name = "Edinet";
+      pszName = "Edinet";
       break;
       case 74:
-      name = "Falesti";
+      pszName = "Falesti";
       break;
       case 75:
-      name = "Floresti";
+      pszName = "Floresti";
       break;
       case 76:
-      name = "Glodeni";
+      pszName = "Glodeni";
       break;
       case 77:
-      name = "Hincesti";
+      pszName = "Hincesti";
       break;
       case 78:
-      name = "Ialoveni";
+      pszName = "Ialoveni";
       break;
       case 79:
-      name = "Leova";
+      pszName = "Leova";
       break;
       case 80:
-      name = "Nisporeni";
+      pszName = "Nisporeni";
       break;
       case 81:
-      name = "Ocnita";
+      pszName = "Ocnita";
       break;
       case 83:
-      name = "Rezina";
+      pszName = "Rezina";
       break;
       case 84:
-      name = "Riscani";
+      pszName = "Riscani";
       break;
       case 85:
-      name = "Singerei";
+      pszName = "Singerei";
       break;
       case 86:
-      name = "Soldanesti";
+      pszName = "Soldanesti";
       break;
       case 87:
-      name = "Soroca";
+      pszName = "Soroca";
       break;
       case 88:
-      name = "Stefan-Voda";
+      pszName = "Stefan-Voda";
       break;
       case 89:
-      name = "Straseni";
+      pszName = "Straseni";
       break;
       case 90:
-      name = "Taraclia";
+      pszName = "Taraclia";
       break;
       case 91:
-      name = "Telenesti";
+      pszName = "Telenesti";
       break;
       case 92:
-      name = "Ungheni";
+      pszName = "Ungheni";
       break;
     }
   }
   if (strcmp(country_code,"MG") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Antsiranana";
+      pszName = "Antsiranana";
       break;
       case 2:
-      name = "Fianarantsoa";
+      pszName = "Fianarantsoa";
       break;
       case 3:
-      name = "Mahajanga";
+      pszName = "Mahajanga";
       break;
       case 4:
-      name = "Toamasina";
+      pszName = "Toamasina";
       break;
       case 5:
-      name = "Antananarivo";
+      pszName = "Antananarivo";
       break;
       case 6:
-      name = "Toliara";
+      pszName = "Toliara";
       break;
     }
   }
   if (strcmp(country_code,"MK") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aracinovo";
+      pszName = "Aracinovo";
       break;
       case 2:
-      name = "Bac";
+      pszName = "Bac";
       break;
       case 3:
-      name = "Belcista";
+      pszName = "Belcista";
       break;
       case 4:
-      name = "Berovo";
+      pszName = "Berovo";
       break;
       case 5:
-      name = "Bistrica";
+      pszName = "Bistrica";
       break;
       case 6:
-      name = "Bitola";
+      pszName = "Bitola";
       break;
       case 7:
-      name = "Blatec";
+      pszName = "Blatec";
       break;
       case 8:
-      name = "Bogdanci";
+      pszName = "Bogdanci";
       break;
       case 9:
-      name = "Bogomila";
+      pszName = "Bogomila";
       break;
       case 10:
-      name = "Bogovinje";
+      pszName = "Bogovinje";
       break;
       case 11:
-      name = "Bosilovo";
+      pszName = "Bosilovo";
       break;
       case 12:
-      name = "Brvenica";
+      pszName = "Brvenica";
       break;
       case 13:
-      name = "Cair";
+      pszName = "Cair";
       break;
       case 14:
-      name = "Capari";
+      pszName = "Capari";
       break;
       case 15:
-      name = "Caska";
+      pszName = "Caska";
       break;
       case 16:
-      name = "Cegrane";
+      pszName = "Cegrane";
       break;
       case 17:
-      name = "Centar";
+      pszName = "Centar";
       break;
       case 18:
-      name = "Centar Zupa";
+      pszName = "Centar Zupa";
       break;
       case 19:
-      name = "Cesinovo";
+      pszName = "Cesinovo";
       break;
       case 20:
-      name = "Cucer-Sandevo";
+      pszName = "Cucer-Sandevo";
       break;
       case 21:
-      name = "Debar";
+      pszName = "Debar";
       break;
       case 22:
-      name = "Delcevo";
+      pszName = "Delcevo";
       break;
       case 23:
-      name = "Delogozdi";
+      pszName = "Delogozdi";
       break;
       case 24:
-      name = "Demir Hisar";
+      pszName = "Demir Hisar";
       break;
       case 25:
-      name = "Demir Kapija";
+      pszName = "Demir Kapija";
       break;
       case 26:
-      name = "Dobrusevo";
+      pszName = "Dobrusevo";
       break;
       case 27:
-      name = "Dolna Banjica";
+      pszName = "Dolna Banjica";
       break;
       case 28:
-      name = "Dolneni";
+      pszName = "Dolneni";
       break;
       case 29:
-      name = "Dorce Petrov";
+      pszName = "Dorce Petrov";
       break;
       case 30:
-      name = "Drugovo";
+      pszName = "Drugovo";
       break;
       case 31:
-      name = "Dzepciste";
+      pszName = "Dzepciste";
       break;
       case 32:
-      name = "Gazi Baba";
+      pszName = "Gazi Baba";
       break;
       case 33:
-      name = "Gevgelija";
+      pszName = "Gevgelija";
       break;
       case 34:
-      name = "Gostivar";
+      pszName = "Gostivar";
       break;
       case 35:
-      name = "Gradsko";
+      pszName = "Gradsko";
       break;
       case 36:
-      name = "Ilinden";
+      pszName = "Ilinden";
       break;
       case 37:
-      name = "Izvor";
+      pszName = "Izvor";
       break;
       case 38:
-      name = "Jegunovce";
+      pszName = "Jegunovce";
       break;
       case 39:
-      name = "Kamenjane";
+      pszName = "Kamenjane";
       break;
       case 40:
-      name = "Karbinci";
+      pszName = "Karbinci";
       break;
       case 41:
-      name = "Karpos";
+      pszName = "Karpos";
       break;
       case 42:
-      name = "Kavadarci";
+      pszName = "Kavadarci";
       break;
       case 43:
-      name = "Kicevo";
+      pszName = "Kicevo";
       break;
       case 44:
-      name = "Kisela Voda";
+      pszName = "Kisela Voda";
       break;
       case 45:
-      name = "Klecevce";
+      pszName = "Klecevce";
       break;
       case 46:
-      name = "Kocani";
+      pszName = "Kocani";
       break;
       case 47:
-      name = "Konce";
+      pszName = "Konce";
       break;
       case 48:
-      name = "Kondovo";
+      pszName = "Kondovo";
       break;
       case 49:
-      name = "Konopiste";
+      pszName = "Konopiste";
       break;
       case 50:
-      name = "Kosel";
+      pszName = "Kosel";
       break;
       case 51:
-      name = "Kratovo";
+      pszName = "Kratovo";
       break;
       case 52:
-      name = "Kriva Palanka";
+      pszName = "Kriva Palanka";
       break;
       case 53:
-      name = "Krivogastani";
+      pszName = "Krivogastani";
       break;
       case 54:
-      name = "Krusevo";
+      pszName = "Krusevo";
       break;
       case 55:
-      name = "Kuklis";
+      pszName = "Kuklis";
       break;
       case 56:
-      name = "Kukurecani";
+      pszName = "Kukurecani";
       break;
       case 57:
-      name = "Kumanovo";
+      pszName = "Kumanovo";
       break;
       case 58:
-      name = "Labunista";
+      pszName = "Labunista";
       break;
       case 59:
-      name = "Lipkovo";
+      pszName = "Lipkovo";
       break;
       case 60:
-      name = "Lozovo";
+      pszName = "Lozovo";
       break;
       case 61:
-      name = "Lukovo";
+      pszName = "Lukovo";
       break;
       case 62:
-      name = "Makedonska Kamenica";
+      pszName = "Makedonska Kamenica";
       break;
       case 63:
-      name = "Makedonski Brod";
+      pszName = "Makedonski Brod";
       break;
       case 64:
-      name = "Mavrovi Anovi";
+      pszName = "Mavrovi Anovi";
       break;
       case 65:
-      name = "Meseista";
+      pszName = "Meseista";
       break;
       case 66:
-      name = "Miravci";
+      pszName = "Miravci";
       break;
       case 67:
-      name = "Mogila";
+      pszName = "Mogila";
       break;
       case 68:
-      name = "Murtino";
+      pszName = "Murtino";
       break;
       case 69:
-      name = "Negotino";
+      pszName = "Negotino";
       break;
       case 70:
-      name = "Negotino-Polosko";
+      pszName = "Negotino-Polosko";
       break;
       case 71:
-      name = "Novaci";
+      pszName = "Novaci";
       break;
       case 72:
-      name = "Novo Selo";
+      pszName = "Novo Selo";
       break;
       case 73:
-      name = "Oblesevo";
+      pszName = "Oblesevo";
       break;
       case 74:
-      name = "Ohrid";
+      pszName = "Ohrid";
       break;
       case 75:
-      name = "Orasac";
+      pszName = "Orasac";
       break;
       case 76:
-      name = "Orizari";
+      pszName = "Orizari";
       break;
       case 77:
-      name = "Oslomej";
+      pszName = "Oslomej";
       break;
       case 78:
-      name = "Pehcevo";
+      pszName = "Pehcevo";
       break;
       case 79:
-      name = "Petrovec";
+      pszName = "Petrovec";
       break;
       case 80:
-      name = "Plasnica";
+      pszName = "Plasnica";
       break;
       case 81:
-      name = "Podares";
+      pszName = "Podares";
       break;
       case 82:
-      name = "Prilep";
+      pszName = "Prilep";
       break;
       case 83:
-      name = "Probistip";
+      pszName = "Probistip";
       break;
       case 84:
-      name = "Radovis";
+      pszName = "Radovis";
       break;
       case 85:
-      name = "Rankovce";
+      pszName = "Rankovce";
       break;
       case 86:
-      name = "Resen";
+      pszName = "Resen";
       break;
       case 87:
-      name = "Rosoman";
+      pszName = "Rosoman";
       break;
       case 88:
-      name = "Rostusa";
+      pszName = "Rostusa";
       break;
       case 89:
-      name = "Samokov";
+      pszName = "Samokov";
       break;
       case 90:
-      name = "Saraj";
+      pszName = "Saraj";
       break;
       case 91:
-      name = "Sipkovica";
+      pszName = "Sipkovica";
       break;
       case 92:
-      name = "Sopiste";
+      pszName = "Sopiste";
       break;
       case 93:
-      name = "Sopotnica";
+      pszName = "Sopotnica";
       break;
       case 94:
-      name = "Srbinovo";
+      pszName = "Srbinovo";
       break;
       case 95:
-      name = "Staravina";
+      pszName = "Staravina";
       break;
       case 96:
-      name = "Star Dojran";
+      pszName = "Star Dojran";
       break;
       case 97:
-      name = "Staro Nagoricane";
+      pszName = "Staro Nagoricane";
       break;
       case 98:
-      name = "Stip";
+      pszName = "Stip";
       break;
       case 99:
-      name = "Struga";
+      pszName = "Struga";
       break;
       case 832:
-      name = "Strumica";
+      pszName = "Strumica";
       break;
       case 833:
-      name = "Studenicani";
+      pszName = "Studenicani";
       break;
       case 834:
-      name = "Suto Orizari";
+      pszName = "Suto Orizari";
       break;
       case 835:
-      name = "Sveti Nikole";
+      pszName = "Sveti Nikole";
       break;
       case 836:
-      name = "Tearce";
+      pszName = "Tearce";
       break;
       case 837:
-      name = "Tetovo";
+      pszName = "Tetovo";
       break;
       case 838:
-      name = "Topolcani";
+      pszName = "Topolcani";
       break;
       case 839:
-      name = "Valandovo";
+      pszName = "Valandovo";
       break;
       case 840:
-      name = "Vasilevo";
+      pszName = "Vasilevo";
       break;
       case 875:
-      name = "Veles";
+      pszName = "Veles";
       break;
       case 876:
-      name = "Velesta";
+      pszName = "Velesta";
       break;
       case 877:
-      name = "Vevcani";
+      pszName = "Vevcani";
       break;
       case 878:
-      name = "Vinica";
+      pszName = "Vinica";
       break;
       case 879:
-      name = "Vitoliste";
+      pszName = "Vitoliste";
       break;
       case 880:
-      name = "Vranestica";
+      pszName = "Vranestica";
       break;
       case 881:
-      name = "Vrapciste";
+      pszName = "Vrapciste";
       break;
       case 882:
-      name = "Vratnica";
+      pszName = "Vratnica";
       break;
       case 883:
-      name = "Vrutok";
+      pszName = "Vrutok";
       break;
       case 918:
-      name = "Zajas";
+      pszName = "Zajas";
       break;
       case 919:
-      name = "Zelenikovo";
+      pszName = "Zelenikovo";
       break;
       case 920:
-      name = "Zelino";
+      pszName = "Zelino";
       break;
       case 921:
-      name = "Zitose";
+      pszName = "Zitose";
       break;
       case 922:
-      name = "Zletovo";
+      pszName = "Zletovo";
       break;
       case 923:
-      name = "Zrnovci";
+      pszName = "Zrnovci";
       break;
     }
   }
   if (strcmp(country_code,"ML") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bamako";
+      pszName = "Bamako";
       break;
       case 3:
-      name = "Kayes";
+      pszName = "Kayes";
       break;
       case 4:
-      name = "Mopti";
+      pszName = "Mopti";
       break;
       case 5:
-      name = "Segou";
+      pszName = "Segou";
       break;
       case 6:
-      name = "Sikasso";
+      pszName = "Sikasso";
       break;
       case 7:
-      name = "Koulikoro";
+      pszName = "Koulikoro";
       break;
       case 8:
-      name = "Tombouctou";
+      pszName = "Tombouctou";
       break;
       case 9:
-      name = "Gao";
+      pszName = "Gao";
       break;
       case 10:
-      name = "Kidal";
+      pszName = "Kidal";
       break;
     }
   }
   if (strcmp(country_code,"MM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Rakhine State";
+      pszName = "Rakhine State";
       break;
       case 2:
-      name = "Chin State";
+      pszName = "Chin State";
       break;
       case 3:
-      name = "Irrawaddy";
+      pszName = "Irrawaddy";
       break;
       case 4:
-      name = "Kachin State";
+      pszName = "Kachin State";
       break;
       case 5:
-      name = "Karan State";
+      pszName = "Karan State";
       break;
       case 6:
-      name = "Kayah State";
+      pszName = "Kayah State";
       break;
       case 7:
-      name = "Magwe";
+      pszName = "Magwe";
       break;
       case 8:
-      name = "Mandalay";
+      pszName = "Mandalay";
       break;
       case 9:
-      name = "Pegu";
+      pszName = "Pegu";
       break;
       case 10:
-      name = "Sagaing";
+      pszName = "Sagaing";
       break;
       case 11:
-      name = "Shan State";
+      pszName = "Shan State";
       break;
       case 12:
-      name = "Tenasserim";
+      pszName = "Tenasserim";
       break;
       case 13:
-      name = "Mon State";
+      pszName = "Mon State";
       break;
       case 14:
-      name = "Rangoon";
+      pszName = "Rangoon";
       break;
       case 17:
-      name = "Yangon";
+      pszName = "Yangon";
       break;
     }
   }
   if (strcmp(country_code,"MN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Arhangay";
+      pszName = "Arhangay";
       break;
       case 2:
-      name = "Bayanhongor";
+      pszName = "Bayanhongor";
       break;
       case 3:
-      name = "Bayan-Olgiy";
+      pszName = "Bayan-Olgiy";
       break;
       case 5:
-      name = "Darhan";
+      pszName = "Darhan";
       break;
       case 6:
-      name = "Dornod";
+      pszName = "Dornod";
       break;
       case 7:
-      name = "Dornogovi";
+      pszName = "Dornogovi";
       break;
       case 8:
-      name = "Dundgovi";
+      pszName = "Dundgovi";
       break;
       case 9:
-      name = "Dzavhan";
+      pszName = "Dzavhan";
       break;
       case 10:
-      name = "Govi-Altay";
+      pszName = "Govi-Altay";
       break;
       case 11:
-      name = "Hentiy";
+      pszName = "Hentiy";
       break;
       case 12:
-      name = "Hovd";
+      pszName = "Hovd";
       break;
       case 13:
-      name = "Hovsgol";
+      pszName = "Hovsgol";
       break;
       case 14:
-      name = "Omnogovi";
+      pszName = "Omnogovi";
       break;
       case 15:
-      name = "Ovorhangay";
+      pszName = "Ovorhangay";
       break;
       case 16:
-      name = "Selenge";
+      pszName = "Selenge";
       break;
       case 17:
-      name = "Suhbaatar";
+      pszName = "Suhbaatar";
       break;
       case 18:
-      name = "Tov";
+      pszName = "Tov";
       break;
       case 19:
-      name = "Uvs";
+      pszName = "Uvs";
       break;
       case 20:
-      name = "Ulaanbaatar";
+      pszName = "Ulaanbaatar";
       break;
       case 21:
-      name = "Bulgan";
+      pszName = "Bulgan";
       break;
       case 22:
-      name = "Erdenet";
+      pszName = "Erdenet";
       break;
       case 23:
-      name = "Darhan-Uul";
+      pszName = "Darhan-Uul";
       break;
       case 24:
-      name = "Govisumber";
+      pszName = "Govisumber";
       break;
       case 25:
-      name = "Orhon";
+      pszName = "Orhon";
       break;
     }
   }
   if (strcmp(country_code,"MO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ilhas";
+      pszName = "Ilhas";
       break;
       case 2:
-      name = "Macau";
+      pszName = "Macau";
       break;
     }
   }
   if (strcmp(country_code,"MR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Hodh Ech Chargui";
+      pszName = "Hodh Ech Chargui";
       break;
       case 2:
-      name = "Hodh El Gharbi";
+      pszName = "Hodh El Gharbi";
       break;
       case 3:
-      name = "Assaba";
+      pszName = "Assaba";
       break;
       case 4:
-      name = "Gorgol";
+      pszName = "Gorgol";
       break;
       case 5:
-      name = "Brakna";
+      pszName = "Brakna";
       break;
       case 6:
-      name = "Trarza";
+      pszName = "Trarza";
       break;
       case 7:
-      name = "Adrar";
+      pszName = "Adrar";
       break;
       case 8:
-      name = "Dakhlet Nouadhibou";
+      pszName = "Dakhlet Nouadhibou";
       break;
       case 9:
-      name = "Tagant";
+      pszName = "Tagant";
       break;
       case 10:
-      name = "Guidimaka";
+      pszName = "Guidimaka";
       break;
       case 11:
-      name = "Tiris Zemmour";
+      pszName = "Tiris Zemmour";
       break;
       case 12:
-      name = "Inchiri";
+      pszName = "Inchiri";
       break;
     }
   }
   if (strcmp(country_code,"MS") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Saint Anthony";
+      pszName = "Saint Anthony";
       break;
       case 2:
-      name = "Saint Georges";
+      pszName = "Saint Georges";
       break;
       case 3:
-      name = "Saint Peter";
+      pszName = "Saint Peter";
       break;
     }
   }
   if (strcmp(country_code,"MU") == 0) {
     switch (region_code2) {
       case 12:
-      name = "Black River";
+      pszName = "Black River";
       break;
       case 13:
-      name = "Flacq";
+      pszName = "Flacq";
       break;
       case 14:
-      name = "Grand Port";
+      pszName = "Grand Port";
       break;
       case 15:
-      name = "Moka";
+      pszName = "Moka";
       break;
       case 16:
-      name = "Pamplemousses";
+      pszName = "Pamplemousses";
       break;
       case 17:
-      name = "Plaines Wilhems";
+      pszName = "Plaines Wilhems";
       break;
       case 18:
-      name = "Port Louis";
+      pszName = "Port Louis";
       break;
       case 19:
-      name = "Riviere du Rempart";
+      pszName = "Riviere du Rempart";
       break;
       case 20:
-      name = "Savanne";
+      pszName = "Savanne";
       break;
       case 21:
-      name = "Agalega Islands";
+      pszName = "Agalega Islands";
       break;
       case 22:
-      name = "Cargados Carajos";
+      pszName = "Cargados Carajos";
       break;
       case 23:
-      name = "Rodrigues";
+      pszName = "Rodrigues";
       break;
     }
   }
   if (strcmp(country_code,"MV") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Seenu";
+      pszName = "Seenu";
       break;
       case 2:
-      name = "Aliff";
+      pszName = "Aliff";
       break;
       case 3:
-      name = "Laviyani";
+      pszName = "Laviyani";
       break;
       case 4:
-      name = "Waavu";
+      pszName = "Waavu";
       break;
       case 5:
-      name = "Laamu";
+      pszName = "Laamu";
       break;
       case 7:
-      name = "Haa Aliff";
+      pszName = "Haa Aliff";
       break;
       case 8:
-      name = "Thaa";
+      pszName = "Thaa";
       break;
       case 12:
-      name = "Meemu";
+      pszName = "Meemu";
       break;
       case 13:
-      name = "Raa";
+      pszName = "Raa";
       break;
       case 14:
-      name = "Faafu";
+      pszName = "Faafu";
       break;
       case 17:
-      name = "Daalu";
+      pszName = "Daalu";
       break;
       case 20:
-      name = "Baa";
+      pszName = "Baa";
       break;
       case 23:
-      name = "Haa Daalu";
+      pszName = "Haa Daalu";
       break;
       case 24:
-      name = "Shaviyani";
+      pszName = "Shaviyani";
       break;
       case 25:
-      name = "Noonu";
+      pszName = "Noonu";
       break;
       case 26:
-      name = "Kaafu";
+      pszName = "Kaafu";
       break;
       case 27:
-      name = "Gaafu Aliff";
+      pszName = "Gaafu Aliff";
       break;
       case 28:
-      name = "Gaafu Daalu";
+      pszName = "Gaafu Daalu";
       break;
       case 29:
-      name = "Naviyani";
+      pszName = "Naviyani";
       break;
       case 40:
-      name = "Male";
+      pszName = "Male";
       break;
     }
   }
   if (strcmp(country_code,"MW") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Chikwawa";
+      pszName = "Chikwawa";
       break;
       case 3:
-      name = "Chiradzulu";
+      pszName = "Chiradzulu";
       break;
       case 4:
-      name = "Chitipa";
+      pszName = "Chitipa";
       break;
       case 5:
-      name = "Thyolo";
+      pszName = "Thyolo";
       break;
       case 6:
-      name = "Dedza";
+      pszName = "Dedza";
       break;
       case 7:
-      name = "Dowa";
+      pszName = "Dowa";
       break;
       case 8:
-      name = "Karonga";
+      pszName = "Karonga";
       break;
       case 9:
-      name = "Kasungu";
+      pszName = "Kasungu";
       break;
       case 11:
-      name = "Lilongwe";
+      pszName = "Lilongwe";
       break;
       case 12:
-      name = "Mangochi";
+      pszName = "Mangochi";
       break;
       case 13:
-      name = "Mchinji";
+      pszName = "Mchinji";
       break;
       case 15:
-      name = "Mzimba";
+      pszName = "Mzimba";
       break;
       case 16:
-      name = "Ntcheu";
+      pszName = "Ntcheu";
       break;
       case 17:
-      name = "Nkhata Bay";
+      pszName = "Nkhata Bay";
       break;
       case 18:
-      name = "Nkhotakota";
+      pszName = "Nkhotakota";
       break;
       case 19:
-      name = "Nsanje";
+      pszName = "Nsanje";
       break;
       case 20:
-      name = "Ntchisi";
+      pszName = "Ntchisi";
       break;
       case 21:
-      name = "Rumphi";
+      pszName = "Rumphi";
       break;
       case 22:
-      name = "Salima";
+      pszName = "Salima";
       break;
       case 23:
-      name = "Zomba";
+      pszName = "Zomba";
       break;
       case 24:
-      name = "Blantyre";
+      pszName = "Blantyre";
       break;
       case 25:
-      name = "Mwanza";
+      pszName = "Mwanza";
       break;
       case 26:
-      name = "Balaka";
+      pszName = "Balaka";
       break;
       case 27:
-      name = "Likoma";
+      pszName = "Likoma";
       break;
       case 28:
-      name = "Machinga";
+      pszName = "Machinga";
       break;
       case 29:
-      name = "Mulanje";
+      pszName = "Mulanje";
       break;
       case 30:
-      name = "Phalombe";
+      pszName = "Phalombe";
       break;
     }
   }
   if (strcmp(country_code,"MX") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aguascalientes";
+      pszName = "Aguascalientes";
       break;
       case 2:
-      name = "Baja California";
+      pszName = "Baja California";
       break;
       case 3:
-      name = "Baja California Sur";
+      pszName = "Baja California Sur";
       break;
       case 4:
-      name = "Campeche";
+      pszName = "Campeche";
       break;
       case 5:
-      name = "Chiapas";
+      pszName = "Chiapas";
       break;
       case 6:
-      name = "Chihuahua";
+      pszName = "Chihuahua";
       break;
       case 7:
-      name = "Coahuila de Zaragoza";
+      pszName = "Coahuila de Zaragoza";
       break;
       case 8:
-      name = "Colima";
+      pszName = "Colima";
       break;
       case 9:
-      name = "Distrito Federal";
+      pszName = "Distrito Federal";
       break;
       case 10:
-      name = "Durango";
+      pszName = "Durango";
       break;
       case 11:
-      name = "Guanajuato";
+      pszName = "Guanajuato";
       break;
       case 12:
-      name = "Guerrero";
+      pszName = "Guerrero";
       break;
       case 13:
-      name = "Hidalgo";
+      pszName = "Hidalgo";
       break;
       case 14:
-      name = "Jalisco";
+      pszName = "Jalisco";
       break;
       case 15:
-      name = "Mexico";
+      pszName = "Mexico";
       break;
       case 16:
-      name = "Michoacan de Ocampo";
+      pszName = "Michoacan de Ocampo";
       break;
       case 17:
-      name = "Morelos";
+      pszName = "Morelos";
       break;
       case 18:
-      name = "Nayarit";
+      pszName = "Nayarit";
       break;
       case 19:
-      name = "Nuevo Leon";
+      pszName = "Nuevo Leon";
       break;
       case 20:
-      name = "Oaxaca";
+      pszName = "Oaxaca";
       break;
       case 21:
-      name = "Puebla";
+      pszName = "Puebla";
       break;
       case 22:
-      name = "Queretaro de Arteaga";
+      pszName = "Queretaro de Arteaga";
       break;
       case 23:
-      name = "Q::u32ana Roo";
+      pszName = "Q::u32ana Roo";
       break;
       case 24:
-      name = "San Luis Potosi";
+      pszName = "San Luis Potosi";
       break;
       case 25:
-      name = "Sinaloa";
+      pszName = "Sinaloa";
       break;
       case 26:
-      name = "Sonora";
+      pszName = "Sonora";
       break;
       case 27:
-      name = "Tabasco";
+      pszName = "Tabasco";
       break;
       case 28:
-      name = "Tamaulipas";
+      pszName = "Tamaulipas";
       break;
       case 29:
-      name = "Tlaxcala";
+      pszName = "Tlaxcala";
       break;
       case 30:
-      name = "Veracruz-Llave";
+      pszName = "Veracruz-Llave";
       break;
       case 31:
-      name = "Yucatan";
+      pszName = "Yucatan";
       break;
       case 32:
-      name = "Zacatecas";
+      pszName = "Zacatecas";
       break;
     }
   }
   if (strcmp(country_code,"MY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Johor";
+      pszName = "Johor";
       break;
       case 2:
-      name = "Kedah";
+      pszName = "Kedah";
       break;
       case 3:
-      name = "Kelantan";
+      pszName = "Kelantan";
       break;
       case 4:
-      name = "Melaka";
+      pszName = "Melaka";
       break;
       case 5:
-      name = "Negeri Sembilan";
+      pszName = "Negeri Sembilan";
       break;
       case 6:
-      name = "Pahang";
+      pszName = "Pahang";
       break;
       case 7:
-      name = "Perak";
+      pszName = "Perak";
       break;
       case 8:
-      name = "Perlis";
+      pszName = "Perlis";
       break;
       case 9:
-      name = "Pulau Pinang";
+      pszName = "Pulau Pinang";
       break;
       case 11:
-      name = "Sarawak";
+      pszName = "Sarawak";
       break;
       case 12:
-      name = "Selangor";
+      pszName = "Selangor";
       break;
       case 13:
-      name = "Terengganu";
+      pszName = "Terengganu";
       break;
       case 14:
-      name = "Kuala Lumpur";
+      pszName = "Kuala Lumpur";
       break;
       case 15:
-      name = "Labuan";
+      pszName = "Labuan";
       break;
       case 16:
-      name = "Sabah";
+      pszName = "Sabah";
       break;
       case 17:
-      name = "Putrajaya";
+      pszName = "Putrajaya";
       break;
     }
   }
   if (strcmp(country_code,"MZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Cabo Delgado";
+      pszName = "Cabo Delgado";
       break;
       case 2:
-      name = "Gaza";
+      pszName = "Gaza";
       break;
       case 3:
-      name = "Inhambane";
+      pszName = "Inhambane";
       break;
       case 4:
-      name = "Maputo";
+      pszName = "Maputo";
       break;
       case 5:
-      name = "Sofala";
+      pszName = "Sofala";
       break;
       case 6:
-      name = "Nampula";
+      pszName = "Nampula";
       break;
       case 7:
-      name = "Niassa";
+      pszName = "Niassa";
       break;
       case 8:
-      name = "Tete";
+      pszName = "Tete";
       break;
       case 9:
-      name = "Zambezia";
+      pszName = "Zambezia";
       break;
       case 10:
-      name = "Manica";
+      pszName = "Manica";
       break;
       case 11:
-      name = "Maputo";
+      pszName = "Maputo";
       break;
     }
   }
   if (strcmp(country_code,"NA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bethanien";
+      pszName = "Bethanien";
       break;
       case 2:
-      name = "Caprivi Oos";
+      pszName = "Caprivi Oos";
       break;
       case 3:
-      name = "Boesmanland";
+      pszName = "Boesmanland";
       break;
       case 4:
-      name = "Gobabis";
+      pszName = "Gobabis";
       break;
       case 5:
-      name = "Grootfontein";
+      pszName = "Grootfontein";
       break;
       case 6:
-      name = "Kaokoland";
+      pszName = "Kaokoland";
       break;
       case 7:
-      name = "Karibib";
+      pszName = "Karibib";
       break;
       case 8:
-      name = "Keetmanshoop";
+      pszName = "Keetmanshoop";
       break;
       case 9:
-      name = "Luderitz";
+      pszName = "Luderitz";
       break;
       case 10:
-      name = "Maltahohe";
+      pszName = "Maltahohe";
       break;
       case 11:
-      name = "Okahandja";
+      pszName = "Okahandja";
       break;
       case 12:
-      name = "Omaruru";
+      pszName = "Omaruru";
       break;
       case 13:
-      name = "Otjiwarongo";
+      pszName = "Otjiwarongo";
       break;
       case 14:
-      name = "Outjo";
+      pszName = "Outjo";
       break;
       case 15:
-      name = "Owambo";
+      pszName = "Owambo";
       break;
       case 16:
-      name = "Rehoboth";
+      pszName = "Rehoboth";
       break;
       case 17:
-      name = "Swakopmund";
+      pszName = "Swakopmund";
       break;
       case 18:
-      name = "Tsumeb";
+      pszName = "Tsumeb";
       break;
       case 20:
-      name = "Karasburg";
+      pszName = "Karasburg";
       break;
       case 21:
-      name = "Windhoek";
+      pszName = "Windhoek";
       break;
       case 22:
-      name = "Damaraland";
+      pszName = "Damaraland";
       break;
       case 23:
-      name = "Hereroland Oos";
+      pszName = "Hereroland Oos";
       break;
       case 24:
-      name = "Hereroland Wes";
+      pszName = "Hereroland Wes";
       break;
       case 25:
-      name = "Kavango";
+      pszName = "Kavango";
       break;
       case 26:
-      name = "Mariental";
+      pszName = "Mariental";
       break;
       case 27:
-      name = "Namaland";
+      pszName = "Namaland";
       break;
       case 28:
-      name = "Caprivi";
+      pszName = "Caprivi";
       break;
       case 29:
-      name = "Erongo";
+      pszName = "Erongo";
       break;
       case 30:
-      name = "Hardap";
+      pszName = "Hardap";
       break;
       case 31:
-      name = "Karas";
+      pszName = "Karas";
       break;
       case 32:
-      name = "Kunene";
+      pszName = "Kunene";
       break;
       case 33:
-      name = "Ohangwena";
+      pszName = "Ohangwena";
       break;
       case 34:
-      name = "Okavango";
+      pszName = "Okavango";
       break;
       case 35:
-      name = "Omaheke";
+      pszName = "Omaheke";
       break;
       case 36:
-      name = "Omusati";
+      pszName = "Omusati";
       break;
       case 37:
-      name = "Oshana";
+      pszName = "Oshana";
       break;
       case 38:
-      name = "Oshikoto";
+      pszName = "Oshikoto";
       break;
       case 39:
-      name = "Otjozondjupa";
+      pszName = "Otjozondjupa";
       break;
     }
   }
   if (strcmp(country_code,"NE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Agadez";
+      pszName = "Agadez";
       break;
       case 2:
-      name = "Diffa";
+      pszName = "Diffa";
       break;
       case 3:
-      name = "Dosso";
+      pszName = "Dosso";
       break;
       case 4:
-      name = "Maradi";
+      pszName = "Maradi";
       break;
       case 5:
-      name = "Niamey";
+      pszName = "Niamey";
       break;
       case 6:
-      name = "Tahoua";
+      pszName = "Tahoua";
       break;
       case 7:
-      name = "Zinder";
+      pszName = "Zinder";
       break;
       case 8:
-      name = "Niamey";
+      pszName = "Niamey";
       break;
     }
   }
   if (strcmp(country_code,"NG") == 0) {
     switch (region_code2) {
       case 5:
-      name = "Lagos";
+      pszName = "Lagos";
       break;
       case 10:
-      name = "Rivers";
+      pszName = "Rivers";
       break;
       case 11:
-      name = "Federal Capital Territory";
+      pszName = "Federal Capital Territory";
       break;
       case 16:
-      name = "Ogun";
+      pszName = "Ogun";
       break;
       case 17:
-      name = "Ondo";
+      pszName = "Ondo";
       break;
       case 21:
-      name = "Akwa Ibom";
+      pszName = "Akwa Ibom";
       break;
       case 22:
-      name = "Cross River";
+      pszName = "Cross River";
       break;
       case 23:
-      name = "Kaduna";
+      pszName = "Kaduna";
       break;
       case 24:
-      name = "Katsina";
+      pszName = "Katsina";
       break;
       case 25:
-      name = "Anambra";
+      pszName = "Anambra";
       break;
       case 26:
-      name = "Benue";
+      pszName = "Benue";
       break;
       case 27:
-      name = "Borno";
+      pszName = "Borno";
       break;
       case 28:
-      name = "Imo";
+      pszName = "Imo";
       break;
       case 29:
-      name = "Kano";
+      pszName = "Kano";
       break;
       case 30:
-      name = "Kwara";
+      pszName = "Kwara";
       break;
       case 31:
-      name = "Niger";
+      pszName = "Niger";
       break;
       case 32:
-      name = "Oyo";
+      pszName = "Oyo";
       break;
       case 35:
-      name = "Adamawa";
+      pszName = "Adamawa";
       break;
       case 36:
-      name = "Delta";
+      pszName = "Delta";
       break;
       case 37:
-      name = "Edo";
+      pszName = "Edo";
       break;
       case 39:
-      name = "Jigawa";
+      pszName = "Jigawa";
       break;
       case 40:
-      name = "Kebbi";
+      pszName = "Kebbi";
       break;
       case 41:
-      name = "Kogi";
+      pszName = "Kogi";
       break;
       case 42:
-      name = "Osun";
+      pszName = "Osun";
       break;
       case 43:
-      name = "Taraba";
+      pszName = "Taraba";
       break;
       case 44:
-      name = "Yobe";
+      pszName = "Yobe";
       break;
       case 45:
-      name = "Abia";
+      pszName = "Abia";
       break;
       case 46:
-      name = "Bauchi";
+      pszName = "Bauchi";
       break;
       case 47:
-      name = "Enugu";
+      pszName = "Enugu";
       break;
       case 48:
-      name = "Ondo";
+      pszName = "Ondo";
       break;
       case 49:
-      name = "Plateau";
+      pszName = "Plateau";
       break;
       case 50:
-      name = "Rivers";
+      pszName = "Rivers";
       break;
       case 51:
-      name = "Sokoto";
+      pszName = "Sokoto";
       break;
       case 52:
-      name = "Bayelsa";
+      pszName = "Bayelsa";
       break;
       case 53:
-      name = "Ebonyi";
+      pszName = "Ebonyi";
       break;
       case 54:
-      name = "Ekiti";
+      pszName = "Ekiti";
       break;
       case 55:
-      name = "Gombe";
+      pszName = "Gombe";
       break;
       case 56:
-      name = "Nassarawa";
+      pszName = "Nassarawa";
       break;
       case 57:
-      name = "Zamfara";
+      pszName = "Zamfara";
       break;
     }
   }
   if (strcmp(country_code,"NI") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Boaco";
+      pszName = "Boaco";
       break;
       case 2:
-      name = "Carazo";
+      pszName = "Carazo";
       break;
       case 3:
-      name = "Chinandega";
+      pszName = "Chinandega";
       break;
       case 4:
-      name = "Chontales";
+      pszName = "Chontales";
       break;
       case 5:
-      name = "Esteli";
+      pszName = "Esteli";
       break;
       case 6:
-      name = "Granada";
+      pszName = "Granada";
       break;
       case 7:
-      name = "Jinotega";
+      pszName = "Jinotega";
       break;
       case 8:
-      name = "Leon";
+      pszName = "Leon";
       break;
       case 9:
-      name = "Madriz";
+      pszName = "Madriz";
       break;
       case 10:
-      name = "Managua";
+      pszName = "Managua";
       break;
       case 11:
-      name = "Masaya";
+      pszName = "Masaya";
       break;
       case 12:
-      name = "Matagalpa";
+      pszName = "Matagalpa";
       break;
       case 13:
-      name = "Nueva Segovia";
+      pszName = "Nueva Segovia";
       break;
       case 14:
-      name = "Rio San Juan";
+      pszName = "Rio San Juan";
       break;
       case 15:
-      name = "Rivas";
+      pszName = "Rivas";
       break;
       case 16:
-      name = "Zelaya";
+      pszName = "Zelaya";
       break;
       case 17:
-      name = "Autonoma Atlantico Norte";
+      pszName = "Autonoma Atlantico Norte";
       break;
       case 18:
-      name = "Region Autonoma Atlantico Sur";
+      pszName = "Region Autonoma Atlantico Sur";
       break;
     }
   }
   if (strcmp(country_code,"NL") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Drenthe";
+      pszName = "Drenthe";
       break;
       case 2:
-      name = "Friesland";
+      pszName = "Friesland";
       break;
       case 3:
-      name = "Gelderland";
+      pszName = "Gelderland";
       break;
       case 4:
-      name = "Groningen";
+      pszName = "Groningen";
       break;
       case 5:
-      name = "Limburg";
+      pszName = "Limburg";
       break;
       case 6:
-      name = "Noord-Brabant";
+      pszName = "Noord-Brabant";
       break;
       case 7:
-      name = "Noord-Holland";
+      pszName = "Noord-Holland";
       break;
       case 8:
-      name = "Overijssel";
+      pszName = "Overijssel";
       break;
       case 9:
-      name = "Utrecht";
+      pszName = "Utrecht";
       break;
       case 10:
-      name = "Zeeland";
+      pszName = "Zeeland";
       break;
       case 11:
-      name = "Zuid-Holland";
+      pszName = "Zuid-Holland";
       break;
       case 12:
-      name = "Dronten";
+      pszName = "Dronten";
       break;
       case 13:
-      name = "Zuidelijke IJsselmeerpolders";
+      pszName = "Zuidelijke IJsselmeerpolders";
       break;
       case 14:
-      name = "Lelystad";
+      pszName = "Lelystad";
       break;
       case 15:
-      name = "Overijssel";
+      pszName = "Overijssel";
       break;
       case 16:
-      name = "Flevoland";
+      pszName = "Flevoland";
       break;
     }
   }
   if (strcmp(country_code,"NO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Akershus";
+      pszName = "Akershus";
       break;
       case 2:
-      name = "Aust-Agder";
+      pszName = "Aust-Agder";
       break;
       case 4:
-      name = "Buskerud";
+      pszName = "Buskerud";
       break;
       case 5:
-      name = "Finnmark";
+      pszName = "Finnmark";
       break;
       case 6:
-      name = "Hedmark";
+      pszName = "Hedmark";
       break;
       case 7:
-      name = "Hordaland";
+      pszName = "Hordaland";
       break;
       case 8:
-      name = "More og Romsdal";
+      pszName = "More og Romsdal";
       break;
       case 9:
-      name = "Nordland";
+      pszName = "Nordland";
       break;
       case 10:
-      name = "Nord-Trondelag";
+      pszName = "Nord-Trondelag";
       break;
       case 11:
-      name = "Oppland";
+      pszName = "Oppland";
       break;
       case 12:
-      name = "Oslo";
+      pszName = "Oslo";
       break;
       case 13:
-      name = "Ostfold";
+      pszName = "Ostfold";
       break;
       case 14:
-      name = "Rogaland";
+      pszName = "Rogaland";
       break;
       case 15:
-      name = "Sogn og Fjordane";
+      pszName = "Sogn og Fjordane";
       break;
       case 16:
-      name = "Sor-Trondelag";
+      pszName = "Sor-Trondelag";
       break;
       case 17:
-      name = "Telemark";
+      pszName = "Telemark";
       break;
       case 18:
-      name = "Troms";
+      pszName = "Troms";
       break;
       case 19:
-      name = "Vest-Agder";
+      pszName = "Vest-Agder";
       break;
       case 20:
-      name = "Vestfold";
+      pszName = "Vestfold";
       break;
     }
   }
   if (strcmp(country_code,"NP") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bagmati";
+      pszName = "Bagmati";
       break;
       case 2:
-      name = "Bheri";
+      pszName = "Bheri";
       break;
       case 3:
-      name = "Dhawalagiri";
+      pszName = "Dhawalagiri";
       break;
       case 4:
-      name = "Gandaki";
+      pszName = "Gandaki";
       break;
       case 5:
-      name = "Janakpur";
+      pszName = "Janakpur";
       break;
       case 6:
-      name = "Karnali";
+      pszName = "Karnali";
       break;
       case 7:
-      name = "Kosi";
+      pszName = "Kosi";
       break;
       case 8:
-      name = "Lumbini";
+      pszName = "Lumbini";
       break;
       case 9:
-      name = "Mahakali";
+      pszName = "Mahakali";
       break;
       case 10:
-      name = "Mechi";
+      pszName = "Mechi";
       break;
       case 11:
-      name = "Narayani";
+      pszName = "Narayani";
       break;
       case 12:
-      name = "Rapti";
+      pszName = "Rapti";
       break;
       case 13:
-      name = "Sagarmatha";
+      pszName = "Sagarmatha";
       break;
       case 14:
-      name = "Seti";
+      pszName = "Seti";
       break;
     }
   }
   if (strcmp(country_code,"NR") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Aiwo";
+      pszName = "Aiwo";
       break;
       case 2:
-      name = "Anabar";
+      pszName = "Anabar";
       break;
       case 3:
-      name = "Anetan";
+      pszName = "Anetan";
       break;
       case 4:
-      name = "Anibare";
+      pszName = "Anibare";
       break;
       case 5:
-      name = "Baiti";
+      pszName = "Baiti";
       break;
       case 6:
-      name = "Boe";
+      pszName = "Boe";
       break;
       case 7:
-      name = "Buada";
+      pszName = "Buada";
       break;
       case 8:
-      name = "Denigomodu";
+      pszName = "Denigomodu";
       break;
       case 9:
-      name = "Ewa";
+      pszName = "Ewa";
       break;
       case 10:
-      name = "Ijuw";
+      pszName = "Ijuw";
       break;
       case 11:
-      name = "Meneng";
+      pszName = "Meneng";
       break;
       case 12:
-      name = "Nibok";
+      pszName = "Nibok";
       break;
       case 13:
-      name = "Uaboe";
+      pszName = "Uaboe";
       break;
       case 14:
-      name = "Yaren";
+      pszName = "Yaren";
       break;
     }
   }
   if (strcmp(country_code,"NZ") == 0) {
     switch (region_code2) {
       case 10:
-      name = "Chatham Islands";
+      pszName = "Chatham Islands";
       break;
       case 1010:
-      name = "Auckland";
+      pszName = "Auckland";
       break;
       case 1011:
-      name = "Bay of Plenty";
+      pszName = "Bay of Plenty";
       break;
       case 1012:
-      name = "Canterbury";
+      pszName = "Canterbury";
       break;
       case 1047:
-      name = "Gisborne";
+      pszName = "Gisborne";
       break;
       case 1048:
-      name = "Hawke's Bay";
+      pszName = "Hawke's Bay";
       break;
       case 1049:
-      name = "Manawatu-Wanganui";
+      pszName = "Manawatu-Wanganui";
       break;
       case 1050:
-      name = "Marlborough";
+      pszName = "Marlborough";
       break;
       case 1051:
-      name = "Nelson";
+      pszName = "Nelson";
       break;
       case 1052:
-      name = "Northland";
+      pszName = "Northland";
       break;
       case 1053:
-      name = "Otago";
+      pszName = "Otago";
       break;
       case 1054:
-      name = "Southland";
+      pszName = "Southland";
       break;
       case 1055:
-      name = "Taranaki";
+      pszName = "Taranaki";
       break;
       case 1090:
-      name = "Waikato";
+      pszName = "Waikato";
       break;
       case 1091:
-      name = "Wellington";
+      pszName = "Wellington";
       break;
       case 1092:
-      name = "West Coast";
+      pszName = "West Coast";
       break;
     }
   }
   if (strcmp(country_code,"OM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ad Dakhiliyah";
+      pszName = "Ad Dakhiliyah";
       break;
       case 2:
-      name = "Al Batinah";
+      pszName = "Al Batinah";
       break;
       case 3:
-      name = "Al Wusta";
+      pszName = "Al Wusta";
       break;
       case 4:
-      name = "Ash Sharqiyah";
+      pszName = "Ash Sharqiyah";
       break;
       case 5:
-      name = "Az Zahirah";
+      pszName = "Az Zahirah";
       break;
       case 6:
-      name = "Masqat";
+      pszName = "Masqat";
       break;
       case 7:
-      name = "Musandam";
+      pszName = "Musandam";
       break;
       case 8:
-      name = "Zufar";
+      pszName = "Zufar";
       break;
     }
   }
   if (strcmp(country_code,"PA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bocas del Toro";
+      pszName = "Bocas del Toro";
       break;
       case 2:
-      name = "Chiriqui";
+      pszName = "Chiriqui";
       break;
       case 3:
-      name = "Cocle";
+      pszName = "Cocle";
       break;
       case 4:
-      name = "Colon";
+      pszName = "Colon";
       break;
       case 5:
-      name = "Darien";
+      pszName = "Darien";
       break;
       case 6:
-      name = "Herrera";
+      pszName = "Herrera";
       break;
       case 7:
-      name = "Los Santos";
+      pszName = "Los Santos";
       break;
       case 8:
-      name = "Panama";
+      pszName = "Panama";
       break;
       case 9:
-      name = "San Blas";
+      pszName = "San Blas";
       break;
       case 10:
-      name = "Veraguas";
+      pszName = "Veraguas";
       break;
     }
   }
   if (strcmp(country_code,"PE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Amazonas";
+      pszName = "Amazonas";
       break;
       case 2:
-      name = "Ancash";
+      pszName = "Ancash";
       break;
       case 3:
-      name = "Apurimac";
+      pszName = "Apurimac";
       break;
       case 4:
-      name = "Arequipa";
+      pszName = "Arequipa";
       break;
       case 5:
-      name = "Ayacucho";
+      pszName = "Ayacucho";
       break;
       case 6:
-      name = "Cajamarca";
+      pszName = "Cajamarca";
       break;
       case 7:
-      name = "Callao";
+      pszName = "Callao";
       break;
       case 8:
-      name = "Cusco";
+      pszName = "Cusco";
       break;
       case 9:
-      name = "Huancavelica";
+      pszName = "Huancavelica";
       break;
       case 10:
-      name = "Huanuco";
+      pszName = "Huanuco";
       break;
       case 11:
-      name = "Ica";
+      pszName = "Ica";
       break;
       case 12:
-      name = "Junin";
+      pszName = "Junin";
       break;
       case 13:
-      name = "La Libertad";
+      pszName = "La Libertad";
       break;
       case 14:
-      name = "Lambayeque";
+      pszName = "Lambayeque";
       break;
       case 15:
-      name = "Lima";
+      pszName = "Lima";
       break;
       case 16:
-      name = "Loreto";
+      pszName = "Loreto";
       break;
       case 17:
-      name = "Madre de Dios";
+      pszName = "Madre de Dios";
       break;
       case 18:
-      name = "Moquegua";
+      pszName = "Moquegua";
       break;
       case 19:
-      name = "Pasco";
+      pszName = "Pasco";
       break;
       case 20:
-      name = "Piura";
+      pszName = "Piura";
       break;
       case 21:
-      name = "Puno";
+      pszName = "Puno";
       break;
       case 22:
-      name = "San Martin";
+      pszName = "San Martin";
       break;
       case 23:
-      name = "Tacna";
+      pszName = "Tacna";
       break;
       case 24:
-      name = "Tumbes";
+      pszName = "Tumbes";
       break;
       case 25:
-      name = "Ucayali";
+      pszName = "Ucayali";
       break;
     }
   }
   if (strcmp(country_code,"PG") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Central";
+      pszName = "Central";
       break;
       case 2:
-      name = "Gulf";
+      pszName = "Gulf";
       break;
       case 3:
-      name = "Milne Bay";
+      pszName = "Milne Bay";
       break;
       case 4:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 5:
-      name = "Southern Highlands";
+      pszName = "Southern Highlands";
       break;
       case 6:
-      name = "Western";
+      pszName = "Western";
       break;
       case 7:
-      name = "North Solomons";
+      pszName = "North Solomons";
       break;
       case 8:
-      name = "Chimbu";
+      pszName = "Chimbu";
       break;
       case 9:
-      name = "Eastern Highlands";
+      pszName = "Eastern Highlands";
       break;
       case 10:
-      name = "East New Britain";
+      pszName = "East New Britain";
       break;
       case 11:
-      name = "East Sepik";
+      pszName = "East Sepik";
       break;
       case 12:
-      name = "Madang";
+      pszName = "Madang";
       break;
       case 13:
-      name = "Manus";
+      pszName = "Manus";
       break;
       case 14:
-      name = "Morobe";
+      pszName = "Morobe";
       break;
       case 15:
-      name = "New Ireland";
+      pszName = "New Ireland";
       break;
       case 16:
-      name = "Western Highlands";
+      pszName = "Western Highlands";
       break;
       case 17:
-      name = "West New Britain";
+      pszName = "West New Britain";
       break;
       case 18:
-      name = "Sandaun";
+      pszName = "Sandaun";
       break;
       case 19:
-      name = "Enga";
+      pszName = "Enga";
       break;
       case 20:
-      name = "National Capital";
+      pszName = "National Capital";
       break;
     }
   }
   if (strcmp(country_code,"PH") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Abra";
+      pszName = "Abra";
       break;
       case 2:
-      name = "Agusan del Norte";
+      pszName = "Agusan del Norte";
       break;
       case 3:
-      name = "Agusan del Sur";
+      pszName = "Agusan del Sur";
       break;
       case 4:
-      name = "Aklan";
+      pszName = "Aklan";
       break;
       case 5:
-      name = "Albay";
+      pszName = "Albay";
       break;
       case 6:
-      name = "Antique";
+      pszName = "Antique";
       break;
       case 7:
-      name = "Bataan";
+      pszName = "Bataan";
       break;
       case 8:
-      name = "Batanes";
+      pszName = "Batanes";
       break;
       case 9:
-      name = "Batangas";
+      pszName = "Batangas";
       break;
       case 10:
-      name = "Benguet";
+      pszName = "Benguet";
       break;
       case 11:
-      name = "Bohol";
+      pszName = "Bohol";
       break;
       case 12:
-      name = "Bukidnon";
+      pszName = "Bukidnon";
       break;
       case 13:
-      name = "Bulacan";
+      pszName = "Bulacan";
       break;
       case 14:
-      name = "Cagayan";
+      pszName = "Cagayan";
       break;
       case 15:
-      name = "Camarines Norte";
+      pszName = "Camarines Norte";
       break;
       case 16:
-      name = "Camarines Sur";
+      pszName = "Camarines Sur";
       break;
       case 17:
-      name = "Camiguin";
+      pszName = "Camiguin";
       break;
       case 18:
-      name = "Capiz";
+      pszName = "Capiz";
       break;
       case 19:
-      name = "Catanduanes";
+      pszName = "Catanduanes";
       break;
       case 20:
-      name = "Cavite";
+      pszName = "Cavite";
       break;
       case 21:
-      name = "Cebu";
+      pszName = "Cebu";
       break;
       case 22:
-      name = "Basilan";
+      pszName = "Basilan";
       break;
       case 23:
-      name = "Eastern Samar";
+      pszName = "Eastern Samar";
       break;
       case 24:
-      name = "Davao";
+      pszName = "Davao";
       break;
       case 25:
-      name = "Davao del Sur";
+      pszName = "Davao del Sur";
       break;
       case 26:
-      name = "Davao Oriental";
+      pszName = "Davao Oriental";
       break;
       case 27:
-      name = "Ifugao";
+      pszName = "Ifugao";
       break;
       case 28:
-      name = "Ilocos Norte";
+      pszName = "Ilocos Norte";
       break;
       case 29:
-      name = "Ilocos Sur";
+      pszName = "Ilocos Sur";
       break;
       case 30:
-      name = "Iloilo";
+      pszName = "Iloilo";
       break;
       case 31:
-      name = "Isabela";
+      pszName = "Isabela";
       break;
       case 32:
-      name = "Kalinga-Apayao";
+      pszName = "Kalinga-Apayao";
       break;
       case 33:
-      name = "Laguna";
+      pszName = "Laguna";
       break;
       case 34:
-      name = "Lanao del Norte";
+      pszName = "Lanao del Norte";
       break;
       case 35:
-      name = "Lanao del Sur";
+      pszName = "Lanao del Sur";
       break;
       case 36:
-      name = "La Union";
+      pszName = "La Union";
       break;
       case 37:
-      name = "Leyte";
+      pszName = "Leyte";
       break;
       case 38:
-      name = "Marinduque";
+      pszName = "Marinduque";
       break;
       case 39:
-      name = "Masbate";
+      pszName = "Masbate";
       break;
       case 40:
-      name = "Mindoro Occidental";
+      pszName = "Mindoro Occidental";
       break;
       case 41:
-      name = "Mindoro Oriental";
+      pszName = "Mindoro Oriental";
       break;
       case 42:
-      name = "Misamis Occidental";
+      pszName = "Misamis Occidental";
       break;
       case 43:
-      name = "Misamis Oriental";
+      pszName = "Misamis Oriental";
       break;
       case 44:
-      name = "Mountain";
+      pszName = "Mountain";
       break;
       case 46:
-      name = "Negros Oriental";
+      pszName = "Negros Oriental";
       break;
       case 47:
-      name = "Nueva Ecija";
+      pszName = "Nueva Ecija";
       break;
       case 48:
-      name = "Nueva Vizcaya";
+      pszName = "Nueva Vizcaya";
       break;
       case 49:
-      name = "Palawan";
+      pszName = "Palawan";
       break;
       case 50:
-      name = "Pampanga";
+      pszName = "Pampanga";
       break;
       case 51:
-      name = "Pangasinan";
+      pszName = "Pangasinan";
       break;
       case 53:
-      name = "Rizal";
+      pszName = "Rizal";
       break;
       case 54:
-      name = "Romblon";
+      pszName = "Romblon";
       break;
       case 55:
-      name = "Samar";
+      pszName = "Samar";
       break;
       case 56:
-      name = "Maguindanao";
+      pszName = "Maguindanao";
       break;
       case 57:
-      name = "North Cotabato";
+      pszName = "North Cotabato";
       break;
       case 58:
-      name = "Sorsogon";
+      pszName = "Sorsogon";
       break;
       case 59:
-      name = "Southern Leyte";
+      pszName = "Southern Leyte";
       break;
       case 60:
-      name = "Sulu";
+      pszName = "Sulu";
       break;
       case 61:
-      name = "Surigao del Norte";
+      pszName = "Surigao del Norte";
       break;
       case 62:
-      name = "Surigao del Sur";
+      pszName = "Surigao del Sur";
       break;
       case 63:
-      name = "Tarlac";
+      pszName = "Tarlac";
       break;
       case 64:
-      name = "Zambales";
+      pszName = "Zambales";
       break;
       case 65:
-      name = "Zamboanga del Norte";
+      pszName = "Zamboanga del Norte";
       break;
       case 66:
-      name = "Zamboanga del Sur";
+      pszName = "Zamboanga del Sur";
       break;
       case 67:
-      name = "Northern Samar";
+      pszName = "Northern Samar";
       break;
       case 68:
-      name = "Quirino";
+      pszName = "Quirino";
       break;
       case 69:
-      name = "Siquijor";
+      pszName = "Siquijor";
       break;
       case 70:
-      name = "South Cotabato";
+      pszName = "South Cotabato";
       break;
       case 71:
-      name = "Sultan Kudarat";
+      pszName = "Sultan Kudarat";
       break;
       case 72:
-      name = "Tawitawi";
+      pszName = "Tawitawi";
       break;
       case 832:
-      name = "Angeles";
+      pszName = "Angeles";
       break;
       case 833:
-      name = "Bacolod";
+      pszName = "Bacolod";
       break;
       case 834:
-      name = "Bago";
+      pszName = "Bago";
       break;
       case 835:
-      name = "Baguio";
+      pszName = "Baguio";
       break;
       case 836:
-      name = "Bais";
+      pszName = "Bais";
       break;
       case 837:
-      name = "Basilan City";
+      pszName = "Basilan City";
       break;
       case 838:
-      name = "Batangas City";
+      pszName = "Batangas City";
       break;
       case 839:
-      name = "Butuan";
+      pszName = "Butuan";
       break;
       case 840:
-      name = "Cabanatuan";
+      pszName = "Cabanatuan";
       break;
       case 875:
-      name = "Cadiz";
+      pszName = "Cadiz";
       break;
       case 876:
-      name = "Cagayan de Oro";
+      pszName = "Cagayan de Oro";
       break;
       case 877:
-      name = "Calbayog";
+      pszName = "Calbayog";
       break;
       case 878:
-      name = "Caloocan";
+      pszName = "Caloocan";
       break;
       case 879:
-      name = "Canlaon";
+      pszName = "Canlaon";
       break;
       case 880:
-      name = "Cavite City";
+      pszName = "Cavite City";
       break;
       case 881:
-      name = "Cebu City";
+      pszName = "Cebu City";
       break;
       case 882:
-      name = "Cotabato";
+      pszName = "Cotabato";
       break;
       case 883:
-      name = "Dagupan";
+      pszName = "Dagupan";
       break;
       case 918:
-      name = "Danao";
+      pszName = "Danao";
       break;
       case 919:
-      name = "Dapitan";
+      pszName = "Dapitan";
       break;
       case 920:
-      name = "Davao City";
+      pszName = "Davao City";
       break;
       case 921:
-      name = "Dipolog";
+      pszName = "Dipolog";
       break;
       case 922:
-      name = "Dumaguete";
+      pszName = "Dumaguete";
       break;
       case 923:
-      name = "General Santos";
+      pszName = "General Santos";
       break;
       case 924:
-      name = "Gingoog";
+      pszName = "Gingoog";
       break;
       case 925:
-      name = "Iligan";
+      pszName = "Iligan";
       break;
       case 926:
-      name = "Iloilo City";
+      pszName = "Iloilo City";
       break;
       case 961:
-      name = "Iriga";
+      pszName = "Iriga";
       break;
       case 962:
-      name = "La Carlota";
+      pszName = "La Carlota";
       break;
       case 963:
-      name = "Laoag";
+      pszName = "Laoag";
       break;
       case 964:
-      name = "Lapu-Lapu";
+      pszName = "Lapu-Lapu";
       break;
       case 965:
-      name = "Legaspi";
+      pszName = "Legaspi";
       break;
       case 966:
-      name = "Lipa";
+      pszName = "Lipa";
       break;
       case 967:
-      name = "Lucena";
+      pszName = "Lucena";
       break;
       case 968:
-      name = "Mandaue";
+      pszName = "Mandaue";
       break;
       case 969:
-      name = "Manila";
+      pszName = "Manila";
       break;
       case 1004:
-      name = "Marawi";
+      pszName = "Marawi";
       break;
       case 1005:
-      name = "Naga";
+      pszName = "Naga";
       break;
       case 1006:
-      name = "Olongapo";
+      pszName = "Olongapo";
       break;
       case 1007:
-      name = "Ormoc";
+      pszName = "Ormoc";
       break;
       case 1008:
-      name = "Oroquieta";
+      pszName = "Oroquieta";
       break;
       case 1009:
-      name = "Ozamis";
+      pszName = "Ozamis";
       break;
       case 1010:
-      name = "Pagadian";
+      pszName = "Pagadian";
       break;
       case 1011:
-      name = "Palayan";
+      pszName = "Palayan";
       break;
       case 1012:
-      name = "Pasay";
+      pszName = "Pasay";
       break;
       case 1047:
-      name = "Puerto Princesa";
+      pszName = "Puerto Princesa";
       break;
       case 1048:
-      name = "Quezon City";
+      pszName = "Quezon City";
       break;
       case 1049:
-      name = "Roxas";
+      pszName = "Roxas";
       break;
       case 1050:
-      name = "San Carlos";
+      pszName = "San Carlos";
       break;
       case 1051:
-      name = "San Carlos";
+      pszName = "San Carlos";
       break;
       case 1052:
-      name = "San Jose";
+      pszName = "San Jose";
       break;
       case 1053:
-      name = "San Pablo";
+      pszName = "San Pablo";
       break;
       case 1054:
-      name = "Silay";
+      pszName = "Silay";
       break;
       case 1055:
-      name = "Surigao";
+      pszName = "Surigao";
       break;
       case 1090:
-      name = "Tacloban";
+      pszName = "Tacloban";
       break;
       case 1091:
-      name = "Tagaytay";
+      pszName = "Tagaytay";
       break;
       case 1092:
-      name = "Tagbilaran";
+      pszName = "Tagbilaran";
       break;
       case 1093:
-      name = "Tangub";
+      pszName = "Tangub";
       break;
       case 1094:
-      name = "Toledo";
+      pszName = "Toledo";
       break;
       case 1095:
-      name = "Trece Martires";
+      pszName = "Trece Martires";
       break;
       case 1096:
-      name = "Zamboanga";
+      pszName = "Zamboanga";
       break;
       case 1097:
-      name = "Aurora";
+      pszName = "Aurora";
       break;
       case 1134:
-      name = "Quezon";
+      pszName = "Quezon";
       break;
       case 1135:
-      name = "Negros Occidental";
+      pszName = "Negros Occidental";
       break;
     }
   }
   if (strcmp(country_code,"PK") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Federally Administered Tribal Areas";
+      pszName = "Federally Administered Tribal Areas";
       break;
       case 2:
-      name = "Balochistan";
+      pszName = "Balochistan";
       break;
       case 3:
-      name = "North-West Frontier";
+      pszName = "North-West Frontier";
       break;
       case 4:
-      name = "Punjab";
+      pszName = "Punjab";
       break;
       case 5:
-      name = "Sindh";
+      pszName = "Sindh";
       break;
       case 6:
-      name = "Azad Kashmir";
+      pszName = "Azad Kashmir";
       break;
       case 7:
-      name = "Northern Areas";
+      pszName = "Northern Areas";
       break;
       case 8:
-      name = "Islamabad";
+      pszName = "Islamabad";
       break;
     }
   }
   if (strcmp(country_code,"PL") == 0) {
     switch (region_code2) {
       case 23:
-      name = "Biala Podlaska";
+      pszName = "Biala Podlaska";
       break;
       case 24:
-      name = "Bialystok";
+      pszName = "Bialystok";
       break;
       case 25:
-      name = "Bielsko";
+      pszName = "Bielsko";
       break;
       case 26:
-      name = "Bydgoszcz";
+      pszName = "Bydgoszcz";
       break;
       case 27:
-      name = "Chelm";
+      pszName = "Chelm";
       break;
       case 28:
-      name = "Ciechanow";
+      pszName = "Ciechanow";
       break;
       case 29:
-      name = "Czestochowa";
+      pszName = "Czestochowa";
       break;
       case 30:
-      name = "Elblag";
+      pszName = "Elblag";
       break;
       case 31:
-      name = "Gdansk";
+      pszName = "Gdansk";
       break;
       case 32:
-      name = "Gorzow";
+      pszName = "Gorzow";
       break;
       case 33:
-      name = "Jelenia Gora";
+      pszName = "Jelenia Gora";
       break;
       case 34:
-      name = "Kalisz";
+      pszName = "Kalisz";
       break;
       case 35:
-      name = "Katowice";
+      pszName = "Katowice";
       break;
       case 36:
-      name = "Kielce";
+      pszName = "Kielce";
       break;
       case 37:
-      name = "Konin";
+      pszName = "Konin";
       break;
       case 38:
-      name = "Koszalin";
+      pszName = "Koszalin";
       break;
       case 39:
-      name = "Krakow";
+      pszName = "Krakow";
       break;
       case 40:
-      name = "Krosno";
+      pszName = "Krosno";
       break;
       case 41:
-      name = "Legnica";
+      pszName = "Legnica";
       break;
       case 42:
-      name = "Leszno";
+      pszName = "Leszno";
       break;
       case 43:
-      name = "Lodz";
+      pszName = "Lodz";
       break;
       case 44:
-      name = "Lomza";
+      pszName = "Lomza";
       break;
       case 45:
-      name = "Lublin";
+      pszName = "Lublin";
       break;
       case 46:
-      name = "Nowy Sacz";
+      pszName = "Nowy Sacz";
       break;
       case 47:
-      name = "Olsztyn";
+      pszName = "Olsztyn";
       break;
       case 48:
-      name = "Opole";
+      pszName = "Opole";
       break;
       case 49:
-      name = "Ostroleka";
+      pszName = "Ostroleka";
       break;
       case 50:
-      name = "Pila";
+      pszName = "Pila";
       break;
       case 51:
-      name = "Piotrkow";
+      pszName = "Piotrkow";
       break;
       case 52:
-      name = "Plock";
+      pszName = "Plock";
       break;
       case 53:
-      name = "Poznan";
+      pszName = "Poznan";
       break;
       case 54:
-      name = "Przemysl";
+      pszName = "Przemysl";
       break;
       case 55:
-      name = "Radom";
+      pszName = "Radom";
       break;
       case 56:
-      name = "Rzeszow";
+      pszName = "Rzeszow";
       break;
       case 57:
-      name = "Siedlce";
+      pszName = "Siedlce";
       break;
       case 58:
-      name = "Sieradz";
+      pszName = "Sieradz";
       break;
       case 59:
-      name = "Skierniewice";
+      pszName = "Skierniewice";
       break;
       case 60:
-      name = "Slupsk";
+      pszName = "Slupsk";
       break;
       case 61:
-      name = "Suwalki";
+      pszName = "Suwalki";
       break;
       case 62:
-      name = "Szczecin";
+      pszName = "Szczecin";
       break;
       case 63:
-      name = "Tarnobrzeg";
+      pszName = "Tarnobrzeg";
       break;
       case 64:
-      name = "Tarnow";
+      pszName = "Tarnow";
       break;
       case 65:
-      name = "Torun";
+      pszName = "Torun";
       break;
       case 66:
-      name = "Walbrzych";
+      pszName = "Walbrzych";
       break;
       case 67:
-      name = "Warszawa";
+      pszName = "Warszawa";
       break;
       case 68:
-      name = "Wloclawek";
+      pszName = "Wloclawek";
       break;
       case 69:
-      name = "Wroclaw";
+      pszName = "Wroclaw";
       break;
       case 70:
-      name = "Zamosc";
+      pszName = "Zamosc";
       break;
       case 71:
-      name = "Zielona Gora";
+      pszName = "Zielona Gora";
       break;
       case 72:
-      name = "Dolnoslaskie";
+      pszName = "Dolnoslaskie";
       break;
       case 73:
-      name = "Kujawsko-Pomorskie";
+      pszName = "Kujawsko-Pomorskie";
       break;
       case 74:
-      name = "Lodzkie";
+      pszName = "Lodzkie";
       break;
       case 75:
-      name = "Lubelskie";
+      pszName = "Lubelskie";
       break;
       case 76:
-      name = "Lubuskie";
+      pszName = "Lubuskie";
       break;
       case 77:
-      name = "Malopolskie";
+      pszName = "Malopolskie";
       break;
       case 78:
-      name = "Mazowieckie";
+      pszName = "Mazowieckie";
       break;
       case 79:
-      name = "Opolskie";
+      pszName = "Opolskie";
       break;
       case 80:
-      name = "Podkarpackie";
+      pszName = "Podkarpackie";
       break;
       case 81:
-      name = "Podlaskie";
+      pszName = "Podlaskie";
       break;
       case 82:
-      name = "Pomorskie";
+      pszName = "Pomorskie";
       break;
       case 83:
-      name = "Slaskie";
+      pszName = "Slaskie";
       break;
       case 84:
-      name = "Swietokrzyskie";
+      pszName = "Swietokrzyskie";
       break;
       case 85:
-      name = "Warminsko-Mazurskie";
+      pszName = "Warminsko-Mazurskie";
       break;
       case 86:
-      name = "Wielkopolskie";
+      pszName = "Wielkopolskie";
       break;
       case 87:
-      name = "Zachodniopomorskie";
+      pszName = "Zachodniopomorskie";
       break;
     }
   }
   if (strcmp(country_code,"PS") == 0) {
     switch (region_code2) {
       case 1131:
-      name = "Gaza";
+      pszName = "Gaza";
       break;
       case 1798:
-      name = "West Bank";
+      pszName = "West Bank";
       break;
     }
   }
   if (strcmp(country_code,"PT") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Aveiro";
+      pszName = "Aveiro";
       break;
       case 3:
-      name = "Beja";
+      pszName = "Beja";
       break;
       case 4:
-      name = "Braga";
+      pszName = "Braga";
       break;
       case 5:
-      name = "Braganca";
+      pszName = "Braganca";
       break;
       case 6:
-      name = "Castelo Branco";
+      pszName = "Castelo Branco";
       break;
       case 7:
-      name = "Coimbra";
+      pszName = "Coimbra";
       break;
       case 8:
-      name = "Evora";
+      pszName = "Evora";
       break;
       case 9:
-      name = "Faro";
+      pszName = "Faro";
       break;
       case 10:
-      name = "Madeira";
+      pszName = "Madeira";
       break;
       case 11:
-      name = "Guarda";
+      pszName = "Guarda";
       break;
       case 13:
-      name = "Leiria";
+      pszName = "Leiria";
       break;
       case 14:
-      name = "Lisboa";
+      pszName = "Lisboa";
       break;
       case 16:
-      name = "Portalegre";
+      pszName = "Portalegre";
       break;
       case 17:
-      name = "Porto";
+      pszName = "Porto";
       break;
       case 18:
-      name = "Santarem";
+      pszName = "Santarem";
       break;
       case 19:
-      name = "Setubal";
+      pszName = "Setubal";
       break;
       case 20:
-      name = "Viana do Castelo";
+      pszName = "Viana do Castelo";
       break;
       case 21:
-      name = "Vila Real";
+      pszName = "Vila Real";
       break;
       case 22:
-      name = "Viseu";
+      pszName = "Viseu";
       break;
       case 23:
-      name = "Azores";
+      pszName = "Azores";
       break;
     }
   }
   if (strcmp(country_code,"PY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Alto Parana";
+      pszName = "Alto Parana";
       break;
       case 2:
-      name = "Amambay";
+      pszName = "Amambay";
       break;
       case 3:
-      name = "Boqueron";
+      pszName = "Boqueron";
       break;
       case 4:
-      name = "Caaguazu";
+      pszName = "Caaguazu";
       break;
       case 5:
-      name = "Caazapa";
+      pszName = "Caazapa";
       break;
       case 6:
-      name = "Central";
+      pszName = "Central";
       break;
       case 7:
-      name = "Concepcion";
+      pszName = "Concepcion";
       break;
       case 8:
-      name = "Cordillera";
+      pszName = "Cordillera";
       break;
       case 10:
-      name = "Guaira";
+      pszName = "Guaira";
       break;
       case 11:
-      name = "Itapua";
+      pszName = "Itapua";
       break;
       case 12:
-      name = "Misiones";
+      pszName = "Misiones";
       break;
       case 13:
-      name = "Neembucu";
+      pszName = "Neembucu";
       break;
       case 15:
-      name = "Paraguari";
+      pszName = "Paraguari";
       break;
       case 16:
-      name = "Presidente Hayes";
+      pszName = "Presidente Hayes";
       break;
       case 17:
-      name = "San Pedro";
+      pszName = "San Pedro";
       break;
       case 19:
-      name = "Canindeyu";
+      pszName = "Canindeyu";
       break;
       case 20:
-      name = "Chaco";
+      pszName = "Chaco";
       break;
       case 21:
-      name = "Nueva Asuncion";
+      pszName = "Nueva Asuncion";
       break;
       case 23:
-      name = "Alto Paraguay";
+      pszName = "Alto Paraguay";
       break;
     }
   }
   if (strcmp(country_code,"QA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ad Dawhah";
+      pszName = "Ad Dawhah";
       break;
       case 2:
-      name = "Al Ghuwariyah";
+      pszName = "Al Ghuwariyah";
       break;
       case 3:
-      name = "Al Jumaliyah";
+      pszName = "Al Jumaliyah";
       break;
       case 4:
-      name = "Al Khawr";
+      pszName = "Al Khawr";
       break;
       case 5:
-      name = "Al Wakrah Municipality";
+      pszName = "Al Wakrah Municipality";
       break;
       case 6:
-      name = "Ar Rayyan";
+      pszName = "Ar Rayyan";
       break;
       case 8:
-      name = "Madinat ach Shamal";
+      pszName = "Madinat ach Shamal";
       break;
       case 9:
-      name = "Umm Salal";
+      pszName = "Umm Salal";
       break;
       case 10:
-      name = "Al Wakrah";
+      pszName = "Al Wakrah";
       break;
       case 11:
-      name = "Jariyan al Batnah";
+      pszName = "Jariyan al Batnah";
       break;
       case 12:
-      name = "Umm Sa'atom";
+      pszName = "Umm Sa'atom";
       break;
     }
   }
   if (strcmp(country_code,"RO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Alba";
+      pszName = "Alba";
       break;
       case 2:
-      name = "Arad";
+      pszName = "Arad";
       break;
       case 3:
-      name = "Arges";
+      pszName = "Arges";
       break;
       case 4:
-      name = "Bacau";
+      pszName = "Bacau";
       break;
       case 5:
-      name = "Bihor";
+      pszName = "Bihor";
       break;
       case 6:
-      name = "Bistrita-Nasaud";
+      pszName = "Bistrita-Nasaud";
       break;
       case 7:
-      name = "Botosani";
+      pszName = "Botosani";
       break;
       case 8:
-      name = "Braila";
+      pszName = "Braila";
       break;
       case 9:
-      name = "Brasov";
+      pszName = "Brasov";
       break;
       case 10:
-      name = "Bucuresti";
+      pszName = "Bucuresti";
       break;
       case 11:
-      name = "Buzau";
+      pszName = "Buzau";
       break;
       case 12:
-      name = "Caras-Severin";
+      pszName = "Caras-Severin";
       break;
       case 13:
-      name = "Cluj";
+      pszName = "Cluj";
       break;
       case 14:
-      name = "Constanta";
+      pszName = "Constanta";
       break;
       case 15:
-      name = "Covasna";
+      pszName = "Covasna";
       break;
       case 16:
-      name = "Dambovita";
+      pszName = "Dambovita";
       break;
       case 17:
-      name = "Dolj";
+      pszName = "Dolj";
       break;
       case 18:
-      name = "Galati";
+      pszName = "Galati";
       break;
       case 19:
-      name = "Gorj";
+      pszName = "Gorj";
       break;
       case 20:
-      name = "Harghita";
+      pszName = "Harghita";
       break;
       case 21:
-      name = "Hunedoara";
+      pszName = "Hunedoara";
       break;
       case 22:
-      name = "Ialomita";
+      pszName = "Ialomita";
       break;
       case 23:
-      name = "Iasi";
+      pszName = "Iasi";
       break;
       case 25:
-      name = "Maramures";
+      pszName = "Maramures";
       break;
       case 26:
-      name = "Mehedinti";
+      pszName = "Mehedinti";
       break;
       case 27:
-      name = "Mures";
+      pszName = "Mures";
       break;
       case 28:
-      name = "Neamt";
+      pszName = "Neamt";
       break;
       case 29:
-      name = "Olt";
+      pszName = "Olt";
       break;
       case 30:
-      name = "Prahova";
+      pszName = "Prahova";
       break;
       case 31:
-      name = "Salaj";
+      pszName = "Salaj";
       break;
       case 32:
-      name = "Satu Mare";
+      pszName = "Satu Mare";
       break;
       case 33:
-      name = "Sibiu";
+      pszName = "Sibiu";
       break;
       case 34:
-      name = "Suceava";
+      pszName = "Suceava";
       break;
       case 35:
-      name = "Teleorman";
+      pszName = "Teleorman";
       break;
       case 36:
-      name = "Timis";
+      pszName = "Timis";
       break;
       case 37:
-      name = "Tulcea";
+      pszName = "Tulcea";
       break;
       case 38:
-      name = "Vaslui";
+      pszName = "Vaslui";
       break;
       case 39:
-      name = "Valcea";
+      pszName = "Valcea";
       break;
       case 40:
-      name = "Vrancea";
+      pszName = "Vrancea";
       break;
       case 41:
-      name = "Calarasi";
+      pszName = "Calarasi";
       break;
       case 42:
-      name = "Giurgiu";
+      pszName = "Giurgiu";
       break;
       case 43:
-      name = "Ilfov";
+      pszName = "Ilfov";
       break;
     }
   }
   if (strcmp(country_code,"RS") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Kosovo";
+      pszName = "Kosovo";
       break;
       case 2:
-      name = "Vojvodina";
+      pszName = "Vojvodina";
       break;
     }
   }
   if (strcmp(country_code,"RU") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Adygeya, Republic of";
+      pszName = "Adygeya, Republic of";
       break;
       case 2:
-      name = "Aginsky Buryatsky AO";
+      pszName = "Aginsky Buryatsky AO";
       break;
       case 3:
-      name = "Gorno-Altay";
+      pszName = "Gorno-Altay";
       break;
       case 4:
-      name = "Altaisky krai";
+      pszName = "Altaisky krai";
       break;
       case 5:
-      name = "Amur";
+      pszName = "Amur";
       break;
       case 6:
-      name = "Arkhangel'sk";
+      pszName = "Arkhangel'sk";
       break;
       case 7:
-      name = "Astrakhan'";
+      pszName = "Astrakhan'";
       break;
       case 8:
-      name = "Bashkortostan";
+      pszName = "Bashkortostan";
       break;
       case 9:
-      name = "Belgorod";
+      pszName = "Belgorod";
       break;
       case 10:
-      name = "Bryansk";
+      pszName = "Bryansk";
       break;
       case 11:
-      name = "Buryat";
+      pszName = "Buryat";
       break;
       case 12:
-      name = "Chechnya";
+      pszName = "Chechnya";
       break;
       case 13:
-      name = "Chelyabinsk";
+      pszName = "Chelyabinsk";
       break;
       case 14:
-      name = "Chita";
+      pszName = "Chita";
       break;
       case 15:
-      name = "Chukot";
+      pszName = "Chukot";
       break;
       case 16:
-      name = "Chuvashia";
+      pszName = "Chuvashia";
       break;
       case 17:
-      name = "Dagestan";
+      pszName = "Dagestan";
       break;
       case 18:
-      name = "Evenk";
+      pszName = "Evenk";
       break;
       case 19:
-      name = "Ingush";
+      pszName = "Ingush";
       break;
       case 20:
-      name = "Irkutsk";
+      pszName = "Irkutsk";
       break;
       case 21:
-      name = "Ivanovo";
+      pszName = "Ivanovo";
       break;
       case 22:
-      name = "Kabardin-Balkar";
+      pszName = "Kabardin-Balkar";
       break;
       case 23:
-      name = "Kaliningrad";
+      pszName = "Kaliningrad";
       break;
       case 24:
-      name = "Kalmyk";
+      pszName = "Kalmyk";
       break;
       case 25:
-      name = "Kaluga";
+      pszName = "Kaluga";
       break;
       case 26:
-      name = "Kamchatka";
+      pszName = "Kamchatka";
       break;
       case 27:
-      name = "Karachay-Cherkess";
+      pszName = "Karachay-Cherkess";
       break;
       case 28:
-      name = "Karelia";
+      pszName = "Karelia";
       break;
       case 29:
-      name = "Kemerovo";
+      pszName = "Kemerovo";
       break;
       case 30:
-      name = "Khabarovsk";
+      pszName = "Khabarovsk";
       break;
       case 31:
-      name = "Khakass";
+      pszName = "Khakass";
       break;
       case 32:
-      name = "Khanty-Mansiy";
+      pszName = "Khanty-Mansiy";
       break;
       case 33:
-      name = "Kirov";
+      pszName = "Kirov";
       break;
       case 34:
-      name = "Komi";
+      pszName = "Komi";
       break;
       case 35:
-      name = "Komi-Permyak";
+      pszName = "Komi-Permyak";
       break;
       case 36:
-      name = "Koryak";
+      pszName = "Koryak";
       break;
       case 37:
-      name = "Kostroma";
+      pszName = "Kostroma";
       break;
       case 38:
-      name = "Krasnodar";
+      pszName = "Krasnodar";
       break;
       case 39:
-      name = "Krasnoyarsk";
+      pszName = "Krasnoyarsk";
       break;
       case 40:
-      name = "Kurgan";
+      pszName = "Kurgan";
       break;
       case 41:
-      name = "Kursk";
+      pszName = "Kursk";
       break;
       case 42:
-      name = "Leningrad";
+      pszName = "Leningrad";
       break;
       case 43:
-      name = "Lipetsk";
+      pszName = "Lipetsk";
       break;
       case 44:
-      name = "Magadan";
+      pszName = "Magadan";
       break;
       case 45:
-      name = "Mariy-El";
+      pszName = "Mariy-El";
       break;
       case 46:
-      name = "Mordovia";
+      pszName = "Mordovia";
       break;
       case 47:
-      name = "Moskva";
+      pszName = "Moskva";
       break;
       case 48:
-      name = "Moscow City";
+      pszName = "Moscow City";
       break;
       case 49:
-      name = "Murmansk";
+      pszName = "Murmansk";
       break;
       case 50:
-      name = "Nenets";
+      pszName = "Nenets";
       break;
       case 51:
-      name = "Nizhegorod";
+      pszName = "Nizhegorod";
       break;
       case 52:
-      name = "Novgorod";
+      pszName = "Novgorod";
       break;
       case 53:
-      name = "Novosibirsk";
+      pszName = "Novosibirsk";
       break;
       case 54:
-      name = "Omsk";
+      pszName = "Omsk";
       break;
       case 55:
-      name = "Orenburg";
+      pszName = "Orenburg";
       break;
       case 56:
-      name = "Orel";
+      pszName = "Orel";
       break;
       case 57:
-      name = "Penza";
+      pszName = "Penza";
       break;
       case 58:
-      name = "Perm'";
+      pszName = "Perm'";
       break;
       case 59:
-      name = "Primor'ye";
+      pszName = "Primor'ye";
       break;
       case 60:
-      name = "Pskov";
+      pszName = "Pskov";
       break;
       case 61:
-      name = "Rostov";
+      pszName = "Rostov";
       break;
       case 62:
-      name = "Ryazan'";
+      pszName = "Ryazan'";
       break;
       case 63:
-      name = "Sakha";
+      pszName = "Sakha";
       break;
       case 64:
-      name = "Sakhalin";
+      pszName = "Sakhalin";
       break;
       case 65:
-      name = "Samara";
+      pszName = "Samara";
       break;
       case 66:
-      name = "Saint Petersburg City";
+      pszName = "Saint Petersburg City";
       break;
       case 67:
-      name = "Saratov";
+      pszName = "Saratov";
       break;
       case 68:
-      name = "North Ossetia";
+      pszName = "North Ossetia";
       break;
       case 69:
-      name = "Smolensk";
+      pszName = "Smolensk";
       break;
       case 70:
-      name = "Stavropol'";
+      pszName = "Stavropol'";
       break;
       case 71:
-      name = "Sverdlovsk";
+      pszName = "Sverdlovsk";
       break;
       case 72:
-      name = "Tambovskaya oblast";
+      pszName = "Tambovskaya oblast";
       break;
       case 73:
-      name = "Tatarstan";
+      pszName = "Tatarstan";
       break;
       case 74:
-      name = "Taymyr";
+      pszName = "Taymyr";
       break;
       case 75:
-      name = "Tomsk";
+      pszName = "Tomsk";
       break;
       case 76:
-      name = "Tula";
+      pszName = "Tula";
       break;
       case 77:
-      name = "Tver'";
+      pszName = "Tver'";
       break;
       case 78:
-      name = "Tyumen'";
+      pszName = "Tyumen'";
       break;
       case 79:
-      name = "Tuva";
+      pszName = "Tuva";
       break;
       case 80:
-      name = "Udmurt";
+      pszName = "Udmurt";
       break;
       case 81:
-      name = "Ul'yanovsk";
+      pszName = "Ul'yanovsk";
       break;
       case 82:
-      name = "Ust-Orda Buryat";
+      pszName = "Ust-Orda Buryat";
       break;
       case 83:
-      name = "Vladimir";
+      pszName = "Vladimir";
       break;
       case 84:
-      name = "Volgograd";
+      pszName = "Volgograd";
       break;
       case 85:
-      name = "Vologda";
+      pszName = "Vologda";
       break;
       case 86:
-      name = "Voronezh";
+      pszName = "Voronezh";
       break;
       case 87:
-      name = "Yamal-Nenets";
+      pszName = "Yamal-Nenets";
       break;
       case 88:
-      name = "Yaroslavl'";
+      pszName = "Yaroslavl'";
       break;
       case 89:
-      name = "Yevrey";
+      pszName = "Yevrey";
       break;
       case 90:
-      name = "Permskiy Kray";
+      pszName = "Permskiy Kray";
       break;
       case 91:
-      name = "Krasnoyarskiy Kray";
+      pszName = "Krasnoyarskiy Kray";
       break;
       case 942:
-      name = "Chechnya Republic";
+      pszName = "Chechnya Republic";
       break;
     }
   }
   if (strcmp(country_code,"RW") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Butare";
+      pszName = "Butare";
       break;
       case 6:
-      name = "Gitarama";
+      pszName = "Gitarama";
       break;
       case 9:
-      name = "Kigali";
+      pszName = "Kigali";
       break;
       case 11:
-      name = "Est";
+      pszName = "Est";
       break;
       case 12:
-      name = "Kigali";
+      pszName = "Kigali";
       break;
       case 13:
-      name = "Nord";
+      pszName = "Nord";
       break;
       case 14:
-      name = "Ouest";
+      pszName = "Ouest";
       break;
       case 15:
-      name = "Sud";
+      pszName = "Sud";
       break;
     }
   }
   if (strcmp(country_code,"SA") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Al Bahah";
+      pszName = "Al Bahah";
       break;
       case 3:
-      name = "Al Jawf";
+      pszName = "Al Jawf";
       break;
       case 5:
-      name = "Al Madinah";
+      pszName = "Al Madinah";
       break;
       case 6:
-      name = "Ash Sharqiyah";
+      pszName = "Ash Sharqiyah";
       break;
       case 8:
-      name = "Al Qasim";
+      pszName = "Al Qasim";
       break;
       case 9:
-      name = "Al Qurayyat";
+      pszName = "Al Qurayyat";
       break;
       case 10:
-      name = "Ar Riyad";
+      pszName = "Ar Riyad";
       break;
       case 13:
-      name = "Ha'il";
+      pszName = "Ha'il";
       break;
       case 14:
-      name = "Makkah";
+      pszName = "Makkah";
       break;
       case 15:
-      name = "Al Hudud ash Shamaliyah";
+      pszName = "Al Hudud ash Shamaliyah";
       break;
       case 16:
-      name = "Najran";
+      pszName = "Najran";
       break;
       case 17:
-      name = "Jizan";
+      pszName = "Jizan";
       break;
       case 19:
-      name = "Tabuk";
+      pszName = "Tabuk";
       break;
       case 20:
-      name = "Al Jawf";
+      pszName = "Al Jawf";
       break;
     }
   }
   if (strcmp(country_code,"SB") == 0) {
     switch (region_code2) {
       case 3:
-      name = "Malaita";
+      pszName = "Malaita";
       break;
       case 6:
-      name = "Guadalcanal";
+      pszName = "Guadalcanal";
       break;
       case 7:
-      name = "Isabel";
+      pszName = "Isabel";
       break;
       case 8:
-      name = "Makira";
+      pszName = "Makira";
       break;
       case 9:
-      name = "Temotu";
+      pszName = "Temotu";
       break;
       case 10:
-      name = "Central";
+      pszName = "Central";
       break;
       case 11:
-      name = "Western";
+      pszName = "Western";
       break;
       case 12:
-      name = "Choiseul";
+      pszName = "Choiseul";
       break;
       case 13:
-      name = "Rennell and Bellona";
+      pszName = "Rennell and Bellona";
       break;
     }
   }
   if (strcmp(country_code,"SC") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Anse aux Pins";
+      pszName = "Anse aux Pins";
       break;
       case 2:
-      name = "Anse Boileau";
+      pszName = "Anse Boileau";
       break;
       case 3:
-      name = "Anse Etoile";
+      pszName = "Anse Etoile";
       break;
       case 4:
-      name = "Anse Louis";
+      pszName = "Anse Louis";
       break;
       case 5:
-      name = "Anse Royale";
+      pszName = "Anse Royale";
       break;
       case 6:
-      name = "Baie Lazare";
+      pszName = "Baie Lazare";
       break;
       case 7:
-      name = "Baie Sainte Anne";
+      pszName = "Baie Sainte Anne";
       break;
       case 8:
-      name = "Beau Vallon";
+      pszName = "Beau Vallon";
       break;
       case 9:
-      name = "Bel Air";
+      pszName = "Bel Air";
       break;
       case 10:
-      name = "Bel Ombre";
+      pszName = "Bel Ombre";
       break;
       case 11:
-      name = "Cascade";
+      pszName = "Cascade";
       break;
       case 12:
-      name = "Glacis";
+      pszName = "Glacis";
       break;
       case 13:
-      name = "Grand' Anse";
+      pszName = "Grand' Anse";
       break;
       case 14:
-      name = "Grand' Anse";
+      pszName = "Grand' Anse";
       break;
       case 15:
-      name = "La Digue";
+      pszName = "La Digue";
       break;
       case 16:
-      name = "La Riviere Anglaise";
+      pszName = "La Riviere Anglaise";
       break;
       case 17:
-      name = "Mont Buxton";
+      pszName = "Mont Buxton";
       break;
       case 18:
-      name = "Mont Fleuri";
+      pszName = "Mont Fleuri";
       break;
       case 19:
-      name = "Plaisance";
+      pszName = "Plaisance";
       break;
       case 20:
-      name = "Pointe La Rue";
+      pszName = "Pointe La Rue";
       break;
       case 21:
-      name = "Port Glaud";
+      pszName = "Port Glaud";
       break;
       case 22:
-      name = "Saint Louis";
+      pszName = "Saint Louis";
       break;
       case 23:
-      name = "Takamaka";
+      pszName = "Takamaka";
       break;
     }
   }
   if (strcmp(country_code,"SD") == 0) {
     switch (region_code2) {
       case 27:
-      name = "Al Wusta";
+      pszName = "Al Wusta";
       break;
       case 28:
-      name = "Al Istiwa'iyah";
+      pszName = "Al Istiwa'iyah";
       break;
       case 29:
-      name = "Al Khartum";
+      pszName = "Al Khartum";
       break;
       case 30:
-      name = "Ash Shamaliyah";
+      pszName = "Ash Shamaliyah";
       break;
       case 31:
-      name = "Ash Sharqiyah";
+      pszName = "Ash Sharqiyah";
       break;
       case 32:
-      name = "Bahr al Ghazal";
+      pszName = "Bahr al Ghazal";
       break;
       case 33:
-      name = "Darfur";
+      pszName = "Darfur";
       break;
       case 34:
-      name = "Kurdufan";
+      pszName = "Kurdufan";
       break;
       case 35:
-      name = "Upper Nile";
+      pszName = "Upper Nile";
       break;
       case 40:
-      name = "Al Wahadah State";
+      pszName = "Al Wahadah State";
       break;
       case 44:
-      name = "Central Equatoria State";
+      pszName = "Central Equatoria State";
       break;
     }
   }
   if (strcmp(country_code,"SE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Alvsborgs Lan";
+      pszName = "Alvsborgs Lan";
       break;
       case 2:
-      name = "Blekinge Lan";
+      pszName = "Blekinge Lan";
       break;
       case 3:
-      name = "Gavleborgs Lan";
+      pszName = "Gavleborgs Lan";
       break;
       case 4:
-      name = "Goteborgs och Bohus Lan";
+      pszName = "Goteborgs och Bohus Lan";
       break;
       case 5:
-      name = "Gotlands Lan";
+      pszName = "Gotlands Lan";
       break;
       case 6:
-      name = "Hallands Lan";
+      pszName = "Hallands Lan";
       break;
       case 7:
-      name = "Jamtlands Lan";
+      pszName = "Jamtlands Lan";
       break;
       case 8:
-      name = "Jonkopings Lan";
+      pszName = "Jonkopings Lan";
       break;
       case 9:
-      name = "Kalmar Lan";
+      pszName = "Kalmar Lan";
       break;
       case 10:
-      name = "Dalarnas Lan";
+      pszName = "Dalarnas Lan";
       break;
       case 11:
-      name = "Kristianstads Lan";
+      pszName = "Kristianstads Lan";
       break;
       case 12:
-      name = "Kronobergs Lan";
+      pszName = "Kronobergs Lan";
       break;
       case 13:
-      name = "Malmohus Lan";
+      pszName = "Malmohus Lan";
       break;
       case 14:
-      name = "Norrbottens Lan";
+      pszName = "Norrbottens Lan";
       break;
       case 15:
-      name = "Orebro Lan";
+      pszName = "Orebro Lan";
       break;
       case 16:
-      name = "Ostergotlands Lan";
+      pszName = "Ostergotlands Lan";
       break;
       case 17:
-      name = "Skaraborgs Lan";
+      pszName = "Skaraborgs Lan";
       break;
       case 18:
-      name = "Sodermanlands Lan";
+      pszName = "Sodermanlands Lan";
       break;
       case 21:
-      name = "Uppsala Lan";
+      pszName = "Uppsala Lan";
       break;
       case 22:
-      name = "Varmlands Lan";
+      pszName = "Varmlands Lan";
       break;
       case 23:
-      name = "Vasterbottens Lan";
+      pszName = "Vasterbottens Lan";
       break;
       case 24:
-      name = "Vasternorrlands Lan";
+      pszName = "Vasternorrlands Lan";
       break;
       case 25:
-      name = "Vastmanlands Lan";
+      pszName = "Vastmanlands Lan";
       break;
       case 26:
-      name = "Stockholms Lan";
+      pszName = "Stockholms Lan";
       break;
       case 27:
-      name = "Skane Lan";
+      pszName = "Skane Lan";
       break;
       case 28:
-      name = "Vastra Gotaland";
+      pszName = "Vastra Gotaland";
       break;
     }
   }
   if (strcmp(country_code,"SH") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ascension";
+      pszName = "Ascension";
       break;
       case 2:
-      name = "Saint Helena";
+      pszName = "Saint Helena";
       break;
       case 3:
-      name = "Tristan da Cunha";
+      pszName = "Tristan da Cunha";
       break;
     }
   }
   if (strcmp(country_code,"SI") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ajdovscina";
+      pszName = "Ajdovscina";
       break;
       case 2:
-      name = "Beltinci";
+      pszName = "Beltinci";
       break;
       case 3:
-      name = "Bled";
+      pszName = "Bled";
       break;
       case 4:
-      name = "Bohinj";
+      pszName = "Bohinj";
       break;
       case 5:
-      name = "Borovnica";
+      pszName = "Borovnica";
       break;
       case 6:
-      name = "Bovec";
+      pszName = "Bovec";
       break;
       case 7:
-      name = "Brda";
+      pszName = "Brda";
       break;
       case 8:
-      name = "Brezice";
+      pszName = "Brezice";
       break;
       case 9:
-      name = "Brezovica";
+      pszName = "Brezovica";
       break;
       case 11:
-      name = "Celje";
+      pszName = "Celje";
       break;
       case 12:
-      name = "Cerklje na Gorenjskem";
+      pszName = "Cerklje na Gorenjskem";
       break;
       case 13:
-      name = "Cerknica";
+      pszName = "Cerknica";
       break;
       case 14:
-      name = "Cerkno";
+      pszName = "Cerkno";
       break;
       case 15:
-      name = "Crensovci";
+      pszName = "Crensovci";
       break;
       case 16:
-      name = "Crna na Koroskem";
+      pszName = "Crna na Koroskem";
       break;
       case 17:
-      name = "Crnomelj";
+      pszName = "Crnomelj";
       break;
       case 19:
-      name = "Divaca";
+      pszName = "Divaca";
       break;
       case 20:
-      name = "Dobrepolje";
+      pszName = "Dobrepolje";
       break;
       case 22:
-      name = "Dol pri Ljubljani";
+      pszName = "Dol pri Ljubljani";
       break;
       case 24:
-      name = "Dornava";
+      pszName = "Dornava";
       break;
       case 25:
-      name = "Dravograd";
+      pszName = "Dravograd";
       break;
       case 26:
-      name = "Duplek";
+      pszName = "Duplek";
       break;
       case 27:
-      name = "Gorenja Vas-Poljane";
+      pszName = "Gorenja Vas-Poljane";
       break;
       case 28:
-      name = "Gorisnica";
+      pszName = "Gorisnica";
       break;
       case 29:
-      name = "Gornja Radgona";
+      pszName = "Gornja Radgona";
       break;
       case 30:
-      name = "Gornji Grad";
+      pszName = "Gornji Grad";
       break;
       case 31:
-      name = "Gornji Petrovci";
+      pszName = "Gornji Petrovci";
       break;
       case 32:
-      name = "Grosuplje";
+      pszName = "Grosuplje";
       break;
       case 34:
-      name = "Hrastnik";
+      pszName = "Hrastnik";
       break;
       case 35:
-      name = "Hrpelje-Kozina";
+      pszName = "Hrpelje-Kozina";
       break;
       case 36:
-      name = "Idrija";
+      pszName = "Idrija";
       break;
       case 37:
-      name = "Ig";
+      pszName = "Ig";
       break;
       case 38:
-      name = "Ilirska Bistrica";
+      pszName = "Ilirska Bistrica";
       break;
       case 39:
-      name = "Ivancna Gorica";
+      pszName = "Ivancna Gorica";
       break;
       case 40:
-      name = "Izola-Isola";
+      pszName = "Izola-Isola";
       break;
       case 42:
-      name = "Jursinci";
+      pszName = "Jursinci";
       break;
       case 44:
-      name = "Kanal";
+      pszName = "Kanal";
       break;
       case 45:
-      name = "Kidricevo";
+      pszName = "Kidricevo";
       break;
       case 46:
-      name = "Kobarid";
+      pszName = "Kobarid";
       break;
       case 47:
-      name = "Kobilje";
+      pszName = "Kobilje";
       break;
       case 49:
-      name = "Komen";
+      pszName = "Komen";
       break;
       case 50:
-      name = "Koper-Capodistria";
+      pszName = "Koper-Capodistria";
       break;
       case 51:
-      name = "Kozje";
+      pszName = "Kozje";
       break;
       case 52:
-      name = "Kranj";
+      pszName = "Kranj";
       break;
       case 53:
-      name = "Kranjska Gora";
+      pszName = "Kranjska Gora";
       break;
       case 54:
-      name = "Krsko";
+      pszName = "Krsko";
       break;
       case 55:
-      name = "Kungota";
+      pszName = "Kungota";
       break;
       case 57:
-      name = "Lasko";
+      pszName = "Lasko";
       break;
       case 61:
-      name = "Ljubljana";
+      pszName = "Ljubljana";
       break;
       case 62:
-      name = "Ljubno";
+      pszName = "Ljubno";
       break;
       case 64:
-      name = "Logatec";
+      pszName = "Logatec";
       break;
       case 66:
-      name = "Loski Potok";
+      pszName = "Loski Potok";
       break;
       case 68:
-      name = "Lukovica";
+      pszName = "Lukovica";
       break;
       case 71:
-      name = "Medvode";
+      pszName = "Medvode";
       break;
       case 72:
-      name = "Menges";
+      pszName = "Menges";
       break;
       case 73:
-      name = "Metlika";
+      pszName = "Metlika";
       break;
       case 74:
-      name = "Mezica";
+      pszName = "Mezica";
       break;
       case 76:
-      name = "Mislinja";
+      pszName = "Mislinja";
       break;
       case 77:
-      name = "Moravce";
+      pszName = "Moravce";
       break;
       case 78:
-      name = "Moravske Toplice";
+      pszName = "Moravske Toplice";
       break;
       case 79:
-      name = "Mozirje";
+      pszName = "Mozirje";
       break;
       case 80:
-      name = "Murska Sobota";
+      pszName = "Murska Sobota";
       break;
       case 81:
-      name = "Muta";
+      pszName = "Muta";
       break;
       case 82:
-      name = "Naklo";
+      pszName = "Naklo";
       break;
       case 83:
-      name = "Nazarje";
+      pszName = "Nazarje";
       break;
       case 84:
-      name = "Nova Gorica";
+      pszName = "Nova Gorica";
       break;
       case 86:
-      name = "Odranci";
+      pszName = "Odranci";
       break;
       case 87:
-      name = "Ormoz";
+      pszName = "Ormoz";
       break;
       case 88:
-      name = "Osilnica";
+      pszName = "Osilnica";
       break;
       case 89:
-      name = "Pesnica";
+      pszName = "Pesnica";
       break;
       case 91:
-      name = "Pivka";
+      pszName = "Pivka";
       break;
       case 92:
-      name = "Podcetrtek";
+      pszName = "Podcetrtek";
       break;
       case 94:
-      name = "Postojna";
+      pszName = "Postojna";
       break;
       case 97:
-      name = "Puconci";
+      pszName = "Puconci";
       break;
       case 98:
-      name = "Racam";
+      pszName = "Racam";
       break;
       case 99:
-      name = "Radece";
+      pszName = "Radece";
       break;
       case 832:
-      name = "Radenci";
+      pszName = "Radenci";
       break;
       case 833:
-      name = "Radlje ob Dravi";
+      pszName = "Radlje ob Dravi";
       break;
       case 834:
-      name = "Radovljica";
+      pszName = "Radovljica";
       break;
       case 837:
-      name = "Rogasovci";
+      pszName = "Rogasovci";
       break;
       case 838:
-      name = "Rogaska Slatina";
+      pszName = "Rogaska Slatina";
       break;
       case 839:
-      name = "Rogatec";
+      pszName = "Rogatec";
       break;
       case 875:
-      name = "Semic";
+      pszName = "Semic";
       break;
       case 876:
-      name = "Sencur";
+      pszName = "Sencur";
       break;
       case 877:
-      name = "Sentilj";
+      pszName = "Sentilj";
       break;
       case 878:
-      name = "Sentjernej";
+      pszName = "Sentjernej";
       break;
       case 880:
-      name = "Sevnica";
+      pszName = "Sevnica";
       break;
       case 881:
-      name = "Sezana";
+      pszName = "Sezana";
       break;
       case 882:
-      name = "Skocjan";
+      pszName = "Skocjan";
       break;
       case 883:
-      name = "Skofja Loka";
+      pszName = "Skofja Loka";
       break;
       case 918:
-      name = "Skofljica";
+      pszName = "Skofljica";
       break;
       case 919:
-      name = "Slovenj Gradec";
+      pszName = "Slovenj Gradec";
       break;
       case 921:
-      name = "Slovenske Konjice";
+      pszName = "Slovenske Konjice";
       break;
       case 922:
-      name = "Smarje pri Jelsah";
+      pszName = "Smarje pri Jelsah";
       break;
       case 923:
-      name = "Smartno ob Paki";
+      pszName = "Smartno ob Paki";
       break;
       case 924:
-      name = "Sostanj";
+      pszName = "Sostanj";
       break;
       case 925:
-      name = "Starse";
+      pszName = "Starse";
       break;
       case 926:
-      name = "Store";
+      pszName = "Store";
       break;
       case 961:
-      name = "Sveti Jurij";
+      pszName = "Sveti Jurij";
       break;
       case 962:
-      name = "Tolmin";
+      pszName = "Tolmin";
       break;
       case 963:
-      name = "Trbovlje";
+      pszName = "Trbovlje";
       break;
       case 964:
-      name = "Trebnje";
+      pszName = "Trebnje";
       break;
       case 965:
-      name = "Trzic";
+      pszName = "Trzic";
       break;
       case 966:
-      name = "Turnisce";
+      pszName = "Turnisce";
       break;
       case 967:
-      name = "Velenje";
+      pszName = "Velenje";
       break;
       case 968:
-      name = "Velike Lasce";
+      pszName = "Velike Lasce";
       break;
       case 1004:
-      name = "Vipava";
+      pszName = "Vipava";
       break;
       case 1005:
-      name = "Vitanje";
+      pszName = "Vitanje";
       break;
       case 1006:
-      name = "Vodice";
+      pszName = "Vodice";
       break;
       case 1008:
-      name = "Vrhnika";
+      pszName = "Vrhnika";
       break;
       case 1009:
-      name = "Vuzenica";
+      pszName = "Vuzenica";
       break;
       case 1010:
-      name = "Zagorje ob Savi";
+      pszName = "Zagorje ob Savi";
       break;
       case 1012:
-      name = "Zavrc";
+      pszName = "Zavrc";
       break;
       case 1047:
-      name = "Zelezniki";
+      pszName = "Zelezniki";
       break;
       case 1048:
-      name = "Ziri";
+      pszName = "Ziri";
       break;
       case 1049:
-      name = "Zrece";
+      pszName = "Zrece";
       break;
       case 1093:
-      name = "Dobrova-Horjul-Polhov Gradec";
+      pszName = "Dobrova-Horjul-Polhov Gradec";
       break;
       case 1096:
-      name = "Domzale";
+      pszName = "Domzale";
       break;
       case 1136:
-      name = "Jesenice";
+      pszName = "Jesenice";
       break;
       case 1138:
-      name = "Kamnik";
+      pszName = "Kamnik";
       break;
       case 1139:
-      name = "Kocevje";
+      pszName = "Kocevje";
       break;
       case 1177:
-      name = "Kuzma";
+      pszName = "Kuzma";
       break;
       case 1178:
-      name = "Lenart";
+      pszName = "Lenart";
       break;
       case 1180:
-      name = "Litija";
+      pszName = "Litija";
       break;
       case 1181:
-      name = "Ljutomer";
+      pszName = "Ljutomer";
       break;
       case 1182:
-      name = "Loska Dolina";
+      pszName = "Loska Dolina";
       break;
       case 1184:
-      name = "Luce";
+      pszName = "Luce";
       break;
       case 1219:
-      name = "Majsperk";
+      pszName = "Majsperk";
       break;
       case 1220:
-      name = "Maribor";
+      pszName = "Maribor";
       break;
       case 1223:
-      name = "Miren-Kostanjevica";
+      pszName = "Miren-Kostanjevica";
       break;
       case 1225:
-      name = "Novo Mesto";
+      pszName = "Novo Mesto";
       break;
       case 1227:
-      name = "Piran";
+      pszName = "Piran";
       break;
       case 1266:
-      name = "Preddvor";
+      pszName = "Preddvor";
       break;
       case 1268:
-      name = "Ptuj";
+      pszName = "Ptuj";
       break;
       case 1305:
-      name = "Ribnica";
+      pszName = "Ribnica";
       break;
       case 1307:
-      name = "Ruse";
+      pszName = "Ruse";
       break;
       case 1311:
-      name = "Sentjur pri Celju";
+      pszName = "Sentjur pri Celju";
       break;
       case 1312:
-      name = "Slovenska Bistrica";
+      pszName = "Slovenska Bistrica";
       break;
       case 1392:
-      name = "Videm";
+      pszName = "Videm";
       break;
       case 1393:
-      name = "Vojnik";
+      pszName = "Vojnik";
       break;
       case 1395:
-      name = "Zalec";
+      pszName = "Zalec";
       break;
     }
   }
   if (strcmp(country_code,"SK") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Banska Bystrica";
+      pszName = "Banska Bystrica";
       break;
       case 2:
-      name = "Bratislava";
+      pszName = "Bratislava";
       break;
       case 3:
-      name = "Kosice";
+      pszName = "Kosice";
       break;
       case 4:
-      name = "Nitra";
+      pszName = "Nitra";
       break;
       case 5:
-      name = "Presov";
+      pszName = "Presov";
       break;
       case 6:
-      name = "Trencin";
+      pszName = "Trencin";
       break;
       case 7:
-      name = "Trnava";
+      pszName = "Trnava";
       break;
       case 8:
-      name = "Zilina";
+      pszName = "Zilina";
       break;
     }
   }
   if (strcmp(country_code,"SL") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 2:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 3:
-      name = "Southern";
+      pszName = "Southern";
       break;
       case 4:
-      name = "Western Area";
+      pszName = "Western Area";
       break;
     }
   }
   if (strcmp(country_code,"SM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Acquaviva";
+      pszName = "Acquaviva";
       break;
       case 2:
-      name = "Chiesanuova";
+      pszName = "Chiesanuova";
       break;
       case 3:
-      name = "Domagnano";
+      pszName = "Domagnano";
       break;
       case 4:
-      name = "Faetano";
+      pszName = "Faetano";
       break;
       case 5:
-      name = "Fiorentino";
+      pszName = "Fiorentino";
       break;
       case 6:
-      name = "Borgo Maggiore";
+      pszName = "Borgo Maggiore";
       break;
       case 7:
-      name = "San Marino";
+      pszName = "San Marino";
       break;
       case 8:
-      name = "Monte Giardino";
+      pszName = "Monte Giardino";
       break;
       case 9:
-      name = "Serravalle";
+      pszName = "Serravalle";
       break;
     }
   }
   if (strcmp(country_code,"SN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Dakar";
+      pszName = "Dakar";
       break;
       case 3:
-      name = "Diourbel";
+      pszName = "Diourbel";
       break;
       case 4:
-      name = "Saint-Louis";
+      pszName = "Saint-Louis";
       break;
       case 5:
-      name = "Tambacounda";
+      pszName = "Tambacounda";
       break;
       case 7:
-      name = "Thies";
+      pszName = "Thies";
       break;
       case 9:
-      name = "Fatick";
+      pszName = "Fatick";
       break;
       case 10:
-      name = "Kaolack";
+      pszName = "Kaolack";
       break;
       case 11:
-      name = "Kolda";
+      pszName = "Kolda";
       break;
       case 12:
-      name = "Ziguinchor";
+      pszName = "Ziguinchor";
       break;
       case 13:
-      name = "Louga";
+      pszName = "Louga";
       break;
       case 14:
-      name = "Saint-Louis";
+      pszName = "Saint-Louis";
       break;
       case 15:
-      name = "Matam";
+      pszName = "Matam";
       break;
     }
   }
   if (strcmp(country_code,"SO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Bakool";
+      pszName = "Bakool";
       break;
       case 2:
-      name = "Banaadir";
+      pszName = "Banaadir";
       break;
       case 3:
-      name = "Bari";
+      pszName = "Bari";
       break;
       case 4:
-      name = "Bay";
+      pszName = "Bay";
       break;
       case 5:
-      name = "Galguduud";
+      pszName = "Galguduud";
       break;
       case 6:
-      name = "Gedo";
+      pszName = "Gedo";
       break;
       case 7:
-      name = "Hiiraan";
+      pszName = "Hiiraan";
       break;
       case 8:
-      name = "Jubbada Dhexe";
+      pszName = "Jubbada Dhexe";
       break;
       case 9:
-      name = "Jubbada Hoose";
+      pszName = "Jubbada Hoose";
       break;
       case 10:
-      name = "Mudug";
+      pszName = "Mudug";
       break;
       case 11:
-      name = "Nugaal";
+      pszName = "Nugaal";
       break;
       case 12:
-      name = "Sanaag";
+      pszName = "Sanaag";
       break;
       case 13:
-      name = "Shabeellaha Dhexe";
+      pszName = "Shabeellaha Dhexe";
       break;
       case 14:
-      name = "Shabeellaha Hoose";
+      pszName = "Shabeellaha Hoose";
       break;
       case 16:
-      name = "Woqooyi Galbeed";
+      pszName = "Woqooyi Galbeed";
       break;
       case 18:
-      name = "Nugaal";
+      pszName = "Nugaal";
       break;
       case 19:
-      name = "Togdheer";
+      pszName = "Togdheer";
       break;
       case 20:
-      name = "Woqooyi Galbeed";
+      pszName = "Woqooyi Galbeed";
       break;
       case 21:
-      name = "Awdal";
+      pszName = "Awdal";
       break;
       case 22:
-      name = "Sool";
+      pszName = "Sool";
       break;
     }
   }
   if (strcmp(country_code,"SR") == 0) {
     switch (region_code2) {
       case 10:
-      name = "Brokopondo";
+      pszName = "Brokopondo";
       break;
       case 11:
-      name = "Commewijne";
+      pszName = "Commewijne";
       break;
       case 12:
-      name = "Coronie";
+      pszName = "Coronie";
       break;
       case 13:
-      name = "Marowijne";
+      pszName = "Marowijne";
       break;
       case 14:
-      name = "Nickerie";
+      pszName = "Nickerie";
       break;
       case 15:
-      name = "Para";
+      pszName = "Para";
       break;
       case 16:
-      name = "Paramaribo";
+      pszName = "Paramaribo";
       break;
       case 17:
-      name = "Saramacca";
+      pszName = "Saramacca";
       break;
       case 18:
-      name = "Sipaliwini";
+      pszName = "Sipaliwini";
       break;
       case 19:
-      name = "Wanica";
+      pszName = "Wanica";
       break;
     }
   }
   if (strcmp(country_code,"ST") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Principe";
+      pszName = "Principe";
       break;
       case 2:
-      name = "Sao Tome";
+      pszName = "Sao Tome";
       break;
     }
   }
   if (strcmp(country_code,"SV") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ahuachapan";
+      pszName = "Ahuachapan";
       break;
       case 2:
-      name = "Cabanas";
+      pszName = "Cabanas";
       break;
       case 3:
-      name = "Chalatenango";
+      pszName = "Chalatenango";
       break;
       case 4:
-      name = "Cuscatlan";
+      pszName = "Cuscatlan";
       break;
       case 5:
-      name = "La Libertad";
+      pszName = "La Libertad";
       break;
       case 6:
-      name = "La Paz";
+      pszName = "La Paz";
       break;
       case 7:
-      name = "La Union";
+      pszName = "La Union";
       break;
       case 8:
-      name = "Morazan";
+      pszName = "Morazan";
       break;
       case 9:
-      name = "San Miguel";
+      pszName = "San Miguel";
       break;
       case 10:
-      name = "San Salvador";
+      pszName = "San Salvador";
       break;
       case 11:
-      name = "Santa Ana";
+      pszName = "Santa Ana";
       break;
       case 12:
-      name = "San Vicente";
+      pszName = "San Vicente";
       break;
       case 13:
-      name = "Sonsonate";
+      pszName = "Sonsonate";
       break;
       case 14:
-      name = "Usulutan";
+      pszName = "Usulutan";
       break;
     }
   }
   if (strcmp(country_code,"SY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Al Hasakah";
+      pszName = "Al Hasakah";
       break;
       case 2:
-      name = "Al Ladhiqiyah";
+      pszName = "Al Ladhiqiyah";
       break;
       case 3:
-      name = "Al Qunaytirah";
+      pszName = "Al Qunaytirah";
       break;
       case 4:
-      name = "Ar Raqqah";
+      pszName = "Ar Raqqah";
       break;
       case 5:
-      name = "As Suwayda'";
+      pszName = "As Suwayda'";
       break;
       case 6:
-      name = "Dar";
+      pszName = "Dar";
       break;
       case 7:
-      name = "Dayr az Zawr";
+      pszName = "Dayr az Zawr";
       break;
       case 8:
-      name = "Rif Dimashq";
+      pszName = "Rif Dimashq";
       break;
       case 9:
-      name = "Halab";
+      pszName = "Halab";
       break;
       case 10:
-      name = "Hamah";
+      pszName = "Hamah";
       break;
       case 11:
-      name = "Hims";
+      pszName = "Hims";
       break;
       case 12:
-      name = "Idlib";
+      pszName = "Idlib";
       break;
       case 13:
-      name = "Dimashq";
+      pszName = "Dimashq";
       break;
       case 14:
-      name = "Tartus";
+      pszName = "Tartus";
       break;
     }
   }
   if (strcmp(country_code,"SZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Hhohho";
+      pszName = "Hhohho";
       break;
       case 2:
-      name = "Lubombo";
+      pszName = "Lubombo";
       break;
       case 3:
-      name = "Manzini";
+      pszName = "Manzini";
       break;
       case 4:
-      name = "Shiselweni";
+      pszName = "Shiselweni";
       break;
       case 5:
-      name = "Praslin";
+      pszName = "Praslin";
       break;
     }
   }
   if (strcmp(country_code,"TD") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Batha";
+      pszName = "Batha";
       break;
       case 2:
-      name = "Biltine";
+      pszName = "Biltine";
       break;
       case 3:
-      name = "Borkou-Ennedi-Tibesti";
+      pszName = "Borkou-Ennedi-Tibesti";
       break;
       case 4:
-      name = "Chari-Baguirmi";
+      pszName = "Chari-Baguirmi";
       break;
       case 5:
-      name = "Guera";
+      pszName = "Guera";
       break;
       case 6:
-      name = "Kanem";
+      pszName = "Kanem";
       break;
       case 7:
-      name = "Lac";
+      pszName = "Lac";
       break;
       case 8:
-      name = "Logone Occidental";
+      pszName = "Logone Occidental";
       break;
       case 9:
-      name = "Logone Oriental";
+      pszName = "Logone Oriental";
       break;
       case 10:
-      name = "Mayo-Kebbi";
+      pszName = "Mayo-Kebbi";
       break;
       case 11:
-      name = "Moyen-Chari";
+      pszName = "Moyen-Chari";
       break;
       case 12:
-      name = "Ouaddai";
+      pszName = "Ouaddai";
       break;
       case 13:
-      name = "Salamat";
+      pszName = "Salamat";
       break;
       case 14:
-      name = "Tandjile";
+      pszName = "Tandjile";
       break;
     }
   }
   if (strcmp(country_code,"TG") == 0) {
     switch (region_code2) {
       case 9:
-      name = "Lama-Kara";
+      pszName = "Lama-Kara";
       break;
       case 18:
-      name = "Tsevie";
+      pszName = "Tsevie";
       break;
       case 22:
-      name = "Centrale";
+      pszName = "Centrale";
       break;
       case 23:
-      name = "Kara";
+      pszName = "Kara";
       break;
       case 24:
-      name = "Maritime";
+      pszName = "Maritime";
       break;
       case 25:
-      name = "Plateaux";
+      pszName = "Plateaux";
       break;
       case 26:
-      name = "Savanes";
+      pszName = "Savanes";
       break;
     }
   }
   if (strcmp(country_code,"TH") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Mae Hong Son";
+      pszName = "Mae Hong Son";
       break;
       case 2:
-      name = "Chiang Mai";
+      pszName = "Chiang Mai";
       break;
       case 3:
-      name = "Chiang Rai";
+      pszName = "Chiang Rai";
       break;
       case 4:
-      name = "Nan";
+      pszName = "Nan";
       break;
       case 5:
-      name = "Lamphun";
+      pszName = "Lamphun";
       break;
       case 6:
-      name = "Lampang";
+      pszName = "Lampang";
       break;
       case 7:
-      name = "Phrae";
+      pszName = "Phrae";
       break;
       case 8:
-      name = "Tak";
+      pszName = "Tak";
       break;
       case 9:
-      name = "Sukhothai";
+      pszName = "Sukhothai";
       break;
       case 10:
-      name = "Uttaradit";
+      pszName = "Uttaradit";
       break;
       case 11:
-      name = "Kamphaeng Phet";
+      pszName = "Kamphaeng Phet";
       break;
       case 12:
-      name = "Phitsanulok";
+      pszName = "Phitsanulok";
       break;
       case 13:
-      name = "Phichit";
+      pszName = "Phichit";
       break;
       case 14:
-      name = "Phetchabun";
+      pszName = "Phetchabun";
       break;
       case 15:
-      name = "Uthai Thani";
+      pszName = "Uthai Thani";
       break;
       case 16:
-      name = "Nakhon Sawan";
+      pszName = "Nakhon Sawan";
       break;
       case 17:
-      name = "Nong Khai";
+      pszName = "Nong Khai";
       break;
       case 18:
-      name = "Loei";
+      pszName = "Loei";
       break;
       case 20:
-      name = "Sakon Nakhon";
+      pszName = "Sakon Nakhon";
       break;
       case 21:
-      name = "Nakhon Phanom";
+      pszName = "Nakhon Phanom";
       break;
       case 22:
-      name = "Khon Kaen";
+      pszName = "Khon Kaen";
       break;
       case 23:
-      name = "Kalasin";
+      pszName = "Kalasin";
       break;
       case 24:
-      name = "Maha Sarakham";
+      pszName = "Maha Sarakham";
       break;
       case 25:
-      name = "Roi Et";
+      pszName = "Roi Et";
       break;
       case 26:
-      name = "Chaiyaphum";
+      pszName = "Chaiyaphum";
       break;
       case 27:
-      name = "Nakhon Ratchasima";
+      pszName = "Nakhon Ratchasima";
       break;
       case 28:
-      name = "Buriram";
+      pszName = "Buriram";
       break;
       case 29:
-      name = "Surin";
+      pszName = "Surin";
       break;
       case 30:
-      name = "Sisaket";
+      pszName = "Sisaket";
       break;
       case 31:
-      name = "Narathiwat";
+      pszName = "Narathiwat";
       break;
       case 32:
-      name = "Chai Nat";
+      pszName = "Chai Nat";
       break;
       case 33:
-      name = "Sing Buri";
+      pszName = "Sing Buri";
       break;
       case 34:
-      name = "Lop Buri";
+      pszName = "Lop Buri";
       break;
       case 35:
-      name = "Ang Thong";
+      pszName = "Ang Thong";
       break;
       case 36:
-      name = "Phra Nakhon Si Ayutthaya";
+      pszName = "Phra Nakhon Si Ayutthaya";
       break;
       case 37:
-      name = "Saraburi";
+      pszName = "Saraburi";
       break;
       case 38:
-      name = "Nonthaburi";
+      pszName = "Nonthaburi";
       break;
       case 39:
-      name = "Pathum Thani";
+      pszName = "Pathum Thani";
       break;
       case 40:
-      name = "Krung Thep";
+      pszName = "Krung Thep";
       break;
       case 41:
-      name = "Phayao";
+      pszName = "Phayao";
       break;
       case 42:
-      name = "Samut Prakan";
+      pszName = "Samut Prakan";
       break;
       case 43:
-      name = "Nakhon Nayok";
+      pszName = "Nakhon Nayok";
       break;
       case 44:
-      name = "Chachoengsao";
+      pszName = "Chachoengsao";
       break;
       case 45:
-      name = "Prachin Buri";
+      pszName = "Prachin Buri";
       break;
       case 46:
-      name = "Chon Buri";
+      pszName = "Chon Buri";
       break;
       case 47:
-      name = "Rayong";
+      pszName = "Rayong";
       break;
       case 48:
-      name = "Chanthaburi";
+      pszName = "Chanthaburi";
       break;
       case 49:
-      name = "Trat";
+      pszName = "Trat";
       break;
       case 50:
-      name = "Kanchanaburi";
+      pszName = "Kanchanaburi";
       break;
       case 51:
-      name = "Suphan Buri";
+      pszName = "Suphan Buri";
       break;
       case 52:
-      name = "Ratchaburi";
+      pszName = "Ratchaburi";
       break;
       case 53:
-      name = "Nakhon Pathom";
+      pszName = "Nakhon Pathom";
       break;
       case 54:
-      name = "Samut Songkhram";
+      pszName = "Samut Songkhram";
       break;
       case 55:
-      name = "Samut Sakhon";
+      pszName = "Samut Sakhon";
       break;
       case 56:
-      name = "Phetchaburi";
+      pszName = "Phetchaburi";
       break;
       case 57:
-      name = "Prachuap Khiri Khan";
+      pszName = "Prachuap Khiri Khan";
       break;
       case 58:
-      name = "Chumphon";
+      pszName = "Chumphon";
       break;
       case 59:
-      name = "Ranong";
+      pszName = "Ranong";
       break;
       case 60:
-      name = "Surat Thani";
+      pszName = "Surat Thani";
       break;
       case 61:
-      name = "Phangnga";
+      pszName = "Phangnga";
       break;
       case 62:
-      name = "Phuket";
+      pszName = "Phuket";
       break;
       case 63:
-      name = "Krabi";
+      pszName = "Krabi";
       break;
       case 64:
-      name = "Nakhon Si Thammarat";
+      pszName = "Nakhon Si Thammarat";
       break;
       case 65:
-      name = "Trang";
+      pszName = "Trang";
       break;
       case 66:
-      name = "Phatthalung";
+      pszName = "Phatthalung";
       break;
       case 67:
-      name = "Satun";
+      pszName = "Satun";
       break;
       case 68:
-      name = "Songkhla";
+      pszName = "Songkhla";
       break;
       case 69:
-      name = "Pattani";
+      pszName = "Pattani";
       break;
       case 70:
-      name = "Yala";
+      pszName = "Yala";
       break;
       case 71:
-      name = "Ubon Ratchathani";
+      pszName = "Ubon Ratchathani";
       break;
       case 72:
-      name = "Yasothon";
+      pszName = "Yasothon";
       break;
       case 73:
-      name = "Nakhon Phanom";
+      pszName = "Nakhon Phanom";
       break;
       case 75:
-      name = "Ubon Ratchathani";
+      pszName = "Ubon Ratchathani";
       break;
       case 76:
-      name = "Udon Thani";
+      pszName = "Udon Thani";
       break;
       case 77:
-      name = "Amnat Charoen";
+      pszName = "Amnat Charoen";
       break;
       case 78:
-      name = "Mukdahan";
+      pszName = "Mukdahan";
       break;
     }
   }
   if (strcmp(country_code,"TJ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Kuhistoni Badakhshon";
+      pszName = "Kuhistoni Badakhshon";
       break;
       case 2:
-      name = "Khatlon";
+      pszName = "Khatlon";
       break;
       case 3:
-      name = "Sughd";
+      pszName = "Sughd";
       break;
     }
   }
   if (strcmp(country_code,"TM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ahal";
+      pszName = "Ahal";
       break;
       case 2:
-      name = "Balkan";
+      pszName = "Balkan";
       break;
       case 3:
-      name = "Dashoguz";
+      pszName = "Dashoguz";
       break;
       case 4:
-      name = "Lebap";
+      pszName = "Lebap";
       break;
       case 5:
-      name = "Mary";
+      pszName = "Mary";
       break;
     }
   }
   if (strcmp(country_code,"TN") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Al Qasrayn";
+      pszName = "Al Qasrayn";
       break;
       case 3:
-      name = "Al Qayrawan";
+      pszName = "Al Qayrawan";
       break;
       case 6:
-      name = "Jundubah";
+      pszName = "Jundubah";
       break;
       case 10:
-      name = "Qafsah";
+      pszName = "Qafsah";
       break;
       case 14:
-      name = "Kef";
+      pszName = "Kef";
       break;
       case 15:
-      name = "Al Mahdiyah";
+      pszName = "Al Mahdiyah";
       break;
       case 16:
-      name = "Al Munastir";
+      pszName = "Al Munastir";
       break;
       case 17:
-      name = "Bajah";
+      pszName = "Bajah";
       break;
       case 18:
-      name = "Banzart";
+      pszName = "Banzart";
       break;
       case 19:
-      name = "Nabul";
+      pszName = "Nabul";
       break;
       case 22:
-      name = "Silyanah";
+      pszName = "Silyanah";
       break;
       case 23:
-      name = "Susah";
+      pszName = "Susah";
       break;
       case 26:
-      name = "Chaiyaphum Province";
+      pszName = "Chaiyaphum Province";
       break;
       case 27:
-      name = "Bin";
+      pszName = "Bin";
       break;
       case 28:
-      name = "Madanin";
+      pszName = "Madanin";
       break;
       case 29:
-      name = "Qabis";
+      pszName = "Qabis";
       break;
       case 30:
-      name = "Qafsah";
+      pszName = "Qafsah";
       break;
       case 31:
-      name = "Qibili";
+      pszName = "Qibili";
       break;
       case 32:
-      name = "Safaqis";
+      pszName = "Safaqis";
       break;
       case 33:
-      name = "Sidi Bu Zayd";
+      pszName = "Sidi Bu Zayd";
       break;
       case 34:
-      name = "Tatawin";
+      pszName = "Tatawin";
       break;
       case 35:
-      name = "Tawzar";
+      pszName = "Tawzar";
       break;
       case 36:
-      name = "Tunis";
+      pszName = "Tunis";
       break;
       case 37:
-      name = "Zaghwan";
+      pszName = "Zaghwan";
       break;
       case 38:
-      name = "Ariana";
+      pszName = "Ariana";
       break;
       case 39:
-      name = "Manouba";
+      pszName = "Manouba";
       break;
     }
   }
   if (strcmp(country_code,"TO") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Ha";
+      pszName = "Ha";
       break;
       case 2:
-      name = "Tongatapu";
+      pszName = "Tongatapu";
       break;
       case 3:
-      name = "Vava";
+      pszName = "Vava";
       break;
     }
   }
   if (strcmp(country_code,"TR") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Adiyaman";
+      pszName = "Adiyaman";
       break;
       case 3:
-      name = "Afyonkarahisar";
+      pszName = "Afyonkarahisar";
       break;
       case 4:
-      name = "Agri";
+      pszName = "Agri";
       break;
       case 5:
-      name = "Amasya";
+      pszName = "Amasya";
       break;
       case 7:
-      name = "Antalya";
+      pszName = "Antalya";
       break;
       case 8:
-      name = "Artvin";
+      pszName = "Artvin";
       break;
       case 9:
-      name = "Aydin";
+      pszName = "Aydin";
       break;
       case 10:
-      name = "Balikesir";
+      pszName = "Balikesir";
       break;
       case 11:
-      name = "Bilecik";
+      pszName = "Bilecik";
       break;
       case 12:
-      name = "Bingol";
+      pszName = "Bingol";
       break;
       case 13:
-      name = "Bitlis";
+      pszName = "Bitlis";
       break;
       case 14:
-      name = "Bolu";
+      pszName = "Bolu";
       break;
       case 15:
-      name = "Burdur";
+      pszName = "Burdur";
       break;
       case 16:
-      name = "Bursa";
+      pszName = "Bursa";
       break;
       case 17:
-      name = "Canakkale";
+      pszName = "Canakkale";
       break;
       case 19:
-      name = "Corum";
+      pszName = "Corum";
       break;
       case 20:
-      name = "Denizli";
+      pszName = "Denizli";
       break;
       case 21:
-      name = "Diyarbakir";
+      pszName = "Diyarbakir";
       break;
       case 22:
-      name = "Edirne";
+      pszName = "Edirne";
       break;
       case 23:
-      name = "Elazig";
+      pszName = "Elazig";
       break;
       case 24:
-      name = "Erzincan";
+      pszName = "Erzincan";
       break;
       case 25:
-      name = "Erzurum";
+      pszName = "Erzurum";
       break;
       case 26:
-      name = "Eskisehir";
+      pszName = "Eskisehir";
       break;
       case 28:
-      name = "Giresun";
+      pszName = "Giresun";
       break;
       case 31:
-      name = "Hatay";
+      pszName = "Hatay";
       break;
       case 32:
-      name = "Icel";
+      pszName = "Icel";
       break;
       case 33:
-      name = "Isparta";
+      pszName = "Isparta";
       break;
       case 34:
-      name = "Istanbul";
+      pszName = "Istanbul";
       break;
       case 35:
-      name = "Izmir";
+      pszName = "Izmir";
       break;
       case 37:
-      name = "Kastamonu";
+      pszName = "Kastamonu";
       break;
       case 38:
-      name = "Kayseri";
+      pszName = "Kayseri";
       break;
       case 39:
-      name = "Kirklareli";
+      pszName = "Kirklareli";
       break;
       case 40:
-      name = "Kirsehir";
+      pszName = "Kirsehir";
       break;
       case 41:
-      name = "Kocaeli";
+      pszName = "Kocaeli";
       break;
       case 43:
-      name = "Kutahya";
+      pszName = "Kutahya";
       break;
       case 44:
-      name = "Malatya";
+      pszName = "Malatya";
       break;
       case 45:
-      name = "Manisa";
+      pszName = "Manisa";
       break;
       case 46:
-      name = "Kahramanmaras";
+      pszName = "Kahramanmaras";
       break;
       case 48:
-      name = "Mugla";
+      pszName = "Mugla";
       break;
       case 49:
-      name = "Mus";
+      pszName = "Mus";
       break;
       case 50:
-      name = "Nevsehir";
+      pszName = "Nevsehir";
       break;
       case 52:
-      name = "Ordu";
+      pszName = "Ordu";
       break;
       case 53:
-      name = "Rize";
+      pszName = "Rize";
       break;
       case 54:
-      name = "Sakarya";
+      pszName = "Sakarya";
       break;
       case 55:
-      name = "Samsun";
+      pszName = "Samsun";
       break;
       case 57:
-      name = "Sinop";
+      pszName = "Sinop";
       break;
       case 58:
-      name = "Sivas";
+      pszName = "Sivas";
       break;
       case 59:
-      name = "Tekirdag";
+      pszName = "Tekirdag";
       break;
       case 60:
-      name = "Tokat";
+      pszName = "Tokat";
       break;
       case 61:
-      name = "Trabzon";
+      pszName = "Trabzon";
       break;
       case 62:
-      name = "Tunceli";
+      pszName = "Tunceli";
       break;
       case 63:
-      name = "Sanliurfa";
+      pszName = "Sanliurfa";
       break;
       case 64:
-      name = "Usak";
+      pszName = "Usak";
       break;
       case 65:
-      name = "Van";
+      pszName = "Van";
       break;
       case 66:
-      name = "Yozgat";
+      pszName = "Yozgat";
       break;
       case 68:
-      name = "Ankara";
+      pszName = "Ankara";
       break;
       case 69:
-      name = "Gumushane";
+      pszName = "Gumushane";
       break;
       case 70:
-      name = "Hakkari";
+      pszName = "Hakkari";
       break;
       case 71:
-      name = "Konya";
+      pszName = "Konya";
       break;
       case 72:
-      name = "Mardin";
+      pszName = "Mardin";
       break;
       case 73:
-      name = "Nigde";
+      pszName = "Nigde";
       break;
       case 74:
-      name = "Siirt";
+      pszName = "Siirt";
       break;
       case 75:
-      name = "Aksaray";
+      pszName = "Aksaray";
       break;
       case 76:
-      name = "Batman";
+      pszName = "Batman";
       break;
       case 77:
-      name = "Bayburt";
+      pszName = "Bayburt";
       break;
       case 78:
-      name = "Karaman";
+      pszName = "Karaman";
       break;
       case 79:
-      name = "Kirikkale";
+      pszName = "Kirikkale";
       break;
       case 80:
-      name = "Sirnak";
+      pszName = "Sirnak";
       break;
       case 81:
-      name = "Adana";
+      pszName = "Adana";
       break;
       case 82:
-      name = "Cankiri";
+      pszName = "Cankiri";
       break;
       case 83:
-      name = "Gaziantep";
+      pszName = "Gaziantep";
       break;
       case 84:
-      name = "Kars";
+      pszName = "Kars";
       break;
       case 85:
-      name = "Zonguldak";
+      pszName = "Zonguldak";
       break;
       case 86:
-      name = "Ardahan";
+      pszName = "Ardahan";
       break;
       case 87:
-      name = "Bartin";
+      pszName = "Bartin";
       break;
       case 88:
-      name = "Igdir";
+      pszName = "Igdir";
       break;
       case 89:
-      name = "Karabuk";
+      pszName = "Karabuk";
       break;
       case 90:
-      name = "Kilis";
+      pszName = "Kilis";
       break;
       case 91:
-      name = "Osmaniye";
+      pszName = "Osmaniye";
       break;
       case 92:
-      name = "Yalova";
+      pszName = "Yalova";
       break;
       case 93:
-      name = "Duzce";
+      pszName = "Duzce";
       break;
     }
   }
   if (strcmp(country_code,"TT") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Arima";
+      pszName = "Arima";
       break;
       case 2:
-      name = "Caroni";
+      pszName = "Caroni";
       break;
       case 3:
-      name = "Mayaro";
+      pszName = "Mayaro";
       break;
       case 4:
-      name = "Nariva";
+      pszName = "Nariva";
       break;
       case 5:
-      name = "Port-of-Spain";
+      pszName = "Port-of-Spain";
       break;
       case 6:
-      name = "Saint Andrew";
+      pszName = "Saint Andrew";
       break;
       case 7:
-      name = "Saint David";
+      pszName = "Saint David";
       break;
       case 8:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 9:
-      name = "Saint Patrick";
+      pszName = "Saint Patrick";
       break;
       case 10:
-      name = "San Fernando";
+      pszName = "San Fernando";
       break;
       case 11:
-      name = "Tobago";
+      pszName = "Tobago";
       break;
       case 12:
-      name = "Victoria";
+      pszName = "Victoria";
       break;
     }
   }
   if (strcmp(country_code,"TW") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Fu-chien";
+      pszName = "Fu-chien";
       break;
       case 2:
-      name = "Kao-hsiung";
+      pszName = "Kao-hsiung";
       break;
       case 3:
-      name = "T'ai-pei";
+      pszName = "T'ai-pei";
       break;
       case 4:
-      name = "T'ai-wan";
+      pszName = "T'ai-wan";
       break;
     }
   }
   if (strcmp(country_code,"TZ") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Pwani";
+      pszName = "Pwani";
       break;
       case 3:
-      name = "Dodoma";
+      pszName = "Dodoma";
       break;
       case 4:
-      name = "Iringa";
+      pszName = "Iringa";
       break;
       case 5:
-      name = "Kigoma";
+      pszName = "Kigoma";
       break;
       case 6:
-      name = "Kilimanjaro";
+      pszName = "Kilimanjaro";
       break;
       case 7:
-      name = "Lindi";
+      pszName = "Lindi";
       break;
       case 8:
-      name = "Mara";
+      pszName = "Mara";
       break;
       case 9:
-      name = "Mbeya";
+      pszName = "Mbeya";
       break;
       case 10:
-      name = "Morogoro";
+      pszName = "Morogoro";
       break;
       case 11:
-      name = "Mtwara";
+      pszName = "Mtwara";
       break;
       case 12:
-      name = "Mwanza";
+      pszName = "Mwanza";
       break;
       case 13:
-      name = "Pemba North";
+      pszName = "Pemba North";
       break;
       case 14:
-      name = "Ruvuma";
+      pszName = "Ruvuma";
       break;
       case 15:
-      name = "Shinyanga";
+      pszName = "Shinyanga";
       break;
       case 16:
-      name = "Singida";
+      pszName = "Singida";
       break;
       case 17:
-      name = "Tabora";
+      pszName = "Tabora";
       break;
       case 18:
-      name = "Tanga";
+      pszName = "Tanga";
       break;
       case 19:
-      name = "Kagera";
+      pszName = "Kagera";
       break;
       case 20:
-      name = "Pemba South";
+      pszName = "Pemba South";
       break;
       case 21:
-      name = "Zanzibar Central";
+      pszName = "Zanzibar Central";
       break;
       case 22:
-      name = "Zanzibar North";
+      pszName = "Zanzibar North";
       break;
       case 23:
-      name = "Dar es Salaam";
+      pszName = "Dar es Salaam";
       break;
       case 24:
-      name = "Rukwa";
+      pszName = "Rukwa";
       break;
       case 25:
-      name = "Zanzibar Urban";
+      pszName = "Zanzibar Urban";
       break;
       case 26:
-      name = "Arusha";
+      pszName = "Arusha";
       break;
       case 27:
-      name = "Manyara";
+      pszName = "Manyara";
       break;
     }
   }
   if (strcmp(country_code,"UA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Cherkas'ka Oblast'";
+      pszName = "Cherkas'ka Oblast'";
       break;
       case 2:
-      name = "Chernihivs'ka Oblast'";
+      pszName = "Chernihivs'ka Oblast'";
       break;
       case 3:
-      name = "Chernivets'ka Oblast'";
+      pszName = "Chernivets'ka Oblast'";
       break;
       case 4:
-      name = "Dnipropetrovs'ka Oblast'";
+      pszName = "Dnipropetrovs'ka Oblast'";
       break;
       case 5:
-      name = "Donets'ka Oblast'";
+      pszName = "Donets'ka Oblast'";
       break;
       case 6:
-      name = "Ivano-Frankivs'ka Oblast'";
+      pszName = "Ivano-Frankivs'ka Oblast'";
       break;
       case 7:
-      name = "Kharkivs'ka Oblast'";
+      pszName = "Kharkivs'ka Oblast'";
       break;
       case 8:
-      name = "Khersons'ka Oblast'";
+      pszName = "Khersons'ka Oblast'";
       break;
       case 9:
-      name = "Khmel'nyts'ka Oblast'";
+      pszName = "Khmel'nyts'ka Oblast'";
       break;
       case 10:
-      name = "Kirovohrads'ka Oblast'";
+      pszName = "Kirovohrads'ka Oblast'";
       break;
       case 11:
-      name = "Krym";
+      pszName = "Krym";
       break;
       case 12:
-      name = "Kyyiv";
+      pszName = "Kyyiv";
       break;
       case 13:
-      name = "Kyyivs'ka Oblast'";
+      pszName = "Kyyivs'ka Oblast'";
       break;
       case 14:
-      name = "Luhans'ka Oblast'";
+      pszName = "Luhans'ka Oblast'";
       break;
       case 15:
-      name = "L'vivs'ka Oblast'";
+      pszName = "L'vivs'ka Oblast'";
       break;
       case 16:
-      name = "Mykolayivs'ka Oblast'";
+      pszName = "Mykolayivs'ka Oblast'";
       break;
       case 17:
-      name = "Odes'ka Oblast'";
+      pszName = "Odes'ka Oblast'";
       break;
       case 18:
-      name = "Poltavs'ka Oblast'";
+      pszName = "Poltavs'ka Oblast'";
       break;
       case 19:
-      name = "Rivnens'ka Oblast'";
+      pszName = "Rivnens'ka Oblast'";
       break;
       case 20:
-      name = "Sevastopol'";
+      pszName = "Sevastopol'";
       break;
       case 21:
-      name = "Sums'ka Oblast'";
+      pszName = "Sums'ka Oblast'";
       break;
       case 22:
-      name = "Ternopil's'ka Oblast'";
+      pszName = "Ternopil's'ka Oblast'";
       break;
       case 23:
-      name = "Vinnyts'ka Oblast'";
+      pszName = "Vinnyts'ka Oblast'";
       break;
       case 24:
-      name = "Volyns'ka Oblast'";
+      pszName = "Volyns'ka Oblast'";
       break;
       case 25:
-      name = "Zakarpats'ka Oblast'";
+      pszName = "Zakarpats'ka Oblast'";
       break;
       case 26:
-      name = "Zaporiz'ka Oblast'";
+      pszName = "Zaporiz'ka Oblast'";
       break;
       case 27:
-      name = "Zhytomyrs'ka Oblast'";
+      pszName = "Zhytomyrs'ka Oblast'";
       break;
     }
   }
   if (strcmp(country_code,"UG") == 0) {
     switch (region_code2) {
       case 5:
-      name = "Busoga";
+      pszName = "Busoga";
       break;
       case 8:
-      name = "Karamoja";
+      pszName = "Karamoja";
       break;
       case 12:
-      name = "South Buganda";
+      pszName = "South Buganda";
       break;
       case 18:
-      name = "Central";
+      pszName = "Central";
       break;
       case 20:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 21:
-      name = "Nile";
+      pszName = "Nile";
       break;
       case 22:
-      name = "North Buganda";
+      pszName = "North Buganda";
       break;
       case 23:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 24:
-      name = "Southern";
+      pszName = "Southern";
       break;
       case 25:
-      name = "Western";
+      pszName = "Western";
       break;
       case 33:
-      name = "Jinja";
+      pszName = "Jinja";
       break;
       case 36:
-      name = "Kalangala";
+      pszName = "Kalangala";
       break;
       case 37:
-      name = "Kampala";
+      pszName = "Kampala";
       break;
       case 42:
-      name = "Kiboga";
+      pszName = "Kiboga";
       break;
       case 52:
-      name = "Mbarara";
+      pszName = "Mbarara";
       break;
       case 56:
-      name = "Mubende";
+      pszName = "Mubende";
       break;
       case 65:
-      name = "Adjumani";
+      pszName = "Adjumani";
       break;
       case 66:
-      name = "Bugiri";
+      pszName = "Bugiri";
       break;
       case 67:
-      name = "Busia";
+      pszName = "Busia";
       break;
       case 69:
-      name = "Katakwi";
+      pszName = "Katakwi";
       break;
       case 71:
-      name = "Masaka";
+      pszName = "Masaka";
       break;
       case 73:
-      name = "Nakasongola";
+      pszName = "Nakasongola";
       break;
       case 74:
-      name = "Sembabule";
+      pszName = "Sembabule";
       break;
       case 77:
-      name = "Arua";
+      pszName = "Arua";
       break;
       case 78:
-      name = "Iganga";
+      pszName = "Iganga";
       break;
       case 79:
-      name = "Kabarole";
+      pszName = "Kabarole";
       break;
       case 80:
-      name = "Kaberamaido";
+      pszName = "Kaberamaido";
       break;
       case 81:
-      name = "Kamwenge";
+      pszName = "Kamwenge";
       break;
       case 82:
-      name = "Kanungu";
+      pszName = "Kanungu";
       break;
       case 83:
-      name = "Kayunga";
+      pszName = "Kayunga";
       break;
       case 84:
-      name = "Kitgum";
+      pszName = "Kitgum";
       break;
       case 85:
-      name = "Kyenjojo";
+      pszName = "Kyenjojo";
       break;
       case 86:
-      name = "Mayuge";
+      pszName = "Mayuge";
       break;
       case 87:
-      name = "Mbale";
+      pszName = "Mbale";
       break;
       case 88:
-      name = "Moroto";
+      pszName = "Moroto";
       break;
       case 89:
-      name = "Mpigi";
+      pszName = "Mpigi";
       break;
       case 90:
-      name = "Mukono";
+      pszName = "Mukono";
       break;
       case 91:
-      name = "Nakapiripirit";
+      pszName = "Nakapiripirit";
       break;
       case 92:
-      name = "Pader";
+      pszName = "Pader";
       break;
       case 93:
-      name = "Rukungiri";
+      pszName = "Rukungiri";
       break;
       case 94:
-      name = "Sironko";
+      pszName = "Sironko";
       break;
       case 95:
-      name = "Soroti";
+      pszName = "Soroti";
       break;
       case 96:
-      name = "Wakiso";
+      pszName = "Wakiso";
       break;
       case 97:
-      name = "Yumbe";
+      pszName = "Yumbe";
       break;
     }
   }
   if (strcmp(country_code,"UY") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Artigas";
+      pszName = "Artigas";
       break;
       case 2:
-      name = "Canelones";
+      pszName = "Canelones";
       break;
       case 3:
-      name = "Cerro Largo";
+      pszName = "Cerro Largo";
       break;
       case 4:
-      name = "Colonia";
+      pszName = "Colonia";
       break;
       case 5:
-      name = "Durazno";
+      pszName = "Durazno";
       break;
       case 6:
-      name = "Flores";
+      pszName = "Flores";
       break;
       case 7:
-      name = "Florida";
+      pszName = "Florida";
       break;
       case 8:
-      name = "Lavalleja";
+      pszName = "Lavalleja";
       break;
       case 9:
-      name = "Maldonado";
+      pszName = "Maldonado";
       break;
       case 10:
-      name = "Montevideo";
+      pszName = "Montevideo";
       break;
       case 11:
-      name = "Paysandu";
+      pszName = "Paysandu";
       break;
       case 12:
-      name = "Rio Negro";
+      pszName = "Rio Negro";
       break;
       case 13:
-      name = "Rivera";
+      pszName = "Rivera";
       break;
       case 14:
-      name = "Rocha";
+      pszName = "Rocha";
       break;
       case 15:
-      name = "Salto";
+      pszName = "Salto";
       break;
       case 16:
-      name = "San Jose";
+      pszName = "San Jose";
       break;
       case 17:
-      name = "Soriano";
+      pszName = "Soriano";
       break;
       case 18:
-      name = "Tacuarembo";
+      pszName = "Tacuarembo";
       break;
       case 19:
-      name = "Treinta y Tres";
+      pszName = "Treinta y Tres";
       break;
     }
   }
   if (strcmp(country_code,"UZ") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Andijon";
+      pszName = "Andijon";
       break;
       case 2:
-      name = "Bukhoro";
+      pszName = "Bukhoro";
       break;
       case 3:
-      name = "Farghona";
+      pszName = "Farghona";
       break;
       case 4:
-      name = "Jizzakh";
+      pszName = "Jizzakh";
       break;
       case 5:
-      name = "Khorazm";
+      pszName = "Khorazm";
       break;
       case 6:
-      name = "Namangan";
+      pszName = "Namangan";
       break;
       case 7:
-      name = "Nawoiy";
+      pszName = "Nawoiy";
       break;
       case 8:
-      name = "Qashqadaryo";
+      pszName = "Qashqadaryo";
       break;
       case 9:
-      name = "Qoraqalpoghiston";
+      pszName = "Qoraqalpoghiston";
       break;
       case 10:
-      name = "Samarqand";
+      pszName = "Samarqand";
       break;
       case 11:
-      name = "Sirdaryo";
+      pszName = "Sirdaryo";
       break;
       case 12:
-      name = "Surkhondaryo";
+      pszName = "Surkhondaryo";
       break;
       case 13:
-      name = "Toshkent";
+      pszName = "Toshkent";
       break;
       case 14:
-      name = "Toshkent";
+      pszName = "Toshkent";
       break;
     }
   }
   if (strcmp(country_code,"VC") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Charlotte";
+      pszName = "Charlotte";
       break;
       case 2:
-      name = "Saint Andrew";
+      pszName = "Saint Andrew";
       break;
       case 3:
-      name = "Saint David";
+      pszName = "Saint David";
       break;
       case 4:
-      name = "Saint George";
+      pszName = "Saint George";
       break;
       case 5:
-      name = "Saint Patrick";
+      pszName = "Saint Patrick";
       break;
       case 6:
-      name = "Grenadines";
+      pszName = "Grenadines";
       break;
     }
   }
   if (strcmp(country_code,"VE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Amazonas";
+      pszName = "Amazonas";
       break;
       case 2:
-      name = "Anzoategui";
+      pszName = "Anzoategui";
       break;
       case 3:
-      name = "Apure";
+      pszName = "Apure";
       break;
       case 4:
-      name = "Aragua";
+      pszName = "Aragua";
       break;
       case 5:
-      name = "Barinas";
+      pszName = "Barinas";
       break;
       case 6:
-      name = "Bolivar";
+      pszName = "Bolivar";
       break;
       case 7:
-      name = "Carabobo";
+      pszName = "Carabobo";
       break;
       case 8:
-      name = "Cojedes";
+      pszName = "Cojedes";
       break;
       case 9:
-      name = "Delta Amacuro";
+      pszName = "Delta Amacuro";
       break;
       case 11:
-      name = "Falcon";
+      pszName = "Falcon";
       break;
       case 12:
-      name = "Guarico";
+      pszName = "Guarico";
       break;
       case 13:
-      name = "Lara";
+      pszName = "Lara";
       break;
       case 14:
-      name = "Merida";
+      pszName = "Merida";
       break;
       case 15:
-      name = "Miranda";
+      pszName = "Miranda";
       break;
       case 16:
-      name = "Monagas";
+      pszName = "Monagas";
       break;
       case 17:
-      name = "Nueva Esparta";
+      pszName = "Nueva Esparta";
       break;
       case 18:
-      name = "Portuguesa";
+      pszName = "Portuguesa";
       break;
       case 19:
-      name = "Sucre";
+      pszName = "Sucre";
       break;
       case 20:
-      name = "Tachira";
+      pszName = "Tachira";
       break;
       case 21:
-      name = "Trujillo";
+      pszName = "Trujillo";
       break;
       case 22:
-      name = "Yaracuy";
+      pszName = "Yaracuy";
       break;
       case 23:
-      name = "Zulia";
+      pszName = "Zulia";
       break;
       case 24:
-      name = "Dependencias Federales";
+      pszName = "Dependencias Federales";
       break;
       case 25:
-      name = "Distrito Federal";
+      pszName = "Distrito Federal";
       break;
       case 26:
-      name = "Vargas";
+      pszName = "Vargas";
       break;
     }
   }
   if (strcmp(country_code,"VN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "An Giang";
+      pszName = "An Giang";
       break;
       case 2:
-      name = "Bac Thai";
+      pszName = "Bac Thai";
       break;
       case 3:
-      name = "Ben Tre";
+      pszName = "Ben Tre";
       break;
       case 4:
-      name = "Binh Tri Thien";
+      pszName = "Binh Tri Thien";
       break;
       case 5:
-      name = "Cao Bang";
+      pszName = "Cao Bang";
       break;
       case 7:
-      name = "Dac Lac";
+      pszName = "Dac Lac";
       break;
       case 9:
-      name = "Dong Thap";
+      pszName = "Dong Thap";
       break;
       case 11:
-      name = "Ha Bac";
+      pszName = "Ha Bac";
       break;
       case 12:
-      name = "Hai Hung";
+      pszName = "Hai Hung";
       break;
       case 13:
-      name = "Hai Phong";
+      pszName = "Hai Phong";
       break;
       case 14:
-      name = "Ha Nam Ninh";
+      pszName = "Ha Nam Ninh";
       break;
       case 16:
-      name = "Ha Son Binh";
+      pszName = "Ha Son Binh";
       break;
       case 17:
-      name = "Ha Tuyen";
+      pszName = "Ha Tuyen";
       break;
       case 19:
-      name = "Hoang Lien Son";
+      pszName = "Hoang Lien Son";
       break;
       case 20:
-      name = "Ho Chi Minh";
+      pszName = "Ho Chi Minh";
       break;
       case 21:
-      name = "Kien Giang";
+      pszName = "Kien Giang";
       break;
       case 22:
-      name = "Lai Chau";
+      pszName = "Lai Chau";
       break;
       case 23:
-      name = "Lam Dong";
+      pszName = "Lam Dong";
       break;
       case 24:
-      name = "Long An";
+      pszName = "Long An";
       break;
       case 25:
-      name = "Minh Hai";
+      pszName = "Minh Hai";
       break;
       case 26:
-      name = "Nghe Tinh";
+      pszName = "Nghe Tinh";
       break;
       case 27:
-      name = "Nghia Binh";
+      pszName = "Nghia Binh";
       break;
       case 28:
-      name = "Phu Khanh";
+      pszName = "Phu Khanh";
       break;
       case 29:
-      name = "Quang Nam-Da Nang";
+      pszName = "Quang Nam-Da Nang";
       break;
       case 30:
-      name = "Quang Ninh";
+      pszName = "Quang Ninh";
       break;
       case 31:
-      name = "Song Be";
+      pszName = "Song Be";
       break;
       case 32:
-      name = "Son La";
+      pszName = "Son La";
       break;
       case 33:
-      name = "Tay Ninh";
+      pszName = "Tay Ninh";
       break;
       case 34:
-      name = "Thanh Hoa";
+      pszName = "Thanh Hoa";
       break;
       case 35:
-      name = "Thai Binh";
+      pszName = "Thai Binh";
       break;
       case 36:
-      name = "Thuan Hai";
+      pszName = "Thuan Hai";
       break;
       case 37:
-      name = "Tien Giang";
+      pszName = "Tien Giang";
       break;
       case 38:
-      name = "Vinh Phu";
+      pszName = "Vinh Phu";
       break;
       case 39:
-      name = "Lang Son";
+      pszName = "Lang Son";
       break;
       case 40:
-      name = "Dong Nai";
+      pszName = "Dong Nai";
       break;
       case 43:
-      name = "An Giang";
+      pszName = "An Giang";
       break;
       case 44:
-      name = "Dac Lac";
+      pszName = "Dac Lac";
       break;
       case 45:
-      name = "Dong Nai";
+      pszName = "Dong Nai";
       break;
       case 46:
-      name = "Dong Thap";
+      pszName = "Dong Thap";
       break;
       case 47:
-      name = "Kien Giang";
+      pszName = "Kien Giang";
       break;
       case 48:
-      name = "Minh Hai";
+      pszName = "Minh Hai";
       break;
       case 49:
-      name = "Song Be";
+      pszName = "Song Be";
       break;
       case 50:
-      name = "Vinh Phu";
+      pszName = "Vinh Phu";
       break;
       case 51:
-      name = "Ha Noi";
+      pszName = "Ha Noi";
       break;
       case 52:
-      name = "Ho Chi Minh";
+      pszName = "Ho Chi Minh";
       break;
       case 53:
-      name = "Ba Ria-Vung Tau";
+      pszName = "Ba Ria-Vung Tau";
       break;
       case 54:
-      name = "Binh Dinh";
+      pszName = "Binh Dinh";
       break;
       case 55:
-      name = "Binh Thuan";
+      pszName = "Binh Thuan";
       break;
       case 56:
-      name = "Can Tho";
+      pszName = "Can Tho";
       break;
       case 57:
-      name = "Gia Lai";
+      pszName = "Gia Lai";
       break;
       case 58:
-      name = "Ha Giang";
+      pszName = "Ha Giang";
       break;
       case 59:
-      name = "Ha Tay";
+      pszName = "Ha Tay";
       break;
       case 60:
-      name = "Ha Tinh";
+      pszName = "Ha Tinh";
       break;
       case 61:
-      name = "Hoa Binh";
+      pszName = "Hoa Binh";
       break;
       case 62:
-      name = "Khanh Hoa";
+      pszName = "Khanh Hoa";
       break;
       case 63:
-      name = "Kon Tum";
+      pszName = "Kon Tum";
       break;
       case 64:
-      name = "Quang Tri";
+      pszName = "Quang Tri";
       break;
       case 65:
-      name = "Nam Ha";
+      pszName = "Nam Ha";
       break;
       case 66:
-      name = "Nghe An";
+      pszName = "Nghe An";
       break;
       case 67:
-      name = "Ninh Binh";
+      pszName = "Ninh Binh";
       break;
       case 68:
-      name = "Ninh Thuan";
+      pszName = "Ninh Thuan";
       break;
       case 69:
-      name = "Phu Yen";
+      pszName = "Phu Yen";
       break;
       case 70:
-      name = "Quang Binh";
+      pszName = "Quang Binh";
       break;
       case 71:
-      name = "Quang Ngai";
+      pszName = "Quang Ngai";
       break;
       case 72:
-      name = "Quang Tri";
+      pszName = "Quang Tri";
       break;
       case 73:
-      name = "Soc Trang";
+      pszName = "Soc Trang";
       break;
       case 74:
-      name = "Thua Thien";
+      pszName = "Thua Thien";
       break;
       case 75:
-      name = "Tra Vinh";
+      pszName = "Tra Vinh";
       break;
       case 76:
-      name = "Tuyen Quang";
+      pszName = "Tuyen Quang";
       break;
       case 77:
-      name = "Vinh Long";
+      pszName = "Vinh Long";
       break;
       case 78:
-      name = "Da Nang";
+      pszName = "Da Nang";
       break;
       case 79:
-      name = "Hai Duong";
+      pszName = "Hai Duong";
       break;
       case 80:
-      name = "Ha Nam";
+      pszName = "Ha Nam";
       break;
       case 81:
-      name = "Hung Yen";
+      pszName = "Hung Yen";
       break;
       case 82:
-      name = "Nam Dinh";
+      pszName = "Nam Dinh";
       break;
       case 83:
-      name = "Phu Tho";
+      pszName = "Phu Tho";
       break;
       case 84:
-      name = "Quang Nam";
+      pszName = "Quang Nam";
       break;
       case 85:
-      name = "Thai Nguyen";
+      pszName = "Thai Nguyen";
       break;
       case 86:
-      name = "Vinh Puc Province";
+      pszName = "Vinh Puc Province";
       break;
       case 87:
-      name = "Can Tho";
+      pszName = "Can Tho";
       break;
       case 88:
-      name = "Dak Lak";
+      pszName = "Dak Lak";
       break;
       case 89:
-      name = "Lai Chau";
+      pszName = "Lai Chau";
       break;
       case 90:
-      name = "Lao Cai";
+      pszName = "Lao Cai";
       break;
       case 91:
-      name = "Dak Nong";
+      pszName = "Dak Nong";
       break;
       case 92:
-      name = "Dien Bien";
+      pszName = "Dien Bien";
       break;
       case 93:
-      name = "Hau Giang";
+      pszName = "Hau Giang";
       break;
     }
   }
   if (strcmp(country_code,"VU") == 0) {
     switch (region_code2) {
       case 5:
-      name = "Ambrym";
+      pszName = "Ambrym";
       break;
       case 6:
-      name = "Aoba";
+      pszName = "Aoba";
       break;
       case 7:
-      name = "Torba";
+      pszName = "Torba";
       break;
       case 8:
-      name = "Efate";
+      pszName = "Efate";
       break;
       case 9:
-      name = "Epi";
+      pszName = "Epi";
       break;
       case 10:
-      name = "Malakula";
+      pszName = "Malakula";
       break;
       case 11:
-      name = "Paama";
+      pszName = "Paama";
       break;
       case 12:
-      name = "Pentecote";
+      pszName = "Pentecote";
       break;
       case 13:
-      name = "Sanma";
+      pszName = "Sanma";
       break;
       case 14:
-      name = "Shepherd";
+      pszName = "Shepherd";
       break;
       case 15:
-      name = "Tafea";
+      pszName = "Tafea";
       break;
       case 16:
-      name = "Malampa";
+      pszName = "Malampa";
       break;
       case 17:
-      name = "Penama";
+      pszName = "Penama";
       break;
       case 18:
-      name = "Shefa";
+      pszName = "Shefa";
       break;
     }
   }
   if (strcmp(country_code,"WS") == 0) {
     switch (region_code2) {
       case 2:
-      name = "Aiga-i-le-Tai";
+      pszName = "Aiga-i-le-Tai";
       break;
       case 3:
-      name = "Atua";
+      pszName = "Atua";
       break;
       case 4:
-      name = "Fa";
+      pszName = "Fa";
       break;
       case 5:
-      name = "Gaga";
+      pszName = "Gaga";
       break;
       case 6:
-      name = "Va";
+      pszName = "Va";
       break;
       case 7:
-      name = "Gagaifomauga";
+      pszName = "Gagaifomauga";
       break;
       case 8:
-      name = "Palauli";
+      pszName = "Palauli";
       break;
       case 9:
-      name = "Satupa";
+      pszName = "Satupa";
       break;
       case 10:
-      name = "Tuamasaga";
+      pszName = "Tuamasaga";
       break;
       case 11:
-      name = "Vaisigano";
+      pszName = "Vaisigano";
       break;
     }
   }
   if (strcmp(country_code,"YE") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Abyan";
+      pszName = "Abyan";
       break;
       case 2:
-      name = "Adan";
+      pszName = "Adan";
       break;
       case 3:
-      name = "Al Mahrah";
+      pszName = "Al Mahrah";
       break;
       case 4:
-      name = "Hadramawt";
+      pszName = "Hadramawt";
       break;
       case 5:
-      name = "Shabwah";
+      pszName = "Shabwah";
       break;
       case 8:
-      name = "Al Hudaydah";
+      pszName = "Al Hudaydah";
       break;
       case 10:
-      name = "Al Mahwit";
+      pszName = "Al Mahwit";
       break;
       case 11:
-      name = "Dhamar";
+      pszName = "Dhamar";
       break;
       case 14:
-      name = "Ma'rib";
+      pszName = "Ma'rib";
       break;
       case 15:
-      name = "Sa";
+      pszName = "Sa";
       break;
       case 16:
-      name = "San";
+      pszName = "San";
       break;
       case 20:
-      name = "Al Bayda'";
+      pszName = "Al Bayda'";
       break;
       case 21:
-      name = "Al Jawf";
+      pszName = "Al Jawf";
       break;
       case 22:
-      name = "Hajjah";
+      pszName = "Hajjah";
       break;
       case 23:
-      name = "Ibb";
+      pszName = "Ibb";
       break;
       case 24:
-      name = "Lahij";
+      pszName = "Lahij";
       break;
       case 25:
-      name = "Ta";
+      pszName = "Ta";
       break;
     }
   }
   if (strcmp(country_code,"ZA") == 0) {
     switch (region_code2) {
       case 1:
-      name = "North-Western Province";
+      pszName = "North-Western Province";
       break;
       case 2:
-      name = "KwaZulu-Natal";
+      pszName = "KwaZulu-Natal";
       break;
       case 3:
-      name = "Free State";
+      pszName = "Free State";
       break;
       case 5:
-      name = "Eastern Cape";
+      pszName = "Eastern Cape";
       break;
       case 6:
-      name = "Gauteng";
+      pszName = "Gauteng";
       break;
       case 7:
-      name = "Mpumalanga";
+      pszName = "Mpumalanga";
       break;
       case 8:
-      name = "Northern Cape";
+      pszName = "Northern Cape";
       break;
       case 9:
-      name = "Limpopo";
+      pszName = "Limpopo";
       break;
       case 10:
-      name = "North-West";
+      pszName = "North-West";
       break;
       case 11:
-      name = "Western Cape";
+      pszName = "Western Cape";
       break;
     }
   }
   if (strcmp(country_code,"ZM") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Western";
+      pszName = "Western";
       break;
       case 2:
-      name = "Central";
+      pszName = "Central";
       break;
       case 3:
-      name = "Eastern";
+      pszName = "Eastern";
       break;
       case 4:
-      name = "Luapula";
+      pszName = "Luapula";
       break;
       case 5:
-      name = "Northern";
+      pszName = "Northern";
       break;
       case 6:
-      name = "North-Western";
+      pszName = "North-Western";
       break;
       case 7:
-      name = "Southern";
+      pszName = "Southern";
       break;
       case 8:
-      name = "Copperbelt";
+      pszName = "Copperbelt";
       break;
       case 9:
-      name = "Lusaka";
+      pszName = "Lusaka";
       break;
     }
   }
   if (strcmp(country_code,"ZW") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Manicaland";
+      pszName = "Manicaland";
       break;
       case 2:
-      name = "Midlands";
+      pszName = "Midlands";
       break;
       case 3:
-      name = "Mashonaland Central";
+      pszName = "Mashonaland Central";
       break;
       case 4:
-      name = "Mashonaland East";
+      pszName = "Mashonaland East";
       break;
       case 5:
-      name = "Mashonaland West";
+      pszName = "Mashonaland West";
       break;
       case 6:
-      name = "Matabeleland North";
+      pszName = "Matabeleland North";
       break;
       case 7:
-      name = "Matabeleland South";
+      pszName = "Matabeleland South";
       break;
       case 8:
-      name = "Masvingo";
+      pszName = "Masvingo";
       break;
       case 9:
-      name = "Bulawayo";
+      pszName = "Bulawayo";
       break;
       case 10:
-      name = "Harare";
+      pszName = "Harare";
       break;
     }
   }
-  return name;
+  return pszName;
 }

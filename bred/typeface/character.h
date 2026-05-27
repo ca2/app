@@ -15,8 +15,8 @@ namespace typeface
       ::i32 m_iUnicode;
       bool m_bInit;
       //::u32 TextureID; // ID handle of the glyph texture
-      int_sequence2   Size;      // Size of glyph
-      int_sequence2   Bearing;   // Offset from baseline to left/top of glyph
+      i32_sequence2   Size;      // Size of glyph
+      i32_sequence2   Bearing;   // Offset from baseline to left/top of glyph
       ::u32 Advance;   // Horizontal offset to advance to next glyph
       ::i32 aHeight2=0;
       character()

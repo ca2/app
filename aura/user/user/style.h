@@ -151,7 +151,7 @@ namespace user
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
       //virtual ::i32_rectangle             _001GetRect(::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
       //virtual ::i32                _001GetInt(::user::e_int eint, ::i32 iDefault = 0);
-      //virtual ::f64             _001GetDouble(::user::e_double edouble, ::f64 dDefault = 0.0);
+      //virtual ::f64             _001GetDouble(::user::e_f64 ef64, ::f64 dDefault = 0.0);
 
 
       //virtual bool _001IsBackgroundBypass(enum_element eelement = e_element_none);
@@ -162,14 +162,14 @@ namespace user
 
       ::color::color get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
       bool get_int(::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) override;
-      bool get_double(::user::interaction* pinteraction, ::f64 & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) override;
+      bool get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 eint, ::user::enum_state estate = ::user::e_state_none) override;
       ::write_text::font_pointer get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
       //bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rectangle, e_rect erect, style_context * pcontext) override;
       //virtual bool get_int(::i32 & i, e_int eint, style_context * pcontext) override;
-      //virtual bool get_double(::f64 & d, e_double edouble, style_context * pcontext) override;
+      //virtual bool get_f64(::f64 & d, e_f64 ef64, style_context * pcontext) override;
 
 
       virtual void select(::draw2d::graphics_pointer & pgraphics);

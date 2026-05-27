@@ -80,7 +80,7 @@ inline void kernelPosition(::i32 boxBlur,::u32& std,::i32& dLeft,::i32& dRight)
 //namespace WebCore {
 
 
-inline float32x4_t loadRGBA8AsFloat(::u32* source)
+inline f3232x4_t loadRGBA8AsFloat(::u32* source)
 {
 
    ::u32x2_t temporary1 = {0, 0};
@@ -93,10 +93,10 @@ inline float32x4_t loadRGBA8AsFloat(::u32* source)
 
 }
 
-inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
+inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
 {
 
-   ::u3216x4_t temporary1 = vmovn_unsigned_int(vcvtq_u32_float(data));
+   ::u3216x4_t temporary1 = vmovn_unsigned_int(vcvtq_u32_f32(data));
 
    ::u328x8_t temporary2 = vmovn_unsigned_short(vcombine_unsigned_short(temporary1,temporary1));
 
@@ -658,7 +658,7 @@ auto tick2 = ::time::now();
                            ::u32 Δx,::i32 dxLeft,::i32 dxRight,::i32 stride,::i32 strideLine,::i32 effectWidth,::i32 effectHeight)
    {
 
-      float32x4_t deltaX = vdupq_n_float(1.0 / Δx);
+      f3232x4_t deltaX = vdupq_n_f32(1.0 / Δx);
 
       ::i32 pixelLine = strideLine / 4;
 
@@ -682,7 +682,7 @@ auto tick2 = ::time::now();
 
             ::i32 line = y * pixelLine;
 
-            float32x4_t sum = vdupq_n_float(0);
+            f3232x4_t sum = vdupq_n_f32(0);
 
             // Fill the kernel
             ::i32 maxKernelSize = minimum(dxRight,effectWidth);
@@ -690,9 +690,9 @@ auto tick2 = ::time::now();
             for(::i32 i = 0; i < maxKernelSize; ++i)
             {
 
-               float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
+               f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
 
-               sum = vaddq_float(sum,sourcePixelAsFloat);
+               sum = vaddq_f32(sum,sourcePixelAsFloat);
 
             }
 
@@ -703,25 +703,25 @@ auto tick2 = ::time::now();
 
                pixelOffset = line + x * pixelStride;
 
-               float32x4_t result = vmulq_float(sum,deltaX);
+               f3232x4_t result = vmulq_f32(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
                if(x >= dxLeft)
                {
 
-                  float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
+                  f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
 
-                  sum = vsubq_float(sum,sourcePixelAsFloat);
+                  sum = vsubq_f32(sum,sourcePixelAsFloat);
 
                }
 
                if(x <= dxW)
                {
 
-                  float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
+                  f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
 
-                  sum = vaddq_float(sum,sourcePixelAsFloat);
+                  sum = vaddq_f32(sum,sourcePixelAsFloat);
 
                }
 
@@ -738,7 +738,7 @@ auto tick2 = ::time::now();
 
             ::i32 line = y * pixelLine;
 
-            float32x4_t sum = vdupq_n_float(0);
+            f3232x4_t sum = vdupq_n_f32(0);
 
             // Fill the kernel
             ::i32 maxKernelSize = minimum(dxRight,effectWidth);
@@ -746,9 +746,9 @@ auto tick2 = ::time::now();
             for(::i32 i = 0; i < maxKernelSize; ++i)
             {
 
-               float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
+               f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
 
-               sum = vaddq_float(sum,sourcePixelAsFloat);
+               sum = vaddq_f32(sum,sourcePixelAsFloat);
 
             }
 
@@ -760,15 +760,15 @@ auto tick2 = ::time::now();
             for(; x < dxLeft; x++)
             {
 
-               float32x4_t result = vmulq_float(sum,deltaX);
+               f3232x4_t result = vmulq_f32(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
                {
 
-                  float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
+                  f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
 
-                  sum = vaddq_float(sum,sourcePixelAsFloat);
+                  sum = vaddq_f32(sum,sourcePixelAsFloat);
 
                }
 
@@ -779,23 +779,23 @@ auto tick2 = ::time::now();
             for(; x <= dxW; x++)
             {
 
-               float32x4_t result = vmulq_float(sum,deltaX);
+               f3232x4_t result = vmulq_f32(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
                {
 
-                  float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
+                  f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
 
-                  sum = vsubq_float(sum,sourcePixelAsFloat);
+                  sum = vsubq_f32(sum,sourcePixelAsFloat);
 
                }
 
                {
 
-                  float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
+                  f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
 
-                  sum = vaddq_float(sum,sourcePixelAsFloat);
+                  sum = vaddq_f32(sum,sourcePixelAsFloat);
 
                }
 
@@ -807,15 +807,15 @@ auto tick2 = ::time::now();
             for(; x < effectWidth; x++)
             {
 
-               float32x4_t result = vmulq_float(sum,deltaX);
+               f3232x4_t result = vmulq_f32(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
                {
 
-                  float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
+                  f3232x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
 
-                  sum = vsubq_float(sum,sourcePixelAsFloat);
+                  sum = vsubq_f32(sum,sourcePixelAsFloat);
 
                }
 
@@ -1049,7 +1049,7 @@ auto tick2 = ::time::now();
    * but, it's easy to see it's just a flavor of a two-pass
    * sliding box kernel.
    *
-   * this version is vectorized for float32 rectangle/g/b/a using sse
+   * this version is vectorized for f3232 rectangle/g/b/a using sse
    *
    * vector4() is just a class wrapping _mm_zzz_ps() family of SSE intrinsics
    * ( if you need one, start here:

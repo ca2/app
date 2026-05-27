@@ -14,7 +14,7 @@
 
 
 #include "nanoui/Widget.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 //#include <functional>
 //#include <unordered_map>
 
@@ -143,7 +143,7 @@ namespace nanoui
       
       void draw(::nano2d::context * pcontext) override;
 
-      bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const i32_point& p, ::user::e_button_state ebuttonstate, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
       bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
 

@@ -48,7 +48,7 @@
 #else
 extern "C" {
 #ifdef _MSC_VER
-#include <float.h>
+#include <::f32.h>
 #elif defined(__INTEL_COMPILER)
 #include <mathimf.h>
 #else

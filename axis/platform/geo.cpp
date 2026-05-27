@@ -13,7 +13,7 @@
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/collection/_map_binary_stream.h"
 #include "acme/prototype/datetime/_binary_stream.h"
-#include "acme/prototype/mathematics/number_double.h"
+#include "acme/prototype/mathematics/number_f64.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/prototype/string/international.h"
 #include "acme/prototype/string/str.h"
@@ -880,7 +880,7 @@ namespace geo
       //
       //               str = v["abbreviation"].get_string().lowered();
       //
-      //               dZone = v["gmtoffset"].get_double() / 3600.0;
+      //               dZone = v["gmtoffset"].get_f64() / 3600.0;
       //
       //            }
       //            catch (...)
@@ -1206,7 +1206,7 @@ namespace geo
       else if (utc_offset_invalid(dUTCOffset))
       {
 
-         return "(" + ::str::signed_double(dUTCOffset) + " : invalid UTC?)";
+         return "(" + ::str::signed_f64(dUTCOffset) + " : invalid UTC?)";
 
       }
       else
@@ -1442,7 +1442,7 @@ namespace geo
          dTimeZoneOffset = -2.0;
 
       }
-      else if (::mathematics::convert_to_double(dTimeZoneOffset, str))
+      else if (::mathematics::convert_to_f64(dTimeZoneOffset, str))
       {
 
       }
@@ -1452,7 +1452,7 @@ namespace geo
          dTimeZoneOffset = -3.0;
 
       }
-      else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
+      else if (!::mathematics::convert_to_f64(dTimeZoneOffset, strCountryCode))
       {
 
          informationf("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());

@@ -10,7 +10,7 @@
 #define __message_entry(wm)  { wm, #wm }
 
 
-static const int_sz g_iszaMessageName[] =
+static const i32_sz g_iszaMessageName[] =
 {
    __message_entry(::user::e_message_create),
    __message_entry(::user::e_message_destroy),
@@ -55,13 +55,13 @@ static const int_sz g_iszaMessageName[] =
    __message_entry(::user::e_message_mouse_move),
    __message_entry(::user::e_message_left_button_down),
    __message_entry(::user::e_message_left_button_up),
-   __message_entry(::user::e_message_left_button_double_click),
+   __message_entry(::user::e_message_left_button_f64_click),
    __message_entry(::user::e_message_right_button_down),
    __message_entry(::user::e_message_right_button_up),
-   __message_entry(::user::e_message_right_button_double_click),
+   __message_entry(::user::e_message_right_button_f64_click),
    __message_entry(::user::e_message_middle_button_down),
    __message_entry(::user::e_message_middle_button_up),
-   __message_entry(::user::e_message_middle_button_double_click),
+   __message_entry(::user::e_message_middle_button_f64_click),
    __message_entry(::user::e_message_paint),
    __message_entry(::user::e_message_scroll_y),
    __message_entry(::user::e_message_scroll_x),

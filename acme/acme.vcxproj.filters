@@ -1143,13 +1143,13 @@
     <ClInclude Include="prototype\mathematics\number_limits.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\mathematics\number_integer.h">
+    <ClInclude Include="prototype\mathematics\number_i32.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\mathematics\number_float.h">
+    <ClInclude Include="prototype\mathematics\number_f32.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\mathematics\number_double.h">
+    <ClInclude Include="prototype\mathematics\number_f64.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="prototype\mathematics\number.h">
@@ -4428,6 +4428,9 @@
     <ClInclude Include="nano\graphics\path.h">
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\mathematics\integer_biunique.h">
+      <Filter>Header Files\prototype\mathematics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4817,7 +4820,7 @@
     <ClCompile Include="prototype\mathematics\cvt_g.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\int_biunique.cpp">
+    <ClCompile Include="prototype\mathematics\integer_biunique.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
     <ClCompile Include="prototype\mathematics\mkint_c.cpp">
@@ -4829,13 +4832,13 @@
     <ClCompile Include="prototype\mathematics\number.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\number_double.cpp">
+    <ClCompile Include="prototype\mathematics\number_f64.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\number_float.cpp">
+    <ClCompile Include="prototype\mathematics\number_f32.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\number_integer.cpp">
+    <ClCompile Include="prototype\mathematics\number_i32.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
     <ClCompile Include="prototype\mathematics\random_number_generator.cpp">
@@ -6433,7 +6436,7 @@
     <None Include="memory\_new.inl">
       <Filter>Header Files\memory</Filter>
     </None>
-    <None Include="prototype\mathematics\int_to_string_bases_table.dynamically_generated">
+    <None Include="prototype\mathematics\integer_to_string_bases_table.dynamically_generated">
       <Filter>Source Files\prototype\mathematics</Filter>
     </None>
     <None Include="constant\character_set.enum">

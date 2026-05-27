@@ -38,7 +38,7 @@
 
 #if defined(_WIN32) && !defined(__MINGW32__)
 
-typedef signed ::i8 ::i8;
+typedef ::i8 ::i8;
 typedef ::u8 uch;
 typedef ::i16 ::i16;  // NOLINT
 typedef ::u16 ush;  // NOLINT

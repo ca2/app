@@ -18,19 +18,19 @@
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (::u32) ansi_to_long_long(&src[2], nullptr, 16);
+      return (::u32) ansi_to_i64(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (::u32) ansi_to_long_long(&src[1], nullptr, 16);
+      return (::u32) ansi_to_i64(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (::u32) ansi_to_long_long(src, nullptr, 10);
+      return (::u32) ansi_to_i64(src, nullptr, 10);
 
    }
 
@@ -407,19 +407,19 @@ inline string ip_to_string(::u8 b1, ::u8 b2, ::u8 b3, ::u8 b4)
 
    char_pointer psz = str.get_buffer(20);
 
-   ansi_concatenate_long_long(scopedstr, b1);
+   ansi_concatenate_i64(scopedstr, b1);
 
    ansi_concatenate(scopedstr, ".");
 
-   ansi_concatenate_long_long(scopedstr, b2);
+   ansi_concatenate_i64(scopedstr, b2);
 
    ansi_concatenate(scopedstr, ".");
 
-   ansi_concatenate_long_long(scopedstr, b3);
+   ansi_concatenate_i64(scopedstr, b3);
 
    ansi_concatenate(scopedstr, ".");
 
-   ansi_concatenate_long_long(scopedstr, b4);
+   ansi_concatenate_i64(scopedstr, b4);
 
    str.release_buffer();
 

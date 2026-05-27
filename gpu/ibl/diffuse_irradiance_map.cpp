@@ -168,9 +168,9 @@ namespace gpu
 
              m_pshaderDiffuseIrradiance->set_matrix4("mvp", mvp);
 
-             m_pshaderDiffuseIrradiance->set_float("deltaPhi", (2.0f * ::f32(this->mathematics()->π())) / 180.0f);
+             m_pshaderDiffuseIrradiance->set_f32("deltaPhi", (2.0f * ::f32(this->mathematics()->π())) / 180.0f);
 
-             m_pshaderDiffuseIrradiance->set_float("deltaTheta", (0.5f * ::f32(this->mathematics()->π())) / 64.0f);
+             m_pshaderDiffuseIrradiance->set_f32("deltaTheta", (0.5f * ::f32(this->mathematics()->π())) / 64.0f);
 
              m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
 

@@ -574,7 +574,7 @@ namespace browser
 //
 //         ::f64 dPeriod = (5000) * 11;
 //
-//         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+//         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
 //      }
 //      else if (m_bAlternate)
@@ -583,7 +583,7 @@ namespace browser
 
          ::f64 dPeriod = (5100) * 8;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
       }
       else
@@ -591,7 +591,7 @@ namespace browser
 
          ::f64 dPeriod = (4900) * 11;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
 
       }
 
@@ -734,7 +734,7 @@ namespace browser
 //
 //         ::f64 dPeriod = (5000) * 11;
 //
-//         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+//         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
 //      }
 //      else
@@ -744,7 +744,7 @@ namespace browser
 
          ::f64 dPeriod = (5100) * 8;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
       }
       else
@@ -752,7 +752,7 @@ namespace browser
 
          ::f64 dPeriod = (4900) * 11;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
 
       }
 
@@ -1101,7 +1101,7 @@ namespace browser
 
             ::f64 dPeriod = (500) * 11;
 
-            ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+            ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
             auto pbrush = createø < ::draw2d::brush >();
 

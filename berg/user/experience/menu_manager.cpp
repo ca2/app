@@ -98,7 +98,7 @@ namespace experience
 
       switch(pusermessage->m_eusermessage)
       {
-      case ::user::e_message_left_button_double_click:
+      case ::user::e_message_left_button_f64_click:
       {
                               auto point = pusermessage->m_lparam.point();
                               if(OnLButtonDblClk((::u32)pusermessage->m_wparam, point))

@@ -103,7 +103,7 @@ namespace graphics
       virtual bool on_mouse_up(const i32_point & p);
       virtual bool on_mouse_motion(const i32_point & p);
       /// Handles mouse drag happenings for the ColorWheel.
-      //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
 
       // Converts a specified hue (with saturation = value = 1) to RGB space.
       //color::color hue2rgb(::f32 h) const;

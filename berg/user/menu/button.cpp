@@ -27,7 +27,7 @@ namespace user
       //m_erectMargin = rect_menu_item_margin;
       //m_erectBorder = rect_menu_item_border;
       //m_erectPadding = rect_menu_item_padding;
-      //m_eintTextAlign = int_menu_item_draw_text_flags;
+      //m_eintTextAlign = i32_menu_item_draw_text_flags;
 
       m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
 

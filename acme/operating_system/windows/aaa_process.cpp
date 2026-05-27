@@ -494,7 +494,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //}
 //
 //
-//CLASS_DECL_ACMEunsigned ::i64 translate_processor_affinity(::i32 iOrder)
+//CLASS_DECL_ACME::u64 translate_processor_affinity(::i32 iOrder)
 //{
 //
 //   DWORD_PTR dwProcessAffinityMask;

@@ -12,39 +12,39 @@ const ::i8 g_psz_pbr_vert[] = R"vert_text(// pbr1.vert
 // ---------- Input vertex attributes ----------
 struct VSInput
 {
-    float3 aPos               : POSITION;   // location = 0
-    float3 aNormal            : NORMAL;     // location = 1
-    float2 aTextureCoordinates: TEXCOORD0;  // location = 2
-    float4 aColor             : COLOR;      // location = 3
-    float4 aTangent           : TEXCOORD1;    // location = 4
+    f323 aPos               : POSITION;   // location = 0
+    f323 aNormal            : NORMAL;     // location = 1
+    f322 aTextureCoordinates: TEXCOORD0;  // location = 2
+    f324 aColor             : COLOR;      // location = 3
+    f324 aTangent           : TEXCOORD1;    // location = 4
 };
 
 // ---------- Outputs to fragment shader ----------
 struct VSOutput
 {
-    float4 Position          : SV_Position;
-    float3 worldCoordinates  : TEXCOORD0;
-    float2 textureCoordinates: TEXCOORD1;
-    float3 tangent           : TEXCOORD2;
-    float3 bitangent         : TEXCOORD3;
-    float3 normal            : TEXCOORD4;
+    f324 Position          : SV_Position;
+    f323 worldCoordinates  : TEXCOORD0;
+    f322 textureCoordinates: TEXCOORD1;
+    f323 tangent           : TEXCOORD2;
+    f323 bitangent         : TEXCOORD3;
+    f323 normal            : TEXCOORD4;
 };
 
 // Must match fragment shader
 struct PointLight
 {
-    float4 position;
-    float4 color;
+    f324 position;
+    f324 color;
 };
 
 // ---------- Global UBO (set = 0, binding = 0) ----------
 cbuffer GlobalUbo : register(b0)
 {
-    float4x4 projection;
-    float4x4 view;
-    float4x4 invView;
-    float4 ambientLightColor;
-    float4 cameraPosition;
+    f324x4 projection;
+    f324x4 view;
+    f324x4 invView;
+    f324 ambientLightColor;
+    f324 cameraPosition;
     PointLight pointLights[10];
     ::i32 numLights;
     ::i32 padding1;
@@ -56,8 +56,8 @@ cbuffer GlobalUbo : register(b0)
 // ---------- Push constants (converted to another cbuffer) ----------
 cbuffer PushConsts : register(b1)
 {
-    float4x4 modelMatrix;
-    float4x4 normalMatrix; // inverse-transpose of model
+    f324x4 modelMatrix;
+    f324x4 normalMatrix; // inverse-transpose of model
 
     ::i32 useTextureAlbedo;
     ::i32 useTextureMetallicRoughness;
@@ -65,15 +65,15 @@ cbuffer PushConsts : register(b1)
     ::i32 useTextureAmbientOcclusion;
     ::i32 useTextureEmissive;
 
-    float3 albedo;
+    f323 albedo;
     ::f32 metallic;
     ::f32 roughness;
     ::f32 ambientOcclusion;
-    float3 emissive;
+    f323 emissive;
 
-//    float3 cameraPosition;
+//    f323 cameraPosition;
     ::f32 bloomBrightnessCutoff;
-    float3 multiplier;
+    f323 multiplier;
 };
 
 VSOutput main(VSInput input)
@@ -81,7 +81,7 @@ VSOutput main(VSInput input)
     VSOutput output;
 
     // Transform position to world space
-    float4 worldPos = mul(float4(input.aPos, 1.0), modelMatrix);
+    f324 worldPos = mul(f324(input.aPos, 1.0), modelMatrix);
 
     //worldPos.x = -worldPos.x;
     //worldPos.z = -worldPos.z;
@@ -97,11 +97,11 @@ VSOutput main(VSInput input)
     output.textureCoordinates = input.aTextureCoordinates;
 
     // Normal, tangent, bitangent in world space
-    float3x3 normalMat = transpose((float3x3)normalMatrix);
+    f323x3 normalMat = transpose((f323x3)normalMatrix);
 
-    float3 N = normalize(mul(input.aNormal, normalMat));
-    float3 T = normalize(mul(input.aTangent.xyz, normalMat));
-    float3 B = normalize(cross(N, T)) * input.aTangent.w;
+    f323 N = normalize(mul(input.aNormal, normalMat));
+    f323 T = normalize(mul(input.aTangent.xyz, normalMat));
+    f323 B = normalize(cross(N, T)) * input.aTangent.w;
 
     output.normal = N;
     output.tangent = T;

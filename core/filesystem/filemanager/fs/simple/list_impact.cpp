@@ -42,7 +42,7 @@ namespace filemanager
          void list_impact::install_message_routing(::channel * pchannel)
          {
             simple_list_impact::install_message_routing(pchannel);
-            USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
+            USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &list_impact::on_message_left_button_f64_click);
 //            //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &list_impact::on_timer);
             USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &list_impact::on_message_size);
 #ifdef WINDOWS_DESKTOP
@@ -287,7 +287,7 @@ namespace filemanager
          }
 
 
-         void list_impact::on_message_left_button_double_click(::message::message * pmessage)
+         void list_impact::on_message_left_button_f64_click(::message::message * pmessage)
          {
 
             auto pmouse = pmessage->m_union.m_pmouse;

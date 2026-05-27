@@ -308,8 +308,8 @@ namespace app_shader
                   
                   ::f32 time = (::f32)dTime;
                   
-                  m_pgpushader->set_float("time", time);
-                  m_pgpushader->set_float("iTime", time);
+                  m_pgpushader->set_f32("time", time);
+                  m_pgpushader->set_f32("iTime", time);
                   
                }
 

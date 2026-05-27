@@ -50,7 +50,7 @@ namespace draw2d
    {
    public:
 
-      bool is_rectangle_only(::int_rectangle_array_base& rectanglea) const
+      bool is_rectangle_only(::i32_rectangle_array_base& rectanglea) const
       {
          for (auto& pclipitem : *this)
          {

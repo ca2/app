@@ -60,7 +60,7 @@ void set_verbose(bool bVerbose)
 //extern bool g_bOutputDebugString;
 
 
-typedef int_bool DEFER_INIT();
+typedef i32_bool DEFER_INIT();
 
 
 typedef DEFER_INIT * PFN_DEFER_INIT;
@@ -909,7 +909,7 @@ void app_core::system_end()
 }
 
 
-typedef int_bool DEFER_INIT();
+typedef i32_bool DEFER_INIT();
 
 
 typedef DEFER_INIT * PFN_DEFER_INIT;

@@ -75,7 +75,7 @@ namespace berg
       //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
       //virtual const i32_rectangle &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
       //virtual ::i32                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, ::i32 iDefault = 0);
-      //virtual ::f64             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, ::f64 dDefault = 0.0);
+      //virtual ::f64             _001GetDouble(::user::interaction * pinteraction, ::user::e_f64 ef64, ::f64 dDefault = 0.0);
 
       //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, enum_element eelement = e_element_none);
       //virtual bool _001IsTransparent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
@@ -105,7 +105,7 @@ namespace berg
       //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
       //virtual bool userstyle_rect(const i32_rectangle & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
       //virtual bool userstyle_int(::i32 & i, ::user::e_int eint, ::user::interaction * pinteraction);
-      //virtual bool userstyle_double(::f64 & d, ::user::e_double edouble, ::user::interaction * pinteraction);
+      //virtual bool userstyle_f64(::f64 & d, ::user::e_f64 ef64, ::user::interaction * pinteraction);
 
 
       //virtual bool style_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction);
@@ -114,7 +114,7 @@ namespace berg
       //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
       //virtual bool style_rect(const i32_rectangle & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
       //virtual bool style_int(::i32 & i, ::user::e_int eint, ::user::interaction * pinteraction);
-      //virtual bool style_double(::f64 & d, ::user::e_double edouble, ::user::interaction * pinteraction);
+      //virtual bool style_f64(::f64 & d, ::user::e_f64 ef64, ::user::interaction * pinteraction);
 
 //      virtual void theme_current_control(e_control econtrol);
 

@@ -136,9 +136,9 @@ namespace draw2d
       //         rectangle.top,
       //         nullptr));
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
-      //      if(floatRateX == 0.0)
-      //         floatRateX = 1.0;
-      //      VERIFY(::scale_context_extentsEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, nullptr));
+      //      if(f32RateX == 0.0)
+      //         f32RateX = 1.0;
+      //      VERIFY(::scale_context_extentsEx(pgraphics->m_hDC, f32RateX * 30000.0, 10000, 1, 1, nullptr));
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
@@ -182,9 +182,9 @@ namespace draw2d
       //         rectangle.top,
       //         nullptr));
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
-      //      if(floatRateX == 0.0)
-      //         floatRateX = 1.0;
-      //      VERIFY(::scale_context_extentsEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, nullptr));
+      //      if(f32RateX == 0.0)
+      //         f32RateX = 1.0;
+      //      VERIFY(::scale_context_extentsEx(pgraphics->m_hDC, f32RateX * 30000.0, 10000, 1, 1, nullptr));
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 

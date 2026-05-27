@@ -9,7 +9,7 @@ bool str::to(::i64 & i, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   ::i64 iConversion = ::ansi_to_long_long(scopedstr, &pszEnd);
+   ::i64 iConversion = ::ansi_to_i64(scopedstr, &pszEnd);
 
    if (pszEnd == scopedstr.data())
    {
@@ -62,7 +62,7 @@ bool str::to(::i64 & i, ::i32 iBase, const ::scoped_string & scopedstr)
 
 #else
 
-   ::i64 iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
+   ::i64 iConversion = ::ansi_to_i64(scopedstr, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -93,7 +93,7 @@ bool str::to(::i32 & i, ::i32 iBase, const ::scoped_string & scopedstr)
 
 #else
 
-   ::i64 iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
+   ::i64 iConversion = ::ansi_to_i64(scopedstr, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -122,7 +122,7 @@ bool str::to(::u64 & u, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   ::u64 uiConversion = ::ansi_to_long_long(scopedstr, &pszEnd);
+   ::u64 uiConversion = ::ansi_to_i64(scopedstr, &pszEnd);
 
    if (pszEnd == scopedstr.data())
    {
@@ -177,7 +177,7 @@ bool str::to(::u64 & u, ::i32 iBase, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   ::u64 uiConversion = ::ansi_to_unsigned_long_long(scopedstr, &pszEnd, iBase);
+   ::u64 uiConversion = ::ansi_to_u64(scopedstr, &pszEnd, iBase);
 
    if (pszEnd == scopedstr.data())
    {
@@ -232,7 +232,7 @@ iptr str::to_iptr(const ::scoped_string & scopedstr)
 
 #if defined(_LP64) || defined(_AMD64_)
 
-   return to_long_long(scopedstr);
+   return to_i64(scopedstr);
 
 #else
    return to_int(scopedstr);

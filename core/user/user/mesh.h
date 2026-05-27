@@ -5,7 +5,7 @@
 #include "core/user/user/_.h"
 #include "aura/user/user/scroll.h"
 #include "aura/user/user/range.h"
-#include "acme/prototype/mathematics/int_biunique.h"
+#include "acme/prototype/mathematics/i32_biunique.h"
 
 
 namespace user
@@ -513,7 +513,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_f64_click);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);

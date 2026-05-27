@@ -1140,7 +1140,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_float(const_char_pointer pszName, ::f32 value) const
+   void shader::_set_f32(const_char_pointer pszName, ::f32 value) const
    {
 
       auto location = _get_uniform_location(name, "::f32");
@@ -1246,7 +1246,7 @@ namespace gpu_opengl
                   _set_int(strName, *(::i32 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_f32:
-                  _set_float(strName, *(::f32 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_f32(strName, *(::f32 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq2:
                   _set_sequence2(strName, *(floating_sequence2 *)(m_propertiesPushShared.data(true) + iLen));
@@ -1357,19 +1357,19 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_float(const ::scoped_string& scopedstrName, ::f32 value)
+   void shader::set_f32(const ::scoped_string& scopedstrName, ::f32 value)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_float(scopedstrName, value);
+         ::gpu::shader::set_f32(scopedstrName, value);
 
       }
       else
       {
 
-         _set_float(::string(scopedstrName), value);
+         _set_f32(::string(scopedstrName), value);
 
       }
 

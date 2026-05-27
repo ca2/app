@@ -543,7 +543,7 @@ namespace draw2d_gpu
 */
 
       //void draw_inset_3d_rectangle(const ::f64_rectangle & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
-      //virtual void draw_inset_3d_rectangle(const ::f64_rectangle & ::f64_rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      //virtual void draw_inset_3d_rectangle(const ::f64_rectangle & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
       //void draw_inset_rectangle(const ::f64_rectangle & rectangle, const ::color::color & color, ::f64 dWidth, const ::e_border & eborder = e_border_all) override;
       //void frame_rectangle(const ::f64_rectangle & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;

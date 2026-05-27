@@ -3,7 +3,7 @@
 
 ////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/prototype/prototype/pool.h"

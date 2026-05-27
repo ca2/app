@@ -11,7 +11,7 @@ namespace innate_subsystem
 {
 
 	          keyboard_state_t::keyboard_state_t() :
-       m_allowProcessCharEvent(false), m_allowProcessDoubleChar(false), m_doubleDeadCatched(false),
+       m_allowProcessCharEvent(false), m_allowProcessDoubleChar(false), m_f64DeadCatched(false),
        m_leftMetaIsPressed(false), m_rightMetaIsPressed(false)
    {
    }

@@ -15,10 +15,10 @@
 #endif
 
 
-// #ifndef int_x
+// #ifndef i32_x
 // #define lparam_int_x(lp)                        ((::i32)(::i16)LOWORD(lp))
 // #endif
-// #ifndef int_y
+// #ifndef i32_y
 // #define lparam_int_y(lp)                        ((::i32)(::i16)HIWORD(lp))
 // #endif
 
@@ -1069,12 +1069,12 @@ run_install:
       //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
       //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
 
-      /*string strx = ansi_string_from_long_long(lprect->left);
-      string stry = ansi_string_from_long_long(lprect->top);
+      /*string strx = ansi_string_from_i64(lprect->left);
+      string stry = ansi_string_from_i64(lprect->top);
       text_out(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
       text_out(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
-      string strx2 = ansi_string_from_long_long(m_rectangle.left);
-      string stry2 = ansi_string_from_long_long(m_rectangle.top);
+      string strx2 = ansi_string_from_i64(m_rectangle.left);
+      string stry2 = ansi_string_from_i64(m_rectangle.top);
       text_out(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
       text_out(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */

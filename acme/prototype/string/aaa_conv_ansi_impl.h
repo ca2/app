@@ -146,7 +146,7 @@ inline string as_string(const T * & p)
    //}
 
 
-   //   inline ::string as_string(const signed ::i8 & ch)
+   //   inline ::string as_string(const ::i8 & ch)
    //{
 
    //   str = (::ansi_character) ch;

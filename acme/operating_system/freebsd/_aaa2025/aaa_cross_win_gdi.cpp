@@ -59,7 +59,7 @@
 //// }
 //
 //
-//// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
+//// i32_bool ReleaseDC(oswindow hwnd, HDC hdc)
 //// {
 //
 //
@@ -101,7 +101,7 @@
 //// }
 //
 //
-//// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+//// i32_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 //// {
 //
 ////    return ReleaseDC(hwnd, ps->hdc);

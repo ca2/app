@@ -1501,7 +1501,7 @@ namespace user
    }
 
 
-   ::f64 interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, ::f64 dDefault)
+   ::f64 interaction::get_f64(style * pstyle, enum_f64 ef64, ::user::enum_state estate, ::f64 dDefault)
    {
 
       ::f64 d;
@@ -1509,7 +1509,7 @@ namespace user
       if (::is_set(pstyle))
       {
 
-         if (pstyle->get_double(this, d, edouble, estate))
+         if (pstyle->get_f64(this, d, ef64, estate))
          {
 
             return d;
@@ -1524,7 +1524,7 @@ namespace user
 
       auto pstyleSession = puser->user_style();
 
-      if (pstyleSession->get_double(this, d, edouble, estate))
+      if (pstyleSession->get_f64(this, d, ef64, estate))
       {
 
          return d;
@@ -1581,7 +1581,7 @@ namespace user
       if (m_flagNonClient.has(e_non_client_focus_rect))
       {
 
-         ::f64 dFocusHeightWidth = get_double(pstyle, ::user::e_f64_focus_height_width, estate, 2.0);
+         ::f64 dFocusHeightWidth = get_f64(pstyle, ::user::e_f64_focus_height_width, estate, 2.0);
 
          ::f64_rectangle rectangleDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth,
                                                 dFocusHeightWidth);
@@ -2013,7 +2013,7 @@ namespace user
 
 
    void interaction::set_need_redraw(
-      const ::int_rectangle_array_base & rectangleaNeedRedraw,
+      const ::i32_rectangle_array_base & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function,
       bool bAscendants)
@@ -3241,8 +3241,8 @@ namespace user
          USER_MESSAGE_LINK(::user::e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          USER_MESSAGE_LINK(::user::e_message_subject, pchannel, this, &interaction::on_message_subject);
          USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-         USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this,
-                      &::user::interaction::on_message_left_button_double_click);
+         USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this,
+                      &::user::interaction::on_message_left_button_f64_click);
          //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
          if (m_bDefaultParentMouseMessageHandling)
@@ -7625,7 +7625,7 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
-         //if (color32_byte_red(crBackground) != 255)
+         //if (color32_u8_red(crBackground) != 255)
          //{
 
          //   informationf("no full red");
@@ -9631,7 +9631,7 @@ if(get_parent())
 
    //   auto rectangle = layout().sketch().raw_rectangle();
 
-   //   ::int_rectangle_array_base rectanglea;
+   //   ::i32_rectangle_array_base rectanglea;
 
    //   if (rectangle.right > rectanglePrevious.right)
    //   {
@@ -13341,7 +13341,7 @@ if(get_parent())
    //   }
 
 
-   void interaction::viewport_client_to_screen(::int_sequence2 & sequence)
+   void interaction::viewport_client_to_screen(::i32_sequence2 & sequence)
    {
 
       //window()->viewport_client_to_screen(sequence);
@@ -13357,7 +13357,7 @@ if(get_parent())
    }
 
 
-   void interaction::viewport_screen_to_client(::int_sequence2 & sequence)
+   void interaction::viewport_screen_to_client(::i32_sequence2 & sequence)
    {
 
       //if (::is_null(window()))
@@ -14797,7 +14797,7 @@ if(get_parent())
              pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
              pmessage->m_eusermessage == ::user::e_message_right_button_down ||
              pmessage->m_eusermessage == ::user::e_message_right_button_up ||
-             pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
+             pmessage->m_eusermessage == ::user::e_message_left_button_f64_click ||
              pmessage->m_eusermessage == ::user::e_message_mouse_move ||
              pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
          {
@@ -21107,7 +21107,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle_array_base rectangleaCertainlyDamaged;
+      ::i32_rectangle_array_base rectangleaCertainlyDamaged;
 
       ::i32_rectangle rectangleBefore;
 
@@ -27608,14 +27608,14 @@ __check_refdbg;
 
 
 
-   void interaction::on_message_left_button_double_click(::message::message * pmessage)
+   void interaction::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
       auto pszType = typeid(*this).name();
 
-      information("interaction::on_message_left_button_double_click" + ::string(pszType));
+      information("interaction::on_message_left_button_f64_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -27647,7 +27647,7 @@ __check_refdbg;
       if (::is_item_set(pitemLeftButtonDoubleClick))
       {
 
-         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_as_second_click)
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_f64_click_as_second_click)
          {
 
             ::pointer<::message::mouse> pmouseUp1 = this->øcreate_new_clone(pmouse);
@@ -27676,7 +27676,7 @@ __check_refdbg;
 
          }
 
-         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_eat_double_click)
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_eat_f64_click)
          {
 
             pmouse->m_bRet = true;
@@ -27730,7 +27730,7 @@ __check_refdbg;
             if (has_handler())
             {
 
-               auto ptopic = create_topic(id_left_button_double_click);
+               auto ptopic = create_topic(id_left_button_f64_click);
 
                ptopic->m_puserelement = this;
 
@@ -28182,7 +28182,7 @@ __check_refdbg;
 
          }
 
-         ::int_rectangle_array_base rectanglea;
+         ::i32_rectangle_array_base rectanglea;
 
          if (::is_item_set(pitemOldHover))
          {

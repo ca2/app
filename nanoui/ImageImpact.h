@@ -30,7 +30,7 @@ namespace nanoui
    {
    public:
       
-      using PixelCallback = ::function<void(const int_sequence2 &, char_pointer *, size_t)>;
+      using PixelCallback = ::function<void(const i32_sequence2 &, char_pointer *, size_t)>;
 
       // opengl
       //nanoui::pointer<Shader> m_image_shader;
@@ -94,7 +94,7 @@ namespace nanoui
       // Widget implementation
       bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText) override;
       bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
       bool scroll_event(const i32_point & p, const ::f32_size & rel) override;
       void draw(::nano2d::context  * pcontext) override;
       void draw_contents(::nano2d::context  * pcontext) override;

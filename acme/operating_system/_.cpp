@@ -10,7 +10,7 @@
 #include "acme/prototype/prototype/factory.h"
 ////#include "acme/prototype/prototype/matter.h"
 #include "acme/platform/application.h"
-//CLASS_DECL_ACME void destroy_pointer(int_handle i)
+//CLASS_DECL_ACME void destroy_pointer(i32_handle i)
 //{
 //
 //   if(i >= 0)

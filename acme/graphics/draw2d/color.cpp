@@ -82,7 +82,7 @@ namespace color
 
    proc hls2rgb {h l s} {
        # Posted by frederic.bonnet@ciril.fr
-       # h, l and s are floats between 0.0 and 1.0, ditto for rectangle, g and b
+       # h, l and s are f32s between 0.0 and 1.0, ditto for rectangle, g and b
        # h = 0   => m_u8Red
        # h = 1/3 => m_u8Green
        # h = 2/3 => m_u8Blue
@@ -838,10 +838,10 @@ namespace color
    //void color::set_bgr(::u32 bgr)
    //{
 
-   //   m_u8Red   = bgr_byte_red(bgr);
-   //   m_u8Green = bgr_byte_green(bgr);
-   //   m_u8Blue  = bgr_byte_blue(bgr);
-   //   m_u8Opacity = bgr_byte_opacity(bgr);
+   //   m_u8Red   = bgr_u8_red(bgr);
+   //   m_u8Green = bgr_u8_green(bgr);
+   //   m_u8Blue  = bgr_u8_blue(bgr);
+   //   m_u8Opacity = bgr_u8_opacity(bgr);
 
    //}
 

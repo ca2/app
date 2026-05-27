@@ -1152,7 +1152,7 @@ namespace user
    //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, ::u64 u)
    //{
 
-   //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -1296,7 +1296,7 @@ namespace user
    //}
 
 
-   //bool style::create_double(e_double edouble, ::f64 d)
+   //bool style::create_f64(e_f64 ef64, ::f64 d)
    //{
 
    //   if (userstyle()->m_mapDouble.is_null())
@@ -1306,7 +1306,7 @@ namespace user
 
    //   }
 
-   //   (*userstyle()->m_mapDouble)[edouble] = d;
+   //   (*userstyle()->m_mapDouble)[ef64] = d;
 
    //   return true;
 
@@ -1637,7 +1637,7 @@ namespace user
    }
 
 
-   bool style::get_double(::user::interaction* pinteraction, ::f64 & d, ::user::enum_double edouble, ::user::enum_state estate)
+   bool style::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, ::user::enum_state estate)
    {
 
       return false;

@@ -55,10 +55,10 @@ constexpr ::color32_t argb32_color32(
 }
 
 
-//constexpr ::u8 color32_byte_red(::color32_t color32) { return lower_byte(color32.m_u32); }
-//constexpr ::u8 color32_byte_green(::color32_t color32) { return lower_byte(color32.m_u32 >> 8); }
-//constexpr ::u8 color32_byte_blue(::color32_t color32) { return lower_byte(color32.m_u32 >> 16); }
-//constexpr ::u8 color32_byte_opacity(::color32_t color32) { return lower_byte(color32.m_u32 >> 24); }
+//constexpr ::u8 color32_u8_red(::color32_t color32) { return lower_byte(color32.m_u32); }
+//constexpr ::u8 color32_u8_green(::color32_t color32) { return lower_byte(color32.m_u32 >> 8); }
+//constexpr ::u8 color32_u8_blue(::color32_t color32) { return lower_byte(color32.m_u32 >> 16); }
+//constexpr ::u8 color32_u8_opacity(::color32_t color32) { return lower_byte(color32.m_u32 >> 24); }
 
 
 
@@ -327,8 +327,8 @@ namespace color
 
       constexpr void set_unsigned_char(::u8 R, ::u8 G, ::u8 B) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = 255; }
       constexpr void set_unsigned_char(::u8 R, ::u8 G, ::u8 B, ::u8 A) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = A; }
-      constexpr void set_double(::f64 R, ::f64 G, ::f64 B) { m_u8Red = (::u8) (R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = 255; }
-      constexpr void set_double(::f64 R, ::f64 G, ::f64 B, ::f64 A) { m_u8Red = (::u8)(R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = (::u8) (A * 255.); }
+      constexpr void set_f64(::f64 R, ::f64 G, ::f64 B) { m_u8Red = (::u8) (R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = 255; }
+      constexpr void set_f64(::f64 R, ::f64 G, ::f64 B, ::f64 A) { m_u8Red = (::u8)(R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = (::u8) (A * 255.); }
 
       void make_black_and_white();
 
@@ -559,8 +559,8 @@ CLASS_DECL_ACME ::color::color HSLA_color(::f64 h, ::f64 s, ::f64 l, ::u8 a);
 } // namespace color
 
 
-constexpr ::color::color color_with_byte_opacity(::u8 bAlpha, ::color32_t color);
-constexpr ::color::color color_with_byte_opacity(::u8 bAlpha, enum_plain_color ecolor);
+constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color);
+constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor);
 constexpr ::color::color opaque_color(::color32_t color32);
 //constexpr ::color::color _color(enum_plain_color ecolor);
 constexpr ::color::color opaque_color(enum_plain_color ecolor);
@@ -572,16 +572,16 @@ constexpr rgba_t argb_rgba(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue
    return { make_unsigned_int(u8Red, u8Green, u8Blue, u8Opacity) };
 }
 
-//constexpr ::u8 rgba_byte_red(::rgba_t rgba) { return lower_byte(rgba.m_u32); }
-//constexpr ::u8 rgba_byte_green(::rgba_t rgba) { return lower_byte(rgba.m_u32 >> 8); }
-//constexpr ::u8 rgba_byte_blue(::rgba_t rgba) { return lower_byte(rgba.m_u32 >> 16); }
-//constexpr ::u8 rgba_byte_opacity(::rgba_t rgba) { return lower_byte(rgba.m_u32 >> 24); }
+//constexpr ::u8 rgba_u8_red(::rgba_t rgba) { return lower_byte(rgba.m_u32); }
+//constexpr ::u8 rgba_u8_green(::rgba_t rgba) { return lower_byte(rgba.m_u32 >> 8); }
+//constexpr ::u8 rgba_u8_blue(::rgba_t rgba) { return lower_byte(rgba.m_u32 >> 16); }
+//constexpr ::u8 rgba_u8_opacity(::rgba_t rgba) { return lower_byte(rgba.m_u32 >> 24); }
 
 
-//constexpr ::u8 bgr_byte_blue(::u32 bgr) { return lower_byte(bgr); }
-//constexpr ::u8 bgr_byte_green(::u32 bgr) { return lower_byte((bgr) >> 8); }
-//constexpr ::u8 bgr_byte_red(::u32 bgr) { return lower_byte((bgr) >> 16); }
-//constexpr ::u8 bgr_byte_opacity(::u32 bgr) { return lower_byte((bgr) >> 24); }
+//constexpr ::u8 bgr_u8_blue(::u32 bgr) { return lower_byte(bgr); }
+//constexpr ::u8 bgr_u8_green(::u32 bgr) { return lower_byte((bgr) >> 8); }
+//constexpr ::u8 bgr_u8_red(::u32 bgr) { return lower_byte((bgr) >> 16); }
+//constexpr ::u8 bgr_u8_opacity(::u32 bgr) { return lower_byte((bgr) >> 24); }
 
 
 constexpr bgra_t argb_bgra(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
@@ -816,10 +816,10 @@ namespace color
    //constexpr void color::set_bgr(::u32 ui)
    //{
 
-   //   m_u8Red = bgr_byte_red(ui);
-   //   m_u8Green = bgr_byte_green(ui);
-   //   m_u8Blue = bgr_byte_blue(ui);
-   //   m_u8Opacity = bgr_byte_opacity(ui);
+   //   m_u8Red = bgr_u8_red(ui);
+   //   m_u8Green = bgr_u8_green(ui);
+   //   m_u8Blue = bgr_u8_blue(ui);
+   //   m_u8Opacity = bgr_u8_opacity(ui);
 
    //}
 
@@ -827,17 +827,17 @@ namespace color
    //constexpr void color::set_bgra(::u32 ui)
    //{
 
-   //   m_u8Red = bgra_byte_red(ui);
-   //   m_u8Green = bgra_byte_green(ui);
-   //   m_u8Blue = bgra_byte_blue(ui);
-   //   m_u8Opacity = bgra_byte_opacity(ui);
+   //   m_u8Red = bgra_u8_red(ui);
+   //   m_u8Green = bgra_u8_green(ui);
+   //   m_u8Blue = bgra_u8_blue(ui);
+   //   m_u8Opacity = bgra_u8_opacity(ui);
 
    //}
 
 } // namespace color
 
 
-constexpr ::color::color color_with_byte_opacity(::u8 bAlpha, ::color32_t color32)
+constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color32)
 {
 
    ::color::color color;
@@ -849,10 +849,10 @@ constexpr ::color::color color_with_byte_opacity(::u8 bAlpha, ::color32_t color3
 }
 
 
-constexpr::color::color color_with_byte_opacity(::u8 bAlpha, enum_plain_color ecolor)
+constexpr::color::color color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor)
 {
 
-   return color_with_byte_opacity(bAlpha, ::color::color(ecolor));
+   return color_with_u8_opacity(bAlpha, ::color::color(ecolor));
 
 }
 
@@ -860,7 +860,7 @@ constexpr::color::color color_with_byte_opacity(::u8 bAlpha, enum_plain_color ec
 constexpr ::color::color opaque_color(::color32_t color32)
 {
 
-   return color_with_byte_opacity(255, color32);
+   return color_with_u8_opacity(255, color32);
 
 }
 
@@ -876,7 +876,7 @@ constexpr ::color::color opaque_color(enum_plain_color ecolor)
 
 
 
-constexpr ::color::color color32_color_with_byte_opacity(::u8 u8Opacity, ::color32_t color32)
+constexpr ::color::color color32_color_with_u8_opacity(::u8 u8Opacity, ::color32_t color32)
 {
 
    return argb(u8Opacity, color32.u8_red(), color32.u8_green(), color32.u8_blue());
@@ -889,10 +889,10 @@ constexpr ::color::color color32_color_with_byte_opacity(::u8 u8Opacity, ::color
 //
 //   ::color::color color;
 //
-//   color.m_u8Red = color32_byte_red(color32);
-//   color.m_u8Green = color32_byte_green(color32);
-//   color.m_u8Blue = color32_byte_blue(color32);
-//   color.m_u8Opacity = color32_byte_opacity(color32);
+//   color.m_u8Red = color32_u8_red(color32);
+//   color.m_u8Green = color32_u8_green(color32);
+//   color.m_u8Blue = color32_u8_blue(color32);
+//   color.m_u8Opacity = color32_u8_opacity(color32);
 //
 //   return color;
 //

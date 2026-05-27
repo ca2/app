@@ -616,8 +616,8 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(::int_sequence2 & sequence);
-      virtual void viewport_client_to_screen(::int_sequence2 & sequence);
+      virtual void viewport_screen_to_client(::i32_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::i32_sequence2 & sequence);
       virtual void viewport_client_to_screen(::i32_rectangle & point);
       virtual void viewport_screen_to_client(::i32_rectangle & point);
 
@@ -742,7 +742,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::i32_rectangle_array_base & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);

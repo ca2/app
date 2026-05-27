@@ -33,7 +33,7 @@
 //typedef ::u64  ::u64;
 
 // Defines signed types
-//typedef signed ::i8         ::i8;
+//typedef ::i8         ::i8;
 //typedef ::i16        ::i16;
 //typedef signed ::i32          ::i32;
 //typedef signed ::i64    ::i64;

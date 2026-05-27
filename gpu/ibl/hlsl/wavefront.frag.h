@@ -5,26 +5,26 @@
 
 const ::i8 g_psz_wavefront_frag[] = R"frag_text(// Input from vertex shader
 struct PS_INPUT {
-    float4 pos             : SV_POSITION;
-    float3 fragColor       : COLOR0;
-    float3 fragPosWorld    : TEXCOORD1;
-    float3 fragNormalWorld : TEXCOORD2;
+    f324 pos             : SV_POSITION;
+    f323 fragColor       : COLOR0;
+    f323 fragPosWorld    : TEXCOORD1;
+    f323 fragNormalWorld : TEXCOORD2;
 };
 
-// Match GLSL std140 layout (float4-aligned)
+// Match GLSL std140 layout (f324-aligned)
 struct PointLight {
-    float4 position;
-    float4 color;
+    f324 position;
+    f324 color;
 };
 
 // ---------- Global UBO (set 0 binding 0) ----------
 cbuffer GlobalUbo : register(b0)
 {
-    column_major float4x4 projection;
-    column_major float4x4 view;
-    column_major float4x4 invView;
-    float4 ambientLightColor;
-    float3 cameraPosition;
+    column_major f324x4 projection;
+    column_major f324x4 view;
+    column_major f324x4 invView;
+    f324 ambientLightColor;
+    f323 cameraPosition;
     PointLight pointLights[10];
     ::i32 numLights;
 };
@@ -32,30 +32,30 @@ cbuffer GlobalUbo : register(b0)
 
 
 // Output
-float4 main(PS_INPUT input) : SV_TARGET
+f324 main(PS_INPUT input) : SV_TARGET
 {
-    float3 diffuseLight = ambientLightColor.rgb * ambientLightColor.a;
-    float3 specularLight = float3(0.0, 0.0, 0.0);
-    float3 surfaceNormal = normalize(input.fragNormalWorld);
+    f323 diffuseLight = ambientLightColor.rgb * ambientLightColor.a;
+    f323 specularLight = f323(0.0, 0.0, 0.0);
+    f323 surfaceNormal = normalize(input.fragNormalWorld);
 
     // Extract camera position from invView matrix (row-major)
-    float3 cameraPosWorld = cameraPosition;
-    float3 viewDirection = normalize(cameraPosWorld - input.fragPosWorld);
+    f323 cameraPosWorld = cameraPosition;
+    f323 viewDirection = normalize(cameraPosWorld - input.fragPosWorld);
 
     for (::i32 i = 0; i < numLights; ++i)
     {
 
         PointLight light = pointLights[i];
-        float3 directionToLight = light.position.xyz - input.fragPosWorld;
+        f323 directionToLight = light.position.xyz - input.fragPosWorld;
         ::f32 attenuation = 1.0 / dot(directionToLight, directionToLight);
         directionToLight = normalize(directionToLight);
 
         ::f32 cosAngIncidence = max(dot(surfaceNormal, directionToLight), 0.0f);
-        float3 intensity = light.color.rgb * light.color.a * attenuation;
+        f323 intensity = light.color.rgb * light.color.a * attenuation;
 
         diffuseLight += intensity * cosAngIncidence;
 
-        float3 halfAngle = normalize(directionToLight + viewDirection);
+        f323 halfAngle = normalize(directionToLight + viewDirection);
         ::f32 blinnTerm = dot(surfaceNormal, halfAngle);
         blinnTerm = saturate(blinnTerm);
         blinnTerm = pow(blinnTerm, 64.0f);
@@ -64,11 +64,11 @@ float4 main(PS_INPUT input) : SV_TARGET
 
     }
 
-    float3 lightIntensity = diffuseLight + specularLight;
+    f323 lightIntensity = diffuseLight + specularLight;
 
-    float4 oColor = float4(lightIntensity * input.fragColor, 1.0f);
+    f324 oColor = f324(lightIntensity * input.fragColor, 1.0f);
     clip(oColor.a < 0.01f ? -1.0f : 1.0f); // discard fragment if alpha < 0.01
-    //oColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
+    //oColor = f324(1.0f, 1.0f, 1.0f, 1.0f);
     return oColor;
 }
 )frag_text";

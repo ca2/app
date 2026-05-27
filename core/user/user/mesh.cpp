@@ -197,7 +197,7 @@ namespace user
       {
          USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
          USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
-         USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &mesh::on_message_left_button_double_click);
+         USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &mesh::on_message_left_button_f64_click);
       }
       USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
       USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
@@ -3323,7 +3323,7 @@ namespace user
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
+                      pmessage->m_eusermessage = ::user::e_message_left_button_f64_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -3563,7 +3563,7 @@ namespace user
    }
 
 
-   void mesh::on_message_left_button_double_click(::message::message * pmessage)
+   void mesh::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -4415,7 +4415,7 @@ namespace user
 
       ::f64 dItemHeight = maximum(m_sizeMaximumImage.cy, dFontHeight);
 
-      m_dItemHeight = dItemHeight * get_double(pstyle, ::user::e_f64_list_item_height_rate, ::user::e_state_none, 1.0);
+      m_dItemHeight = dItemHeight * get_f64(pstyle, ::user::e_f64_list_item_height_rate, ::user::e_state_none, 1.0);
 
       for (auto & pitem : m_mapItem.payloads())
       {

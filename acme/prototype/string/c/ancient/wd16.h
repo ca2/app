@@ -59,7 +59,7 @@ CLASS_DECL_ACME const ::wd16_character * __wd16istr(const ::wd16_character * psz
 
 CLASS_DECL_ACME ::wd16_character * __u64towd16(::u64 u, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd16_character *& end);
 
-CLASS_DECL_ACME ::wd16_character * __long_longtowd16(::i64 i, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd16_character *& end);
+CLASS_DECL_ACME ::wd16_character * __i64towd16(::i64 i, ::wd16_character * buf, ::i32 iBase, enum_digit_case edigitcase, ::wd16_character *& end);
 
 CLASS_DECL_ACME ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const ::wd16_character * pszSrc, character_count srclen);
 

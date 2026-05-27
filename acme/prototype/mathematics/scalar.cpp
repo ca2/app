@@ -247,7 +247,7 @@
 ////
 ////
 ////
-////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,::i64 iValue,::i32 iFlags)
+////void i32_scalar_source::listener::on_set_scalar(i32_scalar_source * psource,enum_scalar escalar,::i64 iValue,::i32 iFlags)
 ////{
 ////
 ////   __UNREFERENCED_PARAMETER(psource);
@@ -258,7 +258,7 @@
 ////}
 ////
 ////
-////int_scalar_source::int_scalar_source()
+////i32_scalar_source::i32_scalar_source()
 ////{
 ////
 ////   m_plistener = nullptr;
@@ -266,7 +266,7 @@
 ////}
 ////
 ////
-////bool int_scalar_source::set_scalar(enum_scalar escalar,::i64 iValue,bool bForce,::i32 iFlags)
+////bool i32_scalar_source::set_scalar(enum_scalar escalar,::i64 iValue,bool bForce,::i32 iFlags)
 ////{
 ////
 ////   if (!bForce)
@@ -288,7 +288,7 @@
 ////
 ////}
 ////
-////bool int_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & iValue)
+////bool i32_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & iValue)
 ////{
 ////
 ////   bool bConstrain;
@@ -311,7 +311,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
+////void i32_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
 ////{
 ////
 ////   ::i64 i = 0;
@@ -322,7 +322,7 @@
 ////
 ////}
 ////
-////bool int_scalar_source::contains(enum_scalar escalar, ::i64 iValue)
+////bool i32_scalar_source::contains(enum_scalar escalar, ::i64 iValue)
 ////{
 ////
 ////   ::i64 iMin = 0;
@@ -343,7 +343,7 @@
 ////
 ////}
 ////
-////bool int_scalar_source::constrain(enum_scalar escalar, ::i64 & iValue)
+////bool i32_scalar_source::constrain(enum_scalar escalar, ::i64 & iValue)
 ////{
 ////
 ////   ::i64 iMin = 0;
@@ -378,7 +378,7 @@
 ////
 ////
 ////
-////void int_scalar_source::on_set_scalar(enum_scalar escalar,::i64 iValue,::i32 iFlags)
+////void i32_scalar_source::on_set_scalar(enum_scalar escalar,::i64 iValue,::i32 iFlags)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -391,7 +391,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
+////void i32_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -400,7 +400,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
+////void i32_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -409,7 +409,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
+////void i32_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -418,7 +418,7 @@
 ////
 ////}
 ////
-////::f64 int_scalar_source::get_rate(enum_scalar escalar, ::f64 dDefault)
+////::f64 i32_scalar_source::get_rate(enum_scalar escalar, ::f64 dDefault)
 ////{
 ////
 ////   ::i64 iMax = 0;
@@ -445,7 +445,7 @@
 ////}
 ////
 ////
-////bool int_scalar_source::set_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags)
+////bool i32_scalar_source::set_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags)
 ////{
 ////
 ////   if(dValue < 0.0)
@@ -599,7 +599,7 @@
 ////
 ////}
 ////
-////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
+////i32_scalar::i32_scalar(i32_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -609,7 +609,7 @@
 ////}
 ////
 ////
-////void int_scalar::set(::i64 iValue)
+////void i32_scalar::set(::i64 iValue)
 ////{
 ////
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -620,7 +620,7 @@
 ////}
 ////
 ////
-////::i64 int_scalar::get()
+////::i64 i32_scalar::get()
 ////{
 ////
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -635,7 +635,7 @@
 ////}
 ////
 ////
-////::f64 int_scalar::get_rate(::f64 dDefault)
+////::f64 i32_scalar::get_rate(::f64 dDefault)
 ////{
 ////   
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -646,7 +646,7 @@
 ////}
 ////
 ////
-////bool int_scalar::set_rate(::f64 dValue,::i32 iFlags)
+////bool i32_scalar::set_rate(::f64 dValue,::i32 iFlags)
 ////{
 ////
 ////   if(m_psource == nullptr || m_escalar == scalar_none)
@@ -657,7 +657,7 @@
 ////}
 ////
 ////
-////::i64 int_scalar::minimum()
+////::i64 i32_scalar::minimum()
 ////{
 ////   
 ////   if (is_null())
@@ -672,7 +672,7 @@
 ////}
 ////
 ////
-////::i64 int_scalar::maximum()
+////::i64 i32_scalar::maximum()
 ////{
 ////
 ////   if (is_null())
@@ -690,7 +690,7 @@
 ////
 ////
 ////
-////string int_scalar::Format(const ::scoped_string & scopedstrFormat)
+////string i32_scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -1015,7 +1015,7 @@ namespace  number
    ////
    ////
    ////
-   ////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,::i64 number,::i32 iFlags)
+   ////void i32_scalar_source::listener::on_set_scalar(i32_scalar_source * psource,enum_scalar escalar,::i64 number,::i32 iFlags)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(psource);
@@ -1026,7 +1026,7 @@ namespace  number
    ////}
    ////
    ////
-   ////int_scalar_source::int_scalar_source()
+   ////i32_scalar_source::i32_scalar_source()
    ////{
    ////
    ////   m_plistener = nullptr;
@@ -1034,7 +1034,7 @@ namespace  number
    ////}
    ////
    ////
-   ////bool int_scalar_source::set_scalar(enum_scalar escalar,::i64 number,bool bForce,::i32 iFlags)
+   ////bool i32_scalar_source::set_scalar(enum_scalar escalar,::i64 number,bool bForce,::i32 iFlags)
    ////{
    ////
    ////   if (!bForce)
@@ -1056,7 +1056,7 @@ namespace  number
    ////
    ////}
    ////
-   ////bool int_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & number)
+   ////bool i32_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & number)
    ////{
    ////
    ////   bool bConstrain;
@@ -1079,7 +1079,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
+   ////void i32_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
    ////{
    ////
    ////   ::i64 i = 0;
@@ -1090,7 +1090,7 @@ namespace  number
    ////
    ////}
    ////
-   ////bool int_scalar_source::contains(enum_scalar escalar, ::i64 number)
+   ////bool i32_scalar_source::contains(enum_scalar escalar, ::i64 number)
    ////{
    ////
    ////   ::i64 iMin = 0;
@@ -1111,7 +1111,7 @@ namespace  number
    ////
    ////}
    ////
-   ////bool int_scalar_source::constrain(enum_scalar escalar, ::i64 & number)
+   ////bool i32_scalar_source::constrain(enum_scalar escalar, ::i64 & number)
    ////{
    ////
    ////   ::i64 iMin = 0;
@@ -1146,7 +1146,7 @@ namespace  number
    ////
    ////
    ////
-   ////void int_scalar_source::on_set_scalar(enum_scalar escalar,::i64 number,::i32 iFlags)
+   ////void i32_scalar_source::on_set_scalar(enum_scalar escalar,::i64 number,::i32 iFlags)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1159,7 +1159,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
+   ////void i32_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1168,7 +1168,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
+   ////void i32_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1177,7 +1177,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
+   ////void i32_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1186,7 +1186,7 @@ namespace  number
    ////
    ////}
    ////
-   ////::f64 int_scalar_source::get_rate(enum_scalar escalar, ::f64 dDefault)
+   ////::f64 i32_scalar_source::get_rate(enum_scalar escalar, ::f64 dDefault)
    ////{
    ////
    ////   ::i64 iMax = 0;
@@ -1213,7 +1213,7 @@ namespace  number
    ////}
    ////
    ////
-   ////bool int_scalar_source::set_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags)
+   ////bool i32_scalar_source::set_rate(enum_scalar escalar,::f64 dValue,::i32 iFlags)
    ////{
    ////
    ////   if(dValue < 0.0)
@@ -1367,7 +1367,7 @@ namespace  number
    ////
    ////}
    ////
-   ////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
+   ////i32_scalar::i32_scalar(i32_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
    ////{
    ////
    ////   m_psource = psource;
@@ -1377,7 +1377,7 @@ namespace  number
    ////}
    ////
    ////
-   ////void int_scalar::set(::i64 number)
+   ////void i32_scalar::set(::i64 number)
    ////{
    ////
    ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -1388,7 +1388,7 @@ namespace  number
    ////}
    ////
    ////
-   ////::i64 int_scalar::get()
+   ////::i64 i32_scalar::get()
    ////{
    ////
    ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -1403,7 +1403,7 @@ namespace  number
    ////}
    ////
    ////
-   ////::f64 int_scalar::get_rate(::f64 dDefault)
+   ////::f64 i32_scalar::get_rate(::f64 dDefault)
    ////{
    ////
    ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -1414,7 +1414,7 @@ namespace  number
    ////}
    ////
    ////
-   ////bool int_scalar::set_rate(::f64 dValue,::i32 iFlags)
+   ////bool i32_scalar::set_rate(::f64 dValue,::i32 iFlags)
    ////{
    ////
    ////   if(m_psource == nullptr || m_escalar == scalar_none)
@@ -1425,7 +1425,7 @@ namespace  number
    ////}
    ////
    ////
-   ////::i64 int_scalar::minimum()
+   ////::i64 i32_scalar::minimum()
    ////{
    ////
    ////   if (is_null())
@@ -1440,7 +1440,7 @@ namespace  number
    ////}
    ////
    ////
-   ////::i64 int_scalar::maximum()
+   ////::i64 i32_scalar::maximum()
    ////{
    ////
    ////   if (is_null())
@@ -1458,7 +1458,7 @@ namespace  number
    ////
    ////
    ////
-   ////string int_scalar::Format(const ::scoped_string & scopedstrFormat)
+   ////string i32_scalar::Format(const ::scoped_string & scopedstrFormat)
    ////{
    ////
    ////   string str;
@@ -1778,7 +1778,7 @@ namespace  number
 
       ::number::number position = current - minimum;
 
-      return position.get_double() / range.get_double(); // aproximate value along iDenominator and iNumerator evaluation
+      return position.get_f64() / range.get_f64(); // aproximate value along iDenominator and iNumerator evaluation
 
    }
 
@@ -1825,7 +1825,7 @@ namespace  number
 
       numberNew.m_enumber = range.m_enumber;
 
-      numberNew.set((dRate * range.get_double()) + minimum.get_double());
+      numberNew.set((dRate * range.get_f64()) + minimum.get_f64());
 
       return on_set_scalar(escalar, numberNew, iFlags);
 

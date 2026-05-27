@@ -275,7 +275,7 @@ protected:
 
    string data; ///< The contents of this variable if it is a string
    long intData; ///< The contents of this variable if it is an ::i32
-   ::f64 doubleData; ///< The contents of this variable if it is a ::f64
+   ::f64 f64Data; ///< The contents of this variable if it is a ::f64
    ::i32 flags; ///< the flags determine the type of the variable - ::i32/::f64/string/etc
    JSCallback jsCallback; ///< Callback for native functions
    void *jsCallbackUserData; ///< user data passed as element2() argument to native functions

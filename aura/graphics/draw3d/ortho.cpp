@@ -17,7 +17,7 @@ namespace draw3d
 {
 
 
-   ::i32_array_base ortho::draw_ortho_plain_wire_frame(::box_double * pbox,::i32 iHint,::i32 bA,bool bFirst)
+   ::i32_array_base ortho::draw_ortho_plain_wire_frame(::box_f64 * pbox,::i32 iHint,::i32 bA,bool bFirst)
    {
 
       ::f64 dA = bA / 255.0;
@@ -225,7 +225,7 @@ namespace draw3d
    }
 
 
-   ::i32_array_base ortho::draw_ortho_plain_fill(::box_double * pbox,::i32 iHint,::i32 bA,bool bFirst,::image::image *pimage)
+   ::i32_array_base ortho::draw_ortho_plain_fill(::box_f64 * pbox,::i32 iHint,::i32 bA,bool bFirst,::image::image *pimage)
    {
 
       ::draw2d::bitmap bm;

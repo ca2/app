@@ -12,20 +12,20 @@ public:
 
 
 
-class CLASS_DECL_AURA int_progress :
-   virtual public int_scalar_listener
+class CLASS_DECL_AURA i32_progress :
+   virtual public i32_scalar_listener
 {
 public:
 
 
    ::f64               m_dProgressStart;
    ::f64               m_dProgressEnd;
-   int_scalar           m_scalar;
+   i32_scalar           m_scalar;
    progress_listener *  m_plistener;
 
 
-   int_progress();
-   virtual ~int_progress();
+   i32_progress();
+   virtual ~i32_progress();
 
    virtual void trace_progress();
 
@@ -33,9 +33,9 @@ public:
 
    virtual void progress_step();
 
-   virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,::i64 iValue,::i32 iFlags);
+   virtual void on_set_scalar(i32_scalar_source * psource,e_scalar escalar,::i64 iValue,::i32 iFlags);
 
-   int_scalar & operator ()(){ return m_scalar;  }
+   i32_scalar & operator ()(){ return m_scalar;  }
 
 };
 

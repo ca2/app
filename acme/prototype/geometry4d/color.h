@@ -144,8 +144,8 @@ public:
 };
 
 
-using color_float = color_type < ::f32 >;
-using color_double = color_type < ::f64 >;
+using color_f32 = color_type < ::f32 >;
+using color_f64 = color_type < ::f64 >;
 
 
 template < prototype_number NUMBER1, prototype_number NUMBER2 >

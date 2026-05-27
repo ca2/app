@@ -2,7 +2,7 @@
 
 
 ////#include "acme/prototype/prototype/object.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 
 
 namespace user

@@ -148,7 +148,7 @@ namespace gpu_opengl
 //             ::opengl::check_error("");
 //             // each mip level has increasing roughness
 //             ::f32 roughness = (::f32)iCurrentMip / (::f32)(mipCount - 1);
-//             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
+//             m_pshaderPrefilteredEnvMap->set_f32("roughness", roughness);
 //
 //             // render to each side of the cubemap
 //             for (auto iFace = 0; iFace < 6; iFace++)

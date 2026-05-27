@@ -8,7 +8,7 @@ namespace mathematics
 {
 
 
-   class CLASS_DECL_ACME number_float :
+   class CLASS_DECL_ACME number_f32 :
       virtual public value_impl
    {
    public:

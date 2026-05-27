@@ -11,7 +11,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/system.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/string/international.h"
@@ -715,7 +715,7 @@ namespace draw2d_cairo
 //   }
 
 
-   ::f64_size graphics::set_extents(const ::f64_size & ::f64_size)
+   ::f64_size graphics::set_extents(const ::f64_size & size)
    {
 
       return ::f64_size(0, 0);
@@ -731,7 +731,7 @@ namespace draw2d_cairo
    }
 
 
-   //::f64_size graphics::set_window_ext(const ::f64_size & ::f64_size)
+   //::f64_size graphics::set_window_ext(const ::f64_size & size)
    //{
 
    //   return ::f64_size(0, 0);
@@ -1148,7 +1148,7 @@ namespace draw2d_cairo
 //#endif
 
 
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1158,7 +1158,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1168,7 +1168,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, HBRUSH hBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1178,7 +1178,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::f64_point & point, const ::f64_size & ::f64_size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -3167,7 +3167,7 @@ namespace draw2d_cairo
 //}
 
 
-//   void graphics::DrawDragRect(const ::i32_rectangle & rectangle, const ::f64_size & ::f64_size, const ::i32_rectangle & rectangleLast, const ::f64_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+//   void graphics::DrawDragRect(const ::i32_rectangle & rectangle, const ::f64_size & size, const ::i32_rectangle & rectangleLast, const ::f64_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
 //   {
 //
 //      throw ::interface_only();
@@ -3584,7 +3584,7 @@ namespace draw2d_cairo
 //}
 
 
-//::i32 graphics::OffsetClipRgn(const ::f64_size & ::f64_size)
+//::i32 graphics::OffsetClipRgn(const ::f64_size & size)
 //{
 //
 //    //throw ::interface_only();

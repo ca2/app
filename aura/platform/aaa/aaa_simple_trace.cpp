@@ -91,7 +91,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scop
 
          ::i8 pszNum[30];
 
-         ansi_from_long_long(scopedstrNum, iLine, 10);
+         ansi_from_i64(scopedstrNum, iLine, 10);
 
          ansi_concatenate(scopedstr, "(");
 
@@ -240,7 +240,7 @@ CLASS_DECL_AURA bool enable_trace_category(e_trace_category ecategory, bool bEna
 }
 
 
-CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable)
+CLASS_DECL_AURA i32_bool c_enable_trace_category(e_trace_category ecategory, i32_bool iEnable)
 {
 
    if (!enable_trace_category(ecategory, iEnable != false))

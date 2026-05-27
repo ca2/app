@@ -14,7 +14,7 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      ::i64 iConversion = ::ansi_count_to_long_long(scopedstr, &pszEnd, 10, iLen);
+      ::i64 iConversion = ::ansi_count_to_i64(scopedstr, &pszEnd, 10, iLen);
 
       if(scopedstrEnd == psz)
          return false;
@@ -30,7 +30,7 @@ namespace aura
 
       char_pointer pszEnd;
 
-      ::i64 iConversion = ::ansi_count_to_long_long(scopedstr, (const ::string &*) &pszEnd, 10, iLen);
+      ::i64 iConversion = ::ansi_count_to_i64(scopedstr, (const ::string &*) &pszEnd, 10, iLen);
 
       if(scopedstrEnd == psz)
          return false;
@@ -53,7 +53,7 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      ::i64 iConversion = ::ansi_count_to_long_long(scopedstr, &pszEnd, iBase, iLen);
+      ::i64 iConversion = ::ansi_count_to_i64(scopedstr, &pszEnd, iBase, iLen);
 
       if(scopedstrEnd == psz)
          return false;
@@ -72,7 +72,7 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      ::i64 iConversion = ::ansi_count_to_long_long(scopedstr, &pszEnd, iBase, iLen);
+      ::i64 iConversion = ::ansi_count_to_i64(scopedstr, &pszEnd, iBase, iLen);
 
       if(scopedstrEnd == psz)
          return false;

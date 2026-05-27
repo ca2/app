@@ -240,7 +240,7 @@ namespace interprocess
 
    //         string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-   //         auto iCallId = propertyset["protocol"]["call_id"].long_long;
+   //         auto iCallId = propertyset["protocol"]["call_id"].i64;
 
    //         auto pcall = m_pcommunication->create_call(strOrigin, strOriginObject, "reply." + strMember);
 

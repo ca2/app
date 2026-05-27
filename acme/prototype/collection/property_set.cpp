@@ -2229,7 +2229,7 @@ string & property_set_base::get_network_arguments(string & strNetworkArguments) 
 //   if (atom.is_integer())
 //   {
 //
-//      iFind = (index) (atom.long_long);
+//      iFind = (index) (atom.i64);
 //
 //      if (::is_null(pFind) || iFind >= this->get_count())
 //      {
@@ -3235,18 +3235,18 @@ if (iIndexOfPayloadInPropertySet < 0)                                       \
 return ::transfer(this->element_at(iIndexOfPayloadInPropertySet)->as_getter());
 
 
-::f32_array_base property_set_base::get(const ::atom& atom, const ::f32_array_base& floata) const
+::f32_array_base property_set_base::get(const ::atom& atom, const ::f32_array_base& f32a) const
 {
 
-   __IMPLEMENT_GET(floata, as_f32_array);
+   __IMPLEMENT_GET(f32a, as_f32_array);
 
 }
 
 
-::f64_array_base property_set_base::get(const ::atom& atom, const ::f64_array_base& doublea) const
+::f64_array_base property_set_base::get(const ::atom& atom, const ::f64_array_base& f64a) const
 {
 
-   __IMPLEMENT_GET(doublea, as_f64_array);
+   __IMPLEMENT_GET(f64a, as_f64_array);
 
 }
 

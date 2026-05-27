@@ -38,9 +38,9 @@ getpixel (::i32 x, ::i32 y)
 
     gint i, maxi, ClosestS, s;
 
-    ::i32 r = color32_byte_red(color32);
-    ::i32 g = color32_byte_green(color32);
-    ::i32 b = color32_byte_blue(color32);
+    ::i32 r = color32_u8_red(color32);
+    ::i32 g = color32_u8_green(color32);
+    ::i32 b = color32_u8_blue(color32);
 
         ClosestS = 1000000;
         maxi = getmaxcolor ();

@@ -378,7 +378,7 @@ namespace linux
 
       void show_task(bool bShow) override;
 
-      virtual void non_top_most_upper_window_rects(::int_rectangle_array& recta) override;
+      virtual void non_top_most_upper_window_rects(::i32_rectangle_array& recta) override;
 
    };
 

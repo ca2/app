@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "int_biunique.h"
+#include "integer_biunique.h"
 //#include "acme/prototype/collection/numeric_array.h"
 
 
@@ -9,7 +9,7 @@ index_biunique::index_biunique()
 }
 
 
-int_biunique::int_biunique()
+i32_biunique::i32_biunique()
 {
 }
 

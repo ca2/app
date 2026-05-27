@@ -32,7 +32,7 @@ namespace sockets
       memsize               m_body_size_left;
       memsize               m_body_size_downloaded;
       f64_scalar_source m_scalarsourceDownloadedRate;
-      int_scalar_source    m_scalarsourceDownloaded;
+      i32_scalar_source    m_scalarsourceDownloaded;
       memsize               m_chunk_size;
       ::i32                  m_chunk_state;
       string               m_chunk_line;

@@ -16,8 +16,8 @@ CLASS_DECL_ACME::e_status windows_wait_result_to_status(::i32 iResult);
 
 #ifndef CUBE
 
-//CLASS_DECL_ACME int_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, void * pReserved, ::i32 iLibMainDebugBox = 0, const lib_main_int & intDelayMs = {});
-CLASS_DECL_ACME int_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, void * pReserved);
+//CLASS_DECL_ACME i32_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, void * pReserved, ::i32 iLibMainDebugBox = 0, const lib_main_int & intDelayMs = {});
+CLASS_DECL_ACME i32_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, void * pReserved);
 
 #endif
 

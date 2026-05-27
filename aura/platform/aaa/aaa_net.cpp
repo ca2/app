@@ -272,7 +272,7 @@ string url_encode(const ::scoped_string & scopedstr)
       else
       {
 
-         ansi_from_long_long(sz,uch,16);
+         ansi_from_i64(sz,uch,16);
 
          ansi_upper(sz);
 
@@ -419,7 +419,7 @@ void openURL(const string &url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
+//CLASS_DECL_AURA i32_bool freerdp_get_credentials(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive)
 //{
 //
 //   ::aura::application * papp = (::aura::application *) instance;

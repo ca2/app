@@ -93,7 +93,7 @@ namespace gpu_opengl
 
       void _set_bool(const_char_pointer pszName, bool bSet) const;
       void _set_int(const_char_pointer pszName, ::i32 value) const;
-      void _set_float(const_char_pointer pszName, ::f32 value) const;
+      void _set_f32(const_char_pointer pszName, ::f32 value) const;
       void _set_sequence2(const_char_pointer pszName, const floating_sequence2& value) const;
       void _set_sequence3(const_char_pointer pszName, const ::floating_sequence3 &value) const;
       void _set_sequence4(const_char_pointer pszName, const floating_sequence4 &value) const;
@@ -110,7 +110,7 @@ namespace gpu_opengl
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
       void set_int(const ::scoped_string& scopedstrName, ::i32 value) override;
-      void set_float(const ::scoped_string& scopedstrName, ::f32 value) override;
+      void set_f32(const ::scoped_string& scopedstrName, ::f32 value) override;
       void set_sequence2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y) override;
       void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a) override;
       void set_sequence3(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z) override;

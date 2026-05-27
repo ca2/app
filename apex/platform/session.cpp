@@ -375,7 +375,7 @@ namespace apex
    //}
 
 
-   //void session::get_monitor(int_rectangle_array_base& rectaMonitor, int_rectangle_array_base& rectaIntersect, const ::i32_rectangle& rectangle)
+   //void session::get_monitor(i32_rectangle_array_base& rectaMonitor, i32_rectangle_array_base& rectaIntersect, const ::i32_rectangle& rectangle)
    //{
 
 

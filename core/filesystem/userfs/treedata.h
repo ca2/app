@@ -94,7 +94,7 @@ namespace userfs
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_f64_click);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnShellCommand);

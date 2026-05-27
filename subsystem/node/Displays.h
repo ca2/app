@@ -42,10 +42,10 @@ namespace  subsystem
       // If a display does not exist now the function return an empty rectangle.
       virtual void getDisplayCoordinates(::u8 displayNumber, ::i32_rectangle & rectangle) = 0;
 
-      virtual ::int_rectangle_array_base getDisplaysCoords() = 0;
+      virtual ::i32_rectangle_array_base getDisplaysCoords() = 0;
 
       // Returns a ::array_base that contain dispalys coordinates at the current time.
-      virtual ::int_rectangle_array_base getDisplays() = 0;
+      virtual ::i32_rectangle_array_base getDisplays() = 0;
 
    //private:
       // Updates internal information to a current state.
@@ -62,7 +62,7 @@ namespace  subsystem
       // ::i32 m_xVirtualScreen;
       // ::i32 m_yVirtualScreen;
       //
-      // ::int_rectangle_array_base m_displayRects;
+      // ::i32_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
       //
       // static const ::u32 UPDATE_INTERVAL = 3000;
@@ -91,14 +91,14 @@ virtual public Composite<DisplaysInterface>
 
       }
 
-      ::int_rectangle_array_base getDisplaysCoords() override
+      ::i32_rectangle_array_base getDisplaysCoords() override
       {
 
          return m_pdisplays->getDisplaysCoords();
       }
 
       // Returns a ::array_base that contain dispalys coordinates at the current time.
-      ::int_rectangle_array_base getDisplays() override
+      ::i32_rectangle_array_base getDisplays() override
       {
 
          return m_pdisplays->getDisplays();
@@ -128,7 +128,7 @@ virtual public Composite<DisplaysInterface>
       // ::i32 m_xVirtualScreen;
       // ::i32 m_yVirtualScreen;
       //
-      // ::int_rectangle_array_base m_displayRects;
+      // ::i32_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
       //
       // static const ::u32 UPDATE_INTERVAL = 3000;

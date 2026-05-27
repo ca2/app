@@ -36,7 +36,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
    bool has_depth_buffer, bool has_stencil_buffer,
    bool clear)
    : Widget(parent), m_bDrawBorder(true) {
-   m_size = int_sequence2(250, 250);
+   m_size = i32_sequence2(250, 250);
    m_border_color = m_ptheme->m_colorBorderLight;
 
 #if defined(NANOUI_USE_GLES)
@@ -178,21 +178,21 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //
 //   pscreen->::nano2d::_flush();
 //
-//   int_sequence2 fbsize = m_size;
-//   int_sequence2 offset = absolute_position();
+//   i32_sequence2 fbsize = m_size;
+//   i32_sequence2 offset = absolute_position();
 //   if (m_bDrawBorder)
 //      fbsize -= 2;
 //
 //#if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
 //   if (m_render_to_texture)
-//      offset = int_sequence2(offset.x, pscreen->size().y - offset.y - m_size.cy);
+//      offset = i32_sequence2(offset.x, pscreen->size().y - offset.y - m_size.cy);
 //#endif
 //
 //   if (m_bDrawBorder)
-//      offset += int_sequence2(1, 1);
+//      offset += i32_sequence2(1, 1);
 //
-//   fbsize = int_sequence2(f32_sequence2(fbsize) * pixel_ratio);
-//   offset = int_sequence2(f32_sequence2(offset) * pixel_ratio);
+//   fbsize = i32_sequence2(f32_sequence2(fbsize) * pixel_ratio);
+//   offset = i32_sequence2(f32_sequence2(offset) * pixel_ratio);
 //
 //   if (m_render_to_texture) {
 //      m_render_pass->resize(fbsize);
@@ -226,7 +226,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //      if (m_render_pass_resolved)
 //         rp = m_render_pass_resolved;
 //#endif
-//      rp->blit_to(int_sequence2(0, 0), fbsize, pscreen, offset);
+//      rp->blit_to(i32_sequence2(0, 0), fbsize, pscreen, offset);
 //   }
 }
 

@@ -18,7 +18,7 @@ class time;
 class millis;
 
 
-inline ::f64 __double(const ::millis & millis);
+inline ::f64 __f64(const ::millis & millis);
 
 
 // milliseconds
@@ -85,7 +85,7 @@ public:
    inline ::f64 sawtooth(const ::millis & tickPeriod)
    {
 
-      return __double(elapsed() % tickPeriod) / __double(tickPeriod);
+      return __f64(elapsed() % tickPeriod) / __f64(tickPeriod);
 
    }
 
@@ -93,7 +93,7 @@ public:
    inline ::f64 period_rate(const ::millis & tickPeriod)
    {
 
-      return __double(elapsed()) / __double(tickPeriod);
+      return __f64(elapsed()) / __f64(tickPeriod);
 
    }
 
@@ -243,7 +243,7 @@ namespace acme
 #define U32_INFINITE_TIMEOUT ((::u32)0xffffffffu)
 
 
-inline ::f64 __double(const ::millis & millis) { return (::f64) millis.m_i32; }
+inline ::f64 __f64(const ::millis & millis) { return (::f64) millis.m_i32; }
 
 
 inline auto __pr(const ::millis & millis) { return millis.m_i32; }
@@ -276,7 +276,7 @@ inline ::u32 __os(const ::millis & millis)
 inline ::i32 __int(const ::millis & millis) { return (::i32) millis.m_i32; }
 
 
-inline ::i64 __long_long(const ::millis & millis) { return (::i64) millis.m_i32; }
+inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_i32; }
 
 
 inline ::u8 as_byte(const ::millis & millis) { return (::u8) minimummax(millis.m_i32, 0, 255); }

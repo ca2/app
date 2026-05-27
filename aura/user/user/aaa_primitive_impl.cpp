@@ -491,7 +491,7 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_client_to_screen(::int_sequence2 & sequence)
+   void prototype_impl::viewport_client_to_screen(::i32_sequence2 & sequence)
    {
 
       if (m_puserinteraction)
@@ -504,7 +504,7 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_screen_to_client(::int_sequence2 & sequence)
+   void prototype_impl::viewport_screen_to_client(::i32_sequence2 & sequence)
    {
 
       if (m_puserinteraction)
@@ -1407,7 +1407,7 @@ namespace user
    }
 
 
-   void prototype_impl::set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   void prototype_impl::set_need_redraw(const ::i32_rectangle_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 

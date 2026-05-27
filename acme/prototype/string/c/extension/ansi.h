@@ -50,18 +50,18 @@ CLASS_DECL_ACME const_char_pointer ansi_find_char(const_char_pointer sz, ::ansi_
 CLASS_DECL_ACME const_char_pointer ansi_find_char_reverse(const_char_pointer sz, ::ansi_character ch);
 CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2, ::i32_bool iFree1 = false, ::i32_bool iFree2 = false);
 
-//CLASS_DECL_ACME void ansi_from_long_long(char_pointer sz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
-//CLASS_DECL_ACME void ansi_from_unsigned_long_long(char_pointer sz, ::u64 u, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//CLASS_DECL_ACME void ansi_from_i64(char_pointer sz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//CLASS_DECL_ACME void ansi_from_u64(char_pointer sz, ::u64 u, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME void                   ansi_from_unsigned_long_long(::ansi_character * psz, ::u64 u, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
-CLASS_DECL_ACME void                   ansi_from_long_long(::ansi_character * psz, ::i64 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_u64(::ansi_character * psz, ::u64 u, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_i64(::ansi_character * psz, ::i64 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 CLASS_DECL_ACME void                   ansi_from_ui(::ansi_character * psz, ::u32 u, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   ansi_from_i(::ansi_character * psz, ::i32 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME ::i64                    ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
-CLASS_DECL_ACME ::u64                    ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
-CLASS_DECL_ACME ::i64                    ansi_count_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen);
+CLASS_DECL_ACME ::i64                    ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::u64                    ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::i64                    ansi_count_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen);
 
 CLASS_DECL_ACME ::i32                    ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
 CLASS_DECL_ACME ::u32                    ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);

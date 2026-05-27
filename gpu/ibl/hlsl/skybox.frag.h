@@ -14,8 +14,8 @@ SamplerState samplerLinear : register(s0);
 // Scene constant buffer (matches GlobalUbo in GLSL)
 struct PointLight
 {
-    float4 position;
-    float4 color;
+    f324 position;
+    f324 color;
 };
 
 
@@ -23,18 +23,18 @@ struct PointLight
 // register(b1) for "push constants"
 cbuffer MatrixBuffer : register(b1)
 {
-    float3 multiplier;
+    f323 multiplier;
 };
 
 
 
 cbuffer GlobalUbo : register(b0)
 {
-    float4x4 projection;
-    float4x4 view;
-    float4x4 invView;
-    float4 ambientLightColor;
-    float3 cameraPosition;
+    f324x4 projection;
+    f324x4 view;
+    f324x4 invView;
+    f324 ambientLightColor;
+    f323 cameraPosition;
     PointLight pointLights[10];
     ::i32 numLights;
     ::i32 padding0;
@@ -45,24 +45,24 @@ cbuffer GlobalUbo : register(b0)
 // Pixel shader input
 struct PS_INPUT
 {
-    float4 position     : SV_Position;
-    float4 vDirection   : TEXCOORD0;
+    f324 position     : SV_Position;
+    f324 vDirection   : TEXCOORD0;
 };
 
 
 
-float4 main(PS_INPUT input)  : SV_TARGET
+f324 main(PS_INPUT input)  : SV_TARGET
 {
 
     // Normalize direction
-    float3 dir = normalize(input.vDirection);
+    f323 dir = normalize(input.vDirection);
 
     // Flip Y if needed (to match OpenGL coordinates)
     //dir.y = -dir.y;
     dir *= multiplier;
 
     // Sample skybox cubemap
-    float4 color = skybox.Sample(samplerLinear, dir);
+    f324 color = skybox.Sample(samplerLinear, dir);
 
     return color;
 }

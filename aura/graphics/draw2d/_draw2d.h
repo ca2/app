@@ -60,8 +60,8 @@ namespace draw2d
       //::f64_point p2 = { x + w,   y + h };          // top-right
       //::f64_point p3 = { x,     y + h };          // top-left
 
-      // Each side will have 6 vertexes (2 triangles), 12 floats
-      // Total = 4 sides * 12 floats = 48 floats
+      // Each side will have 6 vertexes (2 triangles), 12 f32s
+      // Total = 4 sides * 12 f32s = 48 f32s
       //::f32* v = out_vertexes;
 
       // Bottom edge

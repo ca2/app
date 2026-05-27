@@ -123,7 +123,7 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 // #else
 
 // #define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
-// #define __unsigned_long_long(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 // #endif
 
@@ -366,12 +366,12 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 
-// #ifndef int_x
+// #ifndef i32_x
 // #define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
 // #endif
 
 
-// #ifndef int_y
+// #ifndef i32_y
 // #define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 // #endif
 

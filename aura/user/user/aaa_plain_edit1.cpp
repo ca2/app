@@ -325,7 +325,7 @@ namespace user
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &plain_edit::on_message_create);
       USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
       USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
-      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &plain_edit::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_f64_click, pchannel, this, &plain_edit::on_message_left_button_f64_click);
       USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &plain_edit::on_message_right_button_down);
       USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &plain_edit::on_message_right_button_up);
       USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &plain_edit::on_message_mouse_move);
@@ -2305,7 +2305,7 @@ namespace user
    }
 
 
-   void plain_edit::on_message_left_button_double_click(::message::message * pmessage)
+   void plain_edit::on_message_left_button_f64_click(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;

@@ -50,23 +50,23 @@ struct NSWindow;
 //#define HWND_MESSAGE ((::oswindow_data *) (iptr) 1)
 
 
-//int_bool destroy_window(oswindow w);
+//i32_bool destroy_window(oswindow w);
 
 
 //oswindow get_capture();
 //oswindow set_capture(oswindow window);
-//int_bool release_capture();
+//i32_bool release_capture();
 //oswindow set_focus(oswindow window);
 //oswindow get_focus();
 //oswindow get_active_window();
 //oswindow set_active_window(oswindow window);
-//int_bool enable_window(oswindow hwnd, int_bool bEnable);
+//i32_bool enable_window(oswindow hwnd, i32_bool bEnable);
 
 //void get_main_screen_rectangle(::i32_rectangle * prectangle);
 
 //
-//int_bool SetForegroundWindow(oswindow window);
-//int_bool BringWindowToTop(oswindow window);
+//i32_bool SetForegroundWindow(oswindow window);
+//i32_bool BringWindowToTop(oswindow window);
 //
 //void ns_redraw_window(oswindow window);
 //

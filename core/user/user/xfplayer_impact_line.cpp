@@ -200,7 +200,7 @@ void xfplayer_impact_line::GetPlacement(::i32_rectangle * prectangle)
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, i32_rectangle_array_base & rectaModified, bool bRecalcLayout)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -457,7 +457,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, int_rectangle_array_base & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, i32_rectangle_array_base & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1151,7 +1151,7 @@ void xfplayer_impact_line::Show(bool bShow)
 }
 
 
-void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, int_rectangle_array_base &  rectaModified)
+void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, i32_rectangle_array_base &  rectaModified)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

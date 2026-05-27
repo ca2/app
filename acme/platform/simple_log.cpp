@@ -111,7 +111,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
          ::i8 pszNum[30];
 
-         ansi_from_long_long(pszNum, iLine, 10, e_digit_case_upper);
+         ansi_from_i64(pszNum, iLine, 10, e_digit_case_upper);
 
          ansi_concatenate(psz, "(");
 

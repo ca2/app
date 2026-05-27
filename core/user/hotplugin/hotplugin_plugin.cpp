@@ -1080,7 +1080,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
       lparam lparam;
 
 
-      message = (::u32) (LPARAM) pusermessage->id().long_long;
+      message = (::u32) (LPARAM) pusermessage->id().i64;
 
       wparam     = pusermessage->m_wparam;
 

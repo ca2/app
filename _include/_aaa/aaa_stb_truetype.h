@@ -5034,7 +5034,7 @@ STBTT_DEF ::i32 stbtt_CompareUTF8toUTF16_bigendian(const_char_pointer s1, ::i32 
 //                    fixed some warnings
 //   0.3  (2009-06-24) cmap fmt=12, compound shapes (MM)
 //                    userdata, malloc-from-userdata, non-zero fill (stb)
-//   0.2  (2009-03-11) Fix ::u32/signed ::i8 warnings
+//   0.2  (2009-03-11) Fix ::u32/::i8 warnings
 //   0.1  (2009-03-09) First public release
 //
 

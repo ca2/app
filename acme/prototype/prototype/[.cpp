@@ -665,10 +665,10 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_u32 = this->::u32();
             break;
          case e_type_i64:
-            m_hi = this->long_long;
+            m_hi = this->i64;
             break;
          case e_type_u64:
-            m_hn = this->unsigned_long_long;
+            m_hn = this->u64;
             break;
          case e_type_f64:
             m_f64 = this->::f64();
@@ -1803,7 +1803,7 @@ bool payload::is_new_or_null() const
          //payload.payloada().erase(payload2);
       }
    }
-   else if(is_double() || payload.is_double())
+   else if(is_f64() || payload.is_f64())
    {
       ::f64 d = this->::f64() - payload.as_f64();
       if(d == 0.0)
@@ -1873,7 +1873,7 @@ bool payload::is_new_or_null() const
          //payload.payloada().erase(payload2);
       }
    }
-   else if(is_double() || payload.is_double())
+   else if(is_f64() || payload.is_f64())
    {
       ::f64 d = this->::f64() - payload.as_f64();
       if(d == 0.0)
@@ -2008,22 +2008,22 @@ bool payload::operator != (::i32 i) const
 
 bool payload::operator < (::i32 i) const
 {
-   return long_long < i;
+   return i64 < i;
 }
 
 bool payload::operator <= (::i32 i) const
 {
-   return long_long <= i;
+   return i64 <= i;
 }
 
 bool payload::operator >= (::i32 i) const
 {
-   return long_long >= i;
+   return i64 >= i;
 }
 
 bool payload::operator > (::i32 i) const
 {
-   return long_long > i;
+   return i64 > i;
 }
 
 
@@ -2038,27 +2038,27 @@ bool payload::operator > (::i32 i) const
 
 bool payload::operator == (::i64 i) const
 {
-   return long_long == i;
+   return i64 == i;
 }
 
 bool payload::operator != (::i64 i) const
 {
-   return long_long != i;
+   return i64 != i;
 }
 
 bool payload::operator < (::i64 i) const
 {
-   return long_long < i;
+   return i64 < i;
 }
 
 bool payload::operator <= (::i64 i) const
 {
-   return long_long <= i;
+   return i64 <= i;
 }
 
 bool payload::operator >= (::i64 i) const
 {
-   return long_long >= i;
+   return i64 >= i;
 }
 
 bool payload::operator > (::i64 i) const
@@ -2556,13 +2556,13 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
       return atoi(*m_pstr);
    case e_type_id:
    {
-      if(!fits_int(id().long_long))
+      if(!fits_int(id().i64))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) id();
    }
    case e_type_pid:
    {
-      if(!fits_int(m_pid->long_long))
+      if(!fits_int(m_pid->i64))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) *m_pid;
    }
@@ -2667,7 +2667,7 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 //
 //
 
-::i64 payloadlong long(::i64 iDefault) const
+::i64 payload::i64(::i64 iDefault) const
 {
 
    try
@@ -2680,7 +2680,7 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
       case e_type_empty:
          return iDefault;
       case e_type_string:
-         return ansi_to_long_long(m_str);
+         return ansi_to_i64(m_str);
       case e_type_i8:
          return m_i8;
       case e_type_u8:
@@ -2766,7 +2766,7 @@ long payload::get_long(long lDefault) const
 ulong payload::get_unsigned_long(ulong ulDefault) const
 {
    
-   return (ulong) this->unsigned_long_long(ulDefault);
+   return (ulong) this->u64(ulDefault);
    
 }
 
@@ -2792,7 +2792,7 @@ ulong payload::get_unsigned_long(ulong ulDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      ::i64 i = this->long_long;
+//      ::i64 i = this->i64;
 //
 //      set_type(e_type_i64, false);
 //
@@ -2806,7 +2806,7 @@ ulong payload::get_unsigned_long(ulong ulDefault) const
 //
 //
 
-::u64 payloadunsigned ::i64(::u64 uiDefault) const
+::u64 payload::u64(::u64 uiDefault) const
 {
    switch(m_etype)
    {
@@ -2832,9 +2832,9 @@ ulong payload::get_unsigned_long(ulong ulDefault) const
    case e_type_path:
       return uiDefault;
    case e_type_payload_pointer:
-      return m_ppayload->unsigned_long_long(uiDefault);
+      return m_ppayload->u64(uiDefault);
    case e_type_property:
-      return m_pproperty->unsigned_long_long(uiDefault);
+      return m_pproperty->u64(uiDefault);
    default:
       return uiDefault;
    }
@@ -2861,7 +2861,7 @@ ulong payload::get_unsigned_long(ulong ulDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      ::u64 i = this->unsigned_long_long;
+//      ::u64 i = this->u64;
 //
 //      set_type(e_type_u64, false);
 //
@@ -3196,7 +3196,7 @@ bool & payload::bool_reference()
 //
 
 
-::f32 payloadfloat(::f32 fDefault) const
+::f32 payloadf32(::f32 fDefault) const
 {
    switch(m_etype)
    {
@@ -3280,7 +3280,7 @@ bool & payload::bool_reference()
 //}
 
 
-::f64 payloaddouble(::f64 dDefault) const
+::f64 payloadf64(::f64 dDefault) const
 {
    ::f64 d;
    if(m_etype == e_type_null)
@@ -3794,7 +3794,7 @@ i64_array_base payload::i64a() const
          for (::collection::index i = 0; i < c; i++)
          {
 
-            i64a.add(at(i).long_long);
+            i64a.add(at(i).i64);
 
          }
 
@@ -3852,7 +3852,7 @@ i64_array_base & payload::i64a_reference()
          for (::collection::index i = 0; i < c; i++)
          {
 
-            pia64->add(at(i).long_long);
+            pia64->add(at(i).i64);
 
          }
 
@@ -3909,7 +3909,7 @@ time payload::time() const
    else if(is_integer())
    {
 
-      return integral_second(long_long);
+      return integral_second(i64);
 
    }
    else if (is_floating())
@@ -4563,7 +4563,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
       if (::str::is_integer(str))
       {
 
-         varRet += ansi_to_long_long(str);
+         varRet += ansi_to_i64(str);
 
       }
       else
@@ -4616,7 +4616,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //::payload payload::operator / (::i64 l) const
 //{
-//   return long_long / l;
+//   return i64 / l;
 //}
 //
 //::payload payload::operator / (::u64 ul) const
@@ -4673,7 +4673,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //::payload operator / (::i64 l, const class ::payload & payload)
 //{
-//   return l / payload.long_long;
+//   return l / payload.i64;
 //}
 //
 //
@@ -4730,7 +4730,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //::payload payload::operator * (::i64 l) const
 //{
-//   return long_long * l;
+//   return i64 * l;
 //}
 //
 //::payload payload::operator * (::u64 ul) const
@@ -4787,7 +4787,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //::payload operator * (::i64 l, const class ::payload & payload)
 //{
-//   return l * payload.long_long;
+//   return l * payload.i64;
 //}
 //
 //::payload operator * (::u64 ul, const class ::payload & payload)
@@ -5246,7 +5246,7 @@ bool payload::is_boolean() const
    return false;
 }
 
-bool payload::is_double() const
+bool payload::is_f64() const
 {
    if(m_etype == e_type_f64)
    {
@@ -6958,31 +6958,31 @@ bool payload::is_false() const
          return !m_pintegralday || !m_pintegralday->m_i32;
       case e_type_floating_nanosecond:
          return !m_fingnanosecond.m_f64;
-      case e_type_pf32ing_nanosecond:
+      case e_type_pfloating_nanosecond:
          return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
          case e_type_floating_microsecond:
             return !m_fingmicrosecond.m_f64;
-         case e_type_pf32ing_microsecond:
+         case e_type_pfloating_microsecond:
             return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
          case e_type_floating_millisecond:
             return !m_fingmillisecond.m_f64;
-         case e_type_pf32ing_millisecond:
+         case e_type_pfloating_millisecond:
             return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
          case e_type_floating_second:
             return !m_fingsecond.m_f64;
-         case e_type_pf32ing_second:
+         case e_type_pfloating_second:
             return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
          case e_type_floating_minute:
             return !m_fingminute.m_f64;
-         case e_type_pf32ing_minute:
+         case e_type_pfloating_minute:
             return !m_pfloatingminute || !m_pfloatingminute->m_f64;
          case e_type_floating_hour:
             return !m_finghour.m_f64;
-         case e_type_pf32ing_hour:
+         case e_type_pfloating_hour:
             return !m_pfloatinghour || !m_pfloatinghour->m_f64;
          case e_type_floating_day:
             return !m_fingday.m_f64;
-         case e_type_pf32ing_day:
+         case e_type_pfloating_day:
             return !m_pfloatingday || !m_pfloatingday->m_f64;
    case e_type_enum_command:
    case e_type_enum_status:
@@ -7144,31 +7144,31 @@ bool payload::is_set_false() const
             return !m_pintegralday || !m_pintegralday->m_i32;
          case e_type_floating_nanosecond:
             return !m_fingnanosecond.m_f64;
-         case e_type_pf32ing_nanosecond:
+         case e_type_pfloating_nanosecond:
             return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_f64;
             case e_type_floating_microsecond:
                return !m_fingmicrosecond.m_f64;
-            case e_type_pf32ing_microsecond:
+            case e_type_pfloating_microsecond:
                return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_f64;
             case e_type_floating_millisecond:
                return !m_fingmillisecond.m_f64;
-            case e_type_pf32ing_millisecond:
+            case e_type_pfloating_millisecond:
                return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_f64;
             case e_type_floating_second:
                return !m_fingsecond.m_f64;
-            case e_type_pf32ing_second:
+            case e_type_pfloating_second:
                return !m_pfloatingsecond || !m_pfloatingsecond->m_f64;
             case e_type_floating_minute:
                return !m_fingminute.m_f64;
-            case e_type_pf32ing_minute:
+            case e_type_pfloating_minute:
                return !m_pfloatingminute || !m_pfloatingminute->m_f64;
             case e_type_floating_hour:
                return !m_finghour.m_f64;
-            case e_type_pf32ing_hour:
+            case e_type_pfloating_hour:
                return !m_pfloatinghour || !m_pfloatinghour->m_f64;
             case e_type_floating_day:
                return !m_fingday.m_f64;
-            case e_type_pf32ing_day:
+            case e_type_pfloating_day:
                return !m_pfloatingday || !m_pfloatingday->m_f64;
    case e_type_enum_command:
    case e_type_enum_status:
@@ -7317,7 +7317,7 @@ void unit_test_primitive_var_acme_block()
 ::earth::time payload::datetime_time () const
 {
 
-   return long_long;
+   return i64;
 
 }
 
@@ -7340,7 +7340,7 @@ void unit_test_primitive_var_acme_block()
    else if (m_etype != e_type_time)
    {
 
-      auto i =long_long;
+      auto i =i64;
 
       set_type(e_type_time, false);
 

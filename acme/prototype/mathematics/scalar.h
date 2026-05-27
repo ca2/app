@@ -41,18 +41,18 @@ namespace number
       number(::u16 u) { m_u16 = u; m_enumber = e_number_unsigned_short; }
       number(::i32 i) { m_i32 = i; m_enumber = e_number_int; }
       number(::u32 u) { m_u32 = u; m_enumber = e_number_unsigned_int; }
-      number(::i64 i) { m_hi = i; m_enumber = e_number_long_long; }
-      number(::u64 u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
-      number(::f32 f) { m_f32 = f; m_enumber = e_number_float; }
-      number(::f64 d) { m_f64 = d; m_enumber = e_number_double; }
+      number(::i64 i) { m_hi = i; m_enumber = e_number_i64; }
+      number(::u64 u) { m_hn = u; m_enumber = e_number_u64; }
+      number(::f32 f) { m_f32 = f; m_enumber = e_number_f32; }
+      number(::f64 d) { m_f64 = d; m_enumber = e_number_f64; }
       //#ifdef __clang__
-      //   number(long l) { m_hi = l; m_enumber = e_number_long_long; }
+      //   number(long l) { m_hi = l; m_enumber = e_number_i64; }
       //#endif
 
 
       bool ok() const { return m_enumber != e_number_none; }
       bool nok() const { return !ok(); }
-      bool is_float() const { return m_enumber & 16; }
+      bool is_f32() const { return m_enumber & 16; }
       bool is_integer() const { return m_enumber & 6; }
       bool is_signed() const { return m_enumber & 2; }
       bool is_unsigned() const { return m_enumber & 4; }
@@ -76,13 +76,13 @@ namespace number
                return(T)m_i32;
             case e_number_unsigned_int:
                return (T)m_u32;
-            case e_number_long_long:
+            case e_number_i64:
                return(T)m_hi;
-            case e_number_unsigned_long_long:
+            case e_number_u64:
                return (T)m_hn;
-            case e_number_float:
+            case e_number_f32:
                return (T)m_f32;
-            case e_number_double:
+            case e_number_f64:
                return(T)m_f64;
          };
          return (T)0;
@@ -114,16 +114,16 @@ namespace number
             case e_number_unsigned_int:
                m_u32 = (::u32)t;
                break;
-            case e_number_long_long:
+            case e_number_i64:
                m_hi = (::i64)t;
                break;
-            case e_number_unsigned_long_long:
+            case e_number_u64:
                m_hn = (::u64)t;
                break;
-            case e_number_float:
+            case e_number_f32:
                m_f32 = (::f32)t;
                break;
-            case e_number_double:
+            case e_number_f64:
                m_f64 = (::f64)t;
                break;
          };
@@ -136,10 +136,10 @@ namespace number
       ::u16 get_unsigned_short() const { return get < ::u16>(); }
       ::i32 get_int() const { return get < ::i32>(); }
       ::u32 get_unsigned_int() const { return get < ::u32>(); }
-      ::i64 get_long_long() const { return get < ::i64>(); }
-      ::u64 get_unsigned_long_long() const { return get < ::u64>(); }
-      ::f32 get_float() const { return get < ::f32>(); }
-      ::f64 get_double() const { return get < ::f64>(); }
+      ::i64 get_i64() const { return get < ::i64>(); }
+      ::u64 get_u64() const { return get < ::u64>(); }
+      ::f32 get_f32() const { return get < ::f32>(); }
+      ::f64 get_f64() const { return get < ::f64>(); }
 
 
       ::number::number operator + (const number& number) const
@@ -149,16 +149,16 @@ namespace number
 
          numberResult.m_enumber = maximum(m_enumber, number.m_enumber);
 
-         if (numberResult.is_float())
+         if (numberResult.is_f32())
          {
 
-            numberResult.set(get_double() + number.get_double());
+            numberResult.set(get_f64() + number.get_f64());
 
          }
          else if (numberResult.is_integer())
          {
 
-            numberResult.set(get_long_long() + number.get_long_long());
+            numberResult.set(get_i64() + number.get_i64());
 
          }
 
@@ -174,16 +174,16 @@ namespace number
 
          numberResult.m_enumber = maximum(m_enumber, number.m_enumber);
 
-         if (numberResult.is_float())
+         if (numberResult.is_f32())
          {
 
-            numberResult.set(get_double() - number.get_double());
+            numberResult.set(get_f64() - number.get_f64());
 
          }
          else if (numberResult.is_integer())
          {
 
-            numberResult.set(get_long_long() - number.get_long_long());
+            numberResult.set(get_i64() - number.get_i64());
 
          }
 
@@ -198,16 +198,16 @@ namespace number
 
          numberResult.m_enumber = maximum(m_enumber, number.m_enumber);
 
-         if (numberResult.is_float())
+         if (numberResult.is_f32())
          {
 
-            numberResult.set(get_double() * number.get_double());
+            numberResult.set(get_f64() * number.get_f64());
 
          }
          else if (numberResult.is_integer())
          {
 
-            numberResult.set(get_long_long() * number.get_long_long());
+            numberResult.set(get_i64() * number.get_i64());
 
          }
 
@@ -223,16 +223,16 @@ namespace number
 
          numberResult.m_enumber = maximum(m_enumber, number.m_enumber);
 
-         if (numberResult.is_float())
+         if (numberResult.is_f32())
          {
 
-            numberResult.set(get_double() / number.get_double());
+            numberResult.set(get_f64() / number.get_f64());
 
          }
          else if (numberResult.is_integer())
          {
 
-            numberResult.set(get_long_long() / number.get_long_long());
+            numberResult.set(get_i64() / number.get_i64());
 
          }
 
@@ -249,13 +249,13 @@ namespace number
          if (enumber & 64) // ::f32
          {
 
-            return get_double() == number.get_double();
+            return get_f64() == number.get_f64();
 
          }
          else if (enumber & 6) // integer
          {
 
-            return get_long_long() == number.get_long_long();
+            return get_i64() == number.get_i64();
 
          }
 
@@ -271,13 +271,13 @@ namespace number
          if (enumber & 64) // ::f32
          {
 
-            return get_double() != number.get_double();
+            return get_f64() != number.get_f64();
 
          }
          else if (enumber & 6) // integer
          {
 
-            return get_long_long() != number.get_long_long();
+            return get_i64() != number.get_i64();
 
          }
 
@@ -294,13 +294,13 @@ namespace number
          if (enumber & 64) // ::f32
          {
 
-            return get_double() < number.get_double();
+            return get_f64() < number.get_f64();
 
          }
          else if (enumber & 6) // integer
          {
 
-            return get_long_long() < number.get_long_long();
+            return get_i64() < number.get_i64();
 
          }
 
@@ -317,13 +317,13 @@ namespace number
          if (enumber & 64) // ::f32
          {
 
-            return get_double() <= number.get_double();
+            return get_f64() <= number.get_f64();
 
          }
          else if (enumber & 6) // integer
          {
 
-            return get_long_long() <= number.get_long_long();
+            return get_i64() <= number.get_i64();
 
          }
 
@@ -340,13 +340,13 @@ namespace number
          if (enumber & 64) // ::f32
          {
 
-            return get_double() > number.get_double();
+            return get_f64() > number.get_f64();
 
          }
          else if (enumber & 6) // integer
          {
 
-            return get_long_long() > number.get_long_long();
+            return get_i64() > number.get_i64();
 
          }
 
@@ -364,13 +364,13 @@ namespace number
          if (enumber & 64) // ::f32
          {
 
-            return get_double() >= number.get_double();
+            return get_f64() >= number.get_f64();
 
          }
          else if (enumber & 6) // integer
          {
 
-            return get_long_long() >= number.get_long_long();
+            return get_i64() >= number.get_i64();
 
          }
 
@@ -609,14 +609,14 @@ namespace  number
 //
 //
 ////using f64_scalar_manager = scalar_manager < ::f64 >;
-////using int_scalar_manager  = scalar_manager < ::i64 >;
+////using i32_scalar_manager  = scalar_manager < ::i64 >;
 //
 ////using f64_scalar_listener = scalar_manager < ::f64 >::listener;
-////using int_scalar_listener  = scalar_manager < ::i64 >::listener;
+////using i32_scalar_listener  = scalar_manager < ::i64 >::listener;
 //
 //
 ////using f64_scalar = scalar < ::f64 >;
-////using int_scalar  = scalar < ::i64 >;
+////using i32_scalar  = scalar < ::i64 >;
 //
 //
 //

@@ -286,7 +286,7 @@ void GeoIPRecord_delete (GeoIPRecord *gir)
 char_pointer _iso_8859_1__utf8(const_char_pointer iso)
 {
 
-   signed ::i8 ca;
+   ::i8 ca;
    ::i8 k;
    char_pointer p;
    char_pointer t = (char_pointer )iso;

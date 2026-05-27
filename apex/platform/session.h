@@ -322,7 +322,7 @@ namespace apex
       // //virtual ::collection::count get_desk_monitor_count();
       // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle * prectangle);
 
-      // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::i32_rectangle & rectangle);
+      // virtual void  get_monitor(i32_rectangle_array_base & rectaMonitor, i32_rectangle_array_base & rectaIntersect, const ::i32_rectangle & rectangle);
 
       // // apex commented
       // //virtual ::collection::index initial_frame_position(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);

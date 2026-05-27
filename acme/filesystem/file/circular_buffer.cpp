@@ -39,7 +39,7 @@ namespace file
       {
          auto l1 = m_max - m_t; // i32_size left until circular border crossing
          // always copy full block to buffer(m_memory.data()) + top pointer(m_t)
-         // because we have doubled the buffer i32_size for performance reasons
+         // because we have f64d the buffer i32_size for performance reasons
          ::memory_copy(m_memory.data() + m_t, s, l);
          ::memory_copy(m_memory.data(), s + l1, l - l1);
          m_t = l - l1;

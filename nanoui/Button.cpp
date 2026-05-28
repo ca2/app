@@ -77,10 +77,10 @@ namespace nanoui
    //}
 
 
-   bool Button::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool Button::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
 
-      Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeystate);
+      Widget::mouse_button_event(p, ekeystate, down, bDoubleClick);
       /* Temporarily increase the reference count of the button in case the
          button causes the parent window to be destructed */
       ::pointer<Button> self = this;
@@ -88,8 +88,8 @@ namespace nanoui
       if (m_bEnabled &&
          (
 
-            (ebuttonstate == ::user::e_key_state_left && !(m_flags & ContextMenuButton)) ||
-            (ebuttonstate == ::user::e_key_state_right && (m_flags & ContextMenuButton))
+            (ekeystate == ::user::e_key_state_left_button && !(m_flags & ContextMenuButton)) ||
+            (ekeystate == ::user::e_key_state_right_button && (m_flags & ContextMenuButton))
 
             )
          )
@@ -311,7 +311,7 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const i32_point& p, bool bEnter, const ::user::e_key& ekeystate)
+   bool Button::mouse_enter_event(const i32_point& p, bool bEnter, ::user::e_key_state ekeystate)
    {
 
       Widget::mouse_enter_event(p, bEnter, ekeystate);

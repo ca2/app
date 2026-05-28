@@ -88,7 +88,7 @@ CLASS_DECL_AURA::i32_point __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight);
 CLASS_DECL_AURA::i32_point __get_bottom_right();
 CLASS_DECL_AURA void __set_bottom_right(const ::i32_point & pointBottomRight);
-
+///CLASS_DECL_ACME ::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam);
 
 inline void make_parent_mouse_message(::user::enum_message & emessage)
 {
@@ -18936,7 +18936,7 @@ if(get_parent())
       case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_ekeystate = (::user::enum_button_state)wparam.m_wparam;
+         pmessage->m_ekeystate = session()->key_state_with_wm_mouse_wparam(wparam);
 
          //         if ((pmessage->m_ekeystate & I32_MINIMUM) == (I32_MINIMUM))
          //         {
@@ -18974,7 +18974,7 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ekeystate = (::user::enum_button_state)lower_unsigned_short(wparam);
+         pmessage->m_ekeystate = session()->key_state_with_wm_mouse_wparam(wparam);
 
          pmessage->m_pointAbsolute = lparam.point();
 
@@ -26487,7 +26487,7 @@ void interaction::on_control_box_zoom(){
 
       //      auto ekeystate = psession->key_state();
 
-      //      bool bDown = pmouse->m_ekeystate & e_button_state_left;
+      //      bool bDown = pmouse->m_ekeystate & e_key_state_left_button;
       //      /*{
 
       //         bRet = pappearance->on_mouse_drag(pointClient, ekeystate);
@@ -26736,7 +26736,7 @@ void interaction::on_control_box_zoom(){
 
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(e_button_state_left, pointClient, ekeystate, bDoubleClick))
+            if (pappearance->on_button_down(ekeystate, pointClient, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -27170,11 +27170,7 @@ void interaction::on_control_box_zoom(){
 
          host_to_client()(pointClient);
 
-         auto psession = session();
-
-         auto ekeystate = psession->key_state();
-
-         if (pappearance->on_button_up(e_button_state_left, pointClient, ekeystate))
+         if (pappearance->on_button_up(pmouse->m_ekeystate, pointClient))
          {
 
             pmessage->m_bRet = true;
@@ -27561,7 +27557,7 @@ __check_refdbg;
 
             auto ekeystate = psession->key_state();
 
-            bool bDown = pmouse->m_ekeystate & e_button_state_left;
+            bool bDown = pmouse->m_ekeystate & e_key_state_left_button;
             /*{
 
                bRet = pappearance->on_mouse_drag(pointClient, ekeystate);
@@ -27830,13 +27826,9 @@ __check_refdbg;
 
          host_to_client()(pointClient);
 
-         auto psession = session();
-
-         auto ekeystate = psession->key_state();
-
          bool bDoubleClick = true;
 
-         if (pappearance->on_button_down(e_key_left_button, pointClient, ekeystate, bDoubleClick))
+         if (pappearance->on_button_down(pmouse->m_ekeystate, pointClient, bDoubleClick))
          {
 
             pmessage->m_bRet = true;
@@ -27884,13 +27876,9 @@ __check_refdbg;
 
             host_to_client()(pointClient);
 
-            auto psession = session();
-
-            auto ekeystate = psession->key_state();
-
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeystate, true))
+            if (pappearance->on_button_down(pmouse->m_ekeystate, pointClient, true))
             {
 
                pmouse->m_bRet = true;
@@ -27943,11 +27931,7 @@ __check_refdbg;
 
          host_to_client()(pointClient);
 
-         auto psession = session();
-
-         auto ekeystate = psession->key_state();
-
-         if (pappearance->on_button_up(e_key_right_button, pointClient, ekeystate))
+         if (pappearance->on_button_up(pmouse->m_ekeystate, pointClient))
          {
 
             pmessage->m_bRet = true;

@@ -377,7 +377,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeystate)
+   bool TextBox::mouse_enter_event(const i32_point& p, bool enter, ::user::e_key_state ekeystate)
    {
 
       Widget::mouse_enter_event(p, enter, ekeystate);
@@ -387,10 +387,10 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool TextBox::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
 
-      if (ebuttonstate == ::user::e_key_state_left && down && !focused())
+      if (ekeystate == ::user::e_key_state_left_button && down && !focused())
       {
          
          if (!m_bSpinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
@@ -533,7 +533,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_motion_event(const i32_point& p, const i32_size& /* rel */, bool bDown, const ::user::e_key& ekeystate)
+   bool TextBox::mouse_motion_event(const i32_point& p, const i32_size& /* rel */, bool bDown, ::user::e_key_state ekeystate)
    {
 
       m_mouse_pos = p;
@@ -577,7 +577,7 @@ namespace nanoui
 
 
 
-   //bool TextBox::mouse_drag_event(const i32_point& p, const i32_size&/* rel */, const ::user::e_key& ekeystate)
+   //bool TextBox::mouse_drag_event(const i32_point& p, const i32_size&/* rel */, ::user::e_key_state ekeystate)
    //{
    // 
    // 
@@ -840,7 +840,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText)
+   bool TextBox::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
    {
 
       if (m_bEditable && focused())

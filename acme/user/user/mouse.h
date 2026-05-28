@@ -58,31 +58,31 @@ namespace user
 
       //}
 
-      bool is_left_button_pressed() const       { return m_ekeystate & (::i32) ::user::e_key_state_left; }
-      bool is_right_button_pressed() const      { return m_ekeystate & (::i32)::user::e_key_state_right; }
+      bool is_left_button_pressed() const       { return m_ekeystate & (::i32)::user::e_key_state_left_button; }
+      bool is_right_button_pressed() const      { return m_ekeystate & (::i32)::user::e_key_state_right_button; }
       bool is_shift_pressed() const             { return m_ekeystate & (::i32)::user::e_key_state_shift; }
       bool is_control_pressed() const           { return m_ekeystate & (::i32)::user::e_key_state_control; }
-      bool is_middle_button_pressed() const     { return m_ekeystate & (::i32)::user::e_key_state_middle; }
-      bool is_x1_button_pressed() const         { return m_ekeystate & (::i32)::user::e_key_state_x1; }
-      bool is_x2_button_pressed() const         { return m_ekeystate & (::i32)::user::e_key_state_x2; }
+      bool is_middle_button_pressed() const     { return m_ekeystate & (::i32)::user::e_key_state_middle_button; }
+      bool is_x1_button_pressed() const         { return m_ekeystate & (::i32)::user::e_key_state_x1_button; }
+      bool is_x2_button_pressed() const         { return m_ekeystate & (::i32)::user::e_key_state_x2_button; }
 
-      void set_left_button_pressed()   { m_ekeystate |= ::user::e_key_state_left;
+      void set_left_button_pressed()   { m_ekeystate |= ::user::e_key_state_left_button;
       }
-      void set_right_button_pressed() { m_ekeystate |= ::user::e_key_state_right; }
+      void set_right_button_pressed() { m_ekeystate |= ::user::e_key_state_right_button; }
       void set_shift_pressed() { m_ekeystate |= ::user::e_key_state_shift; }
       void set_control_pressed() { m_ekeystate |= ::user::e_key_state_control; }
-      void set_middle_button_pressed() { m_ekeystate |= ::user::e_key_state_middle; }
-      void set_x1_button_pressed() { m_ekeystate |= ::user::e_key_state_x1; }
-      void set_x2_button_pressed() { m_ekeystate |= ::user::e_key_state_x2; }
+      void set_middle_button_pressed() { m_ekeystate |= ::user::e_key_state_middle_button; }
+      void set_x1_button_pressed() { m_ekeystate |= ::user::e_key_state_x1_button; }
+      void set_x2_button_pressed() { m_ekeystate |= ::user::e_key_state_x2_button; }
 
-      void clear_left_button_pressed()    { m_ekeystate &= ::user::e_key_state_left;
+      void clear_left_button_pressed()    { m_ekeystate &= ::user::e_key_state_left_button;
       }
-      void clear_right_button_pressed() { m_ekeystate &= ::user::e_key_state_right; }
+      void clear_right_button_pressed() { m_ekeystate &= ::user::e_key_state_right_button; }
       void clear_shift_pressed() { m_ekeystate &= ::user::e_key_state_shift; }
       void clear_control_pressed() { m_ekeystate &= ::user::e_key_state_control; }
-      void clear_middle_button_pressed() { m_ekeystate &= ::user::e_key_state_middle; }
-      void clear_x1_button_pressed() { m_ekeystate &= ::user::e_key_state_x1; }
-      void clear_x2_button_pressed() { m_ekeystate &= ::user::e_key_state_x2; }
+      void clear_middle_button_pressed() { m_ekeystate &= ::user::e_key_state_middle_button; }
+      void clear_x1_button_pressed() { m_ekeystate &= ::user::e_key_state_x1_button; }
+      void clear_x2_button_pressed() { m_ekeystate &= ::user::e_key_state_x2_button; }
 
       
       ::user::mouse & operator = (const ::user::mouse & mouse);

@@ -12,7 +12,7 @@
 //   {
 //
 //      e_button_state_none = 0,
-//      e_button_state_left = 1, // MK_LBUTTON
+//      e_key_state_left_button = 1, // MK_LBUTTON
 //      e_button_state_right = 2, // MK_RBUTTON
 //      e_button_state_shift = 4, // MK_SHIFT
 //      e_button_state_control = 8, // MK_CONTROL

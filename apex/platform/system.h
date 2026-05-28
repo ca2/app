@@ -513,8 +513,8 @@ namespace apex
 
       virtual ::pointer<::innate_ui::icon> operating_system_innate_ui_icon(const ::i32_size &size);
       virtual ::pointer<::innate_ui::icon> operating_ambient_innate_ui_icon(const ::i32_size &size);
-      virtual ::string operating_system_icon_url(const ::i32_size &size);
-      virtual ::string operating_ambient_icon_url(const ::i32_size &size);
+      ::string operating_system_icon_url(const ::i32_size &size) override;
+      ::string operating_ambient_icon_url(const ::i32_size &size) override;
       void show_operating_system_information_box(::user::activation_token *puseractivationtoken) override;
 
     

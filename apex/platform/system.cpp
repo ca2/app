@@ -5272,44 +5272,7 @@ namespace apex
    ::string system::operating_system_icon_url(const ::i32_size & size)
    {
 
-      ::string strUrl;
-
-      ::string strSystem;
-
-      auto psummary = node()->operating_system_summary();
-
-      strSystem = psummary->m_strSystem;
-
-      auto strSystemRelease= psummary->m_strSystemRelease;
-
-      if (strSystem == "windows")
-      {
-
-         if (strSystemRelease == "10")
-         {
-
-            strSystem = "windows10";
-
-         }
-         else if (strSystemRelease == "11")
-         {
-
-            strSystem = "windows11";
-
-         }
-         else
-         {
-
-            strSystem = "windows" + strSystemRelease;
-
-         }
-
-      }
-
-      strUrl.format("https://ca2.site/image/operating-system/{}/{}.png", size.cx, strSystem);
-
-
-      return strUrl;
+      return ::platform::system::operating_system_icon_url(size);
 
    }
 
@@ -5317,19 +5280,10 @@ namespace apex
    ::string system::operating_ambient_icon_url(const ::i32_size & size)
    {
 
-      ::string strUrl;
-
-      ::string strAmbient;
-
-      auto psummary = node()->operating_system_summary();
-
-      strAmbient = psummary->m_strAmbient;
-
-      strUrl.format("https://ca2.site/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
-
-      return strUrl;
+      return ::platform::system::operating_ambient_icon_url(size);
 
    }
+
 
    void system::show_operating_system_information_box(::user::activation_token * puseractivationtoken)
    {

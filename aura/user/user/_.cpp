@@ -10,19 +10,19 @@ CLASS_DECL_AURA::user::e_key_state user_key_to_user_button_state(::user::e_key e
    if (ekey == ::user::e_key_left_button)
    {
 
-      return ::user::e_key_state_left;
+      return ::user::e_key_state_left_button;
 
    }
    else if (ekey == ::user::e_key_right_button)
    {
 
-      return ::user::e_key_state_right;
+      return ::user::e_key_state_right_button;
 
    }
    else if (ekey == ::user::e_key_middle_button)
    {
 
-      return::user::e_key_state_middle;
+      return::user::e_key_state_middle_button;
 
    }
 

@@ -6,6 +6,7 @@
 #include "message_box.h"
 #include "still.h"
 #include "theme.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/sequence.h"
 #include "acme/nano/graphics/context.h"
 #include "acme/nano/graphics/icon.h"
@@ -224,7 +225,20 @@ namespace micro
 
 //      create_window();
 
-      set_icon(pmessageboxpayload->m_picon);
+      if (pmessageboxpayload->m_straIconUrl.has_element())
+      {
+
+         auto picon = createø<::nano::graphics::icon>();
+
+         auto pfile = file()->get_reader(pmessageboxpayload->m_straIconUrl.first());
+
+         picon->load_image_from_file(pfile);
+
+         pmessageboxpayload->m_picon2 = picon;
+
+         set_icon(picon);
+
+      }
 
       if (pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask)
       {
@@ -458,7 +472,8 @@ namespace micro
             m_pdialog->dialog_details(),
             m_pdialog->dialog_title() + " : Details",
             ::user::e_message_box_ok,
-            m_pdialog->dialog_details());
+            m_pdialog->dialog_details(),
+            m_pdialog->dialog_details_icon_urls());
 
          pmessageboxDetails->m_bDetails = true;
 

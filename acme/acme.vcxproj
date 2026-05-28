@@ -2898,18 +2898,9 @@
     <ClInclude Include="operating_system\windows\dynamic_library.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
     <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h" />
-    <ClInclude Include="operating_system\windows\nano\http\hinternet.h" />
-    <ClInclude Include="operating_system\windows\nano\http\http.h" />
-    <ClInclude Include="operating_system\windows\nano\http\connect.h" />
-    <ClInclude Include="operating_system\windows\nano\http\get.h" />
-    <ClInclude Include="operating_system\windows\nano\http\request.h" />
-    <ClInclude Include="operating_system\windows\nano\http\session.h" />
-    <ClInclude Include="operating_system\windows\nano\http\_.h" />
-    <ClInclude Include="operating_system\windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\windows\window.h" />
     <ClInclude Include="operating_system\windows\windowing.h" />
     <ClInclude Include="operating_system\windows\windows.h" />
-    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">true</ExcludedFromBuild>
@@ -3908,13 +3899,6 @@
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\message_loop.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\_factory.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\http.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\connect.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\get.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\request.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\session.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\thread.cpp" />
@@ -3937,10 +3921,6 @@
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\compress\compress.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
     <ClCompile Include="operating_system\windows_common\networking.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\process.cpp" />

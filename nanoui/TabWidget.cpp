@@ -18,6 +18,7 @@
 #include "acme/constant/_font_awesome.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/platform/session.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"
 
@@ -444,7 +445,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool TabWidgetBase::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
       
       auto pitem = hit_test(p);
@@ -457,7 +458,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       {
 
          m_ppopup->mouse_button_event(
-            p - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), ebuttonstate, down, bDoubleClick, ekeystate);
+            p - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), ekeystate, down, bDoubleClick);
 
          pscreen->on_child_set_focus(this);
 
@@ -471,7 +472,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       bool iDragInProgressIndex = m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd;
 
-      if (m_popupcallback && ebuttonstate == ::user::e_key_state_right && down 
+      if (m_popupcallback && ekeystate == ::user::e_key_state_right_button && down 
          && ::is_item_set_and_non_negative(pitem) &&
          !iDragInProgressIndex) 
       {
@@ -524,7 +525,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      if (ebuttonstate == ::user::e_key_state_left && m_ppopup == nullptr)
+      if (ekeystate == ::user::e_key_state_left_button && m_ppopup == nullptr)
       {
 
          if (::is_item_set_and_non_negative(pitem)) 
@@ -544,7 +545,9 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   erase_tab(tab_id(pitem->m_item.m_iItem));
 
-                  mouse_motion_event(p, {}, false, ::user::e_key_none);
+                  auto ekeystate = session()->key_state();
+
+                  mouse_motion_event(p, {}, false, ekeystate);
 
                }
 
@@ -614,7 +617,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      bHandled |= Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeystate);
+      bHandled |= Widget::mouse_button_event(p, ekeystate, down, bDoubleClick, ekeystate);
 
       return bHandled;
 
@@ -635,7 +638,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate)
+   bool TabWidgetBase::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
    {
 
       auto pitem = hit_test(p, false);

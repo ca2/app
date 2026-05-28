@@ -146,7 +146,7 @@ void ImageImpact::reset()
 }
 
 
-bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, const ::user::e_key & /* ekeystate */, const ::scoped_string & scopedstrText) 
+bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) 
 {
 
    if (!m_bEnabled || !m_pimage)
@@ -175,7 +175,7 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::
 }
 
 
-bool ImageImpact::mouse_motion_event(const i32_point & /* p */, const i32_size & rel, bool bDown, const ::user::e_key & /* modifiers */)
+bool ImageImpact::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
 {
 
    if (!m_bEnabled || !m_pimage || !bDown)

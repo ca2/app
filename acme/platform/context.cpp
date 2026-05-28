@@ -921,6 +921,13 @@ namespace platform
    ::file::path context::defer_process_matter_path(::file::path path)
    {
 
+      if (!system()->m_bAttemptedToInitializeMatter)
+      {
+
+         system()->defer_initialize_matter();
+
+      }
+
       if (case_insensitive_string_begins(path, "matter:/"))
       {
 

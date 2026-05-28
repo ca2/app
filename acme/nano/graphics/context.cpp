@@ -74,10 +74,12 @@ namespace nano
       }
 
 
-      void context::create(::i32 cx, ::i32 cy)
+      void context::create(const ::i32_size & size)
       {
 
+
       }
+
 
       void context::attach(void * posdata, const ::i32_size & size, ::i32 iType)
       {

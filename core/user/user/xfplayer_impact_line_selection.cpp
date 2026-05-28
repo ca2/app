@@ -456,7 +456,7 @@ bool    bMerge)
 bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_key_state ekeystate, const ::i32_point & point)
 {
    
-   __UNREFERENCED_PARAMETER(ebuttonstate);
+   __UNREFERENCED_PARAMETER(ekeystate);
 
    auto point1 = point;
    
@@ -595,7 +595,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
 
 bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_key_state ekeystate, const ::i32_point & point)
 {
-   __UNREFERENCED_PARAMETER(ebuttonstate);
+   __UNREFERENCED_PARAMETER(ekeystate);
    if(!viewline.IsVisible())
       return false;
 

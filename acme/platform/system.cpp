@@ -209,6 +209,8 @@ namespace platform
    system::system()
    {
 
+      m_bAttemptedToInitializeMatter = false;
+
       if (!s_p)
       {
 
@@ -479,8 +481,15 @@ namespace platform
    }
 
 
-   void system::initialize_matter()
+   void system::defer_initialize_matter()
    {
+
+      if (m_bAttemptedToInitializeMatter)
+      {
+
+         return;
+
+      }
 
       if (application()->m_bResource)
       {
@@ -541,6 +550,8 @@ namespace platform
             m_pdirectorysystem->m_bMatterFromResource = false;
 
          }
+
+         m_bAttemptedToInitializeMatter = true;
 
       }
 
@@ -5755,6 +5766,63 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       return m_paccessibility;
 
+   }
+   
+   
+   ::string system::operating_system_icon_url(const ::i32_size &size)
+   {
+
+      ::string strUrl;
+
+      ::string strSystem;
+
+      auto psummary = node()->operating_system_summary();
+
+      strSystem = psummary->m_strSystem;
+
+      auto strSystemRelease = psummary->m_strSystemRelease;
+
+      if (strSystem == "windows")
+      {
+
+         if (strSystemRelease == "10")
+         {
+
+            strSystem = "windows10";
+         }
+         else if (strSystemRelease == "11")
+         {
+
+            strSystem = "windows11";
+         }
+         else
+         {
+
+            strSystem = "windows" + strSystemRelease;
+         }
+      }
+
+      strUrl.format("https://ca2.site/image/operating-system/{}/{}.png", size.cx, strSystem);
+
+
+      return strUrl;
+   }
+
+
+   ::string system::operating_ambient_icon_url(const ::i32_size &size)
+   {
+
+      ::string strUrl;
+
+      ::string strAmbient;
+
+      auto psummary = node()->operating_system_summary();
+
+      strAmbient = psummary->m_strAmbient;
+
+      strUrl.format("https://ca2.site/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
+
+      return strUrl;
    }
 
 

@@ -159,9 +159,6 @@
     <Filter Include="Source Files\operating_system\windows_common">
       <UniqueIdentifier>{78bb2d35-9002-45ea-bd02-3b7ffbeaafb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows\nano">
-      <UniqueIdentifier>{7142358a-d975-4e4f-bd5f-f657a4c1e589}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{49fa2b40-9738-4236-84fc-258c24f0c715}</UniqueIdentifier>
     </Filter>
@@ -330,12 +327,6 @@
     <Filter Include="Header Files\operating_system\x11\nano">
       <UniqueIdentifier>{97440174-dc4e-4712-87ef-25ed72deac6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows\nano\http">
-      <UniqueIdentifier>{fffbff41-031f-4907-9758-273f8496a08f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\windows\nano\http">
-      <UniqueIdentifier>{eec6c008-55ba-4bca-95a1-6d46e5547b01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\nano">
       <UniqueIdentifier>{b022b125-ebfd-42ca-bb85-65b4526d6702}</UniqueIdentifier>
     </Filter>
@@ -400,14 +391,8 @@
     <Filter Include="Source Files\nano\account">
       <UniqueIdentifier>{132d5ce2-2ae5-4fb2-9f16-f1c4b33d8697}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows_common\nano\idn">
-      <UniqueIdentifier>{52929d65-f769-479c-ba78-4c25f49bbd85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operating_system\windows_common\nano">
       <UniqueIdentifier>{8f3895af-1566-498f-8e4c-f9d2fb884240}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\windows_common\nano\idn">
-      <UniqueIdentifier>{107ae780-e40d-49ba-a772-8d9c2a304677}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system\shared_posix">
       <UniqueIdentifier>{086d5169-6123-42a9-8673-7d8804ab61c0}</UniqueIdentifier>
@@ -465,9 +450,6 @@
     </Filter>
     <Filter Include="Header Files\operating_system-windows">
       <UniqueIdentifier>{e79eec09-d61c-4f2d-8bf1-4d512e72d311}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows_common\nano\compress">
-      <UniqueIdentifier>{355ca080-36e8-4c57-8f00-e2a514c91e24}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system\windows_common\com">
       <UniqueIdentifier>{c205b87d-5477-43d6-b6fc-2c9223af30a4}</UniqueIdentifier>
@@ -3630,30 +3612,6 @@
     <ClInclude Include="prototype\prototype\quantum.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\_.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\_http.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\hinternet.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\http.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\connect.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\get.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\request.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\session.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
     <ClInclude Include="nano\http\_.h">
       <Filter>Header Files\nano\http</Filter>
     </ClInclude>
@@ -3743,9 +3701,6 @@
     </ClInclude>
     <ClInclude Include="nano\account\user.h">
       <Filter>Header Files\nano\account</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h">
-      <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
     </ClInclude>
     <ClInclude Include="prototype\data\text_property.h">
       <Filter>Header Files\prototype\data</Filter>
@@ -5762,24 +5717,6 @@
     <ClCompile Include="prototype\prototype\quantum.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\http.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\connect.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\get.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\request.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\session.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
     <ClCompile Include="nano\http\get.cpp">
       <Filter>Source Files\nano\http</Filter>
     </ClCompile>
@@ -5812,12 +5749,6 @@
     </ClCompile>
     <ClCompile Include="nano\account\user.cpp">
       <Filter>Source Files\nano\account</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
     <ClCompile Include="prototype\data\text_property.cpp">
       <Filter>Source Files\prototype\data</Filter>
@@ -6214,15 +6145,6 @@
     </ClCompile>
     <ClCompile Include="prototype\prototype\pool.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\_factory.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\compress\compress.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\compress</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\com\_.cpp">
       <Filter>Source Files\operating_system\windows_common\com</Filter>

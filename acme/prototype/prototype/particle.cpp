@@ -2197,30 +2197,34 @@ bool particle::should_run_async() const
 ::pointer<::message_box_payload> particle::message_box(const ::scoped_string &scopedstrMessage,
                                                             const ::scoped_string &scopedstrTitle,
                                                             const ::user::e_message_box &emessagebox,
-                                                            const ::scoped_string &scopedstrDetails,
-                                                            ::nano::graphics::icon *picon)
+                                                            const ::scoped_string &scopedstrDetails, 
+                                                       const ::string_array_base * pstraIconUrl)
 {
 
     return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
-    picon);
+    *pstraIconUrl);
 }
 
 
 ::pointer<::message_box_payload>
 particle::message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage,
                            const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox,
-                           const ::scoped_string &scopedstrDetails, ::nano::graphics::icon *picon)
+                      const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
 {
 
     return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox,
-    scopedstrDetails, picon);
+    scopedstrDetails, *pstraIconUrl);
 }
 
 
-::pointer < ::message_box_payload > particle::send_message_box(const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+::pointer<::message_box_payload> particle::send_message_box(const ::scoped_string &scopedstrMessage,
+                                                            const ::scoped_string &scopedstrTitle,
+                                                            const ::user::e_message_box &emessagebox,
+                                                            const ::scoped_string &scopedstrDetails,
+                                                            const ::string_array_base *pstraIconUrl)
 {
 
-   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, pstraIconUrl);
 
    main_send(pmessagebox);
 
@@ -2232,10 +2236,13 @@ particle::message_box(const ::exception &exception, const ::scoped_string &scope
 }
 
 
-::pointer < ::message_box_payload > particle::send_message_box(const ::exception& exception, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+::pointer<::message_box_payload>
+particle::send_message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage,
+                           const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox,
+                           const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
 {
 
-   auto pmessagebox = message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   auto pmessagebox = message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, pstraIconUrl);
 
    main_send(pmessagebox);
 
@@ -2250,12 +2257,11 @@ void particle::post_message_box(const ::scoped_string &scopedstrMessage,
                                                             const ::scoped_string &scopedstrTitle,
                                                             const ::user::e_message_box &emessagebox,
                                 const ::function < void(::message_box_payload *) > & functionOnResult, 
-                                                            const ::scoped_string &scopedstrDetails,
-                                                            ::nano::graphics::icon *picon)
+                                                            const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
 {
 
 
-   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, pstraIconUrl);
 
    pmessagebox->m_functionOnMessageBoxResult = functionOnResult;
 

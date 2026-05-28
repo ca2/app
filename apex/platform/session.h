@@ -286,6 +286,7 @@ namespace apex
       //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       ::user::e_key_state key_state() override;
+      ::user::e_key_state key_state_with_wm_mouse_wparam(::wparam wparam) override;
 
       //::user::e_button_state button_state() override;
       

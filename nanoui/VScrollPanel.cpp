@@ -15,6 +15,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
+#include "acme/platform/session.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/windowing.h"
 #include "nano2d/context.h"
@@ -119,7 +120,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate)
+   bool VScrollPanel::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
    {
 
       m_pointCurrentLocalCursor = p;
@@ -156,13 +157,13 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool VScrollPanel::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
 
       m_pointCurrentLocalCursor = p;
 
       if (down
-         && ebuttonstate == ::user::e_key_state_left
+         && ekeystate == ::user::e_key_state_left_button
          && !m_children.empty() 
          && m_fTotalHeight > m_size.cy 
          && p.x > m_pos.x + m_size.cx - 13 
@@ -204,7 +205,7 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_button_event(p, ebuttonstate, down, bDoubleClick, ekeystate);
+      return Widget::mouse_button_event(p, ekeystate, down, bDoubleClick);
 
    }
 
@@ -258,7 +259,9 @@ namespace nanoui
 
                         m_update_layout = true;
 
-                        mouse_motion_event(m_pointCurrentLocalCursor, iRel, false, ::user::e_key_none);
+                        auto ekeystate = session()->key_state();
+
+                        mouse_motion_event(m_pointCurrentLocalCursor, iRel, false, ekeystate);
 
                         set_need_redraw();
 

@@ -162,8 +162,9 @@ namespace platform
       //critical_section                                                      m_csEnumText;
       //string_map_base < i64_map < string > >                                     m_mapEnumToText;
       //string_map_base < string_map_base < ::i64 > >                                     m_mapTextToEnum;
+      bool                                                                    m_bAttemptedToInitializeMatter;
 
-      ::string_map_base < ::pointer < ::component > >                              m_mapComponent;
+      ::string_map_base < ::pointer < ::component > >                         m_mapComponent;
       ::pointer<::internet::internet>                                         m_pinternet;
       ::pointer<::url::url_context>                                           m_purlcontext;
 
@@ -242,7 +243,7 @@ namespace platform
       virtual enum_trace_level get_trace_level();
       //void os_construct();
 
-      virtual void initialize_matter();
+      virtual void defer_initialize_matter();
 //
 // #ifdef _DEBUG
 //

@@ -200,9 +200,9 @@ namespace innate_subsystem
    
    ::i32 mouseButtons = 0;
    
-   mouseButtons |= ebuttonstate & ::user::e_key_state_right ? innate_subsystem::e_mouse_right : 0;
-   mouseButtons |= ebuttonstate & ::user::e_key_state_middle ? innate_subsystem::e_mouse_middle : 0;
-   mouseButtons |= ebuttonstate & ::user::e_key_state_left ? innate_subsystem::e_mouse_left : 0;
+   mouseButtons |= ekeystate & ::user::e_key_state_right_button ? innate_subsystem::e_mouse_right : 0;
+   mouseButtons |= ekeystate & ::user::e_key_state_middle_button ? innate_subsystem::e_mouse_middle : 0;
+   mouseButtons |= ekeystate & ::user::e_key_state_left_button ? innate_subsystem::e_mouse_left : 0;
    
    return (::innate_subsystem::enum_mouse) mouseButtons;
    

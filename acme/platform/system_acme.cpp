@@ -3938,7 +3938,7 @@ namespace platform
 
    //void acme_system_layer::os_construct(){}
 
-   void acme_system_layer::initialize_matter()
+   void acme_system_layer::defer_initialize_matter()
    {
    }
 

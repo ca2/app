@@ -435,7 +435,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool Widget::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -455,12 +455,12 @@ namespace nanoui
             if (pchild->contains(pointChildClient))
             {
 
-               if (pchild->mouse_button_event(pointChildClient, ebuttonstate, down, bDoubleClick, ekeystate))
+               if (pchild->mouse_button_event(pointChildClient, ekeystate, down, bDoubleClick, ekeystate))
                {
 
                   bool bChildFocused = pchild->focused();
 
-                  if (ebuttonstate == ::user::e_key_state_left && down && !bChildFocused)
+                  if (ekeystate == ::user::e_key_state_left_button && down && !bChildFocused)
                   {
 
                      pchild->request_focus();
@@ -482,7 +482,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate)
+   bool Widget::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
    {
 
       bool bHandled = false;
@@ -596,7 +596,7 @@ namespace nanoui
    //}
 
 
-   bool Widget::mouse_enter_event(const i32_point&, bool bEnter, const ::user::e_key& ekeystate)
+   bool Widget::mouse_enter_event(const i32_point&, bool bEnter, ::user::e_key_state ekeystate)
    {
 
       m_bMouseHover = bEnter;

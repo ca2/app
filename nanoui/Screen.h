@@ -245,7 +245,7 @@ namespace nanoui
       //   }
       //
          /// Default keyboard happening handler
-      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText) override;
+      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) override;
 
       /// Text input happening handler: codepoint is native endian UTF-32 format
       bool keyboard_character_event(::u32 codepoint) override;
@@ -339,7 +339,7 @@ namespace nanoui
 
       virtual void on_close();
       //bool on_mouse_move(const ::i32_point & point) override;
-      bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate) override;
+      bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
       //   void key_callback_event(::i32 key, ::i32 scancode, ::i32 action, ::i32 mods);
       //   void char_callback_event(::u32 codepoint);
       //   void drop_callback_event(::i32 count, const_char_pointer *filenames);
@@ -370,7 +370,7 @@ namespace nanoui
 
       void _001OnDraw(::draw2d::graphics_pointer& pointer) override;
 
-      void on_mouse_enter(const ::i32_point& point, const ::user::e_key& ekeystates) override;
+      void on_mouse_enter(const ::i32_point& point, ::user::e_key_state ekeystates) override;
       void on_mouse_leave() override;
 
       virtual void set_mouse_capture(Widget* pwidgetMouseCapture);
@@ -378,14 +378,14 @@ namespace nanoui
       virtual void release_mouse_capture() override;
 
 
-      bool on_button_down(::user::e_key_state ekeystate, const ::i32_point& point, ::user::e_key_state ekeystate, bool bDoubleClick) override;
-      bool on_button_up(::user::e_key_state ekeystate, const ::i32_point& point, ::user::e_key_state ekeystate) override;
+      bool on_button_down(::user::e_key_state ekeystate, const ::i32_point& point, bool bDoubleClick) override;
+      bool on_button_up(::user::e_key_state ekeystate, const ::i32_point& point) override;
 
-      bool on_mouse_move(const ::i32_point& point, bool bDown, const ::user::e_key& ekeystate) override;
+      bool on_mouse_move(const ::i32_point& point, bool bDown, ::user::e_key_state ekeystate) override;
       //bool on_mouse_drag(const ::i32_point & point, ::user::e_key_state ekeystate) override;
 
-      bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText) override;
-      bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key& ekeystate) override;
+      bool on_key_down(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) override;
+      bool on_key_up(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate) override;
 
       bool on_scroll_event(const ::i32_point& point, ::f64 x, ::f64 y) override;
 

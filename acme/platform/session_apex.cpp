@@ -231,12 +231,21 @@ namespace platform
 
    //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
 
-   ::user::e_key_state apex_session_layer::key_state()
-   {
 
-      return ::user::e_key_state_none;
+   //::user::e_key_state apex_session_layer::key_state()
+   //{
 
-   }
+   //   return ::user::e_key_state_none;
+
+   //}
+
+   //
+   //::user::e_key_state apex_session_layer::key_state_with_wm_mouse_wparam(::wparam wparam)
+   //{
+
+   //   return ::user::e_key_state_none;
+
+   //}
 
 
       //::user::e_button_state apex_session_layer::button_state() 

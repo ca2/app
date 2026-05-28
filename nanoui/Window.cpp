@@ -277,7 +277,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_enter_event(const i32_point& pointCursor, bool enter, const ::user::e_key& ekeystate)
+   bool Window::mouse_enter_event(const i32_point& pointCursor, bool enter, ::user::e_key_state ekeystate)
    {
 
       Widget::mouse_enter_event(pointCursor, enter, ekeystate);
@@ -291,10 +291,10 @@ void Window::on_destroy_window()
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const i32_point&pointCursor, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate)
+   bool Window::mouse_motion_event(const i32_point&pointCursor, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
    {
 
-      if (m_bDrag && (ekeystate & ::user::e_key_left_button) != 0 && bDown)
+      if (m_bDrag && ekeystate == ::user::e_key_state_left_button) != 0 && bDown)
       {
 
          auto offset = screen()->m_pointLastCursor - m_pointDragStartCursor;
@@ -466,17 +466,17 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_button_event(const i32_point& pointCursor, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool Window::mouse_button_event(const i32_point& pointCursor, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
 
-      if (Widget::mouse_button_event(pointCursor, ebuttonstate, down, bDoubleClick, ekeystate))
+      if (Widget::mouse_button_event(pointCursor, ekeystate, down, bDoubleClick))
       {
 
          return true;
 
       }
 
-      if (ebuttonstate == ::user::e_key_state_left)
+      if (ekeystate == ::user::e_key_state_left_button)
       {
 
          if (down)

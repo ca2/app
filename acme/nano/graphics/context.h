@@ -58,7 +58,7 @@ namespace nano
          virtual void create_for_x11(const ::x11::handle_t & handle, ::i32 w, ::i32 h);
 #endif
 
-         virtual void create(::i32 cx, ::i32 cy);
+         virtual void create(const ::i32_size & size);
 
          virtual void resize(const ::i32_size & size);
 

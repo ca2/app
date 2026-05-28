@@ -1598,3 +1598,114 @@ CLASS_DECL_ACME LRESULT CALLBACK RDP_HOST2_WndProc(
    //     wParam,
    //     lParam);
 }
+
+
+
+//
+//CLASS_DECL_ACME::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam)
+//{
+//
+//   using namespace ::user;
+//
+//   auto ekeystate = e_key_state_none;
+//
+//   if (wparam & MK_LBUTTON)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_left_button);
+//   }
+//
+//   if (wparam & MK_RBUTTON)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_right_button);
+//   }
+//
+//   if (wparam & MK_SHIFT)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_shift);
+//
+//      if (::GetKeyState(VK_LSHIFT) & 0x8000)
+//      {
+//
+//         ekeystate = (e_key_state)(ekeystate | e_key_state_left_shift);
+//      }
+//
+//      if (::GetKeyState(VK_RSHIFT) & 0x8000)
+//      {
+//
+//         ekeystate = (e_key_state)(ekeystate | e_key_state_right_shift);
+//      }
+//   }
+//
+//   if (wparam & MK_CONTROL)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_control);
+//
+//      if (::GetKeyState(VK_LCONTROL) & 0x8000)
+//      {
+//
+//         ekeystate = (e_key_state)(ekeystate | e_key_state_left_control);
+//      }
+//
+//      if (::GetKeyState(VK_RCONTROL) & 0x8000)
+//      {
+//
+//         ekeystate = (e_key_state)(ekeystate | e_key_state_right_control);
+//      }
+//   }
+//
+//   if (wparam & MK_MBUTTON)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_middle_button);
+//   }
+//
+//#ifdef MK_XBUTTON1
+//   if (wparam & MK_XBUTTON1)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_x1_button);
+//   }
+//#endif
+//
+//#ifdef MK_XBUTTON2
+//   if (wparam & MK_XBUTTON2)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_x2_button);
+//   }
+//#endif
+//
+//   if (::GetKeyState(VK_LMENU) & 0x8000)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_left_alt);
+//   }
+//
+//   if (::GetKeyState(VK_RMENU) & 0x8000)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_right_alt);
+//   }
+//
+//#ifdef VK_LWIN
+//   if (::GetKeyState(VK_LWIN) & 0x8000)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_left_command);
+//   }
+//#endif
+//
+//#ifdef VK_RWIN
+//   if (::GetKeyState(VK_RWIN) & 0x8000)
+//   {
+//
+//      ekeystate = (e_key_state)(ekeystate | e_key_state_right_command);
+//   }
+//#endif
+//
+//   return ekeystate;
+//}

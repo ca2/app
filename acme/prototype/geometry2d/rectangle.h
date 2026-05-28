@@ -1666,24 +1666,24 @@ public:
          return a;
       }
 
-        void rotateOn90InsideDimension(::i32 dimHeight)
+        void rotateOn90InsideDimension(NUMBER dimHeight)
       {
          auto localCopy = *this;
          set_width(localCopy.height());
          set_height(localCopy.width());
-         ::i32 newLeft = dimHeight - localCopy.top - localCopy.height();
-         ::i32 newTop = localCopy.left;
+         auto newLeft = dimHeight - localCopy.top - localCopy.height();
+         auto newTop = localCopy.left;
          set_top_left(newLeft, newTop);
       }
 
-      void rotateOn180InsideDimension(::i32 dimWidth, ::i32 dimHeight)
+      void rotateOn180InsideDimension(NUMBER dimWidth, NUMBER dimHeight)
       {
-         ::i32 newLeft = dimWidth - this->left - this->width();
-         ::i32 newTop = dimHeight - this->top - this->height();
+         NUMBER newLeft = dimWidth - this->left - this->width();
+         NUMBER newTop = dimHeight - this->top - this->height();
          set_top_left(newLeft, newTop);
       }
 
-      void rotateOn270InsideDimension(::i32 dimWidth)
+      void rotateOn270InsideDimension(NUMBER dimWidth)
       {
          auto localCopy = *this;
          set_width(localCopy.height());

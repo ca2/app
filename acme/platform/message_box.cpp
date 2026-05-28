@@ -166,6 +166,16 @@ class time dialog::dialog_timeout() const
 }
 
 
+::string_array_base dialog::dialog_details_icon_urls() const
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
 dialog_payload::dialog_payload()
 {
 
@@ -362,7 +372,11 @@ message_box_payload *dialog_reifier::get_message_box_payload()
 }
 
 
-message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+message_box_payload::message_box_payload(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle,
+                                         const ::user::e_message_box &emessagebox,
+                                         const ::scoped_string &scopedstrDetails,
+                                         const ::string_array_base &straIconUrl)
 {
 
    m_strMessage = scopedstrMessage;
@@ -373,7 +387,11 @@ message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessag
 
    m_strDetails = scopedstrDetails;
 
-   m_picon = picon;
+   if (::is_set(&straIconUrl))
+   {
+
+      m_straIconUrl = straIconUrl;
+   }
 
 }
 
@@ -424,7 +442,12 @@ message_box_payload::message_box_payload(const ::exception & exception, const ::
 
 
 
-message_box_payload::message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//message_box_payload::message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+message_box_payload::message_box_payload(const ::exception &exception, const ::scoped_string &strMessage,
+                                         const ::scoped_string &scopedstrTitle,
+                                         const ::user::e_message_box &emessagebox,
+                                         const ::scoped_string &scopedstrDetails,
+                                         const ::string_array_base &straIconUrl)
 {
 
    m_strMessage = exception.m_strMessage;
@@ -441,7 +464,18 @@ message_box_payload::message_box_payload(const ::exception & exception, const ::
 
    m_strDetails.concatenate_with_separator("\n\nCallstack:\n", exception.m_strCallStackTrace);
 
-   m_picon = picon;
+   //m_picon2 = picon;
+
+   m_straIconUrl = straIconUrl;
+
+
+  /*       auto picon = createø<::nano::graphics::icon>();
+
+   auto pfile = file()->get("matter://main/icon.png");
+
+   picon->load_image_from_file(pfile);*/
+
+
 
 }
 
@@ -563,6 +597,14 @@ void message_box_payload::on_timed_out()
 {
 
    return m_strDetails;
+
+}
+
+
+::string_array_base message_box_payload::dialog_details_icon_urls() const
+{
+
+   return m_straDetailsIconUrl;
 
 }
 

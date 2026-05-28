@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_motion_event(const i32_point & p, const i32_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, ::user::e_key_state ekeystate)
    {
 
       if (!m_bEnabled || !bDown)
@@ -69,7 +69,7 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
    {
 
       if (!m_bEnabled)

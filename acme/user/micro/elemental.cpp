@@ -311,9 +311,11 @@ namespace micro
    void elemental::resize_to_fit()
    {
 
-      auto pdevice = createø<::nano::graphics::context>();
+      auto pcontext = createø<::nano::graphics::context>();
 
-      auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
+      pcontext->create({400, 300});
+
+      auto size = pcontext->get_text_extents(m_strText, micro_theme()->m_pfont);
 
       m_rectangle.right = m_rectangle.left + size.cx;
 

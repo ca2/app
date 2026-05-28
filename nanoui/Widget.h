@@ -402,16 +402,16 @@ namespace nanoui
       const Widget* find_widget(const i32_point& p) const;
 
       /// Handle a mouse button happening (default implementation: propagate to children)
-      virtual bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate);
+      virtual bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick);
 
       /// Handle a mouse motion happening (default implementation: propagate to children)
-      virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate);
+      virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate);
 
       /// Handle a mouse drag happening (default implementation: do nothing)
-      // virtual bool mouse_drag_event(const i32_point& p, const i32_size& rel, const ::user::e_key& ekeystate);
+      // virtual bool mouse_drag_event(const i32_point& p, const i32_size& rel, ::user::e_key_state ekeystate);
 
       /// Handle a mouse enter/leave happening (default implementation: record this fact, but do nothing)
-      virtual bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeystate);
+      virtual bool mouse_enter_event(const i32_point& p, bool enter, ::user::e_key_state ekeystate);
 
       virtual void set_mouse_capture();
 
@@ -424,7 +424,7 @@ namespace nanoui
       virtual bool focus_event(bool focused);
 
       /// Handle a keyboard happening (default implementation: do nothing)
-      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText);
+      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText);
 
       /// Handle text input (UTF-32 format) (default implementation: do nothing)
       virtual bool keyboard_character_event(::u32 codepoint);

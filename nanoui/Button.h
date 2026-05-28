@@ -174,7 +174,7 @@ namespace nanoui
       virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
       /// The callback that is called when any type of mouse button happening is issued to this Button.
       virtual bool mouse_enter_event(const i32_point & p, bool enter, ::user::e_key_state ekeystate) override;
-      virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, ::user::e_key_state ekeystate) override;
+      virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
       /// Responsible for drawing the Button.
       virtual void draw(::nano2d::context  * pcontext) override;
 

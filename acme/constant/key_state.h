@@ -13,13 +13,14 @@ namespace user
    {
 
       e_key_state_none = 0,
-      e_key_state_left = 1, // MK_LBUTTON
-      e_key_state_right = 2, // MK_RBUTTON
+      e_key_state_left_button = 1, // MK_LBUTTON
+      e_key_state_right_button = 2, // MK_RBUTTON
       e_key_state_shift = 4, // MK_SHIFT
       e_key_state_control = 8, // MK_CONTROL
-      e_key_state_middle = 16, // MK_MBUTTON
-      e_key_state_x1 = 32, // MK_XBUTTON1
-      e_key_state_x2 = 64, // MK_XBUTTON2
+      e_key_state_middle_button = 16, // MK_MBUTTON
+      e_key_state_x1_button = 32, // MK_XBUTTON1
+      e_key_state_x2_button = 64, // MK_XBUTTON2
+      e_key_state_mouse_mask = e_key_state_left_button | e_key_state_right_button | e_key_state_middle_button | e_key_state_x1_button | e_key_state_x2_button,
 
       e_key_state_left_shift = 1 << 7,
       e_key_state_right_shift = 1 << 8,

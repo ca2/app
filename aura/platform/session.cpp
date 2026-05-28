@@ -2348,19 +2348,19 @@ namespace aura
    //bool session::is_mouse_button_pressed(::user::e_key_state ekeystate)
    //{
 
-   //   if (ebuttonstate == ::user::e_key_state_left)
+   //   if (ekeystate == ::user::e_key_state_left_button)
    //   {
 
    //      return is_key_pressed(::user::e_key_left_button);
 
    //   }
-   //   else if (ebuttonstate == ::user::e_key_state_right)
+   //   else if (ekeystate == ::user::e_key_state_right_button)
    //   {
 
    //      return is_key_pressed(::user::e_key_right_button);
 
    //   }
-   //   else if (ebuttonstate == ::user::e_key_state_middle)
+   //   else if (ekeystate == ::user::e_key_state_middle_button)
    //   {
 
    //      return is_key_pressed(::user::e_key_middle_button);

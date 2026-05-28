@@ -276,7 +276,7 @@ namespace user
       if(pMsg->m_eusermessage == ::user::e_message_left_button_down)
       {
 
-         if(session()->is_mouse_button_pressed(::user::e_key_state_left))
+         if(session()->is_mouse_button(::user::e_key_state_left_button))
          {
             
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);

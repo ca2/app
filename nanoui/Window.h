@@ -72,9 +72,9 @@ namespace nanoui
    virtual bool mouse_enter_event(const i32_point & p, bool enter, ::user::e_key_state ekeystate) override;
    /// Handle window drag happenings
    //virtual bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, ::user::e_key_state ekeystate) override;
-   virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeystate) override;
+   virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate) override;
    /// Handle mouse happenings recursively and bring the current window to the top
-   virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, ::user::e_key_state ekeystate) override;
+   virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
    /// Accept scroll happenings and propagate them to the pwidget under the mouse cursor
       
       void on_begin_draw(::nano2d::context  * pcontext) override;

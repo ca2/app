@@ -13,7 +13,15 @@ namespace user
    public:
 
 
+      keyboard_state();
+      ~keyboard_state() override;
+
+
       virtual bool is_key_pressed(::user::enum_key ekey);
+      virtual ::user::e_key_state key_state();
+      virtual ::user::e_key_state key_state_with_wm_mouse_wparam(::wparam wparam);
+      virtual bool is_mouse_state(::user::e_key_state ekeystate);
+      virtual bool has_mouse_state(::user::e_key_state ekeystate);
 
 
    };

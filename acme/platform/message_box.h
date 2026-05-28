@@ -76,6 +76,7 @@ public:
    virtual class ::time dialog_time_remaining_from_timeout() const;
    virtual class ::time dialog_timeout() const;
    virtual ::string dialog_details() const;
+   virtual ::string_array_base dialog_details_icon_urls() const;
 
 
 };
@@ -162,14 +163,21 @@ public:
    ::user::e_message_box                              m_emessagebox;
    string                                             m_strDetails;
    ::string                                           m_strDetailsTitle;
-   ::pointer < ::nano::graphics::icon >               m_picon;
+   ::string_array                                     m_straDetailsIconUrl;
+   ::pointer < ::nano::graphics::icon >               m_picon2;
+   ::string_array                                     m_straIconUrl;
    ::pointer < ::user::activation_token >             m_puseractivationtoken;
    ::function<void(::message_box_payload *)>          m_functionOnMessageBoxResult;
 
 
-   message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box_payload(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+                       const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+                       const ::string_array_base &straIconUrl = {});
    message_box_payload(const ::exception & exception, const ::scoped_string & strMoreDetails);
-   message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box_payload(const ::exception &exception, const ::scoped_string &strMessage,
+                       const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox = {},
+                       const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base &straIconUrl = {});
    ~message_box_payload() override;
 //
 //#ifdef _DEBUG
@@ -191,6 +199,9 @@ public:
    void on_timed_out() override;
 
    ::string dialog_details() const override;
+
+   ::string_array_base dialog_details_icon_urls() const override;
+   
 
    //virtual void async();
    //virtual void sync();

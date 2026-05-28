@@ -138,7 +138,7 @@ namespace platform
       virtual enum_trace_level get_trace_level() override;
       //void os_construct();
 
-      virtual void initialize_matter() override;
+      virtual void defer_initialize_matter() override;
       
 
 #ifdef _DEBUG
@@ -1463,6 +1463,10 @@ namespace platform
 //
 
       ::accessibility::accessibility *accessibility() override;
+
+      virtual ::string operating_system_icon_url(const ::i32_size &size);
+      virtual ::string operating_ambient_icon_url(const ::i32_size &size);
+
 
 
    };

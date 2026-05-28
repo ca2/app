@@ -2890,12 +2890,6 @@ namespace platform
 
       strMessage = lines.implode("\n");
 
-      auto picon = createø < ::nano::graphics::icon>();
-
-      auto pfile = file()->get("matter://main/icon.png");
-
-      picon->load_image_from_file(pfile);
-
       auto linesOperatingSystem = get_operating_system_information_lines();
 
       ::string strDetails = linesOperatingSystem.implode("\n");
@@ -2904,9 +2898,14 @@ namespace platform
       strDetails.find_replace("-#", "");
       strDetails.find_replace("#", "");
 
-      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, strDetails, picon);
+      auto paboutbox = __initialize_new_with(
+         system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, 
+            strDetails, {"matter://main/icon.png"});
 
       paboutbox->m_strDetailsTitle = "Operating System Information ...";
+
+      paboutbox->m_straDetailsIconUrl.add(system()->operating_system_icon_url({48, 48}));
+      paboutbox->m_straDetailsIconUrl.add(system()->operating_ambient_icon_url({32, 32}));
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {

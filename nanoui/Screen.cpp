@@ -849,7 +849,7 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText)
+   bool Screen::keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
    {
 
       if (m_focus_path.size() > 0)
@@ -922,7 +922,7 @@ namespace nanoui
    //
 
 
-   bool Screen::on_mouse_move(const ::i32_point& point, bool bDown, const ::user::e_key& ekeystate)
+   bool Screen::on_mouse_move(const ::i32_point& point, bool bDown, ::user::e_key_state ekeystate)
    {
 
       _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1059,7 +1059,7 @@ namespace nanoui
    }
 
 
-   bool Screen::mouse_button_event(const i32_point& pointCursor, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, const ::user::e_key& ekeystate)
+   bool Screen::mouse_button_event(const i32_point& pointCursor, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, ::user::e_key_state ekeystate)
    {
 
       m_mouse_pos = pointCursor;
@@ -1084,7 +1084,7 @@ namespace nanoui
 
          }
 
-         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, ebuttonstate, down, bDoubleClick, ekeystate);
+         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, ekeystate, down, bDoubleClick, ekeystate);
 
          if (!down)
          {
@@ -1157,7 +1157,7 @@ namespace nanoui
            }*/
 
            //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
-      bool btn12 = ebuttonstate == ::user::e_key_state_left || ebuttonstate == ::user::e_key_state_right;
+      bool btn12 = ekeystate == ::user::e_key_state_left_button || ekeystate == ::user::e_key_state_right_button;
 
       if (btn12)
       {
@@ -1216,7 +1216,7 @@ namespace nanoui
 
                   auto pointClient = m_mouse_pos - m_pwidgetDrag->absolute_position();
 
-                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, ebuttonstate, false, bDoubleClick, ekeystate);
+                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, ekeystate, false, bDoubleClick, ekeystate);
 
                }
 
@@ -1230,7 +1230,7 @@ namespace nanoui
 
       }
 
-      bool bRet = Widget::mouse_button_event(m_mouse_pos, ebuttonstate, down, bDoubleClick, m_modifiers);
+      bool bRet = Widget::mouse_button_event(m_mouse_pos, ekeystate, down, bDoubleClick, m_modifiers);
 
       bHandled |= bRet;
       //   action == GLFW_PRESS, m_modifiers);
@@ -1667,7 +1667,7 @@ namespace nanoui
    }
 
 
-   void Screen::on_mouse_enter(const ::i32_point& point, const ::user::e_key& ekeystate)
+   void Screen::on_mouse_enter(const ::i32_point& point, ::user::e_key_state ekeystate)
    {
 
       i32_sequence2 p(point.x, point.y);
@@ -1712,7 +1712,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_button_down(::user::e_key_state ekeystate, const ::i32_point& point, ::user::e_key_state ekeystate, bool bDoubleClick)
+   bool Screen::on_button_down(::user::e_key_state ekeystate, const ::i32_point& point, bool bDoubleClick)
    {
 
       //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
@@ -1735,7 +1735,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_button_up(::user::e_key ekeyButton, const ::i32_point& point, const ::user::e_key& ekeystate)
+   bool Screen::on_button_up(::user::e_key ekeyButton, const ::i32_point& point, ::user::e_key_state ekeystate)
    {
 
       //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
@@ -1782,7 +1782,7 @@ namespace nanoui
    //}
    //
 
-   //bool Screen::on_mouse_drag(const ::i32_point& point, const ::user::e_key& ekeystate)
+   //bool Screen::on_mouse_drag(const ::i32_point& point, ::user::e_key_state ekeystate)
    //{
 
    //   i32_sequence2 pointCursor(point.x, point.y);
@@ -1827,7 +1827,7 @@ namespace nanoui
    //}
 
 
-   bool Screen::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key& ekeystate, const ::scoped_string & scopedstrText)
+   bool Screen::on_key_down(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
    {
 
       return keyboard_event(ekey, (::i32)scancode, ::user::e_message_key_down, ekeystate, scopedstrText);
@@ -1835,7 +1835,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key& ekeystate)
+   bool Screen::on_key_up(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate)
    {
 
       return keyboard_event(ekey, (::i32)scancode, ::user::e_message_key_up, ekeystate, "");

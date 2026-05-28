@@ -5288,9 +5288,26 @@ namespace apex
    void system::show_operating_system_information_box(::user::activation_token * puseractivationtoken)
    {
 
-      m_papplication->show_lines_box(m_papplication->get_operating_system_information_lines(),
-                                     {operating_system_icon_url({48, 48}),
-                                        operating_ambient_icon_url({32, 32})}, puseractivationtoken);
+      ::string_array_base straIconUrl;
+
+      ::string strOperatingSystemIconUrl = operating_system_icon_url({48, 48});
+   
+      if (strOperatingSystemIconUrl.has_character())
+      {
+         straIconUrl.add(strOperatingSystemIconUrl);
+
+         ::string strAmbientSystemIconUrl = operating_ambient_icon_url({32, 32});
+
+         if(strAmbientSystemIconUrl.has_character())
+         {
+
+            straIconUrl.add(strAmbientSystemIconUrl);
+
+         }  
+      }
+      
+
+      m_papplication->show_lines_box(m_papplication->get_operating_system_information_lines(),straIconUrl, puseractivationtoken);
 
    }
 

@@ -5812,6 +5812,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    ::string system::operating_ambient_icon_url(const ::i32_size &size)
    {
 
+      #if defined(WINDOWS) || defined(__APPLE__)
+
+      return {};
+
+      #else
+
+
       ::string strUrl;
 
       ::string strAmbient;
@@ -5823,6 +5830,8 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       strUrl.format("https://ca2.site/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
 
       return strUrl;
+
+      #endif
    }
 
 

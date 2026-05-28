@@ -3042,7 +3042,19 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
          return "libarchive";
 
       }
-      else if(scopedstrComponentName == "nano_http")
+#if defined(WINDOWS)
+      else if (scopedstrComponentName == "nano_compress")
+      {
+
+         return "windows";
+      }
+      else if (scopedstrComponentName == "nano_idn")
+      {
+
+         return "windows_common";
+      }
+#endif
+      else if (scopedstrComponentName == "nano_http")
       {
 
 #if defined(FREEBSD)

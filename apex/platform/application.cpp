@@ -10663,8 +10663,8 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
                   auto strAmbientIconUrl = straIconUrl[1];
 
-                  pstillIcon->set_icon_path(strAmbientIconUrl, {32 * pdialog->get_window_scale(), 32 * pdialog->get_window_scale()});
-
+                  pstillIcon->set_icon_path(strAmbientIconUrl,
+                                               {32 * pdialog->get_window_scale(), 32 * pdialog->get_window_scale()});
                }
                catch (...)
                {

@@ -101,7 +101,7 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
    DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    DECLARE_MESSAGE_HANDLER(on_message_scroll_x);
-   void on_timer(::timer * ptimer) override;
+   void operator()(::timer * ptimer) override;
    DECLARE_MESSAGE_HANDLER(on_message_create);
    DECLARE_MESSAGE_HANDLER(on_message_show_window);
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -132,11 +132,11 @@ public:
    //virtual bool scrollbar_pageB(const ::i32_point & point, ::draw2d::graphics_pointer & pgraphics);
    //virtual bool scrollbar_pageA(const ::i32_point & point, ::draw2d::graphics_pointer & pgraphics);
 
-   virtual ::color::color scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement) override;
-   virtual ::color::color scrollbar_color(::user::style* pstyle, ::enum_element eelement)override;
-   virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)override;
-   virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)override;
-   virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_color_strong(::user::style * pstyle, const ::e_element & eelement) override;
+   virtual ::color::color scrollbar_color(::user::style* pstyle, const ::e_element & eelement)override;
+   virtual ::color::color scrollbar_border_color(::user::style* pstyle, const ::e_element & eelement)override;
+   virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, const ::e_element & eelement)override;
+   virtual ::color::color scrollbar_draw_color(::user::style* pstyle, const ::e_element & eelement)override;
 
 
    ::i32_point drag_point(::item * pitem, ::user::mouse * pmouse) override;

@@ -319,7 +319,7 @@ namespace user
    }
 
 
-   void impact_system::prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible)
+   void impact_system::prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, ::i32_boolean bMakeVisible)
    {
 
       pframe->prepare_frame(pdocument, bMakeVisible);

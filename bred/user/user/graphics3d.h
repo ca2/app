@@ -8,6 +8,7 @@
 #include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
 #include "apex/platform/application.h"
+#include "apex/platform/session.h"
 #include "bred/platform/fps_counter.h"
 
 
@@ -43,7 +44,7 @@ namespace user
       ::i32		m_iHeight;
       bool		m_bFramebufferResized;
 
-
+::platform::session * m_psession;
 
 
       graphics3d();
@@ -61,7 +62,10 @@ namespace user
       virtual void on_mouse_move(const i32_point& point);
       virtual void on_mouse_out();
 
-      virtual ::user::enum_key_state get_key_state(::user::e_key ekey) ;
+      //virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey) ;
+       ::key::e_state get_key_state(const ::user::e_key & ekey) {
+           return m_psession->_key_state(ekey);
+       }
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -91,7 +95,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       //void reset_mouse_last_position();
 
@@ -114,7 +118,7 @@ namespace user
       virtual bool wasWindowResized();
       virtual void resetWindowResizedFlag();
 //
-  //    virtual ::user::enum_key_state get_key_state(::user::e_key ekey);
+  //    virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey);
 
       //virtual void initWindow();
 

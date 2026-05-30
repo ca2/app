@@ -1262,18 +1262,18 @@ namespace data
    }
 
 
-   bool tree_item_base::is_expanded() const
+   ::i32_boolean tree_item_base::is_expanded() const
    {
 
-      return (m_etreeitemstate & ::data::e_tree_item_state_expanded) != 0;
+      return m_etreeitemstate & ::data::e_tree_item_state_expanded;
 
    }
 
 
-   bool tree_item_base::is_expandable() const
+   ::i32_boolean tree_item_base::is_expandable() const
    {
 
-      return (m_etreeitemstate & ::data::e_tree_item_state_expandable) != 0;
+      return m_etreeitemstate & ::data::e_tree_item_state_expandable;
 
    }
 

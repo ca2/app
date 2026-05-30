@@ -14,7 +14,7 @@
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/collection/_range.h"
 #include "acme/prototype/data/listener.h"
@@ -3607,7 +3607,7 @@ namespace user
             m_bDrag = false;
 
          }
-         else if (pmouse->is_left_button_pressed())
+         else if (session()->is_left_button_pressed())
          {
 
             m_bLButtonDown = false;
@@ -3758,7 +3758,7 @@ namespace user
                && !m_rangeSelection.has_item(iItemEnter))
             {
 
-               m_iMouseFlagEnter = pmouse->m_ekeystate;
+               m_keystateMouseEnter = session();//pmouse->m_ekeystate;
 
                m_iItemEnter = iItemEnter;
 
@@ -4153,7 +4153,7 @@ namespace user
 
       kill_timer(e_timer_drag_start);
 
-      kill_timer(224455);
+      //kill_timer(224455);
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -4300,7 +4300,8 @@ namespace user
 
                       pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
 
-                      pmessage->m_ekeystate = pmouse->m_ekeystate;
+                      pmessage->m_keystate =session()->key_state_with_wm_mouse_wparam( pmouse->m_wparam);
+                          //pmouse->m_ekeystate;
 
                       pmessage->m_pointHost = point;
 
@@ -4399,11 +4400,11 @@ namespace user
 
          }
          
-         m_uiRButtonUpFlags = (::u32)pmouse->m_ekeystate;
+         m_keystateRButtonUp = session(); //(::u32)pmouse->m_ekeystate;
          
          m_pointRButtonUp = pmouse->m_pointHost;
          
-         set_timer(8477, 500_ms, nullptr);
+         //set_timer(8477, 500_ms, nullptr);
 
       }
 
@@ -5708,10 +5709,10 @@ namespace user
    }
 
 
-   void list::on_timer(::timer * ptimer)
+   void list::operator()(::timer * ptimer)
    {
 
-      ::user::mesh::on_timer(ptimer);
+      ::user::mesh::operator()(ptimer);
 
       ptimer->m_bRet = false;
 
@@ -6412,7 +6413,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      set_timer(0xfffffffe, 50_ms, nullptr);
+      set_timer(e_timer_update_filter_step, 50_ms, nullptr);
 
       //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
         // {
@@ -6437,7 +6438,7 @@ namespace user
 
       m_bFilter1 = false;
 
-      kill_timer(0xfffffffe);
+      kill_timer(e_timer_update_filter_step);
 
       ASSERT(m_efilterstate == FilterStateSetup
              || m_efilterstate == FilterStateFilter);

@@ -43,7 +43,10 @@ namespace user
       void destroy() override;
 
 
-      void on_timer(::timer * ptimer) override;
+      //void operator()(::timer * ptimer) override;
+
+
+      void operator()(::timer * ptimer) override;
 
 
       void create_message_queue(const ::scoped_string & scopedstrName) override;
@@ -627,7 +630,7 @@ namespace user
       bool _001CanEnterScreenSaver() override;
 
 
-      //virtual void on_timer(::timer * ptimer);
+      //void operator()(::timer * ptimer) override;
 
       void on_reset_focus_start_tick() override;
 
@@ -681,7 +684,7 @@ namespace user
       //void InputConnectionSetSelection(character_count iStart, character_count iEnd) override;
       //void InputConnectionFinishComposingText() override;
 
-      //virtual void on_timer(::timer * ptimer);
+      //void operator()(::timer * ptimer) override;
 
       //virtual bool enable_window(bool bEnable );
 

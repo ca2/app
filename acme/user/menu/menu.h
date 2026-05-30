@@ -70,7 +70,7 @@ namespace menu
 //      virtual bool create_inline_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
 //      virtual bool track_popup_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
 //
-//      void on_timer(::timer * ptimer) override;
+//      void operator()(::timer * ptimer) override;
 //
 //      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 //

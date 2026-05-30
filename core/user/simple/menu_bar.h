@@ -74,7 +74,7 @@ protected:
    //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
    //index _001HitTest(const ::i32_point * i32_point);
    //bool _001CheckItem(::collection::index iItem, bool bCheck);
-   //bool index_item_rectangle(::collection::index iItem, ::i32_rectangle * prectangle, enum_element eelement);
+   //bool index_item_rectangle(::collection::index iItem, ::i32_rectangle * prectangle, const ::e_element & eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();
@@ -107,7 +107,7 @@ protected:
    DECLARE_MESSAGE_HANDLER(_001OnMenuChar);
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
-   void on_timer(::timer * ptimer) override;
+   void operator()(::timer * ptimer) override;
 
    //virtual ::collection::index OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
 

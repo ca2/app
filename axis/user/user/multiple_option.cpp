@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer multiple_option::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer multiple_option::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
 
@@ -194,9 +194,11 @@ namespace user
    }
 
 
-   bool multiple_option::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
+   bool multiple_option::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelementParameter)
 
    {
+
+      auto eelement = eelementParameter;
 
       if(eelement == e_element_text)
       {

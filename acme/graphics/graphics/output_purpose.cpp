@@ -42,7 +42,7 @@ namespace graphics
    }
 
 
-   output_purpose::output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator, enum_output_purpose eoutputpurpose) :
+   output_purpose::output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator, const e_output_purpose & eoutputpurpose) :
       m_egraphicsoutputpurpose(eoutputpurpose)
    {
 

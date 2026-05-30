@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "session_apex.h"
+#include "acme/user/user/keyboard_state.h"
 #include "acme/constant/user_key.h"
 
 
@@ -235,7 +236,7 @@ namespace platform
    //::user::e_key_state apex_session_layer::key_state()
    //{
 
-   //   return ::user::e_key_state_none;
+   //   return ::key::e_state_none;
 
    //}
 
@@ -243,26 +244,26 @@ namespace platform
    //::user::e_key_state apex_session_layer::key_state_with_wm_mouse_wparam(::wparam wparam)
    //{
 
-   //   return ::user::e_key_state_none;
+   //   return ::key::e_state_none;
 
    //}
 
 
       //::user::e_button_state apex_session_layer::button_state() 
       //{
-      //   return ::user::e_key_state_none;
+      //   return ::key::e_state_none;
       //
       //}
 
-   //bool apex_session_layer::is_key_pressed(::user::enum_key ekey)
+   //bool apex_session_layer::is_key_pressed(const ::user::e_key & ekey)
    //{}
 
 
-   void apex_session_layer::set_key_pressed(::user::enum_key ekey, bool bPressed)
-   {
+   //void apex_session_layer::set_key_pressed(const ::user::e_key & ekey, bool bPressed)
+   //{
 
 
-   }
+   //}
 
 
    // apex commented
@@ -500,4 +501,32 @@ namespace platform
    }
 
 
+   // ::user::keyboard_state & apex_session_layer::keyboard_state()
+   // {
+   //
+   //    if (!m_pkeyboardstate)
+   //    {
+   //
+   //       constructø(m_pkeyboardstate);
+   //
+   //       m_pkeyboardstate->initialize_keyboard_state(this);
+   //
+   //    }
+   //
+   //    return *m_pkeyboardstate;
+   //
+   // }
+
+
+   bool apex_session_layer::on_ui_mouse_message(::user::mouse * pmouse)
+   {
+
+      return false;
+      
+   }
+
+
 } // namespace platform
+
+
+

@@ -33,8 +33,8 @@ namespace user
       m_iClick = 0;
       m_ealignText = e_align_center;
 
-      m_flagNonClient -= e_non_client_background;
-      m_flagNonClient -= e_non_client_focus_rect;
+      m_enonclient -= ::user::e_non_client_background;
+      m_enonclient -= ::user::e_non_client_focus_rect;
       
       //m_bEatsDoubleClick = false;
 
@@ -247,7 +247,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   enum_element eelement;
+   //   const ::e_element & eelement;
 
    //   ::i32_point point = pmouse->m_point;
 
@@ -277,7 +277,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   enum_element eelement;
+   //   const ::e_element & eelement;
 
    //   ::i32_point point = pmouse->m_point;
 
@@ -311,7 +311,7 @@ namespace user
 
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   //enum_element eelement;
+   //   //const ::e_element & eelement;
 
    //   //::i32_point point = pmouse->m_point;
 
@@ -377,7 +377,7 @@ namespace user
 
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   //enum_element eelement;
+   //   //const ::e_element & eelement;
 
    //   //index iHover = hit_test(pmouse->m_point, eelement);
    //   //if (iHover != m_iHover)
@@ -552,7 +552,7 @@ namespace user
    //}
 
 
-   ::status < ::color::color > still::get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout)
+   ::status < ::color::color > still::get_color(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
 
@@ -568,7 +568,7 @@ namespace user
 
       //}
 
-      return ::user::interaction::get_color(pstyle, eelement, elayout);
+      return ::user::interaction::get_color(pstyle, eelement, estate);
 
    }
 
@@ -667,9 +667,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
+      ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none,(::i32) m_ealignText);
 
-      ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_none);
+      ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, (::i32) e_draw_text_none);
 
       ::enum_text_wrap etextwrap = m_etextwrap;
 
@@ -812,7 +812,7 @@ namespace user
    //}
 
 
-   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer still::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if(m_pfont)
@@ -1017,9 +1017,9 @@ namespace user
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      ::user::e_key ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          auto ptopic = create_topic(::id_click);

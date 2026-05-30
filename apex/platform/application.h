@@ -1222,23 +1222,23 @@ namespace apex
                                                         ::collection::count iProgressCount) override;
 
 
-      virtual void userfs_init1() override;
+      void userfs_init1() override;
 
 
-      virtual void userfs_process_init() override;
+      void userfs_process_init() override;
 
 
       void data_on_after_change(::database::client* pclient, const ::scoped_string& scopedstr,
                                 ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override;
+      void report_error(const ::exception& e, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic) override;
 
 
-      virtual void create_impact_system() override;
+      void create_impact_system() override;
 
 
-      virtual void on_song_added(const ::scoped_string & scopedstr) override;
+      void on_song_added(const ::scoped_string & scopedstr) override;
 
 
       //string get_visual_studio_build();

@@ -84,7 +84,7 @@ void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-//bool simple_child_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pinteraction)
+//bool simple_child_frame::get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::style_context * pinteraction)
 //{
 //
 //   // etranslucency = ::user::e_translucency_present for children that may ask the translucency guideline for this as parent,

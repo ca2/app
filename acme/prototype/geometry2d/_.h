@@ -15,7 +15,7 @@ namespace geometry2d
 } // namespace geometry2d
 
 
-DECLARE_ENUMERATION(e_align, enum_align);
+DECLARE_C_FLAG(e_align, enum_align);
 
 
 #include "_struct.h"

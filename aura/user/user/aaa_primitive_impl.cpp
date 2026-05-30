@@ -12,7 +12,7 @@
 #include "acme/platform/session.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer_array.h"
+//#include "acme/platform/timer_array.h"
 #include "aura/platform/session.h"
 #include "aura/message/timer.h"
 #include "aura/message/user.h"
@@ -2179,7 +2179,7 @@ namespace user
    }
 
 
-   void prototype_impl::on_timer(::timer * ptimer)
+   void prototype_impl::operator()(::timer * ptimer)
    {
 
       if (m_puserinteraction == nullptr)

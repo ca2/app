@@ -46,7 +46,7 @@ namespace user
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize);
 
 
-      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, estate estate = e_state_none) const override;
 
 
       virtual ::i32 _001GetItemHeight() const;
@@ -59,7 +59,7 @@ namespace user
 
       //virtual void nextstyle(style_context* pcontext) override;
 
-      virtual void on_timer(::timer* ptimer) override;
+      virtual void operator()(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_set_focus);

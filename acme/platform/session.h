@@ -11,7 +11,6 @@
 #include "acme/handler/handler.h"
 #include "application_container.h"
 
-
 #include "session_acme.h"
 #include "session_apex.h"
 #include "session_aqua.h"
@@ -27,9 +26,7 @@ namespace platform
       virtual public ::task,
       virtual public ::handler::handler,
       virtual public ::platform::application_container,
-      //virtual public ::user::keyboard_state,
       virtual public ::platform::acme_session_layer_t,
-      virtual public ::platform::apex_session_layer_t,
       virtual public ::platform::aqua_session_layer_t,
       virtual public ::platform::aura_session_layer_t,
       virtual public ::platform::axis_session_layer_t,
@@ -60,6 +57,8 @@ namespace platform
 
 
       ::payload                                                   m_varCurrentImpactFile;
+
+      ::pointer_array<::task>   m_taskaTimer;
 
 
       session();
@@ -101,6 +100,9 @@ namespace platform
       virtual void term_session();
 
       void set_finish() override;
+
+
+      class ::timer_handler * get_timer_handler(const class ::time &time);
 
    };
 

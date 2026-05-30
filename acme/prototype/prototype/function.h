@@ -900,7 +900,7 @@ public:
 
    }
 
-   function(base * pbase, const class ::time & timeTimeout) :
+   function(base *pbase, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(pbase)
    {

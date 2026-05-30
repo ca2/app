@@ -12,7 +12,7 @@
 class item;
 
 
-DECLARE_ENUMERATION(e_item, enum_item);
+DECLARE_C_FLAG(e_item, enum_item);
 
 
 enum enum_item_flag : ::i64
@@ -26,22 +26,22 @@ enum enum_item_flag : ::i64
 };
 
 
-DECLARE_ENUMERATION(e_item_flag, enum_item_flag);
+DECLARE_C_FLAG(e_item_flag, enum_item_flag);
 
 
 struct item_t
 {
 
 
-   enum_element                  m_eelement;
+   e_element                  m_eelement;
    ::collection::index                       m_iItem;
    ::collection::index                       m_iSubItem;
    ::collection::index                       m_iListItem;
 
 
    
-   constexpr item_t(enum_element eelement = e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1) :
-      // constexpr item_t(enum_element eelement = e_element_none, ::collection::index iItem = -1) :
+   constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1) :
+      // constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1) :
       m_eelement(eelement),
       m_iItem(iItem)
       //,m_iSubItem(iSubItem)
@@ -104,34 +104,34 @@ public:
    //::pointer<::geometry2d::region>     m_pregion;
    //bool                             m_bAnyHoverChange;
 
-   //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
+   //item(const ::e_element & eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
      // item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
    
-   item(::enum_item_flag eitemflag, enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
+   item(::enum_item_flag eitemflag, const ::e_element & eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
       item(eelement, iItem, iSubItem, iListItem, atom, eitemflag) 
    {
 
    }
 
-   //item(const ::e_item_flag & eitemflag, enum_element eelement, ::collection::index iItem = -1, const ::atom & atom = ::atom::e_type_null) :
+   //item(const ::e_item_flag & eitemflag, const ::e_element & eelement, ::collection::index iItem = -1, const ::atom & atom = ::atom::e_type_null) :
      // item(eelement, iItem, atom, eitemflag) {}
 
-   item(enum_element eelement, const ::atom & atom)
+   item(const ::e_element & eelement, const ::atom & atom)
       : item(eelement, atom.is_integer() ? atom.as_index() : -1, -1, -1, atom.is_integer() ? ::atom() : atom)
    {
 
    }
 
 
-   item(enum_element eelement, enum_id eid)
+   item(const ::e_element & eelement, enum_id eid)
       : item(eelement, -1, -1, -1, (const ::atom &) eid)
    {
 
    }
 
 
-   item(enum_element eelement = ::e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, ::enum_item_flag eitemflag = ::e_item_flag_none) :
+   item(const ::e_element & eelement = ::e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, ::enum_item_flag eitemflag = ::e_item_flag_none) :
       m_item(eelement, iItem, iSubItem, iListItem),
       m_eitem(e_item_none),
       m_eitemflag(eitemflag)
@@ -203,7 +203,7 @@ public:
 //   template < prototype_integral INTEGRAL >
 //   operator INTEGRAL() const { return (INTEGRAL)m_item.m_iItem; }
 
-   virtual bool is_hidden() const;
+   virtual i32_boolean is_hidden() const;
 
    virtual ::string get_item_text(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
    virtual ::collection::index get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
@@ -286,12 +286,12 @@ public:
    //bool operator != (const item & item) const { return !operator==(item); }
 
 
-   item& operator = (enum_element eelement);
+   ///item& operator = (const ::e_element & eelement);
 
-   bool operator == (enum_element eelement)  const { return m_item.m_eelement == eelement; }
-   //bool operator != (enum_element eelement)  const { return !operator==(eelement); }
+   //bool operator == (const ::e_element & eelement)  const { return m_item.m_eelement == eelement; }
+   //bool operator != (const ::e_element & eelement)  const { return !operator==(eelement); }
 
-   item& operator = (const e_element& eelement) { return operator = ((enum_element)eelement); }
+   item& operator = (const e_element& eelement);//{ return operator = ((enum_element)eelement); }
 
    bool operator == (const e_element & eelement)  const { return m_item.m_eelement == eelement; }
 //   bool operator != (const e_element & eelement)  const { return !operator==(eelement); }
@@ -314,7 +314,7 @@ public:
    ::collection::index operator - (::i64 iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
 
-   bool in_element_range(enum_element eelement, ::i32 iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }
+   bool in_element_range(const ::e_element & eelement, ::i32 iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }
 
    //bool is_valid_item(::collection::count c) const { return m_item.m_iItem >= 0 && m_item.m_iItem < c; }
    
@@ -354,7 +354,7 @@ inline bool is_item_set_and_non_negative(const ::item* pitem)
 }
 
 
-inline bool is_element(const ::item * pitem, ::enum_element eelement)
+inline bool is_element(const ::item * pitem, const ::e_element & eelement)
 {
 
    return ::is_set((const void *)pitem) && pitem->is_item_set() && pitem->m_item.m_eelement == eelement;
@@ -390,7 +390,7 @@ inline bool is_subitem(const ::item * pitem, ::collection::index iSubItem)
 //}
 
 
-inline bool in_element_range(const ::item * pitem, enum_element eelement, ::i32 iCount)
+inline bool in_element_range(const ::item * pitem, const ::e_element & eelement, ::i32 iCount)
 {
 
    return ::is_set((const void *)pitem) && pitem->is_item_set() &&
@@ -446,7 +446,7 @@ inline bool is_same_item(const ::item * pitem1, const ::item * pitem2)
 inline enum_element item_element(const ::item * pitem)
 {
 
-   return ::is_set(pitem) ? pitem->m_item.m_eelement : e_element_none;
+   return ::is_set(pitem) ? pitem->m_item.m_eelement.m_eenum : e_element_none;
 
 }
 

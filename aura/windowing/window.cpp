@@ -22,7 +22,7 @@
 //#include "acme/handler/sequence.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer_array.h"
+//#include "acme/platform/timer_array.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/prototype/prototype/sequence_continuation.h"
 #include "acme/user/user/_text_stream.h"
@@ -3504,7 +3504,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
    }
 
 
-   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse* pmouse)
+   bool window::defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse* pmouse)
    {
 
       return false;
@@ -3729,7 +3729,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
    }
 
 
-   bool window::is_satellite_window()
+   ::i32_boolean window::is_satellite_window()
    {
 
       return user_interaction()->m_ewindowflag & e_window_flag_satellite_window;
@@ -5311,7 +5311,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
 
    void window::add_graphical_output_purpose(::particle* pparticleGraphicalOutputPurposeOriginator,
-      ::graphics::enum_output_purpose epurpose)
+      const ::graphics::e_output_purpose & epurpose)
    {
 
       if (::is_null(pparticleGraphicalOutputPurposeOriginator))
@@ -13647,7 +13647,7 @@ slGraphics.unlock();
    //}
 
 
-   bool window::is_composite()
+   ::i32_boolean window::is_composite()
    {
 
       return user_interaction()->m_ewindowflag & e_window_flag_composite;
@@ -16104,10 +16104,10 @@ slGraphics.unlock();
    //   }
 
 
-   ::graphics::enum_output_purpose window::most_demanding_graphical_output_purpose()
+   ::graphics::e_output_purpose window::most_demanding_graphical_output_purpose()
    {
 
-      ::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+      ::graphics::e_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
       for (auto& ppurpose : m_graphicaloutputpurposea)
       {
@@ -18701,7 +18701,7 @@ slGraphics.unlock();
    //}
 
 
-   //void window::on_timer(::timer * ptimer)
+   //void window::operator()(::timer * ptimer)
    //{
 
    //   if (user_interaction() == nullptr)

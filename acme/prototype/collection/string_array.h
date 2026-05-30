@@ -647,7 +647,7 @@ public:
          }
          if (!bCarriage)
          {
-            this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_carriage_return);
+            this->m_erange = (this->m_erange & ~e_range_array_carriage_return).m_cflag;
          }
       }
       else
@@ -655,7 +655,7 @@ public:
          this->add(scopedstr);
          if (bCarriage)
          {
-            this->m_erange = (::enum_range)(this->m_erange | e_range_array_carriage_return);
+            this->m_erange = (this->m_erange | e_range_array_carriage_return).m_cflag;
          }
 
       }

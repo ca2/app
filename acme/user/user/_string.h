@@ -4,7 +4,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::string as_string(enum_display edisplay);
+CLASS_DECL_ACME ::string as_string(const ::e_display & edisplay);
 
 
 CLASS_DECL_ACME ::string as_string(::user::enum_activation useractivation);

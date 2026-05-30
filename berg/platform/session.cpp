@@ -60,13 +60,13 @@ namespace berg
 
       //m_puiLastLButtonDown             = nullptr;
 
-      m_pmapKeyPressed                 = nullptr;
+      //m_pmapKeyPressed                 = nullptr;
 
       //m_puiMouseMoveCapture            = nullptr;
 
-      m_bShowPlatform                  = false;
+      //m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      //m_pappCurrent                    = nullptr;
 
       //m_puiMouseMoveCapture = nullptr;
 

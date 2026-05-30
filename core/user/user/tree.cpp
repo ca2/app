@@ -84,7 +84,7 @@ namespace user
       m_iHoverAlphaInit = 0;
       m_iLeaveAlphaInit = 0;
 
-      m_flagNonClient += ::user::interaction::e_non_client_hover_rect;
+      m_enonclient += ::user::e_non_client_hover_rect;
 
       m_econtroltype = ::user::e_control_type_tree;
 
@@ -808,7 +808,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_uiLButtonUpFlags = (::u32)pmouse->m_ekeystate;
+      m_keystateLButtonUp = *session();
 
       m_pointLButtonUp = pmouse->m_pointHost;
 
@@ -870,7 +870,8 @@ namespace user
    }
 
 
-   void tree::perform_right_click(uptr nFlags, const ::i32_point & pointCursor)
+   //void tree::perform_right_click(uptr nFlags, const ::i32_point & pointCursor)
+void tree::perform_right_click(const ::i32_point & pointCursor)
    {
 
       //_001OnRightClick(nFlags, pointCursor);
@@ -923,7 +924,8 @@ namespace user
 
       host_to_client()(point);
 
-      perform_right_click(pmouse->m_ekeystate, point);
+      //perform_right_click(pmouse->m_ekeystate, point);
+       perform_right_click(point);
 
       pmessage->m_bRet = true;
 
@@ -932,10 +934,10 @@ namespace user
    }
 
 
-   void tree::on_timer(::timer * ptimer)
+   void tree::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
    }
 

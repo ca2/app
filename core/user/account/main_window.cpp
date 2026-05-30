@@ -3,7 +3,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/platform/hyperlink.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -170,12 +170,12 @@ namespace account
    }
 
 
-   void main_window::on_timer(::timer * ptimer)
+   void main_window::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_check_cached_credentials && !m_plogin->m_bCred)
+      if (ptimer->m_etimer == e_timer_check_cached_credentials && !m_plogin->m_bCred)
       {
 
          try

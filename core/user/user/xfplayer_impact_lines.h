@@ -5,7 +5,8 @@
 
 
 class CLASS_DECL_CORE xfplayer_impact_linea :
-   virtual public ::object
+   virtual public ::object,
+virtual public ::timer_callback::base
 {
 public:
 
@@ -45,7 +46,7 @@ public:
    DECLARE_MESSAGE_HANDLER(OnMouseMove);
    DECLARE_MESSAGE_HANDLER(OnLButtonDown);
    DECLARE_MESSAGE_HANDLER(OnLButtonUp);
-   virtual void on_timer(::timer * ptimer);
+   void operator()(::timer * ptimer) override;
    DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
    xfplayer_impact_line_selection & GetSelection();

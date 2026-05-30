@@ -56,7 +56,7 @@ namespace user
 
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size * psize);
 
-      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
       virtual ::i32 _001GetItemHeight() const;
 
@@ -66,7 +66,7 @@ namespace user
 
       virtual void ensure_item_visible_by_index(::collection::index iItem);
 
-      void on_timer(::timer* ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

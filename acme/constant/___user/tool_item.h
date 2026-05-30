@@ -50,8 +50,8 @@ enum enum_tool_item_style : ::i64
 };
 
 
-DECLARE_ENUMERATION(e_tool_item_state, enum_tool_item_state);
-DECLARE_ENUMERATION(e_tool_item_style, enum_tool_item_style);
+DECLARE_C_FLAG(e_tool_item_state, enum_tool_item_state);
+DECLARE_C_FLAG(e_tool_item_style, enum_tool_item_style);
 
 
 

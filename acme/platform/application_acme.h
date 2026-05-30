@@ -190,7 +190,7 @@ namespace platform
 
       virtual ::i32 main_loop();
 
-      virtual ::enum_id key_command(::user::enum_key ekey, ::user::keyboard_state * pkeyboardstate);
+      virtual ::enum_id key_command(const ::user::e_key & ekey);
 
       virtual void on_before_launching();
       //virtual void os_native_bergedge_start();

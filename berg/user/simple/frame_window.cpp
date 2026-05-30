@@ -481,7 +481,7 @@ void simple_frame_window::task_save_window_placement()
    while (ptask->should_run())
    {
 
-      bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);
+      ::i32_boolean bIsWindow = m_ewindowflag & e_window_flag_is_window;
 
       if (!bIsWindow)
       {
@@ -4333,12 +4333,12 @@ void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMake
 }
 
 
-void simple_frame_window::on_timer(::timer * ptimer)
+void simple_frame_window::operator()(::timer * ptimer)
 {
 
-   ::user::frame_window::on_timer(ptimer);
+   ::user::frame_window::operator()(ptimer);
 
-   ::experience::frame_window::on_timer(ptimer);
+   ::experience::frame_window::operator()(ptimer);
 
 }
 

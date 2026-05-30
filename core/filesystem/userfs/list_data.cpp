@@ -416,7 +416,7 @@ namespace userfs
 
             }
 
-            return (bool) ( pitem1->m_strName.case_insensitive_order(pitem2->m_strName) < 0);
+            return (i32_boolean) ( pitem1->m_strName.case_insensitive_order(pitem2->m_strName) < 0);
 
                });
 

@@ -96,17 +96,17 @@ namespace nanoui
       void draw(::nano2d::context  * pcontext) override;
 
       /// Handles mouse button click happenings for the ColorWheel.
-      bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
 
-      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate) override;
+      bool mouse_motion_event(const i32_point &point) override;
       /// Handles mouse drag happenings for the ColorWheel.
-      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, ::user::e_key_state ekeystate) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::keyboard_state & keyboardstate) override;
 
       // Converts a specified hue (with saturation = value = 1) to RGB space.
       // color::color hue2rgb(::f32 h) const;
 
       // Manipulates the positioning of the different regions of the ColorWheel.
-      //Region adjust_position(const i32_point & p);
+      //Region adjust_position(const i32_point & point);
 
       virtual void graphics_set_mouse_capture() override;
       virtual void graphics_release_mouse_capture() override;

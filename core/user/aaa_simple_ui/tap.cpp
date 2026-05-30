@@ -487,9 +487,9 @@ auto pwindowing = windowing();
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      auto ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          on_action(id());
@@ -497,7 +497,7 @@ auto pwindowing = windowing();
          pkey->m_bRet = true;
 
       }
-      else if (iKey == ::user::e_key_tab)
+      else if (ekey == ::user::e_key_tab)
       {
 
          keyboard_set_focus_next();

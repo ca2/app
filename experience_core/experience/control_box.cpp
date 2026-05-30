@@ -120,10 +120,10 @@ namespace experience_core
    }
 
 
-   void control_box::on_timer(::timer * ptimer)
+   void control_box::operator()(::timer * ptimer)
    {
 
-      ::experience::control_box::on_timer(ptimer);
+      ::experience::control_box::operator()(ptimer);
 
    }
 

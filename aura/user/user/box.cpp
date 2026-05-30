@@ -442,7 +442,7 @@ namespace user
 
       m_windowdisplayandlayout = m_windowdisplayandlayoutStore;
 
-      enum_display edisplay = windowdisplayandlayout.m_edisplay;
+      auto edisplay = windowdisplayandlayout.m_edisplay;
 
       const_layout().sketch().appearance() = windowdisplayandlayout.m_eappearance;
 
@@ -476,7 +476,7 @@ namespace user
 
          information() << "user::box::load_window_display_and_layout " << edisplay;
 
-         switch(edisplayForRestore)
+         switch(edisplayForRestore.m_cflag)
          {
             case e_display_compact:
                place(windowdisplayandlayout.m_rectangleCompact);
@@ -579,7 +579,7 @@ namespace user
 
       m_windowdisplayandlayout = m_windowdisplayandlayoutStore;
 
-      enum_display edisplay = windowdisplayandlayout.m_edisplay;
+      auto edisplay = windowdisplayandlayout.m_edisplay;
 
       const_layout().sketch().appearance() = windowdisplayandlayout.m_eappearance;
 

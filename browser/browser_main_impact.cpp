@@ -14,8 +14,8 @@ namespace browser
 
       m_ptopimpact = nullptr;
       m_pimpact    = nullptr;
-      m_flagNonClient.add(e_non_client_background);
-      m_flagNonClient.add(e_non_client_focus_rect);
+      m_enonclient.add(::user::e_non_client_background);
+      m_enonclient.add(::user::e_non_client_focus_rect);
 
 
    }

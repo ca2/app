@@ -43,7 +43,7 @@ namespace prompt
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
 
       ::user::document * get_document();

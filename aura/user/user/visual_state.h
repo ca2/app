@@ -39,11 +39,19 @@ namespace user
 
       ::e_appearance appearance() const;
 
-      visual_state & operator = (const enum_appearance & eappearance);
-      visual_state & operator |= (const enum_appearance & eappearance);
-      visual_state & operator -= (const enum_appearance & eappearance);
-      visual_state & operator ^= (const enum_appearance & eappearance);
+      visual_state & operator = (const e_appearance & eappearance);
+      visual_state & operator |= (const e_appearance & eappearance);
+      visual_state & operator -= (const e_appearance & eappearance);
+      visual_state & operator ^= (const e_appearance & eappearance);
 
+      visual_state & operator = (const e_display & edisplay)
+      {
+
+         m_edisplay = edisplay;
+
+         return *this;
+
+      }
 
       visual_state & operator = (const visual_state & visualstate)
       {

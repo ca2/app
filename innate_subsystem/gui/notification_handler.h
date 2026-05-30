@@ -17,7 +17,7 @@ namespace innate_subsystem
       virtual ::innate_subsystem::WindowInterface * get_window_implementation();
 
       virtual bool _001OnAction();
-      virtual bool _001OnKeyDownNotification(::user::enum_key ekey);
+      virtual bool _001OnKeyDownNotification(const ::user::e_key & ekey);
       virtual bool _001OnColumnClick(::i32 iColumn);
       virtual bool _001OnSelectionChange();
       virtual bool _001OnTabChanged();
@@ -27,7 +27,7 @@ namespace innate_subsystem
 
 
       virtual bool _002OnAction(::i32 iControl);
-      virtual bool _002OnKeyDownNotification(::i32 iControl, ::user::enum_key ekey);
+      virtual bool _002OnKeyDownNotification(::i32 iControl, const ::user::e_key & ekey);
       virtual bool _002OnColumnClick(::i32 iControl, ::i32 iColumn);
       virtual bool _002OnSelectionChange(::i32 iControl);
       virtual bool _002OnTabChanged(::i32 iControl);

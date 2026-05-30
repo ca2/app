@@ -154,7 +154,7 @@ namespace user
       virtual ::user::interaction_base * get_mouse_focus_RButtonDown() override;
       virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus) override;
 
-      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse) override;
+      virtual bool on_ui_mouse_message(::user::mouse * pmouse) override;
 
       virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 

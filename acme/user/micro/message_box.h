@@ -69,7 +69,9 @@ namespace micro
          ::payload get_dialog_result() override;
 
 
-         void on_timer(::timer * ptimer) override;
+         //void operator()(::timer * ptimer) override;
+
+         void operator()(::timer * ptimer);
 
          //void initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 

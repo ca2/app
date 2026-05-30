@@ -24,7 +24,7 @@ namespace sphere
    }
 
 
-   //bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pcontext)
+   //bool main_frame::get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::style_context * pcontext)
    //{
 
    //   etranslucency = ::user::e_translucency_present;

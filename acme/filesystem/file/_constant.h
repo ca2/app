@@ -94,7 +94,7 @@ enum enum_stream
    };
 
 
-   DECLARE_ENUMERATION(e_flag, enum_flag);
+   DECLARE_C_FLAG(e_flag, enum_flag);
 
 } // namespace file
 

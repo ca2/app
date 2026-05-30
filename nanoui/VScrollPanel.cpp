@@ -17,6 +17,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "aura/user/user/interaction.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/windowing/windowing.h"
 #include "nano2d/context.h"
 
@@ -79,13 +80,6 @@ namespace nanoui
 
       sizePanel = sizePanel.prefer_self_coordinate_if_positive(pwidgetPanel->m_size);
 
-      if (sizePanel.cx + 12 > m_size.cx)
-      {
-
-         pwidgetPanel->m_size.cx = m_size.cx - 12;
-
-      }
-
       auto size = pwidgetPanel->preferred_size(pcontext, bRecalcTextSize);
 
       m_fTotalHeight = (::f32)size.cy;
@@ -93,7 +87,15 @@ namespace nanoui
 
       pwidgetPanel->m_size.cy = size.cy;
 
-      //if (m_fTotalHeight > pwidgetPanel->m_size.cy)
+      pwidgetPanel->m_size.cx = size.cx;
+
+      if (sizePanel.cx + 12 > m_size.cx)
+      {
+
+         pwidgetPanel->m_size.cx = m_size.cx - 12;
+      }
+
+      // if (m_fTotalHeight > pwidgetPanel->m_size.cy)
       //{
 
       //   m_fScroll = ::minimum_maximum(m_fScroll, 0.f, ;
@@ -120,20 +122,19 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
+   bool VScrollPanel::mouse_motion_event(const i32_point &point)
    {
 
-      m_pointCurrentLocalCursor = p;
+      m_pointCurrentLocalCursor = point;
 
       if (!m_children.empty()
-         && m_fTotalHeight > m_size.cy
-         && bDown
+         && m_fTotalHeight > m_size.cy && is_left_button_pressed()
          && m_bDrag)
       {
 
-         ::f32 fScroll = y_coordinate_vertical_scroll(p.y);
+         ::f32 fScroll = y_coordinate_vertical_scroll(point.y);
 
-         information("drag:point=" + ::as_string(p.y) + ",rate=" + ::as_string(fScroll) + "\n");
+         information("drag:point=" + ::as_string(point.y) + ",rate=" + ::as_string(fScroll) + "\n");
 
          if (is_different(fScroll, m_fScroll, 0.00001))
          {
@@ -152,68 +153,71 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_motion_event(p, rel, bDown, ekeystate);
+      return Widget::mouse_motion_event(point);
 
    }
 
 
-   bool VScrollPanel::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool VScrollPanel::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      m_pointCurrentLocalCursor = p;
+      m_pointCurrentLocalCursor = point;
 
-      if (down
-         && ekeystate == ::user::e_key_state_left_button
-         && !m_children.empty() 
-         && m_fTotalHeight > m_size.cy 
-         && p.x > m_pos.x + m_size.cx - 13 
-         && p.x < m_pos.x + m_size.cx - 4)
+      if (m_bEnabled && euserkeyMouseButton == ::user::e_key_left_button)
       {
 
-         m_bDrag = true;
-
-         screen()->m_puserinteraction->set_mouse_capture();
-
-         synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         ::f32 fScroll = y_coordinate_vertical_scroll(p.y);
-
-         if (is_different(fScroll, m_fScroll, 0.00001))
+         if (bDown && !m_children.empty() && m_fTotalHeight > m_size.cy && point.x > m_pos.x + m_size.cx - 13 &&
+             point.x < m_pos.x + m_size.cx - 4)
          {
 
-            m_fScroll = fScroll;
+            m_bDrag = true;
 
-            m_update_layout = true;
+            m_keystatePress = session();
 
-            lock.unlock();
+            screen()->m_puserinteraction->set_mouse_capture();
 
-            set_need_redraw();
+            synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            post_redraw();
+            ::f32 fScroll = y_coordinate_vertical_scroll(point.y);
+
+            if (is_different(fScroll, m_fScroll, 0.00001))
+            {
+
+               m_fScroll = fScroll;
+
+               m_update_layout = true;
+
+               lock.unlock();
+
+               set_need_redraw();
+
+               post_redraw();
+            }
+
+            return true;
+         }
+         else if (m_bDrag && !bDown)
+         {
+
+            m_keystatePress = session();
+
+            m_bDrag = false;
+
+            screen()->m_puserinteraction->defer_release_mouse_capture();
 
          }
 
-         return true;
-
-      }
-      else if (m_bDrag && !down)
-      {
-
-         m_bDrag = false;
-
-         screen()->m_puserinteraction->defer_release_mouse_capture();
-
       }
 
-      return Widget::mouse_button_event(p, ekeystate, down, bDoubleClick);
+      return Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
    }
 
 
-   bool VScrollPanel::scroll_event(const i32_point& p, const ::f32_size& rel)
+   bool VScrollPanel::scroll_event(const i32_point & point, const ::f32_size& rel)
    {
 
-      m_pointCurrentLocalCursor = p;
+      m_pointCurrentLocalCursor = point;
 
       if (!m_children.empty() && m_fTotalHeight > m_size.cy)
       {
@@ -228,7 +232,7 @@ namespace nanoui
 
          auto addPercent = pagePercent * wheelScrollPercent * y / wheelScrollUnit;
 
-         screen()->application()->fork([this, p, addPercent]()
+         screen()->application()->fork([this, point, addPercent]()
                {
 
                   auto addUp = addPercent;
@@ -259,9 +263,7 @@ namespace nanoui
 
                         m_update_layout = true;
 
-                        auto ekeystate = session()->key_state();
-
-                        mouse_motion_event(m_pointCurrentLocalCursor, iRel, false, ekeystate);
+                        mouse_motion_event(m_pointCurrentLocalCursor);
 
                         set_need_redraw();
 
@@ -304,7 +306,7 @@ namespace nanoui
       else
       {
 
-         return Widget::scroll_event(p, rel);
+         return Widget::scroll_event(point, rel);
 
       }
 

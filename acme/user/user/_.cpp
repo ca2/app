@@ -4,18 +4,18 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME bool is_docking(enum_display edisplay)
+CLASS_DECL_ACME bool is_docking(const ::e_display & edisplay)
 {
 
-   return (edisplay & e_display_docking_mask) && edisplay > 0;
+   return (edisplay & e_display_docking_mask) && edisplay.m_cflag > 0;
 
 }
 
 
-CLASS_DECL_ACME enum_display default_equivalence_sink(enum_display edisplay)
+CLASS_DECL_ACME ::e_display default_equivalence_sink(const ::e_display & edisplay)
 {
 
-   if (edisplay <= 0)
+   if (edisplay.m_cflag <= 0)
    {
 
       return e_display_none;

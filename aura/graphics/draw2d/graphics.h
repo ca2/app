@@ -1192,7 +1192,7 @@ class graphics_context;
       virtual void frame_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color, const ::e_border& eborder = e_border_all);
       //virtual void draw_rectangle(const ::f64_rectangle & ::f64_rectangle, const ::color::color& color, const ::e_border & eborder = e_border_all);
 
-      virtual void set_font(::user::interaction* pinteraction, ::enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none);
+      virtual void set_font(::user::interaction* pinteraction, const ::e_element & eelement = ::e_element_none, const ::user::e_state & estate = ::user::e_state_none);
 
 
       virtual void get(::geometry2d::matrix& matrix);

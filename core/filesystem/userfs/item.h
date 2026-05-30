@@ -32,7 +32,7 @@ namespace userfs
 
       //static ::std::strong_ordering CompareArrangeByName(const ::pointer<::data::tree_item<item>>& pitema, const ::pointer<::data::tree_item<item>> pitemb);
       ::i32 get_index() const;
-      bool is_folder() const override;
+      i32_boolean is_folder() const override;
 
       //void write(binary_stream & s) const override;
       //void read(binary_stream & s) override;

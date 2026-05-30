@@ -1796,7 +1796,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rectangle(::i32_rectangle & prectangle, ::enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & prectangle, const ::e_element & eelement)
    {
 
       return false;

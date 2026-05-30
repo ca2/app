@@ -41,7 +41,7 @@ namespace user
       ////m_bAbsoluteMousePosition = false;
       //m_bShouldClose = false;
       m_bFramebufferResized = false;
-
+        m_psession=nullptr;
    }
 
 
@@ -312,6 +312,7 @@ namespace user
 
    void graphics3d::on_message_create(::message::message* pmessage)
    {
+       m_psession = session();
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -323,6 +324,8 @@ namespace user
          return;
 
       }
+
+
 
       //get_app()->m_pimpact = this;
 
@@ -336,7 +339,7 @@ namespace user
    }
 
 
-   void graphics3d::on_timer(::timer* ptimer)
+   void graphics3d::operator()(::timer * ptimer)
    {
 
    }
@@ -566,19 +569,19 @@ namespace user
    }
 
 
-   ::user::enum_key_state graphics3d::get_key_state(::user::e_key ekey)
-   {
+//   ::key::enum_state graphics3d::get_key_state(const ::user::e_key & ekey)
+  // {
 
-      if (session()->is_key_pressed(ekey))
-      {
+    //  if (session()->is_key_pressed(ekey))
+      //{
 
-         return ::user::e_key_state_pressed;
+        // return ::key::e_state_pressed;
 
-      }
+ //     }
 
-      return ::user::e_key_state_none;
+   //   return ::key::e_state_none;
 
-   }
+   //}
 
 
    void graphics3d::on_layout(::draw2d::graphics_pointer& pgraphics)

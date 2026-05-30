@@ -3,6 +3,8 @@
 #include "framework.h"
 #include "zorder.h"
 
+#include "acme_windowing_win32/_.h"
+
 
 zorder::zorder()
 {
@@ -20,6 +22,13 @@ zorder::zorder(const zorder & zorder)
 
 }
 
+
+zorder::zorder(const e_zorder & ezorder)
+{
+
+   operator = (ezorder.m_eenum);
+
+}
 zorder::zorder(enum_zorder ezorder)
 {
 
@@ -28,7 +37,7 @@ zorder::zorder(enum_zorder ezorder)
 }
 
 
-zorder::zorder(iptr iZ)
+zorder::zorder(win32_zorder_t, iptr iZ)
 {
 
    operator = (iZ);

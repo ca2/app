@@ -26,8 +26,8 @@ namespace browser
       prop(COLORSEL_IMPACT) = true;
 
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
       m_eeffect                  = effect_none;
 
@@ -152,10 +152,10 @@ namespace browser
    }
 
 
-   void impact::on_timer(::timer * ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == ::e_timer_update_current_area)
+      if (ptimer->m_etimer == ::e_timer_update_current_area)
       {
 
          {

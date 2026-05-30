@@ -106,7 +106,7 @@ void message_queue::post_message(const MESSAGE & message)
       
    }
 
-   if(m_eflagElement & (1ll << 36))
+   if(m_eflagElement & e_flag_debug0)
    {
       
       //printf("test123");
@@ -212,7 +212,7 @@ void message_queue::kick_idle()
 
             *pmessage = message;
             
-            if(m_eflagElement & (1ll << 36))
+            if(m_eflagElement & e_flag_debug0)
             {
              
                //printf("test123");
@@ -237,7 +237,7 @@ void message_queue::kick_idle()
 
          auto bAcquired = m_phappeningNewMessage->_wait(time);
 
-         if(m_eflagElement & (1ll << 36))
+         if(m_eflagElement & e_flag_debug0)
          {
           
             //printf("test123");
@@ -311,7 +311,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::windo
          if(bRemoveMessage)
          {
 
-            if(m_eflagElement & (1ll << 36))
+            if(m_eflagElement & e_flag_debug0)
             {
              
                //printf("test123");

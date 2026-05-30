@@ -77,7 +77,7 @@ namespace user
       bool scroll_bar_y_visible(enum_layout elayout = e_layout_design) override;
 
 
-      bool get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement) override;
 
       ::i32_point drag_point(::item * pitem, ::user::mouse * pmouse) override;
 

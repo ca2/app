@@ -727,7 +727,7 @@ namespace platform
 
       virtual void set_dark_mode(bool bDark) override;
 
-      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
+      virtual ::color::color get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none) override;
 
       virtual ::color::color get_default_color(::color::color color) override;
 

@@ -30,7 +30,7 @@ namespace userex
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //virtual void on_timer(::timer * ptimer) override;
+      //void operator()(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 

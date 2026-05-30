@@ -6,7 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "core/filesystem/filemanager/file_properties_form.h"
 #include "core/user/user/list_column.h"
 #include "core/user/user/list_cache.h"
@@ -119,23 +119,23 @@ namespace filemanager
 
       m_pmeshcache = m_puserlistcache;
 
-      set_timer(123,500_ms,nullptr);
+      //set_timer(123,500_ms,nullptr);
 
    }
 
 
-   void operation_list_impact::on_timer(::timer * ptimer)
+   void operation_list_impact::operator()(::timer * ptimer)
    {
-      BASE::on_timer(ptimer);
-      if(ptimer->m_uTimer == 123)
-      {
-         /*if(m_timeLastUpdate.elapsed() > 500)
-         {
-         m_timeLastUpdate= ::time::now();
-         _001OnUpdateItemCount();
-         m_cache._001Invalidate();
-         }*/
-      }
+      BASE::operator()(ptimer);
+      // if(ptimer->m_etimer == 123)
+      // {
+      //    /*if(m_timeLastUpdate.elapsed() > 500)
+      //    {
+      //    m_timeLastUpdate= ::time::now();
+      //    _001OnUpdateItemCount();
+      //    m_cache._001Invalidate();
+      //    }*/
+      // }
 
    }
 

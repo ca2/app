@@ -236,10 +236,10 @@ namespace prompt
    }
 
 
-   void impact::on_timer(::timer * ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
-      ::user::impact::on_timer(ptimer);
+      ::user::impact::operator()(ptimer);
 
    }
 

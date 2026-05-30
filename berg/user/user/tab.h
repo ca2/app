@@ -165,7 +165,7 @@ namespace user
       virtual enum_position DragHitTest(const ::i32_point & point);
       virtual void GetDragRect(::i32_rectangle & rectangle, enum_position eposition);
 
-      virtual bool get_element_rectangle(::collection::index iTab, ::i32_rectangle & rectangle, enum_element eelement);
+      virtual bool get_element_rectangle(::collection::index iTab, ::i32_rectangle & rectangle, const ::e_element & eelement);
 
 
       virtual void get_title(::i32 iPane,string_array_base & stra);
@@ -259,7 +259,7 @@ namespace user
       virtual void _001OnDrawStandard(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       ::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 

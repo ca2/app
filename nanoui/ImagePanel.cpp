@@ -13,6 +13,7 @@
 #include "ImagePanel.h"
 #include "VScrollPanel.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/context.h"
 #include "aura/user/user/interaction.h"
@@ -49,12 +50,12 @@ namespace nanoui
    }
 
 
-   ::i32 ImagePanel::index_for_position(const i32_point & p) const
+   ::i32 ImagePanel::index_for_position(const i32_point & point) const
    {
 
       //auto pointClient = p - m_pos;
 
-      auto pointClient = p - i32_size(m_iMargin, m_iMargin);
+      auto pointClient = point - i32_size(m_iMargin, m_iMargin);
 
       ::f32_point cursorrate = pointClient / (::f32)(m_iThumbSize + m_iSpacing);
 
@@ -81,10 +82,10 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, ::user::e_key_state ekeystate)
+   bool ImagePanel::mouse_motion_event(const i32_point &point)
    {
 
-      auto iIndex = index_for_position(p);
+      auto iIndex = index_for_position(point);
 
       if (iIndex != m_iMouseIndex)
       {
@@ -103,12 +104,18 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool ImagePanel::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      ::collection::index iIndex = index_for_position(p);
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
+      {
 
-      if (iIndex >= 0 && iIndex < (::i32)m_images.size() && m_callback && down)
+         return false;
+      }
+
+      ::collection::index iIndex = index_for_position(point);
+
+      if (iIndex >= 0 && iIndex < (::i32)m_images.size() && m_callback && bDown)
       {
 
          m_callback(iIndex);

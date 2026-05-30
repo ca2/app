@@ -25,8 +25,8 @@ html_form::html_form()
    m_pelementLButtonDown = nullptr;
    m_pelementHover = nullptr;
 
-   //m_flagNonClient.erase(e_non_client_background);
-   m_flagNonClient.erase(e_non_client_focus_rect);
+   //m_enonclient.erase(::user::e_non_client_background);
+   m_enonclient.erase(::user::e_non_client_focus_rect);
 
    //m_phtmlform = ___new html::form ();
 

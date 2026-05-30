@@ -8492,7 +8492,7 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception & e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic)
+   void application::report_error(const ::exception & e, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic)
    {
 
       string strMessage;
@@ -8507,7 +8507,7 @@ namespace aura
 
       //puserinteractionMain->message_box(strMessage, nullptr, ::user::enum_message_box(iMessageFlags));
 
-      output_error_message(strMessage, scopedstrTopic, iMessageFlags);
+      output_error_message(strMessage, scopedstrTopic, emessagebox.m_cflag);
 
    }
 

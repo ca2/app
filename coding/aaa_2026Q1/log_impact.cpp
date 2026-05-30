@@ -17,7 +17,7 @@
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "apex/database/stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/node.h"
@@ -317,7 +317,7 @@ namespace coding
 
 
 
-   void log_impact::on_timer(::timer* ptimer)
+   void log_impact::operator()(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_main_impact_update)
@@ -327,7 +327,7 @@ namespace coding
 
       }
 
-      ::user::impact::on_timer(ptimer);
+      ::user::impact::operator()(ptimer);
 
    }
 

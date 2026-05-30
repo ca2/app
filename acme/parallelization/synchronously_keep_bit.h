@@ -22,7 +22,7 @@ public:
       ___synchronously_keep_bit(pmatterLock, field, mask, bKeepValue, (field & mask) == mask) {}
 
    ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, ::u64 mask, bool bKeepValue, bool bKeepAwayValue) :
-      set_bit < TYPE > (field, mask), m_pmatterLock(pmatterLock), m_bKeepValue(bKeepValue), m_bKeepAwayValue(bKeepAwayValue), m_bKept(false)
+      set_bit < TYPE > (field.eflag(), mask), m_pmatterLock(pmatterLock), m_bKeepValue(bKeepValue), m_bKeepAwayValue(bKeepAwayValue), m_bKept(false)
    {
 
       keep();

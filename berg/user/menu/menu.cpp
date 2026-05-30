@@ -6,7 +6,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "acme/user/menu/menu.h"
@@ -1512,10 +1512,10 @@ namespace user
 
 
 
-   void menu::on_timer(::timer* ptimer)
+   void menu::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
       ::pointer<::menu::item>pitemThis = get_menu_item();
 

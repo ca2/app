@@ -17,6 +17,8 @@ namespace message
 
    };
 
+   DECLARE_C_FLAG(e_flag, enum_flag);
+
 
    class key;
    class mouse;
@@ -35,7 +37,7 @@ namespace message
       ::message::dispatcher_array *m_pdispatchera;
       channel *m_pchannel;
       ::operating_system::window m_operatingsystemwindow;
-      enumeration<enum_flag> m_eflagMessage;
+      e_flag m_eflagMessage;
       ::collection::index m_iRouteIndex;
       ::collection::index m_iParam;
       // bool                           m_bRet;

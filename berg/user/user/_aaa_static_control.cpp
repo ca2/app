@@ -43,7 +43,7 @@
 //   //}
 //
 //
-//   ::write_text::font_pointer static_control::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+//   ::write_text::font_pointer static_control::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate) const
 //   {
 //
 //      if (pstyle)

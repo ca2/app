@@ -27,8 +27,8 @@ namespace user
       m_cyBorder = 1;
       m_iPaneCount = 0;
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
    }
 
@@ -276,18 +276,13 @@ namespace user
       if(pMsg->m_eusermessage == ::user::e_message_left_button_down)
       {
 
-         if(session()->is_mouse_state(::user::e_key_state_left_button))
-         {
+         ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             
-            ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
-            
-            splitbar.set_mouse_capture();
+         splitbar.set_mouse_capture();
 
-            m_iIndex = iIndex;
+         m_iIndex = iIndex;
 
-            m_iState = stateDragging;
-
-         }
+         m_iState = stateDragging;
 
       }
       else if(pMsg->m_eusermessage == ::user::e_message_left_button_up)

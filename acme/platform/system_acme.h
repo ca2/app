@@ -71,7 +71,7 @@ namespace platform
       bool                                            m_bOperatingAmbientFactory;
       bool                                            m_bGraphicsFactory;
       bool                                            m_bWindowingFactory;
-
+      class ::time                                    m_timeProcedureTimerMinimumResolution;     
 
       ::pointer < manual_reset_happening >                m_pmanualresethappeningSystemTaskFinished;
       //::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
@@ -769,7 +769,7 @@ namespace platform
 
       virtual void set_dark_mode(bool bDark);
 
-      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+      virtual ::color::color get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none);
 
       virtual ::color::color get_default_color(::color::color color);
 

@@ -320,7 +320,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer combo_box::get_font(style * pstyle, const ::e_element & eelement, estate estate) const
    {
 
       if (pstyle)
@@ -436,7 +436,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rectangle(RECT32 * prect, enum_element eelement)
+   bool combo_box::get_element_rectangle(RECT32 * prect, const ::e_element & eelement)
 
    {
 

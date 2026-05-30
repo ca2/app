@@ -3,7 +3,7 @@
 //#include "user.h"
 #include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
@@ -271,13 +271,13 @@ namespace userex
    }
 
 
-   void progress_impact::on_timer(::timer * ptimer)
+   void progress_impact::operator()(::timer * ptimer)
    {
 
-            if (ptimer->m_uTimer == e_timer_update_current_area)
+            if (ptimer->m_etimer == e_timer_update_current_area)
             {
       
-               kill_timer(ptimer->m_uTimer);
+               kill_timer(ptimer->m_etimer);
       
                ::i32_rectangle rectangle;
       

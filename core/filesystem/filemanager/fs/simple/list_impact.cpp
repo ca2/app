@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "impact.h"
 #include "list_impact.h"
+#include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/constant/user_message.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/list_cache.h"
 #include "core/user/user/list_column.h"
@@ -469,12 +470,13 @@ namespace filemanager
 //            return 0;
          }
 
-         void list_impact::on_timer(::timer * ptimer)
+         void list_impact::operator()(::timer * ptimer)
          {
-            simple_list_impact::on_timer(ptimer);
-            if(ptimer->m_uTimer == 123654)
+            simple_list_impact::operator()(ptimer);
+            if(ptimer->m_etimer == e_timer_short_kick_activation)
             {
-               kill_timer(123654);
+               //kill_timer(123654);
+               ptimer->cancel();
                m_bKickActive = false;
 
             }
@@ -708,7 +710,7 @@ namespace filemanager
             m_bKickActive = true;
 
 
-            set_timer(123654, 700_ms, nullptr);
+            set_timer(e_timer_short_kick_activation, 700_ms, nullptr);
 
          }
 

@@ -246,7 +246,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer list_box::get_font(style *pstyle, const ::e_element & eelement, estate estate) const
    {
 
       if (m_pcombo)
@@ -410,7 +410,7 @@ namespace user
    }
 
 
-   void list_box::on_timer(::timer* ptimer)
+   void list_box::operator()(::timer * ptimer)
    {
    
       if (ptimer->m_etimer == e_timer_kill_focus)
@@ -434,7 +434,7 @@ namespace user
 
       }
 
-      ::user::scroll_base::on_timer(ptimer);
+      ::user::scroll_base::operator()(ptimer);
    
    }
 

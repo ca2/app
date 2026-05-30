@@ -1040,7 +1040,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-::status < ::i32_rectangle > simple_toolbar::index_element_rectangle(::collection::index iItem, ::enum_element eelement, ::user::enum_state estate)
+::status < ::i32_rectangle > simple_toolbar::index_element_rectangle(::collection::index iItem, const ::e_element & eelement, const ::user::e_state & estate)
 {
 
    if (iItem < 0 || iItem >= main_content().m_pitema->get_size())
@@ -1067,7 +1067,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto puseritem = user_item(ptoolitem);
 
-   if ((ptoolitem->m_estyle & e_tool_item_style_separator) != 0)
+   if (ptoolitem->m_estyle & e_tool_item_style_separator)
    {
 
       rectangle = puseritem->m_rectangle2;
@@ -1076,7 +1076,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    else
    {
 
-      switch (eelement)
+      switch (eelement.m_eenum)
       {
          case ::e_element_item:
 
@@ -1621,19 +1621,19 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-void simple_toolbar::on_timer(::timer * ptimer)
+void simple_toolbar::operator()(::timer * ptimer)
 {
 
-   ::user::toolbar::on_timer(ptimer);
+   return ::user::toolbar::operator()(ptimer);
 
-//   if (ptimer->m_uTimer == TIMER_HOVER)
+//   if (ptimer->m_etimer == TIMER_HOVER)
 //   {
 //
 //      _001Hover();
 //
 //   }
 
-   // trans ::user::control_bar::OnTimer(ptimer->m_uTimer);
+   // trans ::user::control_bar::OnTimer(ptimer->m_etimer);
 
 }
 

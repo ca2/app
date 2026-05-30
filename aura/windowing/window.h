@@ -8,6 +8,7 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
+//#include "aura/user/experience/_constant.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/notification_listener.h"
@@ -552,7 +553,7 @@ namespace windowing
 
       bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
-      bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+      bool defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse) override;
 
       virtual void final_mouse_message_handling(::message::mouse * pmouse);
 
@@ -560,7 +561,7 @@ namespace windowing
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
 
 
-      bool is_satellite_window() override;
+      i32_boolean is_satellite_window() override;
       bool is_windowing_popup() override;
       ::i32_point windowing_popup_origin() override;
       ::i32_size windowing_popup_size() override;
@@ -730,10 +731,10 @@ namespace windowing
 
       virtual void add(::graphics::output_purpose * pgraphicaloutputpurpose);
       virtual void erase(::graphics::output_purpose * pgraphicaloutputpurpose);
-      virtual void add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose);
+      virtual void add_graphical_output_purpose(::particle * pparticle, const ::graphics::e_output_purpose & epurpose);
       virtual void erase_graphical_output_purpose(::particle * pparticle);
       virtual bool has_particle_fps_purpose(::particle * pparticle);
-      virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose();
+      virtual ::graphics::e_output_purpose most_demanding_graphical_output_purpose();
       virtual bool has_screen_output_purpose();
       virtual bool has_offscreen_output_purpose();
       virtual bool has_graphical_output_purpose();
@@ -1575,7 +1576,7 @@ namespace windowing
 
 
       virtual ::graphics::graphics * get_window_graphics();
-      virtual bool is_composite();
+      virtual ::i32_boolean is_composite();
 
 
       //virtual void _task_transparent_mouse_event();
@@ -1689,7 +1690,7 @@ namespace windowing
 
 
 
-      //void on_timer(::timer * ptimer) override;
+      //void operator()(::timer * ptimer) override;
 
       virtual bool IsTopParentActive();
 

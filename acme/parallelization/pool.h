@@ -20,7 +20,7 @@ public:
 
 
    task_pool();
-   virtual ~task_pool();
+   ~task_pool() override;
 
 
    virtual ::pointer<::task>defer_branch(const ::atom& atom, const ::procedure & procedure);
@@ -28,7 +28,7 @@ public:
 
    virtual void set_timer(enum_timer etimer, const class time & time);
    virtual void _timer_task(enum_timer etimer, const class time & time);
-   virtual void on_timer(enum_timer etimer);
+   virtual void operator()(enum_timer etimer);
 
 
 

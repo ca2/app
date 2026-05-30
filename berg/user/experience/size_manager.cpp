@@ -77,7 +77,7 @@ namespace experience
 
       }
 
-      ::experience::enum_frame eframeCursor = m_eframeCursor;
+      ::experience::e_frame eframeCursor = m_eframeCursor;
 
       if (eframeCursor == e_frame_none)
       {
@@ -113,7 +113,7 @@ namespace experience
 
       m_pframewindow->window_rectangle(rectangleEvent);
 
-      //enum_frame eframe = _001HitTest(pointCursor);
+      //const e_frame & eframe = _001HitTest(pointCursor);
 
       //auto pitemCursor = m_pitemCursor;
 
@@ -434,7 +434,7 @@ namespace experience
    }
 
 
-   enum_cursor size_manager::experience_frame_to_cursor(enum_frame eframe)
+   enum_cursor size_manager::experience_frame_to_cursor(const e_frame & eframe)
    {
 
       if (eframe == e_frame_none)
@@ -444,7 +444,7 @@ namespace experience
 
       }
 
-      switch(eframe)
+      switch(eframe.m_cflag)
       {
       case e_frame_sizing_top_left:
          return e_cursor_size_top_left;
@@ -487,7 +487,7 @@ namespace experience
    //}
 
 
-   void size_manager::size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::i32_point & point, bool bTracking)
+   void size_manager::size_window(const ::experience::e_frame & eframe, ::user::interaction * pframewindow, const ::i32_point & point, bool bTracking)
    {
 
       //    bool bSize = true;
@@ -749,7 +749,7 @@ namespace experience
    }
 
 
-   void size_manager::SetGripMask(enum_grip egrip)
+   void size_manager::SetGripMask(const e_grip & egrip)
    {
 
       m_egripMask = egrip;
@@ -757,7 +757,7 @@ namespace experience
    }
 
 
-   enum_grip size_manager::GetGripMask()
+   e_grip size_manager::GetGripMask()
    {
 
       return m_egripMask;
@@ -765,12 +765,12 @@ namespace experience
    }
 
 
-   enum_grip size_manager::experience_frame_to_experience_grip(enum_frame eframe)
+   e_grip size_manager::experience_frame_to_experience_grip(const e_frame & eframe)
    {
 
-      enum_grip egrip;
+      e_grip egrip;
 
-      //::enum_element eelement = e_element_none;
+      //const ::e_element & eelement = e_element_none;
 
       //if (eframe != e_frame_none)
       //{
@@ -804,7 +804,7 @@ namespace experience
    }
 
 
-   void size_manager::NotifyFramework(enum_frame eframe)
+   void size_manager::NotifyFramework(const e_frame & eframe)
    {
 
       __UNREFERENCED_PARAMETER(eframe);

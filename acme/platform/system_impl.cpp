@@ -3775,7 +3775,7 @@ namespace platform
    }
 
 
-   ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   ::color::color system::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       ::color::color color;

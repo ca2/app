@@ -14,7 +14,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/interaction_graphics_thread.h"
 //#include "aura/user/user/interaction_impl.h"
@@ -620,7 +620,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer list_box::get_font(style* pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer list_box::get_font(style* pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (m_pcombo)
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   void list_box::on_timer(::timer* ptimer)
+   void list_box::operator()(::timer * ptimer)
    {
 
       //if (ptimer->m_etimer == e_timer_kill_focus)
@@ -790,7 +790,7 @@ namespace user
 
       //}
 
-      ::user::scroll_base::on_timer(ptimer);
+      return ::user::scroll_base::operator()(ptimer);
 
    }
 

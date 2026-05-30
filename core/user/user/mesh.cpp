@@ -18,7 +18,7 @@
 #include "acme/prototype/data/tree_item.h"
 #include "acme/prototype/time/_text_stream.h"
 #include "acme/platform/keep.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "apex/database/selection.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -2926,26 +2926,26 @@ namespace user
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       
+// what is this?!?!  2026-05-29
+      //if (m_bDrag)
+      //{
 
-      if (m_bDrag)
-      {
+        // if (!m_bLButtonDown)
+         //{
 
-         if (!m_bLButtonDown)
-         {
+           // m_bDrag = false;
 
-            m_bDrag = false;
+         //}
+         //else if (pmouse->m_ekeystate == ::key::e_state_none)
+         //{
 
-         }
-         else if (pmouse->m_ekeystate == ::user::e_key_state_none)
-         {
+           // m_bLButtonDown = false;
 
-            m_bLButtonDown = false;
+            //m_bDrag = false;
 
-            m_bDrag = false;
+         //}
 
-         }
-
-      }
+      //}
 
       if (m_bDrag)
       {
@@ -3001,7 +3001,7 @@ namespace user
                   && !m_rangeSelection.has_item((::collection::index) iItemEnter))
             {
 
-               m_iMouseFlagEnter = pmouse->m_ekeystate;
+               m_keystateMouseEnter = session();
 
                m_iItemEnter = iItemEnter;
 
@@ -3212,7 +3212,8 @@ namespace user
 
                   _001DisplayHitTest(point, m_iDisplayItemLButtonDown1);
 
-                  m_uiLButtonDownFlags = pmouse->m_ekeystate;
+                  //m_uiLButtonDownFlags = pmouse->m_ekeystate;
+                  m_keystateLButtonDown = session();
 
                   m_pointLButtonDown1 = point;
 
@@ -3325,7 +3326,8 @@ namespace user
 
                       pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
 
-                      pmessage->m_ekeystate = pmouse->m_ekeystate;
+                      //pmessage->m_ekeystate = pmouse->m_ekeystate;
+                     pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(pmouse->m_wparam);
 
                       pmessage->m_pointHost = pmouse->m_pointHost;
 
@@ -3419,7 +3421,8 @@ namespace user
 
       }
 
-      _001OnRightClick(pmouse->m_ekeystate, point);
+      //_001OnRightClick(pmouse->m_ekeystate, point);
+      _001OnRightClick(point);
 
       pmessage->m_bRet = true;
 
@@ -3459,10 +3462,11 @@ namespace user
    }
 
 
-   bool mesh::_001OnRightClick(uptr nFlag,const ::i32_point & point)
+   //bool mesh::_001OnRightClick(uptr nFlag,const ::i32_point & point)
+bool mesh::_001OnRightClick(const ::i32_point & point)
    {
 
-      __UNREFERENCED_PARAMETER(nFlag);
+      //__UNREFERENCED_PARAMETER(nFlag);
       __UNREFERENCED_PARAMETER(point);
       return false;
 
@@ -3944,12 +3948,12 @@ namespace user
    }
 
 
-   void mesh::on_timer(::timer * ptimer)
+   void mesh::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_hover_select)
+      if (ptimer->m_etimer == e_timer_hover_select)
       {
 
          ::i32 iHoverSelectTimeout = 3;
@@ -3972,71 +3976,71 @@ namespace user
          
 
       }
-      else if(ptimer->m_uTimer == 12345679) // left click
-      {
-
-         kill_timer(12345679);
-
-         if(m_bMeshSelect)
-         {
-
-            if(m_bHoverSelect2)
-            {
-
-            }
-
-         }
-
-      }
-      else if(ptimer->m_uTimer == 8477) // right click
-      {
-
-         kill_timer(8477);
-
-         //if(!_001IsEditing())
-         {
-            uptr nFlags = m_uiRButtonUpFlags;
-            auto & point = m_pointRButtonUp;
-            _001OnRightClick(nFlags,point);
-            set_need_redraw();
-
-
-            /* trans
-            window_id wndidNotify = puserinteraction->get_owner()->GetSafeoswindow_();
-            if(wndidNotify == nullptr)
-            wndidNotify = puserinteraction->get_parent()->GetSafeoswindow_(); */
-
-            //            LRESULT lresult = 0;
-
-            /* trans            if(wndidNotify)
-            {
-            NMLISTVIEW nm;
-            nm.hdr.idFrom = puserinteraction->GetDlgCtrlId();
-            nm.hdr.code =   NM_CLICK;
-            nm.hdr.oswindowFrom = puserinteraction->GetSafeoswindow_();
-            lresult = ::SendMessage(
-            wndidNotify,
-            WM_NOTIFY,
-            nm.hdr.idFrom,
-            (LPARAM) &nm);
-            }*/
-         }
-      }
-      else if(ptimer->m_uTimer == 0xfffffffe)
+//      else if(ptimer->m_etimer == 12345679) // left click
+//      {
+//
+//         kill_timer(12345679);
+//
+//         if(m_bMeshSelect)
+//         {
+//
+//            if(m_bHoverSelect2)
+//            {
+//
+//            }
+//
+//         }
+//
+//      }
+//      else if(ptimer->m_etimer == 8477) // right click
+//      {
+//
+//         kill_timer(8477);
+//
+//         //if(!_001IsEditing())
+//         {
+//            uptr nFlags = m_uiRButtonUpFlags;
+//            auto & point = m_pointRButtonUp;
+//            _001OnRightClick(nFlags,point);
+//            set_need_redraw();
+//
+//
+//            /* trans
+//            window_id wndidNotify = puserinteraction->get_owner()->GetSafeoswindow_();
+//            if(wndidNotify == nullptr)
+//            wndidNotify = puserinteraction->get_parent()->GetSafeoswindow_(); */
+//
+//            //            LRESULT lresult = 0;
+//
+//            /* trans            if(wndidNotify)
+//            {
+//            NMLISTVIEW nm;
+//            nm.hdr.idFrom = puserinteraction->GetDlgCtrlId();
+//            nm.hdr.code =   NM_CLICK;
+//            nm.hdr.oswindowFrom = puserinteraction->GetSafeoswindow_();
+//            lresult = ::SendMessage(
+//            wndidNotify,
+//            WM_NOTIFY,
+//            nm.hdr.idFrom,
+//            (LPARAM) &nm);
+//            }*/
+//         }
+//      }
+      else if(ptimer->m_etimer == e_timer_update_filter_step)
       {
 
          if(!Filter1Step())
          {
 
-            kill_timer(ptimer->m_uTimer);
+            kill_timer(ptimer->m_etimer);
 
          }
 
       }
-      else if (ptimer->m_uTimer == 224455)
+      else if (ptimer->m_etimer == e_timer_drag_start)
       {
 
-         kill_timer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_etimer);
 
          if (m_iItemLButtonDown >= 0)
          {
@@ -4058,10 +4062,10 @@ namespace user
          }
 
       }
-      else if(ptimer->m_uTimer == e_timer_drag_start) // 12345678
+      else if(ptimer->m_etimer == e_timer_drag_start) // 12345678
       {
 
-         kill_timer(ptimer->m_uTimer);
+         ptimer->cancel();
 
          if(!m_bHoverSelect2)
          {
@@ -4075,7 +4079,7 @@ namespace user
          }
 
       }
-      //else if(ptimer->m_uTimer == 12321)
+      //else if(ptimer->m_etimer == 12321)
       //{
 
 
@@ -4822,7 +4826,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      set_timer(0xfffffffe,50_ms,nullptr);
+      set_timer(e_timer_update_filter_step,50_ms);
 
       //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
       //   {
@@ -4855,7 +4859,9 @@ namespace user
 
       m_bFilter1 = false;
 
-      kill_timer(0xfffffffe);
+      //kill_timer(0xfffffffe);
+
+      kill_timer(e_timer_update_filter_step);
 
       ASSERT(m_efilterstate == FilterStateSetup || m_efilterstate == FilterStateFilter);
 
@@ -6293,7 +6299,7 @@ namespace user
    }
 
 
-   ::user::enum_state draw_mesh_item::get_user_state() const
+   ::user::e_state draw_mesh_item::get_user_state() const
    {
 
       ::user::e_state estate = e_state_none;

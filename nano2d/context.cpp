@@ -2687,8 +2687,10 @@ void TransformSkewX(::f32* t, ::f32 a)
       //nano2d::text_row_array rowa;
 		//::i32 nrows = 0, i;
 		auto oldAlign = m_pstate->m_ealignText;
-		::i32 haling = m_pstate->m_ealignText & (::nano2d::e_align_left | ::nano2d::e_align_center | ::nano2d::e_align_right);
-		::i32 valign = m_pstate->m_ealignText & (::nano2d::e_align_top | ::nano2d::e_align_middle | ::nano2d::e_align_bottom | ::nano2d::e_align_baseline);
+		//::i32 haling = m_pstate->m_ealignText & (::nano2d::e_align_left | ::nano2d::e_align_center | ::nano2d::e_align_right);
+		///::i32 valign = m_pstate->m_ealignText & (::nano2d::e_align_top | ::nano2d::e_align_middle | ::nano2d::e_align_bottom | ::nano2d::e_align_baseline);
+		auto haling = m_pstate->m_ealignText & ::e_align_horizontal_center;
+		auto valign = m_pstate->m_ealignText & e_align_vertical;
 		::f32 lineh = 0;
 
 		//if (state->fontId == FONS_INVALID) return;
@@ -2707,11 +2709,11 @@ void TransformSkewX(::f32* t, ::f32 a)
 			for (auto & prow : ptextbox->m_rowa)
          {
 //				auto prow = rowa[i];
-				if (haling & ::nano2d::e_align_left)
+				if (haling & ::e_align_left)
                text(x, y,prow->m_str);
-				else if (haling & ::nano2d::e_align_center)
+				else if (haling & ::e_align_center)
                text(x + ptextbox->m_fWidth * 0.5f - prow->width * 0.5f, y,prow->m_str);
-				else if (haling & ::nano2d::e_align_right)
+				else if (haling & ::e_align_right)
                text(x + ptextbox->m_fWidth - prow->width, y, prow->m_str);
 				y += lineh * m_pstate->lineHeight;
 			}
@@ -3345,9 +3347,11 @@ void TransformSkewX(::f32* t, ::f32 a)
 		//::f32 invscale = 1.0f / scale;
 		//::i32 nrows = 0, i;
 		auto oldAlign = m_pstate->m_ealignText;
-		::i32 haling = m_pstate->m_ealignText & (::e_align_left | ::e_align_horizontal_center | ::e_align_right);
-		::i32 valign = m_pstate->m_ealignText & (::e_align_top | ::e_align_vertical_center | ::e_align_bottom | ::e_align_baseline);
-		::f32 lineh = 0, rminy = 0, rmaxy = 0;
+		//auto haling = m_pstate->m_ealignText & (::e_align_left | ::e_align_horizontal_center | ::e_align_right);
+		//auto valign = m_pstate->m_ealignText & (::e_align_top | ::e_align_vertical_center | ::e_align_bottom | ::e_align_baseline);
+	   auto haling = m_pstate->m_ealignText & ::e_align_horizontal;
+	   auto valign = m_pstate->m_ealignText & ::e_align_vertical;
+	   ::f32 lineh = 0, rminy = 0, rmaxy = 0;
 		::f32 minx, miny, maxx, maxy;
 	
       
@@ -3382,11 +3386,11 @@ void TransformSkewX(::f32* t, ::f32 a)
 				//::nano2d::text_row * row = &rows[i];
 				::f32 rminx, rmaxx, Δx = 0;
 				// Horizontal bounds
-				if (haling & ::nano2d::e_align_left)
+				if (haling & ::e_align_left)
 					Δx = 0;
-				else if (haling & ::nano2d::e_align_center)
+				else if (haling & ::e_align_center)
 					Δx = ptextbox->m_fWidth * 0.5f - prow->width * 0.5f;
-				else if (haling & ::nano2d::e_align_right)
+				else if (haling & ::e_align_right)
 					Δx = ptextbox->m_fWidth - prow->width;
 				rminx = x + prow->minx + Δx;
 				rmaxx = x + prow->maxx + Δx;

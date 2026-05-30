@@ -79,7 +79,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::user::enum_key virtual_key_code_to_user_key(::i32 iVirtualKey)
+   CLASS_DECL_ACME ::user::e_key virtual_key_code_to_user_key(::i32 iVirtualKey)
    {
 
       ::i8 ch;
@@ -89,14 +89,14 @@ namespace windows
       if (ch >= '0' && ch <= '9')
       {
 
-         return (::user::enum_key)(::user::e_key_0 + (ch - '0'));
+         return ::user::e_key_0 + (ch - '0');
 
       }
 
       if (ch >= 'A' && ch <= 'Z')
       {
 
-         return (::user::enum_key) (::user::e_key_a + (ch - 'A'));
+         return ::user::e_key_a + (ch - 'A');
 
       }
 

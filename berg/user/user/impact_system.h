@@ -110,7 +110,7 @@ namespace user
 
       virtual ::pointer<::user::document>create_new_document(::request * prequest);
       virtual ::pointer<::user::frame_window>create_new_frame(::user::document * pDoc, ::pointer<::user::frame_window>Other, ::request * prequest);
-      virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible = true);
+      virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, ::i32_boolean bMakeVisible = true);
       virtual bool save_all_modified();     // for all documents
       virtual void pre_close_all_documents();
       virtual void close_all_documents(bool bEndSession);

@@ -4,7 +4,7 @@
 
 
 
-CLASS_DECL_AURA::user::e_key_state user_key_to_user_button_state(::user::e_key ekey)
+CLASS_DECL_AURA::user::e_key_state user_key_to_user_button_state(const ::user::e_key & ekey)
 {
 
    if (ekey == ::user::e_key_left_button)

@@ -1446,7 +1446,7 @@ namespace draw2d
 
       ::f64 dDiameter = dRadius * 2.0;
 
-      switch (eborder)
+      switch (eborder.m_cflag)
       {
       case e_border_top_left:
          add_arc(::f64_rectangle(rectangleCorner.top_left(), ::f64_size(dDiameter, dDiameter)), 180_degree, 90_degree);
@@ -1472,7 +1472,7 @@ namespace draw2d
 
       ::f64 dDiameter = dRadius * 2.0;
 
-      switch (eborder)
+      switch (eborder.m_cflag)
       {
       case e_border_top_left:
          add_arc(::f64_rectangle(rectangleCorner.top_left(), ::f64_size(dDiameter, dDiameter)), 270_degree, -90_degree);

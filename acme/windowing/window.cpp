@@ -651,7 +651,7 @@ namespace acme
       }
 
 
-      bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+      bool window::defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse)
       {
 
          if (m_pacmeuserinteraction)
@@ -1501,7 +1501,7 @@ namespace acme
       }
 
 
-      bool window::is_satellite_window()
+      ::i32_boolean window::is_satellite_window()
       {
 
          return false;

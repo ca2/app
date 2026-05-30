@@ -23,6 +23,7 @@
 #include "acme/user/micro/user.h"
 #include "acme/user/user/_text_stream.h"
 #include "acme/user/user/activation_token.h"
+#include "acme/user/user/keyboard_state.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -50,8 +51,8 @@ namespace user
 
       m_puserframewindow = this;
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
       m_einteraction -= ::user::e_interaction_system_context_menu;
 
@@ -1314,7 +1315,7 @@ namespace user
 
    m_bEnableSaveWindowRect2 = false;
 
-   bool bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
+   ::i32_boolean bLoadImplRect = m_ewindowflag & e_window_flag_load_window_rect_on_impl;
 
    m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 

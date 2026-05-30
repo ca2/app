@@ -22,7 +22,7 @@
 #include "acme/platform/node.h"
 #include "acme/handler/sequence.h"
 #include "apex/database/stream.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/node.h"
 #include "axis/user/user/list_box.h"
@@ -1393,7 +1393,7 @@ namespace coding
 
 
 
-   void impact::on_timer(::timer* ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_main_impact_update)
@@ -1403,7 +1403,7 @@ namespace coding
 
       }
 
-      ::user::impact::on_timer(ptimer);
+      ::user::impact::operator()(ptimer);
 
    }
 

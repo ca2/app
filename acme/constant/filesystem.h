@@ -64,8 +64,8 @@ namespace file
    };
 
 
-   DECLARE_ENUMERATION(e_open, enum_open);
-   DECLARE_ENUMERATION(e_state, enum_state);
+   DECLARE_C_FLAG(e_open, enum_open);
+   DECLARE_C_FLAG(e_state, enum_state);
 
 
 } // namespace file

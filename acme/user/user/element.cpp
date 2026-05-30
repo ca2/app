@@ -3227,7 +3227,7 @@ namespace user
    }
 
 
-   bool element::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+   bool element::defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse)
    {
 
       return false;
@@ -3780,7 +3780,7 @@ namespace user
       //   return &::user::element::_user_message_handler;
       //}
 
-      //void element::on_timer(::timer * ptimer)
+      //void element::operator()(::timer * ptimer)
       //{
 
 
@@ -4200,7 +4200,7 @@ namespace user
 
 
 
-   //void element::on_timer(::timer * ptimer)
+   //void element::operator()(::timer * ptimer)
    //{
 
    //   __UNREFERENCED_PARAMETER(ptimer);
@@ -4665,13 +4665,20 @@ namespace user
    }
 
 
-
-   void element::on_timer(::timer * ptimer)
+   void element::operator()(::timer * ptimer)
    {
 
-      __UNREFERENCED_PARAMETER(ptimer);
+//      return false;
 
    }
+
+
+   //void element::operator()(::timer * ptimer)
+   //{
+
+   //   __UNREFERENCED_PARAMETER(ptimer);
+
+   //}
 
 
    void element::on_reset_focus_start_tick()

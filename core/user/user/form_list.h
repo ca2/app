@@ -66,7 +66,7 @@ namespace user
       virtual ::user::interaction * _001GetControl(draw_list_subitem * psubitem);
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
       bool on_right_click(::item * pitem, ::user::mouse * pmouse) override;
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       using list::get_selection;
       void get_selection(const ::scoped_string & scopedstrDataKey,::string_array_base & stra) override;

@@ -7,7 +7,7 @@
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
 #include "acme/prototype/collection/string_map.h"
-#include "acme/platform/timer_callback.h"
+#include "acme/platform/timer.h"
 #include "acme/platform/flags.h"
 #include "acme/prototype/geometry2d/shift.h"
 #include "acme/prototype/time/frequency.h"
@@ -30,6 +30,18 @@ namespace user
 
    };
 
+
+   enum enum_non_client
+   {
+
+      e_non_client_background = 1,
+      e_non_client_focus_rect = 2,
+      e_non_client_hover_rect = 4,
+
+   };
+
+
+   DECLARE_C_FLAG(e_non_client, enum_non_client)
 
    struct set_need_redraw
    {
@@ -59,8 +71,8 @@ namespace user
 
    class CLASS_DECL_AURA interaction :
       virtual public ::user::interaction_base,
-      virtual public ::user::drawable,
-      virtual public ::timer_callback//,
+      virtual public ::user::drawable //,
+      //virtual public ::timer_callback//,
       //virtual public ::user::drag_client
       //, virtual public ::graphics::output_purpose
    {
@@ -144,14 +156,6 @@ namespace user
       };
 
 
-      enum enum_non_client
-      {
-
-         e_non_client_background = 1,
-         e_non_client_focus_rect = 2,
-         e_non_client_hover_rect = 4,
-
-      };
 
 
       enum enum_updown
@@ -390,7 +394,7 @@ namespace user
       ::collection::index                                   m_iIndex;
       ::i32_rectangle                           m_rectangleRestoreBroad;
       ::i32_rectangle                           m_rectangleRestoreCompact;
-      enumeration < enum_non_client >           m_flagNonClient;
+      e_non_client                              m_enonclient;
       class ::time                              m_timeLastRedraw;
       ::atom                                    m_atomImpact;
       ::status < ::color::color >               m_statuscolorBackground;
@@ -447,7 +451,7 @@ namespace user
       pointer_array < interaction >                m_menua;
       ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
-      ::enum_display                               m_edisplayOwnedBeforeHidden;
+      ::e_display                               m_edisplayOwnedBeforeHidden;
       //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
       ::logic::boolean                             m_bNeedFullRedrawOnResize;
@@ -719,7 +723,7 @@ namespace user
       virtual bool _is_full_screen();
 
       
-      virtual bool get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement);
+      virtual bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement);
       
       
       virtual ::f64_rectangle user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout);
@@ -730,7 +734,7 @@ namespace user
       virtual ::draw2d::path_pointer item_graphics_path(::item * pitem);
 
 
-      virtual status < i32_rectangle > rectangle(enum_element eelement)
+      virtual status < i32_rectangle > rectangle(const ::e_element & eelement)
       {
 
           ::i32_rectangle rectangle;
@@ -748,24 +752,24 @@ namespace user
 
 
       virtual enum_element get_default_element();
-      virtual ::write_text::font_pointer get_font(::user::style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
-      inline ::write_text::font_pointer get_font(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_font(pstyle, get_default_element(), estate); }
+      virtual ::write_text::font_pointer get_font(::user::style * pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none);
+      inline ::write_text::font_pointer get_font(::user::style* pstyle, const ::user::e_state & estate = e_state_none) { return get_font(pstyle, get_default_element(), estate); }
       virtual enum_translucency get_translucency(::user::style* pstyle);
       using ::user::interaction_base::get_int;
-      virtual ::i32 get_int(::user::style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, ::i32 iDefault = 0);
-      virtual ::f64 get_f64(::user::style* pstyle, enum_f64 ef64, ::user::enum_state estate = e_state_none, ::f64 dDefault = 0.);
-      virtual status < ::f64_rectangle > get_border(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
-      inline status < ::f64_rectangle > get_border(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_border(pstyle, get_default_element(), estate); }
-      virtual status < ::f64_rectangle > get_padding(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none);
-      inline status < ::f64_rectangle > get_padding(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_padding(pstyle, get_default_element(), estate); }
-      virtual status < ::f64_rectangle > get_margin(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
-      inline status < ::f64_rectangle > get_margin(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_margin(pstyle, get_default_element(), estate); }
-      virtual status < ::color::color > get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none);
-      inline status < ::color::color > get_color(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_color(pstyle, get_default_element(), estate); }
+      virtual ::i32 get_int(::user::style* pstyle, enum_int eint, const ::user::e_state & estate = e_state_none, ::i32 iDefault = 0);
+      virtual ::f64 get_f64(::user::style* pstyle, enum_f64 ef64, const ::user::e_state & estate = e_state_none, ::f64 dDefault = 0.);
+      virtual status < ::f64_rectangle > get_border(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none);
+      inline status < ::f64_rectangle > get_border(::user::style* pstyle, const ::user::e_state & estate = e_state_none) { return get_border(pstyle, get_default_element(), estate); }
+      virtual status < ::f64_rectangle > get_padding(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none);
+      inline status < ::f64_rectangle > get_padding(::user::style* pstyle, const ::user::e_state & estate = e_state_none) { return get_padding(pstyle, get_default_element(), estate); }
+      virtual status < ::f64_rectangle > get_margin(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none);
+      inline status < ::f64_rectangle > get_margin(::user::style* pstyle, const ::user::e_state & estate = e_state_none) { return get_margin(pstyle, get_default_element(), estate); }
+      virtual status < ::color::color > get_color(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none);
+      inline status < ::color::color > get_color(::user::style* pstyle, const ::user::e_state & estate = e_state_none) { return get_color(pstyle, get_default_element(), estate); }
 
       virtual ::user::e_flag get_draw_flags(::user::style* pstyle);
 
-      virtual ::user::enum_state get_state();
+      virtual ::user::e_state get_state();
 
       virtual ::user::style* get_style();
 
@@ -822,7 +826,7 @@ namespace user
       // updown
       virtual bool wfi_is_up();
       virtual bool wfi_is_down();
-      virtual bool wfi_has_up_down();
+      virtual i32_boolean wfi_has_up_down();
       // end updown
 
 
@@ -840,7 +844,7 @@ namespace user
       ::user::element * get_form_user_element() override;
       ::user::element * get_parent_form_user_element() override;
 
-      ::user::interaction * get_user_interaction() override;
+      //::user::interaction * get_user_interaction() override;
 
       ::particle * get_taskpool_container() override;
 
@@ -1113,7 +1117,7 @@ namespace user
       virtual ::item_pointer current_item();
 
 
-      //virtual ::item_pointer stock_item(::enum_element eelement);
+      //virtual ::item_pointer stock_item(const ::e_element & eelement);
 
 
       //virtual ::item_pointer hover_item();
@@ -1599,7 +1603,7 @@ namespace user
 
 
       //virtual void call_and_set_timer(uptr uEvent, const class time& timeElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
-      void set_timer(uptr uEvent, const class time& timeElapse, const ::procedure& procedure = {}, bool bPeriodic = true) override;
+      //void set_timer(uptr uEvent, const class time& timeElapse, const ::procedure& procedure = {}, bool bPeriodic = true) override;
       //virtual void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
       //virtual void kill_timer(uptr uEvent) override;
 
@@ -1862,8 +1866,8 @@ namespace user
 
       //virtual void on_size_change_request(const ::i32_rectangle & rectanglePrevious);
 
-      //void on_timer(::timer* ptimer) override;
-      void on_timer(::timer* ptimer) override;
+      //void operator()(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_destroy);
@@ -1942,9 +1946,9 @@ namespace user
       ::user::interaction * get_first_child_window() override;
 
 
-      inline bool is_hosted() const { return m_ewindowflag & e_window_flag_hosted; }
-      inline bool is_top_level() const  { return m_ewindowflag & e_window_flag_top_level; }
-      inline bool is_root() const  { return m_ewindowflag & e_window_flag_root; }
+      inline ::i32_boolean is_hosted() const { return m_ewindowflag & e_window_flag_hosted; }
+      inline ::i32_boolean is_top_level() const  { return m_ewindowflag & e_window_flag_top_level; }
+      inline ::i32_boolean is_root() const  { return m_ewindowflag & e_window_flag_root; }
 
       bool is_host_top_level() override;
 
@@ -2604,7 +2608,7 @@ namespace user
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
-      //virtual bool get_element_rectangle(::i32_rectangle* prectangle, enum_element eelement);
+      //virtual bool get_element_rectangle(::i32_rectangle* prectangle, const ::e_element & eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(f64_point_array& pointa);
       // control member functions END
 

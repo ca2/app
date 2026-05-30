@@ -137,7 +137,7 @@ namespace user
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       //      virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnUser123);
       //      void install_message_routing(::channel * pchannel) override;
 

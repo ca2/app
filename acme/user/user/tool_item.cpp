@@ -34,7 +34,7 @@ namespace user
    }
 
 
-   bool tool_item::is_hidden() const
+   i32_boolean tool_item::is_hidden() const
    {
       
       return m_estate & e_tool_item_state_hidden; 
@@ -58,7 +58,7 @@ namespace user
    }
 
 
-   bool tool_item::should_wrap() const 
+   i32_boolean tool_item::should_wrap() const
    {
       
       return m_estate & e_tool_item_state_wrap; 
@@ -74,7 +74,7 @@ namespace user
    }
 
 
-   bool tool_item::is_separator() const 
+   ::i32_boolean tool_item::is_separator() const
    {
       
       return m_estyle & e_tool_item_style_separator; 

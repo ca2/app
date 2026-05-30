@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/platform/timer_callback.h"
+#include "acme/platform/timer.h"
 #include "apex/message/channel.h"
 
 
@@ -10,7 +10,7 @@ namespace aqua
 
 
    class CLASS_DECL_AQUA game :
-      virtual public ::timer_callback,
+      virtual public ::timer_dispatch,
       virtual public channel
    {
    public:

@@ -68,9 +68,9 @@ namespace user
 
       }
 
-      design() = e_display_none;
+      design().visual() = e_display_none;
 
-      sketch() = e_display_none;
+      sketch().visual() = e_display_none;
 
    }
 

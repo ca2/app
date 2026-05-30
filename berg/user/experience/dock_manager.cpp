@@ -214,9 +214,9 @@ namespace experience
 
       ::i32_rectangle rectangleDock;
 
-      enum_display edisplayDock = e_display_none;
+      e_display edisplayDock = e_display_none;
 
-      enum_display edisplayOld = m_pframewindow->const_layout().sketch().display();
+      auto edisplayOld = m_pframewindow->const_layout().sketch().display();
 
 //      ::i32_rectangle rectangleScreenOld = m_pframewindow->screen_rect();
 

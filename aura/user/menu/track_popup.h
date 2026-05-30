@@ -23,7 +23,7 @@ namespace menu
    };
 
 
-   DECLARE_ENUMERATION(e_track_popup, enum_track_popup);
+   DECLARE_C_FLAG(e_track_popup, enum_track_popup);
 
 
    class CLASS_DECL_AURA track_popup :

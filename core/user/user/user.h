@@ -398,9 +398,9 @@ namespace core
       //::aura::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch,
       //:::request * prequest) override;
 
-      // virtual bool is_key_pressed(::user::enum_key ekey);
+      // virtual bool is_key_pressed(const ::user::e_key & ekey);
 
-      // virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
+      // virtual void set_key_pressed(const ::user::e_key & ekey, bool bPressed);
 
       // virtual ::user::interaction_base * get_keyboard_focus();
       // virtual bool set_keyboard_focus(::user::interaction_base * pkeyboardfocus);

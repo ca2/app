@@ -51,7 +51,8 @@ concept prototype_sequence4 = requires(SEQUENCE4 s4) {
 template < typename ENUM >
 concept prototype_enum = 
    std::is_enum < ::decay < ENUM > >::value 
-   || ::is_same < typename ENUM::ENUM_TYPE_TAG, enum_type_t >;
+   || ::is_same < typename ENUM::ENUM_TYPE_TAG, enum_type_t >
+|| ::is_same < typename ENUM::CFLAG_TYPE_TAG, c_flag_type_t >;
 
 
 template < typename BLOCK >

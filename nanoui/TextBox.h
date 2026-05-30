@@ -72,7 +72,7 @@ namespace nanoui
       //bool                                            m_bMouseDown;
       i32_point                                        m_pointMouseDown;
       i32_point                                        m_pointMouseDrag;
-      ::user::e_key                                   m_ekeyMouseDownModifier;
+      //::user::key_state                               m_keystateMouseDown;
       ::f32                                           m_fTextOffset;
       //class ::time m_timeLast;
       ::color::color                                  m_colorDeepBackground = ::color::transparent;
@@ -126,12 +126,12 @@ namespace nanoui
       /// Sets the callback to execute when the value of this TextBox has changed.
       void set_callback(const ::function<bool(const ::scoped_string& str)>& callback) { m_callback = callback; }
 
-      bool mouse_enter_event(const i32_point& p, bool enter, ::user::e_key_state ekeystate) override;
-      bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
-      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate) override;
-      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, ::user::e_key_state ekeystate) override;
+      bool mouse_enter_event(const i32_point & point, bool bEnter) override;
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
+      bool mouse_motion_event(const i32_point &point) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::keyboard_state & keyboardstate) override;
       bool focus_event(bool focused) override;
-      bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) override;
+      bool keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText) override;
       bool keyboard_character_event(::u32 codepoint) override;
 
       virtual bool on_command(const ::atom& atom);

@@ -98,7 +98,7 @@ namespace user
       void relay_event(tool_tip_tool * puserinteraction, ::message::message * pmessage);
 
       void OnPaint();
-      void OnTimer(::u32 uEvent);
+      void operator()(::timer * ptimer) override;
       void OnSize(::u32 nType, ::i32 cx, ::i32 cy);
       void on_destroy() override;
 

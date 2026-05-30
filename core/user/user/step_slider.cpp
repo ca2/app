@@ -2,7 +2,7 @@
 #include "step_slider.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
@@ -50,10 +50,10 @@ namespace user
 
    }
 
-   void step_slider::on_timer(::timer * ptimer)
+   void step_slider::operator()(::timer * ptimer)
    {
-      ::user::interaction::on_timer(ptimer);;
-//      if(ptimer->m_uTimer == 1)
+      ::user::interaction::operator()(ptimer);;
+//      if(ptimer->m_etimer == e_timer_hover_update)
 //      {
 //         if(::is_set(m_pitemHover))
 //         {
@@ -100,7 +100,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      set_timer(1, 200_ms, nullptr);
+      //set_timer(e_timer_hover_update, 200_ms, nullptr);
 
       m_pitemHover = allocateø ::item(::e_element_client);
 

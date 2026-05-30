@@ -105,8 +105,8 @@ namespace user
 
       m_pbuttonClose->set_stock_icon(::e_stock_icon_close);
 
-      m_pbuttonClose->m_flagNonClient -= e_non_client_background;
-      m_pbuttonClose->m_flagNonClient -= e_non_client_focus_rect;
+      m_pbuttonClose->m_enonclient -= ::user::e_non_client_background;
+      m_pbuttonClose->m_enonclient -= ::user::e_non_client_focus_rect;
 
       //::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 

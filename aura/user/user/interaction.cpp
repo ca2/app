@@ -28,8 +28,8 @@
 //#include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/node.h"
-#include "acme/platform/timer.h"
-#include "acme/platform/timer_array.h"
+//#include "acme/platform/timer.h"
+//#include "acme/platform/timer_array.h"
 #include "acme/platform/scoped_restore.h"
 //#include "acme/prototype/geometry2d/_enhanced.h"
 //#include "acme/prototype/geometry2d/_collection_enhanced.h"
@@ -40,6 +40,7 @@
 #include "acme/user/user/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/drag.h"
+#include "acme/user/user/keyboard_state.h"
 #include "acme/user/user/tool.h"
 #include "apex/handler/signal.h"
 #include "apex/message/simple_command.h"
@@ -399,9 +400,9 @@ namespace user
 
       m_dItemHeight = -1;
 
-      m_flagNonClient.add(e_non_client_background);
+      m_enonclient.add(::user::e_non_client_background);
 
-      m_flagNonClient.add(e_non_client_focus_rect);
+      m_enonclient.add(::user::e_non_client_focus_rect);
 
       //m_bMouseHover = false;
 
@@ -1439,7 +1440,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer interaction::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       // If get_font top call is getting null from here,
@@ -1466,7 +1467,7 @@ namespace user
    }
 
 
-   ::i32 interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, ::i32 iDefault)
+   ::i32 interaction::get_int(style * pstyle, enum_int eint, const ::user::e_state & estate, ::i32 iDefault)
    {
 
       ::i32 i;
@@ -1501,7 +1502,7 @@ namespace user
    }
 
 
-   ::f64 interaction::get_f64(style * pstyle, enum_f64 ef64, ::user::enum_state estate, ::f64 dDefault)
+   ::f64 interaction::get_f64(style * pstyle, enum_f64 ef64, const ::user::e_state & estate, ::f64 dDefault)
    {
 
       ::f64 d;
@@ -1536,7 +1537,7 @@ namespace user
    }
 
 
-   status<::f64_rectangle> interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::f64_rectangle> interaction::get_border(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return nullptr;
@@ -1544,7 +1545,7 @@ namespace user
    }
 
 
-   status<::f64_rectangle> interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::f64_rectangle> interaction::get_padding(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (get_control_type() == ::user::e_control_type_button)
@@ -1575,10 +1576,10 @@ namespace user
    }
 
 
-   status<::f64_rectangle> interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::f64_rectangle> interaction::get_margin(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
-      if (m_flagNonClient.has(e_non_client_focus_rect))
+      if (m_enonclient.has(::user::e_non_client_focus_rect))
       {
 
          ::f64 dFocusHeightWidth = get_f64(pstyle, ::user::e_f64_focus_height_width, estate, 2.0);
@@ -1597,7 +1598,7 @@ namespace user
    }
 
 
-   status<::color::color> interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::color::color> interaction::get_color(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (eelement == e_element_text)
@@ -2134,7 +2135,7 @@ namespace user
          if (!rectangle.is_null())
          {
 
-            if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
+            if (m_enonclient.has(::user::e_non_client_focus_rect) && keyboard_focus_is_focusable())
             {
 
                ::draw2d::graphics_pointer pgraphicsGetStyle;
@@ -2524,12 +2525,12 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_user_interaction()
-   {
+//   ::user::interaction * interaction::get_user_interaction()
+//   {
 
-      return this;
+//      return this;
 
-   }
+//   }
 
 
    ::user::interaction_base * interaction::get_bind_ui()
@@ -3466,11 +3467,11 @@ namespace user
       else if (::platform::type(this).name().contains("main_frame"))
       {
 
-         informationf("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
+         informationf("main_frame %d %s", elayout, ::as_string(edisplay).c_str());
 
          auto & edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
 
-         informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch.m_eenum).c_str());
+         informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch).c_str());
 
       }
 
@@ -4645,19 +4646,7 @@ namespace user
 
       user_interaction_on_hide();
 
-      {
-
-         auto ptimerarray = m_ptimerarray;
-
-         if (ptimerarray)
-         {
-
-            ptimerarray->delete_all_timers();
-
-         }
-
-      }
-
+      erase_all_timers();
 
       fps_interest_stop();
 
@@ -9345,11 +9334,7 @@ if(get_parent())
       if (m_pappearance)
       {
 
-         auto psession = session();
-
-         auto ekeystate = psession->key_state();
-
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeystate,
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam,
             pmessage->m_union.m_pkey->m_strText))
          {
 
@@ -9414,11 +9399,7 @@ if(get_parent())
       if (m_pappearance)
       {
 
-         auto psession = session();
-
-         auto ekeystate = psession->key_state();
-
-         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeystate))
+         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam))
          {
 
             pmessage->m_bRet = true;
@@ -9820,7 +9801,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_timer(::timer * ptimer)
+   void interaction::operator()(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_configure_unlocked)
@@ -9829,7 +9810,10 @@ if(get_parent())
          if (window()->on_window_configure_unlocked())
          {
 
-            kill_timer(ptimer->m_etimer);
+            //kill_timer(ptimer->m_etimer);
+            ptimer->cancel();
+
+            return;
 
          }
 
@@ -9838,7 +9822,7 @@ if(get_parent())
    }
 
 
-   //void interaction::on_timer(::timer * ptimer)
+   //void interaction::operator()(::timer * ptimer)
    //{
 
    //   on_timer(ptimer);
@@ -16207,10 +16191,10 @@ if(get_parent())
    //   void interaction::_window_show_change_visibility_unlocked()
    //   {
    //
-   //      //::enum_display edisplayOutput = layout().output().display();
-   //      ::enum_display edisplayOutput = layout().layout().display();
+   //      //::const  ::e_display & edisplayOutput = layout().output().display();
+   //      ::const  ::e_display & edisplayOutput = layout().layout().display();
    //
-   //      ::enum_display edisplayWindow = layout().window().display();
+   //      ::const  ::e_display & edisplayWindow = layout().window().display();
    //
    //      if (equivalence_sink(edisplayOutput) == e_display_normal)
    //      {
@@ -16226,9 +16210,9 @@ if(get_parent())
    //
    //      }
    //
-   //      ::enum_display edisplayOutputForOsShowWindow = edisplayOutput;
+   //      ::const  ::e_display & edisplayOutputForOsShowWindow = edisplayOutput;
    //
-   //      ::enum_display edisplayWindowForOsShowWindow = edisplayWindow;
+   //      ::const  ::e_display & edisplayWindowForOsShowWindow = edisplayWindow;
    //
    //      if (::is_docking_appearance(edisplayOutputForOsShowWindow))
    //      {
@@ -16714,19 +16698,19 @@ if(get_parent())
    //}
 
 
-   void interaction::set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
-   {
-
-      if (has_destroying_flag())
-      {
-
-         return;
-
-      }
-
-      ::acme::user::interaction::set_timer(uEvent, timeElapse, procedure, bPeriodic);
-
-   }
+   // void interaction::set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
+   // {
+   //
+   //    if (has_destroying_flag())
+   //    {
+   //
+   //       return;
+   //
+   //    }
+   //
+   //    ::acme::user::interaction::set_timer(uEvent, timeElapse, procedure, bPeriodic);
+   //
+   // }
 
 
    //void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
@@ -18936,9 +18920,9 @@ if(get_parent())
       case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_ekeystate = session()->key_state_with_wm_mouse_wparam(wparam);
+         pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
 
-         //         if ((pmessage->m_ekeystate & I32_MINIMUM) == (I32_MINIMUM))
+         //         if ((pmessage->m_ekeystate & I32_MINIMUM   ) == (I32_MINIMUM))
          //         {
          //
          //            informationf("(m_ekeystate & I32_MINIMUM) == (I32_MINIMUM)");
@@ -18974,7 +18958,7 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ekeystate = session()->key_state_with_wm_mouse_wparam(wparam);
+         pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
 
          pmessage->m_pointAbsolute = lparam.point();
 
@@ -24137,7 +24121,7 @@ if(get_parent())
    }
 
 
-   //::item_pointer interaction::stock_item(enum_element eelement)
+   //::item_pointer interaction::stock_item(const ::e_element & eelement)
    //{
 
    //   return ::user::interaction_base::stock_item(eelement);
@@ -25831,11 +25815,11 @@ void interaction::on_control_box_zoom(){
       //
       //            screen_to_client()(pointClient);
       //
-      //            auto ekeystate = psession->key_state();
+      //            auto & keyboardstate = psession->keyboard_state();
       //
       //            bool bDoubleClick = false;
       //
-      //            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeystate, bDoubleClick))
+      //            if (pappearance->on_button_down(e_key_left_button, pointClient, keyboardstate, bDoubleClick))
       //            {
       //
       //               pmouse->m_bRet = true;
@@ -26178,9 +26162,9 @@ void interaction::on_control_box_zoom(){
 
       //   auto psession = session();
 
-      //   auto ekeystate = psession->key_state();
+      //   auto & keyboardstate = psession->keyboard_state();
 
-      //   if (pappearance->on_button_up(e_key_left_button, pointClient, ekeystate))
+      //   if (pappearance->on_button_up(e_key_left_button, pointClient, keyboardstate))
       //   {
 
       //      pmessage->m_bRet = true;
@@ -26454,9 +26438,9 @@ void interaction::on_control_box_zoom(){
 //
 //               //   auto psession = session();
 //
-//               //   auto ekeystate = psession->key_state();
+//               //   auto & keyboardstate = psession->keyboard_state();
 //
-//               //   pappearance->on_mouse_enter(pointClient, ekeystate);
+//               //   pappearance->on_mouse_enter(pointClient, keyboardstate);
 //
 //               //}
 //
@@ -26485,18 +26469,18 @@ void interaction::on_control_box_zoom(){
 
       //      auto psession = session();
 
-      //      auto ekeystate = psession->key_state();
+      //      auto & keyboardstate = psession->keyboard_state();
 
       //      bool bDown = pmouse->m_ekeystate & e_key_state_left_button;
       //      /*{
 
-      //         bRet = pappearance->on_mouse_drag(pointClient, ekeystate);
+      //         bRet = pappearance->on_mouse_drag(pointClient, keyboardstate);
 
       //      }
       //      else
       //      {*/
 
-      //      bRet = pappearance->on_mouse_move(pointClient, bDown, ekeystate);
+      //      bRet = pappearance->on_mouse_move(pointClient, bDown, keyboardstate);
 
       //      if (get_wnd()->windowing_window())
       //      {
@@ -26730,13 +26714,9 @@ void interaction::on_control_box_zoom(){
 
             host_to_client()(pointClient);
 
-            auto psession = session();
-
-            auto ekeystate = psession->key_state();
-
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(ekeystate, pointClient, bDoubleClick))
+            if (pappearance->on_button_down(::user::e_key_left_button, pointClient, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -27170,7 +27150,7 @@ void interaction::on_control_box_zoom(){
 
          host_to_client()(pointClient);
 
-         if (pappearance->on_button_up(pmouse->m_ekeystate, pointClient))
+         if (pappearance->on_button_up(::user::e_key_left_button, pointClient))
          {
 
             pmessage->m_bRet = true;
@@ -27520,9 +27500,9 @@ __check_refdbg;
 
             //      //   auto psession = session();
 
-            //      //   auto ekeystate = psession->key_state();
+            //      //   auto & keyboardstate = psession->keyboard_state();
 
-            //      //   pappearance->on_mouse_enter(pointClient, ekeystate);
+            //      //   pappearance->on_mouse_enter(pointClient, keyboardstate);
 
             //      //}
 
@@ -27555,12 +27535,12 @@ __check_refdbg;
 
             auto psession = session();
 
-            auto ekeystate = psession->key_state();
+            //auto & keyboardstate = *psession;
 
-            bool bDown = pmouse->m_ekeystate & e_key_state_left_button;
+            bool bDown = pmouse->m_keystate.is_left_button_pressed();
             /*{
 
-               bRet = pappearance->on_mouse_drag(pointClient, ekeystate);
+               bRet = pappearance->on_mouse_drag(pointClient, keyboardstate);
 
             }
             else
@@ -27568,7 +27548,7 @@ __check_refdbg;
 
             pappearance->m_pmessage = pmessage;
 
-            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeystate);
+            bRet = pappearance->on_mouse_move(pointClient);
 
             if (get_wnd()->windowing_window())
             {
@@ -27828,7 +27808,7 @@ __check_refdbg;
 
          bool bDoubleClick = true;
 
-         if (pappearance->on_button_down(pmouse->m_ekeystate, pointClient, bDoubleClick))
+         if (pappearance->on_button_down(::user::e_key_left_button, pointClient, bDoubleClick))
          {
 
             pmessage->m_bRet = true;
@@ -27878,7 +27858,7 @@ __check_refdbg;
 
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(pmouse->m_ekeystate, pointClient, true))
+            if (pappearance->on_button_down(::user::e_key_right_button, pointClient, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -27931,7 +27911,7 @@ __check_refdbg;
 
          host_to_client()(pointClient);
 
-         if (pappearance->on_button_up(pmouse->m_ekeystate, pointClient))
+         if (pappearance->on_button_up(::user::e_key_right_button, pointClient))
          {
 
             pmessage->m_bRet = true;
@@ -28042,7 +28022,7 @@ __check_refdbg;
 
          auto psession = session();
 
-         auto ekeystate = psession->key_state();
+         //auto & keyboardstate = psession->keyboard_state();
 
          bRet = pappearance->on_scroll_event(pointClient, 0., y);
 
@@ -29081,7 +29061,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       //   }
 
-      if (m_flagNonClient.has(e_non_client_background) && (!top_level() || !top_level()->frame_is_transparent()))
+      if (m_enonclient.has(::user::e_non_client_background) && (!top_level() || !top_level()->frame_is_transparent()))
       {
 
          draw_control_background(pgraphics);
@@ -29096,7 +29076,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       //return;
 
-      if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
+      if (m_enonclient.has(::user::e_non_client_focus_rect) && keyboard_focus_is_focusable())
       {
 
          simple_ui_draw_focus_rect(pgraphics);
@@ -29893,7 +29873,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    }
 
 
-   bool interaction::wfi_has_up_down()
+   i32_boolean interaction::wfi_has_up_down()
    {
 
       return m_ewindowflag & e_window_flag_updown;
@@ -30042,7 +30022,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    //}
 
 
-   ::user::enum_state interaction::get_state()
+   ::user::e_state interaction::get_state()
    {
 
       auto psession = session();
@@ -30564,7 +30544,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    }
 
 
-   bool interaction::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
+   bool interaction::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
       if (eelement == e_element_client)

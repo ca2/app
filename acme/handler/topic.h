@@ -21,12 +21,12 @@ public:
    bool                                   m_bRet;
    bool                                   m_bOk;
    ::item_pointer                         m_pitem;
-   ::user::enum_key                       m_ekey;
+   ::user::e_key                          m_ekey;
    ::action_context                       m_actioncontext;
    ::pointer<::property_object>           m_psender;
    ::pointer<::user::element>             m_puserelement; // user::interaction
    ::pointer<::particle>                  m_pparticle;
-   ::u64                     m_uUpdateSerial;
+   ::u64                                  m_uUpdateSerial;
    ::wparam                               m_wparam;
    ::lparam                               m_lparam;
    ::lresult                              m_lresult;

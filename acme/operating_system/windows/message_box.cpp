@@ -67,7 +67,7 @@
 namespace operating_system
 {
 
-   CLASS_DECL_ACME void message_beep(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME void message_beep(const ::user::e_message_box & emessagebox)
    {
 
       auto nType = ::windows::message_box_to_windows_message_box(emessagebox);

@@ -52,11 +52,11 @@ namespace user
       virtual ::status < ::f64_rectangle > get_track_rectangle(::user::enum_layout elayout);
 
 
-      virtual ::color::color scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement);
-      virtual ::color::color scrollbar_color(::user::style* pstyle, ::enum_element eelement);
-      virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::enum_element eelement);
-      virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement);
-      virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement);
+      virtual ::color::color scrollbar_color_strong(::user::style* pstyle, const ::e_element & eelement);
+      virtual ::color::color scrollbar_color(::user::style* pstyle, const ::e_element & eelement);
+      virtual ::color::color scrollbar_border_color(::user::style* pstyle, const ::e_element & eelement);
+      virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, const ::e_element & eelement);
+      virtual ::color::color scrollbar_draw_color(::user::style* pstyle, const ::e_element & eelement);
 
 
       virtual ::f64 scroll_bar_thickness(::user::enum_layout elayout = ::user::e_layout_design);

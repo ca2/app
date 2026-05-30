@@ -44,7 +44,7 @@ namespace file
 {
 
 
-   inline path_meta::path_meta(enum_path epath, ::i64 iSize, e_type etype, ::i64 iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   inline path_meta::path_meta(enum_path epath, ::i64 iSize, e_type etype, ::i64 iName, character_count iBasePathLength, const ::file::e_flag & eflag)
    {
 
       m_epath = epath;
@@ -939,7 +939,7 @@ namespace file
    inline path& path::set_file_path()
    {
 
-      m_etype = (enum_type)((m_etype | e_type_file2) & ~e_type_folder2);
+      m_etype = ((m_etype | e_type_file2) & ~e_type_folder2);
 
       return *this;
 
@@ -949,7 +949,7 @@ namespace file
    inline path& path::set_folder_path()
    {
 
-      m_etype = (enum_type)((m_etype | e_type_folder2) & ~e_type_file2);
+      m_etype = ((m_etype | e_type_folder2) & ~e_type_file2);
 
       return *this;
 
@@ -971,7 +971,7 @@ namespace file
    inline path& path::set_existent()
    {
 
-      m_etype = (enum_type)((m_etype | e_type_exists) & ~e_type_doesnt_exist);
+      m_etype = ((m_etype | e_type_exists) & ~e_type_doesnt_exist);
 
       return *this;
 

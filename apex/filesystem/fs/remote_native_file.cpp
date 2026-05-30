@@ -47,7 +47,7 @@ namespace fs
 
    filesize remote_native_file::size() const
    {
-      if((m_eopen & ::file::e_open_read) != 0)
+      if(m_eopen & ::file::e_open_read)
       {
          return m_phttpfile->size();
       }
@@ -61,7 +61,7 @@ namespace fs
    void remote_native_file::seek(filesize lOff, ::enum_seek eseek)
    {
 
-      if((m_eopen & ::file::e_open_read) != 0)
+      if(m_eopen & ::file::e_open_read)
       {
 
          return m_phttpfile->translate(lOff, eseek);

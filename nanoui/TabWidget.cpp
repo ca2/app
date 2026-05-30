@@ -386,7 +386,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   ::item_pointer TabWidgetBase::hit_test(const i32_point& p, bool test_vertical) const 
+   ::item_pointer TabWidgetBase::hit_test(const i32_point & point, bool test_vertical) const 
    {
 
       auto pitem = allocateø ::item();
@@ -394,7 +394,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       ::i32 tab_height = (::i32)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
       //if (test_vertical && (p.y <= m_pos.y || p.y > m_pos.y + tab_height))
-      if (test_vertical && (p.y <= 0 || p.y > tab_height))
+      if (test_vertical && (point.y <= 0 || point.y > tab_height))
       {
 
          pitem->m_item.m_eelement = e_element_none;
@@ -403,7 +403,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      ::i32 x = p.x - m_pos.x;
+      ::i32 x = point.x - m_pos.x;
 
       for (::collection::index i = 0; i < m_iaTabOffsets.size() - 1; ++i) 
       {
@@ -418,8 +418,8 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             if (m_bTabsCloseable &&
                r < m_ptheme->m_iHorizontalPaddingTabButton + m_iCloseButtonWidth - 4 &&
                r > m_ptheme->m_iHorizontalPaddingTabButton - 4 &&
-               p.y - m_pos.y > m_ptheme->m_iVerticalPaddingTabButton &&
-               p.y - m_pos.y <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
+               point.y - m_pos.y > m_ptheme->m_iVerticalPaddingTabButton &&
+               point.y - m_pos.y <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
             {
 
                pitem->m_item.m_eelement = e_element_close_button;
@@ -445,10 +445,10 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool TabWidgetBase::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
       
-      auto pitem = hit_test(p);
+      auto pitem = hit_test(point);
 
       bool bHandled = false;
 
@@ -458,7 +458,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       {
 
          m_ppopup->mouse_button_event(
-            p - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), ekeystate, down, bDoubleClick);
+            point - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), euserkeyMouseButton, bDown, bDoubleClick);
 
          pscreen->on_child_set_focus(this);
 
@@ -472,13 +472,13 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       bool iDragInProgressIndex = m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd;
 
-      if (m_popupcallback && ekeystate == ::user::e_key_state_right_button && down 
+      if (m_popupcallback && euserkeyMouseButton == ::user::e_key_right_button && bDown 
          && ::is_item_set_and_non_negative(pitem) &&
          !iDragInProgressIndex) 
       {
 
          m_ppopup = m_popupcallback(tab_id(pitem->m_item.m_iItem), pscreen);
-         m_ppopup->set_position(p + i32_sequence2(8, -6));
+         m_ppopup->set_position(point + i32_sequence2(8, -6));
          m_ppopup->set_anchor_offset(8);
          m_ppopup->set_anchor_size(8);
          
@@ -525,7 +525,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      if (ekeystate == ::user::e_key_state_left_button && m_ppopup == nullptr)
+      if (euserkeyMouseButton == ::user::e_key_left_button && m_ppopup == nullptr)
       {
 
          if (::is_item_set_and_non_negative(pitem)) 
@@ -534,7 +534,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             if (pitem->m_item.m_eelement == e_element_close_button && m_iTabDragIndex == -1) 
             {
 
-               if (down) 
+               if (bDown) 
                {
 
                   m_iCloseIndexPushed = pitem->m_item.m_iItem;
@@ -545,9 +545,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   erase_tab(tab_id(pitem->m_item.m_iItem));
 
-                  auto ekeystate = session()->key_state();
-
-                  mouse_motion_event(p, {}, false, ekeystate);
+                  mouse_motion_event(point);
 
                }
 
@@ -555,7 +553,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             else
             {
 
-               if (down) 
+               if (bDown) 
                {
 
                   bool bTabChanged = m_iActiveTab != pitem->m_item.m_iItem;
@@ -564,7 +562,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   m_iTabDragIndex = m_bTabsDraggable ? pitem->m_item.m_iItem : -1;
 
-                  m_iTabDragStart = m_iTabDragEnd = p.x;
+                  m_iTabDragStart = m_iTabDragEnd = point.x;
 
                   m_iTabDragMinimum = m_iaTabOffsets[pitem->m_item.m_iItem];
 
@@ -592,7 +590,9 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   m_iTabDragIndex = -1;
 
-                  mouse_motion_event(p, {}, false, ::user::e_key_none);
+                  //auto & keyboardstate = session();
+
+                  mouse_motion_event(point);
 
                }
 
@@ -602,7 +602,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
          }
 
-         if (!down) 
+         if (!bDown) 
          {
 
             bHandled = m_iCloseIndexPushed != -1 || m_iTabDragIndex != -1;
@@ -617,14 +617,14 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      bHandled |= Widget::mouse_button_event(p, ekeystate, down, bDoubleClick, ekeystate);
+      bHandled |= Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
       return bHandled;
 
    }
 
 
-   bool TabWidgetBase::mouse_enter_event(const i32_point&/* p */, bool /* enter */, const ::user::e_key&)
+   bool TabWidgetBase::mouse_enter_event(const i32_point&point, bool bEnter)
    {
 
       if (m_bTabsCloseable && m_iCloseIndex >= 0)
@@ -638,15 +638,15 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
+   bool TabWidgetBase::mouse_motion_event(const i32_point &point)
    {
 
-      auto pitem = hit_test(p, false);
+      auto pitem = hit_test(point, false);
 
       if (m_iTabDragIndex != -1) 
       {
 
-         m_iTabDragEnd = p.x;
+         m_iTabDragEnd = point.x;
 
          if (::is_item_set_and_non_negative(pitem) && m_iTabDragIndex != pitem->m_item.m_iItem) 
          {
@@ -657,8 +657,8 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
             auto mid = (m_iaTabOffsets[i0] + m_iaTabOffsets[i1 + 1]) / 2;
 
-            if ((m_iTabDragIndex < pitem->m_item.m_iItem && p.x - m_pos.y > mid) ||
-               (m_iTabDragIndex > pitem->m_item.m_iItem && p.x - m_pos.y < mid)) 
+            if ((m_iTabDragIndex < pitem->m_item.m_iItem && point.x - m_pos.y > mid) ||
+               (m_iTabDragIndex > pitem->m_item.m_iItem && point.x - m_pos.y < mid)) 
             {
             
                ::swap(m_straTabCaptions[pitem->m_item.m_iItem], m_straTabCaptions[m_iTabDragIndex]);
@@ -710,7 +710,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      return Widget::mouse_motion_event(p, rel, bDown, ekeystate);
+      return Widget::mouse_motion_event(point);
 
    }
 

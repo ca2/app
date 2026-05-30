@@ -23,6 +23,7 @@ namespace experience
 
    };
 
+   DECLARE_C_FLAG(e_frame, enum_frame);
 
 } // namespace experience
 

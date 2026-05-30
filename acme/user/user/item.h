@@ -20,7 +20,7 @@ namespace user
    //};
 
 
-   DECLARE_ENUMERATION(e_item, enum_item);
+   DECLARE_C_FLAG(e_item, enum_item);
 
 
    enum enum_item_flag
@@ -32,7 +32,7 @@ namespace user
 
    };
 
-   DECLARE_ENUMERATION(e_item_flag, enum_item_flag);
+   DECLARE_C_FLAG(e_item_flag, enum_item_flag);
    
 
 //#pragma pack(push, user_ITEM, 1)
@@ -303,13 +303,13 @@ namespace user
 
       //}
 
-      //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
+      //item(const ::e_element & eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-      //item(const ::user::e_flag & eflag, enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
+      //item(const ::user::e_flag & eflag, const ::e_element & eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
       //   item(eelement, iItem, iSubItem, iListItem, atom, eflag) {}
 
-      //item(enum_element eelement, const ::atom & atom)
+      //item(const ::e_element & eelement, const ::atom & atom)
       //   : item(eelement, -1, -1, -1, atom)
       //{
 
@@ -388,7 +388,7 @@ namespace user
       //inline ::user::tool_item * tool_item() { return ::is_set(m_pitem) && m_pitem->m_eitem == e_item_tool ? m_ptoolitem : nullptr; }
       //inline ::user::tool_item * tool_item() const { return ((::user::item *)this)->tool_item(); }
 
-      bool is_drawn() { return m_euseritemflag & e_item_flag_drawn; }
+      ::i32_boolean is_drawn() { return m_euseritemflag & e_item_flag_drawn; }
 
       void set_drawn() { m_euseritemflag |= e_item_flag_drawn; }
 
@@ -400,13 +400,13 @@ namespace user
       //}
 
 
-      //item(enum_element eelement, const enum_id & id)
+      //item(const ::e_element & eelement, const enum_id & id)
       //   : item(eelement, -1, -1, -1, id)
       //{
 
       //}
 
-     /* item(enum_element eelement = ::e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
+     /* item(const ::e_element & eelement = ::e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
       {
 
          id() = atom;
@@ -484,7 +484,7 @@ namespace user
 
       explicit operator bool() const { return is_item_set(); }
 
-      enum_element eelement() const { return is_item_set() ? m_pitem->m_item.m_eelement : e_element_none; }
+      ::e_element eelement() const { return is_item_set() ? m_pitem->m_item.m_eelement.m_eenum : e_element_none; }
 
       ::collection::index item_index() const { return is_item_set() ? m_pitem->m_item.m_iItem : -1; }
 
@@ -573,10 +573,10 @@ namespace user
       //bool operator != (const item & item) const { return !operator==(item); }
 
 
-      //item & operator = (enum_element eelement);
+      //item & operator = (const ::e_element & eelement);
 
-      bool operator == (enum_element eelement)  const { return this->eelement() == e_element_none ? false : this->eelement() == eelement; }
-      //bool operator != (enum_element eelement)  const { return !operator==(eelement); }
+      bool operator == (const ::e_element & eelement)  const { return this->eelement() == e_element_none ? false : this->eelement() == eelement; }
+      //bool operator != (const ::e_element & eelement)  const { return !operator==(eelement); }
 
       /*item & operator = (const e_element & eelement) { return operator = ((enum_element)eelement); }
 
@@ -601,7 +601,7 @@ namespace user
       //::collection::index operator - (::i64 iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
 
-      /*bool in_element_range(enum_element eelement, ::i32 iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
+      /*bool in_element_range(const ::e_element & eelement, ::i32 iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
 
       bool is_valid_item(::collection::count c) const { return m_iItem >= 0 && m_iItem < c; }*/
 
@@ -635,7 +635,7 @@ inline bool is_item_set(const ::user::item * puseritem)
 }
 
 
-inline bool is_element(const ::user::item * puseritem, ::enum_element eelement)
+inline bool is_element(const ::user::item * puseritem, const ::e_element & eelement)
 {
 
    return ::is_item_set(puseritem) && puseritem->eelement() == eelement;

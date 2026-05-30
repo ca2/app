@@ -109,7 +109,7 @@ namespace userfs
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
 //      // void assert_ok() const override;

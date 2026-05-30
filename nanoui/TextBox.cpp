@@ -19,6 +19,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/regular_expression/regular_expression.h"
 #include "acme/regular_expression/result.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/platform/session.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
@@ -49,7 +50,6 @@ namespace nanoui
       m_mouse_pos(i32_sequence2(-1, -1)),
       m_pointMouseDown(i32_sequence2(-1, -1)),
       m_pointMouseDrag(i32_sequence2(-1, -1)),
-      m_ekeyMouseDownModifier(::user::e_key_none),
       m_fTextOffset(0)
    {
       if (m_ptheme) m_font_size = m_ptheme->m_iTextBoxFontSize;
@@ -377,23 +377,23 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_enter_event(const i32_point& p, bool enter, ::user::e_key_state ekeystate)
+   bool TextBox::mouse_enter_event(const i32_point & point, bool bEnter)
    {
 
-      Widget::mouse_enter_event(p, enter, ekeystate);
+      Widget::mouse_enter_event(point, bEnter);
 
       return true;
 
    }
 
 
-   bool TextBox::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool TextBox::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      if (ekeystate == ::user::e_key_state_left_button && down && !focused())
+      if (euserkeyMouseButton == ::user::e_key_left_button && bDown && !focused())
       {
          
-         if (!m_bSpinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
+         if (!m_bSpinnable || spin_area(point) == SpinArea::None) /* not on scrolling arrows */
          {
             
             request_focus();
@@ -402,7 +402,7 @@ namespace nanoui
          
       }
 
-      if (!down)
+      if (!bDown)
       {
 
          if (screen()->m_pwidgetMouseDown == this)
@@ -441,7 +441,7 @@ namespace nanoui
             return true;
 
          }
-         else if (down)
+         else if (bDown)
          {
 
             //m_bMouseDown = true;
@@ -450,9 +450,9 @@ namespace nanoui
 
             set_mouse_capture();
 
-            m_pointMouseDown = p;
+            m_pointMouseDown = point;
 
-            m_ekeyMouseDownModifier = ekeystate;
+            m_keystatePress = session()->key_state();
 
             m_bCommitted = false;
 
@@ -470,15 +470,15 @@ namespace nanoui
       else if (m_bSpinnable)
       {
 
-         if (down)
+         if (bDown)
          {
 
-            if (spin_area(p) == SpinArea::None)
+            if (spin_area(point) == SpinArea::None)
             {
 
-               m_pointMouseDown = p;
+               m_pointMouseDown = point;
 
-               m_ekeyMouseDownModifier = ekeystate;
+               m_keystatePress = session()->key_state();
 
                if (bDoubleClick)
                {
@@ -533,10 +533,10 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_motion_event(const i32_point& p, const i32_size& /* rel */, bool bDown, ::user::e_key_state ekeystate)
+   bool TextBox::mouse_motion_event(const i32_point& point)
    {
 
-      m_mouse_pos = p;
+      m_mouse_pos = point;
 
       if (!m_bEditable)
          set_cursor(Cursor::Arrow);
@@ -546,12 +546,12 @@ namespace nanoui
       else
          set_cursor(Cursor::IBeam);
 
-      if (bDown && is_mouse_down())
+      if (is_left_button_pressed())
       {
 
-         m_mouse_pos = p;
+         m_mouse_pos = point;
 
-         m_pointMouseDrag = p;
+         m_pointMouseDrag = point;
 
          if (m_bEditable && focused())
          {
@@ -577,7 +577,7 @@ namespace nanoui
 
 
 
-   //bool TextBox::mouse_drag_event(const i32_point& p, const i32_size&/* rel */, ::user::e_key_state ekeystate)
+   //bool TextBox::mouse_drag_event(const i32_point & point, const i32_size&/* rel */, const ::user::keyboard_state & keyboardstate)
    //{
    // 
    // 
@@ -840,7 +840,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::keyboard_event(::user::enum_key ekey, ::i32 /* scancode */, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
+   bool TextBox::keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText)
    {
 
       if (m_bEditable && focused())
@@ -852,7 +852,7 @@ namespace nanoui
          if (action == ::user::e_message_key_down)
          {
 
-            auto eid = application()->key_command(ekey, session());
+            auto eid = application()->key_command(ekey);
 
             if (eid != id_none)
             {
@@ -870,7 +870,7 @@ namespace nanoui
 
                }
 
-               if (!(ekeystate & ::user::e_key_shift))
+               if (!session()->key_state().is_shift_pressed())
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -888,7 +888,7 @@ namespace nanoui
 
                }
 
-               if (!(ekeystate & ::user::e_key_shift))
+               if (!session()->key_state().is_shift_pressed())
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -901,7 +901,7 @@ namespace nanoui
 
                m_iSelectionEnd = 0;
 
-               if (!(ekeystate & ::user::e_key_shift))
+               if (!session()->key_state().is_shift_pressed())
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -914,7 +914,7 @@ namespace nanoui
 
                m_iSelectionEnd = (::i32)m_strValueEdit.size();
 
-               if (!(ekeystate & ::user::e_key_shift))
+               if (!session()->key_state().is_shift_pressed())
                {
 
                   m_iSelectionStart = m_iSelectionEnd;
@@ -1202,7 +1202,7 @@ namespace nanoui
             (::f32)m_pointMouseDown.x + m_pos.x,
             lastx, glyphs, size);
 
-         if (m_ekeyMouseDownModifier == ::user::e_key_shift)
+         if (session()->key_state().is_shift_pressed())
          {
 
             m_iSelectionEnd = iCursor;

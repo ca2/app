@@ -3,7 +3,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -185,12 +185,12 @@ namespace experience
    }
 
 
-   void orto_button::on_timer(::timer * ptimer)
+   void orto_button::operator()(::timer * ptimer)
    {
 
-      ::experience::button::on_timer(ptimer);
+      ::experience::button::operator()(ptimer);
       // TODO: add your message handler code here and/or call default
-      if (ptimer->m_uTimer == e_timer_check_focus)
+      if (ptimer->m_etimer == e_timer_check_focus)
       {
          /*if(m_bFocus)
          {
@@ -208,14 +208,14 @@ namespace experience
 
          if(rectangleX.is_empty().contains(pointCursor))
          {
-         kill_timer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_etimer);
          m_bFocus = false;
          set_need_redraw();
          }
          }
          else
          {
-         kill_timer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_etimer);
          }*/
       }
       else
@@ -228,6 +228,7 @@ namespace experience
          rectangle = ::user::interaction::rectangle();
       }
 
+      //return true;
 
    }
 

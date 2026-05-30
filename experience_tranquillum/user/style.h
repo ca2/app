@@ -37,11 +37,11 @@ namespace experience_tranquillum
       //}
 
 
-      ::color::color get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) override;
+      ::color::color get_color(::user::interaction * pinteraction, const ::e_element & eelement, const ::user::e_state & estate) override;
       
       
          //    virtual bool get_font(::write_text::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
-         //  virtual bool get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pframewindow) override;
+         //  virtual bool get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::interaction * pframewindow) override;
 
 
          //      virtual bool on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow) override;

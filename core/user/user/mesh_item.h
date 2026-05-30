@@ -194,7 +194,7 @@ namespace user
       //void update_item_color();
 
 
-      ::user::enum_state get_user_state() const;
+      ::user::e_state get_user_state() const;
 
 
    };

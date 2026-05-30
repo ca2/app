@@ -50,7 +50,7 @@ namespace userstack
       virtual void pre_translate_message(::message::message * pmessage);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnApp2000);
 
 

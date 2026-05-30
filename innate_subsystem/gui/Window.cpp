@@ -31,7 +31,7 @@ namespace innate_subsystem
 {
 
 
-::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_key_state ekeystate);
+::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(const ::user::keyboard_state & keyboardstate);
 
 
 } // namespace innate_subsystem
@@ -195,14 +195,14 @@ void WindowComposite::on_key_up(::user::key * pkey)
 namespace innate_subsystem
 {
 
-::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(::user::e_key_state ekeystate)
+::innate_subsystem::enum_mouse e_button_state_state_to_e_mouse(const ::user::keyboard_state & keyboardstate)
 {
    
    ::i32 mouseButtons = 0;
    
-   mouseButtons |= ekeystate & ::user::e_key_state_right_button ? innate_subsystem::e_mouse_right : 0;
-   mouseButtons |= ekeystate & ::user::e_key_state_middle_button ? innate_subsystem::e_mouse_middle : 0;
-   mouseButtons |= ekeystate & ::user::e_key_state_left_button ? innate_subsystem::e_mouse_left : 0;
+   mouseButtons |= keyboardstate & ::user::e_key_state_right_button ? innate_subsystem::e_mouse_right : 0;
+   mouseButtons |= keyboardstate & ::user::e_key_state_middle_button ? innate_subsystem::e_mouse_middle : 0;
+   mouseButtons |= keyboardstate & ::user::e_key_state_left_button ? innate_subsystem::e_mouse_left : 0;
    
    return (::innate_subsystem::enum_mouse) mouseButtons;
    

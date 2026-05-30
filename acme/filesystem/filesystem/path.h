@@ -16,7 +16,7 @@ namespace file
 {
 
 
-   DECLARE_ENUMERATION(e_type, enum_type);
+   DECLARE_C_FLAG(e_type, enum_type);
 
 
    struct  path_meta :
@@ -25,20 +25,20 @@ namespace file
 
       enum_path                  m_epath;
 
-      ::i64                        m_iSize; // if negative, not set/calculated/retrieved the file i32_size(for directories would be all contained elements total sum i32_size)
+      ::i64                      m_iSize; // if negative, not set/calculated/retrieved the file i32_size(for directories would be all contained elements total sum i32_size)
       e_type                     m_etype;
-      character_count                    m_iName; // if negative, not set/calculated/retrieved where name starts
-      character_count                    m_iBasePathLength; // if negative, not set/calculated/retrieved base path length in the path
+      character_count            m_iName; // if negative, not set/calculated/retrieved where name starts
+      character_count            m_iBasePathLength; // if negative, not set/calculated/retrieved base path length in the path
       ::pointer<::particle>      m_pparticleOsPath;
-       enumeration < ::file::enum_flag > m_flags;
+      ::file::e_flag             m_flags;
 
-      path_meta(enum_path epath = e_path_none, ::i64 iSize = -1, e_type etype = e_type_unknown, ::i64 iName = -1, character_count iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none);
+      path_meta(enum_path epath = e_path_none, ::i64 iSize = -1, e_type etype = e_type_unknown, ::i64 iName = -1, character_count iBasePathLength = -1, const ::file::e_flag & eflag = ::file::e_flag_none);
 
       ~path_meta();
 
 
-       enumeration < ::file::enum_flag > & flags() {return m_flags;}
-       const enumeration < ::file::enum_flag > & flags() const {return m_flags;}
+       ::file::e_flag & flags() {return m_flags;}
+       const ::file::e_flag & flags() const {return m_flags;}
 
 
 
@@ -122,7 +122,7 @@ namespace file
                if (bCertainlySyntathicallyDir)
                {
 
-                  m_etype = (enum_type)((etype | e_type_folder2) & ~e_type_file2);
+                  m_etype = ((etype | e_type_folder2) & ~e_type_file2);
 
                }
                else
@@ -347,14 +347,14 @@ namespace file
       void set_type(e_type etype) { m_etype = etype; }
 
 
-      constexpr bool does_exist() const { return (m_etype & e_type_exists) && !(m_etype & e_type_doesnt_exist); }
-      constexpr bool is_file() const { return (m_etype & e_type_file2); }
-      constexpr bool is_folder() const { return (m_etype & e_type_folder2); }
-      constexpr bool is_file_or_folder() const { return is_file() || is_folder(); }
-      constexpr bool not_file_or_folder() const { return !is_file_or_folder(); }
-      constexpr bool is_existent_file() const { return is_file() && does_exist(); }
-      constexpr bool is_existent_folder() const { return is_folder() && does_exist(); }
-      constexpr bool is_existent_file_or_folder() const { return is_file_or_folder() && does_exist(); }
+      constexpr ::i32_boolean does_exist() const { return (m_etype & e_type_exists) && !(m_etype & e_type_doesnt_exist); }
+      constexpr ::i32_boolean is_file() const { return (m_etype & e_type_file2); }
+      constexpr ::i32_boolean is_folder() const { return (m_etype & e_type_folder2); }
+      constexpr ::i32_boolean is_file_or_folder() const { return is_file() || is_folder(); }
+      constexpr ::i32_boolean not_file_or_folder() const { return !is_file_or_folder(); }
+      constexpr ::i32_boolean is_existent_file() const { return is_file() && does_exist(); }
+      constexpr ::i32_boolean is_existent_folder() const { return is_folder() && does_exist(); }
+      constexpr ::i32_boolean is_existent_file_or_folder() const { return is_file_or_folder() && does_exist(); }
 
 
       //::file::path replace_extension(const ::scoped_string & scopedstrNewExtension, const ::scoped_string & scopedstrOldExtension);
@@ -548,7 +548,7 @@ namespace file
 
       //::file::path & operator | (const ::ansi_string & str) { return file_cat(str); } // what is good here is the operator precedence
 
-      ::file::path operator | (::file::enum_flag eflag) const
+      ::file::path operator | (::file::e_flag eflag) const
       {
 
          auto path = *this;

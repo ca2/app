@@ -49,7 +49,7 @@ namespace prompt
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(on_message_move);

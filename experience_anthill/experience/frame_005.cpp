@@ -83,7 +83,7 @@ namespace experience_anthill
    //      m_pframewindow->window_rectangle(rectangleEvent);
    //      ::i32_rectangle rectangle;
    //      ::i32_point pointCenter = rectangleEvent.center();
-   //      enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+   //      auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
    //      ::i32_point pointHitTest = point;
 
@@ -267,7 +267,7 @@ namespace experience_anthill
 
       }
 
-      enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+      auto edock = m_pframewindow->dock_manager()->get_dock_mask();
       ::i32_rectangle rectangleA(rectangleX);
 
       auto estyle = get_style();
@@ -403,11 +403,11 @@ namespace experience_anthill
 
       auto pmovemanager = m_pframewindow->move_manager();
 
-      enum_border eborder = pmovemanager->GetBorderMask();
+      auto eborder = pmovemanager->GetBorderMask();
 
       if (m_pframewindow->layout().is_zoomed())
       {
-         eborder = (enum_border)
+         eborder = 
             (eborder &
                ~(e_border_right
                   | e_border_bottom
@@ -764,7 +764,7 @@ namespace experience_anthill
       if (psizemanager == nullptr)
          return;
 
-      enum_grip egrip = psizemanager->GetGripMask();
+      auto egrip = psizemanager->GetGripMask();
 
       if (egrip & e_grip_top)
       {

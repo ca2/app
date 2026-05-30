@@ -43,7 +43,7 @@ namespace nanoui
     * and forms the root element of a hierarchy of nanoui widgets.
     */
    class CLASS_DECL_NANOUI Screen :
-      public Widget,
+      virtual public Widget,
       virtual public ::appearance::appearance
       //,
       //virtual public nanoui_main_frame
@@ -64,7 +64,7 @@ namespace nanoui
       //   i32_sequence2 m_fbsize;
       ::f32 m_pixel_ratio;
       //::user::e_key m_mouse_state;
-      ::user::e_key m_modifiers;
+      //     ::user::e_key m_modifiers;
       i32_sequence2 m_mouse_pos;
       ::pointer < Widget >          m_pwidgetMouseDown;
 
@@ -245,7 +245,7 @@ namespace nanoui
       //   }
       //
          /// Default keyboard happening handler
-      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) override;
+      bool keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText) override;
 
       /// Text input happening handler: codepoint is native endian UTF-32 format
       bool keyboard_character_event(::u32 codepoint) override;
@@ -339,7 +339,7 @@ namespace nanoui
 
       virtual void on_close();
       //bool on_mouse_move(const ::i32_point & point) override;
-      bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
       //   void key_callback_event(::i32 key, ::i32 scancode, ::i32 action, ::i32 mods);
       //   void char_callback_event(::u32 codepoint);
       //   void drop_callback_event(::i32 count, const_char_pointer *filenames);
@@ -370,7 +370,7 @@ namespace nanoui
 
       void _001OnDraw(::draw2d::graphics_pointer& pointer) override;
 
-      void on_mouse_enter(const ::i32_point& point, ::user::e_key_state ekeystates) override;
+      void on_mouse_enter(const ::i32_point & point, bool bEnter) override;
       void on_mouse_leave() override;
 
       virtual void set_mouse_capture(Widget* pwidgetMouseCapture);
@@ -378,14 +378,14 @@ namespace nanoui
       virtual void release_mouse_capture() override;
 
 
-      bool on_button_down(::user::e_key_state ekeystate, const ::i32_point& point, bool bDoubleClick) override;
-      bool on_button_up(::user::e_key_state ekeystate, const ::i32_point& point) override;
+      bool on_button_down(::user::e_key euserkeyMouseButton, const ::i32_point &point, bool bDoubleClick) override;
+      bool on_button_up(::user::e_key euserkeyMouseButton, const ::i32_point& point) override;
 
-      bool on_mouse_move(const ::i32_point& point, bool bDown, ::user::e_key_state ekeystate) override;
-      //bool on_mouse_drag(const ::i32_point & point, ::user::e_key_state ekeystate) override;
+      bool on_mouse_move(const ::i32_point& point) override;
+      //bool on_mouse_drag(const ::i32_point & point, const ::user::keyboard_state & keyboardstate) override;
 
-      bool on_key_down(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) override;
-      bool on_key_up(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate) override;
+      bool on_key_down(const ::user::e_key & ekey, ::i64 scancode, const ::scoped_string & scopedstrText) override;
+      bool on_key_up(const ::user::e_key & ekey, ::i64 scancode) override;
 
       bool on_scroll_event(const ::i32_point& point, ::f64 x, ::f64 y) override;
 

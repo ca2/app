@@ -474,13 +474,13 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 }
 
-void FileSystemSizeWnd::on_timer(::timer * ptimer)
+void FileSystemSizeWnd::operator()(::timer * ptimer)
 {
 
 #ifdef WINDOWS_DESKTOP
 
-   super::on_timer(ptimer);;
-   if(ptimer->m_uTimer == 100)
+   super::operator()(ptimer);;
+   if(ptimer->m_etimer == 100)
    {
       //::PostMessage(pusermessage->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)

@@ -44,7 +44,7 @@ namespace graphics
       );
       output_purpose(::particle
       * pparticleGraphicalOutputPurposeOriginator,
-      enum_output_purpose eoutputpurpose
+      const e_output_purpose & eoutputpurpose
       );
 
 

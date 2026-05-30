@@ -40,7 +40,7 @@ enum enum_source : ::u64
 };
 
 
-DECLARE_ENUMERATION(e_source, enum_source);
+DECLARE_C_FLAG(e_source, enum_source);
 
 
 

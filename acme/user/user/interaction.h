@@ -72,7 +72,7 @@ namespace acme
          ////::atom                                    id();
          ////i32_rectangle                             m_rectangle;
          ////enum_font                                 m_efont;
-         ::pointer<::acme::timer_array>               m_ptimerarray;
+         //::pointer<::acme::timer_array>               m_ptimerarray;
 
          bool m_bDefaultNcHitTest;
          bool m_bCustomPaint;
@@ -125,8 +125,14 @@ namespace acme
 
          bool is_host_top_level() override;
 
-         virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
-         virtual void kill_timer(uptr uEvent);
+         //virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
+         //virtual void kill_timer(uptr uEvent);
+
+
+         //virtual class ::timer_task *procedure_timer();
+
+         //virtual void add_timer(::i32 iTimer, const class ::time & time, const ::procedure_timer_callback & callback = {}, ::timer_task * ptimer = nullptr);
+         //virtual void erase_timer(::i32 iTimer);
 
          virtual ::i64 get_style_for_creating_window();
          virtual ::i64 get_ex_style_for_creating_window();

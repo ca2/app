@@ -2,7 +2,7 @@
 #include "scroll_bar.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/tool.h"
@@ -18,8 +18,8 @@ simple_scroll_bar::simple_scroll_bar()
 {
 
    //m_pbrushNull->CreateStockObject(NULL_BRUSH);
-   m_flagNonClient.erase(e_non_client_background);
-   // m_flagNonClient.erase(e_non_client_focus_rect);
+   m_enonclient.erase(::user::e_non_client_background);
+   // m_enonclient.erase(::user::e_non_client_focus_rect);
    m_bTracking = false;
    //m_scrollstateaX[].nMin = 0;
    //m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iMaximum = 100;
@@ -160,7 +160,7 @@ bool simple_scroll_bar::scrollbar_action(const ::item * pitem, ::user::enum_layo
 
    }
 
-   switch (pitem->m_item.m_eelement)
+   switch (pitem->m_item.m_eelement.m_eenum)
    {
    case ::e_element_scrollbar_rectA:
       return scrollbar_lineA(elayout);
@@ -814,36 +814,37 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void simple_scroll_bar::on_timer(::timer * ptimer)
+void simple_scroll_bar::operator()(::timer * ptimer)
 {
 
-   ::user::scroll_bar::on_timer(ptimer);
+   ::user::scroll_bar::operator()(ptimer);
 
    //auto pointCursor = mouse_cursor_position();
 
    //host_to_client()(pointCursor);
 
-   if (ptimer->m_uTimer == (uptr)this)
+   // if (ptimer->m_etimer == (uptr)this)
+   // {
+   //
+   //    kill_timer(ptimer->m_etimer);
+   //
+   //    set_timer(((uptr)this) + 1, 10_ms, nullptr);
+   //
+   // }
+   // else
+   if (ptimer->m_etimer == e_timer_scrollbar_action)
    {
 
-      kill_timer(ptimer->m_uTimer);
+      //auto psystem = system();
 
-      set_timer(((uptr)this) + 1, 10_ms, nullptr);
+      //auto pdraw2d = psystem->draw2d();
 
-   }
-   else if (ptimer->m_uTimer == ((uptr)this) + 1)
-   {
-
-      auto psystem = system();
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       if (!scrollbar_action(main_content().m_pitemCurrent, ::user::e_layout_sketch))
       {
 
-         kill_timer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_etimer);
 
       }
 
@@ -2497,7 +2498,7 @@ bool simple_scroll_bar::on_drag_start(::i32_point & point, ::user::mouse * pmous
 }
 
 
-::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, const ::e_element & eelement)
 {
 
    if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
@@ -2520,7 +2521,7 @@ bool simple_scroll_bar::on_drag_start(::i32_point & point, ::user::mouse * pmous
 }
 
 
-::color::color simple_scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_color(::user::style * pstyle, const ::e_element & eelement)
 {
 
    if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
@@ -2543,7 +2544,7 @@ bool simple_scroll_bar::on_drag_start(::i32_point & point, ::user::mouse * pmous
 }
 
 
-::color::color simple_scroll_bar::scrollbar_border_color(::user::style * pstyle, ::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_border_color(::user::style * pstyle, const ::e_element & eelement)
 {
 
    if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
@@ -2566,7 +2567,7 @@ bool simple_scroll_bar::on_drag_start(::i32_point & point, ::user::mouse * pmous
 }
 
 
-::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style * pstyle, ::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style * pstyle, const ::e_element & eelement)
 {
 
    if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
@@ -2589,7 +2590,7 @@ bool simple_scroll_bar::on_drag_start(::i32_point & point, ::user::mouse * pmous
 }
 
 
-::color::color simple_scroll_bar::scrollbar_draw_color(::user::style * pstyle, ::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_draw_color(::user::style * pstyle, const ::e_element & eelement)
 {
 
    if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))

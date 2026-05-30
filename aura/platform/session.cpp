@@ -169,7 +169,7 @@ namespace aura
 
       //m_puiLastLButtonDown             = nullptr;
 
-      m_pmapKeyPressed                 = nullptr;
+      //m_pmapKeyPressed                 = nullptr;
 
       m_puiMouseMoveCapture            = nullptr;
 
@@ -1321,8 +1321,10 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   bool session::on_ui_mouse_message(::message::mouse_base * pmouse)
+   bool session::on_ui_mouse_message(::user::mouse* pmouse)
    {
+
+      ::aqua::session::on_ui_mouse_message(pmouse);
 
       auto puser = user();
 
@@ -1580,7 +1582,7 @@ return m_psavings;
    }
 
 
-//   bool session::is_key_pressed(::user::enum_key ekey)
+//   bool session::is_key_pressed(const ::user::e_key & ekey)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1655,7 +1657,7 @@ return m_psavings;
 //   }
 //
 //
-//   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
+//   void session::set_key_pressed(const ::user::e_key & ekey, bool bPressed)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2345,22 +2347,22 @@ namespace aura
    }
 
 
-   //bool session::is_mouse_button_pressed(::user::e_key_state ekeystate)
+   //bool session::is_mouse_button_pressed(const ::user::keyboard_state & keyboardstate)
    //{
 
-   //   if (ekeystate == ::user::e_key_state_left_button)
+   //   if (keyboardstate == ::user::e_key_state_left_button)
    //   {
 
    //      return is_key_pressed(::user::e_key_left_button);
 
    //   }
-   //   else if (ekeystate == ::user::e_key_state_right_button)
+   //   else if (keyboardstate == ::user::e_key_state_right_button)
    //   {
 
    //      return is_key_pressed(::user::e_key_right_button);
 
    //   }
-   //   else if (ekeystate == ::user::e_key_state_middle_button)
+   //   else if (keyboardstate == ::user::e_key_state_middle_button)
    //   {
 
    //      return is_key_pressed(::user::e_key_middle_button);

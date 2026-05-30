@@ -69,17 +69,17 @@ namespace nanoui
    /// Draw the window
    virtual void draw(::nano2d::context  * pcontext) override;
    /// Handle mouse enter/leave happenings
-   virtual bool mouse_enter_event(const i32_point & p, bool enter, ::user::e_key_state ekeystate) override;
+   virtual bool mouse_enter_event(const i32_point & point, bool bEnter) override;
    /// Handle window drag happenings
-   //virtual bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, ::user::e_key_state ekeystate) override;
-   virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate) override;
+   //virtual bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::keyboard_state & keyboardstate) override;
+   virtual bool mouse_motion_event(const i32_point &point) override;
    /// Handle mouse happenings recursively and bring the current window to the top
-   virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
+   virtual bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
    /// Accept scroll happenings and propagate them to the pwidget under the mouse cursor
       
       void on_begin_draw(::nano2d::context  * pcontext) override;
             
-   virtual bool scroll_event(const i32_point & p, const ::f32_size & rel) override;
+   virtual bool scroll_event(const i32_point & point, const ::f32_size & rel) override;
    /// Compute the preferred size of the pwidget
    virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any

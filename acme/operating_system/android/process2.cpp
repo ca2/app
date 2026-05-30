@@ -86,7 +86,7 @@ void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epr
 //const ::file::path & path,
 //const ::scoped_string & scopedstrParam,
 //const ::scoped_string & scopedstrDir,
-//::enum_display edisplay,
+//const ::e_display & edisplay,
 //bool bPrivileged,
 //::u32 * puiPid)
 //{

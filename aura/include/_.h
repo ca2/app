@@ -1651,7 +1651,7 @@ namespace aura
 ////{
 ////
 ////
-////   //DECLARE_ENUMERATION(enum_state, enum_state);
+////   //DECLARE_C_FLAG(enum_state, enum_state);
 ////   using eelement = enumeration < enum_element >;
 ////
 ////

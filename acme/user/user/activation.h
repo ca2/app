@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   DECLARE_ENUMERATION(e_activation, enum_activation);
+   DECLARE_C_FLAG(e_activation, enum_activation);
 
 
    class CLASS_DECL_ACME activation
@@ -25,7 +25,7 @@ namespace user
 
 
       activation();
-      activation(::user::enum_activation euseractivation);
+      //activation(::user::enum_activation euseractivation);
       activation(const ::user::e_activation & euseractivation);
       activation(const ::user::e_activation & euseractivation, ::user::activation_token * pactivationtoken);
 
@@ -45,7 +45,7 @@ namespace user
       bool is_change_request() const;
 
 
-      bool operator & (const ::user::e_activation & useractivation) const;
+      i32_boolean operator & (const ::user::e_activation & useractivation) const;
       
 
       void clear();

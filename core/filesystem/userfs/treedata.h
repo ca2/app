@@ -87,7 +87,7 @@ namespace userfs
 
       void arrange(::fs::e_arrange earrange);
 
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
 
       void RenameFile(::i32 iLine, string & str, const ::action_context & action_context);

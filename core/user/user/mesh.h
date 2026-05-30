@@ -5,7 +5,7 @@
 #include "core/user/user/_.h"
 #include "aura/user/user/scroll.h"
 #include "aura/user/user/range.h"
-#include "acme/prototype/mathematics/i32_biunique.h"
+#include "acme/prototype/mathematics/integer_biunique.h"
 
 
 namespace user
@@ -20,7 +20,7 @@ namespace user
 
    };
 
-   DECLARE_ENUMERATION(e_cache_hinting, enum_cache_hinting);
+   DECLARE_C_FLAG(e_cache_hinting, enum_cache_hinting);
 
    class CLASS_DECL_CORE mesh :
       virtual public ::user::scroll_base
@@ -196,7 +196,8 @@ namespace user
       ::collection::index                                        m_iLastSubItemSel;
       ::collection::index                                        m_iItemEnter;
       ::collection::index                                        m_iSubItemEnter;
-      ::collection::index                                        m_iMouseFlagEnter;
+      //::collection::index                                        m_iMouseFlagEnter;
+      ::user::key_state                                           m_keystateMouseEnter;
       ::collection::index                                        m_iItemSel;
       ::collection::index                                        m_iSubItemSel;
 
@@ -204,10 +205,13 @@ namespace user
       range                                        m_rangeHighlight;
 
       ::collection::index                                        m_iShiftFirstSelection;
-      uptr                                         m_uiLButtonDownFlags;
-      uptr                                         m_uiLButtonUpFlags;
+      //uptr                                         m_uiLButtonDownFlags;
+      ::user::key_state                                           m_keystateLButtonDown;
+      //uptr                                         m_uiLButtonUpFlags;
+      ::user::key_state                                           m_keystateLButtonUp;
       i32_point                                    m_pointLButtonUp;
-      ::u32                                        m_uiRButtonUpFlags;
+      ::user::key_state                                           m_keystateRButtonUp;
+      //::u32                                        m_uiRButtonUpFlags;
       i32_point                                    m_pointRButtonUp;
       ::regular_expression_pointer                 m_pregexFilter1;
       ::i32                                          m_iFilter1Step;
@@ -462,7 +466,7 @@ namespace user
       virtual void  _001GetGroupRect(draw_mesh_group * pgroup);
       virtual void  index_item_rectangle(draw_mesh_item * pitem);
       virtual void  _001GetSubItemRect(draw_mesh_subitem * psubitem);
-      virtual void  index_element_rectangle(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
+      virtual void  index_element_rectangle(draw_mesh_subitem * psubitem, ::user::mesh::enum_element eelement);
       virtual void  _001GetGroupElementRect(draw_mesh_group * pgroup, ::user::mesh::enum_group_element egrouplement);
 
       virtual bool  _001SetColumnWidth(::collection::index iColumn,::i32 iWidth);
@@ -524,7 +528,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMeshImpactAutoArrange);
 
 
-      virtual void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
       virtual void  enable_hover_select(bool bEnable = true);
@@ -532,7 +536,8 @@ namespace user
 
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
-      virtual bool  _001OnRightClick(uptr uFlags,const ::i32_point & point);
+      //virtual bool  _001OnRightClick(uptr uFlags,const ::i32_point & point);
+       virtual bool  _001OnRightClick(const ::i32_point & point);
 
       virtual void  get_selection(range& selection);
 

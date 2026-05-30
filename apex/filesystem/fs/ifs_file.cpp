@@ -42,7 +42,7 @@ void ifs_file::write(const void * p, ::memsize s)
 filesize ifs_file::size() const
 {
 
-   if((m_eopen & ::file::e_open_read) != 0)
+   if(m_eopen & ::file::e_open_read)
    {
 
       return m_phttpfile->size();
@@ -61,7 +61,7 @@ filesize ifs_file::size() const
 void ifs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
-   if((m_eopen & ::file::e_open_read) != 0)
+   if(m_eopen & ::file::e_open_read)
    {
 
       m_phttpfile->translate(offset, eseek);

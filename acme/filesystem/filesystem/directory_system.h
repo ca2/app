@@ -189,8 +189,8 @@ public:
    virtual ::file::path user_appdata_local();
    //virtual ::file::path tool();
 
-   inline bool is(const ::file::path& path) { return file_type(path) & ::file::e_type_folder2; }
-   inline bool __is(const ::file::path& path) { return __file_type(path) & ::file::e_type_folder2; }
+   inline ::i32_boolean is(const ::file::path& path) { return file_type(path) & ::file::e_type_folder2; }
+   inline ::i32_boolean __is(const ::file::path& path) { return __file_type(path) & ::file::e_type_folder2; }
 
    virtual ::file::e_type file_type(const ::file::path& path);
    virtual ::file::e_type _file_type(const ::file::path& path);

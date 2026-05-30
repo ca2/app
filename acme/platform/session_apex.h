@@ -7,11 +7,12 @@
 #include "acme/user/user/keyboard_state.h"
 
 
+
 namespace platform
 {
 
 
-   struct CLASS_DECL_ACME apex_session_layer_t :
+   struct CLASS_DECL_ACME apex_session_layer :
       virtual public ::user::keyboard_state
    {
 
@@ -47,8 +48,6 @@ namespace platform
       // apex commented
       //::pointer<::user::keyboard>                        m_pkeyboard;
 
-      ::pointer < ::map < ::user::enum_key, bool > >        m_pmapKeyPressed;
-
       bool                                                  m_bProgrammerMode;
 
       //bool                                                  m_bOnInitializeWindowObject;
@@ -56,6 +55,8 @@ namespace platform
       bool                                                  m_bSystemSynchronizedCursor;
       i32_point                                                 m_pointCursor;
 
+               
+      //::pointer<::user::keyboard_state> m_pkeyboardstate;
       //comparable_array < ::pointer<::layered >>m_uiptraToolWindow;
 
       // apex commented
@@ -118,14 +119,7 @@ namespace platform
       ::u32                                                 m_dwLongPhRESSingTime;
 
 
-   };
-
-
-   class CLASS_DECL_ACME apex_session_layer
-   {
-   public:
-
-      //void initialize(::particle * pparticle) override;
+   //void initialize(::particle * pparticle) override;
 
 
       //void install_message_routing(::channel* pchannel) override;
@@ -182,6 +176,12 @@ namespace platform
 
       virtual class ::fs::data * fs();
 
+
+      //virtual ::user::keyboard_state &keyboard_state();
+
+
+      virtual bool on_ui_mouse_message(::user::mouse *pmouse);
+   
 
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
@@ -290,9 +290,9 @@ namespace platform
       
       //virtual ::user::e_button_state button_state();
 
-      //bool is_key_pressed(::user::enum_key ekey) override;
+      //bool is_key_pressed(const ::user::e_key & ekey) override;
 
-      virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
+      
 
 
       // apex commented

@@ -34,10 +34,10 @@ namespace graphics3d
 	}
 
 
-	::user::enum_key_state container::get_key_state(::user::e_key ekey)
+	::user::enum_key_state container::get_key_state(const ::user::e_key & ekey)
 	{
 
-		return ::user::e_key_state_none;
+		return ::key::e_state_none;
 
 	}
 

@@ -117,7 +117,7 @@ namespace file
 
          class ::payload payload;
 
-         auto pflags = allocateø  flags < enum_flag > (this->element_at(0)->m_flags);
+         auto pflags = create_particle_from(this->element_at(0)->m_flags);
 
          payload["FileManagerItem_flags"] = pflags;
 
@@ -134,7 +134,7 @@ namespace file
 
             class ::payload varPropSet;
 
-            varPropSet["FileManagerItem_flags"] = allocateø flags < enum_flag > (this->element_at(i)->m_flags);
+            varPropSet["FileManagerItem_flags"] = create_particle_from(this->element_at(i)->m_flags);
 
             payload.as_payload_array().add(varPropSet);
 

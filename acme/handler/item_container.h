@@ -35,7 +35,7 @@ public:
 
    virtual ::collection::index add_item(::item * pitem);
 
-   virtual ::item_pointer add_item(enum_element eelement, ::collection::index iItem = -1);
+   virtual ::item_pointer add_item(const ::e_element & eelement, ::collection::index iItem = -1);
 
    //virtual ::user::item * user_item_at(::collection::index iIndex);
 
@@ -68,9 +68,9 @@ public:
 
    virtual bool contains_item(const ::atom & atom) const;
 
-   virtual ::item * find_item(enum_element eelement, ::collection::index iItem = -1);
+   virtual ::item * find_item(const ::e_element & eelement, ::collection::index iItem = -1);
 
-   virtual ::item * defer_item(enum_element eelement, ::collection::index iItem = -1);
+   virtual ::item * defer_item(const ::e_element & eelement, ::collection::index iItem = -1);
 
    virtual ::collection::index item_index() const;
 

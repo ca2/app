@@ -79,7 +79,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRect(::i32_rectangle * lprect, enum enum_element eelement)
+      void calendar::GetRect(::i32_rectangle * lprect, enum const ::e_element & eelement)
       {
 
          __UNREFERENCED_PARAMETER(lprect);
@@ -290,7 +290,7 @@ namespace datetime
       }
 
 
-      bool calendar::hit_test(enum_element eelement, const i32_point & point)
+      bool calendar::hit_test(const ::e_element & eelement, const i32_point & point)
       {
 
          ::i32_rectangle rectangle;

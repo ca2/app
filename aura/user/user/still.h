@@ -43,7 +43,7 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent) override;
 
-      ::write_text::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style * pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
       void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
@@ -60,14 +60,14 @@ namespace user
       //virtual ::enum_check get_check() override;
        
       using ::user::interaction::get_color;
-      ::status < ::color::color > get_color(::user::style * pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) override; 
+      ::status < ::color::color > get_color(::user::style * pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none) override; 
 
 
       virtual void set_text_color(::status < ::color::color > statuscolor);
 
       //virtual bool is_pressed();
 
-      //virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
+      //virtual ::write_text::font_pointer get_font(style * pstyle, const ::e_element & eelement, estate estate = e_state_none) const;
 
       virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
 

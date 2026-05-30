@@ -59,8 +59,8 @@ namespace nanoui
       void set_final_callback(const ::function<void(::f32)> & callback) { m_final_callback = callback; }
 
       virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
-      virtual bool mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, ::user::e_key_state ekeystate) override;
-      virtual bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override;
+      virtual bool mouse_motion_event(const i32_point &point) override;
+      virtual bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
       virtual void draw(::nano2d::context  * pcontext) override;
 
    };

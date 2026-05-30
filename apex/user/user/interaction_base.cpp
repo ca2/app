@@ -3480,7 +3480,7 @@ namespace user
    //   return &::user::interaction_base::_user_message_handler;
    //}
 
-   //void interaction_base::on_timer(::timer * ptimer)
+   //void interaction_base::operator()(::timer * ptimer)
    //{
 
 
@@ -4016,7 +4016,7 @@ namespace user
 
 
 
-   //void interaction_base::on_timer(::timer * ptimer)
+   //void interaction_base::operator()(::timer * ptimer)
    //{
 
    //   __UNREFERENCED_PARAMETER(ptimer);
@@ -4503,10 +4503,12 @@ namespace user
    }
 
 
-   void interaction_base::on_timer(::timer * ptimer)
+   void interaction_base::operator()(::timer * ptimer)
    {
 
       __UNREFERENCED_PARAMETER(ptimer);
+
+      //return false;
 
    }
 

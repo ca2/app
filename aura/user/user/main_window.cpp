@@ -12,7 +12,7 @@
 #include "aura/windowing/windowing.h"
 
 
-inline bool is_custom_size(enum_display edisplay)
+inline bool is_custom_size(const ::e_display & edisplay)
 {
 
    return edisplay == e_display_normal
@@ -32,7 +32,7 @@ namespace user
    main_window::main_window()
    {
 
-      m_flagNonClient -= e_non_client_focus_rect;
+      m_enonclient -= ::user::e_non_client_focus_rect;
 
       m_ewindowflag += ::e_window_flag_miniaturizable;
 

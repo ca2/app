@@ -122,17 +122,17 @@ namespace graphics3d
 } // namespace graphics3d
 
 
-namespace user
-{
-
-
-   enum enum_key_state
-   {
-
-      e_key_state_none,
-      e_key_state_pressed = 1,
-
-   };
-
-
-} // namespace user
+//namespace user
+//{
+//
+//
+//   enum enum_key_state
+//   {
+//
+//      e_key_state_none,
+//      e_key_state_pressed = 1,
+//
+//   };
+//
+//
+//} // namespace user

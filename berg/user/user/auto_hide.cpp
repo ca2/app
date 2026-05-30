@@ -4,7 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 
@@ -392,10 +392,10 @@ namespace user
    }
 
 
-   void auto_hide::on_timer(::timer * ptimer)
+   void auto_hide::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == e_timer_defer_handle_auto_hide_tabs)
+      if (ptimer->m_etimer == e_timer_defer_handle_auto_hide_tabs)
       {
 
          auto_hide_calculate_control_visibility();
@@ -414,6 +414,8 @@ namespace user
          }
 
       }
+
+      //return true;
 
    }
 

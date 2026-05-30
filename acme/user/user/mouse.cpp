@@ -37,7 +37,7 @@ namespace user
 
          ::particle::operator = (mouse);
 
-         m_ekeystate          = mouse.m_ekeystate;
+         m_keystate              = mouse.m_keystate;
          m_pointHost             = mouse.m_pointHost;
          m_pointAbsolute         = mouse.m_pointAbsolute;
          m_pointDesired          = mouse.m_pointDesired;

@@ -267,6 +267,9 @@ namespace apex
       // apex commented
       //::user::keyboard& keyboard();
 
+      bool on_ui_mouse_message(::user::mouse * pmouse) override;
+     
+
       virtual bool open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override;
 
       virtual bool open_by_file_extension(::request * prequest) override;
@@ -285,14 +288,14 @@ namespace apex
 
       //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
-      ::user::e_key_state key_state() override;
-      ::user::e_key_state key_state_with_wm_mouse_wparam(::wparam wparam) override;
+      //::user::e_key_state key_state() override;
+      //::user::e_key_state key_state_with_wm_mouse_wparam(::wparam wparam) override;
 
       //::user::e_button_state button_state() override;
       
-      bool is_key_pressed(::user::enum_key ekey) override;
+      //bool is_key_pressed(const ::user::e_key & ekey) override;
 
-      virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
+      //virtual void set_key_pressed(const ::user::e_key & ekey, bool bPressed) override;
 
       
       // apex commented

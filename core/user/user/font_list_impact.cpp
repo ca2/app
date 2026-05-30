@@ -231,12 +231,12 @@ namespace user
    //}
 
 
-   void font_list_impact::on_timer(::timer * ptimer)
+   void font_list_impact::operator()(::timer * ptimer)
    {
 
-      ::user::show < font_list >::on_timer(ptimer);
+      ::user::show < font_list >::operator()(ptimer);
 
-   //   ::user::form_impact::on_timer(ptimer);
+   //   ::user::form_impact::operator()(ptimer);
 
    }
 

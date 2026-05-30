@@ -123,7 +123,7 @@ namespace datetime
 
 
 
-      void graphics::GetRect(::i32_rectangle * lprect, enum enum_element eelement)
+      void graphics::GetRect(::i32_rectangle * lprect, enum const ::e_element & eelement)
       {
          if (eelement == e_element_clock)
          {

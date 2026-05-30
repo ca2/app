@@ -12,6 +12,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/user_message.h"
 #include "acme/user/user/key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/message/user.h"

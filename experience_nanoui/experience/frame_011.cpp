@@ -55,7 +55,7 @@ namespace experience_nanoui
          auto rectangleEvent = m_pframewindow->raw_rectangle();
          ::i32_rectangle rectangle;
          ::i32_point pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
          ::i32_point pointHitTest = point;
 
@@ -238,7 +238,7 @@ SizingNone:;
 
       }
 
-      enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+      auto edock = m_pframewindow->dock_manager()->get_dock_mask();
 
       ::i32_rectangle rectangleA(rectangleX);
 
@@ -386,11 +386,11 @@ SizingNone:;
 
       auto pmovemanager = m_pframewindow->move_manager();
 
-      enum_border eborder = pmovemanager->GetBorderMask();
+      auto eborder = pmovemanager->GetBorderMask();
 
       if(m_pframewindow->layout().is_zoomed())
       {
-         eborder = (enum_border)
+         eborder = 
                      (eborder &
                      ~(e_border_right
                         | e_border_bottom
@@ -645,7 +645,7 @@ SizingNone:;
 
       auto psizenager = m_pframewindow->size_manager();
 
-      enum_grip egrip = psizenager->GetGripMask();
+      auto egrip = psizenager->GetGripMask();
 
       if(egrip & e_grip_top)
       {

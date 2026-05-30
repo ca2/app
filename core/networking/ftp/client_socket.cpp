@@ -51,7 +51,7 @@
 #include "output_stream.h"
 #include "file.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/transfer_socket.h"
@@ -595,7 +595,7 @@ namespace ftp
       if (!file.Open(scopedstrLocalFile, (m_fResumeIfPossible ? ::file::e_open_no_truncate : ::file::e_open_create) | ::file::e_open_write
                      | ::file::e_open_binary | ::file::e_open_defer_create_directory))
       {
-         ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
+         ReportError(c_errno::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
       file.Seek(0, ::e_seek_from_end);
@@ -654,7 +654,7 @@ namespace ftp
       ::ftp::file file;
       if (!file.Open(scopedstrLocalFile, ::file::e_open_read | ::file::e_open_binary))
       {
-         ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
+         ReportError(c_errno::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
 

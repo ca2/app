@@ -8,7 +8,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
-#include "acme/platform/timer.h"
+#include "acme/constant/timer.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/data/listener.h"
@@ -227,10 +227,10 @@ namespace userfs
    }
 
 
-   void tree_data::on_timer(::timer * ptimer)
+   void tree_data::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == 1234567)
+      if (ptimer->m_etimer == e_timer_animation)
       {
          
          m_iAnimate += 2;
@@ -240,21 +240,21 @@ namespace userfs
             
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->erase_timer(ptimer);
+            ptimer->cancel();
 
          }
          
-         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         //ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
 
       }
-      else if (ptimer->m_uTimer == 123)
+      else if (ptimer->m_etimer == e_timer_redraw)
       {
          
-         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         //ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
          
-         m_bTimer123 = false;
+         m_bTimerRedraw = false;
          
-         ptimer->m_ptimercallback->erase_timer(ptimer);
+         ptimer->cancel();
 
       }
 
@@ -266,7 +266,7 @@ namespace userfs
       
       m_iAnimate = 1;
       
-      pinteraction->set_timer(1234567, 50_ms, nullptr);
+      pinteraction->set_timer(e_timer_animation, 50_ms, nullptr);
 
    }
 

@@ -6,6 +6,7 @@
 #include "bred/graphics3d/scene_object.h"
 #include "acme/constant/user_key.h"
 #include "bred/graphics3d/key_map.h"
+#include "acme/user/key/state.h"
 
 
 namespace graphics3d
@@ -80,12 +81,12 @@ namespace graphics3d
       virtual void initialize_input(::f32 moveSpeed = 7.f, const floating_angle &angleCursorPixel = 0.1_f_degree);
 
 
-      virtual ::user::enum_key_state key(::graphics3d::enum_key ekey);
+      virtual ::key::e_state key_state(::graphics3d::enum_key ekey);
 
       // from MyPlace2025@V0idsEmbrace@Twitch
-      virtual ::user::enum_key_state get_key_state(::user::e_key ekey);
-      virtual bool IsKeyPressed(::user::e_key ekey); // New method for released keys
-      virtual bool IsKeyReleased(::user::e_key ekey); // New method for released keys
+      virtual ::key::e_state get_key_state(const ::user::e_key & ekey);
+      virtual bool IsKeyPressed(const ::user::e_key & ekey); // New method for released keys
+      virtual bool IsKeyReleased(const ::user::e_key & ekey); // New method for released keys
       virtual bool IsAnyKeyPressed(); // New method to check if any keys are pressed
       // End from MyPlace2025@V0idsEmbrace@Twitch
 

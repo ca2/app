@@ -194,12 +194,12 @@ void xfplayer_impact_linea::OnLButtonUp(::message::message * pmessage)
    }
 }
 
-void xfplayer_impact_linea::on_timer(::timer * ptimer)
+void xfplayer_impact_linea::operator()(::timer * ptimer)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (::i32 i = 0; i < this->line_count(); i++)
    {
-      this->line_at(i)->on_timer(ptimer);
+      this->line_at(i)->operator()(ptimer);
    }
 }
 

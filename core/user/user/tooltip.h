@@ -33,11 +33,11 @@ namespace user
       ::i32_size CalcSize();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-//      virtual bool get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, style_context * pcontext) override;
+//      virtual bool get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, style_context * pcontext) override;
 
 
       ::user::enum_window_type get_window_type() override;

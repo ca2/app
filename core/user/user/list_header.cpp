@@ -27,8 +27,8 @@ namespace user
       m_iImageSpacing = 4;
       m_bParentScrollY = false;
       //m_ecolorBackground = color_list_header_background;
-      m_flagNonClient.erase(::user::interaction::e_non_client_background);
-      m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
    }
 
    list_header::~list_header()
@@ -152,7 +152,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(::i32_rectangle * prectangle, enum_element eelement, ::collection::index iItem)
+   bool list_header::GetItemRect(::i32_rectangle * prectangle, const ::e_element & eelement, ::collection::index iItem)
    {
 
       if (iItem < 0)
@@ -207,7 +207,7 @@ namespace user
 
       rectangle.right = x;
 
-      if(eelement == e_element_item)
+      if(eelement == ::e_element_item)
       {
 
          *prectangle = rectangle;
@@ -216,7 +216,7 @@ namespace user
 
       }
 
-      if(eelement == element_item_Box)
+      if(eelement == ::e_element_item_box)
       {
 
          rectangle.right -= GetDividerWidth();
@@ -227,7 +227,7 @@ namespace user
 
       }
 
-      if(eelement == ElementDivider)
+      if(eelement == ::e_element_divider)
       {
 
          rectangle.left = rectangle.right - GetDividerWidth();
@@ -243,7 +243,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(::i32_rectangle * prectangle, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown, enum_element eelement, ::collection::index iItem)
+   bool list_header::GetItemRect(::i32_rectangle * prectangle, ::e_element eelementLButtonDown, ::collection::index iItemLButtonDown, const ::e_element & eelement, ::collection::index iItem)
    {
 
       if (iItem < 0)
@@ -262,7 +262,7 @@ namespace user
 
       }
 
-      if(eelementLButtonDown == element_item_Box && eelement == element_item_Box)
+      if(eelementLButtonDown == ::e_element_item_box && eelement == ::e_element_item_box)
       {
 
          if(iItem == iItemLButtonDown)
@@ -270,23 +270,23 @@ namespace user
 
             ::i32_rectangle rectangleA;
 
-            if(!GetItemRect(&rectangleA, element_item_Box, iItem - 1))
+            if(!GetItemRect(&rectangleA, ::e_element_item_box, iItem - 1))
             {
 
-               GetItemRect(&rectangleA, element_item_Box, iItem);
+               GetItemRect(&rectangleA, ::e_element_item_box, iItem);
 
             }
 
             ::i32_rectangle rectangle;
 
-            GetItemRect(&rectangle, element_item_Box, iItem);
+            GetItemRect(&rectangle, ::e_element_item_box, iItem);
 
             ::i32_rectangle rectangleB;
 
-            if(!GetItemRect(&rectangleA, element_item_Box, iItem + 1))
+            if(!GetItemRect(&rectangleA, ::e_element_item_box, iItem + 1))
             {
 
-               GetItemRect(&rectangleA, element_item_Box, iItem);
+               GetItemRect(&rectangleA, ::e_element_item_box, iItem);
 
             }
 
@@ -304,16 +304,16 @@ namespace user
             
             ::i32_rectangle rectangleA;
 
-            if(!GetItemRect(&rectangleA, element_item_Box, iItem - 1))
+            if(!GetItemRect(&rectangleA, ::e_element_item_box, iItem - 1))
             {
 
-               GetItemRect(&rectangleA, element_item_Box, iItem);
+               GetItemRect(&rectangleA, ::e_element_item_box, iItem);
 
             }
 
             ::i32_rectangle rectangle;
 
-            GetItemRect(&rectangle, element_item_Box, iItem);
+            GetItemRect(&rectangle, ::e_element_item_box, iItem);
 
             rectangle.left = rectangleA.left + rectangleA.width() / 2;
 
@@ -329,16 +329,16 @@ namespace user
             
             ::i32_rectangle rectangleB;
 
-            if(!GetItemRect(&rectangleB, element_item_Box, iItem + 1))
+            if(!GetItemRect(&rectangleB, ::e_element_item_box, iItem + 1))
             {
 
-               GetItemRect(&rectangleB, element_item_Box, iItem);
+               GetItemRect(&rectangleB, ::e_element_item_box, iItem);
 
             }
 
             ::i32_rectangle rectangle;
 
-            GetItemRect(&rectangle, element_item_Box, iItem);
+            GetItemRect(&rectangle, ::e_element_item_box, iItem);
 
             rectangle.left = rectangle.left + rectangle.width() / 2;
 
@@ -362,27 +362,27 @@ namespace user
 
    }
 
-   bool list_header::hit_test(const ::i32_point & point, enum_element & eelement, ::collection::index & iItemParam)
+   bool list_header::hit_test(const ::i32_point & point,e_element &  eelement, ::collection::index & iItemParam)
    {
       ::user::list * plist = m_plist;
       ::i32_rectangle rectangle;
       for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
-         if(GetItemRect(&rectangle, element_item_Box, iItem))
+         if(GetItemRect(&rectangle, ::e_element_item_box, iItem))
          {
             if(rectangle.contains(point))
             {
                iItemParam = iItem;
-               eelement = element_item_Box;
+               eelement = ::e_element_item_box;
                return true;
             }
          }
-         if(GetItemRect(&rectangle, ElementDivider, iItem))
+         if(GetItemRect(&rectangle, ::e_element_divider, iItem))
          {
             if(rectangle.contains(point))
             {
                iItemParam = iItem;
-               eelement = ElementDivider;
+               eelement = ::e_element_divider;
                return true;
             }
          }
@@ -390,27 +390,27 @@ namespace user
       return false;
    }
 
-   bool list_header::hit_test(const ::i32_point & point, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown, enum_element & eelement, ::collection::index & iItemParam)
+   bool list_header::hit_test(const ::i32_point & point, e_element eelementLButtonDown, ::collection::index iItemLButtonDown, e_element & eelement, ::collection::index & iItemParam)
    {
       ::user::list * plist = m_plist;
       ::i32_rectangle rectangle;
       for(::i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
-         if(GetItemRect(&rectangle, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
+         if(GetItemRect(&rectangle, eelementLButtonDown, iItemLButtonDown, ::e_element_item_box, iItem))
          {
             if(rectangle.contains(point))
             {
                iItemParam = iItem;
-               eelement = element_item_Box;
+               eelement = ::e_element_item_box;
                return true;
             }
          }
-         if(GetItemRect(&rectangle, ElementDivider, iItem))
+         if(GetItemRect(&rectangle, ::e_element_divider, iItem))
          {
             if(rectangle.contains(point))
             {
                iItemParam = iItem;
-               eelement = ElementDivider;
+               eelement = ::e_element_divider;
                return true;
             }
          }
@@ -547,14 +547,14 @@ namespace user
 
          m_bLButtonDown = false;
 
-         enum_element eelement;
+         ::e_element eelement;
 
          ::collection::index iItem;
 
          if(hit_test(pointCursor, eelement, iItem))
          {
 
-            if(m_eelementLButtonDown == element_item_Box && eelement == element_item_Box)
+            if(m_eelementLButtonDown == ::e_element_item_box && eelement == ::e_element_item_box)
             {
 
                if(iItem == m_iItemLButtonDown)
@@ -582,7 +582,7 @@ namespace user
                }
 
             }
-            else if(m_eelementLButtonDown == ElementDivider)
+            else if(m_eelementLButtonDown == ::e_element_divider)
             {
                
                ::i32_rectangle rectangle;
@@ -621,7 +621,7 @@ namespace user
 
       ::user::list * plist = m_plist;
 
-      enum_element eelement;
+      ::e_element eelement;
 
       ::collection::index iItem;
 
@@ -659,7 +659,7 @@ namespace user
       if(m_bLButtonDown)
       {
          
-         if(m_eelementLButtonDown == ElementDivider)
+         if(m_eelementLButtonDown == ::e_element_divider)
          {
             
             ::i32_rectangle rectangle;
@@ -684,7 +684,7 @@ namespace user
 
       ::pointer<::windowing::cursor>pcursor;
 
-      if(m_bHover && m_eelementHover == ElementDivider)
+      if(m_bHover && m_eelementHover == ::e_element_divider)
       {
          
          pcursor = get_mouse_cursor(e_cursor_size_horizontal);
@@ -715,7 +715,7 @@ namespace user
 
       ::user::list * plist = m_plist;
 
-      enum_element eelement;
+      ::e_element eelement;
 
       ::collection::index iItem;
 
@@ -725,7 +725,7 @@ namespace user
             iItem)
         )
       {
-         if(eelement == element_item_Box)
+         if(eelement == ::e_element_item_box)
          {
             plist->_001OnListHeaderItemDblClk(iItem);
          }
@@ -947,11 +947,11 @@ namespace user
 
          drawitem.itemID = iItem;
 
-         GetItemRect(&drawitem.rcItem, element_item_Box, iItem);
+         GetItemRect(&drawitem.rcItem, ::e_element_item_box, iItem);
 
          DrawItem(&drawitem);
 
-         GetItemRect(&rectangleDivider, ElementDivider, iItem);
+         GetItemRect(&rectangleDivider, ::e_element_divider, iItem);
 
          pgraphics->set(ppen);
 

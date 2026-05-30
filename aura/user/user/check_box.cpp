@@ -6,7 +6,7 @@
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
-#include "acme/platform/timer.h"
+////#include "acme/platform/timer.h"
 #include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
 #include "acme/prototype/mathematics/mathematics.h"
@@ -625,10 +625,10 @@ namespace user
    }
 
 
-   void check_box::on_timer(::timer * ptimer)
+   void check_box::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == e_timer_check_toggle_animation)
+      if (ptimer->m_etimer == e_timer_check_toggle_animation)
       {
 
          set_need_redraw();
@@ -638,12 +638,14 @@ namespace user
          if (m_timeAnimationStart.elapsed() > m_timeAnimationPeriod)
          {
 
-            kill_timer(ptimer->m_uTimer);
+            ptimer->cancel();
+
+            return;
 
          }
 
       }
-//      else if (ptimer->m_uTimer == e_timer_command_probe)
+//      else if (ptimer->m_etimer == e_timer_command_probe)
 //      {
 //
 //         ::user::menu_command command(this);
@@ -664,7 +666,7 @@ namespace user
 //
 //      }
 
-      ::user::interaction::on_timer(ptimer);
+      return ::user::interaction::operator()(ptimer);
 
    }
 

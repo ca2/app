@@ -14,7 +14,7 @@
 #include "acme/handler/request.h"
 #include "aura/graphics/image/context.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/user/user/drag.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/frame_interaction.h"
@@ -809,7 +809,7 @@ namespace user
    //}
 
 
-   bool tab::get_element_rectangle(::collection::index iIndex, ::i32_rectangle & rectangle, enum_element eelement)
+   bool tab::get_element_rectangle(::collection::index iIndex, ::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
       i32_point ptOffset(0, 0);
@@ -2781,14 +2781,14 @@ namespace user
    }
 
 
-   void tab::on_timer(::timer * ptimer)
+   void tab::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      ::user::auto_hide::on_timer(ptimer);
+      ::user::auto_hide::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_drag_start)
+      if (ptimer->m_etimer == e_timer_drag_start)
       {
          //auto elapsed = g_tickDragStart.elapsed();
          kill_timer(e_timer_drag_start);

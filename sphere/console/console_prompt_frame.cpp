@@ -41,12 +41,12 @@ namespace console
 
 
 
-   void prompt_frame::on_timer(::timer * ptimer)
+   void prompt_frame::operator()(::timer * ptimer)
    {
 
-      simple_frame_window::on_timer(ptimer);;
+      simple_frame_window::operator()(ptimer);;
 
-//      ::u32 uEvent = ptimer->m_uTimer;
+//      ::u32 uEvent = ptimer->m_etimer;
 //      static ::f32 theta;
 //      if(uEvent == 3)
 //      {
@@ -524,7 +524,7 @@ namespace console
 
    }
 
-   bool prompt_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pinteraction)
+   bool prompt_frame::get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::style_context * pinteraction)
    {
 
       etranslucency = ::user::e_translucency_present;

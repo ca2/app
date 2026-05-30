@@ -85,7 +85,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer button::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (pstyle)
@@ -540,9 +540,9 @@ namespace user
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      auto ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          auto ptopic = create_topic(::id_click);
@@ -1232,7 +1232,7 @@ namespace user
       else if(estyle == e_style_push || estyle == e_style_push_group)
       {
 
-         set_timer(16384,100_ms,nullptr);
+         //set_timer(16384,100_ms);
 
          USER_MESSAGE_LINK(::user::e_message_key_up, this, this, &button::on_message_key_up);
 
@@ -1260,7 +1260,7 @@ namespace user
       else if(estyle == e_style_push || estyle == e_style_push_group)
       {
 
-         kill_timer(16384);
+         //kill_timer(16384);
 
       }
 

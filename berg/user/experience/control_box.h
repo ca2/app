@@ -102,7 +102,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_size);
 
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 

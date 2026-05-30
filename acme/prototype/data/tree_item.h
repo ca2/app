@@ -220,8 +220,8 @@ namespace data
       void erase_tree_item_descendants() override;
       void erase_child(tree_item * ptreeitem);
 
-      bool is_expanded() const override;
-      bool is_expandable() const override;
+      ::i32_boolean is_expanded() const override;
+      ::i32_boolean is_expandable() const override;
 
       void on_fill_children() override;
 
@@ -1561,19 +1561,19 @@ namespace data
 
 
    template < prototype_item ITEM >
-   bool tree_item < ITEM >::is_expanded() const
+   ::i32_boolean tree_item < ITEM >::is_expanded() const
    {
 
-      return (m_etreeitemstate & ::data::e_tree_item_state_expanded) != 0;
+      return m_etreeitemstate & ::data::e_tree_item_state_expanded;
 
    }
 
 
    template < prototype_item ITEM >
-   bool tree_item < ITEM >::is_expandable() const
+   ::i32_boolean tree_item < ITEM >::is_expandable() const
    {
 
-      return (m_etreeitemstate & ::data::e_tree_item_state_expandable) != 0;
+      return m_etreeitemstate & ::data::e_tree_item_state_expandable;
 
    }
 

@@ -21,11 +21,11 @@ namespace keyboard
    constexpr bool has_middle_button(const ::user::e_key& ekey) { return ekey & ::user::e_key_middle_button; }
 
 
-   CLASS_DECL_ACME ::string key_string_with_no_modifier(::user::e_key ekey);
+   CLASS_DECL_ACME ::string key_string_with_no_modifier(const ::user::e_key & ekey);
 
-   CLASS_DECL_ACME ::string modifiers_groups_string(::user::e_key ekey);
+   CLASS_DECL_ACME ::string modifiers_groups_string(const ::user::e_key & ekey);
 
-   CLASS_DECL_ACME ::string key_string_with_modifiers_groups(::user::e_key ekey);
+   CLASS_DECL_ACME ::string key_string_with_modifiers_groups(const ::user::e_key & ekey);
 
    CLASS_DECL_ACME ::user::e_key string_key_with_no_modifier(const ::scoped_string& scopedstr);
 
@@ -37,9 +37,9 @@ namespace keyboard
 
    CLASS_DECL_ACME bool is_equivalent_using_modifiers_groups(::user::e_key ekey1, ::user::e_key ekey2);
 
-   CLASS_DECL_ACME ::user::e_key modifiers_groups(::user::e_key ekey);
+   CLASS_DECL_ACME ::user::e_key modifiers_groups(const ::user::e_key & ekey);
 
-   CLASS_DECL_ACME::user::e_key key_with_no_modifier(::user::e_key ekey);
+   CLASS_DECL_ACME::user::e_key key_with_no_modifier(const ::user::e_key & ekey);
 
 
 } // keyboard

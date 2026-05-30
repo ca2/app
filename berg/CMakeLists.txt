@@ -45,7 +45,7 @@ list(APPEND library_source
    platform/system.cpp
    platform/system.h
    user/experience/_.h
-   user/experience/_constant.h
+   #user/experience/_constant.h
    #user/experience/_experience.h
    user/experience/button.cpp
    user/experience/button.h

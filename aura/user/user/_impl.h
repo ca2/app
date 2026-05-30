@@ -185,7 +185,7 @@ namespace user
 //{
 //
 //
-//   inline bool graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+//   inline bool graphics::set_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
 //   {
 //
 //      return set(pinteraction->get_font(pinteraction->get_style(m_puserstyle), eelement, estate));

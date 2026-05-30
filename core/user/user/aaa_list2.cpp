@@ -12,7 +12,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/collection/_range.h"
 #include "acme/prototype/data/listener.h"
@@ -2977,7 +2977,7 @@ namespace user
    }
 
 
-   void list2::index_element_rectangle(::user::draw_list_subitem* pdrawlistsubitem, ::user::mesh::enum_element eelement)
+   void list2::index_element_rectangle(::user::draw_list_subitem* pdrawlistsubitem, ::user::meshconst ::e_element & eelement)
    {
 
       if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
@@ -5546,10 +5546,10 @@ namespace user
    }
 
 
-   void list2::on_timer(::timer* ptimer)
+   void list2::operator()(::timer * ptimer)
    {
 
-      ::user::mesh::on_timer(ptimer);
+      ::user::mesh::operator()(ptimer);
 
       ptimer->m_bRet = false;
 

@@ -103,7 +103,7 @@ namespace user
       ///virtual bool track_popup_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
       virtual bool track_popup_menu(::menu::track_popup * ptrackpopup);
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

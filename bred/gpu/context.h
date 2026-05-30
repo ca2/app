@@ -304,7 +304,7 @@ namespace gpu
 
       virtual void do_on_context(const ::procedure & procedure);
       virtual void send_on_context(bool bForDrawing, const ::procedure &procedure);
-      virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
+      virtual void top_send_on_context(::gpu::context * pcontextInnerStart, ::i32_boolean bForDrawing, const ::procedure& procedure);
       virtual void top_do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
       virtual void do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
 

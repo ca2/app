@@ -347,7 +347,7 @@ public:
    inline atom(enum_type etype);
 
    inline atom(enum_id eid);
-   inline atom(enum_element eelement);
+   inline atom(const ::e_element & eelement);
    //inline atom(::enum_id EID);
    //inline atom(const ::e_command & ecommand);
    inline atom(::user::enum_message eusermessage);

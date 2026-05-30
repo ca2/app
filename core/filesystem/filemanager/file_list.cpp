@@ -4,13 +4,14 @@
 #include "document.h"
 #include "file_list.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/collection/_container.h"
 #include "apex/database/_binary_stream.h"
@@ -359,12 +360,12 @@ namespace filemanager
    //}
 
 
-   void file_list::on_timer(::timer * ptimer)
+   void file_list::operator()(::timer * ptimer)
    {
 
-      ::userfs::list::on_timer(ptimer);
+      ::userfs::list::operator()(ptimer);
 
-      if (ptimer->m_uTimer == 888888)
+      if (ptimer->m_etimer == e_timer_update_bergedge_topic_file)
       {
 
          auto psession = session();
@@ -396,7 +397,8 @@ namespace filemanager
          }
          else
          {
-            kill_timer(888888);
+            //kill_timer(888888);
+            ptimer->cancel();
          }
       }
 
@@ -1125,7 +1127,7 @@ namespace filemanager
       if (filemanager_data()->m_bSetBergedgeTopicFile)
       {
 
-         set_timer(888888, 230_ms, nullptr);
+         set_timer(e_timer_update_bergedge_topic_file, 230_ms, nullptr);
 
       }
 

@@ -4,12 +4,13 @@
 #include "data.h"
 #include "context_menu.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/set.h"
@@ -1198,7 +1199,7 @@ return;
             
          puserinteraction->set_need_redraw();
 
-         puserinteraction->kill_timer(123);
+         puserinteraction->kill_timer(e_timer_redraw);
 
          /*
          ::i32_rectangle rectangle;
@@ -1240,7 +1241,7 @@ return;
       
       m_iAnimate = 1;
       
-      m_usertreea[0]->set_timer(1234567, 50_ms, nullptr);
+      m_usertreea[0]->set_timer(e_timer_animation, 50_ms, nullptr);
 
    }
 
@@ -1373,12 +1374,12 @@ return;
    //}
 
 
-   void tree_data::on_timer(::timer * ptimer)
+   void tree_data::operator()(::timer * ptimer)
    {
 
-      ::userfs::tree_data::on_timer(ptimer);
+      ::userfs::tree_data::operator()(ptimer);
 
-      if (ptimer->m_uTimer == 1234567)
+      if (ptimer->m_etimer == e_timer_animation)
       {
 
          m_iAnimate += 2;
@@ -1388,14 +1389,14 @@ return;
 
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->erase_timer(ptimer);
+            ptimer->cancel();
 
          }
 
-         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         //ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
 
       }
-      else if (ptimer->m_uTimer == 123)
+      else if (ptimer->m_etimer == e_timer_redraw)
       {
 
          m_usertreea.predicate_each([](auto & ptree)
@@ -1405,9 +1406,10 @@ return;
 
             });
 
-         m_bTimer123 = false;
+         m_bTimerRedraw = false;
 
-         ptimer->m_ptimercallback->get_user_interaction()->kill_timer(123);
+         //ptimer->m_ptimercallback->get_user_interaction()->kill_timer(123);
+         ptimer->cancel();
 
       }
 

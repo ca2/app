@@ -73,16 +73,16 @@ namespace user
 
 
 
-   void tooltip::on_timer(::timer * ptimer)
+   void tooltip::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
 
    }
 
 
-   //bool tooltip::get_translucency(::user::enum_translucency  & etranslucency, ::enum_element eelement, style_context * pcontext)
+   //bool tooltip::get_translucency(::user::enum_translucency  & etranslucency, const ::e_element & eelement, style_context * pcontext)
    //{
 
    //   etranslucency = ::user::e_translucency_present;

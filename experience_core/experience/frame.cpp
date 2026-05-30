@@ -354,10 +354,10 @@ namespace experience_core
 
 
 
-   bool frame::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
-      switch (eelement)
+      switch (eelement.m_eenum)
       {
       case e_element_top_left_icon:
       {
@@ -412,7 +412,7 @@ namespace experience_core
    //
    //      return ::experience::frame::experience_frame_hit_test(point, ezorder);
    ////               ::i32_rectangle rectangle;
-   ////               for(enum_element eelement = (enum_element)(::e_element_none + 1);
+   ////               for(const ::e_element & eelement = (enum_element)(::e_element_none + 1);
    ////                     eelement < ElementEnd;
    ////                     eelement++)
    ////               {
@@ -885,7 +885,7 @@ x + cx, y + cy);
 
          ::i32_rectangle rectangle;
          ::i32_point pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
          ::i32_point pointHitTest = pointCursor;
 
@@ -1048,7 +1048,7 @@ x + cx, y + cy);
    //      m_pframewindow->window_rectangle(rectangleEvent);
    //      ::i32_rectangle rectangle;
    //      ::i32_point pointCenter = rectangleEvent.center();
-   //      enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+   //      auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
    //      ::i32_point pointHitTest = point;
 
@@ -1254,7 +1254,7 @@ x + cx, y + cy);
    void frame::GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32 iDeflate, ::i32_rectangle * lprect, enum_border eside)
    {
 
-      enum_display edisplay = m_pframewindow->const_layout().design().display();
+      const ::e_display & edisplay = m_pframewindow->const_layout().design().display();
 
       ::i32_rectangle rectangleInner(rectangleOuter);
 

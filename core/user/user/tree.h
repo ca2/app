@@ -30,7 +30,8 @@ namespace user
       ::pointer<::draw2d::graphics_extension>                  m_pgraphicsextension;
       ::collection::index                                      m_dwFirstVisibleItem;
       ::collection::index                                      m_iItemCount;
-      ::u32                                             m_uiLButtonUpFlags;
+      //::u32                                             m_uiLButtonUpFlags;
+       ::user::key_state                                        m_keystateLButtonUp;
       i32_point                                                m_pointLButtonUp;
       ::pointer < ::data::tree_item_base >                     m_ptreeitemFirstVisible;
       ::collection::index                                      m_iFirstVisibleItemProperIndex;
@@ -130,7 +131,8 @@ namespace user
 
       virtual void perform_click();
 
-      virtual void perform_right_click(uptr uFlags, const ::i32_point & point);
+      //virtual void perform_right_click(uptr uFlags, const ::i32_point & point);
+       virtual void perform_right_click(const ::i32_point & point);
 
       virtual ::i32 get_wheel_scroll_delta() override;
 
@@ -148,7 +150,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
       DECLARE_MESSAGE_HANDLER(on_message_scroll_x);

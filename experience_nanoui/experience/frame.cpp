@@ -295,7 +295,7 @@ namespace experience_nanoui
    //   return (frame::enum_element) (*((::i32*)&eelement))++;
    //}
 
-   bool frame::get_element_rectangle(::i32_rectangle & rect, enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & rect, const ::e_element & eelement)
    {
       switch(eelement)
       {
@@ -351,7 +351,7 @@ namespace experience_nanoui
    {
       return ::experience::frame::experience_frame_hit_test(point, ezorder);
 //               ::i32_rectangle rectangle;
-//               for(enum_element eelement = (enum_element)(::e_element_none + 1);
+//               for(const ::e_element & eelement = (enum_element)(::e_element_none + 1);
 //                     eelement < ElementEnd;
 //                     eelement++)
 //               {

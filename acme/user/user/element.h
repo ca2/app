@@ -7,14 +7,16 @@
 #include "acme/prototype/data/property_container.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/control.h"
+#include "acme/platform/session.h"
 #include "acme/user/user/text.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/operating_system/window.h"
 #include "acme/platform/message_box.h"
-#include "acme/platform/timer_callback.h"
+#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/rectangle_array.h"
+#include "acme/user/experience/_constant.h"
 
 
 namespace user
@@ -44,11 +46,11 @@ namespace user
    class CLASS_DECL_ACME element :
       virtual public ::object,
       virtual public ::user::command_update_target,
-      virtual public ::timer_callback
+      virtual public ::timer_dispatch
    {
    public:
 
-
+     
       enum RepositionFlags
       {
 
@@ -121,7 +123,9 @@ namespace user
       virtual ::user::text & text();
 
 
-      void on_timer(::timer * ptimer) override;
+      //void operator()(::timer * ptimer) override;
+
+      void operator()(::timer * ptimer) override;
 
 
       virtual void create_message_queue(const ::scoped_string & scopedstrName);
@@ -224,7 +228,7 @@ namespace user
 
       virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
 
-      virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
+      virtual bool defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse);
 
 
       virtual void defer_update_display();
@@ -817,7 +821,7 @@ namespace user
       virtual bool _001CanEnterScreenSaver();
 
 
-      //virtual void on_timer(::timer * ptimer);
+      //void operator()(::timer * ptimer) override;
 
       virtual void on_reset_focus_start_tick();
 
@@ -872,7 +876,7 @@ namespace user
       virtual bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionFinishComposingText(bool bSuper);
 
-      //virtual void on_timer(::timer * ptimer);
+      //void operator()(::timer * ptimer) override;
 
       //virtual bool enable_window(bool bEnable );
 

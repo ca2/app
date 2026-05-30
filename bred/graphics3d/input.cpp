@@ -35,35 +35,39 @@ namespace graphics3d
 
 
 
-   ::user::enum_key_state input::key(::graphics3d::enum_key ekey) 
+   ::key::e_state input::key_state(::graphics3d::enum_key ekey)
    {
-      return m_pengine->m_pusergraphics3d->m_pkeymap->key(ekey); 
+      return m_pengine->m_pusergraphics3d->m_pkeymap->key_state(ekey);
    }
 
-   ::user::enum_key_state input::get_key_state(::user::e_key ekey)
+   //::user::enum_key_state input::get_key_state(const ::user::e_key & ekey)
+   ::key::e_state input::get_key_state(const ::user::e_key & ekey)
    {
+      return session()->_key_state(ekey);
       // ::i32 state = glfwGetKey(m_pimpact, key);
       // return state == GLFW_PRESS || state == GLFW_REPEAT;
 
 
-      if (session()->is_key_pressed(ekey))
-      {
+      //if (session()->is_key_pressed(ekey))
+      //{
 
 
-         return ::user::e_key_state_pressed;
-      }
+        // return ::key::e_state_pressed;
+      //}
 
-      return ::user::e_key_state_none;
+      //return ::key::e_state_none;
    }
-   bool input::IsKeyPressed(::user::e_key ekey) { return get_key_state(ekey) & ::user::e_key_state_pressed; }
+   bool input::IsKeyPressed(const ::user::e_key & ekey) { return get_key_state(ekey) == ::key::e_state_pressed; }
 
-   bool input::IsKeyReleased(::user::e_key ekey) { return !get_key_state(ekey); }
+   bool input::IsKeyReleased(const ::user::e_key & ekey) { return get_key_state(ekey) == ::key::e_state_none; }
 
    // Check if any movement keys are pressed (W, A, S, D)
    bool input::IsAnyKeyPressed()
    {
-      return IsKeyPressed(::user::e_key_w) || IsKeyPressed(::user::e_key_a) || IsKeyPressed(::user::e_key_s) ||
-             IsKeyPressed(::user::e_key_d);
+      return IsKeyPressed(::user::e_key_w)
+      || IsKeyPressed(::user::e_key_a)
+      || IsKeyPressed(::user::e_key_s)
+      || IsKeyPressed(::user::e_key_d);
    }
 
 

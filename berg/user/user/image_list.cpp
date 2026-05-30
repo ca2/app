@@ -7,6 +7,7 @@
 #include "acme/handler/topic.h"
 #include "acme/prototype/collection/_array.h"
 #include "acme/user/user/content.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"

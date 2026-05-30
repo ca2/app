@@ -69,7 +69,7 @@ namespace graphics3d
 		virtual bool wasWindowResized();
 		virtual void resetWindowResizedFlag();
 
-		virtual ::user::enum_key_state get_key_state(::user::e_key ekey);
+		virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey);
 
 		virtual void initWindow();
 

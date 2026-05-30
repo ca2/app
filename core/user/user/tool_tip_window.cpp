@@ -112,7 +112,7 @@ namespace user
       if(!GetToolText(iTool, m_strTip))
          return;
 
-      set_timer(1, 5_s, nullptr);
+      set_timer(e_timer_hide_tooltip, 5_s);
 
       ::i32_rectangle rectangle;
 
@@ -346,21 +346,23 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnTimer(::u32 uEvent)
+   void tool_tip_window::operator()(::timer * ptimer)
    {
-      switch(uEvent)
+      switch(ptimer->m_etimer.m_eenum)
       {
       case e_timer_hide_window:
       {
          display(e_display_none);
-         kill_timer(uEvent);
+         //kill_timer(uEvent);
+          ptimer->cancel();
       }
       break;
       case e_timer_show_delayed:
       {
          m_iTool = m_iEventTool;
          ShowTip();
-         kill_timer(uEvent);
+          ptimer->cancel();
+         //kill_timer(uEvent);
       }
       default:
          break;

@@ -786,12 +786,14 @@ list(APPEND library_source
         platform/system_setup.cpp
         platform/system_setup.h
         platform/text.cpp
-        platform/timer.cpp
-        platform/timer_array.cpp
-        platform/timer_callback.cpp
-        platform/timer_event.cpp
+        #platform/timer.cpp
+        #platform/timer_array.cpp
+        #platform/timer_callback.cpp
+        #platform/timer_event.cpp
         #platform/timer_item.cpp
-        platform/timer_task.cpp
+        #platform/timer_task.cpp
+        platform/timer.cpp
+        platform/timer.h
         platform/trace.cpp
         platform/trace.h
         platform/tracer.cpp
@@ -978,8 +980,8 @@ list(APPEND library_source
         prototype/mathematics/cvt_g.cpp
         prototype/mathematics/filestream.h
         #prototype/mathematics/index.h
-        prototype/mathematics/int_biunique.cpp
-        prototype/mathematics/int_biunique.h
+        prototype/mathematics/integer_biunique.cpp
+        prototype/mathematics/integer_biunique.h
         prototype/mathematics/mathematics.cpp
         prototype/mathematics/mathematics.h
         prototype/mathematics/mkint_c.cpp
@@ -988,12 +990,12 @@ list(APPEND library_source
         prototype/mathematics/natural.h
         prototype/mathematics/number.cpp
         prototype/mathematics/number.h
-        prototype/mathematics/number_double.cpp
-        prototype/mathematics/number_double.h
-        prototype/mathematics/number_float.cpp
-        prototype/mathematics/number_float.h
-        prototype/mathematics/number_integer.cpp
-        prototype/mathematics/number_integer.h
+        prototype/mathematics/number_f64.cpp
+        prototype/mathematics/number_f64.h
+        prototype/mathematics/number_f32.cpp
+        prototype/mathematics/number_f32.h
+        prototype/mathematics/number_i32.cpp
+        prototype/mathematics/number_i32.h
         prototype/mathematics/numeric_info.h
         prototype/mathematics/numeric.h
         prototype/mathematics/objects.h
@@ -1482,6 +1484,8 @@ list(APPEND library_source
         user/user/key.h
         user/user/key_state.cpp
         user/user/key_state.h
+   user/user/keyboard_state.cpp
+   user/user/keyboard_state.h
         user/user/message_box.cpp
         user/user/message_box.h
         user/user/mouse.cpp
@@ -2074,12 +2078,12 @@ list(APPEND library_source
         platform/system.h
         platform/text.h
         platform/timeout.h
-        platform/timer.h
-        platform/timer_array.h
-        platform/timer_callback.h
-        platform/timer_event.h
-        platform/timer_item.h
-        platform/timer_task.h
+        #platform/timer.h
+   #platform/timer_array.h
+   #platform/timer_callback.h
+   #        platform/timer_event.h
+   #    platform/timer_item.h
+   #        platform/timer_task.h
         platform/title.h
         platform/trace_category.h
         platform/trace_statement.cpp
@@ -2116,7 +2120,7 @@ list(APPEND library_source
         prototype/collection/file_path_map.h
         prototype/collection/forward.h
         prototype/collection/insert_iterator.h
-        prototype/collection/int_map.h
+        prototype/collection/integer_map.h
         prototype/collection/iterable.h
         prototype/collection/iterator.h
         prototype/collection/list.h
@@ -2385,20 +2389,20 @@ if (${WIN32})
             #      operating_system/windows/nano/user/window.cpp
             #      operating_system/windows/nano/user/window.h
             #      operating_system/windows/nano/user/http/_nano_http.cpp
-            operating_system/windows/nano/http/_factory.cpp
-            operating_system/windows/nano/http/_http.h
-            operating_system/windows/nano/http/hinternet.cpp
-            operating_system/windows/nano/http/hinternet.h
-            operating_system/windows/nano/http/http.cpp
-            operating_system/windows/nano/http/http.h
-            operating_system/windows/nano/http/connect.cpp
-            operating_system/windows/nano/http/connect.h
-            operating_system/windows/nano/http/get.cpp
-            operating_system/windows/nano/http/get.h
-            operating_system/windows/nano/http/request.cpp
-            operating_system/windows/nano/http/request.h
-            operating_system/windows/nano/http/session.cpp
-            operating_system/windows/nano/http/session.h
+#            operating_system/windows/nano/http/_factory.cpp
+#            operating_system/windows/nano/http/_http.h
+#            operating_system/windows/nano/http/hinternet.cpp
+#            operating_system/windows/nano/http/hinternet.h
+#            operating_system/windows/nano/http/http.cpp
+#            operating_system/windows/nano/http/http.h
+#            operating_system/windows/nano/http/connect.cpp
+#            operating_system/windows/nano/http/connect.h
+#            operating_system/windows/nano/http/get.cpp
+#            operating_system/windows/nano/http/get.h
+#            operating_system/windows/nano/http/request.cpp
+#            operating_system/windows/nano/http/request.h
+#            operating_system/windows/nano/http/session.cpp
+#            operating_system/windows/nano/http/session.h
 
        #operating_system/windows/subsystem/thread/_____debug.xcconfig
        #operating_system/windows/subsystem/thread/_____release.xcconfig
@@ -2484,13 +2488,13 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/com/hresult_exception.h
             operating_system/windows_common/com/prop_variant.h
             operating_system/windows_common/com/variant.h
-            operating_system/windows_common/nano/compress/_factory.cpp
-            operating_system/windows_common/nano/compress/compress.h
-            operating_system/windows_common/nano/compress/compress.cpp
-            operating_system/windows_common/nano/idn/_.h
-            operating_system/windows_common/nano/idn/_idn.cpp
-            operating_system/windows_common/nano/idn/idn.cpp
-            operating_system/windows_common/nano/idn/idn.h
+#            operating_system/windows_common/nano/compress/_factory.cpp
+#            operating_system/windows_common/nano/compress/compress.h
+#            operating_system/windows_common/nano/compress/compress.cpp
+#            operating_system/windows_common/nano/idn/_.h
+#            operating_system/windows_common/nano/idn/_idn.cpp
+#            operating_system/windows_common/nano/idn/idn.cpp
+#            operating_system/windows_common/nano/idn/idn.h
             operating_system/windows_common/apartment_thread.cpp
             operating_system/windows_common/apartment_thread.h
              #      operating_system/windows_common/_dll.cpp
@@ -3238,7 +3242,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   user/key/state.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

@@ -12,7 +12,7 @@
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_binary_stream.h"
 #include "acme/prototype/string/str.h"
 #include "acme/platform/scoped_restore.h"
@@ -171,7 +171,7 @@ namespace user
          //#endif
 
 
-         set_timer(100, 100_ms, nullptr);
+         //set_timer(100, 100_ms, nullptr);
 
          set_timer(e_timer_redraw, 200_ms, nullptr); // Caret
 
@@ -195,7 +195,7 @@ namespace user
             if (is_text_editable() && m_bEditable2)
             {
 
-               set_timer(250, 500_ms, nullptr); // Caret
+               set_timer(e_timer_caret_flashing, 500_ms, nullptr); // Caret
 
             }
 
@@ -586,7 +586,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, const ::e_element & eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -958,7 +958,7 @@ namespace user
 
                }
 
-               set_timer(250, 500_ms, nullptr); // Caret
+               set_timer(e_timer_caret_flashing, 500_ms, nullptr); // Caret
 
             }
 
@@ -1409,36 +1409,40 @@ namespace user
       }
 
 
-      void edit_impl::on_timer(::timer * ptimer)
+      void edit_impl::operator()(::timer * ptimer)
       {
 
-         ::user::interaction::on_timer(ptimer);
+         ::user::interaction::operator()(ptimer);
 
-         if (ptimer->m_uTimer >= 100 && ptimer->m_uTimer <= 200)
+         //if (ptimer->m_etimer >= 100 && ptimer->m_etimer <= 200)
+         //{
+           // if (has_keyboard_focus())
+            //{
+
+               //_001OnKeyboardFocusTimer(ptimer->m_etimer - 100);
+
+            //}
+         //}
+         //else
+         if (ptimer->m_etimer == e_timer_long_press_repeat_keys_first
+             || ptimer->m_etimer == e_timer_long_press_repeat_keys_repeat)
          {
-            if (has_keyboard_focus())
+
+            if (ptimer->m_etimer == e_timer_long_press_repeat_keys_first)
             {
 
-               //_001OnKeyboardFocusTimer(ptimer->m_uTimer - 100);
+               ///kill_timer(500);
+               ///
+               ptimer->cancel();
 
-            }
-         }
-         else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
-         {
-
-            if (ptimer->m_uTimer == 500)
-            {
-
-               kill_timer(500);
-
-               set_timer(501, 300_ms, nullptr);
+               set_timer(e_timer_long_press_repeat_keys_repeat, 300_ms);
 
             }
 
             key_to_char(m_pkeymessageLast);
 
          }
-         else if (ptimer->m_uTimer == e_timer_redraw)
+         else if (ptimer->m_etimer == e_timer_redraw)
          {
 
             // Caret

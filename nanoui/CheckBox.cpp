@@ -11,6 +11,8 @@
 #include "framework.h"
 #include "CheckBox.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"
 
@@ -28,48 +30,41 @@ namespace nanoui
    }
 
 
-   bool CheckBox::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool CheckBox::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      Widget::mouse_button_event(p, ekeystate, down, bDoubleClick);
+      Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
-      if (!m_bEnabled)
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
       {
 
          return false;
 
       }
 
-      if (ekeystate == ::user::e_key_state_left_button) 
+      auto pscreen = screen();
+
+      if (bDown) 
       {
 
-         auto pscreen = screen();
+         pscreen->m_pwidgetMouseDown = this;
 
-         if (down) 
+      }
+      else
+      {
+
+         if (pscreen->m_pwidgetMouseDown == this)
          {
 
-            pscreen->m_pwidgetMouseDown = this;
+            bool bChecked = checked();
+
+            set_checked (!bChecked, e_source_user);
 
          }
-         else
-         {
-
-            if (pscreen->m_pwidgetMouseDown == this)
-            {
-
-               bool bChecked = checked();
-
-               set_checked (!bChecked, e_source_user);
-
-            }
-
-         }
-
-         return true;
 
       }
 
-      return false;
+      return true;
 
    }
 

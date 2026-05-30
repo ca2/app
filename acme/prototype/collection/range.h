@@ -92,7 +92,7 @@ auto & get(const TYPE * p)
 }
 
 
-DECLARE_ENUMERATION(e_range, enum_range);
+DECLARE_C_FLAG(e_range, enum_range);
 
 
 template < prototype_range RANGE >

@@ -25,7 +25,7 @@ namespace user
 
       virtual void initialize_tab_drop_target_window(::user::tab* ptab, ::collection::index iTab);
 
-      //virtual bool get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, style_context * pcontext) override;
+      //virtual bool get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, style_context * pcontext) override;
 
 
       virtual void install_message_routing(::channel* pchannel) override;

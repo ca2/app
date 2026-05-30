@@ -4,7 +4,7 @@
 //#include "acme/operating_system.h"
 
 
-CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
+CLASS_DECL_ACME e_display equivalence_sink(const ::e_display & edisplay)
 {
 
    if (edisplay == e_display_normal
@@ -21,7 +21,7 @@ CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
 }
 
 
-//CLASS_DECL_ACME string as_string(enum_display edisplay)
+//CLASS_DECL_ACME string as_string(const ::e_display & edisplay)
 //{
 //
 //   if(is_docking_appearance(edisplay))
@@ -86,12 +86,12 @@ CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
 //}
 
 
-string as_string(const ::e_display & edisplay) 
-{
-   
-   return as_string((::enum_display)edisplay); 
-
-}
+// string as_string(const ::e_display & edisplay)
+// {
+//
+//    return as_string((::enum_display)edisplay);
+//
+// }
 
 
 

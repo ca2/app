@@ -47,7 +47,7 @@ namespace acme
 
          auto emessageboxType = pmessageboxpayload->m_emessagebox & ::user::e_message_box_type_mask;
 
-         switch (emessageboxType)
+         switch (emessageboxType.m_cflag)
          {
          case ::user::e_message_box_ok_cancel:
             add_button("OK", e_dialog_result_ok, 'o');

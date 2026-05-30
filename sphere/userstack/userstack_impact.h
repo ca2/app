@@ -77,7 +77,7 @@ namespace userstack
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
       //DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
       virtual void _001OnTabClick(::i32 iTab);

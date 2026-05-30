@@ -147,7 +147,7 @@ namespace user
    }
 
 
-   bool aura_user_layer::on_ui_mouse_message(::message::mouse_base* pmouse)
+   bool aura_user_layer::on_ui_mouse_message(::user::mouse* pmouse)
    {
       return false;
    }

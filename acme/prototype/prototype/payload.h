@@ -930,7 +930,7 @@ public:
    //   return operator =((::i64) eenum);
    //}
 
-   payload & operator |= (enumeration < ::file::enum_flag > eflag);
+   payload & operator |= (const ::file::e_flag & eflag);
 
    //payload& operator = (const ::e_status & estatus)
    //{

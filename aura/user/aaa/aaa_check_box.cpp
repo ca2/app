@@ -545,10 +545,10 @@ namespace user
    }
 
 
-   void check_box::on_timer(::timer * ptimer)
+   void check_box::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == e_timer_check_toggle_animation)
+      if (ptimer->m_etimer == e_timer_check_toggle_animation)
       {
 
          set_need_redraw();
@@ -558,12 +558,12 @@ namespace user
          if (m_durationAnimationStart.elapsed() > m_durationAnimationPeriod)
          {
 
-            kill_timer(ptimer->m_uTimer);
+            kill_timer(ptimer->m_etimer);
 
          }
 
       }
-//      else if (ptimer->m_uTimer == e_timer_command_probe)
+//      else if (ptimer->m_etimer == e_timer_command_probe)
 //      {
 //
 //         ::user::menu_command command(this);
@@ -584,7 +584,7 @@ namespace user
 //
 //      }
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
    }
 

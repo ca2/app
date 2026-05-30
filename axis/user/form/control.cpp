@@ -8,7 +8,7 @@
 #include "acme/include/_c_swap.h"
 #include "acme/platform/keep.h"
 #include "acme/handler/request.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/selection.h"
@@ -1701,10 +1701,10 @@ namespace user
    //}
 
 
-   void form_control::on_timer(::timer * ptimer)
+   void form_control::operator()(::timer * ptimer)
    {
 
-      ::user::form::on_timer(ptimer);
+      ::user::form::operator()(ptimer);
 
       if(m_pcallback != nullptr)
       {
@@ -1713,7 +1713,7 @@ namespace user
          
          pextendedtopic->m_puserelement = this;
          
-         pextendedtopic->m_uiEvent = ptimer->m_uTimer;
+         pextendedtopic->m_uiEvent = (::u64) ptimer->m_etimer;
          
          pextendedtopic->m_etimer = ptimer->m_etimer;
          
@@ -1733,7 +1733,7 @@ namespace user
          
       }
 
-//      if(ptimer->m_uTimer == 24)
+//      if(ptimer->m_etimer == 24)
 //      {
 //
 //         kill_timer(24);
@@ -1741,6 +1741,8 @@ namespace user
 //         top_level_frame()->EndModalLoop(e_dialog_result_ok);
 //
 //      }
+
+      //return true;
 
    }
 

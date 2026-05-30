@@ -4304,7 +4304,7 @@ void thread::add_task(::object* pobjectTask)
 thread::operator htask() const
 {
 
-   return is_set() ? m_htask : nullptr;
+   return ::particle::is_set() ? m_htask : nullptr;
 
 }
 

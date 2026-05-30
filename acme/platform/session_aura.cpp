@@ -193,9 +193,9 @@ return nullptr;
 
    //::aura::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
 
-   //virtual bool is_key_pressed(::user::enum_key ekey) override{}
+   //virtual bool is_key_pressed(const ::user::e_key & ekey) override{}
 
-   //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override{}
+   //virtual void set_key_pressed(const ::user::e_key & ekey, bool bPressed) override{}
 
    //virtual ::user::interaction_base * get_active_ui() override{}
 
@@ -216,13 +216,7 @@ return nullptr;
    //virtual ::image::cursor * get_cursor(){}
    //virtual ::image::cursor * get_default_cursor(){}
 
-   bool aura_session_layer::on_ui_mouse_message(::message::mouse_base* pmouse)
-   {
 
-
-      return false;
-
-   }
 
 
    //virtual ::user::interaction_base * GetActiveWindow(){}
@@ -408,7 +402,7 @@ return nullptr;
 
    //virtual bool is_session() const override{}
 
-    /*bool aura_session_layer::is_mouse_button_pressed(::user::e_key_state ekeystate)
+    /*bool aura_session_layer::is_mouse_button_pressed(const ::user::keyboard_state & keyboardstate)
    {
       return false;
    }*/
@@ -423,9 +417,9 @@ return nullptr;
    //::user::user* user() override{}
 
 
-   //virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override{}
-   //virtual bool get_int(const ::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override{}
-   //virtual bool get_f64(const ::user::interaction* pinteraction, ::f64 & i, ::user::enum_f64 eint, ::user::enum_state estate = ::user::e_state_none) const override{}
+   //virtual ::color::color get_color(const ::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none) const override{}
+   //virtual bool get_int(const ::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, const ::user::e_state & estate = ::user::e_state_none) const override{}
+   //virtual bool get_f64(const ::user::interaction* pinteraction, ::f64 & i, ::user::enum_f64 eint, const ::user::e_state & estate = ::user::e_state_none) const override{}
    //virtual ::user::style * user_style(){}
 
 

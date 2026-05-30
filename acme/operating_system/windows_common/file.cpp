@@ -138,9 +138,9 @@ namespace windows
       ASSERT(::file::e_open_share_compat == 0);
 
       // map_base read/write mode
-      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
+      ASSERT((::i32) (::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       DWORD dwDesiredAccess = 0;
-      switch (eopen & 3)
+      switch ((::i32) eopen & 3)
       {
       case ::file::e_open_read:
          dwDesiredAccess = GENERIC_READ;
@@ -160,7 +160,7 @@ namespace windows
 
       // map_base share mode
       DWORD dwShareMode = 0;
-      switch (eopenShare)    // map_base compatibility mode to exclusive
+      switch (eopenShare.m_cflag)    // map_base compatibility mode to exclusive
       {
       default:
          ASSERT(false);  // invalid share mode?

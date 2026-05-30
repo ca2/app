@@ -40,7 +40,7 @@ namespace file
    };
 
 
-   DECLARE_ENUMERATION(e_link, enum_link);
+   DECLARE_C_FLAG(e_link, enum_link);
 
 
 } // namespace file

@@ -18,6 +18,7 @@
 #include "in_place_edit.h"
 #include "TextBox.h"
 #include "VScrollPanel.h"
+#include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "nano2d/context.h"
 #include "nano2d/draw2d_context.h"
@@ -39,6 +40,8 @@ namespace nanoui
       m_bMouseHover(false), m_tooltip(""), m_font_size(-1)
       , m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/
    {
+
+      //m_ekeystatePress = ::key::e_state_none;
       m_bHoverCache = false;
       m_bNeedLayout = false;
       //m_iHoverCandidateChildStart = -1;
@@ -123,7 +126,12 @@ namespace nanoui
    void Widget::set_visible(bool bVisible)
    {
 
-      m_bVisible = bVisible;
+      if (::is_different(m_bVisible, bVisible))
+      {
+         
+         on_show_widget(bVisible);
+
+      }
 
    }
 
@@ -177,6 +185,13 @@ namespace nanoui
       auto bVisible = this->visible();
 
       set_visible(!bVisible);
+
+   }
+
+
+   void Widget::on_show_widget(bool bShow)
+   {
+
 
    }
 
@@ -359,7 +374,7 @@ namespace nanoui
    }
 
 
-   Widget* Widget::find_widget(const i32_point& p)
+   Widget* Widget::find_widget(const i32_point & point)
    {
 
       //auto size = m_children.get_count();
@@ -373,7 +388,7 @@ namespace nanoui
 
          auto offsetScroll = get_scroll_offset();
 
-         auto pointChildClient = p - posChild - offsetScroll;
+         auto pointChildClient = point - posChild - offsetScroll;
 
          if (pchild->visible() && pchild->contains(pointChildClient))
          {
@@ -384,7 +399,7 @@ namespace nanoui
 
       }
 
-      return contains(p) ? this : nullptr;
+      return contains(point) ? this : nullptr;
 
    }
 
@@ -413,7 +428,7 @@ namespace nanoui
    }
 
 
-   const Widget* Widget::find_widget(const i32_point& p) const
+   const Widget* Widget::find_widget(const i32_point & point) const
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -421,27 +436,27 @@ namespace nanoui
 
          Widget* pchild = m_children[it];
 
-         if (pchild->visible() && pchild->contains(p - m_pos))
+         if (pchild->visible() && pchild->contains(point - m_pos))
          {
 
-            return pchild->find_widget(p - m_pos);
+            return pchild->find_widget(point - m_pos);
 
          }
 
       }
 
-      return contains(p) ? this : nullptr;
+      return contains(point) ? this : nullptr;
 
    }
 
 
-   bool Widget::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool Widget::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
       {
 
-         Widget* pchild = m_children[it];
+         auto pchild = m_children[it];
 
          if (pchild->visible())
          {
@@ -450,17 +465,17 @@ namespace nanoui
 
             auto offsetScroll = get_scroll_offset();
 
-            auto pointChildClient = p - posChild - offsetScroll;
+            auto pointChildClient = point - posChild - offsetScroll;
 
             if (pchild->contains(pointChildClient))
             {
 
-               if (pchild->mouse_button_event(pointChildClient, ekeystate, down, bDoubleClick, ekeystate))
+               if (pchild->mouse_button_event(pointChildClient, euserkeyMouseButton, bDown, bDoubleClick))
                {
 
                   bool bChildFocused = pchild->focused();
 
-                  if (ekeystate == ::user::e_key_state_left_button && down && !bChildFocused)
+                  if (euserkeyMouseButton == ::user::e_key_left_button && bDown && !bChildFocused)
                   {
 
                      pchild->request_focus();
@@ -482,7 +497,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
+   bool Widget::mouse_motion_event(const i32_point &point)
    {
 
       bool bHandled = false;
@@ -520,7 +535,7 @@ namespace nanoui
 
          auto offsetScroll = get_scroll_offset();
 
-         auto pointChildClient = p - posChild - offsetScroll;
+         auto pointChildClient = point - posChild - offsetScroll;
 
          //         ::i32 pointY = pointChildClient[1];
          //
@@ -537,14 +552,14 @@ namespace nanoui
 
             pchild->m_bHoverCache = bHover;
 
-            bHandled |= pchild->mouse_enter_event(pointChildClient, bHover, ekeystate);
+            bHandled |= pchild->mouse_enter_event(pointChildClient, bHover);
 
          }
 
          if (bHover || bHoverOld)
          {
 
-            bHandled |= pchild->mouse_motion_event(pointChildClient, rel, bDown, ekeystate);
+            bHandled |= pchild->mouse_motion_event(pointChildClient);
 
          }
 
@@ -557,7 +572,7 @@ namespace nanoui
    }
 
 
-   bool Widget::scroll_event(const i32_point& p, const ::f32_size& rel)
+   bool Widget::scroll_event(const i32_point & point, const ::f32_size& rel)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -572,12 +587,12 @@ namespace nanoui
 
          }
 
-         auto pointChildClient = p - pchild->m_pos;
+         auto pointChildClient = point - pchild->m_pos;
 
          if (pchild->contains(pointChildClient) && pchild->scroll_event(pointChildClient, rel))
          {
 
-            return true;
+            return true;   
 
          }
 
@@ -596,7 +611,7 @@ namespace nanoui
    //}
 
 
-   bool Widget::mouse_enter_event(const i32_point&, bool bEnter, ::user::e_key_state ekeystate)
+   bool Widget::mouse_enter_event(const i32_point&, bool bEnter)
    {
 
       m_bMouseHover = bEnter;
@@ -634,7 +649,7 @@ namespace nanoui
    }
 
 
-   bool Widget::keyboard_event(::user::enum_key, ::i32, ::i32, const ::user::e_key&, const ::scoped_string & scopedstrText)
+   bool Widget::keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText)
    {
 
       return false;
@@ -1235,6 +1250,17 @@ namespace nanoui
    }
 
 
+   bool Widget::is_left_button_pressed() const
+   {
+
+      return m_keystatePress.is_left_button_pressed();
+
+   }
+
+
+   bool Widget::is_right_button_pressed() const { return m_keystatePress.is_right_button_pressed(); }
+
+
    ::i32_rectangle Widget::interaction_rectangle() const
    {
 
@@ -1417,7 +1443,7 @@ namespace nanoui
    }
 
 
-   bool Widget::contains(const i32_point& p) const
+   bool Widget::contains(const i32_point & point) const
    {
 
       ::pointer < Button > pbutton = this;
@@ -1447,8 +1473,15 @@ namespace nanoui
 
       //}
 
-      //i32_sequence2 d = p - m_pos;
-      return p.x >= 0 && p.y >= 0 && p.x < (m_size.cx) && p.y < m_size.cy;
+      //i32_sequence2 d = point - m_pos;
+      return point.x >= 0 && point.y >= 0 && point.x < (m_size.cx) && point.y < m_size.cy;
+
+   }
+
+
+   void Widget::operator()(::timer * ptimer)
+   {
+
 
    }
 

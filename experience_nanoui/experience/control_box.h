@@ -27,7 +27,7 @@ namespace experience_nanoui
          DECLARE_MESSAGE_HANDLER(on_message_show_window);
          DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
          DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-         void on_timer(::timer * ptimer) override;
+         void operator()(::timer * ptimer) override;
 
 
          ::i32 calculate_button_size(::draw2d::graphics_pointer & pgraphics) override;

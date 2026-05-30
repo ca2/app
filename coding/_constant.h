@@ -123,7 +123,7 @@ namespace coding
    };
 
 
-   DECLARE_ENUMERATION(e_integrate, enum_integrate);
+   DECLARE_C_FLAG(e_integrate, enum_integrate);
 
    enum enum_task : ::i32
    {

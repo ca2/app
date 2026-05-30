@@ -146,7 +146,7 @@ void ImageImpact::reset()
 }
 
 
-bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText) 
+bool ImageImpact::keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText) 
 {
 
    if (!m_bEnabled || !m_pimage)
@@ -175,26 +175,26 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 ac
 }
 
 
-bool ImageImpact::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
+bool ImageImpact::mouse_motion_event(const i32_point &point)
 {
 
-   if (!m_bEnabled || !m_pimage || !bDown)
+   if (!m_bEnabled || !m_pimage || !m_keystatePress.is_left_button_pressed())
    {
 
       return false;
 
    }
 
-   m_offset.cx += (::f32)rel.cx * screen()->pixel_ratio();
+   m_offset.cx += (::f32)point.cx * screen()->pixel_ratio();
 
-   m_offset.cy += (::f32)rel.cy * screen()->pixel_ratio();
+   m_offset.cy += (::f32)point.cy * screen()->pixel_ratio();
 
    return true;
 
 }
 
 
-bool ImageImpact::scroll_event(const i32_point & p, const ::f32_size & rel) 
+bool ImageImpact::scroll_event(const i32_point & point, const ::f32_size & rel) 
 {
 
    if (!m_bEnabled || !m_pimage)
@@ -204,7 +204,7 @@ bool ImageImpact::scroll_event(const i32_point & p, const ::f32_size & rel)
 
    }
 
-   f32_sequence2 p1 = pos_to_pixel(p - m_pos);
+   f32_sequence2 p1 = pos_to_pixel(point - m_pos);
    m_scale += rel.cy;
 
    // Restrict scaling to a reasonable range
@@ -213,7 +213,7 @@ bool ImageImpact::scroll_event(const i32_point & p, const ::f32_size & rel)
          m_pimage->height())) * 5.f));
    m_scale = ::minimum(m_scale, 45.f);
 
-   f32_sequence2 p2 = pos_to_pixel(p - m_pos);
+   f32_sequence2 p2 = pos_to_pixel(point - m_pos);
    m_offset += (p2 - p1) * scale();
    return true;
 

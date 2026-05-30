@@ -284,7 +284,7 @@ bool memory_file::get_u64(::u64 & hn)
 }
 
 
-bool memory_file::is_end_of_file() const
+::i32_boolean memory_file::is_end_of_file() const
 {
 
    return _is_end_of_file();

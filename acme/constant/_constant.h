@@ -1,7 +1,8 @@
 #pragma once
 
 
-//#include "GLOBAL_ID.h"
+
+// #include "GLOBAL_ID.h"
 
 enum enum_digit_case : ::i32
 {
@@ -543,6 +544,7 @@ enum enum_zorder
 };
 
 
+
 //enum e_callstack :
 //   ::i64
 //{
@@ -604,12 +606,6 @@ enum enum_display
 
 };
 
-CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay);
-
-inline bool is_equivalent(enum_display edisplay1, enum_display edisplay2)
-{
-   return equivalence_sink(edisplay1) == equivalence_sink(edisplay2);
-}
 
 
 enum enum_system_command

@@ -80,7 +80,7 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 #include "acme/prototype/collection/rear_iterator.h"
 
-//DECLARE_ENUMERATION(e_array, enum_array);
+//DECLARE_C_FLAG(e_array, enum_array);
 
 
 template < typename A, typename B >

@@ -16,6 +16,13 @@ public:
    using TYPE::operator = ;
 
 
+   make_particle1(const TYPE & t) :
+      TYPE(t)
+   {
+
+
+   }
+
 };
 
 
@@ -111,4 +118,14 @@ public:
 };
 
 
+
+template < typename T>
+auto create_particle_from(const T & t)
+{
+
+   auto p = allocateø make_particle1< T >(t);
+
+   return p;
+
+}
 

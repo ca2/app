@@ -33,6 +33,8 @@ namespace user
 
       const class visual_state& visual() const { return* this; }
 
+      class visual_state& visual() { return* this; }
+
       using visual_state::operator =;
 
       layout_state& operator = (const ::zorder& zorder) { m_zorder = zorder; return *this; }

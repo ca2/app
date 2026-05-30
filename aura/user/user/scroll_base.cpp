@@ -573,7 +573,7 @@ namespace user
    }
 
 
-   bool scroll_base::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
+   bool scroll_base::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
       
       if (eelement == e_element_drag_scroll)

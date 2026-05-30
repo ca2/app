@@ -416,7 +416,7 @@ class thumbnail_dc;               // Virtual DC for print thumbnail
 class mini_dock_frame_window;
 
 
-CLASS_DECL_AURA ::user::e_key_state user_key_to_user_key_state_state(::user::e_key ekey);
+CLASS_DECL_AURA ::user::e_key_state user_key_to_user_key_state_state(const ::user::e_key & ekey);
 
 
 struct size_parent_layout;

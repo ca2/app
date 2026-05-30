@@ -4,7 +4,7 @@
 #include "thread.h"
 #include "operation.h"
 #include "acme/constant/user_message.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 
@@ -119,10 +119,10 @@ namespace filemanager
       return  (::user::impact::get_document());
    }
 
-   void operation_info_impact::on_timer(::timer * ptimer)
+   void operation_info_impact::operator()(::timer * ptimer)
    {
-      ::user::impact::on_timer(ptimer);
-      if(ptimer->m_uTimer == 123)
+      ::user::impact::operator()(ptimer);
+      if(ptimer->m_etimer == e_timer_redraw)
       {
       }
    }

@@ -37,10 +37,10 @@ namespace graphics3d
    //void input::moveInPlaneXZ(
    //    ::user::graphics3d * pimpact, ::f32 dt, application_object& gameObject) {
    //    floating_sequence3 rotate{ 0 };
-   //    if (key(e_key_lookRight) == ::user::e_key_state_pressed) rotate.y += 1.f;
-   //    if (key(e_key_lookLeft) == ::user::e_key_state_pressed) rotate.y -= 1.f;
-   //    if (key(e_key_lookUp) == ::user::e_key_state_pressed) rotate.x += 1.f;
-   //    if (key(e_key_lookDown) == ::user::e_key_state_pressed) rotate.x -= 1.f;
+   //    if (key(e_key_lookRight) == ::key::e_state_pressed) rotate.y += 1.f;
+   //    if (key(e_key_lookLeft) == ::key::e_state_pressed) rotate.y -= 1.f;
+   //    if (key(e_key_lookUp) == ::key::e_state_pressed) rotate.x += 1.f;
+   //    if (key(e_key_lookDown) == ::key::e_state_pressed) rotate.x -= 1.f;
 
    //    if (glm::dot(rotate, rotate) > std::numeric_limits<::f32>::epsilon()) {
    //        gameObject.transform.rotation += lookSpeed * dt * glm::normalize(rotate);
@@ -56,18 +56,18 @@ namespace graphics3d
    //    const floating_sequence3 upDir{ 0.f, -1.f, 0.f };
 
    //    floating_sequence3 moveDir{ 0.f };
-   //    if (key(e_key_moveForward) == ::user::e_key_state_pressed) moveDir += forwardDir;
-   //    if (key(e_key_moveBackward) == ::user::e_key_state_pressed) moveDir -= forwardDir;
-   //    if (key(e_key_moveRight) == ::user::e_key_state_pressed) moveDir += rightDir;
-   //    if (key(e_key_moveLeft) == ::user::e_key_state_pressed) moveDir -= rightDir;
-   //    if (key(e_key_moveUp) == ::user::e_key_state_pressed) moveDir += upDir;
-   //    if (key(e_key_moveDown) == ::user::e_key_state_pressed) moveDir -= upDir;
+   //    if (key(e_key_moveForward) == ::key::e_state_pressed) moveDir += forwardDir;
+   //    if (key(e_key_moveBackward) == ::key::e_state_pressed) moveDir -= forwardDir;
+   //    if (key(e_key_moveRight) == ::key::e_state_pressed) moveDir += rightDir;
+   //    if (key(e_key_moveLeft) == ::key::e_state_pressed) moveDir -= rightDir;
+   //    if (key(e_key_moveUp) == ::key::e_state_pressed) moveDir += upDir;
+   //    if (key(e_key_moveDown) == ::key::e_state_pressed) moveDir -= upDir;
 
    //    if (glm::dot(moveDir, moveDir) > std::numeric_limits<::f32>::epsilon()) {
    //        gameObject.transform.translation += moveSpeed * dt * glm::normalize(moveDir);
    //    }
 
-   //    if (key(e_key_Exit) == ::user::e_key_state_pressed)
+   //    if (key(e_key_Exit) == ::key::e_state_pressed)
    //    {
    //       //glfwSetWindowShouldClose(window, GLFW_TRUE);
 
@@ -254,17 +254,17 @@ namespace graphics3d
          floating_sequence3 moveDir{0.f};
          {
             using namespace ::graphics3d;
-            if (pinput->key(e_key_moveForward) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveForward) == ::key::e_state_pressed)
                moveDir += forwardDir;
-            if (pinput->key(e_key_moveBackward) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveBackward) == ::key::e_state_pressed)
                moveDir -= forwardDir;
-            if (pinput->key(e_key_moveRight) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveRight) == ::key::e_state_pressed)
                moveDir += rightDir;
-            if (pinput->key(e_key_moveLeft) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveLeft) == ::key::e_state_pressed)
                moveDir -= rightDir;
-            if (pinput->key(e_key_moveUp) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveUp) == ::key::e_state_pressed)
                moveDir += upDir;
-            if (pinput->key(e_key_moveDown) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveDown) == ::key::e_state_pressed)
                moveDir -= upDir;
 
             if (glm::dot(moveDir, moveDir) > std::numeric_limits<::f32>::epsilon())
@@ -274,7 +274,7 @@ namespace graphics3d
                   m_fMoveSpeed * m_pengine->dt() * glm::normalize(moveDir);
             }
 
-            if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_Exit) == ::key::e_state_pressed)
             {
 
                m_pengine->gpu_context()->set_finish();
@@ -285,7 +285,7 @@ namespace graphics3d
    }
 
 
-   ::user::enum_key_state  input::get_key_state(::user::e_key ekey)
+   ::user::enum_key_state  input::get_key_state(const ::user::e_key & ekey)
    {
       //::i32 state = glfwGetKey(m_pimpact, key);
       //return state == GLFW_PRESS || state == GLFW_REPEAT;
@@ -295,18 +295,18 @@ namespace graphics3d
       {
 
 
-         return ::user::e_key_state_pressed;
+         return ::key::e_state_pressed;
 
       }
 
-      return ::user::e_key_state_none;
+      return ::key::e_state_none;
    }
-   bool input::IsKeyPressed(::user::e_key ekey)
+   bool input::IsKeyPressed(const ::user::e_key & ekey)
    {
-      return get_key_state(ekey) & ::user::e_key_state_pressed;
+      return get_key_state(ekey) & ::key::e_state_pressed;
    }
 
-   bool input::IsKeyReleased(::user::e_key ekey)
+   bool input::IsKeyReleased(const ::user::e_key & ekey)
    {
       return !get_key_state(ekey);
    }
@@ -322,7 +322,7 @@ namespace graphics3d
    void input::process_keyboard_input_spaceExplorer()
    {
 
-      if (key(e_key_moveForward) == ::user::e_key_state_pressed)
+      if (key(e_key_moveForward) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveForward, m_pengine->dt());
@@ -336,7 +336,7 @@ namespace graphics3d
 
       }
 
-      if (key(e_key_moveBackward) == ::user::e_key_state_pressed)
+      if (key(e_key_moveBackward) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveBackward, m_pengine->dt());
@@ -350,7 +350,7 @@ namespace graphics3d
 
       }
 
-      if (key(e_key_moveLeft) == ::user::e_key_state_pressed)
+      if (key(e_key_moveLeft) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveLeft, m_pengine->dt());
@@ -364,7 +364,7 @@ namespace graphics3d
 
       }
 
-      if (key(e_key_moveRight) == ::user::e_key_state_pressed)
+      if (key(e_key_moveRight) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveRight, m_pengine->dt());

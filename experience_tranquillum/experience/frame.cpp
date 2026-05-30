@@ -180,10 +180,10 @@ namespace experience_tranquillum
 
 
 
-   bool frame::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
-      switch (eelement)
+      switch (eelement.m_eenum)
       {
       case e_element_top_left_icon:
 
@@ -836,7 +836,7 @@ namespace experience_tranquillum
 
          ::i32_rectangle rectangle;
          //::i32_point pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
 
          ::i32_rectangle rectangleOuter(rectangleEvent);

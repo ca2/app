@@ -31,11 +31,11 @@ enum enum_as_typed_block
 
 namespace user
 {
-   DECLARE_ENUMERATION(e_message_box, enum_message_box);
+   DECLARE_C_FLAG(e_message_box, enum_message_box);
 } // namespace user
-DECLARE_ENUMERATION(e_dock, enum_dock);
-DECLARE_ENUMERATION(e_border, enum_border);
-DECLARE_ENUMERATION(e_grip, enum_grip);
+DECLARE_C_FLAG(e_dock, enum_dock);
+DECLARE_C_FLAG(e_border, enum_border);
+DECLARE_C_FLAG(e_grip, enum_grip);
 
 
 
@@ -45,7 +45,7 @@ DECLARE_ENUMERATION(e_grip, enum_grip);
 namespace user
 {
 
-   DECLARE_ENUMERATION(e_flag, enum_flag);
+   DECLARE_C_FLAG(e_flag, enum_flag);
 
 } // namespace user
 
@@ -54,7 +54,7 @@ DECLARE_ENUMERATION(e_command, enum_command);
 namespace library
 {
 
-   DECLARE_ENUMERATION(e_state, enum_state);
+   DECLARE_C_FLAG(e_state, enum_state);
 
 } // namespace library
 

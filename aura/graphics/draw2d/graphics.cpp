@@ -68,7 +68,9 @@ namespace draw2d
 {
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string & str1, string & str2, ::i32 iEll);
+
+
+   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string & str1, string & str2, ::i32_boolean iEllipsis);
 
 
    character_count _EncodeV033(string & str);
@@ -569,7 +571,7 @@ namespace draw2d
    }
 
 
-   void graphics::set_font(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   void graphics::set_font(::user::interaction * pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       auto pstyle = pinteraction->get_style(m_puserstyleGraphics);
@@ -2834,7 +2836,7 @@ namespace draw2d
       rectangleFrame.inflate(1.0);
 
       //if (!
-      draw_inset_rectangle(rectangleFrame, color, eborder);
+      draw_inset_rectangle(rectangleFrame, color, 1.0, eborder);
       //{
 
       //   return false;
@@ -5084,7 +5086,7 @@ namespace draw2d
 
 
 
-      if ((edrawtext & e_draw_text_word_break) != 0)
+      if (edrawtext & e_draw_text_word_break)
       {
 
          b2 = true;
@@ -5096,7 +5098,7 @@ namespace draw2d
          //
          // }
 
-         bLastLine = !word_break(this, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
+         bLastLine = !word_break(this, str, rectangleClip, str, str2, edrawtext & e_draw_text_end_ellipsis);
 
          _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
 
@@ -5124,7 +5126,7 @@ namespace draw2d
          }
 
       }
-      else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
+      else if (edrawtext & e_draw_text_end_ellipsis)
       {
 
          // if (bParamBilboRaspiEtc)
@@ -5571,7 +5573,7 @@ namespace draw2d
    }
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string & str1, string & str2, ::i32 iEll)
+   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const i32_rectangle & rectangleParam, string & str1, string & str2, ::i32_boolean iEll)
    {
 
       ::f64_rectangle rectangle(rectangleParam);

@@ -242,7 +242,7 @@ namespace axis
       //if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       //{
 
-      //   if (!pinteraction->m_flagNonClient.has(::user::interaction::e_non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
+      //   if (!pinteraction->m_enonclient.has(::user::e_non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
       //   {
 
       //      auto & pbrush = m_pbrush001;
@@ -764,7 +764,7 @@ namespace axis
    //}
 
 
-   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
+   //bool style::create_translucency(const ::e_element & eelement, enum_translucency etranslucency)
    //{
 
    //   if (userstyle()->m_mapTranslucency.is_null())
@@ -921,7 +921,7 @@ namespace axis
    }
 
 
-   ::color::color style::get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style::get_color(::user::interaction * pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -1375,7 +1375,7 @@ namespace axis
    //}
 
 
-   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
+   //bool style::create_translucency(const ::e_element & eelement, enum_translucency etranslucency)
    //{
 
    //   if (userstyle()->m_mapTranslucency.is_null())

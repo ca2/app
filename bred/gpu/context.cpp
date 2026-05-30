@@ -2065,7 +2065,7 @@ namespace gpu
 
 
 
-   void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
+   void context::top_send_on_context(::gpu::context* pcontextInnerStart, ::i32_boolean bForDrawing, const ::procedure& procedure)
    {
 
 //      auto etype = this->m_etype;

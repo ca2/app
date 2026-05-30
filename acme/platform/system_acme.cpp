@@ -3460,7 +3460,7 @@ namespace platform
    //    }
    //
    //
-   //    ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   //    ::color::color system::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    //    {
    //
    //       ::color::color color;
@@ -4993,7 +4993,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-    ::color::color acme_system_layer::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+    ::color::color acme_system_layer::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    {
       return {};
    }

@@ -157,7 +157,7 @@ namespace datetime
          lprect->bottom = lprect->top + m_iLineHeight + 1;
       }
 
-      void graphics::GetRect(::i32_rectangle * lprect,enum enum_element eelement)
+      void graphics::GetRect(::i32_rectangle * lprect,enum const ::e_element & eelement)
       {
          if(eelement == e_element_month_title)
          {
@@ -246,7 +246,7 @@ namespace datetime
          return false;
       }
 
-      bool graphics::hit_test(enum_element eelement, const i32_point & pt)
+      bool graphics::hit_test(const ::e_element & eelement, const i32_point & pt)
       {
 
          ::i32_rectangle rectangle;

@@ -144,7 +144,7 @@ namespace apex
       virtual ::pointer < ::input::input > create_input() override;
 
 
-      virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey) override;
+      virtual bool is_key_pressed(bool * pbPressed, const ::user::e_key & ekey) override;
 
 
       virtual void root_ones(::file::listing_base & listing) override;

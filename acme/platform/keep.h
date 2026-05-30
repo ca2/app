@@ -325,11 +325,11 @@ class ___keep_flag_on
 public:
 
 
-   enumeration < FLAG >& m_eflagVariable;
-   enumeration < FLAG >          m_eflag;
+   c_flag < FLAG >& m_eflagVariable;
+   c_flag < FLAG >          m_eflag;
 
 
-   ___keep_flag_on(enumeration < FLAG >& eflagVariable, FLAG iFlag) :
+   ___keep_flag_on(c_flag < FLAG >& eflagVariable, FLAG iFlag) :
       m_eflagVariable(eflagVariable),
       m_eflag(iFlag)
    {
@@ -357,7 +357,7 @@ public:
 };
 
 template < typename FLAG >
-inline ___keep_flag_on < FLAG > keep_flag_on(enumeration < FLAG >& eflagVariable, FLAG eflag)
+inline ___keep_flag_on < FLAG > keep_flag_on(c_flag < FLAG >& eflagVariable, FLAG eflag)
 {
 
    return ___keep_flag_on < FLAG >(eflagVariable, eflag);

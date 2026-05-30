@@ -1044,7 +1044,7 @@ void initialize_context() override;
       virtual void prepare_form(atom atom, ::form_document* pformdocument) override;
 
 
-      void report_error(const ::exception & exception, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic) override;
+      void report_error(const ::exception & exception, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic) override;
 
 
       bool can_close_application() override;

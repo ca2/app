@@ -74,7 +74,7 @@ namespace experience_core
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rectangle(::i32_rectangle & lprect, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & lprect, const ::e_element & eelement) override;
 
       //bool _001HitTest(const ::i32_point &point, enum_element &eelementParam) override;
 

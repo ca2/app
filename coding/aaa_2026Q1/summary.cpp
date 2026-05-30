@@ -19,7 +19,7 @@
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "apex/database/stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/node.h"

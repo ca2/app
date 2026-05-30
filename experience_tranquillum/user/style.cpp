@@ -42,7 +42,7 @@ namespace experience_tranquillum
    }
 
 
-   ::color::color style::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style::get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -1729,7 +1729,7 @@ namespace experience_tranquillum
 
       //   ::u32 uImage = psession->userex()->menu()->command_image(item.id());
 
-      //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      //   ::user::toolbarconst ::e_element & eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
       //   if ((nStyle & e_tool_item_style_separator) == 0)
@@ -2035,7 +2035,7 @@ namespace experience_tranquillum
 
       //   ::u32 uImage = psession->userex()->menu()->command_image(item.id());
 
-      //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      //   ::user::toolbarconst ::e_element & eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
       //   if ((nStyle & e_tool_item_style_separator) == 0)

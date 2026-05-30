@@ -10,7 +10,7 @@ namespace data
 {
 
 
-   DECLARE_ENUMERATION(e_tree_item_state, enum_tree_item_state);
+   DECLARE_C_FLAG(e_tree_item_state, enum_tree_item_state);
 
 
    class CLASS_DECL_ACME tree_item_base :
@@ -191,8 +191,8 @@ namespace data
       virtual void _predicate_each(const ::function < bool(tree_item_base *) > & callback);
       virtual ::collection::index _predicate_find_first(const ::function < bool(tree_item_base *) > & callback);
 
-      virtual bool is_expanded() const;
-      virtual bool is_expandable() const;
+      virtual ::i32_boolean is_expanded() const;
+      virtual ::i32_boolean is_expandable() const;
 
       virtual void on_fill_children();
 

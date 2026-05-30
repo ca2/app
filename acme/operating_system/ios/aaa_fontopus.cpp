@@ -522,12 +522,12 @@ namespace account
       set_window_position(m_pacmewindowingwindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
    }
 
-   bool account::boot_window_key_down(::user::enum_key ekey)
+   bool account::boot_window_key_down(const ::user::e_key & ekey)
    {
       return true;
    }
 
-   bool account::boot_window_key_up(::user::enum_key ekey)
+   bool account::boot_window_key_up(const ::user::e_key & ekey)
    {
       return true;
    }

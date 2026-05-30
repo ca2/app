@@ -114,7 +114,7 @@ s_p = this;
       const ::user_interaction_sink & userinteractionsink,
       const ::scoped_string & scopedstrMessage,
       const ::scoped_string & scopedstrCaption,
-      ::user::enum_message_box emessagebox)
+      const ::user::e_message_box & emessagebox)
    {
 
       throw ::interface_only();

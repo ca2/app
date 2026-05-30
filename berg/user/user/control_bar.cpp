@@ -1,8 +1,10 @@
 #include "framework.h"
 #include "control_bar.h"
 #include "frame_window.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -240,25 +242,28 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Fly-by status bar help
 
-#define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
-#define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
+   // e_timer_wait_status
+//#define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
+   // e_timer_check_status
+//#define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
 
-   void control_bar::ResetTimer(::u32 nEvent, const class time & time)
+   void control_bar::ResetTimer(enum_timer etimer, const class time & time)
    {
-      kill_timer(ID_TIMER_WAIT);
-      kill_timer(ID_TIMER_CHECK);
-      set_timer(nEvent,time,nullptr);
+      kill_timer(e_timer_wait_status);
+      kill_timer(e_timer_check_status);
+      set_timer(etimer, time,nullptr);
    }
 
-   void control_bar::on_timer(::timer * ptimer)
+   void control_bar::operator()(::timer * ptimer)
    {
       __UNREFERENCED_PARAMETER(ptimer);
-//      ::u32 uEvent = ptimer->m_uTimer;
+//      ::u32 uEvent = ptimer->m_etimer;
 #ifdef WINDOWS_DESKTOP
       
 
       if (session()->is_key_pressed(::user::e_key_left_button))
          return;
+     //    return true;
 #else
       throw ::exception(todo);
 #endif

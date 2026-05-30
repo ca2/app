@@ -29,7 +29,7 @@ namespace user
       //m_erectPadding = rect_menu_item_padding;
       //m_eintTextAlign = i32_menu_item_draw_text_flags;
 
-      m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
 
    }

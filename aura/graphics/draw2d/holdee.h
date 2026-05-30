@@ -23,7 +23,7 @@ namespace draw2d
    };
 
 
-   DECLARE_ENUMERATION(e_change, enum_change);
+   DECLARE_C_FLAG(e_change, enum_change);
 
 
    class CLASS_DECL_AURA holdee_group :

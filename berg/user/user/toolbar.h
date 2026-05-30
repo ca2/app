@@ -59,7 +59,7 @@ namespace user
 
 
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
       //using ::user::control_bar::create_interaction;
@@ -142,7 +142,7 @@ namespace user
 
       virtual ::status < ::i32_rectangle > index_item_rectangle(::collection::index iItem);
 
-      virtual ::status < ::i32_rectangle > index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate);
+      virtual ::status < ::i32_rectangle > index_element_rectangle(::collection::index iItem, const ::e_element & eelement, const ::user::e_state & estate);
 
       virtual ::user::tool_item * tool_item_at(::collection::index iItem);
       virtual ::collection::count tool_item_count();

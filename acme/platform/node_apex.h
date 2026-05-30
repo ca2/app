@@ -135,7 +135,7 @@ namespace platform
       virtual ::pointer < ::input::input > create_input();
 
 
-      virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey);
+      virtual bool is_key_pressed(bool * pbPressed, const ::user::e_key & ekey);
 
 
       virtual void root_ones(::file::listing_base & listing);

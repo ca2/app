@@ -3,6 +3,8 @@
 #pragma once
 
 
+struct win32_zorder_t{};
+
 class CLASS_DECL_AURA zorder
 {
 public:
@@ -16,8 +18,9 @@ public:
 
    zorder(const zorder & zorder);
    zorder(enum_zorder ezorder);
+   zorder(const e_zorder & ezorder);
 
-   zorder(iptr iZ);
+   zorder(win32_zorder_t, iptr iZ);
    //zorder(oswindow hwnd);
 
    //oswindow get_os_data() const;

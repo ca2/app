@@ -103,8 +103,8 @@ public:
 
 //  virtual bool index_item_rectangle(::collection::index iItem,::i32_rectangle * prectangle)
 
-   ::status < ::i32_rectangle > index_element_rectangle(::collection::index iItem, ::enum_element eelement,
-                                   ::user::enum_state estate) override;
+   ::status < ::i32_rectangle > index_element_rectangle(::collection::index iItem, const ::e_element & eelement,
+                                   const ::user::e_state & estate) override;
 
 
 
@@ -125,7 +125,7 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
    //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-   void on_timer(::timer * ptimer) override;
+   void operator()(::timer * ptimer) override;
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
    //DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);

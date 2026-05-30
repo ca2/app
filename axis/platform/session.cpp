@@ -120,7 +120,7 @@ namespace axis
 
       // m_puiLastLButtonDown = nullptr;
 
-      m_pmapKeyPressed                 = nullptr;
+      //m_pmapKeyPressed                 = nullptr;
 
       //m_puiMouseMoveCapture            = nullptr;
 

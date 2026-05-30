@@ -612,6 +612,23 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
 }
 
 
+       void task::on_start_timers_handling_hint() {
+
+
+    if (m_bAutoStartOnTimerAdded) {
+        if (!is_task_set2()) {
+
+            branch();
+
+        }
+    }
+
+}
+   void task::on_stop_timers_handling_hint() {
+
+}
+
+
 void task::erase_msg_translator(::function<bool(MSG *)> msgtranslator)
 {
 
@@ -1359,6 +1376,8 @@ bool task::task_iteration()
    handle_next_posted_request();
 
    handle_posted_procedures();
+
+    handle_timers();
    
    return true;
 

@@ -40,7 +40,7 @@ namespace user
       bool on_click(::item* pitem, ::user::mouse * pmouse) override;
 
 
-      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -54,7 +54,7 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      bool get_element_rectangle(::i32_rectangle & prectangle, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & prectangle, const ::e_element & eelement) override;
 
       ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 

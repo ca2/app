@@ -865,7 +865,7 @@ namespace lite
 
       ::u32 uImage = pmenucentral->command_image(item.id());
 
-      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      ::user::toolbarconst ::e_element & eelement = ::user::toolbar::e_element_item;
       ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
       if ((nStyle & e_tool_item_style_separator) == 0)
@@ -1169,7 +1169,7 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.id());
 
-      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      ::user::toolbarconst ::e_element & eelement = ::user::toolbar::e_element_item;
 /*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
 

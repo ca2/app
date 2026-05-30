@@ -132,7 +132,7 @@ namespace nanoui
    }
 
 
-   bool ComboBox::scroll_event(const i32_point& p, const ::f32_size& rel)
+   bool ComboBox::scroll_event(const i32_point & point, const ::f32_size& rel)
    {
 
       set_checked(false, e_source_selection);
@@ -149,7 +149,7 @@ namespace nanoui
             m_callback(m_iSelectedIndex);
          return true;
       }
-      return Widget::scroll_event(p, rel);
+      return Widget::scroll_event(point, rel);
    }
 
 

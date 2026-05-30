@@ -10056,7 +10056,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //}
 
 
-   void application::report_error(const ::exception & e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic)
+   void application::report_error(const ::exception & e, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic)
    {
 
       string strMessage;

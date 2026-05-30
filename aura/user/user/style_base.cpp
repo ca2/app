@@ -256,7 +256,7 @@ namespace user
    }
 
 
-   ::color::color style_base::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style_base::get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -283,7 +283,7 @@ namespace user
    }
 
 
-   bool style_base::get_int(::user::interaction * pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate)
+   bool style_base::get_int(::user::interaction * pinteraction, ::i32 & i, ::user::enum_int eint, const ::user::e_state & estate)
    {
 
       return false;
@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   bool style_base::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, ::user::enum_state estate)
+   bool style_base::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, const ::user::e_state & estate)
    {
 
       return false;
@@ -299,7 +299,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer style_base::get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer style_base::get_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return {};

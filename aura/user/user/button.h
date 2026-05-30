@@ -86,7 +86,7 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
 
-      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
       enum_translucency get_translucency(style * pstyle) override;
 
       //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;

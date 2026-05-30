@@ -62,7 +62,7 @@ namespace keyboard
 
 //
 //
-//   ::string key_string(::user::e_key ekey)
+//   ::string key_string(const ::user::e_key & ekey)
 //   {
 //
 //      ::string res;
@@ -111,7 +111,7 @@ namespace keyboard
 //   }
 
 
-   ::string as_string(::user::e_key ekey)
+   ::string as_string(const ::user::e_key & ekey)
    {
 
       //auto ekeyWithNoModifier = key_with_no_modifier(ekey);
@@ -162,7 +162,7 @@ namespace keyboard
    }
 
 //
-//   ::string modifiers_groups_string(::user::e_key ekey)
+//   ::string modifiers_groups_string(const ::user::e_key & ekey)
 //   {
 //
 //      ::string strModifiersGroups;
@@ -188,7 +188,7 @@ namespace keyboard
 //   }
 
 
-//   CLASS_DECL_ACME::string key_string_with_modifiers_groups(::user::e_key ekey)
+//   CLASS_DECL_ACME::string key_string_with_modifiers_groups(const ::user::e_key & ekey)
 //   {
 //
 //      auto strModifiersGroups = modifiers_groups_string(ekey);
@@ -203,7 +203,7 @@ namespace keyboard
 //   ::user::e_key string_key_state_groups(::string& strWillKeyWithNoModifiers)
 //   {
 //
-//      ::user::e_key ekeystate = ::user::e_key_none;
+//      ::user::e_key keyboardstate = ::user::e_key_none;
 //
 //      auto puserkeytextModifiers = (user_key_text*)s_userkeytextaModifiers;
 //
@@ -213,7 +213,7 @@ namespace keyboard
 //         if (strWillKeyWithNoModifiers.contains_erase(puserkeytextModifiers->m_psz))
 //         {
 //
-//            ekeystate |= puserkeytextModifiers->m_ekey;
+//            keyboardstate |= puserkeytextModifiers->m_ekey;
 //
 //         }
 //
@@ -221,17 +221,17 @@ namespace keyboard
 //
 //      }
 //
-//      return ekeystate;
+//      return keyboardstate;
 //
 //   }
 
 
-//   ::user::e_key string_key(const ::scoped_string& scopedstrWithNoModifiers, ::user::e_key ekeystate)
+//   ::user::e_key string_key(const ::scoped_string& scopedstrWithNoModifiers, ::user::e_key keyboardstate)
 //   {
 //
 //      auto ekeyWithNoModifiers = string_key_with_no_modifier(scopedstrWithNoModifiers);
 //
-//      return ekeyWithNoModifiers | ekeystate;
+//      return ekeyWithNoModifiers | keyboardstate;
 //
 //   }
 
@@ -241,11 +241,11 @@ namespace keyboard
 //
 //      ::string strWillKeyWithNoModifiers(scopedstr);
 //
-//      auto ekeystate = string_key_state_groups(strWillKeyWithNoModifiers);
+//      auto keyboardstate = string_key_state_groups(strWillKeyWithNoModifiers);
 //
 //      auto ekeyWithNoModifiers = string_key_with_no_modifier(strWillKeyWithNoModifiers);
 //
-//      return ekeyWithNoModifiers | ekeystate;
+//      return ekeyWithNoModifiers | keyboardstate;
 //
 //   }
 
@@ -351,10 +351,10 @@ namespace keyboard
 //   }
 
 
-//   ::user::e_key modifiers_groups(::user::e_key ekey)
+//   ::user::e_key modifiers_groups(const ::user::e_key & ekey)
 //   {
 //
-//      ::user::e_key ekeystate = ::user::e_key_none;
+//      ::user::e_key keyboardstate = ::user::e_key_none;
 //
 //      auto puserkeyuserkeyModifiersGroups = (user_key_user_key*)s_userkeyuserkeyModifiersGroups;
 //
@@ -364,7 +364,7 @@ namespace keyboard
 //         if (ekey & puserkeyuserkeyModifiersGroups->m_ekey1)
 //         {
 //
-//            ekeystate |= puserkeyuserkeyModifiersGroups->m_ekey2;
+//            keyboardstate |= puserkeyuserkeyModifiersGroups->m_ekey2;
 //
 //         }
 //
@@ -372,12 +372,12 @@ namespace keyboard
 //
 //      }
 //
-//      return ekeystate;
+//      return keyboardstate;
 //
 //   }
 
 
-//   CLASS_DECL_ACME::user::e_key key_with_no_modifier(::user::e_key ekey)
+//   CLASS_DECL_ACME::user::e_key key_with_no_modifier(const ::user::e_key & ekey)
 //   {
 //
 //      return ekey & ::user::e_key_with_no_modifier_mask;

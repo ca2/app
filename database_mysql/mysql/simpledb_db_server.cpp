@@ -186,12 +186,12 @@ bool db_server::destroy_message_queue()
    return true;
 }
 
-void db_server::on_timer(::timer * ptimer)
+void db_server::operator()(::timer * ptimer)
 {
 
-   super::on_timer(ptimer);;
+   super::operator()(ptimer);;
 
-   if(ptimer->m_uTimer == 1258477)
+   if(ptimer->m_etimer == 1258477)
    {
 
    }

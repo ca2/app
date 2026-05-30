@@ -18,7 +18,8 @@ public:
 
 
    action_context() { }
-   action_context(::enum_source esource) : m_esource(esource) {  }
+   action_context(const enum_source esource) : m_esource(esource) {  }
+   action_context(const ::e_source esource) : m_esource(esource) {  }
    action_context(const action_context & action_context) : m_esource(action_context.m_esource), m_pparticlea(action_context.m_pparticlea) {}
    virtual ~action_context() {}
 

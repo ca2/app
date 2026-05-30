@@ -390,7 +390,7 @@ namespace user
    }
 
 
-   ::color::color draw_list_subitem::calculate_text_color(::draw2d::graphics_pointer & pgraphics, ::user::enum_state estate)
+   ::color::color draw_list_subitem::calculate_text_color(::draw2d::graphics_pointer & pgraphics, const ::user::e_state & estate)
    {
 
       auto pstyle = m_pitem->m_pmesh->m_plist->get_style(pgraphics);
@@ -407,7 +407,7 @@ namespace user
 
       auto & pdrawlistcolumn = m_pcolumn->m_pdrawlistcolumn;
 
-      if (estate < 16)
+      if (estate <= e_state_mask1)
       {
 
          auto & color = pdrawlistcolumn->m_coloraText[(::i32)estate];
@@ -448,7 +448,7 @@ namespace user
 
       auto & pdrawlistcolumn = m_pcolumn->m_pdrawlistcolumn;
 
-      auto & pbrushText = pdrawlistcolumn->m_brushaText[estate & 15];
+      auto & pbrushText = pdrawlistcolumn->m_brushaText[(::i32) (estate & e_state_mask1)];
 
       if (!pbrushText)
       {

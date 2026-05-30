@@ -988,7 +988,7 @@ using dereference = typename dereference_struct < T >::type;
 
 
 
-template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
+template < typename ENUM > struct raw_enum_of_struct<::c_flag <ENUM>> { using type = ENUM; };
 template < typename ENUM >
 using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::type;
 
@@ -1178,5 +1178,16 @@ using cast_array = ::comparable_array_base < ::cast < T > >;
 template<class ARG_TYPE>
 inline bool EqualElements(ARG_TYPE element1, ARG_TYPE element2);
 
+
+class timer_dispatch;
+
+
+class timer_handler;
+
+
+class timer;
+
+
+using timer_callback = ::function<void(::timer * ptimer)>;
 
 

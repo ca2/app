@@ -9494,7 +9494,7 @@ void payload::null()
 }
 
 
-::payload & payload::operator |= (enumeration < ::file::enum_flag > eflag)
+::payload & payload::operator |= (const ::file::e_flag & eflag)
 {
 
    //if(m_etype == e_type_payload_pointer)

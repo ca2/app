@@ -145,7 +145,7 @@ namespace experience
       //virtual void calc_window_client_rect(::i32_rectangle * prectangle, const i32_rectangle & lprectWindow);
 
 
-      virtual bool get_element_rectangle(::i32_rectangle & rectangle, ::enum_element eelement);
+      virtual bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement);
 
 
       virtual void get_parent_rectangle(::i32_rectangle & rectangle);

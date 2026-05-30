@@ -270,7 +270,7 @@ namespace fs
       if (path.m_etype & ::file::e_type_exists)
       {
 
-         return path.m_etype & ::file::e_type_folder2;
+         return (::i32_boolean)( path.m_etype & ::file::e_type_folder2);
 
       }
 

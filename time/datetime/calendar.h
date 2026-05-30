@@ -36,7 +36,7 @@ namespace datetime
 
          virtual void GetRectDay(::earth::time& time, ::i32_rectangle * lprect);
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, ::i32_rectangle * lprect);
-         virtual void GetRect(::i32_rectangle * lprect, enum enum_element eelement);
+         virtual void GetRect(::i32_rectangle * lprect, enum const ::e_element & eelement);
 
          virtual void set_month(int32_t iYear, int32_t iMonth);
          virtual void set_time(const ::earth::time& time);
@@ -64,7 +64,7 @@ namespace datetime
          virtual void previous_year();
 
          virtual enum_element hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
-         virtual bool hit_test(enum_element eelement, const ::i32_point& point);
+         virtual bool hit_test(const ::e_element & eelement, const ::i32_point& point);
          virtual bool time_hit_test(::earth::time& time, const ::i32_point& point);
 
 

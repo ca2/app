@@ -293,7 +293,7 @@ namespace user
 
       //::i32 iScan;
 
-      //::user::enum_key ekey;
+      //const ::user::e_key & ekey;
 
       //::platform::type typeinfoKey = ::type<::user::enum_key>();
 
@@ -483,7 +483,7 @@ namespace user
 
    //}
 
-   //string keyboard::process_key(::user::enum_key ekey)
+   //string keyboard::process_key(const ::user::e_key & ekey)
    //{
 
    //   if(m_playout == nullptr)

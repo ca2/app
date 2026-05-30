@@ -1164,7 +1164,7 @@ namespace user
    //}
 
 
-   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
+   //bool style::create_translucency(const ::e_element & eelement, enum_translucency etranslucency)
    //{
 
    //   if (userstyle()->m_mapTranslucency.is_null())
@@ -1320,7 +1320,7 @@ namespace user
    }
 
 
-   ::color::color style::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style::get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -1620,7 +1620,7 @@ namespace user
    }
 
 
-   bool style::get_int(::user::interaction * pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate)
+   bool style::get_int(::user::interaction * pinteraction, ::i32 & i, ::user::enum_int eint, const ::user::e_state & estate)
    {
 
       if(eint == e_int_scroll_bar_thickness)
@@ -1637,7 +1637,7 @@ namespace user
    }
 
 
-   bool style::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, ::user::enum_state estate)
+   bool style::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, const ::user::e_state & estate)
    {
 
       return false;
@@ -1645,7 +1645,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer style::get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer style::get_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if(eelement == e_element_tab)

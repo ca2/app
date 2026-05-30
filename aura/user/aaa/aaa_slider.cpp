@@ -39,10 +39,10 @@ namespace user
 
    }
 
-   void slider::on_timer(::timer * ptimer)
+   void slider::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
 
    }

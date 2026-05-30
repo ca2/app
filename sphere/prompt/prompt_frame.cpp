@@ -43,12 +43,12 @@ namespace prompt
 
 
 
-   void frame::on_timer(::timer * ptimer)
+   void frame::operator()(::timer * ptimer)
    {
 
-      simple_frame_window::on_timer(ptimer);;
+      simple_frame_window::operator()(ptimer);;
 
-      auto uEvent = ptimer->m_uTimer;
+      auto uEvent = ptimer->m_etimer;
 
       static ::f32 theta;
 

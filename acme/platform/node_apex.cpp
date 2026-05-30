@@ -188,7 +188,7 @@ namespace platform
    }
 
 
-   bool apex_node_layer::is_key_pressed(bool* pbPressed, ::user::enum_key ekey)
+   bool apex_node_layer::is_key_pressed(bool* pbPressed, const ::user::e_key & ekey)
    {
       return false;
    }

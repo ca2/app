@@ -219,7 +219,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   enum_element eelement;
+   //   const ::e_element & eelement;
 
    //   ::i32_point point = pmouse->m_point;
 
@@ -249,7 +249,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   enum_element eelement;
+   //   const ::e_element & eelement;
 
    //   ::i32_point point = pmouse->m_point;
 
@@ -283,7 +283,7 @@ namespace user
 
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   //enum_element eelement;
+   //   //const ::e_element & eelement;
 
    //   //::i32_point point = pmouse->m_point;
 
@@ -349,7 +349,7 @@ namespace user
 
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   //enum_element eelement;
+   //   //const ::e_element & eelement;
 
    //   //index iHover = hit_test(pmouse->m_point, eelement);
    //   //if (iHover != m_iHover)
@@ -602,7 +602,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer still::get_font(style * pstyle, const ::e_element & eelement, estate estate) const
    {
 
       //if (pstyle)
@@ -779,9 +779,9 @@ namespace user
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      auto ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          ::topic topic;

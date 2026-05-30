@@ -323,10 +323,10 @@ namespace user
       virtual void set_edit_file(::file::file * pfile);
 
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
-      status < ::f64_rectangle > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
+      status < ::f64_rectangle > get_margin(style * pstyle, const ::e_element & eelement = ::e_element_none, const ::user::e_state & estate = ::user::e_state_none) override;
   
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -407,7 +407,7 @@ namespace user
 
       void set_plain_root(plain_text_tree * proot, bool bOwnData);
 
-      void _001OnKeyboardFocusTimer(::enum_timer etimer);
+      void _001OnKeyboardFocusTimer(const ::e_timer & etimer);
 
       string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, array < character_count * > intptra = array < character_count * >());
 

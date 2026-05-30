@@ -17,6 +17,8 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/session.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/graphics/image/context.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
@@ -158,7 +160,7 @@ namespace nanoui
       common_construct();
 
       m_size = size;
-      m_modifiers = ::user::e_key_none;
+      m_keystatePress = session();
 
 
       // ::memory_set(m_cursors, 0, sizeof(GLFWcursor *) * (::i32)Cursor::CursorCount);
@@ -849,7 +851,7 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
+   bool Screen::keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText)
    {
 
       if (m_focus_path.size() > 0)
@@ -860,7 +862,7 @@ namespace nanoui
 
             auto pwidget = m_focus_path[i];
 
-            if (pwidget->keyboard_event(ekey, scancode, action, ekeystate, scopedstrText))
+            if (pwidget->keyboard_event(ekey, scancode, action, scopedstrText))
             {
 
                return true;
@@ -922,7 +924,7 @@ namespace nanoui
    //
 
 
-   bool Screen::on_mouse_move(const ::i32_point& point, bool bDown, ::user::e_key_state ekeystate)
+   bool Screen::on_mouse_move(const ::i32_point& point)
    {
 
       _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -963,7 +965,7 @@ namespace nanoui
 
          }
 
-         ret = m_pwidgetMouseCapture->mouse_motion_event(pointWidgetClient, shift, bDown, ekeystate);
+         ret = m_pwidgetMouseCapture->mouse_motion_event(pointWidgetClient);
 
       }
       else
@@ -994,7 +996,7 @@ namespace nanoui
 
                auto pointClient = pointCursor - m_pwidgetDrag->absolute_position();
 
-               ret = m_pwidgetDrag->mouse_motion_event(pointClient, shift, bDown, ekeystate);
+               ret = m_pwidgetDrag->mouse_motion_event(pointClient);
 
             }
 
@@ -1005,7 +1007,7 @@ namespace nanoui
 
             auto pointClient = pointCursor;
 
-            ret = Widget::mouse_motion_event(pointClient, shift, bDown, ekeystate);
+            ret = Widget::mouse_motion_event(pointClient);
 
          }
 
@@ -1059,10 +1061,11 @@ namespace nanoui
    }
 
 
-   bool Screen::mouse_button_event(const i32_point& pointCursor, ::user::e_key_state ekeystate, bool down, bool bDoubleClick, ::user::e_key_state ekeystate)
+   bool Screen::mouse_button_event(const i32_point &point, ::user::e_key euserkeyMouseButton, bool bDown,
+                                   bool bDoubleClick)
    {
 
-      m_mouse_pos = pointCursor;
+      m_mouse_pos = point;
 
       auto pwidgetMouseCapture = m_pwidgetMouseCapture;
 
@@ -1071,7 +1074,7 @@ namespace nanoui
 
          auto posWidget = pwidgetMouseCapture->absolute_position();
 
-         auto pointWidgetClient = pointCursor - posWidget;
+         auto pointWidgetClient = point - posWidget;
 
          auto pparent = pwidgetMouseCapture->m_pwidgetParent;
 
@@ -1084,9 +1087,9 @@ namespace nanoui
 
          }
 
-         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, ekeystate, down, bDoubleClick, ekeystate);
+         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, euserkeyMouseButton, bDown, bDoubleClick);
 
-         if (!down)
+         if (!bDown)
          {
 
             m_pwidgetLeftButtonDown = nullptr;
@@ -1105,7 +1108,7 @@ namespace nanoui
       }
 
       bool bHandled = false;
-      m_modifiers = ekeystate;
+      m_keystatePress = session();
       // m_last_interaction = glfwGetTime();
       m_last_interaction.Now();
 
@@ -1127,7 +1130,7 @@ namespace nanoui
 
             auto posWindow = pwindow->m_pos;
 
-            auto pointWindowClient = pointCursor - posWindow;
+            auto pointWindowClient = point - posWindow;
 
             if (!pwindow->contains(pointWindowClient))
             {
@@ -1157,12 +1160,13 @@ namespace nanoui
            }*/
 
            //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
-      bool btn12 = ekeystate == ::user::e_key_state_left_button || ekeystate == ::user::e_key_state_right_button;
+      bool btn12 = euserkeyMouseButton == ::user::e_key_left_button ||
+                   euserkeyMouseButton == ::user::e_key_right_button;
 
       if (btn12)
       {
 
-         if (down)
+         if (bDown)
          {
 
             //if (!m_bDragActive && action == GLFW_PRESS && btn12) {
@@ -1216,7 +1220,7 @@ namespace nanoui
 
                   auto pointClient = m_mouse_pos - m_pwidgetDrag->absolute_position();
 
-                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, ekeystate, false, bDoubleClick, ekeystate);
+                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, euserkeyMouseButton, false, bDoubleClick);
 
                }
 
@@ -1230,7 +1234,7 @@ namespace nanoui
 
       }
 
-      bool bRet = Widget::mouse_button_event(m_mouse_pos, ekeystate, down, bDoubleClick, m_modifiers);
+      bool bRet = Widget::mouse_button_event(m_mouse_pos, euserkeyMouseButton, bDown, bDoubleClick);
 
       bHandled |= bRet;
       //   action == GLFW_PRESS, m_modifiers);
@@ -1238,7 +1242,7 @@ namespace nanoui
        //catch (const std::exception & e) {
        //   std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
        //}
-      if (!down)
+      if (!bDown)
       {
          m_pwidgetLeftButtonDown = nullptr;
 
@@ -1667,12 +1671,12 @@ namespace nanoui
    }
 
 
-   void Screen::on_mouse_enter(const ::i32_point& point, ::user::e_key_state ekeystate)
+   void Screen::on_mouse_enter(const ::i32_point& point, bool bEnter)
    {
 
       i32_sequence2 p(point.x, point.y);
 
-      mouse_enter_event(p, 1, ekeystate);
+      mouse_enter_event(p, true);
 
    }
 
@@ -1680,9 +1684,9 @@ namespace nanoui
    void Screen::on_mouse_leave()
    {
 
-      i32_sequence2 p(0, 0);
+      i32_sequence2 p(-32000, -32000);
 
-      mouse_enter_event(p, 0, ::user::e_key_none);
+      mouse_enter_event(p, false);
 
    }
 
@@ -1712,7 +1716,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_button_down(::user::e_key_state ekeystate, const ::i32_point& point, bool bDoubleClick)
+   bool Screen::on_button_down(::user::e_key euserkeyMouseButton, const ::i32_point& point, bool bDoubleClick)
    {
 
       //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
@@ -1726,16 +1730,16 @@ namespace nanoui
 
       p += m_pos;
 
-      auto ebutton = user_key_to_e_button_state(ekeyButton);
+      bool bDown = true;
 
-      bool bRet = mouse_button_event(p, ebutton, 1, bDoubleClick, ekeystate);
+      bool bRet = mouse_button_event(p, euserkeyMouseButton, true, bDoubleClick);
 
       return bRet;
 
    }
 
 
-   bool Screen::on_button_up(::user::e_key ekeyButton, const ::i32_point& point, ::user::e_key_state ekeystate)
+   bool Screen::on_button_up(::user::e_key euserkeyMouseButton, const ::i32_point& point)
    {
 
       //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
@@ -1749,11 +1753,13 @@ namespace nanoui
 
       p += m_pos;
 
-      auto emouse = user_key_to_user_mouse(ekeyButton);
+      //auto emouse = user_key_to_user_mouse(ekeyButton);
 
       bool bDoubleClick = false;
 
-      bool bRet = mouse_button_event(p, emouse, 0, bDoubleClick, ekeystate);
+      bool bDown = false;
+
+      bool bRet = mouse_button_event(p, euserkeyMouseButton, bDown, bDoubleClick);
 
       m_pwidgetMouseDown = nullptr;
 
@@ -1782,7 +1788,7 @@ namespace nanoui
    //}
    //
 
-   //bool Screen::on_mouse_drag(const ::i32_point& point, ::user::e_key_state ekeystate)
+   //bool Screen::on_mouse_drag(const ::i32_point& point, const ::user::keyboard_state & keyboardstate)
    //{
 
    //   i32_sequence2 pointCursor(point.x, point.y);
@@ -1798,7 +1804,7 @@ namespace nanoui
 
    //      m_mouse_pos = pointCursor;
 
-   //      bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, ekeystate);
+   //      bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, keyboardstate);
 
    //   }
    //   else
@@ -1808,7 +1814,7 @@ namespace nanoui
 
    //      auto shift = pointCursor - m_mouse_pos;
 
-   //      auto bHandled = mouse_drag_event(pointClient, shift, ekeystate);
+   //      auto bHandled = mouse_drag_event(pointClient, shift, keyboardstate);
 
    //      m_mouse_pos = pointCursor;
 
@@ -1822,23 +1828,23 @@ namespace nanoui
 
    //   //rel += m_pos;
 
-   //   //return mouse_drag_event(p, rel, ekeystate);
+   //   //return mouse_drag_event(p, rel, keyboardstate);
 
    //}
 
 
-   bool Screen::on_key_down(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText)
+   bool Screen::on_key_down(const ::user::e_key & ekey, ::i64 scancode, const ::scoped_string & scopedstrText)
    {
 
-      return keyboard_event(ekey, (::i32)scancode, ::user::e_message_key_down, ekeystate, scopedstrText);
+      return keyboard_event(ekey, (::i32)scancode, ::user::e_message_key_down, scopedstrText);
 
    }
 
 
-   bool Screen::on_key_up(::user::enum_key ekey, ::i64 scancode, ::user::e_key_state ekeystate)
+   bool Screen::on_key_up(const ::user::e_key & ekey, ::i64 scancode)
    {
 
-      return keyboard_event(ekey, (::i32)scancode, ::user::e_message_key_up, ekeystate, "");
+      return keyboard_event(ekey, (::i32)scancode, ::user::e_message_key_up, "");
 
    }
 

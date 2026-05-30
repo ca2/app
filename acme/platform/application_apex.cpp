@@ -1459,7 +1459,7 @@ void apex_application_layer::setResourceName(::i32 iId
    //                        ::topic* ptopic) override{}
 
 
-   void apex_application_layer::report_error(const ::exception& e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic)
+   void apex_application_layer::report_error(const ::exception& e, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic)
    {
    }
 

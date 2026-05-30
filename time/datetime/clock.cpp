@@ -33,7 +33,7 @@ namespace datetime
       }
 
 
-      void clock::GetRect(::i32_rectangle * lprect, enum_element eelement)
+      void clock::GetRect(::i32_rectangle * lprect, const ::e_element & eelement)
       {
          __UNREFERENCED_PARAMETER(lprect);
          __UNREFERENCED_PARAMETER(eelement);
@@ -93,7 +93,7 @@ namespace datetime
       }
 
 
-      bool clock::hit_test(enum_element eelement, const i32_point& pt)
+      bool clock::hit_test(const ::e_element & eelement, const i32_point& pt)
       {
 
          ::i32_rectangle rectangle;

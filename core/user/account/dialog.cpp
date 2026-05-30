@@ -6,7 +6,7 @@
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/hyperlink.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/image/context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -166,12 +166,12 @@ namespace account
    }
 
 
-   void dialog::on_timer(::timer * ptimer)
+   void dialog::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      if(ptimer->m_uTimer == e_timer_check_cached_credentials)
+      if(ptimer->m_etimer == e_timer_check_cached_credentials)
       {
 
          try

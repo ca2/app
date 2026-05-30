@@ -85,7 +85,7 @@ namespace helloworld
    }
 
 
-   bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pinteraction)
+   bool main_frame::get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::interaction * pinteraction)
    {
 
       if (m_bExplicitTranslucency)

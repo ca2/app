@@ -2594,6 +2594,7 @@
     <ClCompile Include="platform\wparam.cpp" />
     <ClCompile Include="prototype\string\string_base.cpp" />
     <ClCompile Include="user\simple\dialog_box_line.cpp" />
+    <ClCompile Include="user\user\key_state.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
@@ -2652,6 +2653,10 @@
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\guid.h" />
     <ClInclude Include="platform\http.h" />
+    <ClInclude Include="platform\node_acme.h" />
+    <ClInclude Include="platform\node_apex.h" />
+    <ClInclude Include="platform\node_aqua.h" />
+    <ClInclude Include="platform\node_aura.h" />
     <ClInclude Include="platform\ProfileLogger.h" />
     <ClInclude Include="platform\registry.h" />
     <ClInclude Include="platform\remoting.h" />
@@ -3416,6 +3421,7 @@
     <ClInclude Include="user\user\item.h" />
     <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\keyboard_state.h" />
+    <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\property.h" />
     <ClInclude Include="user\user\text.h" />
@@ -4438,10 +4444,6 @@
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />
-    <ClCompile Include="platform\timer_array.cpp" />
-    <ClCompile Include="platform\timer_callback.cpp" />
-    <ClCompile Include="platform\timer_event.cpp" />
-    <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
@@ -5499,11 +5501,6 @@
     <ClInclude Include="platform\this_type.h" />
     <ClInclude Include="platform\timeout.h" />
     <ClInclude Include="platform\timer.h" />
-    <ClInclude Include="platform\timer_array.h" />
-    <ClInclude Include="platform\timer_callback.h" />
-    <ClInclude Include="platform\timer_event.h" />
-    <ClInclude Include="platform\timer_item.h" />
-    <ClInclude Include="platform\timer_task.h" />
     <ClInclude Include="platform\title.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />

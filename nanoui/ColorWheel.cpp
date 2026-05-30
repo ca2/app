@@ -12,37 +12,32 @@
 */
 #include "framework.h"
 #include "ColorWheel.h"
-#include "nano2d/types.h"
+#include "acme/constant/user_key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "nano2d/context.h"
+#include "nano2d/types.h"
 
-//#include <nanoui/colorwheel.h>
-//#include <nanoui/theme.h>
-//#include <nanoui/opengl.h>
+// #include <nanoui/colorwheel.h>
+// #include <nanoui/theme.h>
+// #include <nanoui/opengl.h>
 
 namespace nanoui
 {
 
 
-   ColorWheel::ColorWheel(Widget* parent, const ::color::hls& hls)
-      : Widget(parent)//, m_regionDrag(None) 
+   ColorWheel::ColorWheel(Widget *parent, const ::color::hls &hls) : Widget(parent) //, m_regionDrag(None)
    {
 
       set_sel_color(hls);
-
    }
 
 
-   i32_size ColorWheel::preferred_size(::nano2d::context *, bool bRecalcTextSize) 
-   {
-
-      return { 100, 100 };
-
-   }
+   i32_size ColorWheel::preferred_size(::nano2d::context *, bool bRecalcTextSize) { return {100, 100}; }
 
 
-   //#define ::nano2d::f_pi MATH_PI
+   // #define ::nano2d::f_pi MATH_PI
 
-   void ColorWheel::draw(::nano2d::context * pcontext)
+   void ColorWheel::draw(::nano2d::context *pcontext)
    {
 
       Widget::draw(pcontext);
@@ -51,10 +46,9 @@ namespace nanoui
       {
 
          return;
-
       }
 
-      m_rectangle.left = (::f32) m_pos.x;
+      m_rectangle.left = (::f32)m_pos.x;
       m_rectangle.top = (::f32)m_pos.y;
       m_rectangle.right = (::f32)(m_pos.x + m_size.cx);
       m_rectangle.bottom = (::f32)(m_pos.y + m_size.cy);
@@ -140,11 +134,9 @@ namespace nanoui
       //      pcontext->line_to(ax, ay);
       //      pcontext->line_to(bx, by);
       //      pcontext->close_path();
-      //      paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), rgba(255, 255, 255, 255));
-      //      pcontext->fill_paint(paint);
-      //      pcontext->fill();
-      //      paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, rgba(0, 0, 0, 0), rgba(0, 0, 0, 255));
-      //      pcontext->fill_paint(paint);
+      //      paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), rgba(255, 255,
+      //      255, 255)); pcontext->fill_paint(paint); pcontext->fill(); paint = pcontext->linear_gradient((r + ax) *
+      //      0.5f, (0 + ay) * 0.5f, bx, by, rgba(0, 0, 0, 0), rgba(0, 0, 0, 255)); pcontext->fill_paint(paint);
       //      pcontext->fill();
       //      pcontext->stroke_color(rgba(0, 0, 0, 64));
       //      pcontext->stroke();
@@ -168,69 +160,62 @@ namespace nanoui
       //   //pcontext->restore();
 
       //}
-
    }
 
 
-   bool ColorWheel::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool ColorWheel::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
-      
-      if (!m_bEnabled || ekeystate != ::user::e_key_state_left_button)
+
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
       {
 
          return false;
 
       }
 
-      if (down)
+      if (bDown)
       {
-      
-         if (on_mouse_down(p))
+
+         if (on_mouse_down(point))
          {
 
             return true;
-
          }
-         //m_regionDrag = adjust_position(p);
+         // m_regionDrag = adjust_position(p);
 
-         //if (m_regionDrag)
+         // if (m_regionDrag)
          //{
-         //   
-         //   set_mouse_capture();
+         //
+         //    set_mouse_capture();
 
          //   return true;
 
          //}
 
          return false;
-
       }
-      else 
+      else
       {
 
-         if (on_mouse_up(p))
+         if (on_mouse_up(point))
          {
-            //m_regionDrag = None;
+            // m_regionDrag = None;
 
-          //  release_mouse_capture();
+            //  release_mouse_capture();
 
             return true;
-
          }
-
       }
 
-         return false;
-      //Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeystate);
-
-
+      return false;
+      // Widget::mouse_button_event(p, emouse, down, bDoubleClick, keyboardstate);
    }
 
 
-   bool ColorWheel::mouse_motion_event(const i32_point& p, const i32_size& shift, bool bDown, ::user::e_key_state ekeystate)
+   bool ColorWheel::mouse_motion_event(const i32_point &point)
    {
 
-      //if (m_regionDrag)
+      // if (m_regionDrag)
       //{
 
       //   adjust_position(p);
@@ -239,27 +224,26 @@ namespace nanoui
 
       //}
 
-      if (on_mouse_motion(p))
+      if (on_mouse_motion(point))
       {
 
          return true;
-
       }
 
-      return Widget::mouse_motion_event(p, shift, bDown, ekeystate);
+      return Widget::mouse_motion_event(point);
 
    }
 
 
-   //ColorWheel::Region ColorWheel::adjust_position(const i32_point& p)
+   // ColorWheel::Region ColorWheel::adjust_position(const i32_point & point)
    //{
 
    //   ::f32 x = (::f32) p.x;
-   //   
+   //
    //   ::f32 y = (::f32) p.y;
-   //   
+   //
    //   ::f32 pwidget = (::f32)m_size.cx;
-   //   
+   //
    //   ::f32 h = (::f32)m_size.cy;
 
    //   ::f32 cx = pwidget / 2.f;
@@ -278,11 +262,11 @@ namespace nanoui
 
    //   ::f32 mr = ::sqrt(x * x + y * y);
 
-   //   if ((m_regionDrag & OuterCircle) || (!m_regionDrag && (mr >= r0 && mr <= r1))) 
+   //   if ((m_regionDrag & OuterCircle) || (!m_regionDrag && (mr >= r0 && mr <= r1)))
    //   {
 
    //      m_hue = ::atan(y / x);
-   //      
+   //
    //      if (x < 0)
    //      {
 
@@ -308,7 +292,7 @@ namespace nanoui
    //   ::f32 a = -m_hue * 2 * ::nano2d::f_pi;
    //   ::f32 sin_a = ::sinf(a);
    //   ::f32 cos_a = ::cosf(a);
-   //   
+   //
    //   ::f32_point xy(cos_a * x - sin_a * y,
    //      sin_a * x + cos_a * y);
 
@@ -406,9 +390,9 @@ namespace nanoui
    //}
 
 
-   //::color::color ColorWheel::color() const 
+   //::color::color ColorWheel::color() const
    //{
-   //   
+   //
    //   ::color::color rgb = hue2rgb(m_hue);
    //   ::color::color black = ::color::black;
    //   ::color::color white = ::color::white;
@@ -420,9 +404,9 @@ namespace nanoui
    //   ::f32 luminanceComplement = 1.0f - m_white - m_black;
 
    //   color.set_red(rgb.f64_red() * luminanceComplement + m_black * black.f64_red() + m_white * white.f64_red());
-   //   color.set_green(rgb.f64_green() * luminanceComplement + m_black * black.f64_green() + m_white * white.f64_green());
-   //   color.set_blue(rgb.f64_blue() * luminanceComplement + m_black * black.f64_blue() + m_white * white.f64_blue());
-   //   color.set_opacity(1.0f);
+   //   color.set_green(rgb.f64_green() * luminanceComplement + m_black * black.f64_green() + m_white *
+   //   white.f64_green()); color.set_blue(rgb.f64_blue() * luminanceComplement + m_black * black.f64_blue() + m_white *
+   //   white.f64_blue()); color.set_opacity(1.0f);
    //   //color.set_alpha(rgb.fa() * luminanceComplement + m_black * black.fa() + m_white * white.fa());
 
    //   return color;
@@ -432,7 +416,7 @@ namespace nanoui
    //}
 
 
-   //void ColorWheel::set_color(const ::color::color& color) 
+   // void ColorWheel::set_color(const ::color::color& color)
    //{
 
    //   auto r = color.f32_red();
@@ -443,7 +427,7 @@ namespace nanoui
 
    //   ::f32 m = color.f32_minimum_rgb();
 
-   //   if (M == m) 
+   //   if (M == m)
    //   {
 
    //      ::f32 l = 0.5f * (M + m);
@@ -452,7 +436,7 @@ namespace nanoui
    //      m_white = l;
 
    //   }
-   //   else 
+   //   else
    //   {
 
    //      ::f32 d = M - m, h;
@@ -495,31 +479,14 @@ namespace nanoui
    //}
 
 
-void ColorWheel::graphics_set_mouse_capture()
-{
+   void ColorWheel::graphics_set_mouse_capture() { set_mouse_capture(); }
+   void ColorWheel::graphics_release_mouse_capture() { release_mouse_capture(); }
+   void ColorWheel::graphics_redraw()
+   {
+      set_need_redraw();
 
-   set_mouse_capture();
-
-}
-void ColorWheel::graphics_release_mouse_capture()
-{
-
-   release_mouse_capture();
-
-}
-void ColorWheel::graphics_redraw()
-{
-   set_need_redraw();
-
-   post_redraw();
-
-
-}
-
-
+      post_redraw();
+   }
 
 
 } // namespace nanoui
-
-
-

@@ -400,7 +400,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer combo_box::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       //if (pstyle)
@@ -530,9 +530,11 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
+   bool combo_box::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelementParameter)
 
    {
+
+      auto eelement = eelementParameter;
 
       if(eelement == e_element_text)
       {

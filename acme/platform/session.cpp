@@ -9,9 +9,11 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/request.h"
+#include "acme/platform/timer.h"
 #include "acme/prototype/text/context.h"
 #include "acme/windowing/windowing.h"
 #include "acme/constant/windowing2.h"
+
 
 namespace platform
 {
@@ -341,6 +343,23 @@ namespace platform
    {
 
       ::task::set_finish();
+
+   }
+
+
+   class ::timer_handler * session::get_timer_handler(const class ::time & time)
+{
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_taskaTimer.is_empty())
+      {
+
+         m_taskaTimer.add(createø<::task>());
+
+      }
+
+      return m_taskaTimer.first();
 
    }
 

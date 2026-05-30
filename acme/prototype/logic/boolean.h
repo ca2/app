@@ -3,12 +3,45 @@
 
 #include "acme/prototype/prototype/e_check.h"
 
+class i32_boolean
+{
+public:
+
+
+   ::i32 m_i;
+
+
+
+   constexpr i32_boolean():m_i(0) {  }
+
+
+   template < typename T>
+   requires (::std::is_same<typename T::CFLAG_TYPE_TAG, c_flag_type_t>::value)
+   constexpr i32_boolean(const T & t):
+   m_i((bool)t)
+   {
+
+   }
+   constexpr i32_boolean(::i32 i):m_i(i) { }
+
+
+   //constexpr boolean(bool b) { m_uOn = b ? 1 : 0; m_uSet = 1; }
+
+
+   constexpr i32_boolean(const i32_boolean& boolean) :m_i(boolean.m_i){}
+
+   operator bool() const {return m_i;}
+   operator ::i32 &() {return m_i;}
+
+};
+
 
 namespace logic
 {
 
 
 //#pragma pack(push, boolean, 1)
+
 
 
    class boolean
@@ -26,6 +59,14 @@ namespace logic
       constexpr boolean() { m_uSet = 0; }
 
 
+      template < typename T>
+      requires (::std::is_same<typename T::CFLAG_TYPE_TAG, c_flag_type_t>::value)
+      constexpr boolean(const T & t)
+      {
+         m_uSet=1;
+         m_uOn = (bool) t;
+
+      }
       constexpr boolean(::i32 i) { m_uOn = i ? 1 : 0; m_uSet = 1; }
 
 

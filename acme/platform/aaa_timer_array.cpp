@@ -119,7 +119,7 @@ namespace acme
       try
       {
 
-         uptr uTimer = ptimer->m_uTimer;
+         uptr uTimer = ptimer->m_etimer;
 
          auto iterator = m_timermap.find(uTimer);
 
@@ -162,7 +162,7 @@ namespace acme
       if (!m_bOk)
       {
 
-         delete_timer(ptimer->m_uTimer);
+         delete_timer(ptimer->m_etimer);
 
          return;
 
@@ -173,7 +173,7 @@ namespace acme
       if(!ptimer->m_bPeriodic)
       {
 
-         delete_timer(ptimer->m_uTimer);
+         delete_timer(ptimer->m_etimer);
 
          return;
 
@@ -184,7 +184,7 @@ namespace acme
    }
 
 
-   void timer_array::on_timer(::timer * ptimer)
+   void timer_array::operator()(::timer * ptimer)
    {
 
       if (m_pcallback != nullptr)

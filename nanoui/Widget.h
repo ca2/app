@@ -20,6 +20,7 @@
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/user/user/container.h"
+#include "acme/user/user/key_state.h"
 //#include <xxxvector>
 //#include <xxxalgorithm>
 //#include "acme/prototype/prototype/function.h"
@@ -42,10 +43,11 @@ namespace nanoui
     * also be used as an panel to arrange an arbitrary number of pwidgetChild
     * widgets using a layout generator (see \::pointer Layout).
     */
-   class CLASS_DECL_NANOUI Widget :
-      public Object,
-      public ::user::acme_container,
-      public in_place_edit_mapper
+   class CLASS_DECL_NANOUI Widget : 
+      virtual public Object,
+      virtual public ::user::acme_container, 
+      virtual public in_place_edit_mapper,
+      virtual public ::timer_dispatch
    {
    public:
 
@@ -60,6 +62,7 @@ namespace nanoui
       i32_size                m_fixed_size;
       bool                    m_bHoverCache;
       ::pointer<::nano2d::text_box>    m_ptextboxTooltip;
+      ::user::key_state       m_keystatePress;
 
       //i32_size                m_offsetToApplyOnDraw;
       //i32_size                m_offsetSizeToApplyOnDraw;
@@ -221,6 +224,8 @@ namespace nanoui
       /// Set the height of the pwidget
       void set_height(::i32 height) { m_size.cy = height; }
 
+      void operator()(::timer * ptimer) override;
+
       ::pointer < TextBox > create_in_place_edit(const ::f32_rectangle& rectangle, const ::scoped_string & scopedstr);
 
       // returns true if something changed that needs redrawing
@@ -234,6 +239,10 @@ namespace nanoui
       /// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.
       virtual bool is_mouse_down() const;
       virtual void set_mouse_down(bool bMouseDown);
+
+
+      virtual bool is_left_button_pressed() const;
+      virtual bool is_right_button_pressed() const;
 
 
       ::i32_rectangle interaction_rectangle() const;
@@ -276,6 +285,9 @@ namespace nanoui
       /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual void set_visible(bool bVisible);
       virtual void toggle_visible();
+
+
+      virtual void on_show_widget(bool bShow);
 
       /// Check if this pwidget is currently visible, taking parent widgets into account
       bool visible_recursive() const {
@@ -395,36 +407,36 @@ namespace nanoui
       void set_cursor(Cursor cursor) { m_cursor = cursor; }
 
       /// Check if the pwidget contains a certain position
-      bool contains(const i32_point& p) const;
+      bool contains(const i32_point & point) const;
 
       /// Determine the pwidget located at the given position value (recursive)
-      Widget* find_widget(const i32_point& p);
-      const Widget* find_widget(const i32_point& p) const;
+      Widget* find_widget(const i32_point & point);
+      const Widget* find_widget(const i32_point & point) const;
 
       /// Handle a mouse button happening (default implementation: propagate to children)
-      virtual bool mouse_button_event(const i32_point& p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick);
+      virtual bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick);
 
       /// Handle a mouse motion happening (default implementation: propagate to children)
-      virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate);
+      virtual bool mouse_motion_event(const i32_point & point);
 
       /// Handle a mouse drag happening (default implementation: do nothing)
-      // virtual bool mouse_drag_event(const i32_point& p, const i32_size& rel, ::user::e_key_state ekeystate);
+      // virtual bool mouse_drag_event(const i32_point & point, const i32_size& rel, const ::user::keyboard_state & keyboardstate);
 
       /// Handle a mouse enter/leave happening (default implementation: record this fact, but do nothing)
-      virtual bool mouse_enter_event(const i32_point& p, bool enter, ::user::e_key_state ekeystate);
+      virtual bool mouse_enter_event(const i32_point & point, bool bEnter);
 
       virtual void set_mouse_capture();
 
       virtual void release_mouse_capture();
 
       /// Handle a mouse scroll happening (default implementation: propagate to children)
-      virtual bool scroll_event(const i32_point& p, const ::f32_size& rel);
+      virtual bool scroll_event(const i32_point & point, const ::f32_size& rel);
 
       /// Handle a focus change happening (default implementation: record the focus status, but do nothing)
       virtual bool focus_event(bool focused);
 
       /// Handle a keyboard happening (default implementation: do nothing)
-      virtual bool keyboard_event(::user::enum_key ekey, ::i32 scancode, ::i32 action, ::user::e_key_state ekeystate, const ::scoped_string & scopedstrText);
+      virtual bool keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText);
 
       /// Handle text input (UTF-32 format) (default implementation: do nothing)
       virtual bool keyboard_character_event(::u32 codepoint);

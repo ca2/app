@@ -70,7 +70,7 @@ namespace experience_nanoui
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement) override;
 
       void GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside);
 

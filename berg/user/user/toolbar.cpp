@@ -5,7 +5,7 @@
 #include "acme/constant/timer.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/tool_item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
@@ -121,7 +121,7 @@ namespace user
    }
 
 
-   void toolbar::on_timer(::timer * ptimer)
+   void toolbar::operator()(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_command_probe)
@@ -1910,7 +1910,7 @@ namespace user
    }
 
 
-   ::status < ::i32_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate)
+   ::status < ::i32_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return error_failed;

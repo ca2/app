@@ -47,7 +47,7 @@ namespace user
       //struct layout_state                     m_stateEventScreen;
 
 
-      enumeration < enum_flag >                    m_eflag;
+      c_flag < enum_flag >                         m_eflag;
       bool                                         m_bFillParent;
       ::i32_rectangle                              m_rectangleHint;
       ::i32_rectangle                              m_rectanglePadding;
@@ -257,7 +257,7 @@ namespace user
       //inline bool pending_request() const { return request() != process(); }
 
 
-      inline bool has_appearance(e_appearance eappearance) const { return design().appearance() & eappearance; }
+      inline ::i32_boolean has_appearance(e_appearance eappearance) const { return design().appearance() & eappearance; }
 
 
 

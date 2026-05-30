@@ -317,16 +317,16 @@ namespace berg
 //
 //   //virtual ::color::color           _001GetColor(::user::interaction * pinteraction, e_color ecolor, ::color::color crDefault = 0);
 //   //virtual ::write_text::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::write_text::font * pfont = nullptr);
-//   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
+//   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, const ::e_element & eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
 //   //virtual const i32_rectangle &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
 //   //virtual ::i32                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, ::i32 iDefault = 0);
 //   //virtual ::f64             _001GetDouble(::user::interaction * pinteraction, ::user::e_f64 ef64, ::f64 dDefault = 0.0);
 //
-//   //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, enum_element eelement = e_element_none);
-//   //virtual bool _001IsTransparent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
-//   //virtual bool _001IsTranslucent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
-//   //virtual bool _001HasTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+//   //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, const ::e_element & eelement = e_element_none);
+//   //virtual bool _001IsTransparent(::user::interaction * pinteraction, const ::e_element & eelement = e_element_none);
+//   //virtual bool _001IsTranslucent(::user::interaction * pinteraction, const ::e_element & eelement = e_element_none);
+//   //virtual bool _001HasTranslucency(::user::interaction * pinteraction, const ::e_element & eelement = e_element_none);
 //
 //
 //   //virtual ::user::style * userstyle() = 0;
@@ -343,7 +343,7 @@ namespace berg
 //
 //   //virtual bool userstyle_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_font(::write_text::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
-//   //virtual bool userstyle_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
+//   //virtual bool userstyle_translucency(enum_translucency & etranslucency, const ::e_element & eelement, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_rect(const i32_rectangle & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_int(::i32 & i, ::user::e_int eint, ::user::interaction * pinteraction);
@@ -352,7 +352,7 @@ namespace berg
 //
 //   //virtual bool style_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool style_font(::write_text::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
-//   //virtual bool style_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
+//   //virtual bool style_translucency(enum_translucency & etranslucency, const ::e_element & eelement, ::user::interaction * pinteraction);
 //   //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool style_rect(const i32_rectangle & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool style_int(::i32 & i, ::user::e_int eint, ::user::interaction * pinteraction);

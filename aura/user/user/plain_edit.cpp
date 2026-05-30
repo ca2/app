@@ -28,13 +28,14 @@
 #include "acme/prototype/string/international.h"
 #include "acme/prototype/string/_string.h"
 #include "acme/prototype/string/str.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/user/menu/track_popup.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/windowing/keyboard.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/user/user/tool.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "aura/windowing/text_editor_interface.h"
@@ -1354,17 +1355,17 @@ namespace user
    //}
 
 
-   void plain_edit::on_timer(::timer * ptimer)
+   void plain_edit::operator()(::timer * ptimer)
    {
 
-      interaction::on_timer(ptimer);
+      interaction::operator()(ptimer);
 
       auto etimer = ptimer->m_etimer;
 
       if (etimer == e_timer_overflow_scrolling_start)
       {
 
-         kill_timer(etimer);
+         //kill_timer(etimer);
 
          if (session()->is_key_pressed(::user::e_key_left_button))
          {
@@ -1372,6 +1373,10 @@ namespace user
             set_timer(e_timer_overflow_scrolling, 300_ms);
 
          }
+
+         ptimer->cancel();
+
+         return;
 
       }
       else if (etimer == e_timer_overflow_scrolling)
@@ -1430,7 +1435,13 @@ namespace user
          else
          {
 
-            kill_timer(etimer);
+            //kill_timer(etimer);
+
+            //return false;
+
+            ptimer->cancel();
+
+            return;
 
          }
 
@@ -1456,26 +1467,28 @@ namespace user
          }
 
       }
-      else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
-      {
+      // else if (ptimer->m_etimer == 500 || ptimer->m_etimer == 501)
+      // {
+      //
+      //    if (ptimer->m_etimer == 500)
+      //    {
+      //
+      //       kill_timer(500);
+      //
+      //       set_timer(501, 300_ms, nullptr);
+      //
+      //    }
+      //
+      //    _001OnMessageKey(m_pmessagekeyLast);
+      //
+      // }
 
-         if (ptimer->m_uTimer == 500)
-         {
-
-            kill_timer(500);
-
-            set_timer(501, 300_ms, nullptr);
-
-         }
-
-         _001OnMessageKey(m_pmessagekeyLast);
-
-      }
+      //return true;
 
    }
 
 
-   status < ::f64_rectangle > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status < ::f64_rectangle > plain_edit::get_margin(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return ::user::interaction::get_margin(pstyle, eelement, estate);
@@ -9379,7 +9392,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnKeyboardFocusTimer(::enum_timer etimer)
+   void plain_edit::_001OnKeyboardFocusTimer(const ::e_timer & etimer)
    {
 
       if (etimer == e_timer_caret_flashing)

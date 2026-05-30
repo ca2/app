@@ -470,7 +470,7 @@ CLASS_DECL_ACME void set_bypass_cache_if_empty(::payload & payloadFile);
 CLASS_DECL_ACME bool get_bypass_cache_if_empty(const ::payload & payloadFile);
 
 CLASS_DECL_ACME void set_bypass_cache(::payload & payloadFile);
-CLASS_DECL_ACME bool get_bypass_cache(const ::payload & payloadFile);
+CLASS_DECL_ACME ::i32_boolean get_bypass_cache(const ::payload & payloadFile);
 
 
 

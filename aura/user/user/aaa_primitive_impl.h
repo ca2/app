@@ -428,7 +428,7 @@ namespace user
 
 
 
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
       virtual bool IsTopParentActive();
 

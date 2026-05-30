@@ -43,7 +43,7 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void on_timer(::timer * ptime) override;
+      void operator()(::timer * ptimer) override;
 
       ::data::data * _get_data(const ::atom & atom) override;
 

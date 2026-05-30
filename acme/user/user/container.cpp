@@ -734,7 +734,7 @@ namespace user
    }
 
 
-   ::item_pointer acme_container::on_create_stock_item(enum_element eelement)
+   ::item_pointer acme_container::on_create_stock_item(const ::e_element & eelement)
    {
 
       auto pitem = allocateø::item(eelement);
@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   ::item_pointer acme_container::stock_item(enum_element eelement)
+   ::item_pointer acme_container::stock_item(const ::e_element & eelement)
    {
 
       auto pitem = tool().item(eelement);

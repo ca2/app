@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer button::get_font(style * pstyle, const ::e_element & eelement, estate estate) const
    {
 
       if (pstyle)
@@ -457,9 +457,9 @@ namespace user
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      auto ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          ::topic topic;

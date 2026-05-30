@@ -175,13 +175,12 @@ namespace file
    }
 
 
-   bool file::has_write_mode()
+   ::i32_boolean file::has_write_mode()
    {
 
       return m_eopen & ::file::e_open_write;
 
    }
-
 
 
    void file::abort()
@@ -762,7 +761,7 @@ namespace file
 //   }
 
 
-   bool file::is_end_of_file() const 
+   ::i32_boolean file::is_end_of_file() const
    {
       
       return m_estate & ::file::e_state_end_of_file; 
@@ -1474,7 +1473,7 @@ namespace file
    }
 
    
-   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload)
+   CLASS_DECL_ACME ::i32_boolean get_no_cache(const ::payload & payload)
    {
 
       if (payload.get_type() == e_type_property_set)

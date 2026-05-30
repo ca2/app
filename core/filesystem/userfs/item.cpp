@@ -57,7 +57,7 @@ namespace userfs
       return m_iIndex;
    }
 
-   bool item::is_folder() const
+   ::i32_boolean item::is_folder() const
    {
       return m_flags.has(::file::e_flag_folder);
    }

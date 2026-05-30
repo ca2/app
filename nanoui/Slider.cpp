@@ -10,6 +10,9 @@
 */
 #include "framework.h"
 #include "Slider.h"
+#include "acme/constant/user_key.h"
+#include "acme/platform/session.h"
+#include "acme/user/user/keyboard_state.h"
 #include "nano2d/types.h"
 #include "nano2d/context.h"
 
@@ -33,10 +36,10 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, ::user::e_key_state ekeystate)
+   bool Slider::mouse_motion_event(const i32_point &point)
    {
 
-      if (!m_bEnabled || !bDown)
+      if (!m_bEnabled || !m_keystatePress.is_left_button_pressed())
       {
 
          return false;
@@ -47,7 +50,7 @@ namespace nanoui
       const ::f32 start_x = kr + kshadow + m_pos.x - 1.f;
       const ::f32 width_x = m_size.cx - 2.f * (kr + kshadow);
 
-      ::f32 value = (p.x - start_x) / width_x, old_value = m_value;
+      ::f32 value = (point.x - start_x) / width_x, old_value = m_value;
 
       value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
 
@@ -59,6 +62,8 @@ namespace nanoui
          m_callback(m_value);
 
       }
+
+      information("Slider value: %f", m_value);
 
       set_need_redraw();
 
@@ -69,15 +74,30 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool Slider::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      if (!m_bEnabled)
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
       {
 
          return false;
 
       }
+
+      if (bDown)
+      {
+
+         set_mouse_capture();
+
+      }
+      else
+      {
+
+         release_mouse_capture();
+
+      }
+
+      m_keystatePress = session();
 
       const ::f32 kr = (m_size.cy * 0.4f), kshadow = 3.f;
 
@@ -85,7 +105,7 @@ namespace nanoui
 
       const ::f32 width_x = m_size.cx - 2 * (kr + kshadow);
 
-      ::f32 value = (p.x - start_x) / width_x, old_value = m_value;
+      ::f32 value = (point.x - start_x) / width_x, old_value = m_value;
 
       value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
 
@@ -98,7 +118,7 @@ namespace nanoui
 
       }
 
-      if (m_final_callback && !down)
+      if (m_final_callback && !bDown)
       {
 
          m_final_callback(m_value);

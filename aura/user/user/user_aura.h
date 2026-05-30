@@ -112,7 +112,7 @@ namespace user
       virtual ::user::interaction_base * get_mouse_focus_RButtonDown();
       virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus);
 
-      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
+      virtual bool on_ui_mouse_message(::user::mouse * pmouse);
 
       virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 

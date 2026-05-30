@@ -36,7 +36,7 @@ void timer_callback::call_on_timer(timer * ptimer)
 }
 
 
-void timer_callback::on_timer(timer * ptimer)
+void timer_callback::operator()(::timer * ptimer)
 {
 
    // return true;

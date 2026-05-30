@@ -233,7 +233,7 @@
                return (frame::enum_element) (*((::i32*)&eelement))++;
             }
 
-            bool frame::get_element_rectangle(::i32_rectangle * lprect, enum_element eelement)
+            bool frame::get_element_rectangle(::i32_rectangle * lprect, const ::e_element & eelement)
             {
                switch (eelement)
                {
@@ -273,7 +273,7 @@
             bool frame::hit_test(const ::i32_point &point, enum_element &eelementParam)
             {
                ::i32_rectangle rectangle;
-               for (enum_element eelement = (enum_element)(::e_element_none + 1);
+               for (const ::e_element & eelement = (enum_element)(::e_element_none + 1);
                      eelement < ElementEnd;
                      eelement++)
                {

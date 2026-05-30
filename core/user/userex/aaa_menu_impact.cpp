@@ -2,7 +2,7 @@
 //#include "menu_impact.h"
 //#include "acme/constant/id.h"
 //#include "acme/constant/message.h"
-//#include "acme/platform/timer.h"
+////#include "acme/platform/timer.h"
 //#include "aura/user/user/frame_interaction.h"
 //#include "axis/platform/application.h"
 //
@@ -107,17 +107,17 @@
 //}
 //
 //
-//void menu_impact::on_timer(::timer * ptimer)
+//void menu_impact::operator()(::timer * ptimer)
 //{
 //
-//   ::user::form_impact::on_timer(ptimer);;
+//   ::user::form_impact::operator()(ptimer);;
 //
 //   if(m_pcallback != nullptr)
 //   {
 //
 //      auto pextendedtopic = create_extended_topic(::id_timer);
 //
-//      pextendedtopic->m_uiEvent = ptimer->m_uTimer;
+//      pextendedtopic->m_uiEvent = ptimer->m_etimer;
 //      
 //      pextendedtopic->m_etimer = ptimer->m_etimer;
 //
@@ -138,7 +138,7 @@
 //
 //   }
 //
-//   if(ptimer->m_uTimer == 24)
+//   if(ptimer->m_etimer == 24)
 //   {
 //
 //      kill_timer(24);

@@ -57,7 +57,7 @@ namespace experience_anthill
    }
 
 
-   ::color::color style::get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style::get_color(::user::interaction * pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -1466,7 +1466,7 @@ namespace experience_anthill
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if (::is_element(ptab->m_pitemHover, (::enum_element)(::e_element_split + i)))
+               if (::is_element(ptab->m_pitemHover, ::e_element_split + i))
                {
 
                   pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
@@ -1865,9 +1865,9 @@ namespace experience_anthill
 
       ::u32 uImage = pmenucentral->command_image(ptoolitem->id());
 
-      ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
+      const ::user::e_state & estate = ptoolbar->tool_item_user_state(iItem);
 
-      //      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+      //      ::user::toolbarconst ::e_element & eelement = ::user::toolbar::e_element_item;
       //      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       //      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
       //      if ((nStyle & e_tool_item_style_separator) == 0)
@@ -1923,7 +1923,7 @@ namespace experience_anthill
 
       rectangleImage = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
-      if ((estyle & e_tool_item_style_separator) != 0)
+      if (estyle & e_tool_item_style_separator)
       {
          ::i32_rectangle rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
@@ -2185,7 +2185,7 @@ namespace experience_anthill
 
       ::u32 uImage = pmenucentral->command_image(ptoolitem->id());
 
-      ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
+      const ::user::e_state & estate = ptoolbar->tool_item_user_state(iItem);
 
       rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 

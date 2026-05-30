@@ -30,7 +30,7 @@ namespace datetime
          virtual ~clock();
 
 
-         virtual void GetRect(::i32_rectangle * lprect, enum_element eelement);
+         virtual void GetRect(::i32_rectangle * lprect, const ::e_element & eelement);
 
 
          virtual void set_time(const ::earth::time& time);
@@ -45,7 +45,7 @@ namespace datetime
          virtual void previous_hour();
 
          virtual enum_element hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
-         virtual bool hit_test(enum_element eelement, const ::i32_point& point);
+         virtual bool hit_test(const ::e_element & eelement, const ::i32_point& point);
 
 
       };

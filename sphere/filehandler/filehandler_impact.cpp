@@ -51,12 +51,12 @@ namespace filehandler
    }
 
 
-   void impact::on_timer(::timer * ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
-      form_impact::on_timer(ptimer);;
+      form_impact::operator()(ptimer);;
 
-      if(ptimer->m_uTimer == 8888)
+      if(ptimer->m_etimer == 8888)
       {
 
          refresh();

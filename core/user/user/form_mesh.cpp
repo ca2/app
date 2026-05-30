@@ -238,9 +238,9 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
    }
 
-   void form_mesh::on_timer(::timer * ptimer)
+   void form_mesh::operator()(::timer * ptimer)
    {
-      mesh::on_timer(ptimer);
+      mesh::operator()(ptimer);
    }
 
    void form_mesh::_001OnMessageNotify(::message::message * pmessage)

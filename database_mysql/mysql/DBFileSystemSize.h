@@ -173,7 +173,7 @@ public:
    void install_message_routing(::channel * pchannel);
 
    DECLARE_MESSAGE_HANDLER(_001OnCopyData);
-   void on_timer(::timer * ptimer);
+   void operator()(::timer * ptimer) override;
 
 
 };

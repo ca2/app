@@ -995,7 +995,7 @@ namespace windows
 
 
 
-   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box(const ::user::e_message_box & emessagebox)
    {
 
       ::i32 iMessageBox = 0;
@@ -1010,12 +1010,12 @@ namespace windows
 
    }
 
-   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_type(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_type(const ::user::e_message_box & emessagebox)
    {
 
-      auto emessageboxType = (::user::enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
+      auto emessageboxType = (emessagebox & ::user::e_message_box_type_mask);
 
-      switch (emessageboxType)
+      switch (emessageboxType.m_cflag)
       {
       case ::user::e_message_box_ok:
          return MB_OK;
@@ -1038,12 +1038,12 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_icon(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_icon(const ::user::e_message_box & emessagebox)
    {
 
-      auto emessageboxIcon = (::user::enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
+      auto emessageboxIcon = emessagebox & ::user::e_message_box_icon_mask;
 
-      switch (emessageboxIcon)
+      switch (emessageboxIcon.m_cflag)
       {
       case ::user::e_message_box_icon_error:
          return MB_ICONERROR;
@@ -1060,12 +1060,12 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_default_button(::user::enum_message_box emessagebox)
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_default_button(const ::user::e_message_box & emessagebox)
    {
 
-      auto emessageboxDefaultButton = (::user::enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
+      auto emessageboxDefaultButton = emessagebox & ::user::e_message_box_default_button_mask;
 
-      switch (emessageboxDefaultButton)
+      switch (emessageboxDefaultButton.m_cflag)
       {
       case ::user::e_message_box_default_button_1:
          return MB_DEFBUTTON1;

@@ -145,14 +145,14 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz) const; // adjusts borders etc
       //bool AllocElements(::i32 nElements, ::i32 cbElement);
       virtual bool SetStatusText(::i32 nHit);
-      void ResetTimer(::u32 nEvent, const class time & time);
+      void ResetTimer(enum_timer etimer, const class time & time);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, ::pointer<::user::frame_window>pFrameWnd);
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnCtlColor);

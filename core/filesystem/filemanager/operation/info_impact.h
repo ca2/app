@@ -32,7 +32,7 @@ namespace filemanager
       void OnFileOperationStep(::i32 iOperation,bool bFinal);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       void install_message_routing(::channel * pchannel) override;
 
    };

@@ -217,7 +217,7 @@ public:
 
       this->m_pbasedata = pbasedata;
 
-      this->m_erange = (enum_range) (erange & ~(e_range_string_literal));
+      this->m_erange = (enum_range) (erange & ~e_range_string_literal).m_cflag;
 
       return pbasedata;
 

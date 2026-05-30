@@ -13,7 +13,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
@@ -157,7 +157,7 @@ namespace user
 
 //#endif
 
-         set_timer(100, 100_ms, nullptr);
+         //set_timer(100, 100_ms, nullptr);
 
          set_timer(e_timer_redraw, 200_ms, nullptr); // Caret
 
@@ -334,7 +334,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement)
+      bool edit::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, const ::e_element & eelement)
 
       {
 
@@ -1658,29 +1658,36 @@ namespace user
       }
 
 
-      void edit::on_timer(::timer * ptimer)
+      void edit::operator()(::timer * ptimer)
       {
 
-         ::user::interaction::on_timer(ptimer);
+         ::user::interaction::operator()(ptimer);
 
-         if (ptimer->m_uTimer >= 100 && ptimer->m_uTimer <= 200)
-         {
+         //if (ptimer->m_etimer >= 100 && ptimer->m_etimer <= 200)
+         //{
 
-         }
-         else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
-         {
+         //}
+         //else
+         //if (ptimer->m_etimer == e_timer_long_press_repeat_keys_first
+         //    || ptimer->m_etimer == e_timer_long_press_repeat_keys_repeat)
+         //{
 
-            if (ptimer->m_uTimer == 500)
-            {
+         //   if (ptimer->m_etimer == e_timer_long_press_repeat_keys_first)
+         //   {
 
-               kill_timer(500);
+               ///kill_timer(500);
+               ///
+         //      ptimer->cancel();
 
-               set_timer(501, 300_ms, nullptr);
+         //      set_timer(e_timer_long_press_repeat_keys_repeat, 300_ms);
 
-            }
+         //   }
 
-         }
-         else if (ptimer->m_uTimer == e_timer_redraw)
+         //   key_to_char(m_pkeymessageLast);
+
+         //}
+         //else
+         if (ptimer->m_etimer == e_timer_redraw)
          {
 
             // Caret

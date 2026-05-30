@@ -9,7 +9,7 @@
 #include "acme/constant/timer.h"
 #include "acme/constant/windowing2.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/windowing/windowing.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -217,12 +217,12 @@ namespace experience
    }
 
 
-   void control_box::on_timer(::timer * ptimer)
+   void control_box::operator()(::timer * ptimer)
    {
 
-      ::user::auto_hide::on_timer(ptimer);
+      ::user::auto_hide::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_check_hover)
+      if (ptimer->m_etimer == e_timer_check_hover)
       {
 
          if (top_level()->layout().is_moving())
@@ -230,12 +230,17 @@ namespace experience
 
             //informationf("experience control_box : top level is moving : ignoring ::user::e_message_timer");
 
+            //return true;
+
             return;
 
-         } else if (top_level()->layout().is_sizing())
+         }
+         else if (top_level()->layout().is_sizing())
          {
 
             //informationf("experience control_box : top level is sizing : ignoring ::user::e_message_timer");
+
+            //return true;
 
             return;
 
@@ -253,7 +258,8 @@ namespace experience
 
                m_timeShow.Now();
 
-            } else
+            }
+            else
             {
 
                if (m_pframewindow != nullptr)

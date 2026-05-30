@@ -15,7 +15,7 @@ enum enum_graphics
 
 };
 
-DECLARE_ENUMERATION(e_graphics, enum_graphics);
+DECLARE_C_FLAG(e_graphics, enum_graphics);
 
 namespace draw2d
 {

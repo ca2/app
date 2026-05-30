@@ -332,7 +332,7 @@ bool ifs::enumerate(::file::listing_base & listing)
 
    }
 
-   return dir[iFind].m_etype & ::file::e_type_folder2;
+   return (::i32_boolean) (dir[iFind].m_etype & ::file::e_type_folder2);
 
 }
 

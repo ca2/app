@@ -40,7 +40,7 @@ namespace platform
    }
 
 
-   ::enum_id acme_node_layer::key_command(::user::enum_key ekey, ::user::keyboard_state * pkeyboardstate)
+   ::enum_id acme_node_layer::key_command(const ::user::e_key & ekey)
    {
       return id_none;
    }

@@ -13,7 +13,7 @@ namespace user
    split_impact::split_impact()
    {
 
-      m_flagNonClient -= e_non_client_background;
+      m_enonclient -= ::user::e_non_client_background;
 
 
       m_bAutoCreate = true;

@@ -41,7 +41,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 //#include "acme/handler/sequence.h"
-#include "acme/platform/timer_array.h"
+////#include "acme/platform/timer_array.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -879,49 +879,49 @@ namespace acme
       }
 
 
-      void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
-      {
+      //void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
+      //{
 
-         if (timeEllapse < 500_ms)
-         {
+      //   if (timeEllapse < 500_ms)
+      //   {
 
-            //         string str;
-            //
-            //         str.formatf("creating fast timer: %d\n", nEllapse);
-            //
-            //         ::information(str);
+      //      //         string str;
+      //      //
+      //      //         str.formatf("creating fast timer: %d\n", nEllapse);
+      //      //
+      //      //         ::information(str);
 
-         }
+      //   }
 
-         if (m_ptimerarray.is_null())
-         {
+      //   if (m_ptimerarray.is_null())
+      //   {
 
-            construct_newø(m_ptimerarray);
+      //      construct_newø(m_ptimerarray);
 
-            m_ptimerarray->m_pcallback = this;
+      //      m_ptimerarray->m_pcallback = this;
 
-            //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+      //      //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
 
-         }
+      //   }
 
-         m_ptimerarray->create_timer(this, uEvent, timeEllapse, procedure, bPeriodic);
+      //   m_ptimerarray->create_timer(this, uEvent, timeEllapse, procedure, bPeriodic);
 
-      }
+      //}
 
 
-      void interaction::kill_timer(uptr uEvent)
-      {
+      //void interaction::kill_timer(uptr uEvent)
+      //{
 
-         if (m_ptimerarray.is_null())
-         {
+      //   if (m_ptimerarray.is_null())
+      //   {
 
-            return;
+      //      return;
 
-         }
+      //   }
 
-         m_ptimerarray->delete_timer(uEvent);
+      //   m_ptimerarray->delete_timer(uEvent);
 
-      }
+      //}
 
 
       void interaction::show()
@@ -1804,6 +1804,47 @@ namespace acme
          }
 
       }
+
+
+      //::timer_task *interaction::set_timer(uptr uEvent, const class ::time &timeEllapse,
+      //                                          const ::procedure &procedure, bool bPeriodic)
+      //{
+
+      //   virtual class ::timer_task *procedure_timer();
+      //   if (timeEllapse < 500_ms)
+      //   {
+      //      //         string str;
+      //      //
+      //      //         str.formatf("creating fast timer: %d\n", nEllapse);
+      //      //
+      //      //         ::information(str);
+      //   }
+      //   if (m_ptimerarray.is_null())
+      //   {
+      //      construct_newø(m_ptimerarray);
+      //      m_ptimerarray->m_pcallback = this;
+      //      // m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+      //   }
+      //   return m_ptimerarray->create_timer(this, uEvent, timeEllapse, procedure, bPeriodic);
+      //}
+
+
+      //void interaction::add_timer()
+      //{
+      //   if (m_pacmewindowingwindow)
+      //   {
+      //      m_pacmewindowingwindow->set_window_text(scopedstrText);
+      //   }
+      //}
+
+
+      //void interaction::era()
+      //{
+      //   if (m_pacmewindowingwindow)
+      //   {
+      //      m_pacmewindowingwindow->set_window_text("");
+      //   }
+      //}
 
 
       i64 interaction::get_style_for_creating_window()

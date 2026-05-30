@@ -1969,7 +1969,8 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
    //m_pContainer->m_puserinteraction->host_to_client()(point);
 
-   if (GetSelection().OnMouseMove(*this, pmouse->m_ekeystate, point))
+   //if (GetSelection().OnMouseMove(*this, pmouse->m_keystate, point))
+    if (GetSelection().OnMouseMove(this, point))
    {
 
       pmouse->m_bRet = true;
@@ -2009,7 +2010,8 @@ void xfplayer_impact_line::OnLButtonDown(::message::message * pmessage)
 
    m_pContainer->m_puserinteraction->host_to_client()(point);
 
-   if (GetSelection().OnLButtonDown(*this, pmouse->m_ekeystate, point))
+   //if (GetSelection().OnLButtonDown(*this, pmouse->m_ekeystate, point))
+    if (GetSelection().OnLButtonDown(this, point))
    {
 
       pmouse->m_bRet = true;
@@ -2056,7 +2058,8 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 
    }
 
-   if (GetSelection().OnLButtonUp(*this, pmouse->m_ekeystate, point))
+   //if (GetSelection().OnLButtonUp(*this, pmouse->m_ekeystate, point))
+    if (GetSelection().OnLButtonUp(this, point))
    {
 
       pmouse->m_bRet = true;
@@ -2068,7 +2071,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 }
 
 
-void xfplayer_impact_line::on_timer(::timer * ptimer)
+void xfplayer_impact_line::operator()(::timer * ptimer)
 {
 
    __UNREFERENCED_PARAMETER(ptimer);

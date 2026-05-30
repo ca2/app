@@ -288,6 +288,9 @@ namespace platform
       m_bWindowingFactory = false;
 
 
+      m_timeProcedureTimerMinimumResolution = 10_ms;
+
+
       m_bRunMainLoop = true;
 
       operating_system_factory(factory());
@@ -5038,7 +5041,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   ::color::color system::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       ::color::color color;

@@ -34,9 +34,9 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_list;
 
-      m_flagNonClient += e_non_client_hover_rect;
+      m_enonclient += e_non_client_hover_rect;
 
-      m_flagNonClient -= e_non_client_focus_rect;
+      m_enonclient -= ::user::e_non_client_focus_rect;
 
       m_bFirstShown = false;
       m_atomImpact = FONTSEL_IMPACT;
@@ -158,10 +158,10 @@ namespace user
    }
 
 
-   void font_list::on_timer(::timer * ptimer)
+   void font_list::operator()(::timer * ptimer)
    {
 
-      ::user::list_box::on_timer(ptimer);
+      ::user::list_box::operator()(ptimer);
 
    }
 

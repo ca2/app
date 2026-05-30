@@ -137,7 +137,7 @@ namespace platform
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string& scopedstr);
 
 
-      virtual ::enum_id key_command(::user::enum_key ekey, ::user::keyboard_state* pkeyboardstate);
+      virtual ::enum_id key_command(const ::user::e_key & ekey);
       //virtual ::file::path synchronously_request_document_folder();
 
       virtual void notify_system_started();

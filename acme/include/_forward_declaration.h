@@ -1157,7 +1157,7 @@ class string_exchange;
 class wparam;
 class lparam;
 class time;
-class timer_callback;
+//class timer_callback;
 
 namespace platform
 {
@@ -1501,7 +1501,7 @@ namespace acme
 
 
 class timer;
-class timer_task;
+class timer_handler;
 
 
 namespace message

@@ -26,7 +26,7 @@ namespace innate_subsystem
       return false;
 
    }
-   bool notification_handler::_001OnKeyDownNotification(::user::enum_key ekey)
+   bool notification_handler::_001OnKeyDownNotification(const ::user::e_key & ekey)
    {
 
       return false;
@@ -75,7 +75,7 @@ namespace innate_subsystem
    }
 
 
-   bool notification_handler::_002OnKeyDownNotification(::i32 iControl, ::user::enum_key ekey)
+   bool notification_handler::_002OnKeyDownNotification(::i32 iControl, const ::user::e_key & ekey)
    {
 
       return false;

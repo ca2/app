@@ -76,3 +76,17 @@ inline ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex
 //};
 
 
+
+template < typename ENUM >
+constexpr c_flag<ENUM>::operator hash32() const
+{
+   return (::u32)m_cflag;
+}
+
+template < typename ENUM>
+constexpr enumeration<ENUM>::operator hash32() const
+{
+   return (::u32)m_eenum;
+}
+
+

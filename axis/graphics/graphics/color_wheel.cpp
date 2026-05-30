@@ -467,17 +467,17 @@ namespace graphics
    }
 
 
-   bool color_wheel::on_mouse_down(const i32_point & p)
+   bool color_wheel::on_mouse_down(const i32_point & point)
    {
 
-      if (!m_rectangle.contains(p + m_rectangle.top_left()))
+      if (!m_rectangle.contains(point + m_rectangle.top_left()))
       {
 
          return false;
 
       }
 
-      m_ehittestDrag = adjust_position_and_hit_test(p);
+      m_ehittestDrag = adjust_position_and_hit_test(point);
 
       if (m_ehittestDrag)
       {
@@ -493,7 +493,7 @@ namespace graphics
    }
 
 
-   bool color_wheel::on_mouse_up(const i32_point & p)
+   bool color_wheel::on_mouse_up(const i32_point & point)
    {
 
       if (m_ehittestDrag)
@@ -512,13 +512,13 @@ namespace graphics
    }
 
 
-   bool color_wheel::on_mouse_motion(const i32_point & p)
+   bool color_wheel::on_mouse_motion(const i32_point & point)
    {
 
       if (m_ehittestDrag)
       {
 
-         adjust_position_and_hit_test(p);
+         adjust_position_and_hit_test(point);
 
          return true;
 
@@ -530,7 +530,7 @@ namespace graphics
 
 
 
-   color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const i32_point & p)
+   color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const i32_point & point)
    {
 
       //::f64 x = (::f64)m_rectangle.left;
@@ -560,9 +560,9 @@ namespace graphics
 
       center = sizeImageOffset + ::f64_size(diamRound / 2, diamRound / 2);
 
-      auto cx = p.x - center.x;
+      auto cx = point.x - center.x;
 
-      auto cy = p.y - center.y;
+      auto cy = point.y - center.y;
 
       ::f64 smallest_dimension = diamRound /2;
 

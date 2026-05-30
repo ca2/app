@@ -15,7 +15,7 @@ namespace user
 
    };
 
-   DECLARE_ENUMERATION(e_item_state, enum_item_state);
+   DECLARE_C_FLAG(e_item_state, enum_item_state);
 
    class CLASS_DECL_ACME item_base :
       virtual public ::particle

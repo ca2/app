@@ -1339,7 +1339,7 @@ namespace platform
         //                        ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, ::i32 iMessageFlags, const ::scoped_string & scopedstrTopic);
+      virtual void report_error(const ::exception& e, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic);
 
 
       virtual void create_impact_system();

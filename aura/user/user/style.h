@@ -147,23 +147,23 @@ namespace user
 
       //virtual ::color::color           _001GetColor(e_color ecolor, ::color::color crDefault = 0);
       //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pfont = nullptr);
-      //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
+      //virtual enum_translucency     _001GetTranslucency(const ::e_element & eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
       //virtual ::i32_rectangle             _001GetRect(::user::e_rect erect, ::i32_rectangle rectangleDefault = nullptr);
       //virtual ::i32                _001GetInt(::user::e_int eint, ::i32 iDefault = 0);
       //virtual ::f64             _001GetDouble(::user::e_f64 ef64, ::f64 dDefault = 0.0);
 
 
-      //virtual bool _001IsBackgroundBypass(enum_element eelement = e_element_none);
-      //virtual bool _001IsTransparent(enum_element eelement = e_element_none);
-      //virtual bool _001IsTranslucent(enum_element eelement = e_element_none);
-      //virtual bool _001HasTranslucency(enum_element eelement = e_element_none);
+      //virtual bool _001IsBackgroundBypass(const ::e_element & eelement = e_element_none);
+      //virtual bool _001IsTransparent(const ::e_element & eelement = e_element_none);
+      //virtual bool _001IsTranslucent(const ::e_element & eelement = e_element_none);
+      //virtual bool _001HasTranslucency(const ::e_element & eelement = e_element_none);
 
 
-      ::color::color get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
-      bool get_int(::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) override;
-      bool get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 eint, ::user::enum_state estate = ::user::e_state_none) override;
-      ::write_text::font_pointer get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
+      ::color::color get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none) override;
+      bool get_int(::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, const ::user::e_state & estate = ::user::e_state_none) override;
+      bool get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 eint, const ::user::e_state & estate = ::user::e_state_none) override;
+      ::write_text::font_pointer get_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none) override;
       //bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;

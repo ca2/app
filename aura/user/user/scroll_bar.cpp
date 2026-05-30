@@ -144,7 +144,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -184,7 +184,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -204,7 +204,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||

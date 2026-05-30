@@ -20,7 +20,7 @@ public:
 
 
    virtual void call_on_timer(timer * ptimer);
-   virtual void on_timer(timer * ptimer);
+   void operator()(::timer * ptimer) override;
    virtual bool e_timer_is_ok();
 
 

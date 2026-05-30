@@ -253,7 +253,7 @@ namespace browser
       virtual void on_before_initialize_render();
 
 
-      virtual void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);

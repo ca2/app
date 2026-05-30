@@ -58,7 +58,7 @@ namespace experience_tranquillum
 //               m_pframewindow->window_rectangle(rectangleEvent);
 //               ::i32_rectangle rectangle;
 //               //::i32_point pointCenter = rectangleEvent.center();
-//               enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+//               auto egrip = m_pframewindow->size_manager()->GetGripMask();
 //
 //               
 //               ::i32_rectangle rectangleOuter(rectangleEvent);
@@ -220,7 +220,7 @@ namespace experience_tranquillum
 
             }
 
-            enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+            auto edock = m_pframewindow->dock_manager()->get_dock_mask();
             ::i32_rectangle rectangleA(rectangleX);
 
             auto estyle = pframewindow->m_estyle;

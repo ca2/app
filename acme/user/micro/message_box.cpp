@@ -6,6 +6,7 @@
 #include "message_box.h"
 #include "still.h"
 #include "theme.h"
+#include "acme/constant/timer.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/sequence.h"
 #include "acme/nano/graphics/context.h"
@@ -19,7 +20,7 @@
 #include "acme/platform/node.h"
 //#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+////#include "acme/platform/timer.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 #include "acme/user/micro/user.h"
@@ -349,10 +350,10 @@ namespace micro
    }
 
 
-   void message_box::on_timer(::timer* ptimer)
+   void message_box::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == 1021)
+      if (ptimer->m_etimer == e_timer_dialog_timeout_update)
       {
 
          m_pstillTimeout->m_strText.formatf("%0.2fs", m_pdialog->dialog_time_remaining_from_timeout().floating_second());
@@ -360,6 +361,8 @@ namespace micro
          redraw();
 
       }
+
+//      return true;
 
    }
 
@@ -446,7 +449,7 @@ namespace micro
          m_pstillTimeout->m_rectangle.left = (::i32)(m_rectangle.width() * 0.025);
          m_pstillTimeout->m_rectangle.right = m_pstillTimeout->m_rectangle.left + wButton / 3;
 
-         set_timer(1021, 200_ms);
+         set_timer(e_timer_dialog_timeout_update, 200_ms);
 
       }
    }
@@ -455,7 +458,7 @@ namespace micro
 
 #ifdef MACOS
 
-   enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, ::user::enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, const ::user::e_message_box & emessagebox);
 
 #endif
 

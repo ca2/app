@@ -5,12 +5,12 @@
 #include "user_key.h"
 
 
-::string as_string(::user::enum_key ekey)
+::string as_string(const ::user::e_key & ekey)
 {
 
    ::string str;
 
-   switch(ekey)
+   switch(ekey.m_eenum)
    {
       case ::user::e_key_back:       str = "user::e_key_back"; break;
       case ::user::e_key_return:       str = "user::e_key_return"; break;

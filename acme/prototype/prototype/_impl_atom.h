@@ -268,7 +268,7 @@ inline atom::atom(enum_id eid) :
 }
 
 
-inline atom::atom(enum_element eelement) :
+inline atom::atom(const ::e_element & eelement) :
    m_etype(e_type_element),
    m_iLargest((::iptr)eelement) // used m_iLargest to reset 64-bit field
 {

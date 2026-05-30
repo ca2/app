@@ -46,7 +46,7 @@ namespace user
       void set_text_color(::draw2d::graphics_pointer & pgraphics);
       void draw_text(::draw2d::graphics_pointer & pgraphics);
 
-      ::color::color calculate_text_color(::draw2d::graphics_pointer & pgraphics, ::user::enum_state estate);
+      ::color::color calculate_text_color(::draw2d::graphics_pointer & pgraphics, const ::user::e_state & estate);
 
    };
 

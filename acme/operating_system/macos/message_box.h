@@ -27,7 +27,7 @@
 //
 
 
-::enum_dialog_result ns_message_box(const_char_pointer title, const_char_pointer message, ::user::enum_message_box emessagebox);
+::enum_dialog_result ns_message_box(const_char_pointer title, const_char_pointer message, const ::user::e_message_box & emessagebox);
 
 
 

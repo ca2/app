@@ -35,16 +35,16 @@ namespace user
       ~tool_item();
       
 
-      bool is_hidden() const; 
+      ::i32_boolean is_hidden() const;
       bool displayed() const;
 
       void hide();
 
-      bool should_wrap() const;
+      ::i32_boolean should_wrap() const;
       void set_should_wrap(bool bSet = true);
 
       
-      bool is_separator() const;
+      ::i32_boolean is_separator() const;
 
       bool is_custom_control() const;
 

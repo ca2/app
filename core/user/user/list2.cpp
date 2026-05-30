@@ -526,10 +526,10 @@ namespace user
    //   //            return 0;
    //}
 
-   //void list2::on_timer(::timer* ptimer)
+   //void list2::operator()(::timer * ptimer)
    //{
-   //   simple_user_list::on_timer(ptimer);
-   //   if (ptimer->m_uTimer == 123654)
+   //   simple_user_list::operator()(ptimer);
+   //   if (ptimer->m_etimer == 123654)
    //   {
    //      kill_timer(123654);
    //      m_bKickActive = false;
@@ -960,7 +960,7 @@ namespace user
          puseritem->m_rectangle2.top = y;
          puseritem->m_rectangle2.bottom = (::i32) (y + iLineHeight);
 
-         ::user::enum_state estate = ::user::e_state_none;
+         ::user::e_state estate = ::user::e_state_none;
 
          if (pitem == m_pitemHover)
          {

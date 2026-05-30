@@ -541,7 +541,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::i32_rectangle * prectangle, enum_element eelement)
+/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::i32_rectangle * prectangle, const ::e_element & eelement)
 
 {
    if(iItem < 0 ||
@@ -762,7 +762,7 @@ i32_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    SimpleMenuBarButton & button = m_buttona[iItem];
 
 
-   enum_element eelement = e_element_item;
+   const ::e_element & eelement = e_element_item;
    enum_element eelementText = e_element_text;
    if(m_iTracking >= 0)
    {
@@ -863,10 +863,10 @@ void simple_menu_bar::_001Hover()
    _001Hover(point);
 }*/
 
-void simple_menu_bar::on_timer(::timer * ptimer)
+void simple_menu_bar::operator()(::timer * ptimer)
 {
-   simple_toolbar::on_timer(ptimer);
-//   if (ptimer->m_uTimer == TIMER_HOVER)
+   simple_toolbar::operator()(ptimer);
+//   if (ptimer->m_etimer == TIMER_HOVER)
 //   {
 //      _001Hover();
 //   }

@@ -13,6 +13,8 @@
 #include "PopupButton.h"
 #include "Screen.h"
 #include "_function.h"
+#include "acme/constant/user_key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"
 
@@ -67,20 +69,20 @@ namespace nanoui
    }
 
    //
-   //bool Button::mouse_enter_event(const i32_point & p, bool enter, ::user::e_key_state ekeystate)
+   //bool Button::mouse_enter_event(const i32_point & point, bool bEnter)
    //{
    //   
-   //   Widget::mouse_enter_event(p, enter, ekeystate);
+   //   Widget::mouse_enter_event(p, enter, keyboardstate);
    //
    //   return true;
    //
    //}
 
 
-   bool Button::mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool Button::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      Widget::mouse_button_event(p, ekeystate, down, bDoubleClick);
+      Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
       /* Temporarily increase the reference count of the button in case the
          button causes the parent window to be destructed */
       ::pointer<Button> self = this;
@@ -88,14 +90,14 @@ namespace nanoui
       if (m_bEnabled &&
          (
 
-            (ekeystate == ::user::e_key_state_left_button && !(m_flags & ContextMenuButton)) ||
-            (ekeystate == ::user::e_key_state_right_button && (m_flags & ContextMenuButton))
+            (euserkeyMouseButton == ::user::e_key_left_button && !(m_flags & ContextMenuButton)) ||
+             (euserkeyMouseButton == ::user::e_key_right_button && (m_flags & ContextMenuButton))
 
             )
          )
       {
 
-         if (down)
+         if (bDown)
          {
 
             if (m_flags & PopupButton)
@@ -311,10 +313,10 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const i32_point& p, bool bEnter, ::user::e_key_state ekeystate)
+   bool Button::mouse_enter_event(const i32_point & point, bool bEnter)
    {
 
-      Widget::mouse_enter_event(p, bEnter, ekeystate);
+      Widget::mouse_enter_event(point, bEnter);
 
       set_need_redraw();
 

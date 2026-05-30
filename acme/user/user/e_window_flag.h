@@ -5,7 +5,7 @@
 #pragma once
 
 
-DECLARE_ENUMERATION(e_window_flag, enum_window_flag);
+DECLARE_C_FLAG(e_window_flag, enum_window_flag);
 
 //class e_window_flag
 //{

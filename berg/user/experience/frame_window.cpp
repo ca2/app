@@ -7,6 +7,7 @@
 #include "acme/handler/item.h"
 #include "acme/platform/application_menu.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
+#include "acme/user/user/keyboard_state.h"
 #include "apex/handler/signal.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/system.h"
@@ -2112,7 +2113,7 @@ namespace experience
    }
 
 
-   void frame_window::on_timer(::timer * ptimer)
+   void frame_window::operator()(::timer * ptimer)
    {
 
       //if(!is_frame_experience_enabled())
@@ -2127,7 +2128,7 @@ namespace experience
       //if(m_pframe != nullptr)
       //{
 
-      //   if(!m_pframe->on_timer((::u32) ptimer->m_uTimer))
+      //   if(!m_pframe->on_timer((::u32) ptimer->m_etimer))
       //   {
 
       //      ptimer->destroy();

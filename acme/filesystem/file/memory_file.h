@@ -259,7 +259,7 @@ public:
    ::i32 get_unsigned_char() override;
    ::i32 get_unsigned_short() override;
    bool get_u64(::u64 & hn) override;
-   bool is_end_of_file() const override;
+   ::i32_boolean is_end_of_file() const override;
 
 
    bool read_string(memory_base & memory) override;

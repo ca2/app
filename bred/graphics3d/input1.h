@@ -100,9 +100,9 @@ namespace graphics3d
       }
 
       // from MyPlace2025@V0idsEmbrace@Twitch
-      ::user::enum_key_state  get_key_state(::user::e_key ekey);
-      bool IsKeyPressed(::user::e_key ekey); // New method for released keys
-      bool IsKeyReleased(::user::e_key ekey); // New method for released keys
+      ::user::enum_key_state  get_key_state(const ::user::e_key & ekey);
+      bool IsKeyPressed(const ::user::e_key & ekey); // New method for released keys
+      bool IsKeyReleased(const ::user::e_key & ekey); // New method for released keys
       bool IsAnyKeyPressed(); // New method to check if any keys are pressed
       // End from MyPlace2025@V0idsEmbrace@Twitch
 

@@ -1013,7 +1013,7 @@ memsize file_context::read(const ::payload & payloadFile, void * p, filesize pos
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionOnFail ? ::file::e_open_no_exception_on_open : 0));
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionOnFail ? ::file::e_open_no_exception_on_open : ::file::e_open_none));
 
       if (!pfile)
       {
@@ -1182,7 +1182,7 @@ void file_context::get_lines(string_array_base & stra, const ::payload & payload
 
       pfile = get_file(payloadFile, ::file::e_open_file |
       ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary
-      | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
+      | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : ::file::e_open_none));
 
       if (bNoExceptionIfFailToOpen)
       {
@@ -4658,7 +4658,7 @@ void set_bypass_cache(::payload & payloadFile)
 }
 
 
-bool get_bypass_cache(const ::payload & payloadFile)
+::i32_boolean get_bypass_cache(const ::payload & payloadFile)
 {
 
    if (payloadFile.m_etype == e_type_path)

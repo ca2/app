@@ -16,7 +16,8 @@ namespace userfs
 
    class CLASS_DECL_CORE tree_data :
       virtual public ::user::tree_data < item >,
-      virtual public ::channel
+      virtual public ::channel,
+virtual public ::timer_callback::base
    {
    public:
       
@@ -24,7 +25,7 @@ namespace userfs
       bool                                   m_bCreateImageList;
       bool                                   m_bCreateImageListRedraw;
       ::i32                                    m_iAnimate;
-      bool                                   m_bTimer123;
+      bool                                   m_bTimerRedraw;
       string_array_base                           m_straUpdatePtrFilter;
 
       ::pointer < ::userfs::document >       m_puserfsdocument;
@@ -93,7 +94,7 @@ namespace userfs
 
       void arrange(::fs::e_arrange earrange);
 
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
 
       void RenameFile(::i32 iLine, string & str, const ::action_context & action_context);

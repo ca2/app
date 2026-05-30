@@ -49,7 +49,7 @@ namespace file
       //// void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool is_end_of_file() const;
+      virtual  ::i32_boolean is_end_of_file() const;
       virtual void set_end_of_file();
 
       inline bool _is_end_of_file() const { return is_end_of_file(); }
@@ -237,7 +237,7 @@ namespace file
       virtual void set_storing();
       virtual void set_loading();
 
-      virtual bool has_write_mode();
+      virtual i32_boolean has_write_mode();
 
       virtual file_status get_status() const;
       virtual ::file::path get_file_path() const;
@@ -298,7 +298,7 @@ namespace file
 
    
    CLASS_DECL_ACME void set_no_cache(::payload& payload);
-   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload);
+   CLASS_DECL_ACME ::i32_boolean get_no_cache(const ::payload & payload);
 
 
  } // namespace file

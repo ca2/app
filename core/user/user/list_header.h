@@ -79,12 +79,12 @@ namespace user
       };
 
 
-      enum enum_element
-      {
-         e_element_item,
-         element_item_Box,
-         ElementDivider,
-      };
+      // enum enum_element
+      // {
+      //    e_element_item,
+      //    element_item_Box,
+      //    ElementDivider,
+      // };
 
       ::i32                           m_iImageSpacing;
       //::write_text::font_pointer                 m_pfont;
@@ -93,17 +93,17 @@ namespace user
 
       bool                          m_bTrack;
       bool                          m_bHover;
-      enum_element                      m_eelementHover;
+      ::e_element                      m_eelementHover;
       ::collection::index                         m_iItemHover;
       bool                          m_bLButtonDown;
-      enum_element                      m_eelementLButtonDown;
+      ::e_element                      m_eelementLButtonDown;
       ::collection::index                         m_iItemLButtonDown;
 
       ::user::list *                        m_plist;
 
 
       list_header();
-      virtual ~list_header();
+      ~list_header() override;
 
       void install_message_routing(::channel * pchannel) override;
       void SetBaseListCtrlInterface(::user::list * pinterface);
@@ -121,24 +121,24 @@ namespace user
       virtual ::i32 GetDividerWidth();
 
 
-      bool GetItemRect(::i32_rectangle * prectangle, enum_element eelement, ::collection::index iItem);
+      bool GetItemRect(::i32_rectangle * prectangle, const ::e_element & eelement, ::collection::index iItem);
 
 
-      bool GetItemRect(::i32_rectangle * prectangle, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown,
+      bool GetItemRect(::i32_rectangle * prectangle, ::e_element eelementLButtonDown, ::collection::index iItemLButtonDown,
 
-                       enum_element eelement,
+                       const ::e_element & eelement,
                        ::collection::index iItem);
 
       bool hit_test(
       const ::i32_point & point,
-      enum_element & eelement,
+      e_element & eelement,
       ::collection::index & iItem);
 
       bool hit_test(
       const ::i32_point & point,
-      enum_element eelementLButtonDown,
+      e_element eelementLButtonDown,
       ::collection::index iItemLButtonDown,
-      enum_element & eelement,
+      e_element & eelement,
       ::collection::index & iItem);
 
 

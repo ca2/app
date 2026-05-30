@@ -86,19 +86,26 @@ namespace nanoui
       }
 
 
-      bool mouse_button_event(const i32_point & p, ::user::e_key_state ekeystate, bool down, bool bDoubleClick) override
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override
       {
 
-         if ((m_bEditable || m_bSpinnable) && down)
+         if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
+         {
+
+            return false;
+
+         }
+
+         if ((m_bEditable || m_bSpinnable) && bDown)
          {
 
             m_mouse_down_value = value();
 
          }
 
-         SpinArea area = spin_area(p);
+         SpinArea area = spin_area(point);
 
-         if (m_bSpinnable && area != SpinArea::None && down && !focused())
+         if (m_bSpinnable && area != SpinArea::None && bDown && !focused())
          {
 
             if (area == SpinArea::Top)
@@ -132,29 +139,29 @@ namespace nanoui
 
          }
 
-         return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeystate);
+         return TextBox::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
       }
 
 
-      //bool mouse_drag_event(const i32_point& p, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate) override
-      bool mouse_motion_event(const i32_point & p, const i32_size & rel, bool bDown, ::user::e_key_state ekeystate) override
+      //bool mouse_drag_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, const ::user::keyboard_state &keyboardstate, bool bDoubleClick) override
+      bool mouse_motion_event(const i32_point &point) override
       {
 
-         if (TextBox::mouse_motion_event(p, rel, bDown, ekeystate))
+         if (TextBox::mouse_motion_event(point))
          {
 
             return true;
 
          }
 
-         if (bDown)
+         if (is_left_button_pressed())
          {
 
-            if (m_bSpinnable && !focused() && ekeystate & ::user::e_key_right_button && m_pointMouseDown.x != -1)
+            if (m_bSpinnable && !focused() && m_pointMouseDown.x != -1)
             {
 
-               ::i32 value_delta = static_cast<::i32>((p.x - m_pointMouseDown.x) / ::f32(10));
+               ::i32 value_delta = static_cast<::i32>((point.x - m_pointMouseDown.x) / ::f32(10));
 
                set_value(m_mouse_down_value + value_delta * m_value_increment, e_source_user);
 
@@ -176,10 +183,10 @@ namespace nanoui
       }
 
 
-      virtual bool scroll_event(const i32_point& p, const ::f32_size& rel) override
+      virtual bool scroll_event(const i32_point & point, const ::f32_size& rel) override
       {
 
-         if (Widget::scroll_event(p, rel))
+         if (Widget::scroll_event(point, rel))
          {
 
             return true;

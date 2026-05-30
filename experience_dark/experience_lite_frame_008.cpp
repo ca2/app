@@ -61,7 +61,7 @@
                   m_pframewindow->window_rectangle(rectangleEvent);
                   ::i32_rectangle rectangle;
                   //i32_point ptCenter = rectangleEvent.center();
-                  enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+                  auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
                   ::i32_point pointHitTest = pointCursor;
 
@@ -241,7 +241,7 @@ SizingNone:
 
 }
 
-               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
+               auto edock = m_pframewindow->dock_manager()->GetDockState();
                ::i32_rectangle rectangleA(lpcrectClient);
 
                if(m_bHollow)
@@ -384,11 +384,11 @@ SizingNone:
 
                auto pmovemanager = m_pframewindow->move_manager();
 
-               enum_border eborder = pmovemanager->GetBorderMask();
+               auto eborder = pmovemanager->GetBorderMask();
 
                if(m_pframewindow->layout().is_zoomed())
                {
-                  eborder = (enum_border)
+                  eborder = 
                             (eborder &
                              ~(e_border_right
                                | e_border_bottom

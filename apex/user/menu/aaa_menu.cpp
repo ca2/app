@@ -1276,10 +1276,10 @@ menu::~menu()
 //
 //
 //
-//   void menu::on_timer(::timer * ptimer)
+//   void menu::operator()(::timer * ptimer)
 //      {
 //
-//         ::user::interaction::on_timer(ptimer);
+//         ::user::interaction::operator()(ptimer);
 //
 //         ::pointer<::menu::item>pitemThis = get_menu_item();
 //
@@ -1292,7 +1292,7 @@ menu::~menu()
 //
 //         ::pointer<::menu::item_ptra>pmenuitema = pitemThis->m_pmenuitema;
 //
-//         if (ptimer->m_uTimer == e_timer_menu)
+//         if (ptimer->m_etimer == e_timer_menu)
 //         {
 //
 //            kill_timer(e_timer_menu);
@@ -1353,7 +1353,7 @@ menu::~menu()
 //            //m_atomTimerMenu.is_empty();
 //
 //         }
-//         else if (ptimer->m_uTimer == ::e_timer_command_probe)
+//         else if (ptimer->m_etimer == ::e_timer_command_probe)
 //         {
 //
 //            {

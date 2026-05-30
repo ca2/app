@@ -59,7 +59,7 @@ namespace user
 
          virtual bool get_item_rect(::i32_rectangle * prectangle, ::collection::index i) override;
 
-         virtual bool get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement) override;
+         virtual bool get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, const ::e_element & eelement) override;
 
          virtual ::f64_size get_size() override;
 
@@ -138,7 +138,7 @@ namespace user
          //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
-         void on_timer(::timer * ptimer) override;
+         void operator()(::timer * ptimer) override;
 
 
          void key_to_char(::message::key * pkey) override;

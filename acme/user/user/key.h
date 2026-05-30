@@ -21,7 +21,7 @@ namespace user
       bool                 m_bExt;
       ::i32                  m_iVirtualKey;
 
-      ::user::enum_key     m_ekey;
+      ::user::e_key     m_ekey;
 
       string            m_strText;
 

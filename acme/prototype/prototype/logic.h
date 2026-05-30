@@ -9,7 +9,7 @@ inline bool _xor(bool b1, bool b2)
    return (!b1 && b2) || (b1 && !b2);
 }
 
-inline bool is_different(bool b1, bool b2)
+inline bool is_different(i32_boolean b1, i32_boolean b2)
 {
    return _xor(b1, b2);
 }

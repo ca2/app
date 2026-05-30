@@ -3,12 +3,12 @@
 #include "item.h"
 
 
-::string get_e_element_text(enum_element eelement)
+::string get_e_element_text(const e_element & eelement)
 {
 
    ::string str;
 
-   switch (eelement)
+   switch (eelement.m_eenum)
    {
    case e_element_none:
       str = "e_element_none";
@@ -52,7 +52,7 @@ bool item::_is_set() const
 }
 
 
-item & item::operator = (enum_element eelement)
+item & item::operator = (const e_element & eelement)
 {
 
    m_item.m_eelement = eelement;
@@ -101,7 +101,7 @@ item & item::operator = (::collection::index iItem)
 }
 
 
-bool item::is_hidden() const
+i32_boolean item::is_hidden() const
 {
 
    return false;

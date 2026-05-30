@@ -14,6 +14,8 @@
 #include "PopupButton.h"
 #include "Screen.h"
 #include "acme/constant/user_key.h"
+#include "acme/platform/session.h"
+#include "acme/user/user/keyboard_state.h"
 #include "nano2d/context.h"
 #include "aura/user/user/interaction.h"
 
@@ -277,24 +279,24 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_enter_event(const i32_point& pointCursor, bool enter, ::user::e_key_state ekeystate)
+   bool Window::mouse_enter_event(const i32_point& point, bool bEnter)
    {
 
-      Widget::mouse_enter_event(pointCursor, enter, ekeystate);
+      Widget::mouse_enter_event(point, bEnter);
 
       return true;
 
    }
 
-
 #define __MOUSE_LEFT_BUTTON 0
+
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const i32_point&pointCursor, const i32_size& rel, bool bDown, ::user::e_key_state ekeystate)
+   bool Window::mouse_motion_event(const i32_point & point)
    {
 
-      if (m_bDrag && ekeystate == ::user::e_key_state_left_button) != 0 && bDown)
+      if (m_bDrag && is_left_button_pressed())
       {
 
          auto offset = screen()->m_pointLastCursor - m_pointDragStartCursor;
@@ -461,28 +463,28 @@ void Window::on_destroy_window()
 
       }
 
-      return Widget::mouse_motion_event(pointCursor, rel, bDown, ekeystate);
+      return Widget::mouse_motion_event(point);
 
    }
 
 
-   bool Window::mouse_button_event(const i32_point& pointCursor, ::user::e_key_state ekeystate, bool down, bool bDoubleClick)
+   bool Window::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      if (Widget::mouse_button_event(pointCursor, ekeystate, down, bDoubleClick))
+      if (Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick))
       {
 
          return true;
 
       }
 
-      if (ekeystate == ::user::e_key_state_left_button)
+      if (euserkeyMouseButton == ::user::e_key_left_button)
       {
 
-         if (down)
+         if (bDown)
          {
 
-            auto bDrag = down && (pointCursor.y - m_pos.y) < m_ptheme->m_iWindowHeaderHeight;
+            auto bDrag = (point.y - m_pos.y) < m_ptheme->m_iWindowHeaderHeight;
 
             m_bDrag = bDrag;
 
@@ -496,6 +498,8 @@ void Window::on_destroy_window()
                m_pointDragStartPosition = m_pos;
                
                m_pointLastDragPosition = m_pos;
+
+               m_keystatePress = session();
 
                return true;
 
@@ -516,6 +520,8 @@ void Window::on_destroy_window()
                   m_functionOnMoved();
 
                }
+
+               m_keystatePress = session();
 
                m_bDrag = false;
 

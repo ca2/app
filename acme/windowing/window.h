@@ -138,7 +138,7 @@ namespace acme
 
          bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
-         bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+         bool defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse) override;
 
 
 
@@ -269,7 +269,7 @@ namespace acme
          virtual ::i32_point windowing_popup_origin();
          virtual ::i32_size windowing_popup_size();
          virtual void _on_windowing_close_window();
-         virtual bool is_satellite_window();
+         virtual ::i32_boolean is_satellite_window();
          ::acme::user::interaction * owner_interaction();
          ::acme::windowing::window * owner_window();
          ::string get_window_text() override;

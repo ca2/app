@@ -76,15 +76,14 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
 task::task()
 {
-
-
+   m_hnTaskFlag = 0;
    m_iTaskObjectSerialId = g_iTaskObjectSerialId++;
    m_timeSample = 1_s;
    //m_bAutoRelease = false;
 
    m_pfnImplement = nullptr;
    m_iExitCode = 0;
-   m_hnTaskFlag = 0;
+   m_bAutoStartOnTimerAdded = true;
 
    m_timeDefaultPostedProcedureTimeout = 500_ms;
 
@@ -1011,7 +1010,18 @@ void task::set_task()
    if (bEmpty || bIsTaskName)
    {
 
-      m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+      if (id().has_character())
+      {
+         
+         m_strTaskName = id();
+
+      }
+      else
+      {
+
+         m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+
+      }
 
    }
 
@@ -2520,7 +2530,7 @@ bool task::on_get_task_name(string & strTaskName)
       strTaskName = m_strTaskName;
 
    }
-   else
+   else if (::platform::type(this).name().has_character())
    {
 
       //::task_set_name(::platform::type(this).name());
@@ -2592,6 +2602,13 @@ void task::init_task()
    auto iTaskObjectSerialId = m_iTaskObjectSerialId;
 
    string strTaskName;
+
+   if (id() == "timer_handler")
+   {
+
+      information("timer_handler");
+
+   }
 
    if (on_get_task_name(strTaskName))
    {

@@ -355,7 +355,13 @@ namespace platform
       if (m_taskaTimer.is_empty())
       {
 
-         m_taskaTimer.add(createø<::task>());
+         auto ptask = createø<::task>();
+
+         ptask->id() = "timer_handler";
+
+         ptask->m_bRunMainLoop = true;
+
+         m_taskaTimer.add(ptask);
 
       }
 

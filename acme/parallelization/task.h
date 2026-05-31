@@ -297,6 +297,8 @@ private:
 
    void on_initialize_particle() override;
 
+   void on_new_main_loop_happening_creation() override;
+
    
    virtual void add_msg_translator(::function<bool(MSG *)> msgtranslator);
    virtual void erase_msg_translator(::function<bool(MSG *)> msgtranslator);

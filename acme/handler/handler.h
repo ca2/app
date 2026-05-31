@@ -71,6 +71,7 @@ namespace handler
       void on_initialize_particle() override;
 
       virtual void update_new_main_loop_happening();
+      virtual void on_new_main_loop_happening_creation();
 
       void destroy() override;
 

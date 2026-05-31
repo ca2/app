@@ -136,6 +136,15 @@ task::~task()
 }
 
 
+void task::on_new_main_loop_happening_creation()
+{
+
+   m_synchronizationaMainLoop.add(m_pmanualresethappeningMainLoop);
+
+}
+
+
+
 void task::on_initialize_particle()
 {
 
@@ -145,7 +154,7 @@ void task::on_initialize_particle()
 
    ::handler::handler::on_initialize_particle();
 
-   m_synchronizationaMainLoop.add(new_main_loop_happening());
+   //m_synchronizationaMainLoop.add(new_main_loop_happening());
 
    update_new_main_loop_happening();
 
@@ -1590,6 +1599,12 @@ void task::destroy()
 
    }
 
+   //bool bHasFinishingFlag1 = has_finishing_flag();
+
+   //set_finish();
+
+   //bool bHasFinishingFlag2 = has_finishing_flag();
+
    ::object::destroy();
 
    ::data::property_container::destroy();
@@ -2547,11 +2562,16 @@ bool task::on_get_task_name(string & strTaskName)
 void task::set_happened(e_happening ehappening)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+   if (m_pmanualresethappeningMainLoop || ehappening != e_happening_finish)
+   {
 
-   m_ehappeninga.add(ehappening);
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   new_main_loop_happening()->set_happening();
+      m_ehappeninga.add(ehappening);
+
+      new_main_loop_happening()->set_happening();
+
+   }
 
    //update_new_main_loop_happening();
 
@@ -3646,10 +3666,10 @@ void task::kick_idle()
       ::PostThreadMessage((DWORD) m_itask, ::user::e_message_kick_idle, 0, 0);
 
    }
-   else
+   else if (m_pmanualresethappeningMainLoop)
    {
 
-      new_main_loop_happening()->set_happening();
+      m_pmanualresethappeningMainLoop->set_happening();
 
    }
 

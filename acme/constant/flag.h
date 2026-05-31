@@ -6,7 +6,6 @@ enum enum_flag : ::u64
 {
 
 
-   e_flag_none,
    e_flag_success = 1 << 0,
    e_flag_timeout = 1 << 1,
    e_flag_failure = 1 << 2,
@@ -54,7 +53,6 @@ enum enum_flag : ::u64
    e_flag_synchronous = 1ll << 33,
    e_flag_shared = 1ll << 34,
    e_flag_read_only = 1ll << 35,
-   e_flag_owner = 1ll << 35,
    e_flag_debug0 = 1ll << 36,
    e_flag_debug1 = 1ll << 37,
    e_flag_debug2 = 1ll << 38,
@@ -73,6 +71,8 @@ enum enum_flag : ::u64
 
    e_flag_proto = 1ll << 52,
    e_flag_no_stdout = 1ll << 53,
+   e_flag_owner = 1ll << 54,
+
 
 };
 

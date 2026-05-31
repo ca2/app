@@ -6,13 +6,22 @@
 //#include "subparticle_flags.h"
 
 
+struct quantum_flag
+{
+
+   ::e_flag                         m_eflagElement;
+
+
+};
+
+
 class CLASS_DECL_ACME quantum :
-   public memory_quantum
+   public memory_quantum,
+   virtual public quantum_flag
 {
 public:
 
 
-   ::e_flag                            m_eflagElement;
    ::e_status                          m_estatus;
 
 

@@ -57,7 +57,7 @@ protected:
    
    ::pointer_array < subparticle >                             m_subparticlea;
 
-   hsynchronization_array                                                 m_hsynchronizationa;
+   hsynchronization_array                                      m_hsynchronizationa;
    fixed_raw_array < ::u8, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
 
 public:

@@ -54,10 +54,10 @@ namespace handler
          new_main_loop_happening()->set_happening();
 
       }
-      else
+      else if(m_pmanualresethappeningMainLoop)
       {
 
-         new_main_loop_happening()->reset_happening();
+         m_pmanualresethappeningMainLoop->reset_happening();
 
       }
 
@@ -79,10 +79,21 @@ namespace handler
    ::manual_reset_happening * handler::new_main_loop_happening()
    {
 
-      defer_construct_newø(m_pmanualresethappeningMainLoop);
+      if (defer_construct_newø(m_pmanualresethappeningMainLoop))
+      {
+
+         on_new_main_loop_happening_creation();
+
+      }
 
       return m_pmanualresethappeningMainLoop;
 
+   }
+
+
+   void handler::on_new_main_loop_happening_creation()
+   {
+   
    }
 
 

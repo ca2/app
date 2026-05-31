@@ -1442,9 +1442,11 @@ void object::set_child_tasks_to_finish()
 void object::destroy_tasks()
 {
 
-   set_finishing_flag();
+   //set_finishing_flag();
 
-   while (task_get_run())
+   set_finish();
+
+   while (should_run())
    {
 
       set_child_tasks_to_finish();

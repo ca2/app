@@ -11,7 +11,7 @@ namespace innate_subsystem
 {
 
 	          keyboard_state_t::keyboard_state_t() :
-       m_allowProcessCharEvent(false), m_allowProcessDoubleChar(false), m_f64DeadCatched(false),
+       m_allowProcessCharEvent(false), m_allowProcessDoubleChar(false), m_doubleDeadCatched(false),
        m_leftMetaIsPressed(false), m_rightMetaIsPressed(false)
    {
    }
@@ -22,7 +22,7 @@ namespace innate_subsystem
       memset(m_serverKeyState, 0, sizeof(m_serverKeyState));
    }
 
-   bool keyboard_state_t::isPressed(const ::user::e_key & ekey) { return (m_serverKeyState[ekey] & 128) != 0; }
+   bool keyboard_state_t::isPressed(const ::user::e_key & ekey) { return (m_serverKeyState[ekey.m_eenum] & 128) != 0; }
 
    // void clearKeyState();
    ::i32 keyboard_state_t::GettingCharFromCtrlSymbol(::i32 ch)

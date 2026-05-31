@@ -268,7 +268,7 @@ namespace coding
 //
 //                   ::file::path pathStorageWindowsZip = "C:/operating_system/storage-windows.zip";
 //
-//                   ::file::path pathStorageWindowsUrl = "https://ca2.software/download/storage-windows.zip";
+//                   ::file::path pathStorageWindowsUrl = "https://ca2.site/download/storage-windows.zip";
 //
 //                   ::property_set set;
 //

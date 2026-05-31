@@ -57,7 +57,7 @@ namespace subsystem
        * @param keySym [out] X11 key sym.
        * @return true if virtual key code is translated into keySym, false otherwise.
        */
-      bool virtualCodeToKeySym(::u32 *keySym, ::user::enum_key euserkey);
+      bool virtualCodeToKeySym(::u32 *keySym, const ::user::e_key & euserkey);
 
       /**
        * Converts X11 key sym to TCHAR.

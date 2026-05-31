@@ -51,19 +51,33 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\release</LocalDebuggerWorkingDirectory>
     <LocalDebuggerCommand>runas </LocalDebuggerCommand>
+    <LocalDebuggerCommandArgumentsHistory>/user:&lt;localmachinename&gt;\administrator C:\Users\camilo\code\integration\console_build_tools\source\app\time-windows\x64\Debug\console_application_build_helper.exe --initial-ambient-setup|</LocalDebuggerCommandArgumentsHistory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerCommandArguments>-prepare_applications application_list.txt x64 Release</LocalDebuggerCommandArguments>
     <LocalDebuggerWorkingDirectory>C:\release</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArgumentsHistory>-prepare_applications application_list.txt x64 Release|</LocalDebuggerCommandArgumentsHistory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <LocalDebuggerCommandArguments>--initial-ambient-setup</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">
+    <LocalDebuggerCommandArguments>--initial-ambient-setup</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArgumentsHistory>--initial-ambient-setup|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <LocalDebuggerCommandArguments>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\main\source\app\acme\</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArgumentsHistory>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">
+    <LocalDebuggerCommandArguments>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\main\source\app\acme\</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArgumentsHistory>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug|</LocalDebuggerCommandArgumentsHistory>
   </PropertyGroup>
 </Project>

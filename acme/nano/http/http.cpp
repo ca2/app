@@ -236,15 +236,19 @@ namespace nano
       void http::download(const ::file::path & path, const ::url::url & url, ::property_set & set)
       {
 
-         auto urlEffective = get_effective_url(url, set);
+         ::property_set setEffectiveUrl(set);
 
-         auto pnanohttpget = create_newø < ::nano::http::get>();
+         auto urlEffective = get_effective_url(url, setEffectiveUrl);
+
+         auto pnanohttpget = createø < ::nano::http::get>();
 
          pnanohttpget->m_url = urlEffective;
 
          pnanohttpget->m_ppropertyset = &set;
 
          pnanohttpget->m_timeSyncTimeout = 2_hour;
+
+         pnanohttpget->want_memory_response();
 
          send(pnanohttpget);
 

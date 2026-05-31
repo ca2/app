@@ -662,12 +662,24 @@ namespace launch
       else
       {
 
-         strUrl.formatf("https://%s.ca2.site/%s/%s/%s/%s.zip",
+#ifdef WINDOWS
+
+         strUrl.formatf("https://%s.ca2.site/%s/%s/%s.zip",
          m_strSystem.c_str(),
-         m_strRelease.c_str(),
          m_strArchitecture.c_str(),
          m_strAppRoot.c_str(),
          m_strAppName.c_str());
+
+#else
+
+         strUrl.formatf("https://%s.ca2.site/%s/%s/%s/%s.zip",
+            m_strSystem.c_str(),
+            m_strRelease.c_str(),
+            m_strArchitecture.c_str(),
+            m_strAppRoot.c_str(),
+            m_strAppName.c_str());
+
+#endif
 
 
       }

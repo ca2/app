@@ -157,7 +157,7 @@ namespace datetime
          lprect->bottom = lprect->top + m_iLineHeight + 1;
       }
 
-      void graphics::GetRect(::i32_rectangle * lprect,enum const ::e_element & eelement)
+      void graphics::GetRect(::i32_rectangle * lprect, const e_element & eelement)
       {
          if(eelement == e_element_month_title)
          {
@@ -168,7 +168,7 @@ namespace datetime
          }
          else
          {
-            switch(eelement)
+            switch(eelement.eflag())
             {
             case e_element_previous_year:
                GetRectDay(5,7,lprect);
@@ -204,16 +204,16 @@ namespace datetime
 
 
 
-      enum_element graphics::hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
+      e_element graphics::hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
       {
 
-         for (::i32 iElement = e_element_none + 1; iElement < e_element_count; iElement++)
+         for (auto eelement = e_element_none + 1; eelement < e_element_count; eelement++)
          {
 
-            if (hit_test((enum_element)iElement, point))
+            if (hit_test(eelement, point))
             {
 
-               return (enum_element)iElement;
+               return eelement;
 
             }
 
@@ -246,7 +246,7 @@ namespace datetime
          return false;
       }
 
-      bool graphics::hit_test(const ::e_element & eelement, const i32_point & pt)
+      bool graphics::hit_test(const e_element & eelement, const i32_point & pt)
       {
 
          ::i32_rectangle rectangle;

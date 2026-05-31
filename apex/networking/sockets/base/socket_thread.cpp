@@ -238,6 +238,8 @@ namespace sockets
       catch (...)
       {
 
+         information() << "socket_thread::run exception";
+
       }
 
       destroy();

@@ -24,6 +24,10 @@ namespace datetime
       };
 
 
+
+      DECLARE_ENUMERATION(e_element, enum_element);
+
+
    }  // namespace calendar
 
 
@@ -46,6 +50,7 @@ namespace datetime
 
       };
 
+      DECLARE_ENUMERATION(e_element, enum_element);
 
    } // namespace clock
 

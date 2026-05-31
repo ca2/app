@@ -269,7 +269,7 @@ namespace keyboard
 
          }
 
-         return (::user::enum_key) (::user::e_key_f1 + (iF - 1));
+         return (::user::e_key_f1 + (iF - 1));
 
       }
       else if (strKeyWithNoModifier == " ")
@@ -286,19 +286,19 @@ namespace keyboard
          if (ch >= '0' && ch <= '9')
          {
 
-            return (::user::enum_key)(::user::e_key_0 + (ch - '0'));
+            return ::user::e_key_0 + (ch - '0');
 
          }
          else if (ch >= 'a' && ch <= 'z')
          {
 
-            return (::user::enum_key)(::user::e_key_a + (ch - 'a'));
+            return ::user::e_key_a + (ch - 'a');
 
          }
          else if (ch >= 'A' && ch <= 'Z')
          {
 
-            return (::user::enum_key)(::user::e_key_a + (ch - 'A'));
+            return ::user::e_key_a + (ch - 'A');
 
          }
          else if (ch == '+')

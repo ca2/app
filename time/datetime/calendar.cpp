@@ -79,7 +79,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRect(::i32_rectangle * lprect, enum const ::e_element & eelement)
+      void calendar::GetRect(::i32_rectangle * lprect, const e_element & eelement)
       {
 
          __UNREFERENCED_PARAMETER(lprect);
@@ -246,16 +246,16 @@ namespace datetime
       }
 
 
-      enum_element calendar::hit_test(const i32_point & point, ::user::e_zorder ezorder)
+      e_element calendar::hit_test(const i32_point & point, ::user::e_zorder ezorder)
       {
 
-         for (::i32 iElement = e_element_none + 1; iElement < e_element_count; iElement++)
+         for (auto eelement = e_element_none + 1; eelement < e_element_count; eelement++)
          {
 
-            if (hit_test((enum_element)iElement, point))
+            if (hit_test(eelement, point))
             {
 
-               return (enum_element)iElement;
+               return eelement;
 
             }
 
@@ -290,7 +290,7 @@ namespace datetime
       }
 
 
-      bool calendar::hit_test(const ::e_element & eelement, const i32_point & point)
+      bool calendar::hit_test(const e_element & eelement, const i32_point & point)
       {
 
          ::i32_rectangle rectangle;

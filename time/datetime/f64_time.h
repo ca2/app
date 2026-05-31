@@ -50,7 +50,7 @@ namespace datetime
    };
 
 
-   inline ::i32_bool convert_system_time_to_f32_time(const SYSTEMTIME & systimeSrc, ::f64 * pVarDtTm)
+   inline ::i32_bool convert_system_time_to_f64_time(const SYSTEMTIME & systimeSrc, ::f64 * pVarDtTm)
    {
       ENSURE(pVarDtTm != NULL);
       //Convert using ::SystemTimeToVariantTime and store the result in pVarDtTm then
@@ -72,16 +72,16 @@ namespace datetime
    }
 
 
-   class CLASS_DECL_CA2_TIME f32_time_span
+   class CLASS_DECL_CA2_TIME f64_time_span
    {
    private:
       static const long maxDaysInSpan  = 3615897L;
       // Constructors
    public:
-      f32_time_span() RELEASENOTHROW;
+      f64_time_span() RELEASENOTHROW;
 
-      f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW;
-      f32_time_span(
+      f64_time_span(::f64 dblSpanSrc) RELEASENOTHROW;
+      f64_time_span(
       ::i32 lDays,
       int32_t nHours,
       int32_t nMins,
@@ -105,21 +105,21 @@ namespace datetime
       ::i32 GetSeconds() const RELEASENOTHROW;    // component seconds in span (-59 to 59)
 
       
-      f32_time_span& operator=(::f64 dblSpanSrc) RELEASENOTHROW;
+      f64_time_span& operator=(::f64 dblSpanSrc) RELEASENOTHROW;
 
-      bool operator==(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      bool operator!=(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      bool operator<(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      bool operator>(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      bool operator<=(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      bool operator>=(const f32_time_span& dateSpan) const RELEASENOTHROW;
+      bool operator==(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      bool operator!=(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      bool operator<(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      bool operator>(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      bool operator<=(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      bool operator>=(const f64_time_span& dateSpan) const RELEASENOTHROW;
 
       // DateTimeSpan math
-      f32_time_span operator +(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      f32_time_span operator-(const f32_time_span& dateSpan) const RELEASENOTHROW;
-      f32_time_span& operator +=(const f32_time_span dateSpan) RELEASENOTHROW;
-      f32_time_span& operator-=(const f32_time_span dateSpan) RELEASENOTHROW;
-      f32_time_span operator-() const RELEASENOTHROW;
+      f64_time_span operator +(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      f64_time_span operator-(const f64_time_span& dateSpan) const RELEASENOTHROW;
+      f64_time_span& operator +=(const f64_time_span dateSpan) RELEASENOTHROW;
+      f64_time_span& operator-=(const f64_time_span dateSpan) RELEASENOTHROW;
+      f64_time_span operator-() const RELEASENOTHROW;
 
       operator ::f64() const RELEASENOTHROW;
 
@@ -136,40 +136,40 @@ namespace datetime
       
       void check_range();
 
-      static const ::f64 FLOAT_TIME_HALF_SECOND;
+      static const ::f64 F64_TIME_HALF_SECOND;
    };
 
-   class CLASS_DECL_CA2_TIME f32_time
+   class CLASS_DECL_CA2_TIME f64_time
    {
       // Constructors
    public:
-      static f32_time WINAPI GetCurrentTime() RELEASENOTHROW;
+      static f64_time WINAPI GetCurrentTime() RELEASENOTHROW;
 
-      f32_time() RELEASENOTHROW;
+      f64_time() RELEASENOTHROW;
 
-      f32_time(FLOAT_DATE dtSrc) RELEASENOTHROW;
+      f64_time(FLOAT_DATE dtSrc) RELEASENOTHROW;
 #if defined(__ANDROID__)
-      f32_time(posix_time timeSrc) RELEASENOTHROW;
+      f64_time(posix_time timeSrc) RELEASENOTHROW;
 #else
 #if !defined(APPLEOS)
-      f32_time(__time32_t timeSrc) RELEASENOTHROW;
+      f64_time(__time32_t timeSrc) RELEASENOTHROW;
 #endif
-      f32_time(posix_time timeSrc) RELEASENOTHROW;
+      f64_time(posix_time timeSrc) RELEASENOTHROW;
 #endif
 
-      f32_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
-      f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW;
+      f64_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
+      f64_time(const FILETIME& file_timeSrc) RELEASENOTHROW;
 
-      f32_time(
+      f64_time(
       int32_t nYear,
       int32_t nMonth,
       int32_t nDay,
       int32_t nHour,
       int32_t nMin,
       int32_t nSec) RELEASENOTHROW;
-      f32_time(::u16 wDosDate, ::u16 wDosTime) RELEASENOTHROW;
+      f64_time(::u16 wDosDate, ::u16 wDosTime) RELEASENOTHROW;
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-      f32_time(const DBTIMESTAMP& dbts) RELEASENOTHROW;
+      f64_time(const DBTIMESTAMP& dbts) RELEASENOTHROW;
       _Success_(return != false) bool GetAsDBTIMESTAMP(DBTIMESTAMP& dbts) const RELEASENOTHROW;
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
@@ -200,35 +200,35 @@ namespace datetime
       int32_t GetDayOfYear() const RELEASENOTHROW;
 
       
-      f32_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
+      f64_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
 #if defined(__ANDROID__)
-      f32_time& operator=(const posix_time & timeSrc) RELEASENOTHROW;
+      f64_time& operator=(const posix_time & timeSrc) RELEASENOTHROW;
 #else
 #ifndef APPLEOS
-      f32_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
+      f64_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
 #endif
-      f32_time& operator=(const posix_time& timeSrc) RELEASENOTHROW;
+      f64_time& operator=(const posix_time& timeSrc) RELEASENOTHROW;
 #endif
 
-      f32_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
-      f32_time& operator=(const FILETIME& file_timeSrc) RELEASENOTHROW;
-      f32_time& operator=(const UDATE& udate) RELEASENOTHROW;
+      f64_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
+      f64_time& operator=(const FILETIME& file_timeSrc) RELEASENOTHROW;
+      f64_time& operator=(const UDATE& udate) RELEASENOTHROW;
 
-      bool operator==(const f32_time& date) const RELEASENOTHROW;
-      bool operator!=(const f32_time& date) const RELEASENOTHROW;
-      bool operator<(const f32_time& date) const RELEASENOTHROW;
-      bool operator>(const f32_time& date) const RELEASENOTHROW;
-      bool operator<=(const f32_time& date) const RELEASENOTHROW;
-      bool operator>=(const f32_time& date) const RELEASENOTHROW;
+      bool operator==(const f64_time& date) const RELEASENOTHROW;
+      bool operator!=(const f64_time& date) const RELEASENOTHROW;
+      bool operator<(const f64_time& date) const RELEASENOTHROW;
+      bool operator>(const f64_time& date) const RELEASENOTHROW;
+      bool operator<=(const f64_time& date) const RELEASENOTHROW;
+      bool operator>=(const f64_time& date) const RELEASENOTHROW;
 
       // DateTime math
-      f32_time operator +(f32_time_span dateSpan) const RELEASENOTHROW;
-      f32_time operator-(f32_time_span dateSpan) const RELEASENOTHROW;
-      f32_time& operator +=(f32_time_span dateSpan) RELEASENOTHROW;
-      f32_time& operator-=(f32_time_span dateSpan) RELEASENOTHROW;
+      f64_time operator +(f64_time_span dateSpan) const RELEASENOTHROW;
+      f64_time operator-(f64_time_span dateSpan) const RELEASENOTHROW;
+      f64_time& operator +=(f64_time_span dateSpan) RELEASENOTHROW;
+      f64_time& operator-=(f64_time_span dateSpan) RELEASENOTHROW;
 
       // DateTimeSpan math
-      f32_time_span operator-(const f32_time& date) const RELEASENOTHROW;
+      f64_time_span operator-(const f64_time& date) const RELEASENOTHROW;
 
       operator FLOAT_DATE() const RELEASENOTHROW;
 
@@ -261,17 +261,17 @@ namespace datetime
 
 
 
-inline f32_time_span::f32_time_span() RELEASENOTHROW : m_span(0), m_estatus(e_status_valid)
+inline f64_time_span::f64_time_span() RELEASENOTHROW : m_span(0), m_estatus(e_status_valid)
    {
    }
 
-inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
+inline f64_time_span::f64_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
    m_span(dblSpanSrc), m_estatus(e_status_valid)
    {
       check_range();
    }
 
-   inline f32_time_span::f32_time_span(
+   inline f64_time_span::f64_time_span(
    ::i32 lDays,
    int32_t nHours,
    int32_t nMins,
@@ -280,69 +280,69 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       SetDateTimeSpan(lDays, nHours, nMins, nSecs);
    }
 
-   inline void f32_time_span::set_status(enum_status estatus) RELEASENOTHROW
+   inline void f64_time_span::set_status(enum_status estatus) RELEASENOTHROW
    {
       m_estatus = estatus;
    }
 
-   inline enum_status f32_time_span::get_status() const RELEASENOTHROW
+   inline enum_status f64_time_span::get_status() const RELEASENOTHROW
    {
       return m_estatus;
    }
 
-   inline ::f64 f32_time_span::GetTotalDays() const RELEASENOTHROW
+   inline ::f64 f64_time_span::GetTotalDays() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       return (::f64)::i64(m_span + (m_span < 0 ?
-                                        -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND));
+                                        -F64_TIME_HALF_SECOND : F64_TIME_HALF_SECOND));
    }
 
-   inline ::f64 f32_time_span::GetTotalHours() const RELEASENOTHROW
+   inline ::f64 f64_time_span::GetTotalHours() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       return (::f64)::i64((m_span + (m_span < 0 ?
-                                         -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * 24);
+                                         -F64_TIME_HALF_SECOND : F64_TIME_HALF_SECOND)) * 24);
    }
 
-   inline ::f64 f32_time_span::GetTotalMinutes() const RELEASENOTHROW
+   inline ::f64 f64_time_span::GetTotalMinutes() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       return (::f64)::i64((m_span + (m_span < 0 ?
-                                         -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60));
+                                         -F64_TIME_HALF_SECOND : F64_TIME_HALF_SECOND)) * (24 * 60));
    }
 
-   inline ::f64 f32_time_span::GetTotalSeconds() const RELEASENOTHROW
+   inline ::f64 f64_time_span::GetTotalSeconds() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       return (::f64)::i64((m_span + (m_span < 0 ?
-                                         -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60 * 60));
+                                         -F64_TIME_HALF_SECOND : F64_TIME_HALF_SECOND)) * (24 * 60 * 60));
    }
 
-   inline ::i32 f32_time_span::GetDays() const RELEASENOTHROW
+   inline ::i32 f64_time_span::GetDays() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       return ::i32(GetTotalDays());
    }
 
-   inline ::i32 f32_time_span::GetHours() const RELEASENOTHROW
+   inline ::i32 f64_time_span::GetHours() const RELEASENOTHROW
    {
       ::f64 dPartialDayHours = GetTotalHours() - (GetTotalDays() * 24);
       return ::i32(dPartialDayHours) % 24;
    }
 
-   inline ::i32 f32_time_span::GetMinutes() const RELEASENOTHROW
+   inline ::i32 f64_time_span::GetMinutes() const RELEASENOTHROW
    {
       ::f64 dPartialHourMinutes = GetTotalMinutes() - (GetTotalHours() * 60);
       return ::i32(dPartialHourMinutes) % 60;
    }
 
-   inline ::i32 f32_time_span::GetSeconds() const RELEASENOTHROW
+   inline ::i32 f64_time_span::GetSeconds() const RELEASENOTHROW
    {
       ::f64 dPartialMinuteSeconds = GetTotalSeconds() - (GetTotalMinutes() * 60);
       return ::i32(dPartialMinuteSeconds) % 60;
    }
 
-   inline f32_time_span& f32_time_span::operator=(::f64 dblSpanSrc) RELEASENOTHROW
+   inline f64_time_span& f64_time_span::operator=(::f64 dblSpanSrc) RELEASENOTHROW
    {
       m_span = dblSpanSrc;
       m_estatus = e_status_valid;
@@ -350,15 +350,15 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return *this;
    }
 
-   inline bool f32_time_span::operator==(const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline bool f64_time_span::operator==(const f64_time_span& dateSpan) const RELEASENOTHROW
    {
       if(get_status() == dateSpan.get_status())
       {
          if(get_status() == e_status_valid)
          {
             // it has to be in precision range to say that it as equal
-            if (m_span + FLOAT_TIME_HALF_SECOND > dateSpan.m_span &&
-                  m_span - FLOAT_TIME_HALF_SECOND < dateSpan.m_span)
+            if (m_span + F64_TIME_HALF_SECOND > dateSpan.m_span &&
+                  m_span - F64_TIME_HALF_SECOND < dateSpan.m_span)
             {
                return true;
             }
@@ -374,12 +374,12 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return false;
    }
 
-   inline bool f32_time_span::operator!=(const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline bool f64_time_span::operator!=(const f64_time_span& dateSpan) const RELEASENOTHROW
    {
       return !operator==(dateSpan);
    }
 
-   inline bool f32_time_span::operator<(const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline bool f64_time_span::operator<(const f64_time_span& dateSpan) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -389,8 +389,8 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return false;
    }
 
-   inline bool f32_time_span::operator>(
-   const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline bool f64_time_span::operator>(
+   const f64_time_span& dateSpan) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -400,22 +400,22 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return false;
    }
 
-   inline bool f32_time_span::operator<=(
-   const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline bool f64_time_span::operator<=(
+   const f64_time_span& dateSpan) const RELEASENOTHROW
    {
       return operator<(dateSpan) || operator==(dateSpan);
    }
 
-   inline bool f32_time_span::operator>=(
-   const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline bool f64_time_span::operator>=(
+   const f64_time_span& dateSpan) const RELEASENOTHROW
    {
       return operator>(dateSpan) || operator==(dateSpan);
    }
 
-   inline f32_time_span f32_time_span::operator +(
-   const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline f64_time_span f64_time_span::operator +(
+   const f64_time_span& dateSpan) const RELEASENOTHROW
    {
-      f32_time_span dateSpanTemp;
+      f64_time_span dateSpanTemp;
 
       // If either operand Null, result Null
       if (get_status() == e_status_null || dateSpan.get_status() == e_status_null)
@@ -438,10 +438,10 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return dateSpanTemp;
    }
 
-   inline f32_time_span f32_time_span::operator-(
-   const f32_time_span& dateSpan) const RELEASENOTHROW
+   inline f64_time_span f64_time_span::operator-(
+   const f64_time_span& dateSpan) const RELEASENOTHROW
    {
-      f32_time_span dateSpanTemp;
+      f64_time_span dateSpanTemp;
 
       // If either operand Null, result Null
       if (get_status() == e_status_null || dateSpan.get_status() == e_status_null)
@@ -464,8 +464,8 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return dateSpanTemp;
    }
 
-   inline f32_time_span& f32_time_span::operator +=(
-   const f32_time_span dateSpan) RELEASENOTHROW
+   inline f64_time_span& f64_time_span::operator +=(
+   const f64_time_span dateSpan) RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -474,8 +474,8 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return *this;
    }
 
-   inline f32_time_span& f32_time_span::operator-=(
-   const f32_time_span dateSpan) RELEASENOTHROW
+   inline f64_time_span& f64_time_span::operator-=(
+   const f64_time_span dateSpan) RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -484,17 +484,17 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       return *this;
    }
 
-   inline f32_time_span f32_time_span::operator-() const RELEASENOTHROW
+   inline f64_time_span f64_time_span::operator-() const RELEASENOTHROW
    {
       return -this->m_span;
    }
 
-   inline f32_time_span::operator ::f64() const RELEASENOTHROW
+   inline f64_time_span::operator ::f64() const RELEASENOTHROW
    {
       return m_span;
    }
 
-   inline void f32_time_span::SetDateTimeSpan(
+   inline void f64_time_span::SetDateTimeSpan(
    ::i32 lDays,
    int32_t nHours,
    int32_t nMins,
@@ -507,7 +507,7 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
       check_range();
    }
 
-   inline void f32_time_span::check_range()
+   inline void f64_time_span::check_range()
    {
       if(m_span < -maxDaysInSpan || m_span > maxDaysInSpan)
       {
@@ -516,16 +516,16 @@ inline f32_time_span::f32_time_span(::f64 dblSpanSrc) RELEASENOTHROW :
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // f32_time
+   // f64_time
    /////////////////////////////////////////////////////////////////////////////
 
 
-inline f32_time::f32_time() RELEASENOTHROW :
+inline f64_time::f64_time() RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
    }
 
-inline f32_time::f32_time(FLOAT_DATE dtSrc) RELEASENOTHROW :
+inline f64_time::f64_time(FLOAT_DATE dtSrc) RELEASENOTHROW :
    m_dt( dtSrc ), m_estatus(e_status_valid)
    {
 
@@ -533,7 +533,7 @@ inline f32_time::f32_time(FLOAT_DATE dtSrc) RELEASENOTHROW :
 
 #if defined(__ANDROID__)
 
-inline f32_time::f32_time(posix_time timeSrc) RELEASENOTHROW :
+inline f64_time::f64_time(posix_time timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = timeSrc;
@@ -542,14 +542,14 @@ inline f32_time::f32_time(posix_time timeSrc) RELEASENOTHROW :
 #else
 
 #ifndef APPLEOS
-inline f32_time::f32_time(__time32_t timeSrc) RELEASENOTHROW :
+inline f64_time::f64_time(__time32_t timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = timeSrc;
    }
 #endif
 
-inline f32_time::f32_time(posix_time timeSrc) RELEASENOTHROW :
+inline f64_time::f64_time(posix_time timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = timeSrc;
@@ -557,19 +557,19 @@ inline f32_time::f32_time(posix_time timeSrc) RELEASENOTHROW :
 
 #endif
 
-inline f32_time::f32_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW :
+inline f64_time::f64_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = systimeSrc;
    }
 
-inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
+inline f64_time::f64_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = file_timeSrc;
    }
 
-   inline f32_time::f32_time(
+   inline f64_time::f64_time(
    int32_t nYear,
    int32_t nMonth,
    int32_t nDay,
@@ -581,7 +581,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-   inline f32_time::f32_time(
+   inline f64_time::f64_time(
    ::u16 wDosDate,
    ::u16 wDosTime) RELEASENOTHROW
    {
@@ -590,75 +590,75 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
-   inline void f32_time::set_status(enum_status status) RELEASENOTHROW
+   inline void f64_time::set_status(enum_status status) RELEASENOTHROW
    {
       m_estatus = status;
    }
 
-   inline enum_status f32_time::get_status() const RELEASENOTHROW
+   inline enum_status f64_time::get_status() const RELEASENOTHROW
    {
       return m_estatus;
    }
 
-   inline bool f32_time::GetAsSystemTime(SYSTEMTIME& sysTime) const RELEASENOTHROW
+   inline bool f64_time::GetAsSystemTime(SYSTEMTIME& sysTime) const RELEASENOTHROW
    {
       return get_status() == e_status_valid && ::FloatTimeToSystemTime(m_dt, &sysTime);
    }
 
-   inline bool f32_time::GetAsUDATE(UDATE &udate) const RELEASENOTHROW
+   inline bool f64_time::GetAsUDATE(UDATE &udate) const RELEASENOTHROW
    {
       return SUCCEEDED(::VarUdateFromDate(m_dt, 0, &udate));
    }
 
-   inline int32_t f32_time::GetYear() const RELEASENOTHROW
+   inline int32_t f64_time::GetYear() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wYear : e_status_error;
    }
 
-   inline int32_t f32_time::GetMonth() const RELEASENOTHROW
+   inline int32_t f64_time::GetMonth() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wMonth : e_status_error;
    }
 
-   inline int32_t f32_time::GetDay() const RELEASENOTHROW
+   inline int32_t f64_time::GetDay() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wDay : e_status_error;
    }
 
-   inline int32_t f32_time::GetHour() const RELEASENOTHROW
+   inline int32_t f64_time::GetHour() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wHour : e_status_error;
    }
 
-   inline int32_t f32_time::GetMinute() const RELEASENOTHROW
+   inline int32_t f64_time::GetMinute() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wMinute : e_status_error;
    }
 
-   inline int32_t f32_time::GetSecond() const RELEASENOTHROW
+   inline int32_t f64_time::GetSecond() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wSecond : e_status_error;
    }
 
-   inline int32_t f32_time::GetDayOfWeek() const RELEASENOTHROW
+   inline int32_t f64_time::GetDayOfWeek() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wDayOfWeek + 1 : e_status_error;
    }
 
-   inline int32_t f32_time::GetDayOfYear() const RELEASENOTHROW
+   inline int32_t f64_time::GetDayOfYear() const RELEASENOTHROW
    {
       UDATE udate;
       return GetAsUDATE(udate) ? udate.wDayOfYear : e_status_error;
    }
 
-   inline f32_time& f32_time::operator=(FLOAT_DATE dtSrc) RELEASENOTHROW
+   inline f64_time& f64_time::operator=(FLOAT_DATE dtSrc) RELEASENOTHROW
    {
       m_dt = dtSrc;
       m_estatus = e_status_valid;
@@ -672,7 +672,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    bool GetAsSystemTimeHelper(const posix_time & timeSrc, SYSTEMTIME& timeDest);
 #endif
 
-   inline f32_time& f32_time::operator=(const posix_time & timeSrc) RELEASENOTHROW
+   inline f64_time& f64_time::operator=(const posix_time & timeSrc) RELEASENOTHROW
    {
 
 
@@ -741,12 +741,12 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 #endif
 #endif
 #ifndef APPLEOS
-   inline f32_time& f32_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
+   inline f64_time& f64_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
       return operator=(posix_time({ posix_time_t{}, timeSrc }));
    }
 #endif
-   inline f32_time& f32_time::operator=(const posix_time& timeSrc) RELEASENOTHROW
+   inline f64_time& f64_time::operator=(const posix_time& timeSrc) RELEASENOTHROW
    {
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
@@ -815,7 +815,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 
 
-   inline f32_time &f32_time::operator=(const SYSTEMTIME &systimeSrc) RELEASENOTHROW
+   inline f64_time &f64_time::operator=(const SYSTEMTIME &systimeSrc) RELEASENOTHROW
    {
 
       m_estatus = ConvertSystemTimeToFloatTime(systimeSrc) ?	e_status_valid : e_status_invalid;
@@ -827,15 +827,15 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 
 
-   inline ::i32_bool f32_time::ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc)
+   inline ::i32_bool f64_time::ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc)
    {
 
-      return convert_system_time_to_f32_time(systimeSrc,&m_dt);
+      return convert_system_time_to_f64_time(systimeSrc,&m_dt);
 
    }
 
 
-   inline f32_time &f32_time::operator=(const UDATE &udate) RELEASENOTHROW
+   inline f64_time &f64_time::operator=(const UDATE &udate) RELEASENOTHROW
    {
 
       m_estatus = (S_OK == FloatTimeFromUdate((UDATE*)&udate, 0, &m_dt)) ? e_status_valid : e_status_invalid;
@@ -845,7 +845,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 
-   inline bool f32_time::operator==(const f32_time& date) const RELEASENOTHROW
+   inline bool f64_time::operator==(const f64_time& date) const RELEASENOTHROW
    {
 
       if(get_status() == date.get_status())
@@ -855,7 +855,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
          {
 
             // it has to be in precision range to say that it as equal
-            if (m_dt + f32_time_span::FLOAT_TIME_HALF_SECOND > date.m_dt && m_dt - f32_time_span::FLOAT_TIME_HALF_SECOND < date.m_dt)
+            if (m_dt + f64_time_span::F64_TIME_HALF_SECOND > date.m_dt && m_dt - f64_time_span::F64_TIME_HALF_SECOND < date.m_dt)
             {
 
                return true;
@@ -878,14 +878,14 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 
-   inline bool f32_time::operator!=(const f32_time& date) const RELEASENOTHROW
+   inline bool f64_time::operator!=(const f64_time& date) const RELEASENOTHROW
    {
 
       return !operator==(date);
 
    }
 
-   inline bool f32_time::operator<(const f32_time& date) const RELEASENOTHROW
+   inline bool f64_time::operator<(const f64_time& date) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(date.get_status() == e_status_valid);
@@ -895,7 +895,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return false;
    }
 
-   inline bool f32_time::operator>(const f32_time& date) const RELEASENOTHROW
+   inline bool f64_time::operator>(const f64_time& date) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(date.get_status() == e_status_valid);
@@ -905,31 +905,31 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return false;
    }
 
-   inline bool f32_time::operator<=(const f32_time& date) const RELEASENOTHROW
+   inline bool f64_time::operator<=(const f64_time& date) const RELEASENOTHROW
    {
       return operator<(date) || operator==(date);
    }
 
-   inline bool f32_time::operator>=(const f32_time& date) const RELEASENOTHROW
+   inline bool f64_time::operator>=(const f64_time& date) const RELEASENOTHROW
    {
       return operator>(date) || operator==(date);
    }
 
-   inline f32_time f32_time::operator +(f32_time_span dateSpan) const RELEASENOTHROW
+   inline f64_time f64_time::operator +(f64_time_span dateSpan) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
-      return( f32_time( DateFromDouble( DoubleFromDate( m_dt )+(::f64)dateSpan ) ) );
+      return( f64_time( DateFromDouble( DoubleFromDate( m_dt )+(::f64)dateSpan ) ) );
    }
 
-   inline f32_time f32_time::operator-(f32_time_span dateSpan) const RELEASENOTHROW
+   inline f64_time f64_time::operator-(f64_time_span dateSpan) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
-      return( f32_time( DateFromDouble( DoubleFromDate( m_dt )-(::f64)dateSpan ) ) );
+      return( f64_time( DateFromDouble( DoubleFromDate( m_dt )-(::f64)dateSpan ) ) );
    }
 
-   inline f32_time& f32_time::operator +=(f32_time_span dateSpan) RELEASENOTHROW
+   inline f64_time& f64_time::operator +=(f64_time_span dateSpan) RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -937,7 +937,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return *this;
    }
 
-   inline f32_time& f32_time::operator-=(f32_time_span dateSpan) RELEASENOTHROW
+   inline f64_time& f64_time::operator-=(f64_time_span dateSpan) RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -945,20 +945,20 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return *this;
    }
 
-   inline f32_time_span f32_time::operator-(const f32_time& date) const RELEASENOTHROW
+   inline f64_time_span f64_time::operator-(const f64_time& date) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(date.get_status() == e_status_valid);
       return DoubleFromDate(m_dt) - DoubleFromDate(date.m_dt);
    }
 
-   inline f32_time::operator FLOAT_DATE() const RELEASENOTHROW
+   inline f64_time::operator FLOAT_DATE() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       return( m_dt );
    }
 
-   inline int32_t f32_time::SetDateTime(
+   inline int32_t f64_time::SetDateTime(
    int32_t nYear,
    int32_t nMonth,
    int32_t nDay,
@@ -980,22 +980,22 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return m_estatus;
    }
 
-   inline int32_t f32_time::SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW
+   inline int32_t f64_time::SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW
    {
       return SetDateTime(nYear, nMonth, nDay, 0, 0, 0);
    }
 
-   inline int32_t f32_time::SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW
+   inline int32_t f64_time::SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW
    {
       // set date to zero date - 12/30/1899
       return SetDateTime(1899, 12, 30, nHour, nMin, nSec);
    }
 
-   inline ::f64 WINAPI f32_time::DoubleFromDate(FLOAT_DATE date) RELEASENOTHROW
+   inline ::f64 WINAPI f64_time::DoubleFromDate(FLOAT_DATE date) RELEASENOTHROW
    {
-      // We treat it as positive from -FLOAT_TIME_HALF_SECOND because of numeric errors
+      // We treat it as positive from -F64_TIME_HALF_SECOND because of numeric errors
       // If value is positive it doesn't need conversion
-      if(date > -f32_time_span::FLOAT_TIME_HALF_SECOND)
+      if(date > -f64_time_span::F64_TIME_HALF_SECOND)
       {
          return date;
       }
@@ -1007,11 +1007,11 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return fTemp - (date - fTemp);
    }
 
-   inline FLOAT_DATE WINAPI f32_time::DateFromDouble(::f64 f) RELEASENOTHROW
+   inline FLOAT_DATE WINAPI f64_time::DateFromDouble(::f64 f) RELEASENOTHROW
    {
-      // We treat it as positive from -FLOAT_TIME_HALF_SECOND because of numeric errors
+      // We treat it as positive from -F64_TIME_HALF_SECOND because of numeric errors
       // If value is positive it doesn't need conversion
-      if(f > -f32_time_span::FLOAT_TIME_HALF_SECOND )
+      if(f > -f64_time_span::F64_TIME_HALF_SECOND )
       {
          return f;
       }
@@ -1023,7 +1023,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return fTemp + (fTemp - f);
    }
 
-   inline void f32_time::check_range()
+   inline void f64_time::check_range()
    {
       // About year 100 to about 9999
       if(m_dt > VTDATEGRE_MAX || m_dt < VTDATEGRE_MIN)
@@ -1033,7 +1033,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 #ifndef APPLEOS
-   inline bool f32_time::ParseDateTime(const ::scoped_string & scopedstrDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
+   inline bool f64_time::ParseDateTime(const ::scoped_string & scopedstrDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
    {
 
       const_char_pointer pszDate = scopedstrDate;
@@ -1077,7 +1077,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
-   inline string f32_time_span::Format(LPCTSTR pFormat) const
+   inline string f64_time_span::Format(LPCTSTR pFormat) const
    {
       // If NULL, return empty string
       if (get_status() == NULL)
@@ -1088,7 +1088,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 #if defined(_UNICODE) || !defined(_CSTRING_DISABLE_NARROW_WIDE_CONVERSION)
-   inline string f32_time::Format(
+   inline string f64_time::Format(
    ::u32 dwFlags,
    LCID lcid) const
    {
@@ -1119,7 +1119,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 #endif
 
-   inline string f32_time::Format(LPCTSTR pFormat) const
+   inline string f64_time::Format(LPCTSTR pFormat) const
    {
       ATLENSURE_THROW(pFormat != NULL, E_INVALIDARG);
 
@@ -1164,7 +1164,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return strDate;
    }
 
-   inline string f32_time_span::Format(::u32 nFormatID) const
+   inline string f64_time_span::Format(::u32 nFormatID) const
    {
       string strFormat;
       if (!strFormat.LoadString(nFormatID))
@@ -1172,14 +1172,14 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return Format(strFormat);
    }
 
-   inline string f32_time::Format(::u32 nFormatID) const
+   inline string f64_time::Format(::u32 nFormatID) const
    {
       string strFormat;
       ATLENSURE(strFormat.LoadString(nFormatID));
       return Format(strFormat);
    }
 
-   inline f32_time::f32_time(const DBTIMESTAMP& dbts)
+   inline f64_time::f64_time(const DBTIMESTAMP& dbts)
    {
       SYSTEMTIME st;
       ::ZeroMemory(&st, sizeof(SYSTEMTIME));
@@ -1194,7 +1194,7 @@ inline f32_time::f32_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       m_estatus = ::SystemTimeToVariantTime(&st, &m_dt) ? e_status_valid : e_status_invalid;
    }
 
-   inline _Success_(return != false) bool f32_time::GetAsDBTIMESTAMP(DBTIMESTAMP& dbts) const
+   inline _Success_(return != false) bool f64_time::GetAsDBTIMESTAMP(DBTIMESTAMP& dbts) const
    {
       UDATE ud;
       if (S_OK != VarUdateFromDate(m_dt, 0, &ud))

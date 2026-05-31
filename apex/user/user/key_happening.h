@@ -12,11 +12,13 @@
 namespace user
 {
 
+   DECLARE_ENUMERATION(e_message, enum_message);
+
 struct key_happening
 {
    
-   ::user::enum_message m_emessage;
-   ::user::enum_key m_euserkey;
+   ::user::e_message m_emessage;
+   ::user::e_key m_euserkey;
    bool m_bDown;
    bool m_bExtendedKey;
    

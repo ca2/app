@@ -25,7 +25,7 @@ public:
    int m_iButtonCount = 0;
    enum_dialog_result m_edialogresulta[4];
 
-   ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
+   ns_alert_box(const char * pszMessage, const char * pszTitle, const ::user::e_message_box & emessagebox)
    {
       m_palert = [[NSAlert alloc] init];
       NSString * strMessage = [[NSString alloc]initWithUTF8String:pszMessage];
@@ -120,7 +120,7 @@ public:
 };
 
 
-enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, const ::user::e_message_box & emessagebox)
 {
    
    class ns_alert_box nsalertbox(pszMessage, pszTitle, emessagebox);
@@ -239,7 +239,7 @@ CGRect _get_console_rect()
 
 
 
-int ns_message_box(const char* title, const char* message, ::user::enum_message_box emessagebox)
+int ns_message_box(const char* title, const char* message, const ::user::e_message_box & emessagebox)
 {
     NSAlert *alert = [[NSAlert alloc] init];
     
@@ -269,7 +269,7 @@ int ns_message_box(const char* title, const char* message, ::user::enum_message_
 
 namespace operating_system{
 
-void message_beep(::user::enum_message_box emessagebox)
+void message_beep(const ::user::e_message_box & emessagebox)
 {
    
    NSBeep();

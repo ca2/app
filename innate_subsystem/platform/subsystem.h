@@ -51,7 +51,7 @@ namespace innate_subsystem
 
       virtual ::innate_subsystem::SystemMetricsInterface * metrics();
 
-      virtual ::user::enum_key virtual_key_code_to_user_key(::i32 iVirtualKeyCode);
+      virtual ::user::e_key virtual_key_code_to_user_key(::i32 iVirtualKeyCode);
 
 
       virtual ::pointer < ::innate_subsystem::WindowInterface > getWindow(const ::operating_system::window & window);

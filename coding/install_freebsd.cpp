@@ -144,11 +144,11 @@ namespace coding
          break;
       case e_install_msys2:
          pathUrl = path_system()->get_uniform_resource_locator(
-            "https://ca2.software/link/windows/msys2.uniform_resource_locator");
+            "https://ca2.site/link/windows/msys2.uniform_resource_locator");
          break;
       case e_install_strawberry_perl:
          pathUrl = path_system()->get_uniform_resource_locator(
-            "https://ca2.software/link/windows/strawberry_perl.uniform_resource_locator");
+            "https://ca2.site/link/windows/strawberry_perl.uniform_resource_locator");
          break;
       default:
          {

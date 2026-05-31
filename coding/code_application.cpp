@@ -910,7 +910,7 @@ namespace coding
    ////   if (!file_system()->exists(pathInf))
    ////   {
 
-   ////      ::file::path pathUrl = "https://ca2.software/download/windows/git-scm.inf";
+   ////      ::file::path pathUrl = "https://ca2.site/download/windows/git-scm.inf";
 
    ////      ::property_set set;
 
@@ -1210,7 +1210,7 @@ namespace coding
    //   if (!file_system()->exists(pathInf))
    //   {
 
-   //      ::file::path pathUrl = "https://ca2.software/download/windows/git-scm.inf";
+   //      ::file::path pathUrl = "https://ca2.site/download/windows/git-scm.inf";
 
    //      ::property_set set;
 
@@ -1325,7 +1325,7 @@ namespace coding
    //      for (::i32 i = 0; i < 10; i++)
    //      {
 
-   //         pathUrl = http().get("https://ca2.software/code/script/windows/" + str, set);
+   //         pathUrl = http().get("https://ca2.site/code/script/windows/" + str, set);
 
    //         if (pathUrl.case_insensitive_begins("https://"))
    //         {

@@ -313,7 +313,7 @@ namespace account
 
       display(e_display_normal);
 
-      set_timer(2000, 300_ms, nullptr);
+      //set_timer(2000, 300_ms, nullptr);
 
       atom idResult = wait_for_dialog_result();
 

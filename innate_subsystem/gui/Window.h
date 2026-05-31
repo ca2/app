@@ -78,6 +78,9 @@ namespace innate_subsystem
 
    };
 
+   DECLARE_ENUMERATION(e_mouse, enum_mouse);
+
+
 
    enum enum_window_class
    {
@@ -297,7 +300,7 @@ namespace innate_subsystem
                           bool &bDoDefaultProcessing) = 0;
 
    virtual bool onMouse(::u8 mouseButtons, ::u16 wheelSpeed, const ::i32_point & position) = 0;
-   virtual bool onKey(::user::enum_message eusermessage, ::user::enum_key euserkey) = 0;
+   virtual bool onKey(::user::enum_message eusermessage, const ::user::e_key & euserkey) = 0;
 
 
    virtual bool onCreate(void * pCreateStruct) = 0;
@@ -615,7 +618,7 @@ namespace innate_subsystem
       {
          return false;
       }
-      bool onKey(::user::enum_message emessage, ::user::enum_key euserkey) override
+      bool onKey(::user::enum_message emessage, const ::user::e_key & euserkey) override
       {
          return false;
       }

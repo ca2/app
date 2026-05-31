@@ -24,6 +24,7 @@ namespace user
 
    key_state::key_state(const ::user::key_state &keystate): m_ekeystate(keystate.m_ekeystate) {}
 
+   key_state::key_state(const ::user::key_state *pkeystate) : m_ekeystate(pkeystate->m_ekeystate) {}
 
 
    key_state::~key_state()

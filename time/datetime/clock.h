@@ -27,10 +27,10 @@ namespace datetime
 
 
          clock();
-         virtual ~clock();
+         ~clock() override;
 
 
-         virtual void GetRect(::i32_rectangle * lprect, const ::e_element & eelement);
+         virtual void GetRect(::i32_rectangle * lprect, const ::datetime::clock::e_element & eelement);
 
 
          virtual void set_time(const ::earth::time& time);
@@ -44,8 +44,8 @@ namespace datetime
          virtual void next_hour();
          virtual void previous_hour();
 
-         virtual enum_element hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
-         virtual bool hit_test(const ::e_element & eelement, const ::i32_point& point);
+         virtual e_element hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
+         virtual bool hit_test(const ::datetime::clock::e_element & eelement, const ::i32_point& point);
 
 
       };

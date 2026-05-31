@@ -181,7 +181,7 @@ s_p = this;
 
    }
 
-   ::user::enum_key subsystem::virtual_key_code_to_user_key(::i32 iVirtualKeyCode)
+   ::user::e_key subsystem::virtual_key_code_to_user_key(::i32 iVirtualKeyCode)
    {
 
       throw ::interface_only();

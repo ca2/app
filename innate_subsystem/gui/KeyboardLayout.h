@@ -29,14 +29,14 @@ namespace innate_subsystem
 
        bool m_allowProcessCharEvent;
        bool m_allowProcessDoubleChar;
-       bool m_f64DeadCatched;
+       bool m_doubleDeadCatched;
 
        keyboard_state_t();
 
         void clearKeyState();
 
        //bool isPressed(::u8 virtKey);
-       bool isPressed(::user::enum_key euserkey);
+       bool isPressed(const ::user::e_key & euserkey);
 
              //void clearKeyState();
        ::i32 GettingCharFromCtrlSymbol(::i32 ch);

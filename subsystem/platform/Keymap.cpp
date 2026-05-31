@@ -1077,7 +1077,7 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::virtualCodeToKeySym(::u32 *keySym, ::user::enum_key euserkey)
+   bool Keymap::virtualCodeToKeySym(::u32 *keySym, const ::user::e_key & euserkey)
    {
       for (::u32 i = 0; i < sizeof(VIEWER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
       {

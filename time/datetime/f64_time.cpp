@@ -3,13 +3,13 @@
 //#include <math.h>
 #include <time.h>
 
-#include "f32_time.h"
+#include "f64_time.h"
 
 namespace datetime
 {
 
 
-   const ::f64 f32_time_span::FLOAT_TIME_HALF_SECOND = 1.0 / (2.0 * (60.0 * 60.0 * 24.0));
+   const ::f64 f64_time_span::F64_TIME_HALF_SECOND = 1.0f / (2.0f * (60.0f * 60.0f * 24.0f));
 
 
 } // namespace datetime
@@ -1094,7 +1094,7 @@ namespace datetime
 {
 
 
-   f32_time &f32_time::operator=(const FILETIME &file_timeSrc) RELEASENOTHROW
+   f64_time &f64_time::operator=(const FILETIME &file_timeSrc) RELEASENOTHROW
    {
       
       FILETIME ftl;
@@ -1108,16 +1108,16 @@ namespace datetime
    }
 
 
-   f32_time WINAPI f32_time::GetCurrentTime() RELEASENOTHROW
+   f64_time WINAPI f64_time::GetCurrentTime() RELEASENOTHROW
    {
 
 #ifdef WINDOWS
 
-      return f32_time(posix_time({ posix_time_t{ }, ::_time64(NULL)}));
+      return f64_time(posix_time({ posix_time_t{ }, ::_time64(NULL)}));
         
 #else
         
-        return f32_time(::time(NULL));
+        return f64_time(::time(NULL));
         
 #endif
         

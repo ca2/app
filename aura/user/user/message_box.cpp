@@ -74,7 +74,7 @@ namespace user
    }
 
 
-   void message_box::display(::dialog * pdialog)
+   void message_box::display_dialog(::dialog * pdialog)
    {
 
       //auto psequencer = allocateø ::sequencer <::conversation > ();
@@ -110,7 +110,7 @@ namespace user
 
       //::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 
-      ::acme::user::message_box::display(pmessageboxpayload);
+      ::acme::user::message_box::display_dialog(pmessageboxpayload);
 
       m_pbuttonClose->initialize(this);
 

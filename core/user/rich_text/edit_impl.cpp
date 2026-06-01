@@ -208,7 +208,7 @@ namespace user
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
             {
 
-               pformattool->hide();
+               pformattool->display(e_display_hide, {});
 
             }
 
@@ -288,7 +288,7 @@ namespace user
 
             }
 
-            pformattool->hide();
+            pformattool->display(e_display_hide, {});
 
          }
 
@@ -424,7 +424,7 @@ namespace user
             if (pformattool->is_window_visible())
             {
 
-               pformattool->hide();
+               pformattool->display(e_display_hide, {});
 
             }
 
@@ -978,7 +978,7 @@ namespace user
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
             {
 
-               pformattool->hide();
+               pformattool->display(e_display_hide, {});
 
             }
 

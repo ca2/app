@@ -946,7 +946,7 @@ namespace user
          {
 
             m_plistbox->m_timeHideDropDown.Now();
-            m_plistbox->hide();
+            m_plistbox->display(e_display_hide, {});
 
 //         m_plistbox->set_need_redraw();
 //

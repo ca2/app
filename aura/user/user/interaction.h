@@ -2311,8 +2311,8 @@ namespace user
       virtual void user_interaction_on_hide();
 
 
-      virtual void show() override;
-      virtual void hide() override;
+      //virtual void show() override;
+      //virtual void hide() override;
 
       //virtual ::pointer_array < ::user::interaction > synchronized_get_children();
 

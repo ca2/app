@@ -96,7 +96,7 @@ namespace user
       // message_box_interface
       //::pointer < ::subparticle > show(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) override;
       using ::user::interaction::display;
-      void display(::dialog * pdialog) override;
+      void display_dialog(::dialog * pdialog) override;
       void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter) override;
 
       void destroy() override;

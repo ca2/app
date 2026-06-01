@@ -237,7 +237,7 @@ namespace user
 
             }
 
-            pformattool->hide();
+            pformattool->display(e_display_hide, {});
 
          }
 

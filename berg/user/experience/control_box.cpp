@@ -621,7 +621,7 @@ namespace experience
          if (pbutton)
          {
 
-            pbutton->hide();
+            pbutton->display(e_display_hide, {});
 
          }
 

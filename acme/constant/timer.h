@@ -108,6 +108,7 @@ enum enum_timer : ::iptr
    e_timer_goto_level,
    e_timer_scrollbar_action,
    e_timer_main,
+   e_timer_step,
 
 };
 

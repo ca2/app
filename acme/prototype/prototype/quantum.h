@@ -9,6 +9,7 @@
 struct quantum_flag
 {
 
+
    ::e_flag                         m_eflagElement;
 
 

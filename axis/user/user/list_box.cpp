@@ -902,7 +902,7 @@ namespace user
          {
 
             m_timeHideDropDown.Now();
-            hide();
+            display(e_display_hide, {});
 
 
             //se

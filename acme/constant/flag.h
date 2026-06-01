@@ -5,7 +5,7 @@
 enum enum_flag : ::u64
 {
 
-
+   e_flag_none = 0,
    e_flag_success = 1 << 0,
    e_flag_timeout = 1 << 1,
    e_flag_failure = 1 << 2,

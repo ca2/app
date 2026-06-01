@@ -871,7 +871,7 @@ namespace user
 
          informationf("::user::e_flag_hide_on_kill_focus");
 
-         m_pimpactdataOld->m_pplaceholder->hide();
+         m_pimpactdataOld->m_pplaceholder->display(e_display_hide, {});
 
       }
 
@@ -914,7 +914,7 @@ namespace user
 
                }
 
-               pimpactdataPane->m_pplaceholder->hide();
+               pimpactdataPane->m_pplaceholder->display(e_display_hide, {});
 
             }
 

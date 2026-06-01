@@ -586,7 +586,7 @@ namespace user
       void set_need_load_form_data() override;
       void set_need_save_form_data() override;
       void post_redraw(bool bAscendants = true) override;
-      void hide() override;
+      //void hide() override;
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::interaction_base * pfocus);

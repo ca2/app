@@ -557,7 +557,7 @@ namespace userex
          if (pgroup->m_plist.is_set() && pgroup->m_plist != plist)
          {
 
-            pgroup->m_plist->hide();
+            pgroup->m_plist->display(e_display_hide, {});
 
          }
 

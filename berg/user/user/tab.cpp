@@ -561,7 +561,7 @@ namespace user
       else if (::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
       {
 
-         pholder->hide();
+         pholder->display(e_display_hide, {});
 
       }
 
@@ -2197,7 +2197,7 @@ namespace user
 
       }
 
-      pplaceholder->hide();
+      pplaceholder->display(e_display_hide, {});
 
       //      pplaceholder->set_need_redraw();
       //

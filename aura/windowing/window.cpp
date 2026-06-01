@@ -11038,11 +11038,12 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
                    s_timeThisThingLastTime.Now();
 
-                   m_pacmeuserinteraction->display(::e_display_normal);
+                   m_pacmeuserinteraction->display(::e_display_normal, {});
 
                 }
 
              }
+
              m_pgraphicscontextDrawingFrame.release();
 
              return;
@@ -15112,7 +15113,7 @@ slGraphics.unlock();
          if (puserinteraction->is_window_screen_visible())
          {
 
-            puserinteraction->hide();
+            puserinteraction->display(e_display_hide, {});
 
             puserinteraction->set_need_redraw();
 

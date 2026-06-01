@@ -7648,7 +7648,7 @@ namespace aura
 
          auto puserinteractionMain = m_pacmeuserinteractionMain;
 
-         puserinteractionMain->display(e_display_normal);
+         puserinteractionMain->display(e_display_normal, {});
 
       }
 
@@ -8539,7 +8539,7 @@ namespace aura
          else
          {
 
-            pframe->hide();
+            pframe->display(e_display_hide, {});
 
          }
 

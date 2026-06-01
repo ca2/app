@@ -1996,7 +1996,7 @@ namespace user
 
       }
 
-      pcontrolbar->hide();
+      pcontrolbar->display(e_display_hide, {});
 
       set_need_layout();
 

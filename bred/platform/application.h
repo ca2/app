@@ -42,22 +42,22 @@ namespace bred
          {
             if (m_puserinteractionControl)
             {
-               m_puserinteractionControl->hide();
+               m_puserinteractionControl->display(e_display_hide, {});
             }
             if (m_puserinteractionLabel)
             {
-               m_puserinteractionLabel->hide();
+               m_puserinteractionLabel->display(e_display_hide, {});
             }
          }
          void show()
          {
             if (m_puserinteractionControl)
             {
-               m_puserinteractionControl->show();
+               m_puserinteractionControl->display(e_display_normal, {});
             }
             if (m_puserinteractionLabel)
             {
-               m_puserinteractionLabel->show();
+               m_puserinteractionLabel->display(e_display_normal, {});
             }
          }
       };

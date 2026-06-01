@@ -50,7 +50,7 @@ namespace user
       if (m_bHideOnLostFocus)
       {
 
-         hide();
+         display(e_display_hide, {});
 
          set_need_redraw();
 
@@ -163,7 +163,7 @@ namespace user
    void popup::hide_popup()
    {
 
-      hide();
+      display(e_display_hide, {});
 
       set_need_redraw();
 

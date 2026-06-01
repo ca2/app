@@ -1120,7 +1120,7 @@ namespace experience
       else
       {
 
-         get_control_box()->hide();
+         get_control_box()->display(e_display_hide, {});
 
          //information() << "experience::frame_window::title_bar_layout bVisibleControlBox: false";
 

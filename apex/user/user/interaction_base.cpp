@@ -4551,12 +4551,12 @@ namespace user
    }
 
 
-   void interaction_base::hide()
-   {
+   //void interaction_base::hide()
+   //{
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
 

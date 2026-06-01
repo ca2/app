@@ -451,7 +451,7 @@ namespace userex
                      if (ptabimpact.is_set() && ptabimpact->get_tab_count() <= 0)
                      {
 
-                        ptabimpact->parent_frame()->hide();
+                        ptabimpact->parent_frame()->display(e_display_hide, {});
 
                         ptabimpact->parent_frame()->set_need_redraw();
 
@@ -511,7 +511,7 @@ namespace userex
                      information() << "pframewindowTab HIDE HIDE HIDE";
                      information() << "";
                      information() << "";
-                     pframewindowTab->hide();
+                     pframewindowTab->display(e_display_hide, {});
 
                   }
 
@@ -787,7 +787,7 @@ namespace userex
 
       }
 
-      pframewindow->hide();
+      pframewindow->display(e_display_hide, {});
 
       pframewindow->set_need_redraw();
 

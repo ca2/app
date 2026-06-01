@@ -542,10 +542,10 @@ namespace user
          if (!m_bSplitBar || !bIsPaneVisible || !bIsWindowVisible || bFixedSize)
          {
 
-            psplitbar->hide();
+            psplitbar->display(e_display_hide, {});
 
             continue;
-
+               
          }
 
          CalcSplitBarRect(i, rectangleBar);

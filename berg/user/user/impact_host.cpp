@@ -941,13 +941,13 @@ namespace user
                   if (iterator->element2()->m_pplaceholder != nullptr)
                   {
 
-                     iterator->element2()->m_pplaceholder->hide();
+                     iterator->element2()->m_pplaceholder->display(e_display_hide, {});
 
                   }
                   else if (iterator->element2()->m_puserinteraction != nullptr)
                   {
 
-                     iterator->element2()->m_puserinteraction->hide();
+                     iterator->element2()->m_puserinteraction->display(e_display_hide, {});
 
                   }
 

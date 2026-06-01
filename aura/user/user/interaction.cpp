@@ -4384,20 +4384,20 @@ namespace user
    }
 
 
-   void interaction::show()
-   {
-         
-      display(e_display_normal); 
-      
-   }
+   //void interaction::show()
+   //{
+   //      
+   //   display(e_display_normal); 
+   //   
+   //}
 
 
-   void interaction::hide()
-   {
+   //void interaction::hide()
+   //{
 
-      display(e_display_hide);
+   //   display(e_display_hide);
 
-   }
+   //}
 
 
    void interaction::get_text_selection(character_count & iBeg, character_count & iEnd) const
@@ -4634,7 +4634,7 @@ namespace user
          try
          {
 
-            hide();
+            display(e_display_hide, {});
 
          }
          catch (...)
@@ -21534,7 +21534,7 @@ if(get_parent())
 
          //set_tool_window();
 
-         hide();
+         display(e_display_hide);
 
       }
       else
@@ -23365,7 +23365,7 @@ if(get_parent())
             if (!pmenu->payload("dont_hide_on_owner_hiding").as_bool())
             {
 
-               pmenu->hide();
+               pmenu->display(e_display_hide);
 
                pmenu->set_need_redraw();
 
@@ -23387,7 +23387,7 @@ if(get_parent())
 
                puserinteractionOwned->m_edisplayOwnedBeforeHidden = edisplayOwnedBeforeHidden;
 
-               puserinteractionOwned->hide();
+               puserinteractionOwned->display(e_display_hide, {});
 
                puserinteractionOwned->set_need_redraw();
 

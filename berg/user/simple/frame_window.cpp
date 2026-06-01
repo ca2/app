@@ -183,7 +183,7 @@ void simple_frame_window::on_system_command(const ::e_system_command & esystemco
    if (has_notify_icon() && esystemcommand == e_system_command_minimize)
    {
 
-      hide();
+      display(e_display_hide, {});
 
       set_need_redraw();
 
@@ -1558,7 +1558,7 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
             else
             {
 
-               toolbartransport->hide();
+               toolbartransport->display(e_display_hide, {});
 
             }
 
@@ -1920,7 +1920,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       }
 
-      hide();
+      display(e_display_hide, {});
 
       set_need_redraw();
 
@@ -2000,7 +2000,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       if (is_window_visible())
       {
 
-         hide();
+         display(e_display_hide, {});
 
          set_need_redraw();
 
@@ -3309,7 +3309,7 @@ void simple_frame_window::WfiToggleShow()
    if (is_window_visible())
    {
 
-      hide();
+      display(e_display_hide, {});
 
    }
    else

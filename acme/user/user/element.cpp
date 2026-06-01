@@ -5209,6 +5209,13 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
       }
 
 
+      void element::on_window_show(bool bShow, int iDetail)
+      {
+
+
+      }
+
+
       bool element::on_window_activate(::i32 iActivate, bool bMinimized,
                                            const operating_system::window &operatingsystemwindow)
       {

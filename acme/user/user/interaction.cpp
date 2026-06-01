@@ -2447,6 +2447,13 @@ namespace acme
       }
 
 
+      void interaction::on_window_show(bool bShow, int iDetail)
+      {
+
+
+      }
+
+
       bool interaction::on_window_activate(::i32 iActivate, bool bMinimized,
                                            const operating_system::window &operatingsystemwindow)
       {

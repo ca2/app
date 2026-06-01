@@ -4749,12 +4749,12 @@ namespace user
    }
 
 
-   void element::hide()
-   {
+   //void element::hide()
+   //{
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
 
@@ -4905,7 +4905,6 @@ namespace user
    void element::display(::e_display edisplay, const ::user::activation & useractivation)
    {
 
-      //return true;
 
    }
 

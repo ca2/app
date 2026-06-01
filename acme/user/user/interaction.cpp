@@ -600,7 +600,7 @@ namespace acme
          else if (strActionName == "restore")
          {
 
-            display(e_display_normal);
+            display(e_display_normal, {});
 
          }
          else if (strActionName == "about_box")
@@ -924,19 +924,19 @@ namespace acme
       //}
 
 
-      void interaction::show()
-      {
+      //void interaction::show()
+      //{
 
-         m_pacmewindowingwindow->show_window();
+      //   m_pacmewindowingwindow->show_window();
 
-      }
-
-
-      void interaction::hide()
-      {
+      //}
 
 
-      }
+      //void interaction::hide()
+      //{
+
+
+      //}
 
 
       //void interaction::create()
@@ -1733,6 +1733,19 @@ namespace acme
       {
 
          acme_windowing_window()->set_position(point);
+
+      }
+
+
+      void interaction::display(::e_display edisplay, const ::user::activation& useractivation)
+      {
+
+         if(m_pacmewindowingwindow)
+         {
+
+            m_pacmewindowingwindow->display(edisplay, useractivation);
+
+         }
 
       }
 

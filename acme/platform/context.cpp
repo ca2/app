@@ -921,15 +921,15 @@ namespace platform
    ::file::path context::defer_process_matter_path(::file::path path)
    {
 
-      if (!system()->m_bAttemptedToInitializeMatter)
-      {
-
-         system()->defer_initialize_matter();
-
-      }
-
       if (case_insensitive_string_begins(path, "matter:/"))
       {
+
+         if (!system()->m_bAttemptedToInitializeMatter)
+         {
+
+            system()->defer_initialize_matter();
+
+         }
 
          return directory()->matter(path);
 
@@ -938,6 +938,13 @@ namespace platform
       if (path.case_insensitive_begins("appmatter:/"))
       {
 
+         if (!system()->m_bAttemptedToInitializeMatter)
+         {
+
+            system()->defer_initialize_matter();
+
+         }
+
          //path = directory()->appmatter(path, false);
          return directory()->appmatter(path);
 
@@ -945,6 +952,13 @@ namespace platform
 
       if (path.case_insensitive_begins_eat("icon:/"))
       {
+
+         if (!system()->m_bAttemptedToInitializeMatter)
+         {
+
+            system()->defer_initialize_matter();
+
+         }
 
          path += ".ico";
 

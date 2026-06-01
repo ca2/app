@@ -66,7 +66,7 @@ namespace micro
 
       m_manualresethappeningFinished.set_happening();
 
-      hide();
+      display(e_display_hide, {});
 
       destroy_window();
       
@@ -92,7 +92,7 @@ namespace micro
 
          create_window();
 
-         show();
+         display(e_display_center, {});
 
       });
 

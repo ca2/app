@@ -1089,13 +1089,16 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <CustomBuildStep>
-      <Command>copy /y $(TargetPath) "C:\operating_system\bin\application_build_helper.exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>C:\operating_system\bin\application_build_helper.exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Inputs>$(TargetPath)</Inputs>
+      <Inputs>
+      </Inputs>
     </CustomBuildStep>
     <PostBuildEvent>
       <Command>
@@ -1370,13 +1373,16 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <CustomBuildStep>
-      <Command>copy /y $(TargetPath) "C:\operating_system\bin\application_build_helper.exe"</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>C:\operating_system\bin\application_build_helper.exe</Outputs>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Inputs>$(TargetPath)</Inputs>
+      <Inputs>
+      </Inputs>
     </CustomBuildStep>
     <PostBuildEvent>
       <Command>
@@ -1391,6 +1397,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="launch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_main.inl" />
@@ -1431,6 +1438,7 @@
     <ClInclude Include="integration\x264.h" />
     <ClInclude Include="integration\x265.h" />
     <ClInclude Include="integration\aaa_.h" />
+    <ClInclude Include="launch.h" />
     <ClInclude Include="project_list.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_factory.cpp" />

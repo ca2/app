@@ -44,7 +44,7 @@ namespace micro
          //void on_sequence() override;
          //virtual void set(::message_box_payload * pmessageboxpayload);
 
-         void display(::dialog * pdialog) override;
+         void display_dialog(::dialog * pdialog) override;
 
 
          void show_modal(::dialog * pdialog) override;

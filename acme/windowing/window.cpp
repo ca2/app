@@ -315,20 +315,20 @@ namespace acme
       }
 
 
-      void window::show_window()
-      {
+      //void window::show_window()
+      //{
 
-         //m_pacmeuserinteraction->show_window();
+      //   //m_pacmeuserinteraction->show_window();
 
-      }
+      //}
 
 
-      void window::hide_window()
-      {
+      //void window::hide_window()
+      //{
 
-         //m_pacmeuserinteraction->hide();
+      //   //m_pacmeuserinteraction->hide();
 
-      }
+      //}
 
 
       void window::window_message_loop()

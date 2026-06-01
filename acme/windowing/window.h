@@ -351,8 +351,8 @@ namespace acme
          virtual void _on_reposition(::i32 x, ::i32 y);
          virtual void _on_size(::i32 cx, ::i32 cy);
 
-         virtual void show_window();
-         virtual void hide_window();
+         //virtual void show_window();
+         //virtual void hide_window();
 
          bool is_window_zoomed() override;
          void window_minimize() override;

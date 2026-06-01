@@ -265,9 +265,9 @@ namespace micro
 
          //virtual void create_window();
 
-         void show() override;
+         //void show() override;
 
-         void hide() override;
+         //void hide() override;
          
          ::shift_int client_to_host() override;
 

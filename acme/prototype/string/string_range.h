@@ -1898,6 +1898,22 @@ public:
 
    }
 
+   bool defer_consume_word(string_base<ITERATOR_TYPE >& str, const SCOPED_STRING& scopedstrCharacters = " ")
+   {
+
+      if (this->is_empty())
+      {
+
+         return false;
+
+      }
+
+      str = this->consume_token_until_any_character_in(scopedstrCharacters);
+
+      return true;
+
+   }
+
 
    bool begins_consume(const ::scoped_string & scopedstr);
    bool begins_consume(ansi_character ansich) { return (*this->m_begin == ansich) ? (static_cast<void>(this->m_begin++), true) : false; }

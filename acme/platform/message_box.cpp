@@ -95,7 +95,7 @@ void dialog::display_dialog()
 }
 
 
-void dialog::display(::dialog * pdialog)
+void dialog::display_dialog(::dialog * pdialog)
 {
 
    throw ::interface_only();
@@ -200,7 +200,7 @@ dialog_payload::~dialog_payload()
 
 
 
-void dialog_payload::display(::dialog * pdialog)
+void dialog_payload::display_dialog(::dialog * pdialog)
 {
 
    throw ::interface_only();
@@ -308,7 +308,7 @@ void dialog_reifier::display_dialog()
 }
 
 
-void dialog_reifier::display(::dialog * pdialog)
+void dialog_reifier::display_dialog(::dialog * pdialog)
 {
 
    m_pdialog = pdialog;

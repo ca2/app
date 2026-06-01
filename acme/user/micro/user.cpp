@@ -563,7 +563,7 @@ namespace micro
 
          }
 
-         pdialogreifier->display(pmessageboxpayload);
+         pdialogreifier->display_dialog(pmessageboxpayload);
 
          //return pmessageboxReified;
 

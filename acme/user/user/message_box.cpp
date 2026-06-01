@@ -33,7 +33,7 @@ namespace acme
       }
 
 
-      void message_box::display(::dialog * pdialog)
+      void message_box::display_dialog(::dialog * pdialog)
       {
 
          ::cast < ::message_box_payload > pmessageboxpayload = pdialog;

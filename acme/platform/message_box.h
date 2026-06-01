@@ -61,7 +61,7 @@ public:
 
 
    virtual void display_dialog();
-   virtual void display(::dialog * pdialog);
+   virtual void display_dialog(::dialog * pdialog);
    virtual void show_modal(::dialog * pdialog);
 
 
@@ -105,8 +105,8 @@ public:
 
    ::string dialog_title() const override;
 
-
-   void display(::dialog * pdialog) override;
+   using dialog::display_dialog;
+   void display_dialog(::dialog * pdialog) override;
    void on_dialog_result(const ::payload & payloadResult) override;
 
 
@@ -133,7 +133,7 @@ public:
 
 
    void display_dialog() override;
-   void display(::dialog * pdialog) override;
+   void display_dialog(::dialog * pdialog) override;
 
 
    void set_dialog_result(const ::payload & payloadResult) override;

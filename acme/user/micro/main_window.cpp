@@ -132,30 +132,30 @@ namespace micro
    }
 
 
-   void main_window::show()
-   {
+   //void main_window::show()
+   //{
 
-      if (!m_pacmeuserinteractionParent)
-      {
+   //   if (!m_pacmeuserinteractionParent)
+   //   {
 
-         acme_windowing_window()->show_window();
+   //      acme_windowing_window()->show_window();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void main_window::hide()
-   {
+   //void main_window::hide()
+   //{
 
-      if (!m_pacmeuserinteractionParent)
-      {
+   //   if (!m_pacmeuserinteractionParent)
+   //   {
 
-         acme_windowing_window()->hide_window();
+   //      acme_windowing_window()->hide_window();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void main_window::implementation_message_loop_step()
@@ -321,7 +321,7 @@ namespace micro
    void main_window::run()
    {
 
-      show();
+      display(e_display_normal, {});
 
    }
 

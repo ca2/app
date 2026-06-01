@@ -750,7 +750,7 @@ namespace user
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);
-      virtual void hide();
+      //virtual void hide();
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::element * pfocus);

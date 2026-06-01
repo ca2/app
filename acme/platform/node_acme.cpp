@@ -2080,7 +2080,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 
          if (papplication->m_pacmeuserinteractionMain)
          {
-            papplication->m_pacmeuserinteractionMain->hide();
+            papplication->m_pacmeuserinteractionMain->display(e_display_hide, {});
             papplication->m_pacmeuserinteractionMain->set_finish();
          }
 

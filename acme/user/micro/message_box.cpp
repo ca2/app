@@ -204,7 +204,7 @@ namespace micro
    }
 
 
-   void message_box::display(::dialog * pdialog)
+   void message_box::display_dialog(::dialog * pdialog)
    {
 
       ::cast < ::message_box_payload > pmessageboxpayload = pdialog;
@@ -213,7 +213,7 @@ namespace micro
 
       calculate_size();
 
-      ::acme::user::message_box::display(pmessageboxpayload);
+      ::acme::user::message_box::display_dialog(pmessageboxpayload);
 
       if (pmessageboxpayload->m_strDetailsTitle.has_character())
       {
@@ -290,7 +290,7 @@ namespace micro
 
       create_window();
 
-      show();
+      display(e_display_normal, {});
 
    }
 
@@ -298,7 +298,7 @@ namespace micro
    void message_box::show_modal(::dialog * pdialog)
    {
 
-      display(pdialog);
+      display_dialog(pdialog);
 
       m_manualresethappeningDialogResult.wait();
 

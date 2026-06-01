@@ -30,7 +30,9 @@ namespace launch
       void run() override;
 
 
-      virtual void on_launch_status(const ::scoped_string& scopedstr);
+      virtual void on_launch_main_status(const ::scoped_string& scopedstr);
+      virtual void on_launch_detail_status(const ::scoped_string& scopedstr);
+      virtual void on_launch_error_status(const ::scoped_string& scopedstr);
       virtual void on_going_to_launch();
       virtual void on_launched();
 

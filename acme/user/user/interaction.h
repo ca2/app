@@ -433,6 +433,8 @@ namespace acme
 
                void destroy() override;
 
+               void post_redraw(bool bAscendants = true) override;
+
                void redraw() override;
 
                //virtual void get_client_rectangle(::i32_rectangle & rectangle);

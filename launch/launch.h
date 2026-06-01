@@ -47,6 +47,11 @@ namespace launch
       ~launch() override;
 
 
+      virtual void on_main_status(const ::scoped_string& scopedstr);
+      virtual void on_detail_status(const ::scoped_string& scopedstr);
+      virtual void on_error_status(const ::scoped_string& scopedstr);
+
+
       void calculate_distro__branch_and_release();
 
       void parse_app_root_and_app_name();

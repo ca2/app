@@ -224,15 +224,6 @@ namespace launch
    }
 
 
-   // void launch::log_system(const_char_pointer pszCommand)
-   // {
-   //
-   // printf("%s\n", pszCommand);
-   // ::system(scopedstrCommand);
-   //
-   // }
-
-
    void launch::install_dependencies()
    {
 
@@ -328,43 +319,6 @@ namespace launch
    }
 
 
-   // bool launch::check_http_ok(const_char_pointer pszUrl)
-   // {
-   //
-   // bool bOk = false;
-   //
-   // if (!strcasecmp(m_pszDistro, "freebsd"))
-   // {
-   //
-   // bOk = curl_check_http_ok(scopedstrUrl);
-   //
-   // }
-   // else
-   // {
-   //
-   // bOk = wget_check_http_ok(scopedstrUrl);
-   //
-   // }
-   //
-   // if (bOk)
-   // {
-   //
-   // printf("File at \"%s\" seems OK!\n", pszUrl);
-   //
-   // }
-   // else
-   // {
-   //
-   // printf("Resource at \"%s\" doesn't exist!\n", pszUrl);
-   //
-   // }
-   //
-   // return bOk;
-   //
-   //
-   // }
-
-
    void launch::parse_app_root_and_app_name()
    {
 
@@ -402,14 +356,38 @@ namespace launch
    }
 
 
+   void launch::on_main_status(const ::scoped_string& scopedstr)
+   {
+
+      m_plaunchapplication->on_launch_main_status(scopedstr);
+
+   }
+
+
+   void launch::on_detail_status(const ::scoped_string& scopedstr)
+   {
+
+      m_plaunchapplication->on_launch_detail_status(scopedstr);
+
+   }
+
+
+   void launch::on_error_status(const ::scoped_string& scopedstr)
+   {
+
+      m_plaunchapplication->on_launch_error_status(scopedstr);
+
+   }  
+
+
    void launch::do_launch()
    {
 
-      print_line("Starting app/launch for \"" + m_strLaunchAppId + "\".");
+      on_main_status("Starting app/launch for \"" + m_strLaunchAppId + "\".");
 
-      print_line("Build time: " __DATE__ " " __TIME__);
+      on_detail_status("Build time: " __DATE__ " " __TIME__);
 
-      print_line("Calculating Download URL...");
+      on_detail_status("Calculating Download URL...");
 
       parse_app_root_and_app_name();
 
@@ -420,13 +398,17 @@ namespace launch
 
          m_iExitCode = -1;
 
-         err_line("Couldn't determine Download URL");
+         on_error_status("Couldn't determine Download URL");
 
          return;
 
       }
 
-      printf_line("Checking if version exists at server... (%s)", strDownloadUrl.c_str());
+      ::string strMessage;
+
+      strMessage.formatf("Checking if version exists at server... (%s)", strDownloadUrl.c_str());
+
+      on_main_status(strMessage);
 
       ::property_set setCheckUrlOkDownload;
 
@@ -459,13 +441,15 @@ namespace launch
 
          }
 
-         err_line(strErr);
+         on_error_status(strErr);
 
          return;
 
       }
 
-      printf_line("Downloading %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+      strMessage.formatf("Downloading %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+
+      on_main_status(strMessage);
 
       auto pathStore = directory_system()->home() / "application" / m_strAppRoot / m_strAppName;
 
@@ -569,7 +553,10 @@ namespace launch
       // }
 
 
-      printf_line("Uncompressing %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+      strMessage.formatf("Uncompressing %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+
+      on_main_status(strMessage);
+
       //system(szDownloadCommand);
 
       nano()->compress()->unzip(m_pathBinaryFolder, pathZipName);
@@ -580,7 +567,9 @@ namespace launch
 
       //system(szUnzipCommand);
 
-      printf_line("Installing dependencies for %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+      strMessage.formatf("Installing dependencies for %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+
+      on_main_status(strMessage);
 
       install_dependencies();
 
@@ -596,7 +585,9 @@ namespace launch
 
       m_plaunchapplication->on_going_to_launch();
 
-      printf_line("Launching %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+      strMessage.formatf("Launching %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+
+      on_main_status(strMessage);
 
       ::string strCommand;
 

@@ -1804,6 +1804,19 @@ namespace acme
       }*/
 
 
+      void interaction::post_redraw(bool bAscendants)
+      {
+
+         if (m_pacmewindowingwindow)
+         {
+
+            m_pacmewindowingwindow->post_redraw(bAscendants);
+
+         }
+
+      }
+
+
       void interaction::redraw()
       {
 

@@ -38,7 +38,21 @@ namespace launch
    }
 
 
-   void application::on_launch_status(const ::scoped_string& scopedstrStatus)
+   void application::on_launch_main_status(const ::scoped_string& scopedstrMain)
+   {
+
+
+   }
+
+
+   void application::on_launch_detail_status(const ::scoped_string& scopedstrDetail)
+   {
+
+
+   }
+
+
+   void application::on_launch_error_status(const ::scoped_string& scopedstrDetail)
    {
 
 

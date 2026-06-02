@@ -258,6 +258,8 @@ namespace user
 
       m_bTrackMouseLeave = false;
 
+      m_bNanoPaint = false;
+
       //m_bVisualChanged = false;
 
 

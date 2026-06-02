@@ -75,7 +75,7 @@ namespace acme
          //::pointer<::acme::timer_array>               m_ptimerarray;
 
          bool m_bDefaultNcHitTest;
-         bool m_bCustomPaint;
+         bool m_bNanoPaint;
 
 #ifdef WINDOWS_DESKTOP
 //          ::i32 m_iStyle;

@@ -136,6 +136,7 @@ public:
    }
 
    bool erase(iterator iterator);
+   bool contains(iterator iterator) const;
 
    bool toggle(ARG_KEY key)
    {
@@ -1254,6 +1255,24 @@ inline bool node_set_base < NODE, t_eallocate >::erase(iterator iterator)
    _free(iterator);
 
    return true;
+
+}
+
+
+template<typename NODE, enum_allocate t_eallocate>
+inline bool node_set_base<NODE, t_eallocate>::contains(iterator iterator) const
+{
+
+   auto it = find(iterator->key());
+
+   if (!it)
+   {
+
+      return false;
+
+   }
+
+   return it.m_p == iterator.m_p;
 
 }
 

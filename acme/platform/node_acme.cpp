@@ -59,7 +59,7 @@ namespace platform
 
    //idaPid = pnode->(path, false){}
 
-    void node::defer_install_store_dependencies()
+    void acme_node_layer::defer_install_store_dependencies()
     {
 
 

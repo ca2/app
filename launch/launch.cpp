@@ -227,7 +227,9 @@ namespace launch
    void launch::install_dependencies()
    {
 
-      print_line("Going to install dependencies: ");
+      on_main_status("Going to install dependencies: ");
+
+      node()->defer_install_store_dependencies();
 
       auto straDependencies = file_system()->lines(m_pathBinaryFolder / "operating_system_packages.txt");
 

@@ -1,11 +1,9 @@
 #include "framework.h"
 #include "acme/operating_system/parallelization.h"
-#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"
 #include "acme/windowing/window.h"
 #include "acme/nano/nano.h"
-#include "acme/operating_system/windows/registry.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows/windows.h"
 

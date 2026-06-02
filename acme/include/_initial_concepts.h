@@ -48,11 +48,23 @@ concept prototype_sequence4 = requires(SEQUENCE4 s4) {
    s4.w;
 };
 
+
+template<typename ENUM>
+concept prototype_raw_enum =
+   std::is_enum<::decay<ENUM>>::value;
+
+template<typename ENUMERATION>
+concept prototype_enumeration = 
+   ::is_same<typename ENUMERATION::ENUM_TYPE_TAG, enum_type_t>;
+
+template<typename CFLAG>
+concept prototype_c_flag = ::is_same<typename CFLAG::CFLAG_TYPE_TAG, c_flag_type_t>;
+
 template < typename ENUM >
 concept prototype_enum = 
-   std::is_enum < ::decay < ENUM > >::value 
-   || ::is_same < typename ENUM::ENUM_TYPE_TAG, enum_type_t >
-|| ::is_same < typename ENUM::CFLAG_TYPE_TAG, c_flag_type_t >;
+   prototype_raw_enum < ENUM >
+   || prototype_enumeration < ENUM >
+   || prototype_c_flag < ENUM >;
 
 
 template < typename BLOCK >

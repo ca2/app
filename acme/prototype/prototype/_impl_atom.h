@@ -268,7 +268,7 @@ inline atom::atom(enum_id eid) :
 }
 
 
-inline atom::atom(const ::e_element & eelement) :
+inline atom::atom(enum_element eelement) :
    m_etype(e_type_element),
    m_iLargest((::iptr)eelement) // used m_iLargest to reset 64-bit field
 {
@@ -538,7 +538,7 @@ inline atom::atom(UNSIGNED u)
 }
 
 
-template < prototype_enum ENUM >
+template < prototype_raw_enum ENUM >
 inline atom::atom(ENUM e)
 {
 
@@ -547,6 +547,16 @@ inline atom::atom(ENUM e)
    m_iLargest = ::as_i64(e);
 
 }
+
+
+template<prototype_enumeration ENUMERATION>
+inline atom::atom(const ENUMERATION & e) : 
+   atom(e.m_eenum)
+{
+
+
+}
+
 
 
 inline bool atom::operator == (const atom & atom) const

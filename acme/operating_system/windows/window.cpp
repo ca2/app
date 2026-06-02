@@ -251,11 +251,13 @@ namespace windows
 
                lresult = 1;
 
-               return true;
+               //return true;
 
             }
 
          }
+
+         on_window_show(wparam != FALSE, lparam.raw_cast<int>());
 
       }
       else if (message == WM_SIZE)
@@ -894,6 +896,12 @@ namespace windows
       {
 
          ::information("windows::window::s_window_procedure WM_NCCALCSIZE");
+
+      }
+      else if (msg == WM_SHOWWINDOW)
+      {
+
+         ::information("windows::window::s_window_procedure WM_SHOWWINDOW");
 
       }
 

@@ -929,6 +929,7 @@ namespace user
 
       virtual void on_window_size();
       virtual void on_window_set_focus();
+      virtual void on_window_show(bool bShow, int iDetail);
       virtual bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
       virtual bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
          ::i32 iHitTest, ::i32 iMessage);

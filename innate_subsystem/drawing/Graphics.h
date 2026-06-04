@@ -75,24 +75,24 @@ namespace innate_subsystem
       virtual void setFont(FontInterface *font) = 0;
 
       // Moves cursor to specified position.
-      virtual void moveTo(const ::i32_point & point) = 0;
+      virtual void moveTo(const ::f64_point & point) = 0;
       // Draws line from current position to specified line.
-      virtual void lineTo(const ::i32_point & point) = 0;
+      virtual void lineTo(const ::f64_point & point) = 0;
 
       // Draws filled rect.
       //virtual void fillRect(::i32 l, ::i32 t, ::i32 r, ::i32 b, BrushInterface*pbrush) = 0;
-      virtual void fillRect(const ::i32_rectangle & rectangle, BrushInterface * pbrush) = 0;
-      virtual void fillRect(const ::i32_rectangle & rectangle, const ::color::color & color) = 0;
+      virtual void fillRect(const ::f64_rectangle & rectangle, BrushInterface * pbrush) = 0;
+      virtual void fillRect(const ::f64_rectangle & rectangle, const ::color::color & color) = 0;
       // Draws ellipse.
-      virtual void ellipse(const ::i32_rectangle & rectangle) = 0;
+      virtual void ellipse(const ::f64_rectangle & rectangle) = 0;
       // Draws rectance.
-      virtual void rectangle(const ::i32_rectangle & rectangle) = 0;
+      virtual void rectangle(const ::f64_rectangle & rectangle) = 0;
 
       // Draws bitmap.
       virtual void drawBitmap(BitmapInterface *bitmap, const ::i32_rectangle & rectangle) = 0;
       virtual void drawBitmap(BitmapInterface *bitmap, const ::i32_point & point, const ::i32_rectangle & rectangleSrc) = 0;
       // Draws text.
-      virtual void drawText(const ::scoped_string & scopedstr, ::i32_rectangle &rect, ::u32 format = 0, enum_align ealign = e_align_top_left) = 0;
+      virtual void drawText(const ::scoped_string & scopedstr, ::f64_rectangle &rect, ::u32 format = 0, enum_align ealign = e_align_top_left) = 0;
 
    //protected:
      //::pointer < DeviceContext > m_pdevicecontext;
@@ -202,14 +202,14 @@ namespace innate_subsystem
       }
 
       // Moves cursor to specified position.
-      void moveTo(const ::i32_point& point) override
+      void moveTo(const ::f64_point& point) override
       {
 
          m_pgraphics->moveTo(point);
 
       }
       // Draws line from current position to specified line.
-      void lineTo(const ::i32_point& point) override
+      void lineTo(const ::f64_point& point) override
       {
 
          m_pgraphics->lineTo(point);
@@ -218,27 +218,27 @@ namespace innate_subsystem
 
       // Draws filled rect.
       //void fillRect(::i32 l, ::i32 t, ::i32 r, ::i32 b, BrushInterface *pbrush) override;
-      void fillRect(const ::i32_rectangle& rectangle, BrushInterface* pbrush) override
+      void fillRect(const ::f64_rectangle& rectangle, BrushInterface* pbrush) override
       {
 
          m_pgraphics->fillRect(rectangle, pbrush);
 
       }
-      void fillRect(const ::i32_rectangle& rectangle, const ::color::color& color) override
+      void fillRect(const ::f64_rectangle& rectangle, const ::color::color& color) override
       {
 
          m_pgraphics->fillRect(rectangle, color);
 
       }
       // Draws ellipse.
-      void ellipse(const ::i32_rectangle& rectangle) override
+      void ellipse(const ::f64_rectangle& rectangle) override
       {
 
          m_pgraphics->ellipse(rectangle);
 
       }
       // Draws rectance.
-      void rectangle(const ::i32_rectangle& rectangle) override
+      void rectangle(const ::f64_rectangle& rectangle) override
       {
 
          m_pgraphics->rectangle(rectangle);
@@ -259,7 +259,7 @@ namespace innate_subsystem
 
       }
       // Draws text.
-      void drawText(const ::scoped_string & scopedstr, ::i32_rectangle& rect, ::u32 format = 0, enum_align ealign = e_align_top_left) override
+      void drawText(const ::scoped_string & scopedstr, ::f64_rectangle& rect, ::u32 format = 0, enum_align ealign = e_align_top_left) override
       {
 
          m_pgraphics->drawText(scopedstr, rect, format, ealign);

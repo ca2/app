@@ -30,6 +30,9 @@ namespace subsystem_bsd_sockets
       ~subsystem() override;
 
 
+      virtual bool socket_would_block(int iError);
+      virtual bool socket_would_block();
+
       ::i32 get_last_socket_error() override;
 
       ::string get_socket_error_message_text(::i32 iError) override;

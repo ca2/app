@@ -26,7 +26,7 @@
 #include "SocketAddressIPv4.h"
 //#include "SocketAddressIPv4.h"
 #include "SocketIPv4.h"
-
+#include "subsystem_bsd_sockets/platform/subsystem.h"
 
 #ifdef __APPLE__
     #include <sys/ioctl.h>
@@ -301,38 +301,57 @@ namespace subsystem_bsd_sockets
       
       result = ::recv(m_socket, buffer, size, flags);
 
-      if(result < 0 &&
-         (errno == EAGAIN || errno == EWOULDBLOCK))
+      int iError = 0;
+
+      if (result < 0)
       {
-         
-         if(::task_get_run())
+
+         iError = ::bsd_sockets_subsystem()->get_last_socket_error();
+
+         if(::bsd_sockets_subsystem()->socket_would_block(iError))
          {
-            
-            ::task_iteration();
-            
-            goto restart;
-            
+
+            if (::task_get_run())
+            {
+
+               ::task_iteration();
+
+               goto restart;
+            }
+            else
+            {
+
+               information("receive time out and thread is finishing");
+
+               throw ::exception(error_timeout, "receive time out and thread is finishing");
+            }
          }
          else
          {
-            
-            information("receive time out and thread is finishing");
-            
-            throw ::exception(error_timeout, "receive time out and thread is finishing");
-            
+
+            int timeout;
+            int len = sizeof(timeout);
+
+            getsockopt(m_socket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, &len);
+
+            printf("SO_RCVTIMEO = %d ms\n", timeout);
+
+            throw ::io_exception(error_io, "Failed to recv data from socket.");
+
          }
-         
+
       }
+         
       
       // Connection has been gracefully closed.
       if (result == 0) {
          throw ::io_exception(error_io, "Connection has been gracefully closed");
       }
 
-      // SocketIPv4 error.
-      if (result == _SOCKET_ERROR) {
-         throw ::io_exception(error_io, "Failed to recv data from socket.");
-      }
+      //// SocketIPv4 error.
+      //if (result == _SOCKET_ERROR) {
+      //   throw ::io_exception(error_io, "Failed to recv data from socket.");
+      //}
 
       return result;
    }

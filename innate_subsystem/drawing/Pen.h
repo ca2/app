@@ -49,7 +49,7 @@ namespace innate_subsystem
           //virtual ~PenInterface() = 0;
 
 
-         virtual void initialize_pen(enum_pen epen, ::i32 width, const ::color::color & color) = 0;
+         virtual void initialize_pen(enum_pen epen, ::f32 fWidth, const ::color::color & color) = 0;
 
          //virtual void destroyGObject() = 0;
       // protected:
@@ -75,10 +75,10 @@ virtual public Composite<PenInterface>
 
       //void * _HGDIOBJ() override;
 
-         void initialize_pen(enum_pen epen, ::i32 width, const ::color::color& color) override
+         void initialize_pen(enum_pen epen, ::f32 fWidth, const ::color::color& color) override
       {
 
-         m_ppen->initialize_pen(epen, width, color);
+         m_ppen->initialize_pen(epen, fWidth, color);
       }
 
       void destroyGraphicsObject() override

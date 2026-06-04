@@ -215,7 +215,28 @@ static std::array<unsigned char, ::user::e_key_count> create_vk_table()
    return a;
 }
 
+
+
 static const auto g_vkcode_from_user_key = create_vk_table();
+
+static std::array<::user::e_key, 256> create_rear_vk_table()
+{
+
+   std::array<::user::e_key, 256> a;
+
+   for (::user::e_key ekey = ::user::e_key_none; ekey < ::user::e_key_count; ekey++)
+   {
+
+      a[g_vkcode_from_user_key[ekey.m_eenum]] = ekey;
+
+   }
+
+   return a;
+
+}
+
+
+static const auto g_user_key_from_vkcode = create_rear_vk_table();
 
 ::string as_string(const ::user::e_key & ekey)
 {
@@ -244,7 +265,14 @@ static const auto g_vkcode_from_user_key = create_vk_table();
 }
 
 
-::i32 e_user_key_to_vkcode(const ::user::e_key & euserkey)
+CLASS_DECL_ACME::user::e_key vk_code_to_e_user_key(int iVkCode)
+{
+
+   return g_user_key_from_vkcode[iVkCode];
+
+}
+
+CLASS_DECL_ACME ::i32 e_user_key_to_vkcode(const ::user::e_key & euserkey)
 {
 
    return g_vkcode_from_user_key[euserkey.m_eenum];

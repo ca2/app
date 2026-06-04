@@ -50,7 +50,7 @@ namespace subsystem
        * the extended argument will be returned with the true value.
        * @return true if keySym is translated into virtual key code, false otherwise.
        */
-      bool keySymToVirtualCode(::u32 keySym, ::user::enum_key * peuserkey, bool *extended);
+      bool keySymToVirtualCode(::u32 keySym, ::user::e_key * peuserkey, bool *extended);
       /**
        * Converts virtual key code to X11 key sym.
        * @param euserkey virtual key code.

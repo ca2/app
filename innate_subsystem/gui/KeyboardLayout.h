@@ -51,7 +51,7 @@ namespace innate_subsystem
    public:
 
 
-       virtual bool vkCodeToString(::u16 virtKey, bool down,
+       virtual bool vkCodeToString(const ::user::e_key & ekey, bool down,
                                   ::wstring *res, keyboard_state_t *pkeyboardstate) = 0;
 
    };
@@ -72,10 +72,10 @@ namespace innate_subsystem
        ImplementCompositeø(KeyboardLayout, keyboardlayout) 
            
            
-           bool vkCodeToString(::u16 virtKey, bool down, ::wstring *res, keyboard_state_t *pkeyboardstate) override
+           bool vkCodeToString(const ::user::e_key & ekey, bool down, ::wstring *res, keyboard_state_t *pkeyboardstate) override
        {
 
-           return m_pkeyboardlayout->vkCodeToString(virtKey, down, res, pkeyboardstate);
+           return m_pkeyboardlayout->vkCodeToString(ekey, down, res, pkeyboardstate);
 
        }
 

@@ -323,6 +323,7 @@ namespace user
 
 
 CLASS_DECL_ACME ::i32 e_user_key_to_vkcode(const ::user::e_key & euserkey);
+CLASS_DECL_ACME ::user::e_key vk_code_to_e_user_key(int iVkCode);
 
 
 

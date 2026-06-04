@@ -41,16 +41,23 @@ struct operating_ambient_window_t
 #define WIN32_WA_ACTIVE 1
 #define WIN32_WA_CLICKACTIVE 2
 #define WIN32_WA_INACTIVE 0
-#define WIN32_SB_THUMBTRACK 1
-#define WIN32_SB_THUMBPOSITION 2
-#define WIN32_SB_LINEUP 3
-#define WIN32_SB_LINEDOWN 4
-#define WIN32_SB_PAGEUP 5
-#define WIN32_SB_PAGEDOWN 6
-#define WIN32_SB_LINELEFT 7
-#define WIN32_SB_PAGELEFT 8
-#define WIN32_SB_LINERIGHT 9
-#define WIN32_SB_PAGERIGHT 10
+
+
+#define WIN32_SB_LINEUP 0
+#define WIN32_SB_LINELEFT 0
+#define WIN32_SB_LINEDOWN 1
+#define WIN32_SB_LINERIGHT 1
+#define WIN32_SB_PAGEUP 2
+#define WIN32_SB_PAGELEFT 2
+#define WIN32_SB_PAGEDOWN 3
+#define WIN32_SB_PAGERIGHT 3
+#define WIN32_SB_THUMBPOSITION 4
+#define WIN32_SB_THUMBTRACK 5
+#define WIN32_SB_TOP 6
+#define WIN32_SB_LEFT 6
+#define WIN32_SB_BOTTOM 7
+#define WIN32_SB_RIGHT 7
+#define WIN32_SB_ENDSCROLL 8
     
 namespace user{
 
@@ -275,6 +282,8 @@ namespace innate_subsystem
       virtual ::i32_rectangle getFullScreenRect() = 0;
       virtual ::i32_size getBorderSize() = 0;
       virtual ::i32_rectangle getScreenWorkArea() = 0;
+
+      virtual ::f32 getWindowScale() = 0;
 
 
       //virtual void setSizeFullScreenWindow() = 0;
@@ -569,6 +578,8 @@ namespace innate_subsystem
       ::i32_rectangle getFullScreenRect() override { return m_pwindow->getFullScreenRect(); }
       ::i32_size getBorderSize() override { return m_pwindow->getBorderSize(); }
       ::i32_rectangle getScreenWorkArea() override { return m_pwindow->getScreenWorkArea(); }
+
+      ::f32 getWindowScale() override { return m_pwindow->getWindowScale(); }
 
       //void setSizeFullScreenWindow() override;
       //void doRestoreFromFullScreen() override;

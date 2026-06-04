@@ -18,6 +18,22 @@ namespace subsystem_bsd_sockets
    ::i32 subsystem::get_last_socket_error() { return WSAGetLastError(); }
 
 
+   bool subsystem::socket_would_block()
+   {
+      int iError = get_last_socket_error();
+
+      return socket_would_block(iError);
+   }
+
+      bool subsystem::socket_would_block(int iError)
+   {
+#ifdef _WIN32
+      return iError == WSAEWOULDBLOCK;
+#else
+      return iError == EAGAIN || iError == EWOULDBLOCK;
+#endif
+   }
+
    string subsystem::get_socket_error_message_text(::i32 iError)
    {
 

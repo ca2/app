@@ -1557,21 +1557,39 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::i32_size & size)
    {
 
-      auto pfile = file()->get_reader("matter://main/icon.png");
+      ::pointer<::innate_ui::icon> piconMatter;
 
       auto pinnateui = system()->innate_ui();
 
-      auto piconMatter = pinnateui->innate_ui_icon(pfile, size);
+      try
+      {
+
+         auto pfile = file()->get_reader("matter://main/icon.png");
+
+         piconMatter = pinnateui->innate_ui_icon(pfile, size);
+
+         if (piconMatter)
+         {
+
+            return piconMatter;
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      piconMatter = pinnateui->try_get_application_icon_from_main_window();
 
       if (piconMatter)
       {
 
          return piconMatter;
-
       }
 
-      return pinnateui->try_get_application_icon_from_main_window();
-
+      return nullptr;
 
    }
 

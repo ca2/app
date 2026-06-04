@@ -1053,7 +1053,7 @@ namespace subsystem
       return -1;
    }
 
-   bool Keymap::keySymToVirtualCode(::u32 keySym, ::user::enum_key * peuserkey, bool *extended)
+   bool Keymap::keySymToVirtualCode(::u32 keySym, ::user::e_key * peuserkey, bool *extended)
    {
       // Is extended key in the Windows?
       *extended = false;

@@ -626,7 +626,13 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
     if (m_bAutoStartOnTimerAdded) {
         if (!is_task_set2()) {
 
-            branch();
+           _synchronous_lock synchronouslock(this->synchronization());
+
+           if (!is_task_set2())
+           {
+
+              branch();
+           }
 
         }
     }
@@ -2905,6 +2911,17 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if (m_bBranchCall)
+   {
+
+      return;
+
+   }
+
+   m_bBranchCall = true;
+
    if (id().is_empty())
    {
 
@@ -2925,6 +2942,8 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    if (id().is_empty() || id() == "task" || id() == "thread")
    {
+
+      m_bBranchCall = false;
 
       throw ::exception(error_bad_argument);
 

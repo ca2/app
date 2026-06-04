@@ -1150,6 +1150,12 @@ namespace aura
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      if (m_pdraw2d)
+      {
+
+         return;
+      }
+
 
       ::e_status estatus = ::success;
 
@@ -7291,6 +7297,8 @@ if(!m_pimaging)
 
       if (!m_pdraw2d)
       {
+
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          initialize_draw2d();
 

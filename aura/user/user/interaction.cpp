@@ -258,6 +258,8 @@ namespace user
 
       m_bTrackMouseLeave = false;
 
+      m_bNanoPaint = false;
+
       //m_bVisualChanged = false;
 
 
@@ -18589,6 +18591,11 @@ if(get_parent())
          informationf("on_mouse_message ::user::e_message_left_button_down");
 
       }
+      else if (pmouse->m_eusermessage == ::user::e_message_mouse_move)
+      {
+
+         informationf("on_mouse_message ::user::e_message_mouse_move");
+      }
 
       user_mouse_initialize_cursor(pmouse, m_pcursorDefault);
 
@@ -26180,6 +26187,28 @@ void interaction::on_control_box_zoom(){
 
    void interaction::on_message_parent_mouse_move(::message::message * pmessage)
    {
+      ::string strType;
+
+      strType = type(*this).name();
+
+
+
+      if (strType.contains("font_list"))
+      {
+
+         information() << "interaction::on_message_parent_mouse_move font_list (1)";
+      }
+      else if (strType.contains("simple_scroll_bar"))
+      {
+
+         information() << "interaction::on_message_parent_mouse_move simple_scroll_bar (1)";
+      }
+      else if (strType.contains("simple_application::main_frame"))
+      {
+
+         information() << "simple_application::main_frame on_message_parent_mouse_move (1)";
+      }
+
 
       if (!is_window_enabled())
       {
@@ -26199,10 +26228,6 @@ void interaction::on_control_box_zoom(){
 
       }
 
-      ::string strType;
-
-      strType = type(this).name();
-
       if (strType.contains("font_list"))
       {
 
@@ -26212,7 +26237,7 @@ void interaction::on_control_box_zoom(){
       else if (strType.contains("simple_scroll_bar"))
       {
 
-         //information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
+         information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
 
       }
       else if (strType.contains("simple_application::main_frame"))

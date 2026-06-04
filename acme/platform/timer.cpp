@@ -39,7 +39,7 @@ timer_handler::~timer_handler() {}
    defer_construct_newø(ptimer);
 
    ptimer->m_ptimerhandler = this;
-   ptimer->m_ptimerdispatch = this;
+   ptimer->m_ptimerdispatch = ptimerdispatch;
    ptimer->m_etimer = etimer;
    ptimer->m_time = time;
    ptimer->m_callback = callback;
@@ -267,7 +267,9 @@ void timer_handler::erase_timer_dispatch(::timer_dispatch * ptimerdispatch)
 void timer_handler::handle_timers()
 {
 
-   auto it = m_timermap.begin();
+   auto itNext = m_timermap.begin();
+
+   decltype(itNext) it;
 
    ::timer_map * ptimermap = nullptr;
 
@@ -275,6 +277,8 @@ void timer_handler::handle_timers()
    {
 
      // task_run(m_timeResolution);
+
+      it = itNext;
 
       if (m_timermap.is_empty())
       {
@@ -296,7 +300,7 @@ void timer_handler::handle_timers()
 
          ptimermap = &it->m_element2;
 
-         it++;
+         itNext = it + 1;
 
       }
 
@@ -312,7 +316,10 @@ void timer_handler::handle_timers()
 
         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-        m_timermap.erase(it);
+      if (ptimermap->count() <= 0)
+        {
+           m_timermap.erase(it);
+        }
 
       }
          //else
@@ -389,7 +396,9 @@ void timer_handler::handle_timers()
 void timer_handler::_handle_timers(::timer_map * ptimermap)
 {
 
-   auto it = ptimermap->begin();
+   auto itNext = ptimermap->begin();
+
+   decltype(itNext) it; 
 
    ::pointer < ::timer > ptimer;
 
@@ -397,6 +406,8 @@ void timer_handler::_handle_timers(::timer_map * ptimermap)
    {
 
      // task_run(m_timeResolution);
+
+      it = itNext;
 
       if (ptimermap->is_empty())
       {
@@ -418,7 +429,7 @@ void timer_handler::_handle_timers(::timer_map * ptimermap)
 
          ptimer = it->m_element2;
 
-         it++;
+         itNext = it + 1;
 
       }
 
@@ -432,7 +443,12 @@ void timer_handler::_handle_timers(::timer_map * ptimermap)
 
             _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            ptimermap->erase(it);
+            if (ptimermap->contains(it))
+            {
+
+               ptimermap->erase(it);
+
+            }
 
          }
          else

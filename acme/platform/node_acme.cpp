@@ -59,6 +59,11 @@ namespace platform
 
    //idaPid = pnode->(path, false){}
 
+    void acme_node_layer::defer_install_store_dependencies()
+    {
+
+
+    }
 
 
    particle_pointer acme_node_layer::create_mutex()

@@ -345,9 +345,8 @@ public:
 
    inline atom();
    inline atom(enum_type etype);
-
    inline atom(enum_id eid);
-   inline atom(const ::e_element & eelement);
+   inline atom(enum_element eelement);
    //inline atom(::enum_id EID);
    //inline atom(const ::e_command & ecommand);
    inline atom(::user::enum_message eusermessage);
@@ -378,9 +377,11 @@ public:
    atom(SIGNED i);
    template < prototype_unsigned UNSIGNED >
    atom(UNSIGNED u);
-   template < prototype_enum ENUM >
+   template < prototype_raw_enum ENUM >
    atom(ENUM e);
-   atom(const ::scoped_string & scopedstr);
+   template<prototype_enumeration ENUMERATION>
+   atom(const ENUMERATION & e);
+   atom(const ::scoped_string &scopedstr);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);

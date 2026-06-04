@@ -143,6 +143,7 @@ namespace platform
       virtual void notify_system_started();
       //idaPid = pnode->(path, false);
 
+      virtual void defer_install_store_dependencies();
 
       virtual ::particle_pointer create_mutex();
 

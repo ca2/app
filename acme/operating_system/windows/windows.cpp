@@ -3,8 +3,7 @@
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"
 #include "acme/windowing/window.h"
-
-
+#include "acme/nano/nano.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows/windows.h"
 
@@ -1175,3 +1174,4 @@ void operating_system_factory(::factory::factory * pfactory)
    pfactory->add_factory_item< ::windows::shared_memory, ::shared_memory>();
 
 }
+

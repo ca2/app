@@ -150,6 +150,7 @@ public:
 #endif
          bool                                            m_bRunMainLoop : 1;
         bool m_bAutoStartOnTimerAdded :1;
+         bool m_bBranchCall : 1;
 
       };
 

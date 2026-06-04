@@ -72,7 +72,7 @@ namespace acme
          //m_bTopMost = false;
          //m_bStartCentered = false;
          //m_bArbitraryPositioning = false;
-         m_bCustomPaint = true;
+         m_bNanoPaint = true;
 
          //m_efont = e_font_sans;
          m_uFlagsAcmeUserInteraction = 0;

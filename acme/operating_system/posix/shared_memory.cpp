@@ -18,6 +18,40 @@
 #include <unistd.h>
 
 
+namespace posix
+{
+
+   shared_memory::shared_memory()
+   {
+      
+      
+      
+   }
+
+
+   shared_memory::~shared_memory()
+   {
+      Close();
+   }
+
+
+   void shared_memory::CreateSharedMemory(const char* name, memsize size)
+   {
+      m_memsize = size;
+      
+      m_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+      
+      if (m_fd < 0)
+      {
+         throw ::exception(error_resource);
+         
+      }
+      
+      if (ftruncate(m_fd, size) != 0)
+      {
+         throw ::exception(error_no_memory);
+         
+      }
 shared_memory::shared_memory()
 {
    

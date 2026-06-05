@@ -732,7 +732,7 @@ bool itask::operator == (const itask & i) const
       
    }
    
-   return pthread_equal(::literal_cast < pthread_t > (m_i32), ::literal_cast < pthread_t > (i.m_i32));
+   return pthread_equal(::literal_cast < pthread_t > (m_i), ::literal_cast < pthread_t > (i.m_i));
    
 }
 
@@ -774,7 +774,7 @@ bool itask::is_null() const
    
    itask iNull;
    
-   return memcmp(&m_i32, &iNull, sizeof(m_i32)) == 0;
+   return memcmp(&m_i, &iNull, sizeof(m_i)) == 0;
    
 }
 

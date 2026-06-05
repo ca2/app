@@ -1,6 +1,7 @@
 // Created by camilo on 2021-08-29 16:00 BRT <3ThomasBS_!!
 #include "framework.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/posix/shared_memory.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 
@@ -195,3 +196,12 @@ CGRect _get_console_rect();
 
 
 } // namespace operating_system
+
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item< ::posix::shared_memory, ::shared_memory>();
+
+}

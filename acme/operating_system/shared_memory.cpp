@@ -25,7 +25,7 @@ bool shared_memory::CreateSharedMemory(const_char_pointer pszName, memsize size)
 
    throw ::interface_only();
 
-   return false;
+   //return false;
 
 }
 
@@ -35,7 +35,7 @@ bool shared_memory::OpenSharedMemory(const_char_pointer pszName, memsize size)
 
    throw ::interface_only();
 
-   return false;
+   //return false;
 
 }
 

@@ -343,6 +343,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(Process);
+
    };
 
 

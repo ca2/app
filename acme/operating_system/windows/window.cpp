@@ -802,6 +802,15 @@ namespace windows
       if (!atom)
       {
 
+         auto dwLastError = ::GetLastError();
+
+         if (dwLastError == ERROR_CLASS_ALREADY_EXISTS)
+         {
+
+            return true;
+
+         }
+
          return false;
       }
 
@@ -813,6 +822,7 @@ namespace windows
    {
 
       WNDCLASSEXW wndclassexw{};
+      wndclassexw.cbSize = sizeof(WNDCLASSEXW);
       wndclassexw.style = iWindowClassStyle;
       wndclassexw.hCursor = (HCURSOR) pHCURSOR;
       wndclassexw.hbrBackground = (HBRUSH)pHBRUSH_Background;

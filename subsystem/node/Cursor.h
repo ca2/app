@@ -81,9 +81,12 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM Cursor :
- virtual public Object <CursorAggregate >
+      virtual public Object <CursorAggregate >
    {
    public:
+
+      ImplementObjectø(Cursor);
+
 
    };
 

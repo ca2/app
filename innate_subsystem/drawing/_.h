@@ -21,6 +21,8 @@ namespace innate_subsystem
 
    class Icon;
 
+   class Path;
+
    class Pen;
 
    class SolidBrush;

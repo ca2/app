@@ -38,6 +38,16 @@ namespace innate_subsystem
       e_pen_null =5, // PS_NULL;
    };
 
+
+         enum enum_line_cap
+   {
+
+      e_line_cap_none,
+      e_line_cap_round,
+
+   };
+
+
       class PenInterface :
          virtual public GraphicsObject
       {
@@ -50,6 +60,11 @@ namespace innate_subsystem
 
 
          virtual void initialize_pen(enum_pen epen, ::f32 fWidth, const ::color::color & color) = 0;
+
+
+         virtual void setStartCap(::innate_subsystem::enum_line_cap elinecap) = 0;
+         virtual void setEndCap(::innate_subsystem::enum_line_cap elinecap) = 0;
+
 
          //virtual void destroyGObject() = 0;
       // protected:
@@ -80,6 +95,9 @@ virtual public Composite<PenInterface>
 
          m_ppen->initialize_pen(epen, fWidth, color);
       }
+
+      void setStartCap(::innate_subsystem::enum_line_cap elinecap) override { m_ppen->setStartCap(elinecap); }
+      void setEndCap(::innate_subsystem::enum_line_cap elinecap) override { m_ppen->setEndCap(elinecap); }
 
       void destroyGraphicsObject() override
       {

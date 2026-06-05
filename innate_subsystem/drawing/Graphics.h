@@ -94,6 +94,9 @@ namespace innate_subsystem
       // Draws text.
       virtual void drawText(const ::scoped_string & scopedstr, ::f64_rectangle &rect, ::u32 format = 0, enum_align ealign = e_align_top_left) = 0;
 
+
+      virtual void doPath(PathInterface *ppath, BrushInterface *pbrush, PenInterface *ppen) = 0;
+
    //protected:
      //::pointer < DeviceContext > m_pdevicecontext;
    };
@@ -266,6 +269,12 @@ namespace innate_subsystem
 
       }
 
+      void doPath(PathInterface* ppath, BrushInterface* pbrush, PenInterface* ppen) override
+      {
+
+         m_pgraphics->doPath(ppath, pbrush, ppen);
+
+      }
       //protected:
       //::pointer < DeviceContext > m_pdevicecontext;
    };

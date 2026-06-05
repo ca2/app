@@ -186,6 +186,9 @@
     <ClCompile Include="framebuffer\DibFrameBuffer.cpp">
       <Filter>Source Files\framebuffer</Filter>
     </ClCompile>
+    <ClCompile Include="drawing\Path.cpp">
+      <Filter>Source Files\drawing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawing\SolidBrush.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="framebuffer\DibFrameBuffer.h">
       <Filter>Header Files\framebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="drawing\Path.h">
+      <Filter>Header Files\drawing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

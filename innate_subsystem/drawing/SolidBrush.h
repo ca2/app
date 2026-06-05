@@ -30,7 +30,7 @@ namespace innate_subsystem
 {
 
    class SolidBrushInterface :
-      virtual public ::Particle
+      virtual public BrushInterface
    {
    public:
 

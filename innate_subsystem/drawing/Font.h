@@ -45,7 +45,9 @@ namespace innate_subsystem
           //virtual ~FontInterface() = 0;
 
 
-         virtual void initialize_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400, bool bItalic = false) = 0;
+         virtual void initialize_pixel_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400, bool bItalic = false) = 0;
+         virtual void initialize_point_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400,
+                                            bool bItalic = false) = 0;
 
          //virtual void destroyGObject() = 0;
       // protected:
@@ -70,9 +72,14 @@ virtual public Composite<FontInterface>
 
       //void * _HGDIOBJ() override;
 
-         void initialize_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400, bool bItalic = false) override
+         void initialize_pixel_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400, bool bItalic = false) override
       {
-         m_pfont->initialize_font(pszFamily, iPixelHeight, iFontWeight, bItalic);
+         m_pfont->initialize_pixel_font(pszFamily, iPixelHeight, iFontWeight, bItalic);
+      }
+      void initialize_point_font(const_char_pointer pszFamily, ::i32 iPixelHeight, ::i32 iFontWeight = 400,
+                                 bool bItalic = false) override
+      {
+         m_pfont->initialize_point_font(pszFamily, iPixelHeight, iFontWeight, bItalic);
       }
 
       void destroyGraphicsObject() override { m_pfont->destroyGraphicsObject();

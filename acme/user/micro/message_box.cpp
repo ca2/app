@@ -120,7 +120,7 @@ namespace micro
       if (m_picon)
       {
 
-         pgraphicscontext->draw(m_picon, 25, 25, 48, 48);
+         pgraphicscontext->draw_icon(25, 25, 48, 48, m_picon);
 
          rectangleText.left += 48 + 10;
 
@@ -133,8 +133,8 @@ namespace micro
       pgraphicscontext->draw_text123(
          pmessageboxpayload->m_strMessage,
          rectangleText,
-         e_align_top_left,
-                                     e_draw_text_word_break);
+                                     e_draw_text_word_break,
+         e_align_top_left);
       
       //,
         // micro_theme()->m_pbrushWindow,

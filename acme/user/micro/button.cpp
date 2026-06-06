@@ -86,8 +86,8 @@ namespace micro
       pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
-         e_align_center,
-                                     e_draw_text_single_line);
+                                              e_draw_text_single_line,
+                                     e_align_center);
 //         micro_theme()->m_pbrushWindow,
 //         micro_theme()->m_pbrushText,
 //         micro_theme()->m_pfont);

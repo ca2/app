@@ -1368,7 +1368,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
    void application::request(::request * prequest)
    {
-
+      
       m_prequestHandler = prequest;
 
       // if (prequest->m_ecommand == e_command_system_start)

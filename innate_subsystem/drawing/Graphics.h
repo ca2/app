@@ -92,10 +92,10 @@ namespace innate_subsystem
       virtual void drawBitmap(BitmapInterface *bitmap, const ::i32_rectangle & rectangle) = 0;
       virtual void drawBitmap(BitmapInterface *bitmap, const ::i32_point & point, const ::i32_rectangle & rectangleSrc) = 0;
       // Draws text.
-      virtual void drawText(const ::scoped_string & scopedstr, ::f64_rectangle &rect, ::u32 format = 0, enum_align ealign = e_align_top_left) = 0;
+      virtual void drawText(const ::scoped_string & scopedstr, ::f64_rectangle &rect, const ::e_draw_text & edrawtext = {}, enum_align ealign = e_align_top_left) = 0;
 
 
-      virtual void doPath(PathInterface *ppath, BrushInterface *pbrush, PenInterface *ppen) = 0;
+      virtual void doPath(PathInterface *ppath) = 0;
 
    //protected:
      //::pointer < DeviceContext > m_pdevicecontext;
@@ -262,17 +262,17 @@ namespace innate_subsystem
 
       }
       // Draws text.
-      void drawText(const ::scoped_string & scopedstr, ::f64_rectangle& rect, ::u32 format = 0, enum_align ealign = e_align_top_left) override
+      void drawText(const ::scoped_string & scopedstr, ::f64_rectangle& rect,  const ::e_draw_text & edrawtext= {}, enum_align ealign = e_align_top_left) override
       {
 
-         m_pgraphics->drawText(scopedstr, rect, format, ealign);
+         m_pgraphics->drawText(scopedstr, rect, edrawtext, ealign);
 
       }
 
-      void doPath(PathInterface* ppath, BrushInterface* pbrush, PenInterface* ppen) override
+      void doPath(PathInterface* ppath) override
       {
 
-         m_pgraphics->doPath(ppath, pbrush, ppen);
+         m_pgraphics->doPath(ppath);
 
       }
       //protected:

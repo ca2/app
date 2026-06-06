@@ -80,7 +80,7 @@ class brush;
 class pen;
 class font_family;
 class font;
-
+class dib;
 class image;
 
 class path;

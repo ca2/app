@@ -38,7 +38,7 @@ namespace micro
       if (m_picon)
       {
 
-         pgraphicscontext->draw(m_picon, 0, 0, m_rectangle.width(), m_rectangle.height());
+         pgraphicscontext->draw_icon(0, 0, m_rectangle.width(), m_rectangle.height(), m_picon);
 
          return;
 
@@ -110,8 +110,9 @@ namespace micro
       pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
-         e_align_center,
-                                     e_draw_text_single_line);
+                                     e_draw_text_single_line,
+         e_align_center
+                                     );
       
       //,
         // micro_theme()->m_pbrushWindow,

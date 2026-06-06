@@ -2166,7 +2166,7 @@ namespace platform
 
    void application::init_task()
    {
-
+      
       ::task::init_task();
       //
       //information() << "apex::application::application_pre_run";

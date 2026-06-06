@@ -8,6 +8,8 @@
 //
 #include "framework.h"
 #include "image.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace nano
@@ -53,7 +55,7 @@ namespace nano
          
          return nullptr;
          
-      }
+      
       }
    
    
@@ -67,7 +69,7 @@ namespace nano
       }
 
 
-      void icon::load_image_file(const void *p, memsize size)
+      void image::load_image_file(const void *p, memsize size)
       {
 
          auto pfile = create_memory_file({p, size});

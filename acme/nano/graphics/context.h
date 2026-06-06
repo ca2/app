@@ -33,6 +33,11 @@ namespace nano
          ~context() override;
 
          
+         virtual ::pointer < ::nano::graphics::image > create_bitmap_context(void * pdata,
+                                                                    const ::i32_size & size, int iBytesPerRow);
+         
+         virtual void update_bitmap_context_image(::pointer < ::nano::graphics::image > & pimage);
+         
          virtual void set_pen(::nano::graphics::pen * ppen);
          virtual void set_brush(::nano::graphics::brush * pbrush);
          virtual void set_font(::nano::graphics::font * pfont);
@@ -61,9 +66,9 @@ namespace nano
          virtual void on_end_draw();
 
 
-         virtual void draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext);
+         virtual void draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_draw_text & edrawtext, const ::e_align & ealign);
 
-         virtual void _draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext);
+         virtual void _draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_draw_text & edrawtext, const ::e_align & ealign);
 
          virtual ::f64_size get_text_extents(const ::scoped_string & scopedstr);
          
@@ -72,11 +77,11 @@ namespace nano
          virtual void ellipse(const ::f64_rectangle &rectangle);
          virtual void line(const ::f64_point &point1, const ::f64_point &point2);
 
-         virtual void draw_icon(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy);
+         virtual void draw_icon(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::nano::graphics::icon * picon);
 
-         virtual void draw_image(::nano::graphics::image * pimage,const ::f64_rectangle &rectangle);
+         virtual void draw_image(const ::f64_rectangle &rectangle, ::nano::graphics::image * pimage);
 
-         virtual void draw_image(::nano::graphics::image * pimage, const ::f64_point & point, const ::f64_rectangle &rectangle);
+         virtual void draw_image(const ::f64_point & point, const ::f64_rectangle &rectangle, ::nano::graphics::image * pimage);
 
          virtual ::pixmap pixmap();
          //void set_antialias(bool bAntialiasOn);

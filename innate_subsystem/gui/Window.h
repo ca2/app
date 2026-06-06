@@ -383,6 +383,8 @@ namespace innate_subsystem
                         ::i32 xPos = WINDOW_WIDTH_USE_DEFAULT, ::i32 yPos = WINDOW_WIDTH_USE_DEFAULT,
                         ::i32 width = WINDOW_WIDTH_USE_DEFAULT, ::i32 height = WINDOW_WIDTH_USE_DEFAULT) override
       {
+         
+         initialize(::system());
          return m_pwindow->createWindow(scopedstrWindowName, style, operatingsystemwindowParent, xPos, yPos, width, height);
 
       }

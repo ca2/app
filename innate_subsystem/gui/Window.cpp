@@ -59,7 +59,11 @@ namespace innate_subsystem
       
       bool bDoDefaultProcessing = false;
       
-      auto emouseButtons = ::innate_subsystem::user_key_state_to_e_mouse(session());
+      auto psession = this->session();
+      
+      ::user::key_state * pkeystate = psession;
+      
+      auto emouseButtons = ::innate_subsystem::user_key_state_to_e_mouse(pkeystate);
       
       if(onMouseEx(pmouse->m_eusermessage, emouseButtons, 0, pmouse->m_pointHost, bDoDefaultProcessing))
       {

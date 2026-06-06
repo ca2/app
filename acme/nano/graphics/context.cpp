@@ -110,14 +110,14 @@ namespace nano
       }
 
 
-      void context::draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign,
-                                const ::e_draw_text & edrawtext)
+      void context::draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText,
+                                 const ::e_draw_text & edrawtext, const ::e_align & ealign)
       {
 
          if (ealign & e_align_bottom_right_bias)
          {
 
-            _draw_text(scopedstr, rectangleText, ealign, edrawtext);
+            _draw_text(scopedstr, rectangleText, edrawtext, ealign);
 
          }
          else
@@ -143,7 +143,7 @@ namespace nano
                else
                {
 
-                  _draw_text(strLine, r, ealign, edrawtext);
+                  _draw_text(strLine, r, edrawtext, ealign);
 
                   auto size = get_text_extents(strLine);
 
@@ -168,8 +168,8 @@ namespace nano
       }
 
 
-      void context::_draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign,
-                              const ::e_draw_text & edrawtext)
+      void context::_draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText,
+                               const ::e_draw_text & edrawtext, const ::e_align & ealign)
       {
 
 
@@ -184,6 +184,24 @@ namespace nano
          return {};
 
       }
+   
+   ::pointer < ::nano::graphics::image > context::create_bitmap_context(void * pdata,
+                                                              const ::i32_size & size, int iBytesPerRow)
+   {
+      
+      throw ::interface_only();
+      
+      return {};
+      
+   }
+   
+   
+   void context::update_bitmap_context_image(::pointer < ::nano::graphics::image > & pimage)
+   {
+      
+      throw ::interface_only();
+      
+   }
    
    
       void context::set_pen(::nano::graphics::pen * ppen)
@@ -232,21 +250,21 @@ namespace nano
                      }
 
 
-      void context::draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      void context::draw_icon(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::nano::graphics::icon * picon)
       {
          throw ::interface_only();
 
       }
    
    
-   void context::draw(::nano::graphics::image * pimage,const ::f64_rectangle &rectangle)
+   void context::draw_image(const ::f64_rectangle &rectangle, ::nano::graphics::image * pimage)
    {
       
       throw ::interface_only();
       
    }
 
-   void context::draw(::nano::graphics::image * pimage, const ::f64_point & point, const ::f64_rectangle &rectangle)
+   void context::draw_image(const ::f64_point & point, const ::f64_rectangle &rectangle, ::nano::graphics::image * pimage)
    {
       
       throw ::interface_only();

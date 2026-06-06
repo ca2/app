@@ -48,6 +48,16 @@ namespace subsystem_bsd_sockets
 
    class subsystem;
 
+#ifdef __APPLE__
+
+#define BSD_SOCKLEN_T socklen_t
+
+#else
+
+#define BSD_SOCKLEN_T int
+
+#endif
+
 #ifdef WINDOWS
 
 

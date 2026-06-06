@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_memory_heap : ::u8
+enum enum_memory_heap : u8
 {
 
    e_memory_heap_main,

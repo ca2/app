@@ -8,6 +8,7 @@
 #include "acme/windowing/window.h"
 #include "brush.h"
 #include "font.h"
+#include "font_family.h"
 #include "pen.h"
 
 
@@ -181,33 +182,41 @@ namespace nano
       }
 
 
-      ::pointer<pen> graphics::create_pen(const ::color::color &color, ::f64 fWidth)
+      ::pointer<pen> graphics::create_pen(::nano::graphics::enum_pen epen, ::f64 fWidth, const ::color::color &color)
       {
 
          auto ppen = createø<pen>();
 
-         ppen->create_pen(color, fWidth);
+         ppen->create_pen(epen, fWidth, color);
 
          return ppen;
       }
 
 
-      ::pointer<font> graphics::create_point_font(enum_font efont, ::f64 fPointSize, bool bBold, bool bUnderline)
+      ::pointer<font> graphics::create_point_font(enum_font efont, ::f64 fPointSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
          auto pfont = createø<font>();
+         
+         auto pfontfamily = createø<font_family>();
+         
+         pfontfamily->create_font_family(efont);
 
-         pfont->create_point_font(efont, fPointSize, bBold, bUnderline);
+         pfont->create_point_font(pfontfamily, fPointSize, bBold, bItalic, bUnderline);
 
          return pfont;
       }
 
-      ::pointer<font> graphics::create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold, bool bUnderline)
+      ::pointer<font> graphics::create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
          auto pfont = createø<font>();
+         
+         auto pfontfamily = createø<font_family>();
+         
+         pfontfamily->create_font_family(efont);
 
-         pfont->create_pixel_font(efont, fPixelSize, bBold, bUnderline);
+         pfont->create_pixel_font(pfontfamily, fPixelSize, bBold, bItalic, bUnderline);
 
          return pfont;
 

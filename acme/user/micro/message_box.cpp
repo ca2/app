@@ -127,15 +127,19 @@ namespace micro
       }
 
       ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+      pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
+      pgraphicscontext->set_font(micro_theme()->m_pfont);
 
       pgraphicscontext->draw_text123(
          pmessageboxpayload->m_strMessage,
          rectangleText,
          e_align_top_left,
-         e_draw_text_word_break,
-         micro_theme()->m_pbrushWindow,
-         micro_theme()->m_pbrushText,
-         micro_theme()->m_pfont);
+                                     e_draw_text_word_break);
+      
+      //,
+        // micro_theme()->m_pbrushWindow,
+         //micro_theme()->m_pbrushText,
+         //micro_theme()->m_pfont);
 
    }
 

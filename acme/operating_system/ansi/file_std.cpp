@@ -16,7 +16,7 @@ FILE * FILE_open(const_char_pointer pszPath, const_char_pointer pszAttr, ::i32 i
 
 #else
 
-   return fopen(path, attr);
+   return fopen(pszPath, pszAttr);
 
 #endif
 

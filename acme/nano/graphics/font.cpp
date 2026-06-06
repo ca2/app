@@ -15,15 +15,18 @@ namespace nano
       font::font()
       {
 
-         // m_bBold = false;
-         // m_bUnderline = false;
+         m_fFontSize = 12.0f;
+         m_bPixelSize = false;
+         m_bBold = false;
+         m_bUnderline = false;
+
       }
 
 
       font::~font() {}
 
 
-      void font::create_point_font(enum_font efont, ::f64 fPointSize, bool bBold, bool bUnderline)
+      void font::create_point_font(font_family * pfontfamily, ::f64 fPointSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
          throw ::interface_only();
@@ -39,7 +42,7 @@ namespace nano
 
 
       
-      void font::create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold, bool bUnderline)
+      void font::create_pixel_font(font_family * pfontfamily, ::f64 fPixelSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
          throw ::interface_only();

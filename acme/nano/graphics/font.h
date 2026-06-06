@@ -19,18 +19,20 @@ namespace nano
       public:
 
 
-         //string      m_strFontName;
-         //::i32         m_iFontSize;
-         //bool        m_bBold;
-         //bool        m_bUnderline;
+         ::pointer < font_family >     m_pfontfamily;
+         ::f32                         m_fFontSize;
+         bool                          m_bPixelSize;
+         bool                          m_bBold;
+         bool                          m_bItalic;
+         bool                          m_bUnderline;
 
 
          font();
          ~font();
 
 
-         virtual void create_point_font(enum_font efont, ::f64 fPointSize, bool bBold = false, bool bUnderline = false);
-         virtual void create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold = false, bool bUnderline = false);
+         virtual void create_point_font(font_family * pfontfamily, ::f64 fPointSize, bool bBold = false, bool bItalic = false, bool bUnderline = false);
+         virtual void create_pixel_font(font_family * pfontfamily, ::f64 fPixelSize, bool bBold = false, bool bItalic = false, bool bUnderline = false);
 
 
 

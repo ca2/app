@@ -109,6 +109,8 @@
 		9A1903612FB20C0400A3C985 /* TextBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902EA2FB20C0400A3C985 /* TextBox.h */; };
 		9A1903622FB20C0400A3C985 /* SystemMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E22FB20C0400A3C985 /* SystemMetrics.h */; };
 		9A1903682FB20D1D00A3C985 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1903672FB20D1D00A3C985 /* libacme.dylib */; };
+		9AE47A8F2FD35B6B003088D6 /* Path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE47A8D2FD35B6B003088D6 /* Path.h */; };
+		9AE47A902FD35B6B003088D6 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE47A8E2FD35B6B003088D6 /* Path.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +247,8 @@
 		9A1903672FB20D1D00A3C985 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD3F44C2FB2088800CB9A78 /* libinnate_subsystem.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libinnate_subsystem.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9AE47A8D2FD35B6B003088D6 /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
+		9AE47A8E2FD35B6B003088D6 /* Path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Path.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +313,8 @@
 				9A1902A52FB20C0400A3C985 /* GraphicsObject.cpp */,
 				9A1902A62FB20C0400A3C985 /* Icon.h */,
 				9A1902A72FB20C0400A3C985 /* Icon.cpp */,
+				9AE47A8D2FD35B6B003088D6 /* Path.h */,
+				9AE47A8E2FD35B6B003088D6 /* Path.cpp */,
 				9A1902A82FB20C0400A3C985 /* Pen.h */,
 				9A1902A92FB20C0400A3C985 /* Pen.cpp */,
 				9A1902AA2FB20C0400A3C985 /* SolidBrush.h */,
@@ -459,6 +465,7 @@
 				9A1903322FB20C0400A3C985 /* ComboBox.h in Headers */,
 				9A1903332FB20C0400A3C985 /* Icon.h in Headers */,
 				9A1903342FB20C0400A3C985 /* FilteredTextBox.h in Headers */,
+				9AE47A8F2FD35B6B003088D6 /* Path.h in Headers */,
 				9A1903352FB20C0400A3C985 /* Trackbar.h in Headers */,
 				9A1903362FB20C0400A3C985 /* BitmapGraphics.h in Headers */,
 				9A1903382FB20C0400A3C985 /* notification_handler.h in Headers */,
@@ -591,6 +598,7 @@
 				9A1902942FB20BD700A3C985 /* framework.cpp in Sources */,
 				9A1902932FB20BCF00A3C985 /* _.cpp in Sources */,
 				9A1902FE2FB20C0400A3C985 /* WindowFinder.cpp in Sources */,
+				9AE47A902FD35B6B003088D6 /* Path.cpp in Sources */,
 				9A1902FF2FB20C0400A3C985 /* Font.cpp in Sources */,
 				9A1903002FB20C0400A3C985 /* TabContainer.cpp in Sources */,
 				9A1903012FB20C0400A3C985 /* BitmapGraphics.cpp in Sources */,

@@ -2,6 +2,7 @@
 #include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/_operating_system.h"
@@ -141,19 +142,21 @@ close();
       ::i32    file::create_anonymous_file(memsize size)
       {
          static const ::i8 pszTemplate[] = "/weston-shared-XXXXXX";
-         const_char_pointer pszPath;
          char_pointer name;
+         
+         ::file::path pathBaseFolder;
 
-         path = getenv("XDG_RUNTIME_DIR");
-         if (!path)
+         pathBaseFolder = getenv("XDG_RUNTIME_DIR");
+         if (pathBaseFolder.is_empty())
          {
-            errno = ENOENT;
-            return -1;
+            
+            pathBaseFolder = system()->directory()->home() / ".config";
+            
          }
 
          ::file::path filepath;
 
-         filepath = path;
+         filepath = pathBaseFolder;
          filepath /= pszTemplate;
 
          ::string strPath = filepath;

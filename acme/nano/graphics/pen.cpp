@@ -28,7 +28,7 @@ pen::~pen()
 
 
 }
-void pen::create_pen(const ::color::color& color, ::f64 fWidth)
+void pen::create_pen(enum_pen epen, ::f64 fWidth, const ::color::color& color)
 {
 
    throw ::interface_only();

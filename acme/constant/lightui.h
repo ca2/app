@@ -29,4 +29,10 @@ e_SWP_NOACTIVATE =  0x0010,
    
 };
 
+enum enum_SW
+{
+e_SW_HIDE =      0,
+   
+};
+
 } // namespace lightui

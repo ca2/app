@@ -30,9 +30,9 @@ public:
    
 
    virtual ::pointer<brush> create_solid_brush(const ::color::color & color);
-   virtual ::pointer<pen> create_pen(const ::color::color &color, ::f64 fWidth);
-   virtual ::pointer<font> create_point_font(enum_font efont, ::f64 fPointSize, bool bBold = false, bool bUnderline = false);
-   virtual ::pointer<font> create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold = false,
+   virtual ::pointer<pen> create_pen(::nano::graphics::enum_pen epen, ::f64 fWidth, const ::color::color &color);
+   virtual ::pointer<font> create_point_font(enum_font efont, ::f64 fPointSize, bool bBold = false, bool bItalic = false, bool bUnderline = false);
+   virtual ::pointer<font> create_pixel_font(enum_font efont, ::f64 fPixelSize, bool bBold = false, bool bItalic = false,
                                              bool bUnderline = false);
 
    //::pointer < ::subparticle > nano()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);

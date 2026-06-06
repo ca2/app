@@ -27,11 +27,7 @@ namespace subsystem_bsd_sockets
 
       bool subsystem::socket_would_block(int iError)
    {
-#ifdef _WIN32
       return iError == WSAEWOULDBLOCK;
-#else
-      return iError == EAGAIN || iError == EWOULDBLOCK;
-#endif
    }
 
    string subsystem::get_socket_error_message_text(::i32 iError)

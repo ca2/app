@@ -28,8 +28,8 @@ public:
    shared_memory();
    ~shared_memory();
 
-   virtual bool CreateSharedMemory(const_char_pointer pszName, memsize size);
-   virtual bool OpenSharedMemory(const_char_pointer pszName, memsize size);
+   virtual void CreateSharedMemory(const_char_pointer pszName, memsize size);
+   virtual void OpenSharedMemory(const_char_pointer pszName, memsize size);
 
    //virtual void* Data() const ;
    //virtual memsize Size() const ;

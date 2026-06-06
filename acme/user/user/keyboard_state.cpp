@@ -214,7 +214,7 @@ namespace user
 
 #if defined(__APPLE__)
 
-         ekeystate |= ::user::e_key_state_system_left_command;
+         keystate.m_ekeystate |= ::user::e_key_state_system_left_command;
 
 #endif
       }
@@ -254,8 +254,9 @@ namespace user
 
    }
 
-
+#if defined(WINDOWS_DESKTOP)
    // CLASS_DECL_ACME::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam)
+
    ::user::key_state keyboard_state::key_state_with_wm_mouse_wparam(::wparam wparam) const
    {
 
@@ -367,6 +368,8 @@ namespace user
 
    }
 
+
+#endif
 
 
 

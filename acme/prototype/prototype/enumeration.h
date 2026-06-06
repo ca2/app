@@ -59,7 +59,7 @@ public:
    constexpr  c_flag & operator ^= (const c_flag & e) { toggle(e);  return *this; }
 
 //   inline c_flag operator + (CFLAG e) const { return (CFLAG)(m_cflag | e); }
-   constexpr  c_flag operator - (const c_flag & e) const { return m_cflag & ~e; }
+   constexpr  CFLAG operator - (const c_flag & e) const { return m_cflag & ~e; }
 
    //template < typename TYPE >
    //c_flag operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
@@ -67,15 +67,18 @@ public:
    //IMPL_OPERATOR_PLUS(c_flag);
 
    template < typename TYPE > \
-   c_flag operator + (const TYPE & t) const
-   { 
+   CFLAG operator + (const TYPE & t) const
+   {
       auto copy = *this;
       copy.add(t);
       return copy; 
    }
 
-   constexpr  c_flag operator | (const c_flag & e) const { return (CFLAG) ((CFLAG_INT) m_cflag | (CFLAG_INT) e.m_cflag); }
-   constexpr  c_flag operator & (const c_flag & e) const { return (CFLAG) ((CFLAG_INT) m_cflag & (CFLAG_INT) e.m_cflag); }
+   constexpr  CFLAG operator | (const c_flag & e) const { return (CFLAG) ((CFLAG_INT) m_cflag | (CFLAG_INT) e.m_cflag); }
+   constexpr  CFLAG operator & (const c_flag & e) const { return (CFLAG) ((CFLAG_INT) m_cflag & (CFLAG_INT) e.m_cflag); }
+
+   constexpr  CFLAG operator | (const CFLAG & e) const { return (CFLAG) ((CFLAG_INT) m_cflag | (CFLAG_INT) e); }
+   constexpr  CFLAG operator & (const CFLAG & e) const { return (CFLAG) ((CFLAG_INT) m_cflag & (CFLAG_INT) e); }
 
    constexpr  bool is(const c_flag & e) const { return (m_cflag & e) == e; }
    constexpr  bool has(c_flag e) const { return is(e); }
@@ -158,10 +161,10 @@ public:
    // }
 
 
-   constexpr c_flag operator ~() const
+   constexpr CFLAG operator ~() const
    {
 
-      return (CFLAG)(~(::i64) m_cflag);
+      return (CFLAG)(~(CFLAG_INT) m_cflag);
 
 
    }
@@ -434,19 +437,19 @@ public:
 
 #define DECLARE_C_FLAG(TYPE, CFLAG) \
 using TYPE = ::c_flag < CFLAG >; \
-constexpr  TYPE operator | (CFLAG e, CFLAG f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e | (::std::underlying_type_t<CFLAG>)f); } \
-constexpr  TYPE operator | (CFLAG e, const TYPE & f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e | (::std::underlying_type_t<CFLAG>)f.m_cflag); } \
+constexpr CFLAG operator | (CFLAG e, CFLAG f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e | (::std::underlying_type_t<CFLAG>)f); } \
+constexpr CFLAG operator | (CFLAG e, const TYPE & f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e | (::std::underlying_type_t<CFLAG>)f.m_cflag); } \
 template < prototype_integral INTEGRAL > \
-constexpr  TYPE operator | (CFLAG e, INTEGRAL i) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e | (::std::underlying_type_t<CFLAG>)i); } \
+constexpr CFLAG operator | (CFLAG e, INTEGRAL i) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e | (::std::underlying_type_t<CFLAG>)i); } \
 template < prototype_integral INTEGRAL > \
-constexpr  TYPE operator | (INTEGRAL i, const TYPE & e) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)i | (::std::underlying_type_t<CFLAG>)e.m_cflag); } \
-constexpr  TYPE operator & (CFLAG e, CFLAG f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e & (::std::underlying_type_t<CFLAG>)f); } \
-constexpr  TYPE operator & (CFLAG e, const TYPE & f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e & (::std::underlying_type_t<CFLAG>)f.m_cflag); } \
+constexpr CFLAG operator | (INTEGRAL i, const TYPE & e) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)i | (::std::underlying_type_t<CFLAG>)e.m_cflag); } \
+constexpr CFLAG operator & (CFLAG e, CFLAG f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e & (::std::underlying_type_t<CFLAG>)f); } \
+constexpr CFLAG operator & (CFLAG e, const TYPE & f) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e & (::std::underlying_type_t<CFLAG>)f.m_cflag); } \
 template < prototype_integral INTEGRAL > \
-constexpr  TYPE operator & (CFLAG e, INTEGRAL i) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e & (::std::underlying_type_t<CFLAG>)i); } \
+constexpr CFLAG operator & (CFLAG e, INTEGRAL i) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)e & (::std::underlying_type_t<CFLAG>)i); } \
 template < prototype_integral INTEGRAL > \
-constexpr  TYPE operator & (INTEGRAL i, const TYPE & e) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)i & (::std::underlying_type_t<CFLAG>)e.m_cflag); } \
-constexpr  TYPE operator ~ (CFLAG e) { return (CFLAG) (~(::std::underlying_type_t<CFLAG>)e); }
+constexpr CFLAG operator & (INTEGRAL i, const TYPE & e) { return (CFLAG) ((::std::underlying_type_t<CFLAG>)i & (::std::underlying_type_t<CFLAG>)e.m_cflag); } \
+constexpr CFLAG operator ~ (CFLAG e) { return (CFLAG) (~(::std::underlying_type_t<CFLAG>)e); }
 
 
 

@@ -101,16 +101,22 @@ namespace micro
 
       rectangleText.inflate(1);
 
+      
+      pgraphicscontext->set_brush(pbrushText);
+      
+      pgraphicscontext->set_font(pfontText);
 
 
       pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
          e_align_center,
-         e_draw_text_single_line,
-         micro_theme()->m_pbrushWindow,
-         pbrushText,
-         pfontText);
+                                     e_draw_text_single_line);
+      
+      //,
+        // micro_theme()->m_pbrushWindow,
+         //pbrushText,
+         //pfontText);
 
    }
 

@@ -26,26 +26,11 @@
 #include "subsystem/platform/Particle.h"
 #include "GraphicsObject.h"
 
+
 //#include "util/CommonHeader.h"
 
 namespace innate_subsystem
 {
-
-   enum enum_pen
-   {
-      e_pen_solid = 0, //PS_SOLID;
-      e_pen_dashed = 1, //PS_DASH;
-      e_pen_null =5, // PS_NULL;
-   };
-
-
-         enum enum_line_cap
-   {
-
-      e_line_cap_none,
-      e_line_cap_round,
-
-   };
 
 
       class PenInterface :
@@ -59,11 +44,11 @@ namespace innate_subsystem
           //virtual ~PenInterface() = 0;
 
 
-         virtual void initialize_pen(enum_pen epen, ::f32 fWidth, const ::color::color & color) = 0;
+         virtual void initialize_pen(::nano::graphics::enum_pen epen, ::f64 fWidth, const ::color::color & color) = 0;
 
 
-         virtual void setStartCap(::innate_subsystem::enum_line_cap elinecap) = 0;
-         virtual void setEndCap(::innate_subsystem::enum_line_cap elinecap) = 0;
+         virtual void setStartCap(::nano::graphics::enum_line_cap elinecap) = 0;
+         virtual void setEndCap(::nano::graphics::enum_line_cap elinecap) = 0;
 
 
          //virtual void destroyGObject() = 0;
@@ -90,14 +75,14 @@ virtual public Composite<PenInterface>
 
       //void * _HGDIOBJ() override;
 
-         void initialize_pen(enum_pen epen, ::f32 fWidth, const ::color::color& color) override
+         void initialize_pen(::nano::graphics::enum_pen epen, ::f64 fWidth, const ::color::color& color) override
       {
 
          m_ppen->initialize_pen(epen, fWidth, color);
       }
 
-      void setStartCap(::innate_subsystem::enum_line_cap elinecap) override { m_ppen->setStartCap(elinecap); }
-      void setEndCap(::innate_subsystem::enum_line_cap elinecap) override { m_ppen->setEndCap(elinecap); }
+      void setStartCap(::nano::graphics::enum_line_cap elinecap) override { m_ppen->setStartCap(elinecap); }
+      void setEndCap(::nano::graphics::enum_line_cap elinecap) override { m_ppen->setEndCap(elinecap); }
 
       void destroyGraphicsObject() override
       {

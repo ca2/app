@@ -19,7 +19,7 @@ class CLASS_DECL_ACME brush :
 public:
 
 
-   //::color::color       m_color;
+   ::color::color       m_color;
 
 
    brush();

@@ -432,7 +432,7 @@ br_find_exe_dir (const_char_pointer default_dir)
 char_pointer 
 br_find_prefix (const_char_pointer default_prefix)
 {
-   char_pointer dir1, *dir2;
+   char_pointer dir1, dir2;
 
    if (exe == (char_pointer ) nullptr)
    {
@@ -466,7 +466,7 @@ br_find_prefix (const_char_pointer default_prefix)
 char_pointer 
 br_find_bin_dir (const_char_pointer default_bin_dir)
 {
-   char_pointer prefix, *dir;
+   char_pointer prefix, dir;
 
    prefix = br_find_prefix ((const_char_pointer )nullptr);
    if (prefix == (char_pointer ) nullptr)
@@ -500,7 +500,7 @@ br_find_bin_dir (const_char_pointer default_bin_dir)
 char_pointer 
 br_find_sbin_dir (const_char_pointer default_sbin_dir)
 {
-   char_pointer prefix, *dir;
+   char_pointer prefix, dir;
 
    prefix = br_find_prefix ((const_char_pointer )nullptr);
    if (prefix == (char_pointer ) nullptr)
@@ -535,7 +535,7 @@ br_find_sbin_dir (const_char_pointer default_sbin_dir)
 char_pointer 
 br_find_data_dir (const_char_pointer default_data_dir)
 {
-   char_pointer prefix, *dir;
+   char_pointer prefix, dir;
 
    prefix = br_find_prefix ((const_char_pointer )nullptr);
    if (prefix == (char_pointer ) nullptr)
@@ -569,7 +569,7 @@ br_find_data_dir (const_char_pointer default_data_dir)
 char_pointer 
 br_find_locale_dir (const_char_pointer default_locale_dir)
 {
-   char_pointer data_dir, *dir;
+   char_pointer data_dir, dir;
 
    data_dir = br_find_data_dir ((const_char_pointer )nullptr);
    if (data_dir == (char_pointer ) nullptr)
@@ -603,7 +603,7 @@ br_find_locale_dir (const_char_pointer default_locale_dir)
 char_pointer 
 br_find_lib_dir (const_char_pointer default_lib_dir)
 {
-   char_pointer prefix, *dir;
+   char_pointer prefix, dir;
 
    prefix = br_find_prefix ((const_char_pointer )nullptr);
    if (prefix == (char_pointer ) nullptr)
@@ -637,7 +637,7 @@ br_find_lib_dir (const_char_pointer default_lib_dir)
 char_pointer 
 br_find_libexec_dir (const_char_pointer default_libexec_dir)
 {
-   char_pointer prefix, *dir;
+   char_pointer prefix, dir;
 
    prefix = br_find_prefix ((const_char_pointer )nullptr);
    if (prefix == (char_pointer ) nullptr)
@@ -671,7 +671,7 @@ br_find_libexec_dir (const_char_pointer default_libexec_dir)
 char_pointer 
 br_find_etc_dir (const_char_pointer default_etc_dir)
 {
-   char_pointer prefix, *dir;
+   char_pointer prefix, dir;
 
    prefix = br_find_prefix ((const_char_pointer )nullptr);
    if (prefix == (char_pointer ) nullptr)
@@ -725,7 +725,7 @@ br_strcat (const_char_pointer str1, const_char_pointer str2)
 char_pointer 
 br_build_path (const_char_pointer dir, const_char_pointer file)
 {
-   char_pointer dir2, *result;
+   char_pointer dir2, result;
    size_t len;
    ::i32 must_free = 0;
 
@@ -783,18 +783,18 @@ br_strndup (const_char_pointer str, size_t size)
 char_pointer 
 br_dirname (const_char_pointer pszPath)
 {
-   char_pointer end, *result;
+   char_pointer end, result;
 
-   if (path == (const_char_pointer )nullptr)
+   if (pszPath == (const_char_pointer )nullptr)
       return (char_pointer ) nullptr;
 
-   end = (char_pointer ) string_find_character((char_pointer ) path, '/');
+   end = (char_pointer ) string_find_character((char_pointer ) pszPath, '/');
    if (end == (const_char_pointer )nullptr)
       return ::c::strdup (".");
 
-   while (end > path && *end == '/')
+   while (end > pszPath && *end == '/')
       end--;
-   result = br_strndup (path, end - path + 1);
+   result = br_strndup (pszPath, end - pszPath + 1);
    if (result[0] == 0)
    {
       free (result);

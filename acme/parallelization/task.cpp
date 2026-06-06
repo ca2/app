@@ -609,7 +609,7 @@ void task::set_finish()
 
 }
 
-
+#if defined(WINDOWS_DESKTOP)
 void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
 {
 
@@ -618,7 +618,7 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
    m_msgtranslatora.add(msgtranslator);
 
 }
-
+#endif
 
        void task::on_start_timers_handling_hint() {
 
@@ -642,6 +642,7 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
 
 }
 
+#if defined(WINDOWS_DESKTOP)
 
 void task::erase_msg_translator(::function<bool(MSG *)> msgtranslator)
 {
@@ -685,7 +686,16 @@ bool task::msg_translator_handlers(MSG* pmsg)
 }
 
 
-void erase_msg_translator(::function<bool(MSG *)> msgtranslator);
+//void task::erase_msg_translator(::function<bool(MSG *)> msgtranslator)
+//{
+//   
+//   
+//   
+//}
+
+
+
+#endif
 
 
 void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
@@ -3679,13 +3689,16 @@ bool task::task_sleep(const class time & timeWait)
 void task::kick_idle()
 {
 
+#if defined(WINDOWS_DESKTOP)
    if (m_bMessageThread2)
    {
 
       ::PostThreadMessage((DWORD) m_itask, ::user::e_message_kick_idle, 0, 0);
 
    }
-   else if (m_pmanualresethappeningMainLoop)
+   else
+#endif
+   if (m_pmanualresethappeningMainLoop)
    {
 
       m_pmanualresethappeningMainLoop->set_happening();

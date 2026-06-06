@@ -327,6 +327,7 @@ public:
    UNIT_TYPE width() const  { return this->right - this->left; }
    UNIT_TYPE height() const  { return this->bottom - this->top; }
    SIZE_TYPE size() const  { return SIZE_TYPE(width(), height()); }
+   SIZE_TYPE radius() const  { return this->size() / ((UNIT_TYPE) 2); }
 
    void set_width(UNIT_TYPE cx)  { this->right = this->left + cx; }
    void set_height(UNIT_TYPE cy)  { this->bottom = this->top + cy; }

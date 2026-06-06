@@ -21,7 +21,7 @@ namespace posix
       memsize m_memsize;
       //HANDLE m_hToMap;
       int   m_fd;
-      //void *m_memory;
+      void *m_p;
 
       //bool                             m_bAllowGrow;
 
@@ -36,14 +36,14 @@ namespace posix
 
       //virtual void SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow = true);
 
-      void CreateSharedMemory(const char* name, memsize size) override;
-      void OpenSharedMemory(const char * name, memsize size) override;
+      void CreateSharedMemory(const_char_pointer name, memsize size) override;
+      void OpenSharedMemory(const_char_pointer name, memsize size) override;
 
       //virtual unsigned char * impl_alloc(memsize nBytes) override;
       //virtual unsigned char * impl_realloc(void * pdata, memsize nBytes) override;
       //virtual void impl_free(unsigned char * pMem) override;
 
-void Close() override;
+      void Close() override;
 
       //unsigned char * detach_shared_memory(HGLOBAL & hglobal);
       //unsigned char * detach(HGLOBAL & hglobal);

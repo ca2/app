@@ -225,8 +225,13 @@ namespace micro
          ::i32_rectangle rectangleX;
 
          rectangleX = get_client_rectangle();
+         
+         pgraphicscontext->set_brush( micro_theme()->m_pbrushWindow);
+         
+         pgraphicscontext->set_pen(pmicropenBorder);
 
-         pgraphicscontext->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
+         pgraphicscontext->rectangle(rectangleX);
+         
       }
       else
       {
@@ -314,8 +319,10 @@ namespace micro
       auto pcontext = createø<::nano::graphics::context>();
 
       pcontext->create({400, 300});
+      
+      pcontext->set_font(micro_theme()->m_pfont);
 
-      auto size = pcontext->get_text_extents(m_strText, micro_theme()->m_pfont);
+      auto size = pcontext->get_text_extents(m_strText);
 
       m_rectangle.right = m_rectangle.left + size.cx;
 
@@ -950,6 +957,8 @@ namespace micro
       {
 
          m_bMouseOn = true;
+         
+#if defined(WINDOWS_DESKTOP)
 
          auto hwnd = ::as_HWND(this->operating_system_window());
 
@@ -957,7 +966,8 @@ namespace micro
          trackmouseevent.dwFlags = TME_LEAVE;
          trackmouseevent.hwndTrack = hwnd;
          ::TrackMouseEvent(&trackmouseevent);
-
+#endif
+         
          on_mouse_enter();
 
       }

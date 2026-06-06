@@ -330,7 +330,7 @@ namespace subsystem_bsd_sockets
          {
 
             int timeout;
-            int len = sizeof(timeout);
+            BSD_SOCKLEN_T len = sizeof(timeout);
 
             getsockopt(m_socket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, &len);
 

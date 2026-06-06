@@ -5,6 +5,8 @@
 #include "user_key.h"
 #include <array>
 
+#if defined(WINDOWS_DESKTOP)
+
 #ifndef VK_POWER
 #define VK_POWER 0x5E
 #endif
@@ -414,3 +416,6 @@ CLASS_DECL_ACME ::i32 e_user_key_to_vkcode(const ::user::e_key & euserkey)
    //}
 
 }
+
+
+#endif

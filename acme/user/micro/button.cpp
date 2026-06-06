@@ -65,8 +65,12 @@ namespace micro
       auto rectangle = m_rectangle;
       
       rectangle -= rectangle.top_left();
+      
+      pgraphicscontext->set_brush(micro_theme()->m_pbrushWindow);
+      
+      pgraphicscontext->set_pen(ppenBorder);
 
-      pgraphicscontext->rectangle(rectangle, micro_theme()->m_pbrushWindow, ppenBorder);
+      pgraphicscontext->rectangle(rectangle);
 
       wstring wstrText(m_strText);
 
@@ -74,14 +78,19 @@ namespace micro
       
       rectangleText.deflate(4);
 
+      
+      pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
+      
+      pgraphicscontext->set_font(micro_theme()->m_pfont);
+      
       pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
          e_align_center,
-         e_draw_text_single_line,
-         micro_theme()->m_pbrushWindow,
-         micro_theme()->m_pbrushText,
-         micro_theme()->m_pfont);
+                                     e_draw_text_single_line);
+//         micro_theme()->m_pbrushWindow,
+//         micro_theme()->m_pbrushText,
+//         micro_theme()->m_pfont);
 
    }
 

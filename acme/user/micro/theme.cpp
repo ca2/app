@@ -116,13 +116,13 @@ namespace micro
 
          m_pbrushHyperlinkHover = nano()->graphics()->create_solid_brush(m_colorHyperlinkHover);
 
-         m_ppenBorder = nano()->graphics()->create_pen(m_colorText, 2.);
+         m_ppenBorder = nano()->graphics()->create_pen(::nano::graphics::e_pen_solid, 2., m_colorText);
 
-         m_ppenBorderFocus = nano()->graphics()->create_pen(m_colorFocus, 2.);
+         m_ppenBorderFocus = nano()->graphics()->create_pen(::nano::graphics::e_pen_solid, 2., m_colorFocus);
 
-         m_ppenBorderHover = nano()->graphics()->create_pen(m_colorHover, 2.);
+         m_ppenBorderHover = nano()->graphics()->create_pen(::nano::graphics::e_pen_solid, 2., m_colorHover);
 
-         m_ppenBorderHoverAndFocus = nano()->graphics()->create_pen(m_colorHoverAndFocus, 2.);
+         m_ppenBorderHoverAndFocus = nano()->graphics()->create_pen(::nano::graphics::e_pen_solid, 2.,  m_colorHoverAndFocus);
 
       }
 

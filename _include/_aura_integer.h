@@ -57,7 +57,7 @@ TARGET throw_cast(SOURCE src)
 #define DOUBLE_MAXIMUM  (DBL_MAX)
 
 
-typedef ::i32 i32_bool;
+typedef i32 i32_bool;
 
 
 

@@ -17,21 +17,6 @@ namespace nano
    {
 
 
-      enum enum_smoothing_mode
-      {
-
-         e_smoothing_mode_none,
-         e_smoothing_mode_high_quality,
-
-      };
-
-      enum enum_text_rendering_hint
-      {
-
-         e_text_rendering_hint_none,
-         e_text_rendering_hint_clear_type_grid_fit,
-
-      };
 
 
       class CLASS_DECL_ACME context :
@@ -41,13 +26,19 @@ namespace nano
          
          
          ::i32_size     m_size;
-
+         
 
          context();
 
          ~context() override;
 
+         
+         virtual void set_pen(::nano::graphics::pen * ppen);
+         virtual void set_brush(::nano::graphics::brush * pbrush);
+         virtual void set_font(::nano::graphics::font * pfont);
 
+         virtual void set_blend_mode(enum_blend_mode eblendmode);
+         
          virtual void set_smoothing_mode(enum_smoothing_mode esmoothingmode);
 
          virtual void set_text_rendering_hint(enum_text_rendering_hint etextrenderinghint);
@@ -70,32 +61,29 @@ namespace nano
          virtual void on_end_draw();
 
 
-         virtual void
-         draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign,
-                      const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
-                      ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont);
+         virtual void draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext);
 
-         virtual void _draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign,
-                                 const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
-                                 ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont);
+         virtual void _draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext);
 
-         virtual ::i32_size get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont);
+         virtual ::f64_size get_text_extents(const ::scoped_string & scopedstr);
+         
+   
+         virtual void rectangle(const ::f64_rectangle & rectangle);
+         virtual void ellipse(const ::f64_rectangle &rectangle);
+         virtual void line(const ::f64_point &point1, const ::f64_point &point2);
 
-         virtual void rectangle(const ::f64_rectangle & rectangle, ::nano::graphics::brush * pnanobrush,
-                                ::nano::graphics::pen * pnanopen);
-         virtual void ellipse(const ::f64_rectangle &rectangle, ::nano::graphics::brush *pnanobrush,
-                                ::nano::graphics::pen *pnanopen);
-         virtual void line(const ::f64_point &point1, const ::f64_point &point2,
-                              ::nano::graphics::pen *pnanopen);
+         virtual void draw_icon(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy);
 
-         virtual void draw(::nano::graphics::icon * picon, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy);
+         virtual void draw_image(::nano::graphics::image * pimage,const ::f64_rectangle &rectangle);
+
+         virtual void draw_image(::nano::graphics::image * pimage, const ::f64_point & point, const ::f64_rectangle &rectangle);
 
          virtual ::pixmap pixmap();
          //void set_antialias(bool bAntialiasOn);
          
          virtual void translate(::f64 x, ::f64 y);
 
-         virtual void do_path(::nano::graphics::path *ppath, ::nano::graphics::brush *pbrush, ::nano::graphics::pen * ppen);
+         virtual void do_path(::nano::graphics::path *ppath);
 
 //         virtual void draw_path(::nano::graphics::path *ppath, ::nano::graphics::pen *ppen);
          

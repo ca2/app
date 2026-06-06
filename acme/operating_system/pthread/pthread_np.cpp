@@ -248,6 +248,10 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
       throw ::exception(error_wrong_state);
       
    }
+   
+   thread_name_abbreviate(strName, 15);
+
+   errno = 0;
 
    ::i32 error = pthread_setname_np(strName);
 

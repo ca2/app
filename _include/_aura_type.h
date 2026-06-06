@@ -7,21 +7,21 @@
 #include "acme/prototype/numeric/types.h"
 
 
-typedef ::u32 dword;
-typedef ::i32 i32_bool;
+typedef u32 dword;
+typedef i32 i32_bool;
 
 
 typedef unsigned long ulong;
 
 
-typedef ::u8         uchar;
+typedef u8         uchar;
 
 
 
 //typedef ::u8         uch;
 
-typedef ::i8 * char_pointer ;
-typedef const ::i8 * const_char_pointer ;
+typedef i8 * char_pointer ;
+typedef const i8 * const_char_pointer ;
 
 
 #ifdef __cplusplus

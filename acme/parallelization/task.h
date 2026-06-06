@@ -289,7 +289,9 @@ public:
       m_synchronouslockdescriptiona;
 private:
       critical_section m_criticalsectionMsgTranslator;
+#if defined(WINDOWS_DESKTOP)
    ::comparable_array<::function<bool(MSG *)>> m_msgtranslatora;
+#endif
    public:
 
    task();
@@ -300,11 +302,12 @@ private:
 
    void on_new_main_loop_happening_creation() override;
 
-   
+#if defined(WINDOWS_DESKTOP)
    virtual void add_msg_translator(::function<bool(MSG *)> msgtranslator);
    virtual void erase_msg_translator(::function<bool(MSG *)> msgtranslator);
 
    virtual bool msg_translator_handlers(MSG *pmsg);
+#endif
    //virtual void on_pre_run_task();
 
    

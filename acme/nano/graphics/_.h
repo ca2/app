@@ -33,6 +33,28 @@ namespace nano
 namespace graphics
 {
 
+
+
+
+
+enum enum_pen
+{
+   e_pen_solid = 0, //PS_SOLID;
+   e_pen_dashed = 1, //PS_DASH;
+   e_pen_null =5, // PS_NULL;
+};
+
+
+      enum enum_line_cap
+{
+
+   e_line_cap_none,
+   e_line_cap_round,
+
+};
+
+
+
 class graphics;
 
 
@@ -56,7 +78,10 @@ class icon;
 
 class brush;
 class pen;
+class font_family;
 class font;
+
+class image;
 
 class path;
 
@@ -65,11 +90,34 @@ class path;
    
 
 
-   //::enum_display_type get_display_type();
+      //::enum_display_type get_display_type();
+
+   enum enum_blend_mode
+   {
+
+      e_blend_mode_blend,
+      e_blend_mode_copy,
+
+   };
+
+   enum enum_smoothing_mode
+   {
+
+      e_smoothing_mode_none,
+      e_smoothing_mode_high_quality,
+
+   };
+
+   enum enum_text_rendering_hint
+   {
+
+      e_text_rendering_hint_none,
+      e_text_rendering_hint_clear_type_grid_fit,
+
+   };
 
 
-
-   } //namespace user
+   } //namespace graphics
 
 
 } // namespace nano

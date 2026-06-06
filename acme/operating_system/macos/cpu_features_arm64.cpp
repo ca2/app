@@ -14,7 +14,7 @@ static bool sysctl_bool(const_char_pointer pszName)
 {
    ::i32 value = 0;
    size_t size = sizeof(value);
-   if (sysctlbyname(name, &value, &size, nullptr, 0) != 0)
+   if (sysctlbyname(pszName, &value, &size, nullptr, 0) != 0)
       return false;
    return value != 0;
 }

@@ -148,17 +148,17 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TabAggregate :
-   virtual public Aggregate <TabComposite, Control>
+   virtual public Aggregate <TabComposite>
    {
    public:
 
-      ImplementAggregateø(Tab, Control)
+      ImplementBaseø(Tab)
 
    };
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Tab :
-virtual public Object<TabAggregate>
+      virtual public Object<TabAggregate>
    {
    public:
 

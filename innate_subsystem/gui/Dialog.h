@@ -50,7 +50,7 @@ namespace innate_subsystem
       virtual void initialize_dialog(const_char_pointer resourceName) = 0;
 
       // Method creates non modal window but not shows it
-      virtual void create() = 0;
+      virtual void create(bool bChild) = 0;
 
       //
       // Methods creates windows and show it in nonmodal/modal mode
@@ -170,7 +170,7 @@ namespace innate_subsystem
       void initialize_dialog(const_char_pointer resourceName) override { m_pdialog->initialize_dialog(resourceName); }
 
       // Method creates non modal window but not shows it
-      void create() override { m_pdialog->create(); }
+      void create(bool bChild) override { m_pdialog->create(bChild); }
 
       //
       // Methods creates windows and show it in nonmodal/modal mode

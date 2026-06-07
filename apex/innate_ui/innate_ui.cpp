@@ -99,6 +99,17 @@ namespace innate_ui
    }
 
 
+::pointer<::innate_ui::menu> innate_ui::create_menu()
+{
+
+   auto pmenu = createø<::innate_ui::menu>();
+
+   return pmenu;
+
+}
+
+
+
    ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size)
    {
 

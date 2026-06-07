@@ -426,7 +426,8 @@ namespace operating_system
       bool is_impact() const
       {
          
-         return (m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact);
+         return (m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact2)
+         || (m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact_by_tag);
 
       }
 

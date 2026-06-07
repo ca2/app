@@ -49,6 +49,7 @@ namespace innate_subsystem
       virtual ::i32 getTabCount() = 0;
       virtual TabInterface *getTab(::i32 index)= 0;
       virtual void addTab(WindowInterface *pwindow, const_char_pointer caption)= 0;
+      //virtual void addTab(const_char_pointer caption)= 0;
       virtual void showTab(::i32 index) = 0;
       virtual void showTab(WindowInterface *pwindow) = 0;
       virtual void deleteAllTabs()= 0;
@@ -95,6 +96,7 @@ virtual       ::i32 getSelectedTabIndex()= 0;
       virtual ::i32 getTabCount() override {return m_ptabcontrol->getTabCount();};
       TabInterface *getTab(::i32 index)override { return m_ptabcontrol->getTab(index); }
       void addTab(WindowInterface *pwindow, const_char_pointer caption)override { m_ptabcontrol->addTab(pwindow, caption); }
+//      void addTab(const_char_pointer caption)override { m_ptabcontrol->addTab(caption); }
       void showTab(::i32 index)override { m_ptabcontrol->showTab(index); }
       void showTab(WindowInterface *pwindow) override { m_ptabcontrol->showTab(pwindow); }
       void deleteAllTabs()override { m_ptabcontrol->deleteAllTabs(); }

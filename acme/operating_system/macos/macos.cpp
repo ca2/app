@@ -163,7 +163,15 @@ CLASS_DECL_ACME ::uptr as_u64(const ::operating_system::window & operatingsystem
 
    }
 
-   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact)
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact_by_tag)
+   {
+
+
+      return (::u64) operatingsystemwindow.m_opaque.m_ulla[0];
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact2)
    {
 
 

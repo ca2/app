@@ -26,6 +26,7 @@ namespace innate_ui
 
    }
 
+
    void menu::erase_menu_item_by_command_id(::i32 iDefaultMenuItemCommandId)
    {
 
@@ -33,11 +34,29 @@ namespace innate_ui
 
    }
    
+
    void menu::track_popup_menu(const ::operating_system::window &operatingsystemwindow,
                                const ::function<void(::i32)> &functionOnActionId)
    {
-      throw ::interface_only(); 
+      
+      throw ::interface_only();
           
+   }
+
+
+   void menu::add_item(const ::scoped_string & scopedstr, int iId)
+   {
+      
+      throw ::interface_only();
+      
+   }
+
+
+   void menu::add_separator()
+   {
+
+      throw ::interface_only();
+      
    }
 
 

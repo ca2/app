@@ -164,5 +164,43 @@ void ns_log_executable_path_and_its_loaded_dynamic_library_module_paths()
 
 }
 
+void ns_lets_check_localizable_path()
+{
+   NSString *path = [[NSBundle mainBundle] pathForResource:@"Localizable"
+                                                    ofType:@"strings"
+                                               inDirectory:@"en.lproj"];
+
+   NSLog(@"Localizable path = %@", path);
+
+}
+
+
+char * ns_localized_strdup(const char * pszId)
+{
+   
+   if(::is_null(pszId) || ::is_empty(pszId))
+   {
+      
+      return nullptr;
+      
+   }
+   
+   NSString * strId = [[NSString alloc] initWithUTF8String:pszId];
+   
+   NSString *nsString = NSLocalizedString(strId, nil);
+   
+   if(nsString == nil)
+   {
+      
+      return nullptr;
+      
+   }
+   
+   auto p = strdup([nsString UTF8String]);
+   
+   return p;
+   
+}
+
 
 

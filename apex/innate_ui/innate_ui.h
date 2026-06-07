@@ -28,6 +28,7 @@ namespace innate_ui
 
 
       ::pointer<::innate_ui::menu> load_menu_from_resource(::i32 iMenuResourceId);
+      ::pointer<::innate_ui::menu> create_menu();
 
 
       virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size);

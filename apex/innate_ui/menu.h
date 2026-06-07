@@ -25,7 +25,8 @@ namespace innate_ui
       
       virtual void track_popup_menu(const ::operating_system::window & operatingsystemwindow, const ::function<void(::i32)> &functionOnActionId);
 
-
+      virtual void add_item(const ::scoped_string & scopedstr, int iId);
+      virtual void add_separator();
 
 
    };

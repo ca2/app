@@ -3342,3 +3342,11 @@ bool platform_application_is_swap_chain(::platform::application * papplication)
    return bSwapChainWindow;
    
 }
+
+
+char * øget_resource_name_strdup(int iResource)
+{
+   
+   return strdup(::system()->m_papplication->getResourceName(iResource));
+   
+}

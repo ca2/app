@@ -18,11 +18,16 @@ namespace operating_system
 
 
       //::u64 m_uCgwindowidMacosWindow;
-      ::u64 m_uNSWindow;
-      ::u64 m_uTag;
+      union
+      {
+         ::u64 m_uNSWindow;
+         ::u64 m_uNSImpact;
+      };
+      //::u64 m_uTag;
 
 
-      void Null() { m_uNSWindow = 0; m_uTag = 0; }
+      void Null() { m_uNSWindow = 0; //m_uTag = 0;
+      }
       
       
       bool is_set() const{
@@ -48,64 +53,62 @@ namespace operating_system
       using BASE_TYPE::BASE_TYPE;
 
 
-      macos_window(::uptr uptr)
+//      macos_window(::uptr uptr)
+//      {
+//
+//         this->operator=(uptr);
+//      
+//      }
+
+      macos_window(::uptr uptr, ::windowing::enum_operating_ambient eoperatingambient)
       {
 
-         this->operator=(uptr);
-      
-      }
-
-      macos_window(::uptr uptr, ::uptr uTag)
-      {
-
-         m_eoperatingambient = ::windowing::e_operating_ambient_macos_impact;
+         m_eoperatingambient = eoperatingambient;
          m_window.m_uNSWindow = uptr;
-         m_window.m_uTag = uTag;
+         //m_window.m_uTag = uTag;
          m_pacmewindowingwindow = nullptr;
          m_opaque.m_ulla[2]= 0;
       
       }
 
-      ::uptr as_uptr() const
+      ::uptr window_uptr() const
       {
          
          if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos)
          {
 
-            if (!this->m_window.m_uNSWindow)
-            {
-
-               throw ::exception(error_wrong_state);
-
-            }
-
             return this->m_window.m_uNSWindow;
 
          }
-         else if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact)
+         else if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact_by_tag)
          {
-
-            if (!this->m_window.m_uNSWindow)
-            {
-
-               throw ::exception(error_wrong_state);
-
-            }
 
             return this->m_window.m_uNSWindow;
-
-         }
-         else if (this->m_window.m_uNSWindow)
-         {
-
-            throw ::exception(error_wrong_state);
 
          }
          else
          {
-
+            
             return NULL;
+            
+         }
+      
+      }
 
+      ::uptr impact_uptr() const
+      {
+         
+         if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact2)
+         {
+
+            return this->m_window.m_uNSImpact;
+
+         }
+         else
+         {
+            
+            return NULL;
+            
          }
       
       }

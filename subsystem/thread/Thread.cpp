@@ -33,8 +33,10 @@
 namespace subsystem
 {
 
-   Thread::Thread()
+   Thread::Thread(const char * pszThreadName)
    {
+      
+      constructThread(pszThreadName);
 
       m_bMessageThread = false;
 
@@ -53,7 +55,7 @@ namespace subsystem
       
       initialize(ptaskParent);
       
-      branch();
+      branch_synchronously();
 
       //m_pthreadimplementation = allocateø thread_implementation(this);
       
@@ -85,6 +87,14 @@ Thread::~Thread()
 //
 //    pthread_cond_destroy(
 //        &m_pthreadimplementation->m_suspendCond);
+}
+
+
+void Thread::constructThread(const char * pszThreadName)
+{
+   
+   m_strTaskName = pszThreadName;
+   
 }
 
 

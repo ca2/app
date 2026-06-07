@@ -29,7 +29,8 @@ namespace subsystem
 {
 
 
-   GuiThread::GuiThread()
+   GuiThread::GuiThread(const char * pszThreadName):
+::subsystem::Thread(pszThreadName)
    //: m_hDesk(0)
    {
      // m_hDesk = DesktopSelector::getInputDesktop();

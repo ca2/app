@@ -508,7 +508,6 @@
 				9AD3F3A12FB2078700CB9A78 /* platform */,
 				9AD3F3EB2FB2079E00CB9A78 /* security */,
 				9AD3F3F92FB2079E00CB9A78 /* socket */,
-				9AD3F3FA2FB2079E00CB9A78 /* subsystem */,
 				9AD3F41B2FB2079E00CB9A78 /* thread */,
 				9A1903AE2FB2424D00A3C985 /* _____debug.xcconfig */,
 				9A1903AF2FB2424D00A3C985 /* _____release.xcconfig */,
@@ -746,13 +745,6 @@
 				9AD3F3F82FB2079E00CB9A78 /* SocketStream.cpp */,
 			);
 			path = socket;
-			sourceTree = "<group>";
-		};
-		9AD3F3FA2FB2079E00CB9A78 /* subsystem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = subsystem;
 			sourceTree = "<group>";
 		};
 		9AD3F41B2FB2079E00CB9A78 /* thread */ = {

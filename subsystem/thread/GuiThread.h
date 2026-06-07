@@ -33,7 +33,7 @@ namespace subsystem
    class CLASS_DECL_SUBSYSTEM GuiThread: public ::subsystem::Thread
    {
    public:
-      GuiThread();
+      GuiThread(const char * pszThreadName);
       ~GuiThread() override;
       //private:
       // Replacing the base function.

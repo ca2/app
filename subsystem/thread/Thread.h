@@ -118,12 +118,15 @@ class thread_implementation;
        * Creates new thread.
        * @remark thread is suspended by default.
        */
-      Thread();
+      Thread(const char * pszThreadName);
       /**
        * Deletes thread.
        * @remark does not stops thread execution if it's still running.
        */
       ~Thread() override;
+      
+      
+      void constructThread(const char * pszThreadName);
       
       
       void destroy() override;

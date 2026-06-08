@@ -13373,6 +13373,13 @@ slGraphics.unlock();
 
          }
 
+         if (m_strBitmapSource.has_character())
+         {
+
+            m_pgraphicsgraphics->set_bitmap_source(m_strBitmapSource);
+
+         }
+
       }
 
    }

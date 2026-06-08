@@ -2572,6 +2572,7 @@
     <ClCompile Include="input_output\OutputStream.cpp" />
     <ClCompile Include="input_output\_.cpp" />
     <ClCompile Include="nano\graphics\context.cpp" />
+    <ClCompile Include="nano\graphics\image.cpp" />
     <ClCompile Include="nano\graphics\font_family.cpp" />
     <ClCompile Include="nano\graphics\path.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
@@ -2631,6 +2632,7 @@
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="nano\graphics\context.h" />
+    <ClInclude Include="nano\graphics\image.h" />
     <ClInclude Include="nano\graphics\font_family.h" />
     <ClInclude Include="nano\graphics\path.h" />
     <ClInclude Include="operating_system\cpu_features.h" />

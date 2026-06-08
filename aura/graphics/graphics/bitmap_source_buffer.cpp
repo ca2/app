@@ -5,6 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
@@ -109,7 +110,7 @@ namespace graphics
 
       ::file::path pathFolder;
 
-      pathFolder = directory()->config();
+      pathFolder = directory_system()->roaming();
 
       ::file::path path;
 
@@ -204,7 +205,7 @@ namespace graphics
 
          ::i64 * p = (::i64 *)pdata;
 
-         ::i32 iScan = (::i32)(ppixmap->width() * sizeof(::color32_t));
+         ::i32 iScan = (::i32)(ppixmap->m_iScan);
 
          *p++ = ppixmap->width();
          *p++ = ppixmap->height();

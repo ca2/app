@@ -540,7 +540,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
 
       for(::i32 i = 0; i < 3; i++)
       {
-         auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
+         auto & ptextureSwapChain = m_ptextureaSwapChain->atø(i);
          constructø(ptextureSwapChain);
          ::gpu::texture_attributes textureattributes(size);
          ptextureSwapChain->initialize_texture(m_pgpucontext, textureattributes);

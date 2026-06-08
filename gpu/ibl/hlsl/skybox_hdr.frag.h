@@ -3,7 +3,7 @@
 #pragma once
 
 
-const ::i8 g_psz_skybox_hdr_frag[] = R"frag_text(//------------------------------------------------------------------------------
+const char g_psz_skybox_hdr_frag[] = R"frag_text(//------------------------------------------------------------------------------
 // Skybox Pixel Shader (HLSL / DirectX 11)
 //------------------------------------------------------------------------------
 
@@ -14,76 +14,76 @@ SamplerState linearSampler : register(s0);
 // Point light struct (matching vertex shader)
 struct PointLight
 {
-    f324 position;
-    f324 color;
+    float4 position;
+    float4 color;
 };
 
 // Global constant buffer (same as GLSL std140 UBO)
 cbuffer GlobalUbo : register(b0)
 {
-    f324x4 projection;
-    f324x4 view;
-    f324x4 invView;
-    f324 ambientLightColor;
-    f323 cameraPosition;
+    float4x4 projection;
+    float4x4 view;
+    float4x4 invView;
+    float4 ambientLightColor;
+    float3 cameraPosition;
     PointLight pointLights[10];
-    ::i32 numLights;
-    ::i32 padding0;
-    ::i32 padding1;
-    ::i32 padding2;
+    int numLights;
+    int padding0;
+    int padding1;
+    int padding2;
 };
 
 // Input from vertex shader
 struct PS_INPUT
 {
-    f324 position     : SV_Position;
-    f324 vDirection   : TEXCOORD0;
+    float4 position     : SV_Position;
+    float4 vDirection   : TEXCOORD0;
 };
 
 
 // register(b1) for "push constants"
 cbuffer MatrixBuffer : register(b1)
 {
-    f323 multiplier;
+    float3 multiplier;
 };
 
 
-f323 ACESFilmTonemap(f323 color)
+float3 ACESFilmTonemap(float3 color)
 {
     // ACES tonemapping constants
-    ::f32 a = 2.51;
-    ::f32 b = 0.03;
-    ::f32 c = 2.43;
-    ::f32 d = 0.59;
-    ::f32 e = 0.14;
+    float a = 2.51;
+    float b = 0.03;
+    float c = 2.43;
+    float d = 0.59;
+    float e = 0.14;
     return clamp((color*(a*color+b)) / (color*(c*color+d)+e), 0.0f, 1.0f);
 }
 
-f323 LinearToSRGB(f323 color)
+float3 LinearToSRGB(float3 color)
 {
     return pow(color, 1.0f / 2.2f);
 }
 
-f324 main(PS_INPUT input) : SV_TARGET
+float4 main(PS_INPUT input) : SV_TARGET
 {
     // Normalize direction
-    f323 dir = normalize(input.vDirection);
+    float3 dir = normalize(input.vDirection);
 
     // Flip Y if your cube map was loaded OpenGL-style
     //dir.y = -dir.y;
     //dir.x = -dir.x;
-    //dir = f323(-dir.x, -dir.y, -dir.z);
+    //dir = float3(-dir.x, -dir.y, -dir.z);
     dir *= multiplier;
     // Sample HDR cube map
-    f323 hdrColor = skybox.Sample(linearSampler, dir).rgb;
+    float3 hdrColor = skybox.Sample(linearSampler, dir).rgb;
 
     // Apply tonemapping (ACES)
-    f323 mapped = ACESFilmTonemap(hdrColor);
+    float3 mapped = ACESFilmTonemap(hdrColor);
 
     // Convert from linear to sRGB
     mapped = LinearToSRGB(mapped);
 
-    return f324(mapped, 1.0f);
+    return float4(mapped, 1.0f);
 }
 )frag_text";
 

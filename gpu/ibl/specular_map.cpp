@@ -182,7 +182,7 @@ namespace gpu
 
          auto mipCount = m_iPrefilteredEnvMapMipCount;
 
-         m_pshaderPrefilteredEnvMap->set_int("numSamples", 1);
+         m_pshaderPrefilteredEnvMap->set_i32("numSamples", 1);
 
          for (auto iCurrentMip = 0; iCurrentMip < mipCount; iCurrentMip++)
          {

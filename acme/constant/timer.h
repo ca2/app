@@ -109,6 +109,7 @@ enum enum_timer : ::iptr
    e_timer_scrollbar_action,
    e_timer_main,
    e_timer_step,
+   e_timer_update_main_frame_caption,
 
 };
 

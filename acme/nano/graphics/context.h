@@ -77,7 +77,7 @@ namespace nano
          virtual void ellipse(const ::f64_rectangle &rectangle);
          virtual void line(const ::f64_point &point1, const ::f64_point &point2);
 
-         virtual void draw_icon(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::nano::graphics::icon * picon);
+         virtual void draw_icon(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, ::nano::graphics::icon * picon);
 
          virtual void draw_image(const ::f64_rectangle &rectangle, ::nano::graphics::image * pimage);
 

@@ -4389,6 +4389,9 @@
     <ClInclude Include="platform\node_aura.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="nano\graphics\font_family.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6319,6 +6322,9 @@
     </ClCompile>
     <ClCompile Include="user\user\key_state.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\font_family.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

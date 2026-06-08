@@ -32,10 +32,10 @@ cbuffer PushConsts : register(b1)
     int   useAlphaMask;
 
     float3 albedo;
-    ::f32  metallic;
-    ::f32  roughness;
-    ::f32  ambientOcclusion;
-    ::f32  alphaMaskCutoff;
+    float  metallic;
+    float  roughness;
+    float  ambientOcclusion;
+    float  alphaMaskCutoff;
 };
 
 struct VSInput

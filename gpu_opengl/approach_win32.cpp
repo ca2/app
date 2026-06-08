@@ -43,45 +43,45 @@ namespace gpu_opengl
 
 
 
-   // void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance, HGLRC* outRC, HDC* outDC)
-   void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance)
-   {
+   //// void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance, HGLRC* outRC, HDC* outDC)
+   //void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance)
+   //{
 
 
-      // HDC dc = GetDC(hwnd);
+   //   // HDC dc = GetDC(hwnd);
 
-      // ::i32 pixelAttribs[] = {
-      //     WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
-      //     WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
-      //     WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
-      //     WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
-      //     WGL_COLOR_BITS_ARB, 32,
-      //     WGL_DEPTH_BITS_ARB, 24,
-      //     WGL_STENCIL_BITS_ARB, 8,
-      //     0
-      // };
+   //   // ::i32 pixelAttribs[] = {
+   //   //     WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
+   //   //     WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
+   //   //     WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
+   //   //     WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
+   //   //     WGL_COLOR_BITS_ARB, 32,
+   //   //     WGL_DEPTH_BITS_ARB, 24,
+   //   //     WGL_STENCIL_BITS_ARB, 8,
+   //   //     0
+   //   // };
 
-      // ::i32 format;
-      // UINT numFormats;
-      // loaded_wglChoosePixelFormatARB(dc, pixelAttribs, NULL, 1, &format, &numFormats);
-      // PIXELFORMATDESCRIPTOR pfd;
-      // DescribePixelFormat(dc, format, sizeof(pfd), &pfd);
-      // SetPixelFormat(dc, format, &pfd);
+   //   // ::i32 format;
+   //   // UINT numFormats;
+   //   // loaded_wglChoosePixelFormatARB(dc, pixelAttribs, NULL, 1, &format, &numFormats);
+   //   // PIXELFORMATDESCRIPTOR pfd;
+   //   // DescribePixelFormat(dc, format, sizeof(pfd), &pfd);
+   //   // SetPixelFormat(dc, format, &pfd);
 
-      // ::i32 contextAttribs[] = {
-      //     WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
-      //     WGL_CONTEXT_MINOR_VERSION_ARB, 3,
-      //     WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
-      //     0
-      // };
+   //   // ::i32 contextAttribs[] = {
+   //   //     WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+   //   //     WGL_CONTEXT_MINOR_VERSION_ARB, 3,
+   //   //     WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+   //   //     0
+   //   // };
 
-      ///*HGLRC rc = wglCreateContextAttribsARB(dc, 0, contextAttribs);
-      // wglMakeCurrent(dc, rc);
+   //   ///*HGLRC rc = wglCreateContextAttribsARB(dc, 0, contextAttribs);
+   //   // wglMakeCurrent(dc, rc);
 
-      //*outRC = rc;
-      //*outDC = dc;*/
-      //::ReleaseDC(hwnd, dc);
-   }
+   //   //*outRC = rc;
+   //   //*outDC = dc;*/
+   //   //::ReleaseDC(hwnd, dc);
+   //}
 
 
    void approach::_gpu_on_create_window(::acme::windowing::window *pwindowParam)
@@ -93,16 +93,16 @@ namespace gpu_opengl
 
       ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
-      auto hwnd = pwindow->_HWND();
+      auto pHWND = pwindow->_HWND();
 
-      opengl_on_create_window(hwnd, (HINSTANCE) ::system()->m_hinstanceThis);
+      //opengl_on_create_window(hwnd, (HINSTANCE) ::system()->m_hinstanceThis);
 
       DWM_BLURBEHIND bb = { 0 };
       HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
       bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
       bb.hRgnBlur = hRgn;
       bb.fEnable = TRUE;
-      DwmEnableBlurBehindWindow(hwnd, &bb);
+      DwmEnableBlurBehindWindow((HWND)pHWND, &bb);
 
 //#endif
 

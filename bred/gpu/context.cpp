@@ -4209,7 +4209,7 @@ return {};
          pgpucommandbuffer->begin_render(m_pgpushaderRgbaFromB_G, pgputextureMetallicRoughness);
 
 
-         m_pgpushaderRgbaFromB_G->set_int("mipLevel", iMip);
+         m_pgpushaderRgbaFromB_G->set_i32("mipLevel", iMip);
 
          i32_rectangle r;
          r.left = 0;

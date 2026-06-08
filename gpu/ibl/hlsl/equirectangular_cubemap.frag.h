@@ -3,14 +3,14 @@
 #pragma once
 
 
-const ::i8 g_psz_equirectangular_cubemap_frag[] = R"frag_text(Texture2D hdri        : register(t0);
+const char g_psz_equirectangular_cubemap_frag[] = R"frag_text(Texture2D hdri        : register(t0);
 SamplerState samLinear : register(s0);
 
-static const f322 inverseAtan = f322(0.1591, 0.3183);
+static const float2 inverseAtan = float2(0.1591, 0.3183);
 
-f322 sphericalToCartesian(f323 v)
+float2 sphericalToCartesian(float3 v)
 {
-    f322 uv;
+    float2 uv;
     uv.x = atan2(v.z, v.x);
     uv.y = asin(v.y);
     uv *= inverseAtan;
@@ -20,19 +20,19 @@ f322 sphericalToCartesian(f323 v)
 
 struct PS_INPUT
 {
-    f324 position : SV_POSITION;
-    f323 modelCoordinates : TEXCOORD0;
+    float4 position : SV_POSITION;
+    float3 modelCoordinates : TEXCOORD0;
 };
 
-f324 main(PS_INPUT input) : SV_TARGET
+float4 main(PS_INPUT input) : SV_TARGET
 {
-    f323 dir = normalize(input.modelCoordinates);
-    f322 uv  = sphericalToCartesian(dir);
-    ::f32 u = uv.x;
-    ::f32 v = uv.y;
+    float3 dir = normalize(input.modelCoordinates);
+    float2 uv  = sphericalToCartesian(dir);
+    float u = uv.x;
+    float v = uv.y;
     u = fmod(u + 0.75, 1.0);
-    f323 color = hdri.Sample(samLinear, f322(1.0 - u, v)).rgb;
-    return f324(color,1.0f);
+    float3 color = hdri.Sample(samLinear, float2(1.0 - u, v)).rgb;
+    return float4(color,1.0f);
 }
 )frag_text";
 

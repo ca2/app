@@ -1,8 +1,8 @@
 /* FileF1: June 2020 */
-precision highp ::f32;
+precision highp float;
 
 uniform vec2 resolution;
-uniform ::f32 time;
+uniform float time;
 uniform vec2 mouse;
 uniform sampler2D backbuffer;
 

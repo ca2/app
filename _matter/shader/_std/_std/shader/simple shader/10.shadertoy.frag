@@ -5,18 +5,18 @@
  */
 
 const int NUM_STEPS = 8;
-const ::f32 PI	 	= 3.141592;
-const ::f32 EPSILON	= 1e-3;
+const float PI	 	= 3.141592;
+const float EPSILON	= 1e-3;
 #define EPSILON_NRM (0.1 / iResolution.x)
 #define AA
 
 // sea
 const int ITER_GEOMETRY = 3;
 const int ITER_FRAGMENT = 5;
-const ::f32 SEA_HEIGHT = 0.6;
-const ::f32 SEA_CHOPPY = 4.0;
-const ::f32 SEA_SPEED = 0.8;
-const ::f32 SEA_FREQ = 0.16;
+const float SEA_HEIGHT = 0.6;
+const float SEA_CHOPPY = 4.0;
+const float SEA_SPEED = 0.8;
+const float SEA_FREQ = 0.16;
 const vec3 SEA_BASE = vec3(0.0,0.09,0.18);
 const vec3 SEA_WATER_COLOR = vec3(0.8,0.9,0.6)*0.6;
 #define SEA_TIME (1.0 + iTime * SEA_SPEED)
@@ -33,11 +33,11 @@ mat3 fromEuler(vec3 ang) {
 	m[2] = vec3(a3.y*a1.x*a2.x+a1.y*a3.x,a1.x*a3.x-a1.y*a3.y*a2.x,a2.y*a3.y);
 	return m;
 }
-::f32 hash( vec2 p ) {
-	::f32 h = dot(p,vec2(127.1,311.7));	
+float hash( vec2 p ) {
+	float h = dot(p,vec2(127.1,311.7));	
     return fract(sin(h)*43758.5453123);
 }
-::f32 noise( in vec2 p ) {
+float noise( in vec2 p ) {
     vec2 i = floor( p );
     vec2 f = fract( p );	
 	vec2 u = f*f*(3.0-2.0*f);
@@ -48,11 +48,11 @@ mat3 fromEuler(vec3 ang) {
 }
 
 // lighting
-::f32 diffuse(vec3 n,vec3 l,::f32 p) {
+float diffuse(vec3 n,vec3 l,float p) {
     return pow(dot(n,l) * 0.4 + 0.6,p);
 }
-::f32 specular(vec3 n,vec3 l,vec3 e,::f32 s) {    
-    ::f32 nrm = (s + 8.0) / (PI * 8.0);
+float specular(vec3 n,vec3 l,vec3 e,float s) {    
+    float nrm = (s + 8.0) / (PI * 8.0);
     return pow(max(dot(reflect(e,n),l),0.0),s) * nrm;
 }
 
@@ -63,7 +63,7 @@ vec3 getSkyColor(vec3 e) {
 }
 
 // sea
-::f32 sea_octave(vec2 uv, ::f32 choppy) {
+float sea_octave(vec2 uv, float choppy) {
     uv += noise(uv);        
     vec2 wv = 1.0-abs(sin(uv));
     vec2 swv = abs(cos(uv));    
@@ -71,13 +71,13 @@ vec3 getSkyColor(vec3 e) {
     return pow(1.0-pow(wv.x * wv.y,0.65),choppy);
 }
 
-::f32 map(vec3 p) {
-    ::f32 freq = SEA_FREQ;
-    ::f32 amp = SEA_HEIGHT;
-    ::f32 choppy = SEA_CHOPPY;
+float map(vec3 p) {
+    float freq = SEA_FREQ;
+    float amp = SEA_HEIGHT;
+    float choppy = SEA_CHOPPY;
     vec2 uv = p.xz; uv.x *= 0.75;
     
-    ::f32 d, h = 0.0;    
+    float d, h = 0.0;    
     for(int i = 0; i < ITER_GEOMETRY; i++) {        
     	d = sea_octave((uv+SEA_TIME)*freq,choppy);
     	d += sea_octave((uv-SEA_TIME)*freq,choppy);
@@ -88,13 +88,13 @@ vec3 getSkyColor(vec3 e) {
     return p.y - h;
 }
 
-::f32 map_detailed(vec3 p) {
-    ::f32 freq = SEA_FREQ;
-    ::f32 amp = SEA_HEIGHT;
-    ::f32 choppy = SEA_CHOPPY;
+float map_detailed(vec3 p) {
+    float freq = SEA_FREQ;
+    float amp = SEA_HEIGHT;
+    float choppy = SEA_CHOPPY;
     vec2 uv = p.xz; uv.x *= 0.75;
     
-    ::f32 d, h = 0.0;    
+    float d, h = 0.0;    
     for(int i = 0; i < ITER_FRAGMENT; i++) {        
     	d = sea_octave((uv+SEA_TIME)*freq,choppy);
     	d += sea_octave((uv-SEA_TIME)*freq,choppy);
@@ -106,7 +106,7 @@ vec3 getSkyColor(vec3 e) {
 }
 
 vec3 getSeaColor(vec3 p, vec3 n, vec3 l, vec3 eye, vec3 dist) {  
-    ::f32 fresnel = clamp(1.0 - dot(n,-eye), 0.0, 1.0);
+    float fresnel = clamp(1.0 - dot(n,-eye), 0.0, 1.0);
     fresnel = pow(fresnel,3.0) * 0.5;
         
     vec3 reflected = getSkyColor(reflect(eye,n));    
@@ -114,7 +114,7 @@ vec3 getSeaColor(vec3 p, vec3 n, vec3 l, vec3 eye, vec3 dist) {
     
     vec3 color = mix(refracted,reflected,fresnel);
     
-    ::f32 atten = max(1.0 - dot(dist,dist) * 0.001, 0.0);
+    float atten = max(1.0 - dot(dist,dist) * 0.001, 0.0);
     color += SEA_WATER_COLOR * (p.y - SEA_HEIGHT) * 0.18 * atten;
     
     color += vec3(specular(n,l,eye,60.0));
@@ -123,7 +123,7 @@ vec3 getSeaColor(vec3 p, vec3 n, vec3 l, vec3 eye, vec3 dist) {
 }
 
 // tracing
-vec3 getNormal(vec3 p, ::f32 eps) {
+vec3 getNormal(vec3 p, float eps) {
     vec3 n;
     n.y = map_detailed(p);    
     n.x = map_detailed(vec3(p.x+eps,p.y,p.z)) - n.y;
@@ -132,17 +132,17 @@ vec3 getNormal(vec3 p, ::f32 eps) {
     return normalize(n);
 }
 
-::f32 heightMapTracing(vec3 ori, vec3 dir, out vec3 p) {  
-    ::f32 tm = 0.0;
-    ::f32 tx = 1000.0;    
-    ::f32 hx = map(ori + dir * tx);
+float heightMapTracing(vec3 ori, vec3 dir, out vec3 p) {  
+    float tm = 0.0;
+    float tx = 1000.0;    
+    float hx = map(ori + dir * tx);
     if(hx > 0.0) return tx;   
-    ::f32 hm = map(ori + dir * tm);    
-    ::f32 tmid = 0.0;
+    float hm = map(ori + dir * tm);    
+    float tmid = 0.0;
     for(int i = 0; i < NUM_STEPS; i++) {
         tmid = mix(tm,tx, hm/(hm-hx));                   
         p = ori + dir * tmid;                   
-    	::f32 hmid = map(p);
+    	float hmid = map(p);
 		if(hmid < 0.0) {
         	tx = tmid;
             hx = hmid;
@@ -154,7 +154,7 @@ vec3 getNormal(vec3 p, ::f32 eps) {
     return tmid;
 }
 
-vec3 getPixel(in vec2 coord, ::f32 time) {    
+vec3 getPixel(in vec2 coord, float time) {    
     vec2 uv = coord / iResolution.xy;
     uv = uv * 2.0 - 1.0;
     uv.x *= iResolution.x / iResolution.y;    
@@ -181,7 +181,7 @@ vec3 getPixel(in vec2 coord, ::f32 time) {
 
 // main
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
-    ::f32 time = iTime * 0.3 + iMouse.x*0.01;
+    float time = iTime * 0.3 + iMouse.x*0.01;
 	
 #ifdef AA
     vec3 color = vec3(0.0);

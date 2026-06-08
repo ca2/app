@@ -50,7 +50,7 @@ namespace gpu_opengl
 
          scoped_dummy_wgl_context wglcontextDummy(this);
 
-         m_hwnd = pwin32windowingwindow->_HWND();
+         m_hwnd = (HWND) pwin32windowingwindow->_HWND();
 
          if (!::IsWindow(m_hwnd))
          {
@@ -572,7 +572,7 @@ namespace gpu_opengl
 
       windowclass.style = CS_OWNDC; // IMPORTANT for OpenGL
       windowclass.lpfnWndProc = hidden_gl_window_procedure;
-      windowclass.hInstance = ::hinstance_from_function(hidden_gl_window_procedure);
+      windowclass.hInstance = (HINSTANCE) ::windows::hinstance_from_function(hidden_gl_window_procedure);
       windowclass.lpszClassName = hidden_gl_window_class_name();
       windowclass.cbWndExtra = 40;
 
@@ -634,10 +634,10 @@ namespace gpu_opengl
 
       auto pszClassName = hidden_gl_window_class_name();
 
-      auto hinstance = ::hinstance_from_function(hidden_gl_window_procedure);
+      auto pHINSTANCE = ::windows::hinstance_from_function(hidden_gl_window_procedure);
 
       HWND hwnd =
-         CreateWindowExW(0, pszClassName, L"", WS_OVERLAPPED, 0, 0, 1, 1, nullptr, nullptr, hinstance, nullptr);
+         CreateWindowExW(0, pszClassName, L"", WS_OVERLAPPED, 0, 0, 1, 1, nullptr, nullptr, (HINSTANCE)pHINSTANCE, nullptr);
 
       return hwnd;
 

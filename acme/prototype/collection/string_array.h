@@ -647,7 +647,7 @@ public:
          }
          if (!bCarriage)
          {
-            this->m_erange = (this->m_erange & ~e_range_array_carriage_return).m_cflag;
+            this->m_erange = this->m_erange & ~e_range_array_carriage_return;
          }
       }
       else
@@ -655,7 +655,7 @@ public:
          this->add(scopedstr);
          if (bCarriage)
          {
-            this->m_erange = (this->m_erange | e_range_array_carriage_return).m_cflag;
+            this->m_erange = this->m_erange | e_range_array_carriage_return;
          }
 
       }

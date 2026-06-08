@@ -234,7 +234,7 @@ namespace gpu
 
       virtual void set_bool(const ::scoped_string& scopedstrName, bool value);
 
-      virtual void set_int(const ::scoped_string& scopedstrName, ::i32 value);
+      virtual void set_i32(const ::scoped_string& scopedstrName, ::i32 value);
 
       virtual void set_f32(const ::scoped_string& scopedstrName, ::f32 value);
 

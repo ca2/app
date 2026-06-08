@@ -2742,7 +2742,7 @@ void main() {
         vec2(texcoords.z, texcoords.w)
     );
 
-    ::i32 vid = gl_VertexID;
+    int vid = gl_VertexID;
     //gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
 gl_Position = vec4(positions[vid], 0.0, 1.0);
     TexCoords = uvs[vid];

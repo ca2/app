@@ -250,7 +250,7 @@ namespace nano
                      }
 
 
-      void context::draw_icon(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::nano::graphics::icon * picon)
+      void context::draw_icon(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, ::nano::graphics::icon * picon)
       {
          throw ::interface_only();
 

@@ -731,12 +731,12 @@ namespace gpu
    void shader::set_bool(const ::scoped_string& scopedstrName, bool value)
    {
 
-      set_int(scopedstrName, value != false);
+      set_i32(scopedstrName, value != false);
 
    }
 
 
-   void shader::set_int(const ::scoped_string& scopedstrName, ::i32 value)
+   void shader::set_i32(const ::scoped_string& scopedstrName, ::i32 value)
    {
 
       ::string strName(scopedstrName);

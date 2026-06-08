@@ -3,7 +3,7 @@
 #pragma once
 
 
-const ::i8 g_psz_skybox_frag[] = R"frag_text(//------------------------------------------------------------------------------
+const char g_psz_skybox_frag[] = R"frag_text(//------------------------------------------------------------------------------
 // HLSL Fragment Shader (Pixel Shader) equivalent
 //------------------------------------------------------------------------------
 
@@ -14,8 +14,8 @@ SamplerState samplerLinear : register(s0);
 // Scene constant buffer (matches GlobalUbo in GLSL)
 struct PointLight
 {
-    f324 position;
-    f324 color;
+    float4 position;
+    float4 color;
 };
 
 
@@ -23,46 +23,46 @@ struct PointLight
 // register(b1) for "push constants"
 cbuffer MatrixBuffer : register(b1)
 {
-    f323 multiplier;
+    float3 multiplier;
 };
 
 
 
 cbuffer GlobalUbo : register(b0)
 {
-    f324x4 projection;
-    f324x4 view;
-    f324x4 invView;
-    f324 ambientLightColor;
-    f323 cameraPosition;
+    float4x4 projection;
+    float4x4 view;
+    float4x4 invView;
+    float4 ambientLightColor;
+    float3 cameraPosition;
     PointLight pointLights[10];
-    ::i32 numLights;
-    ::i32 padding0;
-    ::i32 padding1;
-    ::i32 padding2; // padding to make struct size multiple of 16 bytes
+    int numLights;
+    int padding0;
+    int padding1;
+    int padding2; // padding to make struct size multiple of 16 bytes
 };
 
 // Pixel shader input
 struct PS_INPUT
 {
-    f324 position     : SV_Position;
-    f324 vDirection   : TEXCOORD0;
+    float4 position     : SV_Position;
+    float4 vDirection   : TEXCOORD0;
 };
 
 
 
-f324 main(PS_INPUT input)  : SV_TARGET
+float4 main(PS_INPUT input)  : SV_TARGET
 {
 
     // Normalize direction
-    f323 dir = normalize(input.vDirection);
+    float3 dir = normalize(input.vDirection);
 
     // Flip Y if needed (to match OpenGL coordinates)
     //dir.y = -dir.y;
     dir *= multiplier;
 
     // Sample skybox cubemap
-    f324 color = skybox.Sample(samplerLinear, dir);
+    float4 color = skybox.Sample(samplerLinear, dir);
 
     return color;
 }

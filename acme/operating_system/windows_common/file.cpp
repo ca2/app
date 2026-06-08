@@ -160,7 +160,7 @@ namespace windows
 
       // map_base share mode
       DWORD dwShareMode = 0;
-      switch (eopenShare.m_cflag)    // map_base compatibility mode to exclusive
+      switch (eopenShare)    // map_base compatibility mode to exclusive
       {
       default:
          ASSERT(false);  // invalid share mode?

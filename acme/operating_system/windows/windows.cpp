@@ -1012,9 +1012,9 @@ namespace windows
    CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_type(const ::user::e_message_box & emessagebox)
    {
 
-      auto emessageboxType = (emessagebox & ::user::e_message_box_type_mask);
+      auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 
-      switch (emessageboxType.m_cflag)
+      switch (emessageboxType)
       {
       case ::user::e_message_box_ok:
          return MB_OK;
@@ -1042,7 +1042,7 @@ namespace windows
 
       auto emessageboxIcon = emessagebox & ::user::e_message_box_icon_mask;
 
-      switch (emessageboxIcon.m_cflag)
+      switch (emessageboxIcon)
       {
       case ::user::e_message_box_icon_error:
          return MB_ICONERROR;
@@ -1064,7 +1064,7 @@ namespace windows
 
       auto emessageboxDefaultButton = emessagebox & ::user::e_message_box_default_button_mask;
 
-      switch (emessageboxDefaultButton.m_cflag)
+      switch (emessageboxDefaultButton)
       {
       case ::user::e_message_box_default_button_1:
          return MB_DEFBUTTON1;

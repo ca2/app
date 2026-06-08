@@ -40,69 +40,69 @@
 #define ITR 100
 
 //for animations
-::f32 sfloor(in ::f32 x, in ::f32 w)
+float sfloor(in float x, in float w)
 {
-    ::f32 fx = floor(x);
+    float fx = floor(x);
     return fx+smoothstep(fx+w,fx+1.-w,x);
 }
 
 //parametric equation
-vec2 f(in ::f32 t)
+vec2 f(in float t)
 {   
     //Hypotrochoid
     #if TYPE == 1
-    ::f32 cam= sfloor(time*0.6,.2)*pi;
-    ::f32 R = mod(floor(time*0.3),9.)+3.;
-    const ::f32 r = 1.;
-    //::f32 d = sin(time*1.)*2.+3.5;
-    ::f32 d= R;
-    ::f32 x = ((R-r)*cos(t-cam)+d*cos((R-r)/r*t))/(R+.5)*3.;
-    ::f32 y = ((R-r)*sin(t)-d*sin((R-r)/r*t))/(R+.5)*3.;
+    float cam= sfloor(time*0.6,.2)*pi;
+    float R = mod(floor(time*0.3),9.)+3.;
+    const float r = 1.;
+    //float d = sin(time*1.)*2.+3.5;
+    float d= R;
+    float x = ((R-r)*cos(t-cam)+d*cos((R-r)/r*t))/(R+.5)*3.;
+    float y = ((R-r)*sin(t)-d*sin((R-r)/r*t))/(R+.5)*3.;
     
     //Epitrochoid
     #elif TYPE == 2
-    ::f32 cam= sfloor(time*0.4,.1)*pi*2.;
-    const ::f32 R = 2.8;
-    const ::f32 r = .4;
-    ::f32 d = sin(time*0.21)*2.+2.6;
-    ::f32 x = (R+r)*cos(t-cam)-d*cos((R+r)/r*t);
-    ::f32 y = (R+r)*sin(t)-d*sin((R+r)/r*t);
+    float cam= sfloor(time*0.4,.1)*pi*2.;
+    const float R = 2.8;
+    const float r = .4;
+    float d = sin(time*0.21)*2.+2.6;
+    float x = (R+r)*cos(t-cam)-d*cos((R+r)/r*t);
+    float y = (R+r)*sin(t)-d*sin((R+r)/r*t);
     
     //Rose Curve
     #elif TYPE == 3
-    ::f32 cam= sfloor(time*0.4,.1)*pi;
-    ::f32 k = mod(floor(time*0.4),6.)+2.;
-    ::f32 x = cos(k*t-cam)*cos(t+cam)*5.5;
-    ::f32 y = cos(k*t)*sin(t)*5.5;
+    float cam= sfloor(time*0.4,.1)*pi;
+    float k = mod(floor(time*0.4),6.)+2.;
+    float x = cos(k*t-cam)*cos(t+cam)*5.5;
+    float y = cos(k*t)*sin(t)*5.5;
     
     //Lissajous
     #elif TYPE == 4
-    ::f32 ft = mod(floor(time*0.25),3.);
-    ::f32 a = 3.+ft;
-    ::f32 b = 2.+ft;
-    ::f32 y = sin(a*t+pi/2.+time*1.5)*5.;
-    ::f32 x = sin(b*t)*5.;
+    float ft = mod(floor(time*0.25),3.);
+    float a = 3.+ft;
+    float b = 2.+ft;
+    float y = sin(a*t+pi/2.+time*1.5)*5.;
+    float x = sin(b*t)*5.;
     
     //Hypocycloid (just a special case of hypotrochoids)
     #elif TYPE == 5
-    const ::f32 a = 6.;
-    ::f32 ft = mod(floor(time*0.25),5.)+2.25;
-    ::f32 b = 6./ft;
-    ::f32 cam= sfloor(time*0.5,.2)*pi;
-    ::f32 x = ((a-b)*cos(t-cam) + b*cos(t*(a/b-1.)));
-    ::f32 y = ((a-b)*sin(t) - b*sin(t*(a/b-1.)));
+    const float a = 6.;
+    float ft = mod(floor(time*0.25),5.)+2.25;
+    float b = 6./ft;
+    float cam= sfloor(time*0.5,.2)*pi;
+    float x = ((a-b)*cos(t-cam) + b*cos(t*(a/b-1.)));
+    float y = ((a-b)*sin(t) - b*sin(t*(a/b-1.)));
     
     #else
     //we can also use triangle waves :)
-    ::f32 x= (abs(fract(t*1.+time*0.2)-0.5)-0.25)*20.;
-    ::f32 y= ((abs(fract(t*.5+.5*abs(fract(t*.5+.5)-0.5))-0.5))-0.25)*20.;
+    float x= (abs(fract(t*1.+time*0.2)-0.5)-0.25)*20.;
+    float y= ((abs(fract(t*.5+.5*abs(fract(t*.5+.5)-0.5))-0.5))-0.25)*20.;
     #endif
 
     return vec2(x,y);
 }
 
 //squared distance from point (pixel) to curve
-::f32 fd(in vec2 p, in ::f32 t)
+float fd(in vec2 p, in float t)
 {
     p = p+f(t);
     return dot(p,p);
@@ -110,11 +110,11 @@ vec2 f(in ::f32 t)
 
 
 //root finding on the derivative
-::f32 bisect(in vec2 p, in ::f32 near, in ::f32 far)
+float bisect(in vec2 p, in float near, in float far)
 {
-    ::f32 mid = 0.;
-    ::f32 mdrv = 0.;
-    ::f32 ep = 0.02;
+    float mid = 0.;
+    float mdrv = 0.;
+    float ep = 0.02;
     for (int i = 0; i <= 5; i++)
     {
         mid = (near + far)*.5;
@@ -128,16 +128,16 @@ vec2 f(in ::f32 t)
 
 
 //this function can most definitely be optimized
-::f32 intersect(in vec2 p, in ::f32 near, in ::f32 far)
+float intersect(in vec2 p, in float near, in float far)
 {
-    ::f32 t = near;
-    ::f32 told = near;
-    ::f32 nr = 0., fr = 1.;
-    ::f32 mn = 10000.;
+    float t = near;
+    float told = near;
+    float nr = 0., fr = 1.;
+    float mn = 10000.;
     
     for (int i = 0; i <= 120; i++)
     {
-        ::f32 d = fd(p, t);
+        float d = fd(p, t);
         if (d < mn)
         {
             mn = d;
@@ -155,11 +155,11 @@ vec2 f(in ::f32 t)
 
 
 //Reinhard based tone mapping
-vec3 tone(vec3 color, ::f32 gamma)
+vec3 tone(vec3 color, float gamma)
 {
-	::f32 white = 2.;
-	::f32 luma = dot(color, vec3(0.2126, 0.7152, 0.0722));
-	::f32 toneMappedLuma = luma * (1. + luma / (white*white)) / (1. + luma);
+	float white = 2.;
+	float luma = dot(color, vec3(0.2126, 0.7152, 0.0722));
+	float toneMappedLuma = luma * (1. + luma / (white*white)) / (1. + luma);
 	color *= toneMappedLuma / luma;
 	color = pow(color, vec3(1. / gamma));
 	return color;
@@ -171,7 +171,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     vec2 bp = p+0.5;
 	p.x *= iResolution.x/iResolution.y;
     p *= 19.;
-    ::f32 rz = intersect(p,0.,30.);
+    float rz = intersect(p,0.,30.);
     
     #if COLOR_TYPE == 1
     rz = pow(rz*2.,0.5);

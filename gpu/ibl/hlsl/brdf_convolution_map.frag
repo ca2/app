@@ -2,7 +2,7 @@
 
 cbuffer Constants : register(b0)
 {
-    static const ::f32 PI = 3.14159265359;
+    static const float PI = 3.14159265359;
     static const uint SAMPLE_COUNT = 1024;
 }
 
@@ -20,29 +20,29 @@ struct PSOutput
     //float4 BloomColor : SV_Target1; // output to be used by bloom shader
 };
 
-::f32 radicalInverseVanDerCorput(uint bits)
+float radicalInverseVanDerCorput(uint bits)
 {
     bits = (bits << 16) | (bits >> 16);
     bits = ((bits & 0x55555555u) << 1) | ((bits & 0xAAAAAAAAu) >> 1);
     bits = ((bits & 0x33333333u) << 2) | ((bits & 0xCCCCCCCCu) >> 2);
     bits = ((bits & 0x0F0F0F0Fu) << 4) | ((bits & 0xF0F0F0F0u) >> 4);
     bits = ((bits & 0x00FF00FFu) << 8) | ((bits & 0xFF00FF00u) >> 8);
-    return ::f32(bits) * 2.3283064365386963e-10;
+    return float(bits) * 2.3283064365386963e-10;
 }
 
 float2 hammersley(uint i, uint N)
 {
-    return float2(::f32(i) / ::f32(N), radicalInverseVanDerCorput(i));
+    return float2(float(i) / float(N), radicalInverseVanDerCorput(i));
 }
 
-float3 importanceSampleGGX(float2 unitSquareSample, float3 N, ::f32 roughness)
+float3 importanceSampleGGX(float2 unitSquareSample, float3 N, float roughness)
 {
-    ::f32 alpha = roughness * roughness;
+    float alpha = roughness * roughness;
 
-    ::f32 phi = 2.0 * PI * unitSquareSample.x;
-    ::f32 cosTheta = sqrt((1.0 - unitSquareSample.y) /
+    float phi = 2.0 * PI * unitSquareSample.x;
+    float cosTheta = sqrt((1.0 - unitSquareSample.y) /
                           (1.0 + (alpha * alpha - 1.0) * unitSquareSample.y));
-    ::f32 sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+    float sinTheta = sqrt(1.0 - cosTheta * cosTheta);
 
     float3 H;
     H.x = cos(phi) * sinTheta;
@@ -57,17 +57,17 @@ float3 importanceSampleGGX(float2 unitSquareSample, float3 N, ::f32 roughness)
     return normalize(sampleVector);
 }
 
-::f32 geometrySchlickGGX(float3 n, float3 v, ::f32 k)
+float geometrySchlickGGX(float3 n, float3 v, float k)
 {
-    ::f32 nDotV = max(dot(n, v), 0.0);
-    ::f32 numerator = nDotV;
-    ::f32 denominator = nDotV * (1.0 - k) + k;
+    float nDotV = max(dot(n, v), 0.0);
+    float numerator = nDotV;
+    float denominator = nDotV * (1.0 - k) + k;
     return numerator / denominator;
 }
 
-::f32 geometrySmith(float3 n, float3 v, float3 l, ::f32 roughness)
+float geometrySmith(float3 n, float3 v, float3 l, float roughness)
 {
-    ::f32 k = (roughness * roughness) / 2.0;
+    float k = (roughness * roughness) / 2.0;
     return geometrySchlickGGX(n, v, k) * geometrySchlickGGX(n, l, k);
 }
 
@@ -76,14 +76,14 @@ PSOutput main(PSInput input)
 {
     
     PSOutput output;
-    ::f32 NdotV = input.texcoord.x;
-    ::f32 roughness = 1.0 - input.texcoord.y;
+    float NdotV = input.texcoord.x;
+    float roughness = 1.0 - input.texcoord.y;
 
     float3 N = float3(0.0, 0.0, 1.0);
     float3 V = float3(sqrt(1.0 - NdotV * NdotV), 0.0, NdotV);
 
-    ::f32 F0Scale = 0.0;
-    ::f32 F0Bias = 0.0;
+    float F0Scale = 0.0;
+    float F0Bias = 0.0;
 
     [loop]
     for (uint i = 0; i < SAMPLE_COUNT; i++)
@@ -92,15 +92,15 @@ PSOutput main(PSInput input)
         float3 H = importanceSampleGGX(unitSquareSample, N, roughness);
         float3 L = normalize(2.0 * dot(V, H) * H - V);
 
-        ::f32 NdotL = max(L.z, 0.0);
-        ::f32 NdotH = max(H.z, 0.0);
-        ::f32 VdotH = max(dot(V, H), 0.0);
+        float NdotL = max(L.z, 0.0);
+        float NdotH = max(H.z, 0.0);
+        float VdotH = max(dot(V, H), 0.0);
 
         if (NdotL > 0.0)
         {
-            ::f32 G = geometrySmith(N, V, L, roughness);
-            ::f32 GVis = (G * VdotH) / (NdotH * NdotV);
-            ::f32 partialFresnel = pow(1.0 - VdotH, 5.0);
+            float G = geometrySmith(N, V, L, roughness);
+            float GVis = (G * VdotH) / (NdotH * NdotV);
+            float partialFresnel = pow(1.0 - VdotH, 5.0);
 
             F0Scale += GVis * (1.0 - partialFresnel);
             F0Bias += GVis * partialFresnel;

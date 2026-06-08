@@ -262,12 +262,12 @@ void main() {
 
       ::draw2d_gpu::graphics::create_for_window_draw2d(puserinteraction, size);
 
-      if (m_puserinteraction == nullptr)
+      if (m_puserinteractionDraw2dGraphics == nullptr)
       {
 
-         m_puserinteraction = dynamic_cast <::user::interaction*>(application()->m_pacmeuserinteractionMain.m_p);
+         m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(application()->m_pacmeuserinteractionMain.m_p);
 
-         if (m_puserinteraction == nullptr)
+         if (m_puserinteractionDraw2dGraphics == nullptr)
          {
 
             informationf("No user interaction available for OpenGL offscreen buffer creation.");
@@ -280,10 +280,10 @@ void main() {
 
       auto pgpuapproach = application()->get_gpu_approach();
 
-      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteraction->m_pacmewindowingwindow);
+      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow);
 
       auto pgpucontextMain =
-         m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->m_pacmewindowingwindow)->main_context();
+         m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow)->main_context();
 
       auto pgpucontextNew = pgpudevice->create_draw2d_context(
          ::gpu::e_output_gpu_buffer,
@@ -325,12 +325,12 @@ void main() {
       //   return false;
       //}
 
-      if (m_puserinteraction == nullptr)
+      if (m_puserinteractionDraw2dGraphics == nullptr)
       {
 
-         m_puserinteraction = dynamic_cast <::user::interaction*>(application()->m_pacmeuserinteractionMain.m_p);
+         m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(application()->m_pacmeuserinteractionMain.m_p);
 
-         if (m_puserinteraction == nullptr)
+         if (m_puserinteractionDraw2dGraphics == nullptr)
          {
 
             informationf("No user interaction available for OpenGL offscreen buffer creation.");
@@ -343,9 +343,9 @@ void main() {
 
       auto pgpuapproach = application()->get_gpu_approach();
 
-      //   ASSERT(m_puserinteraction);
+      //   ASSERT(m_puserinteractionDraw2dGraphics);
 
-      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteraction->m_pacmewindowingwindow);
+      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow);
 
       auto pgpucontextNew = pgpudevice->create_draw2d_context(
          ::gpu::e_output_gpu_buffer,
@@ -362,7 +362,7 @@ void main() {
 
       //   auto pgpu = application()->get_gpu();
 
-      //   ASSERT(m_puserinteraction);
+      //   ASSERT(m_puserinteractionDraw2dGraphics);
 
       //   auto pgpudevice = pgpu->get_device();
 
@@ -6638,14 +6638,14 @@ color = vec4(c.r,c.g, c.b, c.a);
    //oswindow graphics::get_window_handle() const
    //{
 
-   //   if (::is_null(m_puserinteraction))
+   //   if (::is_null(m_puserinteractionDraw2dGraphics))
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return m_puserinteraction->get_handle();
+   //   return m_puserinteractionDraw2dGraphics->get_handle();
 
    //}
 
@@ -6741,17 +6741,17 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   ::i32_size size;
 
-   //   if (!m_puserinteraction && m_papplication->m_bUseSwapChainWindow)
+   //   if (!m_puserinteractionDraw2dGraphics && m_papplication->m_bUseSwapChainWindow)
    //   {
 
-   //      m_puserinteraction = dynamic_cast <::user::interaction*>(m_pwindow->m_pacmeuserinteraction.m_p);
+   //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_pwindow->m_pacmeuserinteraction.m_p);
 
    //   }
 
-   //   if (m_puserinteraction && !m_puserinteraction->size().is_empty())
+   //   if (m_puserinteractionDraw2dGraphics && !m_puserinteractionDraw2dGraphics->size().is_empty())
    //   {
 
-   //      size = m_puserinteraction->size();
+   //      size = m_puserinteractionDraw2dGraphics->size();
 
    //   }
    //   else
@@ -6852,7 +6852,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //         prenderer->endFrame();
 
-   //         prenderer->endDraw(m_puserinteraction);
+   //         prenderer->endDraw(m_puserinteractionDraw2dGraphics);
 
    //      }
 

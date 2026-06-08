@@ -109,7 +109,7 @@ namespace gpu_opengl
       void bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture* pgputextureSource) override;
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
-      void set_int(const ::scoped_string& scopedstrName, ::i32 value) override;
+      void set_i32(const ::scoped_string& scopedstrName, ::i32 value) override;
       void set_f32(const ::scoped_string& scopedstrName, ::f32 value) override;
       void set_sequence2(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y) override;
       void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a) override;

@@ -34,11 +34,11 @@ cbuffer PushConsts : register(b1)
     int   useAlphaMask;
 
     float3 albedo;
-    ::f32  metallic;
-    ::f32  roughness;
-    ::f32  ambientOcclusion;
-    ::f32  alphaMaskCutoff;
-    ::f32 prefilteredEnvMapMaxLod;
+    float  metallic;
+    float  roughness;
+    float  ambientOcclusion;
+    float  alphaMaskCutoff;
+    float prefilteredEnvMapMaxLod;
 };
 
 // ---------- IBL (set = 1) ----------
@@ -65,7 +65,7 @@ struct PSInput
     float3 bitangent: TEXCOORD4;
 };
 
-float3 fresnelSchlick(::f32 cosTheta, float3 F0)
+float3 fresnelSchlick(float cosTheta, float3 F0)
 {
     return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
 }
@@ -95,7 +95,7 @@ float4 main(PSInput IN) : SV_TARGET
     }
 
     float3 V = normalize(cameraPosition - IN.worldPos);
-    ::f32 NdotV = saturate(dot(N, V));
+    float NdotV = saturate(dot(N, V));
 
     // ---------- Direct lighting ----------
     float3 lighting = 0;
@@ -109,20 +109,20 @@ float4 main(PSInput IN) : SV_TARGET
         float3 L = normalize(lightPos - IN.worldPos);
         float3 H = normalize(L + V);
 
-        ::f32 NdotL = saturate(dot(N, L));
+        float NdotL = saturate(dot(N, L));
         if (NdotL <= 0) continue;
 
         float3 lightCol = lightColor.rgb * lightColor.a;
 
-        ::f32 spec = pow(saturate(dot(H, N)), 32.0);
+        float spec = pow(saturate(dot(H, N)), 32.0);
 
         lighting += texColor.rgb * NdotL * lightCol + spec * lightCol;
     }
 
     // ---------- IBL ----------
-    ::f32 metallicV  = metallic;
-    ::f32 roughV    = saturate(roughness);
-    ::f32 ao        = ambientOcclusion;
+    float metallicV  = metallic;
+    float roughV    = saturate(roughness);
+    float ao        = ambientOcclusion;
 
     float3 F0 = lerp(float3(0.04, 0.04, 0.04), texColor.rgb, metallicV);
 
@@ -133,7 +133,7 @@ float4 main(PSInput IN) : SV_TARGET
 
     //uint mipCount;
     //prefilteredEnvMap.GetDimensions(0, mipCount);
-    //::f32 maxLod = max(0.0, mipCount - 1.0);
+    //float maxLod = max(0.0, mipCount - 1.0);
 
     float3 prefiltered =
         prefilteredEnvMap.SampleLevel(samplerIBL, R, roughV * prefilteredEnvMapMaxLod).rgb;

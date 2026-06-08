@@ -3,74 +3,74 @@
 #pragma once
 
 
-const ::i8 g_psz_gltf_frag[] = R"frag_text(// pbr1.frag
+const char g_psz_gltf_frag[] = R"frag_text(// pbr1.frag
 // Converted from Vulkan GLSL to HLSL
 // Maintains original comments and structure
 // by Camilo <3ThomasBorregaardSorensen!!
 // Shader Model 5.0+ recommended
 
 #define PI 3.1415926535897932384626433832795
-#define GREYSCALE_WEIGHT_VECTOR f323(0.2126, 0.7152, 0.0722)
+#define GREYSCALE_WEIGHT_VECTOR float3(0.2126, 0.7152, 0.0722)
 
 // regular output
 struct PSOutput
 {
-    f324 FragColor : SV_Target0;
-    //f324 BloomColor : SV_Target1; // output to be used by bloom shader
+    float4 FragColor : SV_Target0;
+    //float4 BloomColor : SV_Target1; // output to be used by bloom shader
 };
 
 // vertex inputs (match your vertex shader semantics)
 struct PSInput
 {
-    f324 Position          : SV_Position;
-    f323 worldCoordinates : TEXCOORD0;
-    f322 textureCoordinates : TEXCOORD1;
-    f323 tangent : TEXCOORD2;
-    f323 bitangent : TEXCOORD3;
-    f323 normal : TEXCOORD4;
+    float4 Position          : SV_Position;
+    float3 worldCoordinates : TEXCOORD0;
+    float2 textureCoordinates : TEXCOORD1;
+    float3 tangent : TEXCOORD2;
+    float3 bitangent : TEXCOORD3;
+    float3 normal : TEXCOORD4;
 };
 
 // ---------- Structures ----------
 
 struct PointLight
 {
-    f324 position;
-    f324 color;
+    float4 position;
+    float4 color;
 };
 
 // ---------- Global UBO (set 0 binding 0) ----------
 cbuffer GlobalUbo : register(b0)
 {
-    f324x4 projection;
-    f324x4 view;
-    f324x4 invView;
-    f324 ambientLightColor;
-    f324 cameraPosition;
+    float4x4 projection;
+    float4x4 view;
+    float4x4 invView;
+    float4 ambientLightColor;
+    float4 cameraPosition;
     PointLight pointLights[10];
-    ::i32 numLights;
+    int numLights;
 };
 
 // ---------- Push constants (converted to another cbuffer) ----------
 cbuffer PushConsts : register(b1)
 {
-    f324x4 modelMatrix;
-    f324x4 normalMatrix; // inverse-transpose of model
+    float4x4 modelMatrix;
+    float4x4 normalMatrix; // inverse-transpose of model
 
-    ::i32 useTextureAlbedo;
-    ::i32 useTextureMetallicRoughness;
-    ::i32 useTextureNormal;
-    ::i32 useTextureAmbientOcclusion;
-    ::i32 useTextureEmissive;
+    int useTextureAlbedo;
+    int useTextureMetallicRoughness;
+    int useTextureNormal;
+    int useTextureAmbientOcclusion;
+    int useTextureEmissive;
 
-    f323 albedo;
-    ::f32 metallic;
-    ::f32 roughness;
-    ::f32 ambientOcclusion;
-    f323 emissive;
+    float3 albedo;
+    float metallic;
+    float roughness;
+    float ambientOcclusion;
+    float3 emissive;
 
-    //f323 cameraPosition;
-    ::f32 bloomBrightnessCutoff;
-    f323 multiplier;
+    //float3 cameraPosition;
+    float bloomBrightnessCutoff;
+    float3 multiplier;
 };
 
 // ---------- Texture bindings ----------
@@ -91,9 +91,9 @@ Texture2D textureEmissive           : register(t8);
 
 // ---------- Helper wrappers ----------
 
-f323 getAlbedo(f322 texCoord)
+float3 getAlbedo(float2 texCoord)
 {
-    f323 a = albedo;
+    float3 a = albedo;
     if (useTextureAlbedo != 0)
     {
         a = textureAlbedo.Sample(samplerMaterial, texCoord).rgb;
@@ -101,35 +101,35 @@ f323 getAlbedo(f322 texCoord)
     return a;
 }
 
-void getMetallicRoughness(f322 texCoord, out ::f32 metallicOut, out ::f32 roughnessOut)
+void getMetallicRoughness(float2 texCoord, out float metallicOut, out float roughnessOut)
 {
     metallicOut = metallic;
     roughnessOut = roughness;
     if (useTextureMetallicRoughness != 0)
     {
-        f323 mr = textureMetallicRoughness.Sample(samplerMaterial, texCoord).rgb;
+        float3 mr = textureMetallicRoughness.Sample(samplerMaterial, texCoord).rgb;
         metallicOut = mr.b;
         roughnessOut = mr.g;
     }
 }
 
-f323 getNormal(f323 interpNormal, f322 texCoord, f323 tangent, f323 bitangent, f323 normal)
+float3 getNormal(float3 interpNormal, float2 texCoord, float3 tangent, float3 bitangent, float3 normal)
 {
-    f323 n = normalize(interpNormal);
+    float3 n = normalize(interpNormal);
     if (useTextureNormal != 0)
     {
-        f323 tangentNormal = textureNormal.Sample(samplerMaterial, texCoord).rgb;
-        f323 norm = normalize(tangentNormal * 2.0 - 1.0);
+        float3 tangentNormal = textureNormal.Sample(samplerMaterial, texCoord).rgb;
+        float3 norm = normalize(tangentNormal * 2.0 - 1.0);
         //norm.y = -norm.y;
-        f323x3 TBN = f323x3(tangent, bitangent, normal);
+        float3x3 TBN = float3x3(tangent, bitangent, normal);
         n = normalize(mul(norm, TBN));
     }
     return n;
 }
 
-::f32 getAO(f322 texCoord)
+float getAO(float2 texCoord)
 {
-    ::f32 ao = ambientOcclusion;
+    float ao = ambientOcclusion;
     if (useTextureAmbientOcclusion != 0)
     {
         ao = textureAmbientOcclusion.Sample(samplerMaterial, texCoord).r;
@@ -137,9 +137,9 @@ f323 getNormal(f323 interpNormal, f322 texCoord, f323 tangent, f323 bitangent, f
     return ao;
 }
 
-f323 getEmissive(f322 texCoord)
+float3 getEmissive(float2 texCoord)
 {
-    f323 e = emissive;
+    float3 e = emissive;
     if (useTextureEmissive != 0)
     {
         e = textureEmissive.Sample(samplerMaterial, texCoord).rgb;
@@ -149,41 +149,41 @@ f323 getEmissive(f322 texCoord)
 
 // ---------- PBR helper functions ----------
 
-f323 fresnelSchlick(::f32 cosTheta, f323 f0)
+float3 fresnelSchlick(float cosTheta, float3 f0)
 {
     return f0 + (1.0 - f0) * pow(max(1.0 - cosTheta, 0.0), 5.0);
 }
 
-f323 fresnelSchlickRoughness(::f32 cosTheta, f323 f0, ::f32 roughness)
+float3 fresnelSchlickRoughness(float cosTheta, float3 f0, float roughness)
 {
-    return f0 + (max(f323(1.0 - roughness, 1.0 - roughness, 1.0 - roughness), f0) - f0)
+    return f0 + (max(float3(1.0 - roughness, 1.0 - roughness, 1.0 - roughness), f0) - f0)
         * pow(saturate(1.0 - cosTheta), 5.0);
 }
 
-::f32 ndfTrowbridgeReitzGGX(f323 n, f323 h, ::f32 roughness)
+float ndfTrowbridgeReitzGGX(float3 n, float3 h, float roughness)
 {
-    ::f32 alpha = roughness * roughness;
-    ::f32 alphaSquared = alpha * alpha;
-    ::f32 nDotH = max(dot(n, h), 0.0);
-    ::f32 nDotHSquared = nDotH * nDotH;
-    ::f32 innerTerms = nDotHSquared * (alphaSquared - 1.0) + 1.0;
-    ::f32 numerator = alphaSquared;
-    ::f32 denominator = PI * innerTerms * innerTerms;
+    float alpha = roughness * roughness;
+    float alphaSquared = alpha * alpha;
+    float nDotH = max(dot(n, h), 0.0);
+    float nDotHSquared = nDotH * nDotH;
+    float innerTerms = nDotHSquared * (alphaSquared - 1.0) + 1.0;
+    float numerator = alphaSquared;
+    float denominator = PI * innerTerms * innerTerms;
     denominator = max(denominator, 0.0001);
     return numerator / denominator;
 }
 
-::f32 geometrySchlickGGX(f323 n, f323 v, ::f32 k)
+float geometrySchlickGGX(float3 n, float3 v, float k)
 {
-    ::f32 nDotV = max(dot(n, v), 0.0);
-    ::f32 numerator = nDotV;
-    ::f32 denominator = nDotV * (1.0 - k) + k;
+    float nDotV = max(dot(n, v), 0.0);
+    float numerator = nDotV;
+    float denominator = nDotV * (1.0 - k) + k;
     return numerator / denominator;
 }
 
-::f32 geometrySmith(f323 n, f323 v, f323 l, ::f32 roughness)
+float geometrySmith(float3 n, float3 v, float3 l, float roughness)
 {
-    ::f32 k = (roughness + 1.0) * (roughness + 1.0) / 8.0;
+    float k = (roughness + 1.0) * (roughness + 1.0) / 8.0;
     return geometrySchlickGGX(n, v, k) * geometrySchlickGGX(n, l, k);
 }
 
@@ -193,87 +193,87 @@ PSOutput main(PSInput input)
 {
     PSOutput output;
 
-    f323 worldPos = input.worldCoordinates;
-    f323 albedoVal = getAlbedo(input.textureCoordinates);
+    float3 worldPos = input.worldCoordinates;
+    float3 albedoVal = getAlbedo(input.textureCoordinates);
 
-    ::f32 metallicVal;
-    ::f32 roughnessVal;
+    float metallicVal;
+    float roughnessVal;
     getMetallicRoughness(input.textureCoordinates, metallicVal, roughnessVal);
 
-    f323 n = getNormal(input.normal, input.textureCoordinates, input.tangent, input.bitangent, input.normal);
-    ::f32 ao = getAO(input.textureCoordinates);
-    f323 emissiveVal = getEmissive(input.textureCoordinates);
+    float3 n = getNormal(input.normal, input.textureCoordinates, input.tangent, input.bitangent, input.normal);
+    float ao = getAO(input.textureCoordinates);
+    float3 emissiveVal = getEmissive(input.textureCoordinates);
 
     // camera position: prefer push constant, fallback to globalUbo.viewPos.xyz
-    f323 cameraPos = cameraPosition;
+    float3 cameraPos = cameraPosition;
     // If you don't use push constants, you can use globalUbo.viewPos.xyz instead.
-    // f323 cameraPos = viewPos.xyz;
+    // float3 cameraPos = viewPos.xyz;
 
-    f323 v = normalize(cameraPos - worldPos);
+    float3 v = normalize(cameraPos - worldPos);
     //v.z = -v.z;               // fix for DX11 cubemap axis
-    f323 r = reflect(-v, n);
+    float3 r = reflect(-v, n);
     //r.z = -r.z;
 
-    f323 f0 = f323(0.04, 0.04, 0.04);
+    float3 f0 = float3(0.04, 0.04, 0.04);
     f0 = lerp(f0, albedoVal, metallicVal);
 
-    f323 Lo = f323(0.0, 0.0, 0.0);
+    float3 Lo = float3(0.0, 0.0, 0.0);
 
     // Direct lights: use up to 4 (your loop used 4). Use min with provided numLights.
-    ::i32 maxDirect = min(4, numLights);
+    int maxDirect = min(4, numLights);
     [loop]
-    for (::i32 i = 0; i < maxDirect; ++i)
+    for (int i = 0; i < maxDirect; ++i)
     {
-        f323 lightPos = pointLights[i].position.xyz;
-        f323 lightColor = pointLights[i].color.rgb;
+        float3 lightPos = pointLights[i].position.xyz;
+        float3 lightColor = pointLights[i].color.rgb;
 
-        f323 l = normalize(lightPos - worldPos);
-        f323 h = normalize(v + l);
+        float3 l = normalize(lightPos - worldPos);
+        float3 h = normalize(v + l);
 
-        ::f32 distance = length(lightPos - worldPos);
-        ::f32 attenuation = 1.0 / max(distance * distance, 0.0001);
-        f323 radiance = lightColor * attenuation;
+        float distance = length(lightPos - worldPos);
+        float attenuation = 1.0 / max(distance * distance, 0.0001);
+        float3 radiance = lightColor * attenuation;
 
-        ::f32 dTerm = ndfTrowbridgeReitzGGX(n, h, roughnessVal);
-        f323 fTerm = fresnelSchlick(max(dot(h, v), 0.0), f0);
-        ::f32 gTerm = geometrySmith(n, v, l, roughnessVal);
+        float dTerm = ndfTrowbridgeReitzGGX(n, h, roughnessVal);
+        float3 fTerm = fresnelSchlick(max(dot(h, v), 0.0), f0);
+        float gTerm = geometrySmith(n, v, l, roughnessVal);
 
-        f323 numerator = dTerm * fTerm * gTerm;
-        ::f32 denominator = 4.0 * max(dot(v, n), 0.0) * max(dot(l, n), 0.0);
-        f323 specular = numerator / max(denominator, 0.001);
+        float3 numerator = dTerm * fTerm * gTerm;
+        float denominator = 4.0 * max(dot(v, n), 0.0) * max(dot(l, n), 0.0);
+        float3 specular = numerator / max(denominator, 0.001);
 
-        f323 kSpecular = fTerm;
-        f323 kDiffuse = (1.0 - kSpecular) * (1.0 - metallicVal);
+        float3 kSpecular = fTerm;
+        float3 kDiffuse = (1.0 - kSpecular) * (1.0 - metallicVal);
 
-        f323 diffuse = kDiffuse * albedoVal / PI;
-        f323 cookTorranceBrdf = diffuse + specular;
-        ::f32 nDotL = max(dot(n, l), 0.0);
+        float3 diffuse = kDiffuse * albedoVal / PI;
+        float3 cookTorranceBrdf = diffuse + specular;
+        float nDotL = max(dot(n, l), 0.0);
 
         Lo += cookTorranceBrdf * radiance * nDotL;
     }
 
     // Indirect lighting (IBL)
-    f323 kSpecular = fresnelSchlickRoughness(max(dot(n, v), 0.0), f0, roughnessVal);
-    f323 kDiffuse = (1.0 - kSpecular) * (1.0 - metallicVal);
+    float3 kSpecular = fresnelSchlickRoughness(max(dot(n, v), 0.0), f0, roughnessVal);
+    float3 kDiffuse = (1.0 - kSpecular) * (1.0 - metallicVal);
 
-    f323 irradiance = diffuseIrradianceMap.Sample(samplerIBL, n).rgb;
-    f323 diffuseIBL = irradiance * albedoVal;
+    float3 irradiance = diffuseIrradianceMap.Sample(samplerIBL, n).rgb;
+    float3 diffuseIBL = irradiance * albedoVal;
 
-    f323 prefilteredEnvMapColor = prefilteredEnvMap.SampleLevel(samplerIBL, r, roughnessVal * 4.0).rgb; // PREFILTERED_ENV_MAP_LOD = 4.0
-    ::f32 NdotV = max(dot(n, v), 0.0);
-    f322 brdf = brdfConvolutionMap.Sample(samplerIBL, f322(NdotV, roughnessVal)).rg;
-    f323 specularIBL = prefilteredEnvMapColor * (kSpecular * brdf.x + brdf.y);
+    float3 prefilteredEnvMapColor = prefilteredEnvMap.SampleLevel(samplerIBL, r, roughnessVal * 4.0).rgb; // PREFILTERED_ENV_MAP_LOD = 4.0
+    float NdotV = max(dot(n, v), 0.0);
+    float2 brdf = brdfConvolutionMap.Sample(samplerIBL, float2(NdotV, roughnessVal)).rg;
+    float3 specularIBL = prefilteredEnvMapColor * (kSpecular * brdf.x + brdf.y);
 
-    f323 ambient = (kDiffuse * diffuseIBL + specularIBL) * ao;
+    float3 ambient = (kDiffuse * diffuseIBL + specularIBL) * ao;
 
-    f323 color = emissiveVal + ambient + Lo;
+    float3 color = emissiveVal + ambient + Lo;
 
-    output.FragColor = f324(color, 1.0);
-    //output.FragColor = f324(albedoVal, 1.0);
-    //output.FragColor = f324(input.tangent * 0.5 + 0.5, 1.0); // visualize tangent
+    output.FragColor = float4(color, 1.0);
+    //output.FragColor = float4(albedoVal, 1.0);
+    //output.FragColor = float4(input.tangent * 0.5 + 0.5, 1.0); // visualize tangent
 
-    //::f32 greyscaleBrightness = dot(output.FragColor.rgb, GREYSCALE_WEIGHT_VECTOR);
-    //output.BloomColor = greyscaleBrightness > bloomBrightnessCutoff ? output.FragColor : f324(0.0, 0.0, 0.0, 0.0);
+    //float greyscaleBrightness = dot(output.FragColor.rgb, GREYSCALE_WEIGHT_VECTOR);
+    //output.BloomColor = greyscaleBrightness > bloomBrightnessCutoff ? output.FragColor : float4(0.0, 0.0, 0.0, 0.0);
 
     return output;
 }

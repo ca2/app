@@ -54,7 +54,7 @@ namespace windows
    }
 
 
-   bool shared_memory::CreateSharedMemory(const_char_pointer pszName, memsize size)
+   void shared_memory::CreateSharedMemory(const_char_pointer pszName, memsize size)
    {
 
       try {
@@ -69,11 +69,11 @@ namespace windows
       }
 
 
-      return true;
+      //return true;
    }
 
 
-   bool shared_memory::OpenSharedMemory(const_char_pointer pszName, memsize size)
+   void shared_memory::OpenSharedMemory(const_char_pointer pszName, memsize size)
    {
       try {
 
@@ -101,7 +101,7 @@ namespace windows
 
          _mapViewOfFile();
 
-         return true;
+         //return true;
 
       } catch (...) {
 

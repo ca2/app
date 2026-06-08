@@ -66,13 +66,13 @@ cbuffer PushConsts : register(b1)
     int useTextureEmissive;
 
     float3 albedo;
-    ::f32  metallic;
-    ::f32  roughness;
-    ::f32  ambientOcclusion;
+    float  metallic;
+    float  roughness;
+    float  ambientOcclusion;
     float3 emissive;
 
     float3 cameraPosition;
-    ::f32  bloomBrightnessCutoff;
+    float  bloomBrightnessCutoff;
 }
 
 // ------------------------------------------------------

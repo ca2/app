@@ -3,7 +3,7 @@
 #pragma once
 
 
-const ::i8 g_psz_gltf_vert[] = R"vert_text(// pbr1.vert
+const char g_psz_gltf_vert[] = R"vert_text(// pbr1.vert
 // Converted from Vulkan GLSL to HLSL
 // Matches the PBR fragment shader above
 // by Camilo <3ThomasBorregaardSorensen!!
@@ -12,68 +12,68 @@ const ::i8 g_psz_gltf_vert[] = R"vert_text(// pbr1.vert
 // ---------- Input vertex attributes ----------
 struct VSInput
 {
-    f323 aPos               : POSITION;   // location = 0
-    f323 aNormal            : NORMAL;     // location = 1
-    f322 aTextureCoordinates: TEXCOORD0;  // location = 2
-    f324 aColor             : COLOR;      // location = 3
-    f324 aTangent           : TEXCOORD1;    // location = 4
+    float3 aPos               : POSITION;   // location = 0
+    float3 aNormal            : NORMAL;     // location = 1
+    float2 aTextureCoordinates: TEXCOORD0;  // location = 2
+    float4 aColor             : COLOR;      // location = 3
+    float4 aTangent           : TEXCOORD1;    // location = 4
 };
 
 // ---------- Outputs to fragment shader ----------
 struct VSOutput
 {
-    f324 Position          : SV_Position;
-    f323 worldCoordinates  : TEXCOORD0;
-    f322 textureCoordinates: TEXCOORD1;
-    f323 tangent           : TEXCOORD2;
-    f323 bitangent         : TEXCOORD3;
-    f323 normal            : TEXCOORD4;
+    float4 Position          : SV_Position;
+    float3 worldCoordinates  : TEXCOORD0;
+    float2 textureCoordinates: TEXCOORD1;
+    float3 tangent           : TEXCOORD2;
+    float3 bitangent         : TEXCOORD3;
+    float3 normal            : TEXCOORD4;
 };
 
 // Must match fragment shader
 struct PointLight
 {
-    f324 position;
-    f324 color;
+    float4 position;
+    float4 color;
 };
 
 // ---------- Global UBO (set = 0, binding = 0) ----------
 cbuffer GlobalUbo : register(b0)
 {
-    f324x4 projection;
-    f324x4 view;
-    f324x4 invView;
-    f324 ambientLightColor;
-    f324 cameraPosition;
+    float4x4 projection;
+    float4x4 view;
+    float4x4 invView;
+    float4 ambientLightColor;
+    float4 cameraPosition;
     PointLight pointLights[10];
-    ::i32 numLights;
-    ::i32 padding1;
-    ::i32 padding2;
-    ::i32 padding3;
+    int numLights;
+    int padding1;
+    int padding2;
+    int padding3;
 };
 
 // ---------- Push constants (model transforms) ----------
 // ---------- Push constants (converted to another cbuffer) ----------
 cbuffer PushConsts : register(b1)
 {
-    f324x4 modelMatrix;
-    f324x4 normalMatrix; // inverse-transpose of model
+    float4x4 modelMatrix;
+    float4x4 normalMatrix; // inverse-transpose of model
 
-    ::i32 useTextureAlbedo;
-    ::i32 useTextureMetallicRoughness;
-    ::i32 useTextureNormal;
-    ::i32 useTextureAmbientOcclusion;
-    ::i32 useTextureEmissive;
+    int useTextureAlbedo;
+    int useTextureMetallicRoughness;
+    int useTextureNormal;
+    int useTextureAmbientOcclusion;
+    int useTextureEmissive;
 
-    f323 albedo;
-    ::f32 metallic;
-    ::f32 roughness;
-    ::f32 ambientOcclusion;
-    f323 emissive;
+    float3 albedo;
+    float metallic;
+    float roughness;
+    float ambientOcclusion;
+    float3 emissive;
 
-//    f323 cameraPosition;
-    ::f32 bloomBrightnessCutoff;
-    f323 multiplier;
+//    float3 cameraPosition;
+    float bloomBrightnessCutoff;
+    float3 multiplier;
 };
 
 VSOutput main(VSInput input)
@@ -81,7 +81,7 @@ VSOutput main(VSInput input)
     VSOutput output;
 
     // Transform position to world space
-    f324 worldPos = mul(f324(input.aPos, 1.0), modelMatrix);
+    float4 worldPos = mul(float4(input.aPos, 1.0), modelMatrix);
 
     //worldPos.x = -worldPos.x;
     //worldPos.z = -worldPos.z;
@@ -97,11 +97,11 @@ VSOutput main(VSInput input)
     output.textureCoordinates = input.aTextureCoordinates;
 
     // Normal, tangent, bitangent in world space
-    f323x3 normalMat = transpose((f323x3)normalMatrix);
+    float3x3 normalMat = transpose((float3x3)normalMatrix);
 
-    f323 N = normalize(mul(input.aNormal, normalMat));
-    f323 T = normalize(mul(input.aTangent.xyz, normalMat));
-    f323 B = normalize(cross(N, T)) * input.aTangent.w;
+    float3 N = normalize(mul(input.aNormal, normalMat));
+    float3 T = normalize(mul(input.aTangent.xyz, normalMat));
+    float3 B = normalize(cross(N, T)) * input.aTangent.w;
 
     output.normal = N;
     output.tangent = T;

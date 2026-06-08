@@ -33,8 +33,8 @@ namespace windows
 
       //virtual void SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow = true);
 
-      bool CreateSharedMemory(const_char_pointer pszName, memsize size) override;
-      bool OpenSharedMemory(const_char_pointer pszName, memsize size) override;
+      void CreateSharedMemory(const_char_pointer pszName, memsize size) override;
+      void OpenSharedMemory(const_char_pointer pszName, memsize size) override;
 
       //virtual ::u8 * impl_alloc(memsize nBytes) override;
       //virtual ::u8 * impl_realloc(void * pdata, memsize nBytes) override;

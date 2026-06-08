@@ -693,7 +693,7 @@ namespace gpu_opengl
 
       glActiveTexture(GL_TEXTURE0 + iIndex);
       ::opengl::check_error("");
-      this->set_int(pszPayloadName, iIndex);
+      this->set_i32(pszPayloadName, iIndex);
       ::cast<::gpu_opengl::texture > ptexture = pgputextureSource;
       ::i32 gluTextureID = ptexture->m_gluTextureID;
       glBindTexture(ptexture->m_gluType, gluTextureID);
@@ -1089,7 +1089,7 @@ namespace gpu_opengl
    GLint shader::_get_uniform_location(const_char_pointer pszName, const_char_pointer debug) const
    {
 
-      ::string strName(name);
+      ::string strName(pszName);
 
       if (strName.case_insensitive_begins("padding"))
       {
@@ -1098,7 +1098,7 @@ namespace gpu_opengl
 
       }
       
-      GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLint location = glGetUniformLocation(m_ProgramID, pszName);
       ::opengl::check_error("");
 
       if (location == -1)
@@ -1106,7 +1106,7 @@ namespace gpu_opengl
 
          ::string strMessage;
 
-         strMessage << "Uniform " << name << " not found (to get an " << debug << ")!";
+         strMessage << "Uniform " << pszName << " not found (to get an " << debug << ")!";
 
          warning() << strMessage;
 
@@ -1124,7 +1124,7 @@ namespace gpu_opengl
    void shader::_set_bool(const_char_pointer pszName, bool b) const
    {
 
-      _set_int(name, b ? 0 : 1);
+      _set_int(pszName, b ? 0 : 1);
 
    }
 
@@ -1132,7 +1132,7 @@ namespace gpu_opengl
    void shader::_set_int(const_char_pointer pszName, ::i32 i) const
    {
 
-      auto location = _get_uniform_location(name, "::i32");
+      auto location = _get_uniform_location(pszName, "::i32");
 
       glUniform1i(location, i);
       ::opengl::check_error("");
@@ -1143,7 +1143,7 @@ namespace gpu_opengl
    void shader::_set_f32(const_char_pointer pszName, ::f32 value) const
    {
 
-      auto location = _get_uniform_location(name, "::f32");
+      auto location = _get_uniform_location(pszName, "::f32");
       
       glUniform1f(location, value);
       ::opengl::check_error("");
@@ -1154,7 +1154,7 @@ namespace gpu_opengl
    void shader::_set_sequence2(const_char_pointer pszName, const floating_sequence2& value) const 
    {
 
-      auto location = _get_uniform_location(name, "seq2");
+      auto location = _get_uniform_location(pszName, "seq2");
       
       glUniform2f(location, value.x, value.y);
       ::opengl::check_error("");
@@ -1165,7 +1165,7 @@ namespace gpu_opengl
    void shader::_set_sequence3(const_char_pointer pszName, const floating_sequence3& value) const
    {
 
-      auto location = _get_uniform_location(name, "seq3");
+      auto location = _get_uniform_location(pszName, "seq3");
 
       glUniform3f(location, value.x, value.y, value.z);
       ::opengl::check_error("");
@@ -1176,7 +1176,7 @@ namespace gpu_opengl
    void shader::_set_sequence4(const_char_pointer pszName, const floating_sequence4& value) const 
    {
       
-      auto location = _get_uniform_location(name, "seq4");
+      auto location = _get_uniform_location(pszName, "seq4");
       glUniform4f(location, value.x, value.y, value.z, value.w);
       ::opengl::check_error("");
 
@@ -1186,7 +1186,7 @@ namespace gpu_opengl
    void shader::_set_matrix2(const_char_pointer pszName, const floating_matrix2& matrix) const
    {
 
-      auto location = _get_uniform_location(name, "mat2"); 
+      auto location = _get_uniform_location(pszName, "mat2"); 
 
       glUniformMatrix2fv(location, 1, GL_FALSE, matrix.fa);
       ::opengl::check_error("");
@@ -1197,7 +1197,7 @@ namespace gpu_opengl
    void shader::_set_matrix3(const_char_pointer pszName, const floating_matrix3& matrix) const
    {
 
-      auto location = _get_uniform_location(name, "mat3");
+      auto location = _get_uniform_location(pszName, "mat3");
 
       glUniformMatrix3fv(location, 1, GL_FALSE, matrix.fa);
       ::opengl::check_error("");
@@ -1208,7 +1208,7 @@ namespace gpu_opengl
    void shader::_set_matrix4(const_char_pointer pszName, const floating_matrix4& matrix) const
    {
 
-      auto location = _get_uniform_location(name, "mat4");
+      auto location = _get_uniform_location(pszName, "mat4");
 
       glUniformMatrix4fv(location, 1, GL_FALSE, matrix.fa);
       ::opengl::check_error("");
@@ -1338,13 +1338,13 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_int(const ::scoped_string& scopedstrName, ::i32 value)
+   void shader::set_i32(const ::scoped_string& scopedstrName, ::i32 value)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_int(scopedstrName, value);
+         ::gpu::shader::set_i32(scopedstrName, value);
 
       }
       else

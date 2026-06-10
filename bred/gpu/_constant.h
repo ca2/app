@@ -117,17 +117,17 @@ namespace gpu
 
 
 
-   enum enum_state
+   enum enum_gpu_frame_state
    {
 
-      e_state_initial,
-      e_state_new_frame,
-      e_state_began_frame,
-      e_state_began_render,
-      e_state_ended_render,
-      e_state_ended_frame,
-      e_state_no_frame = 256,
-      e_state_single_frame = 1024,
+      e_gpu_frame_state_initial,
+      e_gpu_frame_state_new_frame,
+      e_gpu_frame_state_began_frame,
+      e_gpu_frame_state_began_render,
+      e_gpu_frame_state_ended_render,
+      e_gpu_frame_state_ended_frame,
+      e_gpu_frame_state_no_frame = 256,
+      e_gpu_frame_state_single_frame = 1024,
 
    };
 

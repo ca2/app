@@ -58,11 +58,12 @@ namespace draw2d_gpu
 //      ::windowing::window * GetWindow() const;
 
       virtual void thread_select();
-      void send_on_context(::draw2d::graphics_context *pgraphicscontext, const ::procedure &procedure) override;
+      //void send_on_context(::draw2d::graphics_context *pgraphicscontext, const ::procedure &procedure) override;
+      void send(const ::procedure &procedure) override;
       
       
-      void start_gpu_layer(::gpu::frame * pgpuframe) override;
-      ::gpu::frame * end_gpu_layer(::gpu::frame * pgpuframe) override;
+      //void start_gpu_layer(::gpu::layer * pgpulayer) override;
+      //::gpu::frame * end_gpu_layer(::gpu::layer * pgpulayer) override;
 
       ::gpu::context* gpu_context();
 

@@ -181,7 +181,9 @@ namespace gpu
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
+      virtual ::gpu::texture* current_target_texture(::gpu::layer* pgpulayer);
+
+      // virtual ::pointer<::graphics::context> create_graphics_context();
 
       void send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
@@ -303,10 +305,13 @@ namespace gpu
       virtual void assert_there_is_current_context();
 
       virtual void do_on_context(const ::procedure & procedure);
-      virtual void send_on_context(bool bForDrawing, const ::procedure &procedure);
-      virtual void top_send_on_context(::gpu::context * pcontextInnerStart, ::i32_boolean bForDrawing, const ::procedure& procedure);
-      virtual void top_do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
-      virtual void do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
+      //virtual void send_on_context(bool bForDrawing, const ::procedure &procedure);
+      //virtual void top_send_on_context(::gpu::context * pcontextInnerStart, ::i32_boolean bForDrawing, const ::procedure& procedure);
+      //virtual void top_do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
+      //virtual void do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
+      //  aaaxyz
+      //virtual void draw_layer(const ::function<void(::gpu::frame *)> & λon_draw_layer);
+
 
 
       //virtual void top_post_to_context(::gpu::context * pcontextInnerStart, const ::procedure& procedure);
@@ -394,16 +399,21 @@ namespace gpu
       virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence);
       virtual void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
-      virtual void on_start_layer(::gpu::layer* player);
-      virtual void on_end_layer(::gpu::layer* player);
+      virtual void on_start_layer(::gpu::layer * pgpulayer);
+      virtual void on_end_layer(::gpu::layer * pgpulayer);
 
 
 
       virtual void on_create_texture(::gpu::texture * ptexture);
       //virtual void on_take_snapshot(layer * player);
 
-      virtual void frame_prefix();
-      virtual void frame_suffix();
+      
+      virtual void start_frame();
+      virtual void end_frame();
+
+
+      virtual void start_layer(bool bFirstLayer = false);
+      virtual void end_layer(bool bClosingLayer = false);
 
       //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::i32_rectangle& rectangle);
       //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::i32_rectangle & rectangle);
@@ -437,8 +447,8 @@ namespace gpu
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
-      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
-      virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
+      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
+      virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
 
 
       //::pointer<::graphics3d::renderable> load_model();

@@ -70,7 +70,7 @@ namespace typeface_freetype
       void do_on_context(const ::procedure & procedure) override;
       
       
-      void start_gpu_layer(::gpu::frame * pgpuframe) override;
+      void start_gpu_layer(::gpu::layer * pgpulayer) override;
       ::gpu::frame * end_gpu_layer() override;
 
       ::gpu_opengl::context* gpu_context();

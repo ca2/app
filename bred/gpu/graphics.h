@@ -48,10 +48,24 @@ namespace gpu
       void initialize(::particle* pparticle) override;
       bool _is_ok() const override;
       
-      void on_begin_draw() override;
-      void on_end_draw() override;
+      
+      void start_frame() override;
+      void end_frame() override;
+
+
+      //void start_layer(::e_graphics egraphics) override;
+      //void end_layer(::e_graphics egraphics) override;
+      void start_layer(bool bFirstLayer = false) override;
+      void end_layer(bool bClosingLayer = false) override;
+      // void on_begin_layout1() override;
+      //void on_end_layout1() override;
+      //void on_begin_draw1() override;
+      //void on_end_draw1() override;
       virtual void on_new_frame();
       void gpu_layer_on_before_end_render() override;
+
+      void on_end_draw(::acme::windowing::window *pacmewindowingwindow) override;
+
 
       void on_set_gpu_context() override;
 
@@ -135,9 +149,11 @@ namespace gpu
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
-      void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+      //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
 
       //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+
+      void send(const ::procedure &procedure) override;
 
       //template < typename TYPE >
       //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)
@@ -164,7 +180,7 @@ namespace gpu
 
 
       virtual void bind_draw2d_compositor(::gpu::layer * player);
-      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
+      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer);
 
 
       void draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *ppen) override;

@@ -175,7 +175,7 @@ namespace user
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
       ::item_pointer                            m_pitemLButtonDown;
 
-      bool                                      m_bDoingGraphics;
+      bool                                      m_bOnDrawFrame;
 
 
       ::i32_size                                m_sizeLastBuffer;

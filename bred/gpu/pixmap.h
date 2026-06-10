@@ -31,7 +31,7 @@ namespace gpu
       virtual void bind_texture(::gpu::shader * pgpushader);
       virtual void unbind_texture(::gpu::shader* pgpushader);
       //virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
-      //virtual void blend(::gpu::layer* player);
+      //virtual void blend(::gpu::layer * pgpulayer);
       //virtual void blend(::gpu::texture* ptexture);
 
    };

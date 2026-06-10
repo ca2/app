@@ -6,7 +6,7 @@
 #include "acme/prototype/prototype/poolable.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_object.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/memory_buffer.h"
 #include "bred/gpu/model_data.h"
 #include "bred/graphics3d/renderable.h"
@@ -102,11 +102,11 @@ namespace gpu
       //void create_vertex_array(::i32 iCount)
       //{
 
-      //   auto pgpuframe = ::gpu::current_frame();
+      //   auto pgpulayer = ::gpu::current_layer();
 
-      //   initialize_gpu_context_object(pgpuframe->gpu_context());
+      //   initialize_gpu_context_object(pgpulayer->gpu_context());
 
-      //   auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
+      //   auto pcommandbuffer = pgpulayer->m_pgpucommandbuffer;
 
       //   bind2(pcommandbuffer);
 

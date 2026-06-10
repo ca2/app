@@ -64,8 +64,8 @@
 //
 // 		::gpu::frame * beginFrame() override;
 //
-// 		void endFrame(::gpu::frame * pframe) override;
-// 		void beginSwapChainRenderPass(::gpu::frame * pframe)override;
+// 		void endFrame(::gpu::layer * pgpulayer) override;
+// 		void beginSwapChainRenderPass(::gpu::layer * pgpulayer)override;
 // 		void endSwapChainRenderPass(::gpu::frame *pframe)override;
 //
 // 		void initializeSystems(::graphics3d::asset_manager * passetmanager);

@@ -143,7 +143,7 @@ namespace gpu
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
+      virtual ::gpu::texture* current_target_texture(::gpu::layer* pgpulayer);
 
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
@@ -327,8 +327,8 @@ namespace gpu
       virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
       virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
-      virtual void on_start_layer(::gpu::layer* player);
-      virtual void on_end_layer(::gpu::layer* player);
+      virtual void on_start_layer(::gpu::layer * pgpulayer);
+      virtual void on_end_layer(::gpu::layer * pgpulayer);
 
 
 
@@ -370,7 +370,7 @@ namespace gpu
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
-      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
+      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
 
 
       //::pointer<::graphics3d::renderable> load_model();

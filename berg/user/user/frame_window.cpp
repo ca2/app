@@ -555,7 +555,7 @@ namespace user
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
-                  auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
+                  auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw();
 
                   synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

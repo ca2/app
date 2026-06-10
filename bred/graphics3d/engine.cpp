@@ -14,6 +14,7 @@
 #include "acme/prototype/geometry2d/angle.h"
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
+#include "aura/graphics/graphics/context.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
@@ -21,7 +22,6 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
@@ -81,7 +81,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_render_frame()
+   void engine::on_render_layer()
    {
 
       if (m_rectanglePlacementNew.is_empty())
@@ -90,6 +90,12 @@ namespace graphics3d
          return;
 
       }
+//
+      //auto pgraphicscontext = m_pgpucontextCompositor2->create_graphics_context();
+
+      //pgraphicscontext->defer_start_frame();
+
+      m_pgpucontextCompositor2->start_frame();
 
       _prepare_frame();
 
@@ -101,7 +107,12 @@ namespace graphics3d
       
       ::gpu::context_lock contextlock(pgpucontext);
 
-      if (auto pframe = prenderer->beginFrame())
+      //if (auto pframe = prenderer->beginFrame())
+      
+      //prenderer->start_frame(nullptr);
+
+      pgpucontext->start_layer();
+
       {
 
          //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
@@ -115,9 +126,11 @@ namespace graphics3d
 
          //}
 
-         on_begin_frame();
+         //on_begin_frame();
          
-         prenderer->on_begin_render(pframe);
+         //prenderer->on_begin_render(pframe);
+
+         //prenderer->on_begin_render(nullptr);
 
          {
 
@@ -145,7 +158,7 @@ namespace graphics3d
 
             //}
 
-            //auto pcommandbuffer = pframe->m_pgpucommandbuffer;
+            //auto pcommandbuffer = pgpulayer->getCurrentCommandBuffer4();
 
             //pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
@@ -153,9 +166,11 @@ namespace graphics3d
 
          }
 
-         prenderer->on_end_render(pframe);
+         //prenderer->on_end_render(pframe);
 
-         on_end_frame();
+         //prenderer->on_end_render(nullptr);
+
+         //on_end_frame();
 
          //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          //{
@@ -166,7 +181,16 @@ namespace graphics3d
 
          //}
 
-         prenderer->endFrame();
+         //prenderer->endFrame();
+         //prenderer->end_frame(nullptr);
+
+         pgpucontext->end_layer();
+
+         //pgraphicscontext->end_frame();
+
+         m_pgpucontextCompositor2->end_frame();
+
+         //prenderer->end_frame(nullptr);
 
       }
 
@@ -212,37 +236,37 @@ namespace graphics3d
    }
 
 
-   void engine::start_gpu_layer(::gpu::frame * pframe)
-   {
+   //void engine::start_gpu_layer(::gpu::layer * pgpulayer)
+   //{
 
-      //auto pcontext = gpu_context();
+   //   //auto pcontext = gpu_context();
 
-      //auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
+   //   //auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
 
-      auto player = pframe->m_pgpulayer;
+   //   auto player = pgpulayer;
 
-      //player->m_pgpuframe = pframe;
+   //   //player = pframe;
 
-      //pframe->m_pgpulayer = player;
+   //   //pgpulayer = player;
 
-      player->layer_start();
-
-
-   }
+   //   player->layer_start();
 
 
-   ::gpu::frame* engine::end_gpu_layer(::gpu::frame * pgpuframe)
-   {
+   //}
 
-      auto pcontext = gpu_context();
 
-      auto player = pcontext->m_pgpudevice->current_layer();
+   //::gpu::frame* engine::end_gpu_layer(::gpu::layer * pgpulayer)
+   //{
 
-      player->layer_end();
+   //   auto pcontext = gpu_context();
 
-      return pgpuframe;
+   //   auto player = pcontext->m_pgpudevice->current_layer();
 
-   }
+   //   player->layer_end();
+
+   //   return pgpulayer;
+
+   //}
 
 
    //floating_sequence3 engine::camera_pole_up()
@@ -540,7 +564,7 @@ namespace graphics3d
 
                   }
 
-                  _do_frame_step();
+                  draw_layer();
 
                }
                catch (...)
@@ -785,7 +809,8 @@ namespace graphics3d
    }
 
 
-   void engine::do_frame_step(::gpu::context* pcontextParam)
+   //void engine::do_frame_step(::gpu::context* pcontextParam)
+   void engine::do_draw_layer()
    {
 
       if (m_rectanglePlacementNew.is_empty())
@@ -815,7 +840,7 @@ namespace graphics3d
             try
             {
 
-               _do_frame_step();
+               draw_layer();
 
             }
             catch (...)
@@ -878,9 +903,13 @@ namespace graphics3d
       else
       {
 
-         auto pcontext = gpu_context();
+         //auto pcontext = gpu_context();
 
-         do_frame_step(pcontext);
+         //auto pgraphicscontext = create_newø<::graphics::context>();
+
+         //do_frame_step(pcontext);
+
+         do_draw_layer();
 
          on_after_done_frame_step(pgraphics);
 
@@ -974,7 +1003,7 @@ namespace graphics3d
    }
 
 
-   void engine::_do_frame_step()
+   void engine::draw_layer()
    {
 
       auto newTime = std::chrono::high_resolution_clock::now();
@@ -990,7 +1019,7 @@ namespace graphics3d
 
          on_update_frame();
 
-         on_render_frame();
+         on_render_layer();
 
       }
 

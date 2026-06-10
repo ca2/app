@@ -238,7 +238,22 @@ namespace draw2d
    }
 
 
-   void graphics::on_begin_draw()
+   void graphics::start_frame()
+   {
+
+
+   }
+
+
+   void graphics::end_frame()
+   {
+
+
+
+   }
+
+
+   void graphics::start_layer(bool bFirstLayer)
    {
 
       set_alpha_mode(::draw2d::e_alpha_mode_set);
@@ -247,11 +262,34 @@ namespace draw2d
 
       //::color::color color(0, 0, 0, 0);
 
-      //fill_rectangle(get_size(), color);
+      // fill_rectangle(get_size(), color);
 
-      //return true;
+      // return true;
 
    }
+
+
+   void graphics::end_layer(bool bClosingLayer)
+   {
+   
+   
+   }
+
+
+   //void graphics::on_begin_draw1()
+   //{
+
+   //   set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+   //   set_text_rendering_hint(::write_text::e_rendering_system_default);
+
+   //   //::color::color color(0, 0, 0, 0);
+
+   //   //fill_rectangle(get_size(), color);
+
+   //   //return true;
+
+   //}
 
 
    void graphics::__on_begin_draw()
@@ -262,11 +300,12 @@ namespace draw2d
    }
 
 
-   void graphics::on_end_draw()
-   {
+   //void graphics::on_end_draw1()
+   //{
 
 
-   }
+   //}
+
 
    //void *  graphics::get_os_data(::i32 i) const
    //{
@@ -2927,12 +2966,8 @@ namespace draw2d
    }
 
 
-   void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure)
+   void graphics::send(const ::procedure & procedure)
    {
-
-      //procedure();
-
-      //throw ::interface_only();
 
       ::cast < ::user::interaction > puserinteraction = m_puserinteractionDraw2dGraphics;
 
@@ -2942,8 +2977,6 @@ namespace draw2d
             procedure();
 
          });
-
-      //m_puserinteraction->m_pgr(pgraphicscontext, procedure);
 
    }
 

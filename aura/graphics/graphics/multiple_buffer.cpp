@@ -83,7 +83,7 @@ namespace graphics
    //}
 
 
-   bool multiple_buffer::_on_begin_draw(::graphics::buffer_item * pitem)
+   bool multiple_buffer::_on_begin(::graphics::buffer_item * pitem)
    {
 
       //auto pitem = get_buffer_item();
@@ -114,7 +114,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         pitem->m_pimage2->create(pitem->m_sizeBufferItemDraw);
+         pitem->m_pimage2->create(pitem->m_sizeBufferItem);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{

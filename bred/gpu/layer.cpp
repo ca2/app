@@ -46,6 +46,13 @@ namespace gpu
    ::gpu::command_buffer* layer::getCurrentCommandBuffer4()
    {
 
+      if (m_pcommandbufferScoped)
+      {
+
+         return m_pcommandbufferScoped;
+
+      }
+
       if (m_commandbufferaLayer.is_empty())
       {
 
@@ -284,6 +291,13 @@ namespace gpu
    //   return ptextureTarget;
 
    //}
+
+   
+   thread_local ::gpu::layer *t_pgpulayer;
+
+
+   void set_current_layer(::gpu::layer *pgpulayer) { t_pgpulayer = pgpulayer; }
+   ::gpu::layer *current_layer() { return t_pgpulayer; }
 
 
 } // namespace gpu

@@ -20,7 +20,7 @@
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 
@@ -1002,7 +1002,7 @@ namespace gpu_gpu
 //             fragmentShaderSource);
 //       }
 //
-//       auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
+//       auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_layer());
 //
 //       /*  if (!m_vaoFullScreenQuad)
 //         {
@@ -1024,7 +1024,7 @@ namespace gpu_gpu
 //
 //       m_pshaderCopy->bind_source(ptextureParam, 0);
 //
-//       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+//       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 //
 //       pmodelbufferFullScreenQuad->bind(pcommandbuffer);
 //
@@ -1087,7 +1087,7 @@ namespace gpu_gpu
 //
 //       ::gpu::context::on_end_layer(player);
 //
-//       //auto ptextureTarget = player->texture();
+//       //auto ptextureTarget = pgpulayer->texture();
 //
 //       //auto ptextureSource = current_target_texture();
 //
@@ -1217,7 +1217,7 @@ namespace gpu_gpu
 //          ::cast<renderer> prenderer = m_pgpurenderer;
 //
 //          ::cast<::gpu_opengl::command_buffer> pcommandbuffer = prenderer->getCurrentCommandBuffer2(
-//             ::gpu::current_frame());
+//             ::gpu::current_layer());
 //
 //          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 //
@@ -1268,7 +1268,7 @@ namespace gpu_gpu
 //                {
 //
 //
-//                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+//                   ::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
 //
 //                   //ptextureSrc->_new_state(
 //                   //   pcommandbuffer,
@@ -1464,7 +1464,7 @@ namespace gpu_gpu
 //
 //       ////   }
 //
-//       ////   prenderer->__blend(ptextureTarget, player->texture());
+//       ////   prenderer->__blend(ptextureTarget, pgpulayer->texture());
 //
 //       ////}
 //

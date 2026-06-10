@@ -249,12 +249,12 @@ namespace gpu
 
          auto iCurrentFrame3 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
-         auto estate = m_pgpurenderer->m_prenderstate->m_estate;
+         auto egpuframestate = m_pgpurenderer->m_prenderstate->m_egpuframestate;
 
          assert(
             iFrameSerial2 >= 0 
             && iCurrentFrame3 >= 0 
-            && estate != e_state_initial
+            && egpuframestate != e_gpu_frame_state_initial
             && "Cannot get frame index when frame not in progress");
 
 #endif
@@ -408,20 +408,13 @@ namespace gpu
    }
 
 
-   texture * render_target::current_texture(::gpu::frame* pgpuframe)
+   texture * render_target::current_texture(::gpu::layer* pgpulayer)
    {
 
-      if (::is_null(pgpuframe))
+      if (::is_set(pgpulayer))
       {
 
-         return nullptr;
-
-      }
-
-      if (pgpuframe->m_pgpulayer)
-      {
-
-         return pgpuframe->m_pgpulayer->source_texture();
+         return pgpulayer->source_texture();
 
       }
 
@@ -440,13 +433,13 @@ namespace gpu
    }
 
 
-   texture* render_target::current_depth_texture(::gpu::frame* pgpuframe)
+   texture* render_target::current_depth_texture(::gpu::layer * pgpulayer)
    {
 
-      if (pgpuframe->m_pgpulayer)
+      if (::is_set(pgpulayer))
       {
 
-         auto ptexture = pgpuframe->m_pgpulayer->source_texture();
+         auto ptexture = pgpulayer->source_texture();
 
          if (!ptexture)
          {

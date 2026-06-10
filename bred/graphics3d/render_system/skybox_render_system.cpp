@@ -5,7 +5,7 @@
 #include "bred/gpu/block.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/shader.h"
@@ -256,7 +256,7 @@ namespace graphics3d
 
       //auto prendertarget = pgpurenderer->render_target();
 
-	   //auto ptextureDst = prendertarget->current_texture(::gpu::current_frame());
+	   //auto ptextureDst = prendertarget->current_texture(::gpu::current_layer());
 
       pgpucontext->start_debug_happening(::gpu::current_command_buffer(), "skybox_render_system on_render");
 
@@ -304,7 +304,7 @@ namespace graphics3d
 
       //pgpushader->bind_source(pgpucommandbuffer, ptextureSkybox);
 
-      auto pframe = ::gpu::current_frame();
+      auto pgpulayer = ::gpu::current_layer();
 
       auto prenderable = prenderableSkyboxModel;
 
@@ -313,9 +313,9 @@ namespace graphics3d
 
          m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
 
-         pframe->m_pgpucommandbuffer->m_prendersystem = this;
+         pgpulayer->getCurrentCommandBuffer4()->m_prendersystem = this;
 
-			//prenderable->bind(pframe->m_pgpucommandbuffer);
+			//prenderable->bind(pgpulayer->getCurrentCommandBuffer4());
 
          ::f32 x_multiplier = 1.f;
          ::f32 y_multiplier = 1.f;
@@ -391,21 +391,21 @@ namespace graphics3d
 
          pgpushader->set_sequence3("multiplier", sequence3Multiplier);
 
-         pgpushader->push_properties(pframe->m_pgpucommandbuffer);
+         pgpushader->push_properties(pgpulayer->getCurrentCommandBuffer4());
 
          //i32_rectangle r(pgpucontext->m_rectangle.size());
 
-         //pframe->m_pgpucommandbuffer->set_viewport(r);
+         //pgpulayer->getCurrentCommandBuffer4()->set_viewport(r);
 
-         //pframe->m_pgpucommandbuffer->set_scissor(r);
+         //pgpulayer->getCurrentCommandBuffer4()->set_scissor(r);
 
-         //pframe->m_pgpucommandbuffer->set_model(prenderable);
-         //pgpushader->on_before_draw(pframe->m_pgpucommandbuffer);
-         //pframe->m_pgpucommandbuffer->draw_model(prenderable);
+         //pgpulayer->getCurrentCommandBuffer4()->set_model(prenderable);
+         //pgpushader->on_before_draw(pgpulayer->getCurrentCommandBuffer4());
+         //pgpulayer->getCurrentCommandBuffer4()->draw_model(prenderable);
 
-         pframe->m_pgpucommandbuffer->draw(prenderable);
+         pgpulayer->getCurrentCommandBuffer4()->draw(prenderable);
 
-         //prenderable->unbind(pframe->m_pgpucommandbuffer);
+         //prenderable->unbind(pgpulayer->getCurrentCommandBuffer4());
 
 		}
 

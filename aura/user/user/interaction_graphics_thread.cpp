@@ -1303,7 +1303,7 @@ namespace user
             || pwindow->has_offscreen_output_purpose())
          {
 
-            pwindow->do_graphics();
+            pwindow->draw_frame();
 
             //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
 

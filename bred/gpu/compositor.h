@@ -25,7 +25,7 @@ namespace gpu
 
       //virtual ::gpu::frame* gpu_frame();
       //virtual void set_gpu_frame(::gpu::frame*);
-      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
+      virtual ::gpu::texture* current_target_texture(::gpu::layer* pgpulayer);
 
 
       virtual void set_gpu_context(::gpu::context * pgpucontextCompositor);
@@ -41,8 +41,8 @@ namespace gpu
 
       ::gpu::context* gpu_context();
 
-      virtual void start_gpu_layer(::gpu::frame* pgpuframe);
-      virtual ::gpu::frame * end_gpu_layer(::gpu::frame* pgpuframe);
+      //virtual void start_gpu_layer(::gpu::layer* pgpulayer);
+      //virtual ::gpu::frame * end_gpu_layer(::gpu::layer* pgpulayer);
 
 
       virtual void gpu_layer_on_after_begin_render();

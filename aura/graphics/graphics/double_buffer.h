@@ -61,7 +61,7 @@ namespace graphics
       virtual void _on_configure_window(buffer_item *pbufferitem);
 
       //::particle * get_draw_lock() override;
-      bool _on_begin_draw(buffer_item * pbufferitem) override;
+      bool _on_begin(buffer_item * pbufferitem) override;
 
 
       void destroy_buffer() override;

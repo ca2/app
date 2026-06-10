@@ -66,7 +66,7 @@ namespace windowing
       ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
       mouse_reposition_throttling               m_mouserepositionthrottling;
-
+      bool                                      m_bNewFrame;
       ::pointer<::windowing::icon>              m_picon;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
@@ -80,7 +80,7 @@ namespace windowing
          ::pointer < ::particle >               m_pmutexGraphics;
          class ::time m_time017LastConfigureUnlocked;
 
-      ::pointer < ::draw2d::graphics_context >m_pgraphicscontextDrawingFrame;
+      //::pointer < ::draw2d::graphics_context >  m_pgraphicscontextDrawFrame;
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
@@ -225,15 +225,17 @@ namespace windowing
 
       virtual void process_messages();
 
-
-      virtual void do_graphics();
-      virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw_frame();
+      //virtual void defer_start_frame();
+      //virtual void start_frame();
+      //virtual void end_frame();
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
-      virtual void draw_on_context();
-      virtual void draw_frame(::draw2d::graphics_context * pgraphicscontext);
-      virtual void draw_frame_layout(::draw2d::graphics * pgraphics);
-      virtual void draw_frame_draw(::draw2d::graphics * pgraphics);
+      //virtual void draw_on_context();
+      //virtual void draw_frame(::draw2d::graphics_context * pgraphicscontext);
+      virtual void frame_layout_stage(::draw2d::graphics * pgraphics);
+      virtual void frame_draw_stage(::draw2d::graphics * pgraphics);
 
+      virtual void _001OnNcClip(::draw2d::graphics_pointer &pgraphics);
 
       virtual class placement_log* placement_log();
 

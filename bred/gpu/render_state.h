@@ -12,7 +12,7 @@ namespace gpu
    public:
 
 
-      enum_state                    m_estate = e_state_initial;
+      enum_gpu_frame_state          m_egpuframestate = e_gpu_frame_state_initial;
       enum_render_mode              m_emode = e_render_mode_multiple_frame_states;
 
 
@@ -55,7 +55,7 @@ namespace gpu
       //virtual void on_after_end_draw_frame(::gpu::graphics* pgraphics);
 
 
-      //      virtual void on_end_render(::gpu::frame* pgpuframe);
+      //      virtual void on_end_render(::gpu::layer* pgpulayer);
 
 
    };

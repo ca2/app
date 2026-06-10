@@ -29,8 +29,8 @@
 //      virtual ::pointer < frame > beginFrame();
 //
 //
-//      virtual void on_begin_render(frame* pframe);
-//      virtual void on_end_render(frame* pframe);
+//      virtual void on_begin_render(::gpu::layer * pgpulayer);
+//      virtual void on_end_render(::gpu::layer * pgpulayer);
 //
 //      virtual void endFrame();
 //

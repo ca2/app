@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/graphics3d/asset_manager.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
@@ -16,6 +16,7 @@
 #include "acme/platform/session.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_context.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
@@ -513,29 +514,33 @@ namespace user
 
       //return;
 
-      ::cast < ::gpu::compositor > pcompositor = pgraphics;
+      //::cast < ::gpu::compositor > pcompositor = pgraphics;
 
-      //::gpu::frame* pgpuframe = nullptr;
+      //::gpu::layer* pgpulayer = nullptr;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         if(pcompositor)
-         {
+         pgraphics->end_layer();
 
-            pcompositor->gpu_context()->m_pgpurenderer->frame_suffix();
+         //if(pcompositor)
+         //{
 
-            //::f64_rectangle r;
+         //   //pcompositor->gpu_context()->m_pgpurenderer->frame_suffix();
 
-            //r.left = 400.0;
-            //r.top = 200.0;
-            //r.set_size(50.0, 50.0);
+         //   pcompositor->end_layer();
 
-            //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
-            //
-            //pgpuframe = pcompositor->end_gpu_layer(::gpu::current_frame());
+         //   //::f64_rectangle r;
 
-         }
+         //   //r.left = 400.0;
+         //   //r.top = 200.0;
+         //   //r.set_size(50.0, 50.0);
+
+         //   //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
+         //   //
+         //   //pgpulayer = pcompositor->end_gpu_layer(::gpu::current_layer());
+
+         //}
 
       }
             
@@ -549,13 +554,17 @@ namespace user
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         if (pcompositor)
-         {
+         pgraphics->start_layer();
 
-            pcompositor->gpu_context()->m_pgpurenderer->frame_prefix();
-            //pcompositor->start_gpu_layer(pgpuframe);
+         //if (pcompositor)
+         //{
 
-         }
+         //   //pcompositor->gpu_context()->m_pgpurenderer->frame_prefix();
+         //   //pcompositor->start_gpu_layer(pgpulayer);
+
+         //   pcompositor->start_layer();
+
+         //}
 
       }
 

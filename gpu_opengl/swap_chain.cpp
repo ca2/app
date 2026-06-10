@@ -12,7 +12,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/render_state.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
@@ -172,7 +172,7 @@ FragColor = texture(uTexture, TexCoord);
 //#if 0
 #if 1
 
-         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
          auto sizeContext = m_pgpucontext->m_rectangle.size();
          
@@ -212,7 +212,7 @@ FragColor = texture(uTexture, TexCoord);
          {
 
             auto pmodelbufferFullscreenQuad =
-               m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
+               m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_layer());
 
             //m_pshaderCopyTextureOnEndDraw->_bind(pcommandbuffer, ::gpu::e_scene_none);
 
@@ -348,7 +348,7 @@ void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 #if 1
 
 
-//   auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+//   auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
 ///   auto sizeContext = m_pgpucontext->m_rectangle.size();
    ///

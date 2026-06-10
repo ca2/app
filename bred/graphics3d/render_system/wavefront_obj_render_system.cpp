@@ -7,7 +7,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/scene_renderable.h"
@@ -148,7 +148,7 @@ namespace graphics3d
       pgpucommandbuffer->bind_slot_set(0, pbindingslotsetGlobalUbo1);
 
 		//m_pshader->bind(
-  //       ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_frame()));
+  //       ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_layer()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
@@ -195,7 +195,7 @@ namespace graphics3d
 
 				m_pshader->m_propertiesPushShared["normalMatrix"] = matrixNormal;
 
-				///auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+				///auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
 				m_pshader->push_properties(pgpucommandbuffer);
 

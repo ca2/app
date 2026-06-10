@@ -121,9 +121,9 @@ namespace draw2d_gpu
 
          pgpurenderer->on_new_frame();
 
-         m_pgpuframe = pgpurenderer->beginFrame();
+         m_pgpulayer = pgpurenderer->beginFrame();
 
-         pgpurenderer->on_begin_render(m_pgpuframe);
+         pgpurenderer->on_begin_render(m_pgpulayer);
 
       }
 
@@ -145,7 +145,7 @@ namespace draw2d_gpu
 
          auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         pgpurenderer->on_end_render(m_pgpuframe);
+         pgpurenderer->on_end_render(m_pgpulayer);
 
          pgpurenderer->endFrame();
 

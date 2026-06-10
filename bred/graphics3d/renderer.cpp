@@ -145,7 +145,7 @@
 //       //    );
 //       // }
 //    }
-//    void renderer::updateSystems(::gpu::frame * pframe, ::gpu::properties * ppropertiesGlobalUbo, ::f32 deltaTime)
+//    void renderer::updateSystems(::gpu::layer * pgpulayer, ::gpu::properties * ppropertiesGlobalUbo, ::f32 deltaTime)
 //    {
 //       for (auto& prendersystem : m_rendersystema) {
 //          //prendersystem->update(pframe, ppropertiesGlobalUbo);
@@ -153,7 +153,7 @@
 //       }
 //    }
 //
-//    void renderer::renderSystems(::gpu::frame * pframe) {
+//    void renderer::renderSystems(::gpu::layer * pgpulayer) {
 //       // upload camera UBO into m_uboBuffers[frame.frameIndex]...
 //       // loop all your render systems:
 //       for (auto& prendersystem : m_rendersystema)

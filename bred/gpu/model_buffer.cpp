@@ -140,13 +140,13 @@ namespace gpu
       };
 #endif
 
-      //this->bind2(pgpuframe->m_pgpucommandbuffer);
+      //this->bind2(pgpulayer->m_pgpucommandbuffer);
 
 
       this->static_initialize_vertexes<::graphics3d::sequence2_uv >(
          quadvertexes);
 
-      //this->unbind(pgpuframe->m_pgpucommandbuffer);
+      //this->unbind(pgpulayer->m_pgpucommandbuffer);
 
 
 

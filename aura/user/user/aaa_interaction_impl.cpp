@@ -5621,12 +5621,12 @@ namespace user
 
       }
 
-      m_bDoingGraphics = true;
+      m_bOnDrawFrame = true;
 
       at_end_of_scope
       {
 
-         m_bDoingGraphics = false;
+         m_bOnDrawFrame = false;
 
       };
 

@@ -40,23 +40,23 @@ namespace gpu
       ::gpu::enum_output                     m_eoutput;
 
 
-      ::collection::index                    m_iCurrentFrame3 = 0;
-      ::collection::index                    m_iCurrentImage = -1;
-      ::collection::index                    m_iFrameSerial2 = -1;
-      ::collection::count                    m_iFrameCount = 3;
-      ::i32                                    m_iLayer;
-      ::i32                                    m_iLayerCount;
+      ::collection::index                                m_iCurrentFrame3 = 0;
+      ::collection::index                                m_iCurrentImage = -1;
+      ::collection::index                                m_iFrameSerial2 = -1;
+      ::collection::count                                m_iFrameCount = 3;
+      ::i32                                              m_iLayer;
+      ::i32                                              m_iLayerCount;
       //::pointer < layer > m_playerComposing;
       //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
-      ::pointer < ::pointer_array < layer > >     m_playera;
+      ::pointer < ::pointer_array < ::gpu::layer > >     m_pgpulayera;
 
-      itask									         m_itaskCurrentGpuContext;
+      itask									                     m_itaskCurrentGpuContext;
 
-      ::pointer < ::gpu::approach >          m_pgpuapproach;
-      ::pointer < ::windowing::window >      m_pwindow;
-      ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
-      ::pointer < ::gpu::context >           m_pgpucontextMain;
-      ::pointer < ::gpu::context >           m_pgpucontextMainDraw2d;
+      ::pointer < ::gpu::approach >                      m_pgpuapproach;
+      ::pointer < ::windowing::window >                  m_pwindow;
+      ::pointer < ::gpu::context >                       m_pgpucontextCurrent4;
+      ::pointer < ::gpu::context >                       m_pgpucontextMain;
+      ::pointer < ::gpu::context >                       m_pgpucontextMainDraw2d;
       //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
       //::i32_size                             m_size;
@@ -150,7 +150,7 @@ namespace gpu
       virtual ::pointer < ::gpu::context > allocate_context();
 
 
-      virtual ::gpu::layer* get_previous_layer(::gpu::layer* player);
+      virtual ::gpu::layer* get_previous_layer(::gpu::layer * pgpulayer);
 
 //      virtual ::pointer < ::gpu::context > start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::i32_size& size);
 
@@ -243,7 +243,7 @@ namespace gpu
 
       virtual void start_stacking_layers();
       //virtual void layer_start(renderer * pgpurenderer, const ::i32_rectangle & rectangleHost);
-      virtual layer * next_layer(renderer* pgpurenderer);
+      virtual layer * create_gpu_layer(renderer* pgpurenderer);
       virtual void layer_end();
       virtual layer* current_layer();
       //virtual void layer_merge(context* pcontextTarget);

@@ -58,7 +58,7 @@ namespace graphics3d
 	}
 
 
-	void object_render_system::on_render(::gpu::frame * pframe)
+	void object_render_system::on_render(::gpu::layer * pgpulayer)
 	{
 		//m_ppipeline->bind(frame.m_pcommandbuffer);
 		//m_pshader->bind(pframe->getCommandBuffer());

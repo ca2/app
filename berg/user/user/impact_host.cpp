@@ -645,13 +645,17 @@ namespace user
 //
 //#endif
 //
-         m_bNeedPerformLayout = true;
+         //m_bNeedPerformLayout = true;
          
-         pimpactdata->m_pplaceholder->m_bNeedPerformLayout = true;
+         //pimpactdata->m_pplaceholder->m_bNeedPerformLayout = true;
 
          __check_refdbg
 
+         pimpactdata->m_pplaceholder->set_need_perform_layout();
+
          pimpactdata->m_pplaceholder->set_need_layout();
+
+         //pimpactdata->m_pplaceholder->set_need_layout();
 
       }
 

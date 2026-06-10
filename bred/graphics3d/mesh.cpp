@@ -2,7 +2,7 @@
 //#include "GLFW/glfw3.h" 
 #include "mesh.h"
 #include "bred/gpu/command_buffer.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 //#include "bred/graphics3d/model.h"
@@ -89,7 +89,7 @@ namespace graphics3d
          //glBindTexture(GL_TEXTURE_2D, m_texturea[i]->m_TextureID);
       }
 
-      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
       //pcommandbuffer->set_model(m_pmodel);
 

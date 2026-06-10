@@ -2,7 +2,7 @@
 #include "skybox_render_system.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
@@ -270,7 +270,7 @@ namespace graphics3d
       // Set uniforms in the shader
       auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
 
-      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
+      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_layer());
       
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
 
@@ -339,7 +339,7 @@ namespace graphics3d
    void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
-      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
       bind(pcommandbuffer);
       draw(pcommandbuffer);

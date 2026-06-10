@@ -123,9 +123,12 @@ namespace gpu_opengl
       virtual void _copy_using_blit(::gpu::texture* ptexture);
       void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
-      void on_start_layer(::gpu::layer* player) override;
+      void on_start_layer(::gpu::layer * pgpulayer) override;
 
-      void on_end_layer(::gpu::layer* player) override;
+      void on_end_layer(::gpu::layer * pgpulayer) override;
+
+      void draw2d_on_end_draw(::gpu::graphics *pgpugraphics) override;
+
 
       //virtual void _ensure_layer_framebuffer();
       

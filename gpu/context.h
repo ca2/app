@@ -130,9 +130,9 @@ namespace gpu_gpu
 //       virtual void _copy_using_blit(::gpu::texture* ptexture);
 //       void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 //
-//       void on_start_layer(::gpu::layer* player) override;
+//       void on_start_layer(::gpu::layer * pgpulayer) override;
 //
-//       void on_end_layer(::gpu::layer* player) override;
+//       void on_end_layer(::gpu::layer * pgpulayer) override;
 //
 //       //virtual void _ensure_layer_framebuffer();
 //

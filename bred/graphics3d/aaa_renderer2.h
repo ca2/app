@@ -28,9 +28,9 @@ namespace graphics3d
 		// :
 		//virtual public ::particlevirtual ~ISandboxRenderer() = default;
 
-		virtual void renderSystems(::gpu::frame * pframe) = 0;
+		virtual void renderSystems(::gpu::layer * pgpulayer) = 0;
 		virtual void updateSystems(
-			::gpu::frame * pframe,
+			::gpu::layer * pgpulayer,
 			::gpu::properties * ppropertisGlobalUbo,
 			::f32 deltaTime) {};
 		virtual IFrame * beginFrame() = 0;

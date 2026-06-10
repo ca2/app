@@ -32,7 +32,7 @@ namespace gpu_opengl
 
       void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
-      virtual void on_before_begin_render(::gpu::frame* pframe);
+      virtual void on_before_begin_render(::gpu::layer * pgpulayer);
 
 
 

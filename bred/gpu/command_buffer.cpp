@@ -3,6 +3,7 @@
 #include "command_buffer.h"
 #include "context.h"
 #include "frame.h"
+#include "layer.h"
 #include "queue.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -17,17 +18,17 @@ namespace gpu
    scoped_command_buffer::scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn)
    {
 
-      m_pcommandbufferOut = ::gpu::current_frame()->m_pgpucommandbuffer;
+      m_pcommandbufferOut = ::gpu::current_layer()->m_pcommandbufferScoped;
       m_pcommandbufferIn = pcommandbufferIn;
-      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferIn;
-
+      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferIn;
 
    }
+
 
    scoped_command_buffer::~scoped_command_buffer()
    {
 
-      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferOut;
+      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferOut;
 
    }
 
@@ -357,16 +358,16 @@ namespace gpu
    CLASS_DECL_BRED::gpu::command_buffer * current_command_buffer()
    {
 
-      auto pframe = ::gpu::current_frame();
+      auto pgpulayer = ::gpu::current_layer();
 
-      if (::is_null(pframe))
+      if (::is_null(pgpulayer))
       {
 
          return nullptr;
 
       }
 
-      auto pgpucommandbuffer = pframe->m_pgpucommandbuffer;
+      auto pgpucommandbuffer = pgpulayer->getCurrentCommandBuffer4();
 
       if (::is_null(pgpucommandbuffer))
       {

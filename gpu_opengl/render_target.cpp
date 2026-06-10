@@ -59,7 +59,7 @@ namespace gpu_opengl
    }
 
 
-   void render_target::on_before_begin_render(::gpu::frame* pframe)
+   void render_target::on_before_begin_render(::gpu::layer * pgpulayer)
    {
 
 

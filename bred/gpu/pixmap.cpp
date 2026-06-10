@@ -106,7 +106,7 @@ namespace gpu
    //}
 
 
-   //void pixmap::blend(::gpu::layer* player)
+   //void pixmap::blend(::gpu::layer * pgpulayer)
    //{
 
    //   blend(player->pixmap());

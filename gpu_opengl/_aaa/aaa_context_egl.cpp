@@ -628,7 +628,7 @@
 //    void context::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
 //    {
 //
-//       //::cast < texture > ptextureDst = player->texture();
+//       //::cast < texture > ptextureDst = pgpulayer->texture();
 //
 //       //::cast < texture > ptextureSrc = m_pgpurendertarget->current_texture();
 //

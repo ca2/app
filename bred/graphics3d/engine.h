@@ -68,8 +68,8 @@ namespace graphics3d
 		virtual void on_begin_frame();
 		virtual void on_end_frame();
 
-		void start_gpu_layer(::gpu::frame * pframe) override;
-		::gpu::frame* end_gpu_layer(::gpu::frame* pframe) override;
+		//void start_gpu_layer(::gpu::layer * pgpulayer) override;
+		//::gpu::frame* end_gpu_layer(::gpu::layer * pgpulayer) override;
 
 
 		//virtual void update_global_ubo(::gpu::context* pgpucontext);
@@ -99,13 +99,17 @@ namespace graphics3d
       virtual ::graphics3d::scene_base * current_scene();
 
 
-		virtual void do_frame_step(::gpu::context * pgpucontextUpper);
+		///virtual void do_frame_step(::gpu::context * pgpucontextUpper);
+
+      //virtual void do_draw_layer(::gpu::context *pgpucontextUpper);
+
+      virtual void do_draw_layer();
 
 		virtual void _prepare_frame();
 
 		virtual void _engine_on_frame_context_initialization();
 
-		virtual void _do_frame_step();
+		virtual void draw_layer();
 		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics);
       virtual void defer_update_engine(const ::i32_rectangle &rectangle);
 
@@ -113,7 +117,8 @@ namespace graphics3d
 
 		virtual void on_mouse_move(::f32 x, ::f32 y);
 
-		virtual void on_render_frame();
+		//virtual void on_render_layer(::graphics::context * pgraphicscontext);
+      virtual void on_render_layer();
 
 		//virtual floating_sequence3 camera_pole_up();
 

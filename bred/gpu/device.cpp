@@ -168,17 +168,17 @@ namespace gpu
    }
 
 
-   ::gpu::layer* device::get_previous_layer(::gpu::layer* player)
+   ::gpu::layer* device::get_previous_layer(::gpu::layer * pgpulayer)
    {
 
-      if (!m_playera)
+      if (!m_pgpulayera)
       {
 
          return nullptr;
 
       }
 
-      auto iFind = m_playera->find_first(player);
+      auto iFind = m_pgpulayera->find_first(pgpulayer);
       
       if (iFind <= 0)
       {
@@ -189,11 +189,14 @@ namespace gpu
 
       for(::i32 i = (::i32) iFind - 1; i >= 0; i--)
       {
-         if (m_playera->element_at(i)->m_pgpurenderer
-             == player->m_pgpurenderer)
+         
+         if (m_pgpulayera->element_at(i)->m_pgpurenderer == pgpulayer->m_pgpurenderer)
          {
-            return m_playera->element_at(i);
+
+            return m_pgpulayera->element_at(i);
+
          }
+
       }
 
       return nullptr;
@@ -1433,15 +1436,15 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   layer * device::next_layer(renderer* pgpurenderer)
+   layer * device::create_gpu_layer(renderer* pgpurenderer)
    {
 
       m_iLayer = m_iLayerCount;
       m_iLayerCount++;
 
-      defer_construct_newø(m_playera);
+      defer_construct_newø(m_pgpulayera);
 
-      auto & player = m_playera->element_at_grow(m_iLayer);
+      auto & player = m_pgpulayera->element_at_grow(m_iLayer);
 
       defer_constructø(player);
 
@@ -1466,14 +1469,14 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    void device::layer_end()
    {
 
-      auto& layera = *m_playera;
+      auto& layera = *m_pgpulayera;
 
       auto& player = layera[m_iLayer];
 
       player->layer_end();
       //player->take_snapshot();
 
-      //return player->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
+      //return pgpulayer->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
 
    }
 
@@ -1481,14 +1484,14 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    layer* device::current_layer()
    {
       
-      if (m_iLayer < 0 || m_iLayer >= m_playera->get_count())
+      if (m_iLayer < 0 || m_iLayer >= m_pgpulayera->get_count())
       {
       
          throw ::exception(error_wrong_state);
 
       }
 
-      auto& layera = *m_playera;
+      auto& layera = *m_pgpulayera;
 
       auto& player = layera[m_iLayer];
 

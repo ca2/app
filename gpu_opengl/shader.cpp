@@ -13,7 +13,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 
@@ -223,7 +223,7 @@ namespace gpu_opengl
 
    //   ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
 
-   //   ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
+   //   ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_layer());
 
    //   bind(pgpucommandbuffer, ptexture);
 

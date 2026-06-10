@@ -5,6 +5,7 @@
 #include "acme/graphics/image/image32.h"
 
 #include "aura/platform/draw_context2.h"
+//#include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/write_text/drawer.h"
 #include "aura/graphics/image/drawer.h"
 #include "aura/graphics/image/source.h"
@@ -61,7 +62,7 @@ namespace draw2d
 
    //};
 
-class graphics_context;
+//class graphics_context;
 
 /// <summary>
 /// graphics * -> ::image::image_source_pointer concept
@@ -81,12 +82,13 @@ class graphics_context;
       bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
-      ::i32                                          m_iYFlipHeight;
+      ::i32                                        m_iYFlipHeight;
       // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
       //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
       void* m_pthis;
+      //::pointer<::draw2d::graphics_context>        m_pgraphicscontext;
       ::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
       ::f64                                       m_dSizeScaler;
@@ -173,7 +175,9 @@ class graphics_context;
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
 
 
-      virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+      //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+      //virtual void send(::draw2d::graphics_context *pgraphicscontext, const ::procedure &procedure);
+      virtual void send(const ::procedure &procedure) override;
 
 
       inline operator ::user::style& ()
@@ -250,8 +254,24 @@ class graphics_context;
       virtual void defer_add_graphics_render(::graphics::render* pgraphicsrender);
 
 
-      virtual void on_begin_draw();
-      virtual void on_end_draw();
+      //virtual void on_begin_draw();
+      //virtual void on_end_draw();
+      //virtual void on_begin_layout1();
+      //virtual void on_end_layout1();
+      //virtual void on_begin_draw1();
+      //virtual void on_end_draw1();
+
+      //virtual void start_layer(::e_graphics egraphics);
+      //virtual void end_layer(::e_graphics egraphics);
+
+      
+      virtual void start_frame();
+      virtual void end_frame();
+
+
+      virtual void start_layer(bool bFirstLayer = false);
+      virtual void end_layer(bool bClosingLayer = false);
+
 
       virtual void __on_begin_draw();
 
@@ -1431,52 +1451,6 @@ class graphics_context;
    
       virtual void _context_lock() = 0;
       virtual void _context_unlock() = 0;
-
-   };
-
-
-   class CLASS_DECL_AURA graphics_context :
-      virtual public ::particle
-   {
-   public:
-      
-      
-      ::pointer < ::draw2d::graphics > m_pgraphics;
-      ::pointer < ::draw2d::graphics_context_interface > m_pgraphicscontextinterface;
-      ::pointer < ::graphics::buffer_item > m_pbufferitem;
-      
-      
-      graphics_context()
-      {
-         
-         
-      }
-      
-      
-      ~graphics_context()
-      {
-         
-         m_pgraphics.release();
-         
-         if(m_pgraphicscontextinterface)
-         {
-            
-            m_pgraphicscontextinterface->_context_unlock();
-            
-         }
-         
-      }
-   
-
-      void insert_graphics_and_context(::draw2d::graphics_context_interface * pinterface)
-      {
-         
-         m_pgraphicscontextinterface = pinterface;
-       
-         m_pgraphicscontextinterface->_context_lock();
-         
-      }
-
 
    };
 

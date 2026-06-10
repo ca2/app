@@ -20,7 +20,7 @@ namespace gpu
       //::i32_rectangle m_rectangleTarget;
       ::pointer_array <::gpu::texture >    m_texturea;
       ::pointer_array <::gpu::texture >    m_textureaSource;
-      ::pointer < ::gpu::frame > m_pgpuframe;
+      //::pointer < ::gpu::frame > m_pgpulayer;
       ::pointer < ::gpu::fence > m_pgpufence;
       ::pointer < ::gpu::semaphore > m_pgpusemaphoreSignal;
       //::comptr < ID3D12Resource > m_presource;
@@ -28,6 +28,7 @@ namespace gpu
       ::pointer < ::manual_reset_happening > m_pmanualresethappeningFinished;
 
       ::pointer_array<command_buffer>	 m_commandbufferaLayer;
+      ::pointer<::gpu::command_buffer> m_pcommandbufferScoped;
       class ::time m_timeStart;
       class ::time m_timeEnd;
       class ::time m_timeDuration;
@@ -62,6 +63,10 @@ namespace gpu
 
    };
    
+
+   CLASS_DECL_BRED void set_current_layer(::gpu::layer *pgpulayer);
+   CLASS_DECL_BRED ::gpu::layer *current_layer();
+
 
 } // namespace gpu
 

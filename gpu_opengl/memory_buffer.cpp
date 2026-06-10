@@ -7,7 +7,7 @@
 #include "model_buffer.h"
 #include "renderer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 
 
 namespace gpu_opengl
@@ -108,7 +108,7 @@ namespace gpu_opengl
 
       }
 
-//      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+//      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer()));
 
       _on_set_memory_buffer(block);
 

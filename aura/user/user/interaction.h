@@ -235,6 +235,7 @@ namespace user
       bool                                      m_bNeedRedraw;
       ::logic::boolean                          m_bNeedPerformLayout;
       bool                                      m_bNeedLayout;
+      bool                                      m_bVisibilityChange;
       //bool                                      m_bNeedCheckChildrenLayout;
       bool                                      m_bReposition;
       bool                                      m_bUpdatingVisual;
@@ -942,6 +943,7 @@ namespace user
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_perform_layout();
       virtual void set_need_layout();
+      virtual void set_visibility_change();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
       void set_need_redraw(const ::i32_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;

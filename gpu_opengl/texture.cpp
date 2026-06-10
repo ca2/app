@@ -312,7 +312,7 @@ namespace gpu_opengl
    //          //   //glScissor(r.left, r.top, r.width(), r.height());
    //          //   //::opengl::check_error("");
    //
-   //          //   //pframe->m_pgpucommandbuffer->set_scissor(r);
+   //          //   //pgpulayer->getCurrentCommandBuffer4()->set_scissor(r);
    //
    //          //}
    //       }
@@ -583,7 +583,7 @@ namespace gpu_opengl
          //   //glScissor(r.left, r.top, r.width(), r.height());
          //   //::opengl::check_error("");
 
-         //   //pframe->m_pgpucommandbuffer->set_scissor(r);
+         //   //pgpulayer->getCurrentCommandBuffer4()->set_scissor(r);
 
          //}
       }

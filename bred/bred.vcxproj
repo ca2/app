@@ -527,6 +527,7 @@
     <ClInclude Include="gpu\frame_ephemeral.h" />
     <ClInclude Include="gpu\frame_storage.h" />
     <ClInclude Include="gpu\graphics.h" />
+    <ClInclude Include="gpu\graphics_context.h" />
     <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\context_lock.h" />
     <ClInclude Include="gpu\hlsl_context.h" />
@@ -677,6 +678,7 @@
     <ClCompile Include="gpu\frame_ephemeral.cpp" />
     <ClCompile Include="gpu\frame_storage.cpp" />
     <ClCompile Include="gpu\graphics.cpp" />
+    <ClCompile Include="gpu\graphics_context.cpp" />
     <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\context_lock.cpp" />
     <ClCompile Include="gpu\hlsl_context.cpp" />

@@ -17,7 +17,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/render.h"
 #include "bred/gpu/render_target.h"
@@ -1261,7 +1261,7 @@ void main() {
       if (pmodelbufferRectangle->is_new())
       {
 
-         //pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
+         //pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_layer());
          pmodelbufferRectangle->sequence2_color_create_rectangle(gpu_context());
 
       }
@@ -1317,11 +1317,11 @@ void main() {
          pgpucontext->m_rectangle.size());
 
       // vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
       auto pgpurendertarget = prenderer->render_target();
 
-      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_frame());
+      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_layer());
 
       pshader->bind(pcommandbuffer, ptextureTarget);
 
@@ -5846,11 +5846,11 @@ color = vec4(c.r,c.g, c.b, c.a);
          
       }
 
-      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
       auto pgpurendertarget = pcontext->m_pgpurenderer->render_target();
 
-      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_frame());
+      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_layer());
 
       m_pgpushaderTextOut->bind(pcommandbuffer, ptextureTarget);
 
@@ -6665,47 +6665,47 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //}
 
-   void graphics::send_on_context(::draw2d::graphics_context *pgraphicscontext, const ::procedure &procedure)
+   void graphics::send(const ::procedure &procedure)
    {
 
-      ::draw2d_gpu::graphics::send_on_context(pgraphicscontext, procedure);
+      ::draw2d_gpu::graphics::send(procedure);
 
       //m_pgpucontextCompositor->send(procedure);
 
    }
 
 
-   void graphics::start_gpu_layer(::gpu::frame * pgpuframe)
-   {
+   //void graphics::start_gpu_layer(::gpu::layer * pgpulayer)
+   //{
 
-      auto pcontext = gpu_context();
+   //   auto pcontext = gpu_context();
 
-      // gpu::draw2d
+   //   // gpu::draw2d
 
-      ::draw2d_gpu::graphics::start_gpu_layer(pgpuframe);
+   //   ::draw2d_gpu::graphics::start_gpu_layer(pgpulayer);
 
-      //glglgl  glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear the background to transparent
-      //glglgl  ::opengl::check_error("");
-      //glglgl  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the color and depth buffers
-      //glglgl  ::opengl::check_error("");
-      //glglgl  glDepthMask(GL_FALSE); // Disable writing to depth buffer
-      //glglgl  ::opengl::check_error("");
-      //glglgl  glDisable(GL_DEPTH_TEST); // Disable depth testing
-      //glglgl  ::opengl::check_error("");
+   //   //glglgl  glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear the background to transparent
+   //   //glglgl  ::opengl::check_error("");
+   //   //glglgl  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the color and depth buffers
+   //   //glglgl  ::opengl::check_error("");
+   //   //glglgl  glDepthMask(GL_FALSE); // Disable writing to depth buffer
+   //   //glglgl  ::opengl::check_error("");
+   //   //glglgl  glDisable(GL_DEPTH_TEST); // Disable depth testing
+   //   //glglgl  ::opengl::check_error("");
 
-      auto ealphamode = m_ealphamode;
-      m_ealphamode = ::draw2d::e_alpha_mode_none; // Set alpha mode to blend for GPU layer
-      set_alpha_mode(m_ealphamode);
+   //   auto ealphamode = m_ealphamode;
+   //   m_ealphamode = ::draw2d::e_alpha_mode_none; // Set alpha mode to blend for GPU layer
+   //   set_alpha_mode(m_ealphamode);
 
-   }
+   //}
 
 
-   ::gpu::frame * graphics::end_gpu_layer(::gpu::frame * pgpuframe)
-   {
+   //::gpu::frame * graphics::end_gpu_layer(::gpu::layer * pgpulayer)
+   //{
 
-      return ::draw2d_gpu::graphics::end_gpu_layer(pgpuframe);
+   //   return ::draw2d_gpu::graphics::end_gpu_layer(pgpulayer);
 
-   }
+   //}
 
 
    ::gpu::context* graphics::gpu_context()

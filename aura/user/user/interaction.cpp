@@ -418,6 +418,8 @@ namespace user
 
       m_bNeedLayout = false;
 
+      m_bVisibilityChange = false;
+
       //m_bNeedCheckChildrenLayout = false;
 
       //m_bLockLadingToLayout = false;
@@ -1982,11 +1984,38 @@ namespace user
 
          }
 
+         pinteraction->m_bNeedLayout = true;
+
          //pinteraction->m_bNeedCheckChildrenLayout = true;
 
       }
 
       //information() << "set_need_layout : " << node()->get_callstack();
+
+   }
+
+
+   void interaction::set_visibility_change()
+   {
+
+      m_bVisibilityChange = true;
+
+      auto pinteraction = this;
+
+      while (true)
+      {
+
+         pinteraction = pinteraction->get_parent();
+
+         if (!pinteraction)
+         {
+
+            break;
+         }
+
+         pinteraction->m_bVisibilityChange = true;
+
+      }
 
    }
 
@@ -3476,6 +3505,8 @@ namespace user
          informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch).c_str());
 
       }
+
+      set_visibility_change();
 
    }
 
@@ -15916,51 +15947,61 @@ if(get_parent())
 
       //auto pwindow = window();
 
-      if (layout().m_statea[::user::e_layout_sketch].m_point2 == layout().m_statea[::user::e_layout_design].m_point2)
+      if (p != layout().m_statea[::user::e_layout_sketch].m_point2)
       {
 
-         if (!is_past_reposition_request(p))
+         if (layout().m_statea[::user::e_layout_sketch].m_point2 == layout().m_statea[::user::e_layout_design].m_point2)
          {
 
-            layout().m_statea[::user::e_layout_sketch].m_point2 = p;
-            layout().m_statea[::user::e_layout_lading].m_point2 = p;
-            layout().m_statea[::user::e_layout_layout].m_point2 = p;
-            layout().m_statea[::user::e_layout_design].m_point2 = p;
-            layout().m_statea[::user::e_layout_output].m_point2 = p;
-            layout().m_statea[::user::e_layout_normal].m_point2 = p;
+            if (!is_past_reposition_request(p))
+            {
 
-            //pwindow->m_pointDesignRequest.x = INT_MIN;
-            //pwindow->m_pointDesignRequest.y = INT_MIN;
+               layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+               layout().m_statea[::user::e_layout_lading].m_point2 = p;
+               layout().m_statea[::user::e_layout_layout].m_point2 = p;
+               layout().m_statea[::user::e_layout_design].m_point2 = p;
+               layout().m_statea[::user::e_layout_output].m_point2 = p;
+               layout().m_statea[::user::e_layout_normal].m_point2 = p;
 
-            on_reposition();
+               // pwindow->m_pointDesignRequest.x = INT_MIN;
+               // pwindow->m_pointDesignRequest.y = INT_MIN;
+
+               on_reposition();
+
+            }
 
          }
 
       }
 
-      if (layout().m_statea[::user::e_layout_sketch].m_size == layout().m_statea[::user::e_layout_design].m_size)
+      if (s != layout().m_statea[::user::e_layout_sketch].m_size)
       {
 
-         if (!is_past_resizing_request(s))
+         if (layout().m_statea[::user::e_layout_sketch].m_size == layout().m_statea[::user::e_layout_design].m_size)
          {
 
-            // layout().m_statea[::user::e_layout_sketch].m_size = s;
-            // layout().m_statea[::user::e_layout_lading].m_size = s;
-            // layout().m_statea[::user::e_layout_layout].m_size = s;
-            // layout().m_statea[::user::e_layout_design].m_size = s;
-            // layout().m_statea[::user::e_layout_output].m_size = s;
-            // layout().m_statea[::user::e_layout_normal].m_size = s;
-            //
-            // pwindow->m_sizeDesignRequest.cx = INT_MIN;
-            // pwindow->m_sizeDesignRequest.cy = INT_MIN;
+            if (!is_past_resizing_request(s))
+            {
 
-            set_size(s);
+               // layout().m_statea[::user::e_layout_sketch].m_size = s;
+               // layout().m_statea[::user::e_layout_lading].m_size = s;
+               // layout().m_statea[::user::e_layout_layout].m_size = s;
+               // layout().m_statea[::user::e_layout_design].m_size = s;
+               // layout().m_statea[::user::e_layout_output].m_size = s;
+               // layout().m_statea[::user::e_layout_normal].m_size = s;
+               //
+               // pwindow->m_sizeDesignRequest.cx = INT_MIN;
+               // pwindow->m_sizeDesignRequest.cy = INT_MIN;
 
-            set_need_layout();
+               set_size(s);
 
-            set_need_redraw();
+               set_need_layout();
 
-            post_redraw();
+               set_need_redraw();
+
+               post_redraw();
+
+            }
 
          }
 
@@ -17852,7 +17893,7 @@ if(get_parent())
 
       bool bChildrenZorder = check_children_zorder();
 
-      auto bUpdateVisual = bDisplay || bZorder || bChildrenZorder || bSize || bActivation || m_bNeedLayout;
+      auto bUpdateVisual = bDisplay || bZorder || bChildrenZorder || bSize || bActivation || m_bNeedLayout || m_bVisibilityChange;
 
       if (!bUpdateBuffer && ::is_set(get_parent()))
       {
@@ -17902,7 +17943,7 @@ if(get_parent())
          //
          //         }
          //
-         if (bSize || m_bNeedLayout)
+         if (bSize || m_bNeedLayout || m_bVisibilityChange)
          {
 
             //::pointer<::windowing::window>pwindow = window();
@@ -18090,6 +18131,8 @@ if(get_parent())
       }
 
       m_bNeedLayout = false;
+
+      m_bVisibilityChange = false;
 
       //scroll_x_lading_to_layout();
 

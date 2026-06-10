@@ -184,7 +184,7 @@ namespace graphics3d
 
 
 
-    void gltf_render_system::render(::gpu::frame * pframe)
+    void gltf_render_system::render(::gpu::layer * pgpulayer)
     {
         // vkCmdBindDescriptorSets(
         //     frame.m_pcommandbuffer,

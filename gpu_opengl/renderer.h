@@ -40,17 +40,19 @@ namespace gpu_opengl
 
       void on_context_resize() override;
 
-      ::pointer < ::gpu::frame > beginFrame() override;
+      //::pointer < ::gpu::frame > beginFrame() override;
+
+      void start_frame() override;
 
       //void on_new_frame() override;
 
-      void on_begin_frame() override;
+      //void on_begin_frame() override;
 
       //virtual void _ensure_renderer_framebuffer();
 
-      void _on_begin_render(::gpu::frame * pframe) override;
+      void _on_begin_render(::gpu::layer * pgpulayer) override;
 
-      void on_begin_render(::gpu::frame* pframe) override;
+      void on_begin_render(::gpu::layer * pgpulayer) override;
 
       //void Clear() const;
 
@@ -64,7 +66,9 @@ namespace gpu_opengl
 
       //void DrawModel(const ::array<mesh*>& mehses, ::gpu::shader *pshader);
 
-      void endFrame() override;
+      //void endFrame() override;
+
+      void end_frame() override;
 
       //void endDraw(::user::interaction * puserinteraction) override;
 
@@ -76,8 +80,8 @@ namespace gpu_opengl
 
       //virtual void on_layout(::i32 cx, ::i32 cy);
 
-      //void on_start_layer(::gpu::layer* player) override;
-      //void on_end_layer(::gpu::layer* player) override;
+      //void on_start_layer(::gpu::layer * pgpulayer) override;
+      //void on_end_layer(::gpu::layer * pgpulayer) override;
 
 
 

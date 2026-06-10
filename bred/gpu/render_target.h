@@ -40,7 +40,8 @@ namespace gpu
 
       ::pointer<render_target> m_prendertargetOld;
 
-      ::pointer < frame > m_pgpuframe;
+      //::pointer < frame > m_pgpulayer;
+      ::pointer<layer> m_pgpulayer;
 
       
       render_target();
@@ -89,15 +90,17 @@ namespace gpu
       virtual void initialize_render_target_image(::gpu::texture *pgputexture);
 
 
-      virtual ::gpu::texture* current_texture(::gpu::frame* pgpuframe);
-      virtual ::gpu::texture *current_depth_texture(::gpu::frame *pgpuframe);
+      //virtual ::gpu::texture* current_texture(::gpu::layer* pgpulayer);
+      //virtual ::gpu::texture *current_depth_texture(::gpu::layer * pgpulayer);
+      virtual ::gpu::texture* current_texture(::gpu::layer* pgpulayer);
+      virtual ::gpu::texture *current_depth_texture(::gpu::layer *pgpulayer);
 
 
       virtual void on_before_begin_draw_frame(::gpu::graphics* pgraphics);
       virtual void on_after_end_draw_frame(::gpu::graphics* pgraphics);
 
 
-//      virtual void on_end_render(::gpu::frame* pgpuframe);
+//      virtual void on_end_render(::gpu::layer* pgpulayer);
 
 
    };

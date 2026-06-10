@@ -552,10 +552,10 @@ namespace gpu
    //}
 
 
-   //void texture::blend(::gpu::layer* player)
+   //void texture::blend(::gpu::layer * pgpulayer)
    //{
 
-   //   blend(player->texture());
+   //   blend(pgpulayer->texture());
 
    //}
 

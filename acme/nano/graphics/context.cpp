@@ -110,8 +110,8 @@ namespace nano
       }
 
 
-      void context::draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText,
-                                 const ::e_draw_text & edrawtext, const ::e_align & ealign)
+      void context::draw_text123(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText
+         , const ::e_draw_text & edrawtext, const ::e_align & ealign)
       {
 
          if (ealign & e_align_bottom_right_bias)
@@ -168,8 +168,8 @@ namespace nano
       }
 
 
-      void context::_draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText,
-                               const ::e_draw_text & edrawtext, const ::e_align & ealign)
+      void context::_draw_text(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangleText
+         , const ::e_draw_text & edrawtext, const ::e_align & ealign)
       {
 
 

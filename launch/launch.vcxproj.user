@@ -22,7 +22,17 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\basis</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
+    <LocalDebuggerCommandArguments>-prepare_projects "project_list.txt"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\basis</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
+    <LocalDebuggerCommandArguments>C:\basis\source\app-core\hello_animation\ app_core_hello_animation x64 basis</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\basis\source\app\acme</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM64'">
     <LocalDebuggerCommandArguments>C:\basis\source\app-core\hello_animation\ app_core_hello_animation x64 basis</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\basis\source\app\acme</LocalDebuggerWorkingDirectory>
@@ -32,7 +42,18 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\Users\camilo</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
+    <LocalDebuggerCommandArguments>C:\basis\source\app\folder_zip\ folder_zip</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\Users\camilo</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
+    <LocalDebuggerCommandArguments>"C:\basis\source\app\acme" acme x64 basis</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\basis\source\app\acme</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommand>C:\basis\operating_system\tool-windows\bin\application_build_helper.exe</LocalDebuggerCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM64'">
     <LocalDebuggerCommandArguments>"C:\basis\source\app\acme" acme x64 basis</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\basis\source\app\acme</LocalDebuggerWorkingDirectory>
@@ -46,7 +67,19 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\debug\</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|ARM64'">
+    <LocalDebuggerCommandArguments>source/app-core/clockverse app_core_clockverse x64 debug</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\debug\</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <LocalDebuggerCommandArguments>/user:&lt;localmachinename&gt;\administrator $(TargetPath) --initial-ambient-setup</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\release</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommand>runas </LocalDebuggerCommand>
+    <LocalDebuggerCommandArgumentsHistory>/user:&lt;localmachinename&gt;\administrator C:\Users\camilo\code\integration\console_build_tools\source\app\time-windows\x64\Debug\console_application_build_helper.exe --initial-ambient-setup|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM64'">
     <LocalDebuggerCommandArguments>/user:&lt;localmachinename&gt;\administrator $(TargetPath) --initial-ambient-setup</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\release</LocalDebuggerWorkingDirectory>
@@ -59,11 +92,26 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArgumentsHistory>-prepare_applications application_list.txt x64 Release|</LocalDebuggerCommandArgumentsHistory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <LocalDebuggerCommandArguments>-prepare_applications application_list.txt x64 Release</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>C:\release</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArgumentsHistory>-prepare_applications application_list.txt x64 Release|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <LocalDebuggerCommandArguments>--initial-ambient-setup</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
+    <LocalDebuggerCommandArguments>--initial-ambient-setup</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">
+    <LocalDebuggerCommandArguments>--initial-ambient-setup</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArgumentsHistory>--initial-ambient-setup|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|ARM64'">
     <LocalDebuggerCommandArguments>--initial-ambient-setup</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArgumentsHistory>--initial-ambient-setup|</LocalDebuggerCommandArgumentsHistory>
@@ -74,7 +122,19 @@
     <LocalDebuggerWorkingDirectory>C:\main\source\app\acme\</LocalDebuggerWorkingDirectory>
     <LocalDebuggerCommandArgumentsHistory>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug|</LocalDebuggerCommandArgumentsHistory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
+    <LocalDebuggerCommandArguments>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\main\source\app\acme\</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArgumentsHistory>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">
+    <LocalDebuggerCommandArguments>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>C:\main\source\app\acme\</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArgumentsHistory>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug|</LocalDebuggerCommandArgumentsHistory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|ARM64'">
     <LocalDebuggerCommandArguments>--defer-prepare-folder C:\main\source\app\acme\ x64 Debug</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\main\source\app\acme\</LocalDebuggerWorkingDirectory>

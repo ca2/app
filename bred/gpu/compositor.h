@@ -35,7 +35,7 @@ namespace gpu
 
       virtual void on_gpu_context_placement_change(const ::i32_rectangle& rectanglePlacement, ::acme::windowing::window *pacmewindowingwindow);
 
-
+      virtual void on_start_layer_before_begin_render(::gpu::layer *pgpulayer);
       //virtual void on_gpu_context_placement_change(const ::i32_rectangle & rectanglePlacement);
 
 

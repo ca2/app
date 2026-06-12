@@ -129,7 +129,6 @@ namespace gpu_opengl
 
       void draw2d_on_end_draw(::gpu::graphics *pgpugraphics) override;
 
-
       //virtual void _ensure_layer_framebuffer();
       
       //void make_current() override;

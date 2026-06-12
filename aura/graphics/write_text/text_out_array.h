@@ -19,6 +19,10 @@ namespace write_text
 
       ::string       m_strLast;
       void *         m_pLastOsData;
+      ::i32_rectangle m_rectangleLast;
+      ::e_align       m_ealignLast;
+      ::enum_text_wrap m_etextwrapLast;
+      bool            m_bHasLayoutContext;
 
 
       DECLARE_ARRAY_OF(text_out_array, text_out, text_out);
@@ -32,6 +36,9 @@ namespace write_text
 
 
       virtual bool is_updated(const ::scoped_string & str, void * pOsData) const;
+      virtual bool is_updated(const ::scoped_string & str, void * pOsData,
+         const ::i32_rectangle & rectangle, const ::e_align & ealign,
+         const ::enum_text_wrap & etextwrap) const;
 
 
    };

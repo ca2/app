@@ -3476,6 +3476,13 @@ namespace user
       //
       //      }
 
+      if (edisplay == m_layout.m_statea[elayout].m_edisplay)
+      {
+
+         return;
+
+      }
+
       m_layout.m_statea[elayout].m_edisplay = edisplay;
 
       if (::platform::type(this) == "user::list_box")
@@ -3500,7 +3507,7 @@ namespace user
 
          informationf("main_frame %d %s", elayout, ::as_string(edisplay).c_str());
 
-         auto & edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
+         auto &edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
 
          informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch).c_str());
 
@@ -13997,7 +14004,7 @@ if(get_parent())
 
             //information() << "hiding child window";
 
-            set_display(e_display_none, e_layout_lading);
+            set_display(edisplayLading, e_layout_lading);
 
          }
          else

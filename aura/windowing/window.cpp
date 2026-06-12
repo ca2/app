@@ -10655,6 +10655,8 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
          auto &bNeedPerformLayout = puserinteraction->m_bNeedPerformLayout;
 
+         auto &bVisibilityChange = puserinteraction->m_bVisibilityChange;
+
          //::string strType = ::platform::type(*user_interaction()).name();
 
          if (!strType.case_insensitive_contains("main_frame"))

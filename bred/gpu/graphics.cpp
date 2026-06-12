@@ -189,6 +189,13 @@ namespace gpu
 
          auto etypeGpuContext = pcontext->m_etype;
 
+         if (bFirstLayer)
+         {
+
+            m_pgpucontextCompositor2->m_pgpudevice->on_new_frame();
+
+         }
+
          // if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
          {
             // if (prenderer->m_prenderstate->m_estate != e_state_initial)
@@ -556,19 +563,19 @@ namespace gpu
 
       pcontext->end_layer(bClosingLayer);
 
-      //auto pgraphics = pgraphicscontext->draw2d_graphics();
+      ////auto pgraphics = pgraphicscontext->draw2d_graphics();
 
-      // end_gpu_layer();
-      if (m_egraphics == e_graphics_draw)
-      {
+      //// end_gpu_layer();
+      //if (m_egraphics == e_graphics_draw)
+      //{
 
-         ::gpu::context_lock contextlock(pcontext);
+      //   ::gpu::context_lock contextlock(pcontext);
 
-         pcontext->defer_unbind_shader();
+      //   pcontext->defer_unbind_shader();
 
-         //pcontext->on_end_draw_detach(this);
+      //   //pcontext->on_end_draw_detach(this);
 
-      }
+      //}
 
    }
 

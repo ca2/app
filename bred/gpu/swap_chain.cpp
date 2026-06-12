@@ -106,14 +106,14 @@ namespace gpu
    }
 
 
-   void swap_chain::present(::gpu::texture * pgputexture)
+   void swap_chain::present(::gpu::texture * pgputexture, ::gpu::command_buffer * pgpucommandbuffer)
    {
 
 
    }
 
 
-   void swap_chain::set_present_state()
+   void swap_chain::set_present_state(::gpu::command_buffer *pgpucommandbuffer)
    {
 
 

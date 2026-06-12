@@ -83,6 +83,13 @@ namespace gpu
    }
 
 
+   void compositor::on_start_layer_before_begin_render(::gpu::layer * pgpulayer)
+   {
+
+
+   }
+
+
    ::gpu::context* compositor::gpu_context()
    {
 

@@ -78,7 +78,7 @@ FragColor = texture(uTexture, TexCoord);
    }
 
 
-   void swap_chain::present(::gpu::texture * pgputexture)
+   void swap_chain::present(::gpu::texture *pgputexture, ::gpu::command_buffer *pgpucommandbuffer)
    {
 
       if (!m_pgpucontext)
@@ -172,7 +172,8 @@ FragColor = texture(uTexture, TexCoord);
 //#if 0
 #if 1
 
-         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
+         //auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
+         auto pcommandbuffer = pgpucommandbuffer;
 
          auto sizeContext = m_pgpucontext->m_rectangle.size();
          

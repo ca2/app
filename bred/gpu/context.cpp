@@ -3732,6 +3732,13 @@ void main() {
 
       ::gpu::set_current_layer(pgpulayer);
 
+      if (m_pgpucompositor)
+      {
+
+         m_pgpucompositor->on_start_layer_before_begin_render(pgpulayer);
+
+      }
+
    }
 
 
@@ -3761,7 +3768,7 @@ void main() {
 
       //copy(ptextureTarget, ptextureSource);
 
-      m_pgpurenderer->layer_end_copy();
+      //m_pgpurenderer->layer_end_copy();
 
 
 
@@ -3877,6 +3884,19 @@ void main() {
    // void context::frame_suffix()
    void context::end_layer(bool bClosingLayer)
    {
+
+            // auto pgraphics = pgraphicscontext->draw2d_graphics();
+
+      // end_gpu_layer();
+      //if (m_egraphics == e_graphics_draw)
+      {
+
+         ::gpu::context_lock contextlock(this);
+
+         defer_unbind_shader();
+
+         // pcontext->on_end_draw_detach(this);
+      }
 
       auto pgpurenderer = this->get_gpu_renderer();
 

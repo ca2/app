@@ -198,6 +198,7 @@ namespace gpu
       //virtual void defer_end_frame_layer_copy();
       //virtual void defer_end_frame_layer_after_submit();
       virtual void layer_end_copy();
+      virtual void layer_end_submit();
       virtual void layer_end_after_submit();
 
       virtual void draw();
@@ -243,7 +244,7 @@ namespace gpu
       //virtual void frame_suffix();
 
       //virtual void start_layer(const ::i32_rectangle& rectangleTarget);
-      virtual void layer_start();
+      virtual void layer_start(bool bFirstLayer);
       //virtual void take_snapshot(layer * player, const ::i32_rectangle& rectangleTarget);
       virtual void layer_end();
       //virtual void merge_layers(::pointer_array < layer > * playera);

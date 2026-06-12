@@ -75,6 +75,9 @@ namespace gpu
 
       virtual void set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_texture_state etexturestate);
 
+      virtual void from_external_state(::gpu::enum_texture_state etexturestate,
+                                       ::gpu::enum_texture_state etexturestateNow);
+      virtual void to_external_state(::gpu::command_buffer *pgpucommandbuffer);
 
 
       void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);

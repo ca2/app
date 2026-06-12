@@ -3115,8 +3115,8 @@ namespace draw2d
    void graphics::reset_impact_area()
    {
 
-      m_pointOrigin.x = 0;
-      m_pointOrigin.y = 0;
+      //m_pointOrigin.x = 0;
+      //m_pointOrigin.y = 0;
 
       update_matrix();
 

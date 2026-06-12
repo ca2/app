@@ -14,6 +14,8 @@ namespace gpu
 
       ::i32 m_iFrameIndex = -1;
       ::i32 m_iLayerIndex = -1;
+      bool m_bFirstLayer;
+      bool m_bClosingLayer;
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
       bool m_bRenderTargetFramebufferInitialized;
       //::pointer < renderer >        m_pgpurendererTarget;

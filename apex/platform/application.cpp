@@ -10463,7 +10463,12 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       auto papexnode = node();
 
-      papexnode->release_exclusive();
+      if (papexnode)
+      {
+
+         papexnode->release_exclusive();
+
+      }
 
    }
 

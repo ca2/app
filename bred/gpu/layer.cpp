@@ -16,6 +16,8 @@ namespace gpu
    layer::layer()
    {
 
+      m_bFirstLayer = false;
+      m_bClosingLayer = false;
       //m_bFinished = false;
 
    }
@@ -132,6 +134,8 @@ namespace gpu
       m_timeStart.Now();
 
       m_bRenderTargetFramebufferInitialized = false;
+
+      ::gpu::set_current_layer(this);
 
       //m_bFinished = false;
       finished_manual_reset_happening()->reset_happening();

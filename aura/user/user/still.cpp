@@ -656,14 +656,12 @@ namespace user
 
       auto pOsData = pgraphics->get_current_font()->get_os_data(pgraphics, 0);
 
-      if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
+      if (!pOsData)
       {
 
-         return;
+         pOsData = pgraphics->get_current_font();
 
       }
-
-      //auto pstyle = get_style(pgraphics);
 
       auto rectangleX = this->rectangle();
 
@@ -672,6 +670,15 @@ namespace user
       ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, (::i32) e_draw_text_none);
 
       ::enum_text_wrap etextwrap = m_etextwrap;
+
+      if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData, rectangleX, ealign, etextwrap))
+      {
+
+         return;
+
+      }
+
+      //auto pstyle = get_style(pgraphics);
 
       if(::is_null(m_ptextouta))
       {
@@ -687,6 +694,14 @@ namespace user
       m_ptextouta->m_strLast = strWindowText;
 
       m_ptextouta->m_pLastOsData = pOsData;
+
+      m_ptextouta->m_rectangleLast = rectangleX;
+
+      m_ptextouta->m_ealignLast = ealign;
+
+      m_ptextouta->m_etextwrapLast = etextwrap;
+
+      m_ptextouta->m_bHasLayoutContext = true;
 
       //if (m_bAutoResize)
       //{
@@ -761,6 +776,13 @@ namespace user
          pgraphics->set_font(this, ::e_element_none);
 
          auto pOsData = pgraphics->get_current_font()->get_os_data(pgraphics, 0);
+
+         if (!pOsData)
+         {
+
+            pOsData = pgraphics->get_current_font();
+
+         }
 
          if (m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
          {

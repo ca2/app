@@ -33,6 +33,9 @@ namespace write_text
       ::u8           m_u8CharSet;
 
 
+      text_metric();
+
+
       ::f64 get_line_height() const
       {
 

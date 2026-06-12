@@ -38,6 +38,7 @@ namespace gpu
          ::pointer<::gpu::fence> m_pgpufenceInFlight;
          ::pointer<::gpu::semaphore> m_pgpusemaphoreImageAvailable;
          ::pointer<::gpu::semaphore> m_pgpusemaphoreRenderFinished;
+         ::pointer<::gpu::command_buffer> m_pcommandbufferLastSwapChainPresentation;
       };
 
       ::array_base<frame_sync> m_framesynca;
@@ -61,8 +62,8 @@ namespace gpu
 
       //virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
       //virtual void present(::gpu::texture * pgputexture);
-      virtual void present(::gpu::texture * pgputexture);
-      virtual void set_present_state();
+      virtual void present(::gpu::texture * pgputexture, ::gpu::command_buffer * pgpucommandbuffer);
+      virtual void set_present_state(::gpu::command_buffer *pgpucommandbuffer);
       virtual void swap_buffers();
       virtual ::i32 swap_chain_frame_index();
       virtual ::i32 swap_chain_image_index();

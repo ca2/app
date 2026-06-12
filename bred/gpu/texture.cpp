@@ -30,6 +30,12 @@ namespace gpu
          ::information("m_iTextureSerial == 27");
 
       }
+      else if (m_iTextureSerial == 10)
+      {
+
+         ::information("m_iTextureSerial == 10");
+      }
+
 
       m_iAtlasX = 0;
       m_iAtlasY = 0;
@@ -353,6 +359,23 @@ namespace gpu
       m_etexturestate = etexturestate;
 
    }
+
+
+   void texture::from_external_state(::gpu::enum_texture_state etexturestate,
+                                     ::gpu::enum_texture_state etexturestateNow)
+   {
+
+
+   }
+
+
+   void texture::to_external_state(::gpu::command_buffer * pgpucommandbuffer)
+   {
+
+
+
+   }
+
    
    ::i32 texture::mip_width() const
    {

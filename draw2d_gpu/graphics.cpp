@@ -260,7 +260,7 @@ void main() {
    void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size)
    {
 
-      ::draw2d_gpu::graphics::create_for_window_draw2d(puserinteraction, size);
+      ::gpu::graphics::create_for_window_draw2d(puserinteraction, size);
 
       if (m_puserinteractionDraw2dGraphics == nullptr)
       {
@@ -4493,7 +4493,7 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
    void graphics::_set(const ::geometry2d::matrix& matrix)
    {
 
-      ::draw2d_gpu::graphics::_set(matrix);
+      ::gpu::graphics::_set(matrix);
       
       //thread_select();
 
@@ -6668,7 +6668,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::send(const ::procedure &procedure)
    {
 
-      ::draw2d_gpu::graphics::send(procedure);
+      ::gpu::graphics::send(procedure);
 
       //m_pgpucontextCompositor->send(procedure);
 
@@ -6711,7 +6711,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    ::gpu::context* graphics::gpu_context()
    {
 
-      return ::draw2d_gpu::graphics::gpu_context();
+      return ::gpu::graphics::gpu_context();
 
    }
 
@@ -6979,7 +6979,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    {
 
 
-      ::draw2d_gpu::graphics::thread_select();
+      ::gpu::graphics::thread_select();
 
 
       ////if (thread_graphics() == this)

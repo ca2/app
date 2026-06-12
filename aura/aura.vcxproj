@@ -2649,6 +2649,7 @@
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
     <ClCompile Include="graphics\write_text\internal_font.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />
+    <ClCompile Include="graphics\write_text\text_metric.cpp" />
     <ClCompile Include="graphics\write_text\text_out.cpp" />
     <ClCompile Include="graphics\write_text\text_out_array.cpp" />
     <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp" />

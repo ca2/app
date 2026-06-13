@@ -30,8 +30,8 @@ public:
 
    constexpr i32_boolean(const i32_boolean& boolean) :m_i(boolean.m_i){}
 
-   operator bool() const {return m_i;}
-   operator ::i32 &() {return m_i;}
+   constexpr operator bool() const {return m_i;}
+   constexpr operator ::i32 &() {return m_i;}
 
 };
 

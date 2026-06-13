@@ -422,6 +422,8 @@ list(APPEND library_source
         nano/graphics/context.h
         nano/graphics/font.cpp
         nano/graphics/font.h
+        nano/graphics/font_family.cpp
+        nano/graphics/font_family.h
         nano/graphics/graphics.cpp
         nano/graphics/graphics.h
         nano/graphics/object.cpp
@@ -3176,11 +3178,13 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
 
 
     list(APPEND library_source
-            operating_system/posix/__edesktop_calculate.cpp
-            operating_system/posix/__edisplaytype_initialize.cpp
-            operating_system/posix/__etoolkit_calculate.cpp
+       operating_system/posix/__edesktop_calculate.cpp
+       operating_system/posix/__edisplaytype_initialize.cpp
+       operating_system/posix/__etoolkit_calculate.cpp
        operating_system/posix/networking.cpp
        operating_system/posix/networking.h
+       operating_system/posix/shared_memory.cpp
+       operating_system/posix/shared_memory.h
     )
 
 endif ()

@@ -144,7 +144,7 @@ namespace sandbox_windowing
 
       display(e_display_normal);
       
-      window()->show_window();
+      //window()->show_window();
 
    }
 
@@ -203,18 +203,18 @@ void host_interaction::set_keyboard_focus()
 }
 
 
-void host_interaction::hide()
-{
-
-   ::user::interaction::hide();
-   
-}
-void host_interaction::show()
-{
-
-   ::user::interaction::show();
-   
-}
+// void host_interaction::hide()
+// {
+//
+//    ::user::interaction::hide();
+//
+// }
+// void host_interaction::show()
+// {
+//
+//    ::user::interaction::show();
+//
+// }
 
 
 

@@ -2,9 +2,12 @@
 // To keyboard_state.cpp by camilo on 2023-11-14 18:10 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 #include "framework.h"
 #include "keyboard_state.h"
+
+#include "mouse.h"
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/constant/lightui.h"
 
 
 namespace user
@@ -254,10 +257,10 @@ namespace user
 
    }
 
-#if defined(WINDOWS_DESKTOP)
-   // CLASS_DECL_ACME::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam)
+//#if defined(WINDOWS_DESKTOP)
+// CLASS_DECL_ACME::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam)
 
-   ::user::key_state keyboard_state::key_state_with_wm_mouse_wparam(::wparam wparam) const
+   ::user::key_state keyboard_state::key_state_with_mouse_override(::user::mouse * pmouse) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -266,19 +269,23 @@ namespace user
 
       ::user::key_state keystate;
 
-      if (wparam & MK_LBUTTON)
+      auto wparam = pmouse->m_wparam.m_wparam;
+
+      if (wparam & ::lightui::e_MK_LBUTTON)
       {
 
          keystate.m_ekeystate |=  e_key_state_left_button;
+
       }
 
-      if (wparam & MK_RBUTTON)
+      if (wparam & ::lightui::e_MK_RBUTTON)
       {
 
          keystate.m_ekeystate |=  e_key_state_right_button;
+
       }
 
-      if (wparam & MK_SHIFT)
+      if (wparam & ::lightui::e_MK_SHIFT)
       {
 
          keystate.m_ekeystate |=  e_key_state_shift;
@@ -296,7 +303,7 @@ namespace user
          }
       }
 
-      if (wparam & MK_CONTROL)
+      if (wparam & ::lightui::e_MK_CONTROL)
       {
 
          keystate.m_ekeystate |=  e_key_state_control;
@@ -314,27 +321,23 @@ namespace user
          }
       }
 
-      if (wparam & MK_MBUTTON)
+      if (wparam & ::lightui::e_MK_MBUTTON)
       {
 
          keystate.m_ekeystate |=  e_key_state_middle_button;
       }
 
-#ifdef MK_XBUTTON1
-      if (wparam & MK_XBUTTON1)
+      if (wparam & ::lightui::e_MK_XBUTTON1)
       {
 
          keystate.m_ekeystate |=  e_key_state_x1_button;
       }
-#endif
 
-#ifdef MK_XBUTTON2
-      if (wparam & MK_XBUTTON2)
+      if (wparam & ::lightui::e_MK_XBUTTON2)
       {
 
          keystate.m_ekeystate |=  e_key_state_x2_button;
       }
-#endif
 
       if (is_key_pressed(::user::e_key_left_alt))
       {
@@ -348,28 +351,24 @@ namespace user
          keystate.m_ekeystate |=  e_key_state_right_alt;
       }
 
-#ifdef VK_LWIN
       if (is_key_pressed(::user::e_key_left_command))
       {
 
          keystate.m_ekeystate |=  e_key_state_left_command;
       }
-#endif
 
-#ifdef VK_RWIN
       if (is_key_pressed(::user::e_key_right_command))
       {
 
          keystate.m_ekeystate |=  e_key_state_right_command;
       }
-#endif
 
       return keystate;
 
    }
 
 
-#endif
+//#endif
 
 
 

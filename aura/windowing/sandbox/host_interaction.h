@@ -35,7 +35,7 @@ namespace sandbox_windowing
 
       void install_message_routing(::channel* pchannel) override;
 
-      void show() override;
+      //void show() override;
       
       void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
       void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
@@ -62,7 +62,7 @@ namespace sandbox_windowing
       void set_keyboard_focus() override;
       
       
-      void hide() override;
+      //void hide() override;
       
       
       ::string get_title() override;

@@ -4568,7 +4568,7 @@ namespace draw2d_cairo
 
          playout = pango_cairo_create_layout(m_pdc);                 // init pango layout ready for use
 
-         pango_layout_set_text(playout, lpszString,
+         pango_layout_set_text(playout, pszString,
                                -1);          // sets the text to be associated with the layout (final arg is length, -1
          // to calculate automatically when passing a nul-terminated string)
          pango_layout_set_font_description(playout,

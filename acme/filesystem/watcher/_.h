@@ -43,6 +43,8 @@ namespace file
    };
 
 
+   DECLARE_C_FLAG(e_action, enum_action);
+
 
 };
 

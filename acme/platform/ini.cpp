@@ -106,6 +106,48 @@ static ::i32 wp_starts_with_space(const_char_pointer s) {
     return s && *s && isspace((::u8)*s);
 }
 
+static ::i32 wp_build_assignment_line(
+    char_pointer dst,
+    size_t dstsz,
+    const_char_pointer key,
+    const_char_pointer value,
+    const_char_pointer comment
+) {
+    size_t keylen = strlen(key);
+    size_t valuelen = strlen(value);
+    size_t commentlen = comment ? strlen(comment) : 0;
+    char_pointer p;
+
+    if (keylen >= dstsz || valuelen >= dstsz - keylen - 1) return 0;
+    if (commentlen && commentlen >= dstsz - keylen - 1 - valuelen - 1) return 0;
+
+    p = dst;
+    memcpy(p, key, keylen);
+    p += keylen;
+    *p++ = '=';
+    memcpy(p, value, valuelen);
+    p += valuelen;
+    if (commentlen) {
+        *p++ = ' ';
+        memcpy(p, comment, commentlen);
+        p += commentlen;
+    }
+    *p = '\0';
+    return 1;
+}
+
+static ::i32 wp_build_section_line(char_pointer dst, size_t dstsz, const_char_pointer section) {
+    size_t sectionlen = strlen(section);
+
+    if (dstsz < 3 || sectionlen >= dstsz - 2) return 0;
+
+    dst[0] = '[';
+    memcpy(dst + 1, section, sectionlen);
+    dst[sectionlen + 1] = ']';
+    dst[sectionlen + 2] = '\0';
+    return 1;
+}
+
 /* ============================================================
    Dynamic line array
    ============================================================ */
@@ -610,13 +652,15 @@ static ::u32 wp_multisz_append(char_pointer dst, ::u32 nSize, ::u32 used, const_
     if (loc.found_key) {
         comment[0] = '\0';
         if (wp_parse_key_value_line_ex(lines.items[loc.key_line], k, sizeof(k), v, sizeof(v), comment, sizeof(comment))) {
-            if (comment[0]) {
-                snprintf(newline, sizeof(newline), "%s=%s %s", lpKeyName, encoded, comment);
-            } else {
-                snprintf(newline, sizeof(newline), "%s=%s", lpKeyName, encoded);
+            if (!wp_build_assignment_line(newline, sizeof(newline), lpKeyName, encoded, comment)) {
+                wp_lines_free(&lines);
+                return FALSE;
             }
         } else {
-            snprintf(newline, sizeof(newline), "%s=%s", lpKeyName, encoded);
+            if (!wp_build_assignment_line(newline, sizeof(newline), lpKeyName, encoded, NULL)) {
+                wp_lines_free(&lines);
+                return FALSE;
+            }
         }
 
         free(lines.items[loc.key_line]);
@@ -628,7 +672,10 @@ static ::u32 wp_multisz_append(char_pointer dst, ::u32 nSize, ::u32 used, const_
     }
     /* append key to existing section */
     else if (loc.found_section) {
-        snprintf(newline, sizeof(newline), "%s=%s", lpKeyName, encoded);
+        if (!wp_build_assignment_line(newline, sizeof(newline), lpKeyName, encoded, NULL)) {
+            wp_lines_free(&lines);
+            return FALSE;
+        }
         if (!wp_lines_insert(&lines, loc.section_end, newline)) {
             wp_lines_free(&lines);
             return FALSE;
@@ -643,13 +690,19 @@ static ::u32 wp_multisz_append(char_pointer dst, ::u32 nSize, ::u32 used, const_
             }
         }
 
-        snprintf(newline, sizeof(newline), "[%s]", lpAppName);
+        if (!wp_build_section_line(newline, sizeof(newline), lpAppName)) {
+            wp_lines_free(&lines);
+            return FALSE;
+        }
         if (!wp_lines_push(&lines, newline)) {
             wp_lines_free(&lines);
             return FALSE;
         }
 
-        snprintf(newline, sizeof(newline), "%s=%s", lpKeyName, encoded);
+        if (!wp_build_assignment_line(newline, sizeof(newline), lpKeyName, encoded, NULL)) {
+            wp_lines_free(&lines);
+            return FALSE;
+        }
         if (!wp_lines_push(&lines, newline)) {
             wp_lines_free(&lines);
             return FALSE;

@@ -35,4 +35,18 @@ e_SW_HIDE =      0,
    
 };
 
+
+enum enum_MK : unsigned int
+{
+   e_MK_LBUTTON  = 0x0001, // Left mouse button is down.
+   e_MK_RBUTTON  = 0x0002, // Right mouse button is down.
+   e_MK_SHIFT    = 0x0004, // Shift key is down.
+   e_MK_CONTROL  = 0x0008, // Control key is down.
+   e_MK_MBUTTON  = 0x0010, // Middle mouse button is down.
+   e_MK_XBUTTON1 = 0x0020, // XBUTTON1 is down.
+   e_MK_XBUTTON2 = 0x0040, // XBUTTON2 is down.
+};
+
+
+
 } // namespace lightui

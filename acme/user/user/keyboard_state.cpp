@@ -260,14 +260,12 @@ namespace user
 //#if defined(WINDOWS_DESKTOP)
 // CLASS_DECL_ACME::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam)
 
-   void keyboard_state::virtual void defer_update_key_state_with_mouse_message(::user::mouse * pmouse)
+   void keyboard_state::defer_update_key_state_with_mouse_message(::user::mouse * pmouse)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      using namespace ::user;
-
-      ::user::key_state keystate;
+      ::user::key_state & keystate = *this;
 
       auto wparam = pmouse->m_wparam.m_wparam;
 
@@ -363,7 +361,7 @@ namespace user
          keystate.m_ekeystate |=  e_key_state_right_command;
       }
 
-      return keystate;
+      //return keystate;
 
    }
 

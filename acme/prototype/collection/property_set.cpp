@@ -2462,6 +2462,24 @@ void property_set_base::parse_environment_variable(const string_array_base & str
 }
 
 
+string property_set_base::id_payload_listing() const
+{
+
+   ::string strIdPayloadListing;
+
+   for (auto & pproperty : *this)
+   {
+
+      strIdPayloadListing.append_formatf("%s=\"%s\"\n", pproperty->name().as_string().c_str(), pproperty->as_string().c_str());
+
+   }
+
+   return strIdPayloadListing;
+
+
+}
+
+
 bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 {
 

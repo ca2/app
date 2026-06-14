@@ -78,12 +78,7 @@ namespace operating_system
 
       ::string strIdPayloadListing;
 
-      for (auto & pproperty : set)
-      {
-
-         strIdPayloadListing.append_formatf("%s=\"%s\"\n", pproperty->name().as_string().c_str(), pproperty->as_string().c_str());
-
-      }
+      strIdPayloadListing = set.id_payload_listing();
 
       return strIdPayloadListing;
 

@@ -260,7 +260,7 @@ namespace user
 //#if defined(WINDOWS_DESKTOP)
 // CLASS_DECL_ACME::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam)
 
-   ::user::key_state keyboard_state::key_state_with_mouse_override(::user::mouse * pmouse) const
+   void keyboard_state::virtual void defer_update_key_state_with_mouse_message(::user::mouse * pmouse)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

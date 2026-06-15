@@ -242,6 +242,7 @@ list(APPEND library_source
         graphics/write_text/text.h
         graphics/write_text/text_box.cpp
         graphics/write_text/text_box.h
+        graphics/write_text/text_metric.cpp
         graphics/write_text/text_metric.h
         graphics/write_text/text_out.cpp
         graphics/write_text/text_out.h

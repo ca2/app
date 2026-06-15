@@ -4300,7 +4300,10 @@ namespace user
 
                       pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
 
-                      pmessage->m_keystate =session()->key_state_with_wm_mouse_wparam( pmouse->m_wparam);
+                     session()->defer_update_key_state_with_mouse_message(pmouse);
+
+                      //pmessage->m_keystate =session()->key_state_with_wm_mouse_wparam( pmouse->m_wparam);
+                     pmessage->m_keystate = session()->key_state();
                           //pmouse->m_ekeystate;
 
                       pmessage->m_pointHost = point;

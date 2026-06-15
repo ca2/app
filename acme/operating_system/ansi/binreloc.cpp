@@ -55,7 +55,7 @@ _br_find_exe (BrInitError *error)
    path.release_buffer();
    return ansi_duplicate(unicode_to_utf8(path));
 #else
-   char_pointer path, *path2, *line, *result;
+   char_pointer path, path2, line, result;
    size_t buf_size;
    ssize_t size;
    struct stat stat_buf;
@@ -208,7 +208,8 @@ _br_find_exe_for_symbol (const void *symbol, BrInitError *error)
 #define SIZE_FOR_LINE PATH_MAX + 100
    FILE *f;
    size_t address_string_len;
-   char_pointer address_string, line[SIZE_FOR_LINE], *found;
+   char_pointer address_string, found;
+   char line[SIZE_FOR_LINE];
 
    if (symbol == nullptr)
       return (char_pointer ) nullptr;
@@ -223,7 +224,7 @@ _br_find_exe_for_symbol (const void *symbol, BrInitError *error)
 
    while (!feof (f))
    {
-      char_pointer start_addr, *end_addr, *end_addr_end, *file;
+      char_pointer start_addr, end_addr, end_addr_end, file;
       void *start_addr_p, *end_addr_p;
       size_t len;
 

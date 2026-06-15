@@ -5,6 +5,9 @@
 namespace windows
 {
 
+   CLASS_DECL_ACME ::u32 get_windows_build_number();
+   CLASS_DECL_ACME bool is_windows_11();
+   CLASS_DECL_ACME bool is_windows_10();
 
    CLASS_DECL_ACME HWND get_mouse_capture(itask itask);
    CLASS_DECL_ACME bool set_mouse_capture(itask itask, HWND hwnd);

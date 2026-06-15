@@ -469,6 +469,8 @@ public:
 
    void parse_environment_variable(const string_array_base & straEnvironment);
 
+   ::string id_payload_listing() const;
+
 
 };
 

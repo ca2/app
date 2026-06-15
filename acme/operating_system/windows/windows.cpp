@@ -13,6 +13,12 @@
 
 #include "shared_memory.h"
 
+   //#include <windows.h>
+#include <winternl.h>
+
+#pragma comment(lib, "ntdll.lib")
+
+
 
 CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 {
@@ -990,8 +996,79 @@ CLASS_DECL_ACME void copy(MESSAGE& message, const MSG& msg)
 namespace windows
 {
 
+   
+   typedef LONG(WINAPI *RtlGetVersionProc)(PRTL_OSVERSIONINFOW);
+
+   CLASS_DECL_ACME ::u32 get_windows_build_number()
+   {
+      HMODULE hNtDll = GetModuleHandleW(L"ntdll.dll");
+
+      if (!hNtDll)
+         return 0;
+
+      auto pRtlGetVersion = (RtlGetVersionProc)GetProcAddress(hNtDll, "RtlGetVersion");
+
+      if (!pRtlGetVersion)
+         return 0;
+
+      RTL_OSVERSIONINFOW vi{};
+      vi.dwOSVersionInfoSize = sizeof(vi);
+
+      if (pRtlGetVersion(&vi) != 0)
+         return 0;
+
+      return vi.dwBuildNumber;
+   }
 
 
+   CLASS_DECL_ACME bool is_windows_11()
+   {
+
+      auto uBuildNumber = get_windows_build_number();
+
+      if (uBuildNumber >= 22000)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+      //RTL_OSVERSIONINFOW vi{};
+      //vi.dwOSVersionInfoSize = sizeof(vi);
+
+      //if (::RtlGetVersion(&vi) != 0)
+      //{
+      //   return false;
+      //}
+
+      //return vi.dwMajorVersion == 10 && vi.dwBuildNumber >= 22000;
+   }
+
+   CLASS_DECL_ACME bool is_windows_10()
+   {
+
+      auto uBuildNumber = get_windows_build_number();
+
+      if (uBuildNumber < 22000)
+      {
+
+         return true;
+      }
+
+      return false;
+
+      //RTL_OSVERSIONINFOW vi{};
+      //vi.dwOSVersionInfoSize = sizeof(vi);
+
+      //if (::RtlGetVersion(&vi) != 0)
+      //{
+      //   return false;
+      //}
+
+      //return vi.dwMajorVersion == 10 && vi.dwBuildNumber < 22000;
+   }
 
 
    CLASS_DECL_ACME ::i32 message_box_to_windows_message_box(const ::user::e_message_box & emessagebox)

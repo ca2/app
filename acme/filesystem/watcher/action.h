@@ -4,7 +4,7 @@
 #pragma once
 
 
-//#include "acme/filesystem/filesystem/path.h"
+#include "acme/filesystem/watcher/_.h"
 
 
 namespace file
@@ -21,8 +21,7 @@ namespace file
       //watch_id                         m_pfilewatch;
       ::file::path                     m_pathFolder;
       ::file::path                     m_pathFile;
-      enumeration < enum_action >      m_eaction;
-
+      e_action                         m_eaction;
 
       action();
       ~action();

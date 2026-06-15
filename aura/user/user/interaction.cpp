@@ -19016,7 +19016,8 @@ if(get_parent())
       case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
+         pmessage->m_keystate = session()->key_state();
+         ///pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
 
          //         if ((pmessage->m_ekeystate & I32_MINIMUM   ) == (I32_MINIMUM))
          //         {
@@ -19054,7 +19055,9 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
+         //pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
+
+         pmessage->m_keystate = session()->key_state();
 
          pmessage->m_pointAbsolute = lparam.point();
 

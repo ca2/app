@@ -39,9 +39,7 @@ namespace user
 
       //virtual bool is_key_pressed(const ::user::e_key & ekey) const;
       virtual ::user::key_state key_state() const;
-#if defined(WINDOWS_DESKTOP)
-      virtual ::user::key_state key_state_with_wm_mouse_wparam(::wparam wparam) const;
-#endif
+      virtual void defer_update_key_state_with_mouse_message(::user::mouse * pmouse);
 
       //virtual void set_key_pressed(const ::user::e_key & ekey, bool bPressed);
       void set_key_state(const ::user::e_key & ekey, ::key::enum_state estate) {

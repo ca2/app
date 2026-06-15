@@ -3,13 +3,15 @@ project(launch CXX)
 
 
 list(APPEND library_source
-        application.cpp
-        application.h
+   application.cpp
+   application.h
+   launch.cpp
+   launch.h
 )
 
 
 list(APPEND executable_source
-        main.cpp
+   main.cpp
 )
 
 

@@ -133,6 +133,8 @@ namespace user
 
          auto pdrag = drag(pitem);
 
+         pdrag->m_ecursorDrag = e_cursor_arrow;
+
          //auto pointLButtonDown2 = drag_mouse_cursor_position(pitem, pdrag->m_pointLButtonDown2);
 
          auto Δ = pdrag->m_pointLButtonDown2 ;
@@ -165,7 +167,7 @@ namespace user
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_move;
+         pdrag->m_ecursorDrag = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 

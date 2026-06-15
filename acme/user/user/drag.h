@@ -31,7 +31,7 @@ namespace user
       ::i32_point                   m_pointInitial;
       //::i32_size                  m_sizeLButtonDownOffset;
       //::pointer<::user::mouse>      m_pmouse;
-      enum_cursor                   m_ecursor;
+      enum_cursor                   m_ecursorDrag;
 
       bool                          m_bDrag;
 

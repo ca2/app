@@ -1476,7 +1476,7 @@ namespace user
          
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_move;
+         pdrag->m_ecursorDrag = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 

@@ -305,6 +305,8 @@ namespace user
 
          y += Δ;
 
+         information("user::scroll_base_y {}", y);
+
          constrain_context_offset_y(y, elayout);
 
          set_context_offset_y(y, elayout);

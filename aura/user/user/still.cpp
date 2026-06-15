@@ -108,6 +108,15 @@ namespace user
       else
       {
 
+         if (m_statuscolorBackground.ok())
+         {
+
+            auto r = client2_rectangle();
+
+            pgraphics->fill_solid_rectangle(r, m_statuscolorBackground);
+
+         }
+
          //
 
          auto strWindowText = get_window_text();
@@ -556,17 +565,24 @@ namespace user
    {
 
 
-      //if (eelement == e_element_text)
-      //{
+      if (eelement == e_element_text)
+      {
 
-      //   if (m_statuscolorText.ok())
-      //   {
+         if (m_statuscolorText.ok())
+         {
+                 return m_statuscolorText;
 
-      //      return m_statuscolorText;
+         }
 
-      //   }
+      }
+      else if (eelement == e_element_background)
+      {
 
-      //}
+         if (m_statuscolorBackground.ok())
+         {
+            return m_statuscolorBackground;
+         }
+      }
 
       return ::user::interaction::get_color(pstyle, eelement, estate);
 
@@ -793,7 +809,19 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         ::f64_size sizeText = get_fitting_size(pgraphics);
+         ::f64_size sizeText;
+
+         if (m_sizeFixed.is_empty())
+         {
+
+            sizeText = get_fitting_size(pgraphics);
+         }
+         else
+         {
+
+            sizeText = m_sizeFixed;
+
+         }
 
          //::i32_rectangle rectangle;
 
@@ -1299,13 +1327,16 @@ namespace user
 
       ::collection::index iItem = -1;
 
-      if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
+      if (m_sizeFixed.is_empty())
       {
 
-         auto pitemNone = stock_item(e_element_none);
+         if (!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
+         {
 
-         return pitemNone;
+            auto pitemNone = stock_item(e_element_none);
 
+            return pitemNone;
+         }
       }
 
       return stock_item(e_element_client);

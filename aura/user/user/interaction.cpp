@@ -261,7 +261,7 @@ namespace user
       m_bNanoPaint = false;
 
       //m_bVisualChanged = false;
-
+      m_bDefaultNcHitTest = false;
 
 #ifdef REPORT_OFFSETS
 
@@ -763,6 +763,8 @@ namespace user
          set_need_redraw({}, pgraphics);
 
       }
+
+      set_reposition();
 
       return true;
 
@@ -9587,7 +9589,7 @@ if(get_parent())
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_move;
+         pdrag->m_ecursorDrag = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 
@@ -9612,7 +9614,7 @@ if(get_parent())
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_size_bottom_right;
+         pdrag->m_ecursorDrag = e_cursor_size_bottom_right;
 
          auto pointBottomRight = drag_point(pitem, pmouse);
 
@@ -9708,7 +9710,7 @@ if(get_parent())
 
             auto pdrag = drag(pitem);
 
-            pdrag->m_ecursor = e_cursor_arrow;
+            pdrag->m_ecursorDrag = e_cursor_arrow;
 
             return true;
 
@@ -9724,7 +9726,7 @@ if(get_parent())
 
          //information() << "drag_hover e_element_resize";
 
-         pdrag->m_ecursor = e_cursor_size_bottom_right;
+         pdrag->m_ecursorDrag = e_cursor_size_bottom_right;
 
          return true;
 
@@ -9750,7 +9752,7 @@ if(get_parent())
 
       auto pdrag = drag(pitem);
 
-      auto pcursor = pwindowing->get_cursor(pdrag->m_ecursor);
+      auto pcursor = pwindowing->get_cursor(pdrag->m_ecursorDrag);
 
       user_mouse_set_cursor(pmouse, pcursor);
 
@@ -10439,6 +10441,10 @@ if(get_parent())
       //window()->enable_window(bEnable);
 
       m_ewindowflag.set(e_window_flag_enable, bEnable);
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -18644,10 +18650,43 @@ if(get_parent())
       else if (pmouse->m_eusermessage == ::user::e_message_mouse_move)
       {
 
-         informationf("on_mouse_message ::user::e_message_mouse_move");
+         //informationf("on_mouse_message ::user::e_message_mouse_move");
       }
 
       user_mouse_initialize_cursor(pmouse, m_pcursorDefault);
+
+      if (::is_set(m_pacmewindowingwindow))
+      {
+
+         ::cast<::user::interaction> puserinteractionCapture =
+            m_pacmewindowingwindow->m_pacmeuserinteractionMouseCapture;
+
+         if (::is_set(puserinteractionCapture))
+         {
+
+            puserinteractionCapture->route_as_parent_mouse_message(pmouse);
+
+            if (pmouse->m_bRet)
+            {
+
+               return true;
+            }
+
+
+            puserinteractionCapture->route_message(pmouse);
+
+            //         interactionaHandled.add_interaction(puserinteraction);
+
+            if (pmouse->m_bRet)
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
 
       ::user::interaction * pchild = this;
 

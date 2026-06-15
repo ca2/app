@@ -1667,7 +1667,7 @@ namespace acme
 
          auto pdrag = drag(pitem);
 
-         set_cursor(pdrag->m_ecursor);
+         set_cursor(pdrag->m_ecursorDrag);
 
       }
 

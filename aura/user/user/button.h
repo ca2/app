@@ -62,6 +62,7 @@ namespace user
       //e_rect                            m_erectMargin;
       //e_rect                            m_erectBorder;
       //e_rect                            m_erectPadding;
+      ::write_text::font_pointer m_pfont;
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
@@ -71,6 +72,7 @@ namespace user
       ::i32_rectangle                     m_rectangleCheckBox;
       ::pointer < bitmap >                m_pbitmap;
       ::pointer < list_base >                  m_plist;
+      ::i32_size                          m_sizeFixed;
 
 
       button();

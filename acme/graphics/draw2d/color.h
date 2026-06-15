@@ -649,6 +649,17 @@ constexpr auto argb(OPACITY opacity, RED red, GREEN green, BLUE blue)
 
 }
 
+inline constexpr auto hex_color(::u8 opacity, ::u32 rgb)
+{
+   ::color::color color(no_initialize_t{});
+
+   color.set_opacity(opacity);
+   color.set_red((::u8)((rgb >> 16) & 0xff));
+   color.set_green((::u8)((rgb >> 8) & 0xff));
+   color.set_blue((::u8)(rgb & 0xff));
+
+   return color;
+}
 
 //constexpr auto opacity(const class ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
 //constexpr auto opaque(const ::color::color& color) { return opacity(255, color); }

@@ -168,6 +168,7 @@ public:
 
    virtual ::payload as_network_payload(const ::payload & payloadFile);
    virtual ::payload safe_get_network_payload(const ::payload & payloadFile);
+   virtual ::pointer_array<::string_array> as_comma_separated(const ::payload &payloadFile);
    virtual ::memory _005SignedMemory(const ::payload & payloadFile);
    virtual string _005SignedString(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);

@@ -88,6 +88,13 @@ namespace user
    ::write_text::font_pointer button::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
+      if (m_pfont)
+      {
+
+         return m_pfont;
+
+      }
+
       if (pstyle)
       {
 
@@ -355,7 +362,12 @@ namespace user
 
          m_bNeedAutoResizePerformLayout = false;
 
-         auto sizeControl = get_preferred_size(pgraphics);
+         ::i32_size sizeControl;
+
+         if (m_sizeFixed.is_empty())
+            sizeControl = get_preferred_size(pgraphics);
+         else
+            sizeControl = m_sizeFixed;
 
          //::i32_rectangle rectangle;
          //rectangle.left = (::i32)(rectangleX.left + (rectangleX.width() - sizeFitting.cx) / 2);

@@ -210,9 +210,20 @@ namespace user
 
                _synchronouslock.unlock();
 
+               ::e_item eitem = e_item_none;
+               
+               if (pdrag->m_pitem)
+               {
+
+                  eitem = pdrag->m_pitem->m_eitem;
+
+               }
+
                drag_shift(pdrag->m_pitem, pmouse);
 
-               if (pdrag->m_ecursor != e_cursor_none)
+               auto ecursorDrag = pdrag->m_ecursorDrag;
+
+               if (ecursorDrag != e_cursor_none)
                {
 
                   drag_set_cursor(pdrag->m_pitem, pmouse);
@@ -264,7 +275,7 @@ namespace user
 
             bool bRet = drag_hover(pitem);
 
-            if (pdrag->m_ecursor != e_cursor_none)
+            if (pdrag->m_ecursorDrag != e_cursor_none)
             {
 
                drag_set_cursor(pitem, pmouse);

@@ -10648,7 +10648,10 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       //auto pgraphicscontext = create_newø<::draw2d::graphics_context>();
 
-      if (puserinteraction->m_bNeedLayout || puserinteraction->m_bNeedPerformLayout || puserinteraction->m_bVisibilityChange)
+      //if (puserinteraction->m_bNeedLayout
+        // || puserinteraction->m_bNeedPerformLayout 
+         //|| puserinteraction->m_bVisibilityChange 
+         //|| puserinteraction->m_bReposition)
       {
 
          auto &bNeedLayout = puserinteraction->m_bNeedLayout;
@@ -10656,6 +10659,8 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          auto &bNeedPerformLayout = puserinteraction->m_bNeedPerformLayout;
 
          auto &bVisibilityChange = puserinteraction->m_bVisibilityChange;
+
+         auto &bReposition = puserinteraction->m_bReposition;
 
          //::string strType = ::platform::type(*user_interaction()).name();
 
@@ -11030,12 +11035,12 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          //                }
          //
       }
-      else
-      {
+      //else
+      //{
 
-         information("Optimized out a layout phase");
+      //   information("Optimized out a layout phase");
 
-      }
+      //}
       
       auto pbuffer = m_pgraphicsgraphics;
 //       //
@@ -13791,6 +13796,20 @@ slGraphics.unlock();
    {
 
       this->set_mouse_capture();
+
+
+      ::string strType;
+      const char *pszType = nullptr;
+      if (::is_set(puserinteraction))
+      {
+
+         strType = ::type(*puserinteraction).name();
+
+         pszType = strType.c_str();
+
+      }
+
+
 
       m_pacmeuserinteractionMouseCapture = puserinteraction;
 

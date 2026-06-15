@@ -26,8 +26,10 @@ namespace user
       enum_stock_icon                     m_estockicon;
       ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
+      ::i32_size                          m_sizeFixed;
       //::string                            m_strTextOutArray;
-
+      ::status<::color::color>            m_statuscolorBackground;
+      ::status<::color::color>            m_statuscolorText;
       ::i32_rectangle                     m_rectangleCheckBox;
       string                              m_strLink;
 

@@ -2278,6 +2278,10 @@ bool simple_scroll_bar::drag_shift(::item * pitem, ::user::mouse * pmouse)
    if (pitem->m_item.m_eelement == e_element_scrollbar_trackbar)
    {
 
+      auto pdrag = drag(pitem);
+
+      pdrag->m_ecursorDrag = e_cursor_move;
+
       auto point = drag_point(pitem, pmouse);
 
       set_scroll_tracking_position(point);

@@ -78,6 +78,8 @@ class ::time m_timeLastDownload = ::time::now();
 //#include "apex/crypto/crypto_openssl.h"
 //#endif
 
+CLASS_DECL_ACME ::pointer_array<::string_array> parse_comma_separated_file(const ::scoped_string &scopedstrCsv);
+
 
 file_context::file_context()
 {
@@ -809,6 +811,27 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
    return v;
 
 }
+
+
+::pointer_array < string_array>  file_context::as_comma_separated(const ::payload &payloadFile)
+{
+
+   string str = as_string(payloadFile);
+
+   str.trim();
+
+   if (str.is_empty())
+   {
+
+      return ::e_type_new;
+   }
+
+   auto pstr2aCommaSeparacted = parse_comma_separated_file(str);
+
+   return pstr2aCommaSeparacted;
+
+}
+
 
 
 ::memory file_context::_005Signature(const ::payload & payloadFile)

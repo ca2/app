@@ -12,7 +12,7 @@ namespace user
    drag::drag()
    {
 
-      m_ecursor = e_cursor_none;
+      m_ecursorDrag = e_cursor_none;
 
       m_bDrag = false;
 

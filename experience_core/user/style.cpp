@@ -1844,13 +1844,27 @@ namespace experience_core
             if (is_dark_mode())
             {
 
-               return argb(255, 230, 230, 230);
+               if (estate & ::user::e_state_disabled)
+               {
+                  return argb(255, 128, 128, 128);
+               }
+               else
+               {
+                  return argb(255, 230, 230, 230);
+               }
 
             }
             else
             {
 
-               return argb(255, 40, 40, 40);
+               if (estate & ::user::e_state_disabled)
+               {
+                  return argb(255, 128, 128, 128);
+               }
+               else
+               {
+                  return argb(255, 40, 40, 40);
+               }
 
             }
 

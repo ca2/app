@@ -146,7 +146,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = allocateø ::text::translator();
+      construct_newø(m_ptexttranslator);
 
       __check_refdbg
 

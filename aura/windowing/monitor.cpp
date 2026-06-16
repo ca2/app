@@ -41,6 +41,14 @@ namespace windowing
    }
 
 
+   void monitor::initialize_monitor(::windowing::display * pwindowingdisplay, int iMonitor)
+   {
+
+
+
+   }
+
+
    void monitor::update_cache()
    {
 

@@ -668,10 +668,28 @@ string task_get_name()
 //
 
 
+#ifdef LINUX
+
+bool is_main_thread_by_tid();
+
+#endif
 
 
 void task_set_name(const scoped_string & scopedstr)
 {
+
+#ifdef LINUX
+
+   if (is_main_thread_by_tid())
+   {
+
+      ::information("task_set_name(1) wouldn't change main thread name in Linux.");
+
+      return;
+
+   }
+
+#endif
 
    return task_set_name(::block_cast < htask > (pthread_self()), scopedstr);
 

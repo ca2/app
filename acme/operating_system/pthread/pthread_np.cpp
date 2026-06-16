@@ -240,6 +240,19 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
     
     string strName(scopedstr);
 
+#if defined(LINUX)
+
+   if (htask == main_htask())
+   {
+
+      ::information("task_set_name wouldn't change main thread name in Linux.");
+
+      return;
+
+   }
+
+#endif
+
 #if defined(__APPLE__)
    
    if(htask != current_htask())

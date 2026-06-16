@@ -100,3 +100,23 @@ CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask)
 
 
 }
+
+
+#define _GNU_SOURCE
+#include <unistd.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+
+bool is_main_thread_by_tid(int iThreadID) {
+   // getpid() gets the Process ID
+   // gettid() gets the Thread ID of the calling thread
+   int iProcessID =::getpid();
+   return iProcessID == iThreadID;
+}
+bool is_main_thread_by_tid() {
+   // getpid() gets the Process ID
+   // gettid() gets the Thread ID of the calling thread
+   int iThreadID = ::gettid();
+   return is_main_thread_by_tid(iThreadID);
+}

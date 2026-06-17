@@ -1143,6 +1143,7 @@ namespace user
       bool on_add_child(::acme::user::interaction * puserinteractionChild) override;
       virtual void on_after_set_parent();
 
+      virtual ::f64 get_full_hd_factor();
 
       virtual bool on_set_owner(::user::interaction_base * pinterface);
 

@@ -2517,6 +2517,33 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
    }
 
 
+   ::f64 window::get_full_hd_factor()
+   {
+
+   auto rScreen = get_screen_rectangle();
+
+   auto wScreenNormal = (::f64) rScreen.size().maximum();
+   auto hScreenNormal = (::f64) rScreen.size().minimum();
+
+    auto fX = wScreenNormal / 1920.0;
+    auto fY = hScreenNormal / 1080.0;
+
+    auto f = minimum(fX, fY);
+
+    return f;
+
+
+   }
+
+
+   ::i32_rectangle window::get_screen_rectangle()
+   {
+
+        return {0., 0., 1920., 1080.0};
+
+   }
+
+
    bool window::client_to_screen(::i32_point* ppoint)
    {
 

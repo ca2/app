@@ -18583,6 +18583,23 @@ if(get_parent())
    }
 
 
+   ::f64 interaction::get_full_hd_factor()
+   {
+
+      ::cast < ::windowing::window > pwindow = acme_windowing_window();
+
+      if(::is_null(pwindow))
+      {
+
+        return 1.0;
+
+      }
+
+      return pwindow->get_full_hd_factor();
+
+   }
+
+
    bool interaction::on_set_owner(::user::interaction_base * pprimitive)
    {
 
